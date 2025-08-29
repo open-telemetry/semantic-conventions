@@ -33,11 +33,11 @@ See [Supported Resources](https://cloud.google.com/app-hub/docs/supported-resour
 <details open>
 <summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`gcp.apphub.application.container`](/docs/registry/attributes/gcp.md) | string | The container within GCP where the AppHub application is defined. | `projects/my-container-project` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`gcp.apphub.application.id`](/docs/registry/attributes/gcp.md) | string | The name of the application as configured in AppHub. | `my-application` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`gcp.apphub.application.location`](/docs/registry/attributes/gcp.md) | string | The GCP zone or region where the application is defined. | `us-central1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Value Captured |
+|---|---|---|---|---|---|---|
+| [`gcp.apphub.application.container`](/docs/registry/attributes/gcp.md) | string | The container within GCP where the AppHub application is defined. | `projects/my-container-project` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`gcp.apphub.application.id`](/docs/registry/attributes/gcp.md) | string | The name of the application as configured in AppHub. | `my-application` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`gcp.apphub.application.location`](/docs/registry/attributes/gcp.md) | string | The GCP zone or region where the application is defined. | `us-central1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
 </details>
 
 <!-- markdownlint-restore -->
@@ -63,11 +63,11 @@ See [Supported Resources](https://cloud.google.com/app-hub/docs/supported-resour
 <details open>
 <summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`gcp.apphub.service.criticality_type`](/docs/registry/attributes/gcp.md) | string | Criticality of a service indicates its importance to the business. [1] | `MISSION_CRITICAL`; `HIGH`; `MEDIUM` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`gcp.apphub.service.environment_type`](/docs/registry/attributes/gcp.md) | string | Environment of a service is the stage of a software lifecycle. [2] | `PRODUCTION`; `STAGING`; `TEST` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`gcp.apphub.service.id`](/docs/registry/attributes/gcp.md) | string | The name of the service as configured in AppHub. | `my-service` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Value Captured |
+|---|---|---|---|---|---|---|
+| [`gcp.apphub.service.criticality_type`](/docs/registry/attributes/gcp.md) | string | Criticality of a service indicates its importance to the business. [1] | `MISSION_CRITICAL`; `HIGH`; `MEDIUM` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`gcp.apphub.service.environment_type`](/docs/registry/attributes/gcp.md) | string | Environment of a service is the stage of a software lifecycle. [2] | `PRODUCTION`; `STAGING`; `TEST` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`gcp.apphub.service.id`](/docs/registry/attributes/gcp.md) | string | The name of the service as configured in AppHub. | `my-service` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
 
 **[1] `gcp.apphub.service.criticality_type`:** [See AppHub type enum](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type)
 
@@ -119,11 +119,11 @@ See [Supported Resources](https://cloud.google.com/app-hub/docs/supported-resour
 <details open>
 <summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`gcp.apphub.workload.criticality_type`](/docs/registry/attributes/gcp.md) | string | Criticality of a workload indicates its importance to the business. [1] | `MISSION_CRITICAL`; `HIGH`; `MEDIUM` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`gcp.apphub.workload.environment_type`](/docs/registry/attributes/gcp.md) | string | Environment of a workload is the stage of a software lifecycle. [2] | `PRODUCTION`; `STAGING`; `TEST` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`gcp.apphub.workload.id`](/docs/registry/attributes/gcp.md) | string | The name of the workload as configured in AppHub. | `my-workload` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Value Captured |
+|---|---|---|---|---|---|---|
+| [`gcp.apphub.workload.criticality_type`](/docs/registry/attributes/gcp.md) | string | Criticality of a workload indicates its importance to the business. [1] | `MISSION_CRITICAL`; `HIGH`; `MEDIUM` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`gcp.apphub.workload.environment_type`](/docs/registry/attributes/gcp.md) | string | Environment of a workload is the stage of a software lifecycle. [2] | `PRODUCTION`; `STAGING`; `TEST` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`gcp.apphub.workload.id`](/docs/registry/attributes/gcp.md) | string | The name of the workload as configured in AppHub. | `my-workload` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
 
 **[1] `gcp.apphub.workload.criticality_type`:** [See AppHub type enum](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type)
 

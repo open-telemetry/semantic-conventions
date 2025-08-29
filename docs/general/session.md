@@ -31,10 +31,10 @@ backends can link the two sessions (see [Session Start Event](#event-sessionstar
 <details open>
 <summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`session.id`](/docs/registry/attributes/session.md) | string | A unique id to identify a session. | `00112233-4455-6677-8899-aabbccddeeff` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`session.previous_id`](/docs/registry/attributes/session.md) | string | The previous `session.id` for this user, when known. | `00112233-4455-6677-8899-aabbccddeeff` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Value Captured |
+|---|---|---|---|---|---|---|
+| [`session.id`](/docs/registry/attributes/session.md) | string | A unique id to identify a session. | `00112233-4455-6677-8899-aabbccddeeff` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`session.previous_id`](/docs/registry/attributes/session.md) | string | The previous `session.id` for this user, when known. | `00112233-4455-6677-8899-aabbccddeeff` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
 </details>
 
 <!-- markdownlint-restore -->
@@ -65,10 +65,10 @@ When the `session.start` event contains both `session.id` and `session.previous_
 <details open>
 <summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`session.id`](/docs/registry/attributes/session.md) | string | The ID of the new session being started. | `00112233-4455-6677-8899-aabbccddeeff` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`session.previous_id`](/docs/registry/attributes/session.md) | string | The previous `session.id` for this user, when known. | `00112233-4455-6677-8899-aabbccddeeff` | `Conditionally Required` [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Value Captured |
+|---|---|---|---|---|---|---|
+| [`session.id`](/docs/registry/attributes/session.md) | string | The ID of the new session being started. | `00112233-4455-6677-8899-aabbccddeeff` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`session.previous_id`](/docs/registry/attributes/session.md) | string | The previous `session.id` for this user, when known. | `00112233-4455-6677-8899-aabbccddeeff` | `Conditionally Required` [1] | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
 
 **[1] `session.previous_id`:** If the new session is being created as a continuation of a previous session, the `session.previous_id` SHOULD be included in the event. The `session.id` and `session.previous_id` attributes MUST have different values.
 </details>
@@ -98,9 +98,9 @@ For instrumentation that tracks user behavior during user sessions, a `session.e
 <details open>
 <summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`session.id`](/docs/registry/attributes/session.md) | string | The ID of the session being ended. | `00112233-4455-6677-8899-aabbccddeeff` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Value Captured |
+|---|---|---|---|---|---|---|
+| [`session.id`](/docs/registry/attributes/session.md) | string | The ID of the session being ended. | `00112233-4455-6677-8899-aabbccddeeff` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
 </details>
 
 <!-- markdownlint-restore -->

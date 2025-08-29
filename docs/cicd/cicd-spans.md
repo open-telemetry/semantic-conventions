@@ -53,11 +53,11 @@ The `{pipeline}` SHOULD be the [`cicd.pipeline.name`](/docs/registry/attributes/
 <details open>
 <summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`cicd.pipeline.result`](/docs/registry/attributes/cicd.md) | string | The result of a pipeline run. | `success`; `failure`; `timeout`; `skipped` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` if the pipeline result is `failure` or `error` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`cicd.pipeline.action.name`](/docs/registry/attributes/cicd.md) | string | The kind of action a pipeline run is performing. | `BUILD`; `RUN`; `SYNC` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Value Captured |
+|---|---|---|---|---|---|---|
+| [`cicd.pipeline.result`](/docs/registry/attributes/cicd.md) | string | The result of a pipeline run. | `success`; `failure`; `timeout`; `skipped` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` if the pipeline result is `failure` or `error` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any-time  |
+| [`cicd.pipeline.action.name`](/docs/registry/attributes/cicd.md) | string | The kind of action a pipeline run is performing. | `BUILD`; `RUN`; `SYNC` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
 
 **[1] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
@@ -134,24 +134,15 @@ This span describes task execution in a pipeline run.
 **Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
 
 <details open>
-<summary><b>Sampling Relevant Attributes:</b></summary>
-The following attributes can be important for making sampling decisions
-and SHOULD be provided <b>at span creation time</b> (if provided at all). 
-
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`cicd.pipeline.task.name`](/docs/registry/attributes/cicd.md) | string | The human readable name of a task within a pipeline. Task here most closely aligns with a [computing process](https://wikipedia.org/wiki/Pipeline_(computing)) in a pipeline. Other terms for tasks include commands, steps, and procedures. | `Run GoLang Linter`; `Go Build`; `go-test`; `deploy_binary` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`cicd.pipeline.task.run.id`](/docs/registry/attributes/cicd.md) | string | The unique identifier of a task run within a pipeline. | `12097` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`cicd.pipeline.task.run.url.full`](/docs/registry/attributes/cicd.md) | string | The [URL](https://wikipedia.org/wiki/URL) of the pipeline task run, providing the complete address in order to locate and identify the pipeline task run. | `https://github.com/open-telemetry/semantic-conventions/actions/runs/9753949763/job/26920038674?pr=1075` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-</details>
-
-<details open>
 <summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`cicd.pipeline.task.run.result`](/docs/registry/attributes/cicd.md) | string | The result of a task run. | `success`; `failure`; `timeout`; `skipped` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` if the task result is `failure` or `error` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Value Captured |
+|---|---|---|---|---|---|---|
+| [`cicd.pipeline.task.name`](/docs/registry/attributes/cicd.md) | string | The human readable name of a task within a pipeline. Task here most closely aligns with a [computing process](https://wikipedia.org/wiki/Pipeline_(computing)) in a pipeline. Other terms for tasks include commands, steps, and procedures. | `Run GoLang Linter`; `Go Build`; `go-test`; `deploy_binary` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Span Creation  |
+| [`cicd.pipeline.task.run.id`](/docs/registry/attributes/cicd.md) | string | The unique identifier of a task run within a pipeline. | `12097` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Span Creation  |
+| [`cicd.pipeline.task.run.result`](/docs/registry/attributes/cicd.md) | string | The result of a task run. | `success`; `failure`; `timeout`; `skipped` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`cicd.pipeline.task.run.url.full`](/docs/registry/attributes/cicd.md) | string | The [URL](https://wikipedia.org/wiki/URL) of the pipeline task run, providing the complete address in order to locate and identify the pipeline task run. | `https://github.com/open-telemetry/semantic-conventions/actions/runs/9753949763/job/26920038674?pr=1075` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Span Creation  |
+| [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` if the task result is `failure` or `error` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any-time  |
 
 **[1] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 

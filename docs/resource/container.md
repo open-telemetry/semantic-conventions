@@ -16,15 +16,15 @@
 <details open>
 <summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`container.id`](/docs/registry/attributes/container.md) | string | Container ID. Usually a UUID, as for example used to [identify Docker containers](https://docs.docker.com/engine/containers/run/#container-identification). The UUID might be abbreviated. | `a3bf90e006b2` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`container.label.<key>`](/docs/registry/attributes/container.md) | string | Container labels, `<key>` being the label name, the value being the label value. [1] | `nginx` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`container.name`](/docs/registry/attributes/container.md) | string | Container name used by container runtime. | `opentelemetry-autoconf` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`oci.manifest.digest`](/docs/registry/attributes/oci.md) | string | The digest of the OCI image manifest. For container images specifically is the digest by which the container image is known. [2] | `sha256:e4ca62c0d62f3e886e684806dfe9d4e0cda60d54986898173c1083856cfda0f4` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`container.command`](/docs/registry/attributes/container.md) | string | The command used to run the container (i.e. the command name). [3] | `otelcontribcol` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`container.command_args`](/docs/registry/attributes/container.md) | string[] | All the command arguments (including the command/executable itself) run by the container. | `["otelcontribcol", "--config", "config.yaml"]` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`container.command_line`](/docs/registry/attributes/container.md) | string | The full command run by the container as a single string representing the full command. | `otelcontribcol --config config.yaml` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Value Captured |
+|---|---|---|---|---|---|---|
+| [`container.id`](/docs/registry/attributes/container.md) | string | Container ID. Usually a UUID, as for example used to [identify Docker containers](https://docs.docker.com/engine/containers/run/#container-identification). The UUID might be abbreviated. | `a3bf90e006b2` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`container.label.<key>`](/docs/registry/attributes/container.md) | string | Container labels, `<key>` being the label name, the value being the label value. [1] | `nginx` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`container.name`](/docs/registry/attributes/container.md) | string | Container name used by container runtime. | `opentelemetry-autoconf` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`oci.manifest.digest`](/docs/registry/attributes/oci.md) | string | The digest of the OCI image manifest. For container images specifically is the digest by which the container image is known. [2] | `sha256:e4ca62c0d62f3e886e684806dfe9d4e0cda60d54986898173c1083856cfda0f4` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`container.command`](/docs/registry/attributes/container.md) | string | The command used to run the container (i.e. the command name). [3] | `otelcontribcol` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`container.command_args`](/docs/registry/attributes/container.md) | string[] | All the command arguments (including the command/executable itself) run by the container. | `["otelcontribcol", "--config", "config.yaml"]` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`container.command_line`](/docs/registry/attributes/container.md) | string | The full command run by the container as a single string representing the full command. | `otelcontribcol --config config.yaml` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
 
 **[1] `container.label.<key>`:** For example, a docker container label `app` with value `nginx` SHOULD be recorded as the `container.label.app` attribute with value `"nginx"`.
 

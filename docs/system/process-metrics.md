@@ -61,9 +61,9 @@ This metric is [recommended][MetricRecommended].
 <details open>
 <summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`cpu.mode`](/docs/registry/attributes/cpu.md) | string | A process SHOULD be characterized _either_ by data points with no `mode` labels, _or only_ data points with `mode` labels. [1] | `user`; `system` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Value Captured |
+|---|---|---|---|---|---|---|
+| [`cpu.mode`](/docs/registry/attributes/cpu.md) | string | A process SHOULD be characterized _either_ by data points with no `mode` labels, _or only_ data points with `mode` labels. [1] | `user`; `system` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
 
 **[1] `cpu.mode`:** Following states SHOULD be used: `user`, `system`, `wait`
 
@@ -105,9 +105,9 @@ This metric is [opt-in][MetricOptIn].
 <details open>
 <summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`cpu.mode`](/docs/registry/attributes/cpu.md) | string | A process SHOULD be characterized _either_ by data points with no `mode` labels, _or only_ data points with `mode` labels. [1] | `user`; `system` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Value Captured |
+|---|---|---|---|---|---|---|
+| [`cpu.mode`](/docs/registry/attributes/cpu.md) | string | A process SHOULD be characterized _either_ by data points with no `mode` labels, _or only_ data points with `mode` labels. [1] | `user`; `system` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
 
 **[1] `cpu.mode`:** Following states SHOULD be used: `user`, `system`, `wait`
 
@@ -189,9 +189,9 @@ This metric is [recommended][MetricRecommended].
 <details open>
 <summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`disk.io.direction`](/docs/registry/attributes/disk.md) | string | The disk IO operation direction. | `read` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Value Captured |
+|---|---|---|---|---|---|---|
+| [`disk.io.direction`](/docs/registry/attributes/disk.md) | string | The disk IO operation direction. | `read` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
 
 ---
 
@@ -225,9 +225,9 @@ This metric is [recommended][MetricRecommended].
 <details open>
 <summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`network.io.direction`](/docs/registry/attributes/network.md) | string | The network IO operation direction. | `transmit` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Value Captured |
+|---|---|---|---|---|---|---|
+| [`network.io.direction`](/docs/registry/attributes/network.md) | string | The network IO operation direction. | `transmit` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
 
 ---
 
@@ -301,9 +301,9 @@ This metric is [recommended][MetricRecommended].
 <details open>
 <summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`process.context_switch.type`](/docs/registry/attributes/process.md) | string | Specifies whether the context switches for this data point were voluntary or involuntary. | `voluntary`; `involuntary` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Value Captured |
+|---|---|---|---|---|---|---|
+| [`process.context_switch.type`](/docs/registry/attributes/process.md) | string | Specifies whether the context switches for this data point were voluntary or involuntary. | `voluntary`; `involuntary` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
 
 ---
 
@@ -337,9 +337,9 @@ This metric is [recommended][MetricRecommended].
 <details open>
 <summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`process.paging.fault_type`](/docs/registry/attributes/process.md) | string | The type of page fault for this data point. Type `major` is for major/hard page faults, and `minor` is for minor/soft page faults. | `major`; `minor` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Value Captured |
+|---|---|---|---|---|---|---|
+| [`process.paging.fault_type`](/docs/registry/attributes/process.md) | string | The type of page fault for this data point. Type `major` is for major/hard page faults, and `minor` is for minor/soft page faults. | `major`; `minor` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
 
 ---
 

@@ -34,15 +34,15 @@ All battery metrics may include the below attributes to describe the characteris
 <details open>
 <summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`hw.id`](/docs/registry/attributes/hardware.md) | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.battery.capacity`](/docs/registry/attributes/hardware.md) | string | Design capacity in Watts-hours or Amper-hours | `9.3Ah`; `50Wh` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.battery.chemistry`](/docs/registry/attributes/hardware.md) | string | Battery [chemistry](https://schemas.dmtf.org/wbem/cim-html/2.31.0/CIM_Battery.html), e.g. Lithium-Ion, Nickel-Cadmium, etc. | `Li-ion`; `NiMH` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.model`](/docs/registry/attributes/hardware.md) | string | Descriptive model name of the hardware component | `PERC H740P`; `Intel(R) Core(TM) i7-10700K`; `Dell XPS 15 Battery` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.name`](/docs/registry/attributes/hardware.md) | string | An easily-recognizable name for the hardware component | `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.parent`](/docs/registry/attributes/hardware.md) | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.vendor`](/docs/registry/attributes/hardware.md) | string | Vendor name of the hardware component | `Dell`; `HP`; `Intel`; `AMD`; `LSI`; `Lenovo` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Value Captured |
+|---|---|---|---|---|---|---|
+| [`hw.id`](/docs/registry/attributes/hardware.md) | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`hw.battery.capacity`](/docs/registry/attributes/hardware.md) | string | Design capacity in Watts-hours or Amper-hours | `9.3Ah`; `50Wh` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`hw.battery.chemistry`](/docs/registry/attributes/hardware.md) | string | Battery [chemistry](https://schemas.dmtf.org/wbem/cim-html/2.31.0/CIM_Battery.html), e.g. Lithium-Ion, Nickel-Cadmium, etc. | `Li-ion`; `NiMH` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`hw.model`](/docs/registry/attributes/hardware.md) | string | Descriptive model name of the hardware component | `PERC H740P`; `Intel(R) Core(TM) i7-10700K`; `Dell XPS 15 Battery` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`hw.name`](/docs/registry/attributes/hardware.md) | string | An easily-recognizable name for the hardware component | `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`hw.parent`](/docs/registry/attributes/hardware.md) | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`hw.vendor`](/docs/registry/attributes/hardware.md) | string | Vendor name of the hardware component | `Dell`; `HP`; `Intel`; `AMD`; `LSI`; `Lenovo` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
 </details>
 
 <!-- markdownlint-restore -->
@@ -67,15 +67,15 @@ This metric is [recommended][MetricRecommended].
 <details open>
 <summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`hw.id`](/docs/registry/attributes/hardware.md) | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.battery.capacity`](/docs/registry/attributes/hardware.md) | string | Design capacity in Watts-hours or Amper-hours | `9.3Ah`; `50Wh` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.battery.chemistry`](/docs/registry/attributes/hardware.md) | string | Battery [chemistry](https://schemas.dmtf.org/wbem/cim-html/2.31.0/CIM_Battery.html), e.g. Lithium-Ion, Nickel-Cadmium, etc. | `Li-ion`; `NiMH` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.model`](/docs/registry/attributes/hardware.md) | string | Descriptive model name of the hardware component | `PERC H740P`; `Intel(R) Core(TM) i7-10700K`; `Dell XPS 15 Battery` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.name`](/docs/registry/attributes/hardware.md) | string | An easily-recognizable name for the hardware component | `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.parent`](/docs/registry/attributes/hardware.md) | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.vendor`](/docs/registry/attributes/hardware.md) | string | Vendor name of the hardware component | `Dell`; `HP`; `Intel`; `AMD`; `LSI`; `Lenovo` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Value Captured |
+|---|---|---|---|---|---|---|
+| [`hw.id`](/docs/registry/attributes/hardware.md) | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`hw.battery.capacity`](/docs/registry/attributes/hardware.md) | string | Design capacity in Watts-hours or Amper-hours | `9.3Ah`; `50Wh` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`hw.battery.chemistry`](/docs/registry/attributes/hardware.md) | string | Battery [chemistry](https://schemas.dmtf.org/wbem/cim-html/2.31.0/CIM_Battery.html), e.g. Lithium-Ion, Nickel-Cadmium, etc. | `Li-ion`; `NiMH` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`hw.model`](/docs/registry/attributes/hardware.md) | string | Descriptive model name of the hardware component | `PERC H740P`; `Intel(R) Core(TM) i7-10700K`; `Dell XPS 15 Battery` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`hw.name`](/docs/registry/attributes/hardware.md) | string | An easily-recognizable name for the hardware component | `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`hw.parent`](/docs/registry/attributes/hardware.md) | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`hw.vendor`](/docs/registry/attributes/hardware.md) | string | Vendor name of the hardware component | `Dell`; `HP`; `Intel`; `AMD`; `LSI`; `Lenovo` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
 </details>
 
 <!-- markdownlint-restore -->
@@ -100,16 +100,16 @@ This metric is [recommended][MetricRecommended].
 <details open>
 <summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`hw.id`](/docs/registry/attributes/hardware.md) | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.battery.capacity`](/docs/registry/attributes/hardware.md) | string | Design capacity in Watts-hours or Amper-hours | `9.3Ah`; `50Wh` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.battery.chemistry`](/docs/registry/attributes/hardware.md) | string | Battery [chemistry](https://schemas.dmtf.org/wbem/cim-html/2.31.0/CIM_Battery.html), e.g. Lithium-Ion, Nickel-Cadmium, etc. | `Li-ion`; `NiMH` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.limit_type`](/docs/registry/attributes/hardware.md) | string | Represents battery charge level thresholds relevant to device operation and health. Each `limit_type` denotes a specific charge limit such as the minimum or maximum optimal charge, the shutdown threshold, or energy-saving thresholds. These values are typically provided by the hardware or firmware to guide safe and efficient battery usage. | `critical`; `throttled`; `degraded` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.model`](/docs/registry/attributes/hardware.md) | string | Descriptive model name of the hardware component | `PERC H740P`; `Intel(R) Core(TM) i7-10700K`; `Dell XPS 15 Battery` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.name`](/docs/registry/attributes/hardware.md) | string | An easily-recognizable name for the hardware component | `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.parent`](/docs/registry/attributes/hardware.md) | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.vendor`](/docs/registry/attributes/hardware.md) | string | Vendor name of the hardware component | `Dell`; `HP`; `Intel`; `AMD`; `LSI`; `Lenovo` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Value Captured |
+|---|---|---|---|---|---|---|
+| [`hw.id`](/docs/registry/attributes/hardware.md) | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`hw.battery.capacity`](/docs/registry/attributes/hardware.md) | string | Design capacity in Watts-hours or Amper-hours | `9.3Ah`; `50Wh` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`hw.battery.chemistry`](/docs/registry/attributes/hardware.md) | string | Battery [chemistry](https://schemas.dmtf.org/wbem/cim-html/2.31.0/CIM_Battery.html), e.g. Lithium-Ion, Nickel-Cadmium, etc. | `Li-ion`; `NiMH` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`hw.limit_type`](/docs/registry/attributes/hardware.md) | string | Represents battery charge level thresholds relevant to device operation and health. Each `limit_type` denotes a specific charge limit such as the minimum or maximum optimal charge, the shutdown threshold, or energy-saving thresholds. These values are typically provided by the hardware or firmware to guide safe and efficient battery usage. | `critical`; `throttled`; `degraded` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`hw.model`](/docs/registry/attributes/hardware.md) | string | Descriptive model name of the hardware component | `PERC H740P`; `Intel(R) Core(TM) i7-10700K`; `Dell XPS 15 Battery` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`hw.name`](/docs/registry/attributes/hardware.md) | string | An easily-recognizable name for the hardware component | `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`hw.parent`](/docs/registry/attributes/hardware.md) | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`hw.vendor`](/docs/registry/attributes/hardware.md) | string | Vendor name of the hardware component | `Dell`; `HP`; `Intel`; `AMD`; `LSI`; `Lenovo` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
 
 ---
 
@@ -150,17 +150,17 @@ This metric is [recommended][MetricRecommended].
 <details open>
 <summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`hw.id`](/docs/registry/attributes/hardware.md) | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.state`](/docs/registry/attributes/hardware.md) | string | The current state of the component | `degraded`; `failed`; `needs_cleaning` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.battery.state`](/docs/registry/attributes/hardware.md) | string | The current state of the battery [1] | `charging`; `discharging` | `Conditionally Required` If the battery is charging or discharging | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.battery.capacity`](/docs/registry/attributes/hardware.md) | string | Design capacity in Watts-hours or Amper-hours | `9.3Ah`; `50Wh` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.battery.chemistry`](/docs/registry/attributes/hardware.md) | string | Battery [chemistry](https://schemas.dmtf.org/wbem/cim-html/2.31.0/CIM_Battery.html), e.g. Lithium-Ion, Nickel-Cadmium, etc. | `Li-ion`; `NiMH` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.model`](/docs/registry/attributes/hardware.md) | string | Descriptive model name of the hardware component | `PERC H740P`; `Intel(R) Core(TM) i7-10700K`; `Dell XPS 15 Battery` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.name`](/docs/registry/attributes/hardware.md) | string | An easily-recognizable name for the hardware component | `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.parent`](/docs/registry/attributes/hardware.md) | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.vendor`](/docs/registry/attributes/hardware.md) | string | Vendor name of the hardware component | `Dell`; `HP`; `Intel`; `AMD`; `LSI`; `Lenovo` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Value Captured |
+|---|---|---|---|---|---|---|
+| [`hw.id`](/docs/registry/attributes/hardware.md) | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`hw.state`](/docs/registry/attributes/hardware.md) | string | The current state of the component | `degraded`; `failed`; `needs_cleaning` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`hw.battery.state`](/docs/registry/attributes/hardware.md) | string | The current state of the battery [1] | `charging`; `discharging` | `Conditionally Required` If the battery is charging or discharging | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`hw.battery.capacity`](/docs/registry/attributes/hardware.md) | string | Design capacity in Watts-hours or Amper-hours | `9.3Ah`; `50Wh` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`hw.battery.chemistry`](/docs/registry/attributes/hardware.md) | string | Battery [chemistry](https://schemas.dmtf.org/wbem/cim-html/2.31.0/CIM_Battery.html), e.g. Lithium-Ion, Nickel-Cadmium, etc. | `Li-ion`; `NiMH` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`hw.model`](/docs/registry/attributes/hardware.md) | string | Descriptive model name of the hardware component | `PERC H740P`; `Intel(R) Core(TM) i7-10700K`; `Dell XPS 15 Battery` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`hw.name`](/docs/registry/attributes/hardware.md) | string | An easily-recognizable name for the hardware component | `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`hw.parent`](/docs/registry/attributes/hardware.md) | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`hw.vendor`](/docs/registry/attributes/hardware.md) | string | Vendor name of the hardware component | `Dell`; `HP`; `Intel`; `AMD`; `LSI`; `Lenovo` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
 
 **[1] `hw.battery.state`:** The `hw.state` attribute should indicate the current state of the battery. It should be one of the predefined states such as "charging" or "discharging".
 
@@ -224,13 +224,13 @@ The `hw.type` attribute should indicate the type of hardware component, which in
 <details open>
 <summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`hw.id`](/docs/registry/attributes/hardware.md) | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.state`](/docs/registry/attributes/hardware.md) | string | The current state of the component | `degraded`; `failed`; `needs_cleaning` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.type`](/docs/registry/attributes/hardware.md) | string | Type of the component [1] | `battery`; `cpu`; `disk_controller` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.name`](/docs/registry/attributes/hardware.md) | string | An easily-recognizable name for the hardware component | `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`hw.parent`](/docs/registry/attributes/hardware.md) | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Value Captured |
+|---|---|---|---|---|---|---|
+| [`hw.id`](/docs/registry/attributes/hardware.md) | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`hw.state`](/docs/registry/attributes/hardware.md) | string | The current state of the component | `degraded`; `failed`; `needs_cleaning` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`hw.type`](/docs/registry/attributes/hardware.md) | string | Type of the component [1] | `battery`; `cpu`; `disk_controller` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`hw.name`](/docs/registry/attributes/hardware.md) | string | An easily-recognizable name for the hardware component | `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`hw.parent`](/docs/registry/attributes/hardware.md) | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
 
 **[1] `hw.type`:** Describes the category of the hardware component for which `hw.state` is being reported. For example, `hw.type=temperature` along with `hw.state=degraded` would indicate that the temperature of the hardware component has been reported as `degraded`.
 

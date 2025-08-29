@@ -21,13 +21,13 @@
 <details open>
 <summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`browser.brands`](/docs/registry/attributes/browser.md) | string[] | Array of brand name and version separated by a space [1] | `[" Not A;Brand 99", "Chromium 99", "Chrome 99"]` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`browser.language`](/docs/registry/attributes/browser.md) | string | Preferred language of the user using the browser [2] | `en`; `en-US`; `fr`; `fr-FR` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`browser.mobile`](/docs/registry/attributes/browser.md) | boolean | A boolean that is true if the browser is running on a mobile device [3] |  | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`browser.platform`](/docs/registry/attributes/browser.md) | string | The platform on which the browser is running [4] | `Windows`; `macOS`; `Android` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`user_agent.original`](/docs/registry/attributes/user-agent.md) | string | Full user-agent string provided by the browser [5] | `Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.54 Safari/537.36` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Value Captured |
+|---|---|---|---|---|---|---|
+| [`browser.brands`](/docs/registry/attributes/browser.md) | string[] | Array of brand name and version separated by a space [1] | `[" Not A;Brand 99", "Chromium 99", "Chrome 99"]` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`browser.language`](/docs/registry/attributes/browser.md) | string | Preferred language of the user using the browser [2] | `en`; `en-US`; `fr`; `fr-FR` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`browser.mobile`](/docs/registry/attributes/browser.md) | boolean | A boolean that is true if the browser is running on a mobile device [3] |  | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`browser.platform`](/docs/registry/attributes/browser.md) | string | The platform on which the browser is running [4] | `Windows`; `macOS`; `Android` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`user_agent.original`](/docs/registry/attributes/user-agent.md) | string | Full user-agent string provided by the browser [5] | `Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.54 Safari/537.36` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any-time  |
 
 **[1] `browser.brands`:** This value is intended to be taken from the [UA client hints API](https://wicg.github.io/ua-client-hints/#interface) (`navigator.userAgentData.brands`).
 

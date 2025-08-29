@@ -223,9 +223,9 @@ This metric is [recommended][MetricRecommended].
 <details open>
 <summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`nodejs.eventloop.state`](/docs/registry/attributes/nodejs.md) | string | The state of event loop time. | `active`; `idle` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Value Captured |
+|---|---|---|---|---|---|---|
+| [`nodejs.eventloop.state`](/docs/registry/attributes/nodejs.md) | string | The state of event loop time. | `active`; `idle` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
 
 ---
 

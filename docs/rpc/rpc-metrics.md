@@ -89,15 +89,15 @@ to end-of-batch, it's hard to interpret in practice.
 <details open>
 <summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`rpc.system`](/docs/registry/attributes/rpc.md) | string | A string identifying the remoting system. See below for a list of well-known identifiers. | `grpc`; `java_rmi`; `dotnet_wcf` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.transport`](/docs/registry/attributes/network.md) | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [2] | `tcp`; `udp` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`rpc.method`](/docs/registry/attributes/rpc.md) | string | This is the logical name of the method from the RPC interface perspective. | `exampleMethod` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`rpc.service`](/docs/registry/attributes/rpc.md) | string | The full (logical) name of the service being called, including its package name, if applicable. | `myservice.EchoService` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`server.address`](/docs/registry/attributes/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Opt-In` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.port`](/docs/registry/attributes/server.md) | int | Server port number. | `80`; `8080`; `443` | `Opt-In` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Value Captured |
+|---|---|---|---|---|---|---|
+| [`rpc.system`](/docs/registry/attributes/rpc.md) | string | A string identifying the remoting system. See below for a list of well-known identifiers. | `grpc`; `java_rmi`; `dotnet_wcf` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any-time  |
+| [`network.transport`](/docs/registry/attributes/network.md) | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [2] | `tcp`; `udp` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any-time  |
+| [`rpc.method`](/docs/registry/attributes/rpc.md) | string | This is the logical name of the method from the RPC interface perspective. | `exampleMethod` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`rpc.service`](/docs/registry/attributes/rpc.md) | string | The full (logical) name of the service being called, including its package name, if applicable. | `myservice.EchoService` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`server.address`](/docs/registry/attributes/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Opt-In` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any-time  |
+| [`server.port`](/docs/registry/attributes/server.md) | int | Server port number. | `80`; `8080`; `443` | `Opt-In` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any-time  |
 
 **[1] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
@@ -184,15 +184,15 @@ This metric is [recommended][MetricRecommended].
 <details open>
 <summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`rpc.system`](/docs/registry/attributes/rpc.md) | string | A string identifying the remoting system. See below for a list of well-known identifiers. | `grpc`; `java_rmi`; `dotnet_wcf` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.transport`](/docs/registry/attributes/network.md) | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [2] | `tcp`; `udp` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`rpc.method`](/docs/registry/attributes/rpc.md) | string | This is the logical name of the method from the RPC interface perspective. | `exampleMethod` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`rpc.service`](/docs/registry/attributes/rpc.md) | string | The full (logical) name of the service being called, including its package name, if applicable. | `myservice.EchoService` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`server.address`](/docs/registry/attributes/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Opt-In` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.port`](/docs/registry/attributes/server.md) | int | Server port number. | `80`; `8080`; `443` | `Opt-In` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Value Captured |
+|---|---|---|---|---|---|---|
+| [`rpc.system`](/docs/registry/attributes/rpc.md) | string | A string identifying the remoting system. See below for a list of well-known identifiers. | `grpc`; `java_rmi`; `dotnet_wcf` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any-time  |
+| [`network.transport`](/docs/registry/attributes/network.md) | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [2] | `tcp`; `udp` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any-time  |
+| [`rpc.method`](/docs/registry/attributes/rpc.md) | string | This is the logical name of the method from the RPC interface perspective. | `exampleMethod` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`rpc.service`](/docs/registry/attributes/rpc.md) | string | The full (logical) name of the service being called, including its package name, if applicable. | `myservice.EchoService` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`server.address`](/docs/registry/attributes/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Opt-In` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any-time  |
+| [`server.port`](/docs/registry/attributes/server.md) | int | Server port number. | `80`; `8080`; `443` | `Opt-In` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any-time  |
 
 **[1] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
@@ -279,15 +279,15 @@ This metric is [recommended][MetricRecommended].
 <details open>
 <summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`rpc.system`](/docs/registry/attributes/rpc.md) | string | A string identifying the remoting system. See below for a list of well-known identifiers. | `grpc`; `java_rmi`; `dotnet_wcf` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.transport`](/docs/registry/attributes/network.md) | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [2] | `tcp`; `udp` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`rpc.method`](/docs/registry/attributes/rpc.md) | string | This is the logical name of the method from the RPC interface perspective. | `exampleMethod` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`rpc.service`](/docs/registry/attributes/rpc.md) | string | The full (logical) name of the service being called, including its package name, if applicable. | `myservice.EchoService` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`server.address`](/docs/registry/attributes/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Opt-In` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.port`](/docs/registry/attributes/server.md) | int | Server port number. | `80`; `8080`; `443` | `Opt-In` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Value Captured |
+|---|---|---|---|---|---|---|
+| [`rpc.system`](/docs/registry/attributes/rpc.md) | string | A string identifying the remoting system. See below for a list of well-known identifiers. | `grpc`; `java_rmi`; `dotnet_wcf` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any-time  |
+| [`network.transport`](/docs/registry/attributes/network.md) | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [2] | `tcp`; `udp` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any-time  |
+| [`rpc.method`](/docs/registry/attributes/rpc.md) | string | This is the logical name of the method from the RPC interface perspective. | `exampleMethod` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`rpc.service`](/docs/registry/attributes/rpc.md) | string | The full (logical) name of the service being called, including its package name, if applicable. | `myservice.EchoService` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`server.address`](/docs/registry/attributes/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Opt-In` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any-time  |
+| [`server.port`](/docs/registry/attributes/server.md) | int | Server port number. | `80`; `8080`; `443` | `Opt-In` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any-time  |
 
 **[1] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
@@ -376,15 +376,15 @@ This metric is [recommended][MetricRecommended].
 <details open>
 <summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`rpc.system`](/docs/registry/attributes/rpc.md) | string | A string identifying the remoting system. See below for a list of well-known identifiers. | `grpc`; `java_rmi`; `dotnet_wcf` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.transport`](/docs/registry/attributes/network.md) | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [2] | `tcp`; `udp` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`rpc.method`](/docs/registry/attributes/rpc.md) | string | This is the logical name of the method from the RPC interface perspective. | `exampleMethod` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`rpc.service`](/docs/registry/attributes/rpc.md) | string | The full (logical) name of the service being called, including its package name, if applicable. | `myservice.EchoService` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`server.address`](/docs/registry/attributes/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Opt-In` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.port`](/docs/registry/attributes/server.md) | int | Server port number. | `80`; `8080`; `443` | `Opt-In` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Value Captured |
+|---|---|---|---|---|---|---|
+| [`rpc.system`](/docs/registry/attributes/rpc.md) | string | A string identifying the remoting system. See below for a list of well-known identifiers. | `grpc`; `java_rmi`; `dotnet_wcf` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any-time  |
+| [`network.transport`](/docs/registry/attributes/network.md) | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [2] | `tcp`; `udp` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any-time  |
+| [`rpc.method`](/docs/registry/attributes/rpc.md) | string | This is the logical name of the method from the RPC interface perspective. | `exampleMethod` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`rpc.service`](/docs/registry/attributes/rpc.md) | string | The full (logical) name of the service being called, including its package name, if applicable. | `myservice.EchoService` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`server.address`](/docs/registry/attributes/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Opt-In` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any-time  |
+| [`server.port`](/docs/registry/attributes/server.md) | int | Server port number. | `80`; `8080`; `443` | `Opt-In` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any-time  |
 
 **[1] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
@@ -473,15 +473,15 @@ This metric is [recommended][MetricRecommended].
 <details open>
 <summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`rpc.system`](/docs/registry/attributes/rpc.md) | string | A string identifying the remoting system. See below for a list of well-known identifiers. | `grpc`; `java_rmi`; `dotnet_wcf` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.transport`](/docs/registry/attributes/network.md) | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [2] | `tcp`; `udp` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`rpc.method`](/docs/registry/attributes/rpc.md) | string | This is the logical name of the method from the RPC interface perspective. | `exampleMethod` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`rpc.service`](/docs/registry/attributes/rpc.md) | string | The full (logical) name of the service being called, including its package name, if applicable. | `myservice.EchoService` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`server.address`](/docs/registry/attributes/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Opt-In` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.port`](/docs/registry/attributes/server.md) | int | Server port number. | `80`; `8080`; `443` | `Opt-In` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Value Captured |
+|---|---|---|---|---|---|---|
+| [`rpc.system`](/docs/registry/attributes/rpc.md) | string | A string identifying the remoting system. See below for a list of well-known identifiers. | `grpc`; `java_rmi`; `dotnet_wcf` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any-time  |
+| [`network.transport`](/docs/registry/attributes/network.md) | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [2] | `tcp`; `udp` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any-time  |
+| [`rpc.method`](/docs/registry/attributes/rpc.md) | string | This is the logical name of the method from the RPC interface perspective. | `exampleMethod` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`rpc.service`](/docs/registry/attributes/rpc.md) | string | The full (logical) name of the service being called, including its package name, if applicable. | `myservice.EchoService` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`server.address`](/docs/registry/attributes/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Opt-In` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any-time  |
+| [`server.port`](/docs/registry/attributes/server.md) | int | Server port number. | `80`; `8080`; `443` | `Opt-In` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any-time  |
 
 **[1] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
@@ -576,15 +576,15 @@ to end-of-batch, it's hard to interpret in practice.
 <details open>
 <summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`rpc.system`](/docs/registry/attributes/rpc.md) | string | A string identifying the remoting system. See below for a list of well-known identifiers. | `grpc`; `java_rmi`; `dotnet_wcf` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`server.address`](/docs/registry/attributes/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [1] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [2] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.port`](/docs/registry/attributes/server.md) | int | Server port number. [3] | `80`; `8080`; `443` | `Conditionally Required` If applicable. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.transport`](/docs/registry/attributes/network.md) | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [4] | `tcp`; `udp` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`rpc.method`](/docs/registry/attributes/rpc.md) | string | This is the logical name of the method from the RPC interface perspective. | `exampleMethod` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`rpc.service`](/docs/registry/attributes/rpc.md) | string | The full (logical) name of the service being called, including its package name, if applicable. | `myservice.EchoService` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Value Captured |
+|---|---|---|---|---|---|---|
+| [`rpc.system`](/docs/registry/attributes/rpc.md) | string | A string identifying the remoting system. See below for a list of well-known identifiers. | `grpc`; `java_rmi`; `dotnet_wcf` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`server.address`](/docs/registry/attributes/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [1] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any-time  |
+| [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [2] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any-time  |
+| [`server.port`](/docs/registry/attributes/server.md) | int | Server port number. [3] | `80`; `8080`; `443` | `Conditionally Required` If applicable. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any-time  |
+| [`network.transport`](/docs/registry/attributes/network.md) | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [4] | `tcp`; `udp` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any-time  |
+| [`rpc.method`](/docs/registry/attributes/rpc.md) | string | This is the logical name of the method from the RPC interface perspective. | `exampleMethod` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`rpc.service`](/docs/registry/attributes/rpc.md) | string | The full (logical) name of the service being called, including its package name, if applicable. | `myservice.EchoService` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
 
 **[1] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
@@ -675,15 +675,15 @@ This metric is [recommended][MetricRecommended].
 <details open>
 <summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`rpc.system`](/docs/registry/attributes/rpc.md) | string | A string identifying the remoting system. See below for a list of well-known identifiers. | `grpc`; `java_rmi`; `dotnet_wcf` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`server.address`](/docs/registry/attributes/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [1] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [2] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.port`](/docs/registry/attributes/server.md) | int | Server port number. [3] | `80`; `8080`; `443` | `Conditionally Required` If applicable. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.transport`](/docs/registry/attributes/network.md) | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [4] | `tcp`; `udp` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`rpc.method`](/docs/registry/attributes/rpc.md) | string | This is the logical name of the method from the RPC interface perspective. | `exampleMethod` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`rpc.service`](/docs/registry/attributes/rpc.md) | string | The full (logical) name of the service being called, including its package name, if applicable. | `myservice.EchoService` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Value Captured |
+|---|---|---|---|---|---|---|
+| [`rpc.system`](/docs/registry/attributes/rpc.md) | string | A string identifying the remoting system. See below for a list of well-known identifiers. | `grpc`; `java_rmi`; `dotnet_wcf` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`server.address`](/docs/registry/attributes/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [1] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any-time  |
+| [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [2] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any-time  |
+| [`server.port`](/docs/registry/attributes/server.md) | int | Server port number. [3] | `80`; `8080`; `443` | `Conditionally Required` If applicable. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any-time  |
+| [`network.transport`](/docs/registry/attributes/network.md) | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [4] | `tcp`; `udp` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any-time  |
+| [`rpc.method`](/docs/registry/attributes/rpc.md) | string | This is the logical name of the method from the RPC interface perspective. | `exampleMethod` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`rpc.service`](/docs/registry/attributes/rpc.md) | string | The full (logical) name of the service being called, including its package name, if applicable. | `myservice.EchoService` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
 
 **[1] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
@@ -774,15 +774,15 @@ This metric is [recommended][MetricRecommended].
 <details open>
 <summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`rpc.system`](/docs/registry/attributes/rpc.md) | string | A string identifying the remoting system. See below for a list of well-known identifiers. | `grpc`; `java_rmi`; `dotnet_wcf` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`server.address`](/docs/registry/attributes/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [1] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [2] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.port`](/docs/registry/attributes/server.md) | int | Server port number. [3] | `80`; `8080`; `443` | `Conditionally Required` If applicable. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.transport`](/docs/registry/attributes/network.md) | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [4] | `tcp`; `udp` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`rpc.method`](/docs/registry/attributes/rpc.md) | string | This is the logical name of the method from the RPC interface perspective. | `exampleMethod` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`rpc.service`](/docs/registry/attributes/rpc.md) | string | The full (logical) name of the service being called, including its package name, if applicable. | `myservice.EchoService` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Value Captured |
+|---|---|---|---|---|---|---|
+| [`rpc.system`](/docs/registry/attributes/rpc.md) | string | A string identifying the remoting system. See below for a list of well-known identifiers. | `grpc`; `java_rmi`; `dotnet_wcf` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`server.address`](/docs/registry/attributes/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [1] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any-time  |
+| [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [2] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any-time  |
+| [`server.port`](/docs/registry/attributes/server.md) | int | Server port number. [3] | `80`; `8080`; `443` | `Conditionally Required` If applicable. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any-time  |
+| [`network.transport`](/docs/registry/attributes/network.md) | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [4] | `tcp`; `udp` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any-time  |
+| [`rpc.method`](/docs/registry/attributes/rpc.md) | string | This is the logical name of the method from the RPC interface perspective. | `exampleMethod` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`rpc.service`](/docs/registry/attributes/rpc.md) | string | The full (logical) name of the service being called, including its package name, if applicable. | `myservice.EchoService` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
 
 **[1] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
@@ -875,15 +875,15 @@ This metric is [recommended][MetricRecommended].
 <details open>
 <summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`rpc.system`](/docs/registry/attributes/rpc.md) | string | A string identifying the remoting system. See below for a list of well-known identifiers. | `grpc`; `java_rmi`; `dotnet_wcf` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`server.address`](/docs/registry/attributes/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [1] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [2] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.port`](/docs/registry/attributes/server.md) | int | Server port number. [3] | `80`; `8080`; `443` | `Conditionally Required` If applicable. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.transport`](/docs/registry/attributes/network.md) | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [4] | `tcp`; `udp` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`rpc.method`](/docs/registry/attributes/rpc.md) | string | This is the logical name of the method from the RPC interface perspective. | `exampleMethod` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`rpc.service`](/docs/registry/attributes/rpc.md) | string | The full (logical) name of the service being called, including its package name, if applicable. | `myservice.EchoService` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Value Captured |
+|---|---|---|---|---|---|---|
+| [`rpc.system`](/docs/registry/attributes/rpc.md) | string | A string identifying the remoting system. See below for a list of well-known identifiers. | `grpc`; `java_rmi`; `dotnet_wcf` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`server.address`](/docs/registry/attributes/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [1] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any-time  |
+| [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [2] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any-time  |
+| [`server.port`](/docs/registry/attributes/server.md) | int | Server port number. [3] | `80`; `8080`; `443` | `Conditionally Required` If applicable. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any-time  |
+| [`network.transport`](/docs/registry/attributes/network.md) | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [4] | `tcp`; `udp` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any-time  |
+| [`rpc.method`](/docs/registry/attributes/rpc.md) | string | This is the logical name of the method from the RPC interface perspective. | `exampleMethod` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`rpc.service`](/docs/registry/attributes/rpc.md) | string | The full (logical) name of the service being called, including its package name, if applicable. | `myservice.EchoService` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
 
 **[1] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
@@ -976,15 +976,15 @@ This metric is [recommended][MetricRecommended].
 <details open>
 <summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`rpc.system`](/docs/registry/attributes/rpc.md) | string | A string identifying the remoting system. See below for a list of well-known identifiers. | `grpc`; `java_rmi`; `dotnet_wcf` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`server.address`](/docs/registry/attributes/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [1] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [2] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.port`](/docs/registry/attributes/server.md) | int | Server port number. [3] | `80`; `8080`; `443` | `Conditionally Required` If applicable. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.transport`](/docs/registry/attributes/network.md) | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [4] | `tcp`; `udp` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`rpc.method`](/docs/registry/attributes/rpc.md) | string | This is the logical name of the method from the RPC interface perspective. | `exampleMethod` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`rpc.service`](/docs/registry/attributes/rpc.md) | string | The full (logical) name of the service being called, including its package name, if applicable. | `myservice.EchoService` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Value Captured |
+|---|---|---|---|---|---|---|
+| [`rpc.system`](/docs/registry/attributes/rpc.md) | string | A string identifying the remoting system. See below for a list of well-known identifiers. | `grpc`; `java_rmi`; `dotnet_wcf` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`server.address`](/docs/registry/attributes/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [1] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any-time  |
+| [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [2] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any-time  |
+| [`server.port`](/docs/registry/attributes/server.md) | int | Server port number. [3] | `80`; `8080`; `443` | `Conditionally Required` If applicable. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any-time  |
+| [`network.transport`](/docs/registry/attributes/network.md) | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [4] | `tcp`; `udp` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any-time  |
+| [`rpc.method`](/docs/registry/attributes/rpc.md) | string | This is the logical name of the method from the RPC interface perspective. | `exampleMethod` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`rpc.service`](/docs/registry/attributes/rpc.md) | string | The full (logical) name of the service being called, including its package name, if applicable. | `myservice.EchoService` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
 
 **[1] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 

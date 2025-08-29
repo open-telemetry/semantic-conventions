@@ -37,17 +37,18 @@ Spans representing calls to an HBase database adhere to the general [Semantic Co
 **Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
 
 <details open>
-<summary><b>Sampling Relevant Attributes:</b></summary>
-The following attributes can be important for making sampling decisions
-and SHOULD be provided <b>at span creation time</b> (if provided at all). 
+<summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`db.operation.name`](/docs/registry/attributes/db.md) | string | The name of the operation or command being executed. [1] | `findAndModify`; `HMSET`; `SELECT` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`db.collection.name`](/docs/registry/attributes/db.md) | string | The HBase table name. [2] | `mytable`; `ns:table` | `Conditionally Required` If applicable. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`db.namespace`](/docs/registry/attributes/db.md) | string | The HBase namespace. [3] | `mynamespace` | `Conditionally Required` If applicable. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.port`](/docs/registry/attributes/server.md) | int | Server port number. [4] | `80`; `8080`; `443` | `Conditionally Required` [5] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.address`](/docs/registry/attributes/server.md) | string | Name of the database host. [6] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Value Captured |
+|---|---|---|---|---|---|---|
+| [`db.operation.name`](/docs/registry/attributes/db.md) | string | The name of the operation or command being executed. [1] | `findAndModify`; `HMSET`; `SELECT` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Span Creation  |
+| [`db.collection.name`](/docs/registry/attributes/db.md) | string | The HBase table name. [2] | `mytable`; `ns:table` | `Conditionally Required` If applicable. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Span Creation  |
+| [`db.namespace`](/docs/registry/attributes/db.md) | string | The HBase namespace. [3] | `mynamespace` | `Conditionally Required` If applicable. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Span Creation  |
+| [`db.response.status_code`](/docs/registry/attributes/db.md) | string | Protocol-specific response code recorded as a string. [4] | `200`; `409`; `14` | `Conditionally Required` If response was received. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any-time  |
+| [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [5] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any-time  |
+| [`server.port`](/docs/registry/attributes/server.md) | int | Server port number. [6] | `80`; `8080`; `443` | `Conditionally Required` [7] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Span Creation  |
+| [`db.operation.batch.size`](/docs/registry/attributes/db.md) | int | The number of queries included in a batch operation. [8] | `2`; `3`; `4` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any-time  |
+| [`server.address`](/docs/registry/attributes/server.md) | string | Name of the database host. [9] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Span Creation  |
 
 **[1] `db.operation.name`:** It is RECOMMENDED to capture the value as provided by the application
 without attempting to do any case normalization.
@@ -62,30 +63,20 @@ otherwise `db.operation.name` SHOULD be `BATCH`.
 Semantic conventions for individual database systems SHOULD document what `db.namespace` means in the context of that system.
 It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 
-**[4] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
-
-**[5] `server.port`:** If using a port other than the default port for this DBMS and if `server.address` is set.
-
-**[6] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
-</details>
-
-<details open>
-<summary><b>General Attributes:</b></summary>
-
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`db.response.status_code`](/docs/registry/attributes/db.md) | string | Protocol-specific response code recorded as a string. [7] | `200`; `409`; `14` | `Conditionally Required` If response was received. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [8] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`db.operation.batch.size`](/docs/registry/attributes/db.md) | int | The number of queries included in a batch operation. [9] | `2`; `3`; `4` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
-**[7] `db.response.status_code`:** The status code returned by the database. Usually it represents an error code, but may also represent partial success, warning, or differentiate between various types of successful outcomes.
+**[4] `db.response.status_code`:** The status code returned by the database. Usually it represents an error code, but may also represent partial success, warning, or differentiate between various types of successful outcomes.
 Semantic conventions for individual database systems SHOULD document what `db.response.status_code` means in the context of that system.
 
-**[8] `error.type`:** The `error.type` SHOULD match the `db.response.status_code` returned by the database or the client library, or the canonical name of exception that occurred.
+**[5] `error.type`:** The `error.type` SHOULD match the `db.response.status_code` returned by the database or the client library, or the canonical name of exception that occurred.
 When using canonical exception type name, instrumentation SHOULD do the best effort to report the most relevant type. For example, if the original exception is wrapped into a generic one, the original exception SHOULD be preferred.
 Instrumentations SHOULD document how `error.type` is populated.
 
-**[9] `db.operation.batch.size`:** Operations are only considered batches when they contain two or more operations, and so `db.operation.batch.size` SHOULD never be `1`.
+**[6] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+
+**[7] `server.port`:** If using a port other than the default port for this DBMS and if `server.address` is set.
+
+**[8] `db.operation.batch.size`:** Operations are only considered batches when they contain two or more operations, and so `db.operation.batch.size` SHOULD never be `1`.
+
+**[9] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
 ---
 

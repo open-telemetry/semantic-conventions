@@ -18,9 +18,9 @@
 <details open>
 <summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`app.build_id`](/docs/registry/attributes/app.md) | string | Unique identifier for a particular build or compilation of the application. | `6cff0a7e-cefc-4668-96f5-1273d8b334d0`; `9f2b833506aa6973a92fde9733e6271f`; `my-app-1.0.0-code-123` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Value Captured |
+|---|---|---|---|---|---|---|
+| [`app.build_id`](/docs/registry/attributes/app.md) | string | Unique identifier for a particular build or compilation of the application. | `6cff0a7e-cefc-4668-96f5-1273d8b334d0`; `9f2b833506aa6973a92fde9733e6271f`; `my-app-1.0.0-code-123` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
 </details>
 
 **Other Attributes:**
@@ -31,9 +31,9 @@
 <details open>
 <summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`app.installation.id`](/docs/registry/attributes/app.md) | string | A unique identifier representing the installation of an application on a specific device [1] | `2ab2916d-a51f-4ac8-80ee-45ac31a28092` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Value Captured |
+|---|---|---|---|---|---|---|
+| [`app.installation.id`](/docs/registry/attributes/app.md) | string | A unique identifier representing the installation of an application on a specific device [1] | `2ab2916d-a51f-4ac8-80ee-45ac31a28092` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
 
 **[1] `app.installation.id`:** Its value SHOULD persist across launches of the same application installation, including through application upgrades.
 It SHOULD change if the application is uninstalled or if all applications of the vendor are uninstalled.

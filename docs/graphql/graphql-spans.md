@@ -37,11 +37,11 @@ the span SHOULD be named `GraphQL Operation`.
 <details open>
 <summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`graphql.document`](/docs/registry/attributes/graphql.md) | string | The GraphQL document being executed. [1] | `query findBookById { bookById(id: ?) { name } }` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`graphql.operation.name`](/docs/registry/attributes/graphql.md) | string | The name of the operation being executed. | `findBookById` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`graphql.operation.type`](/docs/registry/attributes/graphql.md) | string | The type of the operation being executed. | `query`; `mutation`; `subscription` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Value Captured |
+|---|---|---|---|---|---|---|
+| [`graphql.document`](/docs/registry/attributes/graphql.md) | string | The GraphQL document being executed. [1] | `query findBookById { bookById(id: ?) { name } }` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`graphql.operation.name`](/docs/registry/attributes/graphql.md) | string | The name of the operation being executed. | `findBookById` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`graphql.operation.type`](/docs/registry/attributes/graphql.md) | string | The type of the operation being executed. | `query`; `mutation`; `subscription` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
 
 **[1] `graphql.document`:** The value may be sanitized to exclude sensitive information.
 

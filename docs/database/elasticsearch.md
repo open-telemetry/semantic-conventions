@@ -39,20 +39,23 @@ with the endpoint identifier stored in `db.operation.name`, and the index stored
 **Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
 
 <details open>
-<summary><b>Sampling Relevant Attributes:</b></summary>
-The following attributes can be important for making sampling decisions
-and SHOULD be provided <b>at span creation time</b> (if provided at all). 
+<summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`db.operation.name`](/docs/registry/attributes/db.md) | string | The name of the operation or command being executed. [1] | `search`; `ml.close_job`; `cat.aliases` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`http.request.method`](/docs/registry/attributes/http.md) | string | HTTP request method. [2] | `GET`; `POST`; `HEAD` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`url.full`](/docs/registry/attributes/url.md) | string | Absolute URL describing a network resource according to [RFC3986](https://www.rfc-editor.org/rfc/rfc3986) [3] | `https://localhost:9200/index/_search?q=user.id:kimchy` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.port`](/docs/registry/attributes/server.md) | int | Server port number. [4] | `80`; `8080`; `443` | `Conditionally Required` [5] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`db.collection.name`](/docs/registry/attributes/db.md) | string | The index or data stream against which the query is executed. [6] | `my_index`; `index1, index2` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`db.namespace`](/docs/registry/attributes/db.md) | string | The name of the Elasticsearch cluster which the client connects to. [7] | `customers`; `test.users` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`db.query.text`](/docs/registry/attributes/db.md) | string | The request body for a [search-type query](https://www.elastic.co/guide/en/elasticsearch/reference/current/search.html), as a json string. [8] | `"{\"query\":{\"term\":{\"user.id\":\"kimchy\"}}}"` | `Recommended` [9] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.address`](/docs/registry/attributes/server.md) | string | Name of the database host. [10] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Value Captured |
+|---|---|---|---|---|---|---|
+| [`db.operation.name`](/docs/registry/attributes/db.md) | string | The name of the operation or command being executed. [1] | `search`; `ml.close_job`; `cat.aliases` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Span Creation  |
+| [`http.request.method`](/docs/registry/attributes/http.md) | string | HTTP request method. [2] | `GET`; `POST`; `HEAD` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Span Creation  |
+| [`url.full`](/docs/registry/attributes/url.md) | string | Absolute URL describing a network resource according to [RFC3986](https://www.rfc-editor.org/rfc/rfc3986) [3] | `https://localhost:9200/index/_search?q=user.id:kimchy` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Span Creation  |
+| [`db.operation.parameter.<key>`](/docs/registry/attributes/db.md) | string | A dynamic value in the url path. [4] | `db.operation.parameter.index="test-index"`; `db.operation.parameter="123"` | `Conditionally Required` when the url has path parameters | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`db.response.status_code`](/docs/registry/attributes/db.md) | string | The HTTP response code returned by the Elasticsearch cluster. [5] | `200`; `201`; `429` | `Conditionally Required` If response was received. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any-time  |
+| [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [6] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any-time  |
+| [`server.port`](/docs/registry/attributes/server.md) | int | Server port number. [7] | `80`; `8080`; `443` | `Conditionally Required` [8] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Span Creation  |
+| [`db.collection.name`](/docs/registry/attributes/db.md) | string | The index or data stream against which the query is executed. [9] | `my_index`; `index1, index2` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Span Creation  |
+| [`db.namespace`](/docs/registry/attributes/db.md) | string | The name of the Elasticsearch cluster which the client connects to. [10] | `customers`; `test.users` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Span Creation  |
+| [`db.operation.batch.size`](/docs/registry/attributes/db.md) | int | The number of queries included in a batch operation. [11] | `2`; `3`; `4` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any-time  |
+| [`db.query.text`](/docs/registry/attributes/db.md) | string | The request body for a [search-type query](https://www.elastic.co/guide/en/elasticsearch/reference/current/search.html), as a json string. [12] | `"{\"query\":{\"term\":{\"user.id\":\"kimchy\"}}}"` | `Recommended` [13] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Span Creation  |
+| [`elasticsearch.node.name`](/docs/registry/attributes/elasticsearch.md) | string | Represents the human-readable identifier of the node/instance to which a request was routed. [14] | `instance-0000000001` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`server.address`](/docs/registry/attributes/server.md) | string | Name of the database host. [15] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Span Creation  |
 
 **[1] `db.operation.name`:** The `db.operation.name` SHOULD match the endpoint identifier provided in the request (see the [Elasticsearch schema](https://raw.githubusercontent.com/elastic/elasticsearch-specification/main/output/schema/schema.json)).
 For batch operations, if the individual operations are known to have the same operation name then that operation name SHOULD be used prepended by `bulk `, otherwise `db.operation.name` SHOULD be `bulk`.
@@ -97,21 +100,41 @@ This list is subject to change over time.
 When a query string value is redacted, the query string key SHOULD still be preserved, e.g.
 `https://www.example.com/path?color=blue&sig=REDACTED`.
 
-**[4] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[4] `db.operation.parameter.<key>`:** Many Elasticsearch url paths allow dynamic values. These SHOULD be recorded in span attributes in the format `db.operation.parameter.<key>`, where `<key>` is the path parameter name. The implementation SHOULD reference the [elasticsearch schema](https://raw.githubusercontent.com/elastic/elasticsearch-specification/main/output/schema/schema.json) in order to map the path parameter values to their names.
 
-**[5] `server.port`:** If using a port other than the default port for this DBMS and if `server.address` is set.
+**[5] `db.response.status_code`:** HTTP response codes in the 4xx and 5xx range SHOULD be considered errors.
 
-**[6] `db.collection.name`:** The query may target multiple indices or data streams, in which case it SHOULD be a comma separated list of those. If the query doesn't target a specific index, this field MUST NOT be set.
+**[6] `error.type`:** The `error.type` SHOULD match the `db.response.status_code` returned by the database or the client library, or the canonical name of exception that occurred.
+When using canonical exception type name, instrumentation SHOULD do the best effort to report the most relevant type. For example, if the original exception is wrapped into a generic one, the original exception SHOULD be preferred.
+Instrumentations SHOULD document how `error.type` is populated.
 
-**[7] `db.namespace`:** When communicating with an Elastic Cloud deployment, this should be collected from the "X-Found-Handling-Cluster" HTTP response header.
+**[7] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
-**[8] `db.query.text`:** For sanitization see [Sanitization of `db.query.text`](/docs/database/database-spans.md#sanitization-of-dbquerytext).
+**[8] `server.port`:** If using a port other than the default port for this DBMS and if `server.address` is set.
+
+**[9] `db.collection.name`:** The query may target multiple indices or data streams, in which case it SHOULD be a comma separated list of those. If the query doesn't target a specific index, this field MUST NOT be set.
+
+**[10] `db.namespace`:** When communicating with an Elastic Cloud deployment, this should be collected from the "X-Found-Handling-Cluster" HTTP response header.
+
+**[11] `db.operation.batch.size`:** Operations are only considered batches when they contain two or more operations, and so `db.operation.batch.size` SHOULD never be `1`.
+
+**[12] `db.query.text`:** For sanitization see [Sanitization of `db.query.text`](/docs/database/database-spans.md#sanitization-of-dbquerytext).
 For batch operations, if the individual operations are known to have the same query text then that query text SHOULD be used, otherwise all of the individual query texts SHOULD be concatenated with separator `; ` or some other database system specific separator if more applicable.
 Parameterized query text SHOULD NOT be sanitized. Even though parameterized query text can potentially have sensitive data, by using a parameterized query the user is giving a strong signal that any sensitive data will be passed as parameter values, and the benefit to observability of capturing the static part of the query text by default outweighs the risk.
 
-**[9] `db.query.text`:** Should be collected by default for search-type queries and only if there is sanitization that excludes sensitive information.
+**[13] `db.query.text`:** Should be collected by default for search-type queries and only if there is sanitization that excludes sensitive information.
 
-**[10] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
+**[14] `elasticsearch.node.name`:** When communicating with an Elastic Cloud deployment, this should be collected from the "X-Found-Handling-Instance" HTTP response header.
+
+**[15] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
+
+---
+
+`error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ---
 
@@ -130,38 +153,6 @@ Parameterized query text SHOULD NOT be sanitized. Even though parameterized quer
 | `PUT` | PUT method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `QUERY` | QUERY method. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `TRACE` | TRACE method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-</details>
-
-<details open>
-<summary><b>General Attributes:</b></summary>
-
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`db.operation.parameter.<key>`](/docs/registry/attributes/db.md) | string | A dynamic value in the url path. [11] | `db.operation.parameter.index="test-index"`; `db.operation.parameter="123"` | `Conditionally Required` when the url has path parameters | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`db.response.status_code`](/docs/registry/attributes/db.md) | string | The HTTP response code returned by the Elasticsearch cluster. [12] | `200`; `201`; `429` | `Conditionally Required` If response was received. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [13] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`db.operation.batch.size`](/docs/registry/attributes/db.md) | int | The number of queries included in a batch operation. [14] | `2`; `3`; `4` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`elasticsearch.node.name`](/docs/registry/attributes/elasticsearch.md) | string | Represents the human-readable identifier of the node/instance to which a request was routed. [15] | `instance-0000000001` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-
-**[11] `db.operation.parameter.<key>`:** Many Elasticsearch url paths allow dynamic values. These SHOULD be recorded in span attributes in the format `db.operation.parameter.<key>`, where `<key>` is the path parameter name. The implementation SHOULD reference the [elasticsearch schema](https://raw.githubusercontent.com/elastic/elasticsearch-specification/main/output/schema/schema.json) in order to map the path parameter values to their names.
-
-**[12] `db.response.status_code`:** HTTP response codes in the 4xx and 5xx range SHOULD be considered errors.
-
-**[13] `error.type`:** The `error.type` SHOULD match the `db.response.status_code` returned by the database or the client library, or the canonical name of exception that occurred.
-When using canonical exception type name, instrumentation SHOULD do the best effort to report the most relevant type. For example, if the original exception is wrapped into a generic one, the original exception SHOULD be preferred.
-Instrumentations SHOULD document how `error.type` is populated.
-
-**[14] `db.operation.batch.size`:** Operations are only considered batches when they contain two or more operations, and so `db.operation.batch.size` SHOULD never be `1`.
-
-**[15] `elasticsearch.node.name`:** When communicating with an Elastic Cloud deployment, this should be collected from the "X-Found-Handling-Instance" HTTP response header.
-
----
-
-`error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 </details>
 
 <!-- markdownlint-restore -->
