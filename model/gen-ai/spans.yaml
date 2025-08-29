@@ -12,6 +12,17 @@ groups:
             The name of the GenAI model a request is being made to. If the model is supplied by a vendor,
             then the value must be the exact name of the model requested. If the model is a fine-tuned
             custom model, the value should have a more specific name than the base model that's been fine-tuned.
+      - ref: gen_ai.model.version
+        requirement_level:
+          conditionally_required: If available
+        note: >
+          The version identifier of the GenAI model used for this request. Common examples include version suffixes or release names from 
+          model providers. For instance:
+          - OpenAI: "gpt-4-0613" indicates the GPT-4 version released on June 13, 2023.
+          - Claude: "claude-2.1", "claude-3-sonnet" represent major iterations.
+          - Mistral: "Mistral-7B-v0.1" denotes a specific checkpoint of the model.
+          This helps differentiate behavior across updates, especially for long-running or version-sensitive applications.
+
       - ref: gen_ai.operation.name
         requirement_level: required
       - ref: server.address
@@ -88,6 +99,9 @@ groups:
           Application developers that manage conversation history MAY add conversation id to GenAI and other
           spans or logs using custom span or log record processors or hooks provided by instrumentation
           libraries.
+      - ref: gen_ai.tool.definitions
+        requirement_level:
+          conditionally_required: opt_in
 
   - id: span.gen_ai.inference.client
     type: span
@@ -231,6 +245,9 @@ groups:
       - ref: gen_ai.agent.description
         requirement_level:
           conditionally_required: If provided by the application.
+      - ref: gen_ai.tool.definitions
+        requirement_level:
+          conditionally_required: opt_in
 
   - id: span.gen_ai.invoke_agent.client
     type: span
@@ -260,6 +277,9 @@ groups:
       - ref: gen_ai.data_source.id
         requirement_level:
           conditionally_required: if applicable.
+      - ref: gen_ai.tool.definitions
+        requirement_level:
+          conditionally_required: opt_in
 
   - id: span.gen_ai.execute_tool.internal
     type: span
@@ -284,6 +304,18 @@ groups:
       - ref: gen_ai.tool.description
         requirement_level:
           recommended: if available
+      - ref: gen_ai.tool.version
+        requirement_level:
+          recommended: if available
+      - ref: gen_ai.tool.type
+        requirement_level:
+          recommended: if available
+      - ref: gen_ai.tool.call.arguments
+        requirement_level:
+          conditionally_required: if available
+      - ref: gen_ai.tool.call.result
+        requirement_level:
+          conditionally_required: opt_in
       - ref: error.type
         requirement_level:
           conditionally_required: "if the operation ended in an error"
