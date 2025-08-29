@@ -149,7 +149,7 @@ sigs:
       - name: "specs-semconv-maintainers" # TODO: Missing team user for faas?
         github: specs-semconv-maintainers
     project: "https://github.com/open-telemetry/community/blob/main/projects/completed-projects/faas.md"
-    board: "https://github.com/orgs/open-telemetry/projects/45"
+    board: "https://github.com/orgs/open-telemetry/projects/45/views/1"
     areas:
       - area:faas
     labels:
