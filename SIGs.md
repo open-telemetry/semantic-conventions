@@ -1,7 +1,7 @@
 # Special Interest Groups (SIGs)
 
 Semantic conventions in OpenTelemetry are organized into distinct areas,
-with each area being overseen by a Special Interest Group (SIG). A SIG is
+with some of them being overseen by Special Interest Group (SIG).
 composed of multidisciplinary contributors who bring expertise in both the
 relevant domain and OpenTelemetry itself.
 
