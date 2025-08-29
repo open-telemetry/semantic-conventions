@@ -42,9 +42,9 @@ This metric is [recommended][MetricRecommended].
 <details open>
 <summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`cpython.gc.generation`](/docs/registry/attributes/cpython.md) | int | Value of the garbage collector collection generation. | `0`; `1`; `2` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Value Captured |
+|---|---|---|---|---|---|---|
+| [`cpython.gc.generation`](/docs/registry/attributes/cpython.md) | int | Value of the garbage collector collection generation. | `0`; `1`; `2` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
 
 ---
 
@@ -81,9 +81,9 @@ This metric is [recommended][MetricRecommended].
 <details open>
 <summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`cpython.gc.generation`](/docs/registry/attributes/cpython.md) | int | Value of the garbage collector collection generation. | `0`; `1`; `2` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Value Captured |
+|---|---|---|---|---|---|---|
+| [`cpython.gc.generation`](/docs/registry/attributes/cpython.md) | int | Value of the garbage collector collection generation. | `0`; `1`; `2` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
 
 ---
 
@@ -120,9 +120,9 @@ This metric is [recommended][MetricRecommended].
 <details open>
 <summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`cpython.gc.generation`](/docs/registry/attributes/cpython.md) | int | Value of the garbage collector collection generation. | `0`; `1`; `2` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Value Captured |
+|---|---|---|---|---|---|---|
+| [`cpython.gc.generation`](/docs/registry/attributes/cpython.md) | int | Value of the garbage collector collection generation. | `0`; `1`; `2` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
 
 ---
 
