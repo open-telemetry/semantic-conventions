@@ -33,14 +33,14 @@ All tape drive metrics may include the below attributes:
 <details open>
 <summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Value Captured |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
-| [`hw.id`](/docs/registry/attributes/hardware.md) | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`hw.model`](/docs/registry/attributes/hardware.md) | string | Descriptive model name of the hardware component | `PERC H740P`; `Intel(R) Core(TM) i7-10700K`; `Dell XPS 15 Battery` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`hw.name`](/docs/registry/attributes/hardware.md) | string | An easily-recognizable name for the hardware component | `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`hw.parent`](/docs/registry/attributes/hardware.md) | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`hw.serial_number`](/docs/registry/attributes/hardware.md) | string | Serial number of the hardware component | `CNFCP0123456789` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`hw.vendor`](/docs/registry/attributes/hardware.md) | string | Vendor name of the hardware component | `Dell`; `HP`; `Intel`; `AMD`; `LSI`; `Lenovo` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`hw.id`](/docs/registry/attributes/hardware.md) | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`hw.model`](/docs/registry/attributes/hardware.md) | string | Descriptive model name of the hardware component | `PERC H740P`; `Intel(R) Core(TM) i7-10700K`; `Dell XPS 15 Battery` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`hw.name`](/docs/registry/attributes/hardware.md) | string | An easily-recognizable name for the hardware component | `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`hw.parent`](/docs/registry/attributes/hardware.md) | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`hw.serial_number`](/docs/registry/attributes/hardware.md) | string | Serial number of the hardware component | `CNFCP0123456789` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`hw.vendor`](/docs/registry/attributes/hardware.md) | string | Vendor name of the hardware component | `Dell`; `HP`; `Intel`; `AMD`; `LSI`; `Lenovo` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
 </details>
 
 <!-- markdownlint-restore -->
@@ -75,14 +75,14 @@ The following attributes SHOULD be set:
 <details open>
 <summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Value Captured |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
-| [`hw.id`](/docs/registry/attributes/hardware.md) | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`hw.type`](/docs/registry/attributes/hardware.md) | string | Type of the component [1] | `battery`; `cpu`; `disk_controller` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`error.type`](/docs/registry/attributes/error.md) | string | The type of error encountered by the component. [2] | `uncorrected`; `zero_buffer_credit`; `crc`; `bad_sector` | `Conditionally Required` if and only if an error has occurred | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any-time  |
-| [`hw.name`](/docs/registry/attributes/hardware.md) | string | An easily-recognizable name for the hardware component | `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`hw.parent`](/docs/registry/attributes/hardware.md) | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`network.io.direction`](/docs/registry/attributes/network.md) | string | Direction of network traffic for network errors. [3] | `receive`; `transmit` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`hw.id`](/docs/registry/attributes/hardware.md) | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`hw.type`](/docs/registry/attributes/hardware.md) | string | Type of the component [1] | `battery`; `cpu`; `disk_controller` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`error.type`](/docs/registry/attributes/error.md) | string | The type of error encountered by the component. [2] | `uncorrected`; `zero_buffer_credit`; `crc`; `bad_sector` | `Conditionally Required` if and only if an error has occurred | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any  |
+| [`hw.name`](/docs/registry/attributes/hardware.md) | string | An easily-recognizable name for the hardware component | `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`hw.parent`](/docs/registry/attributes/hardware.md) | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`network.io.direction`](/docs/registry/attributes/network.md) | string | Direction of network traffic for network errors. [3] | `receive`; `transmit` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
 
 **[1] `hw.type`:** Describes the category of the hardware component for which `hw.state` is being reported. For example, `hw.type=temperature` along with `hw.state=degraded` would indicate that the temperature of the hardware component has been reported as `degraded`.
 
@@ -157,15 +157,15 @@ The following attributes SHOULD be set:
 <details open>
 <summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Value Captured |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
-| [`hw.id`](/docs/registry/attributes/hardware.md) | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`hw.model`](/docs/registry/attributes/hardware.md) | string | Descriptive model name of the hardware component | `PERC H740P`; `Intel(R) Core(TM) i7-10700K`; `Dell XPS 15 Battery` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`hw.name`](/docs/registry/attributes/hardware.md) | string | An easily-recognizable name for the hardware component | `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`hw.parent`](/docs/registry/attributes/hardware.md) | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`hw.serial_number`](/docs/registry/attributes/hardware.md) | string | Serial number of the hardware component | `CNFCP0123456789` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`hw.tape_drive.operation_type`](/docs/registry/attributes/hardware.md) | string | Type of tape drive operation | `mount`; `unmount`; `clean` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`hw.vendor`](/docs/registry/attributes/hardware.md) | string | Vendor name of the hardware component | `Dell`; `HP`; `Intel`; `AMD`; `LSI`; `Lenovo` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`hw.id`](/docs/registry/attributes/hardware.md) | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`hw.model`](/docs/registry/attributes/hardware.md) | string | Descriptive model name of the hardware component | `PERC H740P`; `Intel(R) Core(TM) i7-10700K`; `Dell XPS 15 Battery` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`hw.name`](/docs/registry/attributes/hardware.md) | string | An easily-recognizable name for the hardware component | `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`hw.parent`](/docs/registry/attributes/hardware.md) | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`hw.serial_number`](/docs/registry/attributes/hardware.md) | string | Serial number of the hardware component | `CNFCP0123456789` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`hw.tape_drive.operation_type`](/docs/registry/attributes/hardware.md) | string | Type of tape drive operation | `mount`; `unmount`; `clean` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`hw.vendor`](/docs/registry/attributes/hardware.md) | string | Vendor name of the hardware component | `Dell`; `HP`; `Intel`; `AMD`; `LSI`; `Lenovo` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
 
 ---
 
@@ -213,13 +213,13 @@ When using this metric for tape drive status, the following attributes MUST be s
 <details open>
 <summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Value Captured |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
-| [`hw.id`](/docs/registry/attributes/hardware.md) | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`hw.state`](/docs/registry/attributes/hardware.md) | string | The current state of the component | `degraded`; `failed`; `needs_cleaning` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`hw.type`](/docs/registry/attributes/hardware.md) | string | Type of the component [1] | `battery`; `cpu`; `disk_controller` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`hw.name`](/docs/registry/attributes/hardware.md) | string | An easily-recognizable name for the hardware component | `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`hw.parent`](/docs/registry/attributes/hardware.md) | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`hw.id`](/docs/registry/attributes/hardware.md) | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`hw.state`](/docs/registry/attributes/hardware.md) | string | The current state of the component | `degraded`; `failed`; `needs_cleaning` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`hw.type`](/docs/registry/attributes/hardware.md) | string | Type of the component [1] | `battery`; `cpu`; `disk_controller` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`hw.name`](/docs/registry/attributes/hardware.md) | string | An easily-recognizable name for the hardware component | `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`hw.parent`](/docs/registry/attributes/hardware.md) | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
 
 **[1] `hw.type`:** Describes the category of the hardware component for which `hw.state` is being reported. For example, `hw.type=temperature` along with `hw.state=degraded` would indicate that the temperature of the hardware component has been reported as `degraded`.
 

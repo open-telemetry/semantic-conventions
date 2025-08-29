@@ -71,12 +71,12 @@ This metric is [recommended][MetricRecommended].
 <details open>
 <summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Value Captured |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
-| [`cicd.pipeline.name`](/docs/registry/attributes/cicd.md) | string | The human readable name of the pipeline within a CI/CD system. | `Build and Test`; `Lint`; `Deploy Go Project`; `deploy_to_environment` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`cicd.pipeline.run.state`](/docs/registry/attributes/cicd.md) | string | The pipeline run goes through these states during its lifecycle. | `pending`; `executing`; `finalizing` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`cicd.pipeline.result`](/docs/registry/attributes/cicd.md) | string | The result of a pipeline run. | `success`; `failure`; `timeout`; `skipped` | `Conditionally Required` [1] | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [2] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the pipeline run failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any-time  |
+| [`cicd.pipeline.name`](/docs/registry/attributes/cicd.md) | string | The human readable name of the pipeline within a CI/CD system. | `Build and Test`; `Lint`; `Deploy Go Project`; `deploy_to_environment` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`cicd.pipeline.run.state`](/docs/registry/attributes/cicd.md) | string | The pipeline run goes through these states during its lifecycle. | `pending`; `executing`; `finalizing` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`cicd.pipeline.result`](/docs/registry/attributes/cicd.md) | string | The result of a pipeline run. | `success`; `failure`; `timeout`; `skipped` | `Conditionally Required` [1] | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [2] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the pipeline run failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any  |
 
 **[1] `cicd.pipeline.result`:** If and only if the pipeline run result has been set during that state.
 
@@ -154,10 +154,10 @@ This metric is [recommended][MetricRecommended].
 <details open>
 <summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Value Captured |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
-| [`cicd.pipeline.name`](/docs/registry/attributes/cicd.md) | string | The human readable name of the pipeline within a CI/CD system. | `Build and Test`; `Lint`; `Deploy Go Project`; `deploy_to_environment` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`cicd.pipeline.run.state`](/docs/registry/attributes/cicd.md) | string | The pipeline run goes through these states during its lifecycle. | `pending`; `executing`; `finalizing` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`cicd.pipeline.name`](/docs/registry/attributes/cicd.md) | string | The human readable name of the pipeline within a CI/CD system. | `Build and Test`; `Lint`; `Deploy Go Project`; `deploy_to_environment` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`cicd.pipeline.run.state`](/docs/registry/attributes/cicd.md) | string | The pipeline run goes through these states during its lifecycle. | `pending`; `executing`; `finalizing` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
 
 ---
 
@@ -192,9 +192,9 @@ This metric is [recommended][MetricRecommended].
 <details open>
 <summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Value Captured |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
-| [`cicd.worker.state`](/docs/registry/attributes/cicd.md) | string | The state of a CICD worker / agent. | `idle`; `busy`; `down` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`cicd.worker.state`](/docs/registry/attributes/cicd.md) | string | The state of a CICD worker / agent. | `idle`; `busy`; `down` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
 
 ---
 
@@ -234,10 +234,10 @@ This means that this error count might not be the same as the count of metric `c
 <details open>
 <summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Value Captured |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
-| [`cicd.pipeline.name`](/docs/registry/attributes/cicd.md) | string | The human readable name of the pipeline within a CI/CD system. | `Build and Test`; `Lint`; `Deploy Go Project`; `deploy_to_environment` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any-time  |
+| [`cicd.pipeline.name`](/docs/registry/attributes/cicd.md) | string | The human readable name of the pipeline within a CI/CD system. | `Build and Test`; `Lint`; `Deploy Go Project`; `deploy_to_environment` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any  |
 
 **[1] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
@@ -292,10 +292,10 @@ This metric is [recommended][MetricRecommended].
 <details open>
 <summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Value Captured |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
-| [`cicd.system.component`](/docs/registry/attributes/cicd.md) | string | The name of a component of the CICD system. | `controller`; `scheduler`; `agent` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any-time  |
+| [`cicd.system.component`](/docs/registry/attributes/cicd.md) | string | The name of a component of the CICD system. | `controller`; `scheduler`; `agent` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any  |
 
 **[1] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
@@ -355,13 +355,13 @@ This metric is [recommended][MetricRecommended].
 <details open>
 <summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Value Captured |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
-| [`vcs.change.state`](/docs/registry/attributes/vcs.md) | string | The state of the change (pull request/merge request/changelist). | `open`; `closed`; `merged` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`vcs.repository.url.full`](/docs/registry/attributes/vcs.md) | string | The [canonical URL](https://support.google.com/webmasters/answer/10347851?hl=en#:~:text=A%20canonical%20URL%20is%20the,Google%20chooses%20one%20as%20canonical.) of the repository providing the complete HTTP(S) address in order to locate and identify the repository through a browser. [1] | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`vcs.owner.name`](/docs/registry/attributes/vcs.md) | string | The group owner within the version control system. | `my-org`; `myteam`; `business-unit` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`vcs.repository.name`](/docs/registry/attributes/vcs.md) | string | The human readable name of the repository. It SHOULD NOT include any additional identifier like Group/SubGroup in GitLab or organization in GitHub. [2] | `semantic-conventions`; `my-cool-repo` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`vcs.provider.name`](/docs/registry/attributes/vcs.md) | string | The name of the version control system provider. | `github`; `gitlab`; `gitea`; `bitbucket` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`vcs.change.state`](/docs/registry/attributes/vcs.md) | string | The state of the change (pull request/merge request/changelist). | `open`; `closed`; `merged` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`vcs.repository.url.full`](/docs/registry/attributes/vcs.md) | string | The [canonical URL](https://support.google.com/webmasters/answer/10347851?hl=en#:~:text=A%20canonical%20URL%20is%20the,Google%20chooses%20one%20as%20canonical.) of the repository providing the complete HTTP(S) address in order to locate and identify the repository through a browser. [1] | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`vcs.owner.name`](/docs/registry/attributes/vcs.md) | string | The group owner within the version control system. | `my-org`; `myteam`; `business-unit` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`vcs.repository.name`](/docs/registry/attributes/vcs.md) | string | The human readable name of the repository. It SHOULD NOT include any additional identifier like Group/SubGroup in GitLab or organization in GitHub. [2] | `semantic-conventions`; `my-cool-repo` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`vcs.provider.name`](/docs/registry/attributes/vcs.md) | string | The name of the version control system provider. | `github`; `gitlab`; `gitea`; `bitbucket` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
 
 **[1] `vcs.repository.url.full`:** In Git Version Control Systems, the canonical URL SHOULD NOT include
 the `.git` extension.
@@ -415,14 +415,14 @@ This metric is [recommended][MetricRecommended].
 <details open>
 <summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Value Captured |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
-| [`vcs.change.state`](/docs/registry/attributes/vcs.md) | string | The state of the change (pull request/merge request/changelist). | `open`; `closed`; `merged` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`vcs.ref.head.name`](/docs/registry/attributes/vcs.md) | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. [1] | `my-feature-branch`; `tag-1-test` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`vcs.repository.url.full`](/docs/registry/attributes/vcs.md) | string | The [canonical URL](https://support.google.com/webmasters/answer/10347851?hl=en#:~:text=A%20canonical%20URL%20is%20the,Google%20chooses%20one%20as%20canonical.) of the repository providing the complete HTTP(S) address in order to locate and identify the repository through a browser. [2] | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`vcs.owner.name`](/docs/registry/attributes/vcs.md) | string | The group owner within the version control system. | `my-org`; `myteam`; `business-unit` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`vcs.repository.name`](/docs/registry/attributes/vcs.md) | string | The human readable name of the repository. It SHOULD NOT include any additional identifier like Group/SubGroup in GitLab or organization in GitHub. [3] | `semantic-conventions`; `my-cool-repo` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`vcs.provider.name`](/docs/registry/attributes/vcs.md) | string | The name of the version control system provider. | `github`; `gitlab`; `gitea`; `bitbucket` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`vcs.change.state`](/docs/registry/attributes/vcs.md) | string | The state of the change (pull request/merge request/changelist). | `open`; `closed`; `merged` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`vcs.ref.head.name`](/docs/registry/attributes/vcs.md) | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. [1] | `my-feature-branch`; `tag-1-test` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`vcs.repository.url.full`](/docs/registry/attributes/vcs.md) | string | The [canonical URL](https://support.google.com/webmasters/answer/10347851?hl=en#:~:text=A%20canonical%20URL%20is%20the,Google%20chooses%20one%20as%20canonical.) of the repository providing the complete HTTP(S) address in order to locate and identify the repository through a browser. [2] | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`vcs.owner.name`](/docs/registry/attributes/vcs.md) | string | The group owner within the version control system. | `my-org`; `myteam`; `business-unit` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`vcs.repository.name`](/docs/registry/attributes/vcs.md) | string | The human readable name of the repository. It SHOULD NOT include any additional identifier like Group/SubGroup in GitLab or organization in GitHub. [3] | `semantic-conventions`; `my-cool-repo` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`vcs.provider.name`](/docs/registry/attributes/vcs.md) | string | The name of the version control system provider. | `github`; `gitlab`; `gitea`; `bitbucket` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
 
 **[1] `vcs.ref.head.name`:** `head` refers to where you are right now; the current reference at a
 given time.
@@ -479,16 +479,16 @@ This metric is [recommended][MetricRecommended].
 <details open>
 <summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Value Captured |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
-| [`vcs.ref.head.name`](/docs/registry/attributes/vcs.md) | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. [1] | `my-feature-branch`; `tag-1-test` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`vcs.repository.url.full`](/docs/registry/attributes/vcs.md) | string | The [canonical URL](https://support.google.com/webmasters/answer/10347851?hl=en#:~:text=A%20canonical%20URL%20is%20the,Google%20chooses%20one%20as%20canonical.) of the repository providing the complete HTTP(S) address in order to locate and identify the repository through a browser. [2] | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`vcs.owner.name`](/docs/registry/attributes/vcs.md) | string | The group owner within the version control system. | `my-org`; `myteam`; `business-unit` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`vcs.ref.base.name`](/docs/registry/attributes/vcs.md) | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. [3] | `my-feature-branch`; `tag-1-test` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`vcs.repository.name`](/docs/registry/attributes/vcs.md) | string | The human readable name of the repository. It SHOULD NOT include any additional identifier like Group/SubGroup in GitLab or organization in GitHub. [4] | `semantic-conventions`; `my-cool-repo` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`vcs.provider.name`](/docs/registry/attributes/vcs.md) | string | The name of the version control system provider. | `github`; `gitlab`; `gitea`; `bitbucket` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`vcs.ref.base.revision`](/docs/registry/attributes/vcs.md) | string | The revision, literally [revised version](https://www.merriam-webster.com/dictionary/revision), The revision most often refers to a commit object in Git, or a revision number in SVN. [5] | `9d59409acf479dfa0df1aa568182e43e43df8bbe28d60fcf2bc52e30068802cc`; `main`; `123`; `HEAD` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`vcs.ref.head.revision`](/docs/registry/attributes/vcs.md) | string | The revision, literally [revised version](https://www.merriam-webster.com/dictionary/revision), The revision most often refers to a commit object in Git, or a revision number in SVN. [6] | `9d59409acf479dfa0df1aa568182e43e43df8bbe28d60fcf2bc52e30068802cc`; `main`; `123`; `HEAD` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`vcs.ref.head.name`](/docs/registry/attributes/vcs.md) | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. [1] | `my-feature-branch`; `tag-1-test` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`vcs.repository.url.full`](/docs/registry/attributes/vcs.md) | string | The [canonical URL](https://support.google.com/webmasters/answer/10347851?hl=en#:~:text=A%20canonical%20URL%20is%20the,Google%20chooses%20one%20as%20canonical.) of the repository providing the complete HTTP(S) address in order to locate and identify the repository through a browser. [2] | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`vcs.owner.name`](/docs/registry/attributes/vcs.md) | string | The group owner within the version control system. | `my-org`; `myteam`; `business-unit` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`vcs.ref.base.name`](/docs/registry/attributes/vcs.md) | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. [3] | `my-feature-branch`; `tag-1-test` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`vcs.repository.name`](/docs/registry/attributes/vcs.md) | string | The human readable name of the repository. It SHOULD NOT include any additional identifier like Group/SubGroup in GitLab or organization in GitHub. [4] | `semantic-conventions`; `my-cool-repo` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`vcs.provider.name`](/docs/registry/attributes/vcs.md) | string | The name of the version control system provider. | `github`; `gitlab`; `gitea`; `bitbucket` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`vcs.ref.base.revision`](/docs/registry/attributes/vcs.md) | string | The revision, literally [revised version](https://www.merriam-webster.com/dictionary/revision), The revision most often refers to a commit object in Git, or a revision number in SVN. [5] | `9d59409acf479dfa0df1aa568182e43e43df8bbe28d60fcf2bc52e30068802cc`; `main`; `123`; `HEAD` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`vcs.ref.head.revision`](/docs/registry/attributes/vcs.md) | string | The revision, literally [revised version](https://www.merriam-webster.com/dictionary/revision), The revision most often refers to a commit object in Git, or a revision number in SVN. [6] | `9d59409acf479dfa0df1aa568182e43e43df8bbe28d60fcf2bc52e30068802cc`; `main`; `123`; `HEAD` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
 
 **[1] `vcs.ref.head.name`:** `head` refers to where you are right now; the current reference at a
 given time.
@@ -564,16 +564,16 @@ This metric is [recommended][MetricRecommended].
 <details open>
 <summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Value Captured |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
-| [`vcs.ref.head.name`](/docs/registry/attributes/vcs.md) | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. [1] | `my-feature-branch`; `tag-1-test` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`vcs.repository.url.full`](/docs/registry/attributes/vcs.md) | string | The [canonical URL](https://support.google.com/webmasters/answer/10347851?hl=en#:~:text=A%20canonical%20URL%20is%20the,Google%20chooses%20one%20as%20canonical.) of the repository providing the complete HTTP(S) address in order to locate and identify the repository through a browser. [2] | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`vcs.owner.name`](/docs/registry/attributes/vcs.md) | string | The group owner within the version control system. | `my-org`; `myteam`; `business-unit` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`vcs.ref.base.name`](/docs/registry/attributes/vcs.md) | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. [3] | `my-feature-branch`; `tag-1-test` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`vcs.repository.name`](/docs/registry/attributes/vcs.md) | string | The human readable name of the repository. It SHOULD NOT include any additional identifier like Group/SubGroup in GitLab or organization in GitHub. [4] | `semantic-conventions`; `my-cool-repo` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`vcs.provider.name`](/docs/registry/attributes/vcs.md) | string | The name of the version control system provider. | `github`; `gitlab`; `gitea`; `bitbucket` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`vcs.ref.base.revision`](/docs/registry/attributes/vcs.md) | string | The revision, literally [revised version](https://www.merriam-webster.com/dictionary/revision), The revision most often refers to a commit object in Git, or a revision number in SVN. [5] | `9d59409acf479dfa0df1aa568182e43e43df8bbe28d60fcf2bc52e30068802cc`; `main`; `123`; `HEAD` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`vcs.ref.head.revision`](/docs/registry/attributes/vcs.md) | string | The revision, literally [revised version](https://www.merriam-webster.com/dictionary/revision), The revision most often refers to a commit object in Git, or a revision number in SVN. [6] | `9d59409acf479dfa0df1aa568182e43e43df8bbe28d60fcf2bc52e30068802cc`; `main`; `123`; `HEAD` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`vcs.ref.head.name`](/docs/registry/attributes/vcs.md) | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. [1] | `my-feature-branch`; `tag-1-test` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`vcs.repository.url.full`](/docs/registry/attributes/vcs.md) | string | The [canonical URL](https://support.google.com/webmasters/answer/10347851?hl=en#:~:text=A%20canonical%20URL%20is%20the,Google%20chooses%20one%20as%20canonical.) of the repository providing the complete HTTP(S) address in order to locate and identify the repository through a browser. [2] | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`vcs.owner.name`](/docs/registry/attributes/vcs.md) | string | The group owner within the version control system. | `my-org`; `myteam`; `business-unit` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`vcs.ref.base.name`](/docs/registry/attributes/vcs.md) | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. [3] | `my-feature-branch`; `tag-1-test` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`vcs.repository.name`](/docs/registry/attributes/vcs.md) | string | The human readable name of the repository. It SHOULD NOT include any additional identifier like Group/SubGroup in GitLab or organization in GitHub. [4] | `semantic-conventions`; `my-cool-repo` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`vcs.provider.name`](/docs/registry/attributes/vcs.md) | string | The name of the version control system provider. | `github`; `gitlab`; `gitea`; `bitbucket` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`vcs.ref.base.revision`](/docs/registry/attributes/vcs.md) | string | The revision, literally [revised version](https://www.merriam-webster.com/dictionary/revision), The revision most often refers to a commit object in Git, or a revision number in SVN. [5] | `9d59409acf479dfa0df1aa568182e43e43df8bbe28d60fcf2bc52e30068802cc`; `main`; `123`; `HEAD` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`vcs.ref.head.revision`](/docs/registry/attributes/vcs.md) | string | The revision, literally [revised version](https://www.merriam-webster.com/dictionary/revision), The revision most often refers to a commit object in Git, or a revision number in SVN. [6] | `9d59409acf479dfa0df1aa568182e43e43df8bbe28d60fcf2bc52e30068802cc`; `main`; `123`; `HEAD` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
 
 **[1] `vcs.ref.head.name`:** `head` refers to where you are right now; the current reference at a
 given time.
@@ -649,10 +649,10 @@ This metric is [recommended][MetricRecommended].
 <details open>
 <summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Value Captured |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
-| [`vcs.owner.name`](/docs/registry/attributes/vcs.md) | string | The group owner within the version control system. | `my-org`; `myteam`; `business-unit` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`vcs.provider.name`](/docs/registry/attributes/vcs.md) | string | The name of the version control system provider. | `github`; `gitlab`; `gitea`; `bitbucket` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`vcs.owner.name`](/docs/registry/attributes/vcs.md) | string | The group owner within the version control system. | `my-org`; `myteam`; `business-unit` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`vcs.provider.name`](/docs/registry/attributes/vcs.md) | string | The name of the version control system provider. | `github`; `gitlab`; `gitea`; `bitbucket` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
 
 ---
 
@@ -688,13 +688,13 @@ This metric is [recommended][MetricRecommended].
 <details open>
 <summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Value Captured |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
-| [`vcs.ref.type`](/docs/registry/attributes/vcs.md) | string | The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository. | `branch`; `tag` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`vcs.repository.url.full`](/docs/registry/attributes/vcs.md) | string | The [canonical URL](https://support.google.com/webmasters/answer/10347851?hl=en#:~:text=A%20canonical%20URL%20is%20the,Google%20chooses%20one%20as%20canonical.) of the repository providing the complete HTTP(S) address in order to locate and identify the repository through a browser. [1] | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`vcs.owner.name`](/docs/registry/attributes/vcs.md) | string | The group owner within the version control system. | `my-org`; `myteam`; `business-unit` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`vcs.repository.name`](/docs/registry/attributes/vcs.md) | string | The human readable name of the repository. It SHOULD NOT include any additional identifier like Group/SubGroup in GitLab or organization in GitHub. [2] | `semantic-conventions`; `my-cool-repo` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`vcs.provider.name`](/docs/registry/attributes/vcs.md) | string | The name of the version control system provider. | `github`; `gitlab`; `gitea`; `bitbucket` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`vcs.ref.type`](/docs/registry/attributes/vcs.md) | string | The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository. | `branch`; `tag` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`vcs.repository.url.full`](/docs/registry/attributes/vcs.md) | string | The [canonical URL](https://support.google.com/webmasters/answer/10347851?hl=en#:~:text=A%20canonical%20URL%20is%20the,Google%20chooses%20one%20as%20canonical.) of the repository providing the complete HTTP(S) address in order to locate and identify the repository through a browser. [1] | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`vcs.owner.name`](/docs/registry/attributes/vcs.md) | string | The group owner within the version control system. | `my-org`; `myteam`; `business-unit` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`vcs.repository.name`](/docs/registry/attributes/vcs.md) | string | The human readable name of the repository. It SHOULD NOT include any additional identifier like Group/SubGroup in GitLab or organization in GitHub. [2] | `semantic-conventions`; `my-cool-repo` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`vcs.provider.name`](/docs/registry/attributes/vcs.md) | string | The name of the version control system provider. | `github`; `gitlab`; `gitea`; `bitbucket` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
 
 **[1] `vcs.repository.url.full`:** In Git Version Control Systems, the canonical URL SHOULD NOT include
 the `.git` extension.
@@ -750,18 +750,18 @@ If number of lines added/removed should be calculated from the start of time, th
 <details open>
 <summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Value Captured |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
-| [`vcs.line_change.type`](/docs/registry/attributes/vcs.md) | string | The type of line change being measured on a branch or change. | `added`; `removed` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`vcs.ref.base.name`](/docs/registry/attributes/vcs.md) | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. [1] | `my-feature-branch`; `tag-1-test` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`vcs.ref.base.type`](/docs/registry/attributes/vcs.md) | string | The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository. [2] | `branch`; `tag` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`vcs.ref.head.name`](/docs/registry/attributes/vcs.md) | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. [3] | `my-feature-branch`; `tag-1-test` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`vcs.ref.head.type`](/docs/registry/attributes/vcs.md) | string | The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository. [4] | `branch`; `tag` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`vcs.repository.url.full`](/docs/registry/attributes/vcs.md) | string | The [canonical URL](https://support.google.com/webmasters/answer/10347851?hl=en#:~:text=A%20canonical%20URL%20is%20the,Google%20chooses%20one%20as%20canonical.) of the repository providing the complete HTTP(S) address in order to locate and identify the repository through a browser. [5] | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`vcs.change.id`](/docs/registry/attributes/vcs.md) | string | The ID of the change (pull request/merge request/changelist) if applicable. This is usually a unique (within repository) identifier generated by the VCS system. | `123` | `Conditionally Required` if a change is associate with the ref. | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`vcs.owner.name`](/docs/registry/attributes/vcs.md) | string | The group owner within the version control system. | `my-org`; `myteam`; `business-unit` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`vcs.repository.name`](/docs/registry/attributes/vcs.md) | string | The human readable name of the repository. It SHOULD NOT include any additional identifier like Group/SubGroup in GitLab or organization in GitHub. [6] | `semantic-conventions`; `my-cool-repo` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`vcs.provider.name`](/docs/registry/attributes/vcs.md) | string | The name of the version control system provider. | `github`; `gitlab`; `gitea`; `bitbucket` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`vcs.line_change.type`](/docs/registry/attributes/vcs.md) | string | The type of line change being measured on a branch or change. | `added`; `removed` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`vcs.ref.base.name`](/docs/registry/attributes/vcs.md) | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. [1] | `my-feature-branch`; `tag-1-test` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`vcs.ref.base.type`](/docs/registry/attributes/vcs.md) | string | The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository. [2] | `branch`; `tag` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`vcs.ref.head.name`](/docs/registry/attributes/vcs.md) | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. [3] | `my-feature-branch`; `tag-1-test` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`vcs.ref.head.type`](/docs/registry/attributes/vcs.md) | string | The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository. [4] | `branch`; `tag` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`vcs.repository.url.full`](/docs/registry/attributes/vcs.md) | string | The [canonical URL](https://support.google.com/webmasters/answer/10347851?hl=en#:~:text=A%20canonical%20URL%20is%20the,Google%20chooses%20one%20as%20canonical.) of the repository providing the complete HTTP(S) address in order to locate and identify the repository through a browser. [5] | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`vcs.change.id`](/docs/registry/attributes/vcs.md) | string | The ID of the change (pull request/merge request/changelist) if applicable. This is usually a unique (within repository) identifier generated by the VCS system. | `123` | `Conditionally Required` if a change is associate with the ref. | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`vcs.owner.name`](/docs/registry/attributes/vcs.md) | string | The group owner within the version control system. | `my-org`; `myteam`; `business-unit` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`vcs.repository.name`](/docs/registry/attributes/vcs.md) | string | The human readable name of the repository. It SHOULD NOT include any additional identifier like Group/SubGroup in GitLab or organization in GitHub. [6] | `semantic-conventions`; `my-cool-repo` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`vcs.provider.name`](/docs/registry/attributes/vcs.md) | string | The name of the version control system provider. | `github`; `gitlab`; `gitea`; `bitbucket` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
 
 **[1] `vcs.ref.base.name`:** `base` refers to the starting point of a change. For example, `main`
 would be the base reference of type branch if you've created a new
@@ -848,18 +848,18 @@ instrumentation SHOULD report two measurements: 3 and 2 (both positive numbers) 
 <details open>
 <summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Value Captured |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
-| [`vcs.ref.base.name`](/docs/registry/attributes/vcs.md) | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. [1] | `my-feature-branch`; `tag-1-test` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`vcs.ref.base.type`](/docs/registry/attributes/vcs.md) | string | The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository. [2] | `branch`; `tag` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`vcs.ref.head.name`](/docs/registry/attributes/vcs.md) | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. [3] | `my-feature-branch`; `tag-1-test` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`vcs.ref.head.type`](/docs/registry/attributes/vcs.md) | string | The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository. [4] | `branch`; `tag` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`vcs.repository.url.full`](/docs/registry/attributes/vcs.md) | string | The [canonical URL](https://support.google.com/webmasters/answer/10347851?hl=en#:~:text=A%20canonical%20URL%20is%20the,Google%20chooses%20one%20as%20canonical.) of the repository providing the complete HTTP(S) address in order to locate and identify the repository through a browser. [5] | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`vcs.revision_delta.direction`](/docs/registry/attributes/vcs.md) | string | The type of revision comparison. | `ahead`; `behind` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`vcs.change.id`](/docs/registry/attributes/vcs.md) | string | The ID of the change (pull request/merge request/changelist) if applicable. This is usually a unique (within repository) identifier generated by the VCS system. | `123` | `Conditionally Required` if a change is associate with the ref. | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`vcs.owner.name`](/docs/registry/attributes/vcs.md) | string | The group owner within the version control system. | `my-org`; `myteam`; `business-unit` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`vcs.repository.name`](/docs/registry/attributes/vcs.md) | string | The human readable name of the repository. It SHOULD NOT include any additional identifier like Group/SubGroup in GitLab or organization in GitHub. [6] | `semantic-conventions`; `my-cool-repo` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`vcs.provider.name`](/docs/registry/attributes/vcs.md) | string | The name of the version control system provider. | `github`; `gitlab`; `gitea`; `bitbucket` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`vcs.ref.base.name`](/docs/registry/attributes/vcs.md) | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. [1] | `my-feature-branch`; `tag-1-test` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`vcs.ref.base.type`](/docs/registry/attributes/vcs.md) | string | The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository. [2] | `branch`; `tag` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`vcs.ref.head.name`](/docs/registry/attributes/vcs.md) | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. [3] | `my-feature-branch`; `tag-1-test` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`vcs.ref.head.type`](/docs/registry/attributes/vcs.md) | string | The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository. [4] | `branch`; `tag` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`vcs.repository.url.full`](/docs/registry/attributes/vcs.md) | string | The [canonical URL](https://support.google.com/webmasters/answer/10347851?hl=en#:~:text=A%20canonical%20URL%20is%20the,Google%20chooses%20one%20as%20canonical.) of the repository providing the complete HTTP(S) address in order to locate and identify the repository through a browser. [5] | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`vcs.revision_delta.direction`](/docs/registry/attributes/vcs.md) | string | The type of revision comparison. | `ahead`; `behind` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`vcs.change.id`](/docs/registry/attributes/vcs.md) | string | The ID of the change (pull request/merge request/changelist) if applicable. This is usually a unique (within repository) identifier generated by the VCS system. | `123` | `Conditionally Required` if a change is associate with the ref. | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`vcs.owner.name`](/docs/registry/attributes/vcs.md) | string | The group owner within the version control system. | `my-org`; `myteam`; `business-unit` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`vcs.repository.name`](/docs/registry/attributes/vcs.md) | string | The human readable name of the repository. It SHOULD NOT include any additional identifier like Group/SubGroup in GitLab or organization in GitHub. [6] | `semantic-conventions`; `my-cool-repo` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`vcs.provider.name`](/docs/registry/attributes/vcs.md) | string | The name of the version control system provider. | `github`; `gitlab`; `gitea`; `bitbucket` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
 
 **[1] `vcs.ref.base.name`:** `base` refers to the starting point of a change. For example, `main`
 would be the base reference of type branch if you've created a new
@@ -943,14 +943,14 @@ This metric is [recommended][MetricRecommended].
 <details open>
 <summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Value Captured |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
-| [`vcs.ref.head.name`](/docs/registry/attributes/vcs.md) | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. [1] | `my-feature-branch`; `tag-1-test` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`vcs.ref.head.type`](/docs/registry/attributes/vcs.md) | string | The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository. [2] | `branch`; `tag` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`vcs.repository.url.full`](/docs/registry/attributes/vcs.md) | string | The [canonical URL](https://support.google.com/webmasters/answer/10347851?hl=en#:~:text=A%20canonical%20URL%20is%20the,Google%20chooses%20one%20as%20canonical.) of the repository providing the complete HTTP(S) address in order to locate and identify the repository through a browser. [3] | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`vcs.owner.name`](/docs/registry/attributes/vcs.md) | string | The group owner within the version control system. | `my-org`; `myteam`; `business-unit` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`vcs.repository.name`](/docs/registry/attributes/vcs.md) | string | The human readable name of the repository. It SHOULD NOT include any additional identifier like Group/SubGroup in GitLab or organization in GitHub. [4] | `semantic-conventions`; `my-cool-repo` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`vcs.provider.name`](/docs/registry/attributes/vcs.md) | string | The name of the version control system provider. | `github`; `gitlab`; `gitea`; `bitbucket` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`vcs.ref.head.name`](/docs/registry/attributes/vcs.md) | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. [1] | `my-feature-branch`; `tag-1-test` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`vcs.ref.head.type`](/docs/registry/attributes/vcs.md) | string | The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository. [2] | `branch`; `tag` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`vcs.repository.url.full`](/docs/registry/attributes/vcs.md) | string | The [canonical URL](https://support.google.com/webmasters/answer/10347851?hl=en#:~:text=A%20canonical%20URL%20is%20the,Google%20chooses%20one%20as%20canonical.) of the repository providing the complete HTTP(S) address in order to locate and identify the repository through a browser. [3] | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`vcs.owner.name`](/docs/registry/attributes/vcs.md) | string | The group owner within the version control system. | `my-org`; `myteam`; `business-unit` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`vcs.repository.name`](/docs/registry/attributes/vcs.md) | string | The human readable name of the repository. It SHOULD NOT include any additional identifier like Group/SubGroup in GitLab or organization in GitHub. [4] | `semantic-conventions`; `my-cool-repo` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`vcs.provider.name`](/docs/registry/attributes/vcs.md) | string | The name of the version control system provider. | `github`; `gitlab`; `gitea`; `bitbucket` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
 
 **[1] `vcs.ref.head.name`:** `head` refers to where you are right now; the current reference at a
 given time.
@@ -1008,12 +1008,12 @@ This metric is [opt-in][MetricOptIn].
 <details open>
 <summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Value Captured |
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
-| [`vcs.repository.url.full`](/docs/registry/attributes/vcs.md) | string | The [canonical URL](https://support.google.com/webmasters/answer/10347851?hl=en#:~:text=A%20canonical%20URL%20is%20the,Google%20chooses%20one%20as%20canonical.) of the repository providing the complete HTTP(S) address in order to locate and identify the repository through a browser. [1] | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`vcs.owner.name`](/docs/registry/attributes/vcs.md) | string | The group owner within the version control system. | `my-org`; `myteam`; `business-unit` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`vcs.repository.name`](/docs/registry/attributes/vcs.md) | string | The human readable name of the repository. It SHOULD NOT include any additional identifier like Group/SubGroup in GitLab or organization in GitHub. [2] | `semantic-conventions`; `my-cool-repo` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
-| [`vcs.provider.name`](/docs/registry/attributes/vcs.md) | string | The name of the version control system provider. | `github`; `gitlab`; `gitea`; `bitbucket` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |  Any-time  |
+| [`vcs.repository.url.full`](/docs/registry/attributes/vcs.md) | string | The [canonical URL](https://support.google.com/webmasters/answer/10347851?hl=en#:~:text=A%20canonical%20URL%20is%20the,Google%20chooses%20one%20as%20canonical.) of the repository providing the complete HTTP(S) address in order to locate and identify the repository through a browser. [1] | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`vcs.owner.name`](/docs/registry/attributes/vcs.md) | string | The group owner within the version control system. | `my-org`; `myteam`; `business-unit` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`vcs.repository.name`](/docs/registry/attributes/vcs.md) | string | The human readable name of the repository. It SHOULD NOT include any additional identifier like Group/SubGroup in GitLab or organization in GitHub. [2] | `semantic-conventions`; `my-cool-repo` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`vcs.provider.name`](/docs/registry/attributes/vcs.md) | string | The name of the version control system provider. | `github`; `gitlab`; `gitea`; `bitbucket` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
 
 **[1] `vcs.repository.url.full`:** In Git Version Control Systems, the canonical URL SHOULD NOT include
 the `.git` extension.
