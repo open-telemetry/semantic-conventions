@@ -1,8 +1,8 @@
 <!--- Hugo front matter used to generate the website version of this page:
-linkTitle: App
+linkTitle: Events
 --->
 
-# App
+# App Events
 
 **Status**: [Development][DocumentStatus]
 
