@@ -1,5 +1,5 @@
 <!--- Hugo front matter used to generate the website version of this page:
-linkTitle: Device App Events
+linkTitle: Events
 --->
 
 # Semantic conventions for mobile events

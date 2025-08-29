@@ -1,13 +1,13 @@
 <!--- Hugo front matter used to generate the website version of this page:
-linkTitle: App
+linkTitle: CLI programs
 --->
 
 # Semantic conventions for Apps
 
 **Status**: [Development][DocumentStatus]
 
-Semantic conventions for Apps are defined for the following signals:
+Semantic conventions for CLI are defined for the following signals:
 
-* [App Events](app-events.md)
+* [CLI Spans](cli-spans.md)
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
