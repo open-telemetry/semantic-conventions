@@ -46,3 +46,17 @@ groups:
           - `service.name=frontend`, `deployment.environment.name=production`
           - `service.name=frontend`, `deployment.environment.name=staging`.
         examples: ["staging", "production"]
+      - id: deployment.target.name
+        type: string
+        stability: development
+        brief: >
+          A unique name describing where the deployment is deploying to.
+        note: This could be a fqdn of the machine or the name of the platform the deployment is deploying to.
+        examples: ["test.mymachines.org", "playstore"]
+      - id: deployment.target.path
+        type: string
+        stability: development
+        brief: >
+          A path of where to deploy the files to on the target.
+        note: This could be the same value as `process.executable.path` for an installation.
+        examples: ["C:\\folder-path"]
