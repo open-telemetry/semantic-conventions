@@ -1111,7 +1111,19 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`system.process.status`](/docs/registry/attributes/system.md) | string | The process state, e.g., [Linux Process State Codes](https://man7.org/linux/man-pages/man1/ps.1.html#PROCESS_STATE_CODES) | `running` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`process.state`](/docs/registry/attributes/process.md) | string | The process state, e.g., [Linux Process State Codes](https://man7.org/linux/man-pages/man1/ps.1.html#PROCESS_STATE_CODES) | `running` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`system.process.status`](/docs/registry/attributes/system.md) | string | The process state, e.g., [Linux Process State Codes](https://man7.org/linux/man-pages/man1/ps.1.html#PROCESS_STATE_CODES) | `running` | `Recommended` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `process.state`. |
+
+---
+
+`process.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `defunct` | Defunct | ![Development](https://img.shields.io/badge/-development-blue) |
+| `running` | Running | ![Development](https://img.shields.io/badge/-development-blue) |
+| `sleeping` | Sleeping | ![Development](https://img.shields.io/badge/-development-blue) |
+| `stopped` | Stopped | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -1119,10 +1131,10 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `defunct` | defunct | ![Development](https://img.shields.io/badge/-development-blue) |
-| `running` | running | ![Development](https://img.shields.io/badge/-development-blue) |
-| `sleeping` | sleeping | ![Development](https://img.shields.io/badge/-development-blue) |
-| `stopped` | stopped | ![Development](https://img.shields.io/badge/-development-blue) |
+| `defunct` | Defunct | ![Development](https://img.shields.io/badge/-development-blue) |
+| `running` | Running | ![Development](https://img.shields.io/badge/-development-blue) |
+| `sleeping` | Sleeping | ![Development](https://img.shields.io/badge/-development-blue) |
+| `stopped` | Stopped | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

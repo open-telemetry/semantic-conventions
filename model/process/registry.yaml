@@ -245,6 +245,29 @@ groups:
         type: template[string]
         stability: development
         examples: ['ubuntu', '/usr/local/bin:/usr/bin']
+      - id: process.state
+        type:
+          members:
+            - id: running
+              value: 'running'
+              brief: Running
+              stability: development
+            - id: sleeping
+              value: 'sleeping'
+              brief: Sleeping
+              stability: development
+            - id: stopped
+              value: 'stopped'
+              brief: Stopped
+              stability: development
+            - id: defunct
+              value: 'defunct'
+              brief: Defunct
+              stability: development
+        stability: development
+        brief: >
+          The process state, e.g., [Linux Process State Codes](https://man7.org/linux/man-pages/man1/ps.1.html#PROCESS_STATE_CODES)
+        examples: ["running"]
   # process.linux* attribute group
   - id: registry.process.linux
     type: attribute_group
