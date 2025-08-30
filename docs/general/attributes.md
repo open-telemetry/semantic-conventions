@@ -30,7 +30,6 @@ Particular operations may refer to or require some of these attributes.
     - [Network connection and carrier attributes](#network-connection-and-carrier-attributes)
 - [General remote service attributes](#general-remote-service-attributes)
 - [General thread attributes](#general-thread-attributes)
-- [Source code attributes](#source-code-attributes)
 
 <!-- tocstop -->
 
