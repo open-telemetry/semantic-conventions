@@ -2,8 +2,8 @@ change_type: enhancement
 component: gen-ai
 note: |
   Add tool definitions and execution details for Single and Multi-Agent systems
-  - Add 'gen_ai.tool_definitions' attribute to 'gen_ai.invoke_agent' span
+  - Add 'gen_ai.tool_definitions' attribute to 'invoke_agent' span
   - Add 'gen_ai.tool_definitions' attribute to 'attributes.gen_ai.inference.client' attribute group.
-  - Add 'gen_ai.tool.call.arguments' and 'gen_ai.tool.call.result' attributes to 'gen_ai.execute_tool' span.
+  - Add 'gen_ai.tool.call.arguments' and 'gen_ai.tool.call.result' attributes to 'execute_tool' span.
 
 issues: [2444, 591]

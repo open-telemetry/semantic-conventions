@@ -175,7 +175,7 @@ section for more details.
 
 **[13] `gen_ai.tool_definitions`:** The value of this attribute matches source system tool definition format.
 
-It's expected to be an array of JSON objects - in case a serialized string is available
+It's expected to be an array of objects where each object represents a tool definition. In case a serialized string is available
 to the instrumentation, the instrumentation SHOULD do the best effort to
 deserialize it to an array.
 
