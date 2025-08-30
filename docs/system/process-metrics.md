@@ -289,7 +289,17 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`process.context_switch_type`](/docs/registry/attributes/process.md) | string | Specifies whether the context switches for this data point were voluntary or involuntary. | `voluntary`; `involuntary` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`process.context_switch.type`](/docs/registry/attributes/process.md) | string | Specifies whether the context switches for this data point were voluntary or involuntary. | `voluntary`; `involuntary` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`process.context_switch_type`](/docs/registry/attributes/process.md) | string | Specifies whether the context switches for this data point were voluntary or involuntary. | `voluntary`; `involuntary` | `Recommended` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `process.context_switch.type`. |
+
+---
+
+`process.context_switch.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `involuntary` | Involuntary | ![Development](https://img.shields.io/badge/-development-blue) |
+| `voluntary` | Voluntary | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -297,8 +307,8 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `involuntary` | involuntary | ![Development](https://img.shields.io/badge/-development-blue) |
-| `voluntary` | voluntary | ![Development](https://img.shields.io/badge/-development-blue) |
+| `involuntary` | Involuntary | ![Development](https://img.shields.io/badge/-development-blue) |
+| `voluntary` | Voluntary | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
