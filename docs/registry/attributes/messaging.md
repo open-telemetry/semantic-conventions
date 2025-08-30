@@ -33,7 +33,7 @@ Attributes describing telemetry around messaging systems and messaging activitie
 | <a id="messaging-message-id" href="#messaging-message-id">`messaging.message.id`</a> | string | A value used by the messaging system as an identifier for the message, represented as a string. | `452a7c7c7c7048c2f887f61572b18fc2` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="messaging-operation-name" href="#messaging-operation-name">`messaging.operation.name`</a> | string | The system-specific name of the messaging operation. | `ack`; `nack`; `send` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="messaging-operation-type" href="#messaging-operation-type">`messaging.operation.type`</a> | string | A string identifying the type of the messaging operation. [8] | `create`; `send`; `receive` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="messaging-system" href="#messaging-system">`messaging.system`</a> | string | The messaging system as identified by the client instrumentation. [9] | `activemq`; `aws_sqs`; `eventgrid` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="messaging-system" href="#messaging-system">`messaging.system`</a> | string | The messaging system as identified by the client instrumentation. [9] | `activemq`; `aws.sns`; `aws_sqs` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `messaging.batch.message_count`:** Instrumentations SHOULD NOT set `messaging.batch.message_count` on spans that operate with a single message. When a messaging client library supports both batch and single-message API for the same operation, instrumentations SHOULD use `messaging.batch.message_count` for batching APIs and SHOULD NOT use it for single-message APIs.
 
@@ -75,6 +75,7 @@ size should be used.
 | Value  | Description | Stability |
 |---|---|---|
 | `activemq` | Apache ActiveMQ | ![Development](https://img.shields.io/badge/-development-blue) |
+| `aws.sns` | Amazon Simple Notification Service (SNS) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `aws_sqs` | Amazon Simple Queue Service (SQS) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `eventgrid` | Azure Event Grid | ![Development](https://img.shields.io/badge/-development-blue) |
 | `eventhubs` | Azure Event Hubs | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -193,7 +194,7 @@ Describes deprecated messaging attributes.
 | <a id="messaging-destination-publish-name" href="#messaging-destination-publish-name">`messaging.destination_publish.name`</a> | string | Deprecated, no replacement at this time. | `MyQueue`; `MyTopic` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Removed. No replacement at this time. |
 | <a id="messaging-eventhubs-consumer-group" href="#messaging-eventhubs-consumer-group">`messaging.eventhubs.consumer.group`</a> | string | Deprecated, use `messaging.consumer.group.name` instead. | `$Default` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `messaging.consumer.group.name`. |
 | <a id="messaging-kafka-consumer-group" href="#messaging-kafka-consumer-group">`messaging.kafka.consumer.group`</a> | string | Deprecated, use `messaging.consumer.group.name` instead. | `my-group` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `messaging.consumer.group.name`. |
-| <a id="messaging-kafka-destination-partition" href="#messaging-kafka-destination-partition">`messaging.kafka.destination.partition`</a> | int | Deprecated, use `messaging.destination.partition.id` instead. | `2` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `messaging.destination.partition.id`. |
+| <a id="messaging-kafka-destination-partition" href="#messaging-kafka-destination-partition">`messaging.kafka.destination.partition`</a> | int | Deprecated, use `messaging.destination.partition.id` instead. | `2` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Record string representation of the partition id in `messaging.destination.partition.id` attribute. |
 | <a id="messaging-kafka-message-offset" href="#messaging-kafka-message-offset">`messaging.kafka.message.offset`</a> | int | Deprecated, use `messaging.kafka.offset` instead. | `42` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `messaging.kafka.offset`. |
 | <a id="messaging-operation" href="#messaging-operation">`messaging.operation`</a> | string | Deprecated, use `messaging.operation.type` instead. | `publish`; `create`; `process` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `messaging.operation.type`. |
 | <a id="messaging-rocketmq-client-group" href="#messaging-rocketmq-client-group">`messaging.rocketmq.client_group`</a> | string | Deprecated, use `messaging.consumer.group.name` instead. | `myConsumerGroup` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `messaging.consumer.group.name` on the consumer spans. No replacement for producer spans. |

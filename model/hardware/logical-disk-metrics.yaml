@@ -1,0 +1,54 @@
+groups:
+  # LOGICAL DISK METRICS
+  - id: metric_attributes.hw.logical_disk
+    type: attribute_group
+    brief: >
+      Common attributes for logical disk metrics
+    extends: hardware.attributes.common
+    attributes:
+      - ref: hw.logical_disk.raid_level
+        requirement_level: recommended
+
+  - id: metric.hw.logical_disk.limit
+    type: metric
+    metric_name: hw.logical_disk.limit
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "Size of the logical disk."
+    instrument: updowncounter
+    unit: "By"
+    extends: metric_attributes.hw.logical_disk
+
+  - id: metric.hw.logical_disk.usage
+    type: metric
+    metric_name: hw.logical_disk.usage
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "Logical disk space usage."
+    instrument: updowncounter
+    unit: "By"
+    extends: metric_attributes.hw.logical_disk
+    attributes:
+      - ref: hw.logical_disk.state
+        examples: ["used", "free"]
+        requirement_level: required
+
+  - id: metric.hw.logical_disk.utilization
+    type: metric
+    metric_name: hw.logical_disk.utilization
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: "Logical disk space utilization as a fraction."
+    instrument: gauge
+    unit: "1"
+    extends: metric_attributes.hw.logical_disk
+    attributes:
+      - ref: hw.logical_disk.state
+        examples: ["used", "free"]
+        requirement_level: required

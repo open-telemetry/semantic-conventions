@@ -15,7 +15,7 @@ jobs:
       contents: write # required for pushing changes
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
 
       - name: Validate version
         run: |
@@ -30,20 +30,15 @@ jobs:
 
       - name: Update schema files
         run: |
-          if ! grep -q "^  next:$" schema-next.yaml; then
-            echo "String 'next:' not found in the file"
-            exit 1
-          fi
-
           version=${{ inputs.version }}
-          make generate-schema-next SCHEMA_NEXT_VERSION=$version
+          make generate-schema-next NEXT_SEMCONV_VERSION=$version
           git add "schemas/$version"
 
       - name: Update change log
         run: |
           make chlog-update VERSION=v${{ inputs.version }}
 
-      - uses: actions/create-github-app-token@df432ceedc7162793a195dd1713ff69aefc7379e # v2.0.6
+      - uses: actions/create-github-app-token@a8d616148505b5069dccd32f177bb87d7f39123b # v2.1.1
         id: otelbot-token
         with:
           app-id: ${{ vars.OTELBOT_APP_ID }}
