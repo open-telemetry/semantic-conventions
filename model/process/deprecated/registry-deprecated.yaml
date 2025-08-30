@@ -48,3 +48,21 @@ groups:
               value: 'involuntary'
               stability: development
         stability: development
+      - id: process.paging.fault_type
+        brief: >
+          The type of page fault for this data point. Type `major` is for major/hard page faults, and `minor`
+          is for minor/soft page faults.
+        deprecated:
+          reason: renamed
+          renamed_to: system.paging.fault_type
+        type:
+          members:
+            - id: major
+              value: 'major'
+              brief: Major
+              stability: development
+            - id: minor
+              value: 'minor'
+              brief: Minor
+              stability: development
+        stability: development

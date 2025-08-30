@@ -108,3 +108,20 @@ groups:
           reason: renamed
           renamed_to: cpu.logical_number
         examples: [1]
+      - id: system.paging.type
+        deprecated:
+          reason: renamed
+          renamed_to: system.paging.fault_type
+        type:
+          members:
+            - id: major
+              value: 'major'
+              brief: Major
+              stability: development
+            - id: minor
+              value: 'minor'
+              brief: Minor
+              stability: development
+        stability: development
+        brief: "The memory paging type"
+        examples: ["minor"]

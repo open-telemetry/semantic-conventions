@@ -65,14 +65,16 @@ groups:
         stability: development
         brief: "The memory paging state"
         examples: ["free"]
-      - id: system.paging.type
+      - id: system.paging.fault_type
         type:
           members:
             - id: major
               value: 'major'
+              brief: Major
               stability: development
             - id: minor
               value: 'minor'
+              brief: Minor
               stability: development
         stability: development
         brief: "The memory paging type"
