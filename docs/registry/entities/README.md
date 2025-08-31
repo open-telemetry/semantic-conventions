@@ -23,6 +23,8 @@ Currently, the following namespaces exist:
 | | [android](android.md#android) | ![Development](https://img.shields.io/badge/-development-blue) |
 | App | | |
 | | [app](app.md#app) | ![Development](https://img.shields.io/badge/-development-blue) |
+| Autoscaler | | |
+| | [autoscaler.group](autoscaler.md#autoscaler-group) | ![Development](https://img.shields.io/badge/-development-blue) |
 | AWS | | |
 | | [aws.ecs](aws.md#aws-ecs) | ![Development](https://img.shields.io/badge/-development-blue) |
 | | [aws.eks](aws.md#aws-eks) | ![Development](https://img.shields.io/badge/-development-blue) |

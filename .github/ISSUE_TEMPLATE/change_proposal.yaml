@@ -18,6 +18,7 @@ body:
         - area:app
         - area:artifact
         - area:aspnetcore
+        - area:autoscaler
         - area:aws
         - area:azure
         - area:browser
