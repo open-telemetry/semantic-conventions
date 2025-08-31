@@ -327,3 +327,26 @@ groups:
         requirement_level: required
       - ref: aws.bedrock.knowledge_base.id
         requirement_level: recommended
+
+  - id: span.gen_ai.task.client
+    span_kind: client
+    type: span
+    brief: >
+      Attributes for representing GenAI tasks and subtasks in distributed agent workflows.
+    stability: development
+    attributes:
+      - ref: gen_ai.task.id
+        requirement_level: required
+      - ref: gen_ai.task.parent_id
+        requirement_level: required
+      - ref: gen_ai.task.name
+        requirement_level: required
+      - ref: gen_ai.task.code.id
+        requirement_level:
+          conditionally_required: If provided by the application.
+      - ref: gen_ai.task.code.vendor
+        requirement_level: opt_in
+      - ref: gen_ai.task.kind
+        requirement_level: required
+      - ref: gen_ai.task.tags
+        requirement_level: opt_in

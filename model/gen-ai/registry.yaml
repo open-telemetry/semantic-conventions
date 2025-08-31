@@ -504,3 +504,66 @@ groups:
         type: string
         brief: A free-form explanation for the assigned score provided by the evaluator.
         examples: ["The response is factually accurate but lacks sufficient detail to fully address the question."]
+      - id: gen_ai.task.id
+        stability: development
+        type: string
+        brief: A unique global identifier of the task instance.
+        examples: ["task-42a7cf12"]
+        note: |
+          This ID must be present and stable on all spans related to the same task.
+          Enables correlating all spans under the umbrella of a single logical task (e.g., one high-level goal) across distributed workflow.
+      - id: gen_ai.task.parent_id
+        stability: development
+        type: string
+        brief: The ID of the parent task, if the current task is a subtask.
+        examples: ["task-001"]
+        note: |
+          Enables hierarchical task tree reconstruction.
+          Allows constructing task trees such as "Summarize → Retrieve → Generate → Evaluate", with each step represented as a task/subtask.
+      - id: gen_ai.task.name
+        stability: development
+        type: string
+        brief: A user-defined display name for the task.
+        examples: ["Summarize Customer Review"]
+        note: |
+          If not explicitly set, it could be inferred from the code, metadata, agent prompt, or system instrumentation.
+          Improves trace readability and simplifies debugging by making traces easier to scan and interpret.
+      - id: gen_ai.task.code.id
+        stability: development
+        type: string
+        brief: Fully qualified reference to the source code defining the task logic or structure.
+        examples: ["https://github.com/crewAIInc/crewAI/blob/main/src/crewai/task.py:56:Task"]
+      - id: gen_ai.task.code.vendor
+        stability: development
+        type: string
+        brief: The name of the vendor or framework used to develop the agent application.
+        examples: ["langgraph", "crewAI"]
+      - id: gen_ai.task.kind
+        stability: development
+        type: string
+        brief: The core intent or purpose of the task.
+        examples: ["retrieval"]
+        note: |
+          Must be one of the following:
+            - planning
+            - learning
+            - retrieval
+            - reasoning
+            - action
+            - evaluation
+            - delegation
+            - synthesis
+            - coordination
+            - refinement
+            - other
+
+          Enables filtering and grouping of traces by task type.
+          Supports task-specific SLOs, such as tighter latency goals for "retrieval" than for "planning".
+      - id: gen_ai.task.tags
+        stability: development
+        type: string[]
+        brief: Additional classification tags to support search, analytics, or filtering.
+        examples: [["customer-support", "Q3-feedback"]]
+        note: |
+          Tags allow adding custom domain or business context.
+          Useful for building dashboards and custom alerts based on tags like "legal", "marketing", "compliance".
