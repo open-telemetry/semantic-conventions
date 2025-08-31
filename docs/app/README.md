@@ -8,8 +8,12 @@ linkTitle: App
 
 This document defines semantic conventions for the following application types:
 
-* [App Events](app-events.md)
 * [CLI Programs](cli.md)
-* [Device App Events](device-app-events.md)
+* [Client Apps](client-apps.md)
+
+## Attributes
+
+See the [app attributes](/docs/registry/attributes/app.md) registry for all
+application-related attributes that may appear on telemetry items.
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
