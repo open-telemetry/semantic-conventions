@@ -6,7 +6,7 @@ linkTitle: Profiles
 
 **Status**: [Development][DocumentStatus]
 
-## Useful Attribute Namespaces
+## Useful Additional Attribute Namespaces
 
 There are some attribute namespaces which can be used to provide additional context and
 are not specific to a particular domain. Such as:
