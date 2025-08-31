@@ -36,7 +36,7 @@ Apart from semantic conventions for traces, [metrics](metrics.md), [logs](logs.m
 OpenTelemetry also defines the concept of overarching [Resources](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.49.0/specification/resource/sdk.md) with their own
 [Resource Semantic Conventions](/docs/resource/README.md).
 
-## Useful Attribute Namespaces
+## Useful Additional Attribute Namespaces
 
 There are some attribute namespaces which can be used to provide additional context and
 are not specific to a particular domain. Such as:

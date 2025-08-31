@@ -8,7 +8,7 @@
 
 ## Code Attributes
 
-These attributes provide context about source code
+Often a signal ie Span/Event, is closely tied to a certain unit of code that is logically responsible for handling the operation that the signal is for. These attributes allow the unit of code to be reported and therefore to provide more context.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
