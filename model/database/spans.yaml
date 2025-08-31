@@ -827,6 +827,11 @@ groups:
           MUST be set to `Microsoft.DocumentDB` for all operations performed by
           Cosmos DB client.
         examples: ["Microsoft.DocumentDB"]
+      - ref: peer.service.namespace
+        note: >
+          When `peer.service.namespace` attribute is populated, it MUST be set to `Microsoft.DocumentDB` for all
+          operations performed by Cosmos DB client.
+        examples: ["Microsoft.DocumentDB"]
       - ref: db.operation.name
         requirement_level: required
         note: |
