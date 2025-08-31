@@ -13,6 +13,12 @@
 
 **Description:** An app used directly by end users — like mobile, web, or desktop.
 
+**Identifying Attributes:**
+
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`app.build_id`](/docs/registry/attributes/app.md) | string | Unique identifier for a particular build or compilation of the application. | `6cff0a7e-cefc-4668-96f5-1273d8b334d0`; `9f2b833506aa6973a92fde9733e6271f`; `my-app-1.0.0-code-123` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+
 **Other Attributes:**
 
 > :warning: This entity definition contains attributes without a role.
@@ -38,7 +44,7 @@ For Android, examples of `app.installation.id` implementations include:
 - [App set ID](https://developer.android.com/identity/app-set-id).
 - [`Settings.getString(Settings.Secure.ANDROID_ID)`](https://developer.android.com/reference/android/provider/Settings.Secure#ANDROID_ID).
 
-More information about Android identifier best practices can be found [here](https://developer.android.com/training/articles/user-data-ids).
+More information about Android identifier best practices can be found in the [Android user data IDs guide](https://developer.android.com/training/articles/user-data-ids).
 
 
 <!-- markdownlint-restore -->

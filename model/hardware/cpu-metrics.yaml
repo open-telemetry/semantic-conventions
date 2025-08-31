@@ -1,0 +1,42 @@
+groups:
+  # CPU METRICS
+  - id: metric_attributes.hw.cpu
+    type: attribute_group
+    brief: >
+      Common attributes for CPU metrics
+    extends: hardware.attributes.common
+    attributes:
+      - ref: hw.model
+        requirement_level: recommended
+      - ref: hw.vendor
+        requirement_level: recommended
+
+
+  - id: metric.hw.cpu.speed
+    type: metric
+    metric_name: hw.cpu.speed
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "CPU current frequency."
+    instrument: gauge
+    unit: "Hz"
+    extends: metric_attributes.hw.cpu
+
+  # TODO: decide on metric name speed.limit is original
+  - id: metric.hw.cpu.speed.limit
+    type: metric
+    metric_name: hw.cpu.speed.limit
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "CPU maximum frequency."
+    instrument: gauge
+    unit: "Hz"
+    extends: metric_attributes.hw.cpu
+    attributes:
+      - ref: hw.limit_type
+        examples: ["throttled", "max", "turbo"]
+        requirement_level: recommended
