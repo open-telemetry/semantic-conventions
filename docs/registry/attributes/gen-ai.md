@@ -149,17 +149,17 @@ section for more details.
 Enables correlating all spans under the umbrella of a single logical task (e.g., one high-level goal) across distributed workflow.
 
 **[11] `gen_ai.task.kind`:** Must be one of the following:
-  - planning
-  - learning
-  - retrieval
-  - reasoning
-  - action
-  - evaluation
-  - delegation
-  - synthesis
-  - coordination
-  - refinement
-  - other
+"- planning"
+"- learning"
+"- retrieval"
+"- reasoning"
+"- action"
+"- evaluation"
+"- delegation"
+"- synthesis"
+"- coordination"
+"- refinement"
+"- other"
 
 Enables filtering and grouping of traces by task type.
 Supports task-specific SLOs, such as tighter latency goals for "retrieval" than for "planning".
