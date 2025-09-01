@@ -512,7 +512,7 @@ groups:
         note: |
           This ID must be present and stable on all spans related to the same task.
           Enables correlating all spans under the umbrella of a single logical task (e.g., one high-level goal) across distributed workflow.
-      - id: gen_ai.task.parent_id
+      - id: gen_ai.task.parent.id
         stability: development
         type: string
         brief: The ID of the parent task, if the current task is a subtask.

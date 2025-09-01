@@ -331,13 +331,14 @@ groups:
   - id: span.gen_ai.task.client
     span_kind: client
     type: span
-    brief: >
-      Attributes for representing GenAI tasks and subtasks in distributed agent workflows.
     stability: development
+    brief: >
+      Describes attributes for representing GenAI tasks and subtasks in distributed agent workflows.
+    extends: attributes.gen_ai.common.client
     attributes:
       - ref: gen_ai.task.id
         requirement_level: required
-      - ref: gen_ai.task.parent_id
+      - ref: gen_ai.task.parent.id
         requirement_level: required
       - ref: gen_ai.task.name
         requirement_level: required

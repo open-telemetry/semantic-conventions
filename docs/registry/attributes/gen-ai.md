@@ -48,7 +48,7 @@ This document defines the attributes used to describe telemetry in the context o
 | <a id="gen-ai-task-id" href="#gen-ai-task-id">`gen_ai.task.id`</a> | string | A unique global identifier of the task instance. [10] | `task-42a7cf12` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="gen-ai-task-kind" href="#gen-ai-task-kind">`gen_ai.task.kind`</a> | string | The core intent or purpose of the task. [11] | `retrieval` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="gen-ai-task-name" href="#gen-ai-task-name">`gen_ai.task.name`</a> | string | A user-defined display name for the task. [12] | `Summarize Customer Review` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="gen-ai-task-parent-id" href="#gen-ai-task-parent-id">`gen_ai.task.parent_id`</a> | string | The ID of the parent task, if the current task is a subtask. [13] | `task-001` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="gen-ai-task-parent-id" href="#gen-ai-task-parent-id">`gen_ai.task.parent.id`</a> | string | The ID of the parent task, if the current task is a subtask. [13] | `task-001` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="gen-ai-task-tags" href="#gen-ai-task-tags">`gen_ai.task.tags`</a> | string[] | Additional classification tags to support search, analytics, or filtering. [14] | `["customer-support", "Q3-feedback"]` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="gen-ai-token-type" href="#gen-ai-token-type">`gen_ai.token.type`</a> | string | The type of token being counted. | `input`; `output` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="gen-ai-tool-call-id" href="#gen-ai-tool-call-id">`gen_ai.tool.call.id`</a> | string | The tool call identifier. | `call_mszuSIzqtI65i1wAUOE8w5H4` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -167,7 +167,7 @@ Supports task-specific SLOs, such as tighter latency goals for "retrieval" than 
 **[12] `gen_ai.task.name`:** If not explicitly set, it could be inferred from the code, metadata, agent prompt, or system instrumentation.
 Improves trace readability and simplifies debugging by making traces easier to scan and interpret.
 
-**[13] `gen_ai.task.parent_id`:** Enables hierarchical task tree reconstruction.
+**[13] `gen_ai.task.parent.id`:** Enables hierarchical task tree reconstruction.
 Allows constructing task trees such as "Summarize → Retrieve → Generate → Evaluate", with each step represented as a task/subtask.
 
 **[14] `gen_ai.task.tags`:** Tags allow adding custom domain or business context.
