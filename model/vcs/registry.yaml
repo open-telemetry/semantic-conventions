@@ -264,7 +264,9 @@ groups:
             - id: gittea
               value: gittea
               brief: "Deprecated, use `gitea` instead."
-              deprecated: "Replaced by `gitea`."
+              deprecated:
+                reason: renamed
+                renamed_to: "gitea"
               stability: development
             - id: gitea
               value: gitea

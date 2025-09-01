@@ -21,7 +21,7 @@ repository:
     - name: Josh Suereth
       affiliation: Google
     - name: Liudmila Molkova
-      affiliation: Microsoft
+      affiliation: Grafana Labs
     - name: Trask Stalnaker
       affiliation: Microsoft
   license:

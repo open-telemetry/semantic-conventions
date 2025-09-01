@@ -169,7 +169,7 @@ groups:
           Instrumentation SHOULD document if `db.namespace` reflects the database provided when the connection was established.
 
           It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
-        examples: ["instance1.products", "customers"]
+        examples: ['instance1\|products', 'customers']
       - ref: db.response.status_code
         brief: >
           [Microsoft SQL Server error](https://learn.microsoft.com/sql/relational-databases/errors-events/database-engine-events-and-errors) number

@@ -33,3 +33,12 @@ groups:
           reason: renamed
           renamed_to: cpu.mode
         examples: [ "user", "kernel" ]
+      - id: container.runtime
+        type: string
+        stability: development
+        deprecated:
+          reason: renamed
+          renamed_to: container.runtime.name
+        brief: >
+          The container runtime managing this container.
+        examples: ['docker', 'containerd', 'rkt']

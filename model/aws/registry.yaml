@@ -281,9 +281,11 @@ groups:
           members:
             - id: ec2
               value: "ec2"
+              brief: Amazon EC2
               stability: development
             - id: fargate
               value: "fargate"
+              brief: Amazon Fargate
               stability: development
         stability: development
         brief: >

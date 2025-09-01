@@ -7,6 +7,49 @@
 
 <!-- next version -->
 
+## v1.37.0
+
+### 🛑 Breaking changes 🛑
+
+- `gen-ai`: Revamp how GenAI chat history is recorded. Instead of per-message events,
+we now have `gen_ai.system_instructions`, `gen_ai.input.messages`, and
+`gen_ai.output.messages` attributes that can appear on GenAI spans or the new
+`gen_ai.client.inference.operation.details` event.
+  New attributes are not recorded by default when content capturing is disabled.
+  Deprecations:
+  - `gen_ai.system.message` event - use `gen_ai.system_instructions` or
+    `gen_ai.input.messages` attributes instead.
+  - `gen_ai.user.message`, `gen_ai.assistant.message`, `gen_ai.tool.message` events
+    (use `gen_ai.input.messages` attribute instead)
+  - `gen_ai.choice` event (use `gen_ai.output.messages` attribute instead)
+  ([#2010](https://github.com/open-telemetry/semantic-conventions/issues/2010), [#2179](https://github.com/open-telemetry/semantic-conventions/issues/2179), [#1913](https://github.com/open-telemetry/semantic-conventions/issues/1913), [#1621](https://github.com/open-telemetry/semantic-conventions/issues/1621), [#1912](https://github.com/open-telemetry/semantic-conventions/issues/1912))
+- `container`: The container runtime can now also have the version and description provided ([#2342](https://github.com/open-telemetry/semantic-conventions/issues/2342))
+- `gen-ai`: Follow system-specific naming policy in GenAI semantic conventions.
+  - Rename `gen_ai.system` to `gen_ai.provider.name`
+  - Remove `gen_ai` prefix from `gen_ai.openai.*` attributes.
+  - Rename `az.ai.*` attribute names to `azure.ai.*`.
+  ([#2046](https://github.com/open-telemetry/semantic-conventions/issues/2046))
+- `system`: Rename system.network.dropped to system.network.packet.dropped and system.network.packets to system.network.packet.count ([#1700](https://github.com/open-telemetry/semantic-conventions/issues/1700))
+
+### 💡 Enhancements 💡
+
+- `all`: Add `metric_value_type` code-generation annotation to all metric definitions. ([#2444](https://github.com/open-telemetry/semantic-conventions/issues/2444), [#591](https://github.com/open-telemetry/semantic-conventions/issues/591))
+- `http`: Clarify how `server.address` and `server.port` should be populated by HTTP client instrumentations. ([#2443](https://github.com/open-telemetry/semantic-conventions/issues/2443), [#2463](https://github.com/open-telemetry/semantic-conventions/issues/2463))
+- `otel`: Add `otel.scope.schema_url` attribute to non-OTLP exporters that represents an instrumentation scope schema URL. ([#2320](https://github.com/open-telemetry/semantic-conventions/issues/2320), [#2489](https://github.com/open-telemetry/semantic-conventions/issues/2489))
+- `aspnetcore`: Add ASP.NET Core Identity metrics and update the registry. ([#2509](https://github.com/open-telemetry/semantic-conventions/issues/2509))
+- `gen-ai`: Add operation name and tool type attributes for Execute tool span. ([#2525](https://github.com/open-telemetry/semantic-conventions/issues/2525), [#2526](https://github.com/open-telemetry/semantic-conventions/issues/2526))
+- `aspnetcore`: Add ASP.NET Core authentication and authorization metrics and update the registry. ([#2530](https://github.com/open-telemetry/semantic-conventions/issues/2530))
+- `aspnetcore`: Add ASP.NET Core memory pool metrics and update the registry. ([#2532](https://github.com/open-telemetry/semantic-conventions/issues/2532))
+- `app`: Defines a new app.build_id attribute. ([#2591](https://github.com/open-telemetry/semantic-conventions/issues/2591))
+- `k8s`: Add k8s node, pod, container filesystem metrics ([#1488](https://github.com/open-telemetry/semantic-conventions/issues/1488))
+- `k8s`: Add k8s Pod Volume metrics ([#1485](https://github.com/open-telemetry/semantic-conventions/issues/1485))
+- `messaging`: Added in AWS SNS as messaging systems ([#2266](https://github.com/open-telemetry/semantic-conventions/issues/2266))
+- `system`: Used memory should be based on operating system's internals ([#2534](https://github.com/open-telemetry/semantic-conventions/issues/2534))
+- `db`: Add context propagation via SQL commenter for databases ([#2162](https://github.com/open-telemetry/semantic-conventions/issues/2162))
+- `hardware`: Move text hardware metrics to the hardware components, yaml and md files ([#2380](https://github.com/open-telemetry/semantic-conventions/issues/2380))
+- `app`: Defines a new jank event in the app domain ([#2552](https://github.com/open-telemetry/semantic-conventions/issues/2552))
+- `docs`: Document the "T-Shaped" notion for defining semantic conventions. ([#2232](https://github.com/open-telemetry/semantic-conventions/issues/2232))
+
 ## v1.36.0
 
 ### 🚩 Deprecations 🚩

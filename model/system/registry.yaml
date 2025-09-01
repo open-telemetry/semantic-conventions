@@ -22,13 +22,22 @@ groups:
             - id: used
               value: 'used'
               stability: development
+              brief: Actual used virtual memory in bytes.
+              note: >
+                Calculation based on the operating system metrics.
+                On Linux, this corresponds to "MemTotal - MemAvailable" from /proc/meminfo, which
+                more accurately reflects memory in active use by applications compared to older
+                formulas based on free, cached, and buffers. If MemAvailable is not available,
+                a fallback to those older formulas may be used.
             - id: free
               value: 'free'
               stability: development
             - id: shared
               value: 'shared'
               stability: development
-              deprecated: 'Removed, report shared memory usage with `metric.system.memory.shared` metric'
+              deprecated:
+                reason: uncategorized
+                note: "Removed, report shared memory usage with `metric.system.memory.shared` metric"
             - id: buffers
               value: 'buffers'
               stability: development

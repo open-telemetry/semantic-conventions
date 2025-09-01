@@ -1,0 +1,86 @@
+groups:
+  # NETWORK METRICS
+  - id: metric_attributes.hw.network
+    type: attribute_group
+    brief: >
+      Common attributes for network adapter metrics
+    extends: hardware.attributes.common
+    attributes:
+      - ref: hw.model
+        requirement_level: recommended
+      - ref: hw.network.logical_addresses
+        requirement_level: recommended
+      - ref: hw.network.physical_address
+        requirement_level: recommended
+      - ref: hw.serial_number
+        requirement_level: recommended
+      - ref: hw.vendor
+        requirement_level: recommended
+
+  - id: metric.hw.network.bandwidth.limit
+    type: metric
+    metric_name: hw.network.bandwidth.limit
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "Link speed."
+    instrument: updowncounter
+    unit: "By/s"
+    extends: metric_attributes.hw.network
+
+  - id: metric.hw.network.bandwidth.utilization
+    type: metric
+    metric_name: hw.network.bandwidth.utilization
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: "Utilization of the network bandwidth as a fraction."
+    instrument: gauge
+    unit: "1"
+    extends: metric_attributes.hw.network
+
+  - id: metric.hw.network.io
+    type: metric
+    metric_name: hw.network.io
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "Received and transmitted network traffic in bytes."
+    instrument: counter
+    unit: "By"
+    extends: metric_attributes.hw.network
+    attributes:
+      - ref: network.io.direction
+        examples: ["receive", "transmit"]
+        requirement_level: required
+
+  - id: metric.hw.network.packets
+    type: metric
+    metric_name: hw.network.packets
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "Received and transmitted network traffic in packets (or frames)."
+    instrument: counter
+    unit: "{packet}"
+    extends: metric_attributes.hw.network
+    attributes:
+      - ref: network.io.direction
+        examples: ["receive", "transmit"]
+        requirement_level: required
+
+  - id: metric.hw.network.up
+    type: metric
+    metric_name: hw.network.up
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "Link status: `1` (up) or `0` (down)."
+    instrument: updowncounter
+    unit: "1"
+    extends: metric_attributes.hw.network

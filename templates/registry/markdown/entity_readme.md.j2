@@ -17,27 +17,14 @@ The entities registry is the catalog of available Entities.
 > Relationships and signal associations are a work in progress.
 
 Currently, the following namespaces exist:
-<table>
-<thead>
-<tr>
-  <th>Namespace</th>
-  <th>Entity</th>
-  <th>Stability</th>
-</tr>
-</thead>
-<tbody>
-{% for bundle in ctx %}<tr>
-<td>{{ bundle.id | title_case | acronym }}</td><td></td><td></td>
-</tr>
+
+| Namespace | Entity | Stability |
+|-----------|--------|-----------|
+{%- for bundle in ctx %}
+| {{ bundle.id | title_case | acronym }} | | |
 {%- for group in bundle.groups | sort(attribute='name') -%}
-    {%- set my_file_name = bundle.id | kebab_case ~ ".md#" ~ (group.name | kebab_case) -%}
-<tr>
-  <td></td>
-  <td><a href="{{my_file_name}}">{{ group.name }}</a></td>
-  <td>{{ stability.htmlbadge(group.stability, group.deprecated) | trim }}</td>
-</tr>
+    {%- set my_file_name = bundle.id | kebab_case ~ ".md#" ~ (group.name | kebab_case) %}
+| | [{{ group.name }}]({{my_file_name}}) | {{ stability.badge(group.stability, group.deprecated) | trim }} |
 {%- endfor %}
 {%- endfor %}
-</tbody>
-</table>
 
