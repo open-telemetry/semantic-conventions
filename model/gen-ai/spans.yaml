@@ -95,7 +95,7 @@ groups:
         requirement_level: opt_in
       - ref: gen_ai.output.messages
         requirement_level: opt_in
-      - ref: gen_ai.tool_definitions
+      - ref: gen_ai.tool.definitions
         requirement_level: opt_in
 
   - id: span.gen_ai.inference.client

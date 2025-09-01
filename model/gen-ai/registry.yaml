@@ -269,12 +269,11 @@ groups:
           deserialize it to an object.
         examples:
           - |
-              [
-                {
+              {
                   "location": "San Francisco?",
                   "date": "2025-10-01"
-                }
-              ]
+              }
+            
 
       - id: gen_ai.tool.call.result
         stability: development
@@ -298,7 +297,7 @@ groups:
                 "conditions": "sunny"
               }
 
-      - id: gen_ai.tool_definitions
+      - id: gen_ai.tool.definitions
         stability: development
         type: any
         brief: The list of source system tool definitions available to the GenAI agent or model.
