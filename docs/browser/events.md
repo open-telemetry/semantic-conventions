@@ -68,21 +68,41 @@ This event represents a browser page load/view.
 
 The primary use case is to capture metrics about the number of views of a page. Page view can be a hard page load in a browser as well as virtual navigation in a SPA (single-page application). The event should be collected as soon as possible without waiting for potentially delayed data such as the Navigation timing browser API.
 
-**Body fields:**
-
-:warning: Body fields will be moved to complex attributes once the
-semantic convention tooling supports complex attributes
-(see [#1870](https://github.com/open-telemetry/semantic-conventions/issues/1870)).
-
-| Body Field  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| `change_state` | string | Type of state change used for the virtual page navigation | `pushState`; `replaceState` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `referrer` | string | Referring Page URI ([document.referrer](https://developer.mozilla.org/en-US/docs/Web/API/Document/referrer)) whenever available. | `https://en.wikipedia.org/wiki/Main_Page` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `title` | string | Page title DOM property | `Home`; `Checkout` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `type` | enum | Type of navigation | `0`; `1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `url` | string | Full HTTP request URL in the form scheme://host[:port]/path?query[#fragment]. Usually the fragment is not transmitted over HTTP, but if it is known, it should be included nevertheless. | `https://en.wikipedia.org/wiki/Main_Page`; `https://en.wikipedia.org/wiki/Main_Page#foo` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`browser.page_view.type`](/docs/registry/attributes/browser.md) | int | Type of navigation | `0`; `1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`url.full`](/docs/registry/attributes/url.md) | string | Absolute URL describing a network resource according to [RFC3986](https://www.rfc-editor.org/rfc/rfc3986) [1] | `https://www.foo.bar/search?q=OpenTelemetry#SemConv`; `//localhost` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`browser.page.title`](/docs/registry/attributes/browser.md) | string | Page title DOM property | `Home`; `Checkout` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`browser.page_view.change_state`](/docs/registry/attributes/browser.md) | string | Type of state change used for the virtual page navigation | `pushState`; `replaceState` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`browser.referrer`](/docs/registry/attributes/browser.md) | string | Referring Page URI ([document.referrer](https://developer.mozilla.org/en-US/docs/Web/API/Document/referrer)) whenever available. | `https://en.wikipedia.org/wiki/Main_Page` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
-`type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+**[1] `url.full`:** For network calls, URL usually has `scheme://host[:port][path][?query][#fragment]` format, where the fragment
+is not transmitted over HTTP, but if it is known, it SHOULD be included nevertheless.
+
+`url.full` MUST NOT contain credentials passed via URL in form of `https://username:password@www.example.com/`.
+In such case username and password SHOULD be redacted and attribute's value SHOULD be `https://REDACTED:REDACTED@www.example.com/`.
+
+`url.full` SHOULD capture the absolute URL when it is available (or can be reconstructed).
+
+Sensitive content provided in `url.full` SHOULD be scrubbed when instrumentations can identify it.
+
+![Development](https://img.shields.io/badge/-development-blue)
+Query string values for the following keys SHOULD be redacted by default and replaced by the
+value `REDACTED`:
+
+* [`AWSAccessKeyId`](https://docs.aws.amazon.com/AmazonS3/latest/userguide/RESTAuthentication.html#RESTAuthenticationQueryStringAuth)
+* [`Signature`](https://docs.aws.amazon.com/AmazonS3/latest/userguide/RESTAuthentication.html#RESTAuthenticationQueryStringAuth)
+* [`sig`](https://learn.microsoft.com/azure/storage/common/storage-sas-overview#sas-token)
+* [`X-Goog-Signature`](https://cloud.google.com/storage/docs/access-control/signed-urls)
+
+This list is subject to change over time.
+
+When a query string value is redacted, the query string key SHOULD still be preserved, e.g.
+`https://www.example.com/path?color=blue&sig=REDACTED`.
+
+---
+
+`browser.page_view.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
