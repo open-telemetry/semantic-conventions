@@ -54,7 +54,6 @@ groups:
         type: string
         stability: development
         brief: Referring Page URI ([document.referrer](https://developer.mozilla.org/en-US/docs/Web/API/Document/referrer)) whenever available.
-        requirement_level: recommended
         examples: ["https://en.wikipedia.org/wiki/Main_Page"]
       - id: browser.page.title
         type: string
