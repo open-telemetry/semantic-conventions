@@ -64,13 +64,13 @@ groups:
         type:
           members:
             - id: physical_page
-              value: 0
+              value: page_load
               stability: development
               brief: >
                 Initial page load within the browser which will generally also
                 precede a PageNavigationTiming event.
             - id: virtual_page
-              value: 1
+              value: soft_navigation
               stability: development
               brief: >
                 This is for Single Page Applications (SPA) where the framework
@@ -79,7 +79,7 @@ groups:
                 change is determined by the SPA and the framework it is using.
         stability: development
         brief: Type of navigation
-        examples: [0, 1]
+        examples: ["page_load", "soft_navigation"]
       - id: browser.page_view.change_state
         type: string
         stability: development

@@ -70,7 +70,7 @@ The primary use case is to capture metrics about the number of views of a page. 
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`browser.page_view.type`](/docs/registry/attributes/browser.md) | int | Type of navigation | `0`; `1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`browser.page_view.type`](/docs/registry/attributes/browser.md) | string | Type of navigation | `page_load`; `soft_navigation` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`url.full`](/docs/registry/attributes/url.md) | string | Absolute URL describing a network resource according to [RFC3986](https://www.rfc-editor.org/rfc/rfc3986) [1] | `https://www.foo.bar/search?q=OpenTelemetry#SemConv`; `//localhost` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`browser.page.title`](/docs/registry/attributes/browser.md) | string | Page title DOM property | `Home`; `Checkout` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`browser.page_view.change_state`](/docs/registry/attributes/browser.md) | string | Type of state change used for the virtual page navigation | `pushState`; `replaceState` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -106,8 +106,8 @@ When a query string value is redacted, the query string key SHOULD still be pres
 
 | Value  | Description | Stability |
 |---|---|---|
-| `0` | Initial page load within the browser which will generally also precede a PageNavigationTiming event. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `1` | This is for Single Page Applications (SPA) where the framework provides the ability to perform client side only page "navigation", the exact definition of what a virtual page change is determined by the SPA and the framework it is using. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `page_load` | Initial page load within the browser which will generally also precede a PageNavigationTiming event. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `soft_navigation` | This is for Single Page Applications (SPA) where the framework provides the ability to perform client side only page "navigation", the exact definition of what a virtual page change is determined by the SPA and the framework it is using. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

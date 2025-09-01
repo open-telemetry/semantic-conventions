@@ -14,7 +14,7 @@ The web browser attributes
 | <a id="browser-mobile" href="#browser-mobile">`browser.mobile`</a> | boolean | A boolean that is true if the browser is running on a mobile device [3] |  | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="browser-page-title" href="#browser-page-title">`browser.page.title`</a> | string | Page title DOM property | `Home`; `Checkout` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="browser-page-view-change-state" href="#browser-page-view-change-state">`browser.page_view.change_state`</a> | string | Type of state change used for the virtual page navigation | `pushState`; `replaceState` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="browser-page-view-type" href="#browser-page-view-type">`browser.page_view.type`</a> | int | Type of navigation | `0`; `1` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="browser-page-view-type" href="#browser-page-view-type">`browser.page_view.type`</a> | string | Type of navigation | `page_load`; `soft_navigation` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="browser-platform" href="#browser-platform">`browser.platform`</a> | string | The platform on which the browser is running [4] | `Windows`; `macOS`; `Android` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="browser-referrer" href="#browser-referrer">`browser.referrer`</a> | string | Referring Page URI ([document.referrer](https://developer.mozilla.org/en-US/docs/Web/API/Document/referrer)) whenever available. | `https://en.wikipedia.org/wiki/Main_Page` | ![Development](https://img.shields.io/badge/-development-blue) |
 
@@ -33,5 +33,5 @@ The list of possible values is defined in the [W3C User-Agent Client Hints speci
 
 | Value  | Description | Stability |
 |---|---|---|
-| `0` | Initial page load within the browser which will generally also precede a PageNavigationTiming event. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `1` | This is for Single Page Applications (SPA) where the framework provides the ability to perform client side only page "navigation", the exact definition of what a virtual page change is determined by the SPA and the framework it is using. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `page_load` | Initial page load within the browser which will generally also precede a PageNavigationTiming event. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `soft_navigation` | This is for Single Page Applications (SPA) where the framework provides the ability to perform client side only page "navigation", the exact definition of what a virtual page change is determined by the SPA and the framework it is using. | ![Development](https://img.shields.io/badge/-development-blue) |
