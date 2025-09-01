@@ -23,11 +23,11 @@ issues: [2664, 2665]
 # These lines will be padded with 2 spaces and then inserted directly into the document.
 # Use pipe (|) for multiline entries.
 subtext:
-    This change introduces attributes such as:
-      - `gen_ai.task.id`: Unique task identifier
-      - `gen_ai.task.parent.id`: Parent task reference
-      - `gen_ai.task.name`: Human-readable name
-      - `gen_ai.task.code.id`: Code reference for task definition
-      - `gen_ai.task.code.vendor`: Originating framework (e.g., CrewAI, LangGraph)
-      - `gen_ai.task.kind`: Task intent (e.g., planning, retrieval, reasoning)
-      - `gen_ai.task.tags`: Optional categorization tags
+    This change introduces attributes such as
+    gen_ai.task.id - Unique task identifier
+    gen_ai.task.parent.id - Parent task reference
+    gen_ai.task.name - Human-readable name
+    gen_ai.task.code.id - Code reference for task definition
+    gen_ai.task.code.vendor - Originating framework (e.g., CrewAI, LangGraph)
+    gen_ai.task.kind - Task intent (e.g., planning, retrieval, reasoning)
+    gen_ai.task.tags - Optional categorization tags
