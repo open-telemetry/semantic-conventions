@@ -209,7 +209,7 @@ section for more details.
 
 It's expected to be an array of objects where each object represents a tool definition. In case a serialized string is available
 to the instrumentation, the instrumentation SHOULD do the best effort to
-deserialize it to an array.
+deserialize it to an array. When recorded on spans, it MAY be recorded as a JSON string if structured format is not supported and SHOULD be recorded in structured form otherwise.
 
 Since this attribute could be large, it's NOT RECOMMENDED to populate
 it by default. Instrumentations MAY provide a way to enable
@@ -406,14 +406,14 @@ Datastore: A tool used by the agent to access and query structured or unstructur
 
 It's expected to be an object - in case a serialized string is available
 to the instrumentation, the instrumentation SHOULD do the best effort to
-deserialize it to an object.
+deserialize it to an object. When recorded on spans, it MAY be recorded as a JSON string if structured format is not supported and SHOULD be recorded in structured form otherwise.
 
 **[5] `gen_ai.tool.call.result`:** > [!WARNING]
 > This attribute may contain sensitive information.
 
 It's expected to be an object - in case a serialized string is available
 to the instrumentation, the instrumentation SHOULD do the best effort to
-deserialize it to an object.
+deserialize it to an object. When recorded on spans, it MAY be recorded as a JSON string if structured format is not supported and SHOULD be recorded in structured form otherwise.
 
 ---
 
