@@ -65,57 +65,14 @@ groups:
       navigation in a SPA (single-page application). The event should be
       collected as soon as possible without waiting for potentially delayed
       data such as the Navigation timing browser API.
-    body:
-      id: browser.page_view
-      requirement_level: required
-      stability: development
-      type: map
-      fields:
-        - id: referrer
-          type: string
-          stability: development
-          brief: Referring Page URI ([document.referrer](https://developer.mozilla.org/en-US/docs/Web/API/Document/referrer)) whenever available.
-          requirement_level: recommended
-          examples: ["https://en.wikipedia.org/wiki/Main_Page"]
-        - id: type
-          type: enum
-          members:
-            - id: physical_page
-              value: 0
-              stability: development
-              brief: >
-                Initial page load within the browser which will generally also
-                precede a PageNavigationTiming event.
-            - id: virtual_page
-              value: 1
-              stability: development
-              brief: >
-                This is for Single Page Applications (SPA) where the framework
-                provides the ability to perform client side only page
-                "navigation", the exact definition of what a virtual page
-                change is determined by the SPA and the framework it is using.
-          stability: development
-          requirement_level: required
-          brief: Type of navigation
-          examples: [0, 1]
-        - id: title
-          type: string
-          stability: development
-          requirement_level: recommended
-          brief: Page title DOM property
-          examples: ["Home", "Checkout"]
-        - id: url
-          type: string
-          stability: development
-          requirement_level: required
-          brief: >
-            Full HTTP request URL in the form scheme://host[:port]/path?query[#fragment].
-            Usually the fragment is not transmitted over HTTP, but if it is
-            known, it should be included nevertheless.
-          examples: ["https://en.wikipedia.org/wiki/Main_Page", "https://en.wikipedia.org/wiki/Main_Page#foo"]
-        - id: change_state
-          type: string
-          stability: development
-          requirement_level: recommended
-          brief: Type of state change used for the virtual page navigation
-          examples: ["pushState", "replaceState"]
+    attributes:
+      - ref: browser.referrer
+        requirement_level: recommended
+      - ref: browser.page_view.type
+        requirement_level: required
+      - ref: browser.page_view.title
+        requirement_level: recommended
+      - ref: url.full
+        requirement_level: required
+      - ref: browser.page_view.change_state
+        requirement_level: recommended
