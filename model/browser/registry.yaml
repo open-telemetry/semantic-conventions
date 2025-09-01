@@ -56,6 +56,11 @@ groups:
         brief: Referring Page URI ([document.referrer](https://developer.mozilla.org/en-US/docs/Web/API/Document/referrer)) whenever available.
         requirement_level: recommended
         examples: ["https://en.wikipedia.org/wiki/Main_Page"]
+      - id: browser.page.title
+        type: string
+        stability: development
+        brief: Page title DOM property
+        examples: ["Home", "Checkout"]
       - id: browser.page_view.type
         type: enum
         members:
@@ -76,11 +81,6 @@ groups:
         stability: development
         brief: Type of navigation
         examples: [0, 1]
-      - id: browser.page_view.title
-        type: string
-        stability: development
-        brief: Page title DOM property
-        examples: ["Home", "Checkout"]
       - id: browser.page_view.change_state
         type: string
         stability: development
