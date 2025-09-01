@@ -61,22 +61,22 @@ groups:
         brief: Page title DOM property
         examples: ["Home", "Checkout"]
       - id: browser.page_view.type
-        type: enum
-        members:
-          - id: physical_page
-            value: 0
-            stability: development
-            brief: >
-              Initial page load within the browser which will generally also
-              precede a PageNavigationTiming event.
-          - id: virtual_page
-            value: 1
-            stability: development
-            brief: >
-              This is for Single Page Applications (SPA) where the framework
-              provides the ability to perform client side only page
-              "navigation", the exact definition of what a virtual page
-              change is determined by the SPA and the framework it is using.
+        type:
+          members:
+            - id: physical_page
+              value: 0
+              stability: development
+              brief: >
+                Initial page load within the browser which will generally also
+                precede a PageNavigationTiming event.
+            - id: virtual_page
+              value: 1
+              stability: development
+              brief: >
+                This is for Single Page Applications (SPA) where the framework
+                provides the ability to perform client side only page
+                "navigation", the exact definition of what a virtual page
+                change is determined by the SPA and the framework it is using.
         stability: development
         brief: Type of navigation
         examples: [0, 1]
