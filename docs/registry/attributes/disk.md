@@ -17,5 +17,5 @@ These attributes may be used for any disk related operation.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `read` | Read | ![Development](https://img.shields.io/badge/-development-blue) |
-| `write` | Write | ![Development](https://img.shields.io/badge/-development-blue) |
+| `read` | Disk Read operation | ![Development](https://img.shields.io/badge/-development-blue) |
+| `write` | Disk Write operation | ![Development](https://img.shields.io/badge/-development-blue) |
