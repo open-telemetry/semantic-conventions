@@ -62,22 +62,28 @@ the `rpc.grpc.response.metadata.my-custom-key` attribute with value `["attribute
 
 | Value  | Description | Stability |
 |---|---|---|
-| `aborted` | Aborted | ![Development](https://img.shields.io/badge/-development-blue) |
-| `already_exists` | Already Exists | ![Development](https://img.shields.io/badge/-development-blue) |
-| `cancelled` | Cancelled | ![Development](https://img.shields.io/badge/-development-blue) |
-| `data_loss` | Data Loss | ![Development](https://img.shields.io/badge/-development-blue) |
-| `deadline_exceeded` | Deadline Exceeded | ![Development](https://img.shields.io/badge/-development-blue) |
-| `failed_precondition` | Failed Precondition | ![Development](https://img.shields.io/badge/-development-blue) |
-| `internal` | Internal | ![Development](https://img.shields.io/badge/-development-blue) |
-| `invalid_argument` | Invalid Argument | ![Development](https://img.shields.io/badge/-development-blue) |
-| `not_found` | Not Found | ![Development](https://img.shields.io/badge/-development-blue) |
-| `out_of_range` | Out of Range | ![Development](https://img.shields.io/badge/-development-blue) |
-| `permission_denied` | Permission Denied | ![Development](https://img.shields.io/badge/-development-blue) |
-| `resource_exhausted` | Resource Exhausted | ![Development](https://img.shields.io/badge/-development-blue) |
-| `unauthenticated` | Unauthenticated | ![Development](https://img.shields.io/badge/-development-blue) |
-| `unavailable` | UnAvailable | ![Development](https://img.shields.io/badge/-development-blue) |
-| `unimplemented` | Unimplemented | ![Development](https://img.shields.io/badge/-development-blue) |
-| `unknown` | Unknown | ![Development](https://img.shields.io/badge/-development-blue) |
+| `aborted` | The operation was aborted, often because of concurrency issues like a database transaction abort. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `already_exists` | Caller attempted to create a resource that already exists. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `cancelled` | RPC canceled, usually by the caller. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `data_loss` | Unrecoverable data loss or corruption. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `deadline_exceeded` | Deadline expired before RPC could complete or before the client received the response. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `failed_precondition` | Operation can't be completed because the system isn't in the required state. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `internal` | An invariant expected by the underlying system has been broken. [6] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `invalid_argument` | Request is invalid, regardless of system state. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `not_found` | User requested a resource (for example, a file or directory) that can't be found. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `out_of_range` | The operation was attempted past the valid range. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `permission_denied` | Caller isn't authorized to perform the operation. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `resource_exhausted` | Operation can't be completed because some resource is exhausted. [7] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `unauthenticated` | Caller doesn't have valid authentication credentials for the operation. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `unavailable` | The service is currently unavailable, usually transiently. [8] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `unimplemented` | The operation isn't implemented, supported, or enabled. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `unknown` | Catch-all for errors of unclear origin and errors without a more appropriate code. | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**[6]:** Reserved for serious errors.
+
+**[7]:** Use unavailable if the server is temporarily overloaded and the caller should retry later.
+
+**[8]:** Clients should back off and retry idempotent operations.
 
 ---
 
@@ -109,8 +115,8 @@ the `rpc.grpc.response.metadata.my-custom-key` attribute with value `["attribute
 
 | Value  | Description | Stability |
 |---|---|---|
-| `RECEIVED` | Received | ![Development](https://img.shields.io/badge/-development-blue) |
-| `SENT` | Sent | ![Development](https://img.shields.io/badge/-development-blue) |
+| `RECEIVED` | Message Received | ![Development](https://img.shields.io/badge/-development-blue) |
+| `SENT` | Message Sent | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 

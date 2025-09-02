@@ -9,67 +9,70 @@ groups:
           members:
             - id: cancelled
               value: cancelled
-              brief: Cancelled
+              brief: RPC canceled, usually by the caller.
               stability: development
             - id: unknown
               value: unknown
-              brief: Unknown
+              brief: Catch-all for errors of unclear origin and errors without a more appropriate code.
               stability: development
             - id: invalid_argument
               value: invalid_argument
-              brief: Invalid Argument
+              brief: Request is invalid, regardless of system state.
               stability: development
             - id: deadline_exceeded
               value: deadline_exceeded
-              brief: Deadline Exceeded
+              brief: Deadline expired before RPC could complete or before the client received the response.
               stability: development
             - id: not_found
               value: not_found
-              brief: Not Found
+              brief: User requested a resource (for example, a file or directory) that can't be found.
               stability: development
             - id: already_exists
               value: already_exists
-              brief: Already Exists
+              brief: Caller attempted to create a resource that already exists.
               stability: development
             - id: permission_denied
               value: permission_denied
-              brief: Permission Denied
+              brief: Caller isn't authorized to perform the operation.
               stability: development
             - id: resource_exhausted
               value: resource_exhausted
-              brief: Resource Exhausted
+              brief: Operation can't be completed because some resource is exhausted.
+              note: Use unavailable if the server is temporarily overloaded and the caller should retry later.
               stability: development
             - id: failed_precondition
               value: failed_precondition
-              brief: Failed Precondition
+              brief: Operation can't be completed because the system isn't in the required state.
               stability: development
             - id: aborted
               value: aborted
-              brief: Aborted
+              brief: The operation was aborted, often because of concurrency issues like a database transaction abort.
               stability: development
             - id: out_of_range
               value: out_of_range
-              brief: Out of Range
+              brief: The operation was attempted past the valid range.
               stability: development
             - id: unimplemented
               value: unimplemented
-              brief: Unimplemented
+              brief: The operation isn't implemented, supported, or enabled.
               stability: development
             - id: internal
               value: internal
-              brief: Internal
+              brief: An invariant expected by the underlying system has been broken.
+              note: Reserved for serious errors.
               stability: development
             - id: unavailable
               value: unavailable
-              brief: UnAvailable
+              brief: The service is currently unavailable, usually transiently.
+              note: Clients should back off and retry idempotent operations.
               stability: development
             - id: data_loss
               value: data_loss
-              brief: Data Loss
+              brief: Unrecoverable data loss or corruption.
               stability: development
             - id: unauthenticated
               value: unauthenticated
-              brief: Unauthenticated
+              brief: Caller doesn't have valid authentication credentials for the operation.
               stability: development
         stability: development
         brief: "The [error codes](https://connectrpc.com//docs/protocol/#error-codes) of the Connect request. Error codes are always string values."
@@ -266,11 +269,11 @@ groups:
           members:
             - id: sent
               value: "SENT"
-              brief: Sent
+              brief: Message Sent
               stability: development
             - id: received
               value: "RECEIVED"
-              brief: Received
+              brief: Message Received
               stability: development
         stability: development
         brief: "Whether this is a received or sent message."
