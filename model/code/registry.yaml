@@ -5,6 +5,20 @@ groups:
     brief: >
       These attributes provide context about source code
     attributes:
+      - id: code.function.argument
+        stability: development
+        type: template[string[]]
+        brief: >
+          Function arguments, `<key>` being the normalized name (lowercase) of the argument, the value being the value.
+        note: |
+          Instrumentations SHOULD santise the values which are being captured.
+          These values could be provided to the application via commandline arguments.
+
+          Examples:
+
+          - SHOULD be recorded as the `code.function.argument.recursive` attribute with value `["true"]`.
+
+        examples: [["application/json"], ["1.2.3.4", "1.2.3.5"]]
       - id: code.function.name
         type: string
         stability: stable

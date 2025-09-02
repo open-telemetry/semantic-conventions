@@ -24,6 +24,7 @@ groups:
     stability: development
     brief: >
       This span describes CLI (Command Line Interfaces) program execution from a callee perspective.
+      It should only be used for shortlived applications ie applications which do not wait for user input.
     note: |
       **Span name** SHOULD be set to {process.executable.name}.
       Instrumentations that have additional context about executed commands MAY use

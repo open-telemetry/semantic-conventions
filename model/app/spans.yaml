@@ -1,0 +1,18 @@
+groups:
+  - id: span.app.function.internal
+    type: span
+    span_kind: internal
+    stability: development
+    brief: >
+      This span describes the invocation of a function/method which could be triggered based on user input in a cli application or a user initiating it via the ui.
+    note: |
+      **Span name** SHOULD be set to {process.executable.name}.
+      Instrumentations that have additional context about executed commands MAY use
+      a different low-cardinality span name format and SHOULD document it.
+    attributes:
+      - ref: code.function.name
+        requirement_level: required
+      - ref: code.function.argument
+      - ref: error.type
+        requirement_level:
+          conditionally_required: if an error occurred
