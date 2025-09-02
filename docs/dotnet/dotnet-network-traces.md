@@ -383,8 +383,8 @@ side and `TLS server handshake` when authenticating the server.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `ssl` | SSL | ![Development](https://img.shields.io/badge/-development-blue) |
-| `tls` | TLS | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ssl` | Secure Socket Layer (SSL) security protocol | ![Development](https://img.shields.io/badge/-development-blue) |
+| `tls` | Transport Layer Security (TLS) security protocol | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
