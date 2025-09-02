@@ -17,5 +17,5 @@ Describes Linux Memory attributes
 
 | Value  | Description | Stability |
 |---|---|---|
-| `reclaimable` | Reclaimable | ![Development](https://img.shields.io/badge/-development-blue) |
-| `unreclaimable` | Unreclaimable | ![Development](https://img.shields.io/badge/-development-blue) |
+| `reclaimable` | Reclaimable Slab Memory | ![Development](https://img.shields.io/badge/-development-blue) |
+| `unreclaimable` | Unreclaimable Slab Memory | ![Development](https://img.shields.io/badge/-development-blue) |
