@@ -145,7 +145,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `nfs.client.rpc.count` | Counter | `{request}` | Reports the count of kernel NFS client RPCs handled. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
+| `nfs.client.rpc.count` | Counter | `{request}` | Reports the count of kernel NFS client RPCs sent, regardless of whether they're accepted/rejected by the server. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
 
 **[1]:** Linux: this metric is taken from the Linux kernel's svc_stat.rpccnt
 
