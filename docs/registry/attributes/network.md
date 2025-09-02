@@ -50,17 +50,19 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `close_wait` | Close wait | ![Development](https://img.shields.io/badge/-development-blue) |
-| `closed` | Closed | ![Development](https://img.shields.io/badge/-development-blue) |
-| `closing` | Closing | ![Development](https://img.shields.io/badge/-development-blue) |
-| `established` | Established | ![Development](https://img.shields.io/badge/-development-blue) |
-| `fin_wait_1` | Fin wait 1 | ![Development](https://img.shields.io/badge/-development-blue) |
-| `fin_wait_2` | Fin wait 2 | ![Development](https://img.shields.io/badge/-development-blue) |
-| `last_ack` | Last ack | ![Development](https://img.shields.io/badge/-development-blue) |
-| `listen` | Listen | ![Development](https://img.shields.io/badge/-development-blue) |
-| `syn_received` | Syn received | ![Development](https://img.shields.io/badge/-development-blue) |
-| `syn_sent` | Syn sent | ![Development](https://img.shields.io/badge/-development-blue) |
-| `time_wait` | Time wait | ![Development](https://img.shields.io/badge/-development-blue) |
+| `close_wait` | This endpoint has received a close request from the remote endpoint and this TCP is now waiting for a connection termination request from the local application. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `closed` | Represents no connection state at all. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `closing` | Waiting for a connection termination request acknowledgment from the remote TCP. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `established` | Represents a fully established connection. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `fin_wait_1` | Waiting for an acknowledgment of the connection termination request or for a simultaneous connection termination request from the remote TCP. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `fin_wait_2` | Waiting for a connection termination request from the remote TCP after this endpoint has sent its connection termination request. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `last_ack` | Waiting for an acknowledgment of the connection termination request previously sent to the remote TCP. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `listen` | Waiting for a connection request from a remote TCP application. [6] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `syn_received` | This endpoint has received a connection request and sent an acknowledgment. This endpoint is waiting for final acknowledgment that the other endpoint did receive this endpoint's acknowledgment of the original connection request. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `syn_sent` | Waiting for an acknowledgment from the remote endpoint after having sent a connection request. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `time_wait` | Waiting for enough time to pass to be sure the remote TCP received the acknowledgment of its connection termination request. | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**[6]:** This is the state in which you can find the listening socket of a local TCP server.
 
 ---
 
@@ -100,7 +102,7 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 | `unavailable` | Unavailable | ![Development](https://img.shields.io/badge/-development-blue) |
 | `unknown` | Unknown | ![Development](https://img.shields.io/badge/-development-blue) |
 | `wifi` | WiFi | ![Development](https://img.shields.io/badge/-development-blue) |
-| `wired` | Wired | ![Development](https://img.shields.io/badge/-development-blue) |
+| `wired` | Wired/Ethernet | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -108,8 +110,8 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `receive` | Receive | ![Development](https://img.shields.io/badge/-development-blue) |
-| `transmit` | Transmit | ![Development](https://img.shields.io/badge/-development-blue) |
+| `receive` | Network packet Received | ![Development](https://img.shields.io/badge/-development-blue) |
+| `transmit` | Network packet Transmitted | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -170,10 +172,10 @@ These attributes may be used for any network related operation.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `inproc` | In-process communication. [6] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `inproc` | In-process communication. [7] | ![Development](https://img.shields.io/badge/-development-blue) |
 | `ip_tcp` | ip_tcp | ![Development](https://img.shields.io/badge/-development-blue) |
 | `ip_udp` | ip_udp | ![Development](https://img.shields.io/badge/-development-blue) |
 | `other` | Something else (non IP-based). | ![Development](https://img.shields.io/badge/-development-blue) |
 | `pipe` | Named or anonymous pipe. | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[6]:** Signals that there is only in-process communication not using a "real" network protocol in cases where network attributes would normally be expected. Usually all other network attributes can be left out in that case.
+**[7]:** Signals that there is only in-process communication not using a "real" network protocol in cases where network attributes would normally be expected. Usually all other network attributes can be left out in that case.

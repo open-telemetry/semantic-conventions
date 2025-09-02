@@ -225,8 +225,8 @@ This metric is [opt-in][MetricOptIn].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `receive` | Receive | ![Development](https://img.shields.io/badge/-development-blue) |
-| `transmit` | Transmit | ![Development](https://img.shields.io/badge/-development-blue) |
+| `receive` | Network packet Received | ![Development](https://img.shields.io/badge/-development-blue) |
+| `transmit` | Network packet Transmitted | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

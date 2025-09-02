@@ -344,7 +344,7 @@ Note that `network.local.*` attributes are not included in these examples since 
 | `unavailable` | Unavailable | ![Development](https://img.shields.io/badge/-development-blue) |
 | `unknown` | Unknown | ![Development](https://img.shields.io/badge/-development-blue) |
 | `wifi` | WiFi | ![Development](https://img.shields.io/badge/-development-blue) |
-| `wired` | Wired | ![Development](https://img.shields.io/badge/-development-blue) |
+| `wired` | Wired/Ethernet | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
