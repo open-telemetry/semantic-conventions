@@ -50,7 +50,7 @@ groups:
           This value is intended to be taken from the Navigator API
           `navigator.language`.
         examples: ["en", "en-US", "fr", "fr-FR"]
-      - id: browser.referrer
+      - id: browser.page.referrer_url
         type: string
         stability: development
         brief: Referring Page URI ([document.referrer](https://developer.mozilla.org/en-US/docs/Web/API/Document/referrer)) whenever available.

@@ -12,11 +12,11 @@ The web browser attributes
 | <a id="browser-brands" href="#browser-brands">`browser.brands`</a> | string[] | Array of brand name and version separated by a space [1] | `[" Not A;Brand 99", "Chromium 99", "Chrome 99"]` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="browser-language" href="#browser-language">`browser.language`</a> | string | Preferred language of the user using the browser [2] | `en`; `en-US`; `fr`; `fr-FR` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="browser-mobile" href="#browser-mobile">`browser.mobile`</a> | boolean | A boolean that is true if the browser is running on a mobile device [3] |  | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="browser-page-referrer-url" href="#browser-page-referrer-url">`browser.page.referrer_url`</a> | string | Referring Page URI ([document.referrer](https://developer.mozilla.org/en-US/docs/Web/API/Document/referrer)) whenever available. | `https://en.wikipedia.org/wiki/Main_Page` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="browser-page-title" href="#browser-page-title">`browser.page.title`</a> | string | Page title DOM property | `Home`; `Checkout` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="browser-page-view-change-state" href="#browser-page-view-change-state">`browser.page_view.change_state`</a> | string | Type of state change used for the virtual page navigation | `pushState`; `replaceState` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="browser-page-view-type" href="#browser-page-view-type">`browser.page_view.type`</a> | string | Type of navigation | `page_load`; `soft_navigation` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="browser-platform" href="#browser-platform">`browser.platform`</a> | string | The platform on which the browser is running [4] | `Windows`; `macOS`; `Android` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="browser-referrer" href="#browser-referrer">`browser.referrer`</a> | string | Referring Page URI ([document.referrer](https://developer.mozilla.org/en-US/docs/Web/API/Document/referrer)) whenever available. | `https://en.wikipedia.org/wiki/Main_Page` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `browser.brands`:** This value is intended to be taken from the [UA client hints API](https://wicg.github.io/ua-client-hints/#interface) (`navigator.userAgentData.brands`).
 

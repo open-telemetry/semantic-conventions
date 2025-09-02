@@ -66,7 +66,7 @@ groups:
       collected as soon as possible without waiting for potentially delayed
       data such as the Navigation timing browser API.
     attributes:
-      - ref: browser.referrer
+      - ref: browser.page.referrer_url
         requirement_level: recommended
       - ref: browser.page_view.type
         requirement_level: required

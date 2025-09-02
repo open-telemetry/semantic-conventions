@@ -72,9 +72,9 @@ The primary use case is to capture metrics about the number of views of a page. 
 |---|---|---|---|---|---|
 | [`browser.page_view.type`](/docs/registry/attributes/browser.md) | string | Type of navigation | `page_load`; `soft_navigation` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`url.full`](/docs/registry/attributes/url.md) | string | Absolute URL describing a network resource according to [RFC3986](https://www.rfc-editor.org/rfc/rfc3986) [1] | `https://www.foo.bar/search?q=OpenTelemetry#SemConv`; `//localhost` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`browser.page.referrer_url`](/docs/registry/attributes/browser.md) | string | Referring Page URI ([document.referrer](https://developer.mozilla.org/en-US/docs/Web/API/Document/referrer)) whenever available. | `https://en.wikipedia.org/wiki/Main_Page` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`browser.page.title`](/docs/registry/attributes/browser.md) | string | Page title DOM property | `Home`; `Checkout` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`browser.page_view.change_state`](/docs/registry/attributes/browser.md) | string | Type of state change used for the virtual page navigation | `pushState`; `replaceState` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`browser.referrer`](/docs/registry/attributes/browser.md) | string | Referring Page URI ([document.referrer](https://developer.mozilla.org/en-US/docs/Web/API/Document/referrer)) whenever available. | `https://en.wikipedia.org/wiki/Main_Page` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `url.full`:** For network calls, URL usually has `scheme://host[:port][path][?query][#fragment]` format, where the fragment
 is not transmitted over HTTP, but if it is known, it SHOULD be included nevertheless.
