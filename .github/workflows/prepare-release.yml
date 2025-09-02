@@ -31,7 +31,7 @@ jobs:
       - name: Update schema files
         run: |
           version=${{ inputs.version }}
-          make generate-schema-next SCHEMA_NEXT_VERSION=$version
+          make generate-schema-next NEXT_SEMCONV_VERSION=$version
           git add "schemas/$version"
 
       - name: Update change log

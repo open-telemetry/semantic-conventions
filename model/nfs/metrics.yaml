@@ -30,7 +30,7 @@ groups:
     type: metric
     metric_name: nfs.client.rpc.count
     stability: development
-    brief: "Reports the count of kernel NFS client RPCs handled."
+    brief: "Reports the count of kernel NFS client RPCs sent, regardless of whether they're accepted/rejected by the server."
     note: |
       Linux: this metric is taken from the Linux kernel's svc_stat.rpccnt
     instrument: counter
