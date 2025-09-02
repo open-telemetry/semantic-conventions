@@ -1234,8 +1234,8 @@ See also the [Slab allocator](https://blogs.oracle.com/linux/post/understanding-
 
 | Value  | Description | Stability |
 |---|---|---|
-| `reclaimable` | Reclaimable | ![Development](https://img.shields.io/badge/-development-blue) |
-| `unreclaimable` | Unreclaimable | ![Development](https://img.shields.io/badge/-development-blue) |
+| `reclaimable` | Reclaimable Slab Memory | ![Development](https://img.shields.io/badge/-development-blue) |
+| `unreclaimable` | Unreclaimable Slab Memory | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
