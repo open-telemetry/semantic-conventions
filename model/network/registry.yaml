@@ -124,7 +124,7 @@ groups:
               stability: development
             - id: wired
               value: "wired"
-              brief: Wired
+              brief: Wired/Ethernet
               stability: development
             - id: cell
               value: "cell"
@@ -230,11 +230,11 @@ groups:
           members:
             - id: transmit
               value: 'transmit'
-              brief: Transmit
+              brief: Network packet Transmitted
               stability: development
             - id: receive
               value: 'receive'
-              brief: Receive
+              brief: Network packet Received
               stability: development
         stability: development
         brief: "The network IO operation direction."
@@ -249,47 +249,50 @@ groups:
           members:
             - id: closed
               value: 'closed'
-              brief: Closed
+              brief: Represents no connection state at all.
               stability: development
             - id: close_wait
               value: 'close_wait'
-              brief: Close wait
+              brief: This endpoint has received a close request from the remote endpoint and this TCP is now waiting for a connection termination request from the local application.
               stability: development
             - id: closing
               value: 'closing'
-              brief: Closing
+              brief: Waiting for a connection termination request acknowledgment from the remote TCP.
               stability: development
             - id: established
               value: 'established'
-              brief: Established
+              brief: Represents a fully established connection.
               stability: development
             - id: fin_wait_1
               value: 'fin_wait_1'
-              brief: Fin wait 1
+              brief: Waiting for an acknowledgment of the connection termination request or for a simultaneous connection termination request from the remote TCP.
               stability: development
             - id: fin_wait_2
               value: 'fin_wait_2'
-              brief: Fin wait 2
+              brief: Waiting for a connection termination request from the remote TCP after this endpoint has sent its connection termination request.
               stability: development
             - id: last_ack
               value: 'last_ack'
-              brief: Last ack
+              brief: Waiting for an acknowledgment of the connection termination request previously sent to the remote TCP.
               stability: development
             - id: listen
               value: 'listen'
-              brief: Listen
+              brief: Waiting for a connection request from a remote TCP application.
+              note: This is the state in which you can find the listening socket of a local TCP server.
               stability: development
             - id: syn_received
               value: 'syn_received'
-              brief: Syn received
+              brief: >
+                This endpoint has received a connection request and sent an acknowledgment.
+                This endpoint is waiting for final acknowledgment that the other endpoint did receive this endpoint's acknowledgment of the original connection request.
               stability: development
             - id: syn_sent
               value: 'syn_sent'
-              brief: Syn sent
+              brief: Waiting for an acknowledgment from the remote endpoint after having sent a connection request.
               stability: development
             - id: time_wait
               value: 'time_wait'
-              brief: Time wait
+              brief: Waiting for enough time to pass to be sure the remote TCP received the acknowledgment of its connection termination request.
               stability: development
         stability: development
         brief: "The state of network connection"
