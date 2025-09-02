@@ -1,0 +1,18 @@
+groups:
+  # ENCLOSURE METRICS
+  - id: metric_attributes.hw.enclosure
+    type: attribute_group
+    brief: >
+      Common attributes for enclosure metrics
+    extends: hardware.attributes.common
+    attributes:
+      - ref: hw.bios_version
+        requirement_level: recommended
+      - ref: hw.model
+        requirement_level: recommended
+      - ref: hw.serial_number
+        requirement_level: recommended
+      - ref: hw.enclosure.type
+        requirement_level: recommended
+      - ref: hw.vendor
+        requirement_level: recommended
