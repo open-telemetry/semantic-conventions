@@ -273,7 +273,6 @@ groups:
                   "location": "San Francisco?",
                   "date": "2025-10-01"
               }
-            
 
       - id: gen_ai.tool.call.result
         stability: development
