@@ -53,10 +53,10 @@ groups:
           requirement_level: required
           examples: ["v3-1677874579383-6381583661209"]
 
-  - id: event.browser.page_view
+  - id: event.browser.page.view
     stability: development
     type: event
-    name: browser.page_view
+    name: browser.page.view
     brief: >
       This event represents a browser page load/view.
     note: >
@@ -74,5 +74,5 @@ groups:
         requirement_level: recommended
       - ref: url.full
         requirement_level: required
-      - ref: browser.page_view.change_state
+      - ref: browser.page_view.state_change
         requirement_level: recommended

@@ -80,7 +80,7 @@ groups:
         stability: development
         brief: Type of navigation
         examples: ["page_load", "soft_navigation"]
-      - id: browser.page_view.change_state
+      - id: browser.page_view.state_change
         type: string
         stability: development
         brief: Type of state change used for the virtual page navigation
