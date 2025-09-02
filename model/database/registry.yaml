@@ -354,11 +354,11 @@ groups:
           members:
             - id: idle
               value: "idle"
-              brief: Idle
+              brief: Database connection is currently Idle.
               stability: development
             - id: used
               value: "used"
-              brief: Used
+              brief: Database connection is currently being Used.
               stability: development
         brief: "The state of a connection in the pool"
         examples: ["idle"]

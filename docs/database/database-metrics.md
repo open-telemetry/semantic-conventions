@@ -442,8 +442,8 @@ This metric is [required][MetricRequired].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `idle` | Idle | ![Development](https://img.shields.io/badge/-development-blue) |
-| `used` | Used | ![Development](https://img.shields.io/badge/-development-blue) |
+| `idle` | Database connection is currently Idle. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `used` | Database connection is currently being Used. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
