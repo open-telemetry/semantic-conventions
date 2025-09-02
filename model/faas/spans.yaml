@@ -27,6 +27,9 @@ groups:
           call to invoke the lambda, which is often HTTP).
       - ref: faas.invocation_id
       - ref: cloud.resource_id
+        deprecated:
+          reason: renamed
+          renamed_to: faas.function.id
 
   - id: span.faas.datasource.server
     type: span
