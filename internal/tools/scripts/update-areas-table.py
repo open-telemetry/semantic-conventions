@@ -13,12 +13,12 @@ import yaml
 run_in_check_mode = (len(sys.argv) > 1) and (sys.argv[1] == "--check")
 
 # Define the YAML input file and the markdown file to be updated
-yaml_input = "sigs.yaml"
-markdown_file = "SIGs.md"
+yaml_input = "areas.yaml"
+markdown_file = "AREAS.md"
 
 # Define the markers
-start_marker = "<!-- sigs -->"
-end_marker = "<!-- endsigs -->"
+start_marker = "<!-- areas -->"
+end_marker = "<!-- endareas -->"
 
 # Read the YAML file
 with open(yaml_input, 'r') as file:
@@ -29,45 +29,45 @@ with open(markdown_file, 'r') as file:
     content = file.read()
     top_part, bottom_part = content.split(start_marker, 1)[0], content.split(end_marker, 1)[1]
 
-# Generate the markdown content for each SIG group
+# Generate the markdown content for each AREA group
 markdown_content = start_marker + '\n'
-markdown_content += "| Name | Owners | Project | Board | Areas | Status | Notes |\n"
+markdown_content += "| Name | Owners | Project | Board | Labels | Status | Notes |\n"
 markdown_content += "|------|--------|---------|-------|-------|--------|-------|\n"
 
-for sig in data['sigs']:
-    name = sig['name']
-    project = sig['project']
-    board = sig['board']
+for area in data['areas']:
+    name = area['name']
+    project = area['project']
+    board = area['board']
 
     owners = ",<br/>".join(
         [
             f"[{owner['name']}](https://github.com/orgs/open-telemetry/teams/{owner['github']})"
-            for owner in sig.get('owner', [])
+            for owner in area.get('owner', [])
             if owner.get('name') and owner.get('github')
         ]
     )
 
     labels = ", ".join(
         [f"`{label}`"
-         for label in sig.get('labels', [])
+         for label in area.get('labels', [])
          if label]
     )
 
-    areas = ", ".join(
-        [f"`{area}`"
-         for area in sig.get('areas', [])
-         if area]
+    status = ", ".join(
+        [f"`{s}`"
+         for s in area.get('status', [])
+         if s]
     )
 
-    # Add a default note for common SIG states
-    if sig.get('notes'):
-        notes = " ".join(sig['notes'].split())
-    elif not sig.get('notes') and 'inactive' in labels:
+    # Add a default note for common states
+    if area.get('notes'):
+        notes = " ".join(area['notes'].split())
+    elif not area.get('notes') and 'inactive' in status:
         notes = "The SIG is inactive. Bugs and bugfixes are welcome. For substantial changes, follow the [new project process](https://github.com/open-telemetry/community/blob/main/project-management.md)"
-    elif not sig.get('notes') and 'accepting_contributions' in labels:
+    elif not area.get('notes') and 'accepting_contributions' in status:
         notes = "The SIG is looking for contributions!"
 
-    markdown_content += f"| {name} | {owners} | {project} | {board} | {areas} | {labels} | {notes} |\n"
+    markdown_content += f"| {name} | {owners} | {project} | {board} | {labels} | {status} | {notes} |\n"
 
 markdown_content += end_marker
 
@@ -79,7 +79,7 @@ if run_in_check_mode:
     if original == result:
         sys.exit(0)
     else:
-        print("SIGS.md is outdated. Run make sig-table-generation to update")
+        print("AREAS.md is outdated. Run make areas-table-generation to update")
         sys.exit(1)
 else:
     # Write the updated markdown content to file
@@ -89,4 +89,4 @@ else:
         file.write(bottom_part)
 
 # Inform the user that the markdown file has been updated
-print("The markdown file has been updated with the new SIG tables.")
+print("The markdown file has been updated with the new area tables.")
