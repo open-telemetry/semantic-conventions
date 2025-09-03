@@ -48,10 +48,9 @@ Examples of such metrics include:
 These metrics could be used to correlate build failures with environment issues like overload or out-of-memory.
 They could also be used in pipeline-level aggregations to inform adjustements of allocated worker resources.
 
-Using per pipeline run metrics inherently causes high cardinality and may increase costs with some metric storage backends.
-Thus, using per pipeline run metrics MUST be opt-in.
+When reporting host, container, runtime, and other metrics in CI/CD pipelines, instrumentation authors and application developers SHOULD use applicable [CICD and VCS resource conventions][cicdres] and MAY also associate all or specific metrics with `cicd.pipeline.run` to correlate them with run information. 
 
-To define per pipeline run metrics the [`cicd.pipeline.run`](/docs/resource/cicd.md#cicd-pipeline-run) entity should be associated to them. Any other [CICD and VCS resource conventions][cicdres] that apply SHOULD also be used.
+The [`cicd.pipeline.run`](/docs/resource/cicd.md#cicd-pipeline-run) entity identifies a pipeline run. Associating it with metrics inherently causes high cardinality and may increase costs with some metric storage backends. Thus, `cicd.pipeline.run` entity MUST be opt-in.
 
 [cicdres]: /docs/resource/cicd.md (CICD and VCS resource conventions)
 
