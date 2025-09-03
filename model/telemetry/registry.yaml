@@ -81,3 +81,30 @@ groups:
         brief: >
           The version string of the auto instrumentation agent or distribution, if used.
         examples: ["1.2.3"]
+      - id: telemetry.destination.namespace
+        type: string
+        stability: development
+        brief: >
+          The namespace which the telemetry should be put into.
+        note: |
+          For Elastic this would be the space.
+          For GCP this would be the telemetry project.
+        examples: ["public-website"]
+      - id: telemetry.organisation.id
+        type: string
+        stability: development
+        brief: >
+          Unique identifier for the organization.
+        examples: ["19e97b12-0fa0-45de-9c59-23ff59d572b9"]
+      - id: telemetry.organisation.name
+        type: string
+        stability: development
+        brief: >
+          Name for the Organization or team.
+        examples: ["productX_support"]
+      - id: telemetry.organisation.role
+        type: string
+        stability: development
+        brief: >
+          Role of the organisation.
+        examples: ["support", "hosting"]
