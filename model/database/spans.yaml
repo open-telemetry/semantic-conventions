@@ -1,111 +1,4 @@
 groups:
-  - id: trace.db.common.minimal
-    extends: attributes.db.client.minimal
-    type: attribute_group
-    brief: This group defines the attributes used to perform database client calls.
-    attributes:
-      # TODO: add db.system.name once https://github.com/open-telemetry/weaver/issues/479 is possible
-      # - ref: db.system.name
-      #   sampling_relevant: true
-      - ref: db.operation.name
-        sampling_relevant: true
-        requirement_level:
-          conditionally_required: >
-            If readily available and if there is a single operation name that describes the
-            database call.
-      - ref: db.operation.batch.size
-      - ref: server.address
-        sampling_relevant: true
-      - ref: server.port
-        sampling_relevant: true
-
-  - id: trace.db.common.query
-    extends: attributes.db.client.with_query
-    type: attribute_group
-    brief: This group defines the attributes used to perform database client calls.
-    attributes:
-      - ref: server.address
-        sampling_relevant: true
-      - ref: server.port
-        sampling_relevant: true
-      - ref: db.operation.batch.size
-      - ref: db.response.returned_rows
-      - ref: db.query.text
-        sampling_relevant: true
-        requirement_level:
-          recommended: >
-            Non-parameterized query text SHOULD NOT be collected by default unless there is sanitization that excludes
-            sensitive data, e.g. by redacting all literal values present in the query text.
-            See [Sanitization of `db.query.text`](/docs/database/database-spans.md#sanitization-of-dbquerytext).
-
-            Parameterized query text SHOULD be collected by default
-            (the query parameter values themselves are opt-in,
-            see [`db.query.parameter.<key>`](/docs/registry/attributes/db.md)).
-      - ref: db.query.summary
-        sampling_relevant: true
-      - ref: db.query.parameter
-        requirement_level: opt_in
-
-  - id: trace.db.common.query_and_collection
-    extends: attributes.db.client.with_query_and_collection
-    type: attribute_group
-    brief: This group defines the attributes used to perform database client calls.
-    attributes:
-      - ref: db.collection.name
-        sampling_relevant: true
-      - ref: db.operation.name
-        sampling_relevant: true
-      - ref: db.operation.batch.size
-      - ref: server.address
-        sampling_relevant: true
-      - ref: server.port
-        sampling_relevant: true
-      - ref: db.response.returned_rows
-      - ref: db.query.text
-        sampling_relevant: true
-        requirement_level:
-          recommended: >
-            Non-parameterized query text SHOULD NOT be collected by default unless there is sanitization that excludes
-            sensitive data, e.g. by redacting all literal values present in the query text.
-            See [Sanitization of `db.query.text`](/docs/database/database-spans.md#sanitization-of-dbquerytext).
-
-            Parameterized query text SHOULD be collected by default
-            (the query parameter values themselves are opt-in,
-            see [`db.query.parameter.<key>`](/docs/registry/attributes/db.md)).
-      - ref: db.query.summary
-        sampling_relevant: true
-      - ref: db.query.parameter
-        requirement_level: opt_in
-
-  - id: trace.db.common.full
-    type: attribute_group
-    brief: This group documents attributes that describe database call along with network information.
-    extends: trace.db.common.query_and_collection
-    attributes:
-      - ref: network.peer.address
-        brief: Peer address of the database node where the operation was performed.
-        requirement_level:
-          recommended: If applicable for this database system.
-        note: >
-          Semantic conventions for individual database systems SHOULD document whether `network.peer.*` attributes are applicable.
-          Network peer address and port are useful when the application interacts with individual database nodes directly.
-
-          If a database operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
-      - ref: network.peer.port
-        requirement_level:
-          recommended: if and only if `network.peer.address` is set.
-      - ref: db.system.name
-        sampling_relevant: true
-        # TODO: Not adding to the minimal because of https://github.com/open-telemetry/weaver/issues/479
-        requirement_level: required
-      - ref: db.namespace
-        sampling_relevant: true
-        requirement_level:
-          conditionally_required: If available.
-      - ref: db.stored_procedure.name
-        requirement_level:
-          recommended: If operation applies to a specific stored procedure.
-
   - id: span.db.client
     type: span
     stability: stable
@@ -135,8 +28,54 @@ groups:
       individual systems SHOULD specify which values of `db.response.status_code`
       classify as errors.
     span_kind: client
-    extends: trace.db.common.full
+    extends: bundle.db.collection_operation+query+server+response
     attributes:
+      - ref: network.peer.address
+        brief: Peer address of the database node where the operation was performed.
+        requirement_level:
+          recommended: If applicable for this database system.
+        note: >
+          Semantic conventions for individual database systems SHOULD document whether `network.peer.*` attributes are applicable.
+          Network peer address and port are useful when the application interacts with individual database nodes directly.
+
+          If a database operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
+      - ref: network.peer.port
+        requirement_level:
+          recommended: if and only if `network.peer.address` is set.
+      - ref: db.stored_procedure.name
+        requirement_level:
+          recommended: If operation applies to a specific stored procedure.
+      - ref: db.system.name
+        requirement_level: required
+        sampling_relevant: true
+      - ref: db.namespace
+        requirement_level:
+          conditionally_required: If available.
+        sampling_relevant: true
+      - ref: db.collection.name
+        sampling_relevant: true
+      - ref: db.operation.name
+        sampling_relevant: true
+      - ref: server.address
+        sampling_relevant: true
+      - ref: server.port
+        sampling_relevant: true
+      - ref: db.query.parameter
+        requirement_level: opt_in 
+      - ref: db.query.text
+        sampling_relevant: true
+        requirement_level:
+          recommended: >
+            Non-parameterized query text SHOULD NOT be collected by default unless there is sanitization that excludes
+            sensitive data, e.g. by redacting all literal values present in the query text.
+            See [Sanitization of `db.query.text`](/docs/database/database-spans.md#sanitization-of-dbquerytext).
+
+            Parameterized query text SHOULD be collected by default
+            (the query parameter values themselves are opt-in,
+            see [`db.query.parameter.<key>`](/docs/registry/attributes/db.md)).
+      - ref: db.query.summary
+        sampling_relevant: true
+      - ref: db.operation.batch.size
       - ref: db.response.returned_rows
         requirement_level: opt_in  # experimental attributes must be opt-in stable spans
                                    # TODO (trask) make this recommended once it is stable
@@ -297,7 +236,7 @@ groups:
     type: span
     span_kind: client
     stability: development
-    extends: trace.db.common.query_and_collection
+    extends: bundle.db.collection_operation+query+server+response
     brief: >
       Spans representing calls to a Cassandra database adhere to the general [Semantic Conventions for Database Client Spans](/docs/database/database-spans.md).
     note: |
@@ -314,6 +253,7 @@ groups:
       - ref: cassandra.page.size
       - ref: cassandra.consistency.level
       - ref: db.collection.name
+        sampling_relevant: true
         brief: The name of the Cassandra table that the operation is acting upon.
         note: |
           It is RECOMMENDED to capture the value as provided by the application
@@ -340,11 +280,34 @@ groups:
         note: >
           All Cassandra protocol error codes SHOULD be considered errors.
         examples: ["102", "40020"]
+      - ref: db.operation.name
+        sampling_relevant: true
+      - ref: db.operation.batch.size
+      - ref: server.address
+        sampling_relevant: true
+      - ref: server.port
+        sampling_relevant: true
+      - ref: db.response.returned_rows
+      - ref: db.query.text
+        sampling_relevant: true
+        requirement_level:
+          recommended: >
+            Non-parameterized query text SHOULD NOT be collected by default unless there is sanitization that excludes
+            sensitive data, e.g. by redacting all literal values present in the query text.
+            See [Sanitization of `db.query.text`](/docs/database/database-spans.md#sanitization-of-dbquerytext).
+
+            Parameterized query text SHOULD be collected by default
+            (the query parameter values themselves are opt-in,
+            see [`db.query.parameter.<key>`](/docs/registry/attributes/db.md)).
+      - ref: db.query.summary
+        sampling_relevant: true
+      - ref: db.query.parameter
+        requirement_level: opt_in
   - id: span.db.hbase.client
     type: span
     span_kind: client
     stability: development
-    extends: trace.db.common.minimal
+    extends: bundle.db.server+response
     brief: >
       Spans representing calls to an HBase database adhere to the general [Semantic Conventions for Database Client Spans](/docs/database/database-spans.md).
     note: |
@@ -368,6 +331,7 @@ groups:
           If table name includes the namespace, the `db.collection.name` SHOULD be set to the full table name.
         examples: ['mytable', 'ns:table']
       - ref: db.operation.name
+        sampling_relevant: true
         note: |
           It is RECOMMENDED to capture the value as provided by the application
           without attempting to do any case normalization.
@@ -376,17 +340,22 @@ groups:
           then that operation name SHOULD be used prepended by `BATCH `,
           otherwise `db.operation.name` SHOULD be `BATCH`.
         requirement_level: required
+      - ref: db.operation.batch.size
       - ref: db.response.status_code
         brief: >
           Protocol-specific response code recorded as a string.
         examples: ["200", "409", "14"]
         requirement_level:
           conditionally_required: If response was received.
+      - ref: server.address
+        sampling_relevant: true
+      - ref: server.port
+        sampling_relevant: true
   - id: span.db.couchdb.client
     type: span
     span_kind: client
     stability: development
-    extends: trace.db.common.minimal
+    extends: bundle.db.server+response
     brief: >
       Spans representing calls to CouchDB adhere to the general [Semantic Conventions for Database Client Spans](/docs/database/database-spans.md).
     note: |
@@ -407,6 +376,7 @@ groups:
           [`GET /{db}/{docid}`](https://docs.couchdb.org/en/stable/api/document/common.html#get--db-docid).
         requirement_level:
           conditionally_required: If readily available.
+      - ref: db.operation.batch.size
       - ref: db.namespace
         sampling_relevant: true
         requirement_level:
@@ -420,12 +390,16 @@ groups:
         examples: ["200", "201", "429"]
         requirement_level:
           conditionally_required: If response was received and the HTTP response code is available.
+      - ref: server.address
+        sampling_relevant: true
+      - ref: server.port
+        sampling_relevant: true
 
   - id: span.db.redis.client
     type: span
     stability: development
     span_kind: client
-    extends: trace.db.common.minimal
+    extends: bundle.db.server+response
     brief: >
       Spans representing calls to Redis adhere to the general [Semantic Conventions for Database Client Spans](/docs/database/database-spans.md).
     note: |
@@ -511,7 +485,7 @@ groups:
     type: span
     stability: development
     span_kind: client
-    extends: trace.db.common.minimal
+    extends: bundle.db.server+response
     brief: >
       Spans representing calls to MongoDB adhere to the general [Semantic Conventions for Database Client Spans](/docs/database/database-spans.md).
     note: >
@@ -526,6 +500,7 @@ groups:
         note: ""
         examples: ['findAndModify', 'getMore', 'insertMany', 'bulkWrite']
         requirement_level: required
+      - ref: db.operation.batch.size
       - ref: db.collection.name
         sampling_relevant: true
         brief:
@@ -550,12 +525,16 @@ groups:
         requirement_level:
           conditionally_required: If the operation failed and error code is available.
         examples: ["36", "11602"]
+      - ref: server.address
+        sampling_relevant: true
+      - ref: server.port
+        sampling_relevant: true
 
   - id: span.db.elasticsearch.client
     type: span
     stability: development
     span_kind: client
-    extends: trace.db.common.minimal
+    extends: bundle.db.server+response
     brief: >
       Spans representing calls to Elasticsearch adhere to the general [Semantic Conventions for Database Client Spans](/docs/database/database-spans.md).
     note: |
@@ -568,6 +547,7 @@ groups:
         sampling_relevant: true
         requirement_level: required
       - ref: db.operation.name
+        sampling_relevant: true
         requirement_level: required
         note: >
           The `db.operation.name` SHOULD match the endpoint identifier provided in the request
@@ -577,6 +557,7 @@ groups:
           then that operation name SHOULD be used prepended by `bulk `,
           otherwise `db.operation.name` SHOULD be `bulk`.
         examples: [ 'search', 'ml.close_job', 'cat.aliases' ]
+      - ref: db.operation.batch.size
       - ref: url.full
         sampling_relevant: true
         requirement_level: required
@@ -632,11 +613,15 @@ groups:
           HTTP response codes in the 4xx and 5xx range SHOULD be considered errors.
         requirement_level:
           conditionally_required: If response was received.
+      - ref: server.address
+        sampling_relevant: true
+      - ref: server.port
+        sampling_relevant: true
   - id: span.db.sql.client
     type: span
     span_kind: client
     stability: stable
-    extends: trace.db.common.query
+    extends: bundle.db.query+server+response
     brief: >
       The SQL databases Semantic Conventions describes how common [Database Semantic Conventions](/docs/database/database-spans.md) apply to SQL databases.
     note: |
@@ -749,6 +734,26 @@ groups:
             that does not support multiple collection names.
         note: |
           The collection name SHOULD NOT be extracted from `db.query.text`.
+      - ref: server.address
+        sampling_relevant: true
+      - ref: server.port
+        sampling_relevant: true
+      - ref: db.query.text
+        sampling_relevant: true
+        requirement_level:
+          recommended: >
+            Non-parameterized query text SHOULD NOT be collected by default unless there is sanitization that excludes
+            sensitive data, e.g. by redacting all literal values present in the query text.
+            See [Sanitization of `db.query.text`](/docs/database/database-spans.md#sanitization-of-dbquerytext).
+
+            Parameterized query text SHOULD be collected by default
+            (the query parameter values themselves are opt-in,
+            see [`db.query.parameter.<key>`](/docs/registry/attributes/db.md)).
+      - ref: db.query.summary
+        sampling_relevant: true
+      - ref: db.query.parameter
+        requirement_level: opt_in
+      - ref: db.operation.batch.size
       - ref: db.response.returned_rows
         requirement_level: opt_in  # experimental attributes must be opt-in stable spans
                                    # TODO (trask) make this recommended once it is stable
@@ -757,7 +762,7 @@ groups:
     type: span
     stability: development
     span_kind: client
-    extends: trace.db.common.minimal
+    extends: bundle.db.server+response
     brief: >
       Cosmos DB instrumentations include call-level spans that represent logical database
       calls and adhere to the general [Semantic Conventions for Database Client Spans](/docs/database/database-spans.md).
@@ -828,6 +833,7 @@ groups:
           Cosmos DB client.
         examples: ["Microsoft.DocumentDB"]
       - ref: db.operation.name
+        sampling_relevant: true
         requirement_level: required
         note: |
           The `db.operation.name` has the following list of well-known values.
@@ -954,10 +960,12 @@ groups:
           client method name in snake_case. Instrumentations SHOULD document
           additional values when introducing new operations.
         examples: ['create_item', 'query_items', 'read_item']
+      - ref: db.operation.batch.size
       - ref: db.stored_procedure.name
         requirement_level:
           recommended: If operation applies to a specific stored procedure.
       - ref: server.port
+        sampling_relevant: true
         requirement_level:
           conditionally_required: If not default (443).
       - ref: azure.cosmosdb.consistency.level
@@ -969,6 +977,8 @@ groups:
       - ref: db.query.text  # TODO: this might not be the right attribute to use here - https://github.com/open-telemetry/semantic-conventions/issues/2213
       - ref: db.query.parameter
         requirement_level: opt_in
+      - ref: server.address
+        sampling_relevant: true
   - id: span.db.oracledb.client
     type: span
     stability: development

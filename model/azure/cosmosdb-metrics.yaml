@@ -9,8 +9,25 @@ groups:
     instrument: histogram
     unit: "{request_unit}"
     stability: development
-    extends: attributes.azure.cosmosdb.minimal
+    
+    extends: bundle.db.server+response
     attributes:
+      # TODO: add db.system.name once https://github.com/open-telemetry/weaver/issues/479 is possible
+      # - ref: db.system.name
+      #   requirement_level:
+      #     conditionally_required: if available
+      - ref: db.operation.name
+        requirement_level: required
+      - ref: db.namespace
+        requirement_level:
+          conditionally_required: If available.
+        note: ""  # overriding the base note
+      - ref: azure.cosmosdb.response.sub_status_code
+        requirement_level:
+          conditionally_required: when response was received and contained sub-code.
+      - ref: azure.cosmosdb.consistency.level
+        requirement_level:
+          conditionally_required: If available.
       - ref: azure.cosmosdb.operation.contacted_regions
         requirement_level:
           recommended: If available
@@ -19,6 +36,8 @@ groups:
           Cosmos DB container name.
         note: >
           It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
+        requirement_level:
+          conditionally_required: If available.
 
   - id: metric.azure.cosmosdb.client.active_instance.count
     type: metric

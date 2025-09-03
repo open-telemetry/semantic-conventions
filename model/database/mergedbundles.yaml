@@ -1,0 +1,120 @@
+# This file would be redundant with a weaver update as 1 more bundles could be added to a span without it needing to be merged like below so that it can be passed into an extends.
+groups:
+  - id: bundle.db.collection_operation+query+server+response
+    type: attribute_group
+    brief: Brief
+    attributes:
+#  - id: bundle.db.collection_operation
+#    type: attribute_group
+#    brief: This group defines the attributes describing database operations that
+#      have operation name, collection name and query.
+#    attributes:
+      - ref: db.operation.name
+        requirement_level:
+          conditionally_required: >
+            If readily available and if there is a single operation name that describes the
+            database call.
+      - ref: db.collection.name
+        requirement_level:
+          conditionally_required: >
+            If readily available and if a database call is performed on a single collection.
+#  - id: bundle.db.query
+#    type: attribute_group
+#    brief: This group defines the attributes describing database operations that
+#      may have queries.
+#    attributes:
+      - ref: db.query.text
+      - ref: db.query.summary
+        requirement_level:
+          recommended: if available through instrumentation hooks or if the instrumentation supports generating a query summary.
+#  - id: bundle.db.server
+#    type: attribute_group
+#    brief: 'Database Client attributes'
+#    attributes:
+      - ref: server.address
+        brief: >
+          Name of the database host.
+      - ref: server.port
+        requirement_level:
+          conditionally_required: If using a port other than the default port for this DBMS and if `server.address` is set.
+#  - id: bundle.db.result
+#    type: attribute_group
+#    brief: 'Database Client attributes'
+#    attributes:
+      - ref: db.response.status_code
+        requirement_level:
+          conditionally_required: If the operation failed and status code is available.
+      - ref: error.type
+        requirement_level:
+          conditionally_required: If and only if the operation failed.
+        note: >
+          The `error.type` SHOULD match the `db.response.status_code` returned by the database or the client library,
+          or the canonical name of exception that occurred.
+
+          When using canonical exception type name, instrumentation SHOULD do the best effort to
+          report the most relevant type. For example, if the original exception is wrapped into a
+          generic one, the original exception SHOULD be preferred.
+
+          Instrumentations SHOULD document how `error.type` is populated.
+
+  - id: bundle.db.query+server+response
+    type: attribute_group
+    brief: Brief
+    attributes:
+#  - id: bundle.db.query
+      - ref: db.query.text
+      - ref: db.query.summary
+        requirement_level:
+          recommended: if available through instrumentation hooks or if the instrumentation supports generating a query summary.
+#  - id: bundle.db.server
+      - ref: server.address
+        brief: >
+          Name of the database host.
+      - ref: server.port
+        requirement_level:
+          conditionally_required: If using a port other than the default port for this DBMS and if `server.address` is set.
+#  - id: bundle.db.result
+      - ref: db.response.status_code
+        requirement_level:
+          conditionally_required: If the operation failed and status code is available.
+      - ref: error.type
+        requirement_level:
+          conditionally_required: If and only if the operation failed.
+        note: >
+          The `error.type` SHOULD match the `db.response.status_code` returned by the database or the client library,
+          or the canonical name of exception that occurred.
+
+          When using canonical exception type name, instrumentation SHOULD do the best effort to
+          report the most relevant type. For example, if the original exception is wrapped into a
+          generic one, the original exception SHOULD be preferred.
+
+          Instrumentations SHOULD document how `error.type` is populated.
+
+  - id: bundle.db.server+response
+    type: attribute_group
+    brief: Brief
+    attributes:
+#  - id: bundle.db.server
+      - ref: server.address
+        brief: >
+          Name of the database host.
+      - ref: server.port
+        requirement_level:
+          conditionally_required: If using a port other than the default port for this DBMS and if `server.address` is set.
+#  - id: bundle.db.result
+      - ref: db.response.status_code
+        requirement_level:
+          conditionally_required: If the operation failed and status code is available.
+      - ref: error.type
+        requirement_level:
+          conditionally_required: If and only if the operation failed.
+        note: >
+          The `error.type` SHOULD match the `db.response.status_code` returned by the database or the client library,
+          or the canonical name of exception that occurred.
+
+          When using canonical exception type name, instrumentation SHOULD do the best effort to
+          report the most relevant type. For example, if the original exception is wrapped into a
+          generic one, the original exception SHOULD be preferred.
+
+          Instrumentations SHOULD document how `error.type` is populated.
+
