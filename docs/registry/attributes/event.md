@@ -11,4 +11,4 @@ Attributes for Events represented using Log Records.
 |---|---|---|---|---|
 | <a id="event-name" href="#event-name">`event.name`</a> | string | Identifies the class / type of event. [1] | `browser.mouse.click`; `device.app.lifecycle` | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[1] `event.name`:** This attribute is used by non-OTLP exporters (e.g., console/stdout exporter) to emit the EventName and by applications using existing logging libraries to add event name information that can be  processed by SDK or Collector components to set the EventName on log records.
+**[1] `event.name`:** This attribute is used by non-OTLP exporters (e.g., console/stdout exporter) to emit the EventName and by applications using existing logging libraries to add event name information that can be processed by SDK or Collector components to set the EventName on log records.
