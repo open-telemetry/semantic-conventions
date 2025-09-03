@@ -11,7 +11,7 @@ groups:
         brief: >
           Identifies the class / type of event.
         note: >
-          This attribute is used by non-OTLP exporters (e.g., console exporter)
+          This attribute is used by non-OTLP exporters (e.g. console exporter)
           to emit the EventName and by applications using existing logging
           libraries to add event name information that can be processed by SDK
           or Collector components to set the EventName on log records.
