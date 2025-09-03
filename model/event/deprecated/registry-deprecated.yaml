@@ -1,7 +1,0 @@
-groups:
-  - id: registry.event.deprecated
-    type: attribute_group
-    display_name: Event Attributes
-    brief: >
-      Attributes for Events represented using Log Records.
-    attributes: []
