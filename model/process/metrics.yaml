@@ -135,6 +135,7 @@ groups:
     unit: "{context_switch}"
     attributes:
       - ref: process.context_switch_type
+      - ref: process.context_switch.type
     entity_associations:
       - process
 

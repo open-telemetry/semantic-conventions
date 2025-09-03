@@ -30,3 +30,22 @@ groups:
         brief: >
           "Deprecated, use `process.executable.build_id.htlhash` instead."
         examples: ['600DCAFE4A110000F2BF38C493F5FB92']
+      - id: process.context_switch_type
+        brief: "Specifies whether the context switches for this data point were voluntary or involuntary."
+        type:
+          members:
+            - id: voluntary
+              value: 'voluntary'
+              brief: Voluntary
+              stability: development
+            - id: involuntary
+              value: 'involuntary'
+              brief: Involuntary
+              stability: development
+        deprecated:
+          reason: renamed
+          renamed_to: process.context_switch.type
+        stability: development
+        annotations:
+          code_generation:
+            exclude: true

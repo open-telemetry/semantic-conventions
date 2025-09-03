@@ -17,7 +17,7 @@ An operating system process.
 | <a id="process-command" href="#process-command">`process.command`</a> | string | The command used to launch the process (i.e. the command name). On Linux based systems, can be set to the zeroth string in `proc/[pid]/cmdline`. On Windows, can be set to the first parameter extracted from `GetCommandLineW`. | `cmd/otelcol` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="process-command-args" href="#process-command-args">`process.command_args`</a> | string[] | All the command arguments (including the command/executable itself) as received by the process. On Linux-based systems (and some other Unixoid systems supporting procfs), can be set according to the list of null-delimited strings extracted from `proc/[pid]/cmdline`. For libc-based executables, this would be the full argv vector passed to `main`. SHOULD NOT be collected by default unless there is sanitization that excludes sensitive data. | `["cmd/otecol", "--config=config.yaml"]` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="process-command-line" href="#process-command-line">`process.command_line`</a> | string | The full command used to launch the process as a single string representing the full command. On Windows, can be set to the result of `GetCommandLineW`. Do not set this if you have to assemble it just for monitoring; use `process.command_args` instead. SHOULD NOT be collected by default unless there is sanitization that excludes sensitive data. | `C:\cmd\otecol --config="my directory\config.yaml"` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="process-context-switch-type" href="#process-context-switch-type">`process.context_switch_type`</a> | string | Specifies whether the context switches for this data point were voluntary or involuntary. | `voluntary`; `involuntary` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="process-context-switch-type" href="#process-context-switch-type">`process.context_switch.type`</a> | string | Specifies whether the context switches for this data point were voluntary or involuntary. | `voluntary`; `involuntary` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="process-creation-time" href="#process-creation-time">`process.creation.time`</a> | string | The date and time the process was created, in ISO 8601 format. | `2023-11-21T09:25:34.853Z` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="process-environment-variable" href="#process-environment-variable">`process.environment_variable.<key>`</a> | string | Process environment variables, `<key>` being the environment variable name, the value being the environment variable value. [2] | `ubuntu`; `/usr/local/bin:/usr/bin` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="process-executable-build-id-gnu" href="#process-executable-build-id-gnu">`process.executable.build_id.gnu`</a> | string | The GNU build ID as found in the `.note.gnu.build-id` ELF section (hex string). | `c89b11207f6479603b0d49bf291c092c2b719293` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -64,12 +64,12 @@ with value `"/usr/local/bin:/usr/bin"`.
 
 ---
 
-`process.context_switch_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`process.context_switch.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `involuntary` | involuntary | ![Development](https://img.shields.io/badge/-development-blue) |
-| `voluntary` | voluntary | ![Development](https://img.shields.io/badge/-development-blue) |
+| `involuntary` | Involuntary | ![Development](https://img.shields.io/badge/-development-blue) |
+| `voluntary` | Voluntary | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -96,8 +96,18 @@ Deprecated process attributes.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
+| <a id="process-context-switch-type" href="#process-context-switch-type">`process.context_switch_type`</a> | string | Specifies whether the context switches for this data point were voluntary or involuntary. | `voluntary`; `involuntary` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `process.context_switch.type`. |
 | <a id="process-cpu-state" href="#process-cpu-state">`process.cpu.state`</a> | string | Deprecated, use `cpu.mode` instead. | `system`; `user`; `wait` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `cpu.mode`. |
 | <a id="process-executable-build-id-profiling" href="#process-executable-build-id-profiling">`process.executable.build_id.profiling`</a> | string | "Deprecated, use `process.executable.build_id.htlhash` instead." | `600DCAFE4A110000F2BF38C493F5FB92` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `process.executable.build_id.htlhash`. |
+
+---
+
+`process.context_switch_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `involuntary` | Involuntary | ![Development](https://img.shields.io/badge/-development-blue) |
+| `voluntary` | Voluntary | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
