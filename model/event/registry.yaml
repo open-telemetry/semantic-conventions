@@ -1,0 +1,17 @@
+groups:
+  - id: registry.event
+    type: attribute_group
+    display_name: Event Attributes
+    brief: >
+      Attributes for Events represented using Log Records.
+    attributes:
+      - id: event.name
+        type: string
+        stability: development
+        brief: >
+          Identifies the class / type of event.
+        note: >
+          This attribute is used by non-OTLP exporters (e.g., console/stdout exporter) to emit the EventName 
+          and by applications using existing logging libraries to add event name information that can be 
+          processed by SDK or Collector components to set the EventName on log records.
+        examples: ["browser.mouse.click", "device.app.lifecycle"]
