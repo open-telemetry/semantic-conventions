@@ -126,10 +126,10 @@ jobs:
     - name: find signals defined in yaml files that are not used in the markdown files
       run: make check-dead-yaml
 
-  sigs-table-check:
+  areas-table-check:
     runs-on: ubuntu-latest
     steps:
     - name: check out code
       uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
-    - name: check if the SIGs table is out-of-date
-      run: make sig-table-check
+    - name: check if the areas table is out-of-date
+      run: make areas-table-check
