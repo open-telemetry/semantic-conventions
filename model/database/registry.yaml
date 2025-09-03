@@ -344,6 +344,10 @@ groups:
               value: "trino"
               brief: "[Trino](https://trino.io/)"
               stability: development
+            - id: surrealdb
+              value: "surrealdb"
+              brief: "[SurrealDB](https://surrealdb.com/)"
+              stability: development
         stability: stable
       - id: db.client.connection.state
         stability: development
