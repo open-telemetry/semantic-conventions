@@ -12,9 +12,9 @@ provide meaning to data when collecting, producing and consuming it.
 The human-readable version of the semantic conventions resides in the [docs](docs/README.md) folder.
 Major parts of these Markdown documents are generated from the YAML definitions located in the [model](model/README.md) folder.
 
-## Special Interest Groups
+## Areas and Special Interest Groups
 
-See: [Special Interest Groups](SIGs.md)
+See: [Areas](AREAS.md)
 
 ## Contributing
 
