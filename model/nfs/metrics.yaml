@@ -118,7 +118,7 @@ groups:
     type: metric
     metric_name: nfs.server.repcache.nocache
     stability: development
-    brief: "Reports the count of kernel NFS server request replies that are uncacheable."
+    brief: "Reports the count of kernel NFS server replies that are uncacheable by the the reply cache."
     note: |
       Linux: this metric is taken from the Linux kernel NFSD_STATS_RC_NOCACHE counter in the nfsd_net struct
     instrument: counter

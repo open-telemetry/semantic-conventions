@@ -307,7 +307,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `nfs.server.repcache.nocache` | Counter | `{miss}` | Reports the count of kernel NFS server request replies that are uncacheable. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
+| `nfs.server.repcache.nocache` | Counter | `{miss}` | Reports the count of kernel NFS server replies that are uncacheable by the the reply cache. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
 
 **[1]:** Linux: this metric is taken from the Linux kernel NFSD_STATS_RC_NOCACHE counter in the nfsd_net struct
 
