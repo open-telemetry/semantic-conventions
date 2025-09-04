@@ -80,6 +80,17 @@ All routing metrics are reported by the `Microsoft.AspNetCore.Routing` meter.
 **[1] `http.route`:** MUST NOT be populated when this is not supported by the HTTP server framework as the route attribute should have low-cardinality and the URI path can NOT substitute it.
 SHOULD include the [application root](/docs/http/http-spans.md#http-server-definitions) if there is one.
 
+A static path segment is a part of the route template with a fixed, low-cardinality value. This includes literal strings like `/users/` and placeholders that are constrained to a finite, predefined set of values `{controller}` or `{action}`.
+
+A dynamic path segment is a placeholder for a value that can have high cardinality and is not constrained to a predefined list like `{id}`.
+
+Examples of converting route templates to `http.route` values:
+
+* ASP.NET: `{controller}/{action}/{id?}` becomes `/users/get/{id}`
+* Django: `/articles/int:id/edit/` becomes `/articles/:id/edit`
+* Express: `/users/:id` becomes `/users/:id`
+* Spring Boot: `/orders/{orderId}` becomes `/orders/{orderId}` 
+
 ---
 
 `aspnetcore.routing.match_status` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
