@@ -42,34 +42,6 @@ groups:
       CPU usage of the specific Pod on all available CPU cores, averaged over the sample window
     instrument: gauge
     unit: "{cpu}"
-  - id: metric.k8s.pod.cpu.limit_utilization
-    type: metric
-    metric_name: k8s.pod.cpu.limit_utilization
-    annotations:
-      code_generation:
-        metric_value_type: double
-    stability: development
-    brief: "The ratio of pod CPU usage to its CPU limit."
-    entity_associations:
-      - k8s.pod
-    note: >
-      The value range is [0.0,1.0]. A value of 1.0 means the pod is using 100% of its CPU limit.
-    instrument: gauge
-    unit: "1"
-  - id: metric.k8s.pod.cpu.request_utilization
-    type: metric
-    metric_name: k8s.pod.cpu.request_utilization
-    annotations:
-      code_generation:
-        metric_value_type: double
-    stability: development
-    brief: "The ratio of pod CPU usage to its CPU request."
-    entity_associations:
-      - k8s.pod
-    note: >
-      The value range is [0.0,1.0]. A value of 1.0 means the pod is using 100% of its CPU request.
-    instrument: gauge
-    unit: "1"
 
   # k8s.pod.memory.* metrics
   - id: metric.k8s.pod.memory.usage
