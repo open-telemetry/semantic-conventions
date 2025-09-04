@@ -519,6 +519,8 @@ A static path segment is a part of the route template with a fixed, low-cardinal
 
 A dynamic path segment is a placeholder for a value that can have high cardinality and is not constrained to a predefined list like `{id}`.
 
+Instrumentations SHOULD use routing information provided by the corresponding web framework. They SHOULD pick the most precise source of routing information and MAY support custom route formatting. Instrumentations SHOULD document the format and the API used to obtain the route string.
+
 **[7] `network.protocol.name`:** The value SHOULD be normalized to lowercase.
 
 **[8] `network.protocol.name`:** If not `http` and `network.protocol.version` is set.

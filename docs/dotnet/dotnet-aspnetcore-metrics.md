@@ -84,6 +84,8 @@ A static path segment is a part of the route template with a fixed, low-cardinal
 
 A dynamic path segment is a placeholder for a value that can have high cardinality and is not constrained to a predefined list like `{id}`.
 
+Instrumentations SHOULD use routing information provided by the corresponding web framework. They SHOULD pick the most precise source of routing information and MAY support custom route formatting. Instrumentations SHOULD document the format and the API used to obtain the route string.
+
 ---
 
 `aspnetcore.routing.match_status` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
