@@ -83,13 +83,6 @@ A static path segment is a part of the route template with a fixed, low-cardinal
 
 A dynamic path segment is a placeholder for a value that can have high cardinality and is not constrained to a predefined list like `{id}`.
 
-Examples of converting route templates to `http.route` values:
-
-* ASP.NET: `{controller}/{action}/{id?}` becomes `/users/get/{id}`
-* Django: `/articles/int:id/edit/` becomes `/articles/:id/edit`
-* Express: `/users/:id` becomes `/users/:id`
-* Spring Boot: `/orders/{orderId}` becomes `/orders/{orderId}`
-
 ---
 
 `http.connection.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
