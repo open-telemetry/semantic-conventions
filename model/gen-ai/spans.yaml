@@ -95,6 +95,8 @@ groups:
         requirement_level: opt_in
       - ref: gen_ai.output.messages
         requirement_level: opt_in
+      - ref: gen_ai.tool.definitions
+        requirement_level: opt_in
 
   - id: span.gen_ai.inference.client
     type: span
@@ -244,6 +246,7 @@ groups:
         requirement_level: opt_in
         note: ""  # note is not needed here
 
+
   - id: span.gen_ai.invoke_agent.client
     type: span
     stability: development
@@ -279,6 +282,7 @@ groups:
       - ref: gen_ai.output.messages
         requirement_level: opt_in
 
+
   - id: span.gen_ai.execute_tool.internal
     type: span
     stability: development
@@ -307,6 +311,10 @@ groups:
       - ref: gen_ai.tool.type
         requirement_level:
           recommended: if available
+      - ref: gen_ai.tool.call.arguments
+        requirement_level: opt_in
+      - ref: gen_ai.tool.call.result
+        requirement_level: opt_in
       - ref: error.type
         requirement_level:
           conditionally_required: "if the operation ended in an error"
