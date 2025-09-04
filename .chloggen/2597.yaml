@@ -4,5 +4,5 @@ note: "Revive `event.name` attribute for use by non-OTLP exporters and logging l
 issues: [2597]
 subtext: |
   The `event.name` attribute is now undeprecated and can be used by:
-  - Non-OTLP exporters (e.g. console exporter) to emit the EventName
+  - Non-OTLP exporters to emit the EventName
   - Applications using existing logging libraries to add event name information that can be processed by SDK or Collector components
