@@ -12,6 +12,18 @@ provide meaning to data when collecting, producing and consuming it.
 The human-readable version of the semantic conventions resides in the [docs](docs/README.md) folder.
 Major parts of these Markdown documents are generated from the YAML definitions located in the [model](model/README.md) folder.
 
+## Roadmap
+
+For an overview of the current focus areas and active initiatives
+the Semantic Conventions project is committed to, check out the
+[OpenTelemetry Roadmap](https://github.com/orgs/open-telemetry/projects/158/views/1?filterQuery=sig%3A%22Semantic+Conventions%3A+*%22).
+
+> [!IMPORTANT]
+> Due to limited maintainer and reviewer bandwidth, priority is given to initiatives
+> listed in the roadmap. Contributions outside these areas may be delayed or
+> not accepted unless they are formally added to the roadmap through the
+> established project proposal process.
+
 ## Areas and Special Interest Groups
 
 See: [Areas](AREAS.md)
