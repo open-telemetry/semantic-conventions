@@ -335,6 +335,8 @@ The changes in their metrics are the following:
 | `k8s.container.ephemeralstorage_request`     (type: `gauge`)                                       | `k8s.container.ephemeral_storage.request` (type: `updowncounter`) |
 | `k8s.container.restarts`                  (type: `gauge`)                          | `k8s.container.restart.count` (type: `updowncounter`)            |
 | `k8s.container.ready`                  (type: `gauge`)                             | `k8s.container.ready` (type: `updowncounter`)                    |
+| `k8s.container.cpu_limit_utilization` (type: `gauge`) | `k8s.container.cpu.limit_utilization` (type: `gauge`) |
+| `k8s.container.cpu_request_utilization` (type: `gauge`) | `k8s.container.cpu.request_utilization` (type: `gauge`) |
 
 <!-- prettier-ignore-end -->
 
