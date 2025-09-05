@@ -260,9 +260,15 @@ groups:
     span_kind: client
     brief: >
       Spans representing calls to MariaDB adhere to the general [Semantic Conventions for Database Client Spans](/docs/database/README.md).
-    note: >
-      `db.system.name` MUST be set to `"mariadb"` and SHOULD be provided **at span creation time**.
     attributes:
+      - ref: db.system.name
+        note: ""
+        examples: mariadb
+        requirement_level: required
+        sampling_relevant: true
+        annotations:
+          code_generation:
+            fixed_value: true
       - ref: db.namespace
         sampling_relevant: true
         brief: The database associated with the connection.

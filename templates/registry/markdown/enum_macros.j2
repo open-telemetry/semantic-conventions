@@ -1,7 +1,7 @@
 {% import 'stability.j2' as stability %}
 {% macro filter(member) %}{% if (member.deprecated is undefined or member.deprecated is none) %}{{ "True" }}{% else %}{{ "False" }}{% endif %}{% endmacro %}
 {% macro table(enum, notes) %}
----
+{% if enum.annotations and enum.annotations.code_generation.fixed_value %}{% else %}---
 
 `{{enum.name}}` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -10,7 +10,7 @@
 {% for espec in enum.type.members | sort(attribute='value') %}
 {%- if filter(espec) == "True" -%}
 | `{{ espec.value }}` | {{ (espec.brief or espec.id) | trim }}{{ notes.add({"note": espec.note}) }} | {{ stability.badge(espec.stability, espec.deprecated, espec.brief) }} |
-{% endif %}{% endfor %}{{ notes.render() }}{% endmacro %}
+{% endif %}{% endfor %}{{ notes.render() }}{% endif %}{% endmacro %}
 {% macro tables(enums, notes) -%}
 {% for enum in enums | sort(attribute="name") -%}
 {{ table(enum, notes) -}}

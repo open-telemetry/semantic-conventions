@@ -26,14 +26,13 @@ linkTitle: MariaDB
 
 Spans representing calls to MariaDB adhere to the general [Semantic Conventions for Database Client Spans](/docs/database/README.md).
 
-`db.system.name` MUST be set to `"mariadb"` and SHOULD be provided **at span creation time**.
-
 **Span kind** SHOULD be `CLIENT`.
 
 **Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
+| [`db.system.name`](/docs/registry/attributes/db.md) | string (Constant) | The database management system (DBMS) product as identified by the client instrumentation. | `mariadb` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`db.namespace`](/docs/registry/attributes/db.md) | string | The database associated with the connection. [1] | `products`; `customers` | `Conditionally Required` If available without an additional network call. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`db.response.status_code`](/docs/registry/attributes/db.md) | string | [Maria DB error code](https://mariadb.com/kb/en/mariadb-error-code-reference/) represented as a string. [2] | `1008`; `3058` | `Conditionally Required` If response has ended with warning or an error. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [3] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -131,6 +130,7 @@ and SHOULD be provided **at span creation time** (if provided at all):
 * [`db.namespace`](/docs/registry/attributes/db.md)
 * [`db.query.summary`](/docs/registry/attributes/db.md)
 * [`db.query.text`](/docs/registry/attributes/db.md)
+* [`db.system.name`](/docs/registry/attributes/db.md)
 * [`server.address`](/docs/registry/attributes/server.md)
 * [`server.port`](/docs/registry/attributes/server.md)
 
