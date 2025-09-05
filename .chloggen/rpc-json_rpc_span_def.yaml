@@ -4,13 +4,13 @@
 # your pull request title with [chore] or use the "Skip Changelog" label.
 
 # One of 'breaking', 'deprecation', 'new_component', 'enhancement', 'bug_fix'
-change_type: bug_fix
+change_type: enhancement
 
 # The name of the area of concern in the attributes-registry, (e.g. http, cloud, db)
 component: rpc
 
 # A brief description of the change. Surround your text with quotes ("") if it needs to start with a backtick (`).
-note: The requirement_level of `rpc.method` and `rpc.service` has been adjusted so that it is clearly recommended to be included on spans without changing the scope in metrics.
+note: JsonRPC now has it's own span definition.
 
 # Mandatory: One or more tracking issues related to the change. You can use the PR number here if no issue exists.
 # The values here must be integers.
