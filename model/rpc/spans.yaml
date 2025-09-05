@@ -71,11 +71,51 @@ groups:
       - ref: rpc.connect_rpc.response.metadata
         requirement_level: opt_in
 
-  - id: rpc.grpc.attributes
+  - id: span.rpc.grpc.client
+    type: span
     stability: development
-    type: attribute_group
-    brief: 'Tech-specific attributes for gRPC.'
+    brief: This span represents an outgoing Remote Procedure Call (RPC).
+    note: |
+      Remote procedure calls can only be represented with these semantic conventions
+      when the names of the called service and method are known and available.
+
+      `rpc.system` MUST be set to `"grpc"` and SHOULD be provided **at span creation time.**
+
+      **Span name:** refer to the [Span Name](./rpc-spans.md#span-name) section.
+
+      **Span kind** MUST be `CLIENT`.
+
+      **Span status** Should be set based on the grpc status code. A mapping is defined in the [grpc status](#grpc-status) section.
+    extends: span.rpc.client
+    span_kind: client
     attributes:
+      - ref: rpc.system
+        examples: grpc
+      - ref: rpc.grpc.status_code
+        requirement_level: required
+      - ref: rpc.grpc.request.metadata
+        requirement_level: opt_in
+      - ref: rpc.grpc.response.metadata
+        requirement_level: opt_in
+
+  - id: span.rpc.grpc.server
+    type: span
+    stability: development
+    extends: span.rpc.server
+    span_kind: server
+    brief: This span represents an incoming Remote Procedure Call (RPC).
+    note: |
+      Remote procedure calls can only be represented with these semantic conventions
+      when the names of the called service and method are known and available.
+
+      `rpc.system` MUST be set to `"grpc"` and SHOULD be provided **at span creation time.**
+
+      **Span name:** refer to the [Span Name](./rpc-spans.md#span-name) section.
+
+      **Span kind** MUST be `SERVER`.
+    attributes:
+      - ref: rpc.system
+        examples: grpc
       - ref: rpc.grpc.status_code
         requirement_level: required
       - ref: rpc.grpc.request.metadata
