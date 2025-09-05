@@ -16,8 +16,8 @@ This document defines attributes for software deployments.
 | <a id="deployment-id" href="#deployment-id">`deployment.id`</a> | string | The id of the deployment. | `1208` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="deployment-name" href="#deployment-name">`deployment.name`</a> | string | The name of the deployment. | `deploy my app`; `deploy-frontend` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="deployment-status" href="#deployment-status">`deployment.status`</a> | string | The status of the deployment. | `failed`; `succeeded` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="deployment-target-name" href="#deployment-target-name">`deployment.target.name`</a> | string | A unique name describing where the deployment is deploying to. [2] | `test.mymachines.org`; `playstore` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="deployment-target-path" href="#deployment-target-path">`deployment.target.path`</a> | string | A path of where to deploy the files to on the target. [3] | `C:\folder-path` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="deployment-target-name" href="#deployment-target-name">`deployment.target.name`</a> | string | A unique name for the deployment target/environment. | `dev`; `staging`; `production`; `ci-123` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="deployment-target-path" href="#deployment-target-path">`deployment.target.path`</a> | string | URL or folder path of where the files are being deployed to. [2] | `C:\folder-path`; `https://my-cluster.zone.my-cloud-provider` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `deployment.environment.name`:** `deployment.environment.name` does not affect the uniqueness constraints defined through
 the `service.namespace`, `service.name` and `service.instance.id` resource attributes.
@@ -27,9 +27,7 @@ considered to be identifying the same service:
 - `service.name=frontend`, `deployment.environment.name=production`
 - `service.name=frontend`, `deployment.environment.name=staging`.
 
-**[2] `deployment.target.name`:** This could be a fqdn of the machine or the name of the platform the deployment is deploying to.
-
-**[3] `deployment.target.path`:** This could be the same value as `process.executable.path` for an installation.
+**[2] `deployment.target.path`:** This path can be used by a user to access the files that have been deployed.
 
 ---
 

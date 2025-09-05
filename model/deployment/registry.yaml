@@ -50,13 +50,12 @@ groups:
         type: string
         stability: development
         brief: >
-          A unique name describing where the deployment is deploying to.
-        note: This could be a fqdn of the machine or the name of the platform the deployment is deploying to.
-        examples: ["test.mymachines.org", "playstore"]
+          A unique name for the deployment target/environment.
+        examples: ["dev", "staging", "production", "ci-123"]
       - id: deployment.target.path
         type: string
         stability: development
         brief: >
-          A path of where to deploy the files to on the target.
-        note: This could be the same value as `process.executable.path` for an installation.
-        examples: ["C:\\folder-path"]
+          URL or folder path of where the files are being deployed to.
+        note: This path can be used by a user to access the files that have been deployed.
+        examples: ["C:\\folder-path", "https://my-cluster.zone.my-cloud-provider"]

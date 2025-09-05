@@ -42,14 +42,12 @@ considered to be identifying the same service:
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`deployment.target.path`](/docs/registry/attributes/deployment.md) | string | A path of where to deploy the files to on the target. [2] | `C:\folder-path` | `Conditionally Required` [3] | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`deployment.target.name`](/docs/registry/attributes/deployment.md) | string | A unique name describing where the deployment is deploying to. [4] | `test.mymachines.org`; `playstore` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`deployment.target.path`](/docs/registry/attributes/deployment.md) | string | URL or folder path of where the files are being deployed to. [2] | `C:\folder-path`; `https://my-cluster.zone.my-cloud-provider` | `Conditionally Required` [3] | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`deployment.target.name`](/docs/registry/attributes/deployment.md) | string | A unique name for the deployment target/environment. | `dev`; `staging`; `production`; `ci-123` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[2] `deployment.target.path`:** This could be the same value as `process.executable.path` for an installation.
+**[2] `deployment.target.path`:** This path can be used by a user to access the files that have been deployed.
 
 **[3] `deployment.target.path`:** If the target supports multiple side by side deployments.
-
-**[4] `deployment.target.name`:** This could be a fqdn of the machine or the name of the platform the deployment is deploying to.
 
 
 <!-- markdownlint-restore -->
