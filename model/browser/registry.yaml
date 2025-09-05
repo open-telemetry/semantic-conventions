@@ -55,11 +55,6 @@ groups:
         stability: development
         brief: Referring Page URI ([document.referrer](https://developer.mozilla.org/en-US/docs/Web/API/Document/referrer)) whenever available.
         examples: ["https://en.wikipedia.org/wiki/Main_Page"]
-      - id: browser.page.title
-        type: string
-        stability: development
-        brief: Page title DOM property
-        examples: ["Home", "Checkout"]
       - id: browser.page_view.type
         type:
           members:
@@ -80,8 +75,3 @@ groups:
         stability: development
         brief: Type of navigation
         examples: ["page_load", "soft_navigation"]
-      - id: browser.page_view.state_change
-        type: string
-        stability: development
-        brief: Type of state change used for the virtual page navigation
-        examples: ["pushState", "replaceState"]

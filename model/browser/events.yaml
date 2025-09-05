@@ -70,9 +70,5 @@ groups:
         requirement_level: recommended
       - ref: browser.page_view.type
         requirement_level: required
-      - ref: browser.page.title
-        requirement_level: recommended
       - ref: url.full
         requirement_level: required
-      - ref: browser.page_view.state_change
-        requirement_level: recommended
