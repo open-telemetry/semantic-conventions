@@ -1,0 +1,31 @@
+groups:
+  - id: attributes.metrics.rpc.server
+    type: attribute_group
+    brief: "Describes RPC metric attributes."
+    attributes:
+      - ref: rpc.system
+        requirement_level: required
+      - ref: rpc.service
+        note: >
+          On the server process receiving and handling the remote procedure call,
+          the service name provided in `rpc.service` does not necessarily have to match the `service.name` resource attribute.
+
+          One process can expose multiple RPC endpoints and thus have multiple RPC service names.
+          From a deployment perspective, as expressed by the `service.*` resource attributes, it will be treated as one deployed service with one `service.name`.
+      - ref: rpc.method
+      - ref: network.transport
+      - ref: network.type
+      - ref: server.address
+      - ref: server.port
+        note: Describes the port the client is connecting from.
+        requirement_level: opt_in
+  - id: attributes.metrics.rpc.client
+    type: attribute_group
+    brief: "Describes RPC metric attributes."
+    attributes:
+      - ref: rpc.service
+        note: ""
+      - ref: server.port
+        note: Describes the server port they are connecting to.
+        requirement_level:
+          conditionally_required: If the connection is IP-based and the port is available.
