@@ -103,6 +103,8 @@ groups:
     extends: span.rpc.client
     span_kind: client
     attributes:
+      - ref: rpc.system
+        examples: jsonrpc
       - ref: rpc.method
         requirement_level: required
       - ref: rpc.jsonrpc.version
@@ -132,6 +134,8 @@ groups:
 
       **Span kind** MUST be `SERVER`.
     attributes:
+      - ref: rpc.system
+        examples: jsonrpc
       - ref: rpc.method
         requirement_level: required
       - ref: rpc.jsonrpc.version

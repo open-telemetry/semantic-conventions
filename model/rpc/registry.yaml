@@ -249,6 +249,10 @@ groups:
               value: 'connect_rpc'
               brief: 'Connect RPC'
               stability: development
+            - id: jsonrpc
+              value: 'jsonrpc'
+              brief: 'JSON-RPC'
+              stability: development
         stability: development
       - id: rpc.message.type
         type:
