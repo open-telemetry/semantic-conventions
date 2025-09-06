@@ -55,7 +55,7 @@ All custom identifiers SHOULD be stable across different versions of an implemen
 | Value  | Description | Stability |
 |---|---|---|
 | `cpp` | C++ | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `dotnet` | .net | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `dotnet` | .NET | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `erlang` | Erlang | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `go` | Go | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `java` | Java | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
