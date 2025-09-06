@@ -232,6 +232,11 @@ groups:
         stability: development
         brief: "The network IO operation direction."
         examples: ["transmit"]
+      - id: network.io.compression
+        type: string
+        stability: development
+        brief: "The network IO data compression."
+        examples: ["none", 'compressed']
       - id: network.interface.name
         type: string
         brief: 'The network interface name.'
