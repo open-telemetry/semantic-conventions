@@ -147,8 +147,16 @@
 /internal/                              @open-telemetry/specs-semconv-approvers @open-telemetry/weaver-approvers
 /docs/non-normative/code-generation.md  @open-telemetry/specs-semconv-approvers @open-telemetry/weaver-approvers
 
+# Transaction Processing System
+/docs/tps                         @open-telemetry/specs-semconv-approvers @open-telemetry/sig-mainframe-approvers
+/model/tps                        @open-telemetry/specs-semconv-approvers @open-telemetry/sig-mainframe-approvers
+
 # Mainframe
 /docs/mainframe                   @open-telemetry/specs-semconv-approvers @open-telemetry/sig-mainframe-approvers
 /model/mainframe                  @open-telemetry/specs-semconv-approvers @open-telemetry/sig-mainframe-approvers
 /docs/zos                         @open-telemetry/specs-semconv-approvers @open-telemetry/sig-mainframe-approvers
 /model/zos                        @open-telemetry/specs-semconv-approvers @open-telemetry/sig-mainframe-approvers
+
+# IBM
+/docs/ibm                         @open-telemetry/specs-semconv-approvers @open-telemetry/sig-mainframe-approvers
+/model/ibm                        @open-telemetry/specs-semconv-approvers @open-telemetry/sig-mainframe-approvers
