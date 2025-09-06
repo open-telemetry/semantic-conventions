@@ -1,20 +1,4 @@
 groups:
-  # TODO: Should we list the attributes on each metric
-  # OR leave a single table like it is today? Since all attributes are applied
-  # to all metrics, the repetition of them bloats the page
-  - id: attributes.metrics.rpc
-    type: attribute_group
-    brief: "Describes RPC metric attributes."
-    attributes:
-      - ref: rpc.system
-        requirement_level: required
-      - ref: rpc.service
-      - ref: rpc.method
-      - ref: network.transport
-      - ref: network.type
-      - ref: server.address
-      - ref: server.port
-
   # RPC Server metrics
   - id: metric.rpc.server.duration
     type: metric
@@ -31,6 +15,7 @@ groups:
       to end-of-batch, it's hard to interpret in practice.
 
       **Streaming**: N/A.
+    extends: attributes.metrics.rpc.server
 
   - id: metric.rpc.server.request.size
     type: metric
@@ -44,6 +29,7 @@ groups:
     unit: "By"
     note: |
       **Streaming**: Recorded per message in a streaming batch
+    extends: attributes.metrics.rpc.server
 
   - id: metric.rpc.server.response.size
     type: metric
@@ -57,6 +43,7 @@ groups:
     unit: "By"
     note: |
       **Streaming**: Recorded per response in a streaming batch
+    extends: attributes.metrics.rpc.server
 
   - id: metric.rpc.server.requests_per_rpc
     type: metric
@@ -72,6 +59,7 @@ groups:
       Should be 1 for all non-streaming RPCs.
 
       **Streaming** : This metric is required for server and client streaming RPCs
+    extends: attributes.metrics.rpc.server
 
   - id: metric.rpc.server.responses_per_rpc
     type: metric
@@ -87,6 +75,7 @@ groups:
       Should be 1 for all non-streaming RPCs.
 
       **Streaming**: This metric is required for server and client streaming RPCs
+    extends: attributes.metrics.rpc.server
 
   # RPC Client metrics
   - id: metric.rpc.client.duration
@@ -104,6 +93,7 @@ groups:
       to end-of-batch, it's hard to interpret in practice.
 
       **Streaming**: N/A.
+    extends: attributes.metrics.rpc.client
 
   - id: metric.rpc.client.request.size
     type: metric
@@ -117,6 +107,7 @@ groups:
     unit: "By"
     note: |
       **Streaming**: Recorded per message in a streaming batch
+    extends: attributes.metrics.rpc.client
 
   - id: metric.rpc.client.response.size
     type: metric
@@ -130,6 +121,7 @@ groups:
     unit: "By"
     note: |
       **Streaming**: Recorded per response in a streaming batch
+    extends: attributes.metrics.rpc.client
 
   - id: metric.rpc.client.requests_per_rpc
     type: metric
@@ -145,6 +137,7 @@ groups:
       Should be 1 for all non-streaming RPCs.
 
       **Streaming**: This metric is required for server and client streaming RPCs
+    extends: attributes.metrics.rpc.client
 
   - id: metric.rpc.client.responses_per_rpc
     type: metric
@@ -160,3 +153,4 @@ groups:
       Should be 1 for all non-streaming RPCs.
 
       **Streaming**: This metric is required for server and client streaming RPCs
+    extends: attributes.metrics.rpc.client
