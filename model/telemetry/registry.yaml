@@ -27,7 +27,7 @@ groups:
               stability: stable
             - id: dotnet
               value: "dotnet"
-              brief: .net
+              brief: .NET
               stability: stable
             - id: erlang
               value: "erlang"
