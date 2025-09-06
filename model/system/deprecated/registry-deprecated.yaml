@@ -104,4 +104,7 @@ groups:
         type: int
         stability: development
         brief: "Deprecated, use `cpu.logical_number` instead."
+        deprecated:
+          reason: renamed
+          renamed_to: cpu.logical_number
         examples: [1]
