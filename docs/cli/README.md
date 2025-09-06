@@ -2,7 +2,7 @@
 linkTitle: CLI programs
 --->
 
-# Semantic conventions for Apps
+# Semantic conventions for CLI programs
 
 **Status**: [Development][DocumentStatus]
 
