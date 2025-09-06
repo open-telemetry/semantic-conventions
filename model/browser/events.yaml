@@ -52,3 +52,23 @@ groups:
           brief: A unique ID representing this particular metric instance.
           requirement_level: required
           examples: ["v3-1677874579383-6381583661209"]
+
+  - id: event.browser.page.view
+    stability: development
+    type: event
+    name: browser.page.view
+    brief: >
+      This event represents a browser page load/view.
+    note: >
+      The primary use case is to capture metrics about the number of views of
+      a page. Page view can be a hard page load in a browser as well as virtual
+      navigation in a SPA (single-page application). The event should be
+      collected as soon as possible without waiting for potentially delayed
+      data such as the Navigation timing browser API.
+    attributes:
+      - ref: browser.page.referrer_url
+        requirement_level: recommended
+      - ref: browser.page_view.type
+        requirement_level: required
+      - ref: url.full
+        requirement_level: required
