@@ -420,7 +420,7 @@ Examples of where `thread.id` and `thread.name` can be extracted from:
 Often a span is closely tied to a certain unit of code that is logically responsible for handling
 the operation that the span describes (usually the method that starts the span).
 For an HTTP server span, this would be the function that handles the incoming request, for example.
-The [code attributes](https://opentelemetry.io/docs/specs/semconv/code/#attributes) allow to report this unit of code
+The [code attributes](https://opentelemetry.io/docs/specs/semconv/registry/attributes/code/) allow to report this unit of code
 and therefore to provide more context.
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status

@@ -21,7 +21,6 @@ Semantic Conventions are defined for the following areas:
 
 * **[General](general/README.md): General Semantic Conventions**.
 * [CICD](cicd/README.md): Semantic Conventions for CICD systems.
-* [Code](code/README.md): Semantic Conventions for code.
 * [Cloud Providers](cloud-providers/README.md): Semantic Conventions for cloud providers libraries.
 * [CloudEvents](cloudevents/README.md): Semantic Conventions for the CloudEvents specification.
 * [Database](database/README.md): Semantic Conventions for database operations.
@@ -29,7 +28,7 @@ Semantic Conventions are defined for the following areas:
 * [FaaS](faas/README.md): Semantic Conventions for Function as a Service (FaaS) operations.
 * [Feature Flags](feature-flags/README.md): Semantic Conventions for feature flag evaluations.
 * [Generative AI](gen-ai/README.md): Semantic Conventions for generative AI (LLM, etc.) operations.
-* [GraphQL](graphql/graphql-spans.md): Semantic Conventions for GraphQL implementations.
+* [GraphQL](graphql/README.md): Semantic Conventions for GraphQL implementations.
 * [HTTP](http/README.md): Semantic Conventions for HTTP client and server operations.
 * [Messaging](messaging/README.md): Semantic Conventions for messaging operations and systems.
 * [Object Stores](object-stores/README.md): Semantic Conventions for object stores operations.
