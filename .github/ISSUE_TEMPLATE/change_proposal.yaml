@@ -41,6 +41,7 @@ body:
         - area:elasticsearch
         - area:enduser
         - area:error
+        - area:event
         - area:exception
         - area:faas
         - area:feature-flag
