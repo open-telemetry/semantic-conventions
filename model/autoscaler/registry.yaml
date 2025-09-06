@@ -1,0 +1,29 @@
+groups:
+  - id: registry.autoscaler
+    type: attribute_group
+    display_name: Auto Scaler Attributes
+    brief: >
+      This section defines attributes for auto scaling of hosts, containers, apps etc.
+    attributes:
+      - id: autoscaler.group.name
+        type: string
+        stability: development
+        brief: The name of the auto-scaling group
+        examples: "production"
+      - id: autoscaler.group.kind
+        brief: The kind of resource which belong is this group.
+        type:
+          members:
+            - id: app
+              value: "app"
+              brief: Application
+              stability: development
+            - id: container
+              value: "container"
+              brief: Container
+              stability: development
+            - id: vm
+              value: "vm"
+              brief: Virtual Machine
+              stability: development
+        stability: development

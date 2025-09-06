@@ -1,0 +1,12 @@
+groups:
+  - id: entity.autoscaler.group
+    type: entity
+    stability: development
+    name: autoscaler.group
+    brief: >
+      The Auto-scaling group which the resource belongs to.
+    attributes:
+      - ref: autoscaler.group.name
+        role: identifying
+      - ref: autoscaler.group.kind
+        role: descriptive
