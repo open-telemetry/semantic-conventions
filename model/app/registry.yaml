@@ -59,6 +59,14 @@ groups:
           The y (vertical) component of a screen coordinate, in screen pixels.
         stability: development
         examples: [ 12, 99 ]
+      - id: app.screen.name
+        type: string
+        stability: development
+        brief: The name of an application screen.
+        note: >
+          A screen represents a distinct view or page within an application, 
+          typically containing multiple widgets or UI components.
+        examples: ["Home", "Cart", "MainActivity"]
       - id: app.widget.id
         type: string
         stability: development
