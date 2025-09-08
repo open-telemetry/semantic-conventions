@@ -1854,9 +1854,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.container.cpu.request_utilization` | Gauge | `1` | The ratio of container CPU usage to its CPU request. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.container`](/docs/registry/entities/k8s.md#k8s-container) |
-
-**[1]:** The value range is [0.0,1.0]. A value of 1.0 means the container is using 100% of its CPU request.
+| `k8s.container.cpu.request_utilization` | Gauge | `1` | The ratio of container CPU usage to its CPU request. | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.container`](/docs/registry/entities/k8s.md#k8s-container) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

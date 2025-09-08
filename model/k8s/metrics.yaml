@@ -1166,8 +1166,6 @@ groups:
     brief: "The ratio of container CPU usage to its CPU request."
     entity_associations:
       - k8s.container
-    note: >
-      The value range is [0.0,1.0]. A value of 1.0 means the container is using 100% of its CPU request.
     instrument: gauge
     unit: "1"
 
