@@ -103,6 +103,7 @@ groups:
         type: string
         brief: The name of the GenAI model a request is being made to.
         examples: 'gpt-4'
+
       - id: gen_ai.request.max_tokens
         stability: development
         type: int
@@ -197,7 +198,9 @@ groups:
             - id: completion
               stability: development
               value: "output"
-              deprecated: "Replaced by `output`."
+              deprecated:
+                reason: renamed
+                renamed_to: "output"
               brief: 'Output tokens (completion, response, etc.)'
             - id: output
               stability: development
@@ -230,6 +233,7 @@ groups:
         type: string
         brief: Name of the tool utilized by the agent.
         examples: ["Flights"]
+
       - id: gen_ai.tool.call.id
         stability: development
         type: string
@@ -251,6 +255,91 @@ groups:
             Client-side operations are actions taken on the user's end or within the client application.
           Datastore: A tool used by the agent to access and query structured or unstructured external data for retrieval-augmented tasks or knowledge updates.
         examples: ['function', 'extension', 'datastore']
+
+      - id: gen_ai.tool.call.arguments
+        stability: development
+        type: any
+        brief: Parameters passed to the tool call.
+        note: |
+          > [!WARNING]
+          > This attribute may contain sensitive information.
+
+          It's expected to be an object - in case a serialized string is available
+          to the instrumentation, the instrumentation SHOULD do the best effort to
+          deserialize it to an object. When recorded on spans, it MAY be recorded as a JSON string if structured format is not supported and SHOULD be recorded in structured form otherwise.
+        examples:
+          - |
+              {
+                  "location": "San Francisco?",
+                  "date": "2025-10-01"
+              }
+
+      - id: gen_ai.tool.call.result
+        stability: development
+        type: any
+        brief: The result returned by the tool call (if any and if execution was successful).
+        note: |
+          > [!WARNING]
+          > This attribute may contain sensitive information.
+
+          It's expected to be an object - in case a serialized string is available
+          to the instrumentation, the instrumentation SHOULD do the best effort to
+          deserialize it to an object. When recorded on spans, it MAY be recorded as a JSON string if structured format is not supported and SHOULD be recorded in structured form otherwise.
+
+        examples:
+          - |
+              {
+                "temperature_range": {
+                  "high": 75,
+                  "low": 60
+                },
+                "conditions": "sunny"
+              }
+
+      - id: gen_ai.tool.definitions
+        stability: development
+        type: any
+        brief: The list of source system tool definitions available to the GenAI agent or model.
+        note: |
+          The value of this attribute matches source system tool definition format.
+
+          It's expected to be an array of objects where each object represents a tool definition. In case a serialized string is available
+          to the instrumentation, the instrumentation SHOULD do the best effort to
+          deserialize it to an array. When recorded on spans, it MAY be recorded as a JSON string if structured format is not supported and SHOULD be recorded in structured form otherwise.
+
+          Since this attribute could be large, it's NOT RECOMMENDED to populate
+          it by default. Instrumentations MAY provide a way to enable
+          populating this attribute.
+        examples:
+          - |
+              [
+                {
+                  "type": "function",
+                  "name": "get_current_weather",
+                  "description": "Get the current weather in a given location",
+                  "parameters": {
+                    "type": "object",
+                    "properties": {
+                      "location": {
+                        "type": "string",
+                        "description": "The city and state, e.g. San Francisco, CA"
+                      },
+                      "unit": {
+                        "type": "string",
+                        "enum": [
+                          "celsius",
+                          "fahrenheit"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "location",
+                      "unit"
+                    ]
+                  }
+                }
+              ]
+
       - id: gen_ai.data_source.id
         stability: development
         type: string
@@ -332,3 +421,173 @@ groups:
 
           Additional output format details may be recorded in the future in the
           `gen_ai.output.{type}.*` attributes.
+      - id: gen_ai.embeddings.dimension.count
+        stability: development
+        type: int
+        brief: The number of dimensions the resulting output embeddings should have.
+        examples: [512, 1024]
+      - id: gen_ai.system_instructions
+        stability: development
+        type: any
+        brief: The system message or instructions provided to the GenAI model
+          separately from the chat history.
+        note: |
+          This attribute SHOULD be used when the corresponding provider or API
+          allows to provide system instructions or messages separately from the
+          chat history.
+
+          Instructions that are part of the chat history SHOULD be recorded in
+          `gen_ai.input.messages` attribute instead.
+
+          Instrumentations MUST follow [System instructions JSON schema](/docs/gen-ai/gen-ai-system-instructions.json).
+
+          When recorded on spans, it MAY be recorded as a JSON string if structured
+          format is not supported and SHOULD be recorded in structured form otherwise.
+
+          Instrumentations MAY provide a way for users to filter or truncate
+          system instructions.
+
+          > [!Warning]
+          > This attribute may contain sensitive information.
+
+          See [Recording content on attributes](/docs/gen-ai/gen-ai-spans.md#recording-content-on-attributes)
+          section for more details.
+        examples:
+          - |
+              [
+                {
+                  "type": "text",
+                  "content": "You are an Agent that greet users, always use greetings tool to respond"
+                }
+              ]
+          - |
+              [
+                {
+                  "type": "text",
+                  "content": "You are a language translator."
+                },
+                {
+                  "type": "text",
+                  "content": "Your mission is to translate text in English to French."
+                }
+              ]
+      - id: gen_ai.input.messages
+        stability: development
+        type: any
+        brief: >
+          The chat history provided to the model as an input.
+        note: |
+          Instrumentations MUST follow [Input messages JSON schema](/docs/gen-ai/gen-ai-input-messages.json).
+          When the attribute is recorded on events, it MUST be recorded in structured
+          form. When recorded on spans, it MAY be recorded as a JSON string if structured
+          format is not supported and SHOULD be recorded in structured form otherwise.
+
+          Messages MUST be provided in the order they were sent to the model.
+          Instrumentations MAY provide a way for users to filter or truncate
+          input messages.
+
+          > [!Warning]
+          > This attribute is likely to contain sensitive information including user/PII data.
+
+          See [Recording content on attributes](/docs/gen-ai/gen-ai-spans.md#recording-content-on-attributes)
+          section for more details.
+        examples:
+          - |
+              [
+                {
+                  "role": "user",
+                  "parts": [
+                    {
+                      "type": "text",
+                      "content": "Weather in Paris?"
+                    }
+                  ]
+                },
+                {
+                  "role": "assistant",
+                  "parts": [
+                    {
+                      "type": "tool_call",
+                      "id": "call_VSPygqKTWdrhaFErNvMV18Yl",
+                      "name": "get_weather",
+                      "arguments": {
+                        "location": "Paris"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "role": "tool",
+                  "parts": [
+                    {
+                      "type": "tool_call_response",
+                      "id": " call_VSPygqKTWdrhaFErNvMV18Yl",
+                      "result": "rainy, 57°F"
+                    }
+                  ]
+                }
+              ]
+      - id: gen_ai.output.messages
+        stability: development
+        type: any
+        brief: Messages returned by the model where each message represents
+          a specific model response (choice, candidate).
+        note: |
+          Instrumentations MUST follow [Output messages JSON schema](/docs/gen-ai/gen-ai-output-messages.json)
+
+          Each message represents a single output choice/candidate generated by
+          the model. Each message corresponds to exactly one generation
+          (choice/candidate) and vice versa - one choice cannot be split across
+          multiple messages or one message cannot contain parts from multiple choices.
+
+          When the attribute is recorded on events, it MUST be recorded in structured
+          form. When recorded on spans, it MAY be recorded as a JSON string if structured
+          format is not supported and SHOULD be recorded in structured form otherwise.
+
+          Instrumentations MAY provide a way for users to filter or truncate
+          output messages.
+
+          > [!Warning]
+          > This attribute is likely to contain sensitive information including user/PII data.
+
+          See [Recording content on attributes](/docs/gen-ai/gen-ai-spans.md#recording-content-on-attributes)
+          section for more details.
+        examples:
+          - |
+              [
+                {
+                  "role": "assistant",
+                  "parts": [
+                    {
+                      "type": "text",
+                      "content": "The weather in Paris is currently rainy with a temperature of 57°F."
+                    }
+                  ],
+                  "finish_reason": "stop"
+                }
+              ]
+      - id: gen_ai.evaluation.name
+        stability: development
+        type: string
+        brief: The name of the evaluation metric used for the GenAI response.
+        examples: ["Relevance", "IntentResolution"]
+      - id: gen_ai.evaluation.score.value
+        stability: development
+        type: double
+        brief: The evaluation score returned by the evaluator.
+        examples: [4.0]
+      - id: gen_ai.evaluation.score.label
+        stability: development
+        type: string
+        brief: Human readable label for evaluation.
+        examples: ["relevant", "not_relevant", "correct", "incorrect", "pass", "fail"]
+        note: >
+          This attribute provides a human-readable interpretation of the evaluation score produced by an evaluator.
+          For example, a score value of 1 could mean "relevant" in one evaluation system and "not relevant" in another, depending on the scoring range and evaluator.
+          The label SHOULD have low cardinality.
+          Possible values depend on the evaluation metric and evaluator used; implementations SHOULD document the possible values.
+      - id: gen_ai.evaluation.explanation
+        stability: development
+        type: string
+        brief: A free-form explanation for the assigned score provided by the evaluator.
+        examples: ["The response is factually accurate but lacks sufficient detail to fully address the question."]

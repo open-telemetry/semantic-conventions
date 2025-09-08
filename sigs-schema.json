@@ -1,0 +1,71 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "areas": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name of the SIG."
+          },
+          "owner": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "The name of the owner (team user)."
+                },
+                "github": {
+                  "type": "string",
+                  "description": "The GitHub handle of the owner (team user)."
+                }
+              },
+              "required": ["name", "github"]
+            },
+            "description": "List of owners for the SIG, which can include individuals or teams."
+          },
+          "project": {
+            "type": "string",
+            "format": "uri",
+            "description": "The URL of the project associated with the SIG, which must be defined in the OpenTelemetry community repository."
+          },
+          "status": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string",
+              "enum": [
+                "needs_staffing",
+                "not_accepting_changes",
+                "accepting_contributions",
+                "active",
+                "inactive"
+              ]
+            },
+            "description": "A list of predefined labels representing the SIG's state or needs."
+          },
+          "labels": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string",
+              "description": "Labels representing the areas this SIG is responsible for (e.g., area:k8s, area:database)."
+            },
+            "description": "A list of areas assigned to the SIG. Used for automation and context mapping."
+          },
+          "notes": {
+            "type": "string",
+            "description": "Additional notes about the SIG."
+          }
+        },
+        "required": ["name", "labels", "status"]
+      }
+    }
+  },
+  "required": ["areas"]
+}

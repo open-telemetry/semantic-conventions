@@ -69,7 +69,7 @@ groups:
           value that should populate `fork_name`. `filename.extension` should populate `file.name`, and `extension`
           should populate `file.extension`. The full path, `file.path`, will include the fork name.
         stability: development
-        examples: ['Zone.Identifer']
+        examples: ['Zone.Identifier']
       - id: file.group.id
         type: string
         brief: >

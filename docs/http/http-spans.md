@@ -62,7 +62,7 @@ and various HTTP versions like 1.1, 2 and SPDY.
 
 ## Name
 
-HTTP spans MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.46.0/specification/trace/api.md#span).
+HTTP spans MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.48.0/specification/trace/api.md#span).
 
 HTTP span names SHOULD be `{method} {target}` if there is a (low-cardinality) `target` available. If there is no (low-cardinality) `{target}` available, HTTP span names SHOULD be `{method}`.
 
@@ -81,7 +81,7 @@ Instrumentation MUST NOT default to using URI path as a `{target}`.
 
 ## Status
 
-[Span Status](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.46.0/specification/trace/api.md#set-status) MUST be left unset if HTTP status code was in the
+[Span Status](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.48.0/specification/trace/api.md#set-status) MUST be left unset if HTTP status code was in the
 1xx, 2xx or 3xx ranges, unless there was another error (e.g., network error receiving
 the response body; or 3xx codes with max redirects exceeded), in which case status
 MUST be set to `Error`.
@@ -171,8 +171,9 @@ There are two ways HTTP client spans can be implemented in an instrumentation:
 | [`user_agent.synthetic.type`](/docs/registry/attributes/user-agent.md) | string | Specifies the category of synthetic traffic, such as tests or bots. [15] | `bot`; `test` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `http.request.method`:** HTTP request method value SHOULD be "known" to the instrumentation.
-By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
-and the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
+By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods),
+the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html)
+and the QUERY method defined in [httpbis-safe-method-w-body](https://datatracker.ietf.org/doc/draft-ietf-httpbis-safe-method-w-body/?include_text=1).
 
 If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `_OTHER`.
 
@@ -320,6 +321,7 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | `PATCH` | PATCH method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `POST` | POST method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `PUT` | PUT method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `QUERY` | QUERY method. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `TRACE` | TRACE method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ---
@@ -472,8 +474,9 @@ This span represents an inbound HTTP request.
 | [`user_agent.synthetic.type`](/docs/registry/attributes/user-agent.md) | string | Specifies the category of synthetic traffic, such as tests or bots. [18] | `bot`; `test` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `http.request.method`:** HTTP request method value SHOULD be "known" to the instrumentation.
-By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
-and the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
+By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods),
+the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html)
+and the QUERY method defined in [httpbis-safe-method-w-body](https://datatracker.ietf.org/doc/draft-ietf-httpbis-safe-method-w-body/?include_text=1).
 
 If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `_OTHER`.
 
@@ -614,6 +617,7 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | `PATCH` | PATCH method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `POST` | POST method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `PUT` | PUT method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `QUERY` | QUERY method. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `TRACE` | TRACE method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ---
@@ -815,4 +819,4 @@ Span name: `POST /uploads/:document_id`.
 | `error.type`         | `WebSocketDisconnect`                           |
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
-[SpanProcessor]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.46.0/specification/trace/sdk.md#span-processor
+[SpanProcessor]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.48.0/specification/trace/sdk.md#span-processor
