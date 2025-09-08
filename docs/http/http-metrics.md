@@ -129,11 +129,13 @@ If the request has completed successfully, instrumentations SHOULD NOT set `erro
 **[4] `http.route`:** MUST NOT be populated when this is not supported by the HTTP server framework as the route attribute should have low-cardinality and the URI path can NOT substitute it.
 SHOULD include the [application root](/docs/http/http-spans.md#http-server-definitions) if there is one.
 
-A static path segment is a part of the route template with a fixed, low-cardinality value. This includes literal strings like `/users/` and placeholders that are constrained to a finite, predefined set of values `{controller}` or `{action}`.
+A static path segment is a part of the route template with a fixed, low-cardinality value. This includes literal strings like `/users/` and placeholders that
+are constrained to a finite, predefined set of values `{controller}` or `{action}`.
 
 A dynamic path segment is a placeholder for a value that can have high cardinality and is not constrained to a predefined list like `{id}`.
 
-Instrumentations SHOULD use routing information provided by the corresponding web framework. They SHOULD pick the most precise source of routing information and MAY support custom route formatting. Instrumentations SHOULD document the format and the API used to obtain the route string.
+Instrumentations SHOULD use routing information provided by the corresponding web framework. They SHOULD pick the most precise source of routing information and MAY
+support custom route formatting. Instrumentations SHOULD document the format and the API used to obtain the route string.
 
 **[5] `network.protocol.name`:** The value SHOULD be normalized to lowercase.
 
@@ -332,11 +334,13 @@ If the request has completed successfully, instrumentations SHOULD NOT set `erro
 **[4] `http.route`:** MUST NOT be populated when this is not supported by the HTTP server framework as the route attribute should have low-cardinality and the URI path can NOT substitute it.
 SHOULD include the [application root](/docs/http/http-spans.md#http-server-definitions) if there is one.
 
-A static path segment is a part of the route template with a fixed, low-cardinality value. This includes literal strings like `/users/` and placeholders that are constrained to a finite, predefined set of values `{controller}` or `{action}`.
+A static path segment is a part of the route template with a fixed, low-cardinality value. This includes literal strings like `/users/` and placeholders that
+are constrained to a finite, predefined set of values `{controller}` or `{action}`.
 
 A dynamic path segment is a placeholder for a value that can have high cardinality and is not constrained to a predefined list like `{id}`.
 
-Instrumentations SHOULD use routing information provided by the corresponding web framework. They SHOULD pick the most precise source of routing information and MAY support custom route formatting. Instrumentations SHOULD document the format and the API used to obtain the route string.
+Instrumentations SHOULD use routing information provided by the corresponding web framework. They SHOULD pick the most precise source of routing information and MAY
+support custom route formatting. Instrumentations SHOULD document the format and the API used to obtain the route string.
 
 **[5] `network.protocol.name`:** The value SHOULD be normalized to lowercase.
 
@@ -464,11 +468,13 @@ If the request has completed successfully, instrumentations SHOULD NOT set `erro
 **[4] `http.route`:** MUST NOT be populated when this is not supported by the HTTP server framework as the route attribute should have low-cardinality and the URI path can NOT substitute it.
 SHOULD include the [application root](/docs/http/http-spans.md#http-server-definitions) if there is one.
 
-A static path segment is a part of the route template with a fixed, low-cardinality value. This includes literal strings like `/users/` and placeholders that are constrained to a finite, predefined set of values `{controller}` or `{action}`.
+A static path segment is a part of the route template with a fixed, low-cardinality value. This includes literal strings like `/users/` and placeholders that
+are constrained to a finite, predefined set of values `{controller}` or `{action}`.
 
 A dynamic path segment is a placeholder for a value that can have high cardinality and is not constrained to a predefined list like `{id}`.
 
-Instrumentations SHOULD use routing information provided by the corresponding web framework. They SHOULD pick the most precise source of routing information and MAY support custom route formatting. Instrumentations SHOULD document the format and the API used to obtain the route string.
+Instrumentations SHOULD use routing information provided by the corresponding web framework. They SHOULD pick the most precise source of routing information and MAY
+support custom route formatting. Instrumentations SHOULD document the format and the API used to obtain the route string.
 
 **[5] `network.protocol.name`:** The value SHOULD be normalized to lowercase.
 
