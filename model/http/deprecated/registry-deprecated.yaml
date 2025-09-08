@@ -128,7 +128,7 @@ groups:
               value: 'QUIC'
               brief: 'QUIC protocol.'
               stability: development
-        brief: 'Deprecated, use `network.protocol.name` instead.'
+        brief: 'Deprecated, use `network.protocol.name` and `network.protocol.version` instead.'
         deprecated:
           reason: renamed
           renamed_to: network.protocol.name
