@@ -6,7 +6,7 @@ linkTitle: Browser
 
 **Status**: [Development][DocumentStatus]
 
-This document defines semantic conventions for Browser events.
+This document defines semantic conventions for Browser.
 
 Semantic conventions are defined for the following signals:
 

@@ -6,7 +6,7 @@ linkTitle: OpenTelemetry SDK
 
 **Status**: [Development][DocumentStatus]
 
-This document defines semantic conventions for OpenTelemetry SDK.
+This document defines semantic conventions for telemetry emitted by the OpenTelemetry SDK components.
 
 Semantic conventions are defined for the following signals:
 

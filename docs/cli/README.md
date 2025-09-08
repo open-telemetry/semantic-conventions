@@ -6,7 +6,7 @@ linkTitle: CLI programs
 
 **Status**: [Development][DocumentStatus]
 
-Semantic conventions for CLI are defined for the following signals:
+Semantic conventions for CLI programs are defined for the following signals:
 
 * [CLI Spans](cli-spans.md)
 
