@@ -103,5 +103,30 @@
 | `windows` | Microsoft Windows | ![Development](https://img.shields.io/badge/-development-blue) |
 | `zos` | IBM z/OS | ![Development](https://img.shields.io/badge/-development-blue) |
 
+---
+
+**Sourcing Attribute Values:**
+
+SHOULD the value not be provided natively via the SDK the following sources can be used:
+
+| Attribute | Implementation | Location |
+| --- | --- | --- |
+| [`os.build_id`](/docs/registry/attributes/os.md) | Linux | `BUILD_ID` from `/etc/os-release` or `/usr/lib/os-release` |
+| [`os.build_id`](/docs/registry/attributes/os.md) | MacOS | `ProductBuildVersion` from `/System/Library/CoreServices/SystemVersion.plist` or `/System/Library/CoreServices/ServerVersion.plist` |
+| [`os.build_id`](/docs/registry/attributes/os.md) | Windows | `CurrentBuildNumber` from registry `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion` |
+| [`os.description`](/docs/registry/attributes/os.md) | Linux | `PRETTY_NAME` from `/etc/os-release` or `/usr/lib/os-release` |
+| [`os.description`](/docs/registry/attributes/os.md) | Windows | Concatentation of `ProductName` & `DisplayVersion` from registry `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion` |
+| [`os.family`](/docs/registry/attributes/os.md) | Linux | `ID_LIKE` from `/etc/os-release` or `/usr/lib/os-release` |
+| [`os.id`](/docs/registry/attributes/os.md) | Linux | `ID` from `/etc/os-release` or `/usr/lib/os-release` |
+| [`os.name`](/docs/registry/attributes/os.md) | Linux | `NAME` from `/etc/os-release` or `/usr/lib/os-release` |
+| [`os.name`](/docs/registry/attributes/os.md) | MacOS | `ProductName` from `/System/Library/CoreServices/SystemVersion.plist` or `/System/Library/CoreServices/ServerVersion.plist` |
+| [`os.name`](/docs/registry/attributes/os.md) | Windows | Hard coded to "Windows" |
+| [`os.variant.id`](/docs/registry/attributes/os.md) | Linux | `VARIANT_ID` from `/etc/os-release` or `/usr/lib/os-release` |
+| [`os.variant.id`](/docs/registry/attributes/os.md) | Windows | `EditionID` from registry `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion` |
+| [`os.variant.name`](/docs/registry/attributes/os.md) | Linux | `VARIANT` from `/etc/os-release` or `/usr/lib/os-release` |
+| [`os.version`](/docs/registry/attributes/os.md) | Linux | `VERSION_ID` from `/etc/os-release` or `/usr/lib/os-release` |
+| [`os.version`](/docs/registry/attributes/os.md) | MacOS | `ProductVersion` from `/System/Library/CoreServices/SystemVersion.plist` or `/System/Library/CoreServices/ServerVersion.plist` |
+| [`os.version`](/docs/registry/attributes/os.md) | Windows | `WinREVersion` from registry `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion` |
+
 
 <!-- markdownlint-restore -->
