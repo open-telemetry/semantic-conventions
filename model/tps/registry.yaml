@@ -61,13 +61,12 @@ groups:
         stability: development
         brief: Determines the type of commit mode processing that IMS performs.
         type:
-          members: 
-          - id: commit_then_send
-            value: '0'
-            brief: IMS commits the IMS database changes and then sends the output to the client
-            stability: development
-          - id: send_then_commit
-            value: '1'
-            brief: IMS sends the output to the client and then commits the IMS database changes
-            stability: development
-
+          members:
+            - id: commit_then_send
+              value: '0'
+              brief: IMS commits the IMS database changes and then sends the output to the client
+              stability: development
+            - id: send_then_commit
+              value: '1'
+              brief: IMS sends the output to the client and then commits the IMS database changes
+              stability: development
