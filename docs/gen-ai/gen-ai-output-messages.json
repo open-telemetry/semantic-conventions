@@ -1,5 +1,62 @@
 {
     "$defs": {
+        "BlobPart": {
+            "additionalProperties": true,
+            "properties": {
+                "type": {
+                    "const": "blob",
+                    "description": "The type of the content captured in this part.",
+                    "title": "Type",
+                    "type": "string"
+                },
+                "mime_type": {
+                    "description": "The IANA MIME type of the attached data.",
+                    "title": "Mime Type",
+                    "type": "string"
+                },
+                "data": {
+                    "description": "base64 encoded bytes of the attached data.",
+                    "format": "binary",
+                    "title": "Data",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "type",
+                "mime_type",
+                "data"
+            ],
+            "title": "BlobPart",
+            "type": "object"
+        },
+        "FileDataPart": {
+            "additionalProperties": true,
+            "properties": {
+                "type": {
+                    "const": "file_data",
+                    "description": "The type of the content captured in this part.",
+                    "title": "Type",
+                    "type": "string"
+                },
+                "mime_type": {
+                    "description": "The IANA MIME type of the attached data.",
+                    "title": "Mime Type",
+                    "type": "string"
+                },
+                "file_uri": {
+                    "description": "A URI referencing to reference attached data. Should be recorded without modification, as it was sent to the model.",
+                    "title": "File Uri",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "type",
+                "mime_type",
+                "file_uri"
+            ],
+            "title": "FileDataPart",
+            "type": "object"
+        },
         "FinishReason": {
             "description": "Represents the reason for finishing the generation.",
             "enum": [
@@ -56,6 +113,12 @@
                             },
                             {
                                 "$ref": "#/$defs/ToolCallResponsePart"
+                            },
+                            {
+                                "$ref": "#/$defs/BlobPart"
+                            },
+                            {
+                                "$ref": "#/$defs/FileDataPart"
                             },
                             {
                                 "$ref": "#/$defs/GenericPart"
