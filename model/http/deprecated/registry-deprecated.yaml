@@ -130,8 +130,8 @@ groups:
               stability: development
         brief: 'Deprecated, use `network.protocol.name` and `network.protocol.version` instead.'
         deprecated:
-          reason: renamed
-          renamed_to: network.protocol.name
+          reason: uncategorized
+          note: "Split into `network.protocol.name` and `network.protocol.version`"
         stability: development
       - id: http.user_agent
         type: string
