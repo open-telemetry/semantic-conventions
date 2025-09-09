@@ -28,19 +28,6 @@ groups:
                   `PRETTY_NAME` from `/etc/os-release` or `/usr/lib/os-release`
               - implementation: Windows
                 location: Concatentation of `ProductName` & `DisplayVersion` from registry `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion`
-        note: >
-          SHOULD the value not be provided natively via the SDK the following system sources can be used:
-
-
-          | OS | Fallback |
-
-          | ------- | ------- |
-
-          | Windows | Concatentation of `ProductName` & `DisplayVersion` from registry `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion` |
-
-          | MacOS | - |
-
-          | Linux | `PRETTY_NAME` from `/etc/os-release` or `/usr/lib/os-release` |
       - ref: os.family
         annotations:
           docs:
@@ -48,15 +35,6 @@ groups:
               - implementation: Linux
                 location: >
                   `ID_LIKE` from `/etc/os-release` or `/usr/lib/os-release`
-        note: >
-          SHOULD the value not be provided natively via the SDK the following system sources can be used:
-
-
-          | OS | Fallback |
-
-          | ------- | ------- |
-
-          | Linux | `ID_LIKE` from `/etc/os-release` or `/usr/lib/os-release` |
       - ref: os.name
         annotations:
           docs:
@@ -69,19 +47,6 @@ groups:
                   `ProductName` from `/System/Library/CoreServices/SystemVersion.plist` or `/System/Library/CoreServices/ServerVersion.plist`
               - implementation: Windows
                 location: Hard coded to "Windows"
-        note: >
-          SHOULD the value not be provided natively via the SDK the following system sources can be used:
-
-
-          | OS | Fallback |
-
-          | ------- | ------- |
-
-          | Windows | "Windows" |
-
-          | MacOS | `ProductName` from `/System/Library/CoreServices/SystemVersion.plist` or `/System/Library/CoreServices/ServerVersion.plist` |
-
-          | Linux | `NAME` from `/etc/os-release` or `/usr/lib/os-release` |
       - ref: os.version
         annotations:
           docs:
@@ -95,19 +60,6 @@ groups:
               - implementation: Windows
                 location: |
                   `WinREVersion` from registry `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion`
-        note: >
-          SHOULD the value not be provided natively via the SDK the following system sources can be used:
-
-
-          | OS | Fallback |
-
-          | ------- | ------- |
-
-          | Windows | `WinREVersion` from registry `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion` |
-
-          | MacOS | `ProductVersion` from `/System/Library/CoreServices/SystemVersion.plist` or `/System/Library/CoreServices/ServerVersion.plist` |
-
-          | Linux | `VERSION_ID` from `/etc/os-release` or `/usr/lib/os-release` |
       - ref: os.build_id
         annotations:
           docs:
@@ -121,19 +73,6 @@ groups:
               - implementation: Windows
                 location: |
                   `CurrentBuildNumber` from registry `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion`
-        note: >
-          SHOULD the value not be provided natively via the SDK the following system sources can be used:
-
-
-          | OS | Fallback |
-
-          | ------- | ------- |
-
-          | Windows | `CurrentBuildNumber` from registry `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion` |
-
-          | MacOS | `ProductBuildVersion` from `/System/Library/CoreServices/SystemVersion.plist` or `/System/Library/CoreServices/ServerVersion.plist` |
-
-          | Linux | `BUILD_ID` from `/etc/os-release` or `/usr/lib/os-release` |
       - ref: os.variant.id
         annotations:
           docs:
@@ -144,19 +83,6 @@ groups:
               - implementation: Windows
                 location: |
                   `EditionID` from registry `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion`
-        note: >
-          SHOULD the value not be provided natively via the SDK the following system sources can be used:
-
-
-          | OS | Fallback |
-
-          | ------- | ------- |
-
-          | Windows | `EditionID` from registry `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion` |
-
-          | MacOS | - |
-
-          | Linux | `VARIANT_ID` from `/etc/os-release` or `/usr/lib/os-release` |
       - ref: os.variant.name
         annotations:
           docs:
@@ -164,14 +90,3 @@ groups:
               - implementation: Linux
                 location: |
                   `VARIANT` from `/etc/os-release` or `/usr/lib/os-release`
-        note: >
-          SHOULD the value not be provided natively via the SDK the following system sources can be used:
-
-
-          | OS | Fallback |
-
-          | ------- | ------- |
-
-          | MacOS | - |
-
-          | Linux | `VARIANT` from `/etc/os-release` or `/usr/lib/os-release` |

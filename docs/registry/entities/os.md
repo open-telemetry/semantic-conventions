@@ -32,58 +32,63 @@
 
 **[1] `os.id`:** On linux this is to be the id from the os.release file.
 
-**[2] `os.build_id`:** SHOULD the value not be provided natively via the SDK the following system sources can be used:
+SHOULD the value not be provided natively via the SDK the following sources can be used:
 
-| OS | Fallback |
-| ------- | ------- |
-| Windows | `CurrentBuildNumber` from registry `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion` |
-| MacOS | `ProductBuildVersion` from `/System/Library/CoreServices/SystemVersion.plist` or `/System/Library/CoreServices/ServerVersion.plist` |
+| Implementation | Location |
+| --- | --- |
+| Linux | `ID` from `/etc/os-release` or `/usr/lib/os-release` |
+
+**[2] `os.build_id`:** SHOULD the value not be provided natively via the SDK the following sources can be used:
+
+| Implementation | Location |
+| --- | --- |
 | Linux | `BUILD_ID` from `/etc/os-release` or `/usr/lib/os-release` |
+| MacOS | `ProductBuildVersion` from `/System/Library/CoreServices/SystemVersion.plist` or `/System/Library/CoreServices/ServerVersion.plist` |
+| Windows | `CurrentBuildNumber` from registry `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion` |
 
-**[3] `os.description`:** SHOULD the value not be provided natively via the SDK the following system sources can be used:
+**[3] `os.description`:** SHOULD the value not be provided natively via the SDK the following sources can be used:
 
-| OS | Fallback |
-| ------- | ------- |
-| Windows | Concatentation of `ProductName` & `DisplayVersion` from registry `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion` |
-| MacOS | - |
+| Implementation | Location |
+| --- | --- |
 | Linux | `PRETTY_NAME` from `/etc/os-release` or `/usr/lib/os-release` |
+| Windows | Concatentation of `ProductName` & `DisplayVersion` from registry `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion` |
 
-**[4] `os.family`:** SHOULD the value not be provided natively via the SDK the following system sources can be used:
+**[4] `os.family`:** This collection should only be used to describe the parent OS's and not the child OS's. For example `Fedora` would have `RHEL` but `RHEL` would not have `Fedora`.
 
-| OS | Fallback |
-| ------- | ------- |
+SHOULD the value not be provided natively via the SDK the following sources can be used:
+
+| Implementation | Location |
+| --- | --- |
 | Linux | `ID_LIKE` from `/etc/os-release` or `/usr/lib/os-release` |
 
-**[5] `os.name`:** SHOULD the value not be provided natively via the SDK the following system sources can be used:
+**[5] `os.name`:** SHOULD the value not be provided natively via the SDK the following sources can be used:
 
-| OS | Fallback |
-| ------- | ------- |
-| Windows | "Windows" |
-| MacOS | `ProductName` from `/System/Library/CoreServices/SystemVersion.plist` or `/System/Library/CoreServices/ServerVersion.plist` |
+| Implementation | Location |
+| --- | --- |
 | Linux | `NAME` from `/etc/os-release` or `/usr/lib/os-release` |
+| MacOS | `ProductName` from `/System/Library/CoreServices/SystemVersion.plist` or `/System/Library/CoreServices/ServerVersion.plist` |
+| Windows | Hard coded to "Windows" |
 
-**[6] `os.variant.id`:** SHOULD the value not be provided natively via the SDK the following system sources can be used:
+**[6] `os.variant.id`:** SHOULD the value not be provided natively via the SDK the following sources can be used:
 
-| OS | Fallback |
-| ------- | ------- |
-| Windows | `EditionID` from registry `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion` |
-| MacOS | - |
+| Implementation | Location |
+| --- | --- |
 | Linux | `VARIANT_ID` from `/etc/os-release` or `/usr/lib/os-release` |
+| Windows | `EditionID` from registry `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion` |
 
-**[7] `os.variant.name`:** SHOULD the value not be provided natively via the SDK the following system sources can be used:
+**[7] `os.variant.name`:** SHOULD the value not be provided natively via the SDK the following sources can be used:
 
-| OS | Fallback |
-| ------- | ------- |
-| MacOS | - |
+| Implementation | Location |
+| --- | --- |
 | Linux | `VARIANT` from `/etc/os-release` or `/usr/lib/os-release` |
 
-**[8] `os.version`:** SHOULD the value not be provided natively via the SDK the following system sources can be used:
+**[8] `os.version`:** SHOULD the value not be provided natively via the SDK the following sources can be used:
 
-| OS | Fallback |
-| ------- | ------- |
-| Windows | `WinREVersion` from registry `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion` |
-| MacOS | `ProductVersion` from `/System/Library/CoreServices/SystemVersion.plist` or `/System/Library/CoreServices/ServerVersion.plist` |
+| Implementation | Location |
+| --- | --- |
 | Linux | `VERSION_ID` from `/etc/os-release` or `/usr/lib/os-release` |
+| MacOS | `ProductVersion` from `/System/Library/CoreServices/SystemVersion.plist` or `/System/Library/CoreServices/ServerVersion.plist` |
+| Windows | `WinREVersion` from registry `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion` |
 
 ---
 
@@ -102,7 +107,6 @@
 | `solaris` | SunOS, Oracle Solaris | ![Development](https://img.shields.io/badge/-development-blue) |
 | `windows` | Microsoft Windows | ![Development](https://img.shields.io/badge/-development-blue) |
 | `zos` | IBM z/OS | ![Development](https://img.shields.io/badge/-development-blue) |
-
 ---
 
 **Sourcing Attribute Values:**
