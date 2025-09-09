@@ -6,10 +6,10 @@ groups:
     extends: span.tps.http.server
     span_kind: server
     attributes:
-      - ref: tps.system
+      - ref: tps.system.name
         requirement_level: required
         examples: 'ibm.cics'
-      - ref: ibm.cics.transaction.group_id
+      - ref: ibm.cics.transaction.group.id
 
   - id: span.ibm.cics.rpc.server
     type: span
@@ -18,11 +18,11 @@ groups:
     extends: span.tps.rpc.server
     span_kind: server
     attributes:
-      - ref: tps.system
+      - ref: tps.system.name
         requirement_level: required
         examples: 'ibm.cics'
       - ref: network.protocol.name
         examples: ['ipic', 'mro']
       - ref: rpc.system
         examples: ['dpl', 'rmi']
-      - ref: ibm.cics.transaction.group_id
+      - ref: ibm.cics.transaction.group.id

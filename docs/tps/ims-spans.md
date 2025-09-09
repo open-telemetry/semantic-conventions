@@ -11,27 +11,35 @@ This documents defines for spans of IBM Information Management System (IMS) for 
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
+
+This group defines semantic conventions for Remote Procedure Call (RPC) server spans of IBM Information Management System (IMS) for z/OS
+
+**Span kind** SHOULD be `SERVER`.
+
+**Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
+
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`rpc.system`](/docs/attributes-registry/rpc.md) | string | A string identifying the remoting system. See below for a list of well-known identifiers. | `otma`; `odbm` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`server.address`](/docs/attributes-registry/server.md) | string | RPC server [host name](https://grpc.github.io/grpc/core/md_doc_naming.html). [1] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`tps.system`](/docs/attributes-registry/tps.md) | string | Type of Transaction Processing System | `ibm.ims` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`tps.transaction.id`](/docs/attributes-registry/tps.md) | string | Identifier of the transaction initiated by a user or system request | `TRX1` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [2] | `80`; `8080`; `443` | `Conditionally Required` [3] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`client.address`](/docs/attributes-registry/client.md) | string | Client address - domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [4] | `client.example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`client.port`](/docs/attributes-registry/client.md) | int | Client port number. [5] | `65123` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`ibm.ims.commit_mode`](/docs/attributes-registry/ibm.md) | string | Determines the type of commit mode processing that IMS performs. | `0`; `1` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`network.peer.address`](/docs/attributes-registry/network.md) | string | Peer address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.peer.port`](/docs/attributes-registry/network.md) | int | Peer port number of the network connection. | `65123` | `Recommended` If `network.peer.address` is set. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.transport`](/docs/attributes-registry/network.md) | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [6] | `tcp`; `udp` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.type`](/docs/attributes-registry/network.md) | string | [OSI network layer](https://wikipedia.org/wiki/Network_layer) or non-OSI equivalent. [7] | `ipv4`; `ipv6` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`rpc.method`](/docs/attributes-registry/rpc.md) | string | The name of the (logical) method being called, must be equal to the $method part in the span name. [8] | `exampleMethod` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`rpc.service`](/docs/attributes-registry/rpc.md) | string | The full (logical) name of the service being called, including its package name, if applicable. [9] | `myservice.EchoService` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`tps.program.name`](/docs/attributes-registry/tps.md) | string | Program name executed by the task | `PROG123` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`tps.region.id`](/docs/attributes-registry/tps.md) | string | Runtime environment within the Transaction Processing System | `PRD1` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`tps.task.id`](/docs/attributes-registry/tps.md) | string | Identifier of the task created to run the transaction | `1554` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`tps.transaction.owner`](/docs/attributes-registry/tps.md) | string | Identifier of the user owning the transaction | `USER` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`tps.unit_of_work.id`](/docs/attributes-registry/tps.md) | string | Unit of work executed by the program | `DF308CBF385A3C05` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`rpc.system`](/docs/registry/attributes/rpc.md) | string | A string identifying the remoting system. See below for a list of well-known identifiers. | `otma`; `odbm` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`server.address`](/docs/registry/attributes/server.md) | string | RPC server [host name](https://grpc.github.io/grpc/core/md_doc_naming.html). [1] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`tps.system.name`](/docs/registry/attributes/tps.md) | string | Type of Transaction Processing System | `ibm.ims` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`tps.transaction.id`](/docs/registry/attributes/tps.md) | string | Identifier of the transaction initiated by a user or system request | `TRX1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`server.port`](/docs/registry/attributes/server.md) | int | Server port number. [2] | `80`; `8080`; `443` | `Conditionally Required` [3] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`client.address`](/docs/registry/attributes/client.md) | string | Client address - domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [4] | `client.example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`client.port`](/docs/registry/attributes/client.md) | int | Client port number. [5] | `65123` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`ibm.ims.commit_mode`](/docs/registry/attributes/ibm.md) | string | Determines the type of commit mode processing that IMS performs. | `0`; `1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`network.peer.address`](/docs/registry/attributes/network.md) | string | Peer address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.peer.port`](/docs/registry/attributes/network.md) | int | Peer port number of the network connection. | `65123` | `Recommended` If `network.peer.address` is set. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.transport`](/docs/registry/attributes/network.md) | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [6] | `tcp`; `udp` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.type`](/docs/registry/attributes/network.md) | string | [OSI network layer](https://wikipedia.org/wiki/Network_layer) or non-OSI equivalent. [7] | `ipv4`; `ipv6` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`rpc.method`](/docs/registry/attributes/rpc.md) | string | The name of the (logical) method being called, must be equal to the $method part in the span name. [8] | `exampleMethod` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`rpc.service`](/docs/registry/attributes/rpc.md) | string | The full (logical) name of the service being called, including its package name, if applicable. [9] | `myservice.EchoService` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`tps.program.name`](/docs/registry/attributes/tps.md) | string | Program name executed by the task | `PROG123` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`tps.region.id`](/docs/registry/attributes/tps.md) | string | On z/OS, identifies the entity acting as runtime environment to execute tasks of transactions within the Transaction Processing System | `PRD1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`tps.task.id`](/docs/registry/attributes/tps.md) | string | Identifier of the task created to run the transaction | `1554` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`tps.transaction.owner`](/docs/registry/attributes/tps.md) | string | Identifier of the user owning the transaction | `USER` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`tps.unit_of_work.id`](/docs/registry/attributes/tps.md) | string | Unit of work executed by the program | `DF308CBF385A3C05` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `server.address`:** May contain server IP address, DNS name, or local socket name. When host component is an IP address, instrumentations SHOULD NOT do a reverse proxy lookup to obtain DNS name and SHOULD set `server.address` to the IP address provided in the host component.
 
@@ -57,12 +65,21 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 ---
 
+`ibm.ims.commit_mode` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `0` | IMS commits the IMS database changes and then sends the output to the client | ![Development](https://img.shields.io/badge/-development-blue) |
+| `1` | IMS sends the output to the client and then commits the IMS database changes | ![Development](https://img.shields.io/badge/-development-blue) |
+
+---
+
 `network.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `pipe` | Named or anonymous pipe. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `quic` | QUIC | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `quic` | QUIC | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `tcp` | TCP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `udp` | UDP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `unix` | Unix domain socket | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -82,11 +99,11 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `apache_dubbo` | Apache Dubbo | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `connect_rpc` | Connect RPC | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `dotnet_wcf` | .NET WCF | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `grpc` | gRPC | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `java_rmi` | Java RMI | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `apache_dubbo` | Apache Dubbo | ![Development](https://img.shields.io/badge/-development-blue) |
+| `connect_rpc` | Connect RPC | ![Development](https://img.shields.io/badge/-development-blue) |
+| `dotnet_wcf` | .NET WCF | ![Development](https://img.shields.io/badge/-development-blue) |
+| `grpc` | gRPC | ![Development](https://img.shields.io/badge/-development-blue) |
+| `java_rmi` | Java RMI | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

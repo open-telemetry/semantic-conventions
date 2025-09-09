@@ -72,7 +72,7 @@ Currently, the following namespaces exist:
 - [Heroku](heroku.md)
 - [Host](host.md)
 - [HTTP](http.md)
-- [Ibm](ibm.md)
+- [IBM](ibm.md)
 - [iOS](ios.md)
 - [JVM](jvm.md)
 - [K8s](k8s.md)

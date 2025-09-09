@@ -6,7 +6,7 @@ groups:
     extends: span.http.server
     span_kind: server
     attributes:
-      - ref: tps.system
+      - ref: tps.system.name
         requirement_level: required
       - ref: tps.transaction.id
         requirement_level: required
@@ -23,7 +23,7 @@ groups:
     extends: span.rpc.server
     span_kind: server
     attributes:
-      - ref: tps.system
+      - ref: tps.system.name
         requirement_level: required
       - ref: tps.transaction.id
         requirement_level: required

@@ -6,7 +6,7 @@ groups:
     extends: span.tps.rpc.server
     span_kind: server
     attributes:
-      - ref: tps.system
+      - ref: tps.system.name
         requirement_level: required
         examples: 'ibm.ims'
       - ref: ibm.ims.commit_mode

@@ -46,7 +46,7 @@ groups:
     display_name: IBM Customer Information Control System (CICS)
     brief: This group defines attributes for the IBM CICS Transaction Server for z/OS
     attributes:
-      - id: ibm.cics.transaction.group_id
+      - id: ibm.cics.transaction.group.id
         type: string
         stability: development
         brief: Describes the group ID assigned at transaction attach time and can be used to correlate the transactions that CICS runs for the same incoming work request.
@@ -58,16 +58,16 @@ groups:
     brief: This group defines attributes for IBM Information Management System (IMS) for z/OS
     attributes:
       - id: ibm.ims.commit_mode
-        type: string
         stability: development
         brief: Determines the type of commit mode processing that IMS performs.
-        members: 
-        - id: commit_then_send
-          value: '0'
-          brief: IMS commits the IMS database changes and then sends the output to the client
-          stability: development
-        - id: send_then_commit
-          value: '1'
-          brief: IMS sends the output to the client and then commits the IMS database changes
-          stability: development
+        type:
+          members: 
+          - id: commit_then_send
+            value: '0'
+            brief: IMS commits the IMS database changes and then sends the output to the client
+            stability: development
+          - id: send_then_commit
+            value: '1'
+            brief: IMS sends the output to the client and then commits the IMS database changes
+            stability: development
 
