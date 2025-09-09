@@ -10,7 +10,6 @@ groups:
         requirement_level: required
       - ref: tps.transaction.id
         requirement_level: required
-      - ref: tps.region.id
       - ref: tps.transaction.owner.id
       - ref: tps.task.id
       - ref: tps.program.name
@@ -27,7 +26,6 @@ groups:
         requirement_level: required
       - ref: tps.transaction.id
         requirement_level: required
-      - ref: tps.region.id
       - ref: tps.transaction.owner.id
       - ref: tps.task.id
       - ref: tps.program.name

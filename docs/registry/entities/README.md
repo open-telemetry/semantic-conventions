@@ -89,6 +89,8 @@ Currently, the following namespaces exist:
 | Telemetry | | |
 | | [telemetry.distro](telemetry.md#telemetry-distro) | ![Development](https://img.shields.io/badge/-development-blue) |
 | | [telemetry.sdk](telemetry.md#telemetry-sdk) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| Tps | | |
+| | [tps](tps.md#tps) | ![Development](https://img.shields.io/badge/-development-blue) |
 | VCS | | |
 | | [vcs.ref](vcs.md#vcs-ref) | ![Development](https://img.shields.io/badge/-development-blue) |
 | | [vcs.repo](vcs.md#vcs-repo) | ![Development](https://img.shields.io/badge/-development-blue) |
