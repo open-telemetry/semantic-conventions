@@ -76,6 +76,7 @@ The following well-known definitions MUST be used if you set this attribute and 
 | `tencent_cloud_cvm` | Tencent Cloud Cloud Virtual Machine (CVM) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `tencent_cloud_eks` | Tencent Cloud Elastic Kubernetes Service (EKS) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `tencent_cloud_scf` | Tencent Cloud Serverless Cloud Function (SCF) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `vultr_cloud_compute` | Vultr Cloud Compute | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -91,3 +92,4 @@ The following well-known definitions MUST be used if you set this attribute and 
 | `ibm_cloud` | IBM Cloud | ![Development](https://img.shields.io/badge/-development-blue) |
 | `oracle_cloud` | Oracle Cloud Infrastructure (OCI) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `tencent_cloud` | Tencent Cloud | ![Development](https://img.shields.io/badge/-development-blue) |
+| `vultr_cloud` | Vultr Cloud | ![Development](https://img.shields.io/badge/-development-blue) |
