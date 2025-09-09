@@ -16,7 +16,7 @@ Describes attributes related to client-side applications (e.g. web apps or mobil
 | <a id="app-jank-threshold" href="#app-jank-threshold">`app.jank.threshold`</a> | double | The minimum rendering threshold for this jank, in seconds. | `0.016`; `0.7`; `1.024` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="app-screen-coordinate-x" href="#app-screen-coordinate-x">`app.screen.coordinate.x`</a> | int | The x (horizontal) coordinate of a screen coordinate, in screen pixels. | `0`; `131` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="app-screen-coordinate-y" href="#app-screen-coordinate-y">`app.screen.coordinate.y`</a> | int | The y (vertical) component of a screen coordinate, in screen pixels. | `12`; `99` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="app-screen-name" href="#app-screen-name">`app.screen.name`</a> | string | The name of an application screen. [3] | `Home`; `Cart`; `MainActivity` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="app-screen-name" href="#app-screen-name">`app.screen.name`</a> | string | The name of an application screen. [3] | `/products`; `MainActivity`; `ProductDetailFragment`; `ProfileView`; `ProfileViewController` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="app-widget-id" href="#app-widget-id">`app.widget.id`</a> | string | An identifier that uniquely differentiates this widget from other widgets in the same application. [4] | `f9bc787d-ff05-48ad-90e1-fca1d46130b3`; `submit_order_1829` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="app-widget-name" href="#app-widget-name">`app.widget.name`</a> | string | The name of an application widget. [5] | `submit`; `attack`; `Clear Cart` | ![Development](https://img.shields.io/badge/-development-blue) |
 
@@ -40,7 +40,7 @@ More information about Android identifier best practices can be found in the [An
 
 **[2] `app.jank.frame_count`:** Depending on platform limitations, the value provided MAY be approximation.
 
-**[3] `app.screen.name`:** A screen represents a distinct view or page within an application,  typically containing multiple widgets or UI components.
+**[3] `app.screen.name`:** A screen represents a distinct view or page within an application, typically containing multiple widgets or UI components. A screen is larger in scope than individual widgets but may not fill the entire device display - multiple screens can coexist on the same display simultaneously.
 
 **[4] `app.widget.id`:** A widget is an application component, typically an on-screen visual GUI element.
 
