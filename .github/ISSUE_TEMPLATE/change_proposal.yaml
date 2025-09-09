@@ -69,6 +69,7 @@ body:
         - area:os
         - area:otel
         - area:peer
+        - area:pprof
         - area:process
         - area:profile
         - area:rpc
