@@ -91,10 +91,19 @@ groups:
 
       - ref: gen_ai.system_instructions
         requirement_level: opt_in
+      - ref: gen_ai.system_instructions_ref
+        requirement_level:
+          recommended: if applicable
       - ref: gen_ai.input.messages
         requirement_level: opt_in
+      - ref: gen_ai.input.messages_ref
+        requirement_level:
+          recommended: if applicable
       - ref: gen_ai.output.messages
         requirement_level: opt_in
+      - ref: gen_ai.output.messages_ref
+        requirement_level:
+          recommended: if applicable
       - ref: gen_ai.tool.definitions
         requirement_level: opt_in
 
@@ -281,7 +290,6 @@ groups:
         requirement_level: opt_in
       - ref: gen_ai.output.messages
         requirement_level: opt_in
-
 
   - id: span.gen_ai.execute_tool.internal
     type: span
