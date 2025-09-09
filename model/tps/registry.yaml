@@ -15,7 +15,7 @@ groups:
         stability: development
         brief: "Identifier of the transaction initiated by a user or system request"
         examples: 'TRX1'
-      - id: tps.transaction.owner
+      - id: tps.transaction.owner.id
         type: string
         stability: development
         brief: "Identifier of the user owning the transaction"

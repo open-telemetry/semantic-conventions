@@ -38,7 +38,7 @@ This group defines semantic conventions for Remote Procedure Call (RPC) server s
 | [`tps.program.name`](/docs/registry/attributes/tps.md) | string | Program name executed by the task | `PROG123` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`tps.region.id`](/docs/registry/attributes/tps.md) | string | On z/OS, identifies the entity acting as runtime environment to execute tasks of transactions within the Transaction Processing System | `PRD1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`tps.task.id`](/docs/registry/attributes/tps.md) | string | Identifier of the task created to run the transaction | `1554` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`tps.transaction.owner`](/docs/registry/attributes/tps.md) | string | Identifier of the user owning the transaction | `USER` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`tps.transaction.owner.id`](/docs/registry/attributes/tps.md) | string | Identifier of the user owning the transaction | `USER` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`tps.unit_of_work.id`](/docs/registry/attributes/tps.md) | string | Unit of work executed by the program | `DF308CBF385A3C05` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `server.address`:** May contain server IP address, DNS name, or local socket name. When host component is an IP address, instrumentations SHOULD NOT do a reverse proxy lookup to obtain DNS name and SHOULD set `server.address` to the IP address provided in the host component.

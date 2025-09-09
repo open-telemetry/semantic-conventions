@@ -11,7 +11,7 @@ groups:
       - ref: tps.transaction.id
         requirement_level: required
       - ref: tps.region.id
-      - ref: tps.transaction.owner
+      - ref: tps.transaction.owner.id
       - ref: tps.task.id
       - ref: tps.program.name
       - ref: tps.unit_of_work.id
@@ -28,7 +28,7 @@ groups:
       - ref: tps.transaction.id
         requirement_level: required
       - ref: tps.region.id
-      - ref: tps.transaction.owner
+      - ref: tps.transaction.owner.id
       - ref: tps.task.id
       - ref: tps.program.name
       - ref: tps.unit_of_work.id
