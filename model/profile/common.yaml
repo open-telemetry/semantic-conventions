@@ -6,19 +6,3 @@ groups:
     attributes:
       - ref: profile.frame.type
         requirement_level: recommended
-
-  - id: profile.pprof
-    type: attribute_group
-    brief: >
-      Attributes specific to pprof that help convert from pprof to Profiling signal.
-    attributes:
-      - ref: profile.pprof.mapping.has_functions
-        requirement_level: recommended
-      - ref: profile.pprof.mapping.has_filenames
-        requirement_level: recommended
-      - ref: profile.pprof.mapping.has_line_numbers
-        requirement_level: recommended
-      - ref: profile.pprof.mapping.has_inline_frames
-        requirement_level: recommended
-      - ref: profile.pprof.location.is_folded
-        requirement_level: recommended
