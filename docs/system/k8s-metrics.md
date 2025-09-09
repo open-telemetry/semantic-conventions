@@ -1834,7 +1834,7 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `k8s.container.cpu.limit_utilization` | Gauge | `1` | The ratio of container CPU usage to its CPU limit. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.container`](/docs/registry/entities/k8s.md#k8s-container) |
 
-**[1]:** The value range is [0.0,1.0]. A value of 1.0 means the container is using 100% of its CPU limit.
+**[1]:** The value range is [0.0,1.0]. A value of 1.0 means the container is using 100% of its CPU limit. If the CPU limit is not set, this metric SHOULD NOT be emitted for that container.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
