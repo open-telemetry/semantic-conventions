@@ -32,9 +32,9 @@ groups:
               value: 'ibm_cloud'
               brief: 'IBM Cloud'
               stability: development
-            - id: 'linode_cloud'
-              value: 'linode_cloud'
-              brief: 'Linode (Akamai Cloud)'
+            - id: 'akamai_cloud'
+              value: 'akamai_cloud'
+              brief: 'Akamai Cloud (Linode)'
               stability: development
             - id: 'oracle_cloud'
               value: 'oracle_cloud'
@@ -111,6 +111,10 @@ groups:
       - id: cloud.platform
         type:
           members:
+            - id: akamai_cloud_compute
+              value: 'akamai_cloud_compute'
+              brief: Akamai Cloud Compute (Linode)
+              stability: development
             - id: alibaba_cloud_ecs
               value: 'alibaba_cloud_ecs'
               brief: Alibaba Cloud Elastic Compute Service
@@ -266,10 +270,6 @@ groups:
             - id: ibm_cloud_openshift
               value: 'ibm_cloud_openshift'
               brief: Red Hat OpenShift on IBM Cloud
-              stability: development
-            - id: linode_cloud_compute
-              value: 'linode_cloud_compute'
-              brief: Linode Compute
               stability: development
             - id: oracle_cloud_compute
               value: 'oracle_cloud_compute'

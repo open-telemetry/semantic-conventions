@@ -22,7 +22,7 @@
 |---|---|---|---|---|---|
 | [`cloud.account.id`](/docs/registry/attributes/cloud.md) | string | The cloud account ID the resource is assigned to. | `111111111111`; `opentelemetry` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`cloud.availability_zone`](/docs/registry/attributes/cloud.md) | string | Cloud regions often have multiple, isolated locations known as zones to increase availability. Availability zone represents the zone where the resource is running. [1] | `us-east-1c` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`cloud.platform`](/docs/registry/attributes/cloud.md) | string | The cloud platform in use. [2] | `alibaba_cloud_ecs`; `alibaba_cloud_fc`; `alibaba_cloud_openshift` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`cloud.platform`](/docs/registry/attributes/cloud.md) | string | The cloud platform in use. [2] | `akamai_cloud_compute`; `alibaba_cloud_ecs`; `alibaba_cloud_fc` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`cloud.provider`](/docs/registry/attributes/cloud.md) | string | Name of the cloud provider. | `alibaba_cloud`; `aws`; `azure` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`cloud.region`](/docs/registry/attributes/cloud.md) | string | The geographical region within a cloud provider. When associated with a resource, this attribute specifies the region where the resource operates. When calling services or APIs deployed on a cloud, this attribute identifies the region where the called destination is deployed. [3] | `us-central1`; `us-east-1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`cloud.resource_id`](/docs/registry/attributes/cloud.md) | string | Cloud provider-specific native identifier of the monitored cloud resource (e.g. an [ARN](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) on AWS, a [fully qualified resource ID](https://learn.microsoft.com/rest/api/resources/resources/get-by-id) on Azure, a [full resource name](https://google.aip.dev/122#full-resource-names) on GCP) [4] | `arn:aws:lambda:REGION:ACCOUNT_ID:function:my-function`; `//run.googleapis.com/projects/PROJECT_ID/locations/LOCATION_ID/services/SERVICE_ID`; `/subscriptions/<SUBSCRIPTION_GUID>/resourceGroups/<RG>/providers/Microsoft.Web/sites/<FUNCAPP>/functions/<FUNC>` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -57,6 +57,7 @@ The following well-known definitions MUST be used if you set this attribute and 
 
 | Value  | Description | Stability |
 |---|---|---|
+| `akamai_cloud_compute` | Akamai Cloud Compute (Linode) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `alibaba_cloud_ecs` | Alibaba Cloud Elastic Compute Service | ![Development](https://img.shields.io/badge/-development-blue) |
 | `alibaba_cloud_fc` | Alibaba Cloud Function Compute | ![Development](https://img.shields.io/badge/-development-blue) |
 | `alibaba_cloud_openshift` | Red Hat OpenShift on Alibaba Cloud | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -82,7 +83,6 @@ The following well-known definitions MUST be used if you set this attribute and 
 | `gcp_kubernetes_engine` | Google Cloud Kubernetes Engine (GKE) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gcp_openshift` | Red Hat OpenShift on Google Cloud | ![Development](https://img.shields.io/badge/-development-blue) |
 | `ibm_cloud_openshift` | Red Hat OpenShift on IBM Cloud | ![Development](https://img.shields.io/badge/-development-blue) |
-| `linode_cloud_compute` | Linode Compute | ![Development](https://img.shields.io/badge/-development-blue) |
 | `oracle_cloud_compute` | Compute on Oracle Cloud Infrastructure (OCI) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `oracle_cloud_oke` | Kubernetes Engine (OKE) on Oracle Cloud Infrastructure (OCI) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `tencent_cloud_cvm` | Tencent Cloud Cloud Virtual Machine (CVM) | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -95,13 +95,13 @@ The following well-known definitions MUST be used if you set this attribute and 
 
 | Value  | Description | Stability |
 |---|---|---|
+| `akamai_cloud` | Akamai Cloud (Linode) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `alibaba_cloud` | Alibaba Cloud | ![Development](https://img.shields.io/badge/-development-blue) |
 | `aws` | Amazon Web Services | ![Development](https://img.shields.io/badge/-development-blue) |
 | `azure` | Microsoft Azure | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gcp` | Google Cloud Platform | ![Development](https://img.shields.io/badge/-development-blue) |
 | `heroku` | Heroku Platform as a Service | ![Development](https://img.shields.io/badge/-development-blue) |
 | `ibm_cloud` | IBM Cloud | ![Development](https://img.shields.io/badge/-development-blue) |
-| `linode_cloud` | Linode (Akamai Cloud) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `oracle_cloud` | Oracle Cloud Infrastructure (OCI) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `tencent_cloud` | Tencent Cloud | ![Development](https://img.shields.io/badge/-development-blue) |
 
