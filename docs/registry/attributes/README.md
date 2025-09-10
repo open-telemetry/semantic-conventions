@@ -80,7 +80,7 @@ Currently, the following namespaces exist:
 - [Mainframe](mainframe.md)
 - [Messaging](messaging.md)
 - [Network](network.md)
-- [Nfs](nfs.md)
+- [NFS](nfs.md)
 - [NodeJS](nodejs.md)
 - [OCI](oci.md)
 - [ONC RPC](onc-rpc.md)
