@@ -12,31 +12,21 @@ This document describes instruments and attributes for NFS and NFSD metrics.
 
 - [NFS metrics](#nfs-metrics)
   - [Metric: `nfs.client.net.count`](#metric-nfsclientnetcount)
-  - [Metric: `nfs.client.net.udp.count`](#metric-nfsclientnetudpcount)
-  - [Metric: `nfs.client.net.tcp.count`](#metric-nfsclientnettcpcount)
-  - [Metric: `nfs.client.net.tcp.connection.count`](#metric-nfsclientnettcpconnectioncount)
+  - [Metric: `nfs.client.net.tcp.connection.accepted`](#metric-nfsclientnettcpconnectionaccepted)
   - [Metric: `nfs.client.rpc.count`](#metric-nfsclientrpccount)
   - [Metric: `nfs.client.rpc.retransmit.count`](#metric-nfsclientrpcretransmitcount)
   - [Metric: `nfs.client.rpc.authrefresh.count`](#metric-nfsclientrpcauthrefreshcount)
   - [Metric: `nfs.client.operation.count`](#metric-nfsclientoperationcount)
   - [Metric: `nfs.client.procedure.count`](#metric-nfsclientprocedurecount)
 - [NFSD metrics](#nfsd-metrics)
-  - [Metric: `nfs.server.repcache.hits`](#metric-nfsserverrepcachehits)
-  - [Metric: `nfs.server.repcache.misses`](#metric-nfsserverrepcachemisses)
-  - [Metric: `nfs.server.repcache.nocache`](#metric-nfsserverrepcachenocache)
+  - [Metric: `nfs.server.repcache.requests`](#metric-nfsserverrepcacherequests)
   - [Metric: `nfs.server.fh.stale.count`](#metric-nfsserverfhstalecount)
-  - [Metric: `nfs.server.io.read.count`](#metric-nfsserverioreadcount)
-  - [Metric: `nfs.server.io.write.count`](#metric-nfsserveriowritecount)
+  - [Metric: `nfs.server.io`](#metric-nfsserverio)
   - [Metric: `nfs.server.thread.count`](#metric-nfsserverthreadcount)
   - [Metric: `nfs.server.net.count`](#metric-nfsservernetcount)
-  - [Metric: `nfs.server.net.udp.count`](#metric-nfsservernetudpcount)
-  - [Metric: `nfs.server.net.tcp.count`](#metric-nfsservernettcpcount)
-  - [Metric: `nfs.server.net.tcp.connection.count`](#metric-nfsservernettcpconnectioncount)
+  - [Metric: `nfs.server.net.count`](#metric-nfsservernetcount-1)
+  - [Metric: `nfs.server.net.tcp.connection.accepted`](#metric-nfsservernettcpconnectionaccepted)
   - [Metric: `nfs.server.rpc.count`](#metric-nfsserverrpccount)
-  - [Metric: `nfs.server.rpc.bad.count`](#metric-nfsserverrpcbadcount)
-  - [Metric: `nfs.server.rpc.badfmt.count`](#metric-nfsserverrpcbadfmtcount)
-  - [Metric: `nfs.server.rpc.badauth.count`](#metric-nfsserverrpcbadauthcount)
-  - [Metric: `nfs.server.rpc.badclient.count`](#metric-nfsserverrpcbadclientcount)
   - [Metric: `nfs.server.operation.count`](#metric-nfsserveroperationcount)
   - [Metric: `nfs.server.procedure.count`](#metric-nfsserverprocedurecount)
 
@@ -57,20 +47,42 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `nfs.client.net.count` | Counter | `{request}` | Reports the count of kernel NFS client network requests handled. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
+| `nfs.client.net.count` | Counter | `{record}` | Reports the count of kernel NFS client TCP segments and UDP datagrams handled. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
 
-**[1]:** Linux: this metric is taken from the Linux kernel's svc_stat.netcnt, which includes both UDP datagrams and TCP segments
+**[1]:** Linux: this metric is taken from the Linux kernel's svc_stat.netudpcnt and svc_stat.nettcpcnt
+
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`network.transport`](/docs/registry/attributes/network.md) | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [1] | `tcp`; `udp` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+
+**[1] `network.transport`:** The value SHOULD be normalized to lowercase.
+
+Consider always setting the transport when setting a port number, since
+a port number is ambiguous without knowing the transport. For example
+different processes could be listening on TCP port 12345 and UDP port 12345.
+
+---
+
+`network.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `pipe` | Named or anonymous pipe. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `quic` | QUIC | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `tcp` | TCP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `udp` | UDP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `unix` | Unix domain socket | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
 <!-- endsemconv -->
 
-### Metric: `nfs.client.net.udp.count`
+### Metric: `nfs.client.net.tcp.connection.accepted`
 
 This metric is [recommended][MetricRecommended].
 
-<!-- semconv metric.nfs.client.net.udp.count -->
+<!-- semconv metric.nfs.client.net.tcp.connection.accepted -->
 <!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
 <!-- see templates/registry/markdown/snippet.md.j2 -->
 <!-- prettier-ignore-start -->
@@ -79,51 +91,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `nfs.client.net.udp.count` | Counter | `{datagram}` | Reports the count of kernel NFS client UDP datagrams handled. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
-
-**[1]:** Linux: this metric is taken from the Linux kernel's svc_stat.netudpcnt
-
-<!-- markdownlint-restore -->
-<!-- prettier-ignore-end -->
-<!-- END AUTOGENERATED TEXT -->
-<!-- endsemconv -->
-
-### Metric: `nfs.client.net.tcp.count`
-
-This metric is [recommended][MetricRecommended].
-
-<!-- semconv metric.nfs.client.net.tcp.count -->
-<!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
-<!-- see templates/registry/markdown/snippet.md.j2 -->
-<!-- prettier-ignore-start -->
-<!-- markdownlint-capture -->
-<!-- markdownlint-disable -->
-
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `nfs.client.net.tcp.count` | Counter | `{segment}` | Reports the count of kernel NFS client TCP segments handled. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
-
-**[1]:** Linux: this metric is taken from the Linux kernel's svc_stat.nettcpcnt
-
-<!-- markdownlint-restore -->
-<!-- prettier-ignore-end -->
-<!-- END AUTOGENERATED TEXT -->
-<!-- endsemconv -->
-
-### Metric: `nfs.client.net.tcp.connection.count`
-
-This metric is [recommended][MetricRecommended].
-
-<!-- semconv metric.nfs.client.net.tcp.connection.count -->
-<!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
-<!-- see templates/registry/markdown/snippet.md.j2 -->
-<!-- prettier-ignore-start -->
-<!-- markdownlint-capture -->
-<!-- markdownlint-disable -->
-
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `nfs.client.net.tcp.connection.count` | Counter | `{connection}` | Reports the count of kernel NFS client TCP connections accepted. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
+| `nfs.client.net.tcp.connection.accepted` | Counter | `{connection}` | Reports the count of kernel NFS client TCP connections accepted. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
 
 **[1]:** Linux: this metric is taken from the Linux kernel's svc_stat.nettcpconn
 
@@ -211,12 +179,12 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `nfs.client.operation.count` | Counter | `{procedure}` | Reports the count of kernel NFSv4+ client operations. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
+| `nfs.client.operation.count` | Counter | `{operation}` | Reports the count of kernel NFSv4+ client operations. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`rpc.nfs.operation.name`](/docs/registry/attributes/rpc.md) | string | NFSv4+ operation name. | `OPEN`; `READ`; `GETATTR` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`rpc.onc.version`](/docs/registry/attributes/rpc.md) | int | ONC/Sun RPC program version. |  | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`nfs.operation.name`](/docs/registry/attributes/nfs.md) | string | NFSv4+ operation name. | `OPEN`; `READ`; `GETATTR` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`onc_rpc.version`](/docs/registry/attributes/onc-rpc.md) | int | ONC/Sun RPC program version. |  | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -240,8 +208,8 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`rpc.onc.procedure.name`](/docs/registry/attributes/rpc.md) | string | ONC/Sun RPC procedure name. | `OPEN`; `READ`; `GETATTR` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`rpc.onc.version`](/docs/registry/attributes/rpc.md) | int | ONC/Sun RPC program version. |  | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`onc_rpc.procedure.name`](/docs/registry/attributes/onc-rpc.md) | string | ONC/Sun RPC procedure name. | `OPEN`; `READ`; `GETATTR` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`onc_rpc.version`](/docs/registry/attributes/onc-rpc.md) | int | ONC/Sun RPC program version. |  | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -250,11 +218,11 @@ This metric is [recommended][MetricRecommended].
 
 ## NFSD metrics
 
-### Metric: `nfs.server.repcache.hits`
+### Metric: `nfs.server.repcache.requests`
 
 This metric is [recommended][MetricRecommended].
 
-<!-- semconv metric.nfs.server.repcache.hits -->
+<!-- semconv metric.nfs.server.repcache.requests -->
 <!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
 <!-- see templates/registry/markdown/snippet.md.j2 -->
 <!-- prettier-ignore-start -->
@@ -263,53 +231,11 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `nfs.server.repcache.hits` | Counter | `{hit}` | Reports the kernel NFS server request reply cache hit count. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
+| `nfs.server.repcache.requests` | Counter | `{request}` | Reports the kernel NFS server reply cache request count by cache hit status | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
 
-**[1]:** Linux: this metric is taken from the Linux kernel NFSD_STATS_RC_HITS counter in the nfsd_net struct
-
-<!-- markdownlint-restore -->
-<!-- prettier-ignore-end -->
-<!-- END AUTOGENERATED TEXT -->
-<!-- endsemconv -->
-
-### Metric: `nfs.server.repcache.misses`
-
-This metric is [recommended][MetricRecommended].
-
-<!-- semconv metric.nfs.server.repcache.misses -->
-<!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
-<!-- see templates/registry/markdown/snippet.md.j2 -->
-<!-- prettier-ignore-start -->
-<!-- markdownlint-capture -->
-<!-- markdownlint-disable -->
-
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `nfs.server.repcache.misses` | Counter | `{miss}` | Reports the kernel NFS server request reply cache miss count. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
-
-**[1]:** Linux: this metric is taken from the Linux kernel NFSD_STATS_RC_MISSES counter in the nfsd_net struct
-
-<!-- markdownlint-restore -->
-<!-- prettier-ignore-end -->
-<!-- END AUTOGENERATED TEXT -->
-<!-- endsemconv -->
-
-### Metric: `nfs.server.repcache.nocache`
-
-This metric is [recommended][MetricRecommended].
-
-<!-- semconv metric.nfs.server.repcache.nocache -->
-<!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
-<!-- see templates/registry/markdown/snippet.md.j2 -->
-<!-- prettier-ignore-start -->
-<!-- markdownlint-capture -->
-<!-- markdownlint-disable -->
-
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `nfs.server.repcache.nocache` | Counter | `{miss}` | Reports the count of kernel NFS server replies that are uncacheable by the the reply cache. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
-
-**[1]:** Linux: this metric is taken from the Linux kernel NFSD_STATS_RC_NOCACHE counter in the nfsd_net struct
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`nfs.server.repcache.status`](/docs/registry/attributes/nfs.md) | string | Linux: one of "hit" (NFSD_STATS_RC_HITS), "miss" (NFSD_STATS_RC_MISSES), or "nocache" (NFSD_STATS_RC_NOCACHE -- uncacheable) | `hit` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -338,11 +264,11 @@ This metric is [recommended][MetricRecommended].
 <!-- END AUTOGENERATED TEXT -->
 <!-- endsemconv -->
 
-### Metric: `nfs.server.io.read.count`
+### Metric: `nfs.server.io`
 
 This metric is [recommended][MetricRecommended].
 
-<!-- semconv metric.nfs.server.io.read.count -->
+<!-- semconv metric.nfs.server.io -->
 <!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
 <!-- see templates/registry/markdown/snippet.md.j2 -->
 <!-- prettier-ignore-start -->
@@ -351,31 +277,22 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `nfs.server.io.read.count` | Counter | `By` | Reports the count of kernel NFS server bytes returned to read requests. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
+| `nfs.server.io` | Counter | `By` | Reports the count of kernel NFS server bytes returned to receive and transmit (read and write) requests. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
 
-**[1]:** Linux: this metric is taken from the Linux kernel NFSD_STATS_IO_READ counter in the nfsd_net struct
+**[1]:** Linux: this metric is taken from the Linux kernel NFSD_STATS_IO_READ and NFSD_STATS_IO_WRITE counters in the nfsd_net struct
 
-<!-- markdownlint-restore -->
-<!-- prettier-ignore-end -->
-<!-- END AUTOGENERATED TEXT -->
-<!-- endsemconv -->
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`network.io.direction`](/docs/registry/attributes/network.md) | string | The network IO operation direction. | `transmit` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
-### Metric: `nfs.server.io.write.count`
+---
 
-This metric is [recommended][MetricRecommended].
+`network.io.direction` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-<!-- semconv metric.nfs.server.io.write.count -->
-<!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
-<!-- see templates/registry/markdown/snippet.md.j2 -->
-<!-- prettier-ignore-start -->
-<!-- markdownlint-capture -->
-<!-- markdownlint-disable -->
-
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `nfs.server.io.write.count` | Counter | `By` | Reports the count of kernel NFS server bytes passed to write requests. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
-
-**[1]:** Linux: this metric is taken from the Linux kernel NFSD_STATS_IO_WRITE counter in the nfsd_net struct
+| Value  | Description | Stability |
+|---|---|---|
+| `receive` | receive | ![Development](https://img.shields.io/badge/-development-blue) |
+| `transmit` | transmit | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -417,20 +334,20 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `nfs.server.net.count` | Counter | `{request}` | Reports the count of kernel NFS server network requests handled. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
+| `nfs.server.net.count` | Counter | `{record}` | Reports the count of kernel NFS server TCP segments and UDP datagrams handled. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
 
-**[1]:** Linux: this metric is taken from the Linux kernel's svc_stat.netcnt, which includes both UDP datagrams and TCP segments
+**[1]:** Linux: this metric is taken from the Linux kernel's svc_stat.nettcpcnt and svc_stat.netudpcnt
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
 <!-- endsemconv -->
 
-### Metric: `nfs.server.net.udp.count`
+### Metric: `nfs.server.net.count`
 
 This metric is [recommended][MetricRecommended].
 
-<!-- semconv metric.nfs.server.net.udp.count -->
+<!-- semconv metric.nfs.server.net.count -->
 <!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
 <!-- see templates/registry/markdown/snippet.md.j2 -->
 <!-- prettier-ignore-start -->
@@ -439,20 +356,20 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `nfs.server.net.udp.count` | Counter | `{datagram}` | Reports the count of kernel NFS server UDP datagrams handled. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
+| `nfs.server.net.count` | Counter | `{record}` | Reports the count of kernel NFS server TCP segments and UDP datagrams handled. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
 
-**[1]:** Linux: this metric is taken from the Linux kernel's svc_stat.netudpcnt
+**[1]:** Linux: this metric is taken from the Linux kernel's svc_stat.nettcpcnt and svc_stat.netudpcnt
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
 <!-- endsemconv -->
 
-### Metric: `nfs.server.net.tcp.count`
+### Metric: `nfs.server.net.tcp.connection.accepted`
 
 This metric is [recommended][MetricRecommended].
 
-<!-- semconv metric.nfs.server.net.tcp.count -->
+<!-- semconv metric.nfs.server.net.tcp.connection.accepted -->
 <!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
 <!-- see templates/registry/markdown/snippet.md.j2 -->
 <!-- prettier-ignore-start -->
@@ -461,29 +378,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `nfs.server.net.tcp.count` | Counter | `{segment}` | Reports the count of kernel NFS server TCP segments handled. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
-
-**[1]:** Linux: this metric is taken from the Linux kernel's svc_stat.nettcpcnt
-
-<!-- markdownlint-restore -->
-<!-- prettier-ignore-end -->
-<!-- END AUTOGENERATED TEXT -->
-<!-- endsemconv -->
-
-### Metric: `nfs.server.net.tcp.connection.count`
-
-This metric is [recommended][MetricRecommended].
-
-<!-- semconv metric.nfs.server.net.tcp.connection.count -->
-<!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
-<!-- see templates/registry/markdown/snippet.md.j2 -->
-<!-- prettier-ignore-start -->
-<!-- markdownlint-capture -->
-<!-- markdownlint-disable -->
-
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `nfs.server.net.tcp.connection.count` | Counter | `{connection}` | Reports the count of kernel NFS server TCP connections accepted. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
+| `nfs.server.net.tcp.connection.accepted` | Counter | `{connection}` | Reports the count of kernel NFS server TCP connections accepted. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
 
 **[1]:** Linux: this metric is taken from the Linux kernel's svc_stat.nettcpconn
 
@@ -507,95 +402,40 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `nfs.server.rpc.count` | Counter | `{request}` | Reports the count of kernel NFS server RPCs handled. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
 
-**[1]:** Linux: this metric is taken from the Linux kernel's svc_stat.rpccnt
+**[1]:** Linux: this metric is taken from the Linux kernel's svc_stat.rpccnt, the count of good RPCs. This metric can have
+an error.type of "format", "auth", or "client" for svc_stat.badfmt, svc_stat.badauth, and svc_stat.badclnt.
 
-<!-- markdownlint-restore -->
-<!-- prettier-ignore-end -->
-<!-- END AUTOGENERATED TEXT -->
-<!-- endsemconv -->
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
-### Metric: `nfs.server.rpc.bad.count`
+**[1] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
-This metric is [recommended][MetricRecommended].
+When `error.type` is set to a type (e.g., an exception type), its
+canonical class name identifying the type within the artifact SHOULD be used.
 
-<!-- semconv metric.nfs.server.rpc.bad.count -->
-<!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
-<!-- see templates/registry/markdown/snippet.md.j2 -->
-<!-- prettier-ignore-start -->
-<!-- markdownlint-capture -->
-<!-- markdownlint-disable -->
+Instrumentations SHOULD document the list of errors they report.
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `nfs.server.rpc.bad.count` | Counter | `{request}` | Reports the total count of kernel NFS server bad RPCs. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
+The cardinality of `error.type` within one instrumentation library SHOULD be low.
+Telemetry consumers that aggregate data from multiple instrumentation libraries and applications
+should be prepared for `error.type` to have high cardinality at query time when no
+additional filters are applied.
 
-**[1]:** Linux: this metric is taken from the Linux kernel's svc_stat.badfmt+svc_stat.badauth+svc_stat.badclnt
+If the operation has completed successfully, instrumentations SHOULD NOT set `error.type`.
 
-<!-- markdownlint-restore -->
-<!-- prettier-ignore-end -->
-<!-- END AUTOGENERATED TEXT -->
-<!-- endsemconv -->
+If a specific domain defines its own set of error identifiers (such as HTTP or gRPC status codes),
+it's RECOMMENDED to:
 
-### Metric: `nfs.server.rpc.badfmt.count`
+- Use a domain-specific attribute
+- Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
 
-This metric is [recommended][MetricRecommended].
+---
 
-<!-- semconv metric.nfs.server.rpc.badfmt.count -->
-<!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
-<!-- see templates/registry/markdown/snippet.md.j2 -->
-<!-- prettier-ignore-start -->
-<!-- markdownlint-capture -->
-<!-- markdownlint-disable -->
+`error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `nfs.server.rpc.badfmt.count` | Counter | `{request}` | Reports the total count of kernel NFS server badly formatted RPCs. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
-
-**[1]:** Linux: this metric is taken from the Linux kernel's svc_stat.badfmt
-
-<!-- markdownlint-restore -->
-<!-- prettier-ignore-end -->
-<!-- END AUTOGENERATED TEXT -->
-<!-- endsemconv -->
-
-### Metric: `nfs.server.rpc.badauth.count`
-
-This metric is [recommended][MetricRecommended].
-
-<!-- semconv metric.nfs.server.rpc.badauth.count -->
-<!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
-<!-- see templates/registry/markdown/snippet.md.j2 -->
-<!-- prettier-ignore-start -->
-<!-- markdownlint-capture -->
-<!-- markdownlint-disable -->
-
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `nfs.server.rpc.badauth.count` | Counter | `{request}` | Reports the total count of kernel NFS server badly authenticated RPCs. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
-
-**[1]:** Linux: this metric is taken from the Linux kernel's svc_stat.badauth
-
-<!-- markdownlint-restore -->
-<!-- prettier-ignore-end -->
-<!-- END AUTOGENERATED TEXT -->
-<!-- endsemconv -->
-
-### Metric: `nfs.server.rpc.badclient.count`
-
-This metric is [recommended][MetricRecommended].
-
-<!-- semconv metric.nfs.server.rpc.badclient.count -->
-<!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
-<!-- see templates/registry/markdown/snippet.md.j2 -->
-<!-- prettier-ignore-start -->
-<!-- markdownlint-capture -->
-<!-- markdownlint-disable -->
-
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
-| -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `nfs.server.rpc.badclient.count` | Counter | `{request}` | Reports the total count of kernel NFS server unauthorized client RPCs. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
-
-**[1]:** Linux: this metric is taken from the Linux kernel's svc_stat.badclnt
+| Value  | Description | Stability |
+|---|---|---|
+| `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -619,8 +459,8 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`rpc.nfs.operation.name`](/docs/registry/attributes/rpc.md) | string | NFSv4+ operation name. | `OPEN`; `READ`; `GETATTR` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`rpc.onc.version`](/docs/registry/attributes/rpc.md) | int | ONC/Sun RPC program version. |  | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`nfs.operation.name`](/docs/registry/attributes/nfs.md) | string | NFSv4+ operation name. | `OPEN`; `READ`; `GETATTR` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`onc_rpc.version`](/docs/registry/attributes/onc-rpc.md) | int | ONC/Sun RPC program version. |  | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -644,8 +484,8 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`rpc.onc.procedure.name`](/docs/registry/attributes/rpc.md) | string | ONC/Sun RPC procedure name. | `OPEN`; `READ`; `GETATTR` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`rpc.onc.version`](/docs/registry/attributes/rpc.md) | int | ONC/Sun RPC program version. |  | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`onc_rpc.procedure.name`](/docs/registry/attributes/onc-rpc.md) | string | ONC/Sun RPC procedure name. | `OPEN`; `READ`; `GETATTR` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`onc_rpc.version`](/docs/registry/attributes/onc-rpc.md) | int | ONC/Sun RPC program version. |  | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

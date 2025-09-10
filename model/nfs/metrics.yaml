@@ -70,8 +70,8 @@ groups:
     instrument: counter
     unit: "{operation}"
     attributes:
-      - ref: rpc.onc.version
-      - ref: rpc.nfs.operation.name
+      - ref: onc_rpc.version
+      - ref: nfs.operation.name
     entity_associations:
       - host
 
@@ -83,8 +83,8 @@ groups:
     instrument: counter
     unit: "{procedure}"
     attributes:
-      - ref: rpc.onc.version
-      - ref: rpc.onc.procedure.name
+      - ref: onc_rpc.version
+      - ref: onc_rpc.procedure.name
     entity_associations:
       - host
 
@@ -186,8 +186,8 @@ groups:
     instrument: counter
     unit: "{operation}"
     attributes:
-      - ref: rpc.onc.version
-      - ref: rpc.nfs.operation.name
+      - ref: onc_rpc.version
+      - ref: nfs.operation.name
     entity_associations:
       - host
 
@@ -199,7 +199,7 @@ groups:
     instrument: counter
     unit: "{procedure}"
     attributes:
-      - ref: rpc.onc.version
-      - ref: rpc.onc.procedure.name
+      - ref: onc_rpc.version
+      - ref: onc_rpc.procedure.name
     entity_associations:
       - host
