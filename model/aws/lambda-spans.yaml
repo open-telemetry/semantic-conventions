@@ -3,6 +3,7 @@ groups:
     type: span
     span_kind: server
     stability: development
+    extends: span.faas.server
     brief: >
       This span represents AWS Lambda invocation.
     note: |
@@ -14,7 +15,21 @@ groups:
 
       **Span kind** MUST be set to `SERVER` unless stated otherwise.
     attributes:
+      - ref: faas.trigger
+        note: ""
       - ref: aws.lambda.invoked_arn
         requirement_level: recommended
       - ref: aws.lambda.resource_mapping.id
         requirement_level: recommended
+      - ref: faas.invocation_id
+        brief: The value of the AWS Request ID, which is always available through an accessor on the Lambda Context.
+      - ref: cloud.account.id
+        brief: >
+          In some languages, this is available as an accessor on the Lambda Context. Otherwise, it can be parsed from the ARN as the fifth item when splitting on ':'.
+      - ref: cloud.resource_id
+        note: >
+          The function [ARN](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html).
+          Take care not to use the "invoked ARN" directly but replace any
+          [alias suffix](https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html)
+          with the resolved function version, as the same runtime instance may be invocable with
+          multiple different aliases.
