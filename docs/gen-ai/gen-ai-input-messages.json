@@ -94,7 +94,7 @@
                     "type": "string"
                 },
                 "file_uri": {
-                    "description": "A URI referencing to reference attached data. Should be recorded without modification, as it was sent to the model.",
+                    "description": "A URI referencing attached data. Should be recorded without modification, as it was sent to the model.",
                     "title": "File Uri",
                     "type": "string"
                 }
