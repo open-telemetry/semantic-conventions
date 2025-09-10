@@ -204,8 +204,9 @@ In all other cases, `server.port` SHOULD match the port component of the
 **[3] `url.template`:** The `url.template` MUST have low cardinality. It is not usually available on HTTP clients, but may be known by the application or specialized HTTP instrumentation.
 
 **[4] `http.request.method`:** HTTP request method value SHOULD be "known" to the instrumentation.
-By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
-and the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
+By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods),
+the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html)
+and the QUERY method defined in [httpbis-safe-method-w-body](https://datatracker.ietf.org/doc/draft-ietf-httpbis-safe-method-w-body/?include_text=1).
 
 If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `_OTHER`.
 
@@ -233,6 +234,7 @@ Tracing instrumentations that do so, MUST also set `http.request.method_original
 | `PATCH` | PATCH method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `POST` | POST method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `PUT` | PUT method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `QUERY` | QUERY method. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `TRACE` | TRACE method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 <!-- markdownlint-restore -->
@@ -279,8 +281,9 @@ Notes:
 | [`user_agent.synthetic.type`](/docs/registry/attributes/user-agent.md) | string | Specifies the category of synthetic traffic, such as tests or bots. [10] | `bot`; `test` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `http.request.method`:** HTTP request method value SHOULD be "known" to the instrumentation.
-By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
-and the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
+By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods),
+the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html)
+and the QUERY method defined in [httpbis-safe-method-w-body](https://datatracker.ietf.org/doc/draft-ietf-httpbis-safe-method-w-body/?include_text=1).
 
 If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `_OTHER`.
 
@@ -356,6 +359,7 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 | `PATCH` | PATCH method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `POST` | POST method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `PUT` | PUT method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `QUERY` | QUERY method. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `TRACE` | TRACE method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ---
@@ -399,8 +403,9 @@ Notes:
 | [`server.port`](/docs/registry/attributes/server.md) | int | Port of the local HTTP server that received the request. [3] | `80`; `8080`; `443` | `Opt-In` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1] `http.request.method`:** HTTP request method value SHOULD be "known" to the instrumentation.
-By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
-and the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
+By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods),
+the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html)
+and the QUERY method defined in [httpbis-safe-method-w-body](https://datatracker.ietf.org/doc/draft-ietf-httpbis-safe-method-w-body/?include_text=1).
 
 If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `_OTHER`.
 
@@ -438,6 +443,7 @@ Tracing instrumentations that do so, MUST also set `http.request.method_original
 | `PATCH` | PATCH method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `POST` | POST method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `PUT` | PUT method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `QUERY` | QUERY method. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `TRACE` | TRACE method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 <!-- markdownlint-restore -->
