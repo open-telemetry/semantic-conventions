@@ -27,9 +27,14 @@ groups:
         brief: >
           In some languages, this is available as an accessor on the Lambda Context. Otherwise, it can be parsed from the ARN as the fifth item when splitting on ':'.
       - ref: cloud.resource_id
+        brief: >
+          Cloud provider-specific native identifier of the monitored cloud resource
+          e.g. an [ARN](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) on AWS.
         note: >
           The function [ARN](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html).
           Take care not to use the "invoked ARN" directly but replace any
           [alias suffix](https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html)
           with the resolved function version, as the same runtime instance may be invocable with
           multiple different aliases.
+        examples:
+          - 'arn:aws:lambda:REGION:ACCOUNT_ID:function:my-function'
