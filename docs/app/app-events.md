@@ -45,7 +45,7 @@ The `app.screen.click` event can be used to indicate that a user has clicked or 
 | [`app.screen.coordinate.y`](/docs/registry/attributes/app.md) | int | The y (vertical) component of a screen coordinate, in screen pixels. | `12`; `99` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`app.screen.name`](/docs/registry/attributes/app.md) | string | The name of an application screen. [1] | `/products`; `MainActivity`; `ProductDetailFragment`; `ProfileView`; `ProfileViewController` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[1] `app.screen.name`:** A screen represents a distinct view or page within an application,  typically containing multiple widgets or UI components. A screen  is larger in scope than individual widgets but may not fill the  entire device display - multiple screens can coexist on the same  display simultaneously.
+**[1] `app.screen.name`:** A screen represents a distinct view or page within an application, typically containing multiple widgets or UI components. A screen is larger in scope than individual widgets but may not fill the entire device display - multiple screens can coexist on the same display simultaneously.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

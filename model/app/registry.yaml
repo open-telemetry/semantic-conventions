@@ -64,10 +64,10 @@ groups:
         stability: development
         brief: The name of an application screen.
         note: >
-          A screen represents a distinct view or page within an application, 
-          typically containing multiple widgets or UI components. A screen 
-          is larger in scope than individual widgets but may not fill the 
-          entire device display - multiple screens can coexist on the same 
+          A screen represents a distinct view or page within an application,
+          typically containing multiple widgets or UI components. A screen
+          is larger in scope than individual widgets but may not fill the
+          entire device display - multiple screens can coexist on the same
           display simultaneously.
         examples: ["/products", "MainActivity", "ProductDetailFragment", "ProfileView", "ProfileViewController"]
       - id: app.widget.id
