@@ -1,7 +1,8 @@
 groups:
   - id: registry.onc_rpc
     type: attribute_group
-    brief: 'This document defines attributes for ONC RPC.'
+    brief: 'This document defines attributes for [ONC RPC (Sun RPC)](https://datatracker.ietf.org/doc/html/rfc5531)'
+    display_name: ONC RPC (Sun RPC) attributes
     attributes:
       - id: onc_rpc.version
         type: int

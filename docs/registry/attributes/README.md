@@ -83,7 +83,7 @@ Currently, the following namespaces exist:
 - [Nfs](nfs.md)
 - [NodeJS](nodejs.md)
 - [OCI](oci.md)
-- [Onc RPC](onc-rpc.md)
+- [ONC RPC](onc-rpc.md)
 - [OpenAI](openai.md)
 - [OpenTracing](opentracing.md)
 - [OS](os.md)
