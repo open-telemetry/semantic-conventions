@@ -50,7 +50,7 @@ In the scenario where an instrumentation has not implemented an opt-in or recomm
 the configuration option should either not exist or it should operate as a noop.
 The same is the case for conditionally required attributes where the conditions or instructions are not satisfied.
 
-| Level | Included by Default | Included via Config | Excluded via Config |
+| Level | Included by default | Can be included via config | Can be excluded via Config |
 | --- | --- | --- | --- |
 | [Required](#required) | Yes | n/a | No |
 | [Conditionally Required](#conditionally-required) | Yes [^1] | No [^1] | No [^1] |
