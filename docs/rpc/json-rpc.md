@@ -35,7 +35,7 @@ This span represents an outgoing Remote Procedure Call (RPC).
 |---|---|---|---|---|---|
 | [`rpc.method`](/docs/registry/attributes/rpc.md) | string | The name of the (logical) method being called, must be equal to the $method part in the span name. [1] | `exampleMethod` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`server.address`](/docs/registry/attributes/server.md) | string | RPC server [host name](https://grpc.github.io/grpc/core/md_doc_naming.html). [2] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`rpc.jsonrpc.error_code`](/docs/registry/attributes/rpc.md) | int | `error.code` property of response if it is an error response. | `-32700`; `100` | `Conditionally Required` If response is not successful. | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`rpc.jsonrpc.error_code`](/docs/registry/attributes/rpc.md) | int | `error.code` property of response if it is an error response. | `-32700`; `100` | `Conditionally Required` when available | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`rpc.jsonrpc.version`](/docs/registry/attributes/rpc.md) | string | Protocol version as in `jsonrpc` property of request/response. Since JSON-RPC 1.0 doesn't specify this, the value can be omitted. | `2.0`; `1.0` | `Conditionally Required` If other than the default version (`1.0`) | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`server.port`](/docs/registry/attributes/server.md) | int | Server port number. [3] | `80`; `8080`; `443` | `Conditionally Required` [4] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`network.peer.address`](/docs/registry/attributes/network.md) | string | Peer address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -44,7 +44,6 @@ This span represents an outgoing Remote Procedure Call (RPC).
 | [`network.type`](/docs/registry/attributes/network.md) | string | [OSI network layer](https://wikipedia.org/wiki/Network_layer) or non-OSI equivalent. [6] | `ipv4`; `ipv6` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`rpc.jsonrpc.error_message`](/docs/registry/attributes/rpc.md) | string | `error.message` property of response if it is an error response. | `Parse error`; `User already exists` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`rpc.jsonrpc.request_id`](/docs/registry/attributes/rpc.md) | string | `id` property of request or response. Since protocol allows id to be int, string, `null` or missing (for notifications), value is expected to be cast to string for simplicity. Use empty string in case of `null` value. Omit entirely if this is a notification. | `10`; `request-7`; `` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`rpc.service`](/docs/registry/attributes/rpc.md) | string | The full (logical) name of the service being called, including its package name, if applicable. [7] | `myservice.EchoService` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `rpc.method`:** This is the logical name of the method from the RPC interface perspective, which can be different from the name of any implementing method/function. The `code.function.name` attribute may be used to store the latter (e.g., method actually executing the call on the server side, RPC client stub method on the client side).
 
@@ -61,8 +60,6 @@ a port number is ambiguous without knowing the transport. For example
 different processes could be listening on TCP port 12345 and UDP port 12345.
 
 **[6] `network.type`:** The value SHOULD be normalized to lowercase.
-
-**[7] `rpc.service`:** This is the logical name of the service from the RPC interface perspective, which can be different from the name of any implementing class. The `code.namespace` attribute may be used to store the latter (despite the attribute name, it may include a class name; e.g., class with method actually executing the call on the server side, RPC client stub class on the client side).
 
 ---
 
@@ -115,7 +112,7 @@ This span represents an incoming Remote Procedure Call (RPC).
 |---|---|---|---|---|---|
 | [`rpc.method`](/docs/registry/attributes/rpc.md) | string | The name of the (logical) method being called, must be equal to the $method part in the span name. [1] | `exampleMethod` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`server.address`](/docs/registry/attributes/server.md) | string | RPC server [host name](https://grpc.github.io/grpc/core/md_doc_naming.html). [2] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`rpc.jsonrpc.error_code`](/docs/registry/attributes/rpc.md) | int | `error.code` property of response if it is an error response. | `-32700`; `100` | `Conditionally Required` If response is not successful. | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`rpc.jsonrpc.error_code`](/docs/registry/attributes/rpc.md) | int | `error.code` property of response if it is an error response. | `-32700`; `100` | `Conditionally Required` when available | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`rpc.jsonrpc.version`](/docs/registry/attributes/rpc.md) | string | Protocol version as in `jsonrpc` property of request/response. Since JSON-RPC 1.0 doesn't specify this, the value can be omitted. | `2.0`; `1.0` | `Conditionally Required` If other than the default version (`1.0`) | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`server.port`](/docs/registry/attributes/server.md) | int | Server port number. [3] | `80`; `8080`; `443` | `Conditionally Required` [4] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`client.address`](/docs/registry/attributes/client.md) | string | Client address - domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [5] | `client.example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -126,7 +123,6 @@ This span represents an incoming Remote Procedure Call (RPC).
 | [`network.type`](/docs/registry/attributes/network.md) | string | [OSI network layer](https://wikipedia.org/wiki/Network_layer) or non-OSI equivalent. [8] | `ipv4`; `ipv6` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`rpc.jsonrpc.error_message`](/docs/registry/attributes/rpc.md) | string | `error.message` property of response if it is an error response. | `Parse error`; `User already exists` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`rpc.jsonrpc.request_id`](/docs/registry/attributes/rpc.md) | string | `id` property of request or response. Since protocol allows id to be int, string, `null` or missing (for notifications), value is expected to be cast to string for simplicity. Use empty string in case of `null` value. Omit entirely if this is a notification. | `10`; `request-7`; `` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`rpc.service`](/docs/registry/attributes/rpc.md) | string | The full (logical) name of the service being called, including its package name, if applicable. [9] | `myservice.EchoService` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `rpc.method`:** This is the logical name of the method from the RPC interface perspective, which can be different from the name of any implementing method/function. The `code.function.name` attribute may be used to store the latter (e.g., method actually executing the call on the server side, RPC client stub method on the client side).
 
@@ -147,8 +143,6 @@ a port number is ambiguous without knowing the transport. For example
 different processes could be listening on TCP port 12345 and UDP port 12345.
 
 **[8] `network.type`:** The value SHOULD be normalized to lowercase.
-
-**[9] `rpc.service`:** This is the logical name of the service from the RPC interface perspective, which can be different from the name of any implementing class. The `code.namespace` attribute may be used to store the latter (despite the attribute name, it may include a class name; e.g., class with method actually executing the call on the server side, RPC client stub class on the client side).
 
 ---
 
