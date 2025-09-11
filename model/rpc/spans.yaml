@@ -86,11 +86,9 @@ groups:
       **Span kind** MUST be `CLIENT`.
 
       **Span status** Should be set based on the grpc status code. A mapping is defined in the [grpc status](#grpc-status) section.
-    extends: span.rpc.client
+    extends: rpc_service
     span_kind: client
     attributes:
-      - ref: rpc.system
-        examples: grpc
       - ref: rpc.grpc.status_code
         requirement_level: required
       - ref: rpc.grpc.request.metadata
@@ -101,7 +99,7 @@ groups:
   - id: span.rpc.grpc.server
     type: span
     stability: development
-    extends: span.rpc.server
+    extends: rpc_service.server
     span_kind: server
     brief: This span represents an incoming Remote Procedure Call (RPC).
     note: |
@@ -114,8 +112,6 @@ groups:
 
       **Span kind** MUST be `SERVER`.
     attributes:
-      - ref: rpc.system
-        examples: grpc
       - ref: rpc.grpc.status_code
         requirement_level: required
       - ref: rpc.grpc.request.metadata
