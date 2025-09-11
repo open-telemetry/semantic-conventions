@@ -16,6 +16,8 @@ groups:
     attributes:
       - ref: rpc.system
         requirement_level: required
+      - ref: rpc.service
+        requirement_level: recommended
 
   - id: span.rpc.server
     type: span
@@ -34,6 +36,8 @@ groups:
     attributes:
       - ref: rpc.system
         requirement_level: required
+      - ref: rpc.service
+        requirement_level: recommended
 
   - id: rpc.grpc.attributes
     stability: development
@@ -69,7 +73,7 @@ groups:
         requirement_level: recommended
       - ref: rpc.jsonrpc.error_code
         requirement_level:
-          conditionally_required: If response is not successful.
+          conditionally_required: when available
       - ref: rpc.jsonrpc.error_message
         requirement_level: recommended
 
@@ -95,7 +99,7 @@ groups:
         requirement_level: recommended
       - ref: rpc.jsonrpc.error_code
         requirement_level:
-          conditionally_required: If response is not successful.
+          conditionally_required: when available
       - ref: rpc.jsonrpc.error_message
         requirement_level: recommended
 

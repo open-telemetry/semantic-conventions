@@ -3,8 +3,6 @@ groups:
     type: attribute_group
     brief: 'This document defines semantic conventions for remote procedure calls.'
     attributes:
-      - ref: rpc.service
-        requirement_level: recommended
       - ref: rpc.method
         requirement_level: recommended
       - ref: network.peer.address
