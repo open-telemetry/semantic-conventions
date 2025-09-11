@@ -9,6 +9,8 @@ groups:
         note: ""
       - ref: rpc.method
         note: ""
+      - ref: network.protocol.name
+      - ref: network.protocol.version
       - ref: network.transport
       - ref: server.address
         requirement_level: required
@@ -33,6 +35,8 @@ groups:
     type: attribute_group
     brief: 'This document defines semantic conventions for remote procedure calls.'
     attributes:
+      - ref: network.protocol.name
+      - ref: network.protocol.version
       - ref: rpc.method
         requirement_level: recommended
         note: >
