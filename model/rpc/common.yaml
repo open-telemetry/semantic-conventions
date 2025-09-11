@@ -14,11 +14,13 @@ groups:
           From a deployment perspective, as expressed by the `service.*` resource attributes, it will be treated as one deployed service with one `service.name`.
       - ref: rpc.method
       - ref: network.transport
-      - ref: network.type
       - ref: server.address
       - ref: server.port
         note: Describes the port the client is connecting from.
         requirement_level: opt_in
+      - ref: error.type
+        requirement_level:
+          conditionally_required: If and only if the operation failed.
   - id: attributes.metrics.rpc.client
     type: attribute_group
     brief: "Describes RPC metric attributes."
