@@ -8,8 +8,11 @@
 Session is defined as the period of time encompassing all activities performed by the application and the actions executed by the end user.
 Consequently, a Session is represented as a collection of Logs, Events, and Spans emitted by the Client Application throughout the Session's duration. Each Session is assigned a unique identifier, which is included as an attribute in the Logs, Events, and Spans generated during the Session's lifecycle.
 When a session reaches end of life, typically due to user inactivity or session timeout, a new session identifier will be assigned. The previous session identifier may be provided by the instrumentation so that telemetry backends can link the two sessions.
+When a session expires, then the end time is calculated by the expiry timestamp minus the session timeout interval. This is not necessarily the same as when session events are recorded, since they are only created after a period of inactivity. To account for this difference, session `start_time` and `end_time` represent the true session lifecycle, whereas `timeUnixNano` marks when session events are observed.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
+| <a id="session-end-time" href="#session-end-time">`session.end_time`</a> | int | The timestamp when the session expired (in unix nanoseconds). | `1757348656658491100` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="session-id" href="#session-id">`session.id`</a> | string | A unique id to identify a session. | `00112233-4455-6677-8899-aabbccddeeff` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="session-previous-id" href="#session-previous-id">`session.previous_id`</a> | string | The previous `session.id` for this user, when known. | `00112233-4455-6677-8899-aabbccddeeff` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="session-start-time" href="#session-start-time">`session.start_time`</a> | int | The timestamp when the session started (in unix nanoseconds). | `1757348655674899200` | ![Development](https://img.shields.io/badge/-development-blue) |

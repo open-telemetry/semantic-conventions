@@ -26,6 +26,9 @@ groups:
             the `session.previous_id` SHOULD be included in the event. The `session.id` and `session.previous_id`
             attributes MUST have different values.
         brief: The previous `session.id` for this user, when known.
+      - ref: session.start_time
+        requirement_level: required
+        brief: The true timestamp of when the session started.
   - id: event.session.end
     stability: development
     type: event
@@ -40,3 +43,16 @@ groups:
       - ref: session.id
         requirement_level: required
         brief: The ID of the session being ended.
+      - ref: session.previous_id
+        requirement_level:
+          conditionally_required: >
+            If the new session is being created as a continuation of a previous session,
+            the `session.previous_id` SHOULD be included in the event. The `session.id` and `session.previous_id`
+            attributes MUST have different values.
+        brief: The previous `session.id` for this user, when known.
+      - ref: session.start_time
+        requirement_level: required
+        brief: The true timestamp of when the session started.
+      - ref: session.end_time
+        requirement_level: required
+        brief: The true timestamp of when the session expired after a period of inactivity.

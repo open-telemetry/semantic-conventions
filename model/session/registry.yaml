@@ -13,6 +13,11 @@ groups:
       When a session reaches end of life, typically due to user inactivity or session timeout, a new session identifier
       will be assigned. The previous session identifier may be provided by the instrumentation so that telemetry
       backends can link the two sessions.
+
+      When a session expires, then the end time is calculated by the expiry timestamp minus the session timeout interval.
+      This is not necessarily the same as when session events are recorded, since they are only created after a period of inactivity.
+      To account for this difference, session `start_time` and `end_time` represent the true session lifecycle, whereas `timeUnixNano`
+      marks when session events are observed.
     attributes:
       - id: session.id
         type: string
@@ -24,3 +29,13 @@ groups:
         stability: development
         brief: "The previous `session.id` for this user, when known."
         examples: "00112233-4455-6677-8899-aabbccddeeff"
+      - id: session.start_time
+        type: int
+        stability: development
+        brief: "The timestamp when the session started (in unix nanoseconds)."
+        examples: 1757348655674899200
+      - id: session.end_time
+        type: int
+        stability: development
+        brief: "The timestamp when the session expired (in unix nanoseconds)."
+        examples: 1757348656658491100
