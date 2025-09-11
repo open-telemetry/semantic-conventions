@@ -31,6 +31,9 @@ groups:
       to end-of-batch, it's hard to interpret in practice.
 
       **Streaming**: N/A.
+    attributes:
+      - ref: network.protocol.name
+      - ref: network.protocol.version
 
   - id: metric.rpc.server.request.size
     type: metric
@@ -44,6 +47,9 @@ groups:
     unit: "By"
     note: |
       **Streaming**: Recorded per message in a streaming batch
+    attributes:
+      - ref: network.protocol.name
+      - ref: network.protocol.version
 
   - id: metric.rpc.server.response.size
     type: metric
@@ -57,6 +63,9 @@ groups:
     unit: "By"
     note: |
       **Streaming**: Recorded per response in a streaming batch
+    attributes:
+      - ref: network.protocol.name
+      - ref: network.protocol.version
 
   - id: metric.rpc.server.requests_per_rpc
     type: metric
@@ -104,6 +113,9 @@ groups:
       to end-of-batch, it's hard to interpret in practice.
 
       **Streaming**: N/A.
+    attributes:
+      - ref: network.protocol.name
+      - ref: network.protocol.version
 
   - id: metric.rpc.client.request.size
     type: metric
@@ -117,6 +129,9 @@ groups:
     unit: "By"
     note: |
       **Streaming**: Recorded per message in a streaming batch
+    attributes:
+      - ref: network.protocol.name
+      - ref: network.protocol.version
 
   - id: metric.rpc.client.response.size
     type: metric
@@ -130,6 +145,9 @@ groups:
     unit: "By"
     note: |
       **Streaming**: Recorded per response in a streaming batch
+    attributes:
+      - ref: network.protocol.name
+      - ref: network.protocol.version
 
   - id: metric.rpc.client.requests_per_rpc
     type: metric
