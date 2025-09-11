@@ -12,7 +12,6 @@ Operations that access some remote service.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="peer-service-id" href="#peer-service-id">`peer.service.id`</a> | string | The [`service.id`](/docs/resource/README.md#service) of the remote service. SHOULD be equal to the actual `service.id` resource attribute of the remote service if any. | `1` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="peer-service-name" href="#peer-service-name">`peer.service.name`</a> | string | The [`service.name`](/docs/resource/README.md#service) of the remote service. SHOULD be equal to the actual `service.name` resource attribute of the remote service if any. | `AuthTokenCache` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="peer-service-namespace" href="#peer-service-namespace">`peer.service.namespace`</a> | string | The [`service.namespace`](/docs/resource/README.md#service) of the remote service. SHOULD be equal to the actual `service.namespace` resource attribute of the remote service if any. | `Auth` | ![Development](https://img.shields.io/badge/-development-blue) |
 

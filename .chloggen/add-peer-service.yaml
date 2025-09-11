@@ -27,7 +27,6 @@ subtext: |
 
   New peer attributes added:
   - `peer.service.namespace`
-  - `peer.service.id`
 
   Azure attributes:
   - `azure.resource_provider.namespace` → `peer.service.namespace`
