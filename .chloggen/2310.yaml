@@ -1,4 +1,0 @@
-change_type: bug_fix
-component: otel
-note: Removes `otel.scope` entity.
-issues: [2310]

@@ -2,6 +2,9 @@ groups:
   - id: metric.cicd.pipeline.run.duration
     type: metric
     metric_name: cicd.pipeline.run.duration
+    annotations:
+      code_generation:
+        metric_value_type: double
     brief: 'Duration of a pipeline run grouped by pipeline, state and result.'
     instrument: histogram
     unit: "s"
@@ -22,6 +25,9 @@ groups:
   - id: metric.cicd.pipeline.run.active
     type: metric
     metric_name: cicd.pipeline.run.active
+    annotations:
+      code_generation:
+        metric_value_type: int
     brief: 'The number of pipeline runs currently active in the system by state.'
     instrument: updowncounter
     unit: "{run}"
@@ -36,6 +42,9 @@ groups:
   - id: metric.cicd.worker.count
     type: metric
     metric_name: cicd.worker.count
+    annotations:
+      code_generation:
+        metric_value_type: int
     brief: 'The number of workers on the CICD system by state.'
     instrument: updowncounter
     unit: "{count}"
@@ -46,6 +55,9 @@ groups:
   - id: metric.cicd.pipeline.run.errors
     type: metric
     metric_name: cicd.pipeline.run.errors
+    annotations:
+      code_generation:
+        metric_value_type: int
     brief: 'The number of errors encountered in pipeline runs (eg. compile, test failures).'
     note: |
       There might be errors in a pipeline run that are non fatal (eg. they are suppressed) or in a parallel stage multiple stages could have a fatal error.
@@ -63,6 +75,9 @@ groups:
   - id: metric.cicd.system.errors
     type: metric
     metric_name: cicd.system.errors
+    annotations:
+      code_generation:
+        metric_value_type: int
     brief: 'The number of errors in a component of the CICD system (eg. controller, scheduler, agent).'
     note: 'Errors in pipeline run execution are explicitly excluded. Ie a test failure is not counted in this metric.'
     instrument: counter

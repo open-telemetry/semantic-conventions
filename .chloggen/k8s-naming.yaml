@@ -1,7 +1,0 @@
-change_type: enhancement
-
-component: k8s
-
-note: Explains the rationale behind the Kubernetes resource naming convention.
-
-issues: [2245]

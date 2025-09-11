@@ -43,8 +43,9 @@ Examples:
   attribute with value `["1.2.3.4", "1.2.3.5"]` or `["1.2.3.4, 1.2.3.5"]` depending on the HTTP library.
 
 **[2] `http.request.method`:** HTTP request method value SHOULD be "known" to the instrumentation.
-By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
-and the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
+By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods),
+the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html)
+and the QUERY method defined in [httpbis-safe-method-w-body](https://datatracker.ietf.org/doc/draft-ietf-httpbis-safe-method-w-body/?include_text=1).
 
 If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `_OTHER`.
 
@@ -102,6 +103,7 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 | `PATCH` | PATCH method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `POST` | POST method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `PUT` | PUT method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `QUERY` | QUERY method. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `TRACE` | TRACE method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ## Deprecated HTTP Attributes
@@ -111,7 +113,7 @@ Describes deprecated HTTP attributes.
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
 | <a id="http-client-ip" href="#http-client-ip">`http.client_ip`</a> | string | Deprecated, use `client.address` instead. | `83.164.160.102` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `client.address`. |
-| <a id="http-flavor" href="#http-flavor">`http.flavor`</a> | string | Deprecated, use `network.protocol.name` instead. | `1.0`; `1.1`; `2.0` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `network.protocol.name`. |
+| <a id="http-flavor" href="#http-flavor">`http.flavor`</a> | string | Deprecated, use `network.protocol.name` and `network.protocol.version` instead. | `1.0`; `1.1`; `2.0` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Split into `network.protocol.name` and `network.protocol.version` |
 | <a id="http-host" href="#http-host">`http.host`</a> | string | Deprecated, use one of `server.address`, `client.address` or `http.request.header.host` instead, depending on the usage. | `www.example.org` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by one of `server.address`, `client.address` or `http.request.header.host`, depending on the usage. |
 | <a id="http-method" href="#http-method">`http.method`</a> | string | Deprecated, use `http.request.method` instead. | `GET`; `POST`; `HEAD` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `http.request.method`. |
 | <a id="http-request-content-length" href="#http-request-content-length">`http.request_content_length`</a> | int | Deprecated, use `http.request.header.content-length` instead. | `3495` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `http.request.header.content-length`. |

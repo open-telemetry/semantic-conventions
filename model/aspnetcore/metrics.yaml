@@ -6,11 +6,40 @@ groups:
       - ref: aspnetcore.rate_limiting.policy
         requirement_level:
           conditionally_required: if the matched endpoint for the request had a rate-limiting policy.
+  - id: aspnetcore.common.authentication.metrics.attributes
+    type: attribute_group
+    brief: Common ASP.NET Core authentication metrics attributes
+    attributes:
+      - ref: aspnetcore.authentication.scheme
+        requirement_level:
+          conditionally_required: if a scheme is specified during authentication.
+      - ref: error.type
+        brief: The full name of exception type.
+        requirement_level:
+          conditionally_required: if and only if an error has occurred.
+        examples: ['System.OperationCanceledException']
+        note: ""
+  - id: aspnetcore.common.identity.metrics.attributes
+    type: attribute_group
+    brief: Common ASP.NET Core Identity metrics attributes
+    attributes:
+      - ref: aspnetcore.identity.user_type
+        requirement_level: required
+  - id: aspnetcore.common.memory_pool.metrics.attributes
+    type: attribute_group
+    brief: Common ASP.NET Core memory pool metrics attributes
+    attributes:
+      - ref: aspnetcore.memory_pool.owner
+        requirement_level:
+          conditionally_required: if owner is specified when the memory pool is created.
 
   # routing
   - id: metric.aspnetcore.routing.match_attempts
     type: metric
     metric_name: aspnetcore.routing.match_attempts
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: stable
     brief: Number of requests that were attempted to be matched to an endpoint.
     instrument: counter
@@ -31,6 +60,9 @@ groups:
   - id: metric.aspnetcore.diagnostics.exceptions
     type: metric
     metric_name: aspnetcore.diagnostics.exceptions
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: stable
     brief: Number of exceptions caught by exception handling middleware.
     instrument: counter
@@ -42,6 +74,7 @@ groups:
         brief: The full name of exception type.
         examples: ['System.OperationCanceledException', 'Contoso.MyException']
         requirement_level: required
+        note: ""
       - ref: aspnetcore.diagnostics.handler.type
         requirement_level:
           conditionally_required: if and only if the exception was handled by this handler.
@@ -52,6 +85,9 @@ groups:
   - id: metric.aspnetcore.rate_limiting.active_request_leases
     type: metric
     metric_name: aspnetcore.rate_limiting.active_request_leases
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: stable
     brief: Number of requests that are currently active on the server that hold a rate limiting lease.
     instrument: updowncounter
@@ -63,6 +99,9 @@ groups:
   - id: metric.aspnetcore.rate_limiting.request_lease.duration
     type: metric
     metric_name: aspnetcore.rate_limiting.request_lease.duration
+    annotations:
+      code_generation:
+        metric_value_type: double
     stability: stable
     brief: The duration of rate limiting lease held by requests on the server.
     instrument: histogram
@@ -74,6 +113,9 @@ groups:
   - id: metric.aspnetcore.rate_limiting.request.time_in_queue
     type: metric
     metric_name: aspnetcore.rate_limiting.request.time_in_queue
+    annotations:
+      code_generation:
+        metric_value_type: double
     stability: stable
     brief: The time the request spent in a queue waiting to acquire a rate limiting lease.
     instrument: histogram
@@ -88,6 +130,9 @@ groups:
   - id: metric.aspnetcore.rate_limiting.queued_requests
     type: metric
     metric_name: aspnetcore.rate_limiting.queued_requests
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: stable
     brief: Number of requests that are currently queued, waiting to acquire a rate limiting lease.
     instrument: updowncounter
@@ -99,6 +144,9 @@ groups:
   - id: metric.aspnetcore.rate_limiting.requests
     type: metric
     metric_name: aspnetcore.rate_limiting.requests
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: stable
     brief: Number of requests that tried to acquire a rate limiting lease.
     instrument: counter
@@ -114,3 +162,470 @@ groups:
     attributes:
       - ref: aspnetcore.rate_limiting.result
         requirement_level: required
+
+    # memory_pool
+  - id: metric.aspnetcore.memory_pool.pooled
+    type: metric
+    metric_name: aspnetcore.memory_pool.pooled
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: Number of bytes currently pooled and available for reuse.
+    instrument: updowncounter
+    unit: "By"
+    note: |
+      Meter name: `Microsoft.AspNetCore.MemoryPool`; Added in: ASP.NET Core 10.0
+    extends: aspnetcore.common.memory_pool.metrics.attributes
+
+  - id: metric.aspnetcore.memory_pool.allocated
+    type: metric
+    metric_name: aspnetcore.memory_pool.allocated
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: Total number of bytes allocated by the memory pool. Allocation occurs when a memory rental request exceeds the available pooled memory.
+    instrument: counter
+    unit: "By"
+    note: |
+      Meter name: `Microsoft.AspNetCore.MemoryPool`; Added in: ASP.NET Core 10.0
+    extends: aspnetcore.common.memory_pool.metrics.attributes
+
+  - id: metric.aspnetcore.memory_pool.evicted
+    type: metric
+    metric_name: aspnetcore.memory_pool.evicted
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: Total number of bytes evicted from the memory pool. Eviction occurs when idle pooled memory is reclaimed.
+    instrument: counter
+    unit: "By"
+    note: |
+      Meter name: `Microsoft.AspNetCore.MemoryPool`; Added in: ASP.NET Core 10.0
+    extends: aspnetcore.common.memory_pool.metrics.attributes
+
+  - id: metric.aspnetcore.memory_pool.rented
+    type: metric
+    metric_name: aspnetcore.memory_pool.rented
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: Total number of bytes rented from the memory pool.
+    instrument: counter
+    unit: "By"
+    note: |
+      Meter name: `Microsoft.AspNetCore.MemoryPool`; Added in: ASP.NET Core 10.0
+    extends: aspnetcore.common.memory_pool.metrics.attributes
+
+  # authentication
+  - id: metric.aspnetcore.authentication.authenticate.duration
+    type: metric
+    metric_name: aspnetcore.authentication.authenticate.duration
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: The authentication duration for a request.
+    instrument: histogram
+    unit: "s"
+    note: |
+      Meter name: `Microsoft.AspNetCore.Authentication`; Added in: ASP.NET Core 10.0
+    extends: aspnetcore.common.authentication.metrics.attributes
+    attributes:
+      - ref: aspnetcore.authentication.result
+        requirement_level: required
+
+  - id: metric.aspnetcore.authentication.challenges
+    type: metric
+    metric_name: aspnetcore.authentication.challenges
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: The total number of times a scheme is challenged.
+    instrument: counter
+    unit: "{challenge}"
+    note: |
+      Meter name: `Microsoft.AspNetCore.Authentication`; Added in: ASP.NET Core 10.0
+    extends: aspnetcore.common.authentication.metrics.attributes
+
+  - id: metric.aspnetcore.authentication.forbids
+    type: metric
+    metric_name: aspnetcore.authentication.forbids
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: The total number of times an authenticated user attempts to access a resource they are not permitted to access.
+    instrument: counter
+    unit: "{forbid}"
+    note: |
+      Meter name: `Microsoft.AspNetCore.Authentication`; Added in: ASP.NET Core 10.0
+    extends: aspnetcore.common.authentication.metrics.attributes
+
+  - id: metric.aspnetcore.authentication.sign_ins
+    type: metric
+    metric_name: aspnetcore.authentication.sign_ins
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: The total number of times a principal is signed in with a scheme.
+    instrument: counter
+    unit: "{sign_in}"
+    note: |
+      Meter name: `Microsoft.AspNetCore.Authentication`; Added in: ASP.NET Core 10.0
+    extends: aspnetcore.common.authentication.metrics.attributes
+
+  - id: metric.aspnetcore.authentication.sign_outs
+    type: metric
+    metric_name: aspnetcore.authentication.sign_outs
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: The total number of times a principal is signed out with a scheme.
+    instrument: counter
+    unit: "{sign_out}"
+    note: |
+      Meter name: `Microsoft.AspNetCore.Authentication`; Added in: ASP.NET Core 10.0
+    extends: aspnetcore.common.authentication.metrics.attributes
+
+  # authentication
+  - id: metric.aspnetcore.authorization.attempts
+    type: metric
+    metric_name: aspnetcore.authorization.attempts
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: The total number of authorization attempts.
+    instrument: counter
+    unit: "{attempt}"
+    note: |
+      Meter name: `Microsoft.AspNetCore.Authorization`; Added in: ASP.NET Core 10.0
+    attributes:
+      - ref: aspnetcore.user.is_authenticated
+        requirement_level: required
+      - ref: aspnetcore.authorization.policy
+        requirement_level:
+          conditionally_required: if a policy is specified.
+      - ref: aspnetcore.authorization.result
+        requirement_level:
+          conditionally_required: if no exception was thrown.
+      - ref: error.type
+        brief: The full name of exception type.
+        requirement_level:
+          conditionally_required: if and only if an error has occurred.
+        examples: ['System.OperationCanceledException']
+        note: ""
+
+  # identity
+  - id: metric.aspnetcore.identity.user.create.duration
+    type: metric
+    metric_name: aspnetcore.identity.user.create.duration
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: The duration of user creation operations.
+    instrument: histogram
+    unit: "s"
+    note: |
+      Meter name: `Microsoft.AspNetCore.Identity`; Added in: ASP.NET Core 10.0
+    extends: aspnetcore.common.identity.metrics.attributes
+    attributes:
+      - ref: aspnetcore.identity.result
+        requirement_level:
+          conditionally_required: if no exception was thrown.
+      - ref: aspnetcore.identity.error_code
+        requirement_level:
+          conditionally_required: if an error was set on a failed identity result.
+      - ref: error.type
+        brief: The full name of exception type or the identity error code.
+        requirement_level:
+          conditionally_required: if and only if an error has occurred.
+        examples: ['System.OperationCanceledException', 'PasswordMismatch']
+        note: ""
+
+  - id: metric.aspnetcore.identity.user.update.duration
+    type: metric
+    metric_name: aspnetcore.identity.user.update.duration
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: The duration of user update operations.
+    instrument: histogram
+    unit: "s"
+    note: |
+      Meter name: `Microsoft.AspNetCore.Identity`; Added in: ASP.NET Core 10.0
+    extends: aspnetcore.common.identity.metrics.attributes
+    attributes:
+      - ref: aspnetcore.identity.user.update_type
+        requirement_level: required
+      - ref: aspnetcore.identity.result
+        requirement_level:
+          conditionally_required: if no exception was thrown.
+      - ref: aspnetcore.identity.error_code
+        requirement_level:
+          conditionally_required: if an error was set on a failed identity result.
+      - ref: error.type
+        brief: The full name of exception type or the identity error code.
+        requirement_level:
+          conditionally_required: if and only if an error has occurred.
+        examples: ['System.OperationCanceledException', 'PasswordMismatch']
+        note: ""
+
+  - id: metric.aspnetcore.identity.user.delete.duration
+    type: metric
+    metric_name: aspnetcore.identity.user.delete.duration
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: The duration of user deletion operations.
+    instrument: histogram
+    unit: "s"
+    note: |
+      Meter name: `Microsoft.AspNetCore.Identity`; Added in: ASP.NET Core 10.0
+    extends: aspnetcore.common.identity.metrics.attributes
+    attributes:
+      - ref: aspnetcore.identity.result
+        requirement_level:
+          conditionally_required: if no exception was thrown.
+      - ref: aspnetcore.identity.error_code
+        requirement_level:
+          conditionally_required: if an error was set on a failed identity result.
+      - ref: error.type
+        brief: The full name of exception type or the identity error code.
+        requirement_level:
+          conditionally_required: if and only if an error has occurred.
+        examples: ['System.OperationCanceledException', 'PasswordMismatch']
+        note: ""
+
+  - id: metric.aspnetcore.identity.user.check_password_attempts
+    type: metric
+    metric_name: aspnetcore.identity.user.check_password_attempts
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: The number of check password attempts. Only checks whether the password is valid and not whether the user account is in a state that can log in.
+    instrument: counter
+    unit: "{attempt}"
+    note: |
+      Meter name: `Microsoft.AspNetCore.Identity`; Added in: ASP.NET Core 10.0
+    extends: aspnetcore.common.identity.metrics.attributes
+    attributes:
+      - ref: aspnetcore.identity.password_check_result
+        requirement_level:
+          conditionally_required: if no exception was thrown.
+      - ref: error.type
+        brief: The full name of exception type.
+        requirement_level:
+          conditionally_required: if and only if an error has occurred.
+        examples: ['System.OperationCanceledException']
+        note: ""
+
+  - id: metric.aspnetcore.identity.user.verify_token_attempts
+    type: metric
+    metric_name: aspnetcore.identity.user.verify_token_attempts
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: The total number of token verification attempts.
+    instrument: counter
+    unit: "{attempt}"
+    note: |
+      Meter name: `Microsoft.AspNetCore.Identity`; Added in: ASP.NET Core 10.0
+    extends: aspnetcore.common.identity.metrics.attributes
+    attributes:
+      - ref: aspnetcore.identity.token_purpose
+        requirement_level: required
+      - ref: aspnetcore.identity.token_verified
+        requirement_level:
+          conditionally_required: if no exception was thrown.
+      - ref: error.type
+        brief: The full name of exception type.
+        requirement_level:
+          conditionally_required: if and only if an error has occurred.
+        examples: ['System.OperationCanceledException']
+        note: ""
+
+  - id: metric.aspnetcore.identity.user.generated_tokens
+    type: metric
+    metric_name: aspnetcore.identity.user.generated_tokens
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: The total number of token generations.
+    instrument: counter
+    unit: "{count}"
+    note: |
+      Meter name: `Microsoft.AspNetCore.Identity`; Added in: ASP.NET Core 10.0
+    extends: aspnetcore.common.identity.metrics.attributes
+    attributes:
+      - ref: aspnetcore.identity.token_purpose
+        requirement_level: required
+      - ref: error.type
+        brief: The full name of exception type.
+        requirement_level:
+          conditionally_required: if and only if an error has occurred.
+        examples: ['System.OperationCanceledException']
+        note: ""
+
+  - id: metric.aspnetcore.identity.sign_in.authenticate.duration
+    type: metric
+    metric_name: aspnetcore.identity.sign_in.authenticate.duration
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: The duration of authenticate attempts. The authenticate metrics is recorded by sign in methods such as PasswordSignInAsync and TwoFactorSignInAsync.
+    instrument: histogram
+    unit: "s"
+    note: |
+      Meter name: `Microsoft.AspNetCore.Identity`; Added in: ASP.NET Core 10.0
+    extends: aspnetcore.common.identity.metrics.attributes
+    attributes:
+      - ref: aspnetcore.authentication.scheme
+        requirement_level: required
+      - ref: aspnetcore.sign_in.is_persistent
+        requirement_level:
+          conditionally_required: if no exception was thrown.
+      - ref: aspnetcore.identity.sign_in.type
+        requirement_level: required
+      - ref: aspnetcore.identity.sign_in.result
+        requirement_level:
+          conditionally_required: if no exception was thrown.
+      - ref: error.type
+        brief: The full name of exception type.
+        requirement_level:
+          conditionally_required: if and only if an error has occurred.
+        examples: ['System.OperationCanceledException']
+        note: ""
+
+  - id: metric.aspnetcore.identity.sign_in.two_factor_clients_remembered
+    type: metric
+    metric_name: aspnetcore.identity.sign_in.two_factor_clients_remembered
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: The total number of two factor clients remembered.
+    instrument: counter
+    unit: "{client}"
+    note: |
+      Meter name: `Microsoft.AspNetCore.Identity`; Added in: ASP.NET Core 10.0
+    extends: aspnetcore.common.identity.metrics.attributes
+    attributes:
+      - ref: aspnetcore.authentication.scheme
+        requirement_level: required
+      - ref: error.type
+        brief: The full name of exception type.
+        requirement_level:
+          conditionally_required: if and only if an error has occurred.
+        examples: ['System.OperationCanceledException']
+        note: ""
+
+  - id: metric.aspnetcore.identity.sign_in.two_factor_clients_forgotten
+    type: metric
+    metric_name: aspnetcore.identity.sign_in.two_factor_clients_forgotten
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: The total number of two factor clients forgotten.
+    instrument: counter
+    unit: "{client}"
+    note: |
+      Meter name: `Microsoft.AspNetCore.Identity`; Added in: ASP.NET Core 10.0
+    extends: aspnetcore.common.identity.metrics.attributes
+    attributes:
+      - ref: aspnetcore.authentication.scheme
+        requirement_level: required
+      - ref: error.type
+        brief: The full name of exception type.
+        requirement_level:
+          conditionally_required: if and only if an error has occurred.
+        examples: ['System.OperationCanceledException']
+        note: ""
+
+  - id: metric.aspnetcore.identity.sign_in.check_password_attempts
+    type: metric
+    metric_name: aspnetcore.identity.sign_in.check_password_attempts
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: The total number of check password attempts. Checks that the account is in a state that can log in and that the password is valid using the UserManager.CheckPasswordAsync method.
+    instrument: counter
+    unit: "{attempt}"
+    note: |
+      Meter name: `Microsoft.AspNetCore.Identity`; Added in: ASP.NET Core 10.0
+    extends: aspnetcore.common.identity.metrics.attributes
+    attributes:
+      - ref: aspnetcore.identity.sign_in.result
+        requirement_level:
+          conditionally_required: if no exception was thrown.
+      - ref: error.type
+        brief: The full name of exception type.
+        requirement_level:
+          conditionally_required: if and only if an error has occurred.
+        examples: ['System.OperationCanceledException']
+        note: ""
+
+  - id: metric.aspnetcore.identity.sign_in.sign_ins
+    type: metric
+    metric_name: aspnetcore.identity.sign_in.sign_ins
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: The total number of calls to sign in user principals.
+    instrument: counter
+    unit: "{sign_in}"
+    note: |
+      Meter name: `Microsoft.AspNetCore.Identity`; Added in: ASP.NET Core 10.0
+    extends: aspnetcore.common.identity.metrics.attributes
+    attributes:
+      - ref: aspnetcore.authentication.scheme
+        requirement_level: required
+      - ref: aspnetcore.sign_in.is_persistent
+        requirement_level:
+          conditionally_required: if no exception was thrown.
+      - ref: error.type
+        brief: The full name of exception type.
+        requirement_level:
+          conditionally_required: if and only if an error has occurred.
+        examples: ['System.OperationCanceledException']
+        note: ""
+
+  - id: metric.aspnetcore.identity.sign_in.sign_outs
+    type: metric
+    metric_name: aspnetcore.identity.sign_in.sign_outs
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: The total number of calls to sign out user principals.
+    instrument: counter
+    unit: "{sign_out}"
+    note: |
+      Meter name: `Microsoft.AspNetCore.Identity`; Added in: ASP.NET Core 10.0
+    extends: aspnetcore.common.identity.metrics.attributes
+    attributes:
+      - ref: aspnetcore.authentication.scheme
+        requirement_level: required
+      - ref: error.type
+        brief: The full name of exception type.
+        requirement_level:
+          conditionally_required: if and only if an error has occurred.
+        examples: ['System.OperationCanceledException']
+        note: ""

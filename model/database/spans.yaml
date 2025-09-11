@@ -169,7 +169,7 @@ groups:
           Instrumentation SHOULD document if `db.namespace` reflects the database provided when the connection was established.
 
           It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
-        examples: ["instance1.products", "customers"]
+        examples: ['instance1\|products', 'customers']
       - ref: db.response.status_code
         brief: >
           [Microsoft SQL Server error](https://learn.microsoft.com/sql/relational-databases/errors-events/database-engine-events-and-errors) number
@@ -821,10 +821,11 @@ groups:
         requirement_level:
           conditionally_required: If available.
         note: ""  # overriding the base note
-      - ref: az.namespace
+      - ref: azure.resource_provider.namespace
         note: >
-          When `az.namespace` attribute is populated, it MUST be set to `Microsoft.DocumentDB` for all
-          operations performed by Cosmos DB client.
+          When `azure.resource_provider.namespace` attribute is populated, it
+          MUST be set to `Microsoft.DocumentDB` for all operations performed by
+          Cosmos DB client.
         examples: ["Microsoft.DocumentDB"]
       - ref: db.operation.name
         requirement_level: required

@@ -1,5 +1,3 @@
-# All documents to be used in spell check.
-ALL_DOCS := $(shell find . -type f -name '*.md' -not -path './.github/*' -not -path './node_modules/*' | sort)
 PWD := $(shell pwd)
 
 # Determine OS & Arch for specific OS only tools on Unix based systems
@@ -10,16 +8,8 @@ else
 	SED ?= sed
 endif
 
-
-ifeq ($(LYCHEE_GITHUB_TOKEN),)
-  LYCHEE_GITHUB_TOKEN_ARG :=
-else
-  LYCHEE_GITHUB_TOKEN_ARG := --env GITHUB_TOKEN=$(LYCHEE_GITHUB_TOKEN)
-endif
-
 TOOLS_DIR := $(PWD)/internal/tools
 
-MARKDOWN_LINK_CHECK_ARG= # pass extra arguments such as --exclude '^http'
 MISSPELL_BINARY=bin/misspell
 MISSPELL = $(TOOLS_DIR)/$(MISSPELL_BINARY)
 
@@ -33,14 +23,12 @@ CONTAINER_REPOSITORY=docker.io
 # Per container overrides for the repository resolution.
 WEAVER_CONTAINER_REPOSITORY=$(CONTAINER_REPOSITORY)
 OPA_CONTAINER_REPOSITORY=$(CONTAINER_REPOSITORY)
-LYCHEE_CONTAINER_REPOSITORY=$(CONTAINER_REPOSITORY)
 
 # Versioned, non-qualified references to containers used in this Makefile.
 # These are parsed from dependencies.Dockerfile so dependabot will autoupdate
 # the versions of docker files we use.
 VERSIONED_WEAVER_CONTAINER_NO_REPO=$(shell cat dependencies.Dockerfile | awk '$$4=="weaver" {print $$2}')
 VERSIONED_OPA_CONTAINER_NO_REPO=$(shell cat dependencies.Dockerfile | awk '$$4=="opa" {print $$2}')
-VERSIONED_LYCHEE_CONTAINER_NO_REPO=$(shell cat dependencies.Dockerfile | awk '$$4=="lychee" {print $$2}')
 
 # Fully qualified references to containers used in this Makefile. These
 # include the container repository, so that the build will work with tools
@@ -52,10 +40,6 @@ VERSIONED_LYCHEE_CONTAINER_NO_REPO=$(shell cat dependencies.Dockerfile | awk '$$
 #    and no unqualified-search registries are defined in "/etc/containers/registries.conf"
 WEAVER_CONTAINER=$(WEAVER_CONTAINER_REPOSITORY)/$(VERSIONED_WEAVER_CONTAINER_NO_REPO)
 OPA_CONTAINER=$(OPA_CONTAINER_REPOSITORY)/$(VERSIONED_OPA_CONTAINER_NO_REPO)
-LYCHEE_CONTAINER=$(LYCHEE_CONTAINER_REPOSITORY)/$(VERSIONED_LYCHEE_CONTAINER_NO_REPO)
-
-CHECK_TARGETS=install-tools markdownlint misspell table-check \
-			schema-check check-file-and-folder-names-in-docs
 
 # Determine if "docker" is actually podman
 DOCKER_VERSION_OUTPUT := $(shell docker --version 2>&1)
@@ -88,10 +72,7 @@ endif
 
 # TODO: add `yamllint` step to `all` after making sure it works on Mac.
 .PHONY: all
-all: $(CHECK_TARGETS) markdown-link-check
-
-.PHONY: check
-check: $(CHECK_TARGETS)
+all: install-tools markdownlint misspell table-check schema-check check-file-and-folder-names-in-docs markdown-link-check
 
 .PHONY: check-file-and-folder-names-in-docs
 check-file-and-folder-names-in-docs:
@@ -107,17 +88,17 @@ $(MISSPELL):
 
 .PHONY: misspell
 misspell:	$(MISSPELL)
-	$(MISSPELL) -error $(ALL_DOCS)
+	find . -type f -name '*.md' -not -path './.github/*' -not -path './node_modules/*' -not -path './.git/*' -exec $(MISSPELL) -error {} +
 
 .PHONY: misspell-correction
 misspell-correction:	$(MISSPELL)
-	$(MISSPELL) -w $(ALL_DOCS)
+	find . -type f -name '*.md' -not -path './.github/*' -not -path './node_modules/*' -not -path './.git/*' -exec $(MISSPELL) -w {} +
 
 .PHONY: normalized-link-check
-# NOTE: we check `model/[a-z]*` to avoid `model/README.md`, which contains
-# valid occurrences of `../docs/`.
+# NOTE: Search "model/*/**" rather than "model" to skip `model/README.md`, which
+# contains valid occurrences of `../docs/`.
 normalized-link-check:
-	@if grep -R '\.\./docs/' docs model/[a-z]*; then \
+	@if grep -R '\.\./docs/' docs model/*/**; then \
 		echo "\nERROR: Found occurrences of '../docs/'; see above."; \
 		echo "       Remove the '../docs/' from doc page links referencing doc pages."; \
 		exit 1; \
@@ -127,27 +108,11 @@ normalized-link-check:
 
 .PHONY: markdown-link-check
 markdown-link-check: normalized-link-check
-	$(DOCKER_RUN) --rm \
-	    $(DOCKER_USER_IS_HOST_USER_ARG) \
-		--mount 'type=bind,source=$(PWD),target=/home/repo' $(LYCHEE_GITHUB_TOKEN_ARG) \
-		$(LYCHEE_CONTAINER) \
-		--config home/repo/.lychee.toml \
-		--root-dir /home/repo \
-		--verbose \
-		--timeout=60 \
-		$(MARKDOWN_LINK_CHECK_ARG) \
-		home/repo
+	.github/scripts/link-check.sh $(FILES)
 
-.PHONY: markdown-link-check-changelog-preview
-markdown-link-check-changelog-preview:
-	$(DOCKER_RUN) --rm \
-	   $(DOCKER_USER_IS_HOST_USER_ARG) \
-		--mount 'type=bind,source=$(PWD),target=/home/repo' $(LYCHEE_GITHUB_TOKEN_ARG) \
-		$(LYCHEE_CONTAINER) \
-		--config /home/repo/.lychee.toml \
-		--root-dir /home/repo \
-		--verbose \
-		home/repo/changelog_preview.md
+.PHONY: markdown-link-check-local-only
+markdown-link-check-local-only: normalized-link-check
+	.github/scripts/link-check.sh --local-links-only $(FILES)
 
 # This target runs markdown-toc on all files that contain
 # a comment <!-- tocstop -->.
@@ -160,21 +125,21 @@ markdown-link-check-changelog-preview:
 .PHONY: markdown-toc
 markdown-toc:
 	@if ! npm ls markdown-toc; then npm install; fi
-	@for f in $(ALL_DOCS); do \
-		if grep -q '<!-- tocstop -->' $$f; then \
-			echo markdown-toc: processing $$f; \
-			npx --no -- markdown-toc --bullets "-" --no-first-h1 --no-stripHeadingTags -i $$f || exit 1; \
-		elif grep -q '<!-- toc -->' $$f; then \
-			echo markdown-toc: ERROR: '<!-- tocstop -->' missing from $$f; exit 1; \
+	@find . -type f -name '*.md' -not -path './.github/*' -not -path './node_modules/*' -not -path './.git/*' | while read -r f; do \
+		if grep -q '<!-- tocstop -->' "$$f"; then \
+			echo markdown-toc: processing "$$f"; \
+			npx --no -- markdown-toc --bullets "-" --no-first-h1 --no-stripHeadingTags -i "$$f" || exit 1; \
+		elif grep -q '<!-- toc -->' "$$f"; then \
+			echo markdown-toc: ERROR: '<!-- tocstop -->' missing from "$$f"; exit 1; \
 		else \
-			echo markdown-toc: no TOC markers, skipping $$f; \
+			echo markdown-toc: no TOC markers, skipping "$$f"; \
 		fi; \
 	done
 
 .PHONY: markdownlint
 markdownlint:
 	@if ! npm ls markdownlint-cli; then npm install; fi
-	npx --no -- markdownlint-cli -c .markdownlint.yaml $(ALL_DOCS)
+	npx --no -- markdownlint-cli -c .markdownlint.yaml "**/*.md" --ignore ./.github/ --ignore ./node_modules/ --ignore ./.git/
 
 .PHONY: install-yamllint
 install-yamllint:
@@ -349,3 +314,32 @@ check-dead-yaml:
 		. \
 		/home/weaver/target
 	$(TOOLS_DIR)/scripts/find-dead-yaml.sh $(PWD)/internal/tools/bin/signal-groups.txt $(PWD)/docs
+
+NEXT_SEMCONV_VERSION ?= next
+.PHONY: generate-schema-next
+generate-schema-next:
+	mkdir -p $(TOOLS_DIR)/bin
+	$(DOCKER_RUN) --rm \
+	$(DOCKER_USER_IS_HOST_USER_ARG) \
+	--env USER=weaver \
+	--env HOME=/home/weaver \
+	-v $(shell mktemp -d):/home/weaver/.weaver \
+	--mount 'type=bind,source=$(PWD)/internal/tools/scripts,target=/home/weaver/templates,readonly' \
+	--mount 'type=bind,source=$(PWD)/model,target=/home/weaver/source,readonly' \
+	--mount 'type=bind,source=$(TOOLS_DIR)/bin,target=/home/weaver/target' \
+	$(WEAVER_CONTAINER) registry diff \
+		--registry=/home/weaver/source \
+		--baseline-registry=https://github.com/open-telemetry/semantic-conventions/archive/refs/tags/v$(LATEST_RELEASED_SEMCONV_VERSION).zip[model] \
+		--diff-format yaml \
+		--diff-template /home/weaver/templates/schema-diff \
+		--output /home/weaver/target
+		# --param next_version=$(NEXT_SEMCONV_VERSION)
+	$(TOOLS_DIR)/scripts/generate-schema-next.sh $(NEXT_SEMCONV_VERSION) $(LATEST_RELEASED_SEMCONV_VERSION) $(TOOLS_DIR)/bin/schema-diff.yaml
+
+.PHONY: areas-table-generation
+areas-table-generation:
+	docker run --rm -v ${PWD}:/repo -w /repo python:3-alpine python internal/tools/scripts/update-areas-table.py --install;
+
+.PHONY: areas-table-check
+areas-table-check:
+	docker run --rm -v ${PWD}:/repo -w /repo python:3-alpine python internal/tools/scripts/update-areas-table.py --install --check;

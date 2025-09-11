@@ -131,6 +131,9 @@ then `<key>` SHOULD be the 0-based index.
 `db.query.parameter.<key>` SHOULD match
 up with the parameterized placeholders present in `db.query.text`.
 
+It is RECOMMENDED to capture the value as provided by the application
+without attempting to do any case normalization.
+
 `db.query.parameter.<key>` SHOULD NOT be captured on batch operations.
 
 Examples:
@@ -138,8 +141,8 @@ Examples:
 - For a query `SELECT * FROM users where username =  %s` with the parameter `"jdoe"`,
   the attribute `db.query.parameter.0` SHOULD be set to `"jdoe"`.
 
-- For a query `"SELECT * FROM users WHERE username = %(username)s;` with parameter
-  `username = "jdoe"`, the attribute `db.query.parameter.username` SHOULD be set to `"jdoe"`.
+- For a query `"SELECT * FROM users WHERE username = %(userName)s;` with parameter
+  `userName = "jdoe"`, the attribute `db.query.parameter.userName` SHOULD be set to `"jdoe"`.
 
 The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):
@@ -158,17 +161,17 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 | Value  | Description | Stability |
 |---|---|---|
-| `all` | all | ![Development](https://img.shields.io/badge/-development-blue) |
-| `any` | any | ![Development](https://img.shields.io/badge/-development-blue) |
-| `each_quorum` | each_quorum | ![Development](https://img.shields.io/badge/-development-blue) |
-| `local_one` | local_one | ![Development](https://img.shields.io/badge/-development-blue) |
-| `local_quorum` | local_quorum | ![Development](https://img.shields.io/badge/-development-blue) |
-| `local_serial` | local_serial | ![Development](https://img.shields.io/badge/-development-blue) |
-| `one` | one | ![Development](https://img.shields.io/badge/-development-blue) |
-| `quorum` | quorum | ![Development](https://img.shields.io/badge/-development-blue) |
-| `serial` | serial | ![Development](https://img.shields.io/badge/-development-blue) |
-| `three` | three | ![Development](https://img.shields.io/badge/-development-blue) |
-| `two` | two | ![Development](https://img.shields.io/badge/-development-blue) |
+| `all` | All | ![Development](https://img.shields.io/badge/-development-blue) |
+| `any` | Any | ![Development](https://img.shields.io/badge/-development-blue) |
+| `each_quorum` | Each Quorum | ![Development](https://img.shields.io/badge/-development-blue) |
+| `local_one` | Local One | ![Development](https://img.shields.io/badge/-development-blue) |
+| `local_quorum` | Local Quorum | ![Development](https://img.shields.io/badge/-development-blue) |
+| `local_serial` | Local Serial | ![Development](https://img.shields.io/badge/-development-blue) |
+| `one` | One | ![Development](https://img.shields.io/badge/-development-blue) |
+| `quorum` | Quorum | ![Development](https://img.shields.io/badge/-development-blue) |
+| `serial` | Serial | ![Development](https://img.shields.io/badge/-development-blue) |
+| `three` | Three | ![Development](https://img.shields.io/badge/-development-blue) |
+| `two` | Two | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 

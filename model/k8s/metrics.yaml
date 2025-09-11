@@ -3,8 +3,11 @@ groups:
   - id: metric.k8s.pod.uptime
     type: metric
     metric_name: k8s.pod.uptime
+    annotations:
+      code_generation:
+        metric_value_type: double
     stability: development
-    brief: "The time the Pod has been running"
+    brief: "The time the Pod has been running."
     entity_associations:
       - k8s.pod
     note: |
@@ -16,8 +19,11 @@ groups:
   - id: metric.k8s.pod.cpu.time
     type: metric
     metric_name: k8s.pod.cpu.time
+    annotations:
+      code_generation:
+        metric_value_type: double
     stability: development
-    brief: "Total CPU time consumed"
+    brief: "Total CPU time consumed."
     entity_associations:
       - k8s.pod
     note: >
@@ -27,8 +33,11 @@ groups:
   - id: metric.k8s.pod.cpu.usage
     type: metric
     metric_name: k8s.pod.cpu.usage
+    annotations:
+      code_generation:
+        metric_value_type: double
     stability: development
-    brief: "Pod's CPU usage, measured in cpus. Range from 0 to the number of allocatable CPUs"
+    brief: "Pod's CPU usage, measured in cpus. Range from 0 to the number of allocatable CPUs."
     note: >
       CPU usage of the specific Pod on all available CPU cores, averaged over the sample window
     instrument: gauge
@@ -38,8 +47,11 @@ groups:
   - id: metric.k8s.pod.memory.usage
     type: metric
     metric_name: k8s.pod.memory.usage
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
-    brief: "Memory usage of the Pod"
+    brief: "Memory usage of the Pod."
     entity_associations:
       - k8s.pod
     note: >
@@ -51,8 +63,11 @@ groups:
   - id: metric.k8s.pod.network.io
     type: metric
     metric_name: k8s.pod.network.io
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
-    brief: "Network bytes for the Pod"
+    brief: "Network bytes for the Pod."
     instrument: counter
     unit: "By"
     entity_associations:
@@ -63,8 +78,11 @@ groups:
   - id: metric.k8s.pod.network.errors
     type: metric
     metric_name: k8s.pod.network.errors
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
-    brief: "Pod network errors"
+    brief: "Pod network errors."
     instrument: counter
     entity_associations:
       - k8s.pod
@@ -73,12 +91,208 @@ groups:
       - ref: network.interface.name
       - ref: network.io.direction
 
+  # k8s.pod.filesystem.* metrics
+  - id: metric.k8s.pod.filesystem.available
+    type: metric
+    metric_name: k8s.pod.filesystem.available
+    stability: development
+    brief: "Pod filesystem available bytes."
+    instrument: updowncounter
+    unit: "By"
+    annotations:
+      code_generation:
+        metric_value_type: int
+    entity_associations:
+      - k8s.pod
+    note: |
+      This metric is derived from the
+      [FsStats.AvailableBytes](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#FsStats) field
+      of the [PodStats.EphemeralStorage](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#PodStats)
+      of the Kubelet's stats API.
+  - id: metric.k8s.pod.filesystem.capacity
+    type: metric
+    metric_name: k8s.pod.filesystem.capacity
+    stability: development
+    brief: "Pod filesystem capacity."
+    instrument: updowncounter
+    unit: "By"
+    annotations:
+      code_generation:
+        metric_value_type: int
+    entity_associations:
+      - k8s.pod
+    note: |
+      This metric is derived from the
+      [FsStats.CapacityBytes](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#FsStats) field
+      of the [PodStats.EphemeralStorage](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#PodStats)
+      of the Kubelet's stats API.
+  - id: metric.k8s.pod.filesystem.usage
+    type: metric
+    metric_name: k8s.pod.filesystem.usage
+    stability: development
+    brief: "Pod filesystem usage."
+    instrument: updowncounter
+    unit: "By"
+    annotations:
+      code_generation:
+        metric_value_type: int
+    entity_associations:
+      - k8s.pod
+    note: |
+      This may not equal capacity - available.
+
+      This metric is derived from the
+      [FsStats.UsedBytes](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#FsStats) field
+      of the [PodStats.EphemeralStorage](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#PodStats)
+      of the Kubelet's stats API.
+
+  # k8s.pod.volume.* metrics
+  - id: metric.k8s.pod.volume.available
+    type: metric
+    metric_name: k8s.pod.volume.available
+    stability: development
+    annotations:
+      code_generation:
+        metric_value_type: int
+    brief: "Pod volume storage space available."
+    instrument: updowncounter
+    unit: "By"
+    entity_associations:
+      - k8s.pod
+    note: |
+      This metric is derived from the
+      [VolumeStats.AvailableBytes](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#VolumeStats) field
+      of the [PodStats](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#PodStats) of the
+      Kubelet's stats API.
+    attributes:
+      - ref: k8s.volume.name
+        requirement_level: required
+      - ref: k8s.volume.type
+        requirement_level: recommended
+  - id: metric.k8s.pod.volume.capacity
+    type: metric
+    metric_name: k8s.pod.volume.capacity
+    stability: development
+    brief: "Pod volume total capacity."
+    instrument: updowncounter
+    annotations:
+      code_generation:
+        metric_value_type: int
+    unit: "By"
+    entity_associations:
+      - k8s.pod
+    note: |
+      This metric is derived from the
+      [VolumeStats.CapacityBytes](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#VolumeStats) field
+      of the [PodStats](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#PodStats) of the
+      Kubelet's stats API.
+    attributes:
+      - ref: k8s.volume.name
+        requirement_level: required
+      - ref: k8s.volume.type
+        requirement_level: recommended
+  - id: metric.k8s.pod.volume.usage
+    type: metric
+    metric_name: k8s.pod.volume.usage
+    stability: development
+    brief: "Pod volume usage."
+    instrument: updowncounter
+    annotations:
+      code_generation:
+        metric_value_type: int
+    unit: "By"
+    entity_associations:
+      - k8s.pod
+    note: |
+      This may not equal capacity - available.
+
+      This metric is derived from the
+      [VolumeStats.UsedBytes](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#VolumeStats) field
+      of the [PodStats](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#PodStats) of the
+      Kubelet's stats API.
+    attributes:
+      - ref: k8s.volume.name
+        requirement_level: required
+      - ref: k8s.volume.type
+        requirement_level: recommended
+  - id: metric.k8s.pod.volume.inode.count
+    type: metric
+    metric_name: k8s.pod.volume.inode.count
+    stability: development
+    brief: "The total inodes in the filesystem of the Pod's volume."
+    instrument: updowncounter
+    annotations:
+      code_generation:
+        metric_value_type: int
+    unit: "{inode}"
+    entity_associations:
+      - k8s.pod
+    note: |
+      This metric is derived from the
+      [VolumeStats.Inodes](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#VolumeStats) field
+      of the [PodStats](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#PodStats) of the
+      Kubelet's stats API.
+    attributes:
+      - ref: k8s.volume.name
+        requirement_level: required
+      - ref: k8s.volume.type
+        requirement_level: recommended
+  - id: metric.k8s.pod.volume.inode.used
+    type: metric
+    metric_name: k8s.pod.volume.inode.used
+    stability: development
+    brief: "The inodes used by the filesystem of the Pod's volume."
+    instrument: updowncounter
+    annotations:
+      code_generation:
+        metric_value_type: int
+    unit: "{inode}"
+    entity_associations:
+      - k8s.pod
+    note: |
+      This metric is derived from the
+      [VolumeStats.InodesUsed](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#VolumeStats) field
+      of the [PodStats](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#PodStats) of the
+      Kubelet's stats API.
+
+      This may not be equal to `inodes - free` because filesystem may share inodes with other filesystems.
+    attributes:
+      - ref: k8s.volume.name
+        requirement_level: required
+      - ref: k8s.volume.type
+        requirement_level: recommended
+  - id: metric.k8s.pod.volume.inode.free
+    type: metric
+    metric_name: k8s.pod.volume.inode.free
+    stability: development
+    brief: "The free inodes in the filesystem of the Pod's volume."
+    instrument: updowncounter
+    annotations:
+      code_generation:
+        metric_value_type: int
+    unit: "{inode}"
+    entity_associations:
+      - k8s.pod
+    note: |
+      This metric is derived from the
+      [VolumeStats.InodesFree](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#VolumeStats) field
+      of the [PodStats](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#PodStats) of the
+      Kubelet's stats API.
+    attributes:
+      - ref: k8s.volume.name
+        requirement_level: required
+      - ref: k8s.volume.type
+        requirement_level: recommended
+
   # k8s.container.* metrics
   - id: metric.k8s.container.status.state
     type: metric
     metric_name: k8s.container.status.state
-    stability: experimental
-    brief: "Describes the number of K8s containers that are currently in a given state"
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "Describes the number of K8s containers that are currently in a given state."
     note: |
       All possible container states will be reported at each time interval to avoid missing metrics.
       Only the value corresponding to the current state will be non-zero.
@@ -92,8 +306,11 @@ groups:
   - id: metric.k8s.container.status.reason
     type: metric
     metric_name: k8s.container.status.reason
-    stability: experimental
-    brief: "Describes the number of K8s containers that are currently in a state for a given reason"
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "Describes the number of K8s containers that are currently in a state for a given reason."
     instrument: updowncounter
     unit: "{container}"
     entity_associations:
@@ -109,8 +326,11 @@ groups:
   - id: metric.k8s.node.uptime
     type: metric
     metric_name: k8s.node.uptime
+    annotations:
+      code_generation:
+        metric_value_type: double
     stability: development
-    brief: "The time the Node has been running"
+    brief: "The time the Node has been running."
     note: |
       Instrumentations SHOULD use a gauge with type `double` and measure uptime in seconds as a floating point number with the highest precision available.
       The actual accuracy would depend on the instrumentation and operating system.
@@ -118,11 +338,15 @@ groups:
     unit: "s"
     entity_associations:
       - k8s.node
+  # k8s.node.allocatable.* metrics
   - id: metric.k8s.node.allocatable.cpu
     type: metric
     metric_name: k8s.node.allocatable.cpu
+    annotations:
+      code_generation:
+        metric_value_type: double
     stability: development
-    brief: "Amount of cpu allocatable on the node"
+    brief: "Amount of cpu allocatable on the node."
     entity_associations:
       - k8s.node
     instrument: updowncounter
@@ -130,8 +354,11 @@ groups:
   - id: metric.k8s.node.allocatable.ephemeral_storage
     type: metric
     metric_name: k8s.node.allocatable.ephemeral_storage
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
-    brief: "Amount of ephemeral-storage allocatable on the node"
+    brief: "Amount of ephemeral-storage allocatable on the node."
     entity_associations:
       - k8s.node
     instrument: updowncounter
@@ -139,8 +366,11 @@ groups:
   - id: metric.k8s.node.allocatable.memory
     type: metric
     metric_name: k8s.node.allocatable.memory
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
-    brief: "Amount of memory allocatable on the node"
+    brief: "Amount of memory allocatable on the node."
     entity_associations:
       - k8s.node
     instrument: updowncounter
@@ -148,18 +378,45 @@ groups:
   - id: metric.k8s.node.allocatable.pods
     type: metric
     metric_name: k8s.node.allocatable.pods
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
-    brief: "Amount of pods allocatable on the node"
+    brief: "Amount of pods allocatable on the node."
     entity_associations:
       - k8s.node
     instrument: updowncounter
     unit: "{pod}"
+  # k8s.node.condition.* metrics
+  - id: metric.k8s.node.condition.status
+    type: metric
+    metric_name: k8s.node.condition.status
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "Describes the condition of a particular Node."
+    note: >
+      All possible node condition pairs (type and status) will be reported at each time interval to avoid missing metrics.
+      Condition pairs corresponding to the current conditions' statuses will be non-zero.
+    instrument: updowncounter
+    unit: "{node}"
+    entity_associations:
+      - k8s.node
+    attributes:
+      - ref: k8s.node.condition.type
+        requirement_level: required
+      - ref: k8s.node.condition.status
+        requirement_level: required
   # k8s.node.cpu.* metrics
   - id: metric.k8s.node.cpu.time
     type: metric
     metric_name: k8s.node.cpu.time
+    annotations:
+      code_generation:
+        metric_value_type: double
     stability: development
-    brief: "Total CPU time consumed"
+    brief: "Total CPU time consumed."
     note: >
       Total CPU time consumed by the specific Node on all available CPU cores
     instrument: counter
@@ -169,8 +426,11 @@ groups:
   - id: metric.k8s.node.cpu.usage
     type: metric
     metric_name: k8s.node.cpu.usage
+    annotations:
+      code_generation:
+        metric_value_type: double
     stability: development
-    brief: "Node's CPU usage, measured in cpus. Range from 0 to the number of allocatable CPUs"
+    brief: "Node's CPU usage, measured in cpus. Range from 0 to the number of allocatable CPUs."
     note: >
       CPU usage of the specific Node on all available CPU cores, averaged over the sample window
     instrument: gauge
@@ -178,12 +438,70 @@ groups:
       - k8s.node
     unit: "{cpu}"
 
+  # k8s.node.filesystem.* metrics
+  - id: metric.k8s.node.filesystem.available
+    type: metric
+    metric_name: k8s.node.filesystem.available
+    stability: development
+    brief: "Node filesystem available bytes."
+    instrument: updowncounter
+    unit: "By"
+    annotations:
+      code_generation:
+        metric_value_type: int
+    entity_associations:
+      - k8s.node
+    note: |
+      This metric is derived from the
+      [FsStats.AvailableBytes](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#FsStats) field
+      of the [NodeStats.Fs](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#NodeStats)
+      of the Kubelet's stats API.
+  - id: metric.k8s.node.filesystem.capacity
+    type: metric
+    metric_name: k8s.node.filesystem.capacity
+    stability: development
+    brief: "Node filesystem capacity."
+    instrument: updowncounter
+    unit: "By"
+    annotations:
+      code_generation:
+        metric_value_type: int
+    entity_associations:
+      - k8s.node
+    note: |
+      This metric is derived from the
+      [FsStats.CapacityBytes](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#FsStats) field
+      of the [NodeStats.Fs](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#NodeStats)
+      of the Kubelet's stats API.
+  - id: metric.k8s.node.filesystem.usage
+    type: metric
+    metric_name: k8s.node.filesystem.usage
+    stability: development
+    brief: "Node filesystem usage."
+    instrument: updowncounter
+    unit: "By"
+    annotations:
+      code_generation:
+        metric_value_type: int
+    entity_associations:
+      - k8s.node
+    note: |
+      This may not equal capacity - available.
+
+      This metric is derived from the
+      [FsStats.UsedBytes](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#FsStats) field
+      of the [NodeStats.Fs](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#NodeStats)
+      of the Kubelet's stats API.
+
   # k8s.node.memory.* metrics
   - id: metric.k8s.node.memory.usage
     type: metric
     metric_name: k8s.node.memory.usage
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
-    brief: "Memory usage of the Node"
+    brief: "Memory usage of the Node."
     note: >
       Total memory usage of the Node
     instrument: gauge
@@ -195,8 +513,11 @@ groups:
   - id: metric.k8s.node.network.io
     type: metric
     metric_name: k8s.node.network.io
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
-    brief: "Network bytes for the Node"
+    brief: "Network bytes for the Node."
     instrument: counter
     unit: "By"
     entity_associations:
@@ -207,8 +528,11 @@ groups:
   - id: metric.k8s.node.network.errors
     type: metric
     metric_name: k8s.node.network.errors
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
-    brief: "Node network errors"
+    brief: "Node network errors."
     instrument: counter
     unit: "{error}"
     entity_associations:
@@ -221,8 +545,11 @@ groups:
   - id: metric.k8s.deployment.desired_pods
     type: metric
     metric_name: k8s.deployment.desired_pods
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
-    brief: "Number of desired replica pods in this deployment"
+    brief: "Number of desired replica pods in this deployment."
     entity_associations:
       - k8s.deployment
     note: |
@@ -233,10 +560,13 @@ groups:
   - id: metric.k8s.deployment.available_pods
     type: metric
     metric_name: k8s.deployment.available_pods
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     entity_associations:
       - k8s.deployment
-    brief: "Total number of available replica pods (ready for at least minReadySeconds) targeted by this deployment"
+    brief: "Total number of available replica pods (ready for at least minReadySeconds) targeted by this deployment."
     note: |
       This metric aligns with the `availableReplicas` field of the
       [K8s DeploymentStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#deploymentstatus-v1-apps).
@@ -247,8 +577,11 @@ groups:
   - id: metric.k8s.replicaset.desired_pods
     type: metric
     metric_name: k8s.replicaset.desired_pods
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
-    brief: "Number of desired replica pods in this replicaset"
+    brief: "Number of desired replica pods in this replicaset."
     entity_associations:
       - k8s.replicaset
     note: |
@@ -259,10 +592,13 @@ groups:
   - id: metric.k8s.replicaset.available_pods
     type: metric
     metric_name: k8s.replicaset.available_pods
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     entity_associations:
       - k8s.replicaset
-    brief: "Total number of available replica pods (ready for at least minReadySeconds) targeted by this replicaset"
+    brief: "Total number of available replica pods (ready for at least minReadySeconds) targeted by this replicaset."
     note: |
       This metric aligns with the `availableReplicas` field of the
       [K8s ReplicaSetStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#replicasetstatus-v1-apps).
@@ -273,8 +609,11 @@ groups:
   - id: metric.k8s.replicationcontroller.desired_pods
     type: metric
     metric_name: k8s.replicationcontroller.desired_pods
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
-    brief: "Number of desired replica pods in this replication controller"
+    brief: "Number of desired replica pods in this replication controller."
     entity_associations:
       - k8s.replicationcontroller
     note: |
@@ -285,10 +624,13 @@ groups:
   - id: metric.k8s.replicationcontroller.available_pods
     type: metric
     metric_name: k8s.replicationcontroller.available_pods
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     entity_associations:
       - k8s.replicationcontroller
-    brief: "Total number of available replica pods (ready for at least minReadySeconds) targeted by this replication controller"
+    brief: "Total number of available replica pods (ready for at least minReadySeconds) targeted by this replication controller."
     note: |
       This metric aligns with the `availableReplicas` field of the
       [K8s ReplicationControllerStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#replicationcontrollerstatus-v1-core)
@@ -299,8 +641,11 @@ groups:
   - id: metric.k8s.statefulset.desired_pods
     type: metric
     metric_name: k8s.statefulset.desired_pods
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
-    brief: "Number of desired replica pods in this statefulset"
+    brief: "Number of desired replica pods in this statefulset."
     entity_associations:
       - k8s.statefulset
     note: |
@@ -311,10 +656,13 @@ groups:
   - id: metric.k8s.statefulset.ready_pods
     type: metric
     metric_name: k8s.statefulset.ready_pods
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     entity_associations:
       - k8s.statefulset
-    brief: "The number of replica pods created for this statefulset with a Ready Condition"
+    brief: "The number of replica pods created for this statefulset with a Ready Condition."
     note: |
       This metric aligns with the `readyReplicas` field of the
       [K8s StatefulSetStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#statefulsetstatus-v1-apps).
@@ -323,10 +671,13 @@ groups:
   - id: metric.k8s.statefulset.current_pods
     type: metric
     metric_name: k8s.statefulset.current_pods
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     entity_associations:
       - k8s.statefulset
-    brief: "The number of replica pods created by the statefulset controller from the statefulset version indicated by currentRevision"
+    brief: "The number of replica pods created by the statefulset controller from the statefulset version indicated by currentRevision."
     note: |
       This metric aligns with the `currentReplicas` field of the
       [K8s StatefulSetStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#statefulsetstatus-v1-apps).
@@ -335,10 +686,13 @@ groups:
   - id: metric.k8s.statefulset.updated_pods
     type: metric
     metric_name: k8s.statefulset.updated_pods
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     entity_associations:
       - k8s.statefulset
-    brief: "Number of replica pods created by the statefulset controller from the statefulset version indicated by updateRevision"
+    brief: "Number of replica pods created by the statefulset controller from the statefulset version indicated by updateRevision."
     note: |
       This metric aligns with the `updatedReplicas` field of the
       [K8s StatefulSetStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#statefulsetstatus-v1-apps).
@@ -349,8 +703,11 @@ groups:
   - id: metric.k8s.hpa.desired_pods
     type: metric
     metric_name: k8s.hpa.desired_pods
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
-    brief: "Desired number of replica pods managed by this horizontal pod autoscaler, as last calculated by the autoscaler"
+    brief: "Desired number of replica pods managed by this horizontal pod autoscaler, as last calculated by the autoscaler."
     note: |
       This metric aligns with the `desiredReplicas` field of the
       [K8s HorizontalPodAutoscalerStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#horizontalpodautoscalerstatus-v2-autoscaling)
@@ -361,8 +718,11 @@ groups:
   - id: metric.k8s.hpa.current_pods
     type: metric
     metric_name: k8s.hpa.current_pods
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
-    brief: "Current number of replica pods managed by this horizontal pod autoscaler, as last seen by the autoscaler"
+    brief: "Current number of replica pods managed by this horizontal pod autoscaler, as last seen by the autoscaler."
     note: |
       This metric aligns with the `currentReplicas` field of the
       [K8s HorizontalPodAutoscalerStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#horizontalpodautoscalerstatus-v2-autoscaling)
@@ -373,8 +733,11 @@ groups:
   - id: metric.k8s.hpa.max_pods
     type: metric
     metric_name: k8s.hpa.max_pods
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
-    brief: "The upper limit for the number of replica pods to which the autoscaler can scale up"
+    brief: "The upper limit for the number of replica pods to which the autoscaler can scale up."
     note: |
       This metric aligns with the `maxReplicas` field of the
       [K8s HorizontalPodAutoscalerSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#horizontalpodautoscalerspec-v2-autoscaling)
@@ -385,8 +748,11 @@ groups:
   - id: metric.k8s.hpa.min_pods
     type: metric
     metric_name: k8s.hpa.min_pods
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
-    brief: "The lower limit for the number of replica pods to which the autoscaler can scale down"
+    brief: "The lower limit for the number of replica pods to which the autoscaler can scale down."
     note: |
       This metric aligns with the `minReplicas` field of the
       [K8s HorizontalPodAutoscalerSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#horizontalpodautoscalerspec-v2-autoscaling)
@@ -394,13 +760,76 @@ groups:
     entity_associations:
       - k8s.hpa
     unit: "{pod}"
+  - id: metric.k8s.hpa.metric.target.cpu.value
+    type: metric
+    metric_name: k8s.hpa.metric.target.cpu.value
+    stability: development
+    brief: "Target value for CPU resource in HPA config."
+    note: |
+      This metric aligns with the `value` field of the
+      [K8s HPA MetricTarget](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#metrictarget-v2-autoscaling).
+      If the type of the metric is [`ContainerResource`](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/#support-for-metrics-apis),
+      the `k8s.container.name` attribute MUST be set to identify the specific container within the pod to which the metric applies.
+    instrument: gauge
+    unit: "{cpu}"
+    attributes:
+      - ref: k8s.hpa.metric.type
+      - ref: k8s.container.name
+        requirement_level:
+          conditionally_required: if and only if k8s.hpa.metric.type is ContainerResource
+    entity_associations:
+      - k8s.hpa
+      - k8s.namespace
+  - id: metric.k8s.hpa.metric.target.cpu.average_value
+    type: metric
+    metric_name: k8s.hpa.metric.target.cpu.average_value
+    stability: development
+    brief: "Target average value for CPU resource in HPA config."
+    note: |
+      This metric aligns with the `averageValue` field of the
+      [K8s HPA MetricTarget](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#metrictarget-v2-autoscaling).
+      If the type of the metric is [`ContainerResource`](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/#support-for-metrics-apis),
+      the `k8s.container.name` attribute MUST be set to identify the specific container within the pod to which the metric applies.
+    instrument: gauge
+    unit: "{cpu}"
+    attributes:
+      - ref: k8s.hpa.metric.type
+      - ref: k8s.container.name
+        requirement_level:
+          conditionally_required: if and only if k8s.hpa.metric.type is ContainerResource
+    entity_associations:
+      - k8s.hpa
+      - k8s.namespace
+  - id: metric.k8s.hpa.metric.target.cpu.average_utilization
+    type: metric
+    metric_name: k8s.hpa.metric.target.cpu.average_utilization
+    stability: development
+    brief: "Target average utilization, in percentage, for CPU resource in HPA config."
+    note: |
+      This metric aligns with the `averageUtilization` field of the
+      [K8s HPA MetricTarget](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#metrictarget-v2-autoscaling).
+      If the type of the metric is [`ContainerResource`](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/#support-for-metrics-apis),
+      the `k8s.container.name` attribute MUST be set to identify the specific container within the pod to which the metric applies.
+    instrument: gauge
+    unit: "1"
+    attributes:
+      - ref: k8s.hpa.metric.type
+      - ref: k8s.container.name
+        requirement_level:
+          conditionally_required: if and only if k8s.hpa.metric.type is ContainerResource.
+    entity_associations:
+      - k8s.hpa
+      - k8s.namespace
 
   # k8s.daemonset.* metrics
   - id: metric.k8s.daemonset.current_scheduled_nodes
     type: metric
     metric_name: k8s.daemonset.current_scheduled_nodes
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
-    brief: "Number of nodes that are running at least 1 daemon pod and are supposed to run the daemon pod"
+    brief: "Number of nodes that are running at least 1 daemon pod and are supposed to run the daemon pod."
     note: |
       This metric aligns with the `currentNumberScheduled` field of the
       [K8s DaemonSetStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#daemonsetstatus-v1-apps).
@@ -411,8 +840,11 @@ groups:
   - id: metric.k8s.daemonset.desired_scheduled_nodes
     type: metric
     metric_name: k8s.daemonset.desired_scheduled_nodes
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
-    brief: "Number of nodes that should be running the daemon pod (including nodes currently running the daemon pod)"
+    brief: "Number of nodes that should be running the daemon pod (including nodes currently running the daemon pod)."
     note: |
       This metric aligns with the `desiredNumberScheduled` field of the
       [K8s DaemonSetStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#daemonsetstatus-v1-apps).
@@ -423,8 +855,11 @@ groups:
   - id: metric.k8s.daemonset.misscheduled_nodes
     type: metric
     metric_name: k8s.daemonset.misscheduled_nodes
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
-    brief: "Number of nodes that are running the daemon pod, but are not supposed to run the daemon pod"
+    brief: "Number of nodes that are running the daemon pod, but are not supposed to run the daemon pod."
     note: |
       This metric aligns with the `numberMisscheduled` field of the
       [K8s DaemonSetStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#daemonsetstatus-v1-apps).
@@ -435,8 +870,11 @@ groups:
   - id: metric.k8s.daemonset.ready_nodes
     type: metric
     metric_name: k8s.daemonset.ready_nodes
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
-    brief: "Number of nodes that should be running the daemon pod and have one or more of the daemon pod running and ready"
+    brief: "Number of nodes that should be running the daemon pod and have one or more of the daemon pod running and ready."
     note: |
       This metric aligns with the `numberReady` field of the
       [K8s DaemonSetStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#daemonsetstatus-v1-apps).
@@ -449,8 +887,11 @@ groups:
   - id: metric.k8s.job.active_pods
     type: metric
     metric_name: k8s.job.active_pods
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
-    brief: "The number of pending and actively running pods for a job"
+    brief: "The number of pending and actively running pods for a job."
     instrument: updowncounter
     unit: "{pod}"
     entity_associations:
@@ -461,8 +902,11 @@ groups:
   - id: metric.k8s.job.failed_pods
     type: metric
     metric_name: k8s.job.failed_pods
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
-    brief: "The number of pods which reached phase Failed for a job"
+    brief: "The number of pods which reached phase Failed for a job."
     instrument: updowncounter
     unit: "{pod}"
     entity_associations:
@@ -473,8 +917,11 @@ groups:
   - id: metric.k8s.job.successful_pods
     type: metric
     metric_name: k8s.job.successful_pods
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
-    brief: "The number of pods which reached phase Succeeded for a job"
+    brief: "The number of pods which reached phase Succeeded for a job."
     instrument: updowncounter
     unit: "{pod}"
     entity_associations:
@@ -485,8 +932,11 @@ groups:
   - id: metric.k8s.job.desired_successful_pods
     type: metric
     metric_name: k8s.job.desired_successful_pods
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
-    brief: "The desired number of successfully finished pods the job should be run with"
+    brief: "The desired number of successfully finished pods the job should be run with."
     instrument: updowncounter
     unit: "{pod}"
     entity_associations:
@@ -497,8 +947,11 @@ groups:
   - id: metric.k8s.job.max_parallel_pods
     type: metric
     metric_name: k8s.job.max_parallel_pods
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
-    brief: "The max desired number of pods the job should run at any given time"
+    brief: "The max desired number of pods the job should run at any given time."
     instrument: updowncounter
     unit: "{pod}"
     entity_associations:
@@ -511,8 +964,11 @@ groups:
   - id: metric.k8s.cronjob.active_jobs
     type: metric
     metric_name: k8s.cronjob.active_jobs
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
-    brief: "The number of actively running jobs for a cronjob"
+    brief: "The number of actively running jobs for a cronjob."
     instrument: updowncounter
     unit: "{job}"
     entity_associations:
@@ -525,6 +981,9 @@ groups:
   - id: metric.k8s.namespace.phase
     type: metric
     metric_name: k8s.namespace.phase
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: "Describes number of K8s namespaces that are currently in a given phase."
     instrument: updowncounter
@@ -539,8 +998,11 @@ groups:
   - id: metric.k8s.container.cpu.limit
     type: metric
     metric_name: k8s.container.cpu.limit
+    annotations:
+      code_generation:
+        metric_value_type: double
     stability: development
-    brief: "Maximum CPU resource limit set for the container"
+    brief: "Maximum CPU resource limit set for the container."
     entity_associations:
       - k8s.container
     note: |
@@ -550,8 +1012,11 @@ groups:
   - id: metric.k8s.container.cpu.request
     type: metric
     metric_name: k8s.container.cpu.request
+    annotations:
+      code_generation:
+        metric_value_type: double
     stability: development
-    brief: "CPU resource requested for the container"
+    brief: "CPU resource requested for the container."
     entity_associations:
       - k8s.container
     note: |
@@ -561,8 +1026,11 @@ groups:
   - id: metric.k8s.container.memory.limit
     type: metric
     metric_name: k8s.container.memory.limit
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
-    brief: "Maximum memory resource limit set for the container"
+    brief: "Maximum memory resource limit set for the container."
     entity_associations:
       - k8s.container
     note: |
@@ -572,8 +1040,11 @@ groups:
   - id: metric.k8s.container.memory.request
     type: metric
     metric_name: k8s.container.memory.request
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
-    brief: "Memory resource requested for the container"
+    brief: "Memory resource requested for the container."
     entity_associations:
       - k8s.container
     note: |
@@ -583,8 +1054,11 @@ groups:
   - id: metric.k8s.container.storage.limit
     type: metric
     metric_name: k8s.container.storage.limit
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
-    brief: "Maximum storage resource limit set for the container"
+    brief: "Maximum storage resource limit set for the container."
     entity_associations:
       - k8s.container
     note: |
@@ -594,8 +1068,11 @@ groups:
   - id: metric.k8s.container.storage.request
     type: metric
     metric_name: k8s.container.storage.request
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
-    brief: "Storage resource requested for the container"
+    brief: "Storage resource requested for the container."
     entity_associations:
       - k8s.container
     note: |
@@ -605,8 +1082,11 @@ groups:
   - id: metric.k8s.container.ephemeral_storage.limit
     type: metric
     metric_name: k8s.container.ephemeral_storage.limit
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
-    brief: "Maximum ephemeral storage resource limit set for the container"
+    brief: "Maximum ephemeral storage resource limit set for the container."
     entity_associations:
       - k8s.container
     note: |
@@ -616,8 +1096,11 @@ groups:
   - id: metric.k8s.container.ephemeral_storage.request
     type: metric
     metric_name: k8s.container.ephemeral_storage.request
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
-    brief: "Ephemeral storage resource requested for the container"
+    brief: "Ephemeral storage resource requested for the container."
     entity_associations:
       - k8s.container
     note: |
@@ -627,8 +1110,11 @@ groups:
   - id: metric.k8s.container.restart.count
     type: metric
     metric_name: k8s.container.restart.count
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
-    brief: "Describes how many times the container has restarted (since the last counter reset)"
+    brief: "Describes how many times the container has restarted (since the last counter reset)."
     instrument: updowncounter
     unit: "{restart}"
     entity_associations:
@@ -642,10 +1128,13 @@ groups:
   - id: metric.k8s.container.ready
     type: metric
     metric_name: k8s.container.ready
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: >
       Indicates whether the container is currently marked as ready to accept traffic,
-      based on its readiness probe (1 = ready, 0 = not ready)
+      based on its readiness probe (1 = ready, 0 = not ready).
     instrument: updowncounter
     unit: "{container}"
     entity_associations:
@@ -653,11 +1142,40 @@ groups:
     note: |
       This metric SHOULD reflect the value of the `ready` field in the
       [K8s ContainerStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#containerstatus-v1-core).
+  - id: metric.k8s.container.cpu.limit_utilization
+    type: metric
+    metric_name: k8s.container.cpu.limit_utilization
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: "The ratio of container CPU usage to its CPU limit."
+    entity_associations:
+      - k8s.container
+    note: >
+      The value range is [0.0,1.0]. A value of 1.0 means the container is using 100% of its CPU limit. If the CPU limit is not set, this metric SHOULD NOT be emitted for that container.
+    instrument: gauge
+    unit: "1"
+  - id: metric.k8s.container.cpu.request_utilization
+    type: metric
+    metric_name: k8s.container.cpu.request_utilization
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: "The ratio of container CPU usage to its CPU request."
+    entity_associations:
+      - k8s.container
+    instrument: gauge
+    unit: "1"
 
   # k8s.resourcequota.cpu.* metrics
   - id: metric.k8s.resourcequota.cpu.limit.hard
     type: metric
     metric_name: k8s.resourcequota.cpu.limit.hard
+    annotations:
+      code_generation:
+        metric_value_type: double
     stability: development
     brief: |
       The CPU limits in a specific namespace.
@@ -672,6 +1190,9 @@ groups:
   - id: metric.k8s.resourcequota.cpu.limit.used
     type: metric
     metric_name: k8s.resourcequota.cpu.limit.used
+    annotations:
+      code_generation:
+        metric_value_type: double
     stability: development
     brief: |
       The CPU limits in a specific namespace.
@@ -686,6 +1207,9 @@ groups:
   - id: metric.k8s.resourcequota.cpu.request.hard
     type: metric
     metric_name: k8s.resourcequota.cpu.request.hard
+    annotations:
+      code_generation:
+        metric_value_type: double
     stability: development
     brief: |
       The CPU requests in a specific namespace.
@@ -700,6 +1224,9 @@ groups:
   - id: metric.k8s.resourcequota.cpu.request.used
     type: metric
     metric_name: k8s.resourcequota.cpu.request.used
+    annotations:
+      code_generation:
+        metric_value_type: double
     stability: development
     brief: |
       The CPU requests in a specific namespace.
@@ -716,6 +1243,9 @@ groups:
   - id: metric.k8s.resourcequota.memory.limit.hard
     type: metric
     metric_name: k8s.resourcequota.memory.limit.hard
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: |
       The memory limits in a specific namespace.
@@ -730,6 +1260,9 @@ groups:
   - id: metric.k8s.resourcequota.memory.limit.used
     type: metric
     metric_name: k8s.resourcequota.memory.limit.used
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: |
       The memory limits in a specific namespace.
@@ -744,6 +1277,9 @@ groups:
   - id: metric.k8s.resourcequota.memory.request.hard
     type: metric
     metric_name: k8s.resourcequota.memory.request.hard
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: |
       The memory requests in a specific namespace.
@@ -758,6 +1294,9 @@ groups:
   - id: metric.k8s.resourcequota.memory.request.used
     type: metric
     metric_name: k8s.resourcequota.memory.request.used
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: |
       The memory requests in a specific namespace.
@@ -774,6 +1313,9 @@ groups:
   - id: metric.k8s.resourcequota.hugepage_count.request.hard
     type: metric
     metric_name: k8s.resourcequota.hugepage_count.request.hard
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: |
       The huge page requests in a specific namespace.
@@ -791,6 +1333,9 @@ groups:
   - id: metric.k8s.resourcequota.hugepage_count.request.used
     type: metric
     metric_name: k8s.resourcequota.hugepage_count.request.used
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: |
       The huge page requests in a specific namespace.
@@ -810,6 +1355,9 @@ groups:
   - id: metric.k8s.resourcequota.storage.request.hard
     type: metric
     metric_name: k8s.resourcequota.storage.request.hard
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: |
       The storage requests in a specific namespace.
@@ -833,6 +1381,9 @@ groups:
   - id: metric.k8s.resourcequota.storage.request.used
     type: metric
     metric_name: k8s.resourcequota.storage.request.used
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: |
       The storage requests in a specific namespace.
@@ -858,6 +1409,9 @@ groups:
   - id: metric.k8s.resourcequota.persistentvolumeclaim_count.hard
     type: metric
     metric_name: k8s.resourcequota.persistentvolumeclaim_count.hard
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: |
       The total number of PersistentVolumeClaims that can exist in the namespace.
@@ -879,6 +1433,9 @@ groups:
   - id: metric.k8s.resourcequota.persistentvolumeclaim_count.used
     type: metric
     metric_name: k8s.resourcequota.persistentvolumeclaim_count.used
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: |
       The total number of PersistentVolumeClaims that can exist in the namespace.
@@ -902,6 +1459,9 @@ groups:
   - id: metric.k8s.resourcequota.ephemeral_storage.request.hard
     type: metric
     metric_name: k8s.resourcequota.ephemeral_storage.request.hard
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: |
       The sum of local ephemeral storage requests in the namespace.
@@ -916,6 +1476,9 @@ groups:
   - id: metric.k8s.resourcequota.ephemeral_storage.request.used
     type: metric
     metric_name: k8s.resourcequota.ephemeral_storage.request.used
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: |
       The sum of local ephemeral storage requests in the namespace.
@@ -930,6 +1493,9 @@ groups:
   - id: metric.k8s.resourcequota.ephemeral_storage.limit.hard
     type: metric
     metric_name: k8s.resourcequota.ephemeral_storage.limit.hard
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: |
       The sum of local ephemeral storage limits in the namespace.
@@ -944,6 +1510,9 @@ groups:
   - id: metric.k8s.resourcequota.ephemeral_storage.limit.used
     type: metric
     metric_name: k8s.resourcequota.ephemeral_storage.limit.used
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: |
       The sum of local ephemeral storage limits in the namespace.
@@ -960,6 +1529,9 @@ groups:
   - id: metric.k8s.resourcequota.object_count.hard
     type: metric
     metric_name: k8s.resourcequota.object_count.hard
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: |
       The object count limits in a specific namespace.
@@ -977,6 +1549,9 @@ groups:
   - id: metric.k8s.resourcequota.object_count.used
     type: metric
     metric_name: k8s.resourcequota.object_count.used
+    annotations:
+      code_generation:
+        metric_value_type: int
     stability: development
     brief: |
       The object count limits in a specific namespace.

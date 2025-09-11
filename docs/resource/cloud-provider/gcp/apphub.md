@@ -8,6 +8,11 @@ on the source of telemetry. For example, metrics coming from a Google Cloud
 service will be annotated with the appropriate `gcp.apphub.application` and
 `gcp.apphub.service` as configured in AppHub.
 
+Note that each `gcp.apphub.*` attribute has a corresponding `gcp.apphub_destination.*` attribute, describing the
+destination/dependency application/service/workload for telemetry which can reference more than one AppHub component.
+For example, `CLIENT` spans may contain both `gcp.apphub.*` attributes describing the application where the client
+operation was running as well as `gcp.apphub_destination.*` attributes describing the application that it is talking to.
+
 See [Supported Resources](https://cloud.google.com/app-hub/docs/supported-resources) for what data will be annotated by Google Cloud.
 
 ## Application

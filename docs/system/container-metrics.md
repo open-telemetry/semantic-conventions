@@ -12,6 +12,20 @@ This document describes instruments and attributes for common container level
 metrics in OpenTelemetry. These metrics are collected from technology-specific,
 well-defined APIs (e.g. Kubelet's API or container runtimes).
 
+<!-- toc -->
+
+- [Metric: `container.uptime`](#metric-containeruptime)
+- [Metric: `container.cpu.time`](#metric-containercputime)
+- [Metric: `container.cpu.usage`](#metric-containercpuusage)
+- [Metric: `container.memory.usage`](#metric-containermemoryusage)
+- [Metric: `container.disk.io`](#metric-containerdiskio)
+- [Metric: `container.network.io`](#metric-containernetworkio)
+- [Metric: `container.filesystem.available`](#metric-containerfilesystemavailable)
+- [Metric: `container.filesystem.capacity`](#metric-containerfilesystemcapacity)
+- [Metric: `container.filesystem.usage`](#metric-containerfilesystemusage)
+
+<!-- tocstop -->
+
 ### Metric: `container.uptime`
 
 This metric is [recommended][MetricRecommended].
@@ -25,7 +39,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `container.uptime` | Gauge | `s` | The time the container has been running [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `container.uptime` | Gauge | `s` | The time the container has been running. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** Instrumentations SHOULD use a gauge with type `double` and measure uptime in seconds as a floating point number with the highest precision available.
 The actual accuracy would depend on the instrumentation and operating system.
@@ -48,7 +62,7 @@ This metric is [opt-in][MetricOptIn].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `container.cpu.time` | Counter | `s` | Total CPU time consumed [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `container.cpu.time` | Counter | `s` | Total CPU time consumed. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** Total CPU time consumed by the specific container on all available CPU cores
 
@@ -66,14 +80,14 @@ This metric is [opt-in][MetricOptIn].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `idle` | idle | ![Development](https://img.shields.io/badge/-development-blue) |
-| `interrupt` | interrupt | ![Development](https://img.shields.io/badge/-development-blue) |
-| `iowait` | iowait | ![Development](https://img.shields.io/badge/-development-blue) |
-| `kernel` | kernel | ![Development](https://img.shields.io/badge/-development-blue) |
-| `nice` | nice | ![Development](https://img.shields.io/badge/-development-blue) |
-| `steal` | steal | ![Development](https://img.shields.io/badge/-development-blue) |
-| `system` | system | ![Development](https://img.shields.io/badge/-development-blue) |
-| `user` | user | ![Development](https://img.shields.io/badge/-development-blue) |
+| `idle` | Idle | ![Development](https://img.shields.io/badge/-development-blue) |
+| `interrupt` | Interrupt | ![Development](https://img.shields.io/badge/-development-blue) |
+| `iowait` | IO Wait | ![Development](https://img.shields.io/badge/-development-blue) |
+| `kernel` | Kernel | ![Development](https://img.shields.io/badge/-development-blue) |
+| `nice` | Nice | ![Development](https://img.shields.io/badge/-development-blue) |
+| `steal` | Steal | ![Development](https://img.shields.io/badge/-development-blue) |
+| `system` | System | ![Development](https://img.shields.io/badge/-development-blue) |
+| `user` | User | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -93,7 +107,7 @@ This metric is [opt-in][MetricOptIn].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `container.cpu.usage` | Gauge | `{cpu}` | Container's CPU usage, measured in cpus. Range from 0 to the number of allocatable CPUs [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `container.cpu.usage` | Gauge | `{cpu}` | Container's CPU usage, measured in cpus. Range from 0 to the number of allocatable CPUs. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** CPU usage of the specific container on all available CPU cores, averaged over the sample window
 
@@ -111,14 +125,14 @@ This metric is [opt-in][MetricOptIn].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `idle` | idle | ![Development](https://img.shields.io/badge/-development-blue) |
-| `interrupt` | interrupt | ![Development](https://img.shields.io/badge/-development-blue) |
-| `iowait` | iowait | ![Development](https://img.shields.io/badge/-development-blue) |
-| `kernel` | kernel | ![Development](https://img.shields.io/badge/-development-blue) |
-| `nice` | nice | ![Development](https://img.shields.io/badge/-development-blue) |
-| `steal` | steal | ![Development](https://img.shields.io/badge/-development-blue) |
-| `system` | system | ![Development](https://img.shields.io/badge/-development-blue) |
-| `user` | user | ![Development](https://img.shields.io/badge/-development-blue) |
+| `idle` | Idle | ![Development](https://img.shields.io/badge/-development-blue) |
+| `interrupt` | Interrupt | ![Development](https://img.shields.io/badge/-development-blue) |
+| `iowait` | IO Wait | ![Development](https://img.shields.io/badge/-development-blue) |
+| `kernel` | Kernel | ![Development](https://img.shields.io/badge/-development-blue) |
+| `nice` | Nice | ![Development](https://img.shields.io/badge/-development-blue) |
+| `steal` | Steal | ![Development](https://img.shields.io/badge/-development-blue) |
+| `system` | System | ![Development](https://img.shields.io/badge/-development-blue) |
+| `user` | User | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -213,6 +227,83 @@ This metric is [opt-in][MetricOptIn].
 |---|---|---|
 | `receive` | receive | ![Development](https://img.shields.io/badge/-development-blue) |
 | `transmit` | transmit | ![Development](https://img.shields.io/badge/-development-blue) |
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+<!-- END AUTOGENERATED TEXT -->
+<!-- endsemconv -->
+
+### Metric: `container.filesystem.available`
+
+This metric is [recommended][MetricRecommended].
+
+<!-- semconv metric.container.filesystem.available -->
+<!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
+<!-- see templates/registry/markdown/snippet.md.j2 -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-capture -->
+<!-- markdownlint-disable -->
+
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `container.filesystem.available` | UpDownCounter | `By` | Container filesystem available bytes. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`container`](/docs/registry/entities/container.md#container) |
+
+**[1]:** In K8s, this metric is derived from the
+[FsStats.AvailableBytes](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#FsStats) field
+of the [ContainerStats.Rootfs](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#ContainerStats)
+of the Kubelet's stats API.
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+<!-- END AUTOGENERATED TEXT -->
+<!-- endsemconv -->
+
+### Metric: `container.filesystem.capacity`
+
+This metric is [recommended][MetricRecommended].
+
+<!-- semconv metric.container.filesystem.capacity -->
+<!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
+<!-- see templates/registry/markdown/snippet.md.j2 -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-capture -->
+<!-- markdownlint-disable -->
+
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `container.filesystem.capacity` | UpDownCounter | `By` | Container filesystem capacity. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`container`](/docs/registry/entities/container.md#container) |
+
+**[1]:** In K8s, this metric is derived from the
+[FsStats.CapacityBytes](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#FsStats) field
+of the [ContainerStats.Rootfs](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#ContainerStats)
+of the Kubelet's stats API.
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+<!-- END AUTOGENERATED TEXT -->
+<!-- endsemconv -->
+
+### Metric: `container.filesystem.usage`
+
+This metric is [recommended][MetricRecommended].
+
+<!-- semconv metric.container.filesystem.usage -->
+<!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
+<!-- see templates/registry/markdown/snippet.md.j2 -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-capture -->
+<!-- markdownlint-disable -->
+
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `container.filesystem.usage` | UpDownCounter | `By` | Container filesystem usage. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`container`](/docs/registry/entities/container.md#container) |
+
+**[1]:** This may not equal capacity - available.
+
+In K8s, this metric is derived from the
+[FsStats.UsedBytes](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#FsStats) field
+of the [ContainerStats.Rootfs](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#ContainerStats)
+of the Kubelet's stats API.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

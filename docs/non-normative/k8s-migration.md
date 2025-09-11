@@ -60,6 +60,10 @@ and one for disabling the old schema called `semconv.k8s.disableLegacy`. Then:
   - [K8s ReplicationController resource](#k8s-replicationcontroller-resource)
   - [K8s Container metrics](#k8s-container-metrics)
   - [K8s ResourceQuota metrics](#k8s-resourcequota-metrics)
+  - [K8s Node condition metrics](#k8s-node-condition-metrics)
+  - [K8s Filesystem metrics](#k8s-filesystem-metrics)
+  - [K8s Pod Volume metrics](#k8s-pod-volume-metrics)
+  - [Container Runtime](#container-runtime)
 
 <!-- tocstop -->
 
@@ -331,6 +335,8 @@ The changes in their metrics are the following:
 | `k8s.container.ephemeralstorage_request`     (type: `gauge`)                                       | `k8s.container.ephemeral_storage.request` (type: `updowncounter`) |
 | `k8s.container.restarts`                  (type: `gauge`)                          | `k8s.container.restart.count` (type: `updowncounter`)            |
 | `k8s.container.ready`                  (type: `gauge`)                             | `k8s.container.ready` (type: `updowncounter`)                    |
+| `k8s.container.cpu_limit_utilization` (type: `gauge`) | `k8s.container.cpu.limit_utilization` (type: `gauge`) |
+| `k8s.container.cpu_request_utilization` (type: `gauge`) | `k8s.container.cpu.request_utilization` (type: `gauge`) |
 
 <!-- prettier-ignore-end -->
 
@@ -350,5 +356,83 @@ These metrics were completely re-designed. The changes are the following:
 | `k8s.resource_quota.hard_limit`                                                    | `k8s.resourcequota.{resource}.hard` |
 | `k8s.resource_quota.used`                                                          | `k8s.resourcequota.{resource}.used` |
 | `{resource}` attribute                                                             | Split in different metrics per type |
+
+<!-- prettier-ignore-end -->
+
+### K8s Node condition metrics
+
+The K8s Node condition metrics implemented by the Collector and specifically the
+[k8scluster](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/v0.115.0/receiver/k8sclusterreceiver/documentation.md)
+receiver were introduced as semantic conventions in
+[#2077](https://github.com/open-telemetry/semantic-conventions/issues/2077)
+
+The changes in their metrics are the following:
+
+<!-- prettier-ignore-start -->
+
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                                                                                                                  |
+|------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `k8s.node.condition_*`                                                             | `k8s.node.condition.status` metric [0,1] with attribute `k8s.node.condition.type` for the different conditions and `k8s.node.condition.status` for true/false/unknown |
+
+<!-- prettier-ignore-end -->
+
+### K8s Filesystem metrics
+
+The K8s Filesystem metrics implemented by the Collector and specifically the
+[k8scluster](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/v0.115.0/receiver/k8sclusterreceiver/documentation.md)
+receiver were introduced as semantic conventions in
+[#2392](https://github.com/open-telemetry/semantic-conventions/pull/2392)
+
+The changes in their metrics are the following:
+
+<!-- prettier-ignore-start -->
+
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                                                                                                                  |
+|------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `k8s.node.filesystem.available` gauge                                              | `k8s.node.filesystem.available` updowncounter |
+| `k8s.node.filesystem.capacity`   gauge                                             | `k8s.node.filesystem.capacity`  updowncounter |
+| `k8s.node.filesystem.usage`      gauge                                             | `k8s.node.filesystem.usage`     updowncounter |
+| `k8s.pod.filesystem.available`   gauge                                             | `k8s.pod.filesystem.available`     updowncounter |
+| `k8s.pod.filesystem.capacity`    gauge                                                  | `k8s.pod.filesystem.capacity`   updowncounter |
+| `k8s.pod.filesystem.usage`      gauge                                                   | `k8s.pod.filesystem.usage`      updowncounter |
+| `container.filesystem.available`    gauge                                               | `container.filesystem.available`   updowncounter |
+| `container.filesystem.capacity`      gauge                                              | `container.filesystem.capacity`    updowncounter |
+| `container.filesystem.usage`        gauge                                               | `container.filesystem.usage`       updowncounter |
+
+<!-- prettier-ignore-end -->
+
+### K8s Pod Volume metrics
+
+The K8s Pod volume metrics implemented by the Collector and specifically the
+[k8scluster](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/v0.119.0/receiver/k8sclusterreceiver/documentation.md)
+receiver were introduced as semantic conventions in
+[#2319](https://github.com/open-telemetry/semantic-conventions/pull/2319).
+
+The changes in these metrics are the following:
+
+<!-- prettier-ignore-start -->
+
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                          |
+|------------------------------------------------------------------------------------|------------------------------|
+| `k8s.volume.available` | `k8s.pod.volume.available`   |
+| `k8s.volume.capacity` | `k8s.pod.volume.capacity`    |
+| `k8s.volume.inodes` | `k8s.pod.volume.inode.count` |
+| `k8s.volume.inodes.free` | `k8s.pod.volume.inode.free`  |
+| `k8s.volume.inodes.used` | `k8s.pod.volume.inode.used`  |
+
+<!-- prettier-ignore-end -->
+
+### Container Runtime
+
+The container runtime has become more descriptive with changes introduced to semantic conventions
+within v1.Y.Z <!--[v1.29.0](https://github.com/open-telemetry/semantic-conventions/blob/v1.29.0/docs/system/k8s-metrics.md)-->.
+
+The changes in their attributes are the following:
+
+<!-- prettier-ignore-start -->
+
+| Old Attribute ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New Attribute |
+|------------------------------------------------------------------------------------|--------------------------|
+| `container.runtime` | `container.runtime.name` |
 
 <!-- prettier-ignore-end -->
