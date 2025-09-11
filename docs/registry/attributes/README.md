@@ -87,6 +87,7 @@ Currently, the following namespaces exist:
 - [OS](os.md)
 - [OTel](otel.md)
 - [Peer](peer.md)
+- [Pprof](pprof.md)
 - [Process](process.md)
 - [Profile](profile.md)
 - [RPC](rpc.md)
