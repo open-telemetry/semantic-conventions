@@ -11,9 +11,9 @@ aliases: [status-metrics]
 
 - [Definition](#definition)
 - [Design](#design)
-  - [Naming](#naming)
   - [Instrument](#instrument)
-  - [Why not Resource Attributes?](#why-not-resource-attributes)
+  - [Should it be an Entity Attribute?](#should-it-be-an-entity-attribute)
+  - [Naming](#naming)
 
 <!-- tocstop -->
 
