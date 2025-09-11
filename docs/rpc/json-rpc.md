@@ -23,9 +23,6 @@ described on this page.
 
 This span represents an outgoing Remote Procedure Call (RPC).
 
-Remote procedure calls can only be represented with these semantic conventions
-when the names of the called service and method are known and available.
-
 `rpc.system` MUST be set to `"jsonrpc"` and SHOULD be provided **at span creation time.**
 
 **Span name:** refer to the [Span Name](./rpc-spans.md#span-name) section.
@@ -105,9 +102,6 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
 This span represents an incoming Remote Procedure Call (RPC).
-
-Remote procedure calls can only be represented with these semantic conventions
-when the names of the called service and method are known and available.
 
 `rpc.system` MUST be set to `"jsonrpc"` and SHOULD be provided **at span creation time.**
 
