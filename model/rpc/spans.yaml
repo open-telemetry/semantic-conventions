@@ -1,30 +1,4 @@
 groups:
-  - id: rpc
-    type: attribute_group
-    brief: 'This document defines semantic conventions for remote procedure calls.'
-    attributes:
-      - ref: rpc.system
-        requirement_level: required
-      - ref: rpc.service
-        requirement_level: recommended
-      - ref: rpc.method
-        requirement_level: recommended
-      - ref: network.transport
-        requirement_level: recommended
-      - ref: network.type
-        requirement_level: recommended
-      - ref: server.address
-        requirement_level: required
-        brief: >
-          RPC server [host name](https://grpc.github.io/grpc/core/md_doc_naming.html).
-        note: >
-          May contain server IP address, DNS name, or local socket name. When host component is an IP address,
-          instrumentations SHOULD NOT do a reverse proxy lookup to obtain DNS name and SHOULD set
-          `server.address` to the IP address provided in the host component.
-      - ref: server.port
-        requirement_level:
-          conditionally_required: if the port is supported by the network transport used for communication.
-
   - id: span.rpc.client
     type: span
     stability: development
@@ -40,16 +14,13 @@ groups:
     span_kind: client
     events: [rpc.message]
     attributes:
-      - ref: network.peer.address
-        requirement_level: recommended
-      - ref: network.peer.port
-        requirement_level:
-          recommended: If `network.peer.address` is set.
+      - ref: rpc.system
+        requirement_level: required
 
   - id: span.rpc.server
     type: span
     stability: development
-    extends: rpc
+    extends: rpc.server
     span_kind: server
     brief: This span represents an incoming Remote Procedure Call (RPC).
     events: [rpc.message]
@@ -61,19 +32,8 @@ groups:
 
       **Span kind** MUST be `SERVER`.
     attributes:
-      - ref: client.address
-        requirement_level: recommended
-      - ref: client.port
-        requirement_level: recommended
-      - ref: network.peer.address
-        requirement_level: recommended
-      - ref: network.peer.port
-        requirement_level:
-          recommended: If `network.peer.address` is set.
-      - ref: network.transport
-        requirement_level: recommended
-      - ref: network.type
-        requirement_level: recommended
+      - ref: rpc.system
+        requirement_level: required
 
   - id: rpc.grpc.attributes
     stability: development
@@ -100,11 +60,9 @@ groups:
       **Span name:** refer to the [Span Name](./rpc-spans.md#span-name) section.
 
       **Span kind** MUST be `CLIENT`.
-    extends: span.rpc.client
+    extends: rpc
     span_kind: client
     attributes:
-      - ref: rpc.system
-        examples: jsonrpc
       - ref: rpc.method
         requirement_level: required
       - ref: rpc.jsonrpc.version
@@ -121,7 +79,7 @@ groups:
   - id: span.rpc.jsonrpc.server
     type: span
     stability: development
-    extends: span.rpc.server
+    extends: rpc.server
     span_kind: server
     brief: This span represents an incoming Remote Procedure Call (RPC).
     note: |
@@ -134,8 +92,6 @@ groups:
 
       **Span kind** MUST be `SERVER`.
     attributes:
-      - ref: rpc.system
-        examples: jsonrpc
       - ref: rpc.method
         requirement_level: required
       - ref: rpc.jsonrpc.version
