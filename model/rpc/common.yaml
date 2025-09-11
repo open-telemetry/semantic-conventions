@@ -22,6 +22,7 @@ groups:
   - id: attributes.metrics.rpc.client
     type: attribute_group
     brief: "Describes RPC metric attributes."
+    extends: attributes.metrics.rpc.server
     attributes:
       - ref: rpc.service
         note: ""
