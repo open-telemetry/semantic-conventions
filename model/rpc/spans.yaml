@@ -51,11 +51,9 @@ groups:
 
       **Span status**  If `rpc.connect_rpc.error_code` is set,
       [Span Status](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.48.0/specification/trace/api.md#set-status) MUST be set to `Error` and left unset in all other cases.
-    extends: span.rpc.client
+    extends: rpc_service
     span_kind: client
     attributes:
-      - ref: rpc.system
-        examples: connect_rpc
       - ref: rpc.connect_rpc.error_code
         requirement_level:
           conditionally_required: If response is not successful and if error code available.
@@ -67,7 +65,7 @@ groups:
   - id: span.rpc.connect_rpc.server
     type: span
     stability: development
-    extends: span.rpc.server
+    extends: rpc_service.server
     span_kind: server
     brief: This span represents an incoming Remote Procedure Call (RPC).
     note: |
@@ -83,8 +81,6 @@ groups:
       **Span status**  If `rpc.connect_rpc.error_code` is set,
       [Span Status](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.48.0/specification/trace/api.md#set-status) MUST be set to `Error` and left unset in all other cases.
     attributes:
-      - ref: rpc.system
-        examples: connect_rpc
       - ref: rpc.connect_rpc.error_code
         requirement_level:
           conditionally_required: If response is not successful and if error code available.
