@@ -278,26 +278,4 @@ groups:
         type: int
         stability: development
         brief: "Uncompressed size of the message in bytes."
-      - id: rpc.onc.version
-        type: int
-        brief: "ONC/Sun RPC program version."
-        stability: development
-      - id: rpc.onc.procedure.number
-        type: int
-        stability: development
-        brief: "ONC/Sun RPC procedure number."
-      - id: rpc.onc.procedure.name
-        type: string
-        stability: development
-        brief: "ONC/Sun RPC procedure name."
-        examples: ['OPEN', 'READ', 'GETATTR']
-      - id: rpc.onc.program.name
-        type: string
-        stability: development
-        brief: "ONC/Sun RPC program name."
-        examples: ['portmapper', 'nfs']
-      - id: rpc.nfs.operation.name
-        type: string
-        stability: development
-        brief: "NFSv4+ operation name."
-        examples: ['OPEN', 'READ', 'GETATTR']
+
