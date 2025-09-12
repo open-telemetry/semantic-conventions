@@ -99,5 +99,37 @@ privileged lookup of `host.id` is required, the value should be injected via the
 
 **[4] `host.cpu.vendor.id`:** [CPUID](https://wiki.osdev.org/CPUID) command returns the vendor ID string in EBX, EDX and ECX registers. Writing these to memory in this order results in a 12-character string.
 
+## Host Provider
+
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
+
+**type:** `host.provider`
+
+**Description:** The host provider represents the tool being used to provide the computing instance/environment.
+
+**Other Attributes:**
+
+> :warning: This entity definition contains attributes without a role.
+> Stable Entities MUST NOT have attributes without a defined role.
+
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`host.provider.description`](/docs/registry/attributes/host.md) | string | The platform being used to host the computing instance. | `Azure VMWare Esxi` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`host.provider.name`](/docs/registry/attributes/host.md) | string | What product if any is being used to host the computing instance. | `openshift`; `esxi`; `hyperv` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+
+---
+
+`host.provider.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `citrix` | [Citrix](https://www.citrix.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `esxi` | [VMWare](https://www.vmware.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `hyperv` | [Microsoft Hyper-V](https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/hyper-v-overview?pivots=windows) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `mesos` | [Apache Mesos](https://mesos.apache.org/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `openshift` | [Red Hat OpenShift](https://www.redhat.com/en/technologies/cloud-computing/openshift) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `proxmox` | [Proxmox](https://www.proxmox.com/en/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `xenserver` | [Xen Sever](https://www.xenserver.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+
 
 <!-- markdownlint-restore -->
