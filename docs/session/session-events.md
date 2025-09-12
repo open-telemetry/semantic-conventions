@@ -6,18 +6,7 @@ linkTitle: Events
 
 **Status**: [Development][DocumentStatus]
 
-This document defines semantic conventions to apply to client-side applications when tracking sessions.
-
-Session is defined as the period of time encompassing all activities performed by the application and the actions
-executed by the end user.
-
-Consequently, a Session is represented as a collection of Logs, Events, and Spans emitted by the Client Application
-throughout the Session's duration. Each Session is assigned a unique identifier, which is included as an attribute in
-the Logs, Events, and Spans generated during the Session's lifecycle.
-
-When a session reaches end of life, typically due to user inactivity or session timeout, a new session identifier
-will be assigned. The previous session identifier may be provided by the instrumentation so that telemetry
-backends can link the two sessions (see [Session Start Event](#event-sessionstart) below).
+The lifecycle of a session is communicated via events which are defined below.
 
 ## Session Events
 
@@ -36,7 +25,10 @@ The event name MUST be `session.start`.
 
 Indicates that a new session has been started, optionally linking to the prior session.
 
-For instrumentation that tracks user behavior during user sessions, a `session.start` event MUST be emitted every time a session is created. When a new session is created as a continuation of a prior session, the `session.previous_id` SHOULD be included in the event. The values of `session.id` and `session.previous_id` MUST be different.
+For instrumentation that tracks user behavior during user sessions, a `session.start` event MUST be emitted every time a session is created. When a new session is created as a continuation of a prior session, the `session.previous_id` SHOULD be included in the event so that telemetry backends may link the two sessions.
+
+The values of `session.id` and `session.previous_id` MUST be different.
+
 When the `session.start` event contains both `session.id` and `session.previous_id` fields, the event indicates that the previous session has ended. If the session ID in `session.previous_id` has not yet ended via explicit `session.end` event, then the consumer SHOULD treat this continuation event as semantically equivalent to `session.end(session.previous_id)` and `session.start(session.id)`.
 
 **Attributes:**
@@ -66,7 +58,7 @@ When the `session.start` event contains both `session.id` and `session.previous_
 
 The event name MUST be `session.end`.
 
-Indicates that a session has ended.
+Indicates that a session has ended typically due to user inactivity or session timeout.
 
 For instrumentation that tracks user behavior during user sessions, a `session.end` event SHOULD be emitted every time a session ends. When a session ends and continues as a new session, this event SHOULD be emitted prior to the `session.start` event.
 
