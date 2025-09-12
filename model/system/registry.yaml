@@ -70,14 +70,14 @@ groups:
           members:
             - id: major
               value: 'major'
-              brief: Major
+              brief: Major/hard page faults.
               stability: development
             - id: minor
               value: 'minor'
-              brief: Minor
+              brief: Minor/soft page faults.
               stability: development
         stability: development
-        brief: "The memory paging type"
+        brief: The type of page fault for this data point.
         examples: ["minor"]
       - id: system.paging.direction
         type:

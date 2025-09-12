@@ -465,8 +465,8 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`system.paging.fault_type`](/docs/registry/attributes/system.md) | string | The memory paging type | `minor` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`system.paging.type`](/docs/registry/attributes/system.md) | string | The memory paging type | `minor` | `Recommended` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `system.paging.fault_type`. |
+| [`system.paging.fault_type`](/docs/registry/attributes/system.md) | string | The type of page fault for this data point. | `minor` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`system.paging.type`](/docs/registry/attributes/system.md) | string | The type of page fault for this data point. | `minor` | `Recommended` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `system.paging.fault_type`. |
 
 ---
 
@@ -474,8 +474,8 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `major` | Major | ![Development](https://img.shields.io/badge/-development-blue) |
-| `minor` | Minor | ![Development](https://img.shields.io/badge/-development-blue) |
+| `major` | Major/hard page faults. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `minor` | Minor/soft page faults. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -483,8 +483,8 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `major` | Major | ![Development](https://img.shields.io/badge/-development-blue) |
-| `minor` | Minor | ![Development](https://img.shields.io/badge/-development-blue) |
+| `major` | Major/hard page faults. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `minor` | Minor/soft page faults. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -509,8 +509,8 @@ This metric is [recommended][MetricRecommended].
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`system.paging.direction`](/docs/registry/attributes/system.md) | string | The paging access direction | `in` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`system.paging.fault_type`](/docs/registry/attributes/system.md) | string | The memory paging type | `minor` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`system.paging.type`](/docs/registry/attributes/system.md) | string | The memory paging type | `minor` | `Recommended` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `system.paging.fault_type`. |
+| [`system.paging.fault_type`](/docs/registry/attributes/system.md) | string | The type of page fault for this data point. | `minor` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`system.paging.type`](/docs/registry/attributes/system.md) | string | The type of page fault for this data point. | `minor` | `Recommended` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `system.paging.fault_type`. |
 
 ---
 
@@ -527,8 +527,8 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `major` | Major | ![Development](https://img.shields.io/badge/-development-blue) |
-| `minor` | Minor | ![Development](https://img.shields.io/badge/-development-blue) |
+| `major` | Major/hard page faults. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `minor` | Minor/soft page faults. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -536,8 +536,8 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `major` | Major | ![Development](https://img.shields.io/badge/-development-blue) |
-| `minor` | Minor | ![Development](https://img.shields.io/badge/-development-blue) |
+| `major` | Major/hard page faults. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `minor` | Minor/soft page faults. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
