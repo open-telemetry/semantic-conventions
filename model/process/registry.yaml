@@ -223,11 +223,11 @@ groups:
           members:
             - id: voluntary
               value: 'voluntary'
-              brief: Voluntary
+              brief: Process voluntarily context-switched which could be while waiting for an I/O operation to complete.
               stability: development
             - id: involuntary
               value: 'involuntary'
-              brief: Involuntary
+              brief: Process involuntarily context-switched because the time slice expired.
               stability: development
         stability: development
       - id: process.paging.fault_type
