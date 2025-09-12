@@ -249,6 +249,10 @@ groups:
               value: 'connect_rpc'
               brief: 'Connect RPC'
               stability: development
+            - id: onc_rpc
+              value: 'onc_rpc'
+              brief: '[ONC RPC (Sun RPC)](https://datatracker.ietf.org/doc/html/rfc5531)'
+              stability: development
         stability: development
       - id: rpc.message.type
         type:

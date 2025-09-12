@@ -153,3 +153,7 @@
 /model/mainframe                  @open-telemetry/specs-semconv-approvers @open-telemetry/sig-mainframe-approvers
 /docs/zos                         @open-telemetry/specs-semconv-approvers @open-telemetry/sig-mainframe-approvers
 /model/zos                        @open-telemetry/specs-semconv-approvers @open-telemetry/sig-mainframe-approvers
+
+# NFS
+/docs/nfs                         @open-telemetry/semconv-system-approvers @open-telemetry/specs-semconv-approvers
+/model/nfs                        @open-telemetry/semconv-system-approvers @open-telemetry/specs-semconv-approvers
