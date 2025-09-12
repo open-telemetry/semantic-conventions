@@ -2,6 +2,10 @@ groups:
   - id: span.aws.lambda.server
     type: span
     span_kind: server
+    annotations:
+      docs:
+        span_kind_expectation: MUST
+        span_kind_brief: unless stated otherwise.
     stability: development
     brief: >
       This span represents AWS Lambda invocation.
@@ -11,8 +15,6 @@ groups:
 
       **Span name** MUST be set to the function name from the Lambda `Context`
       unless stated otherwise.
-
-      **Span kind** MUST be set to `SERVER` unless stated otherwise.
     attributes:
       - ref: aws.lambda.invoked_arn
         requirement_level: recommended
