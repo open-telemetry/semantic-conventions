@@ -135,48 +135,63 @@ groups:
           members:
             - id: batch
               value: "batch"
+              brief: Batch
               stability: development
             - id: create
               value: "create"
+              brief: Create
               stability: development
             - id: delete
               value: "delete"
+              brief: Delete
               stability: development
             - id: execute
               value: "execute"
+              brief: Execute
               stability: development
             - id: execute_javascript
               value: "execute_javascript"
+              brief: Execute JavaScript
               stability: development
             - id: invalid
               value: "invalid"
+              brief: Invalid
               stability: development
             - id: head
               value: "head"
+              brief: Head
               stability: development
             - id: head_feed
               value: "head_feed"
+              brief: Head Feed
               stability: development
             - id: patch
               value: "patch"
+              brief: Patch
               stability: development
             - id: query
               value: "query"
+              brief: Query
               stability: development
             - id: query_plan
               value: "query_plan"
+              brief: Query Plan
               stability: development
             - id: read
               value: "read"
+              brief: Read
               stability: development
             - id: read_feed
               value: "read_feed"
+              brief: Read feed
               stability: development
             - id: replace
               value: "replace"
+              brief: Replace
               stability: development
             - id: upsert
               value: "upsert"
+              brief: Upsert
               stability: development
         stability: development
         deprecated:
@@ -210,36 +225,47 @@ groups:
           members:
             - id: all
               value: "all"
+              brief: All
               stability: development
             - id: each_quorum
               value: "each_quorum"
+              brief: Each Quorum
               stability: development
             - id: quorum
               value: "quorum"
+              brief: Quorum
               stability: development
             - id: local_quorum
               value: "local_quorum"
+              brief: Local Quorum
               stability: development
             - id: one
               value: "one"
+              brief: One
               stability: development
             - id: two
               value: "two"
+              brief: Two
               stability: development
             - id: three
               value: "three"
+              brief: Three
               stability: development
             - id: local_one
               value: "local_one"
+              brief: Local One
               stability: development
             - id: any
               value: "any"
+              brief: Any
               stability: development
             - id: serial
               value: "serial"
+              brief: Serial
               stability: development
             - id: local_serial
               value: "local_serial"
+              brief: Local Serial
               stability: development
         stability: development
       - id: db.cassandra.idempotence
@@ -317,18 +343,23 @@ groups:
           members:
             - id: strong
               value: "Strong"
+              brief: Strong
               stability: development
             - id: bounded_staleness
               value: "BoundedStaleness"
+              brief: Bounded Staleness
               stability: development
             - id: session
               value: "Session"
+              brief: Session
               stability: development
             - id: eventual
               value: "Eventual"
+              brief: Eventual
               stability: development
             - id: consistent_prefix
               value: "ConsistentPrefix"
+              brief: Consistent Prefix
               stability: development
         stability: development
         brief: "Deprecated, use `cosmosdb.consistency.level` instead."
@@ -619,9 +650,11 @@ groups:
           members:
             - id: idle
               value: 'idle'
+              brief: Idle
               stability: development
             - id: used
               value: 'used'
+              brief: Used
               stability: development
         brief: "Deprecated, use `db.client.connection.state` instead."
         deprecated:
@@ -642,9 +675,11 @@ groups:
           members:
             - id: idle
               value: 'idle'
+              brief: Idle
               stability: development
             - id: used
               value: 'used'
+              brief: Used
               stability: development
         brief: "Deprecated, use `db.client.connection.state` instead."
         deprecated:
