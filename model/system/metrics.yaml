@@ -206,6 +206,7 @@ groups:
     unit: "{fault}"
     attributes:
       - ref: system.paging.type
+      - ref: system.paging.fault_type
     entity_associations:
       - host
 
@@ -221,6 +222,7 @@ groups:
     unit: "{operation}"
     attributes:
       - ref: system.paging.type
+      - ref: system.paging.fault_type
       - ref: system.paging.direction
     entity_associations:
       - host
