@@ -3,7 +3,7 @@ groups:
     type: entity
     name: service
     brief: >
-      A service instance.
+      A running service.
     stability: stable
     attributes:
       - ref: service.name
@@ -13,5 +13,12 @@ groups:
         role: descriptive
       - ref: service.namespace
         role: identifying
+  - id: entity.service.instance
+    type: entity
+    name: service.instance
+    brief: >
+      The instance of the service which is running.
+    stability: development
+    attributes:
       - ref: service.instance.id
         role: identifying
