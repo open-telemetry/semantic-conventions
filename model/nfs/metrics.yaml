@@ -93,7 +93,7 @@ groups:
     type: metric
     metric_name: nfs.server.repcache.requests
     stability: development
-    brief: "Reports the kernel NFS server reply cache request count by cache hit status"
+    brief: "Reports the kernel NFS server reply cache request count by cache hit status."
     instrument: counter
     unit: "{request}"
     attributes:
