@@ -22,4 +22,3 @@ groups:
         stability: development
         brief: "ONC/Sun RPC program name."
         examples: ['portmapper', 'nfs']
-

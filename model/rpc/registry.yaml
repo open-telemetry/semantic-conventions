@@ -278,4 +278,3 @@ groups:
         type: int
         stability: development
         brief: "Uncompressed size of the message in bytes."
-
