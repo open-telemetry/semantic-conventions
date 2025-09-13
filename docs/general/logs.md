@@ -10,19 +10,8 @@ aliases: [logs-general]
 The attributes described in this section are rather generic.
 They may be used in any Log Record they apply to.
 
-<!-- toc -->
-
-- [General log identification attributes](#general-log-identification-attributes)
-- [Log media](#log-media)
-  - [Log file](#log-file)
-  - [I/O Stream](#io-stream)
-- [Useful Additional Attribute Namespaces](#useful-additional-attribute-namespaces)
-
-<!-- tocstop -->
-
 The following semantic conventions for logs are defined:
 
-* **[General](#general-log-identification-attributes): General semantic attributes that may be used in describing Log Records.**
 * [Exceptions](/docs/exceptions/exceptions-logs.md): Semantic attributes that may be used in describing exceptions in logs.
 
 Apart from semantic conventions for logs, [events](events.md), [traces](trace.md), and [metrics](metrics.md),
