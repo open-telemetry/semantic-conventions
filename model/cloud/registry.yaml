@@ -36,6 +36,10 @@ groups:
               value: 'oracle_cloud'
               brief: 'Oracle Cloud Infrastructure (OCI)'
               stability: development
+            - id: 'scaleway_cloud'
+              value: 'scaleway_cloud'
+              brief: 'Scaleway Cloud'
+              stability: development
             - id: 'tencent_cloud'
               value: 'tencent_cloud'
               brief: 'Tencent Cloud'
@@ -270,6 +274,10 @@ groups:
             - id: oracle_cloud_oke
               value: 'oracle_cloud_oke'
               brief: Kubernetes Engine (OKE) on Oracle Cloud Infrastructure (OCI)
+              stability: development
+            - id: scaleway_cloud_compute
+              value: 'scaleway_cloud_compute'
+              brief: Compute on Scaleway Cloud
               stability: development
             - id: tencent_cloud_cvm
               value: 'tencent_cloud_cvm'
