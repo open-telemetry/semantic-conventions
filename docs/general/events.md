@@ -45,7 +45,7 @@ are not specific to a particular domain. Such as:
 * [Event](/docs/registry/attributes/event.md)
 * [Thread](/docs/registry/attributes/thread.md)
 
-## External event compatibility
+## Compatibility
 
 When recording events from an existing system as OpenTelemetry Events, the system
 may lack a single name field or require multiple fields to identify the event.
