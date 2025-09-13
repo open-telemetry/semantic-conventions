@@ -25,7 +25,7 @@ The event name MUST be `session.start`.
 
 Indicates that a new session has been started, optionally linking to the prior session.
 
-For instrumentation that tracks user behavior during user sessions, a `session.start` event MUST be emitted every time a session is created. When a new session is created as a continuation of a prior session, the `session.previous_id` SHOULD be included in the event so that telemetry backends may link the two sessions.
+For instrumentation that tracks user behavior during user sessions, a `session.start` event MUST be emitted every time a session is created. When a new session is created as a continuation of a prior session, the `session.previous_id` SHOULD be included in the event so that the new session can be associated with the old session.
 
 The values of `session.id` and `session.previous_id` MUST be different.
 
