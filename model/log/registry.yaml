@@ -1,9 +1,12 @@
 groups:
-  - id: registry.log
+  - id: registry.log.iostream
     type: attribute_group
-    display_name: General Log Attributes
+    display_name: Log I/O Stream
     brief: >
-      This document defines log attributes
+      The I/O stream to which the log was emitted.
+    note: >
+      The following attributes do not describe entities that produce telemetry. Rather, they describe mechanisms of log transmission.
+      As such, these should be recorded as Log Record attributes when applicable. They should not be recorded as Resource attributes.
     attributes:
       - id: log.iostream
         stability: development
@@ -25,6 +28,9 @@ groups:
     display_name: Log File Attributes
     brief: >
       Attributes for a file to which log was emitted.
+    note: >
+      The following attributes do not describe entities that produce telemetry. Rather, they describe mechanisms of log transmission.
+      As such, these should be recorded as Log Record attributes when applicable. They should not be recorded as Resource attributes.
     attributes:
       - id: log.file.name
         type: string
