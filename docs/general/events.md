@@ -36,7 +36,16 @@ the event.
 
 <!-- Body use cases are not clear - see https://github.com/open-telemetry/semantic-conventions/issues/1651 for the context.-->
 
-## External event compatibility
+## Useful Additional Attribute Namespaces
+
+There are some attribute namespaces which can be used to provide additional context and
+are not specific to a particular domain. Such as:
+
+* [Code](/docs/registry/attributes/code.md)
+* [Event](/docs/registry/attributes/event.md)
+* [Thread](/docs/registry/attributes/thread.md)
+
+## Compatibility
 
 When recording events from an existing system as OpenTelemetry Events, the system
 may lack a single name field or require multiple fields to identify the event.
