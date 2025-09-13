@@ -12,7 +12,7 @@ There are some attribute namespaces which can be used to provide additional cont
 are not specific to a particular domain. Such as:
 
 * [Profile](/docs/registry/attributes/profile.md)
-* [PPROF](/docs/registry/attributes/pprof)
+* [PPROF](/docs/registry/attributes/pprof.md)
 
 They may be used in any Profiles record they apply to.
 
