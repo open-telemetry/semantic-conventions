@@ -176,7 +176,7 @@ for naming guidance.
 > [!IMPORTANT]
 > System identifier enums don't need to list every possible system, component, or technology.
 >
-> OpenTelemetry instrumentations that use enum attributes SHOULD document their values before releasing **stable** artifacts.
+> OpenTelemetry instrumentations that use enum attributes SHOULD document their values before releasing **stable** artifacts and MAY support undocumented values in unstable artifacts or behind a feature flag.
 
 Only define new system identifiers when you also document how conventions apply
 to that system. For example, when adding a new `db.system.name` value, create
