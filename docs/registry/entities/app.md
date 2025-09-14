@@ -20,16 +20,12 @@
 | Identity | [`app.namespace`](/docs/registry/attributes/app.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A namespace for `app.name`. [3] | `Shop` |
 | Identity | [`app.version`](/docs/registry/attributes/app.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The version string of the app. The format is not defined by these conventions. | `2.0.0`; `a01dbef8a` |
 | Description | [`app.build_id`](/docs/registry/attributes/app.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Unique identifier for a particular build or compilation of the application. | `6cff0a7e-cefc-4668-96f5-1273d8b334d0`; `9f2b833506aa6973a92fde9733e6271f`; `my-app-1.0.0-code-123` |
-| Description | [`app.roles`](/docs/registry/attributes/app.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string[] | What role this app can perform. [4] | `["ui", "background_tasks"]`; `["background_tasks", "console"]` |
 
 **[1] `app.id`:** MUST remain the same across all versions. For mobile applications this should correspond to the package id, bundle id or another id which is unique across the platform.
 
 **[2] `app.name`:** MUST be the same for all installations of the app.
 
 **[3] `app.namespace`:** A string value having a meaning that helps to distinguish a group of apps, for example the team name that owns a group of apps. `app.name` is expected to be unique within the same namespace. If `app.namespace` is not specified in the Resource then `app.name` is expected to be unique for all apps that have no explicit namespace defined (so the empty/unspecified namespace is simply one more valid namespace). Zero-length namespace string is assumed equal to unspecified namespace.
-
-**[4] `app.roles`:** This doesn't correspond to the roles being performed as a role can be disabled.
-To discover the active roles you can look at `service.roles`
 
 ## App Installation
 
@@ -41,9 +37,9 @@ To discover the active roles you can look at `service.roles`
 
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|---|
-| Identity | [`app.installation.id`](/docs/registry/attributes/app.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A unique identifier representing the installation of an application on a specific device [5] | `2ab2916d-a51f-4ac8-80ee-45ac31a28092` |
+| Identity | [`app.installation.id`](/docs/registry/attributes/app.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A unique identifier representing the installation of an application on a specific device [4] | `2ab2916d-a51f-4ac8-80ee-45ac31a28092` |
 
-**[5] `app.installation.id`:** Its value SHOULD persist across launches of the same application installation, including through application upgrades.
+**[4] `app.installation.id`:** Its value SHOULD persist across launches of the same application installation, including through application upgrades.
 It SHOULD change if the application is uninstalled or if all applications of the vendor are uninstalled.
 Additionally, users might be able to reset this value (e.g. by clearing application data).
 If an app is installed multiple times on the same device (e.g. in different accounts on Android), each `app.installation.id` SHOULD have a different value.
