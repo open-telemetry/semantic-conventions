@@ -33,10 +33,6 @@
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`app.build_id`](/docs/registry/attributes/app.md) | string | Unique identifier for a particular build or compilation of the application. | `6cff0a7e-cefc-4668-96f5-1273d8b334d0`; `9f2b833506aa6973a92fde9733e6271f`; `my-app-1.0.0-code-123` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`app.roles`](/docs/registry/attributes/app.md) | string[] | What role this app can perform. [4] | `["ui", "background_tasks"]`; `["background_tasks", "console"]` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-
-**[4] `app.roles`:** This doesn't correspond to the roles being performed as a role can be disabled.
-To discover the active roles you can look at `service.roles`
 
 ## App Installation
 
@@ -50,9 +46,9 @@ To discover the active roles you can look at `service.roles`
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`app.installation.id`](/docs/registry/attributes/app.md) | string | A unique identifier representing the installation of an application on a specific device [5] | `2ab2916d-a51f-4ac8-80ee-45ac31a28092` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`app.installation.id`](/docs/registry/attributes/app.md) | string | A unique identifier representing the installation of an application on a specific device [4] | `2ab2916d-a51f-4ac8-80ee-45ac31a28092` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[5] `app.installation.id`:** Its value SHOULD persist across launches of the same application installation, including through application upgrades.
+**[4] `app.installation.id`:** Its value SHOULD persist across launches of the same application installation, including through application upgrades.
 It SHOULD change if the application is uninstalled or if all applications of the vendor are uninstalled.
 Additionally, users might be able to reset this value (e.g. by clearing application data).
 If an app is installed multiple times on the same device (e.g. in different accounts on Android), each `app.installation.id` SHOULD have a different value.

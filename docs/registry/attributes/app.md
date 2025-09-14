@@ -17,12 +17,11 @@ Describes attributes related to client-side applications (e.g. web apps or mobil
 | <a id="app-jank-threshold" href="#app-jank-threshold">`app.jank.threshold`</a> | double | The minimum rendering threshold for this jank, in seconds. | `0.016`; `0.7`; `1.024` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="app-name" href="#app-name">`app.name`</a> | string | Logical name of the app. [4] | `shoppingcart` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="app-namespace" href="#app-namespace">`app.namespace`</a> | string | A namespace for `app.name`. [5] | `Shop` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="app-roles" href="#app-roles">`app.roles`</a> | string[] | What role this app can perform. [6] | `["ui", "background_tasks"]`; `["background_tasks", "console"]` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="app-screen-coordinate-x" href="#app-screen-coordinate-x">`app.screen.coordinate.x`</a> | int | The x (horizontal) coordinate of a screen coordinate, in screen pixels. | `0`; `131` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="app-screen-coordinate-y" href="#app-screen-coordinate-y">`app.screen.coordinate.y`</a> | int | The y (vertical) component of a screen coordinate, in screen pixels. | `12`; `99` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="app-version" href="#app-version">`app.version`</a> | string | The version string of the app. The format is not defined by these conventions. | `2.0.0`; `a01dbef8a` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="app-widget-id" href="#app-widget-id">`app.widget.id`</a> | string | An identifier that uniquely differentiates this widget from other widgets in the same application. [7] | `f9bc787d-ff05-48ad-90e1-fca1d46130b3`; `submit_order_1829` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="app-widget-name" href="#app-widget-name">`app.widget.name`</a> | string | The name of an application widget. [8] | `submit`; `attack`; `Clear Cart` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="app-widget-id" href="#app-widget-id">`app.widget.id`</a> | string | An identifier that uniquely differentiates this widget from other widgets in the same application. [6] | `f9bc787d-ff05-48ad-90e1-fca1d46130b3`; `submit_order_1829` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="app-widget-name" href="#app-widget-name">`app.widget.name`</a> | string | The name of an application widget. [7] | `submit`; `attack`; `Clear Cart` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `app.id`:** MUST remain the same across all versions. For mobile applications this should correspond to the package id, bundle id or another id which is unique across the platform.
 
@@ -50,9 +49,6 @@ More information about Android identifier best practices can be found in the [An
 
 **[5] `app.namespace`:** A string value having a meaning that helps to distinguish a group of apps, for example the team name that owns a group of apps. `app.name` is expected to be unique within the same namespace. If `app.namespace` is not specified in the Resource then `app.name` is expected to be unique for all apps that have no explicit namespace defined (so the empty/unspecified namespace is simply one more valid namespace). Zero-length namespace string is assumed equal to unspecified namespace.
 
-**[6] `app.roles`:** This doesn't correspond to the roles being performed as a role can be disabled.
-To discover the active roles you can look at `service.roles`
+**[6] `app.widget.id`:** A widget is an application component, typically an on-screen visual GUI element.
 
-**[7] `app.widget.id`:** A widget is an application component, typically an on-screen visual GUI element.
-
-**[8] `app.widget.name`:** A widget is an application component, typically an on-screen visual GUI element.
+**[7] `app.widget.name`:** A widget is an application component, typically an on-screen visual GUI element.

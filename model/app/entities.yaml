@@ -16,8 +16,6 @@ groups:
         role: identifying
       - ref: app.name
         role: identifying
-      - ref: app.roles
-        role: descriptive
   - id: entity.app.installation
     type: entity
     stability: development

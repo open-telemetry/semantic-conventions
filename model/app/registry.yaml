@@ -42,18 +42,6 @@ groups:
           (so the empty/unspecified namespace is simply one more valid namespace).
           Zero-length namespace string is assumed equal to unspecified namespace.
         examples: ["Shop"]
-      - id: app.roles
-        type: string[]
-        brief: >
-          What role this app can perform.
-        note: >
-          This doesn't correspond to the roles being performed as a role can be disabled.
-
-          To discover the active roles you can look at `service.roles`
-        examples:
-          - ["ui", "background_tasks"]
-          - ["background_tasks", "console"]
-        stability: development
       - id: app.installation.id
         type: string
         stability: development
