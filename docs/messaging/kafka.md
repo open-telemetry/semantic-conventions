@@ -145,12 +145,20 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | Value  | Description | Stability |
 |---|---|---|
 | `create` | A message is created. "Create" spans always refer to a single message and are used to provide a unique creation context for messages in batch sending scenarios. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `deliver` | Deprecated. Use `process` instead. | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `process`. |
 | `process` | One or more messages are processed by a consumer. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `publish` | Deprecated. Use `send` instead. | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `send`. |
 | `receive` | One or more messages are requested by a consumer. This operation refers to pull-based scenarios, where consumers explicitly call methods of messaging SDKs to receive messages. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `send` | One or more messages are provided for sending to an intermediary. If a single message is sent, the context of the "Send" span can be used as the creation context and no "Create" span needs to be created. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `settle` | One or more messages are settled. | ![Development](https://img.shields.io/badge/-development-blue) |
+
+<details>
+<summary><b>Past Defined Values:</b></summary>
+
+| Value  | Description | Deprecation Explanation |
+|---|---|---|
+| `deliver` | Deprecated. Use `process` instead. |  Use `process` instead.  |
+| `publish` | Deprecated. Use `send` instead. |  Use `send` instead.  |
+
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
