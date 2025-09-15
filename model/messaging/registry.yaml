@@ -133,14 +133,16 @@ groups:
               stability: development
             - id: deliver
               value: "deliver"
-              brief: "Deprecated. Use `process` instead."
+              brief: One or more messages are delivered to a consumer.
               deprecated:
                 reason: renamed
                 renamed_to: "process"
               stability: development
             - id: publish
               value: "publish"
-              brief: "Deprecated. Use `send` instead."
+              brief: >
+                One or more messages are provided for publishing to an intermediary.
+                If a single message is published, the context of the "Publish" span can be used as the creation context and no "Create" span needs to be created.
               deprecated:
                 reason: renamed
                 renamed_to: "send"

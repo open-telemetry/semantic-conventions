@@ -376,11 +376,11 @@ the same backends.
 | `gitlab` | [GitLab](https://gitlab.com) | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <details>
-<summary><b>Past Defined Values:</b></summary>
+<summary><b>Deprecated Values:</b></summary>
 
 | Value  | Description | Deprecation Explanation |
 |---|---|---|
-| `gittea` | Deprecated, use `gitea` instead. |  Use `gitea` instead.  |
+| `gittea` | [Gitea](https://gitea.io) |  Use `gitea` instead.  |
 
 </details>
 
@@ -446,11 +446,11 @@ the same backends.
 | `gitlab` | [GitLab](https://gitlab.com) | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <details>
-<summary><b>Past Defined Values:</b></summary>
+<summary><b>Deprecated Values:</b></summary>
 
 | Value  | Description | Deprecation Explanation |
 |---|---|---|
-| `gittea` | Deprecated, use `gitea` instead. |  Use `gitea` instead.  |
+| `gittea` | [Gitea](https://gitea.io) |  Use `gitea` instead.  |
 
 </details>
 
@@ -537,11 +537,11 @@ revision based on the VCS system and situational context.
 | `gitlab` | [GitLab](https://gitlab.com) | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <details>
-<summary><b>Past Defined Values:</b></summary>
+<summary><b>Deprecated Values:</b></summary>
 
 | Value  | Description | Deprecation Explanation |
 |---|---|---|
-| `gittea` | Deprecated, use `gitea` instead. |  Use `gitea` instead.  |
+| `gittea` | [Gitea](https://gitea.io) |  Use `gitea` instead.  |
 
 </details>
 
@@ -628,11 +628,11 @@ revision based on the VCS system and situational context.
 | `gitlab` | [GitLab](https://gitlab.com) | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <details>
-<summary><b>Past Defined Values:</b></summary>
+<summary><b>Deprecated Values:</b></summary>
 
 | Value  | Description | Deprecation Explanation |
 |---|---|---|
-| `gittea` | Deprecated, use `gitea` instead. |  Use `gitea` instead.  |
+| `gittea` | [Gitea](https://gitea.io) |  Use `gitea` instead.  |
 
 </details>
 
@@ -673,11 +673,11 @@ This metric is [recommended][MetricRecommended].
 | `gitlab` | [GitLab](https://gitlab.com) | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <details>
-<summary><b>Past Defined Values:</b></summary>
+<summary><b>Deprecated Values:</b></summary>
 
 | Value  | Description | Deprecation Explanation |
 |---|---|---|
-| `gittea` | Deprecated, use `gitea` instead. |  Use `gitea` instead.  |
+| `gittea` | [Gitea](https://gitea.io) |  Use `gitea` instead.  |
 
 </details>
 
@@ -728,11 +728,11 @@ the same backends.
 | `gitlab` | [GitLab](https://gitlab.com) | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <details>
-<summary><b>Past Defined Values:</b></summary>
+<summary><b>Deprecated Values:</b></summary>
 
 | Value  | Description | Deprecation Explanation |
 |---|---|---|
-| `gittea` | Deprecated, use `gitea` instead. |  Use `gitea` instead.  |
+| `gittea` | [Gitea](https://gitea.io) |  Use `gitea` instead.  |
 
 </details>
 
@@ -824,11 +824,11 @@ the same backends.
 | `gitlab` | [GitLab](https://gitlab.com) | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <details>
-<summary><b>Past Defined Values:</b></summary>
+<summary><b>Deprecated Values:</b></summary>
 
 | Value  | Description | Deprecation Explanation |
 |---|---|---|
-| `gittea` | Deprecated, use `gitea` instead. |  Use `gitea` instead.  |
+| `gittea` | [Gitea](https://gitea.io) |  Use `gitea` instead.  |
 
 </details>
 
@@ -919,11 +919,11 @@ the same backends.
 | `gitlab` | [GitLab](https://gitlab.com) | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <details>
-<summary><b>Past Defined Values:</b></summary>
+<summary><b>Deprecated Values:</b></summary>
 
 | Value  | Description | Deprecation Explanation |
 |---|---|---|
-| `gittea` | Deprecated, use `gitea` instead. |  Use `gitea` instead.  |
+| `gittea` | [Gitea](https://gitea.io) |  Use `gitea` instead.  |
 
 </details>
 
@@ -1008,11 +1008,11 @@ the same backends.
 | `gitlab` | [GitLab](https://gitlab.com) | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <details>
-<summary><b>Past Defined Values:</b></summary>
+<summary><b>Deprecated Values:</b></summary>
 
 | Value  | Description | Deprecation Explanation |
 |---|---|---|
-| `gittea` | Deprecated, use `gitea` instead. |  Use `gitea` instead.  |
+| `gittea` | [Gitea](https://gitea.io) |  Use `gitea` instead.  |
 
 </details>
 
@@ -1071,11 +1071,11 @@ the same backends.
 | `gitlab` | [GitLab](https://gitlab.com) | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <details>
-<summary><b>Past Defined Values:</b></summary>
+<summary><b>Deprecated Values:</b></summary>
 
 | Value  | Description | Deprecation Explanation |
 |---|---|---|
-| `gittea` | Deprecated, use `gitea` instead. |  Use `gitea` instead.  |
+| `gittea` | [Gitea](https://gitea.io) |  Use `gitea` instead.  |
 
 </details>
 
