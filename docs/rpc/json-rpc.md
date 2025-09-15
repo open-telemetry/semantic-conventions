@@ -23,7 +23,7 @@ described on this page.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`rpc.method`](/docs/registry/attributes/rpc.md) | string | The name of the (logical) method being called, must be equal to the $method part in the span name. [1] | `exampleMethod` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`rpc.method`](/docs/registry/attributes/rpc.md) | string | This is the logical name of the method from the RPC interface perspective. [1] | `exampleMethod` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`rpc.jsonrpc.error_code`](/docs/registry/attributes/rpc.md) | int | `error.code` property of response if it is an error response. | `-32700`; `100` | `Conditionally Required` If response is not successful. | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`rpc.jsonrpc.version`](/docs/registry/attributes/rpc.md) | string | Protocol version as in `jsonrpc` property of request/response. Since JSON-RPC 1.0 doesn't specify this, the value can be omitted. | `2.0`; `1.0` | `Conditionally Required` If other than the default version (`1.0`) | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`rpc.jsonrpc.error_message`](/docs/registry/attributes/rpc.md) | string | `error.message` property of response if it is an error response. | `Parse error`; `User already exists` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
