@@ -47,7 +47,7 @@ attributes:
 
 The metric is
 [instrumented as an `UpDownCounter`](https://github.com/open-telemetry/semantic-conventions/blob/main/docs/general/metrics.md#consistent-updowncounter-timeseries)
-rather than a `Gauge`. This is a deliberate choice, as it is a reasonable use 
+rather than a `Gauge`. This is a deliberate choice, as it is a reasonable use
 case to count objects that are in a particular state. Since the metric value is
 either `0` or `1` for a given state attribute value, this means you can do a
 simple sum aggregation to count instances of particular states.
@@ -61,7 +61,7 @@ changes would not necessarily be tracked.
 
 ### Naming
 
-If there is particular verbiage for this sort of thing within the instrumentation
+If there is already well-known naming conventions within the instrumentation
 context, i.e. `k8s` having words like `phase` or `status`, those words should
 always be chosen.
 
@@ -75,7 +75,7 @@ This naming scheme necessitates choosing words to represent two things:
 
 The general recommendation is to use the word "state" for the attribute and
 "status" for the metric. This is derived from common turns of phrase for each
-word, respectively:  
+word, respectively:
 
 "What **state** is X in?"  
 "What is the **current status** of X?"  
