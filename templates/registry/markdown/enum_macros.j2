@@ -6,8 +6,8 @@
 
 | Value  | Description | Stability |
 |---|---|---|
-{% for espec in enum.type.members | sort(attribute='value') %}| `{{ espec.value }}` | {{ (espec.brief or espec.id) | trim }}{{ notes.add({"note": espec.note}) }} | {{ stability.badge(espec.stability, espec.deprecated, espec.brief) }} |
-{% endfor %}{{ notes.render() }}{% endmacro %}
+{% for espec in enum.type.members | sort(attribute='value') if espec.deprecated is not defined or espec.deprecated is none %}| `{{ espec.value }}` | {{ (espec.brief or espec.id) | trim }}{{ notes.add({"note": espec.note}) }} | {{ stability.badge(espec.stability, espec.deprecated, espec.brief) }} |
+{% endfor %}{{ notes.render() }}{{ generate_deprecated(enum.type.members) }}{% endmacro %}
 {% macro tables(enums, notes) -%}
 {% for enum in enums | sort(attribute="name") -%}
 {{ table(enum, notes) -}}
@@ -23,3 +23,15 @@
 {% for enum in enums | sort(attribute="id") -%}
 {{ field_table(enum, notes) -}}
 {% endfor %}{% endmacro %}
+
+{#- Macro for creating deprecated enum member table -#}
+{% macro generate_deprecated(members) %}{% set filtered_members = members | selectattr("deprecated") %}{% if (filtered_members is defined) and (filtered_members | length > 0) %}
+<details>
+<summary><b>Past Defined Values:</b></summary>
+
+| Value  | Description | Deprecation Explanation |
+|---|---|---|
+{% for member in filtered_members %}| `{{ member.value }}` | {{ (member.brief or member.id) | trim }} | {% if member.deprecated.reason == "renamed" %} Use `{{member.deprecated.renamed_to}}` instead. {% else %} {{member.deprecated.note}} {% endif %} |
+{% endfor %}{{ notes.render() }}
+</details>
+{% endif %}{% endmacro %}

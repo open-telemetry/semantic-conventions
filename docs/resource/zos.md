@@ -106,8 +106,16 @@ The following table describes how to populate the operating system attributes on
 | `openbsd` | OpenBSD | ![Development](https://img.shields.io/badge/-development-blue) |
 | `solaris` | SunOS, Oracle Solaris | ![Development](https://img.shields.io/badge/-development-blue) |
 | `windows` | Microsoft Windows | ![Development](https://img.shields.io/badge/-development-blue) |
-| `z_os` | Deprecated. Use `zos` instead. | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `zos`. |
 | `zos` | IBM z/OS | ![Development](https://img.shields.io/badge/-development-blue) |
+
+<details>
+<summary><b>Past Defined Values:</b></summary>
+
+| Value  | Description | Deprecation Explanation |
+|---|---|---|
+| `z_os` | Deprecated. Use `zos` instead. |  Use `zos` instead.  |
+
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

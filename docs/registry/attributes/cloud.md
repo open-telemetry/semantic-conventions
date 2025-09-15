@@ -66,13 +66,6 @@ The following well-known definitions MUST be used if you set this attribute and 
 | `azure.functions` | Azure Functions | ![Development](https://img.shields.io/badge/-development-blue) |
 | `azure.openshift` | Azure Red Hat OpenShift | ![Development](https://img.shields.io/badge/-development-blue) |
 | `azure.vm` | Azure Virtual Machines | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure_aks` | Azure Kubernetes Service | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `azure.aks`. |
-| `azure_app_service` | Azure App Service | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `azure.app_service`. |
-| `azure_container_apps` | Azure Container Apps | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `azure.container_apps`. |
-| `azure_container_instances` | Azure Container Instances | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `azure.container_instances`. |
-| `azure_functions` | Azure Functions | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `azure.functions`. |
-| `azure_openshift` | Azure Red Hat OpenShift | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `azure.openshift`. |
-| `azure_vm` | Azure Virtual Machines | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `azure.vm`. |
 | `gcp.agent_engine` | Google Vertex AI Agent Engine | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gcp_app_engine` | Google Cloud App Engine (GAE) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gcp_bare_metal_solution` | Google Bare Metal Solution (BMS) | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -89,6 +82,21 @@ The following well-known definitions MUST be used if you set this attribute and 
 | `tencent_cloud_eks` | Tencent Cloud Elastic Kubernetes Service (EKS) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `tencent_cloud_scf` | Tencent Cloud Serverless Cloud Function (SCF) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `vultr.cloud_compute` | Vultr Cloud Compute | ![Development](https://img.shields.io/badge/-development-blue) |
+
+<details>
+<summary><b>Past Defined Values:</b></summary>
+
+| Value  | Description | Deprecation Explanation |
+|---|---|---|
+| `azure_vm` | Azure Virtual Machines |  Use `azure.vm` instead.  |
+| `azure_container_apps` | Azure Container Apps |  Use `azure.container_apps` instead.  |
+| `azure_container_instances` | Azure Container Instances |  Use `azure.container_instances` instead.  |
+| `azure_aks` | Azure Kubernetes Service |  Use `azure.aks` instead.  |
+| `azure_functions` | Azure Functions |  Use `azure.functions` instead.  |
+| `azure_app_service` | Azure App Service |  Use `azure.app_service` instead.  |
+| `azure_openshift` | Azure Red Hat OpenShift |  Use `azure.openshift` instead.  |
+
+</details>
 
 ---
 

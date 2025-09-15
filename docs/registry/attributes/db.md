@@ -277,12 +277,9 @@ Describes deprecated database attributes.
 | Value  | Description | Stability |
 |---|---|---|
 | `adabas` | Adabas (Adaptable Database System) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `cache` | Deprecated, use `intersystems_cache` instead. | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `intersystems_cache`. |
 | `cassandra` | Apache Cassandra | ![Development](https://img.shields.io/badge/-development-blue) |
 | `clickhouse` | ClickHouse | ![Development](https://img.shields.io/badge/-development-blue) |
-| `cloudscape` | Deprecated, use `other_sql` instead. | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `other_sql`. |
 | `cockroachdb` | CockroachDB | ![Development](https://img.shields.io/badge/-development-blue) |
-| `coldfusion` | Deprecated, no replacement at this time. | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Obsoleted. |
 | `cosmosdb` | Microsoft Azure Cosmos DB | ![Development](https://img.shields.io/badge/-development-blue) |
 | `couchbase` | Couchbase | ![Development](https://img.shields.io/badge/-development-blue) |
 | `couchdb` | CouchDB | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -293,7 +290,6 @@ Describes deprecated database attributes.
 | `elasticsearch` | Elasticsearch | ![Development](https://img.shields.io/badge/-development-blue) |
 | `filemaker` | FileMaker | ![Development](https://img.shields.io/badge/-development-blue) |
 | `firebird` | Firebird | ![Development](https://img.shields.io/badge/-development-blue) |
-| `firstsql` | Deprecated, use `other_sql` instead. | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `other_sql`. |
 | `geode` | Apache Geode | ![Development](https://img.shields.io/badge/-development-blue) |
 | `h2` | H2 | ![Development](https://img.shields.io/badge/-development-blue) |
 | `hanadb` | SAP HANA | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -311,7 +307,6 @@ Describes deprecated database attributes.
 | `memcached` | Memcached | ![Development](https://img.shields.io/badge/-development-blue) |
 | `mongodb` | MongoDB | ![Development](https://img.shields.io/badge/-development-blue) |
 | `mssql` | Microsoft SQL Server | ![Development](https://img.shields.io/badge/-development-blue) |
-| `mssqlcompact` | Deprecated, Microsoft SQL Server Compact is discontinued. | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `other_sql`. |
 | `mysql` | MySQL | ![Development](https://img.shields.io/badge/-development-blue) |
 | `neo4j` | Neo4j | ![Development](https://img.shields.io/badge/-development-blue) |
 | `netezza` | Netezza | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -330,6 +325,19 @@ Describes deprecated database attributes.
 | `teradata` | Teradata | ![Development](https://img.shields.io/badge/-development-blue) |
 | `trino` | Trino | ![Development](https://img.shields.io/badge/-development-blue) |
 | `vertica` | Vertica | ![Development](https://img.shields.io/badge/-development-blue) |
+
+<details>
+<summary><b>Past Defined Values:</b></summary>
+
+| Value  | Description | Deprecation Explanation |
+|---|---|---|
+| `cache` | Deprecated, use `intersystems_cache` instead. |  Use `intersystems_cache` instead.  |
+| `cloudscape` | Deprecated, use `other_sql` instead. |  Use `other_sql` instead.  |
+| `coldfusion` | Deprecated, no replacement at this time. |  Obsoleted.  |
+| `firstsql` | Deprecated, use `other_sql` instead. |  Use `other_sql` instead.  |
+| `mssqlcompact` | Deprecated, Microsoft SQL Server Compact is discontinued. |  Use `other_sql` instead.  |
+
+</details>
 
 ## Deprecated Database Metrics
 
