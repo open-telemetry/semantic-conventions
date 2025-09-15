@@ -22,7 +22,7 @@ groups:
             - id: used
               value: 'used'
               stability: development
-              brief: Actual used virtual memory in bytes.
+              brief: Used virtual memory.
               note: >
                 Calculation based on the operating system metrics.
                 On Linux, this corresponds to "MemTotal - MemAvailable" from /proc/meminfo, which
@@ -31,7 +31,7 @@ groups:
                 a fallback to those older formulas may be used.
             - id: free
               value: 'free'
-              brief: Free
+              brief: Free Virtual memory.
               stability: development
             - id: shared
               value: 'shared'
@@ -42,11 +42,11 @@ groups:
                 note: "Removed, report shared memory usage with `metric.system.memory.shared` metric"
             - id: buffers
               value: 'buffers'
-              brief: Buffers
+              brief: Buffered virtual memory.
               stability: development
             - id: cached
               value: 'cached'
-              brief: Cached
+              brief: Cached virtual memory.
               stability: development
         stability: development
         brief: "The memory state"
@@ -62,11 +62,11 @@ groups:
           members:
             - id: used
               value: 'used'
-              brief: Used
+              brief: Used memory for paging.
               stability: development
             - id: free
               value: 'free'
-              brief: Free
+              brief: Free memory for paging.
               stability: development
         stability: development
         brief: "The memory paging state"
@@ -76,11 +76,11 @@ groups:
           members:
             - id: major
               value: 'major'
-              brief: Major
+              brief: Major page fault. Sometimes referred to as hard page fault.
               stability: development
             - id: minor
               value: 'minor'
-              brief: Minor
+              brief: Minor page fault. Sometimes referred to as soft page fault.
               stability: development
         stability: development
         brief: "The paging fault type"
@@ -90,11 +90,11 @@ groups:
           members:
             - id: in
               value: 'in'
-              brief: In
+              brief: Incoming paging.
               stability: development
             - id: out
               value: 'out'
-              brief: Out
+              brief: Outgoing paging.
               stability: development
         stability: development
         brief: "The paging access direction"
@@ -110,15 +110,15 @@ groups:
           members:
             - id: used
               value: 'used'
-              brief: Used
+              brief: Filesystem has been Used.
               stability: development
             - id: free
               value: 'free'
-              brief: Free
+              brief: Filesystem which is Free.
               stability: development
             - id: reserved
               value: 'reserved'
-              brief: Reserved
+              brief: Filesystem which has been Reserved.
               stability: development
         stability: development
         examples: ["used"]
@@ -173,19 +173,19 @@ groups:
           members:
             - id: running
               value: 'running'
-              brief: Running
+              brief: The process is currently running.
               stability: development
             - id: sleeping
               value: 'sleeping'
-              brief: Sleeping
+              brief: The process is currently sleeping.
               stability: development
             - id: stopped
               value: 'stopped'
-              brief: Stopped
+              brief: The process has been stopped.
               stability: development
             - id: defunct
               value: 'defunct'
-              brief: Defunct
+              brief: The process has exited and has a parent, but has not yet been waited for by the parent.
               stability: development
         stability: development
         brief: >

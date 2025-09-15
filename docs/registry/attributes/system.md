@@ -35,9 +35,9 @@ Describes Filesystem attributes
 
 | Value  | Description | Stability |
 |---|---|---|
-| `free` | Free | ![Development](https://img.shields.io/badge/-development-blue) |
-| `reserved` | Reserved | ![Development](https://img.shields.io/badge/-development-blue) |
-| `used` | Used | ![Development](https://img.shields.io/badge/-development-blue) |
+| `free` | Filesystem which is Free. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `reserved` | Filesystem which has been Reserved. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `used` | Filesystem has been Used. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -66,10 +66,10 @@ Describes System Memory attributes
 
 | Value  | Description | Stability |
 |---|---|---|
-| `buffers` | Buffers | ![Development](https://img.shields.io/badge/-development-blue) |
-| `cached` | Cached | ![Development](https://img.shields.io/badge/-development-blue) |
-| `free` | Free | ![Development](https://img.shields.io/badge/-development-blue) |
-| `used` | Actual used virtual memory in bytes. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `buffers` | Buffered virtual memory. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `cached` | Cached virtual memory. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `free` | Free Virtual memory. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `used` | Used virtual memory. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1]:** Calculation based on the operating system metrics. On Linux, this corresponds to "MemTotal - MemAvailable" from /proc/meminfo, which more accurately reflects memory in active use by applications compared to older formulas based on free, cached, and buffers. If MemAvailable is not available, a fallback to those older formulas may be used.
 
@@ -89,8 +89,8 @@ Describes System Memory Paging attributes
 
 | Value  | Description | Stability |
 |---|---|---|
-| `in` | In | ![Development](https://img.shields.io/badge/-development-blue) |
-| `out` | Out | ![Development](https://img.shields.io/badge/-development-blue) |
+| `in` | Incoming paging. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `out` | Outgoing paging. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -98,8 +98,8 @@ Describes System Memory Paging attributes
 
 | Value  | Description | Stability |
 |---|---|---|
-| `major` | Major | ![Development](https://img.shields.io/badge/-development-blue) |
-| `minor` | Minor | ![Development](https://img.shields.io/badge/-development-blue) |
+| `major` | Major page fault. Sometimes referred to as hard page fault. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `minor` | Minor page fault. Sometimes referred to as soft page fault. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -107,8 +107,8 @@ Describes System Memory Paging attributes
 
 | Value  | Description | Stability |
 |---|---|---|
-| `free` | Free | ![Development](https://img.shields.io/badge/-development-blue) |
-| `used` | Used | ![Development](https://img.shields.io/badge/-development-blue) |
+| `free` | Free memory for paging. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `used` | Used memory for paging. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ## System Process Attributes
 
@@ -124,10 +124,10 @@ Describes System Process attributes
 
 | Value  | Description | Stability |
 |---|---|---|
-| `defunct` | Defunct | ![Development](https://img.shields.io/badge/-development-blue) |
-| `running` | Running | ![Development](https://img.shields.io/badge/-development-blue) |
-| `sleeping` | Sleeping | ![Development](https://img.shields.io/badge/-development-blue) |
-| `stopped` | Stopped | ![Development](https://img.shields.io/badge/-development-blue) |
+| `defunct` | The process has exited and has a parent, but has not yet been waited for by the parent. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `running` | The process is currently running. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `sleeping` | The process is currently sleeping. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `stopped` | The process has been stopped. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ## Deprecated System Attributes
 
