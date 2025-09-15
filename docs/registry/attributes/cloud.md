@@ -84,7 +84,7 @@ The following well-known definitions MUST be used if you set this attribute and 
 | `vultr.cloud_compute` | Vultr Cloud Compute | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <details>
-<summary><b>Past Defined Values:</b></summary>
+<summary><b>Deprecated Values:</b></summary>
 
 | Value  | Description | Deprecation Explanation |
 |---|---|---|

@@ -327,7 +327,7 @@ Describes deprecated database attributes.
 | `vertica` | Vertica | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <details>
-<summary><b>Past Defined Values:</b></summary>
+<summary><b>Deprecated Values:</b></summary>
 
 | Value  | Description | Deprecation Explanation |
 |---|---|---|
