@@ -236,7 +236,7 @@ Datastore: A tool used by the agent to access and query structured or unstructur
 | `output` | Output tokens (completion, response, etc.) | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <details>
-<summary><b>Past Defined Values:</b></summary>
+<summary><b>Deprecated Values:</b></summary>
 
 | Value  | Description | Deprecation Explanation |
 |---|---|---|
@@ -287,7 +287,7 @@ Describes deprecated `gen_ai` attributes.
 **[19]:** This refers to the 'aiplatform.googleapis.com' endpoint. May use common attributes prefixed with 'gcp.gen_ai.'.
 
 <details>
-<summary><b>Past Defined Values:</b></summary>
+<summary><b>Deprecated Values:</b></summary>
 
 | Value  | Description | Deprecation Explanation |
 |---|---|---|

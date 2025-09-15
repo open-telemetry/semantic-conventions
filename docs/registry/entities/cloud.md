@@ -90,7 +90,7 @@ The following well-known definitions MUST be used if you set this attribute and 
 | `tencent_cloud_scf` | Tencent Cloud Serverless Cloud Function (SCF) | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <details>
-<summary><b>Past Defined Values:</b></summary>
+<summary><b>Deprecated Values:</b></summary>
 
 | Value  | Description | Deprecation Explanation |
 |---|---|---|

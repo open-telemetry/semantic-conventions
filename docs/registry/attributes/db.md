@@ -327,15 +327,15 @@ Describes deprecated database attributes.
 | `vertica` | Vertica | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <details>
-<summary><b>Past Defined Values:</b></summary>
+<summary><b>Deprecated Values:</b></summary>
 
 | Value  | Description | Deprecation Explanation |
 |---|---|---|
-| `cache` | Deprecated, use `intersystems_cache` instead. |  Use `intersystems_cache` instead.  |
-| `cloudscape` | Deprecated, use `other_sql` instead. |  Use `other_sql` instead.  |
-| `coldfusion` | Deprecated, no replacement at this time. |  Obsoleted.  |
-| `firstsql` | Deprecated, use `other_sql` instead. |  Use `other_sql` instead.  |
-| `mssqlcompact` | Deprecated, Microsoft SQL Server Compact is discontinued. |  Use `other_sql` instead.  |
+| `cache` | InterSystems Caché |  Use `intersystems_cache` instead.  |
+| `cloudscape` | Cloudscape |  Use `other_sql` instead.  |
+| `coldfusion` | ColdFusion IMQ |  No replacement at this time.  |
+| `firstsql` | FirstSQL |  Use `other_sql` instead.  |
+| `mssqlcompact` | Microsoft SQL Server Compact |  Use `other_sql` instead.  |
 
 </details>
 
