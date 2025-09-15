@@ -58,6 +58,87 @@ groups:
       Total memory usage of the Pod
     instrument: gauge
     unit: "By"
+  - id: metric.k8s.pod.memory.available
+    type: metric
+    metric_name: k8s.pod.memory.available
+    stability: development
+    annotations:
+      code_generation:
+        metric_value_type: int
+    entity_associations:
+      - k8s.pod
+    brief: "Pod memory available."
+    note: >
+      Available memory for use.  This is defined as the memory limit - workingSetBytes.
+      If memory limit is undefined, the available bytes is omitted.
+
+      This metric is derived from the
+      [MemoryStats.AvailableBytes](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#MemoryStats)
+      field of the [PodStats.Memory](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#PodStats)
+      of the Kubelet's stats API.
+    instrument: updowncounter
+    unit: "By"
+  - id: metric.k8s.pod.memory.rss
+    type: metric
+    metric_name: k8s.pod.memory.rss
+    stability: development
+    brief: "Pod memory RSS."
+    annotations:
+      code_generation:
+        metric_value_type: int
+    entity_associations:
+      - k8s.pod
+    note: >
+      The amount of anonymous and swap cache memory (includes transparent hugepages).
+
+      This metric is derived from the
+      [MemoryStats.RSSBytes](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#MemoryStats)
+      field of the [PodStats.Memory](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#PodStats)
+      of the Kubelet's stats API.
+    instrument: updowncounter
+    unit: "By"
+  - id: metric.k8s.pod.memory.working_set
+    type: metric
+    metric_name: k8s.pod.memory.working_set
+    stability: development
+    entity_associations:
+      - k8s.pod
+    brief: "Pod memory working set."
+    annotations:
+      code_generation:
+        metric_value_type: int
+    note: >
+      The amount of working set memory. This includes recently accessed memory,
+      dirty memory, and kernel memory. WorkingSetBytes is <= UsageBytes.
+
+      This metric is derived from the
+      [MemoryStats.WorkingSetBytes](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#MemoryStats)
+      field of the [PodStats.Memory](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#PodStats)
+      of the Kubelet's stats API.
+    instrument: updowncounter
+    unit: "By"
+  - id: metric.k8s.pod.memory.paging.faults
+    type: metric
+    metric_name: k8s.pod.memory.paging.faults
+    stability: development
+    brief: "Pod memory paging faults."
+    annotations:
+      code_generation:
+        metric_value_type: int
+    entity_associations:
+      - k8s.pod
+    attributes:
+      - ref: system.paging.type
+    note: >
+      Cumulative number of major/minor page faults.
+
+      This metric is derived from the
+      [MemoryStats.PageFaults](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#MemoryStats) and
+      [MemoryStats.MajorPageFaults](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#MemoryStats)
+      field of the [PodStats.Memory](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#PodStats)
+      of the Kubelet's stats API.
+    instrument: counter
+    unit: "{fault}"
 
   # k8s.pod.network.* metrics
   - id: metric.k8s.pod.network.io
@@ -508,6 +589,87 @@ groups:
     entity_associations:
       - k8s.node
     unit: "By"
+  - id: metric.k8s.node.memory.available
+    type: metric
+    metric_name: k8s.node.memory.available
+    stability: development
+    brief: "Node memory available."
+    annotations:
+      code_generation:
+        metric_value_type: int
+    entity_associations:
+      - k8s.node
+    note: >
+      Available memory for use.  This is defined as the memory limit - workingSetBytes.
+      If memory limit is undefined, the available bytes is omitted.
+
+      This metric is derived from the
+      [MemoryStats.AvailableBytes](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#MemoryStats)
+      field of the [NodeStats.Memory](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#NodeStats)
+      of the Kubelet's stats API.
+    instrument: updowncounter
+    unit: "By"
+  - id: metric.k8s.node.memory.rss
+    type: metric
+    metric_name: k8s.node.memory.rss
+    stability: development
+    brief: "Node memory RSS."
+    annotations:
+      code_generation:
+        metric_value_type: int
+    entity_associations:
+      - k8s.node
+    note: >
+      The amount of anonymous and swap cache memory (includes transparent hugepages).
+
+      This metric is derived from the
+      [MemoryStats.RSSBytes](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#MemoryStats)
+      field of the [NodeStats.Memory](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#NodeStats)
+      of the Kubelet's stats API.
+    instrument: updowncounter
+    unit: "By"
+  - id: metric.k8s.node.memory.working_set
+    type: metric
+    metric_name: k8s.node.memory.working_set
+    stability: development
+    brief: "Node memory working set."
+    annotations:
+      code_generation:
+        metric_value_type: int
+    entity_associations:
+      - k8s.node
+    note: >
+      The amount of working set memory. This includes recently accessed memory,
+      dirty memory, and kernel memory. WorkingSetBytes is <= UsageBytes.
+
+      This metric is derived from the
+      [MemoryStats.WorkingSetBytes](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#MemoryStats)
+      field of the [NodeStats.Memory](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#NodeStats)
+      of the Kubelet's stats API.
+    instrument: updowncounter
+    unit: "By"
+  - id: metric.k8s.node.memory.paging.faults
+    type: metric
+    metric_name: k8s.node.memory.paging.faults
+    stability: development
+    brief: "Node memory paging faults."
+    annotations:
+      code_generation:
+        metric_value_type: int
+    entity_associations:
+      - k8s.node
+    attributes:
+      - ref: system.paging.type
+    note: >
+      Cumulative number of major/minor page faults.
+
+      This metric is derived from the
+      [MemoryStats.PageFaults](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#MemoryStats) and
+      [MemoryStats.MajorPageFaults](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#MemoryStats)
+      fields of the [NodeStats.Memory](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#NodeStats)
+      of the Kubelet's stats API.
+    instrument: counter
+    unit: "{fault}"
 
   # k8s.node.network.* metrics
   - id: metric.k8s.node.network.io
