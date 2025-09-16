@@ -151,7 +151,7 @@ Consider the scope of the attribute and how it may evolve in the future:
 > - If the attribute represents something useful in a narrow set of scenarios or
 >   is specific to certain system metrics, spans, or events, it likely does not need to be generic.
 
-##### Defining enum attribute members
+#### Defining enum attribute members
 
 Enum attributes generally fall into three main categories:
 
