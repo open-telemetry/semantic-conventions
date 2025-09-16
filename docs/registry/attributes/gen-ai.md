@@ -46,7 +46,7 @@ This document defines the attributes used to describe telemetry in the context o
 | <a id="gen-ai-task-code-id" href="#gen-ai-task-code-id">`gen_ai.task.code.id`</a> | string | Fully qualified reference to the source code defining the task logic or structure. | `https://github.com/crewAIInc/crewAI/blob/main/src/crewai/task.py:56:Task` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="gen-ai-task-code-vendor" href="#gen-ai-task-code-vendor">`gen_ai.task.code.vendor`</a> | string | The name of the vendor or framework used to develop the agent application. | `langgraph`; `crewAI` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="gen-ai-task-id" href="#gen-ai-task-id">`gen_ai.task.id`</a> | string | A unique global identifier of the task instance. [10] | `task-42a7cf12` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="gen-ai-task-kind" href="#gen-ai-task-kind">`gen_ai.task.kind`</a> | string | The core intent or purpose of the task. [11] | `retrieval` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="gen-ai-task-kind" href="#gen-ai-task-kind">`gen_ai.task.kind`</a> | string | The core intent or purpose of the task. [11] | `planning`; `learning`; `retrieval` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="gen-ai-task-name" href="#gen-ai-task-name">`gen_ai.task.name`</a> | string | A user-defined display name for the task. [12] | `Summarize Customer Review` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="gen-ai-task-parent-id" href="#gen-ai-task-parent-id">`gen_ai.task.parent.id`</a> | string | The ID of the parent task, if the current task is a subtask. [13] | `task-001` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="gen-ai-task-tags" href="#gen-ai-task-tags">`gen_ai.task.tags`</a> | string[] | Additional classification tags to support search, analytics, or filtering. [14] | `["customer-support", "Q3-feedback"]` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -148,20 +148,7 @@ section for more details.
 **[10] `gen_ai.task.id`:** This ID must be present and stable on all spans related to the same task.
 Enables correlating all spans under the umbrella of a single logical task (e.g., one high-level goal) across distributed workflow.
 
-**[11] `gen_ai.task.kind`:** Must be one of the following:
-"- planning"
-"- learning"
-"- retrieval"
-"- reasoning"
-"- action"
-"- evaluation"
-"- delegation"
-"- synthesis"
-"- coordination"
-"- refinement"
-"- other"
-
-Enables filtering and grouping of traces by task type.
+**[11] `gen_ai.task.kind`:** Enables filtering and grouping of traces by task type.
 Supports task-specific SLOs, such as tighter latency goals for "retrieval" than for "planning".
 
 **[12] `gen_ai.task.name`:** If not explicitly set, it could be inferred from the code, metadata, agent prompt, or system instrumentation.
@@ -231,6 +218,24 @@ Datastore: A tool used by the agent to access and query structured or unstructur
 **[17]:** May be used when specific backend is unknown.
 
 **[18]:** Used when accessing the 'aiplatform.googleapis.com' endpoint.
+
+---
+
+`gen_ai.task.kind` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `action` | The task performs an external action (e.g., API call). | ![Development](https://img.shields.io/badge/-development-blue) |
+| `coordination` | The task coordinates multiple subtasks or agents. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `delegation` | The task delegates work to another agent or subtask. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `evaluation` | The task is evaluating a result or candidate solution. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `learning` | The task involves model training, fine-tuning, or adaptation. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `other` | The task does not fit into any of the above categories. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `planning` | The task involves planning or sequencing actions. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `reasoning` | The task involves logical or chain-of-thought reasoning. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `refinement` | The task improves or iterates on an earlier result. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `retrieval` | The task involves retrieving data from a knowledge source. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `synthesis` | The task generates or combines information into new output. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 

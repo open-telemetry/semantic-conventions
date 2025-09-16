@@ -328,8 +328,8 @@ groups:
       - ref: aws.bedrock.knowledge_base.id
         requirement_level: recommended
 
-  - id: span.gen_ai.task.client
-    span_kind: client
+  - id: span.gen_ai.task.internal
+    span_kind: internal
     type: span
     stability: development
     brief: >
