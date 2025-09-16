@@ -163,7 +163,7 @@ groups:
       - ref: aspnetcore.rate_limiting.result
         requirement_level: required
 
-    # memory_pool
+  # memory_pool
   - id: metric.aspnetcore.memory_pool.pooled
     type: metric
     metric_name: aspnetcore.memory_pool.pooled
