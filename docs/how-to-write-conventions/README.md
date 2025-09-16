@@ -58,7 +58,7 @@ It is strongly recommended to prototype proposed conventions in one or more inst
 #### Defining attributes
 
 Reuse existing attributes when possible. Look through [existing conventions](/docs/registry/attributes/) for similar areas,
-check out the page describing the signal type ([Events](/docs/general/events.md#useful-additional-attribute-namespaces), [Logs](/docs/general/logs.md#useful-additional-attribute-namespaces), [Profiles](/docs/general/profiles.md#useful-additional-attribute-namespaces) and [Spans](/docs/general/trace.md#useful-additional-attribute-namespaces)) as these have useful additional attribute namespaces.
+check out the page describing the signal type ([Events](/docs/general/events.md#general-attributes), [Logs](/docs/general/logs.md#general-attributes), [Profiles](/docs/general/profiles.md#general-attributes) and [Spans](/docs/general/trace.md#general-attributes)) as these have useful additional attribute namespaces.
 Semantic conventions authors are encouraged to use attributes from different namespaces.
 
 Consider adding a new attribute if all of the following apply:

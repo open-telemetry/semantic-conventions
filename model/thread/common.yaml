@@ -1,8 +1,12 @@
 groups:
   - id: thread
     type: attribute_group
+    display_name: Thread
     brief: >
       These attributes may be used for any operation to store information about a thread that started a span.
     attributes:
       - ref: thread.id
       - ref: thread.name
+    annotations:
+      docs:
+        public_group: true

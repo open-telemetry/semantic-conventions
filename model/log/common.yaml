@@ -1,6 +1,7 @@
 groups:
   - id: log.record
     type: attribute_group
+    display_name: Log Record
     brief: >
       The attributes described in this section are rather generic. They may be used in any Log Record they apply to.
     attributes:
@@ -8,16 +9,24 @@ groups:
         requirement_level: opt_in
       - ref: log.record.original
         requirement_level: opt_in
+    annotations:
+      docs:
+        public_group: true
 
   - id: attributes.log
     type: attribute_group
-    brief: "Describes Log attributes"
+    display_name: I/O Stream
+    brief: The I/O stream to which the log was emitted.
     attributes:
       - ref: log.iostream
         requirement_level: opt_in
+    annotations:
+      docs:
+        public_group: true
 
   - id: attributes.log.file
     type: attribute_group
+    display_name: Log file
     brief: >
       A file to which log was emitted.
     attributes:
@@ -29,3 +38,6 @@ groups:
         requirement_level: opt_in
       - ref: log.file.path_resolved
         requirement_level: opt_in
+    annotations:
+      docs:
+        public_group: true

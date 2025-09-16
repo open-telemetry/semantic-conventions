@@ -8,7 +8,7 @@ groups:
       These attributes allow the unit of code to be reported and therefore to provide more context.
     note: >
       In the case of a span this would usually be the method that starts the span and
-      for events/logs it is the method emitting the signal).
+      for events/logs it is the method emitting the signal.
 
       For an HTTP server span, this would be the function that handles the incoming request, for example.
     attributes:
