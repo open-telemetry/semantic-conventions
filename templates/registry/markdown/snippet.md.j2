@@ -31,6 +31,11 @@
 {{ generate_metric(group, entity_registry_base_url) }}
 {%- elif group.type == "span" -%}
 {{ generate_span(group) }}
+{%- elif group.annotations and group.annotations.docs.public_group == true %}### {{ group.display_name }}
+
+{{group.brief | trim }} {% if group.note %}{{"\n\n"}}{{group.note | trim }}{% endif %}
+
+{{ generate_attributes(group) -}}
 {%- else -%}
 {{ generate_attributes(group) -}}
 {% endif -%}
