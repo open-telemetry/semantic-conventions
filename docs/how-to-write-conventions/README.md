@@ -12,7 +12,7 @@ linkTitle: How to define new semantic conventions
   - [Best practices](#best-practices)
     - [Prototyping](#prototyping)
     - [Defining attributes](#defining-attributes)
-      - [Defining enum attribute members](#defining-enum-attribute-members)
+    - [Defining enum attribute members](#defining-enum-attribute-members)
     - [Defining spans](#defining-spans)
     - [Defining metrics](#defining-metrics)
     - [Defining entities](#defining-entities)
