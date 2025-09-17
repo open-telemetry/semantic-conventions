@@ -56,7 +56,6 @@ graph TD
     NEEDS_INFO -->|No, small in scope| L_READY([Label: **triage:accepted:ready**])
     NEEDS_INFO -->|No, SIG issue | L_READY_SIG
 
-
     %% Define Classes
     classDef styleStart fill:#c6dcff,stroke:#498bf5,stroke-width:2px,color:#000,font-size:1.2em;
     classDef styleRejected fill:#FFCCCC,stroke:#FF0000,stroke-width:2px,color:#000;
@@ -135,7 +134,8 @@ flowchart TD
     PR_REVIEW --> L_END_DECLINED
     PR_REVIEW --> PR_MERGED(["PR merged and issue is closed as done"])
     L_END_ACCEPTED(["Add label **triage:accepted:ready**"])
-     %% Define Classes
+
+    %% Define Classes
     classDef styleStart fill:#c6dcff,stroke:#498bf5,stroke-width:2px,color:#000,font-size:1.1em;
     classDef styleRejected fill:#FFCCCC,stroke:#FF0000,stroke-width:2px,color:#000;
     classDef styleAccepted fill:#adf0c7,stroke:#00AA00,stroke-width:2px,color:#000;
