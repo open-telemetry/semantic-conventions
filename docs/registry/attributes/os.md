@@ -30,5 +30,6 @@ The operating system (OS) on which the process represented by this resource is r
 | `netbsd` | NetBSD | ![Development](https://img.shields.io/badge/-development-blue) |
 | `openbsd` | OpenBSD | ![Development](https://img.shields.io/badge/-development-blue) |
 | `solaris` | SunOS, Oracle Solaris | ![Development](https://img.shields.io/badge/-development-blue) |
+| `wasm` | WASM | ![Development](https://img.shields.io/badge/-development-blue) |
 | `windows` | Microsoft Windows | ![Development](https://img.shields.io/badge/-development-blue) |
 | `zos` | IBM z/OS | ![Development](https://img.shields.io/badge/-development-blue) |
