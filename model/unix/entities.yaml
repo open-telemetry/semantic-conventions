@@ -1,0 +1,15 @@
+groups:
+  - id: entity.unix.kernel
+    type: entity
+    stability: development
+    name: unix.kernel
+    brief: >
+      The unix kernel on which the os represented by this resource is using.
+    attributes:
+      - ref: unix.kernel.name
+        requirement_level: required
+        role: identifying
+      - ref: unix.kernel.release
+        role: descriptive
+      - ref: unix.kernel.version
+        role: identifying
