@@ -223,22 +223,24 @@ groups:
           members:
             - id: voluntary
               value: 'voluntary'
+              brief: Process voluntarily context-switched which could be while waiting for an I/O operation to complete.
               stability: development
             - id: involuntary
               value: 'involuntary'
+              brief: Process involuntarily context-switched because the time slice expired.
               stability: development
         stability: development
       - id: process.paging.fault_type
-        brief: >
-          The type of page fault for this data point. Type `major` is for major/hard page faults, and `minor`
-          is for minor/soft page faults.
+        brief: The type of page fault for this data point.
         type:
           members:
             - id: major
               value: 'major'
+              brief: Major/hard page faults
               stability: development
             - id: minor
               value: 'minor'
+              brief: Minor/soft page faults
               stability: development
         stability: development
       - id: process.environment_variable
