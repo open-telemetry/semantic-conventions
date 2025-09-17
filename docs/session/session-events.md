@@ -2,7 +2,7 @@
 linkTitle: Events
 --->
 
-# Semantic conventions for session
+# Semantic conventions for session in events
 
 **Status**: [Development][DocumentStatus]
 
@@ -25,20 +25,22 @@ The event name MUST be `session.start`.
 
 Indicates that a new session has been started, optionally linking to the prior session.
 
-For instrumentation that tracks user behavior during user sessions, a `session.start` event MUST be emitted every time a session is created. When a new session is created as a continuation of a prior session, the `session.previous_id` SHOULD be included in the event so that the new session can be associated with the old session.
+For instrumentation that tracks user behavior during user sessions, a `session.start` event MUST be emitted every time a session is created.
 
-The values of `session.id` and `session.previous_id` MUST be different.
-
-When the `session.start` event contains both `session.id` and `session.previous_id` fields, the event indicates that the previous session has ended. If the session ID in `session.previous_id` has not yet ended via explicit `session.end` event, then the consumer SHOULD treat this continuation event as semantically equivalent to `session.end(session.previous_id)` and `session.start(session.id)`.
+When the `session.start` event contains both `session.id` and `session.previous_id` fields, this indicates that the new session can be associated with the old session.
 
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
 | [`session.id`](/docs/registry/attributes/session.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The ID of the new session being started. | `00112233-4455-6677-8899-aabbccddeeff` |
-| [`session.previous_id`](/docs/registry/attributes/session.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [1] | string | The previous `session.id` for this user, when known. | `00112233-4455-6677-8899-aabbccddeeff` |
+| [`session.previous_id`](/docs/registry/attributes/session.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [1] | string | The previous `session.id` for this user, when known. [2] | `00112234-4455-6677-8899-aabbccddeeff` |
 
-**[1] `session.previous_id`:** If the new session is being created as a continuation of a previous session, the `session.previous_id` SHOULD be included in the event. The `session.id` and `session.previous_id` attributes MUST have different values.
+**[1] `session.previous_id`:** If the new session is being created as a continuation of a previous session.
+
+**[2] `session.previous_id`:** The `session.id` and `session.previous_id` attributes MUST have different values within the scope of an event.
+
+If the session ID in `session.previous_id` has not yet ended via an explicit `session.end` event, then the consumer SHOULD treat this continuation event as semantically equivalent to `session.end(session.previous_id)` and `session.start(session.id)`.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
