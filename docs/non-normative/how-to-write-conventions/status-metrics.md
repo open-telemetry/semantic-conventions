@@ -1,6 +1,5 @@
 <!--- Hugo front matter used to generate the website version of this page:
 linkTitle: Status Metrics
-aliases: [status-metrics]
 --->
 
 # State Metrics
@@ -55,9 +54,9 @@ simple sum aggregation to count instances of particular states.
 ### Should it be an Entity Attribute?
 
 It is possible to make the status a descriptive attribute on an entity (**not**
-an identifying attribute). The primary upside to making a state metric is for
-tracking state changes over time; as an entity attribute, the history of state
-changes would not necessarily be tracked.
+an identifying attribute). Tracking entity state changes is a known use case
+for entities. However, it is still recommended to also define a status metric
+as it helps metric-centric solutions understand how to interact with entities.
 
 ### Naming
 
