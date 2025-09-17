@@ -368,7 +368,25 @@ Instrumentations SHOULD provide a way for users to configure this name.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`peer.service`](/docs/registry/attributes/peer.md) | string | The [`service.name`](/docs/resource/README.md#service) of the remote service. SHOULD be equal to the actual `service.name` resource attribute of the remote service if any. | `AuthTokenCache` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`peer.service`](/docs/registry/attributes/peer.md) | string | The [`service.name`](/docs/resource/README.md#service) of the remote service. SHOULD be equal to the actual `service.name` resource attribute of the remote service if any. [1] | `AuthTokenCache` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**[1] `peer.service`:** If this is done via declarative configuration, then it MUST be possible to configure the peer service name:
+
+- `peer` is host, and optionally the and path of the remote service that is used to identify the service
+   instance, e.g., `example.com:443`, `1.2.3.4:8080`, `example.com`, `example.com:443/fooService`.
+- `service` is the name of the remote service, e.g., `AuthService` that will be translated to the
+  `peer.service` attribute.
+
+```yaml
+instrumentation/development:
+  general:
+    peer:
+      service_mapping:
+        - peer: 1.2.3.4
+          service: FooService
+        - peer: 2.3.4.5
+          service: BarService
+```
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
