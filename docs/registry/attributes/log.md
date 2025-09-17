@@ -9,7 +9,7 @@
 
 ## General Log Attributes
 
-This document defines log attributes
+The I/O stream to which the log was emitted.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
