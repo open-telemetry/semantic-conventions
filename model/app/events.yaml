@@ -19,6 +19,8 @@ groups:
         requirement_level: required
       - ref: app.screen.coordinate.y
         requirement_level: required
+      - ref: app.screen.id
+        requirement_level: recommended
       - ref: app.screen.name
         requirement_level: opt_in
   - id: event.app.widget.click
