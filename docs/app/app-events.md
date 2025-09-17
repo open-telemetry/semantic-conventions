@@ -39,10 +39,14 @@ This event represents an instantaneous click on the screen of an application.
 
 The `app.screen.click` event can be used to indicate that a user has clicked or tapped on the screen portion of an application. Clicks outside of an application's active area SHOULD NOT generate this event. This event does not differentiate between touch/mouse down and touch/mouse up. Implementations SHOULD give preference to generating this event at the time the click is complete, typically on touch release or mouse up. The location of the click event MUST be provided in absolute screen pixels.
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`app.screen.coordinate.x`](/docs/registry/attributes/app.md) | int | The x (horizontal) coordinate of a screen coordinate, in screen pixels. | `0`; `131` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`app.screen.coordinate.y`](/docs/registry/attributes/app.md) | int | The y (vertical) component of a screen coordinate, in screen pixels. | `12`; `99` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+<details open>
+<summary><b>General Attributes:</b></summary>
+
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+|---|---|---|---|---|---|---|
+| [`app.screen.coordinate.x`](/docs/registry/attributes/app.md) | int | The x (horizontal) coordinate of a screen coordinate, in screen pixels. | `0`; `131` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`app.screen.coordinate.y`](/docs/registry/attributes/app.md) | int | The y (vertical) component of a screen coordinate, in screen pixels. | `12`; `99` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -66,16 +70,20 @@ This event indicates that an application widget has been clicked.
 
 Use this event to indicate that visual application component has been clicked, typically through a user's manual interaction.
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`app.widget.id`](/docs/registry/attributes/app.md) | string | An identifier that uniquely differentiates this widget from other widgets in the same application. [1] | `f9bc787d-ff05-48ad-90e1-fca1d46130b3`; `submit_order_1829` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`app.screen.coordinate.x`](/docs/registry/attributes/app.md) | int | The x (horizontal) coordinate of a screen coordinate, in screen pixels. | `0`; `131` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`app.screen.coordinate.y`](/docs/registry/attributes/app.md) | int | The y (vertical) component of a screen coordinate, in screen pixels. | `12`; `99` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`app.widget.name`](/docs/registry/attributes/app.md) | string | The name of an application widget. [2] | `submit`; `attack`; `Clear Cart` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+<details open>
+<summary><b>General Attributes:</b></summary>
+
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+|---|---|---|---|---|---|---|
+| [`app.widget.id`](/docs/registry/attributes/app.md) | string | An identifier that uniquely differentiates this widget from other widgets in the same application. [1] | `f9bc787d-ff05-48ad-90e1-fca1d46130b3`; `submit_order_1829` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`app.screen.coordinate.x`](/docs/registry/attributes/app.md) | int | The x (horizontal) coordinate of a screen coordinate, in screen pixels. | `0`; `131` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`app.screen.coordinate.y`](/docs/registry/attributes/app.md) | int | The y (vertical) component of a screen coordinate, in screen pixels. | `12`; `99` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`app.widget.name`](/docs/registry/attributes/app.md) | string | The name of an application widget. [2] | `submit`; `attack`; `Clear Cart` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
 
 **[1] `app.widget.id`:** A widget is an application component, typically an on-screen visual GUI element.
 
 **[2] `app.widget.name`:** A widget is an application component, typically an on-screen visual GUI element.
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -105,13 +113,17 @@ This event indicates that the application has detected substandard UI rendering 
 
 Jank happens when the UI is rendered slowly enough for the user to experience some disruption or sluggishness.
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`app.jank.frame_count`](/docs/registry/attributes/app.md) | int | A number of frame renders that experienced jank. [1] | `9`; `42` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`app.jank.period`](/docs/registry/attributes/app.md) | double | The time period, in seconds, for which this jank is being reported. | `1.0`; `5.0`; `10.24` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`app.jank.threshold`](/docs/registry/attributes/app.md) | double | The minimum rendering threshold for this jank, in seconds. | `0.016`; `0.7`; `1.024` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+<details open>
+<summary><b>General Attributes:</b></summary>
+
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+|---|---|---|---|---|---|---|
+| [`app.jank.frame_count`](/docs/registry/attributes/app.md) | int | A number of frame renders that experienced jank. [1] | `9`; `42` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`app.jank.period`](/docs/registry/attributes/app.md) | double | The time period, in seconds, for which this jank is being reported. | `1.0`; `5.0`; `10.24` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`app.jank.threshold`](/docs/registry/attributes/app.md) | double | The minimum rendering threshold for this jank, in seconds. | `0.016`; `0.7`; `1.024` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
 
 **[1] `app.jank.frame_count`:** Depending on platform limitations, the value provided MAY be approximation.
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

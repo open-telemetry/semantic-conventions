@@ -32,21 +32,24 @@ Spans representing calls to MariaDB adhere to the general [Semantic Conventions 
 
 **Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`db.namespace`](/docs/registry/attributes/db.md) | string | The database associated with the connection. [1] | `products`; `customers` | `Conditionally Required` If available without an additional network call. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`db.response.status_code`](/docs/registry/attributes/db.md) | string | [Maria DB error code](https://mariadb.com/kb/en/mariadb-error-code-reference/) represented as a string. [2] | `1008`; `3058` | `Conditionally Required` If response has ended with warning or an error. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [3] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.port`](/docs/registry/attributes/server.md) | int | Server port number. [4] | `80`; `8080`; `443` | `Conditionally Required` [5] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`db.collection.name`](/docs/registry/attributes/db.md) | string | The name of a collection (table, container) within the database. [6] | `public.users`; `customers` | `Recommended` [7] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`db.operation.batch.size`](/docs/registry/attributes/db.md) | int | The number of queries included in a batch operation. [8] | `2`; `3`; `4` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`db.operation.name`](/docs/registry/attributes/db.md) | string | The name of the operation or command being executed. [9] | `EXECUTE`; `INSERT` | `Recommended` [10] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`db.query.summary`](/docs/registry/attributes/db.md) | string | Low cardinality summary of a database query. [11] | `SELECT wuser_table`; `INSERT shipping_details SELECT orders`; `get user by id` | `Recommended` [12] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`db.query.text`](/docs/registry/attributes/db.md) | string | The database query being executed. [13] | `SELECT * FROM wuser_table where username = ?`; `SET mykey ?` | `Recommended` [14] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`db.stored_procedure.name`](/docs/registry/attributes/db.md) | string | The name of a stored procedure within the database. [15] | `GetCustomer` | `Recommended` [16] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.address`](/docs/registry/attributes/server.md) | string | Name of the database host. [17] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`db.query.parameter.<key>`](/docs/registry/attributes/db.md) | string | A database query parameter, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value. [18] | `someval`; `55` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`db.response.returned_rows`](/docs/registry/attributes/db.md) | int | Number of rows returned by the operation. | `10`; `30`; `1000` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+<details open>
+<summary><b>General Attributes:</b></summary>
+
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+|---|---|---|---|---|---|---|
+| [`db.namespace`](/docs/registry/attributes/db.md) | string | The database associated with the connection. [1] | `products`; `customers` | `Conditionally Required` If available without an additional network call. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Span Creation  |
+| [`db.response.status_code`](/docs/registry/attributes/db.md) | string | [Maria DB error code](https://mariadb.com/kb/en/mariadb-error-code-reference/) represented as a string. [2] | `1008`; `3058` | `Conditionally Required` If response has ended with warning or an error. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any  |
+| [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [3] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any  |
+| [`server.port`](/docs/registry/attributes/server.md) | int | Server port number. [4] | `80`; `8080`; `443` | `Conditionally Required` [5] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Span Creation  |
+| [`db.collection.name`](/docs/registry/attributes/db.md) | string | The name of a collection (table, container) within the database. [6] | `public.users`; `customers` | `Recommended` [7] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any  |
+| [`db.operation.batch.size`](/docs/registry/attributes/db.md) | int | The number of queries included in a batch operation. [8] | `2`; `3`; `4` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any  |
+| [`db.operation.name`](/docs/registry/attributes/db.md) | string | The name of the operation or command being executed. [9] | `EXECUTE`; `INSERT` | `Recommended` [10] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any  |
+| [`db.query.summary`](/docs/registry/attributes/db.md) | string | Low cardinality summary of a database query. [11] | `SELECT wuser_table`; `INSERT shipping_details SELECT orders`; `get user by id` | `Recommended` [12] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Span Creation  |
+| [`db.query.text`](/docs/registry/attributes/db.md) | string | The database query being executed. [13] | `SELECT * FROM wuser_table where username = ?`; `SET mykey ?` | `Recommended` [14] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Span Creation  |
+| [`db.stored_procedure.name`](/docs/registry/attributes/db.md) | string | The name of a stored procedure within the database. [15] | `GetCustomer` | `Recommended` [16] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any  |
+| [`server.address`](/docs/registry/attributes/server.md) | string | Name of the database host. [17] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Span Creation  |
+| [`db.query.parameter.<key>`](/docs/registry/attributes/db.md) | string | A database query parameter, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value. [18] | `someval`; `55` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`db.response.returned_rows`](/docs/registry/attributes/db.md) | int | Number of rows returned by the operation. | `10`; `30`; `1000` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
 
 **[1] `db.namespace`:** A connection's currently associated database may change during its lifetime, e.g. from executing `USE <database>`.
 
@@ -128,15 +131,6 @@ Examples:
 - For a query `"SELECT * FROM users WHERE username = %(userName)s;` with parameter
   `userName = "jdoe"`, the attribute `db.query.parameter.userName` SHOULD be set to `"jdoe"`.
 
-The following attributes can be important for making sampling decisions
-and SHOULD be provided **at span creation time** (if provided at all):
-
-* [`db.namespace`](/docs/registry/attributes/db.md)
-* [`db.query.summary`](/docs/registry/attributes/db.md)
-* [`db.query.text`](/docs/registry/attributes/db.md)
-* [`server.address`](/docs/registry/attributes/server.md)
-* [`server.port`](/docs/registry/attributes/server.md)
-
 ---
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
@@ -144,6 +138,7 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | Value  | Description | Stability |
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

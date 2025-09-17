@@ -9,20 +9,22 @@ In case of virtualized environments, this is the operating system as it is obser
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
 **type:** `os`
 
 **Description:** The operating system (OS) on which the process represented by this resource is running.
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`os.type`](/docs/registry/attributes/os.md) | string | The operating system type. | `windows`; `linux`; `darwin` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`os.build_id`](/docs/registry/attributes/os.md) | string | Unique identifier for a particular build or compilation of the operating system. [1] | `TQ3C.230805.001.B2`; `20E247`; `22621` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`os.description`](/docs/registry/attributes/os.md) | string | Human readable (not intended to be parsed) OS version information, like e.g. reported by `ver` or `lsb_release -a` commands. | `Microsoft Windows [Version 10.0.18363.778]`; `Ubuntu 18.04.1 LTS` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`os.name`](/docs/registry/attributes/os.md) | string | Human readable operating system name. | `iOS`; `Android`; `Ubuntu` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`os.version`](/docs/registry/attributes/os.md) | string | The version string of the operating system as defined in [Version Attributes](/docs/resource/README.md#version-attributes). | `14.2.1`; `18.04.1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+<details open>
+<summary><b>General Attributes:</b></summary>
+
+| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+|---|---|---|---|---|---|---|
+| [`os.type`](/docs/registry/attributes/os.md) | string | The operating system type. | `windows`; `linux`; `darwin` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`os.build_id`](/docs/registry/attributes/os.md) | string | Unique identifier for a particular build or compilation of the operating system. [1] | `TQ3C.230805.001.B2`; `20E247`; `22621` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`os.description`](/docs/registry/attributes/os.md) | string | Human readable (not intended to be parsed) OS version information, like e.g. reported by `ver` or `lsb_release -a` commands. | `Microsoft Windows [Version 10.0.18363.778]`; `Ubuntu 18.04.1 LTS` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`os.name`](/docs/registry/attributes/os.md) | string | Human readable operating system name. | `iOS`; `Android`; `Ubuntu` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`os.version`](/docs/registry/attributes/os.md) | string | The version string of the operating system as defined in [Version Attributes](/docs/resource/README.md#version-attributes). | `14.2.1`; `18.04.1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
 
 **[1] `os.build_id`:** `build_id` values SHOULD be obtained from the following sources:
 
@@ -49,6 +51,7 @@ In case of virtualized environments, this is the operating system as it is obser
 | `solaris` | SunOS, Oracle Solaris | ![Development](https://img.shields.io/badge/-development-blue) |
 | `windows` | Microsoft Windows | ![Development](https://img.shields.io/badge/-development-blue) |
 | `zos` | IBM z/OS | ![Development](https://img.shields.io/badge/-development-blue) |
+</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
