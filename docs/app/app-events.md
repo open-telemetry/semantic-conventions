@@ -75,16 +75,19 @@ Use this event to indicate that visual application component has been clicked, t
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`app.widget.id`](/docs/registry/attributes/app.md) | string | An identifier that uniquely differentiates this widget from other widgets in the same application. [1] | `f9bc787d-ff05-48ad-90e1-fca1d46130b3`; `submit_order_1829` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`app.screen.id`](/docs/registry/attributes/app.md) | string | An identifier that uniquely differentiates this screen from other screens in the same application. [2] | `f9bc787d-ff05-48ad-90e1-fca1d46130b3`; `com.example.app.MainActivity`; `com.example.shop.ProductDetailFragment`; `MyApp.ProfileView`; `MyApp.ProfileViewController` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`app.screen.coordinate.x`](/docs/registry/attributes/app.md) | int | The x (horizontal) coordinate of a screen coordinate, in screen pixels. | `0`; `131` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`app.screen.coordinate.y`](/docs/registry/attributes/app.md) | int | The y (vertical) component of a screen coordinate, in screen pixels. | `12`; `99` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`app.screen.name`](/docs/registry/attributes/app.md) | string | The name of an application screen. [2] | `MainActivity`; `ProductDetailFragment`; `ProfileView`; `ProfileViewController` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`app.widget.name`](/docs/registry/attributes/app.md) | string | The name of an application widget. [3] | `submit`; `attack`; `Clear Cart` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`app.screen.name`](/docs/registry/attributes/app.md) | string | The name of an application screen. [3] | `MainActivity`; `ProductDetailFragment`; `ProfileView`; `ProfileViewController` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`app.widget.name`](/docs/registry/attributes/app.md) | string | The name of an application widget. [4] | `submit`; `attack`; `Clear Cart` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `app.widget.id`:** A widget is an application component, typically an on-screen visual GUI element.
 
-**[2] `app.screen.name`:** A screen represents only the part of the device display drawn by the app. It typically contains multiple widgets or UI components and is larger in scope than individual widgets. Multiple screens can coexist on the same display simultaneously (e.g., split view on tablets).
+**[2] `app.screen.id`:** A screen represents only the part of the device display drawn by the app. It typically contains multiple widgets or UI components and is larger in scope than individual widgets. Multiple screens can coexist on the same display simultaneously (e.g., split view on tablets).
 
-**[3] `app.widget.name`:** A widget is an application component, typically an on-screen visual GUI element.
+**[3] `app.screen.name`:** A screen represents only the part of the device display drawn by the app. It typically contains multiple widgets or UI components and is larger in scope than individual widgets. Multiple screens can coexist on the same display simultaneously (e.g., split view on tablets).
+
+**[4] `app.widget.name`:** A widget is an application component, typically an on-screen visual GUI element.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
