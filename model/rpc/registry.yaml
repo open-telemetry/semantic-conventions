@@ -253,6 +253,10 @@ groups:
               value: 'onc_rpc'
               brief: '[ONC RPC (Sun RPC)](https://datatracker.ietf.org/doc/html/rfc5531)'
               stability: development
+            - id: jsonrpc
+              value: 'jsonrpc'
+              brief: 'JSON-RPC'
+              stability: development
         stability: development
       - id: rpc.message.type
         type:
