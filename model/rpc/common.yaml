@@ -1,5 +1,5 @@
 groups:
-  - id: attributes.metrics.rpc.server
+  - id: attributes.metrics.rpc.client
     type: attribute_group
     brief: "Describes RPC metric attributes."
     attributes:
@@ -11,23 +11,21 @@ groups:
         note: ""
       - ref: network.transport
       - ref: server.address
-        note: ""
-        requirement_level: opt_in
+        requirement_level: required
       - ref: server.port
-        note: ""
-        requirement_level: opt_in
+        requirement_level:
+          conditionally_required: If applicable.
       - ref: error.type
         requirement_level:
           conditionally_required: If and only if the operation failed.
-  - id: attributes.metrics.rpc.client
+  - id: attributes.metrics.rpc.server
     type: attribute_group
     brief: "Describes RPC metric attributes."
-    extends: attributes.metrics.rpc.server
+    extends: attributes.metrics.rpc.client
     attributes:
       - ref: server.address
-        note: When communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
-        requirement_level: required
+        note: ""
+        requirement_level: opt_in
       - ref: server.port
-        note: When communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
-        requirement_level:
-          conditionally_required: If the connection is IP-based and the port is available.
+        note: ""
+        requirement_level: opt_in
