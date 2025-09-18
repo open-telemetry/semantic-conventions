@@ -322,6 +322,19 @@ Describes deprecated database attributes.
 | `trino` | Trino | ![Development](https://img.shields.io/badge/-development-blue) |
 | `vertica` | Vertica | ![Development](https://img.shields.io/badge/-development-blue) |
 
+<details>
+<summary><b>Deprecated Values:</b></summary>
+
+| Value  | Description | Deprecation Explanation |
+|---|---|---|
+| `cache` | InterSystems Caché |  Use `intersystems_cache` instead.  |
+| `cloudscape` | Cloudscape |  Use `other_sql` instead.  |
+| `coldfusion` | ColdFusion IMQ |  No replacement at this time.  |
+| `firstsql` | FirstSQL |  Use `other_sql` instead.  |
+| `mssqlcompact` | Microsoft SQL Server Compact |  Use `other_sql` instead.  |
+
+</details>
+
 ## Deprecated Database Metrics
 
 "Describes deprecated db metrics attributes."
