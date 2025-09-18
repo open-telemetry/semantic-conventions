@@ -205,10 +205,9 @@ groups:
       - id: rpc.method
         type: string
         stability: development
-        brief: 'The name of the (logical) method being called, must be equal to the $method part in the span name.'
+        brief: This is the logical name of the method from the RPC interface perspective.
         note: >
-          This is the logical name of the method from the RPC interface perspective,
-          which can be different from the name of any implementing method/function.
+          The method can be different from the name of any implementing method/function.
           The `code.function.name` attribute may be used to store the latter
           (e.g., method actually executing the call on the server side,
           RPC client stub method on the client side).
@@ -218,8 +217,7 @@ groups:
         stability: development
         brief: 'The full (logical) name of the service being called, including its package name, if applicable.'
         note: >
-          This is the logical name of the service from the RPC interface perspective,
-          which can be different from the name of any implementing class.
+          This service can be different from the name of any implementing class.
           The `code.namespace` attribute may be used to store the latter
           (despite the attribute name, it may include a class name;
           e.g., class with method actually executing the call on the server side,
