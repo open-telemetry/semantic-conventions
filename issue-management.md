@@ -53,8 +53,9 @@ graph TD
     SIG_REJECTED --> REJECTED([Label: triage:rejected:declined])
     L_READY_SIG([Label: **triage:accepted:ready-with-sig**])
 
-    NEEDS_INFO -->|No, small in scope| L_READY([Label: **triage:accepted:ready**])
-    NEEDS_INFO -->|No, SIG issue | L_READY_SIG
+    NEEDS_INFO -->|No| L_CHECK_SCOPE{What's the scope of the issue?}
+    L_CHECK_SCOPE -->|Small or Trivial| L_READY([Label: **triage:accepted:ready**])
+    L_CHECK_SCOPE -->|Other| SIG_EXISTS{Does a SIG/project exist?}
 
     %% Define Classes
     classDef styleStart fill:#c6dcff,stroke:#498bf5,stroke-width:2px,color:#000,font-size:1.2em;
