@@ -141,6 +141,10 @@ groups:
     extends: attributes.messaging.trace.minimal
     brief: >
       Attributes for Apache Kafka
+    note: >
+      For Apache Kafka producers, [`peer.service`](/docs/general/attributes.md#general-remote-service-attributes) SHOULD be set to the name of the broker or service the message will be sent to.
+      The `service.name` of a Consumer's Resource SHOULD match the `peer.service` of the Producer, when the message is directly passed to another service.
+      If an intermediary broker is present, `service.name` and `peer.service` will not be the same.
     attributes:
       - ref: messaging.consumer.group.name
         brief: "Kafka [consumer group id](https://docs.confluent.io/platform/current/clients/consumer.html)."
@@ -165,11 +169,6 @@ groups:
           conditionally_required: If the span describes an operation on a batch of messages.
       - ref: messaging.client.id
         note: SHOULD be set to the client name of a consumer or producer, which is unique for each individual instance.
-      - ref: peer.service
-        note: >
-          For Apache Kafka producers, [`peer.service`](/docs/general/attributes.md#general-remote-service-attributes) SHOULD be set to the name of the broker or service the message will be sent to.
-          The `service.name` of a Consumer's Resource SHOULD match the `peer.service` of the Producer, when the message is directly passed to another service.
-          If an intermediary broker is present, `service.name` and `peer.service` will not be the same.
       - ref: messaging.message.body.size
         requirement_level: opt_in
         brief: The size of the message body in bytes. Only applicable for spans describing single message operations.
