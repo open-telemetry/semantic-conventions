@@ -7,7 +7,8 @@
 
 This document defines attributes for telemetry SDK.
 
-| Attribute | Type | Description | Examples | Stability |
+**Current Attributes:**
+| Key | Type | Summary | Example Values | Stability |
 |---|---|---|---|---|
 | <a id="telemetry-distro-name" href="#telemetry-distro-name">`telemetry.distro.name`</a> | string | The name of the auto instrumentation agent or distribution, if used. [1] | `parts-unlimited-java` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="telemetry-distro-version" href="#telemetry-distro-version">`telemetry.distro.version`</a> | string | The version string of the auto instrumentation agent or distribution, if used. | `1.2.3` | ![Development](https://img.shields.io/badge/-development-blue) |

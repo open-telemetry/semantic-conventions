@@ -7,7 +7,8 @@
 
 This document defines CPython related attributes.
 
-| Attribute | Type | Description | Examples | Stability |
+**Current Attributes:**
+| Key | Type | Summary | Example Values | Stability |
 |---|---|---|---|---|
 | <a id="cpython-gc-generation" href="#cpython-gc-generation">`cpython.gc.generation`</a> | int | Value of the garbage collector collection generation. | `0`; `1`; `2` | ![Development](https://img.shields.io/badge/-development-blue) |
 

@@ -7,7 +7,8 @@
 
 This document defines the attributes used to describe the packaged software running the application code.
 
-| Attribute | Type | Description | Examples | Stability |
+**Current Attributes:**
+| Key | Type | Summary | Example Values | Stability |
 |---|---|---|---|---|
 | <a id="webengine-description" href="#webengine-description">`webengine.description`</a> | string | Additional description of the web engine (e.g. detailed version and edition information). | `WildFly Full 21.0.0.Final (WildFly Core 13.0.1.Final) - 2.2.2.Final` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="webengine-name" href="#webengine-name">`webengine.name`</a> | string | The name of the web engine. | `WildFly` | ![Development](https://img.shields.io/badge/-development-blue) |

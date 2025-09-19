@@ -10,7 +10,8 @@
 
 This document defines attributes for Feature Flags.
 
-| Attribute | Type | Description | Examples | Stability |
+**Current Attributes:**
+| Key | Type | Summary | Example Values | Stability |
 |---|---|---|---|---|
 | <a id="feature-flag-context-id" href="#feature-flag-context-id">`feature_flag.context.id`</a> | string | The unique identifier for the flag evaluation context. For example, the targeting key. | `5157782b-2203-4c80-a857-dbbd5e7761db` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | <a id="feature-flag-key" href="#feature-flag-key">`feature_flag.key`</a> | string | The lookup key of the feature flag. | `logo-color` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
@@ -52,12 +53,16 @@ For example, the variant `red` maybe be used for the value `#c05543`.
 
 Describes deprecated feature flag attributes.
 
-| Attribute | Type | Description | Examples | Stability |
+**Current Attributes:**
+<details>
+<summary><b>Past Attributes:</b></summary>
+
+| Key | Type | Summary | Example Values | Deprecation Explanation |
 |---|---|---|---|---|
-| <a id="feature-flag-evaluation-error-message" href="#feature-flag-evaluation-error-message">`feature_flag.evaluation.error.message`</a> | string | Deprecated, use `error.message` instead. | `Flag `header-color` expected type `string` but found type `number`` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `error.message`. |
-| <a id="feature-flag-evaluation-reason" href="#feature-flag-evaluation-reason">`feature_flag.evaluation.reason`</a> | string | Deprecated, use `feature_flag.result.reason` instead. | `static`; `targeting_match`; `error`; `default` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `feature_flag.result.reason`. |
-| <a id="feature-flag-provider-name" href="#feature-flag-provider-name">`feature_flag.provider_name`</a> | string | Deprecated, use `feature_flag.provider.name` instead. | `Flag Manager` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `feature_flag.provider.name`. |
-| <a id="feature-flag-variant" href="#feature-flag-variant">`feature_flag.variant`</a> | string | Deprecated, use `feature_flag.result.variant` instead. | `red`; `true`; `on` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `feature_flag.result.variant`. |
+| <a id="feature-flag-evaluation-error-message" href="#feature-flag-evaluation-error-message">`feature_flag.evaluation.error.message`</a> | string | Deprecated, use `error.message` instead. | `Flag `header-color` expected type `string` but found type `number`` |  Use `error.message` instead.  |
+| <a id="feature-flag-evaluation-reason" href="#feature-flag-evaluation-reason">`feature_flag.evaluation.reason`</a> | string | Deprecated, use `feature_flag.result.reason` instead. | `static`; `targeting_match`; `error`; `default` |  Use `feature_flag.result.reason` instead.  |
+| <a id="feature-flag-provider-name" href="#feature-flag-provider-name">`feature_flag.provider_name`</a> | string | Deprecated, use `feature_flag.provider.name` instead. | `Flag Manager` |  Use `feature_flag.provider.name` instead.  |
+| <a id="feature-flag-variant" href="#feature-flag-variant">`feature_flag.variant`</a> | string | Deprecated, use `feature_flag.result.variant` instead. | `red`; `true`; `on` |  Use `feature_flag.result.variant` instead.  |
 
 ---
 
@@ -74,3 +79,5 @@ Describes deprecated feature flag attributes.
 | `static` | The resolved value is static (no dynamic evaluation). | ![Development](https://img.shields.io/badge/-development-blue) |
 | `targeting_match` | The resolved value was the result of a dynamic evaluation, such as a rule or specific user-targeting. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `unknown` | The reason for the resolved value could not be determined. | ![Development](https://img.shields.io/badge/-development-blue) |
+
+</details>

@@ -11,7 +11,8 @@
 
 This document defines log attributes
 
-| Attribute | Type | Description | Examples | Stability |
+**Current Attributes:**
+| Key | Type | Summary | Example Values | Stability |
 |---|---|---|---|---|
 | <a id="log-iostream" href="#log-iostream">`log.iostream`</a> | string | The stream associated with the log. See below for a list of well-known values. | `stdout`; `stderr` | ![Development](https://img.shields.io/badge/-development-blue) |
 
@@ -28,7 +29,8 @@ This document defines log attributes
 
 Attributes for a file to which log was emitted.
 
-| Attribute | Type | Description | Examples | Stability |
+**Current Attributes:**
+| Key | Type | Summary | Example Values | Stability |
 |---|---|---|---|---|
 | <a id="log-file-name" href="#log-file-name">`log.file.name`</a> | string | The basename of the file. | `audit.log` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="log-file-name-resolved" href="#log-file-name-resolved">`log.file.name_resolved`</a> | string | The basename of the file, with symlinks resolved. | `uuid.log` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -39,7 +41,8 @@ Attributes for a file to which log was emitted.
 
 This document defines the generic attributes that may be used in any Log Record.
 
-| Attribute | Type | Description | Examples | Stability |
+**Current Attributes:**
+| Key | Type | Summary | Example Values | Stability |
 |---|---|---|---|---|
 | <a id="log-record-original" href="#log-record-original">`log.record.original`</a> | string | The complete original Log Record. [1] | `77 <86>1 2015-08-06T21:58:59.694Z 192.168.2.133 inactive - - - Something happened`; `[INFO] 8/3/24 12:34:56 Something happened` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="log-record-uid" href="#log-record-uid">`log.record.uid`</a> | string | A unique identifier for the Log Record. [2] | `01ARZ3NDEKTSV4RRFFQ69G5FAV` | ![Development](https://img.shields.io/badge/-development-blue) |

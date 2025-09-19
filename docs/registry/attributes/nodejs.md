@@ -7,7 +7,8 @@
 
 Describes Node.js related attributes.
 
-| Attribute | Type | Description | Examples | Stability |
+**Current Attributes:**
+| Key | Type | Summary | Example Values | Stability |
 |---|---|---|---|---|
 | <a id="nodejs-eventloop-state" href="#nodejs-eventloop-state">`nodejs.eventloop.state`</a> | string | The state of event loop time. | `active`; `idle` | ![Development](https://img.shields.io/badge/-development-blue) |
 
