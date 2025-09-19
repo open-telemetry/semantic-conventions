@@ -116,5 +116,5 @@ Deprecated process attributes.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `major` | Major/hard page faults. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `minor` | Minor/soft page faults. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `major` | Major page fault. Sometimes referred to as hard page fault. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `minor` | Minor page fault. Sometimes referred to as soft page fault. | ![Development](https://img.shields.io/badge/-development-blue) |

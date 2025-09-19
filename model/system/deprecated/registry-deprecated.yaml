@@ -116,11 +116,11 @@ groups:
           members:
             - id: major
               value: 'major'
-              brief: Major/hard page faults.
+              brief: Major page fault. Sometimes referred to as hard page fault.
               stability: development
             - id: minor
               value: 'minor'
-              brief: Minor/soft page faults.
+              brief: Minor page fault. Sometimes referred to as soft page fault.
               stability: development
         stability: development
         brief: The type of page fault for this data point.
