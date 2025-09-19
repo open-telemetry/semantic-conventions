@@ -71,10 +71,12 @@
 /docs/app/                        @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-client-approvers
 /docs/device/                     @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-client-approvers
 /docs/mobile/                     @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-client-approvers
+/docs/session/                    @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-client-approvers
 /model/enduser/                   @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-client-approvers
 /model/app/                       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-client-approvers
 /model/device/                    @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-client-approvers
 /model/mobile/                    @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-client-approvers
+/model/session/                   @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-client-approvers
 
 # K8s semantic conventions
 /docs/resource/k8s.md                           @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-k8s-approvers
