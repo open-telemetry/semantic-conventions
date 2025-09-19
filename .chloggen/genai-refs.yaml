@@ -1,0 +1,4 @@
+change_type: enhancement
+component: gen_ai
+note: Add gen_ai `_ref` attributes for referencing external uploaded content
+issues: [2753]

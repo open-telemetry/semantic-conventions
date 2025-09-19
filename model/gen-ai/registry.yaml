@@ -471,6 +471,20 @@ groups:
                   "content": "Your mission is to translate text in English to French."
                 }
               ]
+      - id: gen_ai.system_instructions_ref
+        stability: development
+        type: string
+        brief: The link to the system message or instructions recorded in a separate
+          storage.
+        examples: ["s3://acme.prod.support_bot.chats.2025/conv_1234/invocation_42.json"]
+        note: >
+          This attribute records the reference to the content of
+          `gen_ai.system_instructions` attribute when the content is too large or
+          contains sensitive information and should be stored separately from
+          general telemetry data.
+
+          Refer to the [Uploading content to external storage](/docs/gen-ai/gen-ai-spans.md#uploading-content-to-external-storage)
+          section for more details.
       - id: gen_ai.input.messages
         stability: development
         type: any
@@ -527,6 +541,19 @@ groups:
                   ]
                 }
               ]
+      - id: gen_ai.input.messages_ref
+        stability: development
+        type: string
+        brief: The link to the input messages recorded in a separate storage.
+        examples: ["s3://acme.prod.support_bot.chats.2025/conv_1234/run_42.json"]
+        note: |
+          This attribute records the reference to the content of
+          `gen_ai.input.messages` attribute when the content is too large or
+          contains sensitive information and should be stored separately from
+          general telemetry data.
+
+          Refer to the [Uploading content to external storage](/docs/gen-ai/gen-ai-spans.md#uploading-content-to-external-storage)
+          section for more details.
       - id: gen_ai.output.messages
         stability: development
         type: any
@@ -566,6 +593,19 @@ groups:
                   "finish_reason": "stop"
                 }
               ]
+      - id: gen_ai.output.messages_ref
+        stability: development
+        type: string
+        brief: The link to the model or agent output recorded in a separate storage.
+        examples: ["s3://acme.prod.support_bot.chats.2025/conv_1234/run_42.json"]
+        note: |
+          This attribute records the reference to the content of
+          `gen_ai.output.messages` attribute when the content is too large or
+          contains sensitive information and should be stored separately from
+          general telemetry data.
+
+          Refer to the [Uploading content to external storage](/docs/gen-ai/gen-ai-spans.md#uploading-content-to-external-storage)
+          section for more details.
       - id: gen_ai.evaluation.name
         stability: development
         type: string
