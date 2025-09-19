@@ -3,17 +3,31 @@
 
 # OTel
 
-- [OTel Attributes](#otel-attributes)
-- [OTel Component Attributes](#otel-component-attributes)
-- [OTel Scope Attributes](#otel-scope-attributes)
 - [Deprecated OTel Library Attributes](#deprecated-otel-library-attributes)
+- [OTel Attributes](#otel-attributes)
+- [OTel Scope Attributes](#otel-scope-attributes)
+- [OTel Component Attributes](#otel-component-attributes)
+
+## Deprecated OTel Library Attributes
+
+Describes deprecated otel.library attributes.
+
+**Current Attributes:**
+<details>
+<summary><b>Past Attributes:</b></summary>
+
+| Key | Type | Summary | Example Values | Deprecation Explanation |
+|---|---|---|---|---|
+| <a id="otel-library-name" href="#otel-library-name">`otel.library.name`</a> | string | Deprecated. Use the `otel.scope.name` attribute | `io.opentelemetry.contrib.mongodb` |  Use `otel.scope.name` instead.  |
+| <a id="otel-library-version" href="#otel-library-version">`otel.library.version`</a> | string | Deprecated. Use the `otel.scope.version` attribute. | `1.0.0` |  Use `otel.scope.version` instead.  |
+
+</details>
 
 ## OTel Attributes
 
 Attributes reserved for OpenTelemetry
 
-**Attributes:**
-
+**Current Attributes:**
 | Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="otel-span-parent-origin" href="#otel-span-parent-origin">`otel.span.parent.origin`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Determines whether the span has a parent span, and if so, [whether it is a remote parent](https://opentelemetry.io/docs/specs/otel/trace/api/#isremote) | `none`; `local`; `remote` |
@@ -50,12 +64,22 @@ Attributes reserved for OpenTelemetry
 | `ERROR` | The operation contains an error. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `OK` | The operation has been validated by an Application developer or Operator to have completed successfully. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
+## OTel Scope Attributes
+
+Attributes used by non-OTLP exporters to represent OpenTelemetry Scope's concepts.
+
+**Current Attributes:**
+| Key | Stability | Value Type | Description | Example Values |
+|---|---|---|---|---|
+| <a id="otel-scope-name" href="#otel-scope-name">`otel.scope.name`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The name of the instrumentation scope - (`InstrumentationScope.Name` in OTLP). | `io.opentelemetry.contrib.mongodb` |
+| <a id="otel-scope-schema-url" href="#otel-scope-schema-url">`otel.scope.schema_url`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The schema URL of the instrumentation scope. | `https://opentelemetry.io/schemas/1.31.0` |
+| <a id="otel-scope-version" href="#otel-scope-version">`otel.scope.version`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The version of the instrumentation scope - (`InstrumentationScope.Version` in OTLP). | `1.0.0` |
+
 ## OTel Component Attributes
 
 Attributes used for OpenTelemetry component self-monitoring
 
-**Attributes:**
-
+**Current Attributes:**
 | Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="otel-component-name" href="#otel-component-name">`otel.component.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | A name uniquely identifying the instance of the OpenTelemetry component within its containing SDK instance. [1] | `otlp_grpc_span_exporter/0`; `custom-name` |
@@ -100,26 +124,3 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 | `simple_log_processor` | The builtin SDK simple log record processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `simple_span_processor` | The builtin SDK simple span processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `zipkin_http_span_exporter` | Zipkin span exporter over HTTP | ![Development](https://img.shields.io/badge/-development-blue) |
-
-## OTel Scope Attributes
-
-Attributes used by non-OTLP exporters to represent OpenTelemetry Scope's concepts.
-
-**Attributes:**
-
-| Key | Stability | Value Type | Description | Example Values |
-|---|---|---|---|---|
-| <a id="otel-scope-name" href="#otel-scope-name">`otel.scope.name`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The name of the instrumentation scope - (`InstrumentationScope.Name` in OTLP). | `io.opentelemetry.contrib.mongodb` |
-| <a id="otel-scope-schema-url" href="#otel-scope-schema-url">`otel.scope.schema_url`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The schema URL of the instrumentation scope. | `https://opentelemetry.io/schemas/1.31.0` |
-| <a id="otel-scope-version" href="#otel-scope-version">`otel.scope.version`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The version of the instrumentation scope - (`InstrumentationScope.Version` in OTLP). | `1.0.0` |
-
-## Deprecated OTel Library Attributes
-
-Describes deprecated otel.library attributes.
-
-**Attributes:**
-
-| Key | Stability | Value Type | Description | Example Values |
-|---|---|---|---|---|
-| <a id="otel-library-name" href="#otel-library-name">`otel.library.name`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `otel.scope.name`. | string | Deprecated. Use the `otel.scope.name` attribute | `io.opentelemetry.contrib.mongodb` |
-| <a id="otel-library-version" href="#otel-library-version">`otel.library.version`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `otel.scope.version`. | string | Deprecated. Use the `otel.scope.version` attribute. | `1.0.0` |

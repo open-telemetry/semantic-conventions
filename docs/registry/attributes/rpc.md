@@ -10,8 +10,7 @@
 
 This document defines attributes for remote procedure calls.
 
-**Attributes:**
-
+**Current Attributes:**
 | Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="rpc-connect-rpc-error-code" href="#rpc-connect-rpc-error-code">`rpc.connect_rpc.error_code`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The [error codes](https://connectrpc.com//docs/protocol/#error-codes) of the Connect request. Error codes are always string values. | `cancelled`; `unknown`; `invalid_argument` |
@@ -132,14 +131,16 @@ the `rpc.grpc.response.metadata.my-custom-key` attribute with value `["attribute
 
 Deprecated rpc message attributes.
 
-**Attributes:**
+**Current Attributes:**
+<details>
+<summary><b>Past Attributes:</b></summary>
 
-| Key | Stability | Value Type | Description | Example Values |
+| Key | Type | Summary | Example Values | Deprecation Explanation |
 |---|---|---|---|---|
-| <a id="message-compressed-size" href="#message-compressed-size">`message.compressed_size`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `rpc.message.compressed_size`. | int | Deprecated, use `rpc.message.compressed_size` instead. |  |
-| <a id="message-id" href="#message-id">`message.id`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `rpc.message.id`. | int | Deprecated, use `rpc.message.id` instead. |  |
-| <a id="message-type" href="#message-type">`message.type`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `rpc.message.type`. | string | Deprecated, use `rpc.message.type` instead. | `SENT`; `RECEIVED` |
-| <a id="message-uncompressed-size" href="#message-uncompressed-size">`message.uncompressed_size`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `rpc.message.uncompressed_size`. | int | Deprecated, use `rpc.message.uncompressed_size` instead. |  |
+| <a id="message-compressed-size" href="#message-compressed-size">`message.compressed_size`</a> | int | Deprecated, use `rpc.message.compressed_size` instead. |  |  Use `rpc.message.compressed_size` instead.  |
+| <a id="message-id" href="#message-id">`message.id`</a> | int | Deprecated, use `rpc.message.id` instead. |  |  Use `rpc.message.id` instead.  |
+| <a id="message-type" href="#message-type">`message.type`</a> | string | Deprecated, use `rpc.message.type` instead. | `SENT`; `RECEIVED` |  Use `rpc.message.type` instead.  |
+| <a id="message-uncompressed-size" href="#message-uncompressed-size">`message.uncompressed_size`</a> | int | Deprecated, use `rpc.message.uncompressed_size` instead. |  |  Use `rpc.message.uncompressed_size` instead.  |
 
 ---
 
@@ -149,3 +150,5 @@ Deprecated rpc message attributes.
 |---|---|---|
 | `RECEIVED` | received | ![Development](https://img.shields.io/badge/-development-blue) |
 | `SENT` | sent | ![Development](https://img.shields.io/badge/-development-blue) |
+
+</details>

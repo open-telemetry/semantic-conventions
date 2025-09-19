@@ -7,8 +7,7 @@
 
 Describes device attributes.
 
-**Attributes:**
-
+**Current Attributes:**
 | Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="device-id" href="#device-id">`device.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | A unique identifier representing the device [1] | `123456789012345`; `01:23:45:67:89:AB` |

@@ -7,8 +7,7 @@
 
 ASP.NET Core attributes
 
-**Attributes:**
-
+**Current Attributes:**
 | Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="aspnetcore-authentication-result" href="#aspnetcore-authentication-result">`aspnetcore.authentication.result`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The result of the authentication operation. | `success`; `failure` |

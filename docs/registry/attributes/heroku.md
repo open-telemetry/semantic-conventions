@@ -7,8 +7,7 @@
 
 This document defines attributes for the Heroku platform on which application/s are running.
 
-**Attributes:**
-
+**Current Attributes:**
 | Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="heroku-app-id" href="#heroku-app-id">`heroku.app.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Unique identifier for the application | `2daa2797-e42b-4624-9322-ec3f968df4da` |

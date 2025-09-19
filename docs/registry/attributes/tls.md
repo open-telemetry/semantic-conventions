@@ -3,15 +3,28 @@
 
 # TLS
 
-- [TLS Attributes](#tls-attributes)
 - [TLS Deprecated Attributes](#tls-deprecated-attributes)
+- [TLS Attributes](#tls-attributes)
+
+## TLS Deprecated Attributes
+
+Describes deprecated `tls` attributes.
+
+**Current Attributes:**
+<details>
+<summary><b>Past Attributes:</b></summary>
+
+| Key | Type | Summary | Example Values | Deprecation Explanation |
+|---|---|---|---|---|
+| <a id="tls-client-server-name" href="#tls-client-server-name">`tls.client.server_name`</a> | string | Deprecated, use `server.address` instead. | `opentelemetry.io` |  Use `server.address` instead.  |
+
+</details>
 
 ## TLS Attributes
 
 This document defines semantic convention attributes in the TLS namespace.
 
-**Attributes:**
-
+**Current Attributes:**
 | Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="tls-cipher" href="#tls-cipher">`tls.cipher`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | String indicating the [cipher](https://datatracker.ietf.org/doc/html/rfc5246#appendix-A.5) used during the current connection. [1] | `TLS_RSA_WITH_3DES_EDE_CBC_SHA`; `TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256` |
@@ -53,13 +66,3 @@ This document defines semantic convention attributes in the TLS namespace.
 |---|---|---|
 | `ssl` | ssl | ![Development](https://img.shields.io/badge/-development-blue) |
 | `tls` | tls | ![Development](https://img.shields.io/badge/-development-blue) |
-
-## TLS Deprecated Attributes
-
-Describes deprecated `tls` attributes.
-
-**Attributes:**
-
-| Key | Stability | Value Type | Description | Example Values |
-|---|---|---|---|---|
-| <a id="tls-client-server-name" href="#tls-client-server-name">`tls.client.server_name`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `server.address`. | string | Deprecated, use `server.address` instead. | `opentelemetry.io` |

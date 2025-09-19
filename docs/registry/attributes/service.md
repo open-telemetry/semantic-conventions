@@ -7,8 +7,7 @@
 
 A service instance.
 
-**Attributes:**
-
+**Current Attributes:**
 | Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="service-instance-id" href="#service-instance-id">`service.instance.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The string ID of the service instance. [1] | `627cc493-f310-47de-96bd-71410b7dec09` |

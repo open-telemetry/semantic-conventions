@@ -7,8 +7,12 @@
 
 Attributes for Events represented using Log Records.
 
-**Attributes:**
+**Current Attributes:**
+<details>
+<summary><b>Past Attributes:</b></summary>
 
-| Key | Stability | Value Type | Description | Example Values |
+| Key | Type | Summary | Example Values | Deprecation Explanation |
 |---|---|---|---|---|
-| <a id="event-name" href="#event-name">`event.name`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>The value of this attribute MUST now be set as the value of the EventName field on the LogRecord to indicate that the LogRecord represents an Event. | string | Identifies the class / type of event. | `browser.mouse.click`; `device.app.lifecycle` |
+| <a id="event-name" href="#event-name">`event.name`</a> | string | Identifies the class / type of event. | `browser.mouse.click`; `device.app.lifecycle` |  The value of this attribute MUST now be set as the value of the EventName field on the LogRecord to indicate that the LogRecord represents an Event.  |
+
+</details>

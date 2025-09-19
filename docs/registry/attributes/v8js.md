@@ -7,8 +7,7 @@
 
 Describes V8 JS Engine Runtime related attributes.
 
-**Attributes:**
-
+**Current Attributes:**
 | Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="v8js-gc-type" href="#v8js-gc-type">`v8js.gc.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The type of garbage collection. | `major`; `minor`; `incremental` |

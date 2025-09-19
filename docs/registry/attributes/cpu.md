@@ -7,8 +7,7 @@
 
 Attributes specific to a cpu instance.
 
-**Attributes:**
-
+**Current Attributes:**
 | Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="cpu-logical-number" href="#cpu-logical-number">`cpu.logical_number`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The logical CPU number [0..n-1] | `1` |

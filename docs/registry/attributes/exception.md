@@ -10,8 +10,7 @@
 
 This document defines the shared attributes used to report a single exception associated with a span or log.
 
-**Attributes:**
-
+**Current Attributes:**
 | Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="exception-message" href="#exception-message">`exception.message`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The exception message. | `Division by zero`; `Can't convert 'int' object to str implicitly` |
@@ -22,8 +21,12 @@ This document defines the shared attributes used to report a single exception as
 
 Deprecated exception attributes.
 
-**Attributes:**
+**Current Attributes:**
+<details>
+<summary><b>Past Attributes:</b></summary>
 
-| Key | Stability | Value Type | Description | Example Values |
+| Key | Type | Summary | Example Values | Deprecation Explanation |
 |---|---|---|---|---|
-| <a id="exception-escaped" href="#exception-escaped">`exception.escaped`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>It's no longer recommended to record exceptions that are handled and do not escape the scope of a span. | boolean | Indicates that the exception is escaping the scope of the span. |  |
+| <a id="exception-escaped" href="#exception-escaped">`exception.escaped`</a> | boolean | Indicates that the exception is escaping the scope of the span. |  |  It's no longer recommended to record exceptions that are handled and do not escape the scope of a span.  |
+
+</details>

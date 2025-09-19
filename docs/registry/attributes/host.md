@@ -7,8 +7,7 @@
 
 A host is defined as a computing instance. For example, physical servers, virtual machines, switches or disk array.
 
-**Attributes:**
-
+**Current Attributes:**
 | Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="host-arch" href="#host-arch">`host.arch`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The CPU architecture the host system is running on. | `amd64`; `arm32`; `arm64` |

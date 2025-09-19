@@ -7,8 +7,7 @@
 
 FaaS attributes
 
-**Attributes:**
-
+**Current Attributes:**
 | Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="faas-coldstart" href="#faas-coldstart">`faas.coldstart`</a> | ![Development](https://img.shields.io/badge/-development-blue) | boolean | A boolean that is true if the serverless function is executed for the first time (aka cold-start). |  |

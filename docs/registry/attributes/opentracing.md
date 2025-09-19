@@ -7,8 +7,7 @@
 
 Attributes used by the OpenTracing Shim layer.
 
-**Attributes:**
-
+**Current Attributes:**
 | Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="opentracing-ref-type" href="#opentracing-ref-type">`opentracing.ref_type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Parent-child Reference type [1] | `child_of`; `follows_from` |

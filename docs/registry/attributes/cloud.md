@@ -7,8 +7,7 @@
 
 A cloud environment (e.g. GCP, Azure, AWS).
 
-**Attributes:**
-
+**Current Attributes:**
 | Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="cloud-account-id" href="#cloud-account-id">`cloud.account.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The cloud account ID the resource is assigned to. | `111111111111`; `opentelemetry` |

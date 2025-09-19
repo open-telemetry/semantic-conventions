@@ -3,15 +3,11 @@
 
 # Android
 
-- [Android Attributes](#android-attributes)
-- [Deprecated Android Attributes](#deprecated-android-attributes)
-
 ## Android Attributes
 
 The Android platform on which the Android application is running.
 
-**Attributes:**
-
+**Current Attributes:**
 | Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="android-app-state" href="#android-app-state">`android.app.state`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | This attribute represents the state of the application. [1] | `created` |
@@ -28,16 +24,14 @@ The Android platform on which the Android application is running.
 | `background` | Any time after Activity.onPause() or, if the app has no Activity, Context.stopService() has been called when the app was in the foreground state. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `created` | Any time before Activity.onResume() or, if the app has no Activity, Context.startService() has been called in the app for the first time. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `foreground` | Any time after Activity.onResume() or, if the app has no Activity, Context.startService() has been called when the app was in either the created or background states. | ![Development](https://img.shields.io/badge/-development-blue) |
+<details>
+<summary><b>Past Attributes:</b></summary>
 
-## Deprecated Android Attributes
-
-This document defines attributes that represents an occurrence of a lifecycle transition on the Android platform.
-
-**Attributes:**
-
-| Key | Stability | Value Type | Description | Example Values |
+| Key | Type | Summary | Example Values | Deprecation Explanation |
 |---|---|---|---|---|
-| <a id="android-state" href="#android-state">`android.state`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `android.app.state`. | string | Deprecated. Use `android.app.state` attribute instead. | `created`; `background`; `foreground` |
+| <a id="android-state" href="#android-state">`android.state`</a> | string | This attribute represents the state of the application. [1] | `created`; `background`; `foreground` |  Use `android.app.state` instead.  |
+
+**[1] `android.state`:** The Android lifecycle states are defined in [Activity lifecycle callbacks](https://developer.android.com/guide/components/activities/activity-lifecycle#lc), and from which the `OS identifiers` are derived.
 
 ---
 
@@ -48,3 +42,5 @@ This document defines attributes that represents an occurrence of a lifecycle tr
 | `background` | Any time after Activity.onPause() or, if the app has no Activity, Context.stopService() has been called when the app was in the foreground state. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `created` | Any time before Activity.onResume() or, if the app has no Activity, Context.startService() has been called in the app for the first time. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `foreground` | Any time after Activity.onResume() or, if the app has no Activity, Context.startService() has been called when the app was in either the created or background states. | ![Development](https://img.shields.io/badge/-development-blue) |
+
+</details>

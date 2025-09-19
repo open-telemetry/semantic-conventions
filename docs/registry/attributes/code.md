@@ -3,15 +3,32 @@
 
 # Code
 
-- [Code Attributes](#code-attributes)
 - [Deprecated Code Attributes](#deprecated-code-attributes)
+- [Code Attributes](#code-attributes)
+
+## Deprecated Code Attributes
+
+These deprecated attributes provide context about source code
+
+**Current Attributes:**
+<details>
+<summary><b>Past Attributes:</b></summary>
+
+| Key | Type | Summary | Example Values | Deprecation Explanation |
+|---|---|---|---|---|
+| <a id="code-column" href="#code-column">`code.column`</a> | int | Deprecated, use `code.column.number` | `16` |  Use `code.column.number` instead.  |
+| <a id="code-filepath" href="#code-filepath">`code.filepath`</a> | string | Deprecated, use `code.file.path` instead | `/usr/local/MyApplication/content_root/app/index.php` |  Use `code.file.path` instead.  |
+| <a id="code-function" href="#code-function">`code.function`</a> | string | Deprecated, use `code.function.name` instead | `serveRequest` |  Value should be included in `code.function.name` which is expected to be a fully-qualified name.  |
+| <a id="code-lineno" href="#code-lineno">`code.lineno`</a> | int | Deprecated, use `code.line.number` instead | `42` |  Use `code.line.number` instead.  |
+| <a id="code-namespace" href="#code-namespace">`code.namespace`</a> | string | Deprecated, namespace is now included into `code.function.name` | `com.example.MyHttpService` |  Value should be included in `code.function.name` which is expected to be a fully-qualified name.  |
+
+</details>
 
 ## Code Attributes
 
 These attributes provide context about source code
 
-**Attributes:**
-
+**Current Attributes:**
 | Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="code-column-number" href="#code-column-number">`code.column.number`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | int | The column number in `code.file.path` best representing the operation. It SHOULD point within the code unit named in `code.function.name`. This attribute MUST NOT be used on the Profile signal since the data is already captured in 'message Line'. This constraint is imposed to prevent redundancy and maintain data integrity. | `16` |
@@ -35,17 +52,3 @@ Examples:
 * Erlang: `opentelemetry_ctx:new`
 * Rust: `playground::my_module::my_cool_func`
 * C function: `fopen`
-
-## Deprecated Code Attributes
-
-These deprecated attributes provide context about source code
-
-**Attributes:**
-
-| Key | Stability | Value Type | Description | Example Values |
-|---|---|---|---|---|
-| <a id="code-column" href="#code-column">`code.column`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `code.column.number`. | int | Deprecated, use `code.column.number` | `16` |
-| <a id="code-filepath" href="#code-filepath">`code.filepath`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `code.file.path`. | string | Deprecated, use `code.file.path` instead | `/usr/local/MyApplication/content_root/app/index.php` |
-| <a id="code-function" href="#code-function">`code.function`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Value should be included in `code.function.name` which is expected to be a fully-qualified name. | string | Deprecated, use `code.function.name` instead | `serveRequest` |
-| <a id="code-lineno" href="#code-lineno">`code.lineno`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `code.line.number`. | int | Deprecated, use `code.line.number` instead | `42` |
-| <a id="code-namespace" href="#code-namespace">`code.namespace`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Value should be included in `code.function.name` which is expected to be a fully-qualified name. | string | Deprecated, namespace is now included into `code.function.name` | `com.example.MyHttpService` |
