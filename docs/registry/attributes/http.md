@@ -3,14 +3,55 @@
 
 # HTTP
 
-- [HTTP Attributes](#http-attributes)
 - [Deprecated HTTP Attributes](#deprecated-http-attributes)
+- [HTTP Attributes](#http-attributes)
+
+## Deprecated HTTP Attributes
+
+Describes deprecated HTTP attributes.
+
+**Current Attributes:**
+<details>
+<summary><b>Past Attributes:</b></summary>
+
+| Key | Type | Summary | Example Values | Deprecation Explanation |
+|---|---|---|---|---|
+| <a id="http-client-ip" href="#http-client-ip">`http.client_ip`</a> | string | Deprecated, use `client.address` instead. | `83.164.160.102` |  Use `client.address` instead.  |
+| <a id="http-flavor" href="#http-flavor">`http.flavor`</a> | string | Deprecated, use `network.protocol.name` and `network.protocol.version` instead. | `1.0`; `1.1`; `2.0` |  Split into `network.protocol.name` and `network.protocol.version`  |
+| <a id="http-host" href="#http-host">`http.host`</a> | string | Deprecated, use one of `server.address`, `client.address` or `http.request.header.host` instead, depending on the usage. | `www.example.org` |  Replaced by one of `server.address`, `client.address` or `http.request.header.host`, depending on the usage.  |
+| <a id="http-method" href="#http-method">`http.method`</a> | string | Deprecated, use `http.request.method` instead. | `GET`; `POST`; `HEAD` |  Use `http.request.method` instead.  |
+| <a id="http-request-content-length" href="#http-request-content-length">`http.request_content_length`</a> | int | Deprecated, use `http.request.header.content-length` instead. | `3495` |  Replaced by `http.request.header.content-length`.  |
+| <a id="http-request-content-length-uncompressed" href="#http-request-content-length-uncompressed">`http.request_content_length_uncompressed`</a> | int | Deprecated, use `http.request.body.size` instead. | `5493` |  Use `http.request.body.size` instead.  |
+| <a id="http-response-content-length" href="#http-response-content-length">`http.response_content_length`</a> | int | Deprecated, use `http.response.header.content-length` instead. | `3495` |  Replaced by `http.response.header.content-length`.  |
+| <a id="http-response-content-length-uncompressed" href="#http-response-content-length-uncompressed">`http.response_content_length_uncompressed`</a> | int | Deprecated, use `http.response.body.size` instead. | `5493` |  Use `http.response.body.size` instead.  |
+| <a id="http-scheme" href="#http-scheme">`http.scheme`</a> | string | Deprecated, use `url.scheme` instead. | `http`; `https` |  Use `url.scheme` instead.  |
+| <a id="http-server-name" href="#http-server-name">`http.server_name`</a> | string | Deprecated, use `server.address` instead. | `example.com` |  Use `server.address` instead.  |
+| <a id="http-status-code" href="#http-status-code">`http.status_code`</a> | int | Deprecated, use `http.response.status_code` instead. | `200` |  Use `http.response.status_code` instead.  |
+| <a id="http-target" href="#http-target">`http.target`</a> | string | Deprecated, use `url.path` and `url.query` instead. | `/search?q=OpenTelemetry#SemConv` |  Split to `url.path` and `url.query`.  |
+| <a id="http-url" href="#http-url">`http.url`</a> | string | Deprecated, use `url.full` instead. | `https://www.foo.bar/search?q=OpenTelemetry#SemConv` |  Use `url.full` instead.  |
+| <a id="http-user-agent" href="#http-user-agent">`http.user_agent`</a> | string | Deprecated, use `user_agent.original` instead. | `CERN-LineMode/2.15 libwww/2.17b3`; `Mozilla/5.0 (iPhone; CPU iPhone OS 14_7_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.2 Mobile/15E148 Safari/604.1` |  Use `user_agent.original` instead.  |
+
+---
+
+`http.flavor` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `1.0` | HTTP/1.0 | ![Development](https://img.shields.io/badge/-development-blue) |
+| `1.1` | HTTP/1.1 | ![Development](https://img.shields.io/badge/-development-blue) |
+| `2.0` | HTTP/2 | ![Development](https://img.shields.io/badge/-development-blue) |
+| `3.0` | HTTP/3 | ![Development](https://img.shields.io/badge/-development-blue) |
+| `QUIC` | QUIC protocol. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `SPDY` | SPDY protocol. | ![Development](https://img.shields.io/badge/-development-blue) |
+
+</details>
 
 ## HTTP Attributes
 
 This document defines semantic convention attributes in the HTTP namespace.
 
-| Attribute | Type | Description | Examples | Stability |
+**Current Attributes:**
+| Key | Type | Summary | Example Values | Stability |
 |---|---|---|---|---|
 | <a id="http-connection-state" href="#http-connection-state">`http.connection.state`</a> | string | State of the HTTP connection in the HTTP connection pool. | `active`; `idle` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="http-request-body-size" href="#http-request-body-size">`http.request.body.size`</a> | int | The size of the request payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size. | `3495` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -113,37 +154,3 @@ support custom route formatting. Instrumentations SHOULD document the format and
 | `PUT` | PUT method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `QUERY` | QUERY method. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `TRACE` | TRACE method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
-## Deprecated HTTP Attributes
-
-Describes deprecated HTTP attributes.
-
-| Attribute | Type | Description | Examples | Stability |
-|---|---|---|---|---|
-| <a id="http-client-ip" href="#http-client-ip">`http.client_ip`</a> | string | Deprecated, use `client.address` instead. | `83.164.160.102` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `client.address`. |
-| <a id="http-flavor" href="#http-flavor">`http.flavor`</a> | string | Deprecated, use `network.protocol.name` and `network.protocol.version` instead. | `1.0`; `1.1`; `2.0` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Split into `network.protocol.name` and `network.protocol.version` |
-| <a id="http-host" href="#http-host">`http.host`</a> | string | Deprecated, use one of `server.address`, `client.address` or `http.request.header.host` instead, depending on the usage. | `www.example.org` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by one of `server.address`, `client.address` or `http.request.header.host`, depending on the usage. |
-| <a id="http-method" href="#http-method">`http.method`</a> | string | Deprecated, use `http.request.method` instead. | `GET`; `POST`; `HEAD` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `http.request.method`. |
-| <a id="http-request-content-length" href="#http-request-content-length">`http.request_content_length`</a> | int | Deprecated, use `http.request.header.content-length` instead. | `3495` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `http.request.header.content-length`. |
-| <a id="http-request-content-length-uncompressed" href="#http-request-content-length-uncompressed">`http.request_content_length_uncompressed`</a> | int | Deprecated, use `http.request.body.size` instead. | `5493` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `http.request.body.size`. |
-| <a id="http-response-content-length" href="#http-response-content-length">`http.response_content_length`</a> | int | Deprecated, use `http.response.header.content-length` instead. | `3495` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `http.response.header.content-length`. |
-| <a id="http-response-content-length-uncompressed" href="#http-response-content-length-uncompressed">`http.response_content_length_uncompressed`</a> | int | Deprecated, use `http.response.body.size` instead. | `5493` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `http.response.body.size`. |
-| <a id="http-scheme" href="#http-scheme">`http.scheme`</a> | string | Deprecated, use `url.scheme` instead. | `http`; `https` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `url.scheme`. |
-| <a id="http-server-name" href="#http-server-name">`http.server_name`</a> | string | Deprecated, use `server.address` instead. | `example.com` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `server.address`. |
-| <a id="http-status-code" href="#http-status-code">`http.status_code`</a> | int | Deprecated, use `http.response.status_code` instead. | `200` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `http.response.status_code`. |
-| <a id="http-target" href="#http-target">`http.target`</a> | string | Deprecated, use `url.path` and `url.query` instead. | `/search?q=OpenTelemetry#SemConv` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Split to `url.path` and `url.query`. |
-| <a id="http-url" href="#http-url">`http.url`</a> | string | Deprecated, use `url.full` instead. | `https://www.foo.bar/search?q=OpenTelemetry#SemConv` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `url.full`. |
-| <a id="http-user-agent" href="#http-user-agent">`http.user_agent`</a> | string | Deprecated, use `user_agent.original` instead. | `CERN-LineMode/2.15 libwww/2.17b3`; `Mozilla/5.0 (iPhone; CPU iPhone OS 14_7_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.2 Mobile/15E148 Safari/604.1` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `user_agent.original`. |
-
----
-
-`http.flavor` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `1.0` | HTTP/1.0 | ![Development](https://img.shields.io/badge/-development-blue) |
-| `1.1` | HTTP/1.1 | ![Development](https://img.shields.io/badge/-development-blue) |
-| `2.0` | HTTP/2 | ![Development](https://img.shields.io/badge/-development-blue) |
-| `3.0` | HTTP/3 | ![Development](https://img.shields.io/badge/-development-blue) |
-| `QUIC` | QUIC protocol. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `SPDY` | SPDY protocol. | ![Development](https://img.shields.io/badge/-development-blue) |

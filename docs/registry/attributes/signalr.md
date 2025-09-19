@@ -7,7 +7,8 @@
 
 SignalR attributes
 
-| Attribute | Type | Description | Examples | Stability |
+**Current Attributes:**
+| Key | Type | Summary | Example Values | Stability |
 |---|---|---|---|---|
 | <a id="signalr-connection-status" href="#signalr-connection-status">`signalr.connection.status`</a> | string | SignalR HTTP connection closure status. | `app_shutdown`; `timeout` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | <a id="signalr-transport" href="#signalr-transport">`signalr.transport`</a> | string | [SignalR transport type](https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/TransportProtocols.md) | `web_sockets`; `long_polling` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |

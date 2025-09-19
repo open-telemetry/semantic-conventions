@@ -7,7 +7,8 @@
 
 A cloud environment (e.g. GCP, Azure, AWS).
 
-| Attribute | Type | Description | Examples | Stability |
+**Current Attributes:**
+| Key | Type | Summary | Example Values | Stability |
 |---|---|---|---|---|
 | <a id="cloud-account-id" href="#cloud-account-id">`cloud.account.id`</a> | string | The cloud account ID the resource is assigned to. | `111111111111`; `opentelemetry` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="cloud-availability-zone" href="#cloud-availability-zone">`cloud.availability_zone`</a> | string | Cloud regions often have multiple, isolated locations known as zones to increase availability. Availability zone represents the zone where the resource is running. [1] | `us-east-1c` | ![Development](https://img.shields.io/badge/-development-blue) |

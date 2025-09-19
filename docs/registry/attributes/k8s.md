@@ -10,7 +10,8 @@
 
 Kubernetes resource attributes.
 
-| Attribute | Type | Description | Examples | Stability |
+**Current Attributes:**
+| Key | Type | Summary | Example Values | Stability |
 |---|---|---|---|---|
 | <a id="k8s-cluster-name" href="#k8s-cluster-name">`k8s.cluster.name`</a> | string | The name of the cluster. | `opentelemetry-cluster` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="k8s-cluster-uid" href="#k8s-cluster-uid">`k8s.cluster.uid`</a> | string | A pseudo-ID for the cluster, set to the UID of the `kube-system` namespace. [1] | `218fc5a9-a5f1-4b54-aa05-46717d0ab26d` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -352,6 +353,12 @@ When this occurs, the exact value as reported by the Kubernetes API SHOULD be us
 
 Describes deprecated k8s attributes.
 
-| Attribute | Type | Description | Examples | Stability |
+**Current Attributes:**
+<details>
+<summary><b>Past Attributes:</b></summary>
+
+| Key | Type | Summary | Example Values | Deprecation Explanation |
 |---|---|---|---|---|
-| <a id="k8s-pod-labels" href="#k8s-pod-labels">`k8s.pod.labels.<key>`</a> | string | Deprecated, use `k8s.pod.label` instead. | `my-app` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `k8s.pod.label`. |
+| <a id="k8s-pod-labels" href="#k8s-pod-labels">`k8s.pod.labels.<key>`</a> | string | Deprecated, use `k8s.pod.label` instead. | `my-app` |  Use `k8s.pod.label` instead.  |
+
+</details>

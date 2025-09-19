@@ -10,7 +10,8 @@
 
 This group describes iOS-specific attributes.
 
-| Attribute | Type | Description | Examples | Stability |
+**Current Attributes:**
+| Key | Type | Summary | Example Values | Stability |
 |---|---|---|---|---|
 | <a id="ios-app-state" href="#ios-app-state">`ios.app.state`</a> | string | This attribute represents the state of the application. [1] | `active`; `inactive`; `background` | ![Development](https://img.shields.io/badge/-development-blue) |
 
@@ -32,11 +33,15 @@ This group describes iOS-specific attributes.
 
 The iOS platform on which the iOS application is running.
 
-| Attribute | Type | Description | Examples | Stability |
-|---|---|---|---|---|
-| <a id="ios-state" href="#ios-state">`ios.state`</a> | string | Deprecated. Use the `ios.app.state` attribute. [2] | `active`; `inactive`; `background` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `ios.app.state`. |
+**Current Attributes:**
+<details>
+<summary><b>Past Attributes:</b></summary>
 
-**[2] `ios.state`:** The iOS lifecycle states are defined in the [UIApplicationDelegate documentation](https://developer.apple.com/documentation/uikit/uiapplicationdelegate), and from which the `OS terminology` column values are derived.
+| Key | Type | Summary | Example Values | Deprecation Explanation |
+|---|---|---|---|---|
+| <a id="ios-state" href="#ios-state">`ios.state`</a> | string | Deprecated. Use the `ios.app.state` attribute. [1] | `active`; `inactive`; `background` |  Use `ios.app.state` instead.  |
+
+**[1] `ios.state`:** The iOS lifecycle states are defined in the [UIApplicationDelegate documentation](https://developer.apple.com/documentation/uikit/uiapplicationdelegate), and from which the `OS terminology` column values are derived.
 
 ---
 
@@ -49,3 +54,5 @@ The iOS platform on which the iOS application is running.
 | `foreground` | The app is now in the foreground. This value is associated with UIKit notification `applicationWillEnterForeground`. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `inactive` | The app is now `inactive`. Associated with UIKit notification `applicationWillResignActive`. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `terminate` | The app is about to terminate. Associated with UIKit notification `applicationWillTerminate`. | ![Development](https://img.shields.io/badge/-development-blue) |
+
+</details>

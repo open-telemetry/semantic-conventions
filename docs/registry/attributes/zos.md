@@ -7,7 +7,8 @@
 
 This document defines attributes of a z/OS resource.
 
-| Attribute | Type | Description | Examples | Stability |
+**Current Attributes:**
+| Key | Type | Summary | Example Values | Stability |
 |---|---|---|---|---|
 | <a id="zos-smf-id" href="#zos-smf-id">`zos.smf.id`</a> | string | The System Management Facility (SMF) Identifier uniquely identified a z/OS system within a SYSPLEX or mainframe environment and is used for system and performance analysis. | `SYS1` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="zos-sysplex-name" href="#zos-sysplex-name">`zos.sysplex.name`</a> | string | The name of the SYSPLEX to which the z/OS system belongs too. | `SYSPLEX1` | ![Development](https://img.shields.io/badge/-development-blue) |
