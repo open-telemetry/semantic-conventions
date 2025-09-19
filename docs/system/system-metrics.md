@@ -427,7 +427,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.paging.utilization` | Gauge | `1` | TODO. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
+| `system.paging.utilization` | Gauge | `1` | Swap (unix) or pagefile (windows) utilization. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -461,12 +461,11 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.paging.faults` | Counter | `{fault}` | TODO. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
+| `system.paging.faults` | Counter | `{fault}` | The number of page faults. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`system.paging.fault_type`](/docs/registry/attributes/system.md) | string | The type of page fault for this data point. | `minor` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`system.paging.type`](/docs/registry/attributes/system.md) | string | The type of page fault for this data point. | `minor` | `Recommended` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `system.paging.fault_type`. |
 
 ---
 
@@ -474,17 +473,8 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `major` | Major/hard page faults. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `minor` | Minor/soft page faults. | ![Development](https://img.shields.io/badge/-development-blue) |
-
----
-
-`system.paging.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `major` | Major/hard page faults. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `minor` | Minor/soft page faults. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `major` | Major page fault. Sometimes referred to as hard page fault. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `minor` | Minor page fault. Sometimes referred to as soft page fault. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -504,13 +494,12 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.paging.operations` | Counter | `{operation}` | TODO. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
+| `system.paging.operations` | Counter | `{operation}` | The number of paging operations. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`system.paging.direction`](/docs/registry/attributes/system.md) | string | The paging access direction | `in` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`system.paging.fault_type`](/docs/registry/attributes/system.md) | string | The type of page fault for this data point. | `minor` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`system.paging.type`](/docs/registry/attributes/system.md) | string | The type of page fault for this data point. | `minor` | `Recommended` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `system.paging.fault_type`. |
 
 ---
 
@@ -527,17 +516,8 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `major` | Major/hard page faults. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `minor` | Minor/soft page faults. | ![Development](https://img.shields.io/badge/-development-blue) |
-
----
-
-`system.paging.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `major` | Major/hard page faults. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `minor` | Minor/soft page faults. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `major` | Major page fault. Sometimes referred to as hard page fault. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `minor` | Minor page fault. Sometimes referred to as soft page fault. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

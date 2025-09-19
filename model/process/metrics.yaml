@@ -150,7 +150,6 @@ groups:
     unit: "{fault}"
     attributes:
       - ref: system.paging.fault_type
-      - ref: process.paging.fault_type
     entity_associations:
       - process
 

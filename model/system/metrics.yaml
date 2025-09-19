@@ -183,7 +183,7 @@ groups:
       code_generation:
         metric_value_type: double
     stability: development
-    brief: TODO.
+    brief: Swap (unix) or pagefile (windows) utilization.
     instrument: gauge
     unit: "1"
     attributes:
@@ -201,11 +201,10 @@ groups:
       code_generation:
         metric_value_type: int
     stability: development
-    brief: TODO.
+    brief: The number of page faults.
     instrument: counter
     unit: "{fault}"
     attributes:
-      - ref: system.paging.type
       - ref: system.paging.fault_type
     entity_associations:
       - host
@@ -217,11 +216,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
-    brief: TODO.
+    brief: The number of paging operations.
     instrument: counter
     unit: "{operation}"
     attributes:
-      - ref: system.paging.type
       - ref: system.paging.fault_type
       - ref: system.paging.direction
     entity_associations:
