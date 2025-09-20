@@ -321,3 +321,23 @@ groups:
         brief: >
           The hostname of a GCE instance. This is the full value of the default or [custom hostname](https://cloud.google.com/compute/docs/instances/custom-hostname-vm).
         examples: ['my-host1234.example.com', 'sample-vm.us-west1-b.c.my-project.internal']
+      - id: gcp.gce.instance_group_manager.name
+        type: string
+        stability: development
+        brief: >
+          The name of the Instance Group Manager (IGM) that manages this VM, if any.
+        examples: ['web-igm', 'my-managed-group']
+      - id: gcp.gce.instance_group_manager.zone
+        type: string
+        stability: development
+        brief: >
+          The zone of a **zonal** Instance Group Manager (e.g., `us-central1-a`).
+          Set this **only** when the IGM is zonal.
+        examples: ['us-central1-a', 'europe-west1-b']
+      - id: gcp.gce.instance_group_manager.region
+        type: string
+        stability: development
+        brief: >
+          The region of a **regional** Instance Group Manager (e.g., `us-central1`).
+          Set this **only** when the IGM is regional.
+        examples: ['us-central1', 'europe-west1']
