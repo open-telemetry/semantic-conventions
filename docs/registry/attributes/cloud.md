@@ -63,6 +63,7 @@ The following well-known definitions MUST be used if you set this attribute and 
 | `azure.functions` | Azure Functions | ![Development](https://img.shields.io/badge/-development-blue) |
 | `azure.openshift` | Azure Red Hat OpenShift | ![Development](https://img.shields.io/badge/-development-blue) |
 | `azure.vm` | Azure Virtual Machines | ![Development](https://img.shields.io/badge/-development-blue) |
+| `digitalocean_compute` | Compute on DigitalOcean | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gcp_app_engine` | Google Cloud App Engine (GAE) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gcp_bare_metal_solution` | Google Bare Metal Solution (BMS) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gcp_cloud_functions` | Google Cloud Functions (GCF) | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -86,6 +87,7 @@ The following well-known definitions MUST be used if you set this attribute and 
 | `alibaba_cloud` | Alibaba Cloud | ![Development](https://img.shields.io/badge/-development-blue) |
 | `aws` | Amazon Web Services | ![Development](https://img.shields.io/badge/-development-blue) |
 | `azure` | Microsoft Azure | ![Development](https://img.shields.io/badge/-development-blue) |
+| `digitalocean` | DigitalOcean | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gcp` | Google Cloud Platform | ![Development](https://img.shields.io/badge/-development-blue) |
 | `heroku` | Heroku Platform as a Service | ![Development](https://img.shields.io/badge/-development-blue) |
 | `ibm_cloud` | IBM Cloud | ![Development](https://img.shields.io/badge/-development-blue) |

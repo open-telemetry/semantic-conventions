@@ -20,6 +20,10 @@ groups:
               value: 'azure'
               brief: 'Microsoft Azure'
               stability: development
+            - id: 'digitalocean'
+              value: 'digitalocean'
+              brief: 'DigitalOcean'
+              stability: development
             - id: 'gcp'
               value: 'gcp'
               brief: 'Google Cloud Platform'
@@ -231,6 +235,10 @@ groups:
               annotations:
                 code_generation:
                   exclude: true
+            - id: digitalocean_compute
+              value: 'digitalocean_compute'
+              brief: Compute on DigitalOcean
+              stability: development
             - id: gcp_bare_metal_solution
               value: 'gcp_bare_metal_solution'
               brief: Google Bare Metal Solution (BMS)
