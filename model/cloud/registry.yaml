@@ -40,6 +40,10 @@ groups:
               value: 'tencent_cloud'
               brief: 'Tencent Cloud'
               stability: development
+            - id: 'upcloud'
+              value: 'upcloud'
+              brief: 'Upcloud'
+              stability: development
         stability: development
         brief: >
           Name of the cloud provider.
@@ -282,6 +286,10 @@ groups:
             - id: tencent_cloud_scf
               value: 'tencent_cloud_scf'
               brief: Tencent Cloud Serverless Cloud Function (SCF)
+              stability: development
+            - id: upcloud_compute
+              value: 'upcloud_compute'
+              brief: Compute on Upcloud
               stability: development
         stability: development
         brief: >
