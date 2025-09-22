@@ -87,7 +87,7 @@ areas:
     owner:
       - name: "semconv-client-approvers"
         github: semconv-client-approvers
-    project: "https://github.com/open-telemetry/community/blob/main/projects/client-instrumentation.md"
+    project: "https://github.com/open-telemetry/community/blob/main/projects/completed-projects/client-instrumentation.md"
     board: "https://github.com/orgs/open-telemetry/projects/19"
     labels:
       - area:client
