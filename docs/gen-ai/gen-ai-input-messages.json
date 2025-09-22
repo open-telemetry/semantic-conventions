@@ -10,21 +10,28 @@
                     "type": "string"
                 },
                 "mime_type": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
                     "description": "The IANA MIME type of the attached data.",
-                    "title": "Mime Type",
-                    "type": "string"
+                    "title": "Mime Type"
                 },
-                "data": {
+                "content": {
                     "description": "base64 encoded bytes of the attached data.",
                     "format": "binary",
-                    "title": "Data",
+                    "title": "Content",
                     "type": "string"
                 }
             },
             "required": [
                 "type",
-                "mime_type",
-                "data"
+                "content"
             ],
             "title": "BlobPart",
             "type": "object"
@@ -89,20 +96,47 @@
                     "type": "string"
                 },
                 "mime_type": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
                     "description": "The IANA MIME type of the attached data.",
-                    "title": "Mime Type",
-                    "type": "string"
+                    "title": "Mime Type"
                 },
-                "file_uri": {
-                    "description": "A URI referencing attached data. Should be recorded without modification, as it was sent to the model.",
-                    "title": "File Uri",
-                    "type": "string"
+                "uri": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "A URI referencing attached data.",
+                    "title": "Uri"
+                },
+                "file_id": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "An identifier referencing a file that was pre-uploaded to the provider.",
+                    "title": "File Id"
                 }
             },
             "required": [
-                "type",
-                "mime_type",
-                "file_uri"
+                "type"
             ],
             "title": "FileDataPart",
             "type": "object"
