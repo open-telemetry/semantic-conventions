@@ -157,13 +157,22 @@ deserialize it to an object. When recorded on spans, it MAY be recorded as a JSO
 
 **[12] `gen_ai.tool.definitions`:** The value of this attribute matches source system tool definition format.
 
-It's expected to be an array of objects where each object represents a tool definition. In case a serialized string is available
-to the instrumentation, the instrumentation SHOULD do the best effort to
-deserialize it to an array. When recorded on spans, it MAY be recorded as a JSON string if structured format is not supported and SHOULD be recorded in structured form otherwise.
+It's expected to be an array of objects, each representing a tool definition,
+and the structure of the array is expected to match the [Tool Definitions JSON Schema](/docs/gen-ai/gen-ai-tool-definitions.json).
+In case a serialized string is available to the instrumentation, the instrumentation
+SHOULD do the best effort to deserialize it to an array.
 
-Since this attribute could be large, it's NOT RECOMMENDED to populate
-it by default. Instrumentations MAY provide a way to enable
-populating this attribute.
+When the attribute is recorded on events, it MUST be recorded in structured
+form. When recorded on spans, it MAY be recorded as a JSON string if structured
+format is not supported and SHOULD be recorded in structured form otherwise.
+
+If instrumentations can reliably deserialize and extract the tool definitions,
+it's RECOMMENDED to only populate required fields of the definition objects
+by default. Otherwise, it's NOT RECOMMENDED to populate it by default.
+Instrumentations MAY provide a way to enable populating this attribute.
+
+> [!Warning]
+> This attribute is likely to contain sensitive information including user/PII data.
 
 **[13] `gen_ai.tool.type`:** Extension: A tool executed on the agent-side to directly call external APIs, bridging the gap between the agent and real-world systems.
   Agent-side operations involve actions that are performed by the agent on the server or within the agent's controlled environment.
