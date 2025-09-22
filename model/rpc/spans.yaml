@@ -10,19 +10,17 @@ groups:
       **Span name:** refer to the [Span Name](#span-name) section.
 
       **Span kind** MUST be `CLIENT`.
-    extends: rpc
+    extends: rpc_service
     span_kind: client
     events: [rpc.message]
     attributes:
       - ref: rpc.system
         requirement_level: required
-      - ref: rpc.service
-        requirement_level: recommended
 
   - id: span.rpc.server
     type: span
     stability: development
-    extends: rpc.server
+    extends: rpc_service.server
     span_kind: server
     brief: This span represents an incoming Remote Procedure Call (RPC).
     events: [rpc.message]
@@ -36,8 +34,6 @@ groups:
     attributes:
       - ref: rpc.system
         requirement_level: required
-      - ref: rpc.service
-        requirement_level: recommended
 
   - id: rpc.grpc.attributes
     stability: development
