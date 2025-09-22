@@ -3,7 +3,7 @@
 # Dependabot can keep this file up to date with latest containers.
 
 # Weaver is used to generate markdown docs, and enforce policies on the model.
-FROM otel/weaver:v0.17.1@sha256:32523b5e44fb44418786347e9f7dde187d8797adb6d57a2ee99c245346c3cdfe AS weaver
+FROM otel/weaver:v0.18.0@sha256:5425ade81dc22ddd840902b0638b4b6a9186fb654c5b50c1d1ccd31299437390 AS weaver
 
 # OPA is used to test policies enforced by weaver.
 FROM openpolicyagent/opa:1.8.0@sha256:0917dda453560b65798d3c78caed0376c4db0708f1e4df5724058a5dfd412948 AS opa
