@@ -1,58 +1,57 @@
 groups:
-  - id: registry.gen_ai.watsonx
+  - id: registry.gen_ai.watsonx.ai
     type: attribute_group
     display_name: IBM WatsonX AI Attributes
     brief: >
       This group defines attributes specific to IBM WatsonX AI.
     attributes:
-      - id: gen_ai.watsonx.request.project_id
+      - id: gen_ai.watsonx.ai.request.project_id
         stability: experimental
         type: string
         brief: The project ID in IBM WatsonX AI.
         examples: ['12345678-abcd-1234-efgh-1234567890ab']
-      - id: gen_ai.watsonx.request.space_id
+      - id: gen_ai.watsonx.ai.request.space_id
         stability: experimental
         type: string
         brief: The space ID in IBM WatsonX AI.
         examples: ['abcdef12-3456-7890-abcd-ef1234567890']
-      - id: gen_ai.watsonx.request.version
+      - id: gen_ai.watsonx.ai.request.version
         stability: experimental
         type: string
         brief: The version of the model being used.
         examples: ['1.0', '2.3.1']
-      - id: gen_ai.watsonx.response.trace_id
+      - id: gen_ai.watsonx.ai.response.trace_id
         stability: experimental
         type: string
         brief: The trace ID returned by IBM WatsonX AI.
         examples: ['wxt-12345678-abcd-1234-efgh-1234567890ab']
-      - id: llm.watsonx.decoding_method
+      - id: llm.watsonx.ai.decoding_method
         stability: experimental
         type: string
         brief: The decoding method used by WatsonX for generating responses.
         examples: ['greedy', 'sample']
-      - id: llm.watsonx.random_seed
+      - id: llm.watsonx.ai.random_seed
         stability: experimental
         type: int
         brief: The random seed used by WatsonX for deterministic generation.
         examples: [42]
-      - id: llm.watsonx.max_new_tokens
+      - id: llm.watsonx.ai.max_new_tokens
         stability: experimental
         type: int
         brief: The maximum number of new tokens to generate in the response.
         examples: [100]
-      - id: llm.watsonx.min_new_tokens
+      - id: llm.watsonx.ai.min_new_tokens
         stability: experimental
         type: int
         brief: The minimum number of new tokens to generate in the response.
         examples: [10]
-      - id: llm.watsonx.repetition_penalty
+      - id: llm.watsonx.ai.repetition_penalty
         stability: experimental
         type: double
         brief: The penalty applied to repeated tokens in the generated response.
         examples: [1.2]
 
-  - id: span.gen_ai.watsonx.client
-    extends: attributes.gen_ai.openai_based
+  - id: span.gen_ai.watsonx.ai.client
     stability: experimental
     span_kind: client
     type: span
@@ -61,62 +60,62 @@ groups:
     attributes:
       - ref: gen_ai.request.model
         requirement_level: required
-      - ref: gen_ai.watsonx.request.project_id
+      - ref: gen_ai.watsonx.ai.request.project_id
         requirement_level:
           conditionally_required: if the request includes a project_id
-      - ref: gen_ai.watsonx.request.space_id
+      - ref: gen_ai.watsonx.ai.request.space_id
         requirement_level:
           conditionally_required: if the request includes a space_id
-      - ref: gen_ai.watsonx.request.version
+      - ref: gen_ai.watsonx.ai.request.version
         requirement_level: recommended
-      - ref: gen_ai.watsonx.response.trace_id
+      - ref: gen_ai.watsonx.ai.response.trace_id
         requirement_level:
           conditionally_required: if the response was received and includes a trace_id
       - ref: gen_ai.usage.input_tokens
         brief: The number of tokens used in the prompt sent to IBM WatsonX AI.
       - ref: gen_ai.usage.output_tokens
         brief: The number of tokens used in the completions from IBM WatsonX AI.
-      - ref: llm.watsonx.decoding_method
+      - ref: llm.watsonx.ai.decoding_method
         requirement_level: recommended
-      - ref: llm.watsonx.random_seed
+      - ref: llm.watsonx.ai.random_seed
         requirement_level: recommended
-      - ref: llm.watsonx.max_new_tokens
+      - ref: llm.watsonx.ai.max_new_tokens
         requirement_level: recommended
-      - ref: llm.watsonx.min_new_tokens
+      - ref: llm.watsonx.ai.min_new_tokens
         requirement_level: recommended
-      - ref: llm.watsonx.repetition_penalty
+      - ref: llm.watsonx.ai.repetition_penalty
         requirement_level: recommended
 
-  - id: metric.gen_ai.watsonx.completions.duration
+  - id: metric.gen_ai.watsonx.ai.completions.duration
     type: metric
-    metric_name: llm.watsonx.completions.duration
+    metric_name: llm.watsonx.ai.completions.duration
     brief: 'Measures the duration of WatsonX completions operations'
     instrument: histogram
     unit: "s"
     stability: experimental
     extends: metric_attributes.gen_ai
 
-  - id: metric.gen_ai.watsonx.completions.exceptions
+  - id: metric.gen_ai.watsonx.ai.completions.exceptions
     type: metric
-    metric_name: llm.watsonx.completions.exceptions
+    metric_name: llm.watsonx.ai.completions.exceptions
     brief: 'Counts the number of exceptions that occurred during WatsonX completions operations'
     instrument: counter
     unit: "{exception}"
     stability: experimental
     extends: metric_attributes.gen_ai
 
-  - id: metric.gen_ai.watsonx.completions.responses
+  - id: metric.gen_ai.watsonx.ai.completions.responses
     type: metric
-    metric_name: llm.watsonx.completions.responses
+    metric_name: llm.watsonx.ai.completions.responses
     brief: 'Counts the number of responses received from WatsonX completions operations'
     instrument: counter
     unit: "{response}"
     stability: experimental
     extends: metric_attributes.gen_ai
 
-  - id: metric.gen_ai.watsonx.completions.tokens
+  - id: metric.gen_ai.watsonx.ai.completions.tokens
     type: metric
-    metric_name: llm.watsonx.completions.tokens
+    metric_name: llm.watsonx.ai.completions.tokens
     brief: 'Counts the number of tokens processed in WatsonX completions operations'
     instrument: counter
     unit: "{token}"

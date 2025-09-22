@@ -109,6 +109,7 @@ Currently, the following namespaces exist:
 - [User Agent](user-agent.md)
 - [V8js](v8js.md)
 - [VCS](vcs.md)
+- [Watsonxai](watsonxai.md)
 - [Webengine](webengine.md)
 - [zOS](zos.md)
 
