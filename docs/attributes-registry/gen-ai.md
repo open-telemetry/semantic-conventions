@@ -5,6 +5,7 @@
 
 - [GenAI Attributes](#genai-attributes)
 - [OpenAI Attributes](#openai-attributes)
+- [IBM WatsonX AI Attributes](#ibm-watsonx-ai-attributes)
 - [Deprecated GenAI Attributes](#deprecated-genai-attributes)
 - [Deprecated OpenAI GenAI Attributes](#deprecated-openai-genai-attributes)
 
@@ -137,6 +138,17 @@ This group defines attributes for OpenAI.
 |---|---|---|
 | `auto` | The system will utilize scale tier credits until they are exhausted. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 | `default` | The system will utilize the default scale tier. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+
+## IBM WatsonX AI Attributes
+
+This group defines attributes specific to IBM WatsonX AI.
+
+| Attribute | Type | Description | Examples | Stability |
+|---|---|---|---|---|
+| <a id="gen-ai-watsonx-request-project-id" href="#gen-ai-watsonx-request-project-id">`gen_ai.watsonx.request.project_id`</a> | string | The project ID in IBM WatsonX AI. | `12345678-abcd-1234-efgh-1234567890ab` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="gen-ai-watsonx-request-space-id" href="#gen-ai-watsonx-request-space-id">`gen_ai.watsonx.request.space_id`</a> | string | The space ID in IBM WatsonX AI. | `abcdef12-3456-7890-abcd-ef1234567890` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="gen-ai-watsonx-request-version" href="#gen-ai-watsonx-request-version">`gen_ai.watsonx.request.version`</a> | string | The version of the model being used. | `1.0`; `2.3.1` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| <a id="gen-ai-watsonx-response-trace-id" href="#gen-ai-watsonx-response-trace-id">`gen_ai.watsonx.response.trace_id`</a> | string | The trace ID returned by IBM WatsonX AI. | `wxt-12345678-abcd-1234-efgh-1234567890ab` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
 
 ## Deprecated GenAI Attributes
 
