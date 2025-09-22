@@ -11,72 +11,72 @@ groups:
 
     attributes:
       - id: geo.locality.name
-        stability: experimental
+        stability: development
         type: string
         brief: >
           Locality name. Represents the name of a city, town, village, or similar populated place.
         examples: [ 'Montreal', 'Berlin' ]
       - id: geo.continent.code
-        stability: experimental
+        stability: development
         brief: >
           Two-letter code representing continent’s name.
         type:
           members:
             - id: 'af'
-              stability: experimental
+              stability: development
               value: 'AF'
               brief: 'Africa'
             - id: 'an'
-              stability: experimental
+              stability: development
               value: 'AN'
               brief: 'Antarctica'
             - id: 'as'
-              stability: experimental
+              stability: development
               value: 'AS'
               brief: 'Asia'
             - id: 'eu'
-              stability: experimental
+              stability: development
               value: 'EU'
               brief: 'Europe'
             - id: 'na'
-              stability: experimental
+              stability: development
               value: 'NA'
               brief: 'North America'
             - id: 'oc'
-              stability: experimental
+              stability: development
               value: 'OC'
               brief: 'Oceania'
             - id: 'sa'
-              stability: experimental
+              stability: development
               value: 'SA'
               brief: 'South America'
       - id: geo.country.iso_code
-        stability: experimental
+        stability: development
         type: string
         brief: >
           Two-letter ISO Country Code ([ISO 3166-1 alpha2](https://wikipedia.org/wiki/ISO_3166-1#Codes)).
         examples: [ 'CA' ]
       - id: geo.location.lon
-        stability: experimental
+        stability: development
         type: double
         brief: >
           Longitude of the geo location in [WGS84](https://wikipedia.org/wiki/World_Geodetic_System#WGS84).
         examples: [ -73.614830 ]
       - id: geo.location.lat
-        stability: experimental
+        stability: development
         type: double
         brief: >
           Latitude of the geo location in [WGS84](https://wikipedia.org/wiki/World_Geodetic_System#WGS84).
         examples: [ 45.505918 ]
       - id: geo.postal_code
-        stability: experimental
+        stability: development
         type: string
         brief: >
           Postal code associated with the location.
           Values appropriate for this field may also be known as a postcode or ZIP code and will vary widely from country to country.
         examples: [ '94040' ]
       - id: geo.region.iso_code
-        stability: experimental
+        stability: development
         type: string
         brief: >
           Region ISO code ([ISO 3166-2](https://wikipedia.org/wiki/ISO_3166-2)).

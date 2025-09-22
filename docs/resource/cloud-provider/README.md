@@ -1,6 +1,6 @@
 # Cloud provider
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Development][DocumentStatus]
 
 This document defines semantic conventions for resource cloud providers.
 

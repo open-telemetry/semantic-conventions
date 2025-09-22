@@ -10,16 +10,16 @@ This document describes semantic conventions for JVM metrics in OpenTelemetry.
 
 <!-- toc -->
 
-- [JVM Memory](#jvm-memory)
+- [JVM memory](#jvm-memory)
   - [Metric: `jvm.memory.used`](#metric-jvmmemoryused)
   - [Metric: `jvm.memory.committed`](#metric-jvmmemorycommitted)
   - [Metric: `jvm.memory.limit`](#metric-jvmmemorylimit)
   - [Metric: `jvm.memory.used_after_last_gc`](#metric-jvmmemoryused_after_last_gc)
-- [JVM Garbage Collection](#jvm-garbage-collection)
+- [JVM garbage collection](#jvm-garbage-collection)
   - [Metric: `jvm.gc.duration`](#metric-jvmgcduration)
-- [JVM Threads](#jvm-threads)
+- [JVM threads](#jvm-threads)
   - [Metric: `jvm.thread.count`](#metric-jvmthreadcount)
-- [JVM Classes](#jvm-classes)
+- [JVM classes](#jvm-classes)
   - [Metric: `jvm.class.loaded`](#metric-jvmclassloaded)
   - [Metric: `jvm.class.unloaded`](#metric-jvmclassunloaded)
   - [Metric: `jvm.class.count`](#metric-jvmclasscount)
@@ -27,17 +27,18 @@ This document describes semantic conventions for JVM metrics in OpenTelemetry.
   - [Metric: `jvm.cpu.time`](#metric-jvmcputime)
   - [Metric: `jvm.cpu.count`](#metric-jvmcpucount)
   - [Metric: `jvm.cpu.recent_utilization`](#metric-jvmcpurecent_utilization)
-- [Experimental](#experimental)
+- [Development](#development)
   - [Metric: `jvm.memory.init`](#metric-jvmmemoryinit)
   - [Metric: `jvm.system.cpu.utilization`](#metric-jvmsystemcpuutilization)
   - [Metric: `jvm.system.cpu.load_1m`](#metric-jvmsystemcpuload_1m)
   - [Metric: `jvm.buffer.memory.used`](#metric-jvmbuffermemoryused)
   - [Metric: `jvm.buffer.memory.limit`](#metric-jvmbuffermemorylimit)
   - [Metric: `jvm.buffer.count`](#metric-jvmbuffercount)
+  - [Metric: `jvm.file_descriptor.count`](#metric-jvmfile_descriptorcount)
 
 <!-- tocstop -->
 
-## JVM Memory
+## JVM memory
 
 **Status**: [Stable][DocumentStatus]
 
@@ -55,14 +56,14 @@ This metric is obtained from [`MemoryPoolMXBean#getUsage()`](https://docs.oracle
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `jvm.memory.used` | UpDownCounter | `By` | Measure of memory used. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `jvm.memory.used` | UpDownCounter | `By` | Measure of memory used. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`jvm.memory.pool.name`](/docs/attributes-registry/jvm.md) | string | Name of the memory pool. [1] | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`jvm.memory.type`](/docs/attributes-registry/jvm.md) | string | The type of memory. | `heap`; `non_heap` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`jvm.memory.pool.name`](/docs/registry/attributes/jvm.md) | string | Name of the memory pool. [1] | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`jvm.memory.type`](/docs/registry/attributes/jvm.md) | string | The type of memory. | `heap`; `non_heap` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1] `jvm.memory.pool.name`:** Pool names are generally obtained via [MemoryPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
 
@@ -92,14 +93,14 @@ This metric is obtained from [`MemoryPoolMXBean#getUsage()`](https://docs.oracle
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `jvm.memory.committed` | UpDownCounter | `By` | Measure of memory committed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `jvm.memory.committed` | UpDownCounter | `By` | Measure of memory committed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`jvm.memory.pool.name`](/docs/attributes-registry/jvm.md) | string | Name of the memory pool. [1] | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`jvm.memory.type`](/docs/attributes-registry/jvm.md) | string | The type of memory. | `heap`; `non_heap` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`jvm.memory.pool.name`](/docs/registry/attributes/jvm.md) | string | Name of the memory pool. [1] | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`jvm.memory.type`](/docs/registry/attributes/jvm.md) | string | The type of memory. | `heap`; `non_heap` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1] `jvm.memory.pool.name`:** Pool names are generally obtained via [MemoryPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
 
@@ -129,14 +130,14 @@ This metric is obtained from [`MemoryPoolMXBean#getUsage()`](https://docs.oracle
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `jvm.memory.limit` | UpDownCounter | `By` | Measure of max obtainable memory. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `jvm.memory.limit` | UpDownCounter | `By` | Measure of max obtainable memory. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`jvm.memory.pool.name`](/docs/attributes-registry/jvm.md) | string | Name of the memory pool. [1] | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`jvm.memory.type`](/docs/attributes-registry/jvm.md) | string | The type of memory. | `heap`; `non_heap` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`jvm.memory.pool.name`](/docs/registry/attributes/jvm.md) | string | Name of the memory pool. [1] | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`jvm.memory.type`](/docs/registry/attributes/jvm.md) | string | The type of memory. | `heap`; `non_heap` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1] `jvm.memory.pool.name`:** Pool names are generally obtained via [MemoryPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
 
@@ -166,14 +167,14 @@ This metric is obtained from [`MemoryPoolMXBean#getCollectionUsage()`](https://d
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `jvm.memory.used_after_last_gc` | UpDownCounter | `By` | Measure of memory used, as measured after the most recent garbage collection event on this pool. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `jvm.memory.used_after_last_gc` | UpDownCounter | `By` | Measure of memory used, as measured after the most recent garbage collection event on this pool. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`jvm.memory.pool.name`](/docs/attributes-registry/jvm.md) | string | Name of the memory pool. [1] | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`jvm.memory.type`](/docs/attributes-registry/jvm.md) | string | The type of memory. | `heap`; `non_heap` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`jvm.memory.pool.name`](/docs/registry/attributes/jvm.md) | string | Name of the memory pool. [1] | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`jvm.memory.type`](/docs/registry/attributes/jvm.md) | string | The type of memory. | `heap`; `non_heap` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1] `jvm.memory.pool.name`:** Pool names are generally obtained via [MemoryPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
 
@@ -191,7 +192,7 @@ This metric is obtained from [`MemoryPoolMXBean#getCollectionUsage()`](https://d
 <!-- END AUTOGENERATED TEXT -->
 <!-- endsemconv -->
 
-## JVM Garbage Collection
+## JVM garbage collection
 
 **Status**: [Stable][DocumentStatus]
 
@@ -204,7 +205,7 @@ This metric is obtained by subscribing to
 [`GarbageCollectionNotificationInfo`](https://docs.oracle.com/javase/8/docs/jre/api/management/extension/com/sun/management/GarbageCollectionNotificationInfo.html) events provided by [`GarbageCollectorMXBean`](https://docs.oracle.com/javase/8/docs/api/java/lang/management/GarbageCollectorMXBean.html). The duration value is obtained from [`GcInfo`](https://docs.oracle.com/javase/8/docs/jre/api/management/extension/com/sun/management/GcInfo.html#getDuration--)
 
 This metric SHOULD be specified with
-[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.41.0/specification/metrics/api.md#instrument-advisory-parameters)
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.49.0/specification/metrics/api.md#instrument-advisory-parameters)
 of `[ 0.01, 0.1, 1, 10 ]`.
 
 <!-- semconv metric.jvm.gc.duration -->
@@ -214,25 +215,28 @@ of `[ 0.01, 0.1, 1, 10 ]`.
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `jvm.gc.duration` | Histogram | `s` | Duration of JVM garbage collection actions. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `jvm.gc.duration` | Histogram | `s` | Duration of JVM garbage collection actions. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`jvm.gc.action`](/docs/attributes-registry/jvm.md) | string | Name of the garbage collector action. [1] | `end of minor GC`; `end of major GC` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`jvm.gc.name`](/docs/attributes-registry/jvm.md) | string | Name of the garbage collector. [2] | `G1 Young Generation`; `G1 Old Generation` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`jvm.gc.action`](/docs/registry/attributes/jvm.md) | string | Name of the garbage collector action. [1] | `end of minor GC`; `end of major GC` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`jvm.gc.name`](/docs/registry/attributes/jvm.md) | string | Name of the garbage collector. [2] | `G1 Young Generation`; `G1 Old Generation` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`jvm.gc.cause`](/docs/registry/attributes/jvm.md) | string | Name of the garbage collector cause. [3] | `System.gc()`; `Allocation Failure` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `jvm.gc.action`:** Garbage collector action is generally obtained via [GarbageCollectionNotificationInfo#getGcAction()](https://docs.oracle.com/en/java/javase/11/docs/api/jdk.management/com/sun/management/GarbageCollectionNotificationInfo.html#getGcAction()).
 
 **[2] `jvm.gc.name`:** Garbage collector name is generally obtained via [GarbageCollectionNotificationInfo#getGcName()](https://docs.oracle.com/en/java/javase/11/docs/api/jdk.management/com/sun/management/GarbageCollectionNotificationInfo.html#getGcName()).
+
+**[3] `jvm.gc.cause`:** Garbage collector cause is generally obtained via [GarbageCollectionNotificationInfo#getGcCause()](https://docs.oracle.com/en/java/javase/11/docs/api/jdk.management/com/sun/management/GarbageCollectionNotificationInfo.html#getGcCause()).
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
 <!-- endsemconv -->
 
-## JVM Threads
+## JVM threads
 
 **Status**: [Stable][DocumentStatus]
 
@@ -257,14 +261,14 @@ Note that this is the number of platform threads (as opposed to virtual threads)
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `jvm.thread.count` | UpDownCounter | `{thread}` | Number of executing platform threads. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `jvm.thread.count` | UpDownCounter | `{thread}` | Number of executing platform threads. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`jvm.thread.daemon`](/docs/attributes-registry/jvm.md) | boolean | Whether the thread is daemon or not. |  | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`jvm.thread.state`](/docs/attributes-registry/jvm.md) | string | State of the thread. | `runnable`; `blocked` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`jvm.thread.daemon`](/docs/registry/attributes/jvm.md) | boolean | Whether the thread is daemon or not. |  | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`jvm.thread.state`](/docs/registry/attributes/jvm.md) | string | State of the thread. | `runnable`; `blocked` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ---
 
@@ -284,7 +288,7 @@ Note that this is the number of platform threads (as opposed to virtual threads)
 <!-- END AUTOGENERATED TEXT -->
 <!-- endsemconv -->
 
-## JVM Classes
+## JVM classes
 
 **Status**: [Stable][DocumentStatus]
 
@@ -302,9 +306,9 @@ This metric is obtained from [`ClassLoadingMXBean#getTotalLoadedClassCount()`](h
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `jvm.class.loaded` | Counter | `{class}` | Number of classes loaded since JVM start. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `jvm.class.loaded` | Counter | `{class}` | Number of classes loaded since JVM start. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -323,9 +327,9 @@ This metric is obtained from [`ClassLoadingMXBean#getUnloadedClassCount()`](http
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `jvm.class.unloaded` | Counter | `{class}` | Number of classes unloaded since JVM start. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `jvm.class.unloaded` | Counter | `{class}` | Number of classes unloaded since JVM start. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -344,9 +348,9 @@ This metric is obtained from [`ClassLoadingMXBean#getLoadedClassCount()`](https:
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `jvm.class.count` | UpDownCounter | `{class}` | Number of classes currently loaded. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `jvm.class.count` | UpDownCounter | `{class}` | Number of classes currently loaded. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -373,9 +377,9 @@ and [`com.ibm.lang.management.OperatingSystemMXBean#getProcessCpuTime()`](https:
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `jvm.cpu.time` | Counter | `s` | CPU time used by the process as reported by the JVM. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `jvm.cpu.time` | Counter | `s` | CPU time used by the process as reported by the JVM. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -395,9 +399,9 @@ Note that this is always an integer value (i.e. fractional or millicores are not
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `jvm.cpu.count` | UpDownCounter | `{cpu}` | Number of processors available to the Java virtual machine. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `jvm.cpu.count` | UpDownCounter | `{cpu}` | Number of processors available to the Java virtual machine. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -418,9 +422,9 @@ Note that the JVM does not provide a definition of what "recent" means.
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `jvm.cpu.recent_utilization` | Gauge | `1` | Recent CPU utilization for the process as reported by the JVM. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `jvm.cpu.recent_utilization` | Gauge | `1` | Recent CPU utilization for the process as reported by the JVM. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  |
 
 **[1]:** The value range is [0.0,1.0]. This utilization is not defined as being for the specific interval since last measurement (unlike `system.cpu.utilization`). [Reference](https://docs.oracle.com/en/java/javase/17/docs/api/jdk.management/com/sun/management/OperatingSystemMXBean.html#getProcessCpuLoad()).
 
@@ -429,11 +433,11 @@ Note that the JVM does not provide a definition of what "recent" means.
 <!-- END AUTOGENERATED TEXT -->
 <!-- endsemconv -->
 
-## Experimental
+## Development
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Development][DocumentStatus]
 
-**Description:** Experimental Java Virtual Machine (JVM) metrics captured under `jvm.`
+**Description:** In-development Java Virtual Machine (JVM) metrics captured under `jvm.`
 
 ### Metric: `jvm.memory.init`
 
@@ -447,14 +451,14 @@ This metric is obtained from [`MemoryPoolMXBean#getUsage()`](https://docs.oracle
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `jvm.memory.init` | UpDownCounter | `By` | Measure of initial memory requested. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `jvm.memory.init` | UpDownCounter | `By` | Measure of initial memory requested. | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`jvm.memory.pool.name`](/docs/attributes-registry/jvm.md) | string | Name of the memory pool. [1] | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`jvm.memory.type`](/docs/attributes-registry/jvm.md) | string | The type of memory. | `heap`; `non_heap` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`jvm.memory.pool.name`](/docs/registry/attributes/jvm.md) | string | Name of the memory pool. [1] | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`jvm.memory.type`](/docs/registry/attributes/jvm.md) | string | The type of memory. | `heap`; `non_heap` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1] `jvm.memory.pool.name`:** Pool names are generally obtained via [MemoryPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
 
@@ -485,9 +489,9 @@ and [`com.ibm.lang.management.OperatingSystemMXBean#getSystemCpuLoad()`](https:/
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `jvm.system.cpu.utilization` | Gauge | `1` | Recent CPU utilization for the whole system as reported by the JVM. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `jvm.system.cpu.utilization` | Gauge | `1` | Recent CPU utilization for the whole system as reported by the JVM. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** The value range is [0.0,1.0]. This utilization is not defined as being for the specific interval since last measurement (unlike `system.cpu.utilization`). [Reference](https://docs.oracle.com/en/java/javase/17/docs/api/jdk.management/com/sun/management/OperatingSystemMXBean.html#getCpuLoad()).
 
@@ -508,9 +512,9 @@ This metric is obtained from [`OperatingSystemMXBean#getSystemLoadAverage()`](ht
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `jvm.system.cpu.load_1m` | Gauge | `{run_queue_item}` | Average CPU load of the whole system for the last minute as reported by the JVM. [1] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `jvm.system.cpu.load_1m` | Gauge | `{run_queue_item}` | Average CPU load of the whole system for the last minute as reported by the JVM. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** The value range is [0,n], where n is the number of CPU cores - or a negative number if the value is not available. This utilization is not defined as being for the specific interval since last measurement (unlike `system.cpu.utilization`). [Reference](https://docs.oracle.com/en/java/javase/17/docs/api/java.management/java/lang/management/OperatingSystemMXBean.html#getSystemLoadAverage()).
 
@@ -531,13 +535,13 @@ This metric is obtained from [`BufferPoolMXBean#getMemoryUsed()`](https://docs.o
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `jvm.buffer.memory.used` | UpDownCounter | `By` | Measure of memory used by buffers. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `jvm.buffer.memory.used` | UpDownCounter | `By` | Measure of memory used by buffers. | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`jvm.buffer.pool.name`](/docs/attributes-registry/jvm.md) | string | Name of the buffer pool. [1] | `mapped`; `direct` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`jvm.buffer.pool.name`](/docs/registry/attributes/jvm.md) | string | Name of the buffer pool. [1] | `mapped`; `direct` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `jvm.buffer.pool.name`:** Pool names are generally obtained via [BufferPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/BufferPoolMXBean.html#getName()).
 
@@ -558,13 +562,13 @@ This metric is obtained from [`BufferPoolMXBean#getTotalCapacity()`](https://doc
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `jvm.buffer.memory.limit` | UpDownCounter | `By` | Measure of total memory capacity of buffers. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `jvm.buffer.memory.limit` | UpDownCounter | `By` | Measure of total memory capacity of buffers. | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`jvm.buffer.pool.name`](/docs/attributes-registry/jvm.md) | string | Name of the buffer pool. [1] | `mapped`; `direct` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`jvm.buffer.pool.name`](/docs/registry/attributes/jvm.md) | string | Name of the buffer pool. [1] | `mapped`; `direct` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `jvm.buffer.pool.name`:** Pool names are generally obtained via [BufferPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/BufferPoolMXBean.html#getName()).
 
@@ -585,15 +589,36 @@ This metric is obtained from [`BufferPoolMXBean#getCount()`](https://docs.oracle
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability |
-| -------- | --------------- | ----------- | -------------- | --------- |
-| `jvm.buffer.count` | UpDownCounter | `{buffer}` | Number of buffers in the pool. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `jvm.buffer.count` | UpDownCounter | `{buffer}` | Number of buffers in the pool. | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`jvm.buffer.pool.name`](/docs/attributes-registry/jvm.md) | string | Name of the buffer pool. [1] | `mapped`; `direct` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`jvm.buffer.pool.name`](/docs/registry/attributes/jvm.md) | string | Name of the buffer pool. [1] | `mapped`; `direct` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `jvm.buffer.pool.name`:** Pool names are generally obtained via [BufferPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/BufferPoolMXBean.html#getName()).
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+<!-- END AUTOGENERATED TEXT -->
+<!-- endsemconv -->
+
+### Metric: `jvm.file_descriptor.count`
+
+This metric is [Opt-In][MetricOptIn].
+This metric is obtained from [`UnixOperatingSystemMXBean#getOpenFileDescriptorCount()`](https://docs.oracle.com/en/java/javase/17/docs/api/jdk.management/com/sun/management/UnixOperatingSystemMXBean.html#getOpenFileDescriptorCount()).
+
+<!-- semconv metric.jvm.file_descriptor.count -->
+<!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
+<!-- see templates/registry/markdown/snippet.md.j2 -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-capture -->
+<!-- markdownlint-disable -->
+
+| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| -------- | --------------- | ----------- | -------------- | --------- | ------ |
+| `jvm.file_descriptor.count` | UpDownCounter | `{file_descriptor}` | Number of open file descriptors as reported by the JVM. | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

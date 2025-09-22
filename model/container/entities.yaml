@@ -1,0 +1,42 @@
+groups:
+  - id: entity.container
+    type: entity
+    stability: development
+    name: container
+    brief: >
+      A container instance.
+    attributes:
+      - ref: container.name
+      - ref: container.id
+      - ref: container.command
+        requirement_level: opt_in
+      - ref: container.command_line
+        requirement_level: opt_in
+      - ref: container.command_args
+        requirement_level: opt_in
+      - ref: container.label
+      - ref: oci.manifest.digest
+  - id: entity.container.image
+    type: entity
+    stability: development
+    name: container.image
+    brief: >
+      The image used for the container.
+    attributes:
+      - ref: container.image.name
+      - ref: container.image.tags
+      - ref: container.image.id
+      - ref: container.image.repo_digests
+  - id: entity.container.runtime
+    type: entity
+    stability: development
+    name: container.runtime
+    brief: >
+      The runtime being used to run the container
+    attributes:
+      - ref: container.runtime.description
+        role: descriptive
+      - ref: container.runtime.name
+        role: identifying
+      - ref: container.runtime.version
+        role: identifying

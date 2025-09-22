@@ -1,0 +1,346 @@
+groups:
+  - id: metric.otel.sdk.span.live
+    type: metric
+    metric_name: otel.sdk.span.live
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "The number of created spans with `recording=true` for which the end operation has not been called yet."
+    instrument: updowncounter
+    unit: "{span}"
+    attributes:
+      - ref: otel.span.sampling_result
+
+  - id: metric.otel.sdk.span.started
+    type: metric
+    metric_name: otel.sdk.span.started
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "The number of created spans."
+    instrument: counter
+    unit: "{span}"
+    note: |
+      Implementations MUST record this metric for all spans, even for non-recording ones.
+    attributes:
+      - ref: otel.span.sampling_result
+      - ref: otel.span.parent.origin
+
+  - id: metric.otel.sdk.processor.span.queue.size
+    type: metric
+    metric_name: otel.sdk.processor.span.queue.size
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "The number of spans in the queue of a given instance of an SDK span processor."
+    note: |
+      Only applies to span processors which use a queue, e.g. the SDK Batching Span Processor.
+    instrument: updowncounter
+    unit: "{span}"
+    attributes:
+      - ref: otel.component.type
+      - ref: otel.component.name
+
+  - id: metric.otel.sdk.processor.span.queue.capacity
+    type: metric
+    metric_name: otel.sdk.processor.span.queue.capacity
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "The maximum number of spans the queue of a given instance of an SDK span processor can hold."
+    note: |
+      Only applies to span processors which use a queue, e.g. the SDK Batching Span Processor.
+    instrument: updowncounter
+    unit: "{span}"
+    attributes:
+      - ref: otel.component.type
+      - ref: otel.component.name
+
+  - id: metric.otel.sdk.processor.span.processed
+    type: metric
+    metric_name: otel.sdk.processor.span.processed
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "The number of spans for which the processing has finished, either successful or failed."
+    note: |
+      For successful processing, `error.type` MUST NOT be set. For failed processing, `error.type` MUST contain the failure cause.
+      For the SDK Simple and Batching Span Processor a span is considered to be processed already when it has been submitted to the exporter, not when the corresponding export call has finished.
+    instrument: counter
+    unit: "{span}"
+    attributes:
+      - ref: otel.component.type
+      - ref: otel.component.name
+      - ref: error.type
+        brief: >
+          A low-cardinality description of the failure reason. SDK Batching Span Processors MUST use `queue_full` for spans dropped due to a full queue.
+        examples: ["queue_full"]
+
+  - id: metric.otel.sdk.exporter.span.inflight
+    type: metric
+    metric_name: otel.sdk.exporter.span.inflight
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "The number of spans which were passed to the exporter, but that have not been exported yet (neither successful, nor failed)."
+    note: |
+      For successful exports, `error.type` MUST NOT be set. For failed exports, `error.type` MUST contain the failure cause.
+    instrument: updowncounter
+    unit: "{span}"
+    attributes:
+      - ref: otel.component.type
+      - ref: otel.component.name
+      - ref: server.address
+        requirement_level:
+          recommended: when applicable
+      - ref: server.port
+        requirement_level:
+          recommended: when applicable
+
+  - id: metric.otel.sdk.exporter.span.exported
+    type: metric
+    metric_name: otel.sdk.exporter.span.exported
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "The number of spans for which the export has finished, either successful or failed."
+    note: |
+      For successful exports, `error.type` MUST NOT be set. For failed exports, `error.type` MUST contain the failure cause.
+      For exporters with partial success semantics (e.g. OTLP with `rejected_spans`), rejected spans MUST count as failed and only non-rejected spans count as success.
+      If no rejection reason is available, `rejected` SHOULD be used as value for `error.type`.
+    instrument: counter
+    unit: "{span}"
+    attributes:
+      - ref: otel.component.type
+      - ref: otel.component.name
+      - ref: server.address
+        requirement_level:
+          recommended: when applicable
+      - ref: server.port
+        requirement_level:
+          recommended: when applicable
+      - ref: error.type
+        examples: ["rejected", "timeout", "500", "java.net.UnknownHostException"]
+
+  - id: metric.otel.sdk.log.created
+    type: metric
+    metric_name: otel.sdk.log.created
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "The number of logs submitted to enabled SDK Loggers."
+    instrument: counter
+    unit: "{log_record}"
+
+  - id: metric.otel.sdk.processor.log.queue.size
+    type: metric
+    metric_name: otel.sdk.processor.log.queue.size
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "The number of log records in the queue of a given instance of an SDK log processor."
+    note: |
+      Only applies to log record processors which use a queue, e.g. the SDK Batching Log Record Processor.
+    instrument: updowncounter
+    unit: "{log_record}"
+    attributes:
+      - ref: otel.component.type
+      - ref: otel.component.name
+
+  - id: metric.otel.sdk.processor.log.queue.capacity
+    type: metric
+    metric_name: otel.sdk.processor.log.queue.capacity
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "The maximum number of log records the queue of a given instance of an SDK Log Record processor can hold."
+    note: |
+      Only applies to Log Record processors which use a queue, e.g. the SDK Batching Log Record Processor.
+    instrument: updowncounter
+    unit: "{log_record}"
+    attributes:
+      - ref: otel.component.type
+      - ref: otel.component.name
+
+  - id: metric.otel.sdk.processor.log.processed
+    type: metric
+    metric_name: otel.sdk.processor.log.processed
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "The number of log records for which the processing has finished, either successful or failed."
+    note: |
+      For successful processing, `error.type` MUST NOT be set. For failed processing, `error.type` MUST contain the failure cause.
+      For the SDK Simple and Batching Log Record Processor a log record is considered to be processed already when it has been submitted to the exporter,
+      not when the corresponding export call has finished.
+    instrument: counter
+    unit: "{log_record}"
+    attributes:
+      - ref: otel.component.type
+      - ref: otel.component.name
+      - ref: error.type
+        brief: >
+          A low-cardinality description of the failure reason. SDK Batching Log Record Processors MUST use `queue_full` for log records dropped due to a full queue.
+        examples: ["queue_full"]
+
+  - id: metric.otel.sdk.exporter.log.inflight
+    type: metric
+    metric_name: otel.sdk.exporter.log.inflight
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "The number of log records which were passed to the exporter, but that have not been exported yet (neither successful, nor failed)."
+    note: |
+      For successful exports, `error.type` MUST NOT be set. For failed exports, `error.type` MUST contain the failure cause.
+    instrument: updowncounter
+    unit: "{log_record}"
+    attributes:
+      - ref: otel.component.type
+      - ref: otel.component.name
+      - ref: server.address
+        requirement_level:
+          recommended: when applicable
+      - ref: server.port
+        requirement_level:
+          recommended: when applicable
+
+  - id: metric.otel.sdk.exporter.log.exported
+    type: metric
+    metric_name: otel.sdk.exporter.log.exported
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "The number of log records for which the export has finished, either successful or failed."
+    note: |
+      For successful exports, `error.type` MUST NOT be set. For failed exports, `error.type` MUST contain the failure cause.
+      For exporters with partial success semantics (e.g. OTLP with `rejected_log_records`), rejected log records MUST count as failed and only non-rejected log records count as success.
+      If no rejection reason is available, `rejected` SHOULD be used as value for `error.type`.
+    instrument: counter
+    unit: "{log_record}"
+    attributes:
+      - ref: otel.component.type
+      - ref: otel.component.name
+      - ref: server.address
+        requirement_level:
+          recommended: when applicable
+      - ref: server.port
+        requirement_level:
+          recommended: when applicable
+      - ref: error.type
+        examples: ["rejected", "timeout", "500", "java.net.UnknownHostException"]
+
+  - id: metric.otel.sdk.exporter.metric_data_point.inflight
+    type: metric
+    metric_name: otel.sdk.exporter.metric_data_point.inflight
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "The number of metric data points which were passed to the exporter, but that have not been exported yet (neither successful, nor failed)."
+    note: |
+      For successful exports, `error.type` MUST NOT be set. For failed exports, `error.type` MUST contain the failure cause.
+    instrument: updowncounter
+    unit: "{data_point}"
+    attributes:
+      - ref: otel.component.type
+      - ref: otel.component.name
+      - ref: server.address
+        requirement_level:
+          recommended: when applicable
+      - ref: server.port
+        requirement_level:
+          recommended: when applicable
+
+  - id: metric.otel.sdk.exporter.metric_data_point.exported
+    type: metric
+    metric_name: otel.sdk.exporter.metric_data_point.exported
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "The number of metric data points for which the export has finished, either successful or failed."
+    note: |
+      For successful exports, `error.type` MUST NOT be set. For failed exports, `error.type` MUST contain the failure cause.
+      For exporters with partial success semantics (e.g. OTLP with `rejected_data_points`), rejected data points MUST count as failed and only non-rejected data points count as success.
+      If no rejection reason is available, `rejected` SHOULD be used as value for `error.type`.
+    instrument: counter
+    unit: "{data_point}"
+    attributes:
+      - ref: otel.component.type
+      - ref: otel.component.name
+      - ref: server.address
+        requirement_level:
+          recommended: when applicable
+      - ref: server.port
+        requirement_level:
+          recommended: when applicable
+      - ref: error.type
+        examples: ["rejected", "timeout", "500", "java.net.UnknownHostException"]
+
+  - id: metric.otel.sdk.metric_reader.collection.duration
+    type: metric
+    metric_name: otel.sdk.metric_reader.collection.duration
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: "The duration of the collect operation of the metric reader."
+    note: |
+      For successful collections, `error.type` MUST NOT be set. For failed collections, `error.type` SHOULD contain the failure cause.
+      It can happen that metrics collection is successful for some MetricProducers, while others fail. In that case `error.type` SHOULD be set to any of the failure causes.
+    instrument: histogram
+    unit: "s"
+    attributes:
+      - ref: otel.component.type
+      - ref: otel.component.name
+      - ref: error.type
+
+  - id: metric.otel.sdk.exporter.operation.duration
+    type: metric
+    metric_name: otel.sdk.exporter.operation.duration
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: "The duration of exporting a batch of telemetry records."
+    note: |
+      This metric defines successful operations using the full success definitions for [http](https://github.com/open-telemetry/opentelemetry-proto/blob/v1.5.0/docs/specification.md#full-success-1)
+      and [grpc](https://github.com/open-telemetry/opentelemetry-proto/blob/v1.5.0/docs/specification.md#full-success). Anything else is defined as an unsuccessful operation. For successful
+      operations, `error.type` MUST NOT be set. For unsuccessful export operations, `error.type` MUST contain a relevant failure cause.
+    instrument: histogram
+    unit: "s"
+    attributes:
+      - ref: otel.component.type
+        examples: ["otlp_grpc_span_exporter", "com.example.MySpanExporter"]
+      - ref: otel.component.name
+      - ref: server.address
+        requirement_level:
+          recommended: when applicable
+      - ref: server.port
+        requirement_level:
+          recommended: when applicable
+      - ref: error.type
+        requirement_level:
+          conditionally_required: If operation has ended with an error
+        examples: ["rejected", "timeout", "500", "java.net.UnknownHostException"]
+      - ref: http.response.status_code
+        brief: The HTTP status code of the last HTTP request performed in scope of this export call.
+        requirement_level:
+          recommended: when applicable
+      - ref: rpc.grpc.status_code
+        brief: The gRPC status code of the last gRPC requests performed in scope of this export call.
+        requirement_level:
+          recommended: when applicable

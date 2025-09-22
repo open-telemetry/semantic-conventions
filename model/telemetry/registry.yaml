@@ -68,7 +68,7 @@ groups:
         examples: ["1.2.3"]
       - id: telemetry.distro.name
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The name of the auto instrumentation agent or distribution, if used.
         note: |
@@ -77,7 +77,7 @@ groups:
         examples: ["parts-unlimited-java"]
       - id: telemetry.distro.version
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The version string of the auto instrumentation agent or distribution, if used.
         examples: ["1.2.3"]

@@ -11,13 +11,13 @@ groups:
           is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length)
           header. For requests using transport encoding, this should be the compressed size.
         examples: 3495
-        stability: experimental  # this should not be marked stable with other HTTP attributes
+        stability: development  # this should not be marked stable with other HTTP attributes
       - id: http.request.header
         stability: stable
         type: template[string[]]
         brief: >
           HTTP request headers, `<key>` being the normalized HTTP Header name (lowercase), the value being the header values.
-        note: >
+        note: |
           Instrumentations SHOULD require an explicit configuration of which headers are to be captured.
           Including all request headers can be a security risk - explicit configuration helps avoid leaking sensitive information.
 
@@ -27,7 +27,15 @@ groups:
           The attribute value MUST consist of either multiple header values as an array of strings
           or a single-item array containing a possibly comma-concatenated string, depending on the way
           the HTTP library provides access to headers.
-        examples: ['http.request.header.content-type=["application/json"]', 'http.request.header.x-forwarded-for=["1.2.3.4", "1.2.3.5"]']
+
+          Examples:
+
+          - A header `Content-Type: application/json` SHOULD be recorded as the `http.request.header.content-type`
+            attribute with value `["application/json"]`.
+          - A header `X-Forwarded-For: 1.2.3.4, 1.2.3.5` SHOULD be recorded as the `http.request.header.x-forwarded-for`
+            attribute with value `["1.2.3.4", "1.2.3.5"]` or `["1.2.3.4, 1.2.3.5"]` depending on the HTTP library.
+
+        examples: [["application/json"], ["1.2.3.4", "1.2.3.5"]]
       - id: http.request.method
         stability: stable
         type:
@@ -68,6 +76,10 @@ groups:
               value: "TRACE"
               brief: 'TRACE method.'
               stability: stable
+            - id: query
+              value: "QUERY"
+              brief: 'QUERY method.'
+              stability: development
             - id: other
               value: "_OTHER"
               brief: 'Any HTTP method that the instrumentation has no prior knowledge of.'
@@ -76,8 +88,9 @@ groups:
         examples: ["GET", "POST", "HEAD"]
         note: |
           HTTP request method value SHOULD be "known" to the instrumentation.
-          By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
-          and the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
+          By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods),
+          the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html)
+          and the QUERY method defined in [httpbis-safe-method-w-body](https://datatracker.ietf.org/doc/draft-ietf-httpbis-safe-method-w-body/?include_text=1).
 
           If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `_OTHER`.
 
@@ -110,7 +123,7 @@ groups:
           The total size of the request in bytes. This should be the total number of bytes sent over the wire, including the request line (HTTP/1.1),
           framing (HTTP/2 and HTTP/3), headers, and request body if any.
         examples: 1437
-        stability: experimental
+        stability: development
       - id: http.response.body.size
         type: int
         brief: >
@@ -118,13 +131,13 @@ groups:
           is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length)
           header. For requests using transport encoding, this should be the compressed size.
         examples: 3495
-        stability: experimental  # this should not be marked stable with other HTTP attributes
+        stability: development  # this should not be marked stable with other HTTP attributes
       - id: http.response.header
         stability: stable
         type: template[string[]]
         brief: >
           HTTP response headers, `<key>` being the normalized HTTP Header name (lowercase), the value being the header values.
-        note: >
+        note: |
           Instrumentations SHOULD require an explicit configuration of which headers are to be captured.
           Including all response headers can be a security risk - explicit configuration helps avoid leaking sensitive information.
 
@@ -133,14 +146,21 @@ groups:
           The attribute value MUST consist of either multiple header values as an array of strings
           or a single-item array containing a possibly comma-concatenated string, depending on the way
           the HTTP library provides access to headers.
-        examples: ['http.response.header.content-type=["application/json"]', 'http.response.header.my-custom-header=["abc", "def"]']
+
+          Examples:
+
+          - A header `Content-Type: application/json` header SHOULD be recorded as the `http.request.response.content-type`
+            attribute with value `["application/json"]`.
+          - A header `My-custom-header: abc, def` header SHOULD be recorded as the `http.response.header.my-custom-header`
+            attribute with value `["abc", "def"]` or `["abc, def"]` depending on the HTTP library.
+        examples: [["application/json"], ["abc", "def"]]
       - id: http.response.size
         type: int
         brief: >
           The total size of the response in bytes. This should be the total number of bytes sent over the wire, including the status line (HTTP/1.1),
           framing (HTTP/2 and HTTP/3), headers, and response body and trailers if any.
         examples: 1437
-        stability: experimental
+        stability: development
       - id: http.response.status_code
         stability: stable
         type: int
@@ -150,23 +170,30 @@ groups:
         stability: stable
         type: string
         brief: >
-            The matched route, that is, the path template in the format used by the respective server framework.
-        examples: ['/users/:userID?', '{controller}/{action}/{id?}']
-        note: >
+            The matched route template for the request. This MUST be low-cardinality and include all static path segments, with dynamic path segments represented with placeholders.
+        examples: ['/users/:userID?', 'my-controller/my-action/{id?}']
+        note: |
           MUST NOT be populated when this is not supported by the HTTP server framework as the route attribute should have low-cardinality and the URI path can NOT substitute it.
-
           SHOULD include the [application root](/docs/http/http-spans.md#http-server-definitions) if there is one.
+
+          A static path segment is a part of the route template with a fixed, low-cardinality value. This includes literal strings like `/users/` and placeholders that
+          are constrained to a finite, predefined set of values, e.g. `{controller}` or `{action}`.
+
+          A dynamic path segment is a placeholder for a value that can have high cardinality and is not constrained to a predefined list like static path segments.
+
+          Instrumentations SHOULD use routing information provided by the corresponding web framework. They SHOULD pick the most precise source of routing information and MAY
+          support custom route formatting. Instrumentations SHOULD document the format and the API used to obtain the route string.
       - id: http.connection.state
         type:
           members:
             - id: active
               value: "active"
               brief: 'active state.'
-              stability: experimental
+              stability: development
             - id: idle
               value: "idle"
               brief: 'idle state.'
-              stability: experimental
+              stability: development
         brief: State of the HTTP connection in the HTTP connection pool.
-        stability: experimental
+        stability: development
         examples: ["active", "idle"]

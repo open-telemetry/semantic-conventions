@@ -4,7 +4,7 @@ linkTitle: Google Cloud Pub/Sub
 
 # Semantic conventions for Google Cloud Pub/Sub
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Development][DocumentStatus]
 
 The Semantic Conventions for [Google Cloud Pub/Sub](https://cloud.google.com/pubsub) extend and override the [Messaging Semantic Conventions](README.md).
 
@@ -19,8 +19,8 @@ The Semantic Conventions for [Google Cloud Pub/Sub](https://cloud.google.com/pub
 >   Conventions include, but are not limited to, attributes,
 >   metric and span names, span kind and unit of measure.
 > * SHOULD introduce an environment variable `OTEL_SEMCONV_STABILITY_OPT_IN`
->   in the existing major version which is a comma-separated list of values.
->   The list of values includes:
+>   in the existing major version as a comma-separated list of category-specific values
+>   (e.g., http, databases, messaging). The list of values includes:
 >   * `messaging` - emit the new, stable messaging conventions,
 >     and stop emitting the old experimental messaging conventions
 >     that the instrumentation emitted previously.
@@ -51,19 +51,19 @@ For Google Cloud Pub/Sub, the following additional attributes are defined:
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`messaging.operation.name`](/docs/attributes-registry/messaging.md) | string | The system-specific name of the messaging operation. [1] | `ack`; `nack`; `send` | `Required` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`error.type`](/docs/attributes-registry/error.md) | string | Describes a class of error the operation ended with. [2] | `amqp:decode-error`; `KAFKA_STORAGE_ERROR`; `channel-error` | `Conditionally Required` If and only if the messaging operation has failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`messaging.batch.message_count`](/docs/attributes-registry/messaging.md) | int | The number of messages sent, received, or processed in the scope of the batching operation. [3] | `0`; `1`; `2` | `Conditionally Required` [4] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`messaging.destination.name`](/docs/attributes-registry/messaging.md) | string | The message destination name [5] | `MyQueue`; `MyTopic` | `Conditionally Required` [6] | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`messaging.gcp_pubsub.message.ordering_key`](/docs/attributes-registry/messaging.md) | string | The ordering key for a given message. If the attribute is not present, the message does not have an ordering key. | `ordering_key` | `Conditionally Required` If the message type has an ordering key set. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`messaging.operation.type`](/docs/attributes-registry/messaging.md) | string | A string identifying the type of the messaging operation. [7] | `create`; `send`; `receive` | `Conditionally Required` If applicable. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`server.address`](/docs/attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [8] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Conditionally Required` If available. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`messaging.destination.subscription.name`](/docs/attributes-registry/messaging.md) | string | Google Pub/Sub [subscription name](https://cloud.google.com/pubsub/docs/subscription-overview). | `subscription-a` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`messaging.gcp_pubsub.message.ack_deadline`](/docs/attributes-registry/messaging.md) | int | The ack deadline in seconds set for the modify ack deadline request. | `10` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`messaging.gcp_pubsub.message.ack_id`](/docs/attributes-registry/messaging.md) | string | The ack id for a given message. | `ack_id` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`messaging.gcp_pubsub.message.delivery_attempt`](/docs/attributes-registry/messaging.md) | int | The delivery attempt for a given message. | `2` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`messaging.message.id`](/docs/attributes-registry/messaging.md) | string | A value used by the messaging system as an identifier for the message, represented as a string. | `452a7c7c7c7048c2f887f61572b18fc2` | `Recommended` If span describes operation on a single message. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [9] | `80`; `8080`; `443` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`messaging.operation.name`](/docs/registry/attributes/messaging.md) | string | The system-specific name of the messaging operation. [1] | `ack`; `nack`; `send` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [2] | `amqp:decode-error`; `KAFKA_STORAGE_ERROR`; `channel-error` | `Conditionally Required` If and only if the messaging operation has failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`messaging.batch.message_count`](/docs/registry/attributes/messaging.md) | int | The number of messages sent, received, or processed in the scope of the batching operation. [3] | `0`; `1`; `2` | `Conditionally Required` [4] | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`messaging.destination.name`](/docs/registry/attributes/messaging.md) | string | The message destination name [5] | `MyQueue`; `MyTopic` | `Conditionally Required` [6] | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`messaging.gcp_pubsub.message.ordering_key`](/docs/registry/attributes/messaging.md) | string | The ordering key for a given message. If the attribute is not present, the message does not have an ordering key. | `ordering_key` | `Conditionally Required` If the message type has an ordering key set. | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`messaging.operation.type`](/docs/registry/attributes/messaging.md) | string | A string identifying the type of the messaging operation. [7] | `create`; `send`; `receive` | `Conditionally Required` If applicable. | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`server.address`](/docs/registry/attributes/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [8] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Conditionally Required` If available. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`messaging.destination.subscription.name`](/docs/registry/attributes/messaging.md) | string | Google Pub/Sub [subscription name](https://cloud.google.com/pubsub/docs/subscription-overview). | `subscription-a` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`messaging.gcp_pubsub.message.ack_deadline`](/docs/registry/attributes/messaging.md) | int | The ack deadline in seconds set for the modify ack deadline request. | `10` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`messaging.gcp_pubsub.message.ack_id`](/docs/registry/attributes/messaging.md) | string | The ack id for a given message. | `ack_id` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`messaging.gcp_pubsub.message.delivery_attempt`](/docs/registry/attributes/messaging.md) | int | The delivery attempt for a given message. | `2` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`messaging.message.id`](/docs/registry/attributes/messaging.md) | string | A value used by the messaging system as an identifier for the message, represented as a string. | `452a7c7c7c7048c2f887f61572b18fc2` | `Recommended` If span describes operation on a single message. | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`server.port`](/docs/registry/attributes/server.md) | int | Server port number. [9] | `80`; `8080`; `443` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1] `messaging.operation.name`:** The `messaging.operation.name` has the following list of well-known values in the context of Google Pub/Sub.
 If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
@@ -112,12 +112,12 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):
 
-* [`messaging.destination.name`](/docs/attributes-registry/messaging.md)
-* [`messaging.destination.subscription.name`](/docs/attributes-registry/messaging.md)
-* [`messaging.operation.name`](/docs/attributes-registry/messaging.md)
-* [`messaging.operation.type`](/docs/attributes-registry/messaging.md)
-* [`server.address`](/docs/attributes-registry/server.md)
-* [`server.port`](/docs/attributes-registry/server.md)
+* [`messaging.destination.name`](/docs/registry/attributes/messaging.md)
+* [`messaging.destination.subscription.name`](/docs/registry/attributes/messaging.md)
+* [`messaging.operation.name`](/docs/registry/attributes/messaging.md)
+* [`messaging.operation.type`](/docs/registry/attributes/messaging.md)
+* [`server.address`](/docs/registry/attributes/server.md)
+* [`server.port`](/docs/registry/attributes/server.md)
 
 ---
 
@@ -133,11 +133,11 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 | Value  | Description | Stability |
 |---|---|---|
-| `create` | A message is created. "Create" spans always refer to a single message and are used to provide a unique creation context for messages in batch sending scenarios. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `process` | One or more messages are processed by a consumer. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `receive` | One or more messages are requested by a consumer. This operation refers to pull-based scenarios, where consumers explicitly call methods of messaging SDKs to receive messages. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `send` | One or more messages are provided for sending to an intermediary. If a single message is sent, the context of the "Send" span can be used as the creation context and no "Create" span needs to be created. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `settle` | One or more messages are settled. | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `create` | A message is created. "Create" spans always refer to a single message and are used to provide a unique creation context for messages in batch sending scenarios. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `process` | One or more messages are processed by a consumer. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `receive` | One or more messages are requested by a consumer. This operation refers to pull-based scenarios, where consumers explicitly call methods of messaging SDKs to receive messages. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `send` | One or more messages are provided for sending to an intermediary. If a single message is sent, the context of the "Send" span can be used as the creation context and no "Create" span needs to be created. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `settle` | One or more messages are settled. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -146,7 +146,7 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 ## Examples
 
-### Asynchronous Batch Publish Example
+### Asynchronous batch publish example
 
 Given is a process P that asynchronously publishes 2 messages in a batch to a topic T on Pub/Sub.
 
@@ -183,7 +183,7 @@ flowchart LR;
 | `messaging.message.envelope.size` | `1` | `1` | |
 | `messaging.system` | `"gcp_pubsub"` | `"gcp_pubsub"` | `"gcp_pubsub"` |
 
-### Unary Pull Example
+### Unary pull example
 
 ```mermaid
 flowchart TD;

@@ -12,29 +12,30 @@ requirements and recommendations.
 <!-- toc -->
 
 - [Sign the CLA](#sign-the-cla)
-- [How to Contribute](#how-to-contribute)
+- [How to contribute](#how-to-contribute)
   - [Which semantic conventions belong in this repo](#which-semantic-conventions-belong-in-this-repo)
   - [Suggesting conventions for a new area](#suggesting-conventions-for-a-new-area)
   - [Prerequisites](#prerequisites)
   - [1. Modify the YAML model](#1-modify-the-yaml-model)
     - [Code structure](#code-structure)
-    - [Schema files](#schema-files)
   - [2. Update the markdown files](#2-update-the-markdown-files)
     - [Hugo frontmatter](#hugo-frontmatter)
   - [3. Check new convention](#3-check-new-convention)
   - [4. Verify the changes before committing](#4-verify-the-changes-before-committing)
   - [5. Changelog](#5-changelog)
-    - [When to add a Changelog Entry](#when-to-add-a-changelog-entry)
+    - [When to add a changelog entry](#when-to-add-a-changelog-entry)
       - [Examples](#examples)
-    - [Adding a Changelog Entry](#adding-a-changelog-entry)
+    - [Adding a changelog entry](#adding-a-changelog-entry)
   - [5. Getting your PR merged](#5-getting-your-pr-merged)
 - [Automation](#automation)
-  - [Consistency Checks](#consistency-checks)
+  - [Consistency checks](#consistency-checks)
   - [Auto formatting](#auto-formatting)
   - [Markdown style](#markdown-style)
   - [Misspell check](#misspell-check)
   - [Update the tables of content](#update-the-tables-of-content)
   - [Markdown link check](#markdown-link-check)
+  - [Yamllint check](#yamllint-check)
+- [Schema files](#schema-files)
 - [Merging existing ECS conventions](#merging-existing-ecs-conventions)
 
 <!-- tocstop -->
@@ -46,18 +47,18 @@ requirements and recommendations.
 Before you can contribute, you will need to sign the [Contributor License
 Agreement](https://identity.linuxfoundation.org/projects/cncf).
 
-## How to Contribute
+## How to contribute
 
 When contributing to semantic conventions, it's important to understand a few
 key, but non-obvious, aspects:
 
+- In the PR description, include links to the relevant instrumentation and any applicable prototypes. Non-trivial changes to semantic conventions should be prototyped in the corresponding instrumentation(s).
 - All attributes, metrics, etc. are formally defined in YAML files under
   the `model/` directory.
 - All descriptions, normative language are defined in the `docs/` directory.
 - All changes to existing attributes, metrics, etc. MUST be allowed as
   per our [stability guarantees][stability guarantees] and
-  defined in a schema file. As part of any contribution, you should
-  include attribute changes defined in the `schema-next.yaml` file.
+  defined in a schema file.
 - Links to the specification repository MUST point to a tag and **not** to the `main` branch.
   The tag version MUST match with the one defined in [README](README.md).
 
@@ -91,7 +92,7 @@ pull requests, issues, and questions in this area.
 Check out [project management](https://github.com/open-telemetry/community/blob/main/project-management.md)
 for the details on how to start.
 
-Refer to the [How to define new conventions](/docs/general/how-to-define-semantic-conventions.md)
+Refer to the [How to define new conventions](/docs/how-to-write-conventions/README.md)
 document for guidance.
 
 ### Prerequisites
@@ -163,21 +164,6 @@ are defined in `/model/aws/lambda-spans.yaml` and `/model/aws/sdk-spans.yaml` fi
 Deprecated conventions should be placed under `/model/{root-namespace}/deprecated`
 folder.
 
-#### Schema files
-
-When making changes to existing semantic conventions (attributes, metrics, etc)
-you MUST also update the `schema-next.yaml` file with the changes.
-
-For details, please read
-[the schema specification](https://opentelemetry.io/docs/specs/otel/schemas/).
-
-You can also take examples from past changes inside the `schemas` folder.
-
-> [!WARNING]
->
-> DO NOT add your changes to files inside the `schemas` folder. Always add your
-> changes to the `schema-next.yaml` file.
-
 ### 2. Update the markdown files
 
 After updating the YAML file(s), you need to update
@@ -227,7 +213,7 @@ Semantic conventions are validated for name formatting and backward compatibilit
 Here's [the full list of compatibility checks](./policies/compatibility.rego).
 
 Removing attributes, metrics, or enum members is not allowed, they should be deprecated instead.
-It applies to stable and experimental conventions and prevents semantic conventions auto-generated libraries from introducing breaking changes.
+It applies to stable and unstable conventions and prevents semantic conventions auto-generated libraries from introducing breaking changes.
 
 You can run backward compatibility check (along with other policies) in all yaml files with the following command:
 
@@ -248,7 +234,7 @@ Refer to the [Automation](#automation) section for more details.
 
 ### 5. Changelog
 
-#### When to add a Changelog Entry
+#### When to add a changelog entry
 
 Pull requests that contain user-facing changes will require a changelog entry.
 Keep in mind the following types of users (not limited to):
@@ -275,7 +261,7 @@ No changelog entry:
 - Refactorings with no meaningful change in functionality
 - Chores, such as enabling linters, updating dependencies
 
-#### Adding a Changelog Entry
+#### Adding a changelog entry
 
 The [CHANGELOG.md](./CHANGELOG.md) files in this repo is autogenerated
 from `.yaml` files in the [/.chloggen](/.chloggen) directory.
@@ -319,7 +305,7 @@ to merge**.
 
 Semantic Conventions provides a set of automated tools for general development.
 
-### Consistency Checks
+### Consistency checks
 
 The Specification has a number of tools it uses to check things like style,
 spelling and link validity.
@@ -339,6 +325,7 @@ For more information on each check, see:
 - [Markdown style](#markdown-style)
 - [Misspell check](#misspell-check)
 - [Markdown link check](#markdown-link-check)
+- [Yamllint check](#yamllint-check)
 - Prettier formatting
 
 ### Auto formatting
@@ -417,6 +404,37 @@ To check the validity of links in all markdown files, run the following command:
 ```bash
 make markdown-link-check
 ```
+
+### Yamllint check
+
+To check the validity of all yaml files, run the following command:
+
+```bash
+make yamllint
+```
+
+If it is the first time to run this command, install `yamllint` first:
+
+```bash
+make install-yamllint
+```
+
+## Schema files
+
+> [!WARNING]
+>
+> DO NOT add your changes to files inside the `schemas` folder. These files are
+> generated automatically by the release scripts and can't be updated after
+> the corresponding version is released.
+
+Release script uses the following command to generate new schema file:
+
+```bash
+make generate-schema-next NEXT_SEMCONV_VERSION={next version}
+```
+
+For details, please read
+[the schema specification](https://opentelemetry.io/docs/specs/otel/schemas/).
 
 ## Merging existing ECS conventions
 

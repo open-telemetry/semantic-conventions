@@ -5,7 +5,7 @@ aliases: [general-attributes]
 
 # General attributes
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Development][DocumentStatus]
 
 The attributes described in this section are not specific to a particular operation but rather generic.
 They may be used in any Span they apply to.
@@ -30,7 +30,7 @@ Particular operations may refer to or require some of these attributes.
     - [Network connection and carrier attributes](#network-connection-and-carrier-attributes)
 - [General remote service attributes](#general-remote-service-attributes)
 - [General thread attributes](#general-thread-attributes)
-- [Source Code Attributes](#source-code-attributes)
+- [Source code attributes](#source-code-attributes)
 
 <!-- tocstop -->
 
@@ -72,8 +72,8 @@ if they do not cause breaking changes to HTTP semantic conventions.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`server.address`](/docs/attributes-registry/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [1] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [2] | `80`; `8080`; `443` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.address`](/docs/registry/attributes/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [1] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`server.port`](/docs/registry/attributes/server.md) | int | Server port number. [2] | `80`; `8080`; `443` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
@@ -119,8 +119,8 @@ if they do not cause breaking changes to HTTP semantic conventions.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`client.address`](/docs/attributes-registry/client.md) | string | Client address - domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [1] | `client.example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`client.port`](/docs/attributes-registry/client.md) | int | Client port number. [2] | `65123` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`client.address`](/docs/registry/attributes/client.md) | string | Client address - domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [1] | `client.example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`client.port`](/docs/registry/attributes/client.md) | int | Client port number. [2] | `65123` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1] `client.address`:** When observed from the server side, and when communicating through an intermediary, `client.address` SHOULD represent the client address behind any intermediaries,  for example proxies, if it's available.
 
@@ -151,8 +151,8 @@ This also covers unidirectional UDP flows and peer-to-peer communication where t
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`source.address`](/docs/attributes-registry/source.md) | string | Source address - domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [1] | `source.example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`source.port`](/docs/attributes-registry/source.md) | int | Source port number | `3389`; `2888` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`source.address`](/docs/registry/attributes/source.md) | string | Source address - domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [1] | `source.example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`source.port`](/docs/registry/attributes/source.md) | int | Source port number | `3389`; `2888` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `source.address`:** When observed from the destination side, and when communicating through an intermediary, `source.address` SHOULD represent the source address behind any intermediaries, for example proxies, if it's available.
 
@@ -174,8 +174,8 @@ Destination fields capture details about the receiver of a network exchange/pack
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`destination.address`](/docs/attributes-registry/destination.md) | string | Destination address - domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [1] | `destination.example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`destination.port`](/docs/attributes-registry/destination.md) | int | Destination port number | `3389`; `2888` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`destination.address`](/docs/registry/attributes/destination.md) | string | Destination address - domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [1] | `destination.example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`destination.port`](/docs/registry/attributes/destination.md) | int | Destination port number | `3389`; `2888` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `destination.address`:** When observed from the source side, and when communicating through an intermediary, `destination.address` SHOULD represent the destination address behind any intermediaries, for example proxies, if it's available.
 
@@ -202,14 +202,14 @@ if they do not cause breaking changes to HTTP semantic conventions.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`network.local.address`](/docs/attributes-registry/network.md) | string | Local address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.local.port`](/docs/attributes-registry/network.md) | int | Local port number of the network connection. | `65123` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.peer.address`](/docs/attributes-registry/network.md) | string | Peer address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.peer.port`](/docs/attributes-registry/network.md) | int | Peer port number of the network connection. | `65123` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.protocol.name`](/docs/attributes-registry/network.md) | string | [OSI application layer](https://wikipedia.org/wiki/Application_layer) or non-OSI equivalent. [1] | `amqp`; `http`; `mqtt` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.protocol.version`](/docs/attributes-registry/network.md) | string | The actual version of the protocol used for network communication. [2] | `1.1`; `2` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.transport`](/docs/attributes-registry/network.md) | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [3] | `tcp`; `udp` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.type`](/docs/attributes-registry/network.md) | string | [OSI network layer](https://wikipedia.org/wiki/Network_layer) or non-OSI equivalent. [4] | `ipv4`; `ipv6` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.local.address`](/docs/registry/attributes/network.md) | string | Local address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.local.port`](/docs/registry/attributes/network.md) | int | Local port number of the network connection. | `65123` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.peer.address`](/docs/registry/attributes/network.md) | string | Peer address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.peer.port`](/docs/registry/attributes/network.md) | int | Peer port number of the network connection. | `65123` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.protocol.name`](/docs/registry/attributes/network.md) | string | [OSI application layer](https://wikipedia.org/wiki/Application_layer) or non-OSI equivalent. [1] | `amqp`; `http`; `mqtt` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.protocol.version`](/docs/registry/attributes/network.md) | string | The actual version of the protocol used for network communication. [2] | `1.1`; `2` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.transport`](/docs/registry/attributes/network.md) | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [3] | `tcp`; `udp` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.type`](/docs/registry/attributes/network.md) | string | [OSI network layer](https://wikipedia.org/wiki/Network_layer) or non-OSI equivalent. [4] | `ipv4`; `ipv6` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1] `network.protocol.name`:** The value SHOULD be normalized to lowercase.
 
@@ -230,7 +230,7 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 | Value  | Description | Stability |
 |---|---|---|
 | `pipe` | Named or anonymous pipe. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `quic` | QUIC | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `quic` | QUIC | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `tcp` | TCP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `udp` | UDP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `unix` | Unix domain socket | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -299,12 +299,12 @@ Note that `network.local.*` attributes are not included in these examples since 
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`network.carrier.icc`](/docs/attributes-registry/network.md) | string | The ISO 3166-1 alpha-2 2-character country code associated with the mobile carrier network. | `DE` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`network.carrier.mcc`](/docs/attributes-registry/network.md) | string | The mobile carrier country code. | `310` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`network.carrier.mnc`](/docs/attributes-registry/network.md) | string | The mobile carrier network code. | `001` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`network.carrier.name`](/docs/attributes-registry/network.md) | string | The name of the mobile carrier. | `sprint` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`network.connection.subtype`](/docs/attributes-registry/network.md) | string | This describes more details regarding the connection.type. It may be the type of cell technology connection, but it could be used for describing details about a wifi connection. | `LTE` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`network.connection.type`](/docs/attributes-registry/network.md) | string | The internet connection type. | `wifi` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`network.carrier.icc`](/docs/registry/attributes/network.md) | string | The ISO 3166-1 alpha-2 2-character country code associated with the mobile carrier network. | `DE` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`network.carrier.mcc`](/docs/registry/attributes/network.md) | string | The mobile carrier country code. | `310` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`network.carrier.mnc`](/docs/registry/attributes/network.md) | string | The mobile carrier network code. | `001` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`network.carrier.name`](/docs/registry/attributes/network.md) | string | The name of the mobile carrier. | `sprint` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`network.connection.subtype`](/docs/registry/attributes/network.md) | string | This describes more details regarding the connection.type. It may be the type of cell technology connection, but it could be used for describing details about a wifi connection. | `LTE` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`network.connection.type`](/docs/registry/attributes/network.md) | string | The internet connection type. | `wifi` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -312,27 +312,27 @@ Note that `network.local.*` attributes are not included in these examples since 
 
 | Value  | Description | Stability |
 |---|---|---|
-| `cdma` | CDMA | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `cdma2000_1xrtt` | CDMA2000 1XRTT | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `edge` | EDGE | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `ehrpd` | EHRPD | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `evdo_0` | EVDO Rel. 0 | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `evdo_a` | EVDO Rev. A | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `evdo_b` | EVDO Rev. B | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `gprs` | GPRS | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `gsm` | GSM | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `hsdpa` | HSDPA | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `hspa` | HSPA | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `hspap` | HSPAP | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `hsupa` | HSUPA | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `iden` | IDEN | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `iwlan` | IWLAN | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `lte` | LTE | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `lte_ca` | LTE CA | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `nr` | 5G NR (New Radio) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `nrnsa` | 5G NRNSA (New Radio Non-Standalone) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `td_scdma` | TD-SCDMA | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `umts` | UMTS | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `cdma` | CDMA | ![Development](https://img.shields.io/badge/-development-blue) |
+| `cdma2000_1xrtt` | CDMA2000 1XRTT | ![Development](https://img.shields.io/badge/-development-blue) |
+| `edge` | EDGE | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ehrpd` | EHRPD | ![Development](https://img.shields.io/badge/-development-blue) |
+| `evdo_0` | EVDO Rel. 0 | ![Development](https://img.shields.io/badge/-development-blue) |
+| `evdo_a` | EVDO Rev. A | ![Development](https://img.shields.io/badge/-development-blue) |
+| `evdo_b` | EVDO Rev. B | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gprs` | GPRS | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gsm` | GSM | ![Development](https://img.shields.io/badge/-development-blue) |
+| `hsdpa` | HSDPA | ![Development](https://img.shields.io/badge/-development-blue) |
+| `hspa` | HSPA | ![Development](https://img.shields.io/badge/-development-blue) |
+| `hspap` | HSPAP | ![Development](https://img.shields.io/badge/-development-blue) |
+| `hsupa` | HSUPA | ![Development](https://img.shields.io/badge/-development-blue) |
+| `iden` | IDEN | ![Development](https://img.shields.io/badge/-development-blue) |
+| `iwlan` | IWLAN | ![Development](https://img.shields.io/badge/-development-blue) |
+| `lte` | LTE | ![Development](https://img.shields.io/badge/-development-blue) |
+| `lte_ca` | LTE CA | ![Development](https://img.shields.io/badge/-development-blue) |
+| `nr` | 5G NR (New Radio) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `nrnsa` | 5G NRNSA (New Radio Non-Standalone) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `td_scdma` | TD-SCDMA | ![Development](https://img.shields.io/badge/-development-blue) |
+| `umts` | UMTS | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -340,11 +340,11 @@ Note that `network.local.*` attributes are not included in these examples since 
 
 | Value  | Description | Stability |
 |---|---|---|
-| `cell` | cell | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `unavailable` | unavailable | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `unknown` | unknown | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `wifi` | wifi | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `wired` | wired | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `cell` | cell | ![Development](https://img.shields.io/badge/-development-blue) |
+| `unavailable` | unavailable | ![Development](https://img.shields.io/badge/-development-blue) |
+| `unknown` | unknown | ![Development](https://img.shields.io/badge/-development-blue) |
+| `wifi` | wifi | ![Development](https://img.shields.io/badge/-development-blue) |
+| `wired` | wired | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -368,7 +368,7 @@ Instrumentations SHOULD provide a way for users to configure this name.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`peer.service`](/docs/attributes-registry/peer.md) | string | The [`service.name`](/docs/resource/README.md#service) of the remote service. SHOULD be equal to the actual `service.name` resource attribute of the remote service if any. | `AuthTokenCache` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`peer.service`](/docs/registry/attributes/peer.md) | string | The [`service.name`](/docs/resource/README.md#service) of the remote service. SHOULD be equal to the actual `service.name` resource attribute of the remote service if any. | `AuthTokenCache` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -394,8 +394,8 @@ a thread that started a span.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`thread.id`](/docs/attributes-registry/thread.md) | int | Current "managed" thread ID (as opposed to OS thread ID). | `42` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`thread.name`](/docs/attributes-registry/thread.md) | string | Current thread name. | `main` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`thread.id`](/docs/registry/attributes/thread.md) | int | Current "managed" thread ID (as opposed to OS thread ID). | `42` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`thread.name`](/docs/registry/attributes/thread.md) | string | Current thread name. | `main` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -413,33 +413,14 @@ Examples of where `thread.id` and `thread.name` can be extracted from:
 | C++                   | `std::this_thread::get_id()`           |                                                |
 | Erlang                | `erlang:self()`                        | `erlang:process_info(self(), registered_name)` |
 
-## Source Code Attributes
+## Source code attributes
+
+**Status**: [Release Candidate][DocumentStatus]
 
 Often a span is closely tied to a certain unit of code that is logically responsible for handling
 the operation that the span describes (usually the method that starts the span).
 For an HTTP server span, this would be the function that handles the incoming request, for example.
-The attributes listed below allow to report this unit of code and therefore to provide more context
-about the span.
-
-<!-- semconv code -->
-<!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
-<!-- see templates/registry/markdown/snippet.md.j2 -->
-<!-- prettier-ignore-start -->
-<!-- markdownlint-capture -->
-<!-- markdownlint-disable -->
-
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`code.column.number`](/docs/attributes-registry/code.md) | int | The column number in `code.file.path` best representing the operation. It SHOULD point within the code unit named in `code.function.name`. | `16` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`code.filepath`](/docs/attributes-registry/code.md) | string | Deprecated, use `code.file.path` instead | `/usr/local/MyApplication/content_root/app/index.php` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`code.function.name`](/docs/attributes-registry/code.md) | string | The method or function name, or equivalent (usually rightmost part of the code unit's name). | `serveRequest` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`code.line.number`](/docs/attributes-registry/code.md) | int | The line number in `code.file.path` best representing the operation. It SHOULD point within the code unit named in `code.function.name`. | `42` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`code.namespace`](/docs/attributes-registry/code.md) | string | The "namespace" within which `code.function.name` is defined. Usually the qualified class or module name, such that `code.namespace` + some separator + `code.function.name` form a unique identifier for the code unit. | `com.example.MyHttpService` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| [`code.stacktrace`](/docs/attributes-registry/code.md) | string | A stacktrace as a string in the natural representation for the language runtime. The representation is to be determined and documented by each language SIG. | `at com.example.GenerateTrace.methodB(GenerateTrace.java:13)\n at com.example.GenerateTrace.methodA(GenerateTrace.java:9)\n at com.example.GenerateTrace.main(GenerateTrace.java:5)` | `Opt-In` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-
-<!-- markdownlint-restore -->
-<!-- prettier-ignore-end -->
-<!-- END AUTOGENERATED TEXT -->
-<!-- endsemconv -->
+The [code attributes](https://opentelemetry.io/docs/specs/semconv/registry/attributes/code/) allow to report this unit of code
+and therefore to provide more context.
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status

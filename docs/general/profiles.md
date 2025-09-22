@@ -2,20 +2,24 @@
 linkTitle: Profiles
 --->
 
-# General profiles attributes
+# Profiles attributes
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Development][DocumentStatus]
 
 <!-- toc -->
 
-- [Frame types](#frame-types)
+- [General profiles identification attributes](#general-profiles-identification-attributes)
+  - [Frame types](#frame-types)
+- [Compatibility with pprof](#compatibility-with-pprof)
 
 <!-- tocstop -->
+
+## General profiles identification attributes
 
 The attributes described in this section are rather generic.
 They may be used in any Profiles record they apply to.
 
-## Frame types
+### Frame types
 
 **Description:** Describes the origin of a single frame in a Profile.
 
@@ -28,7 +32,7 @@ They may be used in any Profiles record they apply to.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`profile.frame.type`](/docs/attributes-registry/profile.md) | string | Describes the interpreter or compiler of a single frame. | `cpython` | `Recommended` | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| [`profile.frame.type`](/docs/registry/attributes/profile.md) | string | Describes the interpreter or compiler of a single frame. | `cpython` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -36,16 +40,47 @@ They may be used in any Profiles record they apply to.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `beam` | [Erlang](https://en.wikipedia.org/wiki/BEAM_(Erlang_virtual_machine)) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `cpython` | [Python](https://wikipedia.org/wiki/Python_(programming_language)) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `dotnet` | [.NET](https://wikipedia.org/wiki/.NET) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `jvm` | [JVM](https://wikipedia.org/wiki/Java_virtual_machine) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `kernel` | [Kernel](https://wikipedia.org/wiki/Kernel_(operating_system)) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `native` | [C](https://wikipedia.org/wiki/C_(programming_language)), [C++](https://wikipedia.org/wiki/C%2B%2B), [Go](https://wikipedia.org/wiki/Go_(programming_language)), [Rust](https://wikipedia.org/wiki/Rust_(programming_language)) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `perl` | [Perl](https://wikipedia.org/wiki/Perl) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `php` | [PHP](https://wikipedia.org/wiki/PHP) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `ruby` | [Ruby](https://wikipedia.org/wiki/Ruby_(programming_language)) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
-| `v8js` | [V8JS](https://wikipedia.org/wiki/V8_(JavaScript_engine)) | ![Experimental](https://img.shields.io/badge/-experimental-blue) |
+| `beam` | [Erlang](https://en.wikipedia.org/wiki/BEAM_(Erlang_virtual_machine)) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `cpython` | [Python](https://wikipedia.org/wiki/Python_(programming_language)) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `dotnet` | [.NET](https://wikipedia.org/wiki/.NET) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `go` | [Go](https://wikipedia.org/wiki/Go_(programming_language)), | ![Development](https://img.shields.io/badge/-development-blue) |
+| `jvm` | [JVM](https://wikipedia.org/wiki/Java_virtual_machine) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `kernel` | [Kernel](https://wikipedia.org/wiki/Kernel_(operating_system)) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `native` | Can be one of but not limited to [C](https://wikipedia.org/wiki/C_(programming_language)), [C++](https://wikipedia.org/wiki/C%2B%2B), [Go](https://wikipedia.org/wiki/Go_(programming_language)) or [Rust](https://wikipedia.org/wiki/Rust_(programming_language)). If possible, a more precise value MUST be used. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `perl` | [Perl](https://wikipedia.org/wiki/Perl) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `php` | [PHP](https://wikipedia.org/wiki/PHP) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ruby` | [Ruby](https://wikipedia.org/wiki/Ruby_(programming_language)) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `rust` | [Rust](https://wikipedia.org/wiki/Rust_(programming_language)) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `v8js` | [V8JS](https://wikipedia.org/wiki/V8_(JavaScript_engine)) | ![Development](https://img.shields.io/badge/-development-blue) |
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+<!-- END AUTOGENERATED TEXT -->
+<!-- endsemconv -->
+
+## Compatibility with pprof
+
+Existing [pprof][pprofLink] formats can be unambiguously mapped to this data
+model. Reverse mapping from this data model is also possible to the extent that
+the target profiles format has equivalent capabilities.
+
+The attributes described in this section are specific to support convertibility.
+They may be used in any Profiles record they apply to.
+
+<!-- semconv pprof(full) -->
+<!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
+<!-- see templates/registry/markdown/snippet.md.j2 -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-capture -->
+<!-- markdownlint-disable -->
+
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|
+| [`pprof.location.is_folded`](/docs/registry/attributes/pprof.md) | boolean | Provides an indication that multiple symbols map to this location's address, for example due to identical code folding by the linker. In that case the line information represents one of the multiple symbols. This field must be recomputed when the symbolization state of the profile changes. |  | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`pprof.mapping.has_filenames`](/docs/registry/attributes/pprof.md) | boolean | Indicates that there are filenames related to this mapping. |  | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`pprof.mapping.has_functions`](/docs/registry/attributes/pprof.md) | boolean | Indicates that there are functions related to this mapping. |  | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`pprof.mapping.has_inline_frames`](/docs/registry/attributes/pprof.md) | boolean | Indicates that there are inline frames related to this mapping. |  | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`pprof.mapping.has_line_numbers`](/docs/registry/attributes/pprof.md) | boolean | Indicates that there are line numbers related to this mapping. |  | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -53,3 +88,4 @@ They may be used in any Profiles record they apply to.
 <!-- endsemconv -->
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
+[pprofLink]: https://github.com/google/pprof

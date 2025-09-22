@@ -6,7 +6,7 @@ groups:
       This document defines log attributes
     attributes:
       - id: log.iostream
-        stability: experimental
+        stability: development
         brief: >
           The stream associated with the log. See below for a list of well-known values.
         type:
@@ -14,11 +14,11 @@ groups:
             - id: stdout
               value: 'stdout'
               brief: 'Logs from stdout stream'
-              stability: experimental
+              stability: development
             - id: stderr
               value: 'stderr'
               brief: 'Events from stderr stream'
-              stability: experimental
+              stability: development
 
   - id: registry.log.file    # TODO: should we move it to the file model?
     type: attribute_group
@@ -28,25 +28,25 @@ groups:
     attributes:
       - id: log.file.name
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The basename of the file.
         examples: [ "audit.log" ]
       - id: log.file.path
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The full path to the file.
         examples: [ "/var/log/mysql/audit.log" ]
       - id: log.file.name_resolved
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The basename of the file, with symlinks resolved.
         examples: [ "uuid.log" ]
       - id: log.file.path_resolved
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The full path to the file, with symlinks resolved.
         examples: [ "/var/lib/docker/uuid.log" ]
@@ -59,7 +59,7 @@ groups:
     attributes:
       - id: log.record.uid
         type: string
-        stability: experimental
+        stability: development
         brief: >
           A unique identifier for the Log Record.
         note: >
@@ -71,7 +71,7 @@ groups:
         examples: ["01ARZ3NDEKTSV4RRFFQ69G5FAV"]
       - id: log.record.original
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The complete original Log Record.
         note: >

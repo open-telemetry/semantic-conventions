@@ -6,13 +6,17 @@ groups:
     attributes:
       - id: enduser.role
         type: string
-        deprecated: "Replaced by `user.roles` attribute."
-        stability: experimental
+        deprecated:
+          reason: uncategorized
+          renamed_to: Use `user.roles` instead.
+        stability: development
         brief: "Deprecated, use `user.roles` instead."
         examples: 'admin'
       - id: enduser.scope
         type: string
-        deprecated: "Removed."
-        stability: experimental
+        deprecated:
+          reason: obsoleted
+          note: Removed, no replacement at this time.
+        stability: development
         brief: "Deprecated, no replacement at this time."
         examples: 'read:message, write:files'

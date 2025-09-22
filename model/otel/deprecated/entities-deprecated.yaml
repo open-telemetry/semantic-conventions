@@ -1,0 +1,14 @@
+groups:
+  - id: entity.otel.scope
+    # This should not be a resource, but an attribute group.
+    type: entity
+    stability: development
+    name: otel.scope
+    deprecated:
+      reason: obsoleted
+    brief: Attributes used by non-OTLP exporters to represent OpenTelemetry Scope's concepts.
+    attributes:
+      - ref: otel.scope.name
+        requirement_level: recommended
+      - ref: otel.scope.version
+        requirement_level: recommended

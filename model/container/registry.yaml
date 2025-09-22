@@ -7,33 +7,47 @@ groups:
     attributes:
       - id: container.name
         type: string
-        stability: experimental
+        stability: development
         brief: >
           Container name used by container runtime.
         examples: ['opentelemetry-autoconf']
       - id: container.id
         type: string
-        stability: experimental
+        stability: development
         brief: >
           Container ID. Usually a UUID, as for example used to
           [identify Docker containers](https://docs.docker.com/engine/containers/run/#container-identification).
           The UUID might be abbreviated.
         examples: ['a3bf90e006b2']
-      - id: container.runtime
+      - id: container.runtime.name
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The container runtime managing this container.
         examples: ['docker', 'containerd', 'rkt']
+      - id: container.runtime.version
+        type: string
+        stability: development
+        brief: >
+          The version of the runtime of this process, as returned by the runtime
+          without modification.
+        examples: '1.0.0'
+      - id: container.runtime.description
+        type: string
+        stability: development
+        brief: >
+          A description about the runtime which could include, for example
+          details about the CRI/API version being used or other customisations.
+        examples: ['docker://19.3.1 - CRI: 1.22.0']
       - id: container.image.name
         type: string
-        stability: experimental
+        stability: development
         brief: >
           Name of the image the container was built on.
         examples: ['gcr.io/opentelemetry/operator']
       - id: container.image.tags
         type: string[]
-        stability: experimental
+        stability: development
         brief: >
           Container image tags. An example can be found in
           [Docker Image Inspect](https://docs.docker.com/engine/api/v1.43/#tag/Image/operation/ImageInspect).
@@ -43,7 +57,7 @@ groups:
           - ['v1.27.1', '3.5.7-0']
       - id: container.image.id
         type: string
-        stability: experimental
+        stability: development
         brief: >
           Runtime specific image identifier. Usually a hash algorithm followed by a UUID.
         note: >
@@ -60,7 +74,7 @@ groups:
         examples: ['sha256:19c92d0a00d1b66d897bceaa7319bee0dd38a10a851c60bcec9474aa3f01e50f']
       - id: container.image.repo_digests
         type: string[]
-        stability: experimental
+        stability: development
         brief: >
           Repo digests of the container image as provided by the container runtime.
         note: >
@@ -74,7 +88,7 @@ groups:
           ]
       - id: container.command
         type: string
-        stability: experimental
+        stability: development
         note: >
           If using embedded credentials or sensitive data, it is recommended to remove them to prevent potential leakage.
         brief: >
@@ -82,26 +96,29 @@ groups:
         examples: [ 'otelcontribcol' ]
       - id: container.command_line
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The full command run by the container as a single string representing the full command.
         examples: [ 'otelcontribcol --config config.yaml' ]
       - id: container.command_args
         type: string[]
-        stability: experimental
+        stability: development
         brief: >
           All the command arguments (including the command/executable itself) run by the container.
         examples:
           - [ 'otelcontribcol', '--config', 'config.yaml' ]
       - id: container.label
         type: template[string]
-        stability: experimental
+        stability: development
         brief: >
           Container labels, `<key>` being the label name, the value being the label value.
-        examples: [ 'container.label.app=nginx' ]
+        note: >
+          For example, a docker container label `app` with value `nginx` SHOULD be recorded
+          as the `container.label.app` attribute with value `"nginx"`.
+        examples: [ 'nginx' ]
       - id: container.csi.plugin.name
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The name of the CSI ([Container Storage Interface](https://github.com/container-storage-interface/spec)) plugin used by the volume.
         note: >
@@ -111,7 +128,7 @@ groups:
           - "pd.csi.storage.gke.io"
       - id: container.csi.volume.id
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The unique volume ID returned by the CSI ([Container Storage Interface](https://github.com/container-storage-interface/spec)) plugin.
         note: >

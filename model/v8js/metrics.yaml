@@ -2,23 +2,29 @@ groups:
   - id: metric.v8js.gc.duration
     type: metric
     metric_name: v8js.gc.duration
+    annotations:
+      code_generation:
+        metric_value_type: double
     brief: "Garbage collection duration."
     instrument: histogram
     unit: "s"
-    stability: experimental
+    stability: development
     attributes:
       - ref: v8js.gc.type
         requirement_level: required
     note: >
-      The values can be retrieve from [`perf_hooks.PerformanceObserver(...).observe({ entryTypes: ['gc'] })`](https://nodejs.org/api/perf_hooks.html#performanceobserverobserveoptions)
+      The values can be retrieved from [`perf_hooks.PerformanceObserver(...).observe({ entryTypes: ['gc'] })`](https://nodejs.org/api/perf_hooks.html#performanceobserverobserveoptions)
 
   - id: metric.v8js.memory.heap.limit
     type: metric
     metric_name: v8js.memory.heap.limit
+    annotations:
+      code_generation:
+        metric_value_type: int
     brief: "Total heap memory size pre-allocated."
     instrument: updowncounter
     unit: "By"
-    stability: experimental
+    stability: development
     attributes:
       - ref: v8js.heap.space.name
         requirement_level: required
@@ -29,10 +35,13 @@ groups:
   - id: metric.v8js.memory.heap.used
     type: metric
     metric_name: v8js.memory.heap.used
+    annotations:
+      code_generation:
+        metric_value_type: int
     brief: "Heap Memory size allocated."
     instrument: updowncounter
     unit: "By"
-    stability: experimental
+    stability: development
     attributes:
       - ref: v8js.heap.space.name
         requirement_level: required
@@ -43,10 +52,13 @@ groups:
   - id: metric.v8js.heap.space.available_size
     type: metric
     metric_name: v8js.heap.space.available_size
+    annotations:
+      code_generation:
+        metric_value_type: int
     brief: "Heap space available size."
     instrument: updowncounter
     unit: "By"
-    stability: experimental
+    stability: development
     attributes:
       - ref: v8js.heap.space.name
         requirement_level: required
@@ -56,10 +68,13 @@ groups:
   - id: metric.v8js.heap.space.physical_size
     type: metric
     metric_name: v8js.heap.space.physical_size
+    annotations:
+      code_generation:
+        metric_value_type: int
     brief: "Committed size of a heap space."
     instrument: updowncounter
     unit: "By"
-    stability: experimental
+    stability: development
     attributes:
       - ref: v8js.heap.space.name
         requirement_level: required

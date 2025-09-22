@@ -2,7 +2,10 @@ groups:
   - id: metric.process.cpu.time
     type: metric
     metric_name: process.cpu.time
-    stability: experimental
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
     brief: "Total CPU seconds broken down by different states."
     instrument: counter
     unit: "s"
@@ -12,11 +15,16 @@ groups:
           A process SHOULD be characterized _either_ by data points with no `mode`
           labels, _or only_ data points with `mode` labels.
         note: "Following states SHOULD be used: `user`, `system`, `wait`"
+    entity_associations:
+      - process
 
   - id: metric.process.cpu.utilization
     type: metric
     metric_name: process.cpu.utilization
-    stability: experimental
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
     brief:
       Difference in process.cpu.time since the last measurement, divided by the elapsed time and number of CPUs
       available to the process.
@@ -28,88 +36,135 @@ groups:
           A process SHOULD be characterized _either_ by data points with no `mode`
           labels, _or only_ data points with `mode` labels.
         note: "Following states SHOULD be used: `user`, `system`, `wait`"
+    entity_associations:
+      - process
 
   - id: metric.process.memory.usage
     type: metric
     metric_name: process.memory.usage
-    stability: experimental
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
     brief: "The amount of physical memory in use."
     instrument: updowncounter
     unit: "By"
     attributes: []
+    entity_associations:
+      - process
 
   - id: metric.process.memory.virtual
     type: metric
     metric_name: process.memory.virtual
-    stability: experimental
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
     brief: "The amount of committed virtual memory."
     instrument: updowncounter
     unit: "By"
     attributes: []
+    entity_associations:
+      - process
 
   - id: metric.process.disk.io
     type: metric
     metric_name: process.disk.io
-    stability: experimental
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
     brief: "Disk bytes transferred."
     instrument: counter
     unit: "By"
     attributes:
       - ref: disk.io.direction
+    entity_associations:
+      - process
 
   - id: metric.process.network.io
     type: metric
     metric_name: process.network.io
-    stability: experimental
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
     brief: "Network bytes transferred."
     instrument: counter
     unit: "By"
     attributes:
       - ref: network.io.direction
+    entity_associations:
+      - process
 
   - id: metric.process.thread.count
     type: metric
     metric_name: process.thread.count
-    stability: experimental
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
     brief: "Process threads count."
     instrument: updowncounter
     unit: "{thread}"
+    entity_associations:
+      - process
 
   - id: metric.process.open_file_descriptor.count
     type: metric
     metric_name: process.open_file_descriptor.count
-    stability: experimental
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
     brief: "Number of file descriptors in use by the process."
     instrument: updowncounter
     unit: "{file_descriptor}"
+    entity_associations:
+      - process
 
   - id: metric.process.context_switches
     type: metric
     metric_name: process.context_switches
-    stability: experimental
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
     brief: "Number of times the process has been context switched."
     instrument: counter
     unit: "{context_switch}"
     attributes:
       - ref: process.context_switch_type
+    entity_associations:
+      - process
 
   - id: metric.process.paging.faults
     type: metric
     metric_name: process.paging.faults
-    stability: experimental
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
     brief: "Number of page faults the process has made."
     instrument: counter
     unit: "{fault}"
     attributes:
       - ref: process.paging.fault_type
+    entity_associations:
+      - process
 
   - id: metric.process.uptime
     type: metric
     metric_name: process.uptime
-    stability: experimental
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
     brief: "The time the process has been running."
     note: |
       Instrumentations SHOULD use a gauge with type `double` and measure uptime in seconds as a floating point number with the highest precision available.
       The actual accuracy would depend on the instrumentation and operating system.
     instrument: gauge
     unit: "s"
+    entity_associations:
+      - process

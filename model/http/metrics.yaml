@@ -39,6 +39,9 @@ groups:
   - id: metric.http.server.request.duration
     type: metric
     metric_name: http.server.request.duration
+    annotations:
+      code_generation:
+        metric_value_type: double
     brief: "Duration of HTTP server requests."
     instrument: histogram
     unit: "s"
@@ -48,7 +51,10 @@ groups:
   - id: metric.http.server.active_requests
     type: metric
     metric_name: http.server.active_requests
-    stability: experimental
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
     brief: "Number of active HTTP server requests."
     instrument: updowncounter
     unit: "{request}"
@@ -80,7 +86,10 @@ groups:
   - id: metric.http.server.request.body.size
     type: metric
     metric_name: http.server.request.body.size
-    stability: experimental
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
     brief: "Size of HTTP server request bodies."
     instrument: histogram
     unit: "By"
@@ -93,7 +102,10 @@ groups:
   - id: metric.http.server.response.body.size
     type: metric
     metric_name: http.server.response.body.size
-    stability: experimental
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
     brief: "Size of HTTP server response bodies."
     instrument: histogram
     unit: "By"
@@ -106,6 +118,9 @@ groups:
   - id: metric.http.client.request.duration
     type: metric
     metric_name: http.client.request.duration
+    annotations:
+      code_generation:
+        metric_value_type: double
     brief: "Duration of HTTP client requests."
     instrument: histogram
     unit: "s"
@@ -115,7 +130,10 @@ groups:
   - id: metric.http.client.request.body.size
     type: metric
     metric_name: http.client.request.body.size
-    stability: experimental
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
     brief: "Size of HTTP client request bodies."
     instrument: histogram
     unit: "By"
@@ -128,7 +146,10 @@ groups:
   - id: metric.http.client.response.body.size
     type: metric
     metric_name: http.client.response.body.size
-    stability: experimental
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
     brief: "Size of HTTP client response bodies."
     instrument: histogram
     unit: "By"
@@ -141,7 +162,10 @@ groups:
   - id: metric.http.client.open_connections
     type: metric
     metric_name: http.client.open_connections
-    stability: experimental
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
     brief: "Number of outbound HTTP connections that are currently active or idle on the client."
     instrument: updowncounter
     unit: "{connection}"
@@ -156,8 +180,6 @@ groups:
         requirement_level: required
       - ref: server.port
         requirement_level: required
-        brief: >
-          Port identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to.
       - ref: url.scheme
         requirement_level: opt_in
         examples: ["http", "https"]
@@ -165,7 +187,10 @@ groups:
   - id: metric.http.client.connection.duration
     type: metric
     metric_name: http.client.connection.duration
-    stability: experimental
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
     brief: "The duration of the successfully established outbound HTTP connections."
     instrument: histogram
     unit: "s"
@@ -178,8 +203,6 @@ groups:
         requirement_level: required
       - ref: server.port
         requirement_level: required
-        brief: >
-          Port identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to.
       - ref: url.scheme
         requirement_level: opt_in
         examples: ["http", "https"]
@@ -187,7 +210,10 @@ groups:
   - id: metric.http.client.active_requests
     type: metric
     metric_name: http.client.active_requests
-    stability: experimental
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
     brief: "Number of active HTTP requests."
     instrument: updowncounter
     unit: "{request}"
@@ -196,10 +222,22 @@ groups:
         requirement_level: recommended
       - ref: server.address
         requirement_level: required
+        note: |
+          In HTTP/1.1, when the [request target](https://www.rfc-editor.org/rfc/rfc9112.html#name-request-target)
+          is passed in its [absolute-form](https://www.rfc-editor.org/rfc/rfc9112.html#section-3.2.2),
+          the `server.address` SHOULD match the host component of the request target.
+
+          In all other cases, `server.address` SHOULD match the host component of the
+          `Host` header in HTTP/1.1 or the `:authority` pseudo-header in HTTP/2 and HTTP/3.
       - ref: server.port
         requirement_level: required
-        brief: >
-          Port identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to.
+        note: |
+          In the case of HTTP/1.1, when the [request target](https://www.rfc-editor.org/rfc/rfc9112.html#name-request-target)
+          is passed in its [absolute-form](https://www.rfc-editor.org/rfc/rfc9112.html#section-3.2.2),
+          the `server.port` SHOULD match the port component of the request target.
+
+          In all other cases, `server.port` SHOULD match the port component of the
+          `Host` header in HTTP/1.1 or the `:authority` pseudo-header in HTTP/2 and HTTP/3.
       - ref: url.scheme
         requirement_level: opt_in
         examples: ["http", "https"]

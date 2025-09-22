@@ -4,7 +4,7 @@ linkTitle: GCP
 
 # GCP semantic conventions
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Development][DocumentStatus]
 
 This directory defines standards for resource attributes that only apply to
 Google Cloud Platform (GCP). If an attribute could apply to resources from more than one cloud
@@ -15,5 +15,6 @@ provider (like account ID, operating system, etc), it belongs in the parent
 
 - [Cloud Run](./cloud-run.md)
 - [Compute Engine](./gce.md)
+- [AppHub](./apphub.md)
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status

@@ -4,7 +4,7 @@ linkTitle: Cloud providers
 
 # Semantic conventions for cloud providers
 
-**Status**: [Experimental][DocumentStatus]
+**Status**: [Development][DocumentStatus]
 
 This document defines semantic conventions for cloud provider SDK spans, metrics and logs.
 
