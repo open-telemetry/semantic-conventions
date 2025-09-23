@@ -335,3 +335,11 @@ generate-schema-next:
 		--output /home/weaver/target
 		# --param next_version=$(NEXT_SEMCONV_VERSION)
 	$(TOOLS_DIR)/scripts/generate-schema-next.sh $(NEXT_SEMCONV_VERSION) $(LATEST_RELEASED_SEMCONV_VERSION) $(TOOLS_DIR)/bin/schema-diff.yaml
+
+.PHONY: areas-table-generation
+areas-table-generation:
+	docker run --rm -v ${PWD}:/repo -w /repo python:3-alpine python internal/tools/scripts/update-areas-table.py --install;
+
+.PHONY: areas-table-check
+areas-table-check:
+	docker run --rm -v ${PWD}:/repo -w /repo python:3-alpine python internal/tools/scripts/update-areas-table.py --install --check;

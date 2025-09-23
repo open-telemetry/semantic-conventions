@@ -9,4 +9,6 @@ Attributes for Events represented using Log Records.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="event-name" href="#event-name">`event.name`</a> | string | Identifies the class / type of event. | `browser.mouse.click`; `device.app.lifecycle` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by EventName top-level field on the LogRecord. |
+| <a id="event-name" href="#event-name">`event.name`</a> | string | Identifies the class / type of event. [1] | `browser.mouse.click`; `device.app.lifecycle` | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**[1] `event.name`:** This attribute SHOULD be used by non-OTLP exporters when destination does not support `EventName` or equivalent field. This attribute MAY be used by applications using existing logging libraries so that it can be used to set the `EventName` field by Collector or SDK components.

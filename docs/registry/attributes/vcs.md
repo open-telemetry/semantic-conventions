@@ -145,7 +145,7 @@ the `.git` extension.
 
 ## VCS Deprecated Attributes
 
-"Describes deprecated vcs attributes."
+Describes deprecated vcs attributes.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|

@@ -49,6 +49,7 @@ body:
         - area:elasticsearch
         - area:enduser
         - area:error
+        - area:event
         - area:exception
         - area:faas
         - area:feature-flag
@@ -70,13 +71,16 @@ body:
         - area:mainframe
         - area:messaging
         - area:network
+        - area:nfs
         - area:nodejs
         - area:oci
+        - area:onc-rpc
         - area:openai
         - area:opentracing
         - area:os
         - area:otel
         - area:peer
+        - area:pprof
         - area:process
         - area:profile
         - area:rpc

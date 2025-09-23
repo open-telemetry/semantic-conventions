@@ -71,6 +71,9 @@ then `<key>` SHOULD be the 0-based index.
 `db.query.parameter.<key>` SHOULD match
 up with the parameterized placeholders present in `db.query.text`.
 
+It is RECOMMENDED to capture the value as provided by the application
+without attempting to do any case normalization.
+
 `db.query.parameter.<key>` SHOULD NOT be captured on batch operations.
 
 Examples:
@@ -78,8 +81,8 @@ Examples:
 - For a query `SELECT * FROM users where username =  %s` with the parameter `"jdoe"`,
   the attribute `db.query.parameter.0` SHOULD be set to `"jdoe"`.
 
-- For a query `"SELECT * FROM users WHERE username = %(username)s;` with parameter
-  `username = "jdoe"`, the attribute `db.query.parameter.username` SHOULD be set to `"jdoe"`.
+- For a query `"SELECT * FROM users WHERE username = %(userName)s;` with parameter
+  `userName = "jdoe"`, the attribute `db.query.parameter.userName` SHOULD be set to `"jdoe"`.
 
 **[7] `db.query.summary`:** The query summary describes a class of database queries and is useful
 as a grouping key, especially when analyzing telemetry for database
@@ -321,7 +324,7 @@ Describes deprecated database attributes.
 
 ## Deprecated Database Metrics
 
-"Describes deprecated db metrics attributes."
+Describes deprecated db metrics attributes.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
