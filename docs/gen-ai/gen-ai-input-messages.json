@@ -1,22 +1,6 @@
 {
     "$defs": {
-        "GenericPart": {
-            "additionalProperties": true,
-            "description": "Represents an arbitrary message part with any type and properties.\nThis allows for extensibility with custom message part types.",
-            "properties": {
-                "type": {
-                    "description": "The type of the content captured in this part.",
-                    "title": "Type",
-                    "type": "string"
-                }
-            },
-            "required": [
-                "type"
-            ],
-            "title": "GenericPart",
-            "type": "object"
-        },
-        "InputMessage": {
+        "ChatMessage_Union_TextPart__ToolCallRequestPart__ToolCallResponsePart__GenericPart__": {
             "additionalProperties": true,
             "properties": {
                 "role": {
@@ -57,7 +41,23 @@
                 "role",
                 "parts"
             ],
-            "title": "InputMessage",
+            "title": "ChatMessage[Union[TextPart, ToolCallRequestPart, ToolCallResponsePart, GenericPart]]",
+            "type": "object"
+        },
+        "GenericPart": {
+            "additionalProperties": true,
+            "description": "Represents an arbitrary message part with any type and properties.\nThis allows for extensibility with custom message part types.",
+            "properties": {
+                "type": {
+                    "description": "The type of the content captured in this part.",
+                    "title": "Type",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "type"
+            ],
+            "title": "GenericPart",
             "type": "object"
         },
         "Role": {
@@ -172,7 +172,7 @@
     },
     "description": "Represents the list of input messages sent to the model.",
     "items": {
-        "$ref": "#/$defs/InputMessage"
+        "$ref": "#/$defs/ChatMessage_Union_TextPart__ToolCallRequestPart__ToolCallResponsePart__GenericPart__"
     },
     "title": "InputMessages",
     "type": "array"

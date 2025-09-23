@@ -58,10 +58,10 @@
                                 "$ref": "#/$defs/ToolCallResponsePart"
                             },
                             {
-                                "$ref": "#/$defs/GenericPart"
+                                "$ref": "#/$defs/ReasoningPart"
                             },
                             {
-                                "$ref": "#/$defs/ReasoningPart"
+                                "$ref": "#/$defs/GenericPart"
                             }
                         ]
                     },
