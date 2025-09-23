@@ -693,28 +693,28 @@ groups:
             - id: evicted
               value: 'Evicted'
               brief: 'The pod is evicted.'
-              stability: experimental
+              stability: development
             - id: node_affinity
               value: 'NodeAffinity'
               brief: 'The pod is in a status because of its node affinity'
-              stability: experimental
+              stability: development
             - id: node_lost
               value: 'NodeLost'
               brief: >
                 The reason on a pod when its state cannot be confirmed as kubelet is unresponsive
                 on the node it is (was) running.
-              stability: experimental
+              stability: development
             - id: shutdown
               value: 'Shutdown'
               brief: 'The node is shutdown'
-              stability: experimental
+              stability: development
             - id: unexpected_admission_error
               value: 'UnexpectedAdmissionError'
               brief: >
                 The pod was rejected admission to the node because of an error during admission
                 that could not be categorized.
-              stability: experimental
-        stability: experimental
+              stability: development
+        stability: development
         brief: >
           The reason for the pod state. Corresponds to the `reason` field of the:
           [K8s PodStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#podstatus-v1-core)
@@ -728,32 +728,32 @@ groups:
                 The pod has been accepted by the system, but one or more of the containers
                 has not been started. This includes time before being bound to a node, as well as time spent
                 pulling images onto the host.
-              stability: experimental
+              stability: development
             - id: running
               value: 'Running'
               brief: >
                 The pod has been bound to a node and all of the containers have been started.
                 At least one container is still running or is in the process of being restarted.
-              stability: experimental
+              stability: development
             - id: succeeded
               value: 'Succeeded'
               brief: >
                 All containers in the pod have voluntarily terminated
                 with a container exit code of 0, and the system is not going to restart any of these containers.
-              stability: experimental
+              stability: development
             - id: failed
               value: 'Failed'
               brief: >
                 All containers in the pod have terminated, and at least one container has
                 terminated in a failure (exited with a non-zero exit code or was stopped by the system).
-              stability: experimental
+              stability: development
             - id: unknown
               value: 'Unknown'
               brief: >
                 For some reason the state of the pod could not be obtained, typically due
                 to an error in communicating with the host of the pod.
-              stability: experimental
-        stability: experimental
+              stability: development
+        stability: development
         brief: >
           The phase for the pod. Corresponds to the `phase` field of the:
           [K8s PodStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#podstatus-v1-core)
