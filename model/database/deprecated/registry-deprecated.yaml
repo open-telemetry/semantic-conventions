@@ -225,47 +225,50 @@ groups:
           members:
             - id: all
               value: "all"
-              brief: All
+              brief: All of the replicas must respond.
               stability: development
             - id: each_quorum
               value: "each_quorum"
-              brief: Each Quorum
+              brief: A majority of the replicas in each datacenter must respond.
               stability: development
             - id: quorum
               value: "quorum"
-              brief: Quorum
+              brief: A majority (n/2 + 1) of the replicas must respond.
               stability: development
             - id: local_quorum
               value: "local_quorum"
-              brief: Local Quorum
+              brief: A majority of the replicas in the local datacenter (whichever datacenter the coordinator is in) must respond.
               stability: development
             - id: one
               value: "one"
-              brief: One
+              brief: Only a single replica must respond.
               stability: development
             - id: two
               value: "two"
-              brief: Two
+              brief: Two replicas must respond.
               stability: development
             - id: three
               value: "three"
-              brief: Three
+              brief: Three replicas must respond.
               stability: development
             - id: local_one
               value: "local_one"
-              brief: Local One
+              brief: Only a single replica must respond. In a multi-datacenter cluster, this also guarantees that read requests are not sent to replicas in a remote datacenter.
               stability: development
             - id: any
               value: "any"
-              brief: Any
+              brief: >
+                A single replica may respond, or the coordinator may store a hint.
+                If a hint is stored, the coordinator will later attempt to replay the hint and deliver the mutation to the replicas.
+                This consistency level is only accepted for write operations.
               stability: development
             - id: serial
               value: "serial"
-              brief: Serial
+              brief: This consistency level is only for use with lightweight transaction. Equivalent to QUORUM.
               stability: development
             - id: local_serial
               value: "local_serial"
-              brief: Local Serial
+              brief: Same as SERIAL but used to maintain consistency locally (within the single datacenter). Equivalent to LOCAL_QUORUM.
               stability: development
         stability: development
       - id: db.cassandra.idempotence

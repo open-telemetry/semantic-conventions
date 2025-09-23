@@ -211,17 +211,17 @@ Describes deprecated database attributes.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `all` | All | ![Development](https://img.shields.io/badge/-development-blue) |
-| `any` | Any | ![Development](https://img.shields.io/badge/-development-blue) |
-| `each_quorum` | Each Quorum | ![Development](https://img.shields.io/badge/-development-blue) |
-| `local_one` | Local One | ![Development](https://img.shields.io/badge/-development-blue) |
-| `local_quorum` | Local Quorum | ![Development](https://img.shields.io/badge/-development-blue) |
-| `local_serial` | Local Serial | ![Development](https://img.shields.io/badge/-development-blue) |
-| `one` | One | ![Development](https://img.shields.io/badge/-development-blue) |
-| `quorum` | Quorum | ![Development](https://img.shields.io/badge/-development-blue) |
-| `serial` | Serial | ![Development](https://img.shields.io/badge/-development-blue) |
-| `three` | Three | ![Development](https://img.shields.io/badge/-development-blue) |
-| `two` | Two | ![Development](https://img.shields.io/badge/-development-blue) |
+| `all` | All of the replicas must respond. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `any` | A single replica may respond, or the coordinator may store a hint. If a hint is stored, the coordinator will later attempt to replay the hint and deliver the mutation to the replicas. This consistency level is only accepted for write operations. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `each_quorum` | A majority of the replicas in each datacenter must respond. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `local_one` | Only a single replica must respond. In a multi-datacenter cluster, this also guarantees that read requests are not sent to replicas in a remote datacenter. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `local_quorum` | A majority of the replicas in the local datacenter (whichever datacenter the coordinator is in) must respond. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `local_serial` | Same as SERIAL but used to maintain consistency locally (within the single datacenter). Equivalent to LOCAL_QUORUM. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `one` | Only a single replica must respond. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `quorum` | A majority (n/2 + 1) of the replicas must respond. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `serial` | This consistency level is only for use with lightweight transaction. Equivalent to QUORUM. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `three` | Three replicas must respond. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `two` | Two replicas must respond. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
