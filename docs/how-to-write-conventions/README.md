@@ -1,8 +1,8 @@
 <!--- Hugo front matter used to generate the website version of this page:
-linkTitle: How to define new semantic conventions
+linkTitle: How to write conventions
 --->
 
-# How to define new semantic conventions
+# How to write semantic conventions
 
 **Status**: [Development][DocumentStatus]
 
