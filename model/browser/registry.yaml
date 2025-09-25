@@ -95,5 +95,3 @@ groups:
           This value is intended to be taken from the
           [Navigation API specification](https://developer.mozilla.org/en-US/docs/Web/API/NavigateEvent/hashChange).
         examples: [true, false]
-
-
