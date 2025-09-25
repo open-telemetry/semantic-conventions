@@ -335,3 +335,40 @@ groups:
         requirement_level: required
       - ref: aws.bedrock.knowledge_base.id
         requirement_level: recommended
+
+  - id: span.ibm.watsonx.ai.inference.client
+    extends: attributes.gen_ai.inference.client
+    stability: development
+    span_kind: client
+    type: span
+    brief: >
+      Semantic Conventions for [IBM WatsonX.AI](https://www.ibm.com/products/watsonx-ai) client spans extend
+      and override the semantic conventions for [Gen AI Spans](gen-ai-spans.md).
+    note: |
+      `gen_ai.provider.name` MUST be set to `"ibm.watsonx.ai"` and SHOULD be provided **at span creation time**.
+
+      **Span name** SHOULD be `{gen_ai.operation.name} {gen_ai.request.model}`.
+    attributes:
+      - ref: gen_ai.request.model
+        requirement_level: required
+      - ref: ibm.watsonx.ai.request.project_id
+        requirement_level:
+          conditionally_required: if the request includes a project_id
+      - ref: ibm.watsonx.ai.request.space_id
+        requirement_level:
+          conditionally_required: if the request includes a space_id
+      - ref: ibm.watsonx.ai.response.trace_id
+        requirement_level:
+          conditionally_required: if the response was received and includes a trace_id
+      - ref: ibm.watsonx.ai.request.version
+        requirement_level: recommended
+      - ref: ibm.watsonx.ai.decoding_method
+        requirement_level: recommended
+      - ref: ibm.watsonx.ai.random_seed
+        requirement_level: recommended
+      - ref: ibm.watsonx.ai.max_new_tokens
+        requirement_level: recommended
+      - ref: ibm.watsonx.ai.min_new_tokens
+        requirement_level: recommended
+      - ref: ibm.watsonx.ai.repetition_penalty
+        requirement_level: recommended

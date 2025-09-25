@@ -1,51 +1,51 @@
 groups:
-  - id: registry.watsonxai
+  - id: registry.ibm.watsonx.ai
     type: attribute_group
     display_name: WatsonX AI Attributes
     brief: >
       This group defines attributes for IBM WatsonX AI.
     attributes:
-      - id: watsonxai.request.project_id
+      - id: ibm.watsonx.ai.request.project_id
         stability: development
         type: string
         brief: The project ID in IBM WatsonX AI.
         examples: ['12345678-abcd-1234-efgh-1234567890ab']
-      - id: watsonxai.request.space_id
+      - id: ibm.watsonx.ai.request.space_id
         stability: development
         type: string
         brief: The space ID in IBM WatsonX AI.
         examples: ['abcdef12-3456-7890-abcd-ef1234567890']
-      - id: watsonxai.request.version
+      - id: ibm.watsonx.ai.request.version
         stability: development
         type: string
         brief: The version of the model being used.
         examples: ['1.0', '2.3.1']
-      - id: watsonxai.response.trace_id
+      - id: ibm.watsonx.ai.response.trace_id
         stability: development
         type: string
         brief: The trace ID returned by IBM WatsonX AI.
         examples: ['wxt-12345678-abcd-1234-efgh-1234567890ab']
-      - id: watsonxai.decoding_method
+      - id: ibm.watsonx.ai.decoding_method
         stability: development
         type: string
         brief: The decoding method used by WatsonX for generating responses.
         examples: ['greedy', 'sample']
-      - id: watsonxai.random_seed
+      - id: ibm.watsonx.ai.random_seed
         stability: development
         type: int
         brief: The random seed used by WatsonX for deterministic generation.
         examples: [42]
-      - id: watsonxai.max_new_tokens
+      - id: ibm.watsonx.ai.max_new_tokens
         stability: development
         type: int
         brief: The maximum number of new tokens to generate in the response.
         examples: [100]
-      - id: watsonxai.min_new_tokens
+      - id: ibm.watsonx.ai.min_new_tokens
         stability: development
         type: int
         brief: The minimum number of new tokens to generate in the response.
         examples: [10]
-      - id: watsonxai.repetition_penalty
+      - id: ibm.watsonx.ai.repetition_penalty
         stability: development
         type: double
         brief: The penalty applied to repeated tokens in the generated response.

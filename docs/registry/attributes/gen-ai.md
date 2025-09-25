@@ -4,7 +4,6 @@
 # Gen AI
 
 - [GenAI Attributes](#genai-attributes)
-- [IBM WatsonX AI Attributes](#ibm-watsonx-ai-attributes)
 - [Deprecated GenAI Attributes](#deprecated-genai-attributes)
 - [Deprecated OpenAI GenAI Attributes](#deprecated-openai-genai-attributes)
 
@@ -233,22 +232,6 @@ Datastore: A tool used by the agent to access and query structured or unstructur
 |---|---|---|
 | `input` | Input tokens (prompt, input, etc.) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `output` | Output tokens (completion, response, etc.) | ![Development](https://img.shields.io/badge/-development-blue) |
-
-## IBM WatsonX AI Attributes
-
-This group defines attributes specific to IBM WatsonX AI.
-
-| Attribute | Type | Description | Examples | Stability |
-|---|---|---|---|---|
-| <a id="gen-ai-watsonx-ai-request-project-id" href="#gen-ai-watsonx-ai-request-project-id">`gen_ai.watsonx.ai.request.project_id`</a> | string | The project ID in IBM WatsonX AI. | `12345678-abcd-1234-efgh-1234567890ab` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="gen-ai-watsonx-ai-request-space-id" href="#gen-ai-watsonx-ai-request-space-id">`gen_ai.watsonx.ai.request.space_id`</a> | string | The space ID in IBM WatsonX AI. | `abcdef12-3456-7890-abcd-ef1234567890` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="gen-ai-watsonx-ai-request-version" href="#gen-ai-watsonx-ai-request-version">`gen_ai.watsonx.ai.request.version`</a> | string | The version of the model being used. | `1.0`; `2.3.1` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="gen-ai-watsonx-ai-response-trace-id" href="#gen-ai-watsonx-ai-response-trace-id">`gen_ai.watsonx.ai.response.trace_id`</a> | string | The trace ID returned by IBM WatsonX AI. | `wxt-12345678-abcd-1234-efgh-1234567890ab` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="llm-watsonx-ai-decoding-method" href="#llm-watsonx-ai-decoding-method">`llm.watsonx.ai.decoding_method`</a> | string | The decoding method used by WatsonX for generating responses. | `greedy`; `sample` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="llm-watsonx-ai-max-new-tokens" href="#llm-watsonx-ai-max-new-tokens">`llm.watsonx.ai.max_new_tokens`</a> | int | The maximum number of new tokens to generate in the response. | `100` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="llm-watsonx-ai-min-new-tokens" href="#llm-watsonx-ai-min-new-tokens">`llm.watsonx.ai.min_new_tokens`</a> | int | The minimum number of new tokens to generate in the response. | `10` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="llm-watsonx-ai-random-seed" href="#llm-watsonx-ai-random-seed">`llm.watsonx.ai.random_seed`</a> | int | The random seed used by WatsonX for deterministic generation. | `42` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="llm-watsonx-ai-repetition-penalty" href="#llm-watsonx-ai-repetition-penalty">`llm.watsonx.ai.repetition_penalty`</a> | double | The penalty applied to repeated tokens in the generated response. | `1.2` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ## Deprecated GenAI Attributes
 

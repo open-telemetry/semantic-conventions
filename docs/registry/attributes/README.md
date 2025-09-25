@@ -72,6 +72,7 @@ Currently, the following namespaces exist:
 - [Heroku](heroku.md)
 - [Host](host.md)
 - [HTTP](http.md)
+- [Ibm](ibm.md)
 - [iOS](ios.md)
 - [JVM](jvm.md)
 - [K8s](k8s.md)
@@ -109,7 +110,6 @@ Currently, the following namespaces exist:
 - [User Agent](user-agent.md)
 - [V8js](v8js.md)
 - [VCS](vcs.md)
-- [Watsonxai](watsonxai.md)
 - [Webengine](webengine.md)
 - [zOS](zos.md)
 
