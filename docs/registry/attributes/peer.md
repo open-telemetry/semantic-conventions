@@ -9,4 +9,6 @@ Operations that access some remote service.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="peer-service" href="#peer-service">`peer.service`</a> | string | The [`service.name`](/docs/resource/README.md#service) of the remote service. SHOULD be equal to the actual `service.name` resource attribute of the remote service if any. | `AuthTokenCache` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="peer-service" href="#peer-service">`peer.service`</a> | string | The [`service.name`](/docs/resource/README.md#service) of the remote service. SHOULD be equal to the actual `service.name` resource attribute of the remote service if any. | `AuthTokenCache` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `peer.service.name`. |
+| <a id="peer-service-name" href="#peer-service-name">`peer.service.name`</a> | string | The [`service.name`](/docs/resource/README.md#service) of the remote service. SHOULD be equal to the actual `service.name` resource attribute of the remote service if any. | `shoppingcart` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="peer-service-namespace" href="#peer-service-namespace">`peer.service.namespace`</a> | string | The [`service.namespace`](/docs/resource/README.md#service) of the remote service. SHOULD be equal to the actual `service.namespace` resource attribute of the remote service if any. | `Shop` | ![Development](https://img.shields.io/badge/-development-blue) |
