@@ -70,7 +70,7 @@ the elapsed time in seconds.
 
 ### CPU Time to Utilization
 
-`rate(system.cpu.time[5m])/(5*60)` measured in [0 ,1] per core (limit equals to 1 core)
+`rate(system.cpu.time[5m])/(5*60)` measured in [0, 1] per core (limit equals to 1 core)
 
 `rate(k8s.pod.cpu.time[5m])/(5*60)/k8s.pod.cpu.limit`
 
