@@ -10,7 +10,7 @@ across the different areas of the Semantic Conventions.
 
 ## Policy
 * **recommended**: `*.cpu.time`
-* **OPTIONAL (Opt-In)**: `*.cpu.utilization`, `*.cpu.usage`,
+* **opt-in** (optional): `*.cpu.utilization`, `*.cpu.usage`,
   `*.cpu.limit_utilization`, `*.cpu.request_utilization`
 
 ## Rationale
