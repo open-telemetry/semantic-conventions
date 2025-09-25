@@ -5,8 +5,7 @@
 
 # Changelog
 
-- `peer`: rename `peer.service` to `peer.service.name` and introduce `peer.service.namespace`
-  to mirror `service.namespace`.
+<!-- next version -->
 
 ## v1.37.0
 
