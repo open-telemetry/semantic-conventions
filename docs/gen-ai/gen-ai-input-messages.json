@@ -1,6 +1,6 @@
 {
     "$defs": {
-        "ChatMessage_Union_TextPart__ToolCallRequestPart__ToolCallResponsePart__GenericPart__": {
+        "ChatMessage": {
             "additionalProperties": true,
             "properties": {
                 "role": {
@@ -29,6 +29,9 @@
                                 "$ref": "#/$defs/ToolCallResponsePart"
                             },
                             {
+                                "$ref": "#/$defs/ReasoningPart"
+                            },
+                            {
                                 "$ref": "#/$defs/GenericPart"
                             }
                         ]
@@ -41,7 +44,7 @@
                 "role",
                 "parts"
             ],
-            "title": "ChatMessage[Union[TextPart, ToolCallRequestPart, ToolCallResponsePart, GenericPart]]",
+            "title": "ChatMessage",
             "type": "object"
         },
         "GenericPart": {
@@ -58,6 +61,29 @@
                 "type"
             ],
             "title": "GenericPart",
+            "type": "object"
+        },
+        "ReasoningPart": {
+            "additionalProperties": true,
+            "description": "Represents reasoning/thinking content received from the model.",
+            "properties": {
+                "type": {
+                    "const": "reasoning",
+                    "description": "The type of the content captured in this part.",
+                    "title": "Type",
+                    "type": "string"
+                },
+                "content": {
+                    "description": "Reasoning/thinking content received from the model.",
+                    "title": "Content",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "type",
+                "content"
+            ],
+            "title": "ReasoningPart",
             "type": "object"
         },
         "Role": {
@@ -172,7 +198,7 @@
     },
     "description": "Represents the list of input messages sent to the model.",
     "items": {
-        "$ref": "#/$defs/ChatMessage_Union_TextPart__ToolCallRequestPart__ToolCallResponsePart__GenericPart__"
+        "$ref": "#/$defs/ChatMessage"
     },
     "title": "InputMessages",
     "type": "array"
