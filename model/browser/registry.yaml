@@ -50,3 +50,50 @@ groups:
           This value is intended to be taken from the Navigator API
           `navigator.language`.
         examples: ["en", "en-US", "fr", "fr-FR"]
+      - id: browser.navigation.type
+        stability: development
+        brief: 'The type of navigation'
+        note: >
+          The possible values are defined in the
+          [Navigation API specification](https://developer.mozilla.org/en-US/docs/Web/API/NavigationActivation/navigationType).
+        type:
+          members:
+            - id: push
+              value: push
+              stability: development
+              brief: >
+                A new location was navigated to, causing a new entry to be pushed onto the history list.
+            - id: replace
+              value: replace
+              stability: development
+              brief: >
+                The current location was replaced, causing the current entry to be replaced in the history list.
+            - id: reload
+              value: reload
+              stability: development
+              brief: >
+                The current location was reloaded.
+            - id: traverse
+              value: traverse
+              stability: development
+              brief: >
+                The browser navigated from one existing history entry to another existing history entry.
+        examples: ["push", "replace", "reload", "traverse"]
+      - id: browser.navigation.same_document
+        type: boolean
+        stability: development
+        brief: 'A boolean that is true if the navigation is within the same document'
+        note: >
+          This value is intended to be taken from the
+          [Navigation API specification](https://developer.mozilla.org/en-US/docs/Web/API/NavigationDestination/sameDocument).
+        examples: [true, false]
+      - id: browser.navigation.hash_change
+        type: boolean
+        stability: development
+        brief: 'A boolean that is true if the navigation is a fragment navigation.'
+        note: >
+          This value is intended to be taken from the
+          [Navigation API specification](https://developer.mozilla.org/en-US/docs/Web/API/NavigateEvent/hashChange).
+        examples: [true, false]
+
+
