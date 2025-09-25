@@ -12,7 +12,10 @@ The web browser attributes
 | <a id="browser-brands" href="#browser-brands">`browser.brands`</a> | string[] | Array of brand name and version separated by a space [1] | `[" Not A;Brand 99", "Chromium 99", "Chrome 99"]` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="browser-language" href="#browser-language">`browser.language`</a> | string | Preferred language of the user using the browser [2] | `en`; `en-US`; `fr`; `fr-FR` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="browser-mobile" href="#browser-mobile">`browser.mobile`</a> | boolean | A boolean that is true if the browser is running on a mobile device [3] |  | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="browser-platform" href="#browser-platform">`browser.platform`</a> | string | The platform on which the browser is running [4] | `Windows`; `macOS`; `Android` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="browser-navigation-hash-change" href="#browser-navigation-hash-change">`browser.navigation.hash_change`</a> | boolean | A boolean that is true if the navigation is a fragment navigation. [4] | `true`; `false` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="browser-navigation-same-document" href="#browser-navigation-same-document">`browser.navigation.same_document`</a> | boolean | A boolean that is true if the navigation is within the same document [5] | `true`; `false` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="browser-navigation-type" href="#browser-navigation-type">`browser.navigation.type`</a> | string | The type of navigation [6] | `push`; `replace`; `reload`; `traverse` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="browser-platform" href="#browser-platform">`browser.platform`</a> | string | The platform on which the browser is running [7] | `Windows`; `macOS`; `Android` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `browser.brands`:** This value is intended to be taken from the [UA client hints API](https://wicg.github.io/ua-client-hints/#interface) (`navigator.userAgentData.brands`).
 
@@ -20,5 +23,22 @@ The web browser attributes
 
 **[3] `browser.mobile`:** This value is intended to be taken from the [UA client hints API](https://wicg.github.io/ua-client-hints/#interface) (`navigator.userAgentData.mobile`). If unavailable, this attribute SHOULD be left unset.
 
-**[4] `browser.platform`:** This value is intended to be taken from the [UA client hints API](https://wicg.github.io/ua-client-hints/#interface) (`navigator.userAgentData.platform`). If unavailable, the legacy `navigator.platform` API SHOULD NOT be used instead and this attribute SHOULD be left unset in order for the values to be consistent.
+**[4] `browser.navigation.hash_change`:** This value is intended to be taken from the [Navigation API specification](https://developer.mozilla.org/en-US/docs/Web/API/NavigateEvent/hashChange).
+
+**[5] `browser.navigation.same_document`:** This value is intended to be taken from the [Navigation API specification](https://developer.mozilla.org/en-US/docs/Web/API/NavigationDestination/sameDocument).
+
+**[6] `browser.navigation.type`:** The possible values are defined in the [Navigation API specification](https://developer.mozilla.org/en-US/docs/Web/API/NavigationActivation/navigationType).
+
+**[7] `browser.platform`:** This value is intended to be taken from the [UA client hints API](https://wicg.github.io/ua-client-hints/#interface) (`navigator.userAgentData.platform`). If unavailable, the legacy `navigator.platform` API SHOULD NOT be used instead and this attribute SHOULD be left unset in order for the values to be consistent.
 The list of possible values is defined in the [W3C User-Agent Client Hints specification](https://wicg.github.io/ua-client-hints/#sec-ch-ua-platform). Note that some (but not all) of these values can overlap with values in the [`os.type` and `os.name` attributes](./os.md). However, for consistency, the values in the `browser.platform` attribute should capture the exact value that the user agent provides.
+
+---
+
+`browser.navigation.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `push` | A new location was navigated to, causing a new entry to be pushed onto the history list. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `reload` | The current location was reloaded. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `replace` | The current location was replaced, causing the current entry to be replaced in the history list. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `traverse` | The browser navigated from one existing history entry to another existing history entry. | ![Development](https://img.shields.io/badge/-development-blue) |
