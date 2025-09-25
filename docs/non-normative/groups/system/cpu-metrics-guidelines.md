@@ -34,7 +34,7 @@ not uniquely implemented in other systems like the
 [Docker stats API](https://docs.docker.com/reference/api/engine/version/v1.51/#tag/Container/operation/ContainerStats).
 
 ## Implementation Guidance
-* MUST emit `*.cpu.time` by default for system, process container, and k8s
+* SHOULD emit `*.cpu.time` by default for system, process container, and k8s
   resources.
 * SHOULD gate `*.cpu.*utilization` and `*.cpu.usage` metrics behind explicit
   configuration.
