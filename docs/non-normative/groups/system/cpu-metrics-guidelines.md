@@ -98,3 +98,8 @@ come with their own formula for calculating System's utilization.
 
 The standardization of `k8s.*.cpu.usage` is an exception since it is collected
 directly from the Kubelet's Stats API and is K8s specific. 
+
+## References
+
+1. [System CPU Utilization gist](https://gist.github.com/braydonk/b2381da98dc3c4fd5ac064045d556634) by Braydon Kains (@braydonk)
+2. Attempt to introduce an [optional normalized total CPU utilization metric](https://github.com/open-telemetry/semantic-conventions/issues/1873)
