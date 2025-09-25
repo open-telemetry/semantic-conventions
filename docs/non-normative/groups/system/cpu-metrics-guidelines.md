@@ -1,6 +1,6 @@
 ## Recommended vs Opt-In CPU Metrics
 
-The [**Instrument Naming**](../../../docs/general/naming.md#instrument-naming)
+The [**Instrument Naming**](/docs/general/naming.md#instrument-naming)
 section defines the `*.usage`, `*.limit`, `*.utilization`, and `*.time` metrics, but it does **not** specify
 their **requirement levels** (Recommended vs. Optional). Because these metrics convey overlapping information
 in different forms, implementations may become inconsistent without explicit guidance.
