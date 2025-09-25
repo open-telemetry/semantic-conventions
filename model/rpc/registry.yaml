@@ -205,7 +205,7 @@ groups:
       - id: rpc.method
         type: string
         stability: development
-        brief: 'The name of the (logical) method being called, must be equal to the $method part in the span name.'
+        brief: This is the logical name of the method from the RPC interface perspective.
         note: >
           This is the logical name of the method from the RPC interface perspective,
           which can be different from the name of any implementing method/function.

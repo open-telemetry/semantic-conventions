@@ -1,4 +1,34 @@
 groups:
+  - id: attributes.metrics.rpc.client
+    type: attribute_group
+    brief: "Describes RPC metric attributes."
+    attributes:
+      - ref: rpc.system
+        requirement_level: required
+      - ref: rpc.service
+        note: ""
+      - ref: rpc.method
+        note: ""
+      - ref: network.transport
+      - ref: server.address
+        requirement_level: required
+      - ref: server.port
+        requirement_level:
+          conditionally_required: If applicable.
+      - ref: error.type
+        requirement_level:
+          conditionally_required: If and only if the operation failed.
+  - id: attributes.metrics.rpc.server
+    type: attribute_group
+    brief: "Describes RPC metric attributes."
+    extends: attributes.metrics.rpc.client
+    attributes:
+      - ref: server.address
+        note: ""
+        requirement_level: opt_in
+      - ref: server.port
+        note: ""
+        requirement_level: opt_in
   - id: rpc
     type: attribute_group
     brief: 'This document defines semantic conventions for remote procedure calls.'
