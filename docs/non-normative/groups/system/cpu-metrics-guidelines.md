@@ -9,7 +9,7 @@ This document provides guidance regarding the requirement level of the CPU metri
 across the different areas of the Semantic Conventions.
 
 ## Policy
-* **RECOMMENDED**: `*.cpu.time`
+* **recommended**: `*.cpu.time`
 * **OPTIONAL (Opt-In)**: `*.cpu.utilization`, `*.cpu.usage`,
   `*.cpu.limit_utilization`, `*.cpu.request_utilization`
 
