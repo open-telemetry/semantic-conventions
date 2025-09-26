@@ -23,16 +23,13 @@ described on this page.
 
 This span represents an outgoing Remote Procedure Call (RPC).
 
-Remote procedure calls can only be represented with these semantic conventions
-when the names of the called service and method are known and available.
-
 `rpc.system` MUST be set to `"grpc"` and SHOULD be provided **at span creation time.**
 
-**Span name:** refer to the [Span Name](./rpc-spans.md#span-name) section.
+**Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#span-name) section.
 
 **Span kind** MUST be `CLIENT`.
 
-**Span status** Should be set based on the grpc status code. A mapping is defined in the [grpc status](#grpc-status) section.
+**Span status** Should be set based on the grpc status code. A mapping is defined in the [grpc status](/docs/rpc/grpc.md#grpc-status) section.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -141,16 +138,13 @@ the `rpc.grpc.response.metadata.my-custom-key` attribute with value `["attribute
 
 This span represents an incoming Remote Procedure Call (RPC).
 
-Remote procedure calls can only be represented with these semantic conventions
-when the names of the called service and method are known and available.
-
 `rpc.system` MUST be set to `"grpc"` and SHOULD be provided **at span creation time.**
 
-**Span name:** refer to the [Span Name](./rpc-spans.md#span-name) section.
+**Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#span-name) section.
 
 **Span kind** MUST be `SERVER`.
 
-**Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
+**Span status** Should be set based on the grpc status code. A mapping is defined in the [grpc status](/docs/rpc/grpc.md#grpc-status) section.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
