@@ -324,8 +324,8 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `receive` | receive | ![Development](https://img.shields.io/badge/-development-blue) |
-| `transmit` | transmit | ![Development](https://img.shields.io/badge/-development-blue) |
+| `receive` | Network packet Received | ![Development](https://img.shields.io/badge/-development-blue) |
+| `transmit` | Network packet Transmitted | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -358,8 +358,8 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `receive` | receive | ![Development](https://img.shields.io/badge/-development-blue) |
-| `transmit` | transmit | ![Development](https://img.shields.io/badge/-development-blue) |
+| `receive` | Network packet Received | ![Development](https://img.shields.io/badge/-development-blue) |
+| `transmit` | Network packet Transmitted | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -1050,8 +1050,8 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `receive` | receive | ![Development](https://img.shields.io/badge/-development-blue) |
-| `transmit` | transmit | ![Development](https://img.shields.io/badge/-development-blue) |
+| `receive` | Network packet Received | ![Development](https://img.shields.io/badge/-development-blue) |
+| `transmit` | Network packet Transmitted | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -1084,8 +1084,8 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `receive` | receive | ![Development](https://img.shields.io/badge/-development-blue) |
-| `transmit` | transmit | ![Development](https://img.shields.io/badge/-development-blue) |
+| `receive` | Network packet Received | ![Development](https://img.shields.io/badge/-development-blue) |
+| `transmit` | Network packet Transmitted | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
