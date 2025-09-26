@@ -191,8 +191,8 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `read` | read | ![Development](https://img.shields.io/badge/-development-blue) |
-| `write` | write | ![Development](https://img.shields.io/badge/-development-blue) |
+| `read` | Disk Read operation | ![Development](https://img.shields.io/badge/-development-blue) |
+| `write` | Disk Write operation | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
