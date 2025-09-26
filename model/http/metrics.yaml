@@ -54,7 +54,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
-    stability: development
+    stability: release_candidate
     brief: "Number of active HTTP server requests."
     instrument: updowncounter
     unit: "{request}"
@@ -165,7 +165,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
-    stability: development
+    stability: release_candidate
     brief: "Number of outbound HTTP connections that are currently active or idle on the client."
     instrument: updowncounter
     unit: "{connection}"
@@ -190,7 +190,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
-    stability: development
+    stability: release_candidate
     brief: "The duration of the successfully established outbound HTTP connections."
     instrument: histogram
     unit: "s"
@@ -213,7 +213,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
-    stability: development
+    stability: release_candidate
     brief: "Number of active HTTP requests."
     instrument: updowncounter
     unit: "{request}"
