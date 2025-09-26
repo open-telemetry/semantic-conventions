@@ -22,7 +22,7 @@ groups:
             - id: used
               value: 'used'
               stability: development
-              brief: Actual used virtual memory in bytes.
+              brief: Used virtual memory.
               note: >
                 Calculation based on the operating system metrics.
                 On Linux, this corresponds to "MemTotal - MemAvailable" from /proc/meminfo, which
@@ -31,18 +31,22 @@ groups:
                 a fallback to those older formulas may be used.
             - id: free
               value: 'free'
+              brief: Free Virtual memory.
               stability: development
             - id: shared
               value: 'shared'
+              brief: Shared
               stability: development
               deprecated:
                 reason: uncategorized
                 note: "Removed, report shared memory usage with `metric.system.memory.shared` metric"
             - id: buffers
               value: 'buffers'
+              brief: Buffered virtual memory.
               stability: development
             - id: cached
               value: 'cached'
+              brief: Cached virtual memory.
               stability: development
         stability: development
         brief: "The memory state"
@@ -58,9 +62,11 @@ groups:
           members:
             - id: used
               value: 'used'
+              brief: Used memory for paging.
               stability: development
             - id: free
               value: 'free'
+              brief: Free memory for paging.
               stability: development
         stability: development
         brief: "The memory paging state"
@@ -70,9 +76,11 @@ groups:
           members:
             - id: major
               value: 'major'
+              brief: Major
               stability: development
             - id: minor
               value: 'minor'
+              brief: Minor
               stability: development
         stability: development
         brief: "The memory paging type"
@@ -82,9 +90,11 @@ groups:
           members:
             - id: in
               value: 'in'
+              brief: Incoming paging.
               stability: development
             - id: out
               value: 'out'
+              brief: Outgoing paging.
               stability: development
         stability: development
         brief: "The paging access direction"
@@ -100,12 +110,15 @@ groups:
           members:
             - id: used
               value: 'used'
+              brief: Filesystem has been Used.
               stability: development
             - id: free
               value: 'free'
+              brief: Filesystem which is Free.
               stability: development
             - id: reserved
               value: 'reserved'
+              brief: Filesystem which has been Reserved.
               stability: development
         stability: development
         examples: ["used"]
@@ -114,21 +127,27 @@ groups:
           members:
             - id: fat32
               value: 'fat32'
+              brief: FAT32
               stability: development
             - id: exfat
               value: 'exfat'
+              brief: exFAT
               stability: development
             - id: ntfs
               value: 'ntfs'
+              brief: NTFS
               stability: development
             - id: refs
               value: 'refs'
+              brief: refs
               stability: development
             - id: hfsplus
               value: 'hfsplus'
+              brief: HFS+
               stability: development
             - id: ext4
               value: 'ext4'
+              brief: ext4
               stability: development
         stability: development
         brief: "The filesystem type"
@@ -154,15 +173,19 @@ groups:
           members:
             - id: running
               value: 'running'
+              brief: The process is currently Running.
               stability: development
             - id: sleeping
               value: 'sleeping'
+              brief: The process is currently sleeping.
               stability: development
             - id: stopped
               value: 'stopped'
+              brief: The process has been stopped.
               stability: development
             - id: defunct
               value: 'defunct'
+              brief: THe process  has exited and has a parent, but has not yet been waited for by the parent.
               stability: development
         stability: development
         brief: >
