@@ -39,27 +39,38 @@ linkTitle: Process
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`process.command`](/docs/registry/attributes/process.md) | string | The command used to launch the process (i.e. the command name). On Linux based systems, can be set to the zeroth string in `proc/[pid]/cmdline`. On Windows, can be set to the first parameter extracted from `GetCommandLineW`. | `cmd/otelcol` | `Conditionally Required` [1] | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`process.command_args`](/docs/registry/attributes/process.md) | string[] | All the command arguments (including the command/executable itself) as received by the process. On Linux-based systems (and some other Unixoid systems supporting procfs), can be set according to the list of null-delimited strings extracted from `proc/[pid]/cmdline`. For libc-based executables, this would be the full argv vector passed to `main`. SHOULD NOT be collected by default unless there is sanitization that excludes sensitive data. | `["cmd/otecol", "--config=config.yaml"]` | `Conditionally Required` [2] | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`process.command_line`](/docs/registry/attributes/process.md) | string | The full command used to launch the process as a single string representing the full command. On Windows, can be set to the result of `GetCommandLineW`. Do not set this if you have to assemble it just for monitoring; use `process.command_args` instead. SHOULD NOT be collected by default unless there is sanitization that excludes sensitive data. | `C:\cmd\otecol --config="my directory\config.yaml"` | `Conditionally Required` [3] | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`process.executable.name`](/docs/registry/attributes/process.md) | string | The name of the process executable. On Linux based systems, this SHOULD be set to the base name of the target of `/proc/[pid]/exe`. On Windows, this SHOULD be set to the base name of `GetProcessImageFileNameW`. | `otelcol` | `Conditionally Required` [4] | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`process.executable.path`](/docs/registry/attributes/process.md) | string | The full path to the process executable. On Linux based systems, can be set to the target of `proc/[pid]/exe`. On Windows, can be set to the result of `GetProcessImageFileNameW`. | `/usr/bin/cmd/otelcol` | `Conditionally Required` [5] | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`process.linux.cgroup`](/docs/registry/attributes/process.md) | string | The control group associated with the process. [6] | `1:name=systemd:/user.slice/user-1000.slice/session-3.scope`; `0::/user.slice/user-1000.slice/user@1000.service/tmux-spawn-0267755b-4639-4a27-90ed-f19f88e53748.scope` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`process.args_count`](/docs/registry/attributes/process.md) | int | Length of the process.command_args array [1] | `4` | `Conditionally Required` [2] | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`process.command`](/docs/registry/attributes/process.md) | string | The command used to launch the process (i.e. the command name). On Linux based systems, can be set to the zeroth string in `proc/[pid]/cmdline`. On Windows, can be set to the first parameter extracted from `GetCommandLineW`. | `cmd/otelcol` | `Conditionally Required` [3] | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`process.command_args`](/docs/registry/attributes/process.md) | string[] | All the command arguments (including the command/executable itself) as received by the process. On Linux-based systems (and some other Unixoid systems supporting procfs), can be set according to the list of null-delimited strings extracted from `proc/[pid]/cmdline`. For libc-based executables, this would be the full argv vector passed to `main`. SHOULD NOT be collected by default unless there is sanitization that excludes sensitive data. | `["cmd/otecol", "--config=config.yaml"]` | `Conditionally Required` [4] | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`process.command_line`](/docs/registry/attributes/process.md) | string | The full command used to launch the process as a single string representing the full command. On Windows, can be set to the result of `GetCommandLineW`. Do not set this if you have to assemble it just for monitoring; use `process.command_args` instead. SHOULD NOT be collected by default unless there is sanitization that excludes sensitive data. | `C:\cmd\otecol --config="my directory\config.yaml"` | `Conditionally Required` [5] | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`process.executable.name`](/docs/registry/attributes/process.md) | string | The name of the process executable. On Linux based systems, this SHOULD be set to the base name of the target of `/proc/[pid]/exe`. On Windows, this SHOULD be set to the base name of `GetProcessImageFileNameW`. | `otelcol` | `Conditionally Required` [6] | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`process.executable.path`](/docs/registry/attributes/process.md) | string | The full path to the process executable. On Linux based systems, can be set to the target of `proc/[pid]/exe`. On Windows, can be set to the result of `GetProcessImageFileNameW`. | `/usr/bin/cmd/otelcol` | `Conditionally Required` [7] | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`process.creation.time`](/docs/registry/attributes/process.md) | string | The date and time the process was created, in ISO 8601 format. | `2023-11-21T09:25:34.853Z` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`process.interactive`](/docs/registry/attributes/process.md) | boolean | Whether the process is connected to an interactive shell. |  | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`process.linux.cgroup`](/docs/registry/attributes/process.md) | string | The control group associated with the process. [8] | `1:name=systemd:/user.slice/user-1000.slice/session-3.scope`; `0::/user.slice/user-1000.slice/user@1000.service/tmux-spawn-0267755b-4639-4a27-90ed-f19f88e53748.scope` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`process.owner`](/docs/registry/attributes/process.md) | string | The username of the user that owns the process. | `root` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`process.parent_pid`](/docs/registry/attributes/process.md) | int | Parent Process identifier (PPID). | `111` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`process.pid`](/docs/registry/attributes/process.md) | int | Process identifier (PID). | `1234` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`process.title`](/docs/registry/attributes/process.md) | string | Process title (proctitle) [9] | `cat /etc/hostname`; `xfce4-session`; `bash` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`process.working_directory`](/docs/registry/attributes/process.md) | string | The working directory of the process. | `/root` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[1] `process.command`:** See [Selecting process attributes](/docs/resource/process.md#selecting-process-attributes) for details.
+**[1] `process.args_count`:** This field can be useful for querying or performing bucket analysis on how many arguments were provided to start a process. More arguments may be an indication of suspicious activity.
 
-**[2] `process.command_args`:** See [Selecting process attributes](/docs/resource/process.md#selecting-process-attributes) for details.
+**[2] `process.args_count`:** See [Selecting process attributes](/docs/resource/process.md#selecting-process-attributes) for details.
 
-**[3] `process.command_line`:** See [Selecting process attributes](/docs/resource/process.md#selecting-process-attributes) for details.
+**[3] `process.command`:** See [Selecting process attributes](/docs/resource/process.md#selecting-process-attributes) for details.
 
-**[4] `process.executable.name`:** See [Selecting process attributes](/docs/resource/process.md#selecting-process-attributes) for details.
+**[4] `process.command_args`:** See [Selecting process attributes](/docs/resource/process.md#selecting-process-attributes) for details.
 
-**[5] `process.executable.path`:** See [Selecting process attributes](/docs/resource/process.md#selecting-process-attributes) for details.
+**[5] `process.command_line`:** See [Selecting process attributes](/docs/resource/process.md#selecting-process-attributes) for details.
 
-**[6] `process.linux.cgroup`:** Control groups (cgroups) are a kernel feature used to organize and manage process resources. This attribute provides the path(s) to the cgroup(s) associated with the process, which should match the contents of the [/proc/\[PID\]/cgroup](https://man7.org/linux/man-pages/man7/cgroups.7.html) file.
+**[6] `process.executable.name`:** See [Selecting process attributes](/docs/resource/process.md#selecting-process-attributes) for details.
+
+**[7] `process.executable.path`:** See [Selecting process attributes](/docs/resource/process.md#selecting-process-attributes) for details.
+
+**[8] `process.linux.cgroup`:** Control groups (cgroups) are a kernel feature used to organize and manage process resources. This attribute provides the path(s) to the cgroup(s) associated with the process, which should match the contents of the [/proc/\[PID\]/cgroup](https://man7.org/linux/man-pages/man7/cgroups.7.html) file.
+
+**[9] `process.title`:** In many Unix-like systems, process title (proctitle), is the string that represents the name or command line of a running process, displayed by system monitoring tools like ps, top, and htop.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -79,6 +90,8 @@ At least one of the following attributes is required:
 Between `process.command_args` and `process.command_line`, usually `process.command_args` should be preferred.
 On Windows and other systems where the native format of process commands is a single string,
 `process.command_line` can additionally (or instead) be used.
+
+`process.args_count` can be additional be provided or instead when sanitization of the arguments is not being performed.
 
 ## Process runtimes
 
