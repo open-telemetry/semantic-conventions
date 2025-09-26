@@ -1,5 +1,109 @@
 {
     "$defs": {
+        "BlobPart": {
+            "additionalProperties": true,
+            "properties": {
+                "type": {
+                    "const": "blob",
+                    "description": "The type of the content captured in this part.",
+                    "title": "Type",
+                    "type": "string"
+                },
+                "mime_type": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "The IANA MIME type of the attached data.",
+                    "title": "Mime Type"
+                },
+                "filename": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "The name of the file if provided.",
+                    "title": "Filename"
+                },
+                "content": {
+                    "description": "base64 encoded bytes of the attached data.",
+                    "format": "binary",
+                    "title": "Content",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "type",
+                "content"
+            ],
+            "title": "BlobPart",
+            "type": "object"
+        },
+        "FileDataPart": {
+            "additionalProperties": true,
+            "properties": {
+                "type": {
+                    "const": "file_data",
+                    "description": "The type of the content captured in this part.",
+                    "title": "Type",
+                    "type": "string"
+                },
+                "mime_type": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "The IANA MIME type of the attached data.",
+                    "title": "Mime Type"
+                },
+                "uri": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "A URI referencing attached data.",
+                    "title": "Uri"
+                },
+                "file_id": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "An identifier referencing a file that was pre-uploaded to the provider.",
+                    "title": "File Id"
+                }
+            },
+            "required": [
+                "type"
+            ],
+            "title": "FileDataPart",
+            "type": "object"
+        },
         "FinishReason": {
             "description": "Represents the reason for finishing the generation.",
             "enum": [
@@ -56,6 +160,12 @@
                             },
                             {
                                 "$ref": "#/$defs/ToolCallResponsePart"
+                            },
+                            {
+                                "$ref": "#/$defs/BlobPart"
+                            },
+                            {
+                                "$ref": "#/$defs/FileDataPart"
                             },
                             {
                                 "$ref": "#/$defs/GenericPart"
