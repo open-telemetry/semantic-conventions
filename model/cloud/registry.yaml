@@ -32,6 +32,10 @@ groups:
               value: 'ibm_cloud'
               brief: 'IBM Cloud'
               stability: development
+            - id: 'akamai_cloud'
+              value: 'akamai_cloud'
+              brief: 'Akamai Cloud (Linode)'
+              stability: development
             - id: 'oracle_cloud'
               value: 'oracle_cloud'
               brief: 'Oracle Cloud Infrastructure (OCI)'
@@ -107,6 +111,10 @@ groups:
       - id: cloud.platform
         type:
           members:
+            - id: akamai_cloud_compute
+              value: 'akamai_cloud_compute'
+              brief: Akamai Cloud Compute (Linode)
+              stability: development
             - id: alibaba_cloud_ecs
               value: 'alibaba_cloud_ecs'
               brief: Alibaba Cloud Elastic Compute Service
