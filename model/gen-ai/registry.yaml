@@ -56,6 +56,18 @@ groups:
               stability: development
               value: "aws.bedrock"
               brief: '[AWS Bedrock](https://aws.amazon.com/bedrock)'
+            - id: alibaba.dashscope
+              stability: development
+              value: "alibaba.dashscope"
+              brief: '[Alibaba Dashscope](https://bailian.console.aliyun.com/?tab=api)'
+              note: >
+                Used when accessing Alibaba model service via the 'dashscope.aliyuncs.com' endpoint.
+            - id: alibaba.gen_ai
+              stability: development
+              value: "alibaba.gen_ai"
+              brief: 'Any Alibaba generative AI endpoint'
+              note: >
+                Used when accessing Alibaba generative AI agent/workflow service.
             - id: perplexity
               stability: development
               value: "perplexity"
