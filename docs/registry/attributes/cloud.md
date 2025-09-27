@@ -77,6 +77,21 @@ The following well-known definitions MUST be used if you set this attribute and 
 | `tencent_cloud_eks` | Tencent Cloud Elastic Kubernetes Service (EKS) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `tencent_cloud_scf` | Tencent Cloud Serverless Cloud Function (SCF) | ![Development](https://img.shields.io/badge/-development-blue) |
 
+<details>
+<summary><b>Deprecated Values:</b></summary>
+
+| Value  | Description | Deprecation Explanation |
+|---|---|---|
+| `azure_vm` | Azure Virtual Machines |  Use `azure.vm` instead.  |
+| `azure_container_apps` | Azure Container Apps |  Use `azure.container_apps` instead.  |
+| `azure_container_instances` | Azure Container Instances |  Use `azure.container_instances` instead.  |
+| `azure_aks` | Azure Kubernetes Service |  Use `azure.aks` instead.  |
+| `azure_functions` | Azure Functions |  Use `azure.functions` instead.  |
+| `azure_app_service` | Azure App Service |  Use `azure.app_service` instead.  |
+| `azure_openshift` | Azure Red Hat OpenShift |  Use `azure.openshift` instead.  |
+
+</details>
+
 ---
 
 `cloud.provider` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.

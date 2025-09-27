@@ -52,5 +52,14 @@
 | `windows` | Microsoft Windows | ![Development](https://img.shields.io/badge/-development-blue) |
 | `zos` | IBM z/OS | ![Development](https://img.shields.io/badge/-development-blue) |
 
+<details>
+<summary><b>Deprecated Values:</b></summary>
+
+| Value  | Description | Deprecation Explanation |
+|---|---|---|
+| `z_os` | IBM z/OS |  Use `zos` instead.  |
+
+</details>
+
 
 <!-- markdownlint-restore -->
