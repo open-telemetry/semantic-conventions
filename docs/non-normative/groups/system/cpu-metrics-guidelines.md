@@ -9,6 +9,7 @@ This document provides guidance regarding the requirement level of the CPU metri
 across the different areas of the Semantic Conventions.
 
 ## Policy
+
 * **recommended**: `*.cpu.time`
 * **opt-in** (optional): `*.cpu.utilization`, `*.cpu.usage`,
   `*.cpu.limit_utilization`, `*.cpu.request_utilization`
@@ -34,12 +35,14 @@ not uniquely implemented in other systems like the
 [Docker stats API](https://docs.docker.com/reference/api/engine/version/v1.51/#tag/Container/operation/ContainerStats).
 
 ## Implementation Guidance
+
 * SHOULD emit `*.cpu.time` by default for system, process container, and k8s
   resources.
 * SHOULD gate `*.cpu.*utilization` and `*.cpu.usage` metrics behind explicit
   configuration.
 
 ## Backend Guidance
+
 * SHOULD provide transforms or views to derive utilization/usage from
   `*.cpu.time` when helpful.
 * SHOULD treat `*.cpu.time` as the canonical source of truth across system,
@@ -66,7 +69,6 @@ can be found bellow:
 This is the PromQL equivalent. The rate() function is equivalent to
 the subtraction of the current to the previous value, while the denominator is
 the elapsed time in seconds.
-
 
 ### CPU Time to Utilization
 
@@ -97,7 +99,7 @@ Projects like [Prometheus Node Exporter](https://github.com/prometheus/node_expo
 come with their own formula for calculating System's utilization.
 
 The standardization of `k8s.*.cpu.usage` is an exception since it is collected
-directly from the Kubelet's Stats API and is K8s specific. 
+directly from the Kubelet's Stats API and is K8s specific.
 
 ## References
 
