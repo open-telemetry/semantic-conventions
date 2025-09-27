@@ -27,7 +27,7 @@ groups:
         brief: >
           Type of host. For Cloud, this must be the machine type.
         examples: ['n1-standard-1']
-      - id: host.arch
+      - id: host.cpu.arch
         type:
           members:
             - id: amd64
