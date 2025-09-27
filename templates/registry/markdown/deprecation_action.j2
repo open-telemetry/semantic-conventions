@@ -1,0 +1,9 @@
+{% macro render(attr, notes) -%}
+{%- if attr.annotations is defined and attr.annotations.stability_envvar == true and attr.deprecated.reason == "renamed" %}`Migrate`
+{% elif attr.annotations is not defined and attr.deprecated.reason == "renamed" %}`Rename`
+{% elif attr.annotations is defined and attr.annotations.stability_envvar == true and attr.deprecated.reason == "obsoleted" %}`Remove`
+{% elif attr.deprecated.reason == "obsoleted" %}`Drop`
+{% elif attr.deprecated.reason == "uncategorized" %}`Update`
+{% else %}Unknown
+{%- endif %}
+{% endmacro %}
