@@ -1,0 +1,66 @@
+{% import 'deprecation_action.j2' as action %}
+
+{% macro message (groups) %}
+{% set deprecated = groups | selectattr("deprecated") %}
+{% set deprecatedSignals = namespace(attributes = []) %}
+
+{% set signals = groups | rejectattr("deprecated") | selectattr("attributes") %}
+
+{% for signal in signals %}
+{% for deprecated in signal.attributes | selectattr("deprecated") %}
+{% set temp = {'signal': signal, 'attribute': deprecated }%}
+{% set deprecatedSignals.attributes = deprecatedSignals.attributes + [temp] %}
+{% endfor %}{% endfor %}
+
+{% if deprecatedSignals.attributes or deprecated %}
+The upgrade process helps to document what is needed to upgrade the signals to the latest version.
+{% else %}
+No upgrade process is documented as no deprecations can be found.
+{% endif %}
+
+{% endmacro %}
+
+{% macro signalTable(name, signals) %}
+{% if signals %}
+
+## {{name}}
+
+| Old Signal Name | Action | New Signal Name | Summary |
+| --- | --- | --- | --- |
+{% for signal in signals | sort(attribute = "name") %}| {% if signal.name %}{{ signal.name }}{% elif signal.metric_name %}{{signal.metric_name}}{% else %}{{signal.id}}{% endif %} | {{ action.render({"deprecated": signal.deprecated, "annotations": signal.annotations}, "") | trim}} | {{ signal.deprecated.renamed_to }} | {{ signal.deprecated.note | trim }} |
+{% endfor %}
+{% endif %}
+{% endmacro %}
+
+{% macro signalTables(groups) %}
+{% set deprecated = groups | selectattr("deprecated") %}
+{% if deprecated %}
+{% set events = deprecated | selectattr("type", "eq", "event") %}
+{{ signalTable("Events", events) | trim }}
+{% set metrics = deprecated | selectattr("type", "eq", "metric") %}
+{{signalTable("Metrics", metrics) | trim }}
+{% set spans = deprecated | selectattr("type", "eq", "span") %}
+{{signalTable("Spans", spans) | trim }}
+{%endif%}
+{% endmacro %}
+
+{% macro attributeBlock(groups) %}
+{% set deprecatedSignals = namespace(attributes = []) %}
+
+{% set signals = groups | rejectattr("deprecated") | selectattr("attributes") %}
+
+{% for signal in signals %}
+{% for deprecated in signal.attributes | selectattr("deprecated") %}
+{% set temp = {'signal': signal, 'attribute': deprecated }%}
+{% set deprecatedSignals.attributes = deprecatedSignals.attributes + [temp] %}
+{% endfor %}{% endfor %}
+
+{% if deprecatedSignals.attributes %}
+## Attribute Changes
+
+| Signal Name | Signal Type | Old Attribute Key | Action | New Attribute Key | Summary |
+| --- | --- | --- | --- | --- | --- |
+{% for attr in deprecatedSignals.attributes | sort(attribute = "attribute.name") | sort(attribute = "signal.id") %}| {% if attr.signal.name %}{{ attr.signal.name }}{% elif attr.signal.metric_name %}{{attr.signal.metric_name}}{% else %}{{attr.signal.id}}{% endif %} | {{attr.signal.type}} | {{attr.attribute.name}} | {{ action.render({"deprecated": attr.attribute.deprecated, "annotations": attr.attribute.annotations}, "") | trim}} | {{ attr.attribute.deprecated.renamed_to }} | {{ attr.attribute.deprecated.note |trim}} |
+{% endfor %}
+{% endif %}
+{% endmacro %}
