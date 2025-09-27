@@ -110,7 +110,7 @@ groups:
       Semantic conventions for individual GenAI systems and frameworks MAY specify different span name format
       and MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.37.0/specification/trace/api.md#span).
 
-      **Span kind** SHOULD be `CLIENT`and MAY be set to `INTERNAL` on spans representing
+      **Span kind** SHOULD be `CLIENT` and MAY be set to `INTERNAL` on spans representing
       call to models running in the same process. It's RECOMMENDED to use `CLIENT` kind
       when the GenAI system being instrumented usually runs in a different process than its
       client or when the GenAI call happens over instrumented protocol such as HTTP.
@@ -256,7 +256,8 @@ groups:
       with remote agent services.
     note: |
       The `gen_ai.operation.name` SHOULD be `invoke_agent`.
-      The **span name** SHOULD be `invoke_agent {gen_ai.agent.name}` if `gen_ai.agent.name` is readily available.
+
+      **Span name** SHOULD be `invoke_agent {gen_ai.agent.name}` if `gen_ai.agent.name` is readily available.
       When `gen_ai.agent.name` is not available, it SHOULD be `invoke_agent`.
       Semantic conventions for individual GenAI systems and frameworks MAY specify different span name format.
     extends: attributes.gen_ai.inference.client
