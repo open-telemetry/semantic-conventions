@@ -3,6 +3,18 @@
 
 # Peer
 
+- [Request Attributes](#request-attributes)
+- [Peer Attributes](#peer-attributes)
+
+## Request Attributes
+
+information about the request being processed by the peer.
+
+| Attribute | Type | Description | Examples | Stability |
+|---|---|---|---|---|
+| <a id="peer-request-extendedid" href="#peer-request-extendedid">`peer.request.extendedid`</a> | string | An extended request ID as returned by the peer. | `79b9da39-b7ae-508a-a6bc-864b2829c622` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="peer-request-id" href="#peer-request-id">`peer.request.id`</a> | string | The request ID as returned for the peer. | `79b9da39-b7ae-508a-a6bc-864b2829c622` | ![Development](https://img.shields.io/badge/-development-blue) |
+
 ## Peer Attributes
 
 Operations that access some remote service.
