@@ -5,10 +5,14 @@
 
 The upgrade process helps to document what is needed to upgrade the signals to the latest version.
 
-## Metrics
+## metric
 
-| Old Signal Name | Action | New Signal Name | Summary |
-| --- | --- | --- | --- |
-| jvm.buffer.memory.usage | `Rename` | jvm.buffer.memory.used | Replaced by `jvm.buffer.memory.used`. |
+### metric: `metric.jvm.buffer.memory.usage`
 
+Replaced by `jvm.buffer.memory.used`.
 
+#### Property Changes
+
+| Property | Old Value | New Value |
+| --- | --- | --- |
+| Name | jvm.buffer.memory.usage | jvm.buffer.memory.used |

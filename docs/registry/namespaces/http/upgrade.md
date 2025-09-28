@@ -5,15 +5,33 @@
 
 The upgrade process helps to document what is needed to upgrade the signals to the latest version.
 
+## metric
 
+### metric: `metric.http.server.active_requests`
 
-## Attribute Changes
+#### Attribute Changes
 
-| Signal Name | Signal Type | Old Attribute Key | Action | New Attribute Key | Summary |
-| --- | --- | --- | --- | --- | --- |
-| http.server.active_requests | metric | http.method | `Rename` | http.request.method | Replaced by `http.request.method`. |
-| http.server.active_requests | metric | http.scheme | `Rename` | url.scheme | Replaced by `url.scheme`. |
-| http.server.active_requests | metric | net.host.name | `Rename` | server.address | Replaced by `server.address`. |
-| http.server.active_requests | metric | net.host.port | `Rename` | server.port | Replaced by `server.port`. |
-| span.http.client | span | http.method | `Rename` | http.request.method | Replaced by `http.request.method`. |
-| span.http.server | span | http.method | `Rename` | http.request.method | Replaced by `http.request.method`. |
+| Old Attribute Key | Action | New Attribute Key | Summary |
+| --- | --- | --- | --- |
+| http.method | `Rename` | http.request.method | Replaced by `http.request.method`. |
+| http.scheme | `Rename` | url.scheme | Replaced by `url.scheme`. |
+| net.host.name | `Rename` | server.address | Replaced by `server.address`. |
+| net.host.port | `Rename` | server.port | Replaced by `server.port`. |
+
+## span
+
+### span: `span.http.client`
+
+#### Attribute Changes
+
+| Old Attribute Key | Action | New Attribute Key | Summary |
+| --- | --- | --- | --- |
+| http.method | `Rename` | http.request.method | Replaced by `http.request.method`. |
+
+### span: `span.http.server`
+
+#### Attribute Changes
+
+| Old Attribute Key | Action | New Attribute Key | Summary |
+| --- | --- | --- | --- |
+| http.method | `Rename` | http.request.method | Replaced by `http.request.method`. |

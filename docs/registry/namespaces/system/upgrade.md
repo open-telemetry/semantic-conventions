@@ -5,10 +5,14 @@
 
 The upgrade process helps to document what is needed to upgrade the signals to the latest version.
 
-## Metrics
+## metric
 
-| Old Signal Name | Action | New Signal Name | Summary |
-| --- | --- | --- | --- |
-| system.network.connections | `Rename` | system.network.connection.count | Replaced by `system.network.connection.count`. |
+### metric: `metric.system.network.connections`
 
+Replaced by `system.network.connection.count`.
 
+#### Property Changes
+
+| Property | Old Value | New Value |
+| --- | --- | --- |
+| Name | system.network.connections | system.network.connection.count |

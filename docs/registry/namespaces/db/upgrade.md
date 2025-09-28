@@ -5,29 +5,192 @@
 
 The upgrade process helps to document what is needed to upgrade the signals to the latest version.
 
-## Metrics
+## metric
 
-| Old Signal Name | Action | New Signal Name | Summary |
+### metric: `metric.db.client.connections.usage`
+
+Replaced by `db.client.connection.count`.
+
+#### Property Changes
+
+| Property | Old Value | New Value |
+| --- | --- | --- |
+| Name | db.client.connections.usage | db.client.connection.count |
+
+#### Attribute Changes
+
+| Old Attribute Key | Action | New Attribute Key | Summary |
 | --- | --- | --- | --- |
-| db.client.connections.usage | `Rename` | db.client.connection.count | Replaced by `db.client.connection.count`. |
-| db.client.connections.idle.max | `Rename` | db.client.connection.idle.max | Replaced by `db.client.connection.idle.max`. |
-| db.client.connections.idle.min | `Rename` | db.client.connection.idle.min | Replaced by `db.client.connection.idle.min`. |
-| db.client.connections.max | `Rename` | db.client.connection.max | Replaced by `db.client.connection.max`. |
-| db.client.connections.pending_requests | `Rename` | db.client.connection.pending_requests | Replaced by `db.client.connection.pending_requests`. |
-| db.client.connections.timeouts | `Rename` | db.client.connection.timeouts | Replaced by `db.client.connection.timeouts`. |
-| db.client.connections.create_time | `Update` |  | Replaced by `db.client.connection.create_time` with unit `s`. |
-| db.client.connections.wait_time | `Update` |  | Replaced by `db.client.connection.wait_time` with unit `s`. |
-| db.client.connections.use_time | `Update` |  | Replaced by `db.client.connection.use_time` with unit `s`. |
-| db.client.cosmosdb.operation.request_charge | `Rename` | azure.cosmosdb.client.operation.request_charge | Replaced by `azure.cosmosdb.client.operation.request_charge`. |
-| db.client.cosmosdb.active_instance.count | `Rename` | azure.cosmosdb.client.active_instance.count | Replaced by `azure.cosmosdb.client.active_instance.count`. |
+| db.client.connections.pool.name | `Rename` | db.client.connection.pool.name | Replaced by `db.client.connection.pool.name`. |
+| db.client.connections.state | `Rename` | db.client.connection.state | Replaced by `db.client.connection.state`. |
 
-## Attribute Changes
+### metric: `metric.db.client.connections.idle.max`
 
-| Signal Name | Signal Type | Old Attribute Key | Action | New Attribute Key | Summary |
-| --- | --- | --- | --- | --- | --- |
-| db.client.operation.duration | metric | db.system | `Rename` | db.system.name | Replaced by `db.system.name`. |
-| db.client.response.returned_rows | metric | db.system | `Rename` | db.system.name | Replaced by `db.system.name`. |
-| span.db.client | span | db.connection_string | `Update` |  | Replaced by `server.address` and `server.port`. |
-| span.db.client | span | db.instance.id | `Drop` |  | Removed, no general replacement at this time. For Elasticsearch, use `db.elasticsearch.node.name` instead. |
-| span.db.client | span | db.system | `Rename` | db.system.name | Replaced by `db.system.name`. |
-| span.db.client | span | db.user | `Drop` |  | Removed, no replacement at this time. |
+Replaced by `db.client.connection.idle.max`.
+
+#### Property Changes
+
+| Property | Old Value | New Value |
+| --- | --- | --- |
+| Name | db.client.connections.idle.max | db.client.connection.idle.max |
+
+#### Attribute Changes
+
+| Old Attribute Key | Action | New Attribute Key | Summary |
+| --- | --- | --- | --- |
+| db.client.connections.pool.name | `Rename` | db.client.connection.pool.name | Replaced by `db.client.connection.pool.name`. |
+
+### metric: `metric.db.client.connections.idle.min`
+
+Replaced by `db.client.connection.idle.min`.
+
+#### Property Changes
+
+| Property | Old Value | New Value |
+| --- | --- | --- |
+| Name | db.client.connections.idle.min | db.client.connection.idle.min |
+
+#### Attribute Changes
+
+| Old Attribute Key | Action | New Attribute Key | Summary |
+| --- | --- | --- | --- |
+| db.client.connections.pool.name | `Rename` | db.client.connection.pool.name | Replaced by `db.client.connection.pool.name`. |
+
+### metric: `metric.db.client.connections.max`
+
+Replaced by `db.client.connection.max`.
+
+#### Property Changes
+
+| Property | Old Value | New Value |
+| --- | --- | --- |
+| Name | db.client.connections.max | db.client.connection.max |
+
+#### Attribute Changes
+
+| Old Attribute Key | Action | New Attribute Key | Summary |
+| --- | --- | --- | --- |
+| db.client.connections.pool.name | `Rename` | db.client.connection.pool.name | Replaced by `db.client.connection.pool.name`. |
+
+### metric: `metric.db.client.connections.pending_requests`
+
+Replaced by `db.client.connection.pending_requests`.
+
+#### Property Changes
+
+| Property | Old Value | New Value |
+| --- | --- | --- |
+| Name | db.client.connections.pending_requests | db.client.connection.pending_requests |
+
+#### Attribute Changes
+
+| Old Attribute Key | Action | New Attribute Key | Summary |
+| --- | --- | --- | --- |
+| db.client.connections.pool.name | `Rename` | db.client.connection.pool.name | Replaced by `db.client.connection.pool.name`. |
+
+### metric: `metric.db.client.connections.timeouts`
+
+Replaced by `db.client.connection.timeouts`.
+
+#### Property Changes
+
+| Property | Old Value | New Value |
+| --- | --- | --- |
+| Name | db.client.connections.timeouts | db.client.connection.timeouts |
+
+#### Attribute Changes
+
+| Old Attribute Key | Action | New Attribute Key | Summary |
+| --- | --- | --- | --- |
+| db.client.connections.pool.name | `Rename` | db.client.connection.pool.name | Replaced by `db.client.connection.pool.name`. |
+
+### metric: `metric.db.client.connections.create_time`
+
+Replaced by `db.client.connection.create_time` with unit `s`.
+
+#### Attribute Changes
+
+| Old Attribute Key | Action | New Attribute Key | Summary |
+| --- | --- | --- | --- |
+| db.client.connections.pool.name | `Rename` | db.client.connection.pool.name | Replaced by `db.client.connection.pool.name`. |
+
+### metric: `metric.db.client.connections.wait_time`
+
+Replaced by `db.client.connection.wait_time` with unit `s`.
+
+#### Attribute Changes
+
+| Old Attribute Key | Action | New Attribute Key | Summary |
+| --- | --- | --- | --- |
+| db.client.connections.pool.name | `Rename` | db.client.connection.pool.name | Replaced by `db.client.connection.pool.name`. |
+
+### metric: `metric.db.client.connections.use_time`
+
+Replaced by `db.client.connection.use_time` with unit `s`.
+
+#### Attribute Changes
+
+| Old Attribute Key | Action | New Attribute Key | Summary |
+| --- | --- | --- | --- |
+| db.client.connections.pool.name | `Rename` | db.client.connection.pool.name | Replaced by `db.client.connection.pool.name`. |
+
+### metric: `metric.db.client.cosmosdb.operation.request_charge`
+
+Replaced by `azure.cosmosdb.client.operation.request_charge`.
+
+#### Property Changes
+
+| Property | Old Value | New Value |
+| --- | --- | --- |
+| Name | db.client.cosmosdb.operation.request_charge | azure.cosmosdb.client.operation.request_charge |
+
+Note: You will need to check what other attributes/properties need to be updated.
+
+#### Attribute Changes
+
+| Old Attribute Key | Action | New Attribute Key | Summary |
+| --- | --- | --- | --- |
+| db.cosmosdb.consistency_level | `Rename` | azure.cosmosdb.consistency.level | Replaced by `azure.cosmosdb.consistency.level`. |
+| db.cosmosdb.regions_contacted | `Rename` | azure.cosmosdb.operation.contacted_regions | Replaced by `azure.cosmosdb.operation.contacted_regions`. |
+| db.cosmosdb.sub_status_code | `Rename` | azure.cosmosdb.response.sub_status_code | Replaced by `azure.cosmosdb.response.sub_status_code`. |
+
+### metric: `metric.db.client.cosmosdb.active_instance.count`
+
+Replaced by `azure.cosmosdb.client.active_instance.count`.
+
+#### Property Changes
+
+| Property | Old Value | New Value |
+| --- | --- | --- |
+| Name | db.client.cosmosdb.active_instance.count | azure.cosmosdb.client.active_instance.count |
+
+Note: You will need to check what other attributes/properties need to be updated.
+
+### metric: `metric.db.client.operation.duration`
+
+#### Attribute Changes
+
+| Old Attribute Key | Action | New Attribute Key | Summary |
+| --- | --- | --- | --- |
+| db.system | `Rename` | db.system.name | Replaced by `db.system.name`. |
+
+### metric: `metric.db.client.response.returned_rows`
+
+#### Attribute Changes
+
+| Old Attribute Key | Action | New Attribute Key | Summary |
+| --- | --- | --- | --- |
+| db.system | `Rename` | db.system.name | Replaced by `db.system.name`. |
+
+## span
+
+### span: `span.db.client`
+
+#### Attribute Changes
+
+| Old Attribute Key | Action | New Attribute Key | Summary |
+| --- | --- | --- | --- |
+| db.connection_string | `Update` |  | Replaced by `server.address` and `server.port`. |
+| db.instance.id | `Drop` |  | Removed, no general replacement at this time. For Elasticsearch, use `db.elasticsearch.node.name` instead. |
+| db.system | `Rename` | db.system.name | Replaced by `db.system.name`. |
+| db.user | `Drop` |  | Removed, no replacement at this time. |

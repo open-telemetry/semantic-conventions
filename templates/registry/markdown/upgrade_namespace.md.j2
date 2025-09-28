@@ -7,9 +7,5 @@
 
 # {{ ctx.id | title_case | acronym }}
 
-{{upgrade.message(ctx.groups) | trim}}
-
-{{upgrade.signalTables(ctx.groups) | trim}}
-
-{{upgrade.attributeBlock(ctx.groups) | trim}}
+{{upgrade.signalBlocks(ctx.groups) | trim}}
 

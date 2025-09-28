@@ -4,7 +4,3 @@
 # DynamoDB
 
 No upgrade process is documented as no deprecations can be found.
-
-
-
-

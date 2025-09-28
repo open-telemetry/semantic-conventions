@@ -1,66 +1,123 @@
 {% import 'deprecation_action.j2' as action %}
 
 {% macro message (groups) %}
-{% set deprecated = groups | selectattr("deprecated") %}
-{% set deprecatedSignals = namespace(attributes = []) %}
 
-{% set signals = groups | rejectattr("deprecated") | selectattr("attributes") %}
-
-{% for signal in signals %}
-{% for deprecated in signal.attributes | selectattr("deprecated") %}
-{% set temp = {'signal': signal, 'attribute': deprecated }%}
-{% set deprecatedSignals.attributes = deprecatedSignals.attributes + [temp] %}
-{% endfor %}{% endfor %}
-
-{% if deprecatedSignals.attributes or deprecated %}
+{% if groups %}
 The upgrade process helps to document what is needed to upgrade the signals to the latest version.
 {% else %}
 No upgrade process is documented as no deprecations can be found.
 {% endif %}
-
 {% endmacro %}
 
-{% macro signalTable(name, signals) %}
-{% if signals %}
+{% macro signalBlocks(groups) %}
 
-## {{name}}
+{% set deprecatedSignals = namespace(signals = []) %}
+{% set deprecatedSignals.signals = groups | selectattr("deprecated") %}
 
-| Old Signal Name | Action | New Signal Name | Summary |
-| --- | --- | --- | --- |
-{% for signal in signals | sort(attribute = "name") %}| {% if signal.name %}{{ signal.name }}{% elif signal.metric_name %}{{signal.metric_name}}{% else %}{{signal.id}}{% endif %} | {{ action.render({"deprecated": signal.deprecated, "annotations": signal.annotations}, "") | trim}} | {{ signal.deprecated.renamed_to }} | {{ signal.deprecated.note | trim }} |
-{% endfor %}
+{% for signal in groups | rejectattr("deprecated") | selectattr("attributes") %}
+{% if signal.attributes | selectattr("deprecated") %}
+{% set deprecatedSignals.signals = deprecatedSignals.signals + [signal] %}
 {% endif %}
-{% endmacro %}
-
-{% macro signalTables(groups) %}
-{% set deprecated = groups | selectattr("deprecated") %}
-{% if deprecated %}
-{% set events = deprecated | selectattr("type", "eq", "event") %}
-{{ signalTable("Events", events) | trim }}
-{% set metrics = deprecated | selectattr("type", "eq", "metric") %}
-{{signalTable("Metrics", metrics) | trim }}
-{% set spans = deprecated | selectattr("type", "eq", "span") %}
-{{signalTable("Spans", spans) | trim }}
-{%endif%}
-{% endmacro %}
-
-{% macro attributeBlock(groups) %}
-{% set deprecatedSignals = namespace(attributes = []) %}
-
-{% set signals = groups | rejectattr("deprecated") | selectattr("attributes") %}
-
-{% for signal in signals %}
-{% for deprecated in signal.attributes | selectattr("deprecated") %}
-{% set temp = {'signal': signal, 'attribute': deprecated }%}
-{% set deprecatedSignals.attributes = deprecatedSignals.attributes + [temp] %}
-{% endfor %}{% endfor %}
-
-{% if deprecatedSignals.attributes %}
-## Attribute Changes
-
-| Signal Name | Signal Type | Old Attribute Key | Action | New Attribute Key | Summary |
-| --- | --- | --- | --- | --- | --- |
-{% for attr in deprecatedSignals.attributes | sort(attribute = "attribute.name") | sort(attribute = "signal.id") %}| {% if attr.signal.name %}{{ attr.signal.name }}{% elif attr.signal.metric_name %}{{attr.signal.metric_name}}{% else %}{{attr.signal.id}}{% endif %} | {{attr.signal.type}} | {{attr.attribute.name}} | {{ action.render({"deprecated": attr.attribute.deprecated, "annotations": attr.attribute.annotations}, "") | trim}} | {{ attr.attribute.deprecated.renamed_to }} | {{ attr.attribute.deprecated.note |trim}} |
 {% endfor %}
+
+{% set current = "" %}
+
+{{message(deprecatedSignals.signals) | trim}}
+{% for signal in deprecatedSignals.signals | sort(attribute="type") %}
+{{ signalBlock(current == signal.type, signal, groups) | trim }}{% if current != signal.type %}{% set current = signal.type %}{% endif %}
+{% endfor %}
+{% endmacro %}
+
+{% macro signalBlock(current, signal, groups) %}
+{% set newSignal = {} %}
+{% if signal.type == "metric" and signal.deprecated and signal.deprecated.reason == "renamed" %}
+{% set newSignal = groups | selectattr("metric_name", 'equalto', signal.deprecated.renamed_to) | first %}
+{% elif signal.type == "event" and signal.deprecated and signal.deprecated.reason == "renamed" %}
+{% set newSignal = groups | selectattr("name", 'equalto', signal.deprecated.renamed_to) | first %}
+{% elif signal.type == "entity" and signal.deprecated and signal.deprecated.reason == "renamed" %}
+{% set newSignal = groups | selectattr("name", 'equalto', signal.deprecated.renamed_to) | first %}
+{% elif signal.type == "span" and signal.deprecated and signal.deprecated.reason == "renamed" %}
+{% set newSignal = groups | selectattr("id", 'equalto', signal.deprecated.renamed_to) | first %}
+{% endif %}
+{% if current == false %}
+## {{signal.type}}
+{% endif %}
+### {{signal.type}}: `{{signal.id}}`
+
+{{changes(signal, newSignal) | trim }}
+{% endmacro %}
+
+{% macro changes(signal, new)%}
+{{propertyChanges(signal, new) | trim }}
+
+{{attributeChanges(signal, new) | trim }}
+{% endmacro %}
+
+{% macro propertyChanges(signal, new)%}
+{% if signal.deprecated %}
+{{signal.deprecated.note }}
+{% if signal.deprecated.reason == "renamed"%}
+#### Property Changes
+
+| Property | Old Value | New Value |
+| --- | --- | --- |
+{{signalUpgrade(signal, new) | trim}}
+{% endif %}{% endif %}
+
+{% endmacro %}
+
+{% macro attributeChanges(signal, new)%}
+
+{% set lines = signal.attributes | selectattr("deprecated")%}
+{# if new and new.attributes #}
+{# set lines = lines + (new.attributes | selectattr("deprecated")) | unique #}
+{# endif #}
+{% if lines %}#### Attribute Changes
+
+| Old Attribute Key | Action | New Attribute Key | Summary |
+| --- | --- | --- | --- |
+{% for attr in lines | unique | sort(attribute = "name") %}| {{attr.name}} | {{ action.render({"deprecated": attr.deprecated, "annotations": attr.annotations}, "") | trim}} | {{ attr.deprecated.renamed_to }} | {{ attr.deprecated.note | trim}} |
+{% endfor %}{% endif %}
+{% endmacro %}
+
+{% macro signalUpgrade(old, new)%}
+{% if new is undefined %}
+| Name | {% if old.metric_name %}{{old.metric_name}}{% elif old.name %}{{old.name}}{% else %}{{old.id}}{% endif %} | {{old.deprecated.renamed_to}} |
+
+Note: You will need to check what other attributes/properties need to be updated.
+
+{% elif old.type == "metric" and new.type == "metric"%}
+{{metricUpgrade(old, new) | trim }}
+{% elif old.type == "event" and new.type == "event"%}
+{{eventUpgrade(old, new) | trim }}
+{% elif old.type == "entity" and new.type == "entity"%}
+{{entityUpgrade(old, new) | trim }}
+{% elif old.type == "span" and new.type == "span"%}
+{{spanUpgrade(old, new) | trim }}
+{% else %}
+Fix: {{old.type}}
+{% endif %}{% endmacro %}
+
+{% macro metricUpgrade(old, new)%}
+{{propertyUpgrade("Name", old.metric_name, new.metric_name) | trim}}
+{{propertyUpgrade("Instrument", old.instrument, new.instrument) | trim}}
+{{propertyUpgrade("Unit", old.unit, new.unit) | trim}}
+{% endmacro %}
+
+{% macro eventUpgrade(old, new)%}
+{{propertyUpgrade("Name", old.name, new.name) | trim}}
+{% endmacro %}
+
+{% macro entityUpgrade(old, new)%}
+{{propertyUpgrade("Name", old.name, new.name) | trim}}
+{% endmacro %}
+
+{% macro spanUpgrade(old, new)%}
+{{propertyUpgrade("Kind", old.kind, new.kind) | trim}}
+{% endmacro %}
+
+{% macro propertyUpgrade(name, old, new)%}
+{% if old != new %}
+| {{name}} | {{old}} | {{new}} |
 {% endif %}
 {% endmacro %}

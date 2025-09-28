@@ -5,11 +5,24 @@
 
 The upgrade process helps to document what is needed to upgrade the signals to the latest version.
 
-## Metrics
+## metric
 
-| Old Signal Name | Action | New Signal Name | Summary |
-| --- | --- | --- | --- |
-| k8s.replication_controller.desired_pods | `Rename` | k8s.replicationcontroller.desired_pods | Replaced by `k8s.replicationcontroller.desired_pods`. |
-| k8s.replication_controller.available_pods | `Rename` | k8s.replicationcontroller.available_pods | Replaced by `k8s.replicationcontroller.available_pods`. |
+### metric: `metric.k8s.replication_controller.desired_pods`
 
+Replaced by `k8s.replicationcontroller.desired_pods`.
 
+#### Property Changes
+
+| Property | Old Value | New Value |
+| --- | --- | --- |
+| Name | k8s.replication_controller.desired_pods | k8s.replicationcontroller.desired_pods |
+
+### metric: `metric.k8s.replication_controller.available_pods`
+
+Replaced by `k8s.replicationcontroller.available_pods`.
+
+#### Property Changes
+
+| Property | Old Value | New Value |
+| --- | --- | --- |
+| Name | k8s.replication_controller.available_pods | k8s.replicationcontroller.available_pods |

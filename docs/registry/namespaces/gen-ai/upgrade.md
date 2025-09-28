@@ -5,14 +5,54 @@
 
 The upgrade process helps to document what is needed to upgrade the signals to the latest version.
 
-## Events
+## event
 
-| Old Signal Name | Action | New Signal Name | Summary |
+### event: `event.gen_ai.system.message`
+
+Chat history is reported on `gen_ai.system_instructions` attribute on spans or `gen_ai.client.inference.operation.details` event.
+
+#### Attribute Changes
+
+| Old Attribute Key | Action | New Attribute Key | Summary |
 | --- | --- | --- | --- |
-| gen_ai.assistant.message | `Update` |  | Chat history is reported on `gen_ai.input.messages` attribute on spans or `gen_ai.client.inference.operation.details` event. |
-| gen_ai.choice | `Update` |  | Chat history is reported on `gen_ai.output.messages` attribute on spans or `gen_ai.client.inference.operation.details` event. |
-| gen_ai.system.message | `Update` |  | Chat history is reported on `gen_ai.system_instructions` attribute on spans or `gen_ai.client.inference.operation.details` event. |
-| gen_ai.tool.message | `Update` |  | Chat history is reported on `gen_ai.input.messages` attribute on spans or `gen_ai.client.inference.operation.details` event. |
-| gen_ai.user.message | `Update` |  | Chat history is reported on `gen_ai.input.messages` attribute on spans or `gen_ai.client.inference.operation.details` event. |
+| gen_ai.system | `Rename` | gen_ai.provider.name | Replaced by `gen_ai.provider.name`. |
 
+### event: `event.gen_ai.user.message`
 
+Chat history is reported on `gen_ai.input.messages` attribute on spans or `gen_ai.client.inference.operation.details` event.
+
+#### Attribute Changes
+
+| Old Attribute Key | Action | New Attribute Key | Summary |
+| --- | --- | --- | --- |
+| gen_ai.system | `Rename` | gen_ai.provider.name | Replaced by `gen_ai.provider.name`. |
+
+### event: `event.gen_ai.assistant.message`
+
+Chat history is reported on `gen_ai.input.messages` attribute on spans or `gen_ai.client.inference.operation.details` event.
+
+#### Attribute Changes
+
+| Old Attribute Key | Action | New Attribute Key | Summary |
+| --- | --- | --- | --- |
+| gen_ai.system | `Rename` | gen_ai.provider.name | Replaced by `gen_ai.provider.name`. |
+
+### event: `event.gen_ai.tool.message`
+
+Chat history is reported on `gen_ai.input.messages` attribute on spans or `gen_ai.client.inference.operation.details` event.
+
+#### Attribute Changes
+
+| Old Attribute Key | Action | New Attribute Key | Summary |
+| --- | --- | --- | --- |
+| gen_ai.system | `Rename` | gen_ai.provider.name | Replaced by `gen_ai.provider.name`. |
+
+### event: `event.gen_ai.choice`
+
+Chat history is reported on `gen_ai.output.messages` attribute on spans or `gen_ai.client.inference.operation.details` event.
+
+#### Attribute Changes
+
+| Old Attribute Key | Action | New Attribute Key | Summary |
+| --- | --- | --- | --- |
+| gen_ai.system | `Rename` | gen_ai.provider.name | Replaced by `gen_ai.provider.name`. |

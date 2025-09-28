@@ -5,15 +5,60 @@
 
 The upgrade process helps to document what is needed to upgrade the signals to the latest version.
 
-## Metrics
+## entity
 
-| Old Signal Name | Action | New Signal Name | Summary |
-| --- | --- | --- | --- |
-| otel.sdk.span.live.count | `Rename` | otel.sdk.span.live | Replaced by `otel.sdk.span.live`. |
-| otel.sdk.span.ended.count | `Drop` |  | Obsoleted. |
-| otel.sdk.processor.span.processed.count | `Rename` | otel.sdk.processor.span.processed | Replaced by `otel.sdk.processor.span.processed`. |
-| otel.sdk.exporter.span.inflight.count | `Rename` | otel.sdk.exporter.span.inflight | Replaced by `otel.sdk.exporter.span.inflight`. |
-| otel.sdk.exporter.span.exported.count | `Rename` | otel.sdk.exporter.span.exported | Replaced by `otel.sdk.exporter.span.exported`. |
-| otel.sdk.span.ended | `Drop` |  | Obsoleted. |
+### entity: `entity.otel.scope`
 
+Obsoleted.
 
+## metric
+
+### metric: `metric.otel.sdk.span.live.count`
+
+Replaced by `otel.sdk.span.live`.
+
+#### Property Changes
+
+| Property | Old Value | New Value |
+| --- | --- | --- |
+| Name | otel.sdk.span.live.count | otel.sdk.span.live |
+
+### metric: `metric.otel.sdk.span.ended.count`
+
+Obsoleted.
+
+### metric: `metric.otel.sdk.processor.span.processed.count`
+
+Replaced by `otel.sdk.processor.span.processed`.
+
+#### Property Changes
+
+| Property | Old Value | New Value |
+| --- | --- | --- |
+| Name | otel.sdk.processor.span.processed.count | otel.sdk.processor.span.processed |
+| Instrument | updowncounter | counter |
+
+### metric: `metric.otel.sdk.exporter.span.inflight.count`
+
+Replaced by `otel.sdk.exporter.span.inflight`.
+
+#### Property Changes
+
+| Property | Old Value | New Value |
+| --- | --- | --- |
+| Name | otel.sdk.exporter.span.inflight.count | otel.sdk.exporter.span.inflight |
+
+### metric: `metric.otel.sdk.exporter.span.exported.count`
+
+Replaced by `otel.sdk.exporter.span.exported`.
+
+#### Property Changes
+
+| Property | Old Value | New Value |
+| --- | --- | --- |
+| Name | otel.sdk.exporter.span.exported.count | otel.sdk.exporter.span.exported |
+| Instrument | updowncounter | counter |
+
+### metric: `metric.otel.sdk.span.ended`
+
+Obsoleted.

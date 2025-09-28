@@ -5,10 +5,22 @@
 
 The upgrade process helps to document what is needed to upgrade the signals to the latest version.
 
-## Events
+## event
 
-| Old Signal Name | Action | New Signal Name | Summary |
+### event: `event.az.resource.log`
+
+Replaced by `azure.resource.log`.
+
+#### Property Changes
+
+| Property | Old Value | New Value |
+| --- | --- | --- |
+| Name | az.resource.log | azure.resource.log |
+
+Note: You will need to check what other attributes/properties need to be updated.
+
+#### Attribute Changes
+
+| Old Attribute Key | Action | New Attribute Key | Summary |
 | --- | --- | --- | --- |
-| az.resource.log | `Rename` | azure.resource.log | Replaced by `azure.resource.log`. |
-
-
+| az.service_request_id | `Rename` | azure.service.request.id | Replaced by `azure.service.request.id`. |

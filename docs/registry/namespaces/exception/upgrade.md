@@ -5,10 +5,12 @@
 
 The upgrade process helps to document what is needed to upgrade the signals to the latest version.
 
+## event
 
+### event: `event.exception`
 
-## Attribute Changes
+#### Attribute Changes
 
-| Signal Name | Signal Type | Old Attribute Key | Action | New Attribute Key | Summary |
-| --- | --- | --- | --- | --- | --- |
-| exception | event | exception.escaped | `Drop` |  | It's no longer recommended to record exceptions that are handled and do not escape the scope of a span. |
+| Old Attribute Key | Action | New Attribute Key | Summary |
+| --- | --- | --- | --- |
+| exception.escaped | `Drop` |  | It's no longer recommended to record exceptions that are handled and do not escape the scope of a span. |

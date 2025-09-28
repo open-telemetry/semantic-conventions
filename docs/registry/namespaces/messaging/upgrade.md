@@ -5,22 +5,132 @@
 
 The upgrade process helps to document what is needed to upgrade the signals to the latest version.
 
-## Metrics
+## metric
 
-| Old Signal Name | Action | New Signal Name | Summary |
+### metric: `metric.messaging.publish.duration`
+
+Replaced by `messaging.client.operation.duration`.
+
+#### Property Changes
+
+| Property | Old Value | New Value |
+| --- | --- | --- |
+| Name | messaging.publish.duration | messaging.client.operation.duration |
+
+#### Attribute Changes
+
+| Old Attribute Key | Action | New Attribute Key | Summary |
 | --- | --- | --- | --- |
-| messaging.publish.duration | `Rename` | messaging.client.operation.duration | Replaced by `messaging.client.operation.duration`. |
-| messaging.receive.duration | `Rename` | messaging.client.operation.duration | Replaced by `messaging.client.operation.duration`. |
-| messaging.process.messages | `Rename` | messaging.client.consumed.messages | Replaced by `messaging.client.consumed.messages`. |
-| messaging.publish.messages | `Rename` | messaging.client.sent.messages | Replaced by `messaging.client.sent.messages`. |
-| messaging.receive.messages | `Rename` | messaging.client.consumed.messages | Replaced by `messaging.client.consumed.messages`. |
-| messaging.client.published.messages | `Rename` | messaging.client.sent.messages | Replaced by `messaging.client.sent.messages`. |
+| messaging.operation | `Migrate` | messaging.operation.type | Replaced by `messaging.operation.type`. |
 
-## Attribute Changes
+### metric: `metric.messaging.receive.duration`
 
-| Signal Name | Signal Type | Old Attribute Key | Action | New Attribute Key | Summary |
-| --- | --- | --- | --- | --- | --- |
-| messaging.client.consumed.messages | metric | messaging.operation | `Migrate` | messaging.operation.name | Replaced by `messaging.operation.name`. |
-| messaging.client.operation.duration | metric | messaging.operation | `Migrate` | messaging.operation.type | Replaced by `messaging.operation.type`. |
-| messaging.client.sent.messages | metric | messaging.operation | `Migrate` | messaging.operation.name | Replaced by `messaging.operation.name`. |
-| messaging.process.duration | metric | messaging.operation | `Migrate` | messaging.operation.name | Replaced by `messaging.operation.name`. |
+Replaced by `messaging.client.operation.duration`.
+
+#### Property Changes
+
+| Property | Old Value | New Value |
+| --- | --- | --- |
+| Name | messaging.receive.duration | messaging.client.operation.duration |
+
+#### Attribute Changes
+
+| Old Attribute Key | Action | New Attribute Key | Summary |
+| --- | --- | --- | --- |
+| messaging.operation | `Migrate` | messaging.operation.type | Replaced by `messaging.operation.type`. |
+
+### metric: `metric.messaging.process.messages`
+
+Replaced by `messaging.client.consumed.messages`.
+
+#### Property Changes
+
+| Property | Old Value | New Value |
+| --- | --- | --- |
+| Name | messaging.process.messages | messaging.client.consumed.messages |
+
+#### Attribute Changes
+
+| Old Attribute Key | Action | New Attribute Key | Summary |
+| --- | --- | --- | --- |
+| messaging.operation | `Migrate` | messaging.operation.type | Replaced by `messaging.operation.type`. |
+
+### metric: `metric.messaging.publish.messages`
+
+Replaced by `messaging.client.sent.messages`.
+
+#### Property Changes
+
+| Property | Old Value | New Value |
+| --- | --- | --- |
+| Name | messaging.publish.messages | messaging.client.sent.messages |
+
+#### Attribute Changes
+
+| Old Attribute Key | Action | New Attribute Key | Summary |
+| --- | --- | --- | --- |
+| messaging.operation | `Migrate` | messaging.operation.type | Replaced by `messaging.operation.type`. |
+
+### metric: `metric.messaging.receive.messages`
+
+Replaced by `messaging.client.consumed.messages`.
+
+#### Property Changes
+
+| Property | Old Value | New Value |
+| --- | --- | --- |
+| Name | messaging.receive.messages | messaging.client.consumed.messages |
+
+#### Attribute Changes
+
+| Old Attribute Key | Action | New Attribute Key | Summary |
+| --- | --- | --- | --- |
+| messaging.operation | `Migrate` | messaging.operation.type | Replaced by `messaging.operation.type`. |
+
+### metric: `metric.messaging.client.published.messages`
+
+Replaced by `messaging.client.sent.messages`.
+
+#### Property Changes
+
+| Property | Old Value | New Value |
+| --- | --- | --- |
+| Name | messaging.client.published.messages | messaging.client.sent.messages |
+
+#### Attribute Changes
+
+| Old Attribute Key | Action | New Attribute Key | Summary |
+| --- | --- | --- | --- |
+| messaging.operation | `Migrate` | messaging.operation.type | Replaced by `messaging.operation.type`. |
+
+### metric: `metric.messaging.client.operation.duration`
+
+#### Attribute Changes
+
+| Old Attribute Key | Action | New Attribute Key | Summary |
+| --- | --- | --- | --- |
+| messaging.operation | `Migrate` | messaging.operation.type | Replaced by `messaging.operation.type`. |
+
+### metric: `metric.messaging.process.duration`
+
+#### Attribute Changes
+
+| Old Attribute Key | Action | New Attribute Key | Summary |
+| --- | --- | --- | --- |
+| messaging.operation | `Migrate` | messaging.operation.name | Replaced by `messaging.operation.name`. |
+
+### metric: `metric.messaging.client.sent.messages`
+
+#### Attribute Changes
+
+| Old Attribute Key | Action | New Attribute Key | Summary |
+| --- | --- | --- | --- |
+| messaging.operation | `Migrate` | messaging.operation.name | Replaced by `messaging.operation.name`. |
+
+### metric: `metric.messaging.client.consumed.messages`
+
+#### Attribute Changes
+
+| Old Attribute Key | Action | New Attribute Key | Summary |
+| --- | --- | --- | --- |
+| messaging.operation | `Migrate` | messaging.operation.name | Replaced by `messaging.operation.name`. |

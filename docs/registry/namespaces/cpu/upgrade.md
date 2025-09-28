@@ -5,12 +5,40 @@
 
 The upgrade process helps to document what is needed to upgrade the signals to the latest version.
 
-## Metrics
+## metric
 
-| Old Signal Name | Action | New Signal Name | Summary |
-| --- | --- | --- | --- |
-| cpu.time | `Rename` | system.cpu.time | Replaced by `system.cpu.time`. |
-| cpu.utilization | `Rename` | system.cpu.utilization | Replaced by `system.cpu.utilization`. |
-| cpu.frequency | `Rename` | system.cpu.frequency | Replaced by `system.cpu.frequency`. |
+### metric: `metric.cpu.time`
 
+Replaced by `system.cpu.time`.
 
+#### Property Changes
+
+| Property | Old Value | New Value |
+| --- | --- | --- |
+| Name | cpu.time | system.cpu.time |
+
+Note: You will need to check what other attributes/properties need to be updated.
+
+### metric: `metric.cpu.utilization`
+
+Replaced by `system.cpu.utilization`.
+
+#### Property Changes
+
+| Property | Old Value | New Value |
+| --- | --- | --- |
+| Name | cpu.utilization | system.cpu.utilization |
+
+Note: You will need to check what other attributes/properties need to be updated.
+
+### metric: `metric.cpu.frequency`
+
+Replaced by `system.cpu.frequency`.
+
+#### Property Changes
+
+| Property | Old Value | New Value |
+| --- | --- | --- |
+| Name | cpu.frequency | system.cpu.frequency |
+
+Note: You will need to check what other attributes/properties need to be updated.
