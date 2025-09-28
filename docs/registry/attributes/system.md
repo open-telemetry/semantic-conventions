@@ -170,10 +170,10 @@ Deprecated system attributes.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `defunct` | Defunct | ![Development](https://img.shields.io/badge/-development-blue) |
-| `running` | Running | ![Development](https://img.shields.io/badge/-development-blue) |
-| `sleeping` | Sleeping | ![Development](https://img.shields.io/badge/-development-blue) |
-| `stopped` | Stopped | ![Development](https://img.shields.io/badge/-development-blue) |
+| `defunct` | The process has exited and has a parent, but has not yet been waited for by the parent. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `running` | The process is currently running. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `sleeping` | The process is currently sleeping. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `stopped` | The process has been stopped. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -181,7 +181,7 @@ Deprecated system attributes.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `defunct` | Defunct | ![Development](https://img.shields.io/badge/-development-blue) |
-| `running` | Running | ![Development](https://img.shields.io/badge/-development-blue) |
-| `sleeping` | Sleeping | ![Development](https://img.shields.io/badge/-development-blue) |
-| `stopped` | Stopped | ![Development](https://img.shields.io/badge/-development-blue) |
+| `defunct` | The process has exited and has a parent, but has not yet been waited for by the parent. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `running` | The process is currently running. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `sleeping` | The process is currently sleeping. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `stopped` | The process has been stopped. | ![Development](https://img.shields.io/badge/-development-blue) |

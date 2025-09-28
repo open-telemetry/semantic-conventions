@@ -250,19 +250,19 @@ groups:
           members:
             - id: running
               value: 'running'
-              brief: Running
+              brief: The process is currently running.
               stability: development
             - id: sleeping
               value: 'sleeping'
-              brief: Sleeping
+              brief: The process is currently sleeping.
               stability: development
             - id: stopped
               value: 'stopped'
-              brief: Stopped
+              brief: The process has been stopped.
               stability: development
             - id: defunct
               value: 'defunct'
-              brief: Defunct
+              brief: The process has exited and has a parent, but has not yet been waited for by the parent.
               stability: development
         stability: development
         brief: >
