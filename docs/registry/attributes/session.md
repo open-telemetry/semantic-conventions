@@ -10,6 +10,7 @@ Consequently, a Session is represented as a collection of Logs, Events, and Span
 When a session reaches end of life, typically due to user inactivity or session timeout, a new session identifier will be assigned. The previous session identifier may be provided by the instrumentation so that telemetry backends can link the two sessions.
 
 **Current Attributes:**
+
 | Key | Type | Summary | Example Values | Stability |
 |---|---|---|---|---|
 | <a id="session-id" href="#session-id">`session.id`</a> | string | A unique id to identify a session. | `00112233-4455-6677-8899-aabbccddeeff` | ![Development](https://img.shields.io/badge/-development-blue) |

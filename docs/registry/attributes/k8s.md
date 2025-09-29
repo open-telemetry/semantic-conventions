@@ -11,6 +11,7 @@
 Kubernetes resource attributes.
 
 **Current Attributes:**
+
 | Key | Type | Summary | Example Values | Stability |
 |---|---|---|---|---|
 | <a id="k8s-cluster-name" href="#k8s-cluster-name">`k8s.cluster.name`</a> | string | The name of the cluster. | `opentelemetry-cluster` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -353,7 +354,6 @@ When this occurs, the exact value as reported by the Kubernetes API SHOULD be us
 
 Describes deprecated k8s attributes.
 
-**Current Attributes:**
 <details>
 <summary><b>Past Attributes:</b></summary>
 

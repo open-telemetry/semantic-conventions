@@ -8,6 +8,7 @@
 Attributes for Events represented using Log Records.
 
 **Current Attributes:**
+
 | Key | Type | Summary | Example Values | Stability |
 |---|---|---|---|---|
 | <a id="event-name" href="#event-name">`event.name`</a> | string | Identifies the class / type of event. [1] | `browser.mouse.click`; `device.app.lifecycle` | ![Development](https://img.shields.io/badge/-development-blue) |

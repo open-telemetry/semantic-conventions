@@ -3,14 +3,25 @@
 
 # Exception
 
-- [Deprecated Exception Attributes](#deprecated-exception-attributes)
 - [Exception Attributes](#exception-attributes)
+- [Deprecated Exception Attributes](#deprecated-exception-attributes)
+
+## Exception Attributes
+
+This document defines the shared attributes used to report a single exception associated with a span or log.
+
+**Current Attributes:**
+
+| Key | Type | Summary | Example Values | Stability |
+|---|---|---|---|---|
+| <a id="exception-message" href="#exception-message">`exception.message`</a> | string | The exception message. | `Division by zero`; `Can't convert 'int' object to str implicitly` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| <a id="exception-stacktrace" href="#exception-stacktrace">`exception.stacktrace`</a> | string | A stacktrace as a string in the natural representation for the language runtime. The representation is to be determined and documented by each language SIG. | `Exception in thread "main" java.lang.RuntimeException: Test exception\n at com.example.GenerateTrace.methodB(GenerateTrace.java:13)\n at com.example.GenerateTrace.methodA(GenerateTrace.java:9)\n at com.example.GenerateTrace.main(GenerateTrace.java:5)` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| <a id="exception-type" href="#exception-type">`exception.type`</a> | string | The type of the exception (its fully-qualified class name, if applicable). The dynamic type of the exception should be preferred over the static type in languages that support it. | `java.net.ConnectException`; `OSError` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ## Deprecated Exception Attributes
 
 Deprecated exception attributes.
 
-**Current Attributes:**
 <details>
 <summary><b>Past Attributes:</b></summary>
 
@@ -19,14 +30,3 @@ Deprecated exception attributes.
 | <a id="exception-escaped" href="#exception-escaped">`exception.escaped`</a> | boolean | Indicates that the exception is escaping the scope of the span. |  |  It's no longer recommended to record exceptions that are handled and do not escape the scope of a span.  |
 
 </details>
-
-## Exception Attributes
-
-This document defines the shared attributes used to report a single exception associated with a span or log.
-
-**Current Attributes:**
-| Key | Type | Summary | Example Values | Stability |
-|---|---|---|---|---|
-| <a id="exception-message" href="#exception-message">`exception.message`</a> | string | The exception message. | `Division by zero`; `Can't convert 'int' object to str implicitly` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| <a id="exception-stacktrace" href="#exception-stacktrace">`exception.stacktrace`</a> | string | A stacktrace as a string in the natural representation for the language runtime. The representation is to be determined and documented by each language SIG. | `Exception in thread "main" java.lang.RuntimeException: Test exception\n at com.example.GenerateTrace.methodB(GenerateTrace.java:13)\n at com.example.GenerateTrace.methodA(GenerateTrace.java:9)\n at com.example.GenerateTrace.main(GenerateTrace.java:5)` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| <a id="exception-type" href="#exception-type">`exception.type`</a> | string | The type of the exception (its fully-qualified class name, if applicable). The dynamic type of the exception should be preferred over the static type in languages that support it. | `java.net.ConnectException`; `OSError` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |

@@ -8,6 +8,7 @@
 Describes security rule attributes. Rule fields are used to capture the specifics of any observer or agent rules that generate alerts or other notable events.
 
 **Current Attributes:**
+
 | Key | Type | Summary | Example Values | Stability |
 |---|---|---|---|---|
 | <a id="security-rule-category" href="#security-rule-category">`security_rule.category`</a> | string | A categorization value keyword used by the entity using the rule for detection of this event | `Attempted Information Leak` | ![Development](https://img.shields.io/badge/-development-blue) |

@@ -12,6 +12,7 @@
 This section defines generic attributes used by Azure Client Libraries.
 
 **Current Attributes:**
+
 | Key | Type | Summary | Example Values | Stability |
 |---|---|---|---|---|
 | <a id="azure-client-id" href="#azure-client-id">`azure.client.id`</a> | string | The unique identifier of the client instance. | `3ba4827d-4422-483f-b59f-85b74211c11d`; `storage-client-1` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -23,6 +24,7 @@ This section defines generic attributes used by Azure Client Libraries.
 This section defines attributes for Azure Cosmos DB.
 
 **Current Attributes:**
+
 | Key | Type | Summary | Example Values | Stability |
 |---|---|---|---|---|
 | <a id="azure-cosmosdb-connection-mode" href="#azure-cosmosdb-connection-mode">`azure.cosmosdb.connection.mode`</a> | string | Cosmos client connection mode. | `gateway`; `direct` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -59,7 +61,6 @@ This section defines attributes for Azure Cosmos DB.
 
 This section describes deprecated Azure attributes.
 
-**Current Attributes:**
 <details>
 <summary><b>Past Attributes:</b></summary>
 

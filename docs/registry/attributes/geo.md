@@ -9,6 +9,7 @@ Geo fields can carry data about a specific location related to an event. This ge
 Note: Geo attributes are typically used under another namespace, such as client.* and describe the location of the corresponding entity (device, end-user, etc). Semantic conventions that reference geo attributes (as a root namespace) or embed them (under their own namespace) SHOULD document what geo attributes describe in the scope of that convention.
 
 **Current Attributes:**
+
 | Key | Type | Summary | Example Values | Stability |
 |---|---|---|---|---|
 | <a id="geo-continent-code" href="#geo-continent-code">`geo.continent.code`</a> | string | Two-letter code representing continent’s name. | `AF`; `AN`; `AS` | ![Development](https://img.shields.io/badge/-development-blue) |

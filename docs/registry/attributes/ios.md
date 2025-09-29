@@ -11,6 +11,7 @@
 This group describes iOS-specific attributes.
 
 **Current Attributes:**
+
 | Key | Type | Summary | Example Values | Stability |
 |---|---|---|---|---|
 | <a id="ios-app-state" href="#ios-app-state">`ios.app.state`</a> | string | This attribute represents the state of the application. [1] | `active`; `inactive`; `background` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -33,7 +34,6 @@ This group describes iOS-specific attributes.
 
 The iOS platform on which the iOS application is running.
 
-**Current Attributes:**
 <details>
 <summary><b>Past Attributes:</b></summary>
 

@@ -11,6 +11,7 @@
 These attributes may be used for any network related operation.
 
 **Current Attributes:**
+
 | Key | Type | Summary | Example Values | Stability |
 |---|---|---|---|---|
 | <a id="network-carrier-icc" href="#network-carrier-icc">`network.carrier.icc`</a> | string | The ISO 3166-1 alpha-2 2-character country code associated with the mobile carrier network. | `DE` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -137,7 +138,6 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 These attributes may be used for any network related operation.
 
-**Current Attributes:**
 <details>
 <summary><b>Past Attributes:</b></summary>
 

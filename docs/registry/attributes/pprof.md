@@ -8,6 +8,7 @@
 Attributes specific to pprof that help convert from pprof to Profiling signal.
 
 **Current Attributes:**
+
 | Key | Type | Summary | Example Values | Stability |
 |---|---|---|---|---|
 | <a id="pprof-location-is-folded" href="#pprof-location-is-folded">`pprof.location.is_folded`</a> | boolean | Provides an indication that multiple symbols map to this location's address, for example due to identical code folding by the linker. In that case the line information represents one of the multiple symbols. This field must be recomputed when the symbolization state of the profile changes. |  | ![Development](https://img.shields.io/badge/-development-blue) |
