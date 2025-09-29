@@ -1,4 +1,4 @@
-## Recommended vs Opt-In CPU Metrics
+# Recommended vs Opt-In CPU Metrics
 
 The [**Instrument Naming**](/docs/general/naming.md#instrument-naming)
 section defines the `*.usage`, `*.limit`, `*.utilization`, and `*.time` metrics, but it does **not** specify
