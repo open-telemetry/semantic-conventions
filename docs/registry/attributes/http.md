@@ -11,6 +11,7 @@
 This document defines semantic convention attributes in the HTTP namespace.
 
 **Current Attributes:**
+
 | Key | Type | Summary | Example Values | Stability |
 |---|---|---|---|---|
 | <a id="http-connection-state" href="#http-connection-state">`http.connection.state`</a> | string | State of the HTTP connection in the HTTP connection pool. | `active`; `idle` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -119,7 +120,6 @@ support custom route formatting. Instrumentations SHOULD document the format and
 
 Describes deprecated HTTP attributes.
 
-**Current Attributes:**
 <details>
 <summary><b>Past Attributes:</b></summary>
 

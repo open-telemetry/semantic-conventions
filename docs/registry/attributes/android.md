@@ -8,6 +8,7 @@
 The Android platform on which the Android application is running.
 
 **Current Attributes:**
+
 | Key | Type | Summary | Example Values | Stability |
 |---|---|---|---|---|
 | <a id="android-app-state" href="#android-app-state">`android.app.state`</a> | string | This attribute represents the state of the application. [1] | `created` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -24,6 +25,7 @@ The Android platform on which the Android application is running.
 | `background` | Any time after Activity.onPause() or, if the app has no Activity, Context.stopService() has been called when the app was in the foreground state. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `created` | Any time before Activity.onResume() or, if the app has no Activity, Context.startService() has been called in the app for the first time. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `foreground` | Any time after Activity.onResume() or, if the app has no Activity, Context.startService() has been called when the app was in either the created or background states. | ![Development](https://img.shields.io/badge/-development-blue) |
+
 <details>
 <summary><b>Past Attributes:</b></summary>
 

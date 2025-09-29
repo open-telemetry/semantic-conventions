@@ -11,6 +11,7 @@
 This document defines the shared attributes used to report a single exception associated with a span or log.
 
 **Current Attributes:**
+
 | Key | Type | Summary | Example Values | Stability |
 |---|---|---|---|---|
 | <a id="exception-message" href="#exception-message">`exception.message`</a> | string | The exception message. | `Division by zero`; `Can't convert 'int' object to str implicitly` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -21,7 +22,6 @@ This document defines the shared attributes used to report a single exception as
 
 Deprecated exception attributes.
 
-**Current Attributes:**
 <details>
 <summary><b>Past Attributes:</b></summary>
 

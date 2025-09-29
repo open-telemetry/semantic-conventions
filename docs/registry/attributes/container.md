@@ -11,6 +11,7 @@
 A container instance.
 
 **Current Attributes:**
+
 | Key | Type | Summary | Example Values | Stability |
 |---|---|---|---|---|
 | <a id="container-command" href="#container-command">`container.command`</a> | string | The command used to run the container (i.e. the command name). [1] | `otelcontribcol` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -47,7 +48,6 @@ The ID is assigned by the container runtime and can vary in different environmen
 
 Describes deprecated container attributes.
 
-**Current Attributes:**
 <details>
 <summary><b>Past Attributes:</b></summary>
 

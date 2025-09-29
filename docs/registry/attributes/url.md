@@ -8,6 +8,7 @@
 Attributes describing URL.
 
 **Current Attributes:**
+
 | Key | Type | Summary | Example Values | Stability |
 |---|---|---|---|---|
 | <a id="url-domain" href="#url-domain">`url.domain`</a> | string | Domain extracted from the `url.full`, such as "opentelemetry.io". [1] | `www.foo.bar`; `opentelemetry.io`; `3.12.167.2`; `[1080:0:0:0:8:800:200C:417A]` | ![Development](https://img.shields.io/badge/-development-blue) |

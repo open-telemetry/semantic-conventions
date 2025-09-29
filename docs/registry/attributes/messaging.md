@@ -4,12 +4,12 @@
 # Messaging
 
 - [General Messaging Attributes](#general-messaging-attributes)
+- [Azure Event Hubs Attributes](#azure-event-hubs-attributes)
+- [GCP Pub/Sub Attributes](#gcp-pubsub-attributes)
 - [Kafka Attributes](#kafka-attributes)
 - [RabbitMQ Attributes](#rabbitmq-attributes)
 - [RocketMQ Attributes](#rocketmq-attributes)
-- [GCP Pub/Sub Attributes](#gcp-pubsub-attributes)
 - [Azure Service Bus Attributes](#azure-service-bus-attributes)
-- [Azure Event Hubs Attributes](#azure-event-hubs-attributes)
 - [Deprecated Messaging Attributes](#deprecated-messaging-attributes)
 
 ## General Messaging Attributes
@@ -17,6 +17,7 @@
 Attributes describing telemetry around messaging systems and messaging activities.
 
 **Current Attributes:**
+
 | Key | Type | Summary | Example Values | Stability |
 |---|---|---|---|---|
 | <a id="messaging-batch-message-count" href="#messaging-batch-message-count">`messaging.batch.message_count`</a> | int | The number of messages sent, received, or processed in the scope of the batching operation. [1] | `0`; `1`; `2` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -88,11 +89,35 @@ size should be used.
 | `rocketmq` | Apache RocketMQ | ![Development](https://img.shields.io/badge/-development-blue) |
 | `servicebus` | Azure Service Bus | ![Development](https://img.shields.io/badge/-development-blue) |
 
+## Azure Event Hubs Attributes
+
+This group describes attributes specific to Azure Event Hubs.
+
+**Current Attributes:**
+
+| Key | Type | Summary | Example Values | Stability |
+|---|---|---|---|---|
+| <a id="messaging-eventhubs-message-enqueued-time" href="#messaging-eventhubs-message-enqueued-time">`messaging.eventhubs.message.enqueued_time`</a> | int | The UTC epoch seconds at which the message has been accepted and stored in the entity. | `1701393730` | ![Development](https://img.shields.io/badge/-development-blue) |
+
+## GCP Pub/Sub Attributes
+
+This group describes attributes specific to GCP Pub/Sub.
+
+**Current Attributes:**
+
+| Key | Type | Summary | Example Values | Stability |
+|---|---|---|---|---|
+| <a id="messaging-gcp-pubsub-message-ack-deadline" href="#messaging-gcp-pubsub-message-ack-deadline">`messaging.gcp_pubsub.message.ack_deadline`</a> | int | The ack deadline in seconds set for the modify ack deadline request. | `10` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="messaging-gcp-pubsub-message-ack-id" href="#messaging-gcp-pubsub-message-ack-id">`messaging.gcp_pubsub.message.ack_id`</a> | string | The ack id for a given message. | `ack_id` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="messaging-gcp-pubsub-message-delivery-attempt" href="#messaging-gcp-pubsub-message-delivery-attempt">`messaging.gcp_pubsub.message.delivery_attempt`</a> | int | The delivery attempt for a given message. | `2` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="messaging-gcp-pubsub-message-ordering-key" href="#messaging-gcp-pubsub-message-ordering-key">`messaging.gcp_pubsub.message.ordering_key`</a> | string | The ordering key for a given message. If the attribute is not present, the message does not have an ordering key. | `ordering_key` | ![Development](https://img.shields.io/badge/-development-blue) |
+
 ## Kafka Attributes
 
 This group describes attributes specific to Apache Kafka.
 
 **Current Attributes:**
+
 | Key | Type | Summary | Example Values | Stability |
 |---|---|---|---|---|
 | <a id="messaging-kafka-message-key" href="#messaging-kafka-message-key">`messaging.kafka.message.key`</a> | string | Message keys in Kafka are used for grouping alike messages to ensure they're processed on the same partition. They differ from `messaging.message.id` in that they're not unique. If the key is `null`, the attribute MUST NOT be set. [10] | `myKey` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -106,6 +131,7 @@ This group describes attributes specific to Apache Kafka.
 This group describes attributes specific to RabbitMQ.
 
 **Current Attributes:**
+
 | Key | Type | Summary | Example Values | Stability |
 |---|---|---|---|---|
 | <a id="messaging-rabbitmq-destination-routing-key" href="#messaging-rabbitmq-destination-routing-key">`messaging.rabbitmq.destination.routing_key`</a> | string | RabbitMQ message routing key. | `myKey` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -116,6 +142,7 @@ This group describes attributes specific to RabbitMQ.
 This group describes attributes specific to RocketMQ.
 
 **Current Attributes:**
+
 | Key | Type | Summary | Example Values | Stability |
 |---|---|---|---|---|
 | <a id="messaging-rocketmq-consumption-model" href="#messaging-rocketmq-consumption-model">`messaging.rocketmq.consumption_model`</a> | string | Model of message consumption. This only applies to consumer spans. | `clustering`; `broadcasting` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -147,23 +174,12 @@ This group describes attributes specific to RocketMQ.
 | `normal` | Normal message | ![Development](https://img.shields.io/badge/-development-blue) |
 | `transaction` | Transaction message | ![Development](https://img.shields.io/badge/-development-blue) |
 
-## GCP Pub/Sub Attributes
-
-This group describes attributes specific to GCP Pub/Sub.
-
-**Current Attributes:**
-| Key | Type | Summary | Example Values | Stability |
-|---|---|---|---|---|
-| <a id="messaging-gcp-pubsub-message-ack-deadline" href="#messaging-gcp-pubsub-message-ack-deadline">`messaging.gcp_pubsub.message.ack_deadline`</a> | int | The ack deadline in seconds set for the modify ack deadline request. | `10` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="messaging-gcp-pubsub-message-ack-id" href="#messaging-gcp-pubsub-message-ack-id">`messaging.gcp_pubsub.message.ack_id`</a> | string | The ack id for a given message. | `ack_id` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="messaging-gcp-pubsub-message-delivery-attempt" href="#messaging-gcp-pubsub-message-delivery-attempt">`messaging.gcp_pubsub.message.delivery_attempt`</a> | int | The delivery attempt for a given message. | `2` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="messaging-gcp-pubsub-message-ordering-key" href="#messaging-gcp-pubsub-message-ordering-key">`messaging.gcp_pubsub.message.ordering_key`</a> | string | The ordering key for a given message. If the attribute is not present, the message does not have an ordering key. | `ordering_key` | ![Development](https://img.shields.io/badge/-development-blue) |
-
 ## Azure Service Bus Attributes
 
 This group describes attributes specific to Azure Service Bus.
 
 **Current Attributes:**
+
 | Key | Type | Summary | Example Values | Stability |
 |---|---|---|---|---|
 | <a id="messaging-servicebus-disposition-status" href="#messaging-servicebus-disposition-status">`messaging.servicebus.disposition_status`</a> | string | Describes the [settlement type](https://learn.microsoft.com/azure/service-bus-messaging/message-transfers-locks-settlement#peeklock). | `complete`; `abandon`; `dead_letter` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -181,20 +197,10 @@ This group describes attributes specific to Azure Service Bus.
 | `dead_letter` | Message is sent to dead letter queue | ![Development](https://img.shields.io/badge/-development-blue) |
 | `defer` | Message is deferred | ![Development](https://img.shields.io/badge/-development-blue) |
 
-## Azure Event Hubs Attributes
-
-This group describes attributes specific to Azure Event Hubs.
-
-**Current Attributes:**
-| Key | Type | Summary | Example Values | Stability |
-|---|---|---|---|---|
-| <a id="messaging-eventhubs-message-enqueued-time" href="#messaging-eventhubs-message-enqueued-time">`messaging.eventhubs.message.enqueued_time`</a> | int | The UTC epoch seconds at which the message has been accepted and stored in the entity. | `1701393730` | ![Development](https://img.shields.io/badge/-development-blue) |
-
 ## Deprecated Messaging Attributes
 
 Describes deprecated messaging attributes.
 
-**Current Attributes:**
 <details>
 <summary><b>Past Attributes:</b></summary>
 

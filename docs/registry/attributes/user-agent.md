@@ -11,6 +11,7 @@
 Describes user-agent attributes.
 
 **Current Attributes:**
+
 | Key | Type | Summary | Example Values | Stability |
 |---|---|---|---|---|
 | <a id="user-agent-name" href="#user-agent-name">`user_agent.name`</a> | string | Name of the user-agent extracted from original. Usually refers to the browser's name. [1] | `Safari`; `YourApp` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -26,6 +27,7 @@ Describes user-agent attributes.
 Describes the OS user-agent attributes.
 
 **Current Attributes:**
+
 | Key | Type | Summary | Example Values | Stability |
 |---|---|---|---|---|
 | <a id="user-agent-os-name" href="#user-agent-os-name">`user_agent.os.name`</a> | string | Human readable operating system name. [3] | `iOS`; `Android`; `Ubuntu` | ![Development](https://img.shields.io/badge/-development-blue) |

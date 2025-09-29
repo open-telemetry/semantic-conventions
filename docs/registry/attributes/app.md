@@ -8,6 +8,7 @@
 Describes attributes related to client-side applications (e.g. web apps or mobile apps).
 
 **Current Attributes:**
+
 | Key | Type | Summary | Example Values | Stability |
 |---|---|---|---|---|
 | <a id="app-build-id" href="#app-build-id">`app.build_id`</a> | string | Unique identifier for a particular build or compilation of the application. | `6cff0a7e-cefc-4668-96f5-1273d8b334d0`; `9f2b833506aa6973a92fde9733e6271f`; `my-app-1.0.0-code-123` | ![Development](https://img.shields.io/badge/-development-blue) |

@@ -8,6 +8,7 @@
 The web browser attributes
 
 **Current Attributes:**
+
 | Key | Type | Summary | Example Values | Stability |
 |---|---|---|---|---|
 | <a id="browser-brands" href="#browser-brands">`browser.brands`</a> | string[] | Array of brand name and version separated by a space [1] | `[" Not A;Brand 99", "Chromium 99", "Chrome 99"]` | ![Development](https://img.shields.io/badge/-development-blue) |

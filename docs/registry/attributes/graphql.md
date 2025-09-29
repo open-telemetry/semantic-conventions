@@ -8,6 +8,7 @@
 This document defines attributes for GraphQL.
 
 **Current Attributes:**
+
 | Key | Type | Summary | Example Values | Stability |
 |---|---|---|---|---|
 | <a id="graphql-document" href="#graphql-document">`graphql.document`</a> | string | The GraphQL document being executed. [1] | `query findBookById { bookById(id: ?) { name } }` | ![Development](https://img.shields.io/badge/-development-blue) |

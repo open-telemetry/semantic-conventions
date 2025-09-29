@@ -11,6 +11,7 @@
 Describes the end user.
 
 **Current Attributes:**
+
 | Key | Type | Summary | Example Values | Stability |
 |---|---|---|---|---|
 | <a id="enduser-id" href="#enduser-id">`enduser.id`</a> | string | Unique identifier of an end user in the system. It maybe a username, email address, or other identifier. [1] | `username` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -30,7 +31,6 @@ Describes the end user.
 
 Describes deprecated enduser attributes.
 
-**Current Attributes:**
 <details>
 <summary><b>Past Attributes:</b></summary>
 

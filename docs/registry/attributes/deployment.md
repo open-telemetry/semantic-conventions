@@ -11,6 +11,7 @@
 This document defines attributes for software deployments.
 
 **Current Attributes:**
+
 | Key | Type | Summary | Example Values | Stability |
 |---|---|---|---|---|
 | <a id="deployment-environment-name" href="#deployment-environment-name">`deployment.environment.name`</a> | string | Name of the [deployment environment](https://wikipedia.org/wiki/Deployment_environment) (aka deployment tier). [1] | `staging`; `production` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -39,7 +40,6 @@ considered to be identifying the same service:
 
 Describes deprecated deployment attributes.
 
-**Current Attributes:**
 <details>
 <summary><b>Past Attributes:</b></summary>
 

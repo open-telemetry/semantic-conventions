@@ -11,6 +11,7 @@
 This document defines attributes for Feature Flags.
 
 **Current Attributes:**
+
 | Key | Type | Summary | Example Values | Stability |
 |---|---|---|---|---|
 | <a id="feature-flag-context-id" href="#feature-flag-context-id">`feature_flag.context.id`</a> | string | The unique identifier for the flag evaluation context. For example, the targeting key. | `5157782b-2203-4c80-a857-dbbd5e7761db` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
@@ -53,7 +54,6 @@ For example, the variant `red` maybe be used for the value `#c05543`.
 
 Describes deprecated feature flag attributes.
 
-**Current Attributes:**
 <details>
 <summary><b>Past Attributes:</b></summary>
 

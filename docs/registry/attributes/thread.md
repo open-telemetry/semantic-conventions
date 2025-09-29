@@ -8,6 +8,7 @@
 These attributes may be used for any operation to store information about a thread that started a span.
 
 **Current Attributes:**
+
 | Key | Type | Summary | Example Values | Stability |
 |---|---|---|---|---|
 | <a id="thread-id" href="#thread-id">`thread.id`</a> | int | Current "managed" thread ID (as opposed to OS thread ID). | `42` | ![Development](https://img.shields.io/badge/-development-blue) |

@@ -12,6 +12,7 @@
 This group defines the attributes used to describe telemetry in the context of databases.
 
 **Current Attributes:**
+
 | Key | Type | Summary | Example Values | Stability |
 |---|---|---|---|---|
 | <a id="db-client-connection-pool-name" href="#db-client-connection-pool-name">`db.client.connection.pool.name`</a> | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation SHOULD use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`, and `db.namespace`, formatted as `server.address:server.port/db.namespace`. Instrumentations that generate connection pool name following different patterns SHOULD document it. | `myDataSource` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -171,7 +172,6 @@ stored procedure name then that stored procedure name SHOULD be used.
 
 Describes deprecated database attributes.
 
-**Current Attributes:**
 <details>
 <summary><b>Past Attributes:</b></summary>
 
@@ -333,7 +333,6 @@ Describes deprecated database attributes.
 
 Describes deprecated db metrics attributes.
 
-**Current Attributes:**
 <details>
 <summary><b>Past Attributes:</b></summary>
 
