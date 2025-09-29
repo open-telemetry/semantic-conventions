@@ -7,7 +7,8 @@
 
 Attributes for hardware.
 
-**Current Attributes:**
+**Attributes:**
+
 | Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="hw-battery-capacity" href="#hw-battery-capacity">`hw.battery.capacity`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Design capacity in Watts-hours or Amper-hours | `9.3Ah`; `50Wh` |

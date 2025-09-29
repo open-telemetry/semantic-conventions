@@ -7,7 +7,8 @@
 
 This section defines attributes for Elasticsearch.
 
-**Current Attributes:**
+**Attributes:**
+
 | Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="elasticsearch-node-name" href="#elasticsearch-node-name">`elasticsearch.node.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Represents the human-readable identifier of the node/instance to which a request was routed. | `instance-0000000001` |

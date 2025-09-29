@@ -7,7 +7,6 @@
 
 Attributes for Events represented using Log Records.
 
-**Current Attributes:**
 <details>
 <summary><b>Past Attributes:</b></summary>
 

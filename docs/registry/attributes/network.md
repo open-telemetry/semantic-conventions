@@ -3,66 +3,15 @@
 
 # Network
 
-- [Deprecated Network Attributes](#deprecated-network-attributes)
 - [Network Attributes](#network-attributes)
-
-## Deprecated Network Attributes
-
-These attributes may be used for any network related operation.
-
-**Current Attributes:**
-<details>
-<summary><b>Past Attributes:</b></summary>
-
-| Key | Type | Summary | Example Values | Deprecation Explanation |
-|---|---|---|---|---|
-| <a id="net-host-ip" href="#net-host-ip">`net.host.ip`</a> | string | Deprecated, use `network.local.address`. | `192.168.0.1` |  Use `network.local.address` instead.  |
-| <a id="net-host-name" href="#net-host-name">`net.host.name`</a> | string | Deprecated, use `server.address`. | `example.com` |  Use `server.address` instead.  |
-| <a id="net-host-port" href="#net-host-port">`net.host.port`</a> | int | Deprecated, use `server.port`. | `8080` |  Use `server.port` instead.  |
-| <a id="net-peer-ip" href="#net-peer-ip">`net.peer.ip`</a> | string | Deprecated, use `network.peer.address`. | `127.0.0.1` |  Use `network.peer.address` instead.  |
-| <a id="net-peer-name" href="#net-peer-name">`net.peer.name`</a> | string | Deprecated, use `server.address` on client spans and `client.address` on server spans. | `example.com` |  Replaced by `server.address` on client spans and `client.address` on server spans.  |
-| <a id="net-peer-port" href="#net-peer-port">`net.peer.port`</a> | int | Deprecated, use `server.port` on client spans and `client.port` on server spans. | `8080` |  Replaced by `server.port` on client spans and `client.port` on server spans.  |
-| <a id="net-protocol-name" href="#net-protocol-name">`net.protocol.name`</a> | string | Deprecated, use `network.protocol.name`. | `amqp`; `http`; `mqtt` |  Use `network.protocol.name` instead.  |
-| <a id="net-protocol-version" href="#net-protocol-version">`net.protocol.version`</a> | string | Deprecated, use `network.protocol.version`. | `3.1.1` |  Use `network.protocol.version` instead.  |
-| <a id="net-sock-family" href="#net-sock-family">`net.sock.family`</a> | string | Deprecated, use `network.transport` and `network.type`. | `inet`; `inet6`; `unix` |  Split to `network.transport` and `network.type`.  |
-| <a id="net-sock-host-addr" href="#net-sock-host-addr">`net.sock.host.addr`</a> | string | Deprecated, use `network.local.address`. | `/var/my.sock` |  Use `network.local.address` instead.  |
-| <a id="net-sock-host-port" href="#net-sock-host-port">`net.sock.host.port`</a> | int | Deprecated, use `network.local.port`. | `8080` |  Use `network.local.port` instead.  |
-| <a id="net-sock-peer-addr" href="#net-sock-peer-addr">`net.sock.peer.addr`</a> | string | Deprecated, use `network.peer.address`. | `192.168.0.1` |  Use `network.peer.address` instead.  |
-| <a id="net-sock-peer-name" href="#net-sock-peer-name">`net.sock.peer.name`</a> | string | Deprecated, no replacement at this time. | `/var/my.sock` |  Removed. No replacement at this time.  |
-| <a id="net-sock-peer-port" href="#net-sock-peer-port">`net.sock.peer.port`</a> | int | Deprecated, use `network.peer.port`. | `65531` |  Use `network.peer.port` instead.  |
-| <a id="net-transport" href="#net-transport">`net.transport`</a> | string | Deprecated, use `network.transport`. | `ip_tcp`; `ip_udp`; `pipe` |  Use `network.transport` instead.  |
-
----
-
-`net.sock.family` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `inet` | IPv4 address | ![Development](https://img.shields.io/badge/-development-blue) |
-| `inet6` | IPv6 address | ![Development](https://img.shields.io/badge/-development-blue) |
-| `unix` | Unix domain socket path | ![Development](https://img.shields.io/badge/-development-blue) |
-
----
-
-`net.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `inproc` | In-process communication. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
-| `ip_tcp` | ip_tcp | ![Development](https://img.shields.io/badge/-development-blue) |
-| `ip_udp` | ip_udp | ![Development](https://img.shields.io/badge/-development-blue) |
-| `other` | Something else (non IP-based). | ![Development](https://img.shields.io/badge/-development-blue) |
-| `pipe` | Named or anonymous pipe. | ![Development](https://img.shields.io/badge/-development-blue) |
-
-**[1]:** Signals that there is only in-process communication not using a "real" network protocol in cases where network attributes would normally be expected. Usually all other network attributes can be left out in that case.
-
-</details>
+- [Deprecated Network Attributes](#deprecated-network-attributes)
 
 ## Network Attributes
 
 These attributes may be used for any network related operation.
 
-**Current Attributes:**
+**Attributes:**
+
 | Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="network-carrier-icc" href="#network-carrier-icc">`network.carrier.icc`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The ISO 3166-1 alpha-2 2-character country code associated with the mobile carrier network. | `DE` |
@@ -184,3 +133,54 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 |---|---|---|
 | `ipv4` | IPv4 | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `ipv6` | IPv6 | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+
+## Deprecated Network Attributes
+
+These attributes may be used for any network related operation.
+
+<details>
+<summary><b>Past Attributes:</b></summary>
+
+| Key | Type | Summary | Example Values | Deprecation Explanation |
+|---|---|---|---|---|
+| <a id="net-host-ip" href="#net-host-ip">`net.host.ip`</a> | string | Deprecated, use `network.local.address`. | `192.168.0.1` |  Use `network.local.address` instead.  |
+| <a id="net-host-name" href="#net-host-name">`net.host.name`</a> | string | Deprecated, use `server.address`. | `example.com` |  Use `server.address` instead.  |
+| <a id="net-host-port" href="#net-host-port">`net.host.port`</a> | int | Deprecated, use `server.port`. | `8080` |  Use `server.port` instead.  |
+| <a id="net-peer-ip" href="#net-peer-ip">`net.peer.ip`</a> | string | Deprecated, use `network.peer.address`. | `127.0.0.1` |  Use `network.peer.address` instead.  |
+| <a id="net-peer-name" href="#net-peer-name">`net.peer.name`</a> | string | Deprecated, use `server.address` on client spans and `client.address` on server spans. | `example.com` |  Replaced by `server.address` on client spans and `client.address` on server spans.  |
+| <a id="net-peer-port" href="#net-peer-port">`net.peer.port`</a> | int | Deprecated, use `server.port` on client spans and `client.port` on server spans. | `8080` |  Replaced by `server.port` on client spans and `client.port` on server spans.  |
+| <a id="net-protocol-name" href="#net-protocol-name">`net.protocol.name`</a> | string | Deprecated, use `network.protocol.name`. | `amqp`; `http`; `mqtt` |  Use `network.protocol.name` instead.  |
+| <a id="net-protocol-version" href="#net-protocol-version">`net.protocol.version`</a> | string | Deprecated, use `network.protocol.version`. | `3.1.1` |  Use `network.protocol.version` instead.  |
+| <a id="net-sock-family" href="#net-sock-family">`net.sock.family`</a> | string | Deprecated, use `network.transport` and `network.type`. | `inet`; `inet6`; `unix` |  Split to `network.transport` and `network.type`.  |
+| <a id="net-sock-host-addr" href="#net-sock-host-addr">`net.sock.host.addr`</a> | string | Deprecated, use `network.local.address`. | `/var/my.sock` |  Use `network.local.address` instead.  |
+| <a id="net-sock-host-port" href="#net-sock-host-port">`net.sock.host.port`</a> | int | Deprecated, use `network.local.port`. | `8080` |  Use `network.local.port` instead.  |
+| <a id="net-sock-peer-addr" href="#net-sock-peer-addr">`net.sock.peer.addr`</a> | string | Deprecated, use `network.peer.address`. | `192.168.0.1` |  Use `network.peer.address` instead.  |
+| <a id="net-sock-peer-name" href="#net-sock-peer-name">`net.sock.peer.name`</a> | string | Deprecated, no replacement at this time. | `/var/my.sock` |  Removed. No replacement at this time.  |
+| <a id="net-sock-peer-port" href="#net-sock-peer-port">`net.sock.peer.port`</a> | int | Deprecated, use `network.peer.port`. | `65531` |  Use `network.peer.port` instead.  |
+| <a id="net-transport" href="#net-transport">`net.transport`</a> | string | Deprecated, use `network.transport`. | `ip_tcp`; `ip_udp`; `pipe` |  Use `network.transport` instead.  |
+
+---
+
+`net.sock.family` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `inet` | IPv4 address | ![Development](https://img.shields.io/badge/-development-blue) |
+| `inet6` | IPv6 address | ![Development](https://img.shields.io/badge/-development-blue) |
+| `unix` | Unix domain socket path | ![Development](https://img.shields.io/badge/-development-blue) |
+
+---
+
+`net.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `inproc` | In-process communication. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ip_tcp` | ip_tcp | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ip_udp` | ip_udp | ![Development](https://img.shields.io/badge/-development-blue) |
+| `other` | Something else (non IP-based). | ![Development](https://img.shields.io/badge/-development-blue) |
+| `pipe` | Named or anonymous pipe. | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**[1]:** Signals that there is only in-process communication not using a "real" network protocol in cases where network attributes would normally be expected. Usually all other network attributes can be left out in that case.
+
+</details>

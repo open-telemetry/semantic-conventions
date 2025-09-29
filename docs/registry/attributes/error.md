@@ -7,7 +7,8 @@
 
 This document defines the shared attributes used to report an error.
 
-**Current Attributes:**
+**Attributes:**
+
 | Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="error-message" href="#error-message">`error.message`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | A message providing more detail about an error in human-readable form. [1] | `Unexpected input type: string`; `The user has exceeded their storage quota` |

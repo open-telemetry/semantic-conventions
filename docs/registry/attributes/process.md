@@ -3,60 +3,16 @@
 
 # Process
 
-- [Deprecated Process Attributes](#deprecated-process-attributes)
 - [Process Attributes](#process-attributes)
 - [Process Linux Attributes](#process-linux-attributes)
-
-## Deprecated Process Attributes
-
-Deprecated process attributes.
-
-**Current Attributes:**
-<details>
-<summary><b>Past Attributes:</b></summary>
-
-| Key | Type | Summary | Example Values | Deprecation Explanation |
-|---|---|---|---|---|
-| <a id="process-context-switch-type" href="#process-context-switch-type">`process.context_switch_type`</a> | string | "Deprecated, use `process.context_switch.type` instead." | `voluntary`; `involuntary` |  Use `process.context_switch.type` instead.  |
-| <a id="process-cpu-state" href="#process-cpu-state">`process.cpu.state`</a> | string | Deprecated, use `cpu.mode` instead. | `system`; `user`; `wait` |  Use `cpu.mode` instead.  |
-| <a id="process-executable-build-id-profiling" href="#process-executable-build-id-profiling">`process.executable.build_id.profiling`</a> | string | "Deprecated, use `process.executable.build_id.htlhash` instead." | `600DCAFE4A110000F2BF38C493F5FB92` |  Use `process.executable.build_id.htlhash` instead.  |
-| <a id="process-paging-fault-type" href="#process-paging-fault-type">`process.paging.fault_type`</a> | string | Deprecated, use `system.paging.fault.type` instead. | `major`; `minor` |  Use `system.paging.fault.type` instead.  |
-
----
-
-`process.context_switch_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `involuntary` | involuntary | ![Development](https://img.shields.io/badge/-development-blue) |
-| `voluntary` | voluntary | ![Development](https://img.shields.io/badge/-development-blue) |
-
----
-
-`process.cpu.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `system` | system | ![Development](https://img.shields.io/badge/-development-blue) |
-| `user` | user | ![Development](https://img.shields.io/badge/-development-blue) |
-| `wait` | wait | ![Development](https://img.shields.io/badge/-development-blue) |
-
----
-
-`process.paging.fault_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `major` | major | ![Development](https://img.shields.io/badge/-development-blue) |
-| `minor` | minor | ![Development](https://img.shields.io/badge/-development-blue) |
-
-</details>
+- [Deprecated Process Attributes](#deprecated-process-attributes)
 
 ## Process Attributes
 
 An operating system process.
 
-**Current Attributes:**
+**Attributes:**
+
 | Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="process-args-count" href="#process-args-count">`process.args_count`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | Length of the process.command_args array [1] | `4` |
@@ -132,9 +88,54 @@ with value `"/usr/local/bin:/usr/bin"`.
 
 Describes Linux Process attributes
 
-**Current Attributes:**
+**Attributes:**
+
 | Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="process-linux-cgroup" href="#process-linux-cgroup">`process.linux.cgroup`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The control group associated with the process. [5] | `1:name=systemd:/user.slice/user-1000.slice/session-3.scope`; `0::/user.slice/user-1000.slice/user@1000.service/tmux-spawn-0267755b-4639-4a27-90ed-f19f88e53748.scope` |
 
 **[5] `process.linux.cgroup`:** Control groups (cgroups) are a kernel feature used to organize and manage process resources. This attribute provides the path(s) to the cgroup(s) associated with the process, which should match the contents of the [/proc/\[PID\]/cgroup](https://man7.org/linux/man-pages/man7/cgroups.7.html) file.
+
+## Deprecated Process Attributes
+
+Deprecated process attributes.
+
+<details>
+<summary><b>Past Attributes:</b></summary>
+
+| Key | Type | Summary | Example Values | Deprecation Explanation |
+|---|---|---|---|---|
+| <a id="process-context-switch-type" href="#process-context-switch-type">`process.context_switch_type`</a> | string | "Deprecated, use `process.context_switch.type` instead." | `voluntary`; `involuntary` |  Use `process.context_switch.type` instead.  |
+| <a id="process-cpu-state" href="#process-cpu-state">`process.cpu.state`</a> | string | Deprecated, use `cpu.mode` instead. | `system`; `user`; `wait` |  Use `cpu.mode` instead.  |
+| <a id="process-executable-build-id-profiling" href="#process-executable-build-id-profiling">`process.executable.build_id.profiling`</a> | string | "Deprecated, use `process.executable.build_id.htlhash` instead." | `600DCAFE4A110000F2BF38C493F5FB92` |  Use `process.executable.build_id.htlhash` instead.  |
+| <a id="process-paging-fault-type" href="#process-paging-fault-type">`process.paging.fault_type`</a> | string | Deprecated, use `system.paging.fault.type` instead. | `major`; `minor` |  Use `system.paging.fault.type` instead.  |
+
+---
+
+`process.context_switch_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `involuntary` | involuntary | ![Development](https://img.shields.io/badge/-development-blue) |
+| `voluntary` | voluntary | ![Development](https://img.shields.io/badge/-development-blue) |
+
+---
+
+`process.cpu.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `system` | system | ![Development](https://img.shields.io/badge/-development-blue) |
+| `user` | user | ![Development](https://img.shields.io/badge/-development-blue) |
+| `wait` | wait | ![Development](https://img.shields.io/badge/-development-blue) |
+
+---
+
+`process.paging.fault_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `major` | major | ![Development](https://img.shields.io/badge/-development-blue) |
+| `minor` | minor | ![Development](https://img.shields.io/badge/-development-blue) |
+
+</details>

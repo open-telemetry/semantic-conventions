@@ -4,25 +4,63 @@
 # System
 
 - [General System Attributes](#general-system-attributes)
+- [Filesystem Attributes](#filesystem-attributes)
 - [System Memory Attributes](#system-memory-attributes)
 - [System Paging Attributes](#system-paging-attributes)
-- [Filesystem Attributes](#filesystem-attributes)
 - [Deprecated System Attributes](#deprecated-system-attributes)
 
 ## General System Attributes
 
 Describes System attributes
 
-**Current Attributes:**
+**Attributes:**
+
 | Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="system-device" href="#system-device">`system.device`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The device identifier | `(identifier)` |
+
+## Filesystem Attributes
+
+Describes Filesystem attributes
+
+**Attributes:**
+
+| Key | Stability | Value Type | Description | Example Values |
+|---|---|---|---|---|
+| <a id="system-filesystem-mode" href="#system-filesystem-mode">`system.filesystem.mode`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The filesystem mode | `rw, ro` |
+| <a id="system-filesystem-mountpoint" href="#system-filesystem-mountpoint">`system.filesystem.mountpoint`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The filesystem mount path | `/mnt/data` |
+| <a id="system-filesystem-state" href="#system-filesystem-state">`system.filesystem.state`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The filesystem state | `used` |
+| <a id="system-filesystem-type" href="#system-filesystem-type">`system.filesystem.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The filesystem type | `ext4` |
+
+---
+
+`system.filesystem.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `free` | free | ![Development](https://img.shields.io/badge/-development-blue) |
+| `reserved` | reserved | ![Development](https://img.shields.io/badge/-development-blue) |
+| `used` | used | ![Development](https://img.shields.io/badge/-development-blue) |
+
+---
+
+`system.filesystem.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `exfat` | exfat | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ext4` | ext4 | ![Development](https://img.shields.io/badge/-development-blue) |
+| `fat32` | fat32 | ![Development](https://img.shields.io/badge/-development-blue) |
+| `hfsplus` | hfsplus | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ntfs` | ntfs | ![Development](https://img.shields.io/badge/-development-blue) |
+| `refs` | refs | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ## System Memory Attributes
 
 Describes System Memory attributes
 
-**Current Attributes:**
+**Attributes:**
+
 | Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="system-memory-state" href="#system-memory-state">`system.memory.state`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The memory state | `free`; `cached` |
@@ -44,7 +82,8 @@ Describes System Memory attributes
 
 Describes System Memory Paging attributes
 
-**Current Attributes:**
+**Attributes:**
+
 | Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="system-paging-direction" href="#system-paging-direction">`system.paging.direction`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The paging access direction | `in` |
@@ -78,46 +117,10 @@ Describes System Memory Paging attributes
 | `free` | free | ![Development](https://img.shields.io/badge/-development-blue) |
 | `used` | used | ![Development](https://img.shields.io/badge/-development-blue) |
 
-## Filesystem Attributes
-
-Describes Filesystem attributes
-
-**Current Attributes:**
-| Key | Stability | Value Type | Description | Example Values |
-|---|---|---|---|---|
-| <a id="system-filesystem-mode" href="#system-filesystem-mode">`system.filesystem.mode`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The filesystem mode | `rw, ro` |
-| <a id="system-filesystem-mountpoint" href="#system-filesystem-mountpoint">`system.filesystem.mountpoint`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The filesystem mount path | `/mnt/data` |
-| <a id="system-filesystem-state" href="#system-filesystem-state">`system.filesystem.state`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The filesystem state | `used` |
-| <a id="system-filesystem-type" href="#system-filesystem-type">`system.filesystem.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The filesystem type | `ext4` |
-
----
-
-`system.filesystem.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `free` | free | ![Development](https://img.shields.io/badge/-development-blue) |
-| `reserved` | reserved | ![Development](https://img.shields.io/badge/-development-blue) |
-| `used` | used | ![Development](https://img.shields.io/badge/-development-blue) |
-
----
-
-`system.filesystem.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `exfat` | exfat | ![Development](https://img.shields.io/badge/-development-blue) |
-| `ext4` | ext4 | ![Development](https://img.shields.io/badge/-development-blue) |
-| `fat32` | fat32 | ![Development](https://img.shields.io/badge/-development-blue) |
-| `hfsplus` | hfsplus | ![Development](https://img.shields.io/badge/-development-blue) |
-| `ntfs` | ntfs | ![Development](https://img.shields.io/badge/-development-blue) |
-| `refs` | refs | ![Development](https://img.shields.io/badge/-development-blue) |
-
 ## Deprecated System Attributes
 
 Deprecated system attributes.
 
-**Current Attributes:**
 <details>
 <summary><b>Past Attributes:</b></summary>
 

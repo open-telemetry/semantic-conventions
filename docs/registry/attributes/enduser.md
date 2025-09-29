@@ -3,29 +3,15 @@
 
 # Enduser
 
-- [Deprecated End User Attributes](#deprecated-end-user-attributes)
 - [End User Attributes](#end-user-attributes)
-
-## Deprecated End User Attributes
-
-Describes deprecated enduser attributes.
-
-**Current Attributes:**
-<details>
-<summary><b>Past Attributes:</b></summary>
-
-| Key | Type | Summary | Example Values | Deprecation Explanation |
-|---|---|---|---|---|
-| <a id="enduser-role" href="#enduser-role">`enduser.role`</a> | string | Deprecated, use `user.roles` instead. | `admin` |  Use `user.roles` instead.  |
-| <a id="enduser-scope" href="#enduser-scope">`enduser.scope`</a> | string | Deprecated, no replacement at this time. | `read:message, write:files` |  Removed, no replacement at this time.  |
-
-</details>
+- [Deprecated End User Attributes](#deprecated-end-user-attributes)
 
 ## End User Attributes
 
 Describes the end user.
 
-**Current Attributes:**
+**Attributes:**
+
 | Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="enduser-id" href="#enduser-id">`enduser.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Unique identifier of an end user in the system. It maybe a username, email address, or other identifier. [1] | `username` |
@@ -40,3 +26,17 @@ Describes the end user.
 
 > [!Warning]
 > This field contains sensitive (linkable PII) information.
+
+## Deprecated End User Attributes
+
+Describes deprecated enduser attributes.
+
+<details>
+<summary><b>Past Attributes:</b></summary>
+
+| Key | Type | Summary | Example Values | Deprecation Explanation |
+|---|---|---|---|---|
+| <a id="enduser-role" href="#enduser-role">`enduser.role`</a> | string | Deprecated, use `user.roles` instead. | `admin` |  Use `user.roles` instead.  |
+| <a id="enduser-scope" href="#enduser-scope">`enduser.scope`</a> | string | Deprecated, no replacement at this time. | `read:message, write:files` |  Removed, no replacement at this time.  |
+
+</details>

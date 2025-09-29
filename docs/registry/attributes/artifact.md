@@ -7,7 +7,8 @@
 
 This group describes attributes specific to artifacts. Artifacts are files or other immutable objects that are intended for distribution. This definition aligns directly with the [SLSA](https://slsa.dev/spec/v1.0/terminology#package-model) package model.
 
-**Current Attributes:**
+**Attributes:**
+
 | Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="artifact-attestation-filename" href="#artifact-attestation-filename">`artifact.attestation.filename`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The provenance filename of the built attestation which directly relates to the build artifact filename. This filename SHOULD accompany the artifact at publish time. See the [SLSA Relationship](https://slsa.dev/spec/v1.0/distributing-provenance#relationship-between-artifacts-and-attestations) specification for more information. | `golang-binary-amd64-v0.1.0.attestation`; `docker-image-amd64-v0.1.0.intoto.json1`; `release-1.tar.gz.attestation`; `file-name-package.tar.gz.intoto.json1` |

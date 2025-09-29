@@ -7,7 +7,8 @@
 
 This document defines attributes for [ONC RPC (Sun RPC)](https://datatracker.ietf.org/doc/html/rfc5531)
 
-**Current Attributes:**
+**Attributes:**
+
 | Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="onc-rpc-procedure-name" href="#onc-rpc-procedure-name">`onc_rpc.procedure.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | ONC/Sun RPC procedure name. | `OPEN`; `READ`; `GETATTR` |

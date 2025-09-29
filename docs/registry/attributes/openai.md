@@ -7,7 +7,8 @@
 
 This group defines attributes for OpenAI.
 
-**Current Attributes:**
+**Attributes:**
+
 | Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="openai-request-service-tier" href="#openai-request-service-tier">`openai.request.service_tier`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The service tier requested. May be a specific tier, default, or auto. | `auto`; `default` |

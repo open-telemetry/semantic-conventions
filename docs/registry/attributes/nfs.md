@@ -7,7 +7,8 @@
 
 Describes NFS Attributes
 
-**Current Attributes:**
+**Attributes:**
+
 | Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="nfs-operation-name" href="#nfs-operation-name">`nfs.operation.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | NFSv4+ operation name. | `OPEN`; `READ`; `GETATTR` |

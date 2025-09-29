@@ -10,7 +10,8 @@
 
 This document defines attributes for remote procedure calls.
 
-**Current Attributes:**
+**Attributes:**
+
 | Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="rpc-connect-rpc-error-code" href="#rpc-connect-rpc-error-code">`rpc.connect_rpc.error_code`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The [error codes](https://connectrpc.com//docs/protocol/#error-codes) of the Connect request. Error codes are always string values. | `cancelled`; `unknown`; `invalid_argument` |
@@ -131,7 +132,6 @@ the `rpc.grpc.response.metadata.my-custom-key` attribute with value `["attribute
 
 Deprecated rpc message attributes.
 
-**Current Attributes:**
 <details>
 <summary><b>Past Attributes:</b></summary>
 

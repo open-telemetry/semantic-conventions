@@ -3,40 +3,15 @@
 
 # Container
 
-- [Deprecated Container Attributes](#deprecated-container-attributes)
 - [Container Attributes](#container-attributes)
-
-## Deprecated Container Attributes
-
-Describes deprecated container attributes.
-
-**Current Attributes:**
-<details>
-<summary><b>Past Attributes:</b></summary>
-
-| Key | Type | Summary | Example Values | Deprecation Explanation |
-|---|---|---|---|---|
-| <a id="container-cpu-state" href="#container-cpu-state">`container.cpu.state`</a> | string | Deprecated, use `cpu.mode` instead. | `user`; `kernel` |  Use `cpu.mode` instead.  |
-| <a id="container-labels" href="#container-labels">`container.labels.<key>`</a> | string | Deprecated, use `container.label` instead. | `nginx` |  Use `container.label` instead.  |
-| <a id="container-runtime" href="#container-runtime">`container.runtime`</a> | string | The container runtime managing this container. | `docker`; `containerd`; `rkt` |  Use `container.runtime.name` instead.  |
-
----
-
-`container.cpu.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `kernel` | When tasks of the cgroup are in kernel mode (Linux). When all container processes are in kernel mode (Windows). | ![Development](https://img.shields.io/badge/-development-blue) |
-| `system` | When CPU is used by the system (host OS) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `user` | When tasks of the cgroup are in user mode (Linux). When all container processes are in user mode (Windows). | ![Development](https://img.shields.io/badge/-development-blue) |
-
-</details>
+- [Deprecated Container Attributes](#deprecated-container-attributes)
 
 ## Container Attributes
 
 A container instance.
 
-**Current Attributes:**
+**Attributes:**
+
 | Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="container-command" href="#container-command">`container.command`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The command used to run the container (i.e. the command name). [1] | `otelcontribcol` |
@@ -68,3 +43,28 @@ The ID is assigned by the container runtime and can vary in different environmen
 **[5] `container.image.repo_digests`:** [Docker](https://docs.docker.com/reference/api/engine/version/v1.43/#tag/Image/operation/ImageInspect) and [CRI](https://github.com/kubernetes/cri-api/blob/c75ef5b473bbe2d0a4fc92f82235efd665ea8e9f/pkg/apis/runtime/v1/api.proto#L1237-L1238) report those under the `RepoDigests` field.
 
 **[6] `container.label.<key>`:** For example, a docker container label `app` with value `nginx` SHOULD be recorded as the `container.label.app` attribute with value `"nginx"`.
+
+## Deprecated Container Attributes
+
+Describes deprecated container attributes.
+
+<details>
+<summary><b>Past Attributes:</b></summary>
+
+| Key | Type | Summary | Example Values | Deprecation Explanation |
+|---|---|---|---|---|
+| <a id="container-cpu-state" href="#container-cpu-state">`container.cpu.state`</a> | string | Deprecated, use `cpu.mode` instead. | `user`; `kernel` |  Use `cpu.mode` instead.  |
+| <a id="container-labels" href="#container-labels">`container.labels.<key>`</a> | string | Deprecated, use `container.label` instead. | `nginx` |  Use `container.label` instead.  |
+| <a id="container-runtime" href="#container-runtime">`container.runtime`</a> | string | The container runtime managing this container. | `docker`; `containerd`; `rkt` |  Use `container.runtime.name` instead.  |
+
+---
+
+`container.cpu.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `kernel` | When tasks of the cgroup are in kernel mode (Linux). When all container processes are in kernel mode (Windows). | ![Development](https://img.shields.io/badge/-development-blue) |
+| `system` | When CPU is used by the system (host OS) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `user` | When tasks of the cgroup are in user mode (Linux). When all container processes are in user mode (Windows). | ![Development](https://img.shields.io/badge/-development-blue) |
+
+</details>

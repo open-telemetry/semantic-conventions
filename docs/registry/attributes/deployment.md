@@ -3,28 +3,15 @@
 
 # Deployment
 
-- [Deployment Deprecated Attributes](#deployment-deprecated-attributes)
 - [Deployment Attributes](#deployment-attributes)
-
-## Deployment Deprecated Attributes
-
-Describes deprecated deployment attributes.
-
-**Current Attributes:**
-<details>
-<summary><b>Past Attributes:</b></summary>
-
-| Key | Type | Summary | Example Values | Deprecation Explanation |
-|---|---|---|---|---|
-| <a id="deployment-environment" href="#deployment-environment">`deployment.environment`</a> | string | Deprecated, use `deployment.environment.name` instead. | `staging`; `production` |  Use `deployment.environment.name` instead.  |
-
-</details>
+- [Deployment Deprecated Attributes](#deployment-deprecated-attributes)
 
 ## Deployment Attributes
 
 This document defines attributes for software deployments.
 
-**Current Attributes:**
+**Attributes:**
+
 | Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="deployment-environment-name" href="#deployment-environment-name">`deployment.environment.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Name of the [deployment environment](https://wikipedia.org/wiki/Deployment_environment) (aka deployment tier). [1] | `staging`; `production` |
@@ -48,3 +35,16 @@ considered to be identifying the same service:
 |---|---|---|
 | `failed` | failed | ![Development](https://img.shields.io/badge/-development-blue) |
 | `succeeded` | succeeded | ![Development](https://img.shields.io/badge/-development-blue) |
+
+## Deployment Deprecated Attributes
+
+Describes deprecated deployment attributes.
+
+<details>
+<summary><b>Past Attributes:</b></summary>
+
+| Key | Type | Summary | Example Values | Deprecation Explanation |
+|---|---|---|---|---|
+| <a id="deployment-environment" href="#deployment-environment">`deployment.environment`</a> | string | Deprecated, use `deployment.environment.name` instead. | `staging`; `production` |  Use `deployment.environment.name` instead.  |
+
+</details>

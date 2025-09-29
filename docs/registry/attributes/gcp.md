@@ -3,57 +3,37 @@
 
 # GCP
 
-- [GCP Client Attributes](#gcp-client-attributes)
-- [GCP - Google Cloud Run Attributes](#gcp---google-cloud-run-attributes)
 - [GCP - AppHub Attributes](#gcp---apphub-attributes)
 - [GCP - AppHub Destination Attributes](#gcp---apphub-destination-attributes)
+- [GCP Client Attributes](#gcp-client-attributes)
+- [GCP - Google Cloud Run Attributes](#gcp---google-cloud-run-attributes)
 - [GCP - Google Compute Engine (GCE) Attributes](#gcp---google-compute-engine-gce-attributes)
-
-## GCP Client Attributes
-
-Attributes for Google Cloud client libraries.
-
-**Current Attributes:**
-| Key | Stability | Value Type | Description | Example Values |
-|---|---|---|---|---|
-| <a id="gcp-client-service" href="#gcp-client-service">`gcp.client.service`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Identifies the Google Cloud service for which the official client library is intended. [1] | `appengine`; `run`; `firestore`; `alloydb`; `spanner` |
-
-**[1] `gcp.client.service`:** Intended to be a stable identifier for Google Cloud client libraries that is uniform across implementation languages. The value should be derived from the canonical service domain for the service; for example, 'foo.googleapis.com' should result in a value of 'foo'.
-
-## GCP - Google Cloud Run Attributes
-
-This document defines attributes for Google Cloud Run.
-
-**Current Attributes:**
-| Key | Stability | Value Type | Description | Example Values |
-|---|---|---|---|---|
-| <a id="gcp-cloud-run-job-execution" href="#gcp-cloud-run-job-execution">`gcp.cloud_run.job.execution`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the Cloud Run [execution](https://cloud.google.com/run/docs/managing/job-executions) being run for the Job, as set by the [`CLOUD_RUN_EXECUTION`](https://cloud.google.com/run/docs/container-contract#jobs-env-vars) environment variable. | `job-name-xxxx`; `sample-job-mdw84` |
-| <a id="gcp-cloud-run-job-task-index" href="#gcp-cloud-run-job-task-index">`gcp.cloud_run.job.task_index`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The index for a task within an execution as provided by the [`CLOUD_RUN_TASK_INDEX`](https://cloud.google.com/run/docs/container-contract#jobs-env-vars) environment variable. | `0`; `1` |
 
 ## GCP - AppHub Attributes
 
 This document defines attributes AppHub will apply to resources in GCP. See [AppHub overview](https://cloud.google.com/app-hub/docs/overview).
 
-**Current Attributes:**
+**Attributes:**
+
 | Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="gcp-apphub-application-container" href="#gcp-apphub-application-container">`gcp.apphub.application.container`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The container within GCP where the AppHub application is defined. | `projects/my-container-project` |
 | <a id="gcp-apphub-application-id" href="#gcp-apphub-application-id">`gcp.apphub.application.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the application as configured in AppHub. | `my-application` |
 | <a id="gcp-apphub-application-location" href="#gcp-apphub-application-location">`gcp.apphub.application.location`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The GCP zone or region where the application is defined. | `us-central1` |
-| <a id="gcp-apphub-service-criticality-type" href="#gcp-apphub-service-criticality-type">`gcp.apphub.service.criticality_type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Criticality of a service indicates its importance to the business. [2] | `MISSION_CRITICAL`; `HIGH`; `MEDIUM` |
-| <a id="gcp-apphub-service-environment-type" href="#gcp-apphub-service-environment-type">`gcp.apphub.service.environment_type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Environment of a service is the stage of a software lifecycle. [3] | `PRODUCTION`; `STAGING`; `TEST` |
+| <a id="gcp-apphub-service-criticality-type" href="#gcp-apphub-service-criticality-type">`gcp.apphub.service.criticality_type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Criticality of a service indicates its importance to the business. [1] | `MISSION_CRITICAL`; `HIGH`; `MEDIUM` |
+| <a id="gcp-apphub-service-environment-type" href="#gcp-apphub-service-environment-type">`gcp.apphub.service.environment_type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Environment of a service is the stage of a software lifecycle. [2] | `PRODUCTION`; `STAGING`; `TEST` |
 | <a id="gcp-apphub-service-id" href="#gcp-apphub-service-id">`gcp.apphub.service.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the service as configured in AppHub. | `my-service` |
-| <a id="gcp-apphub-workload-criticality-type" href="#gcp-apphub-workload-criticality-type">`gcp.apphub.workload.criticality_type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Criticality of a workload indicates its importance to the business. [4] | `MISSION_CRITICAL`; `HIGH`; `MEDIUM` |
-| <a id="gcp-apphub-workload-environment-type" href="#gcp-apphub-workload-environment-type">`gcp.apphub.workload.environment_type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Environment of a workload is the stage of a software lifecycle. [5] | `PRODUCTION`; `STAGING`; `TEST` |
+| <a id="gcp-apphub-workload-criticality-type" href="#gcp-apphub-workload-criticality-type">`gcp.apphub.workload.criticality_type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Criticality of a workload indicates its importance to the business. [3] | `MISSION_CRITICAL`; `HIGH`; `MEDIUM` |
+| <a id="gcp-apphub-workload-environment-type" href="#gcp-apphub-workload-environment-type">`gcp.apphub.workload.environment_type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Environment of a workload is the stage of a software lifecycle. [4] | `PRODUCTION`; `STAGING`; `TEST` |
 | <a id="gcp-apphub-workload-id" href="#gcp-apphub-workload-id">`gcp.apphub.workload.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the workload as configured in AppHub. | `my-workload` |
 
-**[2] `gcp.apphub.service.criticality_type`:** [See AppHub type enum](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type)
+**[1] `gcp.apphub.service.criticality_type`:** [See AppHub type enum](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type)
 
-**[3] `gcp.apphub.service.environment_type`:** [See AppHub environment type](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type_1)
+**[2] `gcp.apphub.service.environment_type`:** [See AppHub environment type](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type_1)
 
-**[4] `gcp.apphub.workload.criticality_type`:** [See AppHub type enum](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type)
+**[3] `gcp.apphub.workload.criticality_type`:** [See AppHub type enum](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type)
 
-**[5] `gcp.apphub.workload.environment_type`:** [See AppHub environment type](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type_1)
+**[4] `gcp.apphub.workload.environment_type`:** [See AppHub environment type](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type_1)
 
 ---
 
@@ -103,7 +83,8 @@ This document defines attributes AppHub will apply to resources in GCP. See [App
 
 This document defines attributes AppHub will apply to destination resources in GCP. See [AppHub overview](https://cloud.google.com/app-hub/docs/overview).
 
-**Current Attributes:**
+**Attributes:**
+
 | Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="gcp-apphub-destination-application-container" href="#gcp-apphub-destination-application-container">`gcp.apphub_destination.application.container`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The container within GCP where the AppHub destination application is defined. | `projects/my-container-project` |
@@ -160,11 +141,35 @@ This document defines attributes AppHub will apply to destination resources in G
 | `STAGING` | Staging environment. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `TEST` | Test environment. | ![Development](https://img.shields.io/badge/-development-blue) |
 
+## GCP Client Attributes
+
+Attributes for Google Cloud client libraries.
+
+**Attributes:**
+
+| Key | Stability | Value Type | Description | Example Values |
+|---|---|---|---|---|
+| <a id="gcp-client-service" href="#gcp-client-service">`gcp.client.service`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Identifies the Google Cloud service for which the official client library is intended. [5] | `appengine`; `run`; `firestore`; `alloydb`; `spanner` |
+
+**[5] `gcp.client.service`:** Intended to be a stable identifier for Google Cloud client libraries that is uniform across implementation languages. The value should be derived from the canonical service domain for the service; for example, 'foo.googleapis.com' should result in a value of 'foo'.
+
+## GCP - Google Cloud Run Attributes
+
+This document defines attributes for Google Cloud Run.
+
+**Attributes:**
+
+| Key | Stability | Value Type | Description | Example Values |
+|---|---|---|---|---|
+| <a id="gcp-cloud-run-job-execution" href="#gcp-cloud-run-job-execution">`gcp.cloud_run.job.execution`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the Cloud Run [execution](https://cloud.google.com/run/docs/managing/job-executions) being run for the Job, as set by the [`CLOUD_RUN_EXECUTION`](https://cloud.google.com/run/docs/container-contract#jobs-env-vars) environment variable. | `job-name-xxxx`; `sample-job-mdw84` |
+| <a id="gcp-cloud-run-job-task-index" href="#gcp-cloud-run-job-task-index">`gcp.cloud_run.job.task_index`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The index for a task within an execution as provided by the [`CLOUD_RUN_TASK_INDEX`](https://cloud.google.com/run/docs/container-contract#jobs-env-vars) environment variable. | `0`; `1` |
+
 ## GCP - Google Compute Engine (GCE) Attributes
 
 This document defines attributes for Google Compute Engine (GCE).
 
-**Current Attributes:**
+**Attributes:**
+
 | Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="gcp-gce-instance-hostname" href="#gcp-gce-instance-hostname">`gcp.gce.instance.hostname`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The hostname of a GCE instance. This is the full value of the default or [custom hostname](https://cloud.google.com/compute/docs/instances/custom-hostname-vm). | `my-host1234.example.com`; `sample-vm.us-west1-b.c.my-project.internal` |

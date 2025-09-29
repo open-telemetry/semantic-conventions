@@ -7,7 +7,8 @@
 
 This section defines attributes for Cassandra.
 
-**Current Attributes:**
+**Attributes:**
+
 | Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="cassandra-consistency-level" href="#cassandra-consistency-level">`cassandra.consistency.level`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The consistency level of the query. Based on consistency values from [CQL](https://docs.datastax.com/en/cassandra-oss/3.0/cassandra/dml/dmlConfigConsistency.html). | `all`; `each_quorum`; `quorum` |

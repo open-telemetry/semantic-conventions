@@ -7,7 +7,8 @@
 
 SignalR attributes
 
-**Current Attributes:**
+**Attributes:**
+
 | Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="signalr-connection-status" href="#signalr-connection-status">`signalr.connection.status`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | SignalR HTTP connection closure status. | `app_shutdown`; `timeout` |

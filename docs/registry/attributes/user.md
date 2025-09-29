@@ -7,7 +7,8 @@
 
 Describes information about the user.
 
-**Current Attributes:**
+**Attributes:**
+
 | Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="user-email" href="#user-email">`user.email`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | User email address. | `a.einstein@example.com` |

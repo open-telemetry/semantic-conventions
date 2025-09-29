@@ -7,7 +7,8 @@
 
 This group describes attributes specific to [software tests](https://wikipedia.org/wiki/Software_testing).
 
-**Current Attributes:**
+**Attributes:**
+
 | Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="test-case-name" href="#test-case-name">`test.case.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The fully qualified human readable name of the [test case](https://wikipedia.org/wiki/Test_case). | `org.example.TestCase1.test1`; `example/tests/TestCase1.test1`; `ExampleTestCase1_test1` |

@@ -7,7 +7,8 @@
 
 OpenShift resource attributes.
 
-**Current Attributes:**
+**Attributes:**
+
 | Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="openshift-clusterquota-name" href="#openshift-clusterquota-name">`openshift.clusterquota.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the cluster quota. | `opentelemetry` |
