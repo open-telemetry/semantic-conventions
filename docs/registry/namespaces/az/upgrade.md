@@ -5,11 +5,11 @@
 
 The upgrade process helps to document what is needed to upgrade the signals to the latest version.
 
-## event
+## Event
 
-### event: `event.az.resource.log`
+### Event: `az.resource.log`
 
-Replaced by `azure.resource.log`.
+**Reason:** Replaced by `azure.resource.log`.
 
 #### Property Changes
 

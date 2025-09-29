@@ -5,11 +5,11 @@
 
 The upgrade process helps to document what is needed to upgrade the signals to the latest version.
 
-## metric
+## Metric
 
-### metric: `metric.k8s.replication_controller.desired_pods`
+### Metric: `k8s.replication_controller.desired_pods`
 
-Replaced by `k8s.replicationcontroller.desired_pods`.
+**Reason:** Replaced by `k8s.replicationcontroller.desired_pods`.
 
 #### Property Changes
 
@@ -17,9 +17,9 @@ Replaced by `k8s.replicationcontroller.desired_pods`.
 | --- | --- | --- |
 | Name | k8s.replication_controller.desired_pods | k8s.replicationcontroller.desired_pods |
 
-### metric: `metric.k8s.replication_controller.available_pods`
+### Metric: `k8s.replication_controller.available_pods`
 
-Replaced by `k8s.replicationcontroller.available_pods`.
+**Reason:** Replaced by `k8s.replicationcontroller.available_pods`.
 
 #### Property Changes
 

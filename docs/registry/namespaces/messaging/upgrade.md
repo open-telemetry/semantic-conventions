@@ -5,11 +5,11 @@
 
 The upgrade process helps to document what is needed to upgrade the signals to the latest version.
 
-## metric
+## Metric
 
-### metric: `metric.messaging.publish.duration`
+### Metric: `messaging.publish.duration`
 
-Replaced by `messaging.client.operation.duration`.
+**Reason:** Replaced by `messaging.client.operation.duration`.
 
 #### Property Changes
 
@@ -23,9 +23,9 @@ Replaced by `messaging.client.operation.duration`.
 | --- | --- | --- | --- |
 | messaging.operation | `Migrate` | messaging.operation.type | Replaced by `messaging.operation.type`. |
 
-### metric: `metric.messaging.receive.duration`
+### Metric: `messaging.receive.duration`
 
-Replaced by `messaging.client.operation.duration`.
+**Reason:** Replaced by `messaging.client.operation.duration`.
 
 #### Property Changes
 
@@ -39,9 +39,9 @@ Replaced by `messaging.client.operation.duration`.
 | --- | --- | --- | --- |
 | messaging.operation | `Migrate` | messaging.operation.type | Replaced by `messaging.operation.type`. |
 
-### metric: `metric.messaging.process.messages`
+### Metric: `messaging.process.messages`
 
-Replaced by `messaging.client.consumed.messages`.
+**Reason:** Replaced by `messaging.client.consumed.messages`.
 
 #### Property Changes
 
@@ -55,9 +55,9 @@ Replaced by `messaging.client.consumed.messages`.
 | --- | --- | --- | --- |
 | messaging.operation | `Migrate` | messaging.operation.type | Replaced by `messaging.operation.type`. |
 
-### metric: `metric.messaging.publish.messages`
+### Metric: `messaging.publish.messages`
 
-Replaced by `messaging.client.sent.messages`.
+**Reason:** Replaced by `messaging.client.sent.messages`.
 
 #### Property Changes
 
@@ -71,9 +71,9 @@ Replaced by `messaging.client.sent.messages`.
 | --- | --- | --- | --- |
 | messaging.operation | `Migrate` | messaging.operation.type | Replaced by `messaging.operation.type`. |
 
-### metric: `metric.messaging.receive.messages`
+### Metric: `messaging.receive.messages`
 
-Replaced by `messaging.client.consumed.messages`.
+**Reason:** Replaced by `messaging.client.consumed.messages`.
 
 #### Property Changes
 
@@ -87,9 +87,9 @@ Replaced by `messaging.client.consumed.messages`.
 | --- | --- | --- | --- |
 | messaging.operation | `Migrate` | messaging.operation.type | Replaced by `messaging.operation.type`. |
 
-### metric: `metric.messaging.client.published.messages`
+### Metric: `messaging.client.published.messages`
 
-Replaced by `messaging.client.sent.messages`.
+**Reason:** Replaced by `messaging.client.sent.messages`.
 
 #### Property Changes
 
@@ -103,7 +103,7 @@ Replaced by `messaging.client.sent.messages`.
 | --- | --- | --- | --- |
 | messaging.operation | `Migrate` | messaging.operation.type | Replaced by `messaging.operation.type`. |
 
-### metric: `metric.messaging.client.operation.duration`
+### Metric: `messaging.client.operation.duration`
 
 #### Attribute Changes
 
@@ -111,7 +111,7 @@ Replaced by `messaging.client.sent.messages`.
 | --- | --- | --- | --- |
 | messaging.operation | `Migrate` | messaging.operation.type | Replaced by `messaging.operation.type`. |
 
-### metric: `metric.messaging.process.duration`
+### Metric: `messaging.process.duration`
 
 #### Attribute Changes
 
@@ -119,7 +119,7 @@ Replaced by `messaging.client.sent.messages`.
 | --- | --- | --- | --- |
 | messaging.operation | `Migrate` | messaging.operation.name | Replaced by `messaging.operation.name`. |
 
-### metric: `metric.messaging.client.sent.messages`
+### Metric: `messaging.client.sent.messages`
 
 #### Attribute Changes
 
@@ -127,7 +127,7 @@ Replaced by `messaging.client.sent.messages`.
 | --- | --- | --- | --- |
 | messaging.operation | `Migrate` | messaging.operation.name | Replaced by `messaging.operation.name`. |
 
-### metric: `metric.messaging.client.consumed.messages`
+### Metric: `messaging.client.consumed.messages`
 
 #### Attribute Changes
 

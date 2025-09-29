@@ -5,11 +5,11 @@
 
 The upgrade process helps to document what is needed to upgrade the signals to the latest version.
 
-## metric
+## Metric
 
-### metric: `metric.system.network.connections`
+### Metric: `system.network.connections`
 
-Replaced by `system.network.connection.count`.
+**Reason:** Replaced by `system.network.connection.count`.
 
 #### Property Changes
 

@@ -40,9 +40,9 @@ No upgrade process is documented as no deprecations can be found.
 {% set newSignal = groups | selectattr("id", 'equalto', signal.deprecated.renamed_to) | first %}
 {% endif %}
 {% if current == false %}
-## {{signal.type}}
+## {{signal.type | title_case}}
 {% endif %}
-### {{signal.type}}: `{{signal.id}}`
+### {{signal.type | title_case}}: `{% if signal.metric_name %}{{signal.metric_name}}{%elif signal.name %}{{signal.name}}{% else %}{{signal.id}}{%endif%}`
 
 {{changes(signal, newSignal) | trim }}
 {% endmacro %}
@@ -55,7 +55,7 @@ No upgrade process is documented as no deprecations can be found.
 
 {% macro propertyChanges(signal, new)%}
 {% if signal.deprecated %}
-{{signal.deprecated.note }}
+**Reason:** {{signal.deprecated.note }}
 {% if signal.deprecated.reason == "renamed"%}
 #### Property Changes
 

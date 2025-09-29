@@ -5,17 +5,17 @@
 
 The upgrade process helps to document what is needed to upgrade the signals to the latest version.
 
-## entity
+## Entity
 
-### entity: `entity.otel.scope`
+### Entity: `otel.scope`
 
-Obsoleted.
+**Reason:** Obsoleted.
 
-## metric
+## Metric
 
-### metric: `metric.otel.sdk.span.live.count`
+### Metric: `otel.sdk.span.live.count`
 
-Replaced by `otel.sdk.span.live`.
+**Reason:** Replaced by `otel.sdk.span.live`.
 
 #### Property Changes
 
@@ -23,13 +23,13 @@ Replaced by `otel.sdk.span.live`.
 | --- | --- | --- |
 | Name | otel.sdk.span.live.count | otel.sdk.span.live |
 
-### metric: `metric.otel.sdk.span.ended.count`
+### Metric: `otel.sdk.span.ended.count`
 
-Obsoleted.
+**Reason:** Obsoleted.
 
-### metric: `metric.otel.sdk.processor.span.processed.count`
+### Metric: `otel.sdk.processor.span.processed.count`
 
-Replaced by `otel.sdk.processor.span.processed`.
+**Reason:** Replaced by `otel.sdk.processor.span.processed`.
 
 #### Property Changes
 
@@ -38,9 +38,9 @@ Replaced by `otel.sdk.processor.span.processed`.
 | Name | otel.sdk.processor.span.processed.count | otel.sdk.processor.span.processed |
 | Instrument | updowncounter | counter |
 
-### metric: `metric.otel.sdk.exporter.span.inflight.count`
+### Metric: `otel.sdk.exporter.span.inflight.count`
 
-Replaced by `otel.sdk.exporter.span.inflight`.
+**Reason:** Replaced by `otel.sdk.exporter.span.inflight`.
 
 #### Property Changes
 
@@ -48,9 +48,9 @@ Replaced by `otel.sdk.exporter.span.inflight`.
 | --- | --- | --- |
 | Name | otel.sdk.exporter.span.inflight.count | otel.sdk.exporter.span.inflight |
 
-### metric: `metric.otel.sdk.exporter.span.exported.count`
+### Metric: `otel.sdk.exporter.span.exported.count`
 
-Replaced by `otel.sdk.exporter.span.exported`.
+**Reason:** Replaced by `otel.sdk.exporter.span.exported`.
 
 #### Property Changes
 
@@ -59,6 +59,6 @@ Replaced by `otel.sdk.exporter.span.exported`.
 | Name | otel.sdk.exporter.span.exported.count | otel.sdk.exporter.span.exported |
 | Instrument | updowncounter | counter |
 
-### metric: `metric.otel.sdk.span.ended`
+### Metric: `otel.sdk.span.ended`
 
-Obsoleted.
+**Reason:** Obsoleted.

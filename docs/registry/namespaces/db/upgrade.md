@@ -5,11 +5,11 @@
 
 The upgrade process helps to document what is needed to upgrade the signals to the latest version.
 
-## metric
+## Metric
 
-### metric: `metric.db.client.connections.usage`
+### Metric: `db.client.connections.usage`
 
-Replaced by `db.client.connection.count`.
+**Reason:** Replaced by `db.client.connection.count`.
 
 #### Property Changes
 
@@ -24,9 +24,9 @@ Replaced by `db.client.connection.count`.
 | db.client.connections.pool.name | `Rename` | db.client.connection.pool.name | Replaced by `db.client.connection.pool.name`. |
 | db.client.connections.state | `Rename` | db.client.connection.state | Replaced by `db.client.connection.state`. |
 
-### metric: `metric.db.client.connections.idle.max`
+### Metric: `db.client.connections.idle.max`
 
-Replaced by `db.client.connection.idle.max`.
+**Reason:** Replaced by `db.client.connection.idle.max`.
 
 #### Property Changes
 
@@ -40,9 +40,9 @@ Replaced by `db.client.connection.idle.max`.
 | --- | --- | --- | --- |
 | db.client.connections.pool.name | `Rename` | db.client.connection.pool.name | Replaced by `db.client.connection.pool.name`. |
 
-### metric: `metric.db.client.connections.idle.min`
+### Metric: `db.client.connections.idle.min`
 
-Replaced by `db.client.connection.idle.min`.
+**Reason:** Replaced by `db.client.connection.idle.min`.
 
 #### Property Changes
 
@@ -56,9 +56,9 @@ Replaced by `db.client.connection.idle.min`.
 | --- | --- | --- | --- |
 | db.client.connections.pool.name | `Rename` | db.client.connection.pool.name | Replaced by `db.client.connection.pool.name`. |
 
-### metric: `metric.db.client.connections.max`
+### Metric: `db.client.connections.max`
 
-Replaced by `db.client.connection.max`.
+**Reason:** Replaced by `db.client.connection.max`.
 
 #### Property Changes
 
@@ -72,9 +72,9 @@ Replaced by `db.client.connection.max`.
 | --- | --- | --- | --- |
 | db.client.connections.pool.name | `Rename` | db.client.connection.pool.name | Replaced by `db.client.connection.pool.name`. |
 
-### metric: `metric.db.client.connections.pending_requests`
+### Metric: `db.client.connections.pending_requests`
 
-Replaced by `db.client.connection.pending_requests`.
+**Reason:** Replaced by `db.client.connection.pending_requests`.
 
 #### Property Changes
 
@@ -88,9 +88,9 @@ Replaced by `db.client.connection.pending_requests`.
 | --- | --- | --- | --- |
 | db.client.connections.pool.name | `Rename` | db.client.connection.pool.name | Replaced by `db.client.connection.pool.name`. |
 
-### metric: `metric.db.client.connections.timeouts`
+### Metric: `db.client.connections.timeouts`
 
-Replaced by `db.client.connection.timeouts`.
+**Reason:** Replaced by `db.client.connection.timeouts`.
 
 #### Property Changes
 
@@ -104,19 +104,9 @@ Replaced by `db.client.connection.timeouts`.
 | --- | --- | --- | --- |
 | db.client.connections.pool.name | `Rename` | db.client.connection.pool.name | Replaced by `db.client.connection.pool.name`. |
 
-### metric: `metric.db.client.connections.create_time`
+### Metric: `db.client.connections.create_time`
 
-Replaced by `db.client.connection.create_time` with unit `s`.
-
-#### Attribute Changes
-
-| Old Attribute Key | Action | New Attribute Key | Summary |
-| --- | --- | --- | --- |
-| db.client.connections.pool.name | `Rename` | db.client.connection.pool.name | Replaced by `db.client.connection.pool.name`. |
-
-### metric: `metric.db.client.connections.wait_time`
-
-Replaced by `db.client.connection.wait_time` with unit `s`.
+**Reason:** Replaced by `db.client.connection.create_time` with unit `s`.
 
 #### Attribute Changes
 
@@ -124,9 +114,9 @@ Replaced by `db.client.connection.wait_time` with unit `s`.
 | --- | --- | --- | --- |
 | db.client.connections.pool.name | `Rename` | db.client.connection.pool.name | Replaced by `db.client.connection.pool.name`. |
 
-### metric: `metric.db.client.connections.use_time`
+### Metric: `db.client.connections.wait_time`
 
-Replaced by `db.client.connection.use_time` with unit `s`.
+**Reason:** Replaced by `db.client.connection.wait_time` with unit `s`.
 
 #### Attribute Changes
 
@@ -134,9 +124,19 @@ Replaced by `db.client.connection.use_time` with unit `s`.
 | --- | --- | --- | --- |
 | db.client.connections.pool.name | `Rename` | db.client.connection.pool.name | Replaced by `db.client.connection.pool.name`. |
 
-### metric: `metric.db.client.cosmosdb.operation.request_charge`
+### Metric: `db.client.connections.use_time`
 
-Replaced by `azure.cosmosdb.client.operation.request_charge`.
+**Reason:** Replaced by `db.client.connection.use_time` with unit `s`.
+
+#### Attribute Changes
+
+| Old Attribute Key | Action | New Attribute Key | Summary |
+| --- | --- | --- | --- |
+| db.client.connections.pool.name | `Rename` | db.client.connection.pool.name | Replaced by `db.client.connection.pool.name`. |
+
+### Metric: `db.client.cosmosdb.operation.request_charge`
+
+**Reason:** Replaced by `azure.cosmosdb.client.operation.request_charge`.
 
 #### Property Changes
 
@@ -154,9 +154,9 @@ Note: You will need to check what other attributes/properties need to be updated
 | db.cosmosdb.regions_contacted | `Rename` | azure.cosmosdb.operation.contacted_regions | Replaced by `azure.cosmosdb.operation.contacted_regions`. |
 | db.cosmosdb.sub_status_code | `Rename` | azure.cosmosdb.response.sub_status_code | Replaced by `azure.cosmosdb.response.sub_status_code`. |
 
-### metric: `metric.db.client.cosmosdb.active_instance.count`
+### Metric: `db.client.cosmosdb.active_instance.count`
 
-Replaced by `azure.cosmosdb.client.active_instance.count`.
+**Reason:** Replaced by `azure.cosmosdb.client.active_instance.count`.
 
 #### Property Changes
 
@@ -166,7 +166,7 @@ Replaced by `azure.cosmosdb.client.active_instance.count`.
 
 Note: You will need to check what other attributes/properties need to be updated.
 
-### metric: `metric.db.client.operation.duration`
+### Metric: `db.client.operation.duration`
 
 #### Attribute Changes
 
@@ -174,7 +174,7 @@ Note: You will need to check what other attributes/properties need to be updated
 | --- | --- | --- | --- |
 | db.system | `Rename` | db.system.name | Replaced by `db.system.name`. |
 
-### metric: `metric.db.client.response.returned_rows`
+### Metric: `db.client.response.returned_rows`
 
 #### Attribute Changes
 
@@ -182,9 +182,9 @@ Note: You will need to check what other attributes/properties need to be updated
 | --- | --- | --- | --- |
 | db.system | `Rename` | db.system.name | Replaced by `db.system.name`. |
 
-## span
+## Span
 
-### span: `span.db.client`
+### Span: `span.db.client`
 
 #### Attribute Changes
 

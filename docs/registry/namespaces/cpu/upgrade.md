@@ -5,11 +5,11 @@
 
 The upgrade process helps to document what is needed to upgrade the signals to the latest version.
 
-## metric
+## Metric
 
-### metric: `metric.cpu.time`
+### Metric: `cpu.time`
 
-Replaced by `system.cpu.time`.
+**Reason:** Replaced by `system.cpu.time`.
 
 #### Property Changes
 
@@ -19,9 +19,9 @@ Replaced by `system.cpu.time`.
 
 Note: You will need to check what other attributes/properties need to be updated.
 
-### metric: `metric.cpu.utilization`
+### Metric: `cpu.utilization`
 
-Replaced by `system.cpu.utilization`.
+**Reason:** Replaced by `system.cpu.utilization`.
 
 #### Property Changes
 
@@ -31,9 +31,9 @@ Replaced by `system.cpu.utilization`.
 
 Note: You will need to check what other attributes/properties need to be updated.
 
-### metric: `metric.cpu.frequency`
+### Metric: `cpu.frequency`
 
-Replaced by `system.cpu.frequency`.
+**Reason:** Replaced by `system.cpu.frequency`.
 
 #### Property Changes
 

@@ -5,9 +5,9 @@
 
 The upgrade process helps to document what is needed to upgrade the signals to the latest version.
 
-## metric
+## Metric
 
-### metric: `metric.http.server.active_requests`
+### Metric: `http.server.active_requests`
 
 #### Attribute Changes
 
@@ -18,9 +18,9 @@ The upgrade process helps to document what is needed to upgrade the signals to t
 | net.host.name | `Rename` | server.address | Replaced by `server.address`. |
 | net.host.port | `Rename` | server.port | Replaced by `server.port`. |
 
-## span
+## Span
 
-### span: `span.http.client`
+### Span: `span.http.client`
 
 #### Attribute Changes
 
@@ -28,7 +28,7 @@ The upgrade process helps to document what is needed to upgrade the signals to t
 | --- | --- | --- | --- |
 | http.method | `Rename` | http.request.method | Replaced by `http.request.method`. |
 
-### span: `span.http.server`
+### Span: `span.http.server`
 
 #### Attribute Changes
 

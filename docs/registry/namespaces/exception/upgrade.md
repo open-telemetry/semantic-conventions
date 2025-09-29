@@ -5,9 +5,9 @@
 
 The upgrade process helps to document what is needed to upgrade the signals to the latest version.
 
-## event
+## Event
 
-### event: `event.exception`
+### Event: `exception`
 
 #### Attribute Changes
 
