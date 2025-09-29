@@ -414,9 +414,9 @@ groups:
       - k8s.node
     instrument: updowncounter
     unit: "By"
-  - id: metric.k8s.node.allocatable.pods
+  - id: metric.k8s.node.allocatable.pod.count
     type: metric
-    metric_name: k8s.node.allocatable.pods
+    metric_name: k8s.node.allocatable.pod.count
     annotations:
       code_generation:
         metric_value_type: int
@@ -581,9 +581,9 @@ groups:
       - ref: network.io.direction
 
   # k8s.deployment.* metrics
-  - id: metric.k8s.deployment.desired_pods
+  - id: metric.k8s.deployment.desired_pod.count
     type: metric
-    metric_name: k8s.deployment.desired_pods
+    metric_name: k8s.deployment.desired_pod.count
     annotations:
       code_generation:
         metric_value_type: int
@@ -596,9 +596,9 @@ groups:
       [K8s DeploymentSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#deploymentspec-v1-apps).
     instrument: updowncounter
     unit: "{pod}"
-  - id: metric.k8s.deployment.available_pods
+  - id: metric.k8s.deployment.available_pod.count
     type: metric
-    metric_name: k8s.deployment.available_pods
+    metric_name: k8s.deployment.available_pod.count
     annotations:
       code_generation:
         metric_value_type: int
@@ -613,9 +613,9 @@ groups:
     unit: "{pod}"
 
   # k8s.replicaset.* metrics
-  - id: metric.k8s.replicaset.desired_pods
+  - id: metric.k8s.replicaset.desired_pod.count
     type: metric
-    metric_name: k8s.replicaset.desired_pods
+    metric_name: k8s.replicaset.desired_pod.count
     annotations:
       code_generation:
         metric_value_type: int
@@ -628,9 +628,9 @@ groups:
       [K8s ReplicaSetSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#replicasetspec-v1-apps).
     instrument: updowncounter
     unit: "{pod}"
-  - id: metric.k8s.replicaset.available_pods
+  - id: metric.k8s.replicaset.available_pod.count
     type: metric
-    metric_name: k8s.replicaset.available_pods
+    metric_name: k8s.replicaset.available_pod.count
     annotations:
       code_generation:
         metric_value_type: int
@@ -645,9 +645,9 @@ groups:
     unit: "{pod}"
 
   # k8s.replicationcontroller.* metrics
-  - id: metric.k8s.replicationcontroller.desired_pods
+  - id: metric.k8s.replicationcontroller.desired_pod.count
     type: metric
-    metric_name: k8s.replicationcontroller.desired_pods
+    metric_name: k8s.replicationcontroller.desired_pod.count
     annotations:
       code_generation:
         metric_value_type: int
@@ -660,9 +660,9 @@ groups:
       [K8s ReplicationControllerSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#replicationcontrollerspec-v1-core)
     instrument: updowncounter
     unit: "{pod}"
-  - id: metric.k8s.replicationcontroller.available_pods
+  - id: metric.k8s.replicationcontroller.available_pod.count
     type: metric
-    metric_name: k8s.replicationcontroller.available_pods
+    metric_name: k8s.replicationcontroller.available_pod.count
     annotations:
       code_generation:
         metric_value_type: int
@@ -677,9 +677,9 @@ groups:
     unit: "{pod}"
 
   # k8s.statefulset.* metrics
-  - id: metric.k8s.statefulset.desired_pods
+  - id: metric.k8s.statefulset.desired_pod.count
     type: metric
-    metric_name: k8s.statefulset.desired_pods
+    metric_name: k8s.statefulset.desired_pod.count
     annotations:
       code_generation:
         metric_value_type: int
@@ -692,9 +692,9 @@ groups:
       [K8s StatefulSetSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#statefulsetspec-v1-apps).
     instrument: updowncounter
     unit: "{pod}"
-  - id: metric.k8s.statefulset.ready_pods
+  - id: metric.k8s.statefulset.ready_pod.count
     type: metric
-    metric_name: k8s.statefulset.ready_pods
+    metric_name: k8s.statefulset.ready_pod.count
     annotations:
       code_generation:
         metric_value_type: int
@@ -707,9 +707,9 @@ groups:
       [K8s StatefulSetStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#statefulsetstatus-v1-apps).
     instrument: updowncounter
     unit: "{pod}"
-  - id: metric.k8s.statefulset.current_pods
+  - id: metric.k8s.statefulset.current_pod.count
     type: metric
-    metric_name: k8s.statefulset.current_pods
+    metric_name: k8s.statefulset.current_pod.count
     annotations:
       code_generation:
         metric_value_type: int
@@ -722,9 +722,9 @@ groups:
       [K8s StatefulSetStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#statefulsetstatus-v1-apps).
     instrument: updowncounter
     unit: "{pod}"
-  - id: metric.k8s.statefulset.updated_pods
+  - id: metric.k8s.statefulset.updated_pod.count
     type: metric
-    metric_name: k8s.statefulset.updated_pods
+    metric_name: k8s.statefulset.updated_pod.count
     annotations:
       code_generation:
         metric_value_type: int
@@ -739,9 +739,9 @@ groups:
     unit: "{pod}"
 
   # k8s.hpa.* metrics
-  - id: metric.k8s.hpa.desired_pods
+  - id: metric.k8s.hpa.desired_pod.count
     type: metric
-    metric_name: k8s.hpa.desired_pods
+    metric_name: k8s.hpa.desired_pod.count
     annotations:
       code_generation:
         metric_value_type: int
@@ -754,9 +754,9 @@ groups:
     entity_associations:
       - k8s.hpa
     unit: "{pod}"
-  - id: metric.k8s.hpa.current_pods
+  - id: metric.k8s.hpa.current_pod.count
     type: metric
-    metric_name: k8s.hpa.current_pods
+    metric_name: k8s.hpa.current_pod.count
     annotations:
       code_generation:
         metric_value_type: int
@@ -769,9 +769,9 @@ groups:
     entity_associations:
       - k8s.hpa
     unit: "{pod}"
-  - id: metric.k8s.hpa.max_pods
+  - id: metric.k8s.hpa.max_pod.count
     type: metric
-    metric_name: k8s.hpa.max_pods
+    metric_name: k8s.hpa.max_pod.count
     annotations:
       code_generation:
         metric_value_type: int
@@ -784,9 +784,9 @@ groups:
     entity_associations:
       - k8s.hpa
     unit: "{pod}"
-  - id: metric.k8s.hpa.min_pods
+  - id: metric.k8s.hpa.min_pod.count
     type: metric
-    metric_name: k8s.hpa.min_pods
+    metric_name: k8s.hpa.min_pod.count
     annotations:
       code_generation:
         metric_value_type: int
@@ -861,9 +861,9 @@ groups:
       - k8s.namespace
 
   # k8s.daemonset.* metrics
-  - id: metric.k8s.daemonset.current_scheduled_nodes
+  - id: metric.k8s.daemonset.current_scheduled_node.count
     type: metric
-    metric_name: k8s.daemonset.current_scheduled_nodes
+    metric_name: k8s.daemonset.current_scheduled_node.count
     annotations:
       code_generation:
         metric_value_type: int
@@ -876,9 +876,9 @@ groups:
     entity_associations:
       - k8s.daemonset
     unit: "{node}"
-  - id: metric.k8s.daemonset.desired_scheduled_nodes
+  - id: metric.k8s.daemonset.desired_scheduled_node.count
     type: metric
-    metric_name: k8s.daemonset.desired_scheduled_nodes
+    metric_name: k8s.daemonset.desired_scheduled_node.count
     annotations:
       code_generation:
         metric_value_type: int
@@ -891,9 +891,9 @@ groups:
     entity_associations:
       - k8s.daemonset
     unit: "{node}"
-  - id: metric.k8s.daemonset.misscheduled_nodes
+  - id: metric.k8s.daemonset.misscheduled_node.count
     type: metric
-    metric_name: k8s.daemonset.misscheduled_nodes
+    metric_name: k8s.daemonset.misscheduled_node.count
     annotations:
       code_generation:
         metric_value_type: int
@@ -906,9 +906,9 @@ groups:
     entity_associations:
       - k8s.daemonset
     unit: "{node}"
-  - id: metric.k8s.daemonset.ready_nodes
+  - id: metric.k8s.daemonset.ready_node.count
     type: metric
-    metric_name: k8s.daemonset.ready_nodes
+    metric_name: k8s.daemonset.ready_node.count
     annotations:
       code_generation:
         metric_value_type: int
@@ -923,9 +923,9 @@ groups:
     unit: "{node}"
 
   # k8s.job.* metrics
-  - id: metric.k8s.job.active_pods
+  - id: metric.k8s.job.active_pod.count
     type: metric
-    metric_name: k8s.job.active_pods
+    metric_name: k8s.job.active_pod.count
     annotations:
       code_generation:
         metric_value_type: int
@@ -938,9 +938,9 @@ groups:
     note: |
       This metric aligns with the `active` field of the
       [K8s JobStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#jobstatus-v1-batch).
-  - id: metric.k8s.job.failed_pods
+  - id: metric.k8s.job.failed_pod.count
     type: metric
-    metric_name: k8s.job.failed_pods
+    metric_name: k8s.job.failed_pod.count
     annotations:
       code_generation:
         metric_value_type: int
@@ -953,9 +953,9 @@ groups:
     note: |
       This metric aligns with the `failed` field of the
       [K8s JobStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#jobstatus-v1-batch).
-  - id: metric.k8s.job.successful_pods
+  - id: metric.k8s.job.successful_pod.count
     type: metric
-    metric_name: k8s.job.successful_pods
+    metric_name: k8s.job.successful_pod.count
     annotations:
       code_generation:
         metric_value_type: int
@@ -968,9 +968,9 @@ groups:
     note: |
       This metric aligns with the `succeeded` field of the
       [K8s JobStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#jobstatus-v1-batch).
-  - id: metric.k8s.job.desired_successful_pods
+  - id: metric.k8s.job.desired_successful_pod.count
     type: metric
-    metric_name: k8s.job.desired_successful_pods
+    metric_name: k8s.job.desired_successful_pod.count
     annotations:
       code_generation:
         metric_value_type: int
@@ -983,9 +983,9 @@ groups:
     note: |
       This metric aligns with the `completions` field of the
       [K8s JobSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#jobspec-v1-batch)..
-  - id: metric.k8s.job.max_parallel_pods
+  - id: metric.k8s.job.max_parallel_pod.count
     type: metric
-    metric_name: k8s.job.max_parallel_pods
+    metric_name: k8s.job.max_parallel_pod.count
     annotations:
       code_generation:
         metric_value_type: int
@@ -1000,9 +1000,9 @@ groups:
       [K8s JobSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#jobspec-v1-batch).
 
   # k8s.cronjob.* metrics
-  - id: metric.k8s.cronjob.active_jobs
+  - id: metric.k8s.cronjob.active_job.count
     type: metric
-    metric_name: k8s.cronjob.active_jobs
+    metric_name: k8s.cronjob.active_job.count
     annotations:
       code_generation:
         metric_value_type: int
