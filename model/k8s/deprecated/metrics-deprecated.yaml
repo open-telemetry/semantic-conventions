@@ -8,10 +8,192 @@ groups:
     stability: development
     deprecated:
       reason: renamed
-      renamed_to: k8s.replicationcontroller.desired_pods
-    brief: "Deprecated, use `k8s.replicationcontroller.desired_pods` instead."
+      renamed_to: k8s.replicationcontroller.desired_pod.count
+    brief: "Deprecated, use `k8s.replicationcontroller.desired_pod.count` instead."
     instrument: updowncounter
     unit: "{pod}"
+  - id: metric.k8s.daemonset.current_scheduled_nodes
+    type: metric
+    metric_name: k8s.daemonset.current_scheduled_nodes
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    deprecated:
+      reason: renamed
+      renamed_to: k8s.daemonset.current_scheduled_node.count
+    brief: "Deprecated, use `k8s.daemonset.current_scheduled_node.count` instead."
+    note: |
+      This metric aligns with the `currentNumberScheduled` field of the
+      [K8s DaemonSetStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#daemonsetstatus-v1-apps).
+    instrument: updowncounter
+    entity_associations:
+      - k8s.daemonset
+    unit: "{node}"
+  - id: metric.k8s.daemonset.desired_scheduled_nodes
+    type: metric
+    metric_name: k8s.daemonset.desired_scheduled_nodes
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    deprecated:
+      reason: renamed
+      renamed_to: k8s.daemonset.desired_scheduled_node.count
+    brief: "Deprecated, use `k8s.daemonset.desired_scheduled_node.count` instead."
+    note: |
+      This metric aligns with the `desiredNumberScheduled` field of the
+      [K8s DaemonSetStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#daemonsetstatus-v1-apps).
+    instrument: updowncounter
+    entity_associations:
+      - k8s.daemonset
+    unit: "{node}"
+  - id: metric.k8s.daemonset.misscheduled_nodes
+    type: metric
+    metric_name: k8s.daemonset.misscheduled_nodes
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    deprecated:
+      reason: renamed
+      renamed_to: k8s.daemonset.misscheduled_node.count
+    brief: "Deprecated, use `k8s.daemonset.misscheduled_node.count` instead."
+    note: |
+      This metric aligns with the `numberMisscheduled` field of the
+      [K8s DaemonSetStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#daemonsetstatus-v1-apps).
+    instrument: updowncounter
+    entity_associations:
+      - k8s.daemonset
+    unit: "{node}"
+  - id: metric.k8s.daemonset.ready_nodes
+    type: metric
+    metric_name: k8s.daemonset.ready_nodes
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    deprecated:
+      reason: renamed
+      renamed_to: k8s.daemonset.ready_node.count
+    brief: "Deprecated, use `k8s.daemonset.ready_node.count` instead."
+    note: |
+      This metric aligns with the `numberReady` field of the
+      [K8s DaemonSetStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#daemonsetstatus-v1-apps).
+    instrument: updowncounter
+    entity_associations:
+      - k8s.daemonset
+    unit: "{node}"
+
+  - id: metric.k8s.job.active_pods
+    type: metric
+    metric_name: k8s.job.active_pods
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    deprecated:
+      reason: renamed
+      renamed_to: k8s.job.active_pod.count
+    brief: "Deprecated, use `k8s.job.active_pod.count` instead."
+    instrument: updowncounter
+    unit: "{pod}"
+    entity_associations:
+      - k8s.job
+    note: |
+      This metric aligns with the `active` field of the
+      [K8s JobStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#jobstatus-v1-batch).
+  - id: metric.k8s.job.failed_pods
+    type: metric
+    metric_name: k8s.job.failed_pods
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    deprecated:
+      reason: renamed
+      renamed_to: k8s.job.failed_pod.count
+    brief: "Deprecated, use `k8s.job.failed_pod.count` instead."
+    instrument: updowncounter
+    unit: "{pod}"
+    entity_associations:
+      - k8s.job
+    note: |
+      This metric aligns with the `failed` field of the
+      [K8s JobStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#jobstatus-v1-batch).
+  - id: metric.k8s.job.successful_pods
+    type: metric
+    metric_name: k8s.job.successful_pods
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    deprecated:
+      reason: renamed
+      renamed_to: k8s.job.successful_pod.count
+    brief: "Deprecated, use `k8s.job.successful_pod.count` instead."
+    instrument: updowncounter
+    unit: "{pod}"
+    entity_associations:
+      - k8s.job
+    note: |
+      This metric aligns with the `succeeded` field of the
+      [K8s JobStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#jobstatus-v1-batch).
+  - id: metric.k8s.job.desired_successful_pods
+    type: metric
+    metric_name: k8s.job.desired_successful_pods
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    deprecated:
+      reason: renamed
+      renamed_to: k8s.job.desired_successful_pod.count
+    brief: "Deprecated, use `k8s.job.desired_successful_pod.count` instead."
+    instrument: updowncounter
+    unit: "{pod}"
+    entity_associations:
+      - k8s.job
+    note: |
+      This metric aligns with the `completions` field of the
+      [K8s JobSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#jobspec-v1-batch)..
+  - id: metric.k8s.job.max_parallel_pods
+    type: metric
+    metric_name: k8s.job.max_parallel_pods
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    deprecated:
+      reason: renamed
+      renamed_to: k8s.job.max_parallel_pod.count
+    brief: "Deprecated, use `k8s.job.max_parallel_pod.count` instead."
+    instrument: updowncounter
+    unit: "{pod}"
+    entity_associations:
+      - k8s.job
+    note: |
+      This metric aligns with the `parallelism` field of the
+      [K8s JobSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#jobspec-v1-batch).
+
+  - id: metric.k8s.cronjob.active_jobs
+    type: metric
+    metric_name: k8s.cronjob.active_jobs
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    deprecated:
+      reason: renamed
+      renamed_to: k8s.cronjob.active_job.count
+    brief: "Deprecated, use `k8s.cronjob.active_job.count` instead."
+    instrument: updowncounter
+    unit: "{job}"
+    entity_associations:
+      - k8s.cronjob
+    note: |
+      This metric aligns with the `active` field of the
+      [K8s CronJobStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#cronjobstatus-v1-batch).
   - id: metric.k8s.replication_controller.available_pods
     type: metric
     metric_name: k8s.replication_controller.available_pods
@@ -21,7 +203,239 @@ groups:
     stability: development
     deprecated:
       reason: renamed
-      renamed_to: k8s.replicationcontroller.available_pods
-    brief: "Deprecated, use `k8s.replicationcontroller.available_pods` instead."
+      renamed_to: k8s.replicationcontroller.available_pod.count
+    brief: "Deprecated, use `k8s.replicationcontroller.available_pod.count` instead."
     instrument: updowncounter
+    unit: "{pod}"
+  - id: metric.k8s.node.allocatable.pod
+    type: metric
+    metric_name: k8s.node.allocatable.pod
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    deprecated:
+      reason: renamed
+      renamed_to: k8s.node.allocatable.pod.count
+    brief: "Deprecated, use `k8s.node.allocatable.pod.count` instead."
+    entity_associations:
+      - k8s.node
+    instrument: updowncounter
+    unit: "{pod}"
+  - id: metric.k8s.deployment.desired_pods
+    type: metric
+    metric_name: k8s.deployment.desired_pods
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    deprecated:
+      reason: renamed
+      renamed_to: k8s.deployment.desired_pod.count
+    brief: "Deprecated, use `k8s.deployment.desired_pod.count` instead."
+    entity_associations:
+      - k8s.deployment
+    note: |
+      This metric aligns with the `replicas` field of the
+      [K8s DeploymentSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#deploymentspec-v1-apps).
+    instrument: updowncounter
+    unit: "{pod}"
+  - id: metric.k8s.deployment.available_pods
+    type: metric
+    metric_name: k8s.deployment.available_pods
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    deprecated:
+      reason: renamed
+      renamed_to: k8s.deployment.available_pod.count
+    entity_associations:
+      - k8s.deployment
+    brief: "Deprecated, use `k8s.deployment.available_pod.count` instead."
+    note: |
+      This metric aligns with the `availableReplicas` field of the
+      [K8s DeploymentStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#deploymentstatus-v1-apps).
+    instrument: updowncounter
+    unit: "{pod}"
+
+  - id: metric.k8s.replicaset.desired_pods
+    type: metric
+    metric_name: k8s.replicaset.desired_pods
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    deprecated:
+      reason: renamed
+      renamed_to: k8s.replicaset.desired_pod.count
+    brief: "Deprecated, use `k8s.replicaset.desired_pod.count` instead."
+    entity_associations:
+      - k8s.replicaset
+    note: |
+      This metric aligns with the `replicas` field of the
+      [K8s ReplicaSetSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#replicasetspec-v1-apps).
+    instrument: updowncounter
+    unit: "{pod}"
+  - id: metric.k8s.replicaset.available_pods
+    type: metric
+    metric_name: k8s.replicaset.available_pods
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    entity_associations:
+      - k8s.replicaset
+    deprecated:
+      reason: renamed
+      renamed_to: k8s.replicaset.available_pod.count
+    brief: "Deprecated, use `k8s.replicaset.available_pod.count` instead."
+    note: |
+      This metric aligns with the `availableReplicas` field of the
+      [K8s ReplicaSetStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#replicasetstatus-v1-apps).
+    instrument: updowncounter
+    unit: "{pod}"
+  - id: metric.k8s.statefulset.desired_pods
+    type: metric
+    metric_name: k8s.statefulset.desired_pods
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "Deprecated, use `k8s.statefulset.desired_pod.count` instead."
+    entity_associations:
+      - k8s.statefulset
+    deprecated:
+      reason: renamed
+      renamed_to: k8s.statefulset.desired_pod.count
+    note: |
+      This metric aligns with the `replicas` field of the
+      [K8s StatefulSetSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#statefulsetspec-v1-apps).
+    instrument: updowncounter
+    unit: "{pod}"
+  - id: metric.k8s.statefulset.ready_pods
+    type: metric
+    metric_name: k8s.statefulset.ready_pods
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    deprecated:
+      reason: renamed
+      renamed_to: k8s.statefulset.ready_pod.count
+    entity_associations:
+      - k8s.statefulset
+    brief: "Deprecated, use `k8s.statefulset.ready_pod.count` instead."
+    note: |
+      This metric aligns with the `readyReplicas` field of the
+      [K8s StatefulSetStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#statefulsetstatus-v1-apps).
+    instrument: updowncounter
+    unit: "{pod}"
+  - id: metric.k8s.statefulset.current_pods
+    type: metric
+    metric_name: k8s.statefulset.current_pods
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    deprecated:
+      reason: renamed
+      renamed_to: k8s.statefulset.current_pod.count
+    entity_associations:
+      - k8s.statefulset
+    brief: "Deprecated, use `k8s.statefulset.current_pod.count` instead."
+    note: |
+      This metric aligns with the `currentReplicas` field of the
+      [K8s StatefulSetStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#statefulsetstatus-v1-apps).
+    instrument: updowncounter
+    unit: "{pod}"
+  - id: metric.k8s.statefulset.updated_pods
+    type: metric
+    metric_name: k8s.statefulset.updated_pods
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    deprecated:
+      reason: renamed
+      renamed_to: k8s.statefulset.updated_pod.count
+    entity_associations:
+      - k8s.statefulset
+    brief: "Deprecated, use `k8s.statefulset.updated_pod.count` instead."
+    note: |
+      This metric aligns with the `updatedReplicas` field of the
+      [K8s StatefulSetStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#statefulsetstatus-v1-apps).
+    instrument: updowncounter
+    unit: "{pod}"
+  - id: metric.k8s.hpa.desired_pods
+    type: metric
+    metric_name: k8s.hpa.desired_pods
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    deprecated:
+      reason: renamed
+      renamed_to: k8s.hpa.desired_pod.count
+    brief: "Deprecated, use `k8s.hpa.desired_pod.count` instead."
+    note: |
+      This metric aligns with the `desiredReplicas` field of the
+      [K8s HorizontalPodAutoscalerStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#horizontalpodautoscalerstatus-v2-autoscaling)
+    instrument: updowncounter
+    entity_associations:
+      - k8s.hpa
+    unit: "{pod}"
+  - id: metric.k8s.hpa.current_pods
+    type: metric
+    metric_name: k8s.hpa.current_pods
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    deprecated:
+      reason: renamed
+      renamed_to: k8s.hpa.current_pod.count
+    brief: "Deprecated, use `k8s.hpa.current_pod.count` instead."
+    note: |
+      This metric aligns with the `currentReplicas` field of the
+      [K8s HorizontalPodAutoscalerStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#horizontalpodautoscalerstatus-v2-autoscaling)
+    instrument: updowncounter
+    entity_associations:
+      - k8s.hpa
+    unit: "{pod}"
+  - id: metric.k8s.hpa.max_pods
+    type: metric
+    metric_name: k8s.hpa.max_pods
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    deprecated:
+      reason: renamed
+      renamed_to: k8s.hpa.max_pod.count
+    brief: "Deprecated, use `k8s.hpa.max_pod.count` instead."
+    note: |
+      This metric aligns with the `maxReplicas` field of the
+      [K8s HorizontalPodAutoscalerSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#horizontalpodautoscalerspec-v2-autoscaling)
+    instrument: updowncounter
+    entity_associations:
+      - k8s.hpa
+    unit: "{pod}"
+  - id: metric.k8s.hpa.min_pods
+    type: metric
+    metric_name: k8s.hpa.min_pods
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    deprecated:
+      reason: renamed
+      renamed_to: k8s.hpa.min_pod.count
+    brief: "Deprecated, use `k8s.hpa.min_pod.count` instead."
+    note: |
+      This metric aligns with the `minReplicas` field of the
+      [K8s HorizontalPodAutoscalerSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#horizontalpodautoscalerspec-v2-autoscaling)
+    instrument: updowncounter
+    entity_associations:
+      - k8s.hpa
     unit: "{pod}"
