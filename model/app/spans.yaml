@@ -1,0 +1,98 @@
+groups:
+  - id: span.app.launch.client
+    type: span
+    span_kind: client
+    brief: This span represents an application launch operation.
+    note: |
+      **Span name:** MUST be `AppLaunch`.
+
+      **Span kind** MUST be `CLIENT`.
+
+      This span captures the time from user initiation (e.g., tapping the app icon or opening a link) 
+      to the moment the app is ready for interaction. 
+    stability: development
+    attributes:
+      - ref: app.launch.type
+        requirement_level: required
+      - ref: app.launch.duration
+        requirement_level: required
+  - id: span.app.screen.first_appear.client
+    type: span
+    span_kind: client
+    brief: This span describes the time until the first visual render of an application UI screen.
+    note: |
+      **Span name**: MUST be one of the following based on the measurement:
+      - `TimeToFirstDraw`: Time from screen initialization to the first pixel drawn.
+      - `TimeToFirstAppear`: Time from screen initialization to first appearance.
+
+      **Span kind** MUST be `CLIENT`.
+
+      This span captures the first visual render of the screen, even if it 
+      might not be fully interactive or loaded yet.
+    stability: development
+    attributes:
+      - ref: app.screen.name
+        requirement_level: required
+      - ref: app.screen.first_appear.duration
+        requirement_level: required
+      - ref: app.screen.type
+        requirement_level: opt_in
+      - ref: app.screen.nodes
+        requirement_level: opt_in
+      - ref: app.screen.depth
+        requirement_level: opt_in
+  - id: span.app.screen.load.client
+    type: span
+    span_kind: client
+    brief: This span describes an application screen load operation, from navigation trigger to when the main thread becomes ready for user input.
+    note: |
+      **Span name:** MUST be `ScreenLoad`.
+
+      **Span kind** MUST be `CLIENT`.
+
+      This span captures the time from user initiation of navigation (e.g., tapping a button) to the point when the main thread is 
+      ready to handle user input (e.g., taps, scrolls, gestures). 
+      **Main thread readiness** refers to when the UI thread is no longer blocked by rendering, animations, or background tasks, 
+      and is free to accept user input. 
+
+      It is important to note that while the main thread may be ready, some dynamic content, animations, or UI components may 
+      still be loading, making the screen "appear" interactive even if it's not fully ready.
+    stability: development
+    attributes:
+      - ref: app.screen.name
+        requirement_level: required
+      - ref: app.screen.type
+        requirement_level: opt_in
+      - ref: app.screen.load.duration
+        requirement_level: required
+      - ref: app.screen.nodes
+        requirement_level: opt_in
+      - ref: app.screen.depth
+        requirement_level: opt_in
+      - ref: app.screen.main_thread_busy_time
+        requirement_level: opt_in
+  - id: span.app.screen.visible.client
+    type: span
+    span_kind: client
+    brief: >
+      This span captures the duration that a screen was visible to the user, indicating the time between when the screen becomes 
+      visible and when it stops being visible.
+    note: |
+      **Span name:** MUST be `ScreenVisible`.
+
+      **Span kind** MUST be `CLIENT`.
+
+      This span captures the amount of time a screen remained visible to the user across platforms. For example:
+      - **iOS**: From `viewDidAppear` to `viewWillDisappear`, indicating when the screen is first shown and when it's about to disappear.
+      - **Android**: From `onResume` to `onPause`, indicating when the screen comes to the foreground and when it goes to the background.
+
+      This span measures the screen’s visibility, meaning it includes only the time the screen is actively being shown to the user. 
+      It does not include times when the app is in the background or when other screens/modal views are covering it.
+    stability: development
+    attributes:
+      - ref: app.screen.name
+        requirement_level: required
+      - ref: app.screen.type
+        requirement_level: opt_in
+      - ref: app.screen.visible.duration
+        requirement_level: required
