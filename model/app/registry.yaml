@@ -48,6 +48,45 @@ groups:
         type: double
         brief: The time period, in seconds, for which this jank is being reported.
         examples: [ 1.0, 5.0, 10.24 ]
+      - id: app.launch.duration
+        type: int
+        stability: development
+        brief: >
+          The total time, in milliseconds, taken for the application to launch, from user initiation to being ready for interaction.
+        note: >
+          This is the time, in milliseconds, between the user's initiation of the app launch (e.g., tapping the app icon or opening a link) and the point when the app is fully ready for interaction, 
+          such as the main screen becoming visible or the app’s main functionality being accessible.
+        examples: [1000]
+      - id: app.launch.type
+        type:
+          members:
+            - id: cold
+              value: "cold"
+              brief: App launch from terminated state
+              stability: development
+            - id: warm
+              value: "warm"
+              brief: App launch from background state]
+              stability: development
+            - id: hot
+              value: "hot"
+              brief: App launch from memory (already running)
+              stability: development
+            - id: pre_warm
+              value: "pre_warm"
+              brief: App launch using pre-warmed process
+              stability: development
+        stability: development
+        brief: >
+          The type of application launch, indicating the state of the app when the launch was initiated.
+        note: |
+          Launch types include:
+
+          - **Cold**: The app is launched from a terminated state, meaning no prior instance of the app is running.
+          - **Warm**: The app is launched from the background, meaning an instance of the app is still in memory, but not active.
+          - **Hot**: The app is already running and brought to the foreground, meaning no re-initialization is needed.
+          - **Pre-Warm**: The app launch uses a pre-warmed process, meaning part of the app's initialization has already been done in anticipation of the launch.
+        examples: ["cold", "warm", "hot", "pre_warm"]
       - id: app.screen.coordinate.x
         type: int
         brief: The x (horizontal) coordinate of a screen coordinate, in screen pixels.
@@ -86,6 +125,87 @@ groups:
           is larger in scope than individual widgets. Multiple screens can
           coexist on the same display simultaneously (e.g., split view on tablets).
         examples: ["MainActivity", "ProductDetailFragment", "ProfileView", "ProfileViewController"]
+      - id: app.screen.depth
+        type: int
+        stability: development
+        brief: >
+          The depth of this screen in the application’s screen hierarchy, where 0 represents the root screen.
+        note: >
+          Depth represents the screen's position in the screen hierarchy tree. 
+          The root screen of the app is considered to have a depth of 0. Screens that are nested within other screens (such as in tab navigation, modals, or multi-screen flows) will have increasing depth values (1, 2, etc.).
+          For example, a modal screen that is presented over the root screen would have a depth of 1, while a screen inside a modal might have a depth of 2.
+        examples: [0, 2, 5]
+      - id: app.screen.first_appear.duration
+        type: int
+        stability: development
+        brief: >
+          The time, in milliseconds, from screen initialization to the first visual render of the screen.
+        note: >
+          This measures the time, in milliseconds, until the first pixels of the screen are drawn and the screen becomes visible to the user. 
+          It does not necessarily mean the screen is fully interactive or that dynamic content (like images, API responses, or animations) is fully loaded.
+        examples: [1000]
+      - id: app.screen.load.duration
+        type: int
+        stability: development
+        brief: >
+          The total time, in milliseconds, from navigation trigger (e.g., button tap) to when the screen is able to handle user interactions.
+        note: >
+          This includes time, in milliseconds, spent rendering the screen, waiting for dynamic content (if necessary), and ensuring the app is ready to process user input.
+          The screen is considered "ready" once the UI is able to respond to user interactions such as taps, swipes, or gestures.
+        examples: [1000]
+      - id: app.screen.main_thread_busy_time
+        type: int
+        stability: development
+        brief: >
+          The time, in milliseconds, during which the main thread is occupied or blocked from processing user input, 
+          such as during rendering, animations, or network requests. This indicates the time the app is "busy" and unable to respond to user interactions.
+      - id: app.screen.nodes
+        type: int
+        stability: development
+        brief: >
+          The total number of visual or interactive elements (widgets, views, components, etc.) within an application screen.
+        note: >
+          A "node" is any individual visual or interactive component contained within a screen. This includes UI elements like buttons, labels, text fields, images, containers, and static content such as images or text. 
+        examples: [5, 23, 147]
+      - id: app.screen.type
+        type:
+          members:
+            - id: swiftui
+              value: "swiftui"
+              brief: SwiftUI View (iOS)
+              stability: development
+            - id: uikit
+              value: "uikit"
+              brief: UIKit ViewController (iOS)
+              stability: development
+            - id: activity
+              value: "activity"
+              brief: Android Activity (Android)
+              stability: development
+            - id: fragment
+              value: "fragment"
+              brief: Android Fragment (Android)
+              stability: development
+        stability: development
+        brief: >
+          The type of UI management component or framework used to render and manage the screen's presentation and interactions.
+        note: >
+          This attribute indicates which framework or structure is used to manage and display the screen’s content. For iOS, it may refer to either SwiftUI (declarative) or UIKit (imperative) for managing views. 
+          On Android, it can refer to either an Activity or a Fragment.
+        examples: ["swiftui", "uikit", "activity", "fragment"]
+      - id: app.screen.visible.duration
+        type: int
+        stability: development
+        brief: >
+          The total time, in milliseconds, that the screen remained visible to the user.
+        note: > 
+          This attribute measures the duration during which the screen is visible and actively being displayed to the user.
+          It begins when the screen becomes visible (e.g., `viewDidAppear` on iOS or `onResume` on Android) and ends when it is no longer visible
+          (e.g., `viewWillDisappear` on iOS or `onPause` on Android).
+          
+          It does **not** include the time when the screen is in the background, nor does it account for time the screen may be obscured by other views
+          or overlays (e.g., modals, popups, or other screens in split-view).
+        examples: [1200, 5500, 700]
       - id: app.widget.id
         type: string
         stability: development
