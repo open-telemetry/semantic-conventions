@@ -10,7 +10,7 @@ groups:
 
       **Span kind** MUST be `CLIENT`.
 
-      This span captures the first visual render of the screen, even if it 
+      This span captures the first visual render of the screen, even if it
       might not be fully interactive or loaded yet.
     stability: development
     attributes:
@@ -33,12 +33,11 @@ groups:
 
       **Span kind** MUST be `CLIENT`.
 
-      This span captures the time from user initiation of navigation (e.g., tapping a button) to the point when the main thread is 
-      ready to handle user input (e.g., taps, scrolls, gestures). 
-      **Main thread readiness** refers to when the UI thread is no longer blocked by rendering, animations, or background tasks, 
-      and is free to accept user input. 
-
-      It is important to note that while the main thread may be ready, some dynamic content, animations, or UI components may 
+      This span captures the time from user initiation of navigation (e.g., tapping a button) to the point when the main thread is
+      ready to handle user input (e.g., taps, scrolls, gestures).
+      **Main thread readiness** refers to when the UI thread is no longer blocked by rendering, animations, or background tasks,
+      and is free to accept user input.
+      It is important to note that while the main thread may be ready, some dynamic content, animations, or UI components may
       still be loading, making the screen "appear" interactive even if it's not fully ready.
     stability: development
     attributes:
@@ -58,7 +57,7 @@ groups:
     type: span
     span_kind: client
     brief: >
-      This span captures the duration that a screen was visible to the user, indicating the time between when the screen becomes 
+      This span captures the duration that a screen was visible to the user, indicating the time between when the screen becomes
       visible and when it stops being visible.
     note: |
       **Span name:** MUST be `ScreenVisible`.
@@ -69,7 +68,7 @@ groups:
       - **iOS**: From `viewDidAppear` to `viewWillDisappear`, indicating when the screen is first shown and when it's about to disappear.
       - **Android**: From `onResume` to `onPause`, indicating when the screen comes to the foreground and when it goes to the background.
 
-      This span measures the screen’s visibility, meaning it includes only the time the screen is actively being shown to the user. 
+      This span measures the screen’s visibility, meaning it includes only the time the screen is actively being shown to the user.
       It does not include times when the app is in the background or when other screens/modal views are covering it.
     stability: development
     attributes:
@@ -88,8 +87,8 @@ groups:
 
       **Span kind** MUST be `CLIENT`.
 
-      This span captures the time from user initiation (e.g., tapping the app icon or opening a link) 
-      to the moment the app is ready for interaction. 
+      This span captures the time from user initiation (e.g., tapping the app icon or opening a link)
+      to the moment the app is ready for interaction.
     stability: development
     attributes:
       - ref: app.start.type
