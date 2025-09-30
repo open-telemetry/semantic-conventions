@@ -36,11 +36,11 @@ groups:
           members:
             - id: voluntary
               value: 'voluntary'
-              brief: Process voluntarily context-switched which could be while waiting for an I/O operation to complete.
+              brief: A voluntary context switch can occur when waiting for an I/O operation to complete.
               stability: development
             - id: involuntary
               value: 'involuntary'
-              brief: Process involuntarily context-switched because the time slice expired.
+              brief: An involuntary context switch occurs when the time slice expires.
               stability: development
         deprecated:
           reason: renamed

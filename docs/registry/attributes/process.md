@@ -68,8 +68,8 @@ with value `"/usr/local/bin:/usr/bin"`.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `involuntary` | Process involuntarily context-switched because the time slice expired. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `voluntary` | Process voluntarily context-switched which could be while waiting for an I/O operation to complete. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `involuntary` | An involuntary context switch occurs when the time slice expires. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `voluntary` | A voluntary context switch can occur when waiting for an I/O operation to complete. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -106,8 +106,8 @@ Deprecated process attributes.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `involuntary` | Process involuntarily context-switched because the time slice expired. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `voluntary` | Process voluntarily context-switched which could be while waiting for an I/O operation to complete. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `involuntary` | An involuntary context switch occurs when the time slice expires. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `voluntary` | A voluntary context switch can occur when waiting for an I/O operation to complete. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
