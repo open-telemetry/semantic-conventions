@@ -111,7 +111,7 @@ The changes between collector implementation and semantic conventions:
 | `k8s.node.allocatable_cpu`                 (type: `gauge`)                         | `k8s.node.allocatable.cpu`               (type: `updowncounter`) |
 | `k8s.node.allocatable_memory`              (type: `gauge`)                         | `k8s.node.allocatable.memory`            (type: `updowncounter`) |
 | `k8s.node.allocatable_ephemeral_storage`   (type: `gauge`)                         | `k8s.node.allocatable.ephemeral_storage` (type: `updowncounter`) |
-| `k8s.node.allocatable_pods`                (type: `gauge`)                         | `k8s.node.allocatablepod.count`              (type: `updowncounter`) |
+| `k8s.node.allocatable_pods`                (type: `gauge`)                         | `k8s.node.allocatable.pod.count`              (type: `updowncounter`) |
 
 <!-- prettier-ignore-end -->
 
