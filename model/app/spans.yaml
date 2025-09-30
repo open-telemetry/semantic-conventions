@@ -1,21 +1,4 @@
 groups:
-  - id: span.app.launch.client
-    type: span
-    span_kind: client
-    brief: This span represents an application launch operation.
-    note: |
-      **Span name:** MUST be `AppLaunch`.
-
-      **Span kind** MUST be `CLIENT`.
-
-      This span captures the time from user initiation (e.g., tapping the app icon or opening a link) 
-      to the moment the app is ready for interaction. 
-    stability: development
-    attributes:
-      - ref: app.launch.type
-        requirement_level: required
-      - ref: app.launch.duration
-        requirement_level: required
   - id: span.app.screen.first_appear.client
     type: span
     span_kind: client
@@ -95,4 +78,21 @@ groups:
       - ref: app.screen.type
         requirement_level: opt_in
       - ref: app.screen.visible.duration
+        requirement_level: required
+  - id: span.app.start.client
+    type: span
+    span_kind: client
+    brief: This span represents an application start operation.
+    note: |
+      **Span name:** MUST be `AppStart`.
+
+      **Span kind** MUST be `CLIENT`.
+
+      This span captures the time from user initiation (e.g., tapping the app icon or opening a link) 
+      to the moment the app is ready for interaction. 
+    stability: development
+    attributes:
+      - ref: app.start.type
+        requirement_level: required
+      - ref: app.start.duration
         requirement_level: required

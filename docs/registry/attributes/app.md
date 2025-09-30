@@ -14,19 +14,19 @@ Describes attributes related to client-side applications (e.g. web apps or mobil
 | <a id="app-jank-frame-count" href="#app-jank-frame-count">`app.jank.frame_count`</a> | int | A number of frame renders that experienced jank. [2] | `9`; `42` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="app-jank-period" href="#app-jank-period">`app.jank.period`</a> | double | The time period, in seconds, for which this jank is being reported. | `1.0`; `5.0`; `10.24` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="app-jank-threshold" href="#app-jank-threshold">`app.jank.threshold`</a> | double | The minimum rendering threshold for this jank, in seconds. | `0.016`; `0.7`; `1.024` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="app-launch-duration" href="#app-launch-duration">`app.launch.duration`</a> | int | The total time, in milliseconds, taken for the application to launch, from user initiation to being ready for interaction. [3] | `1000` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="app-launch-type" href="#app-launch-type">`app.launch.type`</a> | string | The type of application launch, indicating the state of the app when the launch was initiated. [4] | `cold`; `warm`; `hot`; `pre_warm` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="app-screen-coordinate-x" href="#app-screen-coordinate-x">`app.screen.coordinate.x`</a> | int | The x (horizontal) coordinate of a screen coordinate, in screen pixels. | `0`; `131` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="app-screen-coordinate-y" href="#app-screen-coordinate-y">`app.screen.coordinate.y`</a> | int | The y (vertical) component of a screen coordinate, in screen pixels. | `12`; `99` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="app-screen-depth" href="#app-screen-depth">`app.screen.depth`</a> | int | The depth of this screen in the application’s screen hierarchy, where 0 represents the root screen. [5] | `0`; `2`; `5` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="app-screen-first-appear-duration" href="#app-screen-first-appear-duration">`app.screen.first_appear.duration`</a> | int | The time, in milliseconds, from screen initialization to the first visual render of the screen. [6] | `1000` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="app-screen-id" href="#app-screen-id">`app.screen.id`</a> | string | An identifier that uniquely differentiates this screen from other screens in the same application. [7] | `f9bc787d-ff05-48ad-90e1-fca1d46130b3`; `com.example.app.MainActivity`; `com.example.shop.ProductDetailFragment`; `MyApp.ProfileView`; `MyApp.ProfileViewController` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="app-screen-load-duration" href="#app-screen-load-duration">`app.screen.load.duration`</a> | int | The total time, in milliseconds, from navigation trigger (e.g., button tap) to when the screen is able to handle user interactions. [8] | `1000` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="app-screen-main-thread-busy-time" href="#app-screen-main-thread-busy-time">`app.screen.main_thread_busy_time`</a> | int | The time, in milliseconds, during which the main thread is occupied or blocked from processing user input,  such as during rendering, animations, or network requests. This indicates the time the app is "busy" and unable to respond to user interactions. |  | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="app-screen-name" href="#app-screen-name">`app.screen.name`</a> | string | The name of an application screen. [9] | `MainActivity`; `ProductDetailFragment`; `ProfileView`; `ProfileViewController` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="app-screen-nodes" href="#app-screen-nodes">`app.screen.nodes`</a> | int | The total number of visual or interactive elements (widgets, views, components, etc.) within an application screen. [10] | `5`; `23`; `147` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="app-screen-type" href="#app-screen-type">`app.screen.type`</a> | string | The type of UI management component or framework used to render and manage the screen's presentation and interactions. [11] | `swiftui`; `uikit`; `activity`; `fragment` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="app-screen-visible-duration" href="#app-screen-visible-duration">`app.screen.visible.duration`</a> | int | The total time, in milliseconds, that the screen remained visible to the user. [12] | `1200`; `5500`; `700` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="app-screen-depth" href="#app-screen-depth">`app.screen.depth`</a> | int | The depth of this screen in the application’s screen hierarchy, where 0 represents the root screen. [3] | `0`; `2`; `5` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="app-screen-first-appear-duration" href="#app-screen-first-appear-duration">`app.screen.first_appear.duration`</a> | int | The time, in nanoseconds, from screen initialization to the first visual render of the screen. [4] | `1000` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="app-screen-id" href="#app-screen-id">`app.screen.id`</a> | string | An identifier that uniquely differentiates this screen from other screens in the same application. [5] | `f9bc787d-ff05-48ad-90e1-fca1d46130b3`; `com.example.app.MainActivity`; `com.example.shop.ProductDetailFragment`; `MyApp.ProfileView`; `MyApp.ProfileViewController` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="app-screen-load-duration" href="#app-screen-load-duration">`app.screen.load.duration`</a> | int | The total time, in nanoseconds, from navigation trigger (e.g., button tap) to when the screen is able to handle user interactions. [6] | `1000` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="app-screen-main-thread-busy-time" href="#app-screen-main-thread-busy-time">`app.screen.main_thread_busy_time`</a> | int | The time, in nanoseconds, during which the main thread is occupied or blocked from processing user input,  such as during rendering, animations, or network requests. This indicates the time the app is "busy" and unable to respond to user interactions. |  | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="app-screen-name" href="#app-screen-name">`app.screen.name`</a> | string | The name of an application screen. [7] | `MainActivity`; `ProductDetailFragment`; `ProfileView`; `ProfileViewController` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="app-screen-nodes" href="#app-screen-nodes">`app.screen.nodes`</a> | int | The total number of visual or interactive elements (widgets, views, components, etc.) within an application screen. [8] | `5`; `23`; `147` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="app-screen-type" href="#app-screen-type">`app.screen.type`</a> | string | The type of UI management component or framework used to render and manage the screen's presentation and interactions. [9] | `swiftui`; `uikit`; `activity`; `fragment` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="app-screen-visible-duration" href="#app-screen-visible-duration">`app.screen.visible.duration`</a> | int | The total time, in nanoseconds, that the screen remained visible to the user. [10] | `1200`; `5500`; `700` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="app-start-duration" href="#app-start-duration">`app.start.duration`</a> | int | The total time, in nanoseconds, taken for the application to start, from user initiation to being ready for interaction. [11] | `1000` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="app-start-type" href="#app-start-type">`app.start.type`</a> | string | The type of application start, indicating the state of the app when it was initiated. [12] | `cold`; `warm`; `hot`; `pre_warm` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="app-widget-id" href="#app-widget-id">`app.widget.id`</a> | string | An identifier that uniquely differentiates this widget from other widgets in the same application. [13] | `f9bc787d-ff05-48ad-90e1-fca1d46130b3`; `submit_order_1829` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="app-widget-name" href="#app-widget-name">`app.widget.name`</a> | string | The name of an application widget. [14] | `submit`; `attack`; `Clear Cart` | ![Development](https://img.shields.io/badge/-development-blue) |
 
@@ -50,46 +50,35 @@ More information about Android identifier best practices can be found in the [An
 
 **[2] `app.jank.frame_count`:** Depending on platform limitations, the value provided MAY be approximation.
 
-**[3] `app.launch.duration`:** This is the time, in milliseconds, between the user's initiation of the app launch (e.g., tapping the app icon or opening a link) and the point when the app is fully ready for interaction,  such as the main screen becoming visible or the app’s main functionality being accessible.
+**[3] `app.screen.depth`:** Depth represents the screen's position in the screen hierarchy tree.  The root screen of the app is considered to have a depth of 0. Screens that are nested within other screens (such as in tab navigation, modals, or multi-screen flows) will have increasing depth values (1, 2, etc.). For example, a modal screen that is presented over the root screen would have a depth of 1, while a screen inside a modal might have a depth of 2.
 
-**[4] `app.launch.type`:** Launch types include:
+**[4] `app.screen.first_appear.duration`:** This measures the time, in nanoseconds, until the first pixels of the screen are drawn and the screen becomes visible to the user.  It does not necessarily mean the screen is fully interactive or that dynamic content (like images, API responses, or animations) is fully loaded.
 
-- **Cold**: The app is launched from a terminated state, meaning no prior instance of the app is running.
-- **Warm**: The app is launched from the background, meaning an instance of the app is still in memory, but not active.
-- **Hot**: The app is already running and brought to the foreground, meaning no re-initialization is needed.
-- **Pre-Warm**: The app launch uses a pre-warmed process, meaning part of the app's initialization has already been done in anticipation of the launch.
+**[5] `app.screen.id`:** A screen represents only the part of the device display drawn by the app. It typically contains multiple widgets or UI components and is larger in scope than individual widgets. Multiple screens can coexist on the same display simultaneously (e.g., split view on tablets).
 
-**[5] `app.screen.depth`:** Depth represents the screen's position in the screen hierarchy tree.  The root screen of the app is considered to have a depth of 0. Screens that are nested within other screens (such as in tab navigation, modals, or multi-screen flows) will have increasing depth values (1, 2, etc.). For example, a modal screen that is presented over the root screen would have a depth of 1, while a screen inside a modal might have a depth of 2.
+**[6] `app.screen.load.duration`:** This includes time, in nanoseconds, spent rendering the screen, waiting for dynamic content (if necessary), and ensuring the app is ready to process user input. The screen is considered "ready" once the UI is able to respond to user interactions such as taps, swipes, or gestures.
 
-**[6] `app.screen.first_appear.duration`:** This measures the time, in milliseconds, until the first pixels of the screen are drawn and the screen becomes visible to the user.  It does not necessarily mean the screen is fully interactive or that dynamic content (like images, API responses, or animations) is fully loaded.
+**[7] `app.screen.name`:** A screen represents only the part of the device display drawn by the app. It typically contains multiple widgets or UI components and is larger in scope than individual widgets. Multiple screens can coexist on the same display simultaneously (e.g., split view on tablets).
 
-**[7] `app.screen.id`:** A screen represents only the part of the device display drawn by the app. It typically contains multiple widgets or UI components and is larger in scope than individual widgets. Multiple screens can coexist on the same display simultaneously (e.g., split view on tablets).
+**[8] `app.screen.nodes`:** A "node" is any individual visual or interactive component contained within a screen. This includes UI elements like buttons, labels, text fields, images, containers, and static content such as images or text.
 
-**[8] `app.screen.load.duration`:** This includes time, in milliseconds, spent rendering the screen, waiting for dynamic content (if necessary), and ensuring the app is ready to process user input. The screen is considered "ready" once the UI is able to respond to user interactions such as taps, swipes, or gestures.
+**[9] `app.screen.type`:** This attribute indicates which framework or structure is used to manage and display the screen’s content. For iOS, it may refer to either SwiftUI (declarative) or UIKit (imperative) for managing views.  On Android, it can refer to either an Activity or a Fragment.
 
-**[9] `app.screen.name`:** A screen represents only the part of the device display drawn by the app. It typically contains multiple widgets or UI components and is larger in scope than individual widgets. Multiple screens can coexist on the same display simultaneously (e.g., split view on tablets).
-
-**[10] `app.screen.nodes`:** A "node" is any individual visual or interactive component contained within a screen. This includes UI elements like buttons, labels, text fields, images, containers, and static content such as images or text.
-
-**[11] `app.screen.type`:** This attribute indicates which framework or structure is used to manage and display the screen’s content. For iOS, it may refer to either SwiftUI (declarative) or UIKit (imperative) for managing views.  On Android, it can refer to either an Activity or a Fragment.
-
-**[12] `app.screen.visible.duration`:** This attribute measures the duration during which the screen is visible and actively being displayed to the user. It begins when the screen becomes visible (e.g., `viewDidAppear` on iOS or `onResume` on Android) and ends when it is no longer visible (e.g., `viewWillDisappear` on iOS or `onPause` on Android).
+**[10] `app.screen.visible.duration`:** This attribute measures the duration during which the screen is visible and actively being displayed to the user. It begins when the screen becomes visible (e.g., `viewDidAppear` on iOS or `onResume` on Android) and ends when it is no longer visible (e.g., `viewWillDisappear` on iOS or `onPause` on Android).
 It does **not** include the time when the screen is in the background, nor does it account for time the screen may be obscured by other views or overlays (e.g., modals, popups, or other screens in split-view).
+
+**[11] `app.start.duration`:** This is the time, in nanoseconds, between the user's initiation of the app start (e.g., tapping the app icon or opening a link) and the point when the app is fully ready for interaction,  such as the main screen becoming visible or the app’s main functionality being accessible.
+
+**[12] `app.start.type`:** Start types include:
+
+- **Cold**: The app is started from a terminated state, meaning no prior instance of the app is running.
+- **Warm**: The app is started from the background, meaning an instance of the app is still in memory, but not active.
+- **Hot**: The app is already running and brought to the foreground, meaning no re-initialization is needed.
+- **Pre-Warm**: The app started uses a pre-warmed process, meaning part of the app's initialization has already been done in anticipation of the start.
 
 **[13] `app.widget.id`:** A widget is an application component, typically an on-screen visual GUI element.
 
 **[14] `app.widget.name`:** A widget is an application component, typically an on-screen visual GUI element.
-
----
-
-`app.launch.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `cold` | App launch from terminated state | ![Development](https://img.shields.io/badge/-development-blue) |
-| `hot` | App launch from memory (already running) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `pre_warm` | App launch using pre-warmed process | ![Development](https://img.shields.io/badge/-development-blue) |
-| `warm` | App launch from background state] | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -101,3 +90,14 @@ It does **not** include the time when the screen is in the background, nor does 
 | `fragment` | Android Fragment (Android) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `swiftui` | SwiftUI View (iOS) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `uikit` | UIKit ViewController (iOS) | ![Development](https://img.shields.io/badge/-development-blue) |
+
+---
+
+`app.start.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `cold` | App start from terminated state | ![Development](https://img.shields.io/badge/-development-blue) |
+| `hot` | App start from memory (already running) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `pre_warm` | App start using pre-warmed process | ![Development](https://img.shields.io/badge/-development-blue) |
+| `warm` | App start from background state] | ![Development](https://img.shields.io/badge/-development-blue) |
