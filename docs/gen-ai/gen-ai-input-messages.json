@@ -2,6 +2,7 @@
     "$defs": {
         "BlobPart": {
             "additionalProperties": true,
+            "description": "Represents blob binary data sent inline to the model",
             "properties": {
                 "type": {
                     "const": "blob",
@@ -22,18 +23,17 @@
                     "description": "The IANA MIME type of the attached data.",
                     "title": "Mime Type"
                 },
-                "filename": {
+                "modality": {
                     "anyOf": [
                         {
-                            "type": "string"
+                            "$ref": "#/$defs/Modality"
                         },
                         {
-                            "type": "null"
+                            "type": "string"
                         }
                     ],
-                    "default": null,
-                    "description": "The name of the file if provided.",
-                    "title": "Filename"
+                    "description": "The general modality of the data if it is known. Instrumentations SHOULD also set the mimeType field if the specific type is known.",
+                    "title": "Modality"
                 },
                 "content": {
                     "description": "base64 encoded bytes of the attached data.",
@@ -44,6 +44,7 @@
             },
             "required": [
                 "type",
+                "modality",
                 "content"
             ],
             "title": "BlobPart",
@@ -101,6 +102,7 @@
         },
         "FileDataPart": {
             "additionalProperties": true,
+            "description": "Represents an external referenced file sent to the model",
             "properties": {
                 "type": {
                     "const": "file_data",
@@ -120,6 +122,18 @@
                     "default": null,
                     "description": "The IANA MIME type of the attached data.",
                     "title": "Mime Type"
+                },
+                "modality": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/Modality"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ],
+                    "description": "The general modality of the data if it is known. Instrumentations SHOULD also set the mimeType field if the specific type is known.",
+                    "title": "Modality"
                 },
                 "uri": {
                     "anyOf": [
@@ -149,7 +163,8 @@
                 }
             },
             "required": [
-                "type"
+                "type",
+                "modality"
             ],
             "title": "FileDataPart",
             "type": "object"
@@ -169,6 +184,15 @@
             ],
             "title": "GenericPart",
             "type": "object"
+        },
+        "Modality": {
+            "enum": [
+                "image",
+                "video",
+                "audio"
+            ],
+            "title": "Modality",
+            "type": "string"
         },
         "Role": {
             "enum": [

@@ -22,19 +22,6 @@
                     "description": "The IANA MIME type of the attached data.",
                     "title": "Mime Type"
                 },
-                "filename": {
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "default": null,
-                    "description": "The name of the file if provided.",
-                    "title": "Filename"
-                },
                 "content": {
                     "description": "base64 encoded bytes of the attached data.",
                     "format": "binary",
