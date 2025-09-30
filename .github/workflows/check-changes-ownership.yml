@@ -1,0 +1,44 @@
+name: 'Check changes ownership'
+on:
+  pull_request_target:
+    types: [opened, synchronize]
+    branches: [ 'main*' ]
+    paths:
+      - 'model/**'
+
+jobs:
+  validate-area-ownership:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      # Checkout only the base branch (main, secure context)
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        with:
+          ref: ${{ github.event.pull_request.base.ref }}
+
+      # Get changed files via the GH API, to avoid having to checkout the forked branch (security risk with pull_request_target)
+      - name: Get changed files
+        id: diff
+        uses: tj-actions/changed-files@24d32ffd492484c1d75e0c0b894501ddb9d30d62 # v47
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          dir_names: "true"
+          files: model/**
+          json: "true"
+
+      - run: npm install yaml@2.8.1
+
+      - name: Validate if PR has active owners
+        if: steps.diff.outputs.any_changed == 'true'
+        uses: actions/github-script@v8
+        id: changes-active-codeowners
+        with:
+          script: |
+            const fs = require('fs');
+            const YAML = require('yaml')
+            const fileContent = fs.readFileSync('./areas.yaml', 'utf8')
+            const data = YAML.parse(fileContent)
+            const script = require('.github/scripts/triage/check-changes-ownership.js')
+            await script(core, context, github, data.areas, '${{ steps.diff.outputs.all_changed_files }}')
