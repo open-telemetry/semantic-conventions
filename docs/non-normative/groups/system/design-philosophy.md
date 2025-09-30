@@ -205,7 +205,7 @@ i.e.:
 * Differences in the same piece of data when it is instrumented on different
   platforms
 * When we recommend calculations be done on particular data rather than
-  surfacing direct values from existing tools 
+  surfacing direct values from existing tools
 * When particular names or enum values were chosen when there are common
   alternate terms for the same concept
 
