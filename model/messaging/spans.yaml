@@ -12,7 +12,7 @@ groups:
       - ref: messaging.operation.type
         requirement_level:
           conditionally_required: If applicable.
-        sampling_relevant: true
+        sampling_relevant: false
       - ref: messaging.destination.name
         requirement_level:
           conditionally_required: If span describes operation on a single message or if the value applies to all messages in the batch.

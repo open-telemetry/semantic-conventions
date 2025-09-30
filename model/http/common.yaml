@@ -10,7 +10,7 @@ groups:
           conditionally_required: If and only if one was received/sent.
       - ref: error.type
         requirement_level:
-          conditionally_required: If request has ended with an error.
+          conditionally_required: If request has ended with an error xyz.
         examples: ['timeout', 'java.net.UnknownHostException', 'server_certificate_invalid', '500']
         note: |
           If the request fails with an error before response status code was sent or received,
