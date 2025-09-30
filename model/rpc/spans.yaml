@@ -1,30 +1,4 @@
 groups:
-  - id: rpc
-    type: attribute_group
-    brief: 'This document defines semantic conventions for remote procedure calls.'
-    attributes:
-      - ref: rpc.system
-        requirement_level: required
-      - ref: rpc.service
-        requirement_level: recommended
-      - ref: rpc.method
-        requirement_level: recommended
-      - ref: network.transport
-        requirement_level: recommended
-      - ref: network.type
-        requirement_level: recommended
-      - ref: server.address
-        requirement_level: required
-        brief: >
-          RPC server [host name](https://grpc.github.io/grpc/core/md_doc_naming.html).
-        note: >
-          May contain server IP address, DNS name, or local socket name. When host component is an IP address,
-          instrumentations SHOULD NOT do a reverse proxy lookup to obtain DNS name and SHOULD set
-          `server.address` to the IP address provided in the host component.
-      - ref: server.port
-        requirement_level:
-          conditionally_required: if the port is supported by the network transport used for communication.
-
   - id: span.rpc.client
     type: span
     stability: development
@@ -36,20 +10,17 @@ groups:
       **Span name:** refer to the [Span Name](#span-name) section.
 
       **Span kind** MUST be `CLIENT`.
-    extends: rpc
+    extends: rpc_service
     span_kind: client
     events: [rpc.message]
     attributes:
-      - ref: network.peer.address
-        requirement_level: recommended
-      - ref: network.peer.port
-        requirement_level:
-          recommended: If `network.peer.address` is set.
+      - ref: rpc.system
+        requirement_level: required
 
   - id: span.rpc.server
     type: span
     stability: development
-    extends: rpc
+    extends: rpc_service.server
     span_kind: server
     brief: This span represents an incoming Remote Procedure Call (RPC).
     events: [rpc.message]
@@ -61,19 +32,8 @@ groups:
 
       **Span kind** MUST be `SERVER`.
     attributes:
-      - ref: client.address
-        requirement_level: recommended
-      - ref: client.port
-        requirement_level: recommended
-      - ref: network.peer.address
-        requirement_level: recommended
-      - ref: network.peer.port
-        requirement_level:
-          recommended: If `network.peer.address` is set.
-      - ref: network.transport
-        requirement_level: recommended
-      - ref: network.type
-        requirement_level: recommended
+      - ref: rpc.system
+        requirement_level: required
 
   - id: rpc.grpc.attributes
     stability: development
@@ -87,11 +47,21 @@ groups:
       - ref: rpc.grpc.response.metadata
         requirement_level: opt_in
 
-  - id: rpc.jsonrpc.attributes
-    type: attribute_group
+  - id: span.rpc.jsonrpc.client
+    type: span
     stability: development
-    brief: 'Tech-specific attributes for [JSON RPC](https://www.jsonrpc.org/).'
+    brief: This span represents an outgoing Remote Procedure Call (RPC).
+    note: |
+      `rpc.system` MUST be set to `"jsonrpc"` and SHOULD be provided **at span creation time.**
+
+      **Span name:** refer to the [Span Name](./rpc-spans.md#span-name) section.
+
+      **Span kind** MUST be `CLIENT`.
+    extends: rpc
+    span_kind: client
     attributes:
+      - ref: rpc.method
+        requirement_level: required
       - ref: rpc.jsonrpc.version
         requirement_level:
           conditionally_required: If other than the default version (`1.0`)
@@ -99,14 +69,35 @@ groups:
         requirement_level: recommended
       - ref: rpc.jsonrpc.error_code
         requirement_level:
-          conditionally_required: If response is not successful.
+          conditionally_required: when available
       - ref: rpc.jsonrpc.error_message
         requirement_level: recommended
+
+  - id: span.rpc.jsonrpc.server
+    type: span
+    stability: development
+    extends: rpc.server
+    span_kind: server
+    brief: This span represents an incoming Remote Procedure Call (RPC).
+    note: |
+      `rpc.system` MUST be set to `"jsonrpc"` and SHOULD be provided **at span creation time.**
+
+      **Span name:** refer to the [Span Name](./rpc-spans.md#span-name) section.
+
+      **Span kind** MUST be `SERVER`.
+    attributes:
       - ref: rpc.method
         requirement_level: required
-        note: >
-          This is always required for jsonrpc. See the note in the general
-          RPC conventions for more information.
+      - ref: rpc.jsonrpc.version
+        requirement_level:
+          conditionally_required: If other than the default version (`1.0`)
+      - ref: rpc.jsonrpc.request_id
+        requirement_level: recommended
+      - ref: rpc.jsonrpc.error_code
+        requirement_level:
+          conditionally_required: when available
+      - ref: rpc.jsonrpc.error_message
+        requirement_level: recommended
 
   - id: event.rpc.message
     type: event
