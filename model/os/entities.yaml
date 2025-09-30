@@ -5,14 +5,25 @@ groups:
     name: os
     brief: >
       The operating system (OS) on which the process represented by this resource is running.
-    note: >
-      In case of virtualized environments, this is the operating system as it is observed by
-      the process, i.e., the virtualized guest rather than the underlying host.
+
+
+      In OpenTelemetry the OS namespace is used to describe the operating system of the host which is emitting the telemetry signals.
+
+
+      It is not used for the following scenarios:
+
+      - Describing the OS of the machine which is hosting the virtualised host when the telemetry relates to the virtualised host.
+        E.g. when an application is running in a VM on a Windows host, the OS entity should describe the OS of the VM, not the Windows host.
+
+      - Describing the application runtime environment (e.g. JVM, WASM, etc.) as these machines are not classifed as host.
+        E.g. when an application is running in a JVM on a Linux host, the OS entity should describe the Linux host, not the JVM.
+        The process.runtime entity can be used to describe the JVM instead.
     attributes:
       - ref: os.type
         requirement_level: required
       - ref: os.description
       - ref: os.name
+        requirement_level: required
       - ref: os.version
       - ref: os.build_id
         note: >

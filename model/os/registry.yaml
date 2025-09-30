@@ -107,6 +107,20 @@ groups:
                 renamed_to: unix
                 note: zos should be set as the `os.name` instead.
               stability: development
+            - id: jvm
+              value: 'jvm'
+              brief: "Java Virtual Machine"
+              deprecated:
+                reason: obsoleted
+                note: Within OpenTelemetry `os.type` is used to describe the host OS rather than the runtime environment.
+              stability: development
+            - id: wasm
+              value: 'wasm'
+              brief: "WebAssembly System Interface"
+              deprecated:
+                reason: obsoleted
+                note: Within OpenTelemetry `os.type` is used to describe the host OS rather than the runtime environment.
+              stability: development
         brief: >
           The operating system type.
         stability: development

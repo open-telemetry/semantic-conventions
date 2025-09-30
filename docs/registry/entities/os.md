@@ -13,15 +13,25 @@
 
 **Description:** The operating system (OS) on which the process represented by this resource is running.
 
+In OpenTelemetry the OS namespace is used to describe the operating system of the host which is emitting the telemetry signals.
+
+It is not used for the following scenarios:
+- Describing the OS of the machine which is hosting the virtualised host when the telemetry relates to the virtualised host.
+  E.g. when an application is running in a VM on a Windows host, the OS entity should describe the OS of the VM, not the Windows host.
+
+- Describing the application runtime environment (e.g. JVM, WASM, etc.) as these machines are not classifed as host.
+  E.g. when an application is running in a JVM on a Linux host, the OS entity should describe the Linux host, not the JVM.
+  The process.runtime entity can be used to describe the JVM instead.
+
 > :warning: This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|---|
+| Other | [`os.name`](/docs/registry/attributes/os.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Human readable operating system name. | `iOS`; `Android`; `Ubuntu` |
 | Other | [`os.type`](/docs/registry/attributes/os.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The operating system type. | `windows`; `unix` |
 | Other | [`os.build_id`](/docs/registry/attributes/os.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Unique identifier for a particular build or compilation of the operating system. [1] | `TQ3C.230805.001.B2`; `20E247`; `22621` |
 | Other | [`os.description`](/docs/registry/attributes/os.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Human readable (not intended to be parsed) OS version information, like e.g. reported by `ver` or `lsb_release -a` commands. | `Microsoft Windows [Version 10.0.18363.778]`; `Ubuntu 18.04.1 LTS` |
-| Other | [`os.name`](/docs/registry/attributes/os.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Human readable operating system name. | `iOS`; `Android`; `Ubuntu` |
 | Other | [`os.version`](/docs/registry/attributes/os.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The version string of the operating system as defined in [Version Attributes](/docs/resource/README.md#version-attributes). | `14.2.1`; `18.04.1` |
 
 
