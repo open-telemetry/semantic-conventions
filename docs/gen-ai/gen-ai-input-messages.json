@@ -103,6 +103,18 @@
         "FileDataPart": {
             "additionalProperties": true,
             "description": "Represents an external referenced file sent to the model",
+            "oneOf": [
+                {
+                    "required": [
+                        "file_id"
+                    ]
+                },
+                {
+                    "required": [
+                        "uri"
+                    ]
+                }
+            ],
             "properties": {
                 "type": {
                     "const": "file_data",
