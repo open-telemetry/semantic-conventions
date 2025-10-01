@@ -7,6 +7,10 @@ remap = [
   "https://github.com/(.*?)/(.*?)/blob/(.*?)/(.*#.*)$ https://raw.githubusercontent.com/$1/$2/$3/$4",
   "https://docs.oracle.com/(.*)#.*$ https://docs.oracle.com/$1",
   "https://www.ibm.com/docs/api/v1/content/SSYKE2_8.0.0/openj9/(.*)#.*$ https://www.ibm.com/docs/api/v1/content/SSYKE2_8.0.0/openj9/$1",
+  "https://docs.docker.com/reference/(.*)#.*$ https://docs.docker.com/reference/$1",
+  "https://javadoc.io/(.*)#.*$ https://javadoc.io/$1",
+  "https://github.com/(.*)#issuecomment-.*$ https://github.com/$1",
+  "https://github.com/(.*)#discussion_r.*$ https://github.com/$1",
 ]
 
 exclude = [
@@ -17,9 +21,6 @@ exclude = [
   # TODO (lmolkova) treat timeout as not a failure?
   "^https://www.intersystems.com",
   "^https://gcc.gnu.org",
-  # workaround for https://github.com/lycheeverse/lychee/issues/1729
-  "^https://github.com/.*#issuecomment-.*$",
-  "^https://github.com/.*#discussion_r.*$",
 ]
 
 # better to be safe and avoid failures
