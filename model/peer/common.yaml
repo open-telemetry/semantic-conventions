@@ -3,5 +3,7 @@ groups:
     type: attribute_group
     brief: "Operations that access some remote service."
     attributes:
-      - ref: peer.service
+      - ref: peer.service.name
+        requirement_level: recommended
+      - ref: peer.service.namespace
         requirement_level: recommended
