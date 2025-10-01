@@ -46,3 +46,16 @@ groups:
           - `service.name=frontend`, `deployment.environment.name=production`
           - `service.name=frontend`, `deployment.environment.name=staging`.
         examples: ["staging", "production"]
+      - id: deployment.target.name
+        type: string
+        stability: development
+        brief: >
+          A unique name for the deployment target/environment.
+        examples: ["dev", "staging", "production", "ci-123"]
+      - id: deployment.target.path
+        type: string
+        stability: development
+        brief: >
+          URL or folder path of where the files are being deployed to.
+        note: This path can be used by a user to access the files that have been deployed.
+        examples: ["C:\\folder-path", "https://my-cluster.zone.my-cloud-provider"]

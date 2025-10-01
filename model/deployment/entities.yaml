@@ -1,10 +1,23 @@
 groups:
-  - id: entity.deployment
+  - id: entity.deployment.environment
     type: entity
     stability: development
-    name: deployment
+    name: deployment.environment
     brief: >
-      The software deployment.
+      The software deployment environment.
     attributes:
       - ref: deployment.environment.name
         requirement_level: recommended
+  - id: entity.deployment.target
+    type: entity
+    stability: development
+    name: deployment.target
+    brief: >
+      The software deployment target.
+    attributes:
+      - ref: deployment.target.name
+        role: identifying
+      - ref: deployment.target.path
+        role: identifying
+        requirement_level:
+          conditionally_required: If the target supports multiple side by side deployments.
