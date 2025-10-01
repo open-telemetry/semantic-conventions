@@ -64,7 +64,7 @@ revision based on the VCS system and situational context.
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`vcs.repository.name`](/docs/registry/attributes/vcs.md) | string | The human readable name of the repository. It SHOULD NOT include any additional identifier like Group/SubGroup in GitLab or organization in GitHub. [3] | `semantic-conventions`; `my-cool-repo` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`vcs.repository.url.full`](/docs/registry/attributes/vcs.md) | string | The [canonical URL](https://support.google.com/webmasters/answer/10347851?hl=en) of the repository providing the complete HTTP(S) address in order to locate and identify the repository through a browser. [4] | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`vcs.repository.url.full`](/docs/registry/attributes/vcs.md) | string | The [canonical URL](https://support.google.com/webmasters/answer/10347851) of the repository providing the complete HTTP(S) address in order to locate and identify the repository through a browser. [4] | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[3] `vcs.repository.name`:** Due to it only being the name, it can clash with forks of the same
 repository if collecting telemetry across multiple orgs or groups in
