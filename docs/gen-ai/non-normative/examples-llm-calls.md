@@ -10,6 +10,7 @@
   - [GenAI client spans when content capturing is disabled](#genai-client-spans-when-content-capturing-is-disabled)
   - [GenAI client spans when content capturing is enabled on span attributes](#genai-client-spans-when-content-capturing-is-enabled-on-span-attributes)
 - [System instructions along with chat history (content enabled)](#system-instructions-along-with-chat-history-content-enabled)
+- [Chat completion with reasoning (content enabled)](#chat-completion-with-reasoning-content-enabled)
 - [Tool calls (built-in)](#tool-calls-built-in)
 - [Chat completion with multiple choices](#chat-completion-with-multiple-choices)
   - [GenAI client span when content capturing is enabled on span attributes](#genai-client-span-when-content-capturing-is-enabled-on-span-attributes-1)
@@ -499,6 +500,72 @@ Span:
       {
         "type": "text",
         "content": "I'm sorry, but I can't assist with that"
+      }
+    ],
+    "finish_reason": "stop"
+  }
+]
+```
+
+## Chat completion with reasoning (content enabled)
+
+|   Property                      |                     Value                  |
+|---------------------------------|--------------------------------------------|
+| Span name                       | `"chat gpt-4"`                             |
+| Trace id                        | `"4bf92f3577b34da6a3ce929d0e0e4736"`       |
+| Span id                         | `"00f067aa0ba902b7"`                       |
+| `gen_ai.provider.name`          | `"openai"`                                 |
+| `gen_ai.operation.name`         | `"chat"`                                   |
+| `gen_ai.request.model`          | `"gpt-4"`                                  |
+| `gen_ai.request.max_tokens`     | `200`                                      |
+| `gen_ai.request.top_p`          | `1.0`                                      |
+| `gen_ai.response.id`            | `"chatcmpl-9J3uIL87gldCFtiIbyaOvTeYBRA3l"` |
+| `gen_ai.response.model`         | `"gpt-4-0613"`                             |
+| `gen_ai.usage.output_tokens`    | `47`                                       |
+| `gen_ai.usage.input_tokens`     | `52`                                       |
+| `gen_ai.response.finish_reasons`| `["stop"]`                                 |
+| `gen_ai.input.messages`         | [`gen_ai.input.messages`](#gen-ai-input-messages-reasoning) |
+| `gen_ai.output.messages`        | [`gen_ai.output.messages`](#gen-ai-output-messages-reasoning) |
+
+<span id="gen-ai-input-messages-reasoning">`gen_ai.input.messages` value</span>
+
+```json
+[
+  {
+    "role": "system",
+    "parts": [
+      {
+        "type": "text",
+        "content": "You are a helpful bot"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "parts": [
+      {
+        "type": "text",
+        "content": "Tell me a joke about OpenTelemetry"
+      }
+    ]
+  }
+]
+```
+
+<span id="gen-ai-output-messages-reasoning">`gen_ai.output.messages` value</span>
+
+```json
+[
+  {
+    "role": "assistant",
+    "parts": [
+      {
+        "type": "reasoning",
+        "content": "Alright, the user wants a joke about OpenTelemetry… Hmm, OpenTelemetry is all about distributed tracing and metrics, right? So maybe I can play with the word \"trace.\" That's a core concept — tracing requests through systems. But how do I make that funny? What if I take \"trace\" literally and apply it to something unexpected, like a party? If I personify OpenTelemetry as a tool that \"knows where the fun is,\" I can make a pun out of tracing requests vs. tracing enjoyment. Yeah, that could work — let me put it all together."
+      },
+      {
+        "type": "text",
+        "content": " Why did the developer bring OpenTelemetry to the party? Because it always knows how to trace the fun!"
       }
     ],
     "finish_reason": "stop"
