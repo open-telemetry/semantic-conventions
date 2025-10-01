@@ -36,7 +36,7 @@
                     "title": "Modality"
                 },
                 "content": {
-                    "description": "base64 encoded bytes of the attached data.",
+                    "description": "Raw bytes of the attached data. This field SHOULD be encoded as a base64 string when transmitted as JSON.",
                     "format": "binary",
                     "title": "Content",
                     "type": "string"
