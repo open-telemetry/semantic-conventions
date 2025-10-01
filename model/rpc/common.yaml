@@ -6,9 +6,7 @@ groups:
       - ref: rpc.system
         requirement_level: required
       - ref: rpc.service
-        note: ""
       - ref: rpc.method
-        note: ""
       - ref: network.transport
       - ref: server.address
         requirement_level: required
