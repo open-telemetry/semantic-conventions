@@ -227,7 +227,7 @@ semantic convention namespacing rules.
 ## Background: Resource and Entities
 
 In OpenTelemetry, every signal is associated with a Resource.
-According to the [Specification](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.45.0/specification/resource/README.md#overview)
+According to the [Specification](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.45.0/specification/resource/README.md#overview)
 this is:
 
 > A Resource is a representation of the entity producing telemetry. Within
