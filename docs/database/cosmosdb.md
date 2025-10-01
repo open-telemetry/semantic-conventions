@@ -79,7 +79,7 @@ Batch operations:
 Bulk operations:
 
 - `execute_bulk` SHOULD be used on spans reported for methods like
-  [`executeBulkOperations`](https://javadoc.io/doc/com.azure/azure-cosmos/latest/com/azure/cosmos/CosmosAsyncContainer.html#executeBulkOperations)).
+  `executeBulkOperations` (see [CosmosAsyncContainer](https://javadoc.io/doc/com.azure/azure-cosmos/latest/com/azure/cosmos/CosmosAsyncContainer.html)),
   which represents a bulk execution of multiple operations.
 - `bulk_{operation name}` (`bulk_create_item`, `bulk_upsert_item`, etc) SHOULD be used on spans describing individual operations (when they are reported)
   within the bulk. This pattern SHOULD be used when instrumentation creates span per each operation, but operations are buffered and then performed in bulk.
