@@ -1,5 +1,5 @@
 groups:
-  - id: registry.azure.deprecated
+  - id: registry.azure.client.sdk.deprecated
     type: attribute_group
     display_name: Deprecated Azure Attributes
     brief: >
@@ -17,9 +17,18 @@ groups:
       - id: az.namespace
         type: string
         stability: development
-        brief: >
-          Deprecated, use `azure.resource_provider.namespace` instead.
         deprecated:
           reason: renamed
-          renamed_to: azure.resource_provider.namespace
+          renamed_to: peer.service.namespace
+        brief: >
+          Deprecated, use `peer.service.namespace` instead.
+        examples: ["Microsoft.Storage", "Microsoft.KeyVault", "Microsoft.ServiceBus"]
+      - id: azure.resource_provider.namespace
+        type: string
+        stability: development
+        deprecated:
+          reason: renamed
+          renamed_to: peer.service.namespace
+        brief: >
+          Deprecated, use `peer.service.namespace` instead.
         examples: ["Microsoft.Storage", "Microsoft.KeyVault", "Microsoft.ServiceBus"]
