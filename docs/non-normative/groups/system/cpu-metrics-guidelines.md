@@ -32,7 +32,7 @@ implemented when specific environments explicitly provide them. For example
 provides an opinionated metrics for `*.cpu.usage` that can be used directly,
 yet should be optional since it is derived from the `.cpu.time` metrics and is
 not uniquely implemented in other systems like the
-[Docker stats API](https://docs.docker.com/reference/api/engine/version/v1.51/).
+[Docker stats API](https://docs.docker.com/reference/api/engine/version/v1.51/#tag/Container/operation/ContainerStats).
 
 ## Implementation Guidance
 
