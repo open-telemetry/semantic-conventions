@@ -5,10 +5,22 @@
 
 ## Heroku Attributes
 
-This document defines attributes for the Heroku platform on which application/s are running.
+This document defines attributes for Heroku Fir applications. These attributes are automatically added to all telemetry data by the Heroku platform and provide context about the application and release information.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="heroku-app-id" href="#heroku-app-id">`heroku.app.id`</a> | string | Unique identifier for the application | `2daa2797-e42b-4624-9322-ec3f968df4da` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="heroku-release-commit" href="#heroku-release-commit">`heroku.release.commit`</a> | string | Commit hash for the current release | `e6134959463efd8966b20e75b913cafe3f5ec` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="heroku-release-creation-timestamp" href="#heroku-release-creation-timestamp">`heroku.release.creation_timestamp`</a> | string | Time and date the release was created | `2022-10-23T18:00:42Z` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="heroku-app-id" href="#heroku-app-id">`heroku.app.id`</a> | string | The unique identifier of the Heroku application. This is a UUID that uniquely identifies the application across the Heroku platform. [1] | `9daa2797-e49b-4624-932f-ec3f9688e3da`; `c3d3df33-8afb-4323-ac49-a9bf41a50dd1` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| <a id="heroku-app-name" href="#heroku-app-name">`heroku.app.name`</a> | string | The name of the Heroku application. This is the human-readable name of the application as it appears in the Heroku dashboard. [2] | `my-app`; `test-app` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| <a id="heroku-release-id" href="#heroku-release-id">`heroku.release.id`</a> | string | The unique identifier of the app release. This is a UUID that uniquely identifies each deployment/release of the application. [3] | `release-afc4d88c-7d89-4bc6-b364-7658cd60ba57`; `release-3bd90b80-16a1-4f5b-9465-a61e1b7464d4` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| <a id="heroku-release-version" href="#heroku-release-version">`heroku.release.version`</a> | string | The version of the app release when telemetry is generated. This is typically a version number or identifier for the specific release. [4] | `v19`; `v42`; `v1.2.3` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| <a id="heroku-workload-id" href="#heroku-workload-id">`heroku.workload.id`</a> | string | The workload identifier, as defined by the process type. This typically corresponds to the process type (web, worker, etc.) or specific workload identifier in the telemetry system. [5] | `web`; `worker`; `scheduler`; `release` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+
+**[1] `heroku.app.id`:** This attribute is automatically provided by Heroku and cannot be customized.
+
+**[2] `heroku.app.name`:** This attribute can be customized by renaming the application in the Heroku dashboard. It is used as the default value for service.name if not explicitly set.
+
+**[3] `heroku.release.id`:** This attribute is automatically provided by Heroku.
+
+**[4] `heroku.release.version`:** This attribute is automatically provided by Heroku. It is commonly used as the default value for service.version.
+
+**[5] `heroku.workload.id`:** This attribute is automatically provided by Heroku and is used to identify the workload type. It is particularly useful for filtering telemetry data by process type.

@@ -3,23 +3,64 @@ groups:
     type: attribute_group
     display_name: Heroku Attributes
     brief: >
-        This document defines attributes for the Heroku platform on which application/s are running.
+        This document defines attributes for Heroku Fir applications.
+        These attributes are automatically added to all telemetry data by the Heroku platform
+        and provide context about the application and release information.
     attributes:
-      - id: heroku.release.creation_timestamp
-        type: string
-        stability: development
-        brief: >
-          Time and date the release was created
-        examples: [ '2022-10-23T18:00:42Z' ]
-      - id: heroku.release.commit
-        type: string
-        stability: development
-        brief: >
-          Commit hash for the current release
-        examples: [ 'e6134959463efd8966b20e75b913cafe3f5ec' ]
+      # Core Application Attributes
       - id: heroku.app.id
         type: string
-        stability: development
+        stability: stable
         brief: >
-          Unique identifier for the application
-        examples: [ '2daa2797-e42b-4624-9322-ec3f968df4da' ]
+          The unique identifier of the Heroku application.
+          This is a UUID that uniquely identifies the application across the Heroku platform.
+        examples: [ '9daa2797-e49b-4624-932f-ec3f9688e3da', 'c3d3df33-8afb-4323-ac49-a9bf41a50dd1' ]
+        note: >
+          This attribute is automatically provided by Heroku and cannot be customized.
+
+      - id: heroku.app.name
+        type: string
+        stability: stable
+        brief: >
+          The name of the Heroku application.
+          This is the human-readable name of the application as it appears in the Heroku dashboard.
+        examples: [ 'my-app', 'test-app' ]
+        note: >
+          This attribute can be customized by renaming the application in the Heroku dashboard.
+          It is used as the default value for service.name if not explicitly set.
+
+      # Workload Attributes
+      - id: heroku.workload.id
+        type: string
+        stability: stable
+        brief: >
+          The workload identifier, as defined by the process type.
+          This typically corresponds to the process type (web, worker, etc.) or
+          specific workload identifier in the telemetry system.
+        examples: [ 'web', 'worker', 'scheduler', 'release' ]
+        note: >
+          This attribute is automatically provided by Heroku and is used to identify
+          the workload type. It is particularly useful for filtering telemetry data by process type.
+
+      # Release Attributes
+      - id: heroku.release.id
+        type: string
+        stability: stable
+        brief: >
+          The unique identifier of the app release.
+          This is a UUID that uniquely identifies each deployment/release of the application.
+        examples: [ 'release-afc4d88c-7d89-4bc6-b364-7658cd60ba57', 'release-3bd90b80-16a1-4f5b-9465-a61e1b7464d4' ]
+        note: >
+          This attribute is automatically provided by Heroku.
+
+      - id: heroku.release.version
+        type: string
+        stability: stable
+        brief: >
+          The version of the app release when telemetry is generated.
+          This is typically a version number or identifier for the specific release.
+        examples: [ 'v19', 'v42', 'v1.2.3' ]
+        note: >
+          This attribute is automatically provided by Heroku. It is commonly used as
+          the default value for service.version.
+
