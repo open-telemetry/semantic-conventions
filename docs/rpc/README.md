@@ -55,7 +55,7 @@ Specifications defined by maintainers of RPC systems:
 
 A RPC protocol describes the manner in which a message is transported from one service to another.
 This protocol may have the same value as the network protocol ie http or it may differ when,
-a implementation of the network protocol is used ie gRPC.
+an implementation of the network protocol is used ie gRPC.
 
 These implementation's will usually only expose a subset of functionality of the network protocol
 and may only be compatible with newer versions of the network protocol ie grpc will not work over http v1.
@@ -66,6 +66,10 @@ Some pre-defined protocols are:
 * [http](#)
 * [triple](#)
 * [soap](#)
+* [Connect RPC](#)
+
+It is expected that these protocols will define protocol specific attributes, for instance gRPC would contain a status attribute.
+As such the usage of these attribute/s should be documented via a dedicated protocol page providing complete definitions.
 
 ### What is a RPC Framework?
 
@@ -81,5 +85,13 @@ Some pre-defined frameworks are:
 * [Apache Dubbo](#)
 * [Dapr](#)
 * [Connect RPC](#)
+* [JSON-RPC](#)
+
+These frameworks can provide additional attributes for capturing the properties mentioned earlier.
+It is expected that these attributes are added where appropriate to the corresponding signals defined for the network protocol,
+with a general "if applicable for the rpc framework" condition placed on the requirement level.
+
+A framework may have its own page when the framework defines its own signals which require the inclusion of framework specific
+attributes for the signal to have value & meaning.
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
