@@ -17,8 +17,9 @@ exclude = [
   "^https://www.intersystems.com",
   "^https://gcc.gnu.org",
   # workaround for https://github.com/lycheeverse/lychee/issues/1729
-  '^https://github.com/.*#issuecomment-.*$',
-  '^https://github.com/.*#discussion_r.*$',
+  "^https://github.com/.*#issuecomment-.*$",
+  "^https://github.com/.*#discussion_r.*$",
+  "^https://www.ibm.com/docs/api/v1/content/SSYKE2_8.0.0/openj9/api/(.*)#.*$ https://www.ibm.com/docs/api/v1/content/SSYKE2_8.0.0/openj9/api/$1"
 ]
 
 # better to be safe and avoid failures
