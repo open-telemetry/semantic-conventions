@@ -49,24 +49,28 @@ Specifications defined by maintainers of RPC systems:
 
 * [gRPC](https://github.com/grpc/proposal/blob/master/A66-otel-stats.md): Semantic Conventions for *gRPC*.
 
-## RPC Service vs RPC Framework
+## RPC Protocol vs RPC Framework
 
 ### What is a RPC Protocol?
 
 A RPC protocol describes the manner in which a message is transported from one service to another.
 This protocol may have the same value as the network protocol ie http or it may differ when,
-an implementation of the network protocol is used ie gRPC.
+an implementation of the network protocol is used e.g. gRPC.
 
-These implementation's will usually only expose a subset of functionality of the network protocol
+These implementations will usually only expose a subset of functionality of the network protocol
 and may only be compatible with newer versions of the network protocol ie grpc will not work over http v1.
 
 Some pre-defined protocols are:
 
-* [gRPC](#)
-* [http](#)
-* [triple](#)
-* [soap](#)
-* [Connect RPC](#)
+* [gRPC](grpc.md)
+
+* [HTTP](/docs/http/README.md)
+
+* Triple
+
+* SOAP
+
+* [Connect RPC](connect-rpc.md)
 
 It is expected that these protocols will define protocol specific attributes, for instance gRPC would contain a status attribute.
 As such the usage of these attribute/s should be documented via a dedicated protocol page providing complete definitions.
@@ -76,16 +80,21 @@ As such the usage of these attribute/s should be documented via a dedicated prot
 A RPC Framework describes the api's made available to applications wanting to implement RPC Communications
 in a protocol agnostic manner. This is why protocol and framework is not a one-to-one relationship but rather one-to-many.
 
-The framework in adddition to providing the api can define properties which are sent along with the message
+The framework in addition to providing the api can define properties which are sent along with the message
 to provide additional context. For instance a framework might require a message id to be sent with the message.
 The framework doesn't care how it is transported across the network.
 
 Some pre-defined frameworks are:
 
-* [Apache Dubbo](#)
-* [Dapr](#)
-* [Connect RPC](#)
-* [JSON-RPC](#)
+* Apache Dubbo
+
+* Dapr
+
+* [Connect RPC](connect-rpc.md)
+
+* [JSON-RPC](json-rpc.md)
+
+* WCF
 
 These frameworks can provide additional attributes for capturing the properties mentioned earlier.
 It is expected that these attributes are added where appropriate to the corresponding signals defined for the network protocol,
