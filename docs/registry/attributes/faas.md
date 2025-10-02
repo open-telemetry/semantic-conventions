@@ -15,28 +15,31 @@ FaaS attributes
 | <a id="faas-document-name" href="#faas-document-name">`faas.document.name`</a> | string | The document name/table subjected to the operation. For example, in Cloud Storage or S3 is the name of the file, and in Cosmos DB the table name. | `myFile.txt`; `myTableName` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="faas-document-operation" href="#faas-document-operation">`faas.document.operation`</a> | string | Describes the type of the operation that was performed on the data. | `insert`; `edit`; `delete` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="faas-document-time" href="#faas-document-time">`faas.document.time`</a> | string | A string containing the time when the data was accessed in the [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format expressed in [UTC](https://www.w3.org/TR/NOTE-datetime). | `2020-01-23T13:47:06Z` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="faas-instance" href="#faas-instance">`faas.instance`</a> | string | The execution environment ID as a string, that will be potentially reused for other invocations to the same function/function version. [1] | `2021/06/28/[$LATEST]2f399eb14537447da05ab2a2e39309de` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="faas-instance" href="#faas-instance">`faas.instance`</a> | string | The execution environment ID as a string, that will be potentially reused for other invocations to the same function/function version. [1] | `2021/06/28/[$LATEST]2f399eb14537447da05ab2a2e39309de` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `faas.instance.id`. |
+| <a id="faas-instance-id" href="#faas-instance-id">`faas.instance.id`</a> | string | The execution environment ID as a string, that will be potentially reused for other invocations to the same function/function version. [2] | `2021/06/28/[$LATEST]2f399eb14537447da05ab2a2e39309de` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="faas-invocation-id" href="#faas-invocation-id">`faas.invocation_id`</a> | string | The invocation ID of the current function invocation. | `af9d5aa4-a685-4c5f-a22b-444f80b3cc28` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="faas-invoked-name" href="#faas-invoked-name">`faas.invoked_name`</a> | string | The name of the invoked function. [2] | `my-function` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="faas-invoked-provider" href="#faas-invoked-provider">`faas.invoked_provider`</a> | string | The cloud provider of the invoked function. [3] | `alibaba_cloud`; `aws`; `azure` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="faas-invoked-region" href="#faas-invoked-region">`faas.invoked_region`</a> | string | The cloud region of the invoked function. [4] | `eu-central-1` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="faas-max-memory" href="#faas-max-memory">`faas.max_memory`</a> | int | The amount of memory available to the serverless function converted to Bytes. [5] | `134217728` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="faas-name" href="#faas-name">`faas.name`</a> | string | The name of the single function that this runtime instance executes. [6] | `my-function`; `myazurefunctionapp/some-function-name` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="faas-invoked-name" href="#faas-invoked-name">`faas.invoked_name`</a> | string | The name of the invoked function. [3] | `my-function` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="faas-invoked-provider" href="#faas-invoked-provider">`faas.invoked_provider`</a> | string | The cloud provider of the invoked function. [4] | `alibaba_cloud`; `aws`; `azure` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="faas-invoked-region" href="#faas-invoked-region">`faas.invoked_region`</a> | string | The cloud region of the invoked function. [5] | `eu-central-1` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="faas-max-memory" href="#faas-max-memory">`faas.max_memory`</a> | int | The amount of memory available to the serverless function converted to Bytes. [6] | `134217728` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="faas-name" href="#faas-name">`faas.name`</a> | string | The name of the single function that this runtime instance executes. [7] | `my-function`; `myazurefunctionapp/some-function-name` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="faas-time" href="#faas-time">`faas.time`</a> | string | A string containing the function invocation time in the [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format expressed in [UTC](https://www.w3.org/TR/NOTE-datetime). | `2020-01-23T13:47:06Z` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="faas-trigger" href="#faas-trigger">`faas.trigger`</a> | string | Type of the trigger which caused this function invocation. | `datasource`; `http`; `pubsub` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="faas-version" href="#faas-version">`faas.version`</a> | string | The immutable version of the function being executed. [7] | `26`; `pinkfroid-00002` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="faas-version" href="#faas-version">`faas.version`</a> | string | The immutable version of the function being executed. [8] | `26`; `pinkfroid-00002` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `faas.instance`:** - **AWS Lambda:** Use the (full) log stream name.
 
-**[2] `faas.invoked_name`:** SHOULD be equal to the `faas.name` resource attribute of the invoked function.
+**[2] `faas.instance.id`:** - **AWS Lambda:** Use the (full) log stream name.
 
-**[3] `faas.invoked_provider`:** SHOULD be equal to the `cloud.provider` resource attribute of the invoked function.
+**[3] `faas.invoked_name`:** SHOULD be equal to the `faas.name` resource attribute of the invoked function.
 
-**[4] `faas.invoked_region`:** SHOULD be equal to the `cloud.region` resource attribute of the invoked function.
+**[4] `faas.invoked_provider`:** SHOULD be equal to the `cloud.provider` resource attribute of the invoked function.
 
-**[5] `faas.max_memory`:** It's recommended to set this attribute since e.g. too little memory can easily stop a Java AWS Lambda function from working correctly. On AWS Lambda, the environment variable `AWS_LAMBDA_FUNCTION_MEMORY_SIZE` provides this information (which must be multiplied by 1,048,576).
+**[5] `faas.invoked_region`:** SHOULD be equal to the `cloud.region` resource attribute of the invoked function.
 
-**[6] `faas.name`:** This is the name of the function as configured/deployed on the FaaS
+**[6] `faas.max_memory`:** It's recommended to set this attribute since e.g. too little memory can easily stop a Java AWS Lambda function from working correctly. On AWS Lambda, the environment variable `AWS_LAMBDA_FUNCTION_MEMORY_SIZE` provides this information (which must be multiplied by 1,048,576).
+
+**[7] `faas.name`:** This is the name of the function as configured/deployed on the FaaS
 platform and is usually different from the name of the callback
 function (which may be stored in the
 [`code.namespace`/`code.function.name`](/docs/general/attributes.md#source-code-attributes)
@@ -53,7 +56,7 @@ definition of function name MUST be used for this attribute
   app can host multiple functions that would usually share
   a TracerProvider (see also the `cloud.resource_id` attribute).
 
-**[7] `faas.version`:** Depending on the cloud provider and platform, use:
+**[8] `faas.version`:** Depending on the cloud provider and platform, use:
 
 - **AWS Lambda:** The [function version](https://docs.aws.amazon.com/lambda/latest/dg/configuration-versions.html)
   (an integer represented as a decimal string).
