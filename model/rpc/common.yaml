@@ -46,8 +46,6 @@ groups:
           recommended: If `network.peer.address` is set.
       - ref: network.transport
         requirement_level: recommended
-      - ref: network.type
-        requirement_level: recommended
       - ref: server.address
         requirement_level: required
         brief: >
@@ -85,8 +83,6 @@ groups:
         requirement_level: recommended
       - ref: network.transport
         requirement_level: recommended
-      - ref: network.type
-        requirement_level: recommended
 
   - id: rpc_service.server
     type: attribute_group
@@ -98,6 +94,4 @@ groups:
       - ref: client.port
         requirement_level: recommended
       - ref: network.transport
-        requirement_level: recommended
-      - ref: network.type
         requirement_level: recommended
