@@ -15,3 +15,46 @@ groups:
       - ref: network.transport
     entity_associations:
       - host
+  - id: metric.system.network.dropped
+    type: metric
+    metric_name: system.network.dropped
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    deprecated:
+      reason: renamed
+      renamed_to: system.network.packet.dropped
+    brief: "Count of packets that are dropped or discarded even though there was no error."
+    instrument: counter
+    unit: "{packet}"
+    note: |
+      Measured as:
+
+      - Linux: the `drop` column in `/proc/dev/net` ([source](https://web.archive.org/web/20180321091318/http://www.onlamp.com/pub/a/linux/2000/11/16/LinuxAdmin.html))
+      - Windows: [`InDiscards`/`OutDiscards`](https://docs.microsoft.com/windows/win32/api/netioapi/ns-netioapi-mib_if_row2)
+        from [`GetIfEntry2`](https://docs.microsoft.com/windows/win32/api/netioapi/nf-netioapi-getifentry2)
+    attributes:
+      - ref: network.interface.name
+      - ref: network.io.direction
+    entity_associations:
+      - host
+
+  - id: metric.system.network.packets
+    type: metric
+    metric_name: system.network.packets
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    deprecated:
+      reason: renamed
+      renamed_to: system.network.packet.count
+    brief: The number of packets transferred.
+    instrument: counter
+    unit: "{packet}"
+    attributes:
+      - ref: system.device
+      - ref: network.io.direction
+    entity_associations:
+      - host

@@ -3,9 +3,9 @@
 
 # NFS
 
-## NFS Server Reply Cache Attributes
+## NFS Attributes
 
-NFS Server replies check a Reply Cache (repcache), which can have one of 3 result states
+Describes NFS Attributes
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
