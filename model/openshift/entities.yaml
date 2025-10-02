@@ -9,4 +9,6 @@ groups:
       object.
     attributes:
       - ref: openshift.clusterquota.uid
+        role: identifying
       - ref: openshift.clusterquota.name
+        role: descriptive
