@@ -436,10 +436,10 @@ The changes in these metrics are the following:
 
 <!-- prettier-ignore-start -->
 
-| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                            |
-|------------------------------------------------------------------------------------|------------------------------------------------|
-| `k8s.pod.memory.page_faults`                                                         | `k8s.pod.memory.paging.faults` with attribute `system.paging.type` |
-| `k8s.pod.memory.major_page_faults`                                                   | `k8s.pod.memory.paging.faults` with attribute `system.paging.type` |
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                                 |
+|------------------------------------------------------------------------------------|---------------------------------------------------------------------|
+| `k8s.pod.memory.page_faults`                                                         | `k8s.pod.memory.paging.faults` with attribute `system.paging.type` set to `minor` |
+| `k8s.pod.memory.major_page_faults`                                                   | `k8s.pod.memory.paging.faults` with attribute `system.paging.type` set to `major` |
 
 <!-- prettier-ignore-end -->
 
@@ -454,10 +454,10 @@ The changes in these metrics are the following:
 
 <!-- prettier-ignore-start -->
 
-| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                           |
-|------------------------------------------------------------------------------------|---------------------------------------------------------------|
-| `container.memory.page_faults`                                                     | `container.memory.paging.faults` with attribute `system.paging.type` |
-| `container.memory.major_page_faults`                                                 | `container.memory.paging.faults` with attribute `system.paging.type`   |
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                                                           |
+|------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------|
+| `container.memory.page_faults`                                                     | `container.memory.paging.faults` with attribute `system.paging.type` set to `minor` |
+| `container.memory.major_page_faults`                                                 | `container.memory.paging.faults` with attribute `system.paging.type` set to `major` |
 
 <!-- prettier-ignore-end -->
 
@@ -472,10 +472,10 @@ The changes in these metrics are the following:
 
 <!-- prettier-ignore-start -->
 
-| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                                 |
-|------------------------------------------------------------------------------------|---------------------------------------------------------------------|
-| `k8s.node.memory.page_faults`                                                      | `k8s.node.memory.paging.faults` with attribute `system.paging.type` |
-| `k8s.node.memory.major_page_faults`                                                | `k8s.node.memory.paging.faults` with attribute `system.paging.type` |
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                                                          |
+|------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------|
+| `k8s.node.memory.page_faults`                                                      | `k8s.node.memory.paging.faults` with attribute `system.paging.type` set to `minor`           |
+| `k8s.node.memory.major_page_faults`                                                | `k8s.node.memory.paging.faults` with attribute `system.paging.type` set to `major` |
 
 <!-- prettier-ignore-end -->
 
