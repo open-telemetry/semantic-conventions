@@ -86,6 +86,10 @@ groups:
     extends: rpc_service
     span_kind: client
     attributes:
+      - ref: rpc.method
+        requirement_level: required
+      - ref: rpc.service
+        requirement_level: required
       - ref: rpc.grpc.status_code
         requirement_level: required
       - ref: rpc.grpc.request.metadata
