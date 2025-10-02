@@ -10,7 +10,9 @@ change_type: breaking
 component: v8js
 
 # A brief description of the change. Surround your text with quotes ("") if it needs to start with a backtick (`).
-note: New metric `v8js.memory.heap.space.available_size`, to replace the now deprecated metric `v8js.heap.space.available_size`. New metric `v8js.memory.heap.space.physical_size` to replace the now deprecated metric `v8js.heap.space.physical_size`.
+note: |
+  Rename metric `v8js.heap.space.available_size` to `v8js.memory.heap.space.available_size`.
+  Rename metric `v8js.heap.space.physical_size` to `v8js.memory.heap.space.physical_size`.
 
 # Mandatory: One or more tracking issues related to the change. You can use the PR number here if no issue exists.
 # The values here must be integers.
