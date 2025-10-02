@@ -97,7 +97,7 @@ Some pre-defined frameworks are:
 * WCF
 
 These frameworks can provide additional attributes for capturing the properties mentioned earlier.
-It is expected that these attributes are added where appropriate to the corresponding signals defined for the network protocol,
+It is expected that these attributes are added where appropriate to the corresponding signals defined for the rpc protocol,
 with a general "if applicable for the rpc framework" condition placed on the requirement level.
 
 A framework may have its own page when the framework defines its own signals which require the inclusion of framework specific
