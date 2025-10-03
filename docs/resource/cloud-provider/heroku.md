@@ -12,13 +12,25 @@
 
 **type:** `heroku`
 
-**Description:** [Heroku dyno metadata](https://devcenter.heroku.com/articles/dyno-metadata)
+**Description:** Heroku Fir Application Attributes as defined in the  [Heroku OpenTelemetry Signals and Attributes Reference](https://devcenter.heroku.com/articles/heroku-opentelemetry-signals-and-attributes-reference)
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`heroku.app.id`](/docs/registry/attributes/heroku.md) | string | Unique identifier for the application | `2daa2797-e42b-4624-9322-ec3f968df4da` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`heroku.release.commit`](/docs/registry/attributes/heroku.md) | string | Commit hash for the current release | `e6134959463efd8966b20e75b913cafe3f5ec` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`heroku.release.creation_timestamp`](/docs/registry/attributes/heroku.md) | string | Time and date the release was created | `2022-10-23T18:00:42Z` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`heroku.app.id`](/docs/registry/attributes/heroku.md) | string | The unique identifier of the Heroku application. This is a UUID that uniquely identifies the application across the Heroku platform. [1] | `9daa2797-e49b-4624-932f-ec3f9688e3da`; `c3d3df33-8afb-4323-ac49-a9bf41a50dd1` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`heroku.app.name`](/docs/registry/attributes/heroku.md) | string | The name of the Heroku application. This is the human-readable name of the application as it appears in the Heroku dashboard. [2] | `my-app`; `test-app` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`heroku.release.id`](/docs/registry/attributes/heroku.md) | string | The unique identifier of the app release. This is a UUID that uniquely identifies each deployment/release of the application. [3] | `release-afc4d88c-7d89-4bc6-b364-7658cd60ba57`; `release-3bd90b80-16a1-4f5b-9465-a61e1b7464d4` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`heroku.release.version`](/docs/registry/attributes/heroku.md) | string | The version of the app release when telemetry is generated. This is typically a version number or identifier for the specific release. [4] | `v19`; `v42`; `v1.2.3` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`heroku.workload.id`](/docs/registry/attributes/heroku.md) | string | The workload identifier, as defined by the process type. This typically corresponds to the process type (web, worker, etc.) or specific workload identifier in the telemetry system. [5] | `web`; `worker`; `scheduler`; `release` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+
+**[1] `heroku.app.id`:** This attribute is automatically provided by Heroku and cannot be customized.
+
+**[2] `heroku.app.name`:** This attribute can be customized by renaming the application in the Heroku dashboard. It is used as the default value for service.name if not explicitly set.
+
+**[3] `heroku.release.id`:** This attribute is automatically provided by Heroku.
+
+**[4] `heroku.release.version`:** This attribute is automatically provided by Heroku. It is commonly used as the default value for service.version.
+
+**[5] `heroku.workload.id`:** This attribute is automatically provided by Heroku and is used to identify the workload type. It is particularly useful for filtering telemetry data by process type.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -27,13 +39,13 @@
 
 **Mapping:**
 
-| Dyno metadata environment variable | Resource attribute                  |
-|------------------------------------|-------------------------------------|
-| `HEROKU_APP_ID`                    | `heroku.app.id`                     |
-| `HEROKU_APP_NAME`                  | `service.name`                      |
-| `HEROKU_DYNO_ID`                   | `service.instance.id`               |
-| `HEROKU_RELEASE_CREATED_AT`        | `heroku.release.creation_timestamp` |
-| `HEROKU_RELEASE_VERSION`           | `service.version`                   |
-| `HEROKU_SLUG_COMMIT`               | `heroku.release.commit`             |
+For FIR applications, service-level attributes can be configured using standard OpenTelemetry environment variables:
+
+| OTEL Environment Variable | Resource Attribute | Description |
+|---------------------------|-------------------|-------------|
+| `OTEL_SERVICE_NAME` | `service.name` | Service name (replaces default application name) |
+| `OTEL_RESOURCE_ATTRIBUTES` | `service.namespace` | Namespace for service name |
+| `OTEL_RESOURCE_ATTRIBUTES` | `service.version` | Version of app release |
+| `OTEL_RESOURCE_ATTRIBUTES` | `service.instance.id` | Unique dyno identifier (Heroku-provided) |
 
 Additionally, [the `cloud.provider` resource attribute MUST be set to `heroku`](../cloud.md).
