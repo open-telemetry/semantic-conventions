@@ -3,7 +3,10 @@ groups:
     type: attribute_group
     display_name: General Log Attributes
     brief: >
-      This document defines log attributes
+      The I/O stream to which the log was emitted.
+    note: >
+      The following attributes do not describe entities that produce telemetry. Rather, they describe mechanisms of log transmission.
+      As such, these should be recorded as Log Record attributes when applicable. They should not be recorded as Resource attributes.
     attributes:
       - id: log.iostream
         stability: development
@@ -25,6 +28,9 @@ groups:
     display_name: Log File Attributes
     brief: >
       Attributes for a file to which log was emitted.
+    note: >
+      The following attributes do not describe entities that produce telemetry. Rather, they describe mechanisms of log transmission.
+      As such, these should be recorded as Log Record attributes when applicable. They should not be recorded as Resource attributes.
     attributes:
       - id: log.file.name
         type: string
