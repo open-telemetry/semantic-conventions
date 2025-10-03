@@ -414,7 +414,7 @@ the VCS metrics to include `vcs.repository.name` as a recommended attribute.
 ### 🧰 Bug fixes 🧰
 
 - `service`: Merge `resource` experimental and stable groups for service and telemetry.sdk (#1423)
-  Discovered when fixing [weaver#306](https://github.com/open-telemetry/weaver/issues/306#issue-2458430277)
+  Discovered when fixing [weaver#306](https://github.com/open-telemetry/weaver/issues/306)
 
 - `db`: Fix telemetry for complex queries:
 
