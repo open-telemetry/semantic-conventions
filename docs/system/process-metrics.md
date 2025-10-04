@@ -191,8 +191,8 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `read` | Disk Read operation | ![Development](https://img.shields.io/badge/-development-blue) |
-| `write` | Disk Write operation | ![Development](https://img.shields.io/badge/-development-blue) |
+| `read` | Data is being read from the disk. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `write` | Data is being written to the disk. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
