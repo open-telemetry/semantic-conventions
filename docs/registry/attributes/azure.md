@@ -3,9 +3,19 @@
 
 # Azure
 
+- [Azure App Service Attributes](#azure-app-service-attributes)
 - [Azure Client Library Attributes](#azure-client-library-attributes)
 - [Azure Cosmos DB Attributes](#azure-cosmos-db-attributes)
+- [Azure VM Attributes](#azure-vm-attributes)
 - [Deprecated Azure Attributes](#deprecated-azure-attributes)
+
+## Azure App Service Attributes
+
+This section defines generic attributes used by Azure App Service.
+
+| Attribute | Type | Description | Examples | Stability |
+|---|---|---|---|---|
+| <a id="azure-app-service-stamp" href="#azure-app-service-stamp">`azure.app_service.stamp`</a> | string | The specific "stamp" cluster within Azure where the App Service is running. | `waws-prod-sn1-001` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ## Azure Client Library Attributes
 
@@ -52,6 +62,14 @@ This section defines attributes for Azure Cosmos DB.
 | `Eventual` | Eventual | ![Development](https://img.shields.io/badge/-development-blue) |
 | `Session` | Session | ![Development](https://img.shields.io/badge/-development-blue) |
 | `Strong` | Strong | ![Development](https://img.shields.io/badge/-development-blue) |
+
+## Azure VM Attributes
+
+This section defines generic attributes used by Azure VM's.
+
+| Attribute | Type | Description | Examples | Stability |
+|---|---|---|---|---|
+| <a id="azure-vm-scaleset-name" href="#azure-vm-scaleset-name">`azure.vm.scaleset.name`</a> | string | The name of the Virtual Machine Scale Set if the VM is part of one. | `production` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ## Deprecated Azure Attributes
 
