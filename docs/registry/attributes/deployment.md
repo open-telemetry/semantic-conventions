@@ -41,9 +41,9 @@ considered to be identifying the same service:
 Describes deprecated deployment attributes.
 
 <details>
-<summary><b>Past Attributes:</b></summary>
+<summary><b>Deprecated Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | Deprecation Explanation |
+| Key | Value Type | Summary | Example Values | Deprecation Explanation |
 |---|---|---|---|---|
 | <a id="deployment-environment" href="#deployment-environment">`deployment.environment`</a> | string | Deprecated, use `deployment.environment.name` instead. | `staging`; `production` |  Use `deployment.environment.name` instead.  |
 

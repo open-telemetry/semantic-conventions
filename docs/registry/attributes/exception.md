@@ -23,9 +23,9 @@ This document defines the shared attributes used to report a single exception as
 Deprecated exception attributes.
 
 <details>
-<summary><b>Past Attributes:</b></summary>
+<summary><b>Deprecated Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | Deprecation Explanation |
+| Key | Value Type | Summary | Example Values | Deprecation Explanation |
 |---|---|---|---|---|
 | <a id="exception-escaped" href="#exception-escaped">`exception.escaped`</a> | boolean | Indicates that the exception is escaping the scope of the span. |  |  It's no longer recommended to record exceptions that are handled and do not escape the scope of a span.  |
 

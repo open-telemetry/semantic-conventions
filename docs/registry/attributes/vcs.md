@@ -150,9 +150,9 @@ the `.git` extension.
 Describes deprecated vcs attributes.
 
 <details>
-<summary><b>Past Attributes:</b></summary>
+<summary><b>Deprecated Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | Deprecation Explanation |
+| Key | Value Type | Summary | Example Values | Deprecation Explanation |
 |---|---|---|---|---|
 | <a id="vcs-repository-change-id" href="#vcs-repository-change-id">`vcs.repository.change.id`</a> | string | Deprecated, use `vcs.change.id` instead. | `123` |  Use `vcs.change.id` instead.  |
 | <a id="vcs-repository-change-title" href="#vcs-repository-change-title">`vcs.repository.change.title`</a> | string | Deprecated, use `vcs.change.title` instead. | `Fixes broken thing`; `feat: add my new feature`; `[chore] update dependency` |  Use `vcs.change.title` instead.  |

@@ -49,9 +49,9 @@ The ID is assigned by the container runtime and can vary in different environmen
 Describes deprecated container attributes.
 
 <details>
-<summary><b>Past Attributes:</b></summary>
+<summary><b>Deprecated Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | Deprecation Explanation |
+| Key | Value Type | Summary | Example Values | Deprecation Explanation |
 |---|---|---|---|---|
 | <a id="container-cpu-state" href="#container-cpu-state">`container.cpu.state`</a> | string | Deprecated, use `cpu.mode` instead. | `user`; `kernel` |  Use `cpu.mode` instead.  |
 | <a id="container-labels" href="#container-labels">`container.labels.<key>`</a> | string | Deprecated, use `container.label` instead. | `nginx` |  Use `container.label` instead.  |

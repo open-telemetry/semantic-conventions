@@ -32,9 +32,9 @@ Describes the end user.
 Describes deprecated enduser attributes.
 
 <details>
-<summary><b>Past Attributes:</b></summary>
+<summary><b>Deprecated Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | Deprecation Explanation |
+| Key | Value Type | Summary | Example Values | Deprecation Explanation |
 |---|---|---|---|---|
 | <a id="enduser-role" href="#enduser-role">`enduser.role`</a> | string | Deprecated, use `user.roles` instead. | `admin` |  Use `user.roles` instead.  |
 | <a id="enduser-scope" href="#enduser-scope">`enduser.scope`</a> | string | Deprecated, no replacement at this time. | `read:message, write:files` |  Removed, no replacement at this time.  |

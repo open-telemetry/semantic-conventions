@@ -139,9 +139,9 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 These attributes may be used for any network related operation.
 
 <details>
-<summary><b>Past Attributes:</b></summary>
+<summary><b>Deprecated Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | Deprecation Explanation |
+| Key | Value Type | Summary | Example Values | Deprecation Explanation |
 |---|---|---|---|---|
 | <a id="net-host-ip" href="#net-host-ip">`net.host.ip`</a> | string | Deprecated, use `network.local.address`. | `192.168.0.1` |  Use `network.local.address` instead.  |
 | <a id="net-host-name" href="#net-host-name">`net.host.name`</a> | string | Deprecated, use `server.address`. | `example.com` |  Use `server.address` instead.  |

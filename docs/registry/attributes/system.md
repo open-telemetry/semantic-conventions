@@ -122,9 +122,9 @@ Describes System Memory Paging attributes
 Deprecated system attributes.
 
 <details>
-<summary><b>Past Attributes:</b></summary>
+<summary><b>Deprecated Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | Deprecation Explanation |
+| Key | Value Type | Summary | Example Values | Deprecation Explanation |
 |---|---|---|---|---|
 | <a id="system-cpu-logical-number" href="#system-cpu-logical-number">`system.cpu.logical_number`</a> | int | Deprecated, use `cpu.logical_number` instead. | `1` |  Use `cpu.logical_number` instead.  |
 | <a id="system-cpu-state" href="#system-cpu-state">`system.cpu.state`</a> | string | Deprecated, use `cpu.mode` instead. | `idle`; `interrupt` |  Use `cpu.mode` instead.  |

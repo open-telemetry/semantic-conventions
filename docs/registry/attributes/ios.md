@@ -35,9 +35,9 @@ This group describes iOS-specific attributes.
 The iOS platform on which the iOS application is running.
 
 <details>
-<summary><b>Past Attributes:</b></summary>
+<summary><b>Deprecated Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | Deprecation Explanation |
+| Key | Value Type | Summary | Example Values | Deprecation Explanation |
 |---|---|---|---|---|
 | <a id="ios-state" href="#ios-state">`ios.state`</a> | string | Deprecated. Use the `ios.app.state` attribute. [1] | `active`; `inactive`; `background` |  Use `ios.app.state` instead.  |
 

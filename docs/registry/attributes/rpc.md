@@ -133,9 +133,9 @@ the `rpc.grpc.response.metadata.my-custom-key` attribute with value `["attribute
 Deprecated rpc message attributes.
 
 <details>
-<summary><b>Past Attributes:</b></summary>
+<summary><b>Deprecated Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | Deprecation Explanation |
+| Key | Value Type | Summary | Example Values | Deprecation Explanation |
 |---|---|---|---|---|
 | <a id="message-compressed-size" href="#message-compressed-size">`message.compressed_size`</a> | int | Deprecated, use `rpc.message.compressed_size` instead. |  |  Use `rpc.message.compressed_size` instead.  |
 | <a id="message-id" href="#message-id">`message.id`</a> | int | Deprecated, use `rpc.message.id` instead. |  |  Use `rpc.message.id` instead.  |

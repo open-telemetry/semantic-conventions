@@ -55,9 +55,9 @@ For example, the variant `red` maybe be used for the value `#c05543`.
 Describes deprecated feature flag attributes.
 
 <details>
-<summary><b>Past Attributes:</b></summary>
+<summary><b>Deprecated Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | Deprecation Explanation |
+| Key | Value Type | Summary | Example Values | Deprecation Explanation |
 |---|---|---|---|---|
 | <a id="feature-flag-evaluation-error-message" href="#feature-flag-evaluation-error-message">`feature_flag.evaluation.error.message`</a> | string | Deprecated, use `error.message` instead. | `Flag `header-color` expected type `string` but found type `number`` |  Use `error.message` instead.  |
 | <a id="feature-flag-evaluation-reason" href="#feature-flag-evaluation-reason">`feature_flag.evaluation.reason`</a> | string | Deprecated, use `feature_flag.result.reason` instead. | `static`; `targeting_match`; `error`; `default` |  Use `feature_flag.result.reason` instead.  |

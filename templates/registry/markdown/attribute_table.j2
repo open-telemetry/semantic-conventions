@@ -16,9 +16,9 @@
 
 {#- Macro for creating deprecated attribute table -#}
 {% macro generate_deprecated(attributes, tag_filter, attribute_registry_base_url, lineage_attributes) %}{% if (tag_filter | length == 0) %}{% set filtered_attributes = attributes | selectattr("deprecated") | attribute_sort %}{% else %}{% set filtered_attributes = attributes | selectattr("tag", "in", tag_filter) | attribute_sort %}{% endif %}{% if (filtered_attributes is defined) and (filtered_attributes | length > 0) %}<details>
-<summary><b>Past Attributes:</b></summary>
+<summary><b>Deprecated Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | Deprecation Explanation |
+| Key | Value Type | Summary | Example Values | Deprecation Explanation |
 |---|---|---|---|---|
 {% for attribute in filtered_attributes %}| {% if attribute_registry_base_url != "" %}{{ attrs.name_with_link(attribute, attribute_registry_base_url, lineage_attributes) }}{% else %}{% set attr_anchor = attribute.name | kebab_case %}<a id="{{ attr_anchor }}" href="#{{ attr_anchor }}">`{{ attrs.name(attribute) }}`</a>{%endif%} | {{ attrs.type(attribute) }} | {{ attribute.brief | trim }}{{ notes.add({"note": attribute.note, "name": attrs.name(attribute)}) }} | {{ examples.format(attribute) | trim }} | {% if attribute.deprecated.reason == "renamed" %} Use {% if attribute_registry_base_url != "" %}{{ attrs.renamed_to_with_link(attribute.deprecated.renamed_to, attribute_registry_base_url, lineage_attributes) }}{% else %}`{{attribute.deprecated.renamed_to}}`{%endif%} instead. {% else %} {{attribute.deprecated.note | trim}} {% endif %} |
 {% endfor %}{{ notes.render() }}{{ sampling.snippet(filtered_attributes, attribute_registry_base_url, lineage_attributes) }}{{ enums.tables(filtered_attributes | selectattr("type", "mapping"), notes) }}

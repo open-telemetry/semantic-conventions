@@ -355,9 +355,9 @@ When this occurs, the exact value as reported by the Kubernetes API SHOULD be us
 Describes deprecated k8s attributes.
 
 <details>
-<summary><b>Past Attributes:</b></summary>
+<summary><b>Deprecated Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | Deprecation Explanation |
+| Key | Value Type | Summary | Example Values | Deprecation Explanation |
 |---|---|---|---|---|
 | <a id="k8s-pod-labels" href="#k8s-pod-labels">`k8s.pod.labels.<key>`</a> | string | Deprecated, use `k8s.pod.label` instead. | `my-app` |  Use `k8s.pod.label` instead.  |
 

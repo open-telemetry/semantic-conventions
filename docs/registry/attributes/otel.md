@@ -118,9 +118,9 @@ Attributes used by non-OTLP exporters to represent OpenTelemetry Scope's concept
 Describes deprecated otel.library attributes.
 
 <details>
-<summary><b>Past Attributes:</b></summary>
+<summary><b>Deprecated Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | Deprecation Explanation |
+| Key | Value Type | Summary | Example Values | Deprecation Explanation |
 |---|---|---|---|---|
 | <a id="otel-library-name" href="#otel-library-name">`otel.library.name`</a> | string | Deprecated. Use the `otel.scope.name` attribute | `io.opentelemetry.contrib.mongodb` |  Use `otel.scope.name` instead.  |
 | <a id="otel-library-version" href="#otel-library-version">`otel.library.version`</a> | string | Deprecated. Use the `otel.scope.version` attribute. | `1.0.0` |  Use `otel.scope.version` instead.  |

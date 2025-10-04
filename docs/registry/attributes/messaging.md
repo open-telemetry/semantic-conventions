@@ -202,9 +202,9 @@ This group describes attributes specific to Azure Service Bus.
 Describes deprecated messaging attributes.
 
 <details>
-<summary><b>Past Attributes:</b></summary>
+<summary><b>Deprecated Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | Deprecation Explanation |
+| Key | Value Type | Summary | Example Values | Deprecation Explanation |
 |---|---|---|---|---|
 | <a id="messaging-client-id" href="#messaging-client-id">`messaging.client_id`</a> | string | Deprecated, use `messaging.client.id` instead. | `client-5`; `myhost@8742@s8083jm` |  Use `messaging.client.id` instead.  |
 | <a id="messaging-destination-publish-anonymous" href="#messaging-destination-publish-anonymous">`messaging.destination_publish.anonymous`</a> | boolean | Deprecated, no replacement at this time. |  |  Removed. No replacement at this time.  |

@@ -41,9 +41,9 @@ Examples:
 These deprecated attributes provide context about source code
 
 <details>
-<summary><b>Past Attributes:</b></summary>
+<summary><b>Deprecated Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | Deprecation Explanation |
+| Key | Value Type | Summary | Example Values | Deprecation Explanation |
 |---|---|---|---|---|
 | <a id="code-column" href="#code-column">`code.column`</a> | int | Deprecated, use `code.column.number` | `16` |  Use `code.column.number` instead.  |
 | <a id="code-filepath" href="#code-filepath">`code.filepath`</a> | string | Deprecated, use `code.file.path` instead | `/usr/local/MyApplication/content_root/app/index.php` |  Use `code.file.path` instead.  |

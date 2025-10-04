@@ -101,9 +101,9 @@ Describes Linux Process attributes
 Deprecated process attributes.
 
 <details>
-<summary><b>Past Attributes:</b></summary>
+<summary><b>Deprecated Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | Deprecation Explanation |
+| Key | Value Type | Summary | Example Values | Deprecation Explanation |
 |---|---|---|---|---|
 | <a id="process-context-switch-type" href="#process-context-switch-type">`process.context_switch_type`</a> | string | "Deprecated, use `process.context_switch.type` instead." | `voluntary`; `involuntary` |  Use `process.context_switch.type` instead.  |
 | <a id="process-cpu-state" href="#process-cpu-state">`process.cpu.state`</a> | string | Deprecated, use `cpu.mode` instead. | `system`; `user`; `wait` |  Use `cpu.mode` instead.  |

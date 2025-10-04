@@ -121,9 +121,9 @@ support custom route formatting. Instrumentations SHOULD document the format and
 Describes deprecated HTTP attributes.
 
 <details>
-<summary><b>Past Attributes:</b></summary>
+<summary><b>Deprecated Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | Deprecation Explanation |
+| Key | Value Type | Summary | Example Values | Deprecation Explanation |
 |---|---|---|---|---|
 | <a id="http-client-ip" href="#http-client-ip">`http.client_ip`</a> | string | Deprecated, use `client.address` instead. | `83.164.160.102` |  Use `client.address` instead.  |
 | <a id="http-flavor" href="#http-flavor">`http.flavor`</a> | string | Deprecated, use `network.protocol.name` and `network.protocol.version` instead. | `1.0`; `1.1`; `2.0` |  Split into `network.protocol.name` and `network.protocol.version`  |

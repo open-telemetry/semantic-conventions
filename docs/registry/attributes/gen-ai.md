@@ -240,9 +240,9 @@ Datastore: A tool used by the agent to access and query structured or unstructur
 Describes deprecated `gen_ai` attributes.
 
 <details>
-<summary><b>Past Attributes:</b></summary>
+<summary><b>Deprecated Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | Deprecation Explanation |
+| Key | Value Type | Summary | Example Values | Deprecation Explanation |
 |---|---|---|---|---|
 | <a id="gen-ai-completion" href="#gen-ai-completion">`gen_ai.completion`</a> | string | Deprecated, use Event API to report completions contents. | `[{'role': 'assistant', 'content': 'The capital of France is Paris.'}]` |  Removed, no replacement at this time.  |
 | <a id="gen-ai-prompt" href="#gen-ai-prompt">`gen_ai.prompt`</a> | string | Deprecated, use Event API to report prompt contents. | `[{'role': 'user', 'content': 'What is the capital of France?'}]` |  Removed, no replacement at this time.  |
@@ -285,9 +285,9 @@ Describes deprecated `gen_ai` attributes.
 Describes deprecated `gen_ai.openai` attributes.
 
 <details>
-<summary><b>Past Attributes:</b></summary>
+<summary><b>Deprecated Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | Deprecation Explanation |
+| Key | Value Type | Summary | Example Values | Deprecation Explanation |
 |---|---|---|---|---|
 | <a id="gen-ai-openai-request-response-format" href="#gen-ai-openai-request-response-format">`gen_ai.openai.request.response_format`</a> | string | Deprecated, use `gen_ai.output.type`. | `text`; `json_object`; `json_schema` |  Use `gen_ai.output.type` instead.  |
 | <a id="gen-ai-openai-request-seed" href="#gen-ai-openai-request-seed">`gen_ai.openai.request.seed`</a> | int | Deprecated, use `gen_ai.request.seed`. | `100` |  Use `gen_ai.request.seed` instead.  |
