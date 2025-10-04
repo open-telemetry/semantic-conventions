@@ -233,6 +233,15 @@ Datastore: A tool used by the agent to access and query structured or unstructur
 | `input` | Input tokens (prompt, input, etc.) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `output` | Output tokens (completion, response, etc.) | ![Development](https://img.shields.io/badge/-development-blue) |
 
+<details>
+<summary><b>Deprecated Values:</b></summary>
+
+| Value  | Description | Deprecation Explanation |
+|---|---|---|
+| `output` | Output tokens (completion, response, etc.) |  Use `output` instead.  |
+
+</details>
+
 ## Deprecated GenAI Attributes
 
 Describes deprecated `gen_ai` attributes.
@@ -272,6 +281,18 @@ Describes deprecated `gen_ai` attributes.
 **[18]:** May be used when specific backend is unknown. May use common attributes prefixed with 'gcp.gen_ai.'.
 
 **[19]:** This refers to the 'aiplatform.googleapis.com' endpoint. May use common attributes prefixed with 'gcp.gen_ai.'.
+
+<details>
+<summary><b>Deprecated Values:</b></summary>
+
+| Value  | Description | Deprecation Explanation |
+|---|---|---|
+| `vertex_ai` | Vertex AI |  Use `gcp.vertex_ai` instead.  |
+| `gemini` | Gemini |  Use `gcp.gemini` instead.  |
+| `az.ai.inference` | Azure AI Inference |  Use `azure.ai.inference` instead.  |
+| `az.ai.openai` | Azure OpenAI |  Use `azure.ai.openai` instead.  |
+
+</details>
 
 ## Deprecated OpenAI GenAI Attributes
 

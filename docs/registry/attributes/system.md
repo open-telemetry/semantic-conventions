@@ -73,6 +73,15 @@ Describes System Memory attributes
 
 **[1]:** Calculation based on the operating system metrics. On Linux, this corresponds to "MemTotal - MemAvailable" from /proc/meminfo, which more accurately reflects memory in active use by applications compared to older formulas based on free, cached, and buffers. If MemAvailable is not available, a fallback to those older formulas may be used.
 
+<details>
+<summary><b>Deprecated Values:</b></summary>
+
+| Value  | Description | Deprecation Explanation |
+|---|---|---|
+| `shared` | shared |  Removed, report shared memory usage with `metric.system.memory.shared` metric  |
+
+</details>
+
 ## System Paging Attributes
 
 Describes System Memory Paging attributes
