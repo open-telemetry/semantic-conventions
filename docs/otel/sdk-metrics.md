@@ -52,10 +52,8 @@ This metric is [recommended][MetricRecommended].
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `otel.sdk.span.live` | UpDownCounter | `{span}` | The number of created spans with `recording=true` for which the end operation has not been called yet. | ![Development](https://img.shields.io/badge/-development-blue) |  |
-<details open>
-<summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
 | [`otel.span.sampling_result`](/docs/registry/attributes/otel.md) | string | The result value of the sampler for this span | `DROP`; `RECORD_ONLY`; `RECORD_AND_SAMPLE` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
 
@@ -68,7 +66,6 @@ This metric is [recommended][MetricRecommended].
 | `DROP` | The span is not sampled and not recording | ![Development](https://img.shields.io/badge/-development-blue) |
 | `RECORD_AND_SAMPLE` | The span is sampled and recording | ![Development](https://img.shields.io/badge/-development-blue) |
 | `RECORD_ONLY` | The span is not sampled, but recording | ![Development](https://img.shields.io/badge/-development-blue) |
-</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -91,10 +88,8 @@ This metric is [recommended][MetricRecommended].
 | `otel.sdk.span.started` | Counter | `{span}` | The number of created spans. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** Implementations MUST record this metric for all spans, even for non-recording ones.
-<details open>
-<summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
 | [`otel.span.parent.origin`](/docs/registry/attributes/otel.md) | string | Determines whether the span has a parent span, and if so, [whether it is a remote parent](https://opentelemetry.io/docs/specs/otel/trace/api/#isremote) | `none`; `local`; `remote` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
 | [`otel.span.sampling_result`](/docs/registry/attributes/otel.md) | string | The result value of the sampler for this span | `DROP`; `RECORD_ONLY`; `RECORD_AND_SAMPLE` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
@@ -118,7 +113,6 @@ This metric is [recommended][MetricRecommended].
 | `DROP` | The span is not sampled and not recording | ![Development](https://img.shields.io/badge/-development-blue) |
 | `RECORD_AND_SAMPLE` | The span is sampled and recording | ![Development](https://img.shields.io/badge/-development-blue) |
 | `RECORD_ONLY` | The span is not sampled, but recording | ![Development](https://img.shields.io/badge/-development-blue) |
-</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -141,10 +135,8 @@ This metric is [recommended][MetricRecommended].
 | `otel.sdk.processor.span.queue.size` | UpDownCounter | `{span}` | The number of spans in the queue of a given instance of an SDK span processor. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** Only applies to span processors which use a queue, e.g. the SDK Batching Span Processor.
-<details open>
-<summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
 | [`otel.component.name`](/docs/registry/attributes/otel.md) | string | A name uniquely identifying the instance of the OpenTelemetry component within its containing SDK instance. [1] | `otlp_grpc_span_exporter/0`; `custom-name` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
 | [`otel.component.type`](/docs/registry/attributes/otel.md) | string | A name identifying the type of the OpenTelemetry component. [2] | `batching_span_processor`; `com.example.MySpanExporter` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
@@ -188,7 +180,6 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 | `simple_log_processor` | The builtin SDK simple log record processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `simple_span_processor` | The builtin SDK simple span processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `zipkin_http_span_exporter` | Zipkin span exporter over HTTP | ![Development](https://img.shields.io/badge/-development-blue) |
-</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -211,10 +202,8 @@ This metric is [recommended][MetricRecommended].
 | `otel.sdk.processor.span.queue.capacity` | UpDownCounter | `{span}` | The maximum number of spans the queue of a given instance of an SDK span processor can hold. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** Only applies to span processors which use a queue, e.g. the SDK Batching Span Processor.
-<details open>
-<summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
 | [`otel.component.name`](/docs/registry/attributes/otel.md) | string | A name uniquely identifying the instance of the OpenTelemetry component within its containing SDK instance. [1] | `otlp_grpc_span_exporter/0`; `custom-name` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
 | [`otel.component.type`](/docs/registry/attributes/otel.md) | string | A name identifying the type of the OpenTelemetry component. [2] | `batching_span_processor`; `com.example.MySpanExporter` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
@@ -258,7 +247,6 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 | `simple_log_processor` | The builtin SDK simple log record processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `simple_span_processor` | The builtin SDK simple span processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `zipkin_http_span_exporter` | Zipkin span exporter over HTTP | ![Development](https://img.shields.io/badge/-development-blue) |
-</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -282,10 +270,8 @@ This metric is [recommended][MetricRecommended].
 
 **[1]:** For successful processing, `error.type` MUST NOT be set. For failed processing, `error.type` MUST contain the failure cause.
 For the SDK Simple and Batching Span Processor a span is considered to be processed already when it has been submitted to the exporter, not when the corresponding export call has finished.
-<details open>
-<summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
 | [`error.type`](/docs/registry/attributes/error.md) | string | A low-cardinality description of the failure reason. SDK Batching Span Processors MUST use `queue_full` for spans dropped due to a full queue. [1] | `queue_full` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any  |
 | [`otel.component.name`](/docs/registry/attributes/otel.md) | string | A name uniquely identifying the instance of the OpenTelemetry component within its containing SDK instance. [2] | `otlp_grpc_span_exporter/0`; `custom-name` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
@@ -358,7 +344,6 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 | `simple_log_processor` | The builtin SDK simple log record processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `simple_span_processor` | The builtin SDK simple span processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `zipkin_http_span_exporter` | Zipkin span exporter over HTTP | ![Development](https://img.shields.io/badge/-development-blue) |
-</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -381,10 +366,8 @@ This metric is [recommended][MetricRecommended].
 | `otel.sdk.exporter.span.inflight` | UpDownCounter | `{span}` | The number of spans which were passed to the exporter, but that have not been exported yet (neither successful, nor failed). [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** For successful exports, `error.type` MUST NOT be set. For failed exports, `error.type` MUST contain the failure cause.
-<details open>
-<summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
 | [`otel.component.name`](/docs/registry/attributes/otel.md) | string | A name uniquely identifying the instance of the OpenTelemetry component within its containing SDK instance. [1] | `otlp_grpc_span_exporter/0`; `custom-name` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
 | [`otel.component.type`](/docs/registry/attributes/otel.md) | string | A name identifying the type of the OpenTelemetry component. [2] | `batching_span_processor`; `com.example.MySpanExporter` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
@@ -434,7 +417,6 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 | `simple_log_processor` | The builtin SDK simple log record processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `simple_span_processor` | The builtin SDK simple span processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `zipkin_http_span_exporter` | Zipkin span exporter over HTTP | ![Development](https://img.shields.io/badge/-development-blue) |
-</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -459,10 +441,8 @@ This metric is [recommended][MetricRecommended].
 **[1]:** For successful exports, `error.type` MUST NOT be set. For failed exports, `error.type` MUST contain the failure cause.
 For exporters with partial success semantics (e.g. OTLP with `rejected_spans`), rejected spans MUST count as failed and only non-rejected spans count as success.
 If no rejection reason is available, `rejected` SHOULD be used as value for `error.type`.
-<details open>
-<summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
 | [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [1] | `rejected`; `timeout`; `500`; `java.net.UnknownHostException` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any  |
 | [`otel.component.name`](/docs/registry/attributes/otel.md) | string | A name uniquely identifying the instance of the OpenTelemetry component within its containing SDK instance. [2] | `otlp_grpc_span_exporter/0`; `custom-name` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
@@ -541,7 +521,6 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 | `simple_log_processor` | The builtin SDK simple log record processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `simple_span_processor` | The builtin SDK simple span processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `zipkin_http_span_exporter` | Zipkin span exporter over HTTP | ![Development](https://img.shields.io/badge/-development-blue) |
-</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -586,10 +565,8 @@ This metric is [recommended][MetricRecommended].
 | `otel.sdk.processor.log.queue.size` | UpDownCounter | `{log_record}` | The number of log records in the queue of a given instance of an SDK log processor. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** Only applies to log record processors which use a queue, e.g. the SDK Batching Log Record Processor.
-<details open>
-<summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
 | [`otel.component.name`](/docs/registry/attributes/otel.md) | string | A name uniquely identifying the instance of the OpenTelemetry component within its containing SDK instance. [1] | `otlp_grpc_span_exporter/0`; `custom-name` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
 | [`otel.component.type`](/docs/registry/attributes/otel.md) | string | A name identifying the type of the OpenTelemetry component. [2] | `batching_span_processor`; `com.example.MySpanExporter` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
@@ -633,7 +610,6 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 | `simple_log_processor` | The builtin SDK simple log record processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `simple_span_processor` | The builtin SDK simple span processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `zipkin_http_span_exporter` | Zipkin span exporter over HTTP | ![Development](https://img.shields.io/badge/-development-blue) |
-</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -656,10 +632,8 @@ This metric is [recommended][MetricRecommended].
 | `otel.sdk.processor.log.queue.capacity` | UpDownCounter | `{log_record}` | The maximum number of log records the queue of a given instance of an SDK Log Record processor can hold. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** Only applies to Log Record processors which use a queue, e.g. the SDK Batching Log Record Processor.
-<details open>
-<summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
 | [`otel.component.name`](/docs/registry/attributes/otel.md) | string | A name uniquely identifying the instance of the OpenTelemetry component within its containing SDK instance. [1] | `otlp_grpc_span_exporter/0`; `custom-name` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
 | [`otel.component.type`](/docs/registry/attributes/otel.md) | string | A name identifying the type of the OpenTelemetry component. [2] | `batching_span_processor`; `com.example.MySpanExporter` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
@@ -703,7 +677,6 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 | `simple_log_processor` | The builtin SDK simple log record processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `simple_span_processor` | The builtin SDK simple span processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `zipkin_http_span_exporter` | Zipkin span exporter over HTTP | ![Development](https://img.shields.io/badge/-development-blue) |
-</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -728,10 +701,8 @@ This metric is [recommended][MetricRecommended].
 **[1]:** For successful processing, `error.type` MUST NOT be set. For failed processing, `error.type` MUST contain the failure cause.
 For the SDK Simple and Batching Log Record Processor a log record is considered to be processed already when it has been submitted to the exporter,
 not when the corresponding export call has finished.
-<details open>
-<summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
 | [`error.type`](/docs/registry/attributes/error.md) | string | A low-cardinality description of the failure reason. SDK Batching Log Record Processors MUST use `queue_full` for log records dropped due to a full queue. [1] | `queue_full` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any  |
 | [`otel.component.name`](/docs/registry/attributes/otel.md) | string | A name uniquely identifying the instance of the OpenTelemetry component within its containing SDK instance. [2] | `otlp_grpc_span_exporter/0`; `custom-name` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
@@ -804,7 +775,6 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 | `simple_log_processor` | The builtin SDK simple log record processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `simple_span_processor` | The builtin SDK simple span processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `zipkin_http_span_exporter` | Zipkin span exporter over HTTP | ![Development](https://img.shields.io/badge/-development-blue) |
-</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -827,10 +797,8 @@ This metric is [recommended][MetricRecommended].
 | `otel.sdk.exporter.log.inflight` | UpDownCounter | `{log_record}` | The number of log records which were passed to the exporter, but that have not been exported yet (neither successful, nor failed). [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** For successful exports, `error.type` MUST NOT be set. For failed exports, `error.type` MUST contain the failure cause.
-<details open>
-<summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
 | [`otel.component.name`](/docs/registry/attributes/otel.md) | string | A name uniquely identifying the instance of the OpenTelemetry component within its containing SDK instance. [1] | `otlp_grpc_span_exporter/0`; `custom-name` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
 | [`otel.component.type`](/docs/registry/attributes/otel.md) | string | A name identifying the type of the OpenTelemetry component. [2] | `batching_span_processor`; `com.example.MySpanExporter` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
@@ -880,7 +848,6 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 | `simple_log_processor` | The builtin SDK simple log record processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `simple_span_processor` | The builtin SDK simple span processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `zipkin_http_span_exporter` | Zipkin span exporter over HTTP | ![Development](https://img.shields.io/badge/-development-blue) |
-</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -905,10 +872,8 @@ This metric is [recommended][MetricRecommended].
 **[1]:** For successful exports, `error.type` MUST NOT be set. For failed exports, `error.type` MUST contain the failure cause.
 For exporters with partial success semantics (e.g. OTLP with `rejected_log_records`), rejected log records MUST count as failed and only non-rejected log records count as success.
 If no rejection reason is available, `rejected` SHOULD be used as value for `error.type`.
-<details open>
-<summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
 | [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [1] | `rejected`; `timeout`; `500`; `java.net.UnknownHostException` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any  |
 | [`otel.component.name`](/docs/registry/attributes/otel.md) | string | A name uniquely identifying the instance of the OpenTelemetry component within its containing SDK instance. [2] | `otlp_grpc_span_exporter/0`; `custom-name` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
@@ -987,7 +952,6 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 | `simple_log_processor` | The builtin SDK simple log record processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `simple_span_processor` | The builtin SDK simple span processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `zipkin_http_span_exporter` | Zipkin span exporter over HTTP | ![Development](https://img.shields.io/badge/-development-blue) |
-</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -1012,10 +976,8 @@ This metric is [recommended][MetricRecommended].
 | `otel.sdk.exporter.metric_data_point.inflight` | UpDownCounter | `{data_point}` | The number of metric data points which were passed to the exporter, but that have not been exported yet (neither successful, nor failed). [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** For successful exports, `error.type` MUST NOT be set. For failed exports, `error.type` MUST contain the failure cause.
-<details open>
-<summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
 | [`otel.component.name`](/docs/registry/attributes/otel.md) | string | A name uniquely identifying the instance of the OpenTelemetry component within its containing SDK instance. [1] | `otlp_grpc_span_exporter/0`; `custom-name` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
 | [`otel.component.type`](/docs/registry/attributes/otel.md) | string | A name identifying the type of the OpenTelemetry component. [2] | `batching_span_processor`; `com.example.MySpanExporter` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
@@ -1065,7 +1027,6 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 | `simple_log_processor` | The builtin SDK simple log record processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `simple_span_processor` | The builtin SDK simple span processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `zipkin_http_span_exporter` | Zipkin span exporter over HTTP | ![Development](https://img.shields.io/badge/-development-blue) |
-</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -1090,10 +1051,8 @@ This metric is [recommended][MetricRecommended].
 **[1]:** For successful exports, `error.type` MUST NOT be set. For failed exports, `error.type` MUST contain the failure cause.
 For exporters with partial success semantics (e.g. OTLP with `rejected_data_points`), rejected data points MUST count as failed and only non-rejected data points count as success.
 If no rejection reason is available, `rejected` SHOULD be used as value for `error.type`.
-<details open>
-<summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
 | [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [1] | `rejected`; `timeout`; `500`; `java.net.UnknownHostException` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any  |
 | [`otel.component.name`](/docs/registry/attributes/otel.md) | string | A name uniquely identifying the instance of the OpenTelemetry component within its containing SDK instance. [2] | `otlp_grpc_span_exporter/0`; `custom-name` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
@@ -1172,7 +1131,6 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 | `simple_log_processor` | The builtin SDK simple log record processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `simple_span_processor` | The builtin SDK simple span processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `zipkin_http_span_exporter` | Zipkin span exporter over HTTP | ![Development](https://img.shields.io/badge/-development-blue) |
-</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -1202,10 +1160,8 @@ with a single bucket with no boundaries.
 
 **[1]:** For successful collections, `error.type` MUST NOT be set. For failed collections, `error.type` SHOULD contain the failure cause.
 It can happen that metrics collection is successful for some MetricProducers, while others fail. In that case `error.type` SHOULD be set to any of the failure causes.
-<details open>
-<summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
 | [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any  |
 | [`otel.component.name`](/docs/registry/attributes/otel.md) | string | A name uniquely identifying the instance of the OpenTelemetry component within its containing SDK instance. [2] | `otlp_grpc_span_exporter/0`; `custom-name` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
@@ -1278,7 +1234,6 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 | `simple_log_processor` | The builtin SDK simple log record processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `simple_span_processor` | The builtin SDK simple span processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `zipkin_http_span_exporter` | Zipkin span exporter over HTTP | ![Development](https://img.shields.io/badge/-development-blue) |
-</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -1307,10 +1262,8 @@ with a single bucket with no boundaries.
 **[1]:** This metric defines successful operations using the full success definitions for [http](https://github.com/open-telemetry/opentelemetry-proto/blob/v1.5.0/docs/specification.md#full-success-1)
 and [grpc](https://github.com/open-telemetry/opentelemetry-proto/blob/v1.5.0/docs/specification.md#full-success). Anything else is defined as an unsuccessful operation. For successful
 operations, `error.type` MUST NOT be set. For unsuccessful export operations, `error.type` MUST contain a relevant failure cause.
-<details open>
-<summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
 | [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [1] | `rejected`; `timeout`; `500`; `java.net.UnknownHostException` | `Conditionally Required` If operation has ended with an error | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any  |
 | [`http.response.status_code`](/docs/registry/attributes/http.md) | int | The HTTP status code of the last HTTP request performed in scope of this export call. | `200` | `Recommended` when applicable | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any  |
@@ -1415,7 +1368,6 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 | `14` | UNAVAILABLE | ![Development](https://img.shields.io/badge/-development-blue) |
 | `15` | DATA_LOSS | ![Development](https://img.shields.io/badge/-development-blue) |
 | `16` | UNAUTHENTICATED | ![Development](https://img.shields.io/badge/-development-blue) |
-</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

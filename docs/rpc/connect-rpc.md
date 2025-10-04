@@ -31,10 +31,7 @@ This span represents an outgoing Remote Procedure Call (RPC).
 
 **Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
 
-<details open>
-<summary><b>General Attributes:</b></summary>
-
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
 | [`server.address`](/docs/registry/attributes/server.md) | string | RPC server [host name](https://grpc.github.io/grpc/core/md_doc_naming.html). [1] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any  |
 | [`rpc.connect_rpc.error_code`](/docs/registry/attributes/rpc.md) | string | The [error codes](https://connectrpc.com//docs/protocol/#error-codes) of the Connect request. Error codes are always string values. | `cancelled`; `unknown`; `invalid_argument` | `Conditionally Required` if available. | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
@@ -121,7 +118,6 @@ the `rpc.connect_rpc.response.metadata.my-custom-key` attribute with value `["at
 | `unavailable` | unavailable | ![Development](https://img.shields.io/badge/-development-blue) |
 | `unimplemented` | unimplemented | ![Development](https://img.shields.io/badge/-development-blue) |
 | `unknown` | unknown | ![Development](https://img.shields.io/badge/-development-blue) |
-</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -149,10 +145,7 @@ This span represents an incoming Remote Procedure Call (RPC).
 
 **Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
 
-<details open>
-<summary><b>General Attributes:</b></summary>
-
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
 | [`server.address`](/docs/registry/attributes/server.md) | string | RPC server [host name](https://grpc.github.io/grpc/core/md_doc_naming.html). [1] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any  |
 | [`rpc.connect_rpc.error_code`](/docs/registry/attributes/rpc.md) | string | The [error codes](https://connectrpc.com//docs/protocol/#error-codes) of the Connect request. Error codes are always string values. | `cancelled`; `unknown`; `invalid_argument` | `Conditionally Required` if available. | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
@@ -245,7 +238,6 @@ the `rpc.connect_rpc.response.metadata.my-custom-key` attribute with value `["at
 | `unavailable` | unavailable | ![Development](https://img.shields.io/badge/-development-blue) |
 | `unimplemented` | unimplemented | ![Development](https://img.shields.io/badge/-development-blue) |
 | `unknown` | unknown | ![Development](https://img.shields.io/badge/-development-blue) |
-</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

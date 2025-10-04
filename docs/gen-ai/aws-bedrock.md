@@ -52,10 +52,7 @@ Describes an AWS Bedrock operation span.
 
 **Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
 
-<details open>
-<summary><b>General Attributes:</b></summary>
-
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
 | [`aws.bedrock.guardrail.id`](/docs/registry/attributes/aws.md) | string | The unique identifier of the AWS Bedrock Guardrail. A [guardrail](https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html) helps safeguard and prevent unwanted behavior from model responses or user messages. | `sgi5gkybzqak` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
 | [`gen_ai.operation.name`](/docs/registry/attributes/gen-ai.md) | string | The name of the operation being performed. [1] | `chat`; `generate_content`; `text_completion` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
@@ -265,7 +262,6 @@ populating this attribute.
 **[16]:** May be used when specific backend is unknown.
 
 **[17]:** Used when accessing the 'aiplatform.googleapis.com' endpoint.
-</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

@@ -13,18 +13,14 @@
 
 {#- Macro for creating general attribute table -#}
 {% macro generate_general(attributes, attribute_registry_base_url, lineage_attributes) %}{% if (attributes is defined) and (attributes | length > 0) %}
-{% set title = "General Attributes" %}
-{% set description = "" %}
-{{ generate_table(attributes, title, description, attribute_registry_base_url, lineage_attributes)}}
+{{ generate_table(attributes, attribute_registry_base_url, lineage_attributes)}}
 {% endif %}
 {% endmacro %}
 
 {#- Macro for creating attribute table -#}
-{% macro generate_table(attributes, title, description, attribute_registry_base_url, lineage_attributes) %}{% if (attributes is defined) and (attributes | length > 0) %}<details open>
-<summary><b>{{title}}:</b></summary>{% if (description | length > 0) %}{{"\n"}}{{description | trim}} {% endif %}
-
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+{% macro generate_table(attributes, attribute_registry_base_url, lineage_attributes) %}{% if (attributes is defined) and (attributes | length > 0) %}
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
 {% for attribute in attributes if attribute.deprecated is not defined or attribute.deprecated is none %}| {{ attrs.name_with_link(attribute, attribute_registry_base_url, lineage_attributes) }} | {{ attrs.type(attribute) }} | {{ attribute.brief | trim }}{{ notes.add({"note": attribute.note, "name": attrs.name(attribute)}) }} | {{ examples.format(attribute) | trim }} | {{ requirement.render({"level": attribute.requirement_level, "name": attrs.name(attribute), "deprecated": attribute.deprecated}, notes) | trim }} | {{ stability.badge(attribute.stability, attribute.deprecated, attribute.brief) | trim }} | {% if attribute.sampling_relevant == true %} Span Creation {% else %} Any {% endif %} |
-{% endfor %}{{ notes.render() }}{{ enums.tables(attributes | selectattr("type", "mapping"), notes) }}</details>
+{% endfor %}{{ notes.render() }}{{ enums.tables(attributes | selectattr("type", "mapping"), notes) }}
 {% endif %}{% endmacro %}

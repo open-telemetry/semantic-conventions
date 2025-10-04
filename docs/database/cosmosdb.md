@@ -45,10 +45,7 @@ Semantic conventions described in this document apply to the call-level spans on
 
 **Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
 
-<details open>
-<summary><b>General Attributes:</b></summary>
-
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
 | [`db.operation.name`](/docs/registry/attributes/db.md) | string | The name of the operation or command being executed. [1] | `create_item`; `query_items`; `read_item` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Span Creation  |
 | [`azure.cosmosdb.connection.mode`](/docs/registry/attributes/azure.md) | string | Cosmos client connection mode. | `gateway`; `direct` | `Conditionally Required` [2] | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
@@ -279,7 +276,6 @@ Examples:
 | Value  | Description | Stability |
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -351,10 +347,8 @@ Explaining bucket configuration:
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `azure.cosmosdb.client.operation.request_charge` | Histogram | `{request_unit}` | [Request units](https://learn.microsoft.com/azure/cosmos-db/request-units) consumed by the operation. | ![Development](https://img.shields.io/badge/-development-blue) |  |
-<details open>
-<summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
 | [`db.operation.name`](/docs/registry/attributes/db.md) | string | The name of the operation or command being executed. [1] | `findAndModify`; `HMSET`; `SELECT` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any  |
 | [`azure.cosmosdb.consistency.level`](/docs/registry/attributes/azure.md) | string | Account or request [consistency level](https://learn.microsoft.com/azure/cosmos-db/consistency-levels). | `Eventual`; `ConsistentPrefix`; `BoundedStaleness`; `Strong`; `Session` | `Conditionally Required` If available. | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
@@ -420,7 +414,6 @@ Instrumentations SHOULD document how `error.type` is populated.
 | Value  | Description | Stability |
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -443,10 +436,8 @@ It captures the number of active instances at any given time. Best practices dic
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `azure.cosmosdb.client.active_instance.count` | UpDownCounter | `{instance}` | Number of active client instances. | ![Development](https://img.shields.io/badge/-development-blue) |  |
-<details open>
-<summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
 | [`server.port`](/docs/registry/attributes/server.md) | int | Server port number. [1] | `80`; `8080`; `443` | `Conditionally Required` [2] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any  |
 | [`server.address`](/docs/registry/attributes/server.md) | string | Name of the database host. [3] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any  |
@@ -456,7 +447,6 @@ It captures the number of active instances at any given time. Best practices dic
 **[2] `server.port`:** If using a port other than the default port for this DBMS and if `server.address` is set.
 
 **[3] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
-</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

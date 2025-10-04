@@ -34,10 +34,7 @@ Spans representing calls to a PostgreSQL database adhere to the general [Semanti
 
 **Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
 
-<details open>
-<summary><b>General Attributes:</b></summary>
-
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
 | [`db.namespace`](/docs/registry/attributes/db.md) | string | The schema associated with the connection, qualified by the database name. [1] | `mydatabase.products`; `mydatabase.customers` | `Conditionally Required` If available without an additional network call. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Span Creation  |
 | [`db.response.status_code`](/docs/registry/attributes/db.md) | string | [PostgreSQL error code](https://www.postgresql.org/docs/current/errcodes-appendix.html). [2] | `08000`; `08P01` | `Conditionally Required` If response has ended with warning or an error. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any  |
@@ -146,7 +143,6 @@ Examples:
 | Value  | Description | Stability |
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

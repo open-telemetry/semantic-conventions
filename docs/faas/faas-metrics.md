@@ -57,10 +57,8 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `faas.invoke_duration` | Histogram | `s` | Measures the duration of the function's logic execution. | ![Development](https://img.shields.io/badge/-development-blue) |  |
-<details open>
-<summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
 | [`faas.trigger`](/docs/registry/attributes/faas.md) | string | Type of the trigger which caused this function invocation. | `datasource`; `http`; `pubsub` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
 
@@ -75,7 +73,6 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 | `other` | If none of the others apply | ![Development](https://img.shields.io/badge/-development-blue) |
 | `pubsub` | A function is set to be executed when messages are sent to a messaging system | ![Development](https://img.shields.io/badge/-development-blue) |
 | `timer` | A function is scheduled to be executed regularly | ![Development](https://img.shields.io/badge/-development-blue) |
-</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -100,10 +97,8 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `faas.init_duration` | Histogram | `s` | Measures the duration of the function's initialization, such as a cold start. | ![Development](https://img.shields.io/badge/-development-blue) |  |
-<details open>
-<summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
 | [`faas.trigger`](/docs/registry/attributes/faas.md) | string | Type of the trigger which caused this function invocation. | `datasource`; `http`; `pubsub` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
 
@@ -118,7 +113,6 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 | `other` | If none of the others apply | ![Development](https://img.shields.io/badge/-development-blue) |
 | `pubsub` | A function is set to be executed when messages are sent to a messaging system | ![Development](https://img.shields.io/badge/-development-blue) |
 | `timer` | A function is scheduled to be executed regularly | ![Development](https://img.shields.io/badge/-development-blue) |
-</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -139,10 +133,8 @@ This metric is [recommended][MetricRecommended].
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `faas.coldstarts` | Counter | `{coldstart}` | Number of invocation cold starts. | ![Development](https://img.shields.io/badge/-development-blue) |  |
-<details open>
-<summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
 | [`faas.trigger`](/docs/registry/attributes/faas.md) | string | Type of the trigger which caused this function invocation. | `datasource`; `http`; `pubsub` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
 
@@ -157,7 +149,6 @@ This metric is [recommended][MetricRecommended].
 | `other` | If none of the others apply | ![Development](https://img.shields.io/badge/-development-blue) |
 | `pubsub` | A function is set to be executed when messages are sent to a messaging system | ![Development](https://img.shields.io/badge/-development-blue) |
 | `timer` | A function is scheduled to be executed regularly | ![Development](https://img.shields.io/badge/-development-blue) |
-</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -178,10 +169,8 @@ This metric is [recommended][MetricRecommended].
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `faas.errors` | Counter | `{error}` | Number of invocation errors. | ![Development](https://img.shields.io/badge/-development-blue) |  |
-<details open>
-<summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
 | [`faas.trigger`](/docs/registry/attributes/faas.md) | string | Type of the trigger which caused this function invocation. | `datasource`; `http`; `pubsub` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
 
@@ -196,7 +185,6 @@ This metric is [recommended][MetricRecommended].
 | `other` | If none of the others apply | ![Development](https://img.shields.io/badge/-development-blue) |
 | `pubsub` | A function is set to be executed when messages are sent to a messaging system | ![Development](https://img.shields.io/badge/-development-blue) |
 | `timer` | A function is scheduled to be executed regularly | ![Development](https://img.shields.io/badge/-development-blue) |
-</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -217,10 +205,8 @@ This metric is [recommended][MetricRecommended].
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `faas.invocations` | Counter | `{invocation}` | Number of successful invocations. | ![Development](https://img.shields.io/badge/-development-blue) |  |
-<details open>
-<summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
 | [`faas.trigger`](/docs/registry/attributes/faas.md) | string | Type of the trigger which caused this function invocation. | `datasource`; `http`; `pubsub` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
 
@@ -235,7 +221,6 @@ This metric is [recommended][MetricRecommended].
 | `other` | If none of the others apply | ![Development](https://img.shields.io/badge/-development-blue) |
 | `pubsub` | A function is set to be executed when messages are sent to a messaging system | ![Development](https://img.shields.io/badge/-development-blue) |
 | `timer` | A function is scheduled to be executed regularly | ![Development](https://img.shields.io/badge/-development-blue) |
-</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -256,10 +241,8 @@ This metric is [recommended][MetricRecommended].
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `faas.timeouts` | Counter | `{timeout}` | Number of invocation timeouts. | ![Development](https://img.shields.io/badge/-development-blue) |  |
-<details open>
-<summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
 | [`faas.trigger`](/docs/registry/attributes/faas.md) | string | Type of the trigger which caused this function invocation. | `datasource`; `http`; `pubsub` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
 
@@ -274,7 +257,6 @@ This metric is [recommended][MetricRecommended].
 | `other` | If none of the others apply | ![Development](https://img.shields.io/badge/-development-blue) |
 | `pubsub` | A function is set to be executed when messages are sent to a messaging system | ![Development](https://img.shields.io/badge/-development-blue) |
 | `timer` | A function is scheduled to be executed regularly | ![Development](https://img.shields.io/badge/-development-blue) |
-</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -295,10 +277,8 @@ This metric is [recommended][MetricRecommended].
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `faas.mem_usage` | Histogram | `By` | Distribution of max memory usage per invocation. | ![Development](https://img.shields.io/badge/-development-blue) |  |
-<details open>
-<summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
 | [`faas.trigger`](/docs/registry/attributes/faas.md) | string | Type of the trigger which caused this function invocation. | `datasource`; `http`; `pubsub` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
 
@@ -313,7 +293,6 @@ This metric is [recommended][MetricRecommended].
 | `other` | If none of the others apply | ![Development](https://img.shields.io/badge/-development-blue) |
 | `pubsub` | A function is set to be executed when messages are sent to a messaging system | ![Development](https://img.shields.io/badge/-development-blue) |
 | `timer` | A function is scheduled to be executed regularly | ![Development](https://img.shields.io/badge/-development-blue) |
-</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -338,10 +317,8 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `faas.cpu_usage` | Histogram | `s` | Distribution of CPU usage per invocation. | ![Development](https://img.shields.io/badge/-development-blue) |  |
-<details open>
-<summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
 | [`faas.trigger`](/docs/registry/attributes/faas.md) | string | Type of the trigger which caused this function invocation. | `datasource`; `http`; `pubsub` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
 
@@ -356,7 +333,6 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 | `other` | If none of the others apply | ![Development](https://img.shields.io/badge/-development-blue) |
 | `pubsub` | A function is set to be executed when messages are sent to a messaging system | ![Development](https://img.shields.io/badge/-development-blue) |
 | `timer` | A function is scheduled to be executed regularly | ![Development](https://img.shields.io/badge/-development-blue) |
-</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -377,10 +353,8 @@ This metric is [recommended][MetricRecommended].
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `faas.net_io` | Histogram | `By` | Distribution of net I/O usage per invocation. | ![Development](https://img.shields.io/badge/-development-blue) |  |
-<details open>
-<summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
 | [`faas.trigger`](/docs/registry/attributes/faas.md) | string | Type of the trigger which caused this function invocation. | `datasource`; `http`; `pubsub` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
 
@@ -395,7 +369,6 @@ This metric is [recommended][MetricRecommended].
 | `other` | If none of the others apply | ![Development](https://img.shields.io/badge/-development-blue) |
 | `pubsub` | A function is set to be executed when messages are sent to a messaging system | ![Development](https://img.shields.io/badge/-development-blue) |
 | `timer` | A function is scheduled to be executed regularly | ![Development](https://img.shields.io/badge/-development-blue) |
-</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

@@ -18,10 +18,7 @@
 > :warning: This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
-<details open>
-<summary><b>General Attributes:</b></summary>
-
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
 | [`cloudfoundry.app.id`](/docs/registry/attributes/cloudfoundry.md) | string | The guid of the application. [1] | `218fc5a9-a5f1-4b54-aa05-46717d0ab26d` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
 | [`cloudfoundry.app.name`](/docs/registry/attributes/cloudfoundry.md) | string | The name of the application. [2] | `my-app-name` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
@@ -33,7 +30,6 @@ reported by `cf app <app-name> --guid`.
 **[2] `cloudfoundry.app.name`:** Application instrumentation should use the value from environment
 variable `VCAP_APPLICATION.application_name`. This is the same value
 as reported by `cf apps`.
-</details>
 
 ## CloudFoundry Org
 
@@ -48,10 +44,7 @@ as reported by `cf apps`.
 > :warning: This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
-<details open>
-<summary><b>General Attributes:</b></summary>
-
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
 | [`cloudfoundry.org.id`](/docs/registry/attributes/cloudfoundry.md) | string | The guid of the CloudFoundry org the application is running in. [3] | `218fc5a9-a5f1-4b54-aa05-46717d0ab26d` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
 | [`cloudfoundry.org.name`](/docs/registry/attributes/cloudfoundry.md) | string | The name of the CloudFoundry organization the app is running in. [4] | `my-org-name` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
@@ -63,7 +56,6 @@ reported by `cf org <org-name> --guid`.
 **[4] `cloudfoundry.org.name`:** Application instrumentation should use the value from environment
 variable `VCAP_APPLICATION.org_name`. This is the same value as
 reported by `cf orgs`.
-</details>
 
 ## CloudFoundry Process
 
@@ -78,10 +70,7 @@ reported by `cf orgs`.
 > :warning: This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
-<details open>
-<summary><b>General Attributes:</b></summary>
-
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
 | [`cloudfoundry.process.id`](/docs/registry/attributes/cloudfoundry.md) | string | The UID identifying the process. [5] | `218fc5a9-a5f1-4b54-aa05-46717d0ab26d` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
 | [`cloudfoundry.process.type`](/docs/registry/attributes/cloudfoundry.md) | string | The type of process. [6] | `web` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
@@ -94,7 +83,6 @@ For system components, this could be the actual PID.
 **[6] `cloudfoundry.process.type`:** CloudFoundry applications can consist of multiple jobs. Usually the
 main process will be of type `web`. There can be additional background
 tasks or side-cars with different process types.
-</details>
 
 ## CloudFoundry Space
 
@@ -109,10 +97,7 @@ tasks or side-cars with different process types.
 > :warning: This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
-<details open>
-<summary><b>General Attributes:</b></summary>
-
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
 | [`cloudfoundry.space.id`](/docs/registry/attributes/cloudfoundry.md) | string | The guid of the CloudFoundry space the application is running in. [7] | `218fc5a9-a5f1-4b54-aa05-46717d0ab26d` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
 | [`cloudfoundry.space.name`](/docs/registry/attributes/cloudfoundry.md) | string | The name of the CloudFoundry space the application is running in. [8] | `my-space-name` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
@@ -124,7 +109,6 @@ reported by `cf space <space-name> --guid`.
 **[8] `cloudfoundry.space.name`:** Application instrumentation should use the value from environment
 variable `VCAP_APPLICATION.space_name`. This is the same value as
 reported by `cf spaces`.
-</details>
 
 ## CloudFoundry System
 
@@ -139,10 +123,7 @@ reported by `cf spaces`.
 > :warning: This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
-<details open>
-<summary><b>General Attributes:</b></summary>
-
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
 | [`cloudfoundry.system.id`](/docs/registry/attributes/cloudfoundry.md) | string | A guid or another name describing the event source. [9] | `cf/gorouter` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
 | [`cloudfoundry.system.instance.id`](/docs/registry/attributes/cloudfoundry.md) | string | A guid describing the concrete instance of the event source. [10] | `218fc5a9-a5f1-4b54-aa05-46717d0ab26d` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
@@ -164,7 +145,6 @@ supposed to contain the vm id for CloudFoundry components.
 When system components are instrumented, values from the
 [Bosh spec](https://bosh.io/docs/jobs/#properties-spec)
 should be used. The `system.instance.id` should be set to `spec.id`.
-</details>
 
 
 <!-- markdownlint-restore -->

@@ -50,10 +50,7 @@ Defines feature flag evaluation as an event.
 
 A `feature_flag.evaluation` event SHOULD be emitted whenever a feature flag value is evaluated, which may happen many times over the course of an application lifecycle. For example, a website A/B testing different animations may evaluate a flag each time a button is clicked. A `feature_flag.evaluation` event is emitted on each evaluation even if the result is the same.
 
-<details open>
-<summary><b>General Attributes:</b></summary>
-
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
 | [`feature_flag.key`](/docs/registry/attributes/feature-flag.md) | string | The lookup key of the feature flag. | `logo-color` | `Required` | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |  Any  |
 | [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [1] | `provider_not_ready`; `targeting_key_missing`; `provider_fatal`; `general` | `Conditionally Required` [2] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any  |
@@ -123,7 +120,6 @@ For example, the variant `red` maybe be used for the value `#c05543`.
 | `static` | The resolved value is static (no dynamic evaluation). | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | `targeting_match` | The resolved value was the result of a dynamic evaluation, such as a rule or specific user-targeting. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | `unknown` | The reason for the resolved value could not be determined. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

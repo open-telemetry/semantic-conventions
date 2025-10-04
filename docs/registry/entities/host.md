@@ -18,10 +18,7 @@
 > :warning: This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
-<details open>
-<summary><b>General Attributes:</b></summary>
-
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
 | [`host.arch`](/docs/registry/attributes/host.md) | string | The CPU architecture the host system is running on. | `amd64`; `arm32`; `arm64` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
 | [`host.id`](/docs/registry/attributes/host.md) | string | Unique host ID. For Cloud, this must be the instance_id assigned by the cloud provider. For non-containerized systems, this should be the `machine-id`. See the table below for the sources to use to determine the `machine-id` based on operating system. [1] | `fdbf79e8af94cb7f9e8df36789187052` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
@@ -77,7 +74,6 @@ privileged lookup of `host.id` is required, the value should be injected via the
 | `ppc64` | 64-bit PowerPC | ![Development](https://img.shields.io/badge/-development-blue) |
 | `s390x` | IBM z/Architecture | ![Development](https://img.shields.io/badge/-development-blue) |
 | `x86` | 32-bit x86 | ![Development](https://img.shields.io/badge/-development-blue) |
-</details>
 
 ## Host CPU
 
@@ -92,10 +88,7 @@ privileged lookup of `host.id` is required, the value should be injected via the
 > :warning: This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
-<details open>
-<summary><b>General Attributes:</b></summary>
-
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
 | [`host.cpu.cache.l2.size`](/docs/registry/attributes/host.md) | int | The amount of level 2 memory cache available to the processor (in Bytes). | `12288000` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
 | [`host.cpu.family`](/docs/registry/attributes/host.md) | string | Family or generation of the CPU. | `6`; `PA-RISC 1.1e` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
@@ -105,7 +98,6 @@ privileged lookup of `host.id` is required, the value should be injected via the
 | [`host.cpu.vendor.id`](/docs/registry/attributes/host.md) | string | Processor manufacturer identifier. A maximum 12-character string. [4] | `GenuineIntel` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
 
 **[4] `host.cpu.vendor.id`:** [CPUID](https://wiki.osdev.org/CPUID) command returns the vendor ID string in EBX, EDX and ECX registers. Writing these to memory in this order results in a 12-character string.
-</details>
 
 
 <!-- markdownlint-restore -->

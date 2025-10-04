@@ -30,10 +30,7 @@ looking confusing.
 
 **Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
 
-<details open>
-<summary><b>General Attributes:</b></summary>
-
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
 | [`db.operation.name`](/docs/registry/attributes/db.md) | string | The Redis command name. [1] | `HMSET`; `GET`; `SET` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Span Creation  |
 | [`db.namespace`](/docs/registry/attributes/db.md) | string | The [database index] associated with the connection, represented as a string. [2] | `0`; `1`; `15` | `Conditionally Required` If and only if it can be captured reliably. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Span Creation  |
@@ -89,7 +86,6 @@ The value provided for `db.query.text` SHOULD correspond to the syntax of the Re
 | Value  | Description | Stability |
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

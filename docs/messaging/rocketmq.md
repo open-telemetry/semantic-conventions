@@ -49,10 +49,7 @@ Specific attributes for Apache RocketMQ are defined below.
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-<details open>
-<summary><b>General Attributes:</b></summary>
-
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
 | [`messaging.consumer.group.name`](/docs/registry/attributes/messaging.md) | string | RocketMQ [consumer group name](https://rocketmq.apache.org/docs/domainModel/07consumergroup). | `my-group`; `indexer` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Span Creation  |
 | [`messaging.operation.name`](/docs/registry/attributes/messaging.md) | string | The system-specific name of the messaging operation. | `ack`; `nack`; `send` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Span Creation  |
@@ -155,7 +152,6 @@ body size should be used.
 | `fifo` | FIFO message | ![Development](https://img.shields.io/badge/-development-blue) |
 | `normal` | Normal message | ![Development](https://img.shields.io/badge/-development-blue) |
 | `transaction` | Transaction message | ![Development](https://img.shields.io/badge/-development-blue) |
-</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

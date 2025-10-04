@@ -30,10 +30,7 @@ They may be used in any Profiles record they apply to.
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-<details open>
-<summary><b>General Attributes:</b></summary>
-
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
 | [`profile.frame.type`](/docs/registry/attributes/profile.md) | string | Describes the interpreter or compiler of a single frame. | `cpython` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
 
@@ -55,7 +52,6 @@ They may be used in any Profiles record they apply to.
 | `ruby` | [Ruby](https://wikipedia.org/wiki/Ruby_(programming_language)) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `rust` | [Rust](https://wikipedia.org/wiki/Rust_(programming_language)) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `v8js` | [V8JS](https://wikipedia.org/wiki/V8_(JavaScript_engine)) | ![Development](https://img.shields.io/badge/-development-blue) |
-</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -78,17 +74,13 @@ They may be used in any Profiles record they apply to.
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-<details open>
-<summary><b>General Attributes:</b></summary>
-
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
 | [`pprof.location.is_folded`](/docs/registry/attributes/pprof.md) | boolean | Provides an indication that multiple symbols map to this location's address, for example due to identical code folding by the linker. In that case the line information represents one of the multiple symbols. This field must be recomputed when the symbolization state of the profile changes. |  | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
 | [`pprof.mapping.has_filenames`](/docs/registry/attributes/pprof.md) | boolean | Indicates that there are filenames related to this mapping. |  | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
 | [`pprof.mapping.has_functions`](/docs/registry/attributes/pprof.md) | boolean | Indicates that there are functions related to this mapping. |  | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
 | [`pprof.mapping.has_inline_frames`](/docs/registry/attributes/pprof.md) | boolean | Indicates that there are inline frames related to this mapping. |  | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
 | [`pprof.mapping.has_line_numbers`](/docs/registry/attributes/pprof.md) | boolean | Indicates that there are line numbers related to this mapping. |  | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
-</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

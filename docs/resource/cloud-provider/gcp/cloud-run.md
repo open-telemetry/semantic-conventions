@@ -17,14 +17,10 @@ These conventions are recommended for resources running on Cloud Run.
 
 **Description:** Resource used by Google Cloud Run.
 
-<details open>
-<summary><b>General Attributes:</b></summary>
-
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
 | [`gcp.cloud_run.job.execution`](/docs/registry/attributes/gcp.md) | string | The name of the Cloud Run [execution](https://cloud.google.com/run/docs/managing/job-executions) being run for the Job, as set by the [`CLOUD_RUN_EXECUTION`](https://cloud.google.com/run/docs/container-contract#jobs-env-vars) environment variable. | `job-name-xxxx`; `sample-job-mdw84` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
 | [`gcp.cloud_run.job.task_index`](/docs/registry/attributes/gcp.md) | int | The index for a task within an execution as provided by the [`CLOUD_RUN_TASK_INDEX`](https://cloud.google.com/run/docs/container-contract#jobs-env-vars) environment variable. | `0`; `1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
-</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

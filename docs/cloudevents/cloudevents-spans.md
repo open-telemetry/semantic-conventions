@@ -54,17 +54,13 @@ attributes on spans created from the conventions described above.
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-<details open>
-<summary><b>General Attributes:</b></summary>
-
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
 | [`cloudevents.event_id`](/docs/registry/attributes/cloudevents.md) | string | The [event_id](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#id) uniquely identifies the event. | `123e4567-e89b-12d3-a456-426614174000`; `0001` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
 | [`cloudevents.event_source`](/docs/registry/attributes/cloudevents.md) | string | The [source](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#source-1) identifies the context in which an event happened. | `https://github.com/cloudevents`; `/cloudevents/spec/pull/123`; `my-service` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
 | [`cloudevents.event_spec_version`](/docs/registry/attributes/cloudevents.md) | string | The [version of the CloudEvents specification](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#specversion) which the event uses. | `1.0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
 | [`cloudevents.event_subject`](/docs/registry/attributes/cloudevents.md) | string | The [subject](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#subject) of the event in the context of the event producer (identified by source). | `mynewfile.jpg` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
 | [`cloudevents.event_type`](/docs/registry/attributes/cloudevents.md) | string | The [event_type](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#type) contains a value describing the type of event related to the originating occurrence. | `com.github.pull_request.opened`; `com.example.object.deleted.v2` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
-</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

@@ -36,10 +36,7 @@ Spans representing calls to a Oracle SQL Database adhere to the general [Semanti
 
 **Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
 
-<details open>
-<summary><b>General Attributes:</b></summary>
-
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
 | [`db.namespace`](/docs/registry/attributes/db.md) | string | The database associated with the connection, qualified by the instance name, database name and service name. [1] | `ORCL1\|PDB1\|db_high.adb.oraclecloud.com`; `ORCL1\|DB1\|db_low.adb.oraclecloud.com`; `ORCL1\|DB1\|order-processing-service` | `Conditionally Required` If available without an additional network call. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Span Creation  |
 | [`db.response.status_code`](/docs/registry/attributes/db.md) | string | [Oracle Database error number](https://docs.oracle.com/en/error-help/db/) recorded as a string. [2] | `ORA-02813`; `ORA-02613` | `Conditionally Required` If response has ended with warning or an error. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any  |
@@ -134,7 +131,6 @@ Examples:
 | Value  | Description | Stability |
 |---|---|---|
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

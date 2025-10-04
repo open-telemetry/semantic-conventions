@@ -13,10 +13,7 @@
 
 **Description:** The device on which the process represented by this resource is running.
 
-<details open>
-<summary><b>General Attributes:</b></summary>
-
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
 | [`device.manufacturer`](/docs/registry/attributes/device.md) | string | The name of the device manufacturer [1] | `Apple`; `Samsung` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
 | [`device.model.identifier`](/docs/registry/attributes/device.md) | string | The model identifier for the device [2] | `iPhone3,4`; `SM-G920F` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
@@ -45,7 +42,6 @@ More information about Android identifier best practices can be found in the [An
 > Any instrumentation providing this identifier MUST implement it as an opt-in feature.
 >
 > See [`app.installation.id`](/docs/registry/attributes/app.md#app-installation-id) for a more privacy-preserving alternative.
-</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

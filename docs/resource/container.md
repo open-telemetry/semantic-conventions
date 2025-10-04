@@ -13,10 +13,7 @@
 
 **Description:** A container instance.
 
-<details open>
-<summary><b>General Attributes:</b></summary>
-
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
 | [`container.id`](/docs/registry/attributes/container.md) | string | Container ID. Usually a UUID, as for example used to [identify Docker containers](https://docs.docker.com/engine/containers/run/#container-identification). The UUID might be abbreviated. | `a3bf90e006b2` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
 | [`container.label.<key>`](/docs/registry/attributes/container.md) | string | Container labels, `<key>` being the label name, the value being the label value. [1] | `nginx` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
@@ -32,7 +29,6 @@
 An example can be found in [Example Image Manifest](https://github.com/opencontainers/image-spec/blob/main/manifest.md#example-image-manifest).
 
 **[3] `container.command`:** If using embedded credentials or sensitive data, it is recommended to remove them to prevent potential leakage.
-</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

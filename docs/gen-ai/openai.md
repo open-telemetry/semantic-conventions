@@ -65,10 +65,7 @@ Semantic Conventions for [OpenAI](https://openai.com/) client spans extend and o
 
 **Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
 
-<details open>
-<summary><b>General Attributes:</b></summary>
-
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
 | [`gen_ai.operation.name`](/docs/registry/attributes/gen-ai.md) | string | The name of the operation being performed. [1] | `chat`; `generate_content`; `text_completion` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
 | [`gen_ai.request.model`](/docs/registry/attributes/gen-ai.md) | string | The name of the GenAI model a request is being made to. [2] | `gpt-4` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
@@ -252,7 +249,6 @@ populating this attribute.
 |---|---|---|
 | `auto` | The system will utilize scale tier credits until they are exhausted. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `default` | The system will utilize the default scale tier. | ![Development](https://img.shields.io/badge/-development-blue) |
-</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -281,14 +277,10 @@ Additional attributes:
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-<details open>
-<summary><b>General Attributes:</b></summary>
-
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
 | [`openai.response.service_tier`](/docs/registry/attributes/openai.md) | string | The service tier used for the response. | `scale`; `default` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
 | [`openai.response.system_fingerprint`](/docs/registry/attributes/openai.md) | string | A fingerprint to track any eventual change in the Generative AI environment. | `fp_44709d6fcb` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
-</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -308,14 +300,10 @@ Additional attributes:
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-<details open>
-<summary><b>General Attributes:</b></summary>
-
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
 | [`openai.response.service_tier`](/docs/registry/attributes/openai.md) | string | The service tier used for the response. | `scale`; `default` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
 | [`openai.response.system_fingerprint`](/docs/registry/attributes/openai.md) | string | A fingerprint to track any eventual change in the Generative AI environment. | `fp_44709d6fcb` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
-</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

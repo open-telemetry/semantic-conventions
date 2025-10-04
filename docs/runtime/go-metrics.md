@@ -49,10 +49,8 @@ This metric is [recommended][MetricRecommended].
 | `go.memory.used` | UpDownCounter | `By` | Memory used by the Go runtime. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **[1]:** Computed from `(/memory/classes/total:bytes - /memory/classes/heap/released:bytes)`.
-<details open>
-<summary><b>General Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
 |---|---|---|---|---|---|---|
 | [`go.memory.type`](/docs/registry/attributes/go.md) | string | The type of memory. | `other`; `stack` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
 
@@ -66,7 +64,6 @@ This metric is [recommended][MetricRecommended].
 | `stack` | Memory allocated from the heap that is reserved for stack space, whether or not it is currently in-use. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1]:** Computed from `/memory/classes/heap/stacks:bytes`.
-</details>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
