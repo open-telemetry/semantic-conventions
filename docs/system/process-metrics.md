@@ -297,8 +297,8 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `involuntary` | involuntary | ![Development](https://img.shields.io/badge/-development-blue) |
-| `voluntary` | voluntary | ![Development](https://img.shields.io/badge/-development-blue) |
+| `involuntary` | A context switch that occurs when a process was preempted by the OS, typically when the time slice expires. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `voluntary` | A context switch that occurs when a process willingly yields control of the CPU, typically to wait for I/O operations or other events. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -322,7 +322,7 @@ This metric is [recommended][MetricRecommended].
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`process.paging.fault_type`](/docs/registry/attributes/process.md) | string | The type of page fault for this data point. Type `major` is for major/hard page faults, and `minor` is for minor/soft page faults. | `major`; `minor` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`process.paging.fault_type`](/docs/registry/attributes/process.md) | string | The type of page fault for this data point. | `major`; `minor` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -330,8 +330,8 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `major` | major | ![Development](https://img.shields.io/badge/-development-blue) |
-| `minor` | minor | ![Development](https://img.shields.io/badge/-development-blue) |
+| `major` | Major page fault. Sometimes referred to as hard page faults. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `minor` | Minor page fault. Sometimes referred to as soft page faults. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
