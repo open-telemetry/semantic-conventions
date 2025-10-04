@@ -119,8 +119,8 @@ The following attributes SHOULD be set:
 
 | Value  | Description | Stability |
 |---|---|---|
-| `receive` | Network packet Received | ![Development](https://img.shields.io/badge/-development-blue) |
-| `transmit` | Network packet Transmitted | ![Development](https://img.shields.io/badge/-development-blue) |
+| `receive` | Data is being received from the network. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `transmit` | Data is being transmitted across the network. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

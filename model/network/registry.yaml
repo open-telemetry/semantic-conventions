@@ -230,11 +230,11 @@ groups:
           members:
             - id: transmit
               value: 'transmit'
-              brief: Network packet Transmitted
+              brief: Data is being transmitted across the network.
               stability: development
             - id: receive
               value: 'receive'
-              brief: Network packet Received
+              brief: Data is being received from the network.
               stability: development
         stability: development
         brief: "The network IO operation direction."
