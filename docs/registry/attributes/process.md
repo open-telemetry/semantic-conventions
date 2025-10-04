@@ -68,8 +68,8 @@ with value `"/usr/local/bin:/usr/bin"`.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `involuntary` | Process involuntarily context-switched because the time slice expired. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `voluntary` | Process voluntarily context-switched which could be while waiting for an I/O operation to complete. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `involuntary` | A context switch that occurs when a process was preempted by the OS, typically when the time slice expires. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `voluntary` | A context switch that occurs when a process willingly yields control of the CPU, typically to wait for I/O operations or other events. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -77,8 +77,8 @@ with value `"/usr/local/bin:/usr/bin"`.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `major` | Major/hard page faults | ![Development](https://img.shields.io/badge/-development-blue) |
-| `minor` | Minor/soft page faults | ![Development](https://img.shields.io/badge/-development-blue) |
+| `major` | Major page fault. Sometimes referred to as hard page faults. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `minor` | Minor page fault. Sometimes referred to as soft page faults. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ## Process Linux Attributes
 
@@ -106,8 +106,8 @@ Deprecated process attributes.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `involuntary` | involuntary | ![Development](https://img.shields.io/badge/-development-blue) |
-| `voluntary` | voluntary | ![Development](https://img.shields.io/badge/-development-blue) |
+| `involuntary` | A context switch that occurs when a process was preempted by the OS, typically when the time slice expires. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `voluntary` | A context switch that occurs when a process willingly yields control of the CPU, typically to wait for I/O operations or other events. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 

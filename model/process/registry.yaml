@@ -223,11 +223,11 @@ groups:
           members:
             - id: voluntary
               value: 'voluntary'
-              brief: Process voluntarily context-switched which could be while waiting for an I/O operation to complete.
+              brief: 'A context switch that occurs when a process willingly yields control of the CPU, typically to wait for I/O operations or other events.'
               stability: development
             - id: involuntary
               value: 'involuntary'
-              brief: Process involuntarily context-switched because the time slice expired.
+              brief: 'A context switch that occurs when a process was preempted by the OS, typically when the time slice expires.'
               stability: development
         stability: development
       - id: process.paging.fault_type
@@ -236,11 +236,11 @@ groups:
           members:
             - id: major
               value: 'major'
-              brief: Major/hard page faults
+              brief: Major page fault. Sometimes referred to as hard page faults.
               stability: development
             - id: minor
               value: 'minor'
-              brief: Minor/soft page faults
+              brief: Minor page fault. Sometimes referred to as soft page faults.
               stability: development
         stability: development
       - id: process.environment_variable

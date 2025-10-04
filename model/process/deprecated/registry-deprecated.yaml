@@ -43,8 +43,10 @@ groups:
           members:
             - id: voluntary
               value: 'voluntary'
+              brief: 'A context switch that occurs when a process willingly yields control of the CPU, typically to wait for I/O operations or other events.'
               stability: development
             - id: involuntary
               value: 'involuntary'
+              brief: 'A context switch that occurs when a process was preempted by the OS, typically when the time slice expires.'
               stability: development
         stability: development
