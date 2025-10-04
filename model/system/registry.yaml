@@ -22,7 +22,7 @@ groups:
             - id: used
               value: 'used'
               stability: development
-              brief: Used virtual memory.
+              brief: Memory that is being used by user-space programs, page cache or kernel.
               note: >
                 Calculation based on the operating system metrics.
                 On Linux, this corresponds to "MemTotal - MemAvailable" from /proc/meminfo, which
@@ -31,7 +31,10 @@ groups:
                 a fallback to those older formulas may be used.
             - id: free
               value: 'free'
-              brief: Free Virtual memory.
+              brief: Memory that can be used by user-space programs, page cache or kernel.
+              note: >
+                Calculation based on the operating system metrics.
+                On Linux, this corresponds to "LowFree + HighFree" from /proc/meminfo.
               stability: development
             - id: shared
               value: 'shared'
@@ -42,11 +45,13 @@ groups:
                 note: "Removed, report shared memory usage with `metric.system.memory.shared` metric"
             - id: buffers
               value: 'buffers'
-              brief: Buffered virtual memory.
+              brief: Relatively temporary storage for raw disk blocks.
+              note: Shouldn't get tremendously large (20 MB or so).
               stability: development
             - id: cached
               value: 'cached'
-              brief: Cached virtual memory.
+              brief: In-memory cache for files read from the disk (the page cache).
+              note: Doesn't include SwapCached.
               stability: development
         stability: development
         brief: "The memory state"
@@ -62,11 +67,15 @@ groups:
           members:
             - id: used
               value: 'used'
-              brief: Used memory for paging.
+              brief: Memory which is being used for paging.
+              note: >
+                On linux this is calculated as the total - free column from '/proc/swaps'
               stability: development
             - id: free
               value: 'free'
-              brief: Free memory for paging.
+              brief: Memory which is available for paging without the page/swap file needing to be expanded.
+              note: >
+                On linux this is the free column from '/proc/swaps'
               stability: development
         stability: development
         brief: "The memory paging state"
@@ -90,11 +99,11 @@ groups:
           members:
             - id: in
               value: 'in'
-              brief: Incoming paging.
+              brief: Data is coming in to the page/swap area, otherwise known as writing.
               stability: development
             - id: out
               value: 'out'
-              brief: Outgoing paging.
+              brief: Data is coming out of the page/swap area, otherwise known as reading.
               stability: development
         stability: development
         brief: "The paging access direction"
@@ -110,15 +119,16 @@ groups:
           members:
             - id: used
               value: 'used'
-              brief: Filesystem has been Used.
+              brief: Filesystem storage space that has data written to it.
               stability: development
             - id: free
               value: 'free'
-              brief: Filesystem which is Free.
+              brief: Filesystem storage space that could have have data written to it.
               stability: development
             - id: reserved
               value: 'reserved'
-              brief: Filesystem which has been Reserved.
+              brief: Filesystem storage space that has been set aside for a dedicated purpose.
+              note: This space could be used for system restore points, OS updates etc.
               stability: development
         stability: development
         examples: ["used"]
@@ -177,11 +187,14 @@ groups:
               stability: development
             - id: sleeping
               value: 'sleeping'
-              brief: The process is currently sleeping.
+              brief: The process is currently sleeping which may interruptable.
+              note: >
+                This includes both interruptable (waiting for an event to complete) and
+                uninterruptable (usually I/O) sleep states.
               stability: development
             - id: stopped
               value: 'stopped'
-              brief: The process has been stopped.
+              brief: The process has been stopped by a job control signal.
               stability: development
             - id: defunct
               value: 'defunct'

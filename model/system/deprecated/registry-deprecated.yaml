@@ -9,19 +9,22 @@ groups:
           members:
             - id: running
               value: 'running'
-              brief: Running
+              brief: The process is currently running.
               stability: development
             - id: sleeping
               value: 'sleeping'
-              brief: Sleeping
+              brief: The process is currently sleeping which may interruptable.
+              note: >
+                This includes both interruptable (waiting for an event to complete) and
+                uninterruptable (usually I/O) sleep states.
               stability: development
             - id: stopped
               value: 'stopped'
-              brief: Stopped
+              brief: The process has been stopped by a job control signal.
               stability: development
             - id: defunct
               value: 'defunct'
-              brief: Defunct
+              brief: The process has exited and has a parent, but has not yet been waited for by the parent.
               stability: development
         brief: "Deprecated, use `system.process.status` instead."
         deprecated:
@@ -34,31 +37,31 @@ groups:
           members:
             - id: user
               value: 'user'
-              brief: User
+              brief: Running un-niced user processes.
               stability: development
             - id: system
               value: 'system'
-              brief: System
+              brief: Running system/kernel processes
               stability: development
             - id: nice
               value: 'nice'
-              brief: Nice
+              brief: Running niced user processes.
               stability: development
             - id: idle
               value: 'idle'
-              brief: Idle
+              brief: In the kernel idle handler.
               stability: development
             - id: iowait
               value: 'iowait'
-              brief: IO Wait
+              brief: Waiting for I/O completion.
               stability: development
             - id: interrupt
               value: 'interrupt'
-              brief: Interrupt
+              brief: Servicing interrupts which could be software or hardware interrupts.
               stability: development
             - id: steal
               value: 'steal'
-              brief: Steal
+              brief: Time stolen from this VM by the hypervisor.
               stability: development
         brief: "Deprecated, use `cpu.mode` instead."
         stability: development
@@ -74,15 +77,15 @@ groups:
           members:
             - id: close
               value: 'close'
-              brief: Close
+              brief: Represents no connection state at all.
               stability: development
             - id: close_wait
               value: 'close_wait'
-              brief: Close Wait
+              brief: This endpoint has received a close request from the remote endpoint and this TCP is now waiting for a connection termination request from the local application.
               stability: development
             - id: closing
               value: 'closing'
-              brief: Closing
+              brief: Waiting for a connection termination request acknowledgment from the remote TCP.
               stability: development
             - id: delete
               value: 'delete'
@@ -90,35 +93,38 @@ groups:
               stability: development
             - id: established
               value: 'established'
-              brief: Established
+              brief: Represents a fully established connection.
               stability: development
             - id: fin_wait_1
               value: 'fin_wait_1'
-              brief: Fin Wait 1
+              brief: Waiting for an acknowledgment of the connection termination request or for a simultaneous connection termination request from the remote TCP.
               stability: development
             - id: fin_wait_2
               value: 'fin_wait_2'
-              brief: Fin Wait 2
+              brief: Waiting for a connection termination request from the remote TCP after this endpoint has sent its connection termination request.
               stability: development
             - id: last_ack
               value: 'last_ack'
-              brief: Last Ack
+              brief: Waiting for an acknowledgment of the connection termination request previously sent to the remote TCP.
               stability: development
             - id: listen
               value: 'listen'
-              brief: Listen
+              brief: Waiting for a connection request from a remote TCP application.
+              note: This is the state in which you can find the listening socket of a local TCP server.
               stability: development
             - id: syn_recv
               value: 'syn_recv'
-              brief: Syn Recv
+              brief: >
+                This endpoint has received a connection request and sent an acknowledgment.
+                This endpoint is waiting for final acknowledgment that the other endpoint did receive this endpoint's acknowledgment of the original connection request.
               stability: development
             - id: syn_sent
               value: 'syn_sent'
-              brief: Syn Sent
+              brief: Waiting for an acknowledgment from the remote endpoint after having sent a connection request.
               stability: development
             - id: time_wait
               value: 'time_wait'
-              brief: Time Wait
+              brief: Waiting for enough time to pass to be sure the remote TCP received the acknowledgment of its connection termination request.
               stability: development
         stability: development
         brief: "Deprecated, use `network.connection.state` instead."
