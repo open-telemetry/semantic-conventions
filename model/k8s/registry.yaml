@@ -587,12 +587,15 @@ groups:
           members:
             - id: condition_true
               value: 'true'
+              brief: "True"
               stability: development
             - id: condition_false
               value: 'false'
+              brief: "False"
               stability: development
             - id: condition_unknown
               value: 'unknown'
+              brief: Unknown
               stability: development
       - id: k8s.container.status.state
         stability: experimental
