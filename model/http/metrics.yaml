@@ -143,6 +143,32 @@ groups:
       header. For requests using transport encoding, this should be the compressed size.
     extends: metric_attributes.http.client.experimental
 
+  - id: metric.http.client.request.time_in_queue
+    type: metric
+    metric_name: http.client.request.time_in_queue
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: release_candidate
+    brief: "The amount of time requests spent in a queue waiting for an available connection."
+    note: >
+      Meter name: `System.Net.Http`; Added in: .NET 8.0
+    instrument: histogram
+    unit: "s"
+    attributes:
+      - ref: http.request.method
+        requirement_level: recommended
+      - ref: network.protocol.version
+        requirement_level: recommended
+      - ref: server.address
+        requirement_level: required
+      - ref: server.port
+        requirement_level:
+          conditionally_required: If not the default (`80` for `http` scheme, 443 for `https`).
+      - ref: url.scheme
+        requirement_level: recommended
+        examples: ["http", "https"]
+
   - id: metric.http.client.response.body.size
     type: metric
     metric_name: http.client.response.body.size
