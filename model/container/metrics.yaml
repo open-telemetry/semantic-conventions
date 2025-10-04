@@ -143,7 +143,7 @@ groups:
       - container
     brief: "Container memory paging faults."
     attributes:
-      - ref: system.paging.type
+      - ref: system.paging.fault_type
     note: >
       In general, this metric can be derived from
       [cadvisor](https://github.com/google/cadvisor/blob/v0.53.0/docs/storage/prometheus.md#prometheus-container-metrics)

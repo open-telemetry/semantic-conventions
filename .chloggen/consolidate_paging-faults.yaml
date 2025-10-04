@@ -7,7 +7,7 @@
 change_type: breaking
 
 # The name of the area of concern in the attributes-registry, (e.g. http, cloud, db)
-component: system, process
+component: system, process, container, k8s
 
 # A brief description of the change. Surround your text with quotes ("") if it needs to start with a backtick (`).
 note: The `system.paging.type` and `process.paging.fault_type` attribute is consolidated into the single attribute `system.paging.fault_type`
