@@ -35,9 +35,11 @@ Describes Filesystem attributes
 
 | Value  | Description | Stability |
 |---|---|---|
-| `free` | Filesystem which is Free. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `reserved` | Filesystem which has been Reserved. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `used` | Filesystem has been Used. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `free` | Filesystem storage space that could have have data written to it. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `reserved` | Filesystem storage space that has been set aside for a dedicated purpose. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `used` | Filesystem storage space that has data written to it. | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**[1]:** This space could be used for system restore points, OS updates etc.
 
 ---
 
@@ -66,12 +68,18 @@ Describes System Memory attributes
 
 | Value  | Description | Stability |
 |---|---|---|
-| `buffers` | Buffered virtual memory. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `cached` | Cached virtual memory. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `free` | Free Virtual memory. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `used` | Used virtual memory. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `buffers` | Relatively temporary storage for raw disk blocks. [2] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `cached` | In-memory cache for files read from the disk (the page cache). [3] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `free` | Memory that can be used by user-space programs, page cache or kernel. [4] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `used` | Memory that is being used by user-space programs, page cache or kernel. [5] | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[1]:** Calculation based on the operating system metrics. On Linux, this corresponds to "MemTotal - MemAvailable" from /proc/meminfo, which more accurately reflects memory in active use by applications compared to older formulas based on free, cached, and buffers. If MemAvailable is not available, a fallback to those older formulas may be used.
+**[2]:** Shouldn't get tremendously large (20 MB or so).
+
+**[3]:** Doesn't include SwapCached.
+
+**[4]:** Calculation based on the operating system metrics. On Linux, this corresponds to "LowFree + HighFree" from /proc/meminfo.
+
+**[5]:** Calculation based on the operating system metrics. On Linux, this corresponds to "MemTotal - MemAvailable" from /proc/meminfo, which more accurately reflects memory in active use by applications compared to older formulas based on free, cached, and buffers. If MemAvailable is not available, a fallback to those older formulas may be used.
 
 ## System Paging Attributes
 
@@ -89,8 +97,8 @@ Describes System Memory Paging attributes
 
 | Value  | Description | Stability |
 |---|---|---|
-| `in` | Incoming paging. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `out` | Outgoing paging. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `in` | Data is coming in to the page/swap area, otherwise known as writing. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `out` | Data is coming out of the page/swap area, otherwise known as reading. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -107,8 +115,12 @@ Describes System Memory Paging attributes
 
 | Value  | Description | Stability |
 |---|---|---|
-| `free` | Free memory for paging. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `used` | Used memory for paging. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `free` | Memory which is available for paging without the page/swap file needing to be expanded. [6] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `used` | Memory which is being used for paging. [7] | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**[6]:** On linux this is the free column from '/proc/swaps'
+
+**[7]:** On linux this is calculated as the total - free column from '/proc/swaps'
 
 ## System Process Attributes
 
@@ -126,8 +138,10 @@ Describes System Process attributes
 |---|---|---|
 | `defunct` | The process has exited and has a parent, but has not yet been waited for by the parent. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `running` | The process is currently running. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `sleeping` | The process is currently sleeping. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `stopped` | The process has been stopped. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `sleeping` | The process is currently sleeping which may interruptable. [8] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `stopped` | The process has been stopped by a job control signal. | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**[8]:** This includes both interruptable (waiting for an event to complete) and uninterruptable (usually I/O) sleep states.
 
 ## Deprecated System Attributes
 
@@ -147,13 +161,13 @@ Deprecated system attributes.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `idle` | Idle | ![Development](https://img.shields.io/badge/-development-blue) |
-| `interrupt` | Interrupt | ![Development](https://img.shields.io/badge/-development-blue) |
-| `iowait` | IO Wait | ![Development](https://img.shields.io/badge/-development-blue) |
-| `nice` | Nice | ![Development](https://img.shields.io/badge/-development-blue) |
-| `steal` | Steal | ![Development](https://img.shields.io/badge/-development-blue) |
-| `system` | System | ![Development](https://img.shields.io/badge/-development-blue) |
-| `user` | User | ![Development](https://img.shields.io/badge/-development-blue) |
+| `idle` | In the kernel idle handler. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `interrupt` | Servicing interrupts which could be software or hardware interrupts. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `iowait` | Waiting for I/O completion. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `nice` | Running niced user processes. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `steal` | Time stolen from this VM by the hypervisor. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `system` | Running system/kernel processes | ![Development](https://img.shields.io/badge/-development-blue) |
+| `user` | Running un-niced user processes. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -161,18 +175,20 @@ Deprecated system attributes.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `close` | Close | ![Development](https://img.shields.io/badge/-development-blue) |
-| `close_wait` | Close Wait | ![Development](https://img.shields.io/badge/-development-blue) |
-| `closing` | Closing | ![Development](https://img.shields.io/badge/-development-blue) |
+| `close` | Represents no connection state at all. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `close_wait` | This endpoint has received a close request from the remote endpoint and this TCP is now waiting for a connection termination request from the local application. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `closing` | Waiting for a connection termination request acknowledgment from the remote TCP. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `delete` | Delete | ![Development](https://img.shields.io/badge/-development-blue) |
-| `established` | Established | ![Development](https://img.shields.io/badge/-development-blue) |
-| `fin_wait_1` | Fin Wait 1 | ![Development](https://img.shields.io/badge/-development-blue) |
-| `fin_wait_2` | Fin Wait 2 | ![Development](https://img.shields.io/badge/-development-blue) |
-| `last_ack` | Last Ack | ![Development](https://img.shields.io/badge/-development-blue) |
-| `listen` | Listen | ![Development](https://img.shields.io/badge/-development-blue) |
-| `syn_recv` | Syn Recv | ![Development](https://img.shields.io/badge/-development-blue) |
-| `syn_sent` | Syn Sent | ![Development](https://img.shields.io/badge/-development-blue) |
-| `time_wait` | Time Wait | ![Development](https://img.shields.io/badge/-development-blue) |
+| `established` | Represents a fully established connection. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `fin_wait_1` | Waiting for an acknowledgment of the connection termination request or for a simultaneous connection termination request from the remote TCP. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `fin_wait_2` | Waiting for a connection termination request from the remote TCP after this endpoint has sent its connection termination request. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `last_ack` | Waiting for an acknowledgment of the connection termination request previously sent to the remote TCP. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `listen` | Waiting for a connection request from a remote TCP application. [9] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `syn_recv` | This endpoint has received a connection request and sent an acknowledgment. This endpoint is waiting for final acknowledgment that the other endpoint did receive this endpoint's acknowledgment of the original connection request. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `syn_sent` | Waiting for an acknowledgment from the remote endpoint after having sent a connection request. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `time_wait` | Waiting for enough time to pass to be sure the remote TCP received the acknowledgment of its connection termination request. | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**[9]:** This is the state in which you can find the listening socket of a local TCP server.
 
 ---
 
@@ -189,7 +205,9 @@ Deprecated system attributes.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `defunct` | Defunct | ![Development](https://img.shields.io/badge/-development-blue) |
-| `running` | Running | ![Development](https://img.shields.io/badge/-development-blue) |
-| `sleeping` | Sleeping | ![Development](https://img.shields.io/badge/-development-blue) |
-| `stopped` | Stopped | ![Development](https://img.shields.io/badge/-development-blue) |
+| `defunct` | The process has exited and has a parent, but has not yet been waited for by the parent. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `running` | The process is currently running. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `sleeping` | The process is currently sleeping which may interruptable. [10] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `stopped` | The process has been stopped by a job control signal. | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**[10]:** This includes both interruptable (waiting for an event to complete) and uninterruptable (usually I/O) sleep states.
