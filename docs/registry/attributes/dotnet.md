@@ -7,9 +7,7 @@
 
 This document defines .NET related attributes.
 
-**Current Attributes:**
-
-| Key | Type | Summary | Example Values | Stability |
+| Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
 | <a id="dotnet-gc-heap-generation" href="#dotnet-gc-heap-generation">`dotnet.gc.heap.generation`</a> | string | Name of the garbage collector managed heap generation. | `gen0`; `gen1`; `gen2` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 

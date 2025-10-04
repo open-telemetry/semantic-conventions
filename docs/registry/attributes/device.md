@@ -7,9 +7,7 @@
 
 Describes device attributes.
 
-**Current Attributes:**
-
-| Key | Type | Summary | Example Values | Stability |
+| Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
 | <a id="device-id" href="#device-id">`device.id`</a> | string | A unique identifier representing the device [1] | `123456789012345`; `01:23:45:67:89:AB` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="device-manufacturer" href="#device-manufacturer">`device.manufacturer`</a> | string | The name of the device manufacturer [2] | `Apple`; `Samsung` | ![Development](https://img.shields.io/badge/-development-blue) |

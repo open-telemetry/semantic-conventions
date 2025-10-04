@@ -11,9 +11,7 @@
 
 This group defines the attributes used to describe telemetry in the context of databases.
 
-**Current Attributes:**
-
-| Key | Type | Summary | Example Values | Stability |
+| Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
 | <a id="db-client-connection-pool-name" href="#db-client-connection-pool-name">`db.client.connection.pool.name`</a> | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation SHOULD use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`, and `db.namespace`, formatted as `server.address:server.port/db.namespace`. Instrumentations that generate connection pool name following different patterns SHOULD document it. | `myDataSource` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="db-client-connection-state" href="#db-client-connection-state">`db.client.connection.state`</a> | string | The state of a connection in the pool | `idle` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -173,9 +171,9 @@ stored procedure name then that stored procedure name SHOULD be used.
 Describes deprecated database attributes.
 
 <details>
-<summary><b>Past Attributes:</b></summary>
+<summary><b>Deprecated Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | Deprecation Explanation |
+| Key | Value Type | Summary | Example Values | Deprecation Explanation |
 |---|---|---|---|---|
 | <a id="db-cassandra-consistency-level" href="#db-cassandra-consistency-level">`db.cassandra.consistency_level`</a> | string | Deprecated, use `cassandra.consistency.level` instead. | `all`; `each_quorum`; `quorum` |  Use `cassandra.consistency.level` instead.  |
 | <a id="db-cassandra-coordinator-dc" href="#db-cassandra-coordinator-dc">`db.cassandra.coordinator.dc`</a> | string | Deprecated, use `cassandra.coordinator.dc` instead. | `us-west-2` |  Use `cassandra.coordinator.dc` instead.  |
@@ -334,9 +332,9 @@ Describes deprecated database attributes.
 Describes deprecated db metrics attributes.
 
 <details>
-<summary><b>Past Attributes:</b></summary>
+<summary><b>Deprecated Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | Deprecation Explanation |
+| Key | Value Type | Summary | Example Values | Deprecation Explanation |
 |---|---|---|---|---|
 | <a id="db-client-connections-pool-name" href="#db-client-connections-pool-name">`db.client.connections.pool.name`</a> | string | Deprecated, use `db.client.connection.pool.name` instead. | `myDataSource` |  Use `db.client.connection.pool.name` instead.  |
 | <a id="db-client-connections-state" href="#db-client-connections-state">`db.client.connections.state`</a> | string | Deprecated, use `db.client.connection.state` instead. | `idle` |  Use `db.client.connection.state` instead.  |

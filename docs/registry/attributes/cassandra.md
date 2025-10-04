@@ -7,9 +7,7 @@
 
 This section defines attributes for Cassandra.
 
-**Current Attributes:**
-
-| Key | Type | Summary | Example Values | Stability |
+| Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
 | <a id="cassandra-consistency-level" href="#cassandra-consistency-level">`cassandra.consistency.level`</a> | string | The consistency level of the query. Based on consistency values from [CQL](https://docs.datastax.com/en/cassandra-oss/3.0/cassandra/dml/dmlConfigConsistency.html). | `all`; `each_quorum`; `quorum` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="cassandra-coordinator-dc" href="#cassandra-coordinator-dc">`cassandra.coordinator.dc`</a> | string | The data center of the coordinating node for a query. | `us-west-2` | ![Development](https://img.shields.io/badge/-development-blue) |
