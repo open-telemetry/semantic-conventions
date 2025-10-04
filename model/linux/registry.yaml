@@ -10,11 +10,11 @@ groups:
           members:
             - id: reclaimable
               value: 'reclaimable'
-              brief: Reclaimable Slab Memory
+              brief: Slab Memory that might be reclaimed on memory pressure, such as cache objects like dentry.
               stability: development
             - id: unreclaimable
               value: 'unreclaimable'
-              brief: Unreclaimable Slab Memory
+              brief: Slab Memory that cannot be reclaimed on memory pressure, such as in-use kernel data structures.
               stability: development
         stability: development
         brief: "The Linux Slab memory state"

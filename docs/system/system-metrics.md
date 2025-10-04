@@ -1234,8 +1234,8 @@ See also the [Slab allocator](https://blogs.oracle.com/linux/post/understanding-
 
 | Value  | Description | Stability |
 |---|---|---|
-| `reclaimable` | Reclaimable Slab Memory | ![Development](https://img.shields.io/badge/-development-blue) |
-| `unreclaimable` | Unreclaimable Slab Memory | ![Development](https://img.shields.io/badge/-development-blue) |
+| `reclaimable` | Slab Memory that might be reclaimed on memory pressure, such as cache objects like dentry. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `unreclaimable` | Slab Memory that cannot be reclaimed on memory pressure, such as in-use kernel data structures. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
