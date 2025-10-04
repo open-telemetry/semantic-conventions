@@ -7,9 +7,7 @@
 
 A service instance.
 
-**Current Attributes:**
-
-| Key | Type | Summary | Example Values | Stability |
+| Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
 | <a id="service-instance-id" href="#service-instance-id">`service.instance.id`</a> | string | The string ID of the service instance. [1] | `627cc493-f310-47de-96bd-71410b7dec09` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="service-name" href="#service-name">`service.name`</a> | string | Logical name of the service. [2] | `shoppingcart` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |

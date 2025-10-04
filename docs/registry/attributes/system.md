@@ -14,9 +14,7 @@
 
 Describes System attributes
 
-**Current Attributes:**
-
-| Key | Type | Summary | Example Values | Stability |
+| Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
 | <a id="system-device" href="#system-device">`system.device`</a> | string | The device identifier | `(identifier)` | ![Development](https://img.shields.io/badge/-development-blue) |
 
@@ -24,9 +22,7 @@ Describes System attributes
 
 Describes Filesystem attributes
 
-**Current Attributes:**
-
-| Key | Type | Summary | Example Values | Stability |
+| Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
 | <a id="system-filesystem-mode" href="#system-filesystem-mode">`system.filesystem.mode`</a> | string | The filesystem mode | `rw, ro` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="system-filesystem-mountpoint" href="#system-filesystem-mountpoint">`system.filesystem.mountpoint`</a> | string | The filesystem mount path | `/mnt/data` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -60,9 +56,7 @@ Describes Filesystem attributes
 
 Describes System Memory attributes
 
-**Current Attributes:**
-
-| Key | Type | Summary | Example Values | Stability |
+| Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
 | <a id="system-memory-state" href="#system-memory-state">`system.memory.state`</a> | string | The memory state | `free`; `cached` | ![Development](https://img.shields.io/badge/-development-blue) |
 
@@ -83,9 +77,7 @@ Describes System Memory attributes
 
 Describes System Memory Paging attributes
 
-**Current Attributes:**
-
-| Key | Type | Summary | Example Values | Stability |
+| Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
 | <a id="system-paging-direction" href="#system-paging-direction">`system.paging.direction`</a> | string | The paging access direction | `in` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="system-paging-fault-type" href="#system-paging-fault-type">`system.paging.fault.type`</a> | string | The paging fault type | `minor` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -122,9 +114,7 @@ Describes System Memory Paging attributes
 
 Describes System Process attributes
 
-**Current Attributes:**
-
-| Key | Type | Summary | Example Values | Stability |
+| Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
 | <a id="system-process-status" href="#system-process-status">`system.process.status`</a> | string | The process state, e.g., [Linux Process State Codes](https://man7.org/linux/man-pages/man1/ps.1.html#PROCESS_STATE_CODES) | `running` | ![Development](https://img.shields.io/badge/-development-blue) |
 
@@ -144,9 +134,9 @@ Describes System Process attributes
 Deprecated system attributes.
 
 <details>
-<summary><b>Past Attributes:</b></summary>
+<summary><b>Deprecated Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | Deprecation Explanation |
+| Key | Value Type | Summary | Example Values | Deprecation Explanation |
 |---|---|---|---|---|
 | <a id="system-cpu-logical-number" href="#system-cpu-logical-number">`system.cpu.logical_number`</a> | int | Deprecated, use `cpu.logical_number` instead. | `1` |  Use `cpu.logical_number` instead.  |
 | <a id="system-cpu-state" href="#system-cpu-state">`system.cpu.state`</a> | string | Deprecated, use `cpu.mode` instead. | `idle`; `interrupt` |  Use `cpu.mode` instead.  |

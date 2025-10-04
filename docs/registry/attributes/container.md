@@ -10,9 +10,7 @@
 
 A container instance.
 
-**Current Attributes:**
-
-| Key | Type | Summary | Example Values | Stability |
+| Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
 | <a id="container-command" href="#container-command">`container.command`</a> | string | The command used to run the container (i.e. the command name). [1] | `otelcontribcol` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="container-command-args" href="#container-command-args">`container.command_args`</a> | string[] | All the command arguments (including the command/executable itself) run by the container. | `["otelcontribcol", "--config", "config.yaml"]` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -49,9 +47,9 @@ The ID is assigned by the container runtime and can vary in different environmen
 Describes deprecated container attributes.
 
 <details>
-<summary><b>Past Attributes:</b></summary>
+<summary><b>Deprecated Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | Deprecation Explanation |
+| Key | Value Type | Summary | Example Values | Deprecation Explanation |
 |---|---|---|---|---|
 | <a id="container-cpu-state" href="#container-cpu-state">`container.cpu.state`</a> | string | Deprecated, use `cpu.mode` instead. | `user`; `kernel` |  Use `cpu.mode` instead.  |
 | <a id="container-labels" href="#container-labels">`container.labels.<key>`</a> | string | Deprecated, use `container.label` instead. | `nginx` |  Use `container.label` instead.  |

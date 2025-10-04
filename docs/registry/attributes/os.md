@@ -7,9 +7,7 @@
 
 The operating system (OS) on which the process represented by this resource is running.
 
-**Current Attributes:**
-
-| Key | Type | Summary | Example Values | Stability |
+| Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
 | <a id="os-build-id" href="#os-build-id">`os.build_id`</a> | string | Unique identifier for a particular build or compilation of the operating system. | `TQ3C.230805.001.B2`; `20E247`; `22621` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="os-description" href="#os-description">`os.description`</a> | string | Human readable (not intended to be parsed) OS version information, like e.g. reported by `ver` or `lsb_release -a` commands. | `Microsoft Windows [Version 10.0.18363.778]`; `Ubuntu 18.04.1 LTS` | ![Development](https://img.shields.io/badge/-development-blue) |

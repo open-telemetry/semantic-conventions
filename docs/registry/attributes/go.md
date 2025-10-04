@@ -7,9 +7,7 @@
 
 This document defines Go related attributes.
 
-**Current Attributes:**
-
-| Key | Type | Summary | Example Values | Stability |
+| Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
 | <a id="go-memory-type" href="#go-memory-type">`go.memory.type`</a> | string | The type of memory. | `other`; `stack` | ![Development](https://img.shields.io/badge/-development-blue) |
 

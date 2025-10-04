@@ -10,9 +10,7 @@
 
 This document defines semantic convention attributes in the HTTP namespace.
 
-**Current Attributes:**
-
-| Key | Type | Summary | Example Values | Stability |
+| Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
 | <a id="http-connection-state" href="#http-connection-state">`http.connection.state`</a> | string | State of the HTTP connection in the HTTP connection pool. | `active`; `idle` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="http-request-body-size" href="#http-request-body-size">`http.request.body.size`</a> | int | The size of the request payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size. | `3495` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -121,9 +119,9 @@ support custom route formatting. Instrumentations SHOULD document the format and
 Describes deprecated HTTP attributes.
 
 <details>
-<summary><b>Past Attributes:</b></summary>
+<summary><b>Deprecated Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | Deprecation Explanation |
+| Key | Value Type | Summary | Example Values | Deprecation Explanation |
 |---|---|---|---|---|
 | <a id="http-client-ip" href="#http-client-ip">`http.client_ip`</a> | string | Deprecated, use `client.address` instead. | `83.164.160.102` |  Use `client.address` instead.  |
 | <a id="http-flavor" href="#http-flavor">`http.flavor`</a> | string | Deprecated, use `network.protocol.name` and `network.protocol.version` instead. | `1.0`; `1.1`; `2.0` |  Split into `network.protocol.name` and `network.protocol.version`  |

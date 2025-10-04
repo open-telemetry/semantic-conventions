@@ -11,9 +11,7 @@
 
 An operating system process.
 
-**Current Attributes:**
-
-| Key | Type | Summary | Example Values | Stability |
+| Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
 | <a id="process-args-count" href="#process-args-count">`process.args_count`</a> | int | Length of the process.command_args array [1] | `4` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="process-command" href="#process-command">`process.command`</a> | string | The command used to launch the process (i.e. the command name). On Linux based systems, can be set to the zeroth string in `proc/[pid]/cmdline`. On Windows, can be set to the first parameter extracted from `GetCommandLineW`. | `cmd/otelcol` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -76,9 +74,7 @@ with value `"/usr/local/bin:/usr/bin"`.
 
 Describes Linux Process attributes
 
-**Current Attributes:**
-
-| Key | Type | Summary | Example Values | Stability |
+| Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
 | <a id="process-linux-cgroup" href="#process-linux-cgroup">`process.linux.cgroup`</a> | string | The control group associated with the process. [5] | `1:name=systemd:/user.slice/user-1000.slice/session-3.scope`; `0::/user.slice/user-1000.slice/user@1000.service/tmux-spawn-0267755b-4639-4a27-90ed-f19f88e53748.scope` | ![Development](https://img.shields.io/badge/-development-blue) |
 
@@ -89,9 +85,9 @@ Describes Linux Process attributes
 Deprecated process attributes.
 
 <details>
-<summary><b>Past Attributes:</b></summary>
+<summary><b>Deprecated Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | Deprecation Explanation |
+| Key | Value Type | Summary | Example Values | Deprecation Explanation |
 |---|---|---|---|---|
 | <a id="process-context-switch-type" href="#process-context-switch-type">`process.context_switch_type`</a> | string | "Deprecated, use `process.context_switch.type` instead." | `voluntary`; `involuntary` |  Use `process.context_switch.type` instead.  |
 | <a id="process-cpu-state" href="#process-cpu-state">`process.cpu.state`</a> | string | Deprecated, use `cpu.mode` instead. | `system`; `user`; `wait` |  Use `cpu.mode` instead.  |

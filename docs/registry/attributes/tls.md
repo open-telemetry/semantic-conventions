@@ -10,9 +10,7 @@
 
 This document defines semantic convention attributes in the TLS namespace.
 
-**Current Attributes:**
-
-| Key | Type | Summary | Example Values | Stability |
+| Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
 | <a id="tls-cipher" href="#tls-cipher">`tls.cipher`</a> | string | String indicating the [cipher](https://datatracker.ietf.org/doc/html/rfc5246#appendix-A.5) used during the current connection. [1] | `TLS_RSA_WITH_3DES_EDE_CBC_SHA`; `TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="tls-client-certificate" href="#tls-client-certificate">`tls.client.certificate`</a> | string | PEM-encoded stand-alone certificate offered by the client. This is usually mutually-exclusive of `client.certificate_chain` since this value also exists in that list. | `MII...` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -59,9 +57,9 @@ This document defines semantic convention attributes in the TLS namespace.
 Describes deprecated `tls` attributes.
 
 <details>
-<summary><b>Past Attributes:</b></summary>
+<summary><b>Deprecated Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | Deprecation Explanation |
+| Key | Value Type | Summary | Example Values | Deprecation Explanation |
 |---|---|---|---|---|
 | <a id="tls-client-server-name" href="#tls-client-server-name">`tls.client.server_name`</a> | string | Deprecated, use `server.address` instead. | `opentelemetry.io` |  Use `server.address` instead.  |
 

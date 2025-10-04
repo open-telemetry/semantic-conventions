@@ -10,9 +10,7 @@
 
 These attributes may be used for any network related operation.
 
-**Current Attributes:**
-
-| Key | Type | Summary | Example Values | Stability |
+| Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
 | <a id="network-carrier-icc" href="#network-carrier-icc">`network.carrier.icc`</a> | string | The ISO 3166-1 alpha-2 2-character country code associated with the mobile carrier network. | `DE` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="network-carrier-mcc" href="#network-carrier-mcc">`network.carrier.mcc`</a> | string | The mobile carrier country code. | `310` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -139,9 +137,9 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 These attributes may be used for any network related operation.
 
 <details>
-<summary><b>Past Attributes:</b></summary>
+<summary><b>Deprecated Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | Deprecation Explanation |
+| Key | Value Type | Summary | Example Values | Deprecation Explanation |
 |---|---|---|---|---|
 | <a id="net-host-ip" href="#net-host-ip">`net.host.ip`</a> | string | Deprecated, use `network.local.address`. | `192.168.0.1` |  Use `network.local.address` instead.  |
 | <a id="net-host-name" href="#net-host-name">`net.host.name`</a> | string | Deprecated, use `server.address`. | `example.com` |  Use `server.address` instead.  |

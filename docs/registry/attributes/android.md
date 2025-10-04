@@ -7,9 +7,7 @@
 
 The Android platform on which the Android application is running.
 
-**Current Attributes:**
-
-| Key | Type | Summary | Example Values | Stability |
+| Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
 | <a id="android-app-state" href="#android-app-state">`android.app.state`</a> | string | This attribute represents the state of the application. [1] | `created` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="android-os-api-level" href="#android-os-api-level">`android.os.api_level`</a> | string | Uniquely identifies the framework API revision offered by a version (`os.version`) of the android operating system. More information can be found in the [Android API levels documentation](https://developer.android.com/guide/topics/manifest/uses-sdk-element#ApiLevels). | `33`; `32` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -27,9 +25,9 @@ The Android platform on which the Android application is running.
 | `foreground` | Any time after Activity.onResume() or, if the app has no Activity, Context.startService() has been called when the app was in either the created or background states. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <details>
-<summary><b>Past Attributes:</b></summary>
+<summary><b>Deprecated Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | Deprecation Explanation |
+| Key | Value Type | Summary | Example Values | Deprecation Explanation |
 |---|---|---|---|---|
 | <a id="android-state" href="#android-state">`android.state`</a> | string | This attribute represents the state of the application. [1] | `created`; `background`; `foreground` |  Use `android.app.state` instead.  |
 

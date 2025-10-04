@@ -10,9 +10,7 @@
 
 This document defines attributes for remote procedure calls.
 
-**Current Attributes:**
-
-| Key | Type | Summary | Example Values | Stability |
+| Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
 | <a id="rpc-connect-rpc-error-code" href="#rpc-connect-rpc-error-code">`rpc.connect_rpc.error_code`</a> | string | The [error codes](https://connectrpc.com//docs/protocol/#error-codes) of the Connect request. Error codes are always string values. | `cancelled`; `unknown`; `invalid_argument` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="rpc-connect-rpc-request-metadata" href="#rpc-connect-rpc-request-metadata">`rpc.connect_rpc.request.metadata.<key>`</a> | string[] | Connect request metadata, `<key>` being the normalized Connect Metadata key (lowercase), the value being the metadata values. [1] | `["1.2.3.4", "1.2.3.5"]` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -133,9 +131,9 @@ the `rpc.grpc.response.metadata.my-custom-key` attribute with value `["attribute
 Deprecated rpc message attributes.
 
 <details>
-<summary><b>Past Attributes:</b></summary>
+<summary><b>Deprecated Attributes:</b></summary>
 
-| Key | Type | Summary | Example Values | Deprecation Explanation |
+| Key | Value Type | Summary | Example Values | Deprecation Explanation |
 |---|---|---|---|---|
 | <a id="message-compressed-size" href="#message-compressed-size">`message.compressed_size`</a> | int | Deprecated, use `rpc.message.compressed_size` instead. |  |  Use `rpc.message.compressed_size` instead.  |
 | <a id="message-id" href="#message-id">`message.id`</a> | int | Deprecated, use `rpc.message.id` instead. |  |  Use `rpc.message.id` instead.  |
