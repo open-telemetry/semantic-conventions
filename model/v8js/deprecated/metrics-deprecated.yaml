@@ -1,0 +1,33 @@
+groups:
+  - id: metric.v8js.heap.space.available_size
+    type: metric
+    metric_name: v8js.heap.space.available_size
+    deprecated:
+      reason: renamed
+      renamed_to: v8js.memory.heap.space.available_size
+    annotations:
+      code_generation:
+        metric_value_type: int
+    brief: "Deprecated, use `v8js.memory.heap.space.available_size` instead."
+    instrument: updowncounter
+    unit: "By"
+    stability: development
+    attributes:
+      - ref: v8js.heap.space.name
+        requirement_level: required
+  - id: metric.v8js.heap.space.physical_size
+    type: metric
+    metric_name: v8js.heap.space.physical_size
+    deprecated:
+      reason: renamed
+      renamed_to: v8js.memory.heap.space.physical_size
+    annotations:
+      code_generation:
+        metric_value_type: int
+    brief: "Deprecated, use `v8js.memory.heap.space.physical_size` instead."
+    instrument: updowncounter
+    unit: "By"
+    stability: development
+    attributes:
+      - ref: v8js.heap.space.name
+        requirement_level: required
