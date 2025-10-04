@@ -7,9 +7,11 @@
 
 Attributes used by the OpenTracing Shim layer.
 
-| Attribute | Type | Description | Examples | Stability |
+**Attributes:**
+
+| Key | Stability | Value Type | Summary | Example Values |
 |---|---|---|---|---|
-| <a id="opentracing-ref-type" href="#opentracing-ref-type">`opentracing.ref_type`</a> | string | Parent-child Reference type [1] | `child_of`; `follows_from` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="opentracing-ref-type" href="#opentracing-ref-type">`opentracing.ref_type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Parent-child Reference type [1] | `child_of`; `follows_from` |
 
 **[1] `opentracing.ref_type`:** The causal relationship between a child Span and a parent Span.
 

@@ -14,9 +14,11 @@
 
 **Description:** The software deployment.
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+**Attributes:**
+
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Summary | Example Values |
 |---|---|---|---|---|---|
-| [`deployment.environment.name`](/docs/registry/attributes/deployment.md) | string | Name of the [deployment environment](https://wikipedia.org/wiki/Deployment_environment) (aka deployment tier). [1] | `staging`; `production` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`deployment.environment.name`](/docs/registry/attributes/deployment.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Name of the [deployment environment](https://wikipedia.org/wiki/Deployment_environment) (aka deployment tier). [1] | `staging`; `production` |
 
 **[1] `deployment.environment.name`:** `deployment.environment.name` does not affect the uniqueness constraints defined through
 the `service.namespace`, `service.name` and `service.instance.id` resource attributes.
