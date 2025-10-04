@@ -200,6 +200,7 @@ Parameterized query text SHOULD NOT be sanitized. Even though parameterized quer
 | `ibm.informix` | [IBM Informix](https://www.ibm.com/products/informix) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `ibm.netezza` | [IBM Netezza](https://www.ibm.com/products/netezza) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `influxdb` | [InfluxDB](https://www.influxdata.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `inmemory` | In-Memory | ![Development](https://img.shields.io/badge/-development-blue) |
 | `instantdb` | [Instant](https://www.instantdb.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `intersystems.cache` | [InterSystems Caché](https://www.intersystems.com/products/cache/) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `mariadb` | [MariaDB](https://mariadb.org/) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -379,6 +380,7 @@ Parameterized query text SHOULD NOT be sanitized. Even though parameterized quer
 | `ibm.informix` | [IBM Informix](https://www.ibm.com/products/informix) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `ibm.netezza` | [IBM Netezza](https://www.ibm.com/products/netezza) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `influxdb` | [InfluxDB](https://www.influxdata.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `inmemory` | In-Memory | ![Development](https://img.shields.io/badge/-development-blue) |
 | `instantdb` | [Instant](https://www.instantdb.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `intersystems.cache` | [InterSystems Caché](https://www.intersystems.com/products/cache/) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `mariadb` | [MariaDB](https://mariadb.org/) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |

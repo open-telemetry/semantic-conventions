@@ -283,6 +283,10 @@ groups:
               value: "influxdb"
               brief: "[InfluxDB](https://www.influxdata.com/)"
               stability: development
+            - id: inmemory
+              value: inmemory
+              brief: In-Memory
+              stability: development
             - id: instantdb
               value: "instantdb"
               brief: "[Instant](https://www.instantdb.com/)"
