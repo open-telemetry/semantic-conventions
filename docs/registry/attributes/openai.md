@@ -7,11 +7,13 @@
 
 This group defines attributes for OpenAI.
 
-| Attribute | Type | Description | Examples | Stability |
+**Attributes:**
+
+| Key | Stability | Value Type | Summary | Example Values |
 |---|---|---|---|---|
-| <a id="openai-request-service-tier" href="#openai-request-service-tier">`openai.request.service_tier`</a> | string | The service tier requested. May be a specific tier, default, or auto. | `auto`; `default` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="openai-response-service-tier" href="#openai-response-service-tier">`openai.response.service_tier`</a> | string | The service tier used for the response. | `scale`; `default` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="openai-response-system-fingerprint" href="#openai-response-system-fingerprint">`openai.response.system_fingerprint`</a> | string | A fingerprint to track any eventual change in the Generative AI environment. | `fp_44709d6fcb` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="openai-request-service-tier" href="#openai-request-service-tier">`openai.request.service_tier`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The service tier requested. May be a specific tier, default, or auto. | `auto`; `default` |
+| <a id="openai-response-service-tier" href="#openai-response-service-tier">`openai.response.service_tier`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The service tier used for the response. | `scale`; `default` |
+| <a id="openai-response-system-fingerprint" href="#openai-response-system-fingerprint">`openai.response.system_fingerprint`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | A fingerprint to track any eventual change in the Generative AI environment. | `fp_44709d6fcb` |
 
 ---
 

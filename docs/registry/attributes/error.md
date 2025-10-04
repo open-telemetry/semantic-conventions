@@ -7,10 +7,12 @@
 
 This document defines the shared attributes used to report an error.
 
-| Attribute | Type | Description | Examples | Stability |
+**Attributes:**
+
+| Key | Stability | Value Type | Summary | Example Values |
 |---|---|---|---|---|
-| <a id="error-message" href="#error-message">`error.message`</a> | string | A message providing more detail about an error in human-readable form. [1] | `Unexpected input type: string`; `The user has exceeded their storage quota` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="error-type" href="#error-type">`error.type`</a> | string | Describes a class of error the operation ended with. [2] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| <a id="error-message" href="#error-message">`error.message`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | A message providing more detail about an error in human-readable form. [1] | `Unexpected input type: string`; `The user has exceeded their storage quota` |
+| <a id="error-type" href="#error-type">`error.type`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | Describes a class of error the operation ended with. [2] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` |
 
 **[1] `error.message`:** `error.message` should provide additional context and detail about an error.
 It is NOT RECOMMENDED to duplicate the value of `error.type` in `error.message`.

@@ -7,11 +7,13 @@
 
 This document defines attributes for GraphQL.
 
-| Attribute | Type | Description | Examples | Stability |
+**Attributes:**
+
+| Key | Stability | Value Type | Summary | Example Values |
 |---|---|---|---|---|
-| <a id="graphql-document" href="#graphql-document">`graphql.document`</a> | string | The GraphQL document being executed. [1] | `query findBookById { bookById(id: ?) { name } }` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="graphql-operation-name" href="#graphql-operation-name">`graphql.operation.name`</a> | string | The name of the operation being executed. | `findBookById` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="graphql-operation-type" href="#graphql-operation-type">`graphql.operation.type`</a> | string | The type of the operation being executed. | `query`; `mutation`; `subscription` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="graphql-document" href="#graphql-document">`graphql.document`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The GraphQL document being executed. [1] | `query findBookById { bookById(id: ?) { name } }` |
+| <a id="graphql-operation-name" href="#graphql-operation-name">`graphql.operation.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the operation being executed. | `findBookById` |
+| <a id="graphql-operation-type" href="#graphql-operation-type">`graphql.operation.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The type of the operation being executed. | `query`; `mutation`; `subscription` |
 
 **[1] `graphql.document`:** The value may be sanitized to exclude sensitive information.
 
