@@ -7,7 +7,7 @@ linkTitle: RPC
 **Status**: [Development][DocumentStatus]
 
 This document defines semantic conventions for remote procedure calls (RPC)
-, also called "remote method invocations" (RMI).
+, sometimes called "remote method invocations" (RMI).
 
 > [!IMPORTANT]
 > Existing RPC instrumentations that are using
@@ -34,42 +34,49 @@ This document defines semantic conventions for remote procedure calls (RPC)
 > * MAY drop the environment variable in their next major version and emit only
 >   the stable RPC conventions.
 
-Semantic conventions for RPC are defined for the following signals:
+The RPC Semantic conventions are designed to cover the logical operation of invoking an operation (function) to run in a remote process.
+This remote process call will often travel across the network to reach it's destination.
+
+The details of this invocation can be captured using the following signals:
 
 * [RPC Spans](rpc-spans.md): Semantic Conventions for RPC client and server *spans*.
 * [RPC Metrics](rpc-metrics.md): Semantic Conventions for RPC *metrics*.
 
-Technology specific semantic conventions are defined for the following RPC systems:
+These generic conventions can be extended based on the protocol/framework being used.
+This is described in more detail in the [RPC Transport Protocol vs RPC Framework](#rpc-ransport-protocol-vs-rpc-framework) section.
 
-* [Connect](connect-rpc.md): Semantic Conventions for *Connect RPC*.
-* [gRPC](grpc.md): Semantic Conventions for *gRPC*.
-* [JSON-RPC](json-rpc.md): Semantic Conventions for *JSON-RPC*.
+However should the process being invoked be a member of a more specific domain such as those below,
+the corresponding conventions should be followed:
 
-Specifications defined by maintainers of RPC systems:
+* [Database](/docs/database/README.md)
+* [Generative AI](/docs/gen-ai/README.md)
+* [Messaging](/docs/messaging/README.md)
 
-* [gRPC](https://github.com/grpc/proposal/blob/master/A66-otel-stats.md): Semantic Conventions for *gRPC*.
+If your focus is on the network layer calls rather than the logical calls being made,
+the RPC documents are not for you but instead what you are after is described via the below conventions:
 
-## RPC Protocol vs RPC Framework
+* [Http](#)
 
-### What is a RPC Protocol?
+## RPC Transport Protocol vs RPC Framework
 
-A RPC protocol describes the manner in which a message is transported from one service to another.
+### What is a RPC Transport Protocol?
+
+A RPC transport protocol describes the manner in which a message is transported from one service to another.
 This protocol may have the same value as the network protocol ie http or it may differ when,
 an implementation of the network protocol is used e.g. gRPC.
 
 These implementations will usually only expose a subset of functionality of the network protocol
 and may only be compatible with newer versions of the network protocol ie grpc will not work over http v1.
 
-Some pre-defined protocols are:
+Another aspect of how the network.protocol.* differs to rpc.transport.protocol.* is that,
+the transport protocol can implement additional client side functionality such as retry, caching, cancellation etc.
+
+Some pre-defined transport protocols are:
 
 * [gRPC](grpc.md)
-
-* [HTTP](/docs/http/README.md)
-
+* [Http](/docs/http/README.md)
 * Triple
-
 * SOAP
-
 * [Connect RPC](connect-rpc.md)
 
 It is expected that these protocols will define protocol specific attributes, for instance gRPC would contain a status attribute.
@@ -87,13 +94,9 @@ The framework doesn't care how it is transported across the network.
 Some pre-defined frameworks are:
 
 * Apache Dubbo
-
 * Dapr
-
 * [Connect RPC](connect-rpc.md)
-
 * [JSON-RPC](json-rpc.md)
-
 * WCF
 
 These frameworks can provide additional attributes for capturing the properties mentioned earlier.
@@ -102,5 +105,11 @@ with a general "if applicable for the rpc framework" condition placed on the req
 
 A framework may have its own page when the framework defines its own signals which require the inclusion of framework specific
 attributes for the signal to have value & meaning.
+
+## Supplementry Documents
+
+Specifications defined by maintainers of RPC systems:
+
+* [gRPC](https://github.com/grpc/proposal/blob/master/A66-otel-stats.md): Semantic Conventions for *gRPC*.
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
