@@ -30,7 +30,7 @@ An operating system process.
 | <a id="process-group-leader-pid" href="#process-group-leader-pid">`process.group_leader.pid`</a> | int | The PID of the process's group leader. This is also the process group ID (PGID) of the process. | `23` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="process-interactive" href="#process-interactive">`process.interactive`</a> | boolean | Whether the process is connected to an interactive shell. |  | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="process-owner" href="#process-owner">`process.owner`</a> | string | The username of the user that owns the process. | `root` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="process-paging-fault-type" href="#process-paging-fault-type">`process.paging.fault_type`</a> | string | The type of page fault for this data point. Type `major` is for major/hard page faults, and `minor` is for minor/soft page faults. | `major`; `minor` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="process-paging-fault-type" href="#process-paging-fault-type">`process.paging.fault_type`</a> | string | The type of page fault for this data point. | `major`; `minor` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="process-parent-pid" href="#process-parent-pid">`process.parent_pid`</a> | int | Parent Process identifier (PPID). | `111` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="process-pid" href="#process-pid">`process.pid`</a> | int | Process identifier (PID). | `1234` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="process-real-user-id" href="#process-real-user-id">`process.real_user.id`</a> | int | The real user ID (RUID) of the process. | `1000` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -68,8 +68,8 @@ with value `"/usr/local/bin:/usr/bin"`.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `involuntary` | involuntary | ![Development](https://img.shields.io/badge/-development-blue) |
-| `voluntary` | voluntary | ![Development](https://img.shields.io/badge/-development-blue) |
+| `involuntary` | A context switch that occurs when a process was preempted by the OS, typically when the time slice expires. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `voluntary` | A context switch that occurs when a process willingly yields control of the CPU, typically to wait for I/O operations or other events. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -77,8 +77,8 @@ with value `"/usr/local/bin:/usr/bin"`.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `major` | major | ![Development](https://img.shields.io/badge/-development-blue) |
-| `minor` | minor | ![Development](https://img.shields.io/badge/-development-blue) |
+| `major` | Major page fault. Sometimes referred to as hard page faults. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `minor` | Minor page fault. Sometimes referred to as soft page faults. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ## Process Linux Attributes
 
@@ -106,8 +106,8 @@ Deprecated process attributes.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `involuntary` | involuntary | ![Development](https://img.shields.io/badge/-development-blue) |
-| `voluntary` | voluntary | ![Development](https://img.shields.io/badge/-development-blue) |
+| `involuntary` | A context switch that occurs when a process was preempted by the OS, typically when the time slice expires. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `voluntary` | A context switch that occurs when a process willingly yields control of the CPU, typically to wait for I/O operations or other events. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
