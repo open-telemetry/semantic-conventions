@@ -17,5 +17,5 @@ These attributes may be used for any disk related operation.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `read` | read | ![Development](https://img.shields.io/badge/-development-blue) |
-| `write` | write | ![Development](https://img.shields.io/badge/-development-blue) |
+| `read` | Data is being read from the disk. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `write` | Data is being written to the disk. | ![Development](https://img.shields.io/badge/-development-blue) |
