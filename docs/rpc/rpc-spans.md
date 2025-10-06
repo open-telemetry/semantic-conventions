@@ -205,6 +205,8 @@ This span represents an incoming Remote Procedure Call (RPC).
 | [`network.type`](/docs/registry/attributes/network.md) | string | [OSI network layer](https://wikipedia.org/wiki/Network_layer) or non-OSI equivalent. [7] | `ipv4`; `ipv6` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`rpc.method`](/docs/registry/attributes/rpc.md) | string | This is the logical name of the method from the RPC interface perspective. [8] | `exampleMethod` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`rpc.service`](/docs/registry/attributes/rpc.md) | string | The full (logical) name of the service being called, including its package name, if applicable. [9] | `myservice.EchoService` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`network.local.address`](/docs/registry/attributes/network.md) | string | Local address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` | `Opt-In` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`network.local.port`](/docs/registry/attributes/network.md) | int | Local port number of the network connection. | `65123` | `Opt-In` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1] `server.address`:** May contain server IP address, DNS name, or local socket name. When host component is an IP address, instrumentations SHOULD NOT do a reverse proxy lookup to obtain DNS name and SHOULD set `server.address` to the IP address provided in the host component.
 
