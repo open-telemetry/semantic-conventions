@@ -178,14 +178,21 @@ Instrumentations SHOULD document the list of errors they report.
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-Describes GenAI agent invocation and is usually applicable when working with remote agent services.
+Describes GenAI agent invocation.
 
 The `gen_ai.operation.name` SHOULD be `invoke_agent`.
 The **span name** SHOULD be `invoke_agent {gen_ai.agent.name}` if `gen_ai.agent.name` is readily available.
 When `gen_ai.agent.name` is not available, it SHOULD be `invoke_agent`.
 Semantic conventions for individual GenAI systems and frameworks MAY specify different span name format.
 
-**Span kind** SHOULD be `CLIENT`.
+**Span kind** SHOULD be `CLIENT` and MAY be set to `INTERNAL` on spans representing
+invocation of agents running in the same process or `SERVER` when instrumenting
+the agent service itself.
+It's RECOMMENDED to use `CLIENT` kind when the agent being instrumented usually runs
+in a different process than its caller or when the agent invocation happens over
+instrumented protocol such as HTTP.
+
+`server.address` and `server.port` attributes SHOULD be set when span kind is `CLIENT`.
 
 **Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
 
