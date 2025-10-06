@@ -73,6 +73,7 @@ The following well-known definitions MUST be used if you set this attribute and 
 | `ibm_cloud_openshift` | Red Hat OpenShift on IBM Cloud | ![Development](https://img.shields.io/badge/-development-blue) |
 | `oracle_cloud_compute` | Compute on Oracle Cloud Infrastructure (OCI) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `oracle_cloud_oke` | Kubernetes Engine (OKE) on Oracle Cloud Infrastructure (OCI) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `scaleway_cloud_compute` | Compute on Scaleway Cloud | ![Development](https://img.shields.io/badge/-development-blue) |
 | `tencent_cloud_cvm` | Tencent Cloud Cloud Virtual Machine (CVM) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `tencent_cloud_eks` | Tencent Cloud Elastic Kubernetes Service (EKS) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `tencent_cloud_scf` | Tencent Cloud Serverless Cloud Function (SCF) | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -90,4 +91,5 @@ The following well-known definitions MUST be used if you set this attribute and 
 | `heroku` | Heroku Platform as a Service | ![Development](https://img.shields.io/badge/-development-blue) |
 | `ibm_cloud` | IBM Cloud | ![Development](https://img.shields.io/badge/-development-blue) |
 | `oracle_cloud` | Oracle Cloud Infrastructure (OCI) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `scaleway_cloud` | Scaleway Cloud | ![Development](https://img.shields.io/badge/-development-blue) |
 | `tencent_cloud` | Tencent Cloud | ![Development](https://img.shields.io/badge/-development-blue) |
