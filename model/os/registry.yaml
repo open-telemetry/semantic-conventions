@@ -14,53 +14,112 @@ groups:
             - id: windows
               value: 'windows'
               brief: "Microsoft Windows"
+              note: Used for the Windows NT Operating System.
               stability: development
             - id: linux
               value: 'linux'
               brief: "Linux"
+              deprecated:
+                reason: renamed
+                renamed_to: unix
+              stability: development
+            - id: unix
+              value: 'unix'
+              brief: "Unix"
               stability: development
             - id: darwin
               value: 'darwin'
               brief: "Apple Darwin"
+              deprecated:
+                reason: renamed
+                renamed_to: unix
+                note: Darwin should be set as a `os.family` member instead.
               stability: development
             - id: freebsd
               value: 'freebsd'
               brief: "FreeBSD"
+              deprecated:
+                reason: renamed
+                renamed_to: unix
+                note: FreeBSD should be set as the `os.name` instead.
               stability: development
             - id: netbsd
               value: 'netbsd'
               brief: "NetBSD"
+              deprecated:
+                reason: renamed
+                renamed_to: unix
+                note: NetBSD should be set as the `os.name` instead.
               stability: development
             - id: openbsd
               value: 'openbsd'
               brief: "OpenBSD"
+              deprecated:
+                reason: renamed
+                renamed_to: unix
+                note: OpenBSD should be set as the `os.name` instead.
               stability: development
             - id: dragonflybsd
               value: 'dragonflybsd'
               brief: "DragonFly BSD"
+              deprecated:
+                reason: renamed
+                renamed_to: unix
+                note: DragonFly BSD should be set as the `os.name` instead.
               stability: development
             - id: hpux
               value: 'hpux'
               brief: "HP-UX (Hewlett Packard Unix)"
+              deprecated:
+                reason: renamed
+                renamed_to: unix
+                note: HP-UX should be set as the `os.name` instead.
               stability: development
             - id: aix
               value: 'aix'
               brief: "AIX (Advanced Interactive eXecutive)"
+              deprecated:
+                reason: renamed
+                renamed_to: unix
+                note: AIX should be set as the `os.name` instead.
               stability: development
             - id: solaris
               value: 'solaris'
               brief: "SunOS, Oracle Solaris"
+              deprecated:
+                reason: renamed
+                renamed_to: unix
+                note: Solaris should be set as the `os.name` instead.
               stability: development
             - id: z_os
               value: 'z_os'
               brief: "Deprecated. Use `zos` instead."
               deprecated:
                 reason: renamed
-                renamed_to: "zos"
+                renamed_to: unix
+                note: zos should be set as the `os.name` instead.
               stability: development
             - id: zos
               value: 'zos'
               brief: "IBM z/OS"
+              deprecated:
+                reason: renamed
+                renamed_to: unix
+                note: zos should be set as the `os.name` instead.
+              stability: development
+            - id: jvm
+              value: 'jvm'
+              brief: "Java Virtual Machine"
+              deprecated:
+                reason: obsoleted
+                note: Within OpenTelemetry `os.type` is used to describe the host OS rather than the runtime environment.
+              stability: development
+            - id: wasm
+              value: 'wasm'
+              brief: "WebAssembly System Interface"
+              deprecated:
+                reason: obsoleted
+                note: Within OpenTelemetry `os.type` is used to describe the host OS rather than the runtime environment.
               stability: development
         brief: >
           The operating system type.
