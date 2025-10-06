@@ -57,7 +57,12 @@ This section defines attributes for Azure Cosmos DB.
 
 This section describes deprecated Azure attributes.
 
-| Attribute | Type | Description | Examples | Stability |
+<details>
+<summary><b>Deprecated Attributes:</b></summary>
+
+| Key | Value Type | Summary | Example Values | Deprecation Explanation |
 |---|---|---|---|---|
-| <a id="az-namespace" href="#az-namespace">`az.namespace`</a> | string | Deprecated, use `azure.resource_provider.namespace` instead. | `Microsoft.Storage`; `Microsoft.KeyVault`; `Microsoft.ServiceBus` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `azure.resource_provider.namespace`. |
-| <a id="az-service-request-id" href="#az-service-request-id">`az.service_request_id`</a> | string | Deprecated, use `azure.service.request.id` instead. | `00000000-0000-0000-0000-000000000000` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `azure.service.request.id`. |
+| <a id="az-namespace" href="#az-namespace">`az.namespace`</a> | string | Deprecated, use `azure.resource_provider.namespace` instead. | `Microsoft.Storage`; `Microsoft.KeyVault`; `Microsoft.ServiceBus` |  Use `azure.resource_provider.namespace` instead.  |
+| <a id="az-service-request-id" href="#az-service-request-id">`az.service_request_id`</a> | string | Deprecated, use `azure.service.request.id` instead. | `00000000-0000-0000-0000-000000000000` |  Use `azure.service.request.id` instead.  |
+
+</details>
