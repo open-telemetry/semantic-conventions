@@ -43,7 +43,7 @@ The details of this invocation can be captured using the following signals:
 * [RPC Metrics](rpc-metrics.md): Semantic Conventions for RPC *metrics*.
 
 These generic conventions can be extended based on the protocol/framework being used.
-This is described in more detail in the [RPC Transport Protocol vs RPC Framework](#rpc-ransport-protocol-vs-rpc-framework) section.
+This is described in more detail in the [RPC Transport Protocol vs RPC Framework](#rpc-transport-protocol-vs-rpc-framework) section.
 
 However should the process being invoked be a member of a more specific domain such as those below,
 the corresponding conventions should be followed:
@@ -55,7 +55,7 @@ the corresponding conventions should be followed:
 If your focus is on the network layer calls rather than the logical calls being made,
 the RPC documents are not for you but instead what you are after is described via the below conventions:
 
-* [Http](#)
+* Http
 
 ## RPC Transport Protocol vs RPC Framework
 
@@ -68,7 +68,7 @@ an implementation of the network protocol is used e.g. gRPC.
 These implementations will usually only expose a subset of functionality of the network protocol
 and may only be compatible with newer versions of the network protocol ie grpc will not work over http v1.
 
-Another aspect of how the network.protocol.* differs to rpc.transport.protocol.* is that,
+Another aspect of how the `network.protocol.*` differs to `rpc.transport.protocol.*` is that,
 the transport protocol can implement additional client side functionality such as retry, caching, cancellation etc.
 
 Some pre-defined transport protocols are:
@@ -106,7 +106,7 @@ with a general "if applicable for the rpc framework" condition placed on the req
 A framework may have its own page when the framework defines its own signals which require the inclusion of framework specific
 attributes for the signal to have value & meaning.
 
-## Supplementry Documents
+## Supplementary Documents
 
 Specifications defined by maintainers of RPC systems:
 
