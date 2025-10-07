@@ -12,7 +12,7 @@ This document describes instruments and attributes for common OpenShift specific
 metrics in OpenTelemetry. These metrics are collected from OpenShift's,
 well-defined API.
 
-Metrics in `openshift.` instruments SHOULD be attached to an [OpenShift Resource](/docs/resource/k8s.md)
+Metrics in `openshift.` instruments SHOULD be attached to an [OpenShift Resource](/docs/resource/k8s/openshift.md)
 and therefore inherit its attributes, like `openshift.clusterquota.name` and `openshift.clusterquota.uid`.
 
 <!-- toc -->
