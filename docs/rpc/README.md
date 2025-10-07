@@ -42,7 +42,7 @@ The details of this invocation can be captured using the following signals:
 * [RPC Spans](rpc-spans.md): Semantic Conventions for RPC client and server *spans*.
 * [RPC Metrics](rpc-metrics.md): Semantic Conventions for RPC *metrics*.
 
-These generic conventions can be extended based on the protocol/framework being used.
+These generic conventions can be extended based on the transport protocol/framework being used.
 This is described in more detail in the [RPC Transport Protocol vs RPC Framework](#rpc-transport-protocol-vs-rpc-framework) section.
 
 However should the process being invoked be a member of a more specific domain such as those below,
@@ -96,11 +96,10 @@ Some pre-defined frameworks are:
 * Apache Dubbo
 * Dapr
 * [Connect RPC](connect-rpc.md)
-* [JSON-RPC](json-rpc.md)
 * WCF
 
 These frameworks can provide additional attributes for capturing the properties mentioned earlier.
-It is expected that these attributes are added where appropriate to the corresponding signals defined for the rpc protocol,
+It is expected that these attributes are added where appropriate to the corresponding signals defined for the rpc transport protocol,
 with a general "if applicable for the rpc framework" condition placed on the requirement level.
 
 A framework may have its own page when the framework defines its own signals which require the inclusion of framework specific
