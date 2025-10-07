@@ -47,7 +47,6 @@ This document defines attributes for AWS Bedrock AgentCore Browser.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="aws-bedrock-agentcore-browser-arn" href="#aws-bedrock-agentcore-browser-arn">`aws.bedrock.agentcore.browser.arn`</a> | string | The Amazon Resource Name (ARN) of the created browser. | `arn:aws:bedrock-agentcore:us-east-1:123456789012:browser-custom/myBrowser-a1b2c3d4e5` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="aws-bedrock-agentcore-browser-id" href="#aws-bedrock-agentcore-browser-id">`aws.bedrock.agentcore.browser.id`</a> | string | The unique identifier of the created browser. | `myBrowser-a1b2c3d4e5` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ## Amazon Bedrock AgentCore Code Interpreter Attributes
@@ -56,7 +55,6 @@ This document defines attributes for AWS Bedrock AgentCore Code Interpreter.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="aws-bedrock-agentcore-code-interpreter-arn" href="#aws-bedrock-agentcore-code-interpreter-arn">`aws.bedrock.agentcore.code_interpreter.arn`</a> | string | The Amazon Resource Name (ARN) of the created code interpreter. | `arn:aws:bedrock-agentcore:us-east-1:123456789012:code-interpreter-custom/myInterpreter-a1b2c3d4e5` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="aws-bedrock-agentcore-code-interpreter-id" href="#aws-bedrock-agentcore-code-interpreter-id">`aws.bedrock.agentcore.code_interpreter.id`</a> | string | The unique identifier of the created code interpreter. | `myInterpreter-a1b2c3d4e5` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ## Amazon Bedrock AgentCore Gateway Attributes
@@ -65,7 +63,6 @@ This document defines attributes for AWS Bedrock AgentCore Gateway.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="aws-bedrock-agentcore-gateway-arn" href="#aws-bedrock-agentcore-gateway-arn">`aws.bedrock.agentcore.gateway.arn`</a> | string | The Amazon Resource Name (ARN) of the created gateway. | `arn:aws:bedrock-agentcore:us-east-1:123456789012:gateway/a1b2c3d4e5` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="aws-bedrock-agentcore-gateway-id" href="#aws-bedrock-agentcore-gateway-id">`aws.bedrock.agentcore.gateway.id`</a> | string | The unique identifier of the created gateway. | `mygateway-a1b2c3d4e5` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ## Amazon Bedrock AgentCore Identity Attributes
@@ -83,7 +80,6 @@ This document defines attributes for AWS Bedrock AgentCore Memory.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="aws-bedrock-agentcore-memory-arn" href="#aws-bedrock-agentcore-memory-arn">`aws.bedrock.agentcore.memory.arn`</a> | string | The Amazon Resource Name (ARN) of the memory. | `arn:aws:bedrock-agentcore:us-east-1:123456789012:memory/myMemory-a1b2c3d4e5` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="aws-bedrock-agentcore-memory-id" href="#aws-bedrock-agentcore-memory-id">`aws.bedrock.agentcore.memory.id`</a> | string | The unique identifier of the memory. | `myMemory-a1b2c3d4e5` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ## Amazon Bedrock AgentCore Runtime Attributes
@@ -92,7 +88,6 @@ This document defines attributes for AWS Bedrock AgentCore Runtime.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="aws-bedrock-agentcore-runtime-arn" href="#aws-bedrock-agentcore-runtime-arn">`aws.bedrock.agentcore.runtime.arn`</a> | string | The Amazon Resource Name (ARN) of the AgentCore Runtime. | `arn:aws:bedrock-agentcore:us-east-1:123456789012:agent/12345678-1234-1234-1234-123456789012:1` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="aws-bedrock-agentcore-runtime-id" href="#aws-bedrock-agentcore-runtime-id">`aws.bedrock.agentcore.runtime.id`</a> | string | The unique identifier of the AgentCore Runtime. | `myRuntime-a1b2c3d4e5` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ## Amazon DynamoDB Attributes

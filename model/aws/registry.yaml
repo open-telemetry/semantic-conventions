@@ -587,12 +587,6 @@ groups:
     brief: >
         This document defines attributes for AWS Bedrock AgentCore Runtime.
     attributes:
-      - id: aws.bedrock.agentcore.runtime.arn
-        type: string
-        stability: development
-        brief: >
-          The Amazon Resource Name (ARN) of the AgentCore Runtime.
-        examples: ["arn:aws:bedrock-agentcore:us-east-1:123456789012:agent/12345678-1234-1234-1234-123456789012:1"]
       - id: aws.bedrock.agentcore.runtime.id
         type: string
         stability: development
@@ -623,12 +617,6 @@ groups:
     brief: >
         This document defines attributes for AWS Bedrock AgentCore Memory.
     attributes:
-      - id: aws.bedrock.agentcore.memory.arn
-        type: string
-        stability: development
-        brief: >
-          The Amazon Resource Name (ARN) of the memory.
-        examples: ["arn:aws:bedrock-agentcore:us-east-1:123456789012:memory/myMemory-a1b2c3d4e5"]
       - id: aws.bedrock.agentcore.memory.id
         type: string
         stability: development
@@ -641,12 +629,6 @@ groups:
     brief: >
         This document defines attributes for AWS Bedrock AgentCore Code Interpreter.
     attributes:
-      - id: aws.bedrock.agentcore.code_interpreter.arn
-        type: string
-        stability: development
-        brief: >
-          The Amazon Resource Name (ARN) of the created code interpreter.
-        examples: ["arn:aws:bedrock-agentcore:us-east-1:123456789012:code-interpreter-custom/myInterpreter-a1b2c3d4e5"]
       - id: aws.bedrock.agentcore.code_interpreter.id
         type: string
         stability: development
@@ -659,12 +641,6 @@ groups:
     brief: >
         This document defines attributes for AWS Bedrock AgentCore Browser.
     attributes:
-      - id: aws.bedrock.agentcore.browser.arn
-        type: string
-        stability: development
-        brief: >
-          The Amazon Resource Name (ARN) of the created browser.
-        examples: ["arn:aws:bedrock-agentcore:us-east-1:123456789012:browser-custom/myBrowser-a1b2c3d4e5"]
       - id: aws.bedrock.agentcore.browser.id
         type: string
         stability: development
@@ -677,12 +653,6 @@ groups:
     brief: >
         This document defines attributes for AWS Bedrock AgentCore Gateway.
     attributes:
-      - id: aws.bedrock.agentcore.gateway.arn
-        type: string
-        stability: development
-        brief: >
-          The Amazon Resource Name (ARN) of the created gateway.
-        examples: ["arn:aws:bedrock-agentcore:us-east-1:123456789012:gateway/a1b2c3d4e5"]
       - id: aws.bedrock.agentcore.gateway.id
         type: string
         stability: development
