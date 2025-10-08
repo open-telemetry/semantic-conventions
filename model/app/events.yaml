@@ -74,7 +74,6 @@ groups:
       It does not include times when the app is in the background or when other screens/modal views are covering it. For example:
       - **iOS**: From `viewDidAppear` to `viewWillDisappear`, indicating when the screen is first shown and when it's about to disappear.
       - **Android**: From `onResume` to `onPause`, indicating when the screen comes to the foreground and when it goes to the background.
-      
     attributes:
       - ref: app.screen.name
         requirement_level: required
