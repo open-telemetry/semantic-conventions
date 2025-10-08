@@ -65,7 +65,7 @@ groups:
         stability: development
         brief: "The memory paging state"
         examples: ["free"]
-      - id: system.paging.type
+      - id: system.paging.fault.type
         type:
           members:
             - id: major

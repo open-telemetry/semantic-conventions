@@ -205,7 +205,7 @@ groups:
     instrument: counter
     unit: "{fault}"
     attributes:
-      - ref: system.paging.type
+      - ref: system.paging.fault.type
     entity_associations:
       - host
 
@@ -220,7 +220,7 @@ groups:
     instrument: counter
     unit: "{operation}"
     attributes:
-      - ref: system.paging.type
+      - ref: system.paging.fault.type
       - ref: system.paging.direction
     entity_associations:
       - host
