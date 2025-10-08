@@ -195,7 +195,7 @@ additional values when introducing new operations.
 
 **[2] `azure.cosmosdb.connection.mode`:** if not `gateway` (the default value is assumed to be `gateway`).
 
-**[3] `azure.cosmosdb.operation.contacted_regions`:** Region name matches the format of `displayName` in [Azure Location API](https://learn.microsoft.com/rest/api/subscription/subscriptions/list-locations?view=rest-subscription-2021-10-01&tabs=HTTP#location)
+**[3] `azure.cosmosdb.operation.contacted_regions`:** Region name matches the format of `displayName` in [Azure Location API](https://learn.microsoft.com/rest/api/resources/subscriptions/list-locations)
 
 **[4] `db.collection.name`:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 
@@ -235,6 +235,9 @@ then `<key>` SHOULD be the 0-based index.
 `db.query.parameter.<key>` SHOULD match
 up with the parameterized placeholders present in `db.query.text`.
 
+It is RECOMMENDED to capture the value as provided by the application
+without attempting to do any case normalization.
+
 `db.query.parameter.<key>` SHOULD NOT be captured on batch operations.
 
 Examples:
@@ -242,8 +245,8 @@ Examples:
 - For a query `SELECT * FROM users where username =  %s` with the parameter `"jdoe"`,
   the attribute `db.query.parameter.0` SHOULD be set to `"jdoe"`.
 
-- For a query `"SELECT * FROM users WHERE username = %(username)s;` with parameter
-  `username = "jdoe"`, the attribute `db.query.parameter.username` SHOULD be set to `"jdoe"`.
+- For a query `"SELECT * FROM users WHERE username = %(userName)s;` with parameter
+  `userName = "jdoe"`, the attribute `db.query.parameter.userName` SHOULD be set to `"jdoe"`.
 
 The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):
@@ -333,7 +336,7 @@ This metric is [required][MetricRequired].
 It captures the Request Units consumed by each operation in Azure Cosmos DB. Since Request Units serve as a form of throughput control within the Azure Cosmos DB database, monitoring their usage is crucial to avoid throttling.
 
 this metric SHOULD be specified with
-[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.48.0/specification/metrics/api.md#instrument-advisory-parameters)
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.49.0/specification/metrics/api.md#instrument-advisory-parameters)
 of `[ 1, 5, 10, 25, 50, 100, 250, 500, 1000]`.
 
 Explaining bucket configuration:
@@ -397,7 +400,7 @@ Instrumentations SHOULD document how `error.type` is populated.
 
 **[7] `server.port`:** If using a port other than the default port for this DBMS and if `server.address` is set.
 
-**[8] `azure.cosmosdb.operation.contacted_regions`:** Region name matches the format of `displayName` in [Azure Location API](https://learn.microsoft.com/rest/api/subscription/subscriptions/list-locations?view=rest-subscription-2021-10-01&tabs=HTTP#location)
+**[8] `azure.cosmosdb.operation.contacted_regions`:** Region name matches the format of `displayName` in [Azure Location API](https://learn.microsoft.com/rest/api/resources/subscriptions/list-locations)
 
 **[9] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 

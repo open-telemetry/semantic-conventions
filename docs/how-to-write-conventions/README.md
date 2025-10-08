@@ -1,8 +1,8 @@
 <!--- Hugo front matter used to generate the website version of this page:
-linkTitle: How to define new semantic conventions
+linkTitle: How to write conventions
 --->
 
-# How to define new semantic conventions
+# How to write semantic conventions
 
 **Status**: [Development][DocumentStatus]
 
@@ -12,6 +12,7 @@ linkTitle: How to define new semantic conventions
   - [Best practices](#best-practices)
     - [Prototyping](#prototyping)
     - [Defining attributes](#defining-attributes)
+    - [Defining enum attribute members](#defining-enum-attribute-members)
     - [Defining spans](#defining-spans)
     - [Defining metrics](#defining-metrics)
     - [Defining entities](#defining-entities)
@@ -103,7 +104,7 @@ When defining a new attribute:
     This is useful for capturing user-defined key-value pairs, such as HTTP headers.
   - Represent complex values as a set of flat attributes whenever possible.
     - Complex or structured attributes (not listed in the
-      [set of standard attributes](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.48.0/specification/common/README.md#attribute))
+      [set of standard attributes](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.49.0/specification/common/README.md#attribute))
       could be referenced on events and spans (![Development](https://img.shields.io/badge/-development-blue)) only.
 
       Semantic convention authors should assume that backends do not index individual properties of complex attributes,
@@ -149,6 +150,38 @@ Consider the scope of the attribute and how it may evolve in the future:
 >
 > - If the attribute represents something useful in a narrow set of scenarios or
 >   is specific to certain system metrics, spans, or events, it likely does not need to be generic.
+
+#### Defining enum attribute members
+
+Enum attributes generally fall into three main categories:
+
+**Complete enums** document all possible values. For example, `cpu.mode` covers
+all known CPU modes. Metrics like `system.cpu.time` depend on having all modes
+defined. Authors should document all known values upfront, though new values
+may be added later to support new operating systems or CPU architectures.
+
+**Open enums** like `error.type` allow conventions and instrumentations to define
+their own applicable values.
+
+**System identifier enums** specify a system, project, provider, product, or protocol.
+For example, `db.system.name` contains database names like `mongodb` or `mysql`.
+
+System identifier enums help differentiate telemetry signals. MongoDB and MySQL
+both follow general database conventions, but populate attributes like `db.collection.name` differently and have system-specific attributes. Each system has its own span
+definitions and documentation.
+See [MongoDB](/docs/database/mongodb.md) and [MySQL](/docs/database/mysql.md) as examples
+and check out [system-specific naming](../general/naming.md#system-specific-attributes)
+for naming guidance.
+
+> [!IMPORTANT]
+> System identifier enums don't need to list every possible system, component, or technology.
+>
+> OpenTelemetry instrumentations that use enum attributes SHOULD document their values before releasing **stable** artifacts and MAY support undocumented values in unstable artifacts or behind a feature flag.
+
+Only define new system identifiers when you also document how conventions apply
+to that system. For example, when adding a new `db.system.name` value, create
+documentation and span definitions that show how generic attributes work for that
+database.
 
 #### Defining spans
 

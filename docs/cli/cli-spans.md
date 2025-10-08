@@ -1,5 +1,5 @@
 <!--- Hugo front matter used to generate the website version of this page:
-linkTitle: CLI programs
+linkTitle: Spans
 --->
 
 # Semantic conventions for CLI (command line interface) programs

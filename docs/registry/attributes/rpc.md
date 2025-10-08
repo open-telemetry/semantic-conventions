@@ -26,8 +26,8 @@ This document defines attributes for remote procedure calls.
 | <a id="rpc-message-id" href="#rpc-message-id">`rpc.message.id`</a> | int | MUST be calculated as two different counters starting from `1` one for sent messages and one for received message. [5] |  | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="rpc-message-type" href="#rpc-message-type">`rpc.message.type`</a> | string | Whether this is a received or sent message. | `SENT`; `RECEIVED` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="rpc-message-uncompressed-size" href="#rpc-message-uncompressed-size">`rpc.message.uncompressed_size`</a> | int | Uncompressed size of the message in bytes. |  | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="rpc-method" href="#rpc-method">`rpc.method`</a> | string | The name of the (logical) method being called, must be equal to the $method part in the span name. [6] | `exampleMethod` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="rpc-service" href="#rpc-service">`rpc.service`</a> | string | The full (logical) name of the service being called, including its package name, if applicable. [7] | `myservice.EchoService` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="rpc-method" href="#rpc-method">`rpc.method`</a> | string | This is the logical name of the method from the RPC interface perspective. | `exampleMethod` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="rpc-service" href="#rpc-service">`rpc.service`</a> | string | The full (logical) name of the service being called, including its package name, if applicable. | `myservice.EchoService` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="rpc-system" href="#rpc-system">`rpc.system`</a> | string | A string identifying the remoting system. See below for a list of well-known identifiers. | `grpc`; `java_rmi`; `dotnet_wcf` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `rpc.connect_rpc.request.metadata.<key>`:** Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
@@ -55,10 +55,6 @@ For example, a property `my-custom-key` with value `["attribute_value"]` SHOULD 
 the `rpc.grpc.response.metadata.my-custom-key` attribute with value `["attribute_value"]`
 
 **[5] `rpc.message.id`:** This way we guarantee that the values will be consistent between different implementations.
-
-**[6] `rpc.method`:** This is the logical name of the method from the RPC interface perspective, which can be different from the name of any implementing method/function. The `code.function.name` attribute may be used to store the latter (e.g., method actually executing the call on the server side, RPC client stub method on the client side).
-
-**[7] `rpc.service`:** This is the logical name of the service from the RPC interface perspective, which can be different from the name of any implementing class. The `code.namespace` attribute may be used to store the latter (despite the attribute name, it may include a class name; e.g., class with method actually executing the call on the server side, RPC client stub class on the client side).
 
 ---
 
@@ -127,6 +123,8 @@ the `rpc.grpc.response.metadata.my-custom-key` attribute with value `["attribute
 | `dotnet_wcf` | .NET WCF | ![Development](https://img.shields.io/badge/-development-blue) |
 | `grpc` | gRPC | ![Development](https://img.shields.io/badge/-development-blue) |
 | `java_rmi` | Java RMI | ![Development](https://img.shields.io/badge/-development-blue) |
+| `jsonrpc` | JSON-RPC | ![Development](https://img.shields.io/badge/-development-blue) |
+| `onc_rpc` | [ONC RPC (Sun RPC)](https://datatracker.ietf.org/doc/html/rfc5531) | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ## Deprecated RPC Attributes
 

@@ -75,10 +75,18 @@ All routing metrics are reported by the `Microsoft.AspNetCore.Routing` meter.
 |---|---|---|---|---|---|
 | [`aspnetcore.routing.match_status`](/docs/registry/attributes/aspnetcore.md) | string | Match result - success or failure | `success`; `failure` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`aspnetcore.routing.is_fallback`](/docs/registry/attributes/aspnetcore.md) | boolean | A value that indicates whether the matched route is a fallback route. | `true` | `Conditionally Required` if and only if a route was successfully matched. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`http.route`](/docs/registry/attributes/http.md) | string | The matched route, that is, the path template in the format used by the respective server framework. [1] | `/users/:userID?`; `{controller}/{action}/{id?}` | `Conditionally Required` if and only if a route was successfully matched. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`http.route`](/docs/registry/attributes/http.md) | string | The matched route template for the request. This MUST be low-cardinality and include all static path segments, with dynamic path segments represented with placeholders. [1] | `/users/:userID?`; `my-controller/my-action/{id?}` | `Conditionally Required` if and only if a route was successfully matched. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1] `http.route`:** MUST NOT be populated when this is not supported by the HTTP server framework as the route attribute should have low-cardinality and the URI path can NOT substitute it.
 SHOULD include the [application root](/docs/http/http-spans.md#http-server-definitions) if there is one.
+
+A static path segment is a part of the route template with a fixed, low-cardinality value. This includes literal strings like `/users/` and placeholders that
+are constrained to a finite, predefined set of values, e.g. `{controller}` or `{action}`.
+
+A dynamic path segment is a placeholder for a value that can have high cardinality and is not constrained to a predefined list like static path segments.
+
+Instrumentations SHOULD use routing information provided by the corresponding web framework. They SHOULD pick the most precise source of routing information and MAY
+support custom route formatting. Instrumentations SHOULD document the format and the API used to obtain the route string.
 
 ---
 
@@ -178,7 +186,7 @@ All rate-limiting metrics are reported by the `Microsoft.AspNetCore.RateLimiting
 ### Metric: `aspnetcore.rate_limiting.request_lease.duration`
 
 this metric SHOULD be specified with
-[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.48.0/specification/metrics/api.md#instrument-advisory-parameters)
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.49.0/specification/metrics/api.md#instrument-advisory-parameters)
 of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 ]`.
 
 <!-- semconv metric.aspnetcore.rate_limiting.request_lease.duration -->
@@ -234,7 +242,7 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 ### Metric: `aspnetcore.rate_limiting.request.time_in_queue`
 
 this metric SHOULD be specified with
-[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.48.0/specification/metrics/api.md#instrument-advisory-parameters)
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.49.0/specification/metrics/api.md#instrument-advisory-parameters)
 of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 ]`.
 
 <!-- semconv metric.aspnetcore.rate_limiting.request.time_in_queue -->

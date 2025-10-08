@@ -41,6 +41,7 @@ acronyms:
   - iOS
   - IBM
   - JVM
+  - NFS
   - NodeJS
   - OCI
   - OpenAI
@@ -48,6 +49,7 @@ acronyms:
   - OracleDB
   - OS
   - OTel
+  - ONC
   - RabbitMQ
   - RocketMQ
   - RPC

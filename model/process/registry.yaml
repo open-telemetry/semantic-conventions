@@ -217,7 +217,7 @@ groups:
         brief: >
           The working directory of the process.
         examples: ["/root"]
-      - id: process.context_switch_type
+      - id: process.context_switch.type
         brief: "Specifies whether the context switches for this data point were voluntary or involuntary."
         type:
           members:
