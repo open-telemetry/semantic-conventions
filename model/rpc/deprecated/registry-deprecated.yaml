@@ -9,11 +9,11 @@ groups:
           members:
             - id: sent
               value: "SENT"
-              brief: Sent
+              brief: A request from a client, a reply from the server or a streaming message has been sent.
               stability: development
             - id: received
               value: "RECEIVED"
-              brief: Received
+              brief: A request from a client, a reply from the server or a streaming message has been recieved.
               stability: development
         stability: development
         brief: "Deprecated, use `rpc.message.type` instead."

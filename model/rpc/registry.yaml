@@ -269,11 +269,11 @@ groups:
           members:
             - id: sent
               value: "SENT"
-              brief: Message Sent
+              brief: A request from a client, a reply from the server or a streaming message has been sent.
               stability: development
             - id: received
               value: "RECEIVED"
-              brief: Message Received
+              brief: A request from a client, a reply from the server or a streaming message has been recieved.
               stability: development
         stability: development
         brief: "Whether this is a received or sent message."
