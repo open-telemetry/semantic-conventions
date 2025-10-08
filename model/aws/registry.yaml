@@ -593,18 +593,6 @@ groups:
         brief: >
           The Amazon Resource Name (ARN) of the credential provider.
         examples: ["arn:aws:acps:us-east-1:123456789012:token-vault/my-vault/oauth2credentialprovider/my-provider", "arn:aws:iam::123456789012:oidc-provider/example.com", "arn:aws:iam::123456789012:role/MyRole"]
-  - id: registry.aws.bedrock.agentcore.identity
-    type: attribute_group
-    display_name: Amazon Bedrock AgentCore Identity Attributes
-    brief: >
-        This document defines attributes for AWS Bedrock AgentCore Identity.
-    attributes:
-      - id: aws.bedrock.agentcore.identity.workload_identity.arn
-        type: string
-        stability: development
-        brief: >
-          The Amazon Resource Name (ARN) of the workload identity.
-        examples: ["arn:aws:bedrock-agentcore:us-east-1:123456789012:workload-identity/my-workload-identity"]
   - id: registry.aws.bedrock.agentcore
     type: attribute_group
     display_name: Amazon Bedrock AgentCore Attributes
@@ -641,3 +629,9 @@ groups:
         brief: >
           The Amazon Resource Name (ARN) of the gateway.
         examples: ["arn:aws:bedrock-agentcore:us-east-1:123456789012:gateway/mygateway-a1b2c3d4e5"]
+      - id: aws.bedrock.agentcore.identity.workload_identity.arn
+        type: string
+        stability: development
+        brief: >
+          The Amazon Resource Name (ARN) of the workload identity.
+        examples: ["arn:aws:bedrock-agentcore:us-east-1:123456789012:workload-identity/my-workload-identity"]
