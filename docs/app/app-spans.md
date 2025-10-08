@@ -78,9 +78,9 @@ This span describes an application screen load operation, from navigation trigge
 
 **Span name:** MUST be `app.screen.load`.
 
-This span captures the time from user initiation of navigation (e.g., tapping a button) to the point when the first stable frame
+This span captures the time from user initiation of naigation (e.g., tapping a button) to the point when the first stable frame
 of the screen has been rendered. A frame is considered stable when no major layout or frame changes occur for a brief stability
-interval (e.g. 100–200 ms).
+interval (e.g. 150 ms).
 
 **Span kind** SHOULD be `INTERNAL`.
 
