@@ -260,13 +260,14 @@ groups:
       Semantic conventions for individual GenAI systems and frameworks MAY specify different span name format.
 
       **Span kind** SHOULD be `CLIENT` and MAY be set to `INTERNAL` on spans representing
-      invocation of agents running in the same process or `SERVER` when instrumenting
-      the agent service itself.
+      invocation of agents running in the same process.
       It's RECOMMENDED to use `CLIENT` kind when the agent being instrumented usually runs
       in a different process than its caller or when the agent invocation happens over
       instrumented protocol such as HTTP.
 
-      `server.address` and `server.port` attributes SHOULD be set when span kind is `CLIENT`.
+      Examples of span kinds for different agent scenarios:
+      - `CLIENT`: Remote agent services (e.g., OpenAI Assistants API, AWS Bedrock Agents)
+      - `INTERNAL`: In-process agents (e.g., LangChain agents, CrewAI agents)
     extends: attributes.gen_ai.inference.client
     attributes:
       - ref: gen_ai.provider.name
@@ -283,6 +284,12 @@ groups:
       - ref: gen_ai.data_source.id
         requirement_level:
           conditionally_required: if applicable.
+      - ref: server.address
+        requirement_level:
+          conditionally_required: when span kind is `CLIENT`.
+      - ref: server.port
+        requirement_level:
+          conditionally_required: when span kind is `CLIENT` and `server.address` is set.
       - ref: gen_ai.system_instructions
         requirement_level: opt_in
       - ref: gen_ai.input.messages
