@@ -593,6 +593,18 @@ groups:
         brief: >
           The Amazon Resource Name (ARN) of the credential provider.
         examples: ["arn:aws:acps:us-east-1:123456789012:token-vault/my-vault/oauth2credentialprovider/my-provider", "arn:aws:iam::123456789012:oidc-provider/example.com", "arn:aws:iam::123456789012:role/MyRole"]
+  - id: registry.aws.gateway
+    type: attribute_group
+    display_name: AWS Gateway Attributes
+    brief: >
+        This document defines attributes for AWS gateway components.
+    attributes:
+      - id: aws.gateway.target.id
+        type: string
+        stability: development
+        brief: >
+          The unique identifier of the gateway target. A gateway target is the destination endpoint or resource that the gateway routes requests to.
+        examples: ["a1b2c3d4e5"]
   - id: registry.aws.bedrock.agentcore
     type: attribute_group
     display_name: Amazon Bedrock AgentCore Attributes

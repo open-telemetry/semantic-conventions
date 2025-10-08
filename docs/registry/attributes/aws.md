@@ -10,6 +10,7 @@
 - [Amazon DynamoDB Attributes](#amazon-dynamodb-attributes)
 - [Amazon ECS Attributes](#amazon-ecs-attributes)
 - [Amazon EKS Attributes](#amazon-eks-attributes)
+- [AWS Gateway Attributes](#aws-gateway-attributes)
 - [Amazon Kinesis Attributes](#amazon-kinesis-attributes)
 - [Amazon Lambda Attributes](#amazon-lambda-attributes)
 - [Amazon Logs Attributes](#amazon-logs-attributes)
@@ -118,6 +119,14 @@ This document defines attributes for AWS Elastic Kubernetes Service (EKS).
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
 | <a id="aws-eks-cluster-arn" href="#aws-eks-cluster-arn">`aws.eks.cluster.arn`</a> | string | The ARN of an EKS cluster. | `arn:aws:ecs:us-west-2:123456789123:cluster/my-cluster` | ![Development](https://img.shields.io/badge/-development-blue) |
+
+## AWS Gateway Attributes
+
+This document defines attributes for AWS gateway components.
+
+| Attribute | Type | Description | Examples | Stability |
+|---|---|---|---|---|
+| <a id="aws-gateway-target-id" href="#aws-gateway-target-id">`aws.gateway.target.id`</a> | string | The unique identifier of the gateway target. A gateway target is the destination endpoint or resource that the gateway routes requests to. | `a1b2c3d4e5` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ## Amazon Kinesis Attributes
 
