@@ -49,24 +49,12 @@
             "title": "BlobPart",
             "type": "object"
         },
-        "FileDataPart": {
+        "FilePart": {
             "additionalProperties": true,
-            "description": "Represents an external referenced file sent to the model",
-            "oneOf": [
-                {
-                    "required": [
-                        "file_id"
-                    ]
-                },
-                {
-                    "required": [
-                        "uri"
-                    ]
-                }
-            ],
+            "description": "Represents an external referenced file sent to the model by file id",
             "properties": {
                 "type": {
-                    "const": "file_data",
+                    "const": "file",
                     "description": "The type of the content captured in this part.",
                     "title": "Type",
                     "type": "string"
@@ -96,19 +84,6 @@
                     "description": "The general modality of the data if it is known. Instrumentations SHOULD also set the mimeType field if the specific type is known.",
                     "title": "Modality"
                 },
-                "uri": {
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "default": null,
-                    "description": "A URI referencing attached data.",
-                    "title": "Uri"
-                },
                 "file_id": {
                     "anyOf": [
                         {
@@ -127,7 +102,7 @@
                 "type",
                 "modality"
             ],
-            "title": "FileDataPart",
+            "title": "FilePart",
             "type": "object"
         },
         "FinishReason": {
@@ -200,7 +175,10 @@
                                 "$ref": "#/$defs/BlobPart"
                             },
                             {
-                                "$ref": "#/$defs/FileDataPart"
+                                "$ref": "#/$defs/FilePart"
+                            },
+                            {
+                                "$ref": "#/$defs/UriPart"
                             },
                             {
                                 "$ref": "#/$defs/ReasoningPart"
@@ -364,6 +342,62 @@
                 "response"
             ],
             "title": "ToolCallResponsePart",
+            "type": "object"
+        },
+        "UriPart": {
+            "additionalProperties": true,
+            "description": "Represents an external referenced file sent to the model by URI",
+            "properties": {
+                "type": {
+                    "const": "uri",
+                    "description": "The type of the content captured in this part.",
+                    "title": "Type",
+                    "type": "string"
+                },
+                "mime_type": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "The IANA MIME type of the attached data.",
+                    "title": "Mime Type"
+                },
+                "modality": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/Modality"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ],
+                    "description": "The general modality of the data if it is known. Instrumentations SHOULD also set the mimeType field if the specific type is known.",
+                    "title": "Modality"
+                },
+                "uri": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "A URI referencing attached data. It should not be a base64 data URL, which should use the `blob` part instead. The URI may use a scheme known to the provider api (e.g. `gs://bucket/object.png`), or be a publicly accessible location.",
+                    "title": "Uri"
+                }
+            },
+            "required": [
+                "type",
+                "modality"
+            ],
+            "title": "UriPart",
             "type": "object"
         }
     },
