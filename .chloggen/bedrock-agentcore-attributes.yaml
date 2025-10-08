@@ -3,5 +3,5 @@ component: aws
 note: Add AWS Bedrock AgentCore and authentication attributes.
 issues: [2886]
 subtext: |
-  - AWS Bedrock AgentCore ARN attributes: `aws.bedrock.agentcore.code_interpreter.arn`, `aws.bedrock.agentcore.browser.arn`, `aws.bedrock.agentcore.memory.arn`, `aws.bedrock.agentcore.runtime.arn`, `aws.bedrock.agentcore.gateway.arn`, `aws.bedrock.agentcore.identity.workload_identity.arn`
+  - AWS Bedrock AgentCore ARN attributes: `aws.bedrock.agentcore.code_interpreter.arn`, `aws.bedrock.agentcore.browser.arn`, `aws.bedrock.agentcore.memory.arn`, `aws.bedrock.agentcore.runtime.arn`, `aws.bedrock.agentcore.runtime_endpoint.arn`, `aws.bedrock.agentcore.gateway.arn`, `aws.bedrock.agentcore.identity.workload_identity.arn`
   - AWS authentication credential provider ARN: `aws.auth.credential_provider.arn`

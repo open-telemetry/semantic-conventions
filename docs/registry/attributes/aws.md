@@ -57,6 +57,7 @@ This document defines attributes for AWS Bedrock AgentCore.
 | <a id="aws-bedrock-agentcore-identity-workload-identity-arn" href="#aws-bedrock-agentcore-identity-workload-identity-arn">`aws.bedrock.agentcore.identity.workload_identity.arn`</a> | string | The Amazon Resource Name (ARN) of the workload identity. | `arn:aws:bedrock-agentcore:us-east-1:123456789012:workload-identity/my-workload-identity` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="aws-bedrock-agentcore-memory-arn" href="#aws-bedrock-agentcore-memory-arn">`aws.bedrock.agentcore.memory.arn`</a> | string | The Amazon Resource Name (ARN) of the memory. | `arn:aws:bedrock-agentcore:us-east-1:123456789012:memory/myMemory-a1b2c3d4e5` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="aws-bedrock-agentcore-runtime-arn" href="#aws-bedrock-agentcore-runtime-arn">`aws.bedrock.agentcore.runtime.arn`</a> | string | The Amazon Resource Name (ARN) of the runtime. | `arn:aws:bedrock-agentcore:us-east-1:123456789012:runtime/myRuntime-a1b2c3d4e5` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="aws-bedrock-agentcore-runtime-endpoint-arn" href="#aws-bedrock-agentcore-runtime-endpoint-arn">`aws.bedrock.agentcore.runtime_endpoint.arn`</a> | string | The Amazon Resource Name (ARN) of the AgentCore Runtime endpoint. | `arn:aws:bedrock-agentcore:us-east-1:123456789012:agentEndpoint/a1b2c3d4-e5f6-7890-abcd-ef1234567890` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ## Amazon DynamoDB Attributes
 
