@@ -1,7 +1,6 @@
 {
     "$defs": {
         "BlobPart": {
-            "additionalProperties": true,
             "description": "Represents blob binary data sent inline to the model",
             "properties": {
                 "type": {
@@ -83,6 +82,9 @@
                             },
                             {
                                 "$ref": "#/$defs/FileDataPart"
+                            },
+                            {
+                                "$ref": "#/$defs/ReasoningPart"
                             },
                             {
                                 "$ref": "#/$defs/GenericPart"
@@ -205,6 +207,29 @@
             ],
             "title": "Modality",
             "type": "string"
+        },
+        "ReasoningPart": {
+            "additionalProperties": true,
+            "description": "Represents reasoning/thinking content received from the model.",
+            "properties": {
+                "type": {
+                    "const": "reasoning",
+                    "description": "The type of the content captured in this part.",
+                    "title": "Type",
+                    "type": "string"
+                },
+                "content": {
+                    "description": "Reasoning/thinking content received from the model.",
+                    "title": "Content",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "type",
+                "content"
+            ],
+            "title": "ReasoningPart",
+            "type": "object"
         },
         "Role": {
             "enum": [
