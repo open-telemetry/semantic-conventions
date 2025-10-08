@@ -591,3 +591,28 @@ groups:
         type: string
         brief: A free-form explanation for the assigned score provided by the evaluator.
         examples: ["The response is factually accurate but lacks sufficient detail to fully address the question."]
+      - id: gen_ai.code_interpreter.id
+        stability: development
+        type: string
+        brief: The unique identifier of the code interpreter session.
+        examples: ["myInterpreter-a1b2c3d4e5"]
+      - id: gen_ai.browser.id
+        stability: development
+        type: string
+        brief: The unique identifier of the browser.
+        examples: ["myBrowser-a1b2c3d4e5"]
+      - id: gen_ai.memory.id
+        stability: development
+        type: string
+        brief: The unique identifier of the memory.
+        examples: ["myMemory-a1b2c3d4e5"]
+      - id: gen_ai.runtime.id
+        stability: development
+        type: string
+        brief: The unique identifier of the runtime.
+        examples: ["myRuntime-a1b2c3d4e5"]
+      - id: gen_ai.gateway.id
+        stability: development
+        type: string
+        brief: The unique identifier of the gateway.
+        examples: ["mygateway-a1b2c3d4e5"]

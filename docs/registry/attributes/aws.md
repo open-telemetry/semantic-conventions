@@ -5,12 +5,7 @@
 
 - [General AWS Attributes](#general-aws-attributes)
 - [Amazon Bedrock Attributes](#amazon-bedrock-attributes)
-- [Amazon Bedrock AgentCore Browser Attributes](#amazon-bedrock-agentcore-browser-attributes)
-- [Amazon Bedrock AgentCore Code Interpreter Attributes](#amazon-bedrock-agentcore-code-interpreter-attributes)
-- [Amazon Bedrock AgentCore Gateway Attributes](#amazon-bedrock-agentcore-gateway-attributes)
 - [Amazon Bedrock AgentCore Identity Attributes](#amazon-bedrock-agentcore-identity-attributes)
-- [Amazon Bedrock AgentCore Memory Attributes](#amazon-bedrock-agentcore-memory-attributes)
-- [Amazon Bedrock AgentCore Runtime Attributes](#amazon-bedrock-agentcore-runtime-attributes)
 - [Amazon DynamoDB Attributes](#amazon-dynamodb-attributes)
 - [Amazon ECS Attributes](#amazon-ecs-attributes)
 - [Amazon EKS Attributes](#amazon-eks-attributes)
@@ -41,30 +36,6 @@ This document defines attributes for AWS Bedrock.
 | <a id="aws-bedrock-guardrail-id" href="#aws-bedrock-guardrail-id">`aws.bedrock.guardrail.id`</a> | string | The unique identifier of the AWS Bedrock Guardrail. A [guardrail](https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html) helps safeguard and prevent unwanted behavior from model responses or user messages. | `sgi5gkybzqak` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="aws-bedrock-knowledge-base-id" href="#aws-bedrock-knowledge-base-id">`aws.bedrock.knowledge_base.id`</a> | string | The unique identifier of the AWS Bedrock Knowledge base. A [knowledge base](https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html) is a bank of information that can be queried by models to generate more relevant responses and augment prompts. | `XFWUPB9PAW` | ![Development](https://img.shields.io/badge/-development-blue) |
 
-## Amazon Bedrock AgentCore Browser Attributes
-
-This document defines attributes for AWS Bedrock AgentCore Browser.
-
-| Attribute | Type | Description | Examples | Stability |
-|---|---|---|---|---|
-| <a id="aws-bedrock-agentcore-browser-id" href="#aws-bedrock-agentcore-browser-id">`aws.bedrock.agentcore.browser.id`</a> | string | The unique identifier of the created browser. | `myBrowser-a1b2c3d4e5` | ![Development](https://img.shields.io/badge/-development-blue) |
-
-## Amazon Bedrock AgentCore Code Interpreter Attributes
-
-This document defines attributes for AWS Bedrock AgentCore Code Interpreter.
-
-| Attribute | Type | Description | Examples | Stability |
-|---|---|---|---|---|
-| <a id="aws-bedrock-agentcore-code-interpreter-id" href="#aws-bedrock-agentcore-code-interpreter-id">`aws.bedrock.agentcore.code_interpreter.id`</a> | string | The unique identifier of the created code interpreter. | `myInterpreter-a1b2c3d4e5` | ![Development](https://img.shields.io/badge/-development-blue) |
-
-## Amazon Bedrock AgentCore Gateway Attributes
-
-This document defines attributes for AWS Bedrock AgentCore Gateway.
-
-| Attribute | Type | Description | Examples | Stability |
-|---|---|---|---|---|
-| <a id="aws-bedrock-agentcore-gateway-id" href="#aws-bedrock-agentcore-gateway-id">`aws.bedrock.agentcore.gateway.id`</a> | string | The unique identifier of the created gateway. | `mygateway-a1b2c3d4e5` | ![Development](https://img.shields.io/badge/-development-blue) |
-
 ## Amazon Bedrock AgentCore Identity Attributes
 
 This document defines attributes for AWS Bedrock AgentCore Identity.
@@ -73,22 +44,6 @@ This document defines attributes for AWS Bedrock AgentCore Identity.
 |---|---|---|---|---|
 | <a id="aws-bedrock-agentcore-identity-credential-provider-arn" href="#aws-bedrock-agentcore-identity-credential-provider-arn">`aws.bedrock.agentcore.identity.credential_provider.arn`</a> | string | The Amazon Resource Name (ARN) of the OAuth2 credential provider. | `arn:aws:acps:us-east-1:123456789012:token-vault/my-vault/oauth2credentialprovider/my-provider` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="aws-bedrock-agentcore-identity-workload-identity-arn" href="#aws-bedrock-agentcore-identity-workload-identity-arn">`aws.bedrock.agentcore.identity.workload_identity.arn`</a> | string | The Amazon Resource Name (ARN) of the workload identity. | `arn:aws:bedrock-agentcore:us-east-1:123456789012:workload-identity/my-workload-identity` | ![Development](https://img.shields.io/badge/-development-blue) |
-
-## Amazon Bedrock AgentCore Memory Attributes
-
-This document defines attributes for AWS Bedrock AgentCore Memory.
-
-| Attribute | Type | Description | Examples | Stability |
-|---|---|---|---|---|
-| <a id="aws-bedrock-agentcore-memory-id" href="#aws-bedrock-agentcore-memory-id">`aws.bedrock.agentcore.memory.id`</a> | string | The unique identifier of the memory. | `myMemory-a1b2c3d4e5` | ![Development](https://img.shields.io/badge/-development-blue) |
-
-## Amazon Bedrock AgentCore Runtime Attributes
-
-This document defines attributes for AWS Bedrock AgentCore Runtime.
-
-| Attribute | Type | Description | Examples | Stability |
-|---|---|---|---|---|
-| <a id="aws-bedrock-agentcore-runtime-id" href="#aws-bedrock-agentcore-runtime-id">`aws.bedrock.agentcore.runtime.id`</a> | string | The unique identifier of the AgentCore Runtime. | `myRuntime-a1b2c3d4e5` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ## Amazon DynamoDB Attributes
 

@@ -581,81 +581,27 @@ groups:
           A [knowledge base](https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html) is a bank of information
           that can be queried by models to generate more relevant responses and augment prompts.
         examples: ["XFWUPB9PAW"]
-  - id: registry.aws.bedrock.agentcore.runtime
+  - id: registry.aws.auth
     type: attribute_group
-    display_name: Amazon Bedrock AgentCore Runtime Attributes
+    display_name: AWS Authentication Attributes
     brief: >
-        This document defines attributes for AWS Bedrock AgentCore Runtime.
+        This document defines attributes for AWS authentication and credential components.
     attributes:
-      - id: aws.bedrock.agentcore.runtime.id
+      - id: aws.auth.credential_provider.arn
         type: string
         stability: development
         brief: >
-          The unique identifier of the AgentCore Runtime.
-        examples: ["myRuntime-a1b2c3d4e5"]
+          The Amazon Resource Name (ARN) of the credential provider.
+        examples: ["arn:aws:acps:us-east-1:123456789012:token-vault/my-vault/oauth2credentialprovider/my-provider", "arn:aws:iam::123456789012:oidc-provider/example.com", "arn:aws:iam::123456789012:role/MyRole"]
   - id: registry.aws.bedrock.agentcore.identity
     type: attribute_group
     display_name: Amazon Bedrock AgentCore Identity Attributes
     brief: >
         This document defines attributes for AWS Bedrock AgentCore Identity.
     attributes:
-      - id: aws.bedrock.agentcore.identity.credential_provider.arn
-        type: string
-        stability: development
-        brief: >
-          The Amazon Resource Name (ARN) of the OAuth2 credential provider.
-        examples: ["arn:aws:acps:us-east-1:123456789012:token-vault/my-vault/oauth2credentialprovider/my-provider"]
       - id: aws.bedrock.agentcore.identity.workload_identity.arn
         type: string
         stability: development
         brief: >
           The Amazon Resource Name (ARN) of the workload identity.
         examples: ["arn:aws:bedrock-agentcore:us-east-1:123456789012:workload-identity/my-workload-identity"]
-  - id: registry.aws.bedrock.agentcore.memory
-    type: attribute_group
-    display_name: Amazon Bedrock AgentCore Memory Attributes
-    brief: >
-        This document defines attributes for AWS Bedrock AgentCore Memory.
-    attributes:
-      - id: aws.bedrock.agentcore.memory.id
-        type: string
-        stability: development
-        brief: >
-          The unique identifier of the memory.
-        examples: ["myMemory-a1b2c3d4e5"]
-  - id: registry.aws.bedrock.agentcore.code_interpreter
-    type: attribute_group
-    display_name: Amazon Bedrock AgentCore Code Interpreter Attributes
-    brief: >
-        This document defines attributes for AWS Bedrock AgentCore Code Interpreter.
-    attributes:
-      - id: aws.bedrock.agentcore.code_interpreter.id
-        type: string
-        stability: development
-        brief: >
-          The unique identifier of the created code interpreter.
-        examples: ["myInterpreter-a1b2c3d4e5"]
-  - id: registry.aws.bedrock.agentcore.browser
-    type: attribute_group
-    display_name: Amazon Bedrock AgentCore Browser Attributes
-    brief: >
-        This document defines attributes for AWS Bedrock AgentCore Browser.
-    attributes:
-      - id: aws.bedrock.agentcore.browser.id
-        type: string
-        stability: development
-        brief: >
-          The unique identifier of the created browser.
-        examples: ["myBrowser-a1b2c3d4e5"]
-  - id: registry.aws.bedrock.agentcore.gateway
-    type: attribute_group
-    display_name: Amazon Bedrock AgentCore Gateway Attributes
-    brief: >
-        This document defines attributes for AWS Bedrock AgentCore Gateway.
-    attributes:
-      - id: aws.bedrock.agentcore.gateway.id
-        type: string
-        stability: development
-        brief: >
-          The unique identifier of the created gateway.
-        examples: ["mygateway-a1b2c3d4e5"]
