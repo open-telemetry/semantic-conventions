@@ -10,7 +10,7 @@ change_type: enhancement
 component: app
 
 # A brief description of the change. Surround your text with quotes ("") if it needs to start with a backtick (`).
-note: Add spans for app launch, app screen load, app time to first appear
+note: Add spans for app start, app screen load, app time to first draw
 
 # Mandatory: One or more tracking issues related to the change. You can use the PR number here if no issue exists.
 # The values here must be integers.
