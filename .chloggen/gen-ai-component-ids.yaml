@@ -1,0 +1,10 @@
+change_type: enhancement
+component: gen_ai
+note: Add generic ID attributes for GenAI components.
+issues: [2886]
+subtext: |
+  - `gen_ai.code_interpreter.id`
+  - `gen_ai.browser.id`
+  - `gen_ai.memory.id`
+  - `gen_ai.runtime.id`
+  - `gen_ai.gateway.id`
