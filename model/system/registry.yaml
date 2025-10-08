@@ -75,7 +75,7 @@ groups:
               value: 'minor'
               stability: development
         stability: development
-        brief: "The memory paging type"
+        brief: "The paging fault type"
         examples: ["minor"]
       - id: system.paging.direction
         type:

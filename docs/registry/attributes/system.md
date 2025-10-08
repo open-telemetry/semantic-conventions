@@ -80,7 +80,7 @@ Describes System Memory Paging attributes
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
 | <a id="system-paging-direction" href="#system-paging-direction">`system.paging.direction`</a> | string | The paging access direction | `in` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="system-paging-fault-type" href="#system-paging-fault-type">`system.paging.fault.type`</a> | string | The memory paging type | `minor` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="system-paging-fault-type" href="#system-paging-fault-type">`system.paging.fault.type`</a> | string | The paging fault type | `minor` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="system-paging-state" href="#system-paging-state">`system.paging.state`</a> | string | The memory paging state | `free` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
