@@ -86,58 +86,26 @@ groups:
           is larger in scope than individual widgets. Multiple screens can
           coexist on the same display simultaneously (e.g., split view on tablets).
         examples: ["MainActivity", "ProductDetailFragment", "ProfileView", "ProfileViewController"]
-      - id: app.screen.depth
+      - id: app.screen.first_draw.duration
         type: int
         stability: development
         brief: >
-          The depth of this screen in the application’s screen hierarchy, where 0 represents the root screen.
+          The time, in nanoseconds, from screen initialization to the first frame being rendered.
         note: >
-          Depth represents the screen's position in the screen hierarchy tree.
-          The root screen of the app is considered to have a depth of 0. Screens
-          that are nested within other screens (such as in tab navigation, modals,
-          or multi-screen flows) will have increasing depth values (1, 2, etc.).
-          For example, a modal screen that is presented over the root screen would
-          have a depth of 1, while a screen inside a modal might have a depth of 2.
-        examples: [0, 2, 5]
-      - id: app.screen.first_appear.duration
-        type: int
-        stability: development
-        brief: >
-          The time, in nanoseconds, from screen initialization to the first visual render of the screen.
-        note: >
-          This measures the time, in nanoseconds, until the first pixels of the screen
-          are drawn and the screen becomes visible to the user.
-          It does not necessarily mean the screen is fully interactive or that dynamic content
-          (like images, API responses, or animations) is fully loaded.
+          This measures the time, in nanoseconds, until the first frame of the screen
+          is rendered and becomes visible to the user.
         examples: [1000]
       - id: app.screen.load.duration
         type: int
         stability: development
         brief: >
-          The total time, in nanoseconds, from navigation trigger (e.g., button tap)
-          to when the screen is able to handle user interactions.
+          The time taken, in nanoseconds, for a screen to load and become stable, measured from when
+          the screen begins appearing until the first stable frame has been rendered.
         note: >
-          This includes time, in nanoseconds, spent rendering the screen, waiting for dynamic content
-          (if necessary), and ensuring the app is ready to process user input.
-          The screen is considered "ready" once the UI is able to respond to user interactions
-          such as taps, swipes, or gestures.
+          This attribute represents the total duration, in nanoseconds, of a screen load as experienced by the user.
+          The screen load is considered complete when the first stable frame of the screen has been rendered.
+          A frame is considered stable when no major layout or frame changes occur for a brief stability interval (e.g. 150 ms).
         examples: [1000]
-      - id: app.screen.main_thread_busy_time
-        type: int
-        stability: development
-        brief: >
-          The time, in nanoseconds, during which the main thread is occupied or
-          blocked from processing user input, such as during rendering, animations,
-          or network requests. This indicates the time the app is "busy" and unable to respond to user interactions.
-      - id: app.screen.nodes
-        type: int
-        stability: development
-        brief: >
-          The total number of visual or interactive elements (widgets, views, components, etc.) within an application screen.
-        note: >
-          A "node" is any individual visual or interactive component contained within a screen.
-          This includes UI elements like buttons, labels, text fields, images, containers, and static content such as images or text.
-        examples: [5, 23, 147]
       - id: app.screen.type
         type:
           members:
@@ -196,15 +164,7 @@ groups:
               stability: development
             - id: warm
               value: "warm"
-              brief: App start from background state]
-              stability: development
-            - id: hot
-              value: "hot"
-              brief: App start from memory (already running)
-              stability: development
-            - id: pre_warm
-              value: "pre_warm"
-              brief: App start using pre-warmed process
+              brief: App start from background state
               stability: development
         stability: development
         brief: >
@@ -214,9 +174,7 @@ groups:
 
           - **Cold**: The app is started from a terminated state, meaning no prior instance of the app is running.
           - **Warm**: The app is started from the background, meaning an instance of the app is still in memory, but not active.
-          - **Hot**: The app is already running and brought to the foreground, meaning no re-initialization is needed.
-          - **Pre-Warm**: The app started uses a pre-warmed process, meaning part of the app's initialization has already been done in anticipation of the start.
-        examples: ["cold", "warm", "hot", "pre_warm"]
+        examples: ["cold", "warm"]
       - id: app.widget.id
         type: string
         stability: development
