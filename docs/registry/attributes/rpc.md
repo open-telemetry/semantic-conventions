@@ -115,7 +115,7 @@ the `rpc.grpc.response.metadata.my-custom-key` attribute with value `["attribute
 
 | Value  | Description | Stability |
 |---|---|---|
-| `RECEIVED` | A request from a client, a reply from the server or a streaming message has been recieved. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `RECEIVED` | A request from a client, a reply from the server or a streaming message has been received. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `SENT` | A request from a client, a reply from the server or a streaming message has been sent. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
@@ -149,5 +149,5 @@ Deprecated rpc message attributes.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `RECEIVED` | A request from a client, a reply from the server or a streaming message has been recieved. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `RECEIVED` | A request from a client, a reply from the server or a streaming message has been received. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `SENT` | A request from a client, a reply from the server or a streaming message has been sent. | ![Development](https://img.shields.io/badge/-development-blue) |

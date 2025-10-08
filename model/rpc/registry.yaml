@@ -273,7 +273,7 @@ groups:
               stability: development
             - id: received
               value: "RECEIVED"
-              brief: A request from a client, a reply from the server or a streaming message has been recieved.
+              brief: A request from a client, a reply from the server or a streaming message has been received.
               stability: development
         stability: development
         brief: "Whether this is a received or sent message."

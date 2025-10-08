@@ -302,7 +302,7 @@ In the lifetime of an RPC stream, an event for each message sent/received on cli
 
 | Value  | Description | Stability |
 |---|---|---|
-| `RECEIVED` | A request from a client, a reply from the server or a streaming message has been recieved. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `RECEIVED` | A request from a client, a reply from the server or a streaming message has been received. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `SENT` | A request from a client, a reply from the server or a streaming message has been sent. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
