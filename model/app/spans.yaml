@@ -1,5 +1,5 @@
 groups:
-  - id: span.app.screen.first_draw.client
+  - id: span.app.screen.first_draw.internal
     type: span
     span_kind: internal
     brief: This span describes the time until the first draw of an application UI screen.
@@ -15,7 +15,7 @@ groups:
         requirement_level: required
       - ref: app.screen.type
         requirement_level: opt_in
-  - id: span.app.screen.load.client
+  - id: span.app.screen.load.internal
     type: span
     span_kind: internal
     brief: This span describes an application screen load operation, from navigation trigger to when the first stable frame has been rendered.
