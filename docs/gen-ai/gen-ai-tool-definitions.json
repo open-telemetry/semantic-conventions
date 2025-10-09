@@ -1,0 +1,59 @@
+{
+    "$defs": {
+        "ToolDefinition": {
+            "additionalProperties": true,
+            "properties": {
+                "type": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/ToolType"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ],
+                    "description": "Type of the tool.",
+                    "title": "ToolType"
+                },
+                "name": {
+                    "description": "Name of the tool.",
+                    "title": "Name",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "Description of the tool.",
+                    "title": "Description",
+                    "type": "string"
+                },
+                "parameters": {
+                    "description": "Format of the tool parameters. Maybe it is a JSON schema.",
+                    "title": "Parameters"
+                },
+                "response": {
+                    "description": "Format of the tool response. Maybe it is a JSON schema.",
+                    "title": "Response"
+                }
+            },
+            "required": [
+                "type",
+                "name"
+            ],
+            "title": "ToolDefinition",
+            "type": "object"
+        },
+        "ToolType": {
+            "enum": [
+                "function",
+                "custom"
+            ],
+            "title": "ToolType",
+            "type": "string"
+        }
+    },
+    "description": "Represents the list of tool definitions sent to the model.",
+    "items": {
+        "$ref": "#/$defs/ToolDefinition"
+    },
+    "title": "ToolDefinitions",
+    "type": "array"
+}
