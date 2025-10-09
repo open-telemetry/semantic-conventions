@@ -23,18 +23,6 @@ groups:
         stability: development
         brief: 'Destination port number'
         examples: [3389, 2888]
-      - id: destination.interface.id
-        stability: development
-        type: int
-        brief: Destination Interface Id
-        note: Interface ID as reported by an observer (typically SNMP interface ID).
-        examples: [10]
-      - id: destination.interface.name
-        stability: development
-        type: string
-        brief: Destination Interface Name
-        note: Interface name as reported by the system.
-        examples: ["eth0"]
       - id: destination.mac
         stability: development
         type: string
@@ -43,21 +31,3 @@ groups:
           MAC Addresses MUST be represented in [IEEE RA hexadecimal form](https://standards.ieee.org/wp-content/uploads/import/documents/tutorials/eui.pdf):
           as hyphen-separated octets in uppercase hexadecimal form from most to least significant.
         examples: ['AC-DE-48-23-45-67', 'AC-DE-48-23-45-67-01-9F']
-      - id: destination.zone
-        stability: development
-        type: string
-        brief: Zone where traffic can be categorized as going to
-        note: Network zone of outgoing traffic as reported by an observer to categorize the destination area of the traffic.
-        examples: ["internal", "External", "DMZ", "HR", "Legal"]
-      - id: destination.vlan.id
-        stability: development
-        type: int
-        brief: Destination VLAN Id
-        note: VLAN ID as reported by the observer.
-        examples: [10]
-      - id: destination.vlan.name
-        stability: development
-        type: string
-        brief: Destination VLAN Name
-        note: VLAN name as reported by the observer.
-        examples: ["outside", "DMZ", "corporate"]
