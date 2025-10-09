@@ -54,8 +54,9 @@ if it can be changed via configuration options.
 | [Recommended](#recommended) | Yes [2] | No [2] | Yes |
 | [Opt-In](#opt-in) | No | Yes | Yes |
 
-[1]: unless the attribute requirement conditions or instructions are not satisfied.
-[2]: unless it was excluded for a reason outlined in [Recommended](#recommended) section.
+**[1]:** unless the attribute requirement conditions or instructions are not satisfied.
+
+**[2]:** unless it was excluded for a reason outlined in [Recommended](#recommended) section.
 
 ### Required
 
