@@ -1,10 +1,13 @@
 change_type: enhancement
 component: gen_ai
-note: Add generic ID attributes for GenAI components.
+note: Add generic ID attributes for GenAI infrastructure components and infrastructure span.
 issues: [2886]
 subtext: |
-  - `gen_ai.code_interpreter.id`
-  - `gen_ai.browser.id`
-  - `gen_ai.memory.id`
-  - `gen_ai.runtime.id`
-  - `gen_ai.gateway.id`
+  - Added `span.gen_ai.infrastructure.client` for agent infrastructure components
+  - Added generic ID attributes:
+    - `gen_ai.code_interpreter.id`
+    - `gen_ai.browser.id`
+    - `gen_ai.memory.id`
+    - `gen_ai.runtime.id`
+    - `gen_ai.gateway.id`
+  - `gen_ai.operation.name` and `gen_ai.provider.name` are conditionally required (if available) for infrastructure spans

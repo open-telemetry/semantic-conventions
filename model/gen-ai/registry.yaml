@@ -599,20 +599,20 @@ groups:
       - id: gen_ai.browser.id
         stability: development
         type: string
-        brief: The unique identifier of the browser.
+        brief: The unique identifier of the browser session.
         examples: ["myBrowser-a1b2c3d4e5"]
       - id: gen_ai.memory.id
         stability: development
         type: string
-        brief: The unique identifier of the memory.
+        brief: The unique identifier of the memory session.
         examples: ["myMemory-a1b2c3d4e5"]
       - id: gen_ai.runtime.id
         stability: development
         type: string
-        brief: The unique identifier of the runtime.
+        brief: The unique identifier of the runtime session.
         examples: ["myRuntime-a1b2c3d4e5"]
       - id: gen_ai.gateway.id
         stability: development
         type: string
-        brief: The unique identifier of the gateway.
+        brief: The unique identifier of the gateway session.
         examples: ["mygateway-a1b2c3d4e5"]
