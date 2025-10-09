@@ -12,8 +12,16 @@ groups:
       When a session reaches end of life, typically due to user inactivity or session timeout, a new session identifier
       will be assigned. The previous session identifier may be provided by the instrumentation so that telemetry
       backends can link the two sessions.
+
+      When a session expires, then the end time is defined as the moment when the session expired after a period of inactivity,
+      which is not necessarily the same moment as when the session end was observed. To account for this difference, session
+      `start_time` and `end_time` represent the true session lifecycle, whereas `timeUnixNano` represents when these events are observed.
     attributes:
       - ref: session.id
-        requirement_level: opt_in
+        requirement_level: required
       - ref: session.previous_id
+        requirement_level: opt_in
+      - ref: session.start_time
+        requirement_level: opt_in
+      - ref: session.end_time
         requirement_level: opt_in
