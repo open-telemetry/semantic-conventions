@@ -4,7 +4,9 @@ Fixes #
 
 Please provide a brief description of the changes here.
 
-Note: if the PR is touching an area that is not listed in the [existing areas](https://github.com/open-telemetry/semantic-conventions/blob/main/docs/README.md), or the area does not have sufficient [domain experts coverage](https://github.com/open-telemetry/semantic-conventions/blob/main/.github/CODEOWNERS), the PR might be tagged as [experts needed](https://github.com/open-telemetry/semantic-conventions/labels/experts%20needed) and move slowly until experts are identified.
+> [!IMPORTANT]
+> Pull requests acceptance are subject to the triage process as described in [Issue and PR Triage Management](../issue-management.md).
+> PRs that do not follow the guidance above, may be automatically rejected and closed.
 
 ## Merge requirement checklist
 
