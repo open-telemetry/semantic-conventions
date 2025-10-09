@@ -684,7 +684,7 @@ groups:
           (e.g., count/deployments.apps, count/pods), or, for certain core Kubernetes resources,
           just the resource name (e.g., pods, services, configmaps).
           Both forms are supported by Kubernetes for object count quotas. See
-          [Kubernetes Resource Quotas documentation](https://kubernetes.io/docs/concepts/policy/resource-quotas/#object-count-quota)
+          [Kubernetes Resource Quotas documentation](https://kubernetes.io/docs/concepts/policy/resource-quotas/#quota-on-object-count)
           for more details.
         examples: [ 'count/replicationcontrollers' ]
       - id: k8s.pod.status.reason
