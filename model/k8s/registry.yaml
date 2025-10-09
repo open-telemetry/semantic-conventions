@@ -587,15 +587,15 @@ groups:
           members:
             - id: condition_true
               value: 'true'
-              brief: "True"
+              brief: The k8s node has the condition specified in `k8s.node.condition.type`.
               stability: development
             - id: condition_false
               value: 'false'
-              brief: "False"
+              brief: The k8s node does not have the condition specified in `k8s.node.condition.type`.
               stability: development
             - id: condition_unknown
               value: 'unknown'
-              brief: Unknown
+              brief: The condition of the node is unknown.
               stability: development
       - id: k8s.container.status.state
         stability: experimental
