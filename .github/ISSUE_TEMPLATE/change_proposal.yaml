@@ -55,6 +55,7 @@ body:
         - area:heroku
         - area:host
         - area:http
+        - area:ibm
         - area:ios
         - area:jvm
         - area:k8s
@@ -87,6 +88,7 @@ body:
         - area:test
         - area:thread
         - area:tls
+        - area:tps
         - area:url
         - area:user
         - area:user-agent
