@@ -167,7 +167,7 @@ groups:
     entity_associations:
       - k8s.pod
     attributes:
-      - ref: system.paging.type
+      - ref: system.paging.fault_type
     note: >
       Cumulative number of major/minor page faults.
 
@@ -698,7 +698,7 @@ groups:
     entity_associations:
       - k8s.node
     attributes:
-      - ref: system.paging.type
+      - ref: system.paging.fault_type
     note: >
       Cumulative number of major/minor page faults.
 

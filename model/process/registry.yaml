@@ -228,19 +228,6 @@ groups:
               value: 'involuntary'
               stability: development
         stability: development
-      - id: process.paging.fault_type
-        brief: >
-          The type of page fault for this data point. Type `major` is for major/hard page faults, and `minor`
-          is for minor/soft page faults.
-        type:
-          members:
-            - id: major
-              value: 'major'
-              stability: development
-            - id: minor
-              value: 'minor'
-              stability: development
-        stability: development
       - id: process.environment_variable
         brief: >
           Process environment variables, `<key>` being the environment variable
