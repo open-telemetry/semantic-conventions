@@ -17,6 +17,5 @@ When a trace context is available (cf. [CICD Spans](cicd-spans.md)) then emitted
 
 Any resources of the [CICD and VCS resource conventions][cicdres] that apply SHOULD be used.
 
-[cicdres]: /docs/resource/cicd.md (CICD and VCS resource conventions)
-
+[cicdres]: /docs/resource/cicd.md "CICD and VCS resource conventions"
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
