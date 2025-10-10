@@ -6,6 +6,7 @@
 {%- import 'attribute_table.j2' as at -%}
 {%- import 'metric_table.j2' as mt -%}
 {%- import 'event_macros.j2' as event -%}
+{% import 'annotation_macros.j2' as annotations %}
 {%- import 'resource_macros.j2' as resource -%}
 {%- import 'span_macros.j2' as span %}
 {%- set attribute_registry_base_url=params.registry_base_url~"attributes" %}
@@ -19,7 +20,7 @@
 {{ mt.generate(group, entity_registry_base_url) }}
 {{ generate_attributes(group) }}{% endmacro -%}
 {%- macro generate_span(group) -%}
-{{ span.header(group) }}{{ generate_attributes(group) }}{% endmacro -%}
+{{ span.header(group) }}{{ generate_attributes(group) }}{{ annotations.table(group, attribute_registry_base_url) }}{% endmacro -%}
 {%- macro generate_attributes(group) -%}
 {{ at.generate(group.attributes, tag_filter, attribute_registry_base_url, group.lineage.attributes) }}{% endmacro -%}
 
