@@ -8,6 +8,6 @@ linkTitle: App
 
 Semantic conventions for Apps are defined for the following signals:
 
-* [App Events](app-events.md)
+- [App Events](app-events.md)
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status

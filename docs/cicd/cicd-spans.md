@@ -164,9 +164,9 @@ it's RECOMMENDED to:
 The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):
 
-* [`cicd.pipeline.task.name`](/docs/registry/attributes/cicd.md)
-* [`cicd.pipeline.task.run.id`](/docs/registry/attributes/cicd.md)
-* [`cicd.pipeline.task.run.url.full`](/docs/registry/attributes/cicd.md)
+- [`cicd.pipeline.task.name`](/docs/registry/attributes/cicd.md)
+- [`cicd.pipeline.task.run.id`](/docs/registry/attributes/cicd.md)
+- [`cicd.pipeline.task.run.url.full`](/docs/registry/attributes/cicd.md)
 
 ---
 

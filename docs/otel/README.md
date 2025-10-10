@@ -10,6 +10,6 @@ This document defines semantic conventions for telemetry emitted by the OpenTele
 
 Semantic conventions are defined for the following signals:
 
-* [Metrics](sdk-metrics.md)
+- [Metrics](sdk-metrics.md)
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status

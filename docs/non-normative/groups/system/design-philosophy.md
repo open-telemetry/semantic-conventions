@@ -201,11 +201,11 @@ baseline level of knowledge of the concepts being instrumented**. The `brief`
 and `note` fields of metrics and attributes should be used to convey information
 that is crucial to understanding the instrumentation intention, i.e.:
 
-* Differences in the same piece of data when it is instrumented on different
+- Differences in the same piece of data when it is instrumented on different
   platforms
-* When we recommend calculations be done on particular data rather than
+- When we recommend calculations be done on particular data rather than
   surfacing direct values from existing tools
-* When particular names or enum values were chosen when there are common
+- When particular names or enum values were chosen when there are common
   alternate terms for the same concept
 
 For root metrics and attributes, we will strive to always have a `brief` field.
