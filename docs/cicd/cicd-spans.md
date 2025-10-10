@@ -20,7 +20,7 @@ The conventions described in this section are specific to Continuous Integration
 
 Any resources of the [CICD and VCS resource conventions][cicdres] that apply SHOULD be used.
 
-[cicdres]: /docs/resource/cicd.md (CICD and VCS resource conventions)
+[cicdres]: /docs/resource/cicd.md "CICD and VCS resource conventions"
 
 ### Pipeline run
 

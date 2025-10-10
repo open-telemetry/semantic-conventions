@@ -123,5 +123,4 @@ Here are several examples of expensive operations to be avoided by default:
 - reading response stream to find `http.response.body.size` when
   `Content-Length` header is not available
 
-[DocumentStatus]:
-  https://opentelemetry.io/docs/specs/otel/document-status
+[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status

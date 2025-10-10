@@ -220,15 +220,9 @@ This page does not cover these versions.
 
 [Host header]: https://tools.ietf.org/html/rfc7230#section-5.4
 [HTTP/2 authority]: https://tools.ietf.org/html/rfc9113#section-8.3.1
-[Forwarded#for]:
-https://developer.mozilla.org/docs/Web/HTTP/Headers/Forwarded#for
-[Forwarded#proto]:
-https://developer.mozilla.org/docs/Web/HTTP/Headers/Forwarded#proto
-[Forwarded#host]:
-https://developer.mozilla.org/docs/Web/HTTP/Headers/Forwarded#host
-[X-Forwarded-For]:
-https://developer.mozilla.org/docs/Web/HTTP/Headers/X-Forwarded-For
-[X-Forwarded-Proto]:
-https://developer.mozilla.org/docs/Web/HTTP/Headers/X-Forwarded-Proto
-[X-Forwarded-Host]:
-https://developer.mozilla.org/docs/Web/HTTP/Headers/X-Forwarded-Host
+[Forwarded#for]: https://developer.mozilla.org/docs/Web/HTTP/Headers/Forwarded#for
+[Forwarded#proto]: https://developer.mozilla.org/docs/Web/HTTP/Headers/Forwarded#proto
+[Forwarded#host]: https://developer.mozilla.org/docs/Web/HTTP/Headers/Forwarded#host
+[X-Forwarded-For]: https://developer.mozilla.org/docs/Web/HTTP/Headers/X-Forwarded-For
+[X-Forwarded-Proto]: https://developer.mozilla.org/docs/Web/HTTP/Headers/X-Forwarded-Proto
+[X-Forwarded-Host]: https://developer.mozilla.org/docs/Web/HTTP/Headers/X-Forwarded-Host
