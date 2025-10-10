@@ -1,0 +1,22 @@
+{% import 'attribute_macros.j2' as attrs %}
+{% macro table(signal, attribute_registry_base_url) -%}
+{% set block = examples(signal, attribute_registry_base_url, group.lineage.attributes)%}{{block | trim}}{%if block is defined and block | trim | length > 0 %}{{"\n"}}
+{%endif%}{% endmacro %}
+
+{% macro examples(signal, attribute_registry_base_url, lineage_attributes) -%}
+{% if signal and signal.annotations %}
+{% set sources = signal.attributes | selectattr("annotations") | selectattr("annotations.docs.examples")%}
+---
+
+**Examples:**
+{% for example in signal.annotations.docs.examples %}
+_{{example.name | title_case}}_
+
+| Key | Value |
+| --- | --- |
+{% for prop in example.properties | sort(attribute="key") %}| {{prop.key}} | `{{prop.value}}` |
+{% endfor %}{% for attribute in sources | sort(attribute="name") -%}{% for source in attribute.annotations.docs.examples %}{% if source.name == example.name %}| {{ attrs.name_with_link(attribute, attribute_registry_base_url, lineage_attributes) }} | `{{ source.value | trim}}` |{% endif %}
+{% endfor %}{% endfor %}
+{% endfor %}
+{%endif %}
+{% endmacro %}
