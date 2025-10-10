@@ -10,6 +10,6 @@ This document defines semantic conventions for Browser.
 
 Semantic conventions are defined for the following signals:
 
-* [Events](browser-events.md)
+- [Events](browser-events.md)
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status

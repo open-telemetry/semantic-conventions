@@ -242,8 +242,8 @@ this is:
 >
 > Resource provides two important aspects for observability:
 >
-> * It MUST identify an entity that is producing telemetry.
-> * It SHOULD allow users to determine where that entity resides within their
+> - It MUST identify an entity that is producing telemetry.
+> - It SHOULD allow users to determine where that entity resides within their
 >   infrastructure.
 
 All resources are composed of [Entities](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.45.0/specification/entities/README.md#overview).

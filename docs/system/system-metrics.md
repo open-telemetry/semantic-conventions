@@ -67,10 +67,10 @@ Resource attributes related to a host, SHOULD be reported under the `host.*` nam
 > [v1.21.0 of this document](https://github.com/open-telemetry/semantic-conventions/blob/v1.21.0/docs/system/system-metrics.md)
 > (or prior):
 >
-> * SHOULD NOT adopt any breaking changes from document until the system
+> - SHOULD NOT adopt any breaking changes from document until the system
 >   semantic conventions are marked stable. Conventions include, but are not
 >   limited to, attributes, metric names, and unit of measure.
-> * SHOULD introduce a control mechanism to allow users to opt-in to the new
+> - SHOULD introduce a control mechanism to allow users to opt-in to the new
 >   conventions once the migration plan is finalized.
 
 ## General metrics

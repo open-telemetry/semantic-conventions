@@ -21,16 +21,16 @@ linkTitle: Agent spans
 > [v1.36.0 of this document](https://github.com/open-telemetry/semantic-conventions/blob/v1.36.0/docs/gen-ai/README.md)
 > (or prior):
 >
-> * SHOULD NOT change the version of the GenAI conventions that they emit by default.
+> - SHOULD NOT change the version of the GenAI conventions that they emit by default.
 >   Conventions include, but are not limited to, attributes, metric, span and event names,
 >   span kind and unit of measure.
-> * SHOULD introduce an environment variable `OTEL_SEMCONV_STABILITY_OPT_IN`
+> - SHOULD introduce an environment variable `OTEL_SEMCONV_STABILITY_OPT_IN`
 >   as a comma-separated list of category-specific values. The list of values
 >   includes:
->   * `gen_ai_latest_experimental` - emit the latest experimental version of
+>   - `gen_ai_latest_experimental` - emit the latest experimental version of
 >     GenAI conventions (supported by the instrumentation) and do not emit the
 >     old one (v1.36.0 or prior).
->   * The default behavior is to continue emitting whatever version of the GenAI
+>   - The default behavior is to continue emitting whatever version of the GenAI
 >     conventions the instrumentation was emitting (1.34.0 or prior).
 >
 > This transition plan will be updated to include stable version before the

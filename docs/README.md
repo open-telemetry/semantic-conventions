@@ -19,32 +19,32 @@ The benefit to using Semantic Conventions is in following a common naming scheme
 
 Semantic Conventions are defined for the following areas:
 
-* **[General](general/README.md): General Semantic Conventions**.
-* [CICD](cicd/README.md): Semantic Conventions for CICD systems.
-* [Cloud Providers](cloud-providers/README.md): Semantic Conventions for cloud providers libraries.
-* [CloudEvents](cloudevents/README.md): Semantic Conventions for the CloudEvents specification.
-* [Database](database/README.md): Semantic Conventions for database operations.
-* [Exceptions](exceptions/README.md): Semantic Conventions for exceptions.
-* [FaaS](faas/README.md): Semantic Conventions for Function as a Service (FaaS) operations.
-* [Feature Flags](feature-flags/README.md): Semantic Conventions for feature flag evaluations.
-* [Generative AI](gen-ai/README.md): Semantic Conventions for generative AI (LLM, etc.) operations.
-* [GraphQL](graphql/README.md): Semantic Conventions for GraphQL implementations.
-* [HTTP](http/README.md): Semantic Conventions for HTTP client and server operations.
-* [Messaging](messaging/README.md): Semantic Conventions for messaging operations and systems.
-* [Object Stores](object-stores/README.md): Semantic Conventions for object stores operations.
-* [RPC](rpc/README.md): Semantic Conventions for RPC client and server operations.
-* [System](system/README.md): System Semantic Conventions.
+- **[General](general/README.md): General Semantic Conventions**.
+- [CICD](cicd/README.md): Semantic Conventions for CICD systems.
+- [Cloud Providers](cloud-providers/README.md): Semantic Conventions for cloud providers libraries.
+- [CloudEvents](cloudevents/README.md): Semantic Conventions for the CloudEvents specification.
+- [Database](database/README.md): Semantic Conventions for database operations.
+- [Exceptions](exceptions/README.md): Semantic Conventions for exceptions.
+- [FaaS](faas/README.md): Semantic Conventions for Function as a Service (FaaS) operations.
+- [Feature Flags](feature-flags/README.md): Semantic Conventions for feature flag evaluations.
+- [Generative AI](gen-ai/README.md): Semantic Conventions for generative AI (LLM, etc.) operations.
+- [GraphQL](graphql/README.md): Semantic Conventions for GraphQL implementations.
+- [HTTP](http/README.md): Semantic Conventions for HTTP client and server operations.
+- [Messaging](messaging/README.md): Semantic Conventions for messaging operations and systems.
+- [Object Stores](object-stores/README.md): Semantic Conventions for object stores operations.
+- [RPC](rpc/README.md): Semantic Conventions for RPC client and server operations.
+- [System](system/README.md): System Semantic Conventions.
 
 Semantic Conventions by signals:
 
-* [Events](general/events.md): Semantic Conventions for event data.
-* [Logs](general/logs.md): Semantic Conventions for logs data.
-* [Metrics](general/metrics.md): Semantic Conventions for metrics.
-* [Profiles](general/profiles.md): Semantic Conventions for profiles.
-* [Resource](resource/README.md): Semantic Conventions for resources.
-* [Trace](general/trace.md): Semantic Conventions for traces and spans.
+- [Events](general/events.md): Semantic Conventions for event data.
+- [Logs](general/logs.md): Semantic Conventions for logs data.
+- [Metrics](general/metrics.md): Semantic Conventions for metrics.
+- [Profiles](general/profiles.md): Semantic Conventions for profiles.
+- [Resource](resource/README.md): Semantic Conventions for resources.
+- [Trace](general/trace.md): Semantic Conventions for traces and spans.
 
 Also see:
 
-* [How to write semantic conventions](how-to-write-conventions/README.md)
-* [Non-normative supplementary information](non-normative/README.md)
+- [How to write semantic conventions](how-to-write-conventions/README.md)
+- [Non-normative supplementary information](non-normative/README.md)

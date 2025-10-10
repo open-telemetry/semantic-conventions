@@ -22,17 +22,13 @@ Semantic conventions that define events MUST document the event name and its att
 
 ## General event semantics
 
-* An event MUST have an [event name](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.51.0/specification/logs/data-model.md#field-eventname)
+- An event MUST have an [event name](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.51.0/specification/logs/data-model.md#field-eventname)
   that uniquely identifies the event structure.
-
-* Event names SHOULD follow the [Naming guidelines](/docs/general/naming.md).
-
-* [Attributes](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.51.0/specification/logs/data-model.md#field-attributes)
+- Event names SHOULD follow the [Naming guidelines](/docs/general/naming.md).
+- [Attributes](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.51.0/specification/logs/data-model.md#field-attributes)
   SHOULD be used to represent details and provide additional context about the event.
-
-* Events SHOULD NOT use [body](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.51.0/specification/logs/data-model.md#field-body).
-
-* Events SHOULD specify a [severity number](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.51.0/specification/logs/data-model.md#field-severitynumber).
+- Events SHOULD NOT use [body](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.51.0/specification/logs/data-model.md#field-body).
+- Events SHOULD specify a [severity number](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.51.0/specification/logs/data-model.md#field-severitynumber).
 
 ## External event compatibility
 

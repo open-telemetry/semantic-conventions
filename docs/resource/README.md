@@ -29,10 +29,10 @@ This document defines standard attributes for resources. These attributes are ty
 
 ## TODOs
 
-* Add more compute units: AppEngine unit, etc.
-* Add Web Browser.
-* Decide if lower case strings only.
-* Consider to add optional/required for each attribute and combination of attributes
+- Add more compute units: AppEngine unit, etc.
+- Add Web Browser.
+- Decide if lower case strings only.
+- Consider to add optional/required for each attribute and combination of attributes
   (e.g when supplying a k8s resource all k8s may be required).
 
 ## Document conventions

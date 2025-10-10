@@ -10,6 +10,6 @@ This document defines semantic conventions for DNS.
 
 Semantic conventions are defined for the following signals:
 
-* [Metrics](dns-metrics.md)
+- [Metrics](dns-metrics.md)
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
