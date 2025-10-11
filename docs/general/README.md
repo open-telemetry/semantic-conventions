@@ -13,7 +13,7 @@ The following general guides for Semantic Convention signals are defined:
 * [Events](events.md): General Semantic Conventions for events.
 * [Logs](logs.md): General Semantic Conventions for logs.
 * [Metrics](metrics.md): General Semantic Conventions for metrics.
-* [Profiles](general/profiles.md): Semantic Conventions for profiles.
+* [Profiles](profiles.md): Semantic Conventions for profiles.
 * [Spans](trace.md): General Semantic Conventions for traces / spans.
 
 Apart from semantic conventions for traces, [metrics](metrics.md), [logs](logs.md), and [events](events.md),
