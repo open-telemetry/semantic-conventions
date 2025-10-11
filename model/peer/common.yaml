@@ -1,7 +1,14 @@
 groups:
   - id: peer
     type: attribute_group
+    display_name: Peer
     brief: "Operations that access some remote service."
+    note: >
+      Users can define what the name of a service is based on their particular semantics in their distributed system.
+      Instrumentations SHOULD provide a way for users to configure this name.
     attributes:
       - ref: peer.service
         requirement_level: recommended
+    annotations:
+      docs:
+        public_group: true
