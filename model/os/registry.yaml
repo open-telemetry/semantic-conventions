@@ -53,7 +53,7 @@ groups:
               stability: development
             - id: z_os
               value: 'z_os'
-              brief: "Deprecated. Use `zos` instead."
+              brief: "IBM z/OS"
               deprecated:
                 reason: renamed
                 renamed_to: "zos"
