@@ -17,29 +17,6 @@ aliases: [metrics-general]
 
 <!-- tocstop -->
 
-The following semantic conventions surrounding metrics are defined:
-
-* **[General Guidelines](#general-guidelines): General metrics guidelines.**
-* [Database](/docs/database/database-metrics.md): For SQL and NoSQL client metrics.
-* [FaaS](/docs/faas/faas-metrics.md): For [Function as a Service](https://wikipedia.org/wiki/Function_as_a_service) metrics.
-* [GenAI](/docs/gen-ai/gen-ai-metrics.md): For Generative AI metrics.
-* [HTTP](/docs/http/http-metrics.md): For HTTP client and server metrics.
-* [Messaging](/docs/messaging/messaging-metrics.md): For messaging systems (queues, publish/subscribe, etc.) metrics.
-* [RPC](/docs/rpc/rpc-metrics.md): For RPC client and server metrics.
-* [.NET](/docs/dotnet/README.md): For network-related metrics emitted by .NET runtime components.
-* **System metrics**
-  * [System](/docs/system/system-metrics.md): For standard system metrics.
-  * [Container](/docs/system/container-metrics.md)
-  * [Hardware](/docs/hardware/README.md): For hardware-related metrics.
-  * [K8s](/docs/system/k8s-metrics.md): For K8s metrics.
-  * [Process](/docs/system/process-metrics.md): For standard process metrics.
-  * [Runtime Environment](/docs/runtime/README.md#metrics): For runtime environment metrics.
-* [OTel SDK Telemetry](/docs/otel/sdk-metrics.md): Metrics emitted by the OpenTelemetry SDK components.
-
-Apart from semantic conventions for metrics, [traces](trace.md), [logs](logs.md), and [events](events.md), OpenTelemetry also
-defines the concept of overarching [Resources](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.49.0/specification/resource/sdk.md) with
-their own [Resource Semantic Conventions](/docs/resource/README.md).
-
 ## General guidelines
 
 **Status**: [Development][DocumentStatus]

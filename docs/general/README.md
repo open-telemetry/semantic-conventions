@@ -8,10 +8,13 @@ auto_gen: below
 
 This document defines general Semantic Conventions for spans, metrics, logs and events.
 
-The following general Semantic Conventions are defined:
+The following general guides for Semantic Convention signals are defined:
 
-* **[General attributes](attributes.md): General semantic attributes**.
 * [Events](events.md): General Semantic Conventions for events.
 * [Logs](logs.md): General Semantic Conventions for logs.
 * [Metrics](metrics.md): General Semantic Conventions for metrics.
 * [Spans](trace.md): General Semantic Conventions for traces / spans.
+
+Apart from semantic conventions for traces, [metrics](metrics.md), [logs](logs.md), and [events](events.md),
+OpenTelemetry also defines the concept of overarching [Resources](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.49.0/specification/resource/sdk.md) with their own
+[Resource Semantic Conventions](/docs/resource/README.md).
