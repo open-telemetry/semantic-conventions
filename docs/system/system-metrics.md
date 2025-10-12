@@ -296,7 +296,7 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Deprecation Explanation |
 |---|---|---|
-| `shared` | shared |  Removed, report shared memory usage with `metric.system.memory.shared` metric  |
+| `shared` | shared | Removed, report shared memory usage with `metric.system.memory.shared` metric |
 
 </details>
 
@@ -385,7 +385,7 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Deprecation Explanation |
 |---|---|---|
-| `shared` | shared |  Removed, report shared memory usage with `metric.system.memory.shared` metric  |
+| `shared` | shared | Removed, report shared memory usage with `metric.system.memory.shared` metric |
 
 </details>
 

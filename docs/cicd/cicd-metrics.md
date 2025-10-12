@@ -380,7 +380,7 @@ the same backends.
 
 | Value  | Description | Deprecation Explanation |
 |---|---|---|
-| `gittea` | [Gitea](https://gitea.io) |  Use `gitea` instead.  |
+| `gittea` | [Gitea](https://gitea.io) | Use `gitea` value  instead. |
 
 </details>
 
@@ -450,7 +450,7 @@ the same backends.
 
 | Value  | Description | Deprecation Explanation |
 |---|---|---|
-| `gittea` | [Gitea](https://gitea.io) |  Use `gitea` instead.  |
+| `gittea` | [Gitea](https://gitea.io) | Use `gitea` value  instead. |
 
 </details>
 
@@ -541,7 +541,7 @@ revision based on the VCS system and situational context.
 
 | Value  | Description | Deprecation Explanation |
 |---|---|---|
-| `gittea` | [Gitea](https://gitea.io) |  Use `gitea` instead.  |
+| `gittea` | [Gitea](https://gitea.io) | Use `gitea` value  instead. |
 
 </details>
 
@@ -632,7 +632,7 @@ revision based on the VCS system and situational context.
 
 | Value  | Description | Deprecation Explanation |
 |---|---|---|
-| `gittea` | [Gitea](https://gitea.io) |  Use `gitea` instead.  |
+| `gittea` | [Gitea](https://gitea.io) | Use `gitea` value  instead. |
 
 </details>
 
@@ -677,7 +677,7 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Deprecation Explanation |
 |---|---|---|
-| `gittea` | [Gitea](https://gitea.io) |  Use `gitea` instead.  |
+| `gittea` | [Gitea](https://gitea.io) | Use `gitea` value  instead. |
 
 </details>
 
@@ -732,7 +732,7 @@ the same backends.
 
 | Value  | Description | Deprecation Explanation |
 |---|---|---|
-| `gittea` | [Gitea](https://gitea.io) |  Use `gitea` instead.  |
+| `gittea` | [Gitea](https://gitea.io) | Use `gitea` value  instead. |
 
 </details>
 
@@ -828,7 +828,7 @@ the same backends.
 
 | Value  | Description | Deprecation Explanation |
 |---|---|---|
-| `gittea` | [Gitea](https://gitea.io) |  Use `gitea` instead.  |
+| `gittea` | [Gitea](https://gitea.io) | Use `gitea` value  instead. |
 
 </details>
 
@@ -923,7 +923,7 @@ the same backends.
 
 | Value  | Description | Deprecation Explanation |
 |---|---|---|
-| `gittea` | [Gitea](https://gitea.io) |  Use `gitea` instead.  |
+| `gittea` | [Gitea](https://gitea.io) | Use `gitea` value  instead. |
 
 </details>
 
@@ -1012,7 +1012,7 @@ the same backends.
 
 | Value  | Description | Deprecation Explanation |
 |---|---|---|
-| `gittea` | [Gitea](https://gitea.io) |  Use `gitea` instead.  |
+| `gittea` | [Gitea](https://gitea.io) | Use `gitea` value  instead. |
 
 </details>
 
@@ -1075,7 +1075,7 @@ the same backends.
 
 | Value  | Description | Deprecation Explanation |
 |---|---|---|
-| `gittea` | [Gitea](https://gitea.io) |  Use `gitea` instead.  |
+| `gittea` | [Gitea](https://gitea.io) | Use `gitea` value  instead. |
 
 </details>
 
