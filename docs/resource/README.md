@@ -77,8 +77,6 @@ as specified in the [Resource SDK specification](https://github.com/open-telemet
 
 **Status:** ![Mixed](https://img.shields.io/badge/-mixed-yellow)
 
-**type:** `service`
-
 **Description:** A service instance.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
@@ -150,8 +148,6 @@ service.name = Shop.shoppingcart
 
 **Status:** ![Stable](https://img.shields.io/badge/-stable-lightgreen)
 
-**type:** `telemetry.sdk`
-
 **Description:** The telemetry SDK used to capture data recorded by the instrumentation libraries.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
@@ -202,8 +198,6 @@ All custom identifiers SHOULD be stable across different versions of an implemen
 
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
-
-**type:** `telemetry.distro`
 
 **Description:** The distribution of telemetry SDK used to capture data recorded by the instrumentation libraries.
 

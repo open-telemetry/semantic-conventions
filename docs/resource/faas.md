@@ -21,8 +21,6 @@ See also:
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-**type:** `faas`
-
 **Description:** A serverless instance.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |

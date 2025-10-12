@@ -32,8 +32,6 @@ They align with the Bosh deployment tool of CloudFoundry.
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-**type:** `cloudfoundry.org`
-
 **Description:** The organization of the application which is monitored.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
@@ -65,8 +63,6 @@ reported by `cf orgs`.
 
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
-
-**type:** `cloudfoundry.space`
 
 **Description:** The space of the application which is monitored.
 
@@ -100,8 +96,6 @@ reported by `cf spaces`.
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-**type:** `cloudfoundry.app`
-
 **Description:** The application which is monitored.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
@@ -133,8 +127,6 @@ as reported by `cf apps`.
 
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
-
-**type:** `cloudfoundry.process`
 
 **Description:** The process of the application which is monitored.
 
@@ -168,8 +160,6 @@ tasks or side-cars with different process types.
 
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
-
-**type:** `cloudfoundry.system`
 
 **Description:** The system component which is monitored.
 

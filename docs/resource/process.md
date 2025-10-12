@@ -33,8 +33,6 @@ linkTitle: Process
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-**type:** `process`
-
 **Description:** An operating system process.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
@@ -91,8 +89,6 @@ On Windows and other systems where the native format of process commands is a si
 
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
-
-**type:** `process.runtime`
 
 **Description:** The single (language) runtime instance which is monitored.
 

@@ -13,8 +13,6 @@ This document defines z/OS software entity and documents how to populate other e
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-**type:** `zos.software`
-
 **Description:** A software resource running on a z/OS system.
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|

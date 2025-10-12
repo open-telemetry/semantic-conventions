@@ -10,8 +10,6 @@
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-**type:** `cloud`
-
 **Description:** A cloud environment (e.g. GCP, Azure, AWS)
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |

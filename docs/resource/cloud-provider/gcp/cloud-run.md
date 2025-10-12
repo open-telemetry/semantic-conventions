@@ -14,8 +14,6 @@ These conventions are recommended for resources running on Cloud Run.
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-**type:** `gcp.cloud_run`
-
 **Description:** Resource used by Google Cloud Run.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |

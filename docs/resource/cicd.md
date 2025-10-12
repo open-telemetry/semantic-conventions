@@ -34,8 +34,6 @@ See also:
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-**type:** `cicd.pipeline`
-
 **Description:** A pipeline is a series of automated steps that helps software teams deliver code.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
@@ -65,8 +63,6 @@ Using the CICD pipeline run resource with metrics inherently causes high cardina
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-**type:** `cicd.pipeline.run`
-
 **Description:** A pipeline run is a singular execution of a given pipeline's tasks.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
@@ -90,8 +86,6 @@ Using the CICD pipeline run resource with metrics inherently causes high cardina
 
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
-
-**type:** `cicd.worker`
 
 **Description:** A CICD worker is a component of the CICD system that performs work (eg. running pipeline tasks or performing sync).
 A single pipeline run may be distributed across multiple workers. Any OpenTelemetry signal associated with a worker should be associated to the worker that performed the corresponding work.
@@ -121,8 +115,6 @@ For example, when a pipeline run involves several workers, its task run spans ma
 
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
-
-**type:** `vcs.repo`
 
 **Description:** A repository in the Version Control System.
 
@@ -154,8 +146,6 @@ the `.git` extension.
 
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
-
-**type:** `vcs.ref`
 
 **Description:** A reference to a specific version in the Version Control System.
 

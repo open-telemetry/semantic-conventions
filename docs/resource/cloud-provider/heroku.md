@@ -10,8 +10,6 @@
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-**type:** `heroku`
-
 **Description:** [Heroku dyno metadata](https://devcenter.heroku.com/articles/dyno-metadata)
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |

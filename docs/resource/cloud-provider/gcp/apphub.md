@@ -27,8 +27,6 @@ See [Supported Resources](https://cloud.google.com/app-hub/docs/supported-resour
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-**type:** `gcp.apphub.application`
-
 **Description:** Attributes denoting data from an Application in AppHub. See [AppHub overview](https://cloud.google.com/app-hub/docs/overview).
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
@@ -53,8 +51,6 @@ See [Supported Resources](https://cloud.google.com/app-hub/docs/supported-resour
 
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
-
-**type:** `gcp.apphub.service`
 
 **Description:** Attributes denoting data from a Service in AppHub. See [AppHub overview](https://cloud.google.com/app-hub/docs/overview).
 
@@ -106,8 +102,6 @@ See [Supported Resources](https://cloud.google.com/app-hub/docs/supported-resour
 
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
-
-**type:** `gcp.apphub.workload`
 
 **Description:** Attributes denoting data from a Workload in AppHub. See [AppHub overview](https://cloud.google.com/app-hub/docs/overview).
 

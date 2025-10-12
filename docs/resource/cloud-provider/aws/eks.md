@@ -14,8 +14,6 @@ linkTitle: EKS
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-**type:** `aws.eks`
-
 **Description:** Entities used by AWS Elastic Kubernetes Service (EKS).
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |

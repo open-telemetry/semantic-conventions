@@ -10,8 +10,6 @@
 
 **Status:** ![Mixed](https://img.shields.io/badge/-mixed-yellow)
 
-**type:** `browser`
-
 **Description:** The web browser in which the application represented by the resource is running. The `browser.*` attributes MUST be used only for resources that represent applications running in a web browser (regardless of whether running on a mobile or desktop device).
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |

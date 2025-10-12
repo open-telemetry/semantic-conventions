@@ -10,7 +10,5 @@
 {% macro header(resource) %}
 **Status:** {{ real_stability(resource) | trim }}
 
-**type:** `{{ resource.name }}`
-
 **Description:** {{ resource.brief }}
 {% endmacro %}

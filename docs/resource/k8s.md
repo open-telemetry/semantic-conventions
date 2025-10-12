@@ -27,8 +27,6 @@ Kubernetes object, but "name" is usually more user friendly so can be also set.
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-**type:** `k8s.cluster`
-
 **Description:** A Kubernetes Cluster.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
@@ -76,8 +74,6 @@ conflict.
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-**type:** `k8s.node`
-
 **Description:** A Kubernetes Node object.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
@@ -121,8 +117,6 @@ a namespace, but not across namespaces.
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-**type:** `k8s.namespace`
-
 **Description:** A Kubernetes Namespace.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
@@ -164,8 +158,6 @@ containers on your cluster.
 
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
-
-**type:** `k8s.pod`
 
 **Description:** A Kubernetes Pod object.
 
@@ -218,8 +210,6 @@ to a running container.
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-**type:** `k8s.container`
-
 **Description:** A container in a [PodTemplate](https://kubernetes.io/docs/concepts/workloads/pods/#pod-templates).
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
@@ -244,8 +234,6 @@ to a running container.
 
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
-
-**type:** `k8s.replicaset`
 
 **Description:** A Kubernetes ReplicaSet object.
 
@@ -291,8 +279,6 @@ distributed among the nodes of a cluster.
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-**type:** `k8s.deployment`
-
 **Description:** A Kubernetes Deployment object.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
@@ -336,8 +322,6 @@ about the ordering and uniqueness of these Pods.
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-**type:** `k8s.statefulset`
-
 **Description:** A Kubernetes StatefulSet object.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
@@ -379,8 +363,6 @@ A DaemonSet ensures that all (or some) Nodes run a copy of a Pod.
 
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
-
-**type:** `k8s.daemonset`
 
 **Description:** A Kubernetes DaemonSet object.
 
@@ -425,8 +407,6 @@ successfully terminate.
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-**type:** `k8s.job`
-
 **Description:** A Kubernetes Job object.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
@@ -468,8 +448,6 @@ A CronJob creates Jobs on a repeating schedule.
 
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
-
-**type:** `k8s.cronjob`
 
 **Description:** A Kubernetes CronJob object.
 
@@ -513,8 +491,6 @@ A ReplicationController ensures that a specified number of pod replicas are runn
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-**type:** `k8s.replicationcontroller`
-
 **Description:** A Kubernetes ReplicationController object.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
@@ -541,8 +517,6 @@ A HorizontalPodAutoscaler (HPA for short) automatically updates a workload resou
 
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
-
-**type:** `k8s.hpa`
 
 **Description:** A Kubernetes HorizontalPodAutoscaler object.
 
@@ -578,8 +552,6 @@ A ResourceQuota provides constraints that limit aggregate resource consumption p
 
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
-
-**type:** `k8s.resourcequota`
 
 **Description:** A Kubernetes ResourceQuota object.
 
