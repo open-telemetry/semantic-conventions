@@ -143,11 +143,16 @@ Describes deprecated HTTP attributes.
 
 `http.flavor` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
+<details>
+<summary><b>Deprecated Values:</b></summary>
+
+| Value  | Description | Deprecation Explanation |
 |---|---|---|
-| `1.0` | HTTP/1.0 | ![Development](https://img.shields.io/badge/-development-blue) |
-| `1.1` | HTTP/1.1 | ![Development](https://img.shields.io/badge/-development-blue) |
-| `2.0` | HTTP/2 | ![Development](https://img.shields.io/badge/-development-blue) |
-| `3.0` | HTTP/3 | ![Development](https://img.shields.io/badge/-development-blue) |
-| `QUIC` | QUIC protocol. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `SPDY` | SPDY protocol. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `1.0` | HTTP/1.0 | Split into `network.protocol.name` and `network.protocol.version` |
+| `1.1` | HTTP/1.1 | Split into `network.protocol.name` and `network.protocol.version` |
+| `2.0` | HTTP/2 | Split into `network.protocol.name` and `network.protocol.version` |
+| `3.0` | HTTP/3 | Split into `network.protocol.name` and `network.protocol.version` |
+| `QUIC` | QUIC protocol. | Split into `network.protocol.name` and `network.protocol.version` |
+| `SPDY` | SPDY protocol. | Split into `network.protocol.name` and `network.protocol.version` |
+
+</details>

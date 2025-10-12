@@ -67,14 +67,19 @@ Describes deprecated feature flag attributes.
 
 `feature_flag.evaluation.reason` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
+<details>
+<summary><b>Deprecated Values:</b></summary>
+
+| Value  | Description | Deprecation Explanation |
 |---|---|---|
-| `cached` | The resolved value was retrieved from cache. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `default` | The resolved value fell back to a pre-configured value (no dynamic evaluation occurred or dynamic evaluation yielded no result). | ![Development](https://img.shields.io/badge/-development-blue) |
-| `disabled` | The resolved value was the result of the flag being disabled in the management system. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `error` | The resolved value was the result of an error. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `split` | The resolved value was the result of pseudorandom assignment. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `stale` | The resolved value is non-authoritative or possibly out of date | ![Development](https://img.shields.io/badge/-development-blue) |
-| `static` | The resolved value is static (no dynamic evaluation). | ![Development](https://img.shields.io/badge/-development-blue) |
-| `targeting_match` | The resolved value was the result of a dynamic evaluation, such as a rule or specific user-targeting. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `unknown` | The reason for the resolved value could not be determined. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `cached` | The resolved value was retrieved from cache. | Use `cached` value for `feature_flag.result.reason` attribute instead. |
+| `default` | The resolved value fell back to a pre-configured value (no dynamic evaluation occurred or dynamic evaluation yielded no result). | Use `default` value for `feature_flag.result.reason` attribute instead. |
+| `disabled` | The resolved value was the result of the flag being disabled in the management system. | Use `disabled` value for `feature_flag.result.reason` attribute instead. |
+| `error` | The resolved value was the result of an error. | Use `error` value for `feature_flag.result.reason` attribute instead. |
+| `split` | The resolved value was the result of pseudorandom assignment. | Use `split` value for `feature_flag.result.reason` attribute instead. |
+| `stale` | The resolved value is non-authoritative or possibly out of date | Use `stale` value for `feature_flag.result.reason` attribute instead. |
+| `static` | The resolved value is static (no dynamic evaluation). | Use `static` value for `feature_flag.result.reason` attribute instead. |
+| `targeting_match` | The resolved value was the result of a dynamic evaluation, such as a rule or specific user-targeting. | Use `targeting_match` value for `feature_flag.result.reason` attribute instead. |
+| `unknown` | The reason for the resolved value could not be determined. | Use `unknown` value for `feature_flag.result.reason` attribute instead. |
+
+</details>

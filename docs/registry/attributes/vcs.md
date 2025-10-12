@@ -114,7 +114,7 @@ the `.git` extension.
 
 | Value  | Description | Deprecation Explanation |
 |---|---|---|
-| `gittea` | [Gitea](https://gitea.io) |  Use `gitea` instead.  |
+| `gittea` | [Gitea](https://gitea.io) | Use `gitea` value  instead. |
 
 </details>
 
@@ -172,7 +172,12 @@ Describes deprecated vcs attributes.
 
 `vcs.repository.ref.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
+<details>
+<summary><b>Deprecated Values:</b></summary>
+
+| Value  | Description | Deprecation Explanation |
 |---|---|---|
-| `branch` | [branch](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddefbranchabranch) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `tag` | [tag](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddeftagatag) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `branch` | [branch](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddefbranchabranch) | Use `branch` value for `vcs.ref.head.type` attribute instead. |
+| `tag` | [tag](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddeftagatag) | Use `tag` value for `vcs.ref.head.type` attribute instead. |
+
+</details>

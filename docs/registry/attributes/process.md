@@ -113,26 +113,41 @@ Deprecated process attributes.
 
 `process.context_switch_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
+<details>
+<summary><b>Deprecated Values:</b></summary>
+
+| Value  | Description | Deprecation Explanation |
 |---|---|---|
-| `involuntary` | involuntary | ![Development](https://img.shields.io/badge/-development-blue) |
-| `voluntary` | voluntary | ![Development](https://img.shields.io/badge/-development-blue) |
+| `involuntary` | involuntary | Use `involuntary` value for `process.context_switch.type` attribute instead. |
+| `voluntary` | voluntary | Use `voluntary` value for `process.context_switch.type` attribute instead. |
+
+</details>
 
 ---
 
 `process.cpu.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
+<details>
+<summary><b>Deprecated Values:</b></summary>
+
+| Value  | Description | Deprecation Explanation |
 |---|---|---|
-| `system` | system | ![Development](https://img.shields.io/badge/-development-blue) |
-| `user` | user | ![Development](https://img.shields.io/badge/-development-blue) |
-| `wait` | wait | ![Development](https://img.shields.io/badge/-development-blue) |
+| `system` | system | Use `system` value for `cpu.mode` attribute instead. |
+| `user` | user | Use `user` value for `cpu.mode` attribute instead. |
+| `wait` | wait | Use `wait` value for `cpu.mode` attribute instead. |
+
+</details>
 
 ---
 
 `process.paging.fault_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
+<details>
+<summary><b>Deprecated Values:</b></summary>
+
+| Value  | Description | Deprecation Explanation |
 |---|---|---|
-| `major` | major | ![Development](https://img.shields.io/badge/-development-blue) |
-| `minor` | minor | ![Development](https://img.shields.io/badge/-development-blue) |
+| `major` | major | Use `major` value for `system.paging.fault.type` attribute instead. |
+| `minor` | minor | Use `minor` value for `system.paging.fault.type` attribute instead. |
+
+</details>

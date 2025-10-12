@@ -46,10 +46,15 @@ The iOS platform on which the iOS application is running.
 
 `ios.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
+<details>
+<summary><b>Deprecated Values:</b></summary>
+
+| Value  | Description | Deprecation Explanation |
 |---|---|---|
-| `active` | The app has become `active`. Associated with UIKit notification `applicationDidBecomeActive`. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `background` | The app is now in the background. This value is associated with UIKit notification `applicationDidEnterBackground`. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `foreground` | The app is now in the foreground. This value is associated with UIKit notification `applicationWillEnterForeground`. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `inactive` | The app is now `inactive`. Associated with UIKit notification `applicationWillResignActive`. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `terminate` | The app is about to terminate. Associated with UIKit notification `applicationWillTerminate`. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `active` | The app has become `active`. Associated with UIKit notification `applicationDidBecomeActive`. | Use `active` value for `ios.app.state` attribute instead. |
+| `background` | The app is now in the background. This value is associated with UIKit notification `applicationDidEnterBackground`. | Use `background` value for `ios.app.state` attribute instead. |
+| `foreground` | The app is now in the foreground. This value is associated with UIKit notification `applicationWillEnterForeground`. | Use `foreground` value for `ios.app.state` attribute instead. |
+| `inactive` | The app is now `inactive`. Associated with UIKit notification `applicationWillResignActive`. | Use `inactive` value for `ios.app.state` attribute instead. |
+| `terminate` | The app is about to terminate. Associated with UIKit notification `applicationWillTerminate`. | Use `terminate` value for `ios.app.state` attribute instead. |
+
+</details>
