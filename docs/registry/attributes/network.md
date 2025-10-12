@@ -162,22 +162,32 @@ These attributes may be used for any network related operation.
 
 `net.sock.family` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
+<details>
+<summary><b>Deprecated Values:</b></summary>
+
+| Value  | Description | Deprecation Explanation |
 |---|---|---|
-| `inet` | IPv4 address | ![Development](https://img.shields.io/badge/-development-blue) |
-| `inet6` | IPv6 address | ![Development](https://img.shields.io/badge/-development-blue) |
-| `unix` | Unix domain socket path | ![Development](https://img.shields.io/badge/-development-blue) |
+| `inet` | IPv4 address | Split to `network.transport` and `network.type`. |
+| `inet6` | IPv6 address | Split to `network.transport` and `network.type`. |
+| `unix` | Unix domain socket path | Split to `network.transport` and `network.type`. |
+
+</details>
 
 ---
 
 `net.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
+<details>
+<summary><b>Deprecated Values:</b></summary>
+
+| Value  | Description | Deprecation Explanation |
 |---|---|---|
-| `inproc` | In-process communication. [6] | ![Development](https://img.shields.io/badge/-development-blue) |
-| `ip_tcp` | ip_tcp | ![Development](https://img.shields.io/badge/-development-blue) |
-| `ip_udp` | ip_udp | ![Development](https://img.shields.io/badge/-development-blue) |
-| `other` | Something else (non IP-based). | ![Development](https://img.shields.io/badge/-development-blue) |
-| `pipe` | Named or anonymous pipe. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `inproc` | In-process communication. [6] | Use `inproc` value for `network.transport` attribute instead. |
+| `ip_tcp` | ip_tcp | Use `ip_tcp` value for `network.transport` attribute instead. |
+| `ip_udp` | ip_udp | Use `ip_udp` value for `network.transport` attribute instead. |
+| `other` | Something else (non IP-based). | Use `other` value for `network.transport` attribute instead. |
+| `pipe` | Named or anonymous pipe. | Use `pipe` value for `network.transport` attribute instead. |
 
 **[6]:** Signals that there is only in-process communication not using a "real" network protocol in cases where network attributes would normally be expected. Usually all other network attributes can be left out in that case.
+
+</details>

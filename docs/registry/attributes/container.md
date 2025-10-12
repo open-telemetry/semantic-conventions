@@ -60,8 +60,13 @@ Describes deprecated container attributes.
 
 `container.cpu.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
+<details>
+<summary><b>Deprecated Values:</b></summary>
+
+| Value  | Description | Deprecation Explanation |
 |---|---|---|
-| `kernel` | When tasks of the cgroup are in kernel mode (Linux). When all container processes are in kernel mode (Windows). | ![Development](https://img.shields.io/badge/-development-blue) |
-| `system` | When CPU is used by the system (host OS) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `user` | When tasks of the cgroup are in user mode (Linux). When all container processes are in user mode (Windows). | ![Development](https://img.shields.io/badge/-development-blue) |
+| `kernel` | When tasks of the cgroup are in kernel mode (Linux). When all container processes are in kernel mode (Windows). | Use `kernel` value for `cpu.mode` attribute instead. |
+| `system` | When CPU is used by the system (host OS) | Use `system` value for `cpu.mode` attribute instead. |
+| `user` | When tasks of the cgroup are in user mode (Linux). When all container processes are in user mode (Windows). | Use `user` value for `cpu.mode` attribute instead. |
+
+</details>

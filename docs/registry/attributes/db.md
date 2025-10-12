@@ -213,129 +213,146 @@ Describes deprecated database attributes.
 
 `db.cassandra.consistency_level` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
+<details>
+<summary><b>Deprecated Values:</b></summary>
+
+| Value  | Description | Deprecation Explanation |
 |---|---|---|
-| `all` | all | ![Development](https://img.shields.io/badge/-development-blue) |
-| `any` | any | ![Development](https://img.shields.io/badge/-development-blue) |
-| `each_quorum` | each_quorum | ![Development](https://img.shields.io/badge/-development-blue) |
-| `local_one` | local_one | ![Development](https://img.shields.io/badge/-development-blue) |
-| `local_quorum` | local_quorum | ![Development](https://img.shields.io/badge/-development-blue) |
-| `local_serial` | local_serial | ![Development](https://img.shields.io/badge/-development-blue) |
-| `one` | one | ![Development](https://img.shields.io/badge/-development-blue) |
-| `quorum` | quorum | ![Development](https://img.shields.io/badge/-development-blue) |
-| `serial` | serial | ![Development](https://img.shields.io/badge/-development-blue) |
-| `three` | three | ![Development](https://img.shields.io/badge/-development-blue) |
-| `two` | two | ![Development](https://img.shields.io/badge/-development-blue) |
+| `all` | all | Use `all` value for `cassandra.consistency.level` attribute instead. |
+| `any` | any | Use `any` value for `cassandra.consistency.level` attribute instead. |
+| `each_quorum` | each_quorum | Use `each_quorum` value for `cassandra.consistency.level` attribute instead. |
+| `local_one` | local_one | Use `local_one` value for `cassandra.consistency.level` attribute instead. |
+| `local_quorum` | local_quorum | Use `local_quorum` value for `cassandra.consistency.level` attribute instead. |
+| `local_serial` | local_serial | Use `local_serial` value for `cassandra.consistency.level` attribute instead. |
+| `one` | one | Use `one` value for `cassandra.consistency.level` attribute instead. |
+| `quorum` | quorum | Use `quorum` value for `cassandra.consistency.level` attribute instead. |
+| `serial` | serial | Use `serial` value for `cassandra.consistency.level` attribute instead. |
+| `three` | three | Use `three` value for `cassandra.consistency.level` attribute instead. |
+| `two` | two | Use `two` value for `cassandra.consistency.level` attribute instead. |
+
+</details>
 
 ---
 
 `db.cosmosdb.connection_mode` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `direct` | Direct connection. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `gateway` | Gateway (HTTP) connection. | ![Development](https://img.shields.io/badge/-development-blue) |
-
----
-
-`db.cosmosdb.consistency_level` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `BoundedStaleness` | bounded_staleness | ![Development](https://img.shields.io/badge/-development-blue) |
-| `ConsistentPrefix` | consistent_prefix | ![Development](https://img.shields.io/badge/-development-blue) |
-| `Eventual` | eventual | ![Development](https://img.shields.io/badge/-development-blue) |
-| `Session` | session | ![Development](https://img.shields.io/badge/-development-blue) |
-| `Strong` | strong | ![Development](https://img.shields.io/badge/-development-blue) |
-
----
-
-`db.cosmosdb.operation_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `batch` | batch | ![Development](https://img.shields.io/badge/-development-blue) |
-| `create` | create | ![Development](https://img.shields.io/badge/-development-blue) |
-| `delete` | delete | ![Development](https://img.shields.io/badge/-development-blue) |
-| `execute` | execute | ![Development](https://img.shields.io/badge/-development-blue) |
-| `execute_javascript` | execute_javascript | ![Development](https://img.shields.io/badge/-development-blue) |
-| `head` | head | ![Development](https://img.shields.io/badge/-development-blue) |
-| `head_feed` | head_feed | ![Development](https://img.shields.io/badge/-development-blue) |
-| `invalid` | invalid | ![Development](https://img.shields.io/badge/-development-blue) |
-| `patch` | patch | ![Development](https://img.shields.io/badge/-development-blue) |
-| `query` | query | ![Development](https://img.shields.io/badge/-development-blue) |
-| `query_plan` | query_plan | ![Development](https://img.shields.io/badge/-development-blue) |
-| `read` | read | ![Development](https://img.shields.io/badge/-development-blue) |
-| `read_feed` | read_feed | ![Development](https://img.shields.io/badge/-development-blue) |
-| `replace` | replace | ![Development](https://img.shields.io/badge/-development-blue) |
-| `upsert` | upsert | ![Development](https://img.shields.io/badge/-development-blue) |
-
----
-
-`db.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `adabas` | Adabas (Adaptable Database System) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `cassandra` | Apache Cassandra | ![Development](https://img.shields.io/badge/-development-blue) |
-| `clickhouse` | ClickHouse | ![Development](https://img.shields.io/badge/-development-blue) |
-| `cockroachdb` | CockroachDB | ![Development](https://img.shields.io/badge/-development-blue) |
-| `cosmosdb` | Microsoft Azure Cosmos DB | ![Development](https://img.shields.io/badge/-development-blue) |
-| `couchbase` | Couchbase | ![Development](https://img.shields.io/badge/-development-blue) |
-| `couchdb` | CouchDB | ![Development](https://img.shields.io/badge/-development-blue) |
-| `db2` | IBM Db2 | ![Development](https://img.shields.io/badge/-development-blue) |
-| `derby` | Apache Derby | ![Development](https://img.shields.io/badge/-development-blue) |
-| `dynamodb` | Amazon DynamoDB | ![Development](https://img.shields.io/badge/-development-blue) |
-| `edb` | EnterpriseDB | ![Development](https://img.shields.io/badge/-development-blue) |
-| `elasticsearch` | Elasticsearch | ![Development](https://img.shields.io/badge/-development-blue) |
-| `filemaker` | FileMaker | ![Development](https://img.shields.io/badge/-development-blue) |
-| `firebird` | Firebird | ![Development](https://img.shields.io/badge/-development-blue) |
-| `geode` | Apache Geode | ![Development](https://img.shields.io/badge/-development-blue) |
-| `h2` | H2 | ![Development](https://img.shields.io/badge/-development-blue) |
-| `hanadb` | SAP HANA | ![Development](https://img.shields.io/badge/-development-blue) |
-| `hbase` | Apache HBase | ![Development](https://img.shields.io/badge/-development-blue) |
-| `hive` | Apache Hive | ![Development](https://img.shields.io/badge/-development-blue) |
-| `hsqldb` | HyperSQL DataBase | ![Development](https://img.shields.io/badge/-development-blue) |
-| `influxdb` | InfluxDB | ![Development](https://img.shields.io/badge/-development-blue) |
-| `informix` | Informix | ![Development](https://img.shields.io/badge/-development-blue) |
-| `ingres` | Ingres | ![Development](https://img.shields.io/badge/-development-blue) |
-| `instantdb` | InstantDB | ![Development](https://img.shields.io/badge/-development-blue) |
-| `interbase` | InterBase | ![Development](https://img.shields.io/badge/-development-blue) |
-| `intersystems_cache` | InterSystems Caché | ![Development](https://img.shields.io/badge/-development-blue) |
-| `mariadb` | MariaDB | ![Development](https://img.shields.io/badge/-development-blue) |
-| `maxdb` | SAP MaxDB | ![Development](https://img.shields.io/badge/-development-blue) |
-| `memcached` | Memcached | ![Development](https://img.shields.io/badge/-development-blue) |
-| `mongodb` | MongoDB | ![Development](https://img.shields.io/badge/-development-blue) |
-| `mssql` | Microsoft SQL Server | ![Development](https://img.shields.io/badge/-development-blue) |
-| `mysql` | MySQL | ![Development](https://img.shields.io/badge/-development-blue) |
-| `neo4j` | Neo4j | ![Development](https://img.shields.io/badge/-development-blue) |
-| `netezza` | Netezza | ![Development](https://img.shields.io/badge/-development-blue) |
-| `opensearch` | OpenSearch | ![Development](https://img.shields.io/badge/-development-blue) |
-| `oracle` | Oracle Database | ![Development](https://img.shields.io/badge/-development-blue) |
-| `other_sql` | Some other SQL database. Fallback only. See notes. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `pervasive` | Pervasive PSQL | ![Development](https://img.shields.io/badge/-development-blue) |
-| `pointbase` | PointBase | ![Development](https://img.shields.io/badge/-development-blue) |
-| `postgresql` | PostgreSQL | ![Development](https://img.shields.io/badge/-development-blue) |
-| `progress` | Progress Database | ![Development](https://img.shields.io/badge/-development-blue) |
-| `redis` | Redis | ![Development](https://img.shields.io/badge/-development-blue) |
-| `redshift` | Amazon Redshift | ![Development](https://img.shields.io/badge/-development-blue) |
-| `spanner` | Cloud Spanner | ![Development](https://img.shields.io/badge/-development-blue) |
-| `sqlite` | SQLite | ![Development](https://img.shields.io/badge/-development-blue) |
-| `sybase` | Sybase | ![Development](https://img.shields.io/badge/-development-blue) |
-| `teradata` | Teradata | ![Development](https://img.shields.io/badge/-development-blue) |
-| `trino` | Trino | ![Development](https://img.shields.io/badge/-development-blue) |
-| `vertica` | Vertica | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <details>
 <summary><b>Deprecated Values:</b></summary>
 
 | Value  | Description | Deprecation Explanation |
 |---|---|---|
-| `cache` | Deprecated, use `intersystems_cache` instead. |  Use `intersystems_cache` instead.  |
-| `cloudscape` | Deprecated, use `other_sql` instead. |  Use `other_sql` instead.  |
-| `coldfusion` | Deprecated, no replacement at this time. |  Obsoleted.  |
-| `firstsql` | Deprecated, use `other_sql` instead. |  Use `other_sql` instead.  |
-| `mssqlcompact` | Deprecated, Microsoft SQL Server Compact is discontinued. |  Use `other_sql` instead.  |
+| `direct` | Direct connection. | Use `direct` value for `azure.cosmosdb.connection.mode` attribute instead. |
+| `gateway` | Gateway (HTTP) connection. | Use `gateway` value for `azure.cosmosdb.connection.mode` attribute instead. |
+
+</details>
+
+---
+
+`db.cosmosdb.consistency_level` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+<details>
+<summary><b>Deprecated Values:</b></summary>
+
+| Value  | Description | Deprecation Explanation |
+|---|---|---|
+| `BoundedStaleness` | bounded_staleness | Use `BoundedStaleness` value for `azure.cosmosdb.consistency.level` attribute instead. |
+| `ConsistentPrefix` | consistent_prefix | Use `ConsistentPrefix` value for `azure.cosmosdb.consistency.level` attribute instead. |
+| `Eventual` | eventual | Use `Eventual` value for `azure.cosmosdb.consistency.level` attribute instead. |
+| `Session` | session | Use `Session` value for `azure.cosmosdb.consistency.level` attribute instead. |
+| `Strong` | strong | Use `Strong` value for `azure.cosmosdb.consistency.level` attribute instead. |
+
+</details>
+
+---
+
+`db.cosmosdb.operation_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+<details>
+<summary><b>Deprecated Values:</b></summary>
+
+| Value  | Description | Deprecation Explanation |
+|---|---|---|
+| `batch` | batch | Removed, no replacement at this time. |
+| `create` | create | Removed, no replacement at this time. |
+| `delete` | delete | Removed, no replacement at this time. |
+| `execute` | execute | Removed, no replacement at this time. |
+| `execute_javascript` | execute_javascript | Removed, no replacement at this time. |
+| `head` | head | Removed, no replacement at this time. |
+| `head_feed` | head_feed | Removed, no replacement at this time. |
+| `invalid` | invalid | Removed, no replacement at this time. |
+| `patch` | patch | Removed, no replacement at this time. |
+| `query` | query | Removed, no replacement at this time. |
+| `query_plan` | query_plan | Removed, no replacement at this time. |
+| `read` | read | Removed, no replacement at this time. |
+| `read_feed` | read_feed | Removed, no replacement at this time. |
+| `replace` | replace | Removed, no replacement at this time. |
+| `upsert` | upsert | Removed, no replacement at this time. |
+
+</details>
+
+---
+
+`db.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+<details>
+<summary><b>Deprecated Values:</b></summary>
+
+| Value  | Description | Deprecation Explanation |
+|---|---|---|
+| `adabas` | Adabas (Adaptable Database System) | Use `adabas` value for `db.system.name` attribute instead. |
+| `cache` | Deprecated, use `intersystems_cache` instead. | Use `intersystems_cache` value  for `db.system.name` attribute  instead. |
+| `cassandra` | Apache Cassandra | Use `cassandra` value for `db.system.name` attribute instead. |
+| `clickhouse` | ClickHouse | Use `clickhouse` value for `db.system.name` attribute instead. |
+| `cloudscape` | Deprecated, use `other_sql` instead. | Use `other_sql` value  for `db.system.name` attribute  instead. |
+| `cockroachdb` | CockroachDB | Use `cockroachdb` value for `db.system.name` attribute instead. |
+| `coldfusion` | Deprecated, no replacement at this time. | Obsoleted. |
+| `cosmosdb` | Microsoft Azure Cosmos DB | Use `cosmosdb` value for `db.system.name` attribute instead. |
+| `couchbase` | Couchbase | Use `couchbase` value for `db.system.name` attribute instead. |
+| `couchdb` | CouchDB | Use `couchdb` value for `db.system.name` attribute instead. |
+| `db2` | IBM Db2 | Use `db2` value for `db.system.name` attribute instead. |
+| `derby` | Apache Derby | Use `derby` value for `db.system.name` attribute instead. |
+| `dynamodb` | Amazon DynamoDB | Use `dynamodb` value for `db.system.name` attribute instead. |
+| `edb` | EnterpriseDB | Use `edb` value for `db.system.name` attribute instead. |
+| `elasticsearch` | Elasticsearch | Use `elasticsearch` value for `db.system.name` attribute instead. |
+| `filemaker` | FileMaker | Use `filemaker` value for `db.system.name` attribute instead. |
+| `firebird` | Firebird | Use `firebird` value for `db.system.name` attribute instead. |
+| `firstsql` | Deprecated, use `other_sql` instead. | Use `other_sql` value  for `db.system.name` attribute  instead. |
+| `geode` | Apache Geode | Use `geode` value for `db.system.name` attribute instead. |
+| `h2` | H2 | Use `h2` value for `db.system.name` attribute instead. |
+| `hanadb` | SAP HANA | Use `hanadb` value for `db.system.name` attribute instead. |
+| `hbase` | Apache HBase | Use `hbase` value for `db.system.name` attribute instead. |
+| `hive` | Apache Hive | Use `hive` value for `db.system.name` attribute instead. |
+| `hsqldb` | HyperSQL DataBase | Use `hsqldb` value for `db.system.name` attribute instead. |
+| `influxdb` | InfluxDB | Use `influxdb` value for `db.system.name` attribute instead. |
+| `informix` | Informix | Use `informix` value for `db.system.name` attribute instead. |
+| `ingres` | Ingres | Use `ingres` value for `db.system.name` attribute instead. |
+| `instantdb` | InstantDB | Use `instantdb` value for `db.system.name` attribute instead. |
+| `interbase` | InterBase | Use `interbase` value for `db.system.name` attribute instead. |
+| `intersystems_cache` | InterSystems Caché | Use `intersystems_cache` value for `db.system.name` attribute instead. |
+| `mariadb` | MariaDB | Use `mariadb` value for `db.system.name` attribute instead. |
+| `maxdb` | SAP MaxDB | Use `maxdb` value for `db.system.name` attribute instead. |
+| `memcached` | Memcached | Use `memcached` value for `db.system.name` attribute instead. |
+| `mongodb` | MongoDB | Use `mongodb` value for `db.system.name` attribute instead. |
+| `mssql` | Microsoft SQL Server | Use `mssql` value for `db.system.name` attribute instead. |
+| `mssqlcompact` | Deprecated, Microsoft SQL Server Compact is discontinued. | Use `other_sql` value  for `db.system.name` attribute  instead. |
+| `mysql` | MySQL | Use `mysql` value for `db.system.name` attribute instead. |
+| `neo4j` | Neo4j | Use `neo4j` value for `db.system.name` attribute instead. |
+| `netezza` | Netezza | Use `netezza` value for `db.system.name` attribute instead. |
+| `opensearch` | OpenSearch | Use `opensearch` value for `db.system.name` attribute instead. |
+| `oracle` | Oracle Database | Use `oracle` value for `db.system.name` attribute instead. |
+| `other_sql` | Some other SQL database. Fallback only. See notes. | Use `other_sql` value for `db.system.name` attribute instead. |
+| `pervasive` | Pervasive PSQL | Use `pervasive` value for `db.system.name` attribute instead. |
+| `pointbase` | PointBase | Use `pointbase` value for `db.system.name` attribute instead. |
+| `postgresql` | PostgreSQL | Use `postgresql` value for `db.system.name` attribute instead. |
+| `progress` | Progress Database | Use `progress` value for `db.system.name` attribute instead. |
+| `redis` | Redis | Use `redis` value for `db.system.name` attribute instead. |
+| `redshift` | Amazon Redshift | Use `redshift` value for `db.system.name` attribute instead. |
+| `spanner` | Cloud Spanner | Use `spanner` value for `db.system.name` attribute instead. |
+| `sqlite` | SQLite | Use `sqlite` value for `db.system.name` attribute instead. |
+| `sybase` | Sybase | Use `sybase` value for `db.system.name` attribute instead. |
+| `teradata` | Teradata | Use `teradata` value for `db.system.name` attribute instead. |
+| `trino` | Trino | Use `trino` value for `db.system.name` attribute instead. |
+| `vertica` | Vertica | Use `vertica` value for `db.system.name` attribute instead. |
 
 </details>
 
@@ -356,16 +373,26 @@ Describes deprecated db metrics attributes.
 
 `db.client.connections.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
+<details>
+<summary><b>Deprecated Values:</b></summary>
+
+| Value  | Description | Deprecation Explanation |
 |---|---|---|
-| `idle` | idle | ![Development](https://img.shields.io/badge/-development-blue) |
-| `used` | used | ![Development](https://img.shields.io/badge/-development-blue) |
+| `idle` | idle | Use `idle` value for `db.client.connection.state` attribute instead. |
+| `used` | used | Use `used` value for `db.client.connection.state` attribute instead. |
+
+</details>
 
 ---
 
 `state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
+<details>
+<summary><b>Deprecated Values:</b></summary>
+
+| Value  | Description | Deprecation Explanation |
 |---|---|---|
-| `idle` | idle | ![Development](https://img.shields.io/badge/-development-blue) |
-| `used` | used | ![Development](https://img.shields.io/badge/-development-blue) |
+| `idle` | idle | Use `idle` value for `db.client.connection.state` attribute instead. |
+| `used` | used | Use `used` value for `db.client.connection.state` attribute instead. |
+
+</details>

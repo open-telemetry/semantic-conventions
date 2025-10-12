@@ -240,7 +240,7 @@ Datastore: A tool used by the agent to access and query structured or unstructur
 
 | Value  | Description | Deprecation Explanation |
 |---|---|---|
-| `output` | Output tokens (completion, response, etc.) |  Use `output` instead.  |
+| `output` | Output tokens (completion, response, etc.) | Use `output` value  instead. |
 
 </details>
 
@@ -262,39 +262,36 @@ Describes deprecated `gen_ai` attributes.
 
 `gen_ai.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
+<details>
+<summary><b>Deprecated Values:</b></summary>
+
+| Value  | Description | Deprecation Explanation |
 |---|---|---|
-| `anthropic` | Anthropic | ![Development](https://img.shields.io/badge/-development-blue) |
-| `aws.bedrock` | AWS Bedrock | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure.ai.inference` | Azure AI Inference | ![Development](https://img.shields.io/badge/-development-blue) |
-| `azure.ai.openai` | Azure OpenAI | ![Development](https://img.shields.io/badge/-development-blue) |
-| `cohere` | Cohere | ![Development](https://img.shields.io/badge/-development-blue) |
-| `deepseek` | DeepSeek | ![Development](https://img.shields.io/badge/-development-blue) |
-| `gcp.gemini` | Gemini [17] | ![Development](https://img.shields.io/badge/-development-blue) |
-| `gcp.gen_ai` | Any Google generative AI endpoint [18] | ![Development](https://img.shields.io/badge/-development-blue) |
-| `gcp.vertex_ai` | Vertex AI [19] | ![Development](https://img.shields.io/badge/-development-blue) |
-| `groq` | Groq | ![Development](https://img.shields.io/badge/-development-blue) |
-| `ibm.watsonx.ai` | IBM Watsonx AI | ![Development](https://img.shields.io/badge/-development-blue) |
-| `mistral_ai` | Mistral AI | ![Development](https://img.shields.io/badge/-development-blue) |
-| `openai` | OpenAI | ![Development](https://img.shields.io/badge/-development-blue) |
-| `perplexity` | Perplexity | ![Development](https://img.shields.io/badge/-development-blue) |
-| `xai` | xAI | ![Development](https://img.shields.io/badge/-development-blue) |
+| `anthropic` | Anthropic | Use `anthropic` value for `gen_ai.provider.name` attribute instead. |
+| `aws.bedrock` | AWS Bedrock | Use `aws.bedrock` value for `gen_ai.provider.name` attribute instead. |
+| `az.ai.inference` | Azure AI Inference | Use `azure.ai.inference` value  for `gen_ai.provider.name` attribute  instead. |
+| `az.ai.openai` | Azure OpenAI | Use `azure.ai.openai` value  for `gen_ai.provider.name` attribute  instead. |
+| `azure.ai.inference` | Azure AI Inference | Use `azure.ai.inference` value for `gen_ai.provider.name` attribute instead. |
+| `azure.ai.openai` | Azure OpenAI | Use `azure.ai.openai` value for `gen_ai.provider.name` attribute instead. |
+| `cohere` | Cohere | Use `cohere` value for `gen_ai.provider.name` attribute instead. |
+| `deepseek` | DeepSeek | Use `deepseek` value for `gen_ai.provider.name` attribute instead. |
+| `gcp.gemini` | Gemini [17] | Use `gcp.gemini` value for `gen_ai.provider.name` attribute instead. |
+| `gcp.gen_ai` | Any Google generative AI endpoint [18] | Use `gcp.gen_ai` value for `gen_ai.provider.name` attribute instead. |
+| `gcp.vertex_ai` | Vertex AI [19] | Use `gcp.vertex_ai` value for `gen_ai.provider.name` attribute instead. |
+| `gemini` | Gemini | Use `gcp.gemini` value  for `gen_ai.provider.name` attribute  instead. |
+| `groq` | Groq | Use `groq` value for `gen_ai.provider.name` attribute instead. |
+| `ibm.watsonx.ai` | IBM Watsonx AI | Use `ibm.watsonx.ai` value for `gen_ai.provider.name` attribute instead. |
+| `mistral_ai` | Mistral AI | Use `mistral_ai` value for `gen_ai.provider.name` attribute instead. |
+| `openai` | OpenAI | Use `openai` value for `gen_ai.provider.name` attribute instead. |
+| `perplexity` | Perplexity | Use `perplexity` value for `gen_ai.provider.name` attribute instead. |
+| `vertex_ai` | Vertex AI | Use `gcp.vertex_ai` value  for `gen_ai.provider.name` attribute  instead. |
+| `xai` | xAI | Use `xai` value for `gen_ai.provider.name` attribute instead. |
 
 **[17]:** This refers to the 'generativelanguage.googleapis.com' endpoint. Also known as the AI Studio API. May use common attributes prefixed with 'gcp.gen_ai.'.
 
 **[18]:** May be used when specific backend is unknown. May use common attributes prefixed with 'gcp.gen_ai.'.
 
 **[19]:** This refers to the 'aiplatform.googleapis.com' endpoint. May use common attributes prefixed with 'gcp.gen_ai.'.
-
-<details>
-<summary><b>Deprecated Values:</b></summary>
-
-| Value  | Description | Deprecation Explanation |
-|---|---|---|
-| `vertex_ai` | Vertex AI |  Use `gcp.vertex_ai` instead.  |
-| `gemini` | Gemini |  Use `gcp.gemini` instead.  |
-| `az.ai.inference` | Azure AI Inference |  Use `azure.ai.inference` instead.  |
-| `az.ai.openai` | Azure OpenAI |  Use `azure.ai.openai` instead.  |
 
 </details>
 
@@ -316,17 +313,27 @@ Describes deprecated `gen_ai.openai` attributes.
 
 `gen_ai.openai.request.response_format` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
+<details>
+<summary><b>Deprecated Values:</b></summary>
+
+| Value  | Description | Deprecation Explanation |
 |---|---|---|
-| `json_object` | JSON object response format | ![Development](https://img.shields.io/badge/-development-blue) |
-| `json_schema` | JSON schema response format | ![Development](https://img.shields.io/badge/-development-blue) |
-| `text` | Text response format | ![Development](https://img.shields.io/badge/-development-blue) |
+| `json_object` | JSON object response format | Use `json_object` value for `gen_ai.output.type` attribute instead. |
+| `json_schema` | JSON schema response format | Use `json_schema` value for `gen_ai.output.type` attribute instead. |
+| `text` | Text response format | Use `text` value for `gen_ai.output.type` attribute instead. |
+
+</details>
 
 ---
 
 `gen_ai.openai.request.service_tier` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
+<details>
+<summary><b>Deprecated Values:</b></summary>
+
+| Value  | Description | Deprecation Explanation |
 |---|---|---|
-| `auto` | The system will utilize scale tier credits until they are exhausted. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `default` | The system will utilize the default scale tier. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `auto` | The system will utilize scale tier credits until they are exhausted. | Use `auto` value for `openai.request.service_tier` attribute instead. |
+| `default` | The system will utilize the default scale tier. | Use `default` value for `openai.request.service_tier` attribute instead. |
+
+</details>

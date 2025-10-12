@@ -93,7 +93,7 @@ Describes System Memory attributes
 
 | Value  | Description | Deprecation Explanation |
 |---|---|---|
-| `shared` | shared |  Removed, report shared memory usage with `metric.system.memory.shared` metric  |
+| `shared` | shared | Removed, report shared memory usage with `metric.system.memory.shared` metric |
 
 </details>
 
@@ -155,62 +155,87 @@ Deprecated system attributes.
 
 `system.cpu.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
+<details>
+<summary><b>Deprecated Values:</b></summary>
+
+| Value  | Description | Deprecation Explanation |
 |---|---|---|
-| `idle` | idle | ![Development](https://img.shields.io/badge/-development-blue) |
-| `interrupt` | interrupt | ![Development](https://img.shields.io/badge/-development-blue) |
-| `iowait` | iowait | ![Development](https://img.shields.io/badge/-development-blue) |
-| `nice` | nice | ![Development](https://img.shields.io/badge/-development-blue) |
-| `steal` | steal | ![Development](https://img.shields.io/badge/-development-blue) |
-| `system` | system | ![Development](https://img.shields.io/badge/-development-blue) |
-| `user` | user | ![Development](https://img.shields.io/badge/-development-blue) |
+| `idle` | idle | Use `idle` value for `cpu.mode` attribute instead. |
+| `interrupt` | interrupt | Use `interrupt` value for `cpu.mode` attribute instead. |
+| `iowait` | iowait | Use `iowait` value for `cpu.mode` attribute instead. |
+| `nice` | nice | Use `nice` value for `cpu.mode` attribute instead. |
+| `steal` | steal | Use `steal` value for `cpu.mode` attribute instead. |
+| `system` | system | Use `system` value for `cpu.mode` attribute instead. |
+| `user` | user | Use `user` value for `cpu.mode` attribute instead. |
+
+</details>
 
 ---
 
 `system.network.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
+<details>
+<summary><b>Deprecated Values:</b></summary>
+
+| Value  | Description | Deprecation Explanation |
 |---|---|---|
-| `close` | close | ![Development](https://img.shields.io/badge/-development-blue) |
-| `close_wait` | close_wait | ![Development](https://img.shields.io/badge/-development-blue) |
-| `closing` | closing | ![Development](https://img.shields.io/badge/-development-blue) |
-| `delete` | delete | ![Development](https://img.shields.io/badge/-development-blue) |
-| `established` | established | ![Development](https://img.shields.io/badge/-development-blue) |
-| `fin_wait_1` | fin_wait_1 | ![Development](https://img.shields.io/badge/-development-blue) |
-| `fin_wait_2` | fin_wait_2 | ![Development](https://img.shields.io/badge/-development-blue) |
-| `last_ack` | last_ack | ![Development](https://img.shields.io/badge/-development-blue) |
-| `listen` | listen | ![Development](https://img.shields.io/badge/-development-blue) |
-| `syn_recv` | syn_recv | ![Development](https://img.shields.io/badge/-development-blue) |
-| `syn_sent` | syn_sent | ![Development](https://img.shields.io/badge/-development-blue) |
-| `time_wait` | time_wait | ![Development](https://img.shields.io/badge/-development-blue) |
+| `close` | close | Use `close` value for `network.connection.state` attribute instead. |
+| `close_wait` | close_wait | Use `close_wait` value for `network.connection.state` attribute instead. |
+| `closing` | closing | Use `closing` value for `network.connection.state` attribute instead. |
+| `delete` | delete | Use `delete` value for `network.connection.state` attribute instead. |
+| `established` | established | Use `established` value for `network.connection.state` attribute instead. |
+| `fin_wait_1` | fin_wait_1 | Use `fin_wait_1` value for `network.connection.state` attribute instead. |
+| `fin_wait_2` | fin_wait_2 | Use `fin_wait_2` value for `network.connection.state` attribute instead. |
+| `last_ack` | last_ack | Use `last_ack` value for `network.connection.state` attribute instead. |
+| `listen` | listen | Use `listen` value for `network.connection.state` attribute instead. |
+| `syn_recv` | syn_recv | Use `syn_recv` value for `network.connection.state` attribute instead. |
+| `syn_sent` | syn_sent | Use `syn_sent` value for `network.connection.state` attribute instead. |
+| `time_wait` | time_wait | Use `time_wait` value for `network.connection.state` attribute instead. |
+
+</details>
 
 ---
 
 `system.paging.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
+<details>
+<summary><b>Deprecated Values:</b></summary>
+
+| Value  | Description | Deprecation Explanation |
 |---|---|---|
-| `major` | major | ![Development](https://img.shields.io/badge/-development-blue) |
-| `minor` | minor | ![Development](https://img.shields.io/badge/-development-blue) |
+| `major` | major | Use `major` value for `system.paging.fault.type` attribute instead. |
+| `minor` | minor | Use `minor` value for `system.paging.fault.type` attribute instead. |
+
+</details>
 
 ---
 
 `system.process.status` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
+<details>
+<summary><b>Deprecated Values:</b></summary>
+
+| Value  | Description | Deprecation Explanation |
 |---|---|---|
-| `defunct` | defunct | ![Development](https://img.shields.io/badge/-development-blue) |
-| `running` | running | ![Development](https://img.shields.io/badge/-development-blue) |
-| `sleeping` | sleeping | ![Development](https://img.shields.io/badge/-development-blue) |
-| `stopped` | stopped | ![Development](https://img.shields.io/badge/-development-blue) |
+| `defunct` | defunct | Use `defunct` value for `process.state` attribute instead. |
+| `running` | running | Use `running` value for `process.state` attribute instead. |
+| `sleeping` | sleeping | Use `sleeping` value for `process.state` attribute instead. |
+| `stopped` | stopped | Use `stopped` value for `process.state` attribute instead. |
+
+</details>
 
 ---
 
 `system.processes.status` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
+<details>
+<summary><b>Deprecated Values:</b></summary>
+
+| Value  | Description | Deprecation Explanation |
 |---|---|---|
-| `defunct` | defunct | ![Development](https://img.shields.io/badge/-development-blue) |
-| `running` | running | ![Development](https://img.shields.io/badge/-development-blue) |
-| `sleeping` | sleeping | ![Development](https://img.shields.io/badge/-development-blue) |
-| `stopped` | stopped | ![Development](https://img.shields.io/badge/-development-blue) |
+| `defunct` | defunct | Use `defunct` value for `process.state` attribute instead. |
+| `running` | running | Use `running` value for `process.state` attribute instead. |
+| `sleeping` | sleeping | Use `sleeping` value for `process.state` attribute instead. |
+| `stopped` | stopped | Use `stopped` value for `process.state` attribute instead. |
+
+</details>

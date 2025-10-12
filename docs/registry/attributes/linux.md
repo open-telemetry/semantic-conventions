@@ -17,7 +17,12 @@ Deprecated Linux attributes.
 
 `linux.memory.slab.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
+<details>
+<summary><b>Deprecated Values:</b></summary>
+
+| Value  | Description | Deprecation Explanation |
 |---|---|---|
-| `reclaimable` | reclaimable | ![Development](https://img.shields.io/badge/-development-blue) |
-| `unreclaimable` | unreclaimable | ![Development](https://img.shields.io/badge/-development-blue) |
+| `reclaimable` | reclaimable | Use `reclaimable` value for `system.memory.linux.slab.state` attribute instead. |
+| `unreclaimable` | unreclaimable | Use `unreclaimable` value for `system.memory.linux.slab.state` attribute instead. |
+
+</details>

@@ -171,7 +171,7 @@ applicable `aws.bedrock.*` attributes and are not expected to include
 
 | Value  | Description | Deprecation Explanation |
 |---|---|---|
-| `output` | Output tokens (completion, response, etc.) |  Use `output` instead.  |
+| `output` | Output tokens (completion, response, etc.) | Use `output` value  instead. |
 
 </details>
 

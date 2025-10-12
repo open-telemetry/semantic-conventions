@@ -88,13 +88,13 @@ The following well-known definitions MUST be used if you set this attribute and 
 
 | Value  | Description | Deprecation Explanation |
 |---|---|---|
-| `azure_vm` | Azure Virtual Machines |  Use `azure.vm` instead.  |
-| `azure_container_apps` | Azure Container Apps |  Use `azure.container_apps` instead.  |
-| `azure_container_instances` | Azure Container Instances |  Use `azure.container_instances` instead.  |
-| `azure_aks` | Azure Kubernetes Service |  Use `azure.aks` instead.  |
-| `azure_functions` | Azure Functions |  Use `azure.functions` instead.  |
-| `azure_app_service` | Azure App Service |  Use `azure.app_service` instead.  |
-| `azure_openshift` | Azure Red Hat OpenShift |  Use `azure.openshift` instead.  |
+| `azure_aks` | Azure Kubernetes Service | Use `azure.aks` value  instead. |
+| `azure_app_service` | Azure App Service | Use `azure.app_service` value  instead. |
+| `azure_container_apps` | Azure Container Apps | Use `azure.container_apps` value  instead. |
+| `azure_container_instances` | Azure Container Instances | Use `azure.container_instances` value  instead. |
+| `azure_functions` | Azure Functions | Use `azure.functions` value  instead. |
+| `azure_openshift` | Azure Red Hat OpenShift | Use `azure.openshift` value  instead. |
+| `azure_vm` | Azure Virtual Machines | Use `azure.vm` value  instead. |
 
 </details>
 

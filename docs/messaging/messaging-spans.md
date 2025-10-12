@@ -497,8 +497,8 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 | Value  | Description | Deprecation Explanation |
 |---|---|---|
-| `deliver` | Deprecated. Use `process` instead. |  Use `process` instead.  |
-| `publish` | Deprecated. Use `send` instead. |  Use `send` instead.  |
+| `deliver` | Deprecated. Use `process` instead. | Use `process` value  instead. |
+| `publish` | Deprecated. Use `send` instead. | Use `send` value  instead. |
 
 </details>
 

@@ -151,8 +151,8 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 
 | Value  | Description | Deprecation Explanation |
 |---|---|---|
-| `deliver` | Deprecated. Use `process` instead. |  Use `process` instead.  |
-| `publish` | Deprecated. Use `send` instead. |  Use `send` instead.  |
+| `deliver` | Deprecated. Use `process` instead. | Use `process` value  instead. |
+| `publish` | Deprecated. Use `send` instead. | Use `send` value  instead. |
 
 </details>
 

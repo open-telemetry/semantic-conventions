@@ -145,7 +145,12 @@ Deprecated rpc message attributes.
 
 `message.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
+<details>
+<summary><b>Deprecated Values:</b></summary>
+
+| Value  | Description | Deprecation Explanation |
 |---|---|---|
-| `RECEIVED` | received | ![Development](https://img.shields.io/badge/-development-blue) |
-| `SENT` | sent | ![Development](https://img.shields.io/badge/-development-blue) |
+| `RECEIVED` | received | Use `RECEIVED` value for `rpc.message.type` attribute instead. |
+| `SENT` | sent | Use `SENT` value for `rpc.message.type` attribute instead. |
+
+</details>

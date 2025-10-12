@@ -113,7 +113,7 @@ The following table describes how to populate the operating system attributes on
 
 | Value  | Description | Deprecation Explanation |
 |---|---|---|
-| `z_os` | IBM z/OS |  Use `zos` instead.  |
+| `z_os` | IBM z/OS | Use `zos` value  instead. |
 
 </details>
 
