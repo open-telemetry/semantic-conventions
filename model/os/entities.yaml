@@ -20,7 +20,7 @@ groups:
             sources:
               - implementation: Linux
                 location: |
-                  `BUILD_ID` from `/etc/os-release` or `/usr/lib/os-release`
+                  `BUILD_ID` from `/etc/os-release` or `/usr/lib/os-release`. Alternatively, contents of `/proc/sys/kernel/osrelease` if `BUILD_ID` is not available.
               - implementation: MacOS
                 location: |
                   `ProductBuildVersion` from `/System/Library/CoreServices/SystemVersion.plist` or `/System/Library/CoreServices/ServerVersion.plist`

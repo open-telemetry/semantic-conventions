@@ -1,25 +1,18 @@
 {% import 'attribute_macros.j2' as attrs %}
-{% macro table(attributes, general, attribute_registry_base_url, lineage_attributes) -%}
-{% set sources = [] %}
-{% if general == false and attributes and attributes.annotations %}
-{% set sources = [attributes] %}
-{% set sources = sources | selectattr("annotations") | selectattr("annotations.docs.sources")%}
-{% elif general == true %}
+{% macro table(attributes, attribute_registry_base_url, lineage_attributes) -%}
 {% set sources = attributes | selectattr("annotations") | selectattr("annotations.docs.sources")%}
-{% endif %}
-{{sourcing(sources, general, attribute_registry_base_url, lineage_attributes) | trim}}
+{{sourcing(sources, attribute_registry_base_url, lineage_attributes) | trim}}
 {% endmacro %}
 
-{% macro sourcing(sources, general, attribute_registry_base_url, lineage_attributes) -%}
+{% macro sourcing(sources, attribute_registry_base_url, lineage_attributes) -%}
 {% if sources %}
-{% if general == true%}
 ---
 
-**Sourcing Attribute Values:**{% endif %}
+**Sourcing Attribute Values:**
 
 SHOULD the value not be provided natively via the SDK the following sources can be used:
 
-{% if general == true%}| Attribute {% endif %}| Implementation | Location |
-{% if general == true%}| --- {% endif %}| --- | --- |{% for attribute in sources | sort(attribute="name") -%}{% for source in attribute.annotations.docs.sources %}
-{% if general == true%}| {{ attrs.name_with_link(attribute, attribute_registry_base_url, lineage_attributes) }} {% endif %}| {{source.implementation}} | {{ source.location | trim}} |{% endfor %}{% endfor %}
+| Attribute | Implementation | Location |
+| --- | --- | --- |{% for attribute in sources | sort(attribute="name") -%}{% for source in attribute.annotations.docs.sources %}
+| {{ attrs.name_with_link(attribute, attribute_registry_base_url, lineage_attributes) }} | {{source.implementation}} | {{ source.location | trim}} |{% endfor %}{% endfor %}
 {%endif %}{% endmacro %}

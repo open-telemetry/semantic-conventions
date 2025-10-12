@@ -21,18 +21,10 @@
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`os.type`](/docs/registry/attributes/os.md) | string | The operating system type. | `windows`; `linux`; `darwin` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`os.build_id`](/docs/registry/attributes/os.md) | string | Unique identifier for a particular build or compilation of the operating system. [1] | `TQ3C.230805.001.B2`; `20E247`; `22621` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`os.build_id`](/docs/registry/attributes/os.md) | string | Unique identifier for a particular build or compilation of the operating system. | `TQ3C.230805.001.B2`; `20E247`; `22621` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`os.description`](/docs/registry/attributes/os.md) | string | Human readable (not intended to be parsed) OS version information, like e.g. reported by `ver` or `lsb_release -a` commands. | `Microsoft Windows [Version 10.0.18363.778]`; `Ubuntu 18.04.1 LTS` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`os.name`](/docs/registry/attributes/os.md) | string | Human readable operating system name. | `iOS`; `Android`; `Ubuntu` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`os.version`](/docs/registry/attributes/os.md) | string | The version string of the operating system as defined in [Version Attributes](/docs/resource/README.md#version-attributes). | `14.2.1`; `18.04.1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-
-**[1] `os.build_id`:** SHOULD the value not be provided natively via the SDK the following sources can be used:
-
-| Implementation | Location |
-| --- | --- |
-| Linux | `BUILD_ID` from `/etc/os-release` or `/usr/lib/os-release` |
-| MacOS | `ProductBuildVersion` from `/System/Library/CoreServices/SystemVersion.plist` or `/System/Library/CoreServices/ServerVersion.plist` |
-| Windows | `CurrentBuildNumber` from registry `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion` |
 
 ---
 
@@ -59,7 +51,7 @@ SHOULD the value not be provided natively via the SDK the following sources can 
 
 | Attribute | Implementation | Location |
 | --- | --- | --- |
-| [`os.build_id`](/docs/registry/attributes/os.md) | Linux | `BUILD_ID` from `/etc/os-release` or `/usr/lib/os-release` |
+| [`os.build_id`](/docs/registry/attributes/os.md) | Linux | `BUILD_ID` from `/etc/os-release` or `/usr/lib/os-release`. Alternatively, contents of `/proc/sys/kernel/osrelease` if `BUILD_ID` is not available. |
 | [`os.build_id`](/docs/registry/attributes/os.md) | MacOS | `ProductBuildVersion` from `/System/Library/CoreServices/SystemVersion.plist` or `/System/Library/CoreServices/ServerVersion.plist` |
 | [`os.build_id`](/docs/registry/attributes/os.md) | Windows | `CurrentBuildNumber` from registry `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion` |
 
