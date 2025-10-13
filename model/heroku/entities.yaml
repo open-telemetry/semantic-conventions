@@ -1,14 +1,16 @@
 groups:
-  - id: entity.heroku
+  - id: entity.heroku.app
     type: entity
     stability: development
-    name: heroku
+    name: heroku.app
     brief: >
       Heroku Fir Application Attributes as defined in the 
       [Heroku OpenTelemetry Signals and Attributes Reference](https://devcenter.heroku.com/articles/heroku-opentelemetry-signals-and-attributes-reference)
     attributes:
       - ref: heroku.app.id
+        role: identifying
+      - ref: heroku.release.id
+        role: identifying
       - ref: heroku.app.name
       - ref: heroku.workload.id
-      - ref: heroku.release.id
       - ref: heroku.release.version

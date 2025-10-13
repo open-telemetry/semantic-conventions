@@ -63,4 +63,3 @@ groups:
         note: >
           This attribute is automatically provided by Heroku. It is commonly used as
           the default value for service.version.
-
