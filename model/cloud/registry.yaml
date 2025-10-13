@@ -40,9 +40,9 @@ groups:
               value: 'tencent_cloud'
               brief: 'Tencent Cloud'
               stability: development
-            - id: 'vultr_cloud'
-              value: 'vultr_cloud'
-              brief: 'Vultr Cloud'
+            - id: 'vultr'
+              value: 'vultr'
+              brief: 'Vultr'
               stability: development
         stability: development
         brief: >
@@ -287,8 +287,8 @@ groups:
               value: 'tencent_cloud_scf'
               brief: Tencent Cloud Serverless Cloud Function (SCF)
               stability: development
-            - id: vultr_cloud_compute
-              value: 'vultr_cloud_compute'
+            - id: vultr.cloud_compute
+              value: 'vultr.cloud_compute'
               brief: Vultr Cloud Compute
               stability: development
         stability: development
