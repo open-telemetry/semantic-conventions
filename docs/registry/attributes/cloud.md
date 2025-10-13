@@ -70,7 +70,7 @@ The following well-known definitions MUST be used if you set this attribute and 
 | `gcp_compute_engine` | Google Cloud Compute Engine (GCE) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gcp_kubernetes_engine` | Google Cloud Kubernetes Engine (GKE) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gcp_openshift` | Red Hat OpenShift on Google Cloud | ![Development](https://img.shields.io/badge/-development-blue) |
-| `hetzner_cloud_compute` | Compute on Hetzner Cloud | ![Development](https://img.shields.io/badge/-development-blue) |
+| `hetzner.cloud_compute` | Compute on Hetzner Cloud | ![Development](https://img.shields.io/badge/-development-blue) |
 | `ibm_cloud_openshift` | Red Hat OpenShift on IBM Cloud | ![Development](https://img.shields.io/badge/-development-blue) |
 | `oracle_cloud_compute` | Compute on Oracle Cloud Infrastructure (OCI) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `oracle_cloud_oke` | Kubernetes Engine (OKE) on Oracle Cloud Infrastructure (OCI) | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -89,7 +89,7 @@ The following well-known definitions MUST be used if you set this attribute and 
 | `azure` | Microsoft Azure | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gcp` | Google Cloud Platform | ![Development](https://img.shields.io/badge/-development-blue) |
 | `heroku` | Heroku Platform as a Service | ![Development](https://img.shields.io/badge/-development-blue) |
-| `hetzner_cloud` | Hetzner Cloud | ![Development](https://img.shields.io/badge/-development-blue) |
+| `hetzner.cloud` | Hetzner Cloud | ![Development](https://img.shields.io/badge/-development-blue) |
 | `ibm_cloud` | IBM Cloud | ![Development](https://img.shields.io/badge/-development-blue) |
 | `oracle_cloud` | Oracle Cloud Infrastructure (OCI) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `tencent_cloud` | Tencent Cloud | ![Development](https://img.shields.io/badge/-development-blue) |
