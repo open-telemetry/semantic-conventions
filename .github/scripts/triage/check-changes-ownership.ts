@@ -27,7 +27,7 @@ This PR contains changes to area(s) that do not have an active SIG/project and w
 
 - ${changesWithoutOwners.join('\n- ')}
 
-Such changes may be rejected or put on hold until a new SIG/project is stablished.
+Such changes may be rejected or put on hold until a new SIG/project is established.
 
 Please refer to the [Semantic Convention Areas](https://github.com/open-telemetry/semantic-conventions/blob/main/AREAS.md)
 document to see the current active SIGs and also to learn how to kick start a new one.`;
