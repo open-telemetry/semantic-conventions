@@ -9,8 +9,28 @@ groups:
     attributes:
       - ref: heroku.app.id
         role: identifying
+      - ref: heroku.app.name
+        role: descriptive
+
+  - id: entity.heroku.release
+    type: entity
+    stability: development
+    name: heroku.release
+    brief: >
+      Heroku Fir Release Attributes representing individual deployments.
+      Each release is a specific version of an application deployed to Heroku.
+    attributes:
       - ref: heroku.release.id
         role: identifying
-      - ref: heroku.app.name
-      - ref: heroku.workload.id
       - ref: heroku.release.version
+        role: descriptive
+
+  - id: entity.heroku.workload
+    type: entity
+    stability: development
+    name: heroku.workload
+    brief: >
+      Heroku Fir Workload Attributes representing individual dyno instances running within a Heroku application.
+    attributes:
+      - ref: heroku.workload.id
+        role: identifying
