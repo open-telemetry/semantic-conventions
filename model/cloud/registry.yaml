@@ -263,9 +263,9 @@ groups:
               value: 'gcp_openshift'
               brief: Red Hat OpenShift on Google Cloud
               stability: development
-            - id: hetzner.cloud.compute
-              value: 'hetzner.cloud_compute'
-              brief: Compute on Hetzner Cloud
+            - id: hetzner.cloud_server
+              value: 'hetzner.cloud_server'
+              brief: Server on Hetzner Cloud
               stability: development
             - id: ibm_cloud_openshift
               value: 'ibm_cloud_openshift'
