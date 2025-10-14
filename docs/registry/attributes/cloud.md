@@ -89,7 +89,7 @@ The following well-known definitions MUST be used if you set this attribute and 
 | `azure` | Microsoft Azure | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gcp` | Google Cloud Platform | ![Development](https://img.shields.io/badge/-development-blue) |
 | `heroku` | Heroku Platform as a Service | ![Development](https://img.shields.io/badge/-development-blue) |
-| `hetzner.cloud` | Hetzner Cloud | ![Development](https://img.shields.io/badge/-development-blue) |
+| `hetzner` | Hetzner | ![Development](https://img.shields.io/badge/-development-blue) |
 | `ibm_cloud` | IBM Cloud | ![Development](https://img.shields.io/badge/-development-blue) |
 | `oracle_cloud` | Oracle Cloud Infrastructure (OCI) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `tencent_cloud` | Tencent Cloud | ![Development](https://img.shields.io/badge/-development-blue) |

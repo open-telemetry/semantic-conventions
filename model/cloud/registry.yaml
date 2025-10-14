@@ -28,9 +28,9 @@ groups:
               value: 'heroku'
               brief: 'Heroku Platform as a Service'
               stability: development
-            - id: 'hetzner.cloud'
-              value: 'hetzner.cloud'
-              brief: 'Hetzner Cloud'
+            - id: 'hetzner'
+              value: 'hetzner'
+              brief: 'Hetzner'
               stability: development
             - id: 'ibm_cloud'
               value: 'ibm_cloud'
