@@ -214,10 +214,9 @@ completion](#simple-chat-completion) above, but contain additional types of Part
 - `uri` parts, which represent a reference to a remote file by URI.
 - `file` parts, which represent a reference to a pre-uploaded file by ID.
 
-Both of these contain an optional `modality` field to capture the general category of the
+These parts contain an optional `modality` field to capture the general category of the
 content, and an optional `mime_type` to capture the specific [IANA media
 type](https://www.iana.org/assignments/media-types/media-types.xhtml) of the content, if known.
-
 See the [normative JSON schema](../gen-ai-input-messages.json) for more details.
 
 ### Multimodal inputs example
