@@ -141,22 +141,15 @@
                     "title": "Modality"
                 },
                 "file_id": {
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "default": null,
                     "description": "An identifier referencing a file that was pre-uploaded to the provider.",
-                    "title": "File Id"
+                    "title": "File Id",
+                    "type": "string"
                 }
             },
             "required": [
                 "type",
-                "modality"
+                "modality",
+                "file_id"
             ],
             "title": "FilePart",
             "type": "object"
@@ -354,22 +347,15 @@
                     "title": "Modality"
                 },
                 "uri": {
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "default": null,
                     "description": "A URI referencing attached data. It should not be a base64 data URL, which should use the `blob` part instead. The URI may use a scheme known to the provider api (e.g. `gs://bucket/object.png`), or be a publicly accessible location.",
-                    "title": "Uri"
+                    "title": "Uri",
+                    "type": "string"
                 }
             },
             "required": [
                 "type",
-                "modality"
+                "modality",
+                "uri"
             ],
             "title": "UriPart",
             "type": "object"
