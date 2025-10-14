@@ -5,7 +5,7 @@ Fixes #
 Please provide a brief description of the changes here.
 
 > [!IMPORTANT]
-> Pull requests acceptance are subject to the triage process as described in [Issue and PR Triage Management](../issue-management.md).
+> Pull requests acceptance are subject to the triage process as described in [Issue and PR Triage Management](https://github.com/open-telemetry/semantic-conventions/blob/main/issue-management.md).
 > PRs that do not follow the guidance above, may be automatically rejected and closed.
 
 ## Merge requirement checklist
