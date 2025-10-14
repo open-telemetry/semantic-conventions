@@ -210,8 +210,9 @@ Multimodal chat completions follow the same sequence and telemetry structure as 
 completion](#simple-chat-completion) above, but contain additional types of Parts in the
 `gen_ai.input.messages` and `gen_ai.output.messages` span/event attributes:
 
-- `Blob` parts, which represent data sent inline to or from the model.
-- `FileData` parts, which represent a reference to a remote file.
+- `blob` parts, which represent data sent inline to or from the model.
+- `uri` parts, which represent a reference to a remote file by URI.
+- `file` parts, which represent a reference to a pre-uploaded file by ID.
 
 Both of these contain an optional `modality` field to capture the general category of the
 content, and an optional `mime_type` to capture the specific [IANA media
@@ -232,28 +233,28 @@ See the [normative JSON schema](../gen-ai-input-messages.json) for more details.
       },
       // A image with a URI
       {
-        "type": "file_data",
+        "type": "uri",
         "modality": "image",
         "mime_type": "image/png",
         "uri": "https://raw.githubusercontent.com/open-telemetry/opentelemetry.io/refs/heads/main/static/img/logos/opentelemetry-horizontal-color.png"
       },
       // A video with a vendor specific URI
       {
-        "type": "file_data",
+        "type": "uri",
         "modality": "video",
         "mime_type": "video/mp4",
         "uri": "gs://my-bucket/my-video.mp4"
       },
       // An image with opaque file ID e.g. the OpenAI files api
       {
-        "type": "file_data",
+        "type": "file",
         "modality": "image",
         "mime_type": "image/png",
         "file_id": "provider_fileid_123"
       },
       // An image with unknown mime_type but known modality
       {
-        "type": "file_data",
+        "type": "file",
         "modality": "image",
         "file_id": "provider_fileid_123"
       },
