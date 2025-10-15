@@ -39,7 +39,7 @@ groups:
 
           Semantic conventions for individual RPC frameworks SHOULD document what
           `rpc.status_code` means in the context of that system.
-        examples: ["OK", "DEADLINE_EXCEEDED", "-32602", "404"]
+        examples: ["OK", "DEADLINE_EXCEEDED", "-32602"]
       - id: rpc.grpc.request.metadata
         type: template[string[]]
         stability: development

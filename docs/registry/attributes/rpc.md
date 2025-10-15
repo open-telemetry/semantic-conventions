@@ -24,7 +24,7 @@ This document defines attributes for remote procedure calls.
 | <a id="rpc-message-uncompressed-size" href="#rpc-message-uncompressed-size">`rpc.message.uncompressed_size`</a> | int | Uncompressed size of the message in bytes. |  | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="rpc-method" href="#rpc-method">`rpc.method`</a> | string | This is the logical name of the method from the RPC interface perspective. | `exampleMethod` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="rpc-service" href="#rpc-service">`rpc.service`</a> | string | The full (logical) name of the service being called, including its package name, if applicable. | `myservice.EchoService` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="rpc-status-code" href="#rpc-status-code">`rpc.status_code`</a> | string | Status code of the RPC call. [6] | `OK`; `DEADLINE_EXCEEDED`; `-32602`; `404` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="rpc-status-code" href="#rpc-status-code">`rpc.status_code`</a> | string | Status code of the RPC call. [6] | `OK`; `DEADLINE_EXCEEDED`; `-32602` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="rpc-system" href="#rpc-system">`rpc.system`</a> | string | A string identifying the remoting system. See below for a list of well-known identifiers. | `grpc`; `java_rmi`; `dotnet_wcf` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `rpc.connect_rpc.request.metadata.<key>`:** Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
@@ -92,7 +92,7 @@ Deprecated rpc message attributes.
 | <a id="rpc-connect-rpc-error-code" href="#rpc-connect-rpc-error-code">`rpc.connect_rpc.error_code`</a> | string | Deprecated, use `rpc.status_code` attribute instead. | `cancelled`; `unknown`; `invalid_argument` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `rpc.status_code`. |
 | <a id="rpc-grpc-status-code" href="#rpc-grpc-status-code">`rpc.grpc.status_code`</a> | int | Deprecated, use string representation on the `rpc.status_code` attribute instead. | `0`; `1`; `2` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Use string representation of the gRPC status code on the `rpc.status_code` attribute. |
 | <a id="rpc-jsonrpc-error-code" href="#rpc-jsonrpc-error-code">`rpc.jsonrpc.error_code`</a> | int | Deprecated, use string representation on the `rpc.status_code` attribute instead. | `-32700`; `100` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Use string representation of the error code on the `rpc.status_code` attribute. |
-| <a id="rpc-jsonrpc-error-message" href="#rpc-jsonrpc-error-message">`rpc.jsonrpc.error_message`</a> | string | Deprecated, use span status description or `error.message` attribute on other signals. | `Parse error`; `User already exists` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Use the span status description to record error message or `error.message` attribute on other signals. |
+| <a id="rpc-jsonrpc-error-message" href="#rpc-jsonrpc-error-message">`rpc.jsonrpc.error_message`</a> | string | Deprecated, use span status description or `error.message` attribute on other signals. | `Parse error`; `User already exists` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Use the span status description or `error.message` attribute on other signals. |
 
 ---
 

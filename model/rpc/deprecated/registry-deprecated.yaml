@@ -186,4 +186,4 @@ groups:
         examples: ['Parse error', 'User already exists']
         deprecated:
           reason: uncategorized
-          note: "Use the span status description to record error message or `error.message` attribute on other signals."
+          note: "Use the span status description or `error.message` attribute on other signals."
