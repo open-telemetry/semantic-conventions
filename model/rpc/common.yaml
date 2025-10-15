@@ -8,6 +8,7 @@ groups:
       - ref: rpc.service
       - ref: rpc.method
       - ref: network.protocol.name
+        examples: ["http"]
       - ref: network.protocol.version
       - ref: network.transport
       - ref: server.address
@@ -34,6 +35,7 @@ groups:
     brief: 'This document defines semantic conventions for remote procedure calls.'
     attributes:
       - ref: network.protocol.name
+        examples: ["http"]
       - ref: network.protocol.version
       - ref: rpc.method
         requirement_level: recommended
