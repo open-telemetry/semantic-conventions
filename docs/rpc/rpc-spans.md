@@ -25,29 +25,28 @@ This document defines how to describe remote procedure calls
 
 > **Warning**
 > Existing RPC instrumentations that are using
-> [v1.20.0 of this document](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.20.0/specification/trace/semantic_conventions/rpc.md)
+> [v1.37.0 of this document](https://github.com/open-telemetry/semantic-conventions/blob/v1.37.0/docs/rpc/rpc-spans.md)
 > (or prior):
 >
-> * SHOULD NOT change the version of the networking conventions that they emit by default
->   until the HTTP semantic conventions are marked stable (HTTP stabilization will
->   include stabilization of a core set of networking conventions which are also used
->   in RPC instrumentations). Conventions include, but are not limited to, attributes,
->   metric and span names, and unit of measure.
+> * SHOULD NOT change the version of the RPC conventions that they emit by
+>   default in their existing major version. Conventions include (but are not
+>   limited to) attributes, metric and span names, and unit of measure.
 > * SHOULD introduce an environment variable `OTEL_SEMCONV_STABILITY_OPT_IN`
->   in the existing major version as a comma-separated list of category-specific values
->   (e.g., http, databases, messaging). The list of values includes:
->   * `http` - emit the new, stable networking conventions,
->     and stop emitting the old experimental networking conventions
->     that the instrumentation emitted previously.
->   * `http/dup` - emit both the old and the stable networking conventions,
->     allowing for a seamless transition.
+>   in their existing major version as a comma-separated list of category-specific values
+>   (e.g., http, databases, rpc). The list of values includes:
+>   * `rpc` - emit the stable RPC conventions, and stop emitting
+>     the experimental RPC conventions that the instrumentation emitted
+>     previously.
+>   * `rpc/dup` - emit both the experimental and stable RPC conventions,
+>     allowing for a phased rollout of the stable semantic conventions.
 >   * The default behavior (in the absence of one of these values) is to continue
->     emitting whatever version of the old experimental networking conventions
+>     emitting whatever version of the old experimental RPC conventions
 >     the instrumentation was emitting previously.
->   * Note: `http/dup` has higher precedence than `http` in case both values are present
-> * SHOULD maintain (security patching at a minimum) the existing major version
+>   * Note: `rpc/dup` has higher precedence than `rpc` in case both values are present
+> * SHOULD maintain (security patching at a minimum) their existing major version
 >   for at least six months after it starts emitting both sets of conventions.
-> * SHOULD drop the environment variable in the next major version.
+> * MAY drop the environment variable in their next major version and emit only
+>   the stable RPC conventions.
 
 ## Common remote procedure call conventions
 
@@ -98,10 +97,7 @@ Generally, a user SHOULD NOT set `peer.service` to a fully qualified RPC service
 
 This span represents an outgoing Remote Procedure Call (RPC).
 
-Remote procedure calls can only be represented with these semantic conventions
-when the names of the called service and method are known and available.
-
-**Span name:** refer to the [Span Name](#span-name) section.
+**Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#span-name) section.
 
 **Span kind** MUST be `CLIENT`.
 
@@ -116,7 +112,7 @@ when the names of the called service and method are known and available.
 | [`network.peer.port`](/docs/registry/attributes/network.md) | int | Peer port number of the network connection. | `65123` | `Recommended` If `network.peer.address` is set. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`network.transport`](/docs/registry/attributes/network.md) | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [4] | `tcp`; `udp` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`network.type`](/docs/registry/attributes/network.md) | string | [OSI network layer](https://wikipedia.org/wiki/Network_layer) or non-OSI equivalent. [5] | `ipv4`; `ipv6` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`rpc.method`](/docs/registry/attributes/rpc.md) | string | The name of the (logical) method being called, must be equal to the $method part in the span name. [6] | `exampleMethod` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`rpc.method`](/docs/registry/attributes/rpc.md) | string | This is the logical name of the method from the RPC interface perspective. [6] | `exampleMethod` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`rpc.service`](/docs/registry/attributes/rpc.md) | string | The full (logical) name of the service being called, including its package name, if applicable. [7] | `myservice.EchoService` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `server.address`:** May contain server IP address, DNS name, or local socket name. When host component is an IP address, instrumentations SHOULD NOT do a reverse proxy lookup to obtain DNS name and SHOULD set `server.address` to the IP address provided in the host component.
@@ -169,6 +165,7 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 | `dotnet_wcf` | .NET WCF | ![Development](https://img.shields.io/badge/-development-blue) |
 | `grpc` | gRPC | ![Development](https://img.shields.io/badge/-development-blue) |
 | `java_rmi` | Java RMI | ![Development](https://img.shields.io/badge/-development-blue) |
+| `jsonrpc` | JSON-RPC | ![Development](https://img.shields.io/badge/-development-blue) |
 | `onc_rpc` | [ONC RPC (Sun RPC)](https://datatracker.ietf.org/doc/html/rfc5531) | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
@@ -189,10 +186,7 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 This span represents an incoming Remote Procedure Call (RPC).
 
-Remote procedure calls can only be represented with these semantic conventions
-when the names of the called service and method are known and available.
-
-**Span name:** refer to the [Span Name](#span-name) section.
+**Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#span-name) section.
 
 **Span kind** MUST be `SERVER`.
 
@@ -209,7 +203,7 @@ when the names of the called service and method are known and available.
 | [`network.peer.port`](/docs/registry/attributes/network.md) | int | Peer port number of the network connection. | `65123` | `Recommended` If `network.peer.address` is set. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`network.transport`](/docs/registry/attributes/network.md) | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [6] | `tcp`; `udp` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | [`network.type`](/docs/registry/attributes/network.md) | string | [OSI network layer](https://wikipedia.org/wiki/Network_layer) or non-OSI equivalent. [7] | `ipv4`; `ipv6` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`rpc.method`](/docs/registry/attributes/rpc.md) | string | The name of the (logical) method being called, must be equal to the $method part in the span name. [8] | `exampleMethod` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`rpc.method`](/docs/registry/attributes/rpc.md) | string | This is the logical name of the method from the RPC interface perspective. [8] | `exampleMethod` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`rpc.service`](/docs/registry/attributes/rpc.md) | string | The full (logical) name of the service being called, including its package name, if applicable. [9] | `myservice.EchoService` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `server.address`:** May contain server IP address, DNS name, or local socket name. When host component is an IP address, instrumentations SHOULD NOT do a reverse proxy lookup to obtain DNS name and SHOULD set `server.address` to the IP address provided in the host component.
@@ -266,6 +260,7 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 | `dotnet_wcf` | .NET WCF | ![Development](https://img.shields.io/badge/-development-blue) |
 | `grpc` | gRPC | ![Development](https://img.shields.io/badge/-development-blue) |
 | `java_rmi` | Java RMI | ![Development](https://img.shields.io/badge/-development-blue) |
+| `jsonrpc` | JSON-RPC | ![Development](https://img.shields.io/badge/-development-blue) |
 | `onc_rpc` | [ONC RPC (Sun RPC)](https://datatracker.ietf.org/doc/html/rfc5531) | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->

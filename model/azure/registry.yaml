@@ -61,7 +61,7 @@ groups:
           it indicates that the operation was performed on multiple regions i.e. cross-regional call.
         note: >
           Region name matches the format of `displayName`
-          in [Azure Location API](https://learn.microsoft.com/rest/api/subscription/subscriptions/list-locations?view=rest-subscription-2021-10-01&tabs=HTTP#location)
+          in [Azure Location API](https://learn.microsoft.com/rest/api/resources/subscriptions/list-locations)
         examples:
           - ["North Central US", "Australia East", "Australia Southeast"]
       - id: azure.cosmosdb.response.sub_status_code
