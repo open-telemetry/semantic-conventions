@@ -60,9 +60,13 @@ and one for disabling the old schema called `semconv.k8s.disableLegacy`. Then:
   - [K8s ReplicationController resource](#k8s-replicationcontroller-resource)
   - [K8s Container metrics](#k8s-container-metrics)
   - [K8s ResourceQuota metrics](#k8s-resourcequota-metrics)
+  - [OpenShift ClusterResourceQuota metrics](#openshift-clusterresourcequota-metrics)
   - [K8s Node condition metrics](#k8s-node-condition-metrics)
   - [K8s Filesystem metrics](#k8s-filesystem-metrics)
   - [K8s Pod Volume metrics](#k8s-pod-volume-metrics)
+  - [K8s Pod Memory metrics](#k8s-pod-memory-metrics)
+  - [Container memory metrics](#container-memory-metrics)
+  - [K8s Node memory metrics](#k8s-node-memory-metrics)
   - [Container Runtime](#container-runtime)
   - [K8s Pod Status Phase and Reason](#k8s-pod-status-phase-and-reason)
 
@@ -360,6 +364,25 @@ These metrics were completely re-designed. The changes are the following:
 
 <!-- prettier-ignore-end -->
 
+### OpenShift ClusterResourceQuota metrics
+
+The OpenShift ClusterResourceQuota metrics implemented by the Collector and specifically the
+[k8scluster](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/v0.115.0/receiver/k8sclusterreceiver/documentation.md)
+receiver were introduced as semantic conventions in
+[github.com/open-telemetry/semantic-conventions/pull/2779](https://github.com/open-telemetry/semantic-conventions/pull/2779).
+
+These metrics were completely re-designed. The changes are the following:
+
+<!-- prettier-ignore-start -->
+
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                 |
+|------------------------------------------------------------------------------------|-------------------------------------|
+| `openshift.clusterquota.hard_limit`                                                    | `openshift.clusterquota.{resource}.hard` |
+| `openshift.clusterquota.used`                                                          | `openshift.clusterquota.{resource}.used` |
+| `{resource}` attribute                                                             | Split in different metrics per type |
+
+<!-- prettier-ignore-end -->
+
 ### K8s Node condition metrics
 
 The K8s Node condition metrics implemented by the Collector and specifically the
@@ -420,6 +443,60 @@ The changes in these metrics are the following:
 | `k8s.volume.inodes` | `k8s.pod.volume.inode.count` |
 | `k8s.volume.inodes.free` | `k8s.pod.volume.inode.free`  |
 | `k8s.volume.inodes.used` | `k8s.pod.volume.inode.used`  |
+
+<!-- prettier-ignore-end -->
+
+### K8s Pod Memory metrics
+
+The K8s Pod memory metrics implemented by the Collector and specifically the
+[k8scluster](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/v0.119.0/receiver/k8sclusterreceiver/documentation.md)
+receiver were introduced as semantic conventions in
+[#1490](https://github.com/open-telemetry/semantic-conventions/issues/1490).
+
+The changes in these metrics are the following:
+
+<!-- prettier-ignore-start -->
+
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                                                     |
+|------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------|
+| `k8s.pod.memory.page_faults`                                                         | `k8s.pod.memory.paging.faults` with attribute `system.paging.fault.type` set to `minor` |
+| `k8s.pod.memory.major_page_faults`                                                   | `k8s.pod.memory.paging.faults` with attribute `system.paging.fault.type` set to `major` |
+
+<!-- prettier-ignore-end -->
+
+### Container memory metrics
+
+The Container memory metrics implemented by the Collector and specifically the
+[k8scluster](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/v0.119.0/receiver/k8sclusterreceiver/documentation.md)
+receiver were introduced as semantic conventions in
+[#1490](https://github.com/open-telemetry/semantic-conventions/issues/1490).
+
+The changes in these metrics are the following:
+
+<!-- prettier-ignore-start -->
+
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                                                       |
+|------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------|
+| `container.memory.page_faults`                                                     | `container.memory.paging.faults` with attribute `system.paging.fault.type` set to `minor` |
+| `container.memory.major_page_faults`                                                 | `container.memory.paging.faults` with attribute `system.paging.fault.type` set to `major` |
+
+<!-- prettier-ignore-end -->
+
+### K8s Node memory metrics
+
+The K8s Node memory metrics implemented by the Collector and specifically the
+[k8scluster](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/v0.119.0/receiver/k8sclusterreceiver/documentation.md)
+receiver were introduced as semantic conventions in
+[#1490](https://github.com/open-telemetry/semantic-conventions/issues/1490).
+
+The changes in these metrics are the following:
+
+<!-- prettier-ignore-start -->
+
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                                                          |
+|------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------|
+| `k8s.node.memory.page_faults`                                                      | `k8s.node.memory.paging.faults` with attribute `system.paging.type` set to `minor`           |
+| `k8s.node.memory.major_page_faults`                                                | `k8s.node.memory.paging.faults` with attribute `system.paging.type` set to `major` |
 
 <!-- prettier-ignore-end -->
 

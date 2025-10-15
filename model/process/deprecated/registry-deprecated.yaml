@@ -48,3 +48,17 @@ groups:
               value: 'involuntary'
               stability: development
         stability: development
+      - id: process.paging.fault_type
+        brief: "Deprecated, use `system.paging.fault.type` instead."
+        deprecated:
+          reason: renamed
+          renamed_to: system.paging.fault.type
+        type:
+          members:
+            - id: major
+              value: 'major'
+              stability: development
+            - id: minor
+              value: 'minor'
+              stability: development
+        stability: development

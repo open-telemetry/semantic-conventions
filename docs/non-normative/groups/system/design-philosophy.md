@@ -168,21 +168,65 @@ applied in a cross-platform manner. See
 
 ### Value
 
-For General Class, the value we can be prescriptive with the value of the
-instrumentation. We want to ensure General Class instrumentation most closely
-matches our vision for our general use cases, and we want to ensure that users
-who are not specialists and just want the most important basic information can
-acquire it as easily as possible using out-of-the-box semconv instrumentation.
-This means we are more likely within General Class instrumentation to make
-judgements about exactly what the value should be, and whether the value should
-be reshaped by instrumentation in any case when pulling the values from sources
-if it serves general purpose use cases.
+For General Class, we can be prescriptive with what the value of the
+instrumentation should be. We want to ensure General Class instrumentation most
+closely matches our vision for our general use cases, and we want to ensure that
+users who are not specialists and just want the most important basic information
+can acquire it as easily as possible using out-of-the-box semconv
+instrumentation.  This means we are more likely within General Class
+instrumentation to make judgements about exactly what the value should be, and
+whether the value should be reshaped by instrumentation in any case when pulling
+the values from sources if it serves general purpose use cases.
 
 For Specialist Class, we should strive not to be prescriptive and instead match
 the concept being modeled as closely as possible. We expect specialist class
 instrumentation to be enabled by the people who already understand it. In a
 System Semconv context, these may be things a user previously gathered manually
 or through existing OS tools that they want to model as OTLP.
+
+### Descriptions
+
+The concepts being modeled by System Semantic Conventions can be very complex,
+sometimes requiring deeper knowledge of operating system and computing concepts
+than most general practitioners would need. As a result, it is tempting to
+provide detailed explanations of the concepts we are modelling. However, we feel
+that the amount of explanation that would be required to teach these concepts
+to a reader with no knowledge would require so much context and nuance that it
+would clutter the resulting documentation and obscure the information we really
+need to convey, which is not just what the instrumentation is but details about
+how and why to instrument it certain ways.
+
+This means that for System Semantic Conventions documentation,
+**we assume a baseline level of knowledge of the concepts being instrumented**.
+The `brief` and `note` fields of metrics and attributes should be used to convey
+information that is crucial to understanding the instrumentation intention,
+i.e.:
+
+* Differences in the same piece of data when it is instrumented on different
+  platforms
+* When we recommend calculations be done on particular data rather than
+  surfacing direct values from existing tools
+* When particular names or enum values were chosen when there are common
+  alternate terms for the same concept
+
+For root metrics and attributes, we will strive to always have a `brief` field.
+The `brief` field should explain what the metric/attribute is, and if the
+explanation of a value is simple (i.e. simply surfacing a value from a common
+source like `procfs`) then the explanation of what the value should be can go
+in the brief. If the value needs some calculation explanation and justification,
+the information should be moved to the `note` field.  
+For enum values, it is often the case that the intention of these values is
+obvious given whatever `brief` was provided for the attribute as a whole. A
+brief can be included in a scenario where we have had to make some choice on the
+value that isn't immediately obvious; the most common scenario is when some
+terminology differs across platforms and we had to choose one term to represent
+all scenarios. In this case, the `brief` can be used to clarify our intention.
+
+In cases where information about a concept is required to describe our intention
+for instrumentation, all information must come with citations to authoritative
+documentation (i.e. Linux `man` pages, Win32 API docs, etc). We do not want to
+invent any new explanations about existing concepts in our own words within our
+convention documentation.
 
 ### Case study: `process.cgroup`
 

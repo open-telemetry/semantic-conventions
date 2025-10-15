@@ -30,7 +30,6 @@ An operating system process.
 | <a id="process-group-leader-pid" href="#process-group-leader-pid">`process.group_leader.pid`</a> | int | The PID of the process's group leader. This is also the process group ID (PGID) of the process. | `23` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="process-interactive" href="#process-interactive">`process.interactive`</a> | boolean | Whether the process is connected to an interactive shell. |  | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="process-owner" href="#process-owner">`process.owner`</a> | string | The username of the user that owns the process. | `root` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="process-paging-fault-type" href="#process-paging-fault-type">`process.paging.fault_type`</a> | string | The type of page fault for this data point. Type `major` is for major/hard page faults, and `minor` is for minor/soft page faults. | `major`; `minor` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="process-parent-pid" href="#process-parent-pid">`process.parent_pid`</a> | int | Parent Process identifier (PPID). | `111` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="process-pid" href="#process-pid">`process.pid`</a> | int | Process identifier (PID). | `1234` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="process-real-user-id" href="#process-real-user-id">`process.real_user.id`</a> | int | The real user ID (RUID) of the process. | `1000` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -71,15 +70,6 @@ with value `"/usr/local/bin:/usr/bin"`.
 | `involuntary` | involuntary | ![Development](https://img.shields.io/badge/-development-blue) |
 | `voluntary` | voluntary | ![Development](https://img.shields.io/badge/-development-blue) |
 
----
-
-`process.paging.fault_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `major` | major | ![Development](https://img.shields.io/badge/-development-blue) |
-| `minor` | minor | ![Development](https://img.shields.io/badge/-development-blue) |
-
 ## Process Linux Attributes
 
 Describes Linux Process attributes
@@ -99,6 +89,7 @@ Deprecated process attributes.
 | <a id="process-context-switch-type" href="#process-context-switch-type">`process.context_switch_type`</a> | string | "Deprecated, use `process.context_switch.type` instead." | `voluntary`; `involuntary` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `process.context_switch.type`. |
 | <a id="process-cpu-state" href="#process-cpu-state">`process.cpu.state`</a> | string | Deprecated, use `cpu.mode` instead. | `system`; `user`; `wait` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `cpu.mode`. |
 | <a id="process-executable-build-id-profiling" href="#process-executable-build-id-profiling">`process.executable.build_id.profiling`</a> | string | "Deprecated, use `process.executable.build_id.htlhash` instead." | `600DCAFE4A110000F2BF38C493F5FB92` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `process.executable.build_id.htlhash`. |
+| <a id="process-paging-fault-type" href="#process-paging-fault-type">`process.paging.fault_type`</a> | string | Deprecated, use `system.paging.fault.type` instead. | `major`; `minor` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `system.paging.fault.type`. |
 
 ---
 
@@ -118,3 +109,12 @@ Deprecated process attributes.
 | `system` | system | ![Development](https://img.shields.io/badge/-development-blue) |
 | `user` | user | ![Development](https://img.shields.io/badge/-development-blue) |
 | `wait` | wait | ![Development](https://img.shields.io/badge/-development-blue) |
+
+---
+
+`process.paging.fault_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `major` | major | ![Development](https://img.shields.io/badge/-development-blue) |
+| `minor` | minor | ![Development](https://img.shields.io/badge/-development-blue) |
