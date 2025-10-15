@@ -8,9 +8,9 @@ groups:
       - id: cloud.provider
         type:
           members:
-            - id: 'akamai'
-              value: 'akamai'
-              brief: 'Akamai'
+            - id: 'akamai_cloud'
+              value: 'akamai_cloud'
+              brief: 'Akamai Cloud'
               stability: development
             - id: 'alibaba_cloud'
               value: 'alibaba_cloud'
@@ -111,9 +111,9 @@ groups:
       - id: cloud.platform
         type:
           members:
-            - id: akamai.cloud_compute
-              value: 'akamai.cloud_compute'
-              brief: Akamai Cloud Compute (Linode)
+            - id: akamai_cloud.compute
+              value: 'akamai_cloud.compute'
+              brief: Akamai Cloud Compute
               stability: development
             - id: alibaba_cloud_ecs
               value: 'alibaba_cloud_ecs'

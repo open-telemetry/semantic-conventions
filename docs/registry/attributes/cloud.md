@@ -11,8 +11,8 @@ A cloud environment (e.g. GCP, Azure, AWS).
 |---|---|---|---|---|
 | <a id="cloud-account-id" href="#cloud-account-id">`cloud.account.id`</a> | string | The cloud account ID the resource is assigned to. | `111111111111`; `opentelemetry` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="cloud-availability-zone" href="#cloud-availability-zone">`cloud.availability_zone`</a> | string | Cloud regions often have multiple, isolated locations known as zones to increase availability. Availability zone represents the zone where the resource is running. [1] | `us-east-1c` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="cloud-platform" href="#cloud-platform">`cloud.platform`</a> | string | The cloud platform in use. [2] | `akamai.cloud_compute`; `alibaba_cloud_ecs`; `alibaba_cloud_fc` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="cloud-provider" href="#cloud-provider">`cloud.provider`</a> | string | Name of the cloud provider. | `akamai`; `alibaba_cloud`; `aws` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="cloud-platform" href="#cloud-platform">`cloud.platform`</a> | string | The cloud platform in use. [2] | `akamai_cloud.compute`; `alibaba_cloud_ecs`; `alibaba_cloud_fc` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="cloud-provider" href="#cloud-provider">`cloud.provider`</a> | string | Name of the cloud provider. | `akamai_cloud`; `alibaba_cloud`; `aws` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="cloud-region" href="#cloud-region">`cloud.region`</a> | string | The geographical region within a cloud provider. When associated with a resource, this attribute specifies the region where the resource operates. When calling services or APIs deployed on a cloud, this attribute identifies the region where the called destination is deployed. [3] | `us-central1`; `us-east-1` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="cloud-resource-id" href="#cloud-resource-id">`cloud.resource_id`</a> | string | Cloud provider-specific native identifier of the monitored cloud resource (e.g. an [ARN](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) on AWS, a [fully qualified resource ID](https://learn.microsoft.com/rest/api/resources/resources/get-by-id) on Azure, a [full resource name](https://google.aip.dev/122#full-resource-names) on GCP) [4] | `arn:aws:lambda:REGION:ACCOUNT_ID:function:my-function`; `//run.googleapis.com/projects/PROJECT_ID/locations/LOCATION_ID/services/SERVICE_ID`; `/subscriptions/<SUBSCRIPTION_GUID>/resourceGroups/<RG>/providers/Microsoft.Web/sites/<FUNCAPP>/functions/<FUNC>` | ![Development](https://img.shields.io/badge/-development-blue) |
 
@@ -46,7 +46,7 @@ The following well-known definitions MUST be used if you set this attribute and 
 
 | Value  | Description | Stability |
 |---|---|---|
-| `akamai.cloud_compute` | Akamai Cloud Compute (Linode) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `akamai_cloud.compute` | Akamai Cloud Compute | ![Development](https://img.shields.io/badge/-development-blue) |
 | `alibaba_cloud_ecs` | Alibaba Cloud Elastic Compute Service | ![Development](https://img.shields.io/badge/-development-blue) |
 | `alibaba_cloud_fc` | Alibaba Cloud Function Compute | ![Development](https://img.shields.io/badge/-development-blue) |
 | `alibaba_cloud_openshift` | Red Hat OpenShift on Alibaba Cloud | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -84,7 +84,7 @@ The following well-known definitions MUST be used if you set this attribute and 
 
 | Value  | Description | Stability |
 |---|---|---|
-| `akamai` | Akamai | ![Development](https://img.shields.io/badge/-development-blue) |
+| `akamai_cloud` | Akamai Cloud | ![Development](https://img.shields.io/badge/-development-blue) |
 | `alibaba_cloud` | Alibaba Cloud | ![Development](https://img.shields.io/badge/-development-blue) |
 | `aws` | Amazon Web Services | ![Development](https://img.shields.io/badge/-development-blue) |
 | `azure` | Microsoft Azure | ![Development](https://img.shields.io/badge/-development-blue) |
