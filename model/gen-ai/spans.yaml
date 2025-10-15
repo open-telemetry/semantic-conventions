@@ -286,7 +286,7 @@ groups:
           conditionally_required: if applicable.
       - ref: server.address
         requirement_level:
-          conditionally_required: when span kind is `CLIENT`.
+          recommended: when span kind is `CLIENT`.
       - ref: server.port
         requirement_level:
           conditionally_required: when span kind is `CLIENT` and `server.address` is set.
