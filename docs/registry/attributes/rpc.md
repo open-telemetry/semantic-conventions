@@ -12,14 +12,10 @@ This document defines attributes for remote procedure calls.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="rpc-connect-rpc-error-code" href="#rpc-connect-rpc-error-code">`rpc.connect_rpc.error_code`</a> | string | The [error codes](https://connectrpc.com//docs/protocol/#error-codes) of the Connect request. Error codes are always string values. | `cancelled`; `unknown`; `invalid_argument` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="rpc-connect-rpc-request-metadata" href="#rpc-connect-rpc-request-metadata">`rpc.connect_rpc.request.metadata.<key>`</a> | string[] | Connect request metadata, `<key>` being the normalized Connect Metadata key (lowercase), the value being the metadata values. [1] | `["1.2.3.4", "1.2.3.5"]` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="rpc-connect-rpc-response-metadata" href="#rpc-connect-rpc-response-metadata">`rpc.connect_rpc.response.metadata.<key>`</a> | string[] | Connect response metadata, `<key>` being the normalized Connect Metadata key (lowercase), the value being the metadata values. [2] | `["attribute_value"]` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="rpc-grpc-request-metadata" href="#rpc-grpc-request-metadata">`rpc.grpc.request.metadata.<key>`</a> | string[] | gRPC request metadata, `<key>` being the normalized gRPC Metadata key (lowercase), the value being the metadata values. [3] | `["1.2.3.4", "1.2.3.5"]` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="rpc-grpc-response-metadata" href="#rpc-grpc-response-metadata">`rpc.grpc.response.metadata.<key>`</a> | string[] | gRPC response metadata, `<key>` being the normalized gRPC Metadata key (lowercase), the value being the metadata values. [4] | `["attribute_value"]` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="rpc-grpc-status-code" href="#rpc-grpc-status-code">`rpc.grpc.status_code`</a> | int | The [numeric status code](https://github.com/grpc/grpc/blob/v1.33.2/doc/statuscodes.md) of the gRPC request. | `0`; `1`; `2` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="rpc-jsonrpc-error-code" href="#rpc-jsonrpc-error-code">`rpc.jsonrpc.error_code`</a> | int | `error.code` property of response if it is an error response. | `-32700`; `100` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="rpc-jsonrpc-error-message" href="#rpc-jsonrpc-error-message">`rpc.jsonrpc.error_message`</a> | string | `error.message` property of response if it is an error response. | `Parse error`; `User already exists` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="rpc-jsonrpc-request-id" href="#rpc-jsonrpc-request-id">`rpc.jsonrpc.request_id`</a> | string | `id` property of request or response. Since protocol allows id to be int, string, `null` or missing (for notifications), value is expected to be cast to string for simplicity. Use empty string in case of `null` value. Omit entirely if this is a notification. | `10`; `request-7`; `` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="rpc-jsonrpc-version" href="#rpc-jsonrpc-version">`rpc.jsonrpc.version`</a> | string | Protocol version as in `jsonrpc` property of request/response. Since JSON-RPC 1.0 doesn't specify this, the value can be omitted. | `2.0`; `1.0` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="rpc-message-compressed-size" href="#rpc-message-compressed-size">`rpc.message.compressed_size`</a> | int | Compressed size of the message in bytes. |  | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -28,6 +24,7 @@ This document defines attributes for remote procedure calls.
 | <a id="rpc-message-uncompressed-size" href="#rpc-message-uncompressed-size">`rpc.message.uncompressed_size`</a> | int | Uncompressed size of the message in bytes. |  | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="rpc-method" href="#rpc-method">`rpc.method`</a> | string | This is the logical name of the method from the RPC interface perspective. | `exampleMethod` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="rpc-service" href="#rpc-service">`rpc.service`</a> | string | The full (logical) name of the service being called, including its package name, if applicable. | `myservice.EchoService` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="rpc-status-code" href="#rpc-status-code">`rpc.status_code`</a> | string | Status code of the RPC call. [6] | `OK`; `DEADLINE_EXCEEDED`; `-32602`; `404` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="rpc-system" href="#rpc-system">`rpc.system`</a> | string | A string identifying the remoting system. See below for a list of well-known identifiers. | `grpc`; `java_rmi`; `dotnet_wcf` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `rpc.connect_rpc.request.metadata.<key>`:** Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
@@ -55,6 +52,56 @@ For example, a property `my-custom-key` with value `["attribute_value"]` SHOULD 
 the `rpc.grpc.response.metadata.my-custom-key` attribute with value `["attribute_value"]`
 
 **[5] `rpc.message.id`:** This way we guarantee that the values will be consistent between different implementations.
+
+**[6] `rpc.status_code`:** The status code returned by the RPC server or generated by the client. Usually it represents an error code, but may also represent partial success, warning, or differentiate between various types of successful outcomes.
+Semantic conventions for individual RPC frameworks SHOULD document what `rpc.status_code` means in the context of that system.
+
+---
+
+`rpc.message.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `RECEIVED` | received | ![Development](https://img.shields.io/badge/-development-blue) |
+| `SENT` | sent | ![Development](https://img.shields.io/badge/-development-blue) |
+
+---
+
+`rpc.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `apache_dubbo` | Apache Dubbo | ![Development](https://img.shields.io/badge/-development-blue) |
+| `connect_rpc` | Connect RPC | ![Development](https://img.shields.io/badge/-development-blue) |
+| `dotnet_wcf` | .NET WCF | ![Development](https://img.shields.io/badge/-development-blue) |
+| `grpc` | gRPC | ![Development](https://img.shields.io/badge/-development-blue) |
+| `java_rmi` | Java RMI | ![Development](https://img.shields.io/badge/-development-blue) |
+| `jsonrpc` | JSON-RPC | ![Development](https://img.shields.io/badge/-development-blue) |
+| `onc_rpc` | [ONC RPC (Sun RPC)](https://datatracker.ietf.org/doc/html/rfc5531) | ![Development](https://img.shields.io/badge/-development-blue) |
+
+## Deprecated RPC Attributes
+
+Deprecated rpc message attributes.
+
+| Attribute | Type | Description | Examples | Stability |
+|---|---|---|---|---|
+| <a id="message-compressed-size" href="#message-compressed-size">`message.compressed_size`</a> | int | Deprecated, use `rpc.message.compressed_size` instead. |  | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `rpc.message.compressed_size`. |
+| <a id="message-id" href="#message-id">`message.id`</a> | int | Deprecated, use `rpc.message.id` instead. |  | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `rpc.message.id`. |
+| <a id="message-type" href="#message-type">`message.type`</a> | string | Deprecated, use `rpc.message.type` instead. | `SENT`; `RECEIVED` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `rpc.message.type`. |
+| <a id="message-uncompressed-size" href="#message-uncompressed-size">`message.uncompressed_size`</a> | int | Deprecated, use `rpc.message.uncompressed_size` instead. |  | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `rpc.message.uncompressed_size`. |
+| <a id="rpc-connect-rpc-error-code" href="#rpc-connect-rpc-error-code">`rpc.connect_rpc.error_code`</a> | string | Deprecated, use `rpc.status_code` attribute instead. | `cancelled`; `unknown`; `invalid_argument` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `rpc.status_code`. |
+| <a id="rpc-grpc-status-code" href="#rpc-grpc-status-code">`rpc.grpc.status_code`</a> | int | Deprecated, use string representation on the `rpc.status_code` attribute instead. | `0`; `1`; `2` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Use string representation of the gRPC status code on the `rpc.status_code` attribute. |
+| <a id="rpc-jsonrpc-error-code" href="#rpc-jsonrpc-error-code">`rpc.jsonrpc.error_code`</a> | int | Deprecated, use string representation on the `rpc.status_code` attribute instead. | `-32700`; `100` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Use string representation of the error code on the `rpc.status_code` attribute. |
+| <a id="rpc-jsonrpc-error-message" href="#rpc-jsonrpc-error-message">`rpc.jsonrpc.error_message`</a> | string | Deprecated, use span status description or `error.message` attribute on other signals. | `Parse error`; `User already exists` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Use the span status description to record error message or `error.message` attribute on other signals. |
+
+---
+
+`message.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `RECEIVED` | received | ![Development](https://img.shields.io/badge/-development-blue) |
+| `SENT` | sent | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -102,46 +149,3 @@ the `rpc.grpc.response.metadata.my-custom-key` attribute with value `["attribute
 | `14` | UNAVAILABLE | ![Development](https://img.shields.io/badge/-development-blue) |
 | `15` | DATA_LOSS | ![Development](https://img.shields.io/badge/-development-blue) |
 | `16` | UNAUTHENTICATED | ![Development](https://img.shields.io/badge/-development-blue) |
-
----
-
-`rpc.message.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `RECEIVED` | received | ![Development](https://img.shields.io/badge/-development-blue) |
-| `SENT` | sent | ![Development](https://img.shields.io/badge/-development-blue) |
-
----
-
-`rpc.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `apache_dubbo` | Apache Dubbo | ![Development](https://img.shields.io/badge/-development-blue) |
-| `connect_rpc` | Connect RPC | ![Development](https://img.shields.io/badge/-development-blue) |
-| `dotnet_wcf` | .NET WCF | ![Development](https://img.shields.io/badge/-development-blue) |
-| `grpc` | gRPC | ![Development](https://img.shields.io/badge/-development-blue) |
-| `java_rmi` | Java RMI | ![Development](https://img.shields.io/badge/-development-blue) |
-| `jsonrpc` | JSON-RPC | ![Development](https://img.shields.io/badge/-development-blue) |
-| `onc_rpc` | [ONC RPC (Sun RPC)](https://datatracker.ietf.org/doc/html/rfc5531) | ![Development](https://img.shields.io/badge/-development-blue) |
-
-## Deprecated RPC Attributes
-
-Deprecated rpc message attributes.
-
-| Attribute | Type | Description | Examples | Stability |
-|---|---|---|---|---|
-| <a id="message-compressed-size" href="#message-compressed-size">`message.compressed_size`</a> | int | Deprecated, use `rpc.message.compressed_size` instead. |  | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `rpc.message.compressed_size`. |
-| <a id="message-id" href="#message-id">`message.id`</a> | int | Deprecated, use `rpc.message.id` instead. |  | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `rpc.message.id`. |
-| <a id="message-type" href="#message-type">`message.type`</a> | string | Deprecated, use `rpc.message.type` instead. | `SENT`; `RECEIVED` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `rpc.message.type`. |
-| <a id="message-uncompressed-size" href="#message-uncompressed-size">`message.uncompressed_size`</a> | int | Deprecated, use `rpc.message.uncompressed_size` instead. |  | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `rpc.message.uncompressed_size`. |
-
----
-
-`message.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `RECEIVED` | received | ![Development](https://img.shields.io/badge/-development-blue) |
-| `SENT` | sent | ![Development](https://img.shields.io/badge/-development-blue) |
