@@ -82,6 +82,7 @@ Currently, the following namespaces exist:
 - [Network](network.md)
 - [NFS](nfs.md)
 - [NodeJS](nodejs.md)
+- [Ntp](ntp.md)
 - [OCI](oci.md)
 - [ONC RPC](onc-rpc.md)
 - [OpenAI](openai.md)
