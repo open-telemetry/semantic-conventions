@@ -382,6 +382,10 @@ groups:
               value: "execute_tool"
               brief: 'Execute a tool'
               stability: development
+            - id: retrieval
+              value: "retrieval"
+              brief: 'Retrieval operation such as [OpenAI Retrieval API](https://platform.openai.com/docs/guides/retrieval)'
+              stability: development
         brief: The name of the operation being performed.
         note: >
           If one of the predefined values applies, but specific system uses a different name it's RECOMMENDED to document it in the semantic
@@ -426,6 +430,26 @@ groups:
         type: int
         brief: The number of dimensions the resulting output embeddings should have.
         examples: [512, 1024]
+      - id: gen_ai.retrieval.type
+        stability: development
+        type: string
+        brief: The type of retrieval being performed.
+        examples: ["similarity", "hybrid"]
+      - id: gen_ai.retrieval.vector_store
+        stability: development
+        type: string
+        brief: The vector store being used for retrieval.
+        examples: ["faiss", "pinecone"]
+      - id: gen_ai.retrieval.top_k
+        stability: development
+        type: int
+        brief: The number of documents to retrieve.
+        examples: [5, 10]
+      - id: gen_ai.retrieval.documents_retrieved
+        stability: development
+        type: int
+        brief: The number of documents retrieved.
+        examples: [5, 10]
       - id: gen_ai.system_instructions
         stability: development
         type: any
