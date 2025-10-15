@@ -1,0 +1,97 @@
+groups:
+  - id: event.workflow.triggered
+    type: event
+    name: workflow.triggered
+    stability: development
+    extends: attribute.span.workflow.core
+    brief: A workflow has been triggered to be run.
+    note: >
+    attributes:
+      - ref: workflow.trigger.id
+        requirement_level: required
+      - ref: workflow.trigger.name
+        requirement_level: recommended
+      - ref: workflow.trigger.type
+        requirement_level: required
+  - id: event.workflow.result
+    type: event
+    name: workflow.result
+    stability: development
+    extends: attribute.event.workflow.run
+    brief: The result of running the workflow.
+    note: >
+    attributes:
+      - ref: workflow.definition.id
+        requirement_level: required
+        brief: "The UID of the k8s CronJob/Job."
+      - ref: workflow.definition.name
+        brief: "The name of the k8s CronJob/Job."
+      - ref: workflow.platform.name
+        examples: "k8s"
+      - ref: workflow.outcome
+        requirement_level: required
+  - id: event.workflow.status
+    type: event
+    name: workflow.status
+    stability: development
+    extends: attribute.event.workflow.run
+    brief: The status of the workflow.
+    note: >
+    attributes:
+      - ref: workflow.definition.id
+        requirement_level: required
+        brief: "The UID of the k8s CronJob/Job."
+      - ref: workflow.definition.name
+        brief: "The name of the k8s CronJob/Job."
+      - ref: workflow.platform.name
+        examples: "k8s"
+      - ref: workflow.state
+        requirement_level: required
+  - id: event.workflow.execution.result
+    type: event
+    name: workflow.execution.result
+    stability: development
+    extends: attribute.event.workflow.execution
+    brief: The end result of the execution useful know if it was successful etc.
+    note: >
+    attributes:
+      - ref: workflow.definition.id
+        brief: "The UID of the k8s CronJob/Job."
+      - ref: workflow.definition.name
+        brief: "The name of the k8s CronJob/Job."
+      - ref: workflow.task.id
+        brief: "The UID of the k8s CronJob/Job."
+      - ref: workflow.task.name
+        brief: "The name of the k8s CronJob/Job."
+      - ref: workflow.platform.name
+        examples: "k8s"
+      - ref: workflow.execution.outcome
+        requirement_level: required
+      - ref: workflow.iteration.limit
+        requirement_level:
+          conditionally_required: if operating on batches or in a loop with a limit
+      - ref: workflow.iteration.success
+        requirement_level:
+          conditionally_required: if operating on batches or in a loop
+      - ref: workflow.iteration.skipped
+        requirement_level:
+          conditionally_required: if operating on batches or in a loop
+      - ref: workflow.iteration.failed
+        requirement_level:
+          conditionally_required: if operating on batches or in a loop
+  - id: event.workflow.execution.status
+    type: event
+    name: workflow.execution.status
+    extends: attribute.event.workflow.execution
+    stability: development
+    brief: The current status of the execution of the task so that it can be tracked.
+    note: >
+    attributes:
+      - ref: workflow.task.id
+        brief: "The UID of the k8s CronJob/Job."
+      - ref: workflow.task.name
+        brief: "The name of the k8s CronJob/Job."
+      - ref: workflow.platform.name
+        examples: "k8s"
+      - ref: workflow.execution.state
+        requirement_level: required

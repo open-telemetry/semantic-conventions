@@ -96,5 +96,11 @@ Currently, the following namespaces exist:
 | | [vcs.repo](vcs.md#vcs-repo) | ![Development](https://img.shields.io/badge/-development-blue) |
 | Webengine | | |
 | | [webengine](webengine.md#webengine) | ![Development](https://img.shields.io/badge/-development-blue) |
+| Workflow | | |
+| | [workflow](workflow.md#workflow) | ![Development](https://img.shields.io/badge/-development-blue) |
+| | [workflow.definition](workflow.md#workflow-definition) | ![Development](https://img.shields.io/badge/-development-blue) |
+| | [workflow.execution](workflow.md#workflow-execution) | ![Development](https://img.shields.io/badge/-development-blue) |
+| | [workflow.task](workflow.md#workflow-task) | ![Development](https://img.shields.io/badge/-development-blue) |
+| | [workflow.trigger](workflow.md#workflow-trigger) | ![Development](https://img.shields.io/badge/-development-blue) |
 | zOS | | |
 | | [zos.software](zos.md#zos-software) | ![Development](https://img.shields.io/badge/-development-blue) |
