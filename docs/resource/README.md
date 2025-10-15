@@ -251,7 +251,7 @@ Attributes defining a running environment (e.g. Operating System, Cloud, Data Ce
 - [CICD](./cicd.md)
 - Deployment:
   - [Deployment Environment](./deployment-environment.md)
-  - [Kubernetes](k8s/k8s.md)
+  - [Kubernetes](k8s/README.md)
   - [Openshift](k8s/openshift.md)
   - [CloudFoundry](./cloudfoundry.md)
 - [Browser](./browser.md)
