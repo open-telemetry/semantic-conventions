@@ -56,6 +56,11 @@ This document defines semantic convention attributes in the TLS namespace.
 
 Describes deprecated `tls` attributes.
 
-| Attribute | Type | Description | Examples | Stability |
+<details>
+<summary><b>Deprecated Attributes:</b></summary>
+
+| Key | Value Type | Summary | Example Values | Deprecation Explanation |
 |---|---|---|---|---|
-| <a id="tls-client-server-name" href="#tls-client-server-name">`tls.client.server_name`</a> | string | Deprecated, use `server.address` instead. | `opentelemetry.io` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `server.address`. |
+| <a id="tls-client-server-name" href="#tls-client-server-name">`tls.client.server_name`</a> | string | Deprecated, use `server.address` instead. | `opentelemetry.io` |  Use `server.address` instead.  |
+
+</details>

@@ -84,12 +84,15 @@ Describes Linux Process attributes
 
 Deprecated process attributes.
 
-| Attribute | Type | Description | Examples | Stability |
+<details>
+<summary><b>Deprecated Attributes:</b></summary>
+
+| Key | Value Type | Summary | Example Values | Deprecation Explanation |
 |---|---|---|---|---|
-| <a id="process-context-switch-type" href="#process-context-switch-type">`process.context_switch_type`</a> | string | "Deprecated, use `process.context_switch.type` instead." | `voluntary`; `involuntary` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `process.context_switch.type`. |
-| <a id="process-cpu-state" href="#process-cpu-state">`process.cpu.state`</a> | string | Deprecated, use `cpu.mode` instead. | `system`; `user`; `wait` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `cpu.mode`. |
-| <a id="process-executable-build-id-profiling" href="#process-executable-build-id-profiling">`process.executable.build_id.profiling`</a> | string | "Deprecated, use `process.executable.build_id.htlhash` instead." | `600DCAFE4A110000F2BF38C493F5FB92` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `process.executable.build_id.htlhash`. |
-| <a id="process-paging-fault-type" href="#process-paging-fault-type">`process.paging.fault_type`</a> | string | Deprecated, use `system.paging.fault.type` instead. | `major`; `minor` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `system.paging.fault.type`. |
+| <a id="process-context-switch-type" href="#process-context-switch-type">`process.context_switch_type`</a> | string | "Deprecated, use `process.context_switch.type` instead." | `voluntary`; `involuntary` |  Use `process.context_switch.type` instead.  |
+| <a id="process-cpu-state" href="#process-cpu-state">`process.cpu.state`</a> | string | Deprecated, use `cpu.mode` instead. | `system`; `user`; `wait` |  Use `cpu.mode` instead.  |
+| <a id="process-executable-build-id-profiling" href="#process-executable-build-id-profiling">`process.executable.build_id.profiling`</a> | string | "Deprecated, use `process.executable.build_id.htlhash` instead." | `600DCAFE4A110000F2BF38C493F5FB92` |  Use `process.executable.build_id.htlhash` instead.  |
+| <a id="process-paging-fault-type" href="#process-paging-fault-type">`process.paging.fault_type`</a> | string | Deprecated, use `system.paging.fault.type` instead. | `major`; `minor` |  Use `system.paging.fault.type` instead.  |
 
 ---
 
@@ -118,3 +121,5 @@ Deprecated process attributes.
 |---|---|---|
 | `major` | major | ![Development](https://img.shields.io/badge/-development-blue) |
 | `minor` | minor | ![Development](https://img.shields.io/badge/-development-blue) |
+
+</details>
