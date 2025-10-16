@@ -82,13 +82,11 @@ the `Opt-In` requirement level on the attribute.
 
 <!-- TODO(jsuereth) - make examples not break on changes to semconv -->
 
-For example, `example.attribute1` is `Conditionally Required` by a convention
-when available.
-If only `example.attribute2` is available instead, which may require an expensive
-operation (e.g., a lookup or computation) to retrieve, instrumentation can
-use `example.attribute2` to populate `example.attribute1`. However, this
-should only be done if the user explicitly enables the instrumentation to
-perform such operations, considering the potential performance impact.
+For example, `server.address` is `Conditionally Required` by a convention. When
+server IP address is available instead, instrumentation can do a DNS
+lookup, cache and populate `server.address`, but only if the user explicitly
+enables the instrumentation to do so, considering the performance issues that
+DNS lookups introduce.
 
 ## Recommended
 
