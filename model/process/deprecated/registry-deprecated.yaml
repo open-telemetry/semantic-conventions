@@ -30,3 +30,35 @@ groups:
         brief: >
           "Deprecated, use `process.executable.build_id.htlhash` instead."
         examples: ['600DCAFE4A110000F2BF38C493F5FB92']
+      - id: process.context_switch_type
+        brief: >
+          "Deprecated, use `process.context_switch.type` instead."
+        deprecated:
+          reason: renamed
+          renamed_to: process.context_switch.type
+        annotations:
+          code_generation:
+            exclude: true
+        type:
+          members:
+            - id: voluntary
+              value: 'voluntary'
+              stability: development
+            - id: involuntary
+              value: 'involuntary'
+              stability: development
+        stability: development
+      - id: process.paging.fault_type
+        brief: "Deprecated, use `system.paging.fault.type` instead."
+        deprecated:
+          reason: renamed
+          renamed_to: system.paging.fault.type
+        type:
+          members:
+            - id: major
+              value: 'major'
+              stability: development
+            - id: minor
+              value: 'minor'
+              stability: development
+        stability: development
