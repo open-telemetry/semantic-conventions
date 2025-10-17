@@ -190,7 +190,7 @@ in such a way that it cannot be changed by intermediaries.
 
 ### Span name
 
-Messaging spans SHOULD follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.49.0/specification/trace/api.md#span).
+Messaging spans SHOULD follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.50.0/specification/trace/api.md#span).
 
 The **span name** SHOULD be `{messaging.operation.name} {destination}`
 (see below for the exact definition of the [`{destination}`](#destination-placeholder) placeholder).
