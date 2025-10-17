@@ -3,7 +3,7 @@ linkTitle: Events
 aliases: [events-general]
 --->
 
-# Semantic conventions for events
+# Event semantic conventions
 
 **Status**: [Development][DocumentStatus]
 
@@ -36,7 +36,7 @@ the event.
 
 <!-- Body use cases are not clear - see https://github.com/open-telemetry/semantic-conventions/issues/1651 for the context.-->
 
-## External event compatibility
+## Compatibility
 
 When recording events from an existing system as OpenTelemetry Events, the system
 may lack a single name field or require multiple fields to identify the event.
