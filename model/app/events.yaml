@@ -62,22 +62,24 @@ groups:
         requirement_level: recommended
       - ref: app.jank.period
         requirement_level: recommended
-  - id: event.app.screen.visible
+  - id: event.app.screen.time_on_screen
     stability: development
     type: event
-    name: app.screen.visible
+    name: app.screen.time_on_screen
     brief: >
       This event captures the duration that a screen was visible to the user, indicating the time between when the screen becomes
       visible and when it stops being visible.
     note: >
-      This event measures the screen's visibility, in nanoseconds, meaning it includes only the time the screen is actively being shown to the user.
+      This event measures the screen's visibility, in seconds, meaning it includes only the time the screen is actively being shown to the user.
       It does not include times when the app is in the background or when other screens/modal views are covering it. For example:
       - **iOS**: From `viewDidAppear` to `viewWillDisappear`, indicating when the screen is first shown and when it's about to disappear.
       - **Android**: From `onResume` to `onPause`, indicating when the screen comes to the foreground and when it goes to the background.
     attributes:
+      - ref: app.screen.id
+        requirement_level: recommended
       - ref: app.screen.name
-        requirement_level: required
+        requirement_level: opt_in
       - ref: app.screen.type
         requirement_level: opt_in
-      - ref: app.screen.visible.duration
+      - ref: app.screen.time_on_screen.duration
         requirement_level: required

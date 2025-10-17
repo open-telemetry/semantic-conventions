@@ -1,49 +1,36 @@
 groups:
-  - id: span.app.screen.first_draw.internal
+  - id: span.app.screen.time_to_first_draw.internal
     type: span
     span_kind: internal
-    brief: This span describes the time until the first draw of an application UI screen.
+    brief: This span represents an application screen first draw operation.
     note: |
-      **Span name**: MUST be `app.screen.first_draw`.
+      **Span name**: MUST be `app.screen.time_to_first_draw`.
 
-      This span captures the time from screen initialization to the first frame drawn.
+      **Span kind** MUST be `INTERNAL`.
+
+      This span captures the time from screen initialization to the first frame
+      of an application UI screen being drawn.
     stability: development
     attributes:
+      - ref: app.screen.id
+        requirement_level: recommended
       - ref: app.screen.name
-        requirement_level: required
-      - ref: app.screen.first_draw.duration
+        requirement_level: opt_in
+      - ref: app.screen.time_to_first_draw.duration
         requirement_level: required
       - ref: app.screen.type
         requirement_level: opt_in
-  - id: span.app.screen.load.internal
+  - id: span.app.start.internal
     type: span
     span_kind: internal
-    brief: This span describes an application screen load operation, from navigation trigger to when the first stable frame has been rendered.
-    note: |
-      **Span name:** MUST be `app.screen.load`.
-
-      This span captures the time from user initiation of naigation (e.g., tapping a button) to the point when the first stable frame
-      of the screen has been rendered. A frame is considered stable when no major layout or frame changes occur for a brief stability
-      interval (e.g. 150 ms).
-    stability: development
-    attributes:
-      - ref: app.screen.name
-        requirement_level: required
-      - ref: app.screen.type
-        requirement_level: opt_in
-      - ref: app.screen.load.duration
-        requirement_level: required
-  - id: span.app.start.client
-    type: span
-    span_kind: client
     brief: This span represents an application start operation.
     note: |
-      **Span name:** MUST be `AppStart`.
+      **Span name:** MUST be `app.start`.
 
-      **Span kind** MUST be `CLIENT`.
+      **Span kind** MUST be `INTERNAL`.
 
       This span captures the time from user initiation (e.g., tapping the app icon or opening a link)
-      to the moment the app is ready for interaction.
+      to the moment the app begins UI rendering.
     stability: development
     attributes:
       - ref: app.start.type

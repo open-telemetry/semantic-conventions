@@ -86,26 +86,15 @@ groups:
           is larger in scope than individual widgets. Multiple screens can
           coexist on the same display simultaneously (e.g., split view on tablets).
         examples: ["MainActivity", "ProductDetailFragment", "ProfileView", "ProfileViewController"]
-      - id: app.screen.first_draw.duration
-        type: int
+      - id: app.screen.time_to_first_draw.duration
+        type: double
         stability: development
         brief: >
-          The time, in nanoseconds, from screen initialization to the first frame being rendered.
+          The time, in seconds, from screen initialization to the first frame being rendered.
         note: >
-          This measures the time, in nanoseconds, until the first frame of the screen
+          This measures the time, in seconds, until the first frame of the screen
           is rendered and becomes visible to the user.
-        examples: [1000]
-      - id: app.screen.load.duration
-        type: int
-        stability: development
-        brief: >
-          The time taken, in nanoseconds, for a screen to load and become stable, measured from when
-          the screen begins appearing until the first stable frame has been rendered.
-        note: >
-          This attribute represents the total duration, in nanoseconds, of a screen load as experienced by the user.
-          The screen load is considered complete when the first stable frame of the screen has been rendered.
-          A frame is considered stable when no major layout or frame changes occur for a brief stability interval (e.g. 150 ms).
-        examples: [1000]
+        examples: [0.95, 2.0] 
       - id: app.screen.type
         type:
           members:
@@ -134,46 +123,42 @@ groups:
           screen’s content. For iOS, it may refer to either SwiftUI (declarative) or UIKit (imperative) for managing views.
           On Android, it can refer to either an Activity or a Fragment.
         examples: ["swiftui", "uikit", "activity", "fragment"]
-      - id: app.screen.visible.duration
-        type: int
+      - id: app.screen.time_on_screen.duration
+        type: double
         stability: development
         brief: >
-          The total time, in nanoseconds, that the screen remained visible to the user.
+          The total time, in seconds, that the screen remained visible to the user.
         note: >
           This attribute measures the duration during which the screen is visible and actively being displayed to the user.
           It begins when the screen becomes visible (e.g., `viewDidAppear` on iOS or `onResume` on Android) and ends when it is no longer visible
           (e.g., `viewWillDisappear` on iOS or `onPause` on Android).
           It does **not** include the time when the screen is in the background, nor does it account for time the screen may be obscured by other views
           or overlays (e.g., modals, popups, or other screens in split-view).
-        examples: [1200, 5500, 700]
+        examples: [30.0, 10.21]
       - id: app.start.duration
-        type: int
+        type: double
         stability: development
         brief: >
-          The total time, in nanoseconds, taken for the application to start, from user initiation to being ready for interaction.
+          The total time, in seconds, taken for the application to start, from user initiation to being ready for interaction.
         note: >
-          This is the time, in nanoseconds, between the user's initiation of the app start (e.g., tapping the app icon or opening a link) and the point when the app is fully ready for interaction,
+          This is the time, in seconds, between the user's initiation of the app start (e.g., tapping the app icon or opening a link) and the point when the app is fully ready for interaction,
           such as the main screen becoming visible or the app’s main functionality being accessible.
-        examples: [1000]
+        examples: [0.95, 2.0]
       - id: app.start.type
         type:
           members:
             - id: cold
               value: "cold"
               brief: App start from terminated state
+              note: The app is started from a terminated state, meaning no prior instance of the app is running.
               stability: development
             - id: warm
               value: "warm"
               brief: App start from background state
+              note: The app is started from the background, meaning an instance of the app is still in memory, but not active.
               stability: development
         stability: development
-        brief: >
-          The type of application start, indicating the state of the app when it was initiated.
-        note: |
-          Start types include:
-
-          - **Cold**: The app is started from a terminated state, meaning no prior instance of the app is running.
-          - **Warm**: The app is started from the background, meaning an instance of the app is still in memory, but not active.
+        brief: The type of application start, indicating the state of the app when it was initiated.
         examples: ["cold", "warm"]
       - id: app.widget.id
         type: string
