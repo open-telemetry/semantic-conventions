@@ -114,10 +114,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
-    brief: "Heap size target percentage configured by the user, otherwise 100."
+    brief: "Heap size target fraction configured by the user, otherwise 1.0."
     note: >
-      The value range is [0.0,100.0].
+      The value range is [0.0,1.0].
       Computed from `/gc/gogc:percent`.
     instrument: updowncounter
-    unit: "%"
+    unit: "1"
     stability: development

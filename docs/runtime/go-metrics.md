@@ -257,9 +257,9 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `go.config.gogc` | UpDownCounter | `%` | Heap size target percentage configured by the user, otherwise 100. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `go.config.gogc` | UpDownCounter | `1` | Heap size target fraction configured by the user, otherwise 1.0. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
-**[1]:** The value range is [0.0,100.0]. Computed from `/gc/gogc:percent`.
+**[1]:** The value range is [0.0,1.0]. Computed from `/gc/gogc:percent`.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
