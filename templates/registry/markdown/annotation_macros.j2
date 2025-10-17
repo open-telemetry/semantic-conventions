@@ -1,0 +1,18 @@
+{% import 'attribute_macros.j2' as attrs %}
+{% macro table(attributes, attribute_registry_base_url, lineage_attributes) -%}
+{% set sources = attributes | selectattr("annotations") | selectattr("annotations.docs.sources")%}
+{{sourcing(sources, attribute_registry_base_url, lineage_attributes) | trim}}
+{% endmacro %}
+
+{% macro sourcing(sources, attribute_registry_base_url, lineage_attributes) -%}
+{% if sources %}
+---
+
+**Sourcing Attribute Values:**
+
+SHOULD the value not be provided natively via the SDK the following sources can be used:
+
+| Attribute | Implementation | Location |
+| --- | --- | --- |{% for attribute in sources | sort(attribute="name") -%}{% for source in attribute.annotations.docs.sources %}
+| {{ attrs.name_with_link(attribute, attribute_registry_base_url, lineage_attributes) }} | {{source.implementation}} | {{ source.location | trim}} |{% endfor %}{% endfor %}
+{%endif %}{% endmacro %}
