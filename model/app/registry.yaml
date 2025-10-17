@@ -94,7 +94,7 @@ groups:
         note: >
           This measures the time, in seconds, until the first frame of the screen
           is rendered and becomes visible to the user.
-        examples: [0.95, 2.0] 
+        examples: [0.95, 2.0]
       - id: app.screen.type
         type:
           members:
