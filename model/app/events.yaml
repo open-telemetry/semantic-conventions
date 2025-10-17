@@ -62,10 +62,10 @@ groups:
         requirement_level: recommended
       - ref: app.jank.period
         requirement_level: recommended
-  - id: event.app.screen.time_on_screen
+  - id: event.app.screen.visible
     stability: development
     type: event
-    name: app.screen.time_on_screen
+    name: app.screen.visible
     brief: >
       This event captures the duration that a screen was visible to the user, indicating the time between when the screen becomes
       visible and when it stops being visible.
@@ -81,5 +81,5 @@ groups:
         requirement_level: opt_in
       - ref: app.screen.type
         requirement_level: opt_in
-      - ref: app.screen.time_on_screen.duration
+      - ref: app.screen.visible.duration
         requirement_level: required
