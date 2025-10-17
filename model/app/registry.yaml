@@ -123,7 +123,7 @@ groups:
           screen’s content. For iOS, it may refer to either SwiftUI (declarative) or UIKit (imperative) for managing views.
           On Android, it can refer to either an Activity or a Fragment.
         examples: ["swiftui", "uikit", "activity", "fragment"]
-      - id: app.screen.visible.duration
+      - id: app.screen.time_on_screen.duration
         type: double
         stability: development
         brief: >
