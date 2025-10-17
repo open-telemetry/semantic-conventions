@@ -3,7 +3,7 @@ linkTitle: Events
 aliases: [events-general]
 --->
 
-# Semantic conventions for events
+# Event semantic conventions
 
 **Status**: [Development][DocumentStatus]
 
