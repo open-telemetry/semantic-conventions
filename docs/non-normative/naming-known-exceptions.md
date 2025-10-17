@@ -1,5 +1,5 @@
 <!--- Hugo front matter used to generate the website version of this page:
-linkTitle: Naming known exceptions 
+linkTitle: Naming known exceptions
 --->
 
 # Kubernetes naming exceptions

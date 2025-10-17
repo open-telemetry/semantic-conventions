@@ -84,7 +84,6 @@ Names SHOULD follow these rules:
 
 - Be precise. Attribute, event, metric, and other names should be descriptive and
   unambiguous.
-
   - When introducing a name describing a certain property of the object,
     include the property name. For example, use `file.owner.name` instead of `file.owner`
     and `system.network.packet.dropped` instead of `system.network.dropped`
@@ -376,7 +375,6 @@ When adding new a system to the semantic conventions, follow these principles in
    multiple Oracle products.
 
 3. The system name SHOULD match the corresponding project or product name in the following cases:
-
    - Independent projects that do not belong to a specific company, such as Apache Foundation projects like
      `kafka` or `cassandra`.
    - Products with names similar to the owning company, such as `mongodb` or `elasticsearch`
