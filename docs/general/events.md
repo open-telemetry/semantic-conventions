@@ -34,7 +34,7 @@ Semantic conventions that define events MUST document the event name and its att
 
 * Events SHOULD specify a [severity number](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.51.0/specification/logs/data-model.md#field-severitynumber).
 
-## External event compatibility
+## Compatibility
 
 When recording events from an existing system as OpenTelemetry Events, it's common
 for the system to lack a single name field or require multiple fields to identify the event.
