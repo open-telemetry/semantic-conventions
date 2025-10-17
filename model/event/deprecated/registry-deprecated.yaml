@@ -1,0 +1,17 @@
+groups:
+  - id: registry.event.deprecated
+    type: attribute_group
+    display_name: Event Attributes
+    brief: >
+      Attributes for Events represented using Log Records.
+    attributes:
+      - id: event.name
+        type: string
+        stability: development
+        deprecated:
+          reason: uncategorized
+          note: >
+            Replaced by EventName top-level field on the LogRecord.
+        brief: >
+          Identifies the class / type of event.
+        examples: ["browser.mouse.click", "device.app.lifecycle"]
