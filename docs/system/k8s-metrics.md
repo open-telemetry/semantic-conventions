@@ -47,7 +47,7 @@ and therefore inherit its attributes, like `k8s.pod.name` and `k8s.pod.uid`.
   - [Metric: `k8s.node.allocatable.cpu`](#metric-k8snodeallocatablecpu)
   - [Metric: `k8s.node.allocatable.memory`](#metric-k8snodeallocatablememory)
   - [Metric: `k8s.node.allocatable.ephemeral_storage`](#metric-k8snodeallocatableephemeral_storage)
-  - [Metric: `k8s.node.allocatable.pods`](#metric-k8snodeallocatablepods)
+  - [Metric: `k8s.node.allocatable.pod.count](#metric-k8snodeallocatablepodcount)
   - [Metric: `k8s.node.condition.status`](#metric-k8snodeconditionstatus)
   - [Metric: `k8s.node.cpu.time`](#metric-k8snodecputime)
   - [Metric: `k8s.node.cpu.usage`](#metric-k8snodecpuusage)
@@ -62,40 +62,40 @@ and therefore inherit its attributes, like `k8s.pod.name` and `k8s.pod.uid`.
   - [Metric: `k8s.node.filesystem.capacity`](#metric-k8snodefilesystemcapacity)
   - [Metric: `k8s.node.filesystem.usage`](#metric-k8snodefilesystemusage)
 - [Deployment metrics](#deployment-metrics)
-  - [Metric: `k8s.deployment.desired_pods`](#metric-k8sdeploymentdesired_pods)
-  - [Metric: `k8s.deployment.available_pods`](#metric-k8sdeploymentavailable_pods)
+  - [Metric: `k8s.deployment.desired_pod.count`](#metric-k8sdeploymentdesired_podcount)
+  - [Metric: `k8s.deployment.available_pod.count](#metric-k8sdeploymentavailable_podcount)
 - [ReplicaSet metrics](#replicaset-metrics)
-  - [Metric: `k8s.replicaset.desired_pods`](#metric-k8sreplicasetdesired_pods)
-  - [Metric: `k8s.replicaset.available_pods`](#metric-k8sreplicasetavailable_pods)
+  - [Metric: `k8s.replicaset.desired_pod.count](#metric-k8sreplicasetdesired_podcount)
+  - [Metric: `k8s.replicaset.available_pod.count](#metric-k8sreplicasetavailable_podcount)
 - [ReplicationController metrics](#replicationcontroller-metrics)
-  - [Metric: `k8s.replicationcontroller.desired_pods`](#metric-k8sreplicationcontrollerdesired_pods)
-  - [Metric: `k8s.replicationcontroller.available_pods`](#metric-k8sreplicationcontrolleravailable_pods)
+  - [Metric: `k8s.replicationcontroller.desired_pod.count](#metric-k8sreplicationcontrollerdesired_podcount)
+  - [Metric: `k8s.replicationcontroller.available_pod.count](#metric-k8sreplicationcontrolleravailable_podcount)
 - [StatefulSet metrics](#statefulset-metrics)
-  - [Metric: `k8s.statefulset.desired_pods`](#metric-k8sstatefulsetdesired_pods)
-  - [Metric: `k8s.statefulset.ready_pods`](#metric-k8sstatefulsetready_pods)
-  - [Metric: `k8s.statefulset.current_pods`](#metric-k8sstatefulsetcurrent_pods)
-  - [Metric: `k8s.statefulset.updated_pods`](#metric-k8sstatefulsetupdated_pods)
+  - [Metric: `k8s.statefulset.desired_pod.count](#metric-k8sstatefulsetdesired_podcount)
+  - [Metric: `k8s.statefulset.ready_pod.count](#metric-k8sstatefulsetready_podcount)
+  - [Metric: `k8s.statefulset.current_pod.count](#metric-k8sstatefulsetcurrent_podcount)
+  - [Metric: `k8s.statefulset.updated_pod.count](#metric-k8sstatefulsetupdated_podcount)
 - [HorizontalPodAutoscaler metrics](#horizontalpodautoscaler-metrics)
-  - [Metric: `k8s.hpa.desired_pods`](#metric-k8shpadesired_pods)
-  - [Metric: `k8s.hpa.current_pods`](#metric-k8shpacurrent_pods)
-  - [Metric: `k8s.hpa.max_pods`](#metric-k8shpamax_pods)
-  - [Metric: `k8s.hpa.min_pods`](#metric-k8shpamin_pods)
+  - [Metric: `k8s.hpa.desired_pod.count](#metric-k8shpadesired_podcount)
+  - [Metric: `k8s.hpa.current_pod.count](#metric-k8shpacurrent_podcount)
+  - [Metric: `k8s.hpa.max_pod.count](#metric-k8shpamax_podcount)
+  - [Metric: `k8s.hpa.min_pod.count](#metric-k8shpamin_podcount)
   - [Metric: `k8s.hpa.metric.target.cpu.value`](#metric-k8shpametrictargetcpuvalue)
   - [Metric: `k8s.hpa.metric.target.cpu.average_value`](#metric-k8shpametrictargetcpuaverage_value)
   - [Metric: `k8s.hpa.metric.target.cpu.average_utilization`](#metric-k8shpametrictargetcpuaverage_utilization)
 - [DaemonSet metrics](#daemonset-metrics)
-  - [Metric: `k8s.daemonset.current_scheduled_nodes`](#metric-k8sdaemonsetcurrent_scheduled_nodes)
-  - [Metric: `k8s.daemonset.desired_scheduled_nodes`](#metric-k8sdaemonsetdesired_scheduled_nodes)
-  - [Metric: `k8s.daemonset.misscheduled_nodes`](#metric-k8sdaemonsetmisscheduled_nodes)
-  - [Metric: `k8s.daemonset.ready_nodes`](#metric-k8sdaemonsetready_nodes)
+  - [Metric: `k8s.daemonset.current_scheduled_node.count`](#metric-k8sdaemonsetcurrent_scheduled_nodecount)
+  - [Metric: `k8s.daemonset.desired_scheduled_node.count`](#metric-k8sdaemonsetdesired_scheduled_nodecount)
+  - [Metric: `k8s.daemonset.misscheduled_node.count`](#metric-k8sdaemonsetmisscheduled_nodecount)
+  - [Metric: `k8s.daemonset.ready_node.count`](#metric-k8sdaemonsetready_nodecount)
 - [Job metrics](#job-metrics)
-  - [Metric: `k8s.job.active_pods`](#metric-k8sjobactive_pods)
-  - [Metric: `k8s.job.failed_pods`](#metric-k8sjobfailed_pods)
-  - [Metric: `k8s.job.successful_pods`](#metric-k8sjobsuccessful_pods)
-  - [Metric: `k8s.job.desired_successful_pods`](#metric-k8sjobdesired_successful_pods)
-  - [Metric: `k8s.job.max_parallel_pods`](#metric-k8sjobmax_parallel_pods)
+  - [Metric: `k8s.job.active_pod.count](#metric-k8sjobactive_podcount)
+  - [Metric: `k8s.job.failed_pod.count](#metric-k8sjobfailed_podcount)
+  - [Metric: `k8s.job.successful_pod.count](#metric-k8sjobsuccessful_podcount)
+  - [Metric: `k8s.job.desired_successful_pod.count](#metric-k8sjobdesired_successful_podcount)
+  - [Metric: `k8s.job.max_parallel_pod.count](#metric-k8sjobmax_parallel_podcount)
 - [CronJob metrics](#cronjob-metrics)
-  - [Metric: `k8s.cronjob.active_jobs`](#metric-k8scronjobactive_jobs)
+  - [Metric: `k8s.cronjob.active_job.count`](#metric-k8scronjobactive_jobcount)
 - [Namespace metrics](#namespace-metrics)
   - [Metric: `k8s.namespace.phase`](#metric-k8snamespacephase)
 - [K8s Container metrics](#k8s-container-metrics)
@@ -989,11 +989,11 @@ This metric is [recommended][MetricRecommended].
 <!-- END AUTOGENERATED TEXT -->
 <!-- endsemconv -->
 
-### Metric: `k8s.node.allocatable.pods`
+### Metric: `k8s.node.allocatable.pod.count
 
 This metric is [recommended][MetricRecommended].
 
-<!-- semconv metric.k8s.node.allocatable.pods -->
+<!-- semconv metric.k8s.node.allocatable.pod.count -->
 <!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
 <!-- see templates/registry/markdown/snippet.md.j2 -->
 <!-- prettier-ignore-start -->
@@ -1002,7 +1002,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.node.allocatable.pods` | UpDownCounter | `{pod}` | Amount of pods allocatable on the node. | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.node`](/docs/registry/entities/k8s.md#k8s-node) |
+| `k8s.node.allocatable.pod.count` | UpDownCounter | `{pod}` | Amount of pods allocatable on the node. | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.node`](/docs/registry/entities/k8s.md#k8s-node) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -1391,11 +1391,11 @@ of the Kubelet's stats API.
 
 **Description:** Deployment level metrics captured under the namespace `k8s.deployment`.
 
-### Metric: `k8s.deployment.desired_pods`
+### Metric: `k8s.deployment.desired_pod.count`
 
 This metric is [recommended][MetricRecommended].
 
-<!-- semconv metric.k8s.deployment.desired_pods -->
+<!-- semconv metric.k8s.deployment.desired_pod.count -->
 <!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
 <!-- see templates/registry/markdown/snippet.md.j2 -->
 <!-- prettier-ignore-start -->
@@ -1404,7 +1404,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.deployment.desired_pods` | UpDownCounter | `{pod}` | Number of desired replica pods in this deployment. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.deployment`](/docs/registry/entities/k8s.md#k8s-deployment) |
+| `k8s.deployment.desired_pod.count` | UpDownCounter | `{pod}` | Number of desired replica pods in this deployment. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.deployment`](/docs/registry/entities/k8s.md#k8s-deployment) |
 
 **[1]:** This metric aligns with the `replicas` field of the
 [K8s DeploymentSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#deploymentspec-v1-apps).
@@ -1414,11 +1414,11 @@ This metric is [recommended][MetricRecommended].
 <!-- END AUTOGENERATED TEXT -->
 <!-- endsemconv -->
 
-### Metric: `k8s.deployment.available_pods`
+### Metric: `k8s.deployment.available_pod.count
 
 This metric is [recommended][MetricRecommended].
 
-<!-- semconv metric.k8s.deployment.available_pods -->
+<!-- semconv metric.k8s.deployment.available_pod.count -->
 <!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
 <!-- see templates/registry/markdown/snippet.md.j2 -->
 <!-- prettier-ignore-start -->
@@ -1427,7 +1427,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.deployment.available_pods` | UpDownCounter | `{pod}` | Total number of available replica pods (ready for at least minReadySeconds) targeted by this deployment. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.deployment`](/docs/registry/entities/k8s.md#k8s-deployment) |
+| `k8s.deployment.available_pod.count` | UpDownCounter | `{pod}` | Total number of available replica pods (ready for at least minReadySeconds) targeted by this deployment. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.deployment`](/docs/registry/entities/k8s.md#k8s-deployment) |
 
 **[1]:** This metric aligns with the `availableReplicas` field of the
 [K8s DeploymentStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#deploymentstatus-v1-apps).
@@ -1441,11 +1441,11 @@ This metric is [recommended][MetricRecommended].
 
 **Description:** ReplicaSet level metrics captured under the namespace `k8s.replicaset`.
 
-### Metric: `k8s.replicaset.desired_pods`
+### Metric: `k8s.replicaset.desired_pod.count
 
 This metric is [recommended][MetricRecommended].
 
-<!-- semconv metric.k8s.replicaset.desired_pods -->
+<!-- semconv metric.k8s.replicaset.desired_pod.count -->
 <!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
 <!-- see templates/registry/markdown/snippet.md.j2 -->
 <!-- prettier-ignore-start -->
@@ -1454,7 +1454,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.replicaset.desired_pods` | UpDownCounter | `{pod}` | Number of desired replica pods in this replicaset. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.replicaset`](/docs/registry/entities/k8s.md#k8s-replicaset) |
+| `k8s.replicaset.desired_pod.count` | UpDownCounter | `{pod}` | Number of desired replica pods in this replicaset. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.replicaset`](/docs/registry/entities/k8s.md#k8s-replicaset) |
 
 **[1]:** This metric aligns with the `replicas` field of the
 [K8s ReplicaSetSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#replicasetspec-v1-apps).
@@ -1464,11 +1464,11 @@ This metric is [recommended][MetricRecommended].
 <!-- END AUTOGENERATED TEXT -->
 <!-- endsemconv -->
 
-### Metric: `k8s.replicaset.available_pods`
+### Metric: `k8s.replicaset.available_pod.count
 
 This metric is [recommended][MetricRecommended].
 
-<!-- semconv metric.k8s.replicaset.available_pods -->
+<!-- semconv metric.k8s.replicaset.available_pod.count -->
 <!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
 <!-- see templates/registry/markdown/snippet.md.j2 -->
 <!-- prettier-ignore-start -->
@@ -1477,7 +1477,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.replicaset.available_pods` | UpDownCounter | `{pod}` | Total number of available replica pods (ready for at least minReadySeconds) targeted by this replicaset. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.replicaset`](/docs/registry/entities/k8s.md#k8s-replicaset) |
+| `k8s.replicaset.available_pod.count` | UpDownCounter | `{pod}` | Total number of available replica pods (ready for at least minReadySeconds) targeted by this replicaset. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.replicaset`](/docs/registry/entities/k8s.md#k8s-replicaset) |
 
 **[1]:** This metric aligns with the `availableReplicas` field of the
 [K8s ReplicaSetStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#replicasetstatus-v1-apps).
@@ -1491,11 +1491,11 @@ This metric is [recommended][MetricRecommended].
 
 **Description:** ReplicationController level metrics captured under the namespace `k8s.replicationcontroller`.
 
-### Metric: `k8s.replicationcontroller.desired_pods`
+### Metric: `k8s.replicationcontroller.desired_pod.count
 
 This metric is [recommended][MetricRecommended].
 
-<!-- semconv metric.k8s.replicationcontroller.desired_pods -->
+<!-- semconv metric.k8s.replicationcontroller.desired_pod.count -->
 <!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
 <!-- see templates/registry/markdown/snippet.md.j2 -->
 <!-- prettier-ignore-start -->
@@ -1504,7 +1504,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.replicationcontroller.desired_pods` | UpDownCounter | `{pod}` | Number of desired replica pods in this replication controller. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.replicationcontroller`](/docs/registry/entities/k8s.md#k8s-replicationcontroller) |
+| `k8s.replicationcontroller.desired_pod.count` | UpDownCounter | `{pod}` | Number of desired replica pods in this replication controller. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.replicationcontroller`](/docs/registry/entities/k8s.md#k8s-replicationcontroller) |
 
 **[1]:** This metric aligns with the `replicas` field of the
 [K8s ReplicationControllerSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#replicationcontrollerspec-v1-core)
@@ -1514,11 +1514,11 @@ This metric is [recommended][MetricRecommended].
 <!-- END AUTOGENERATED TEXT -->
 <!-- endsemconv -->
 
-### Metric: `k8s.replicationcontroller.available_pods`
+### Metric: `k8s.replicationcontroller.available_pod.count
 
 This metric is [recommended][MetricRecommended].
 
-<!-- semconv metric.k8s.replicationcontroller.available_pods -->
+<!-- semconv metric.k8s.replicationcontroller.available_pod.count -->
 <!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
 <!-- see templates/registry/markdown/snippet.md.j2 -->
 <!-- prettier-ignore-start -->
@@ -1527,7 +1527,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.replicationcontroller.available_pods` | UpDownCounter | `{pod}` | Total number of available replica pods (ready for at least minReadySeconds) targeted by this replication controller. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.replicationcontroller`](/docs/registry/entities/k8s.md#k8s-replicationcontroller) |
+| `k8s.replicationcontroller.available_pod.count` | UpDownCounter | `{pod}` | Total number of available replica pods (ready for at least minReadySeconds) targeted by this replication controller. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.replicationcontroller`](/docs/registry/entities/k8s.md#k8s-replicationcontroller) |
 
 **[1]:** This metric aligns with the `availableReplicas` field of the
 [K8s ReplicationControllerStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#replicationcontrollerstatus-v1-core)
@@ -1541,11 +1541,11 @@ This metric is [recommended][MetricRecommended].
 
 **Description:** StatefulSet level metrics captured under the namespace `k8s.statefulset`.
 
-### Metric: `k8s.statefulset.desired_pods`
+### Metric: `k8s.statefulset.desired_pod.count
 
 This metric is [recommended][MetricRecommended].
 
-<!-- semconv metric.k8s.statefulset.desired_pods -->
+<!-- semconv metric.k8s.statefulset.desired_pod.count -->
 <!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
 <!-- see templates/registry/markdown/snippet.md.j2 -->
 <!-- prettier-ignore-start -->
@@ -1554,7 +1554,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.statefulset.desired_pods` | UpDownCounter | `{pod}` | Number of desired replica pods in this statefulset. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.statefulset`](/docs/registry/entities/k8s.md#k8s-statefulset) |
+| `k8s.statefulset.desired_pod.count` | UpDownCounter | `{pod}` | Number of desired replica pods in this statefulset. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.statefulset`](/docs/registry/entities/k8s.md#k8s-statefulset) |
 
 **[1]:** This metric aligns with the `replicas` field of the
 [K8s StatefulSetSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#statefulsetspec-v1-apps).
@@ -1564,11 +1564,11 @@ This metric is [recommended][MetricRecommended].
 <!-- END AUTOGENERATED TEXT -->
 <!-- endsemconv -->
 
-### Metric: `k8s.statefulset.ready_pods`
+### Metric: `k8s.statefulset.ready_pod.count
 
 This metric is [recommended][MetricRecommended].
 
-<!-- semconv metric.k8s.statefulset.ready_pods -->
+<!-- semconv metric.k8s.statefulset.ready_pod.count -->
 <!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
 <!-- see templates/registry/markdown/snippet.md.j2 -->
 <!-- prettier-ignore-start -->
@@ -1577,7 +1577,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.statefulset.ready_pods` | UpDownCounter | `{pod}` | The number of replica pods created for this statefulset with a Ready Condition. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.statefulset`](/docs/registry/entities/k8s.md#k8s-statefulset) |
+| `k8s.statefulset.ready_pod.count` | UpDownCounter | `{pod}` | The number of replica pods created for this statefulset with a Ready Condition. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.statefulset`](/docs/registry/entities/k8s.md#k8s-statefulset) |
 
 **[1]:** This metric aligns with the `readyReplicas` field of the
 [K8s StatefulSetStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#statefulsetstatus-v1-apps).
@@ -1587,11 +1587,11 @@ This metric is [recommended][MetricRecommended].
 <!-- END AUTOGENERATED TEXT -->
 <!-- endsemconv -->
 
-### Metric: `k8s.statefulset.current_pods`
+### Metric: `k8s.statefulset.current_pod.count
 
 This metric is [recommended][MetricRecommended].
 
-<!-- semconv metric.k8s.statefulset.current_pods -->
+<!-- semconv metric.k8s.statefulset.current_pod.count -->
 <!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
 <!-- see templates/registry/markdown/snippet.md.j2 -->
 <!-- prettier-ignore-start -->
@@ -1600,7 +1600,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.statefulset.current_pods` | UpDownCounter | `{pod}` | The number of replica pods created by the statefulset controller from the statefulset version indicated by currentRevision. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.statefulset`](/docs/registry/entities/k8s.md#k8s-statefulset) |
+| `k8s.statefulset.current_pod.count` | UpDownCounter | `{pod}` | The number of replica pods created by the statefulset controller from the statefulset version indicated by currentRevision. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.statefulset`](/docs/registry/entities/k8s.md#k8s-statefulset) |
 
 **[1]:** This metric aligns with the `currentReplicas` field of the
 [K8s StatefulSetStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#statefulsetstatus-v1-apps).
@@ -1610,11 +1610,11 @@ This metric is [recommended][MetricRecommended].
 <!-- END AUTOGENERATED TEXT -->
 <!-- endsemconv -->
 
-### Metric: `k8s.statefulset.updated_pods`
+### Metric: `k8s.statefulset.updated_pod.count
 
 This metric is [recommended][MetricRecommended].
 
-<!-- semconv metric.k8s.statefulset.updated_pods -->
+<!-- semconv metric.k8s.statefulset.updated_pod.count -->
 <!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
 <!-- see templates/registry/markdown/snippet.md.j2 -->
 <!-- prettier-ignore-start -->
@@ -1623,7 +1623,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.statefulset.updated_pods` | UpDownCounter | `{pod}` | Number of replica pods created by the statefulset controller from the statefulset version indicated by updateRevision. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.statefulset`](/docs/registry/entities/k8s.md#k8s-statefulset) |
+| `k8s.statefulset.updated_pod.count` | UpDownCounter | `{pod}` | Number of replica pods created by the statefulset controller from the statefulset version indicated by updateRevision. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.statefulset`](/docs/registry/entities/k8s.md#k8s-statefulset) |
 
 **[1]:** This metric aligns with the `updatedReplicas` field of the
 [K8s StatefulSetStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#statefulsetstatus-v1-apps).
@@ -1637,11 +1637,11 @@ This metric is [recommended][MetricRecommended].
 
 **Description:** HorizontalPodAutoscaler level metrics captured under the namespace `k8s.hpa`.
 
-### Metric: `k8s.hpa.desired_pods`
+### Metric: `k8s.hpa.desired_pod.count
 
 This metric is [recommended][MetricRecommended].
 
-<!-- semconv metric.k8s.hpa.desired_pods -->
+<!-- semconv metric.k8s.hpa.desired_pod.count -->
 <!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
 <!-- see templates/registry/markdown/snippet.md.j2 -->
 <!-- prettier-ignore-start -->
@@ -1650,7 +1650,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.hpa.desired_pods` | UpDownCounter | `{pod}` | Desired number of replica pods managed by this horizontal pod autoscaler, as last calculated by the autoscaler. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.hpa`](/docs/registry/entities/k8s.md#k8s-hpa) |
+| `k8s.hpa.desired_pod.count` | UpDownCounter | `{pod}` | Desired number of replica pods managed by this horizontal pod autoscaler, as last calculated by the autoscaler. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.hpa`](/docs/registry/entities/k8s.md#k8s-hpa) |
 
 **[1]:** This metric aligns with the `desiredReplicas` field of the
 [K8s HorizontalPodAutoscalerStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#horizontalpodautoscalerstatus-v2-autoscaling)
@@ -1660,11 +1660,11 @@ This metric is [recommended][MetricRecommended].
 <!-- END AUTOGENERATED TEXT -->
 <!-- endsemconv -->
 
-### Metric: `k8s.hpa.current_pods`
+### Metric: `k8s.hpa.current_pod.count
 
 This metric is [recommended][MetricRecommended].
 
-<!-- semconv metric.k8s.hpa.current_pods -->
+<!-- semconv metric.k8s.hpa.current_pod.count -->
 <!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
 <!-- see templates/registry/markdown/snippet.md.j2 -->
 <!-- prettier-ignore-start -->
@@ -1673,7 +1673,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.hpa.current_pods` | UpDownCounter | `{pod}` | Current number of replica pods managed by this horizontal pod autoscaler, as last seen by the autoscaler. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.hpa`](/docs/registry/entities/k8s.md#k8s-hpa) |
+| `k8s.hpa.current_pod.count` | UpDownCounter | `{pod}` | Current number of replica pods managed by this horizontal pod autoscaler, as last seen by the autoscaler. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.hpa`](/docs/registry/entities/k8s.md#k8s-hpa) |
 
 **[1]:** This metric aligns with the `currentReplicas` field of the
 [K8s HorizontalPodAutoscalerStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#horizontalpodautoscalerstatus-v2-autoscaling)
@@ -1683,11 +1683,11 @@ This metric is [recommended][MetricRecommended].
 <!-- END AUTOGENERATED TEXT -->
 <!-- endsemconv -->
 
-### Metric: `k8s.hpa.max_pods`
+### Metric: `k8s.hpa.max_pod.count
 
 This metric is [recommended][MetricRecommended].
 
-<!-- semconv metric.k8s.hpa.max_pods -->
+<!-- semconv metric.k8s.hpa.max_pod.count -->
 <!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
 <!-- see templates/registry/markdown/snippet.md.j2 -->
 <!-- prettier-ignore-start -->
@@ -1696,7 +1696,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.hpa.max_pods` | UpDownCounter | `{pod}` | The upper limit for the number of replica pods to which the autoscaler can scale up. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.hpa`](/docs/registry/entities/k8s.md#k8s-hpa) |
+| `k8s.hpa.max_pod.count` | UpDownCounter | `{pod}` | The upper limit for the number of replica pods to which the autoscaler can scale up. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.hpa`](/docs/registry/entities/k8s.md#k8s-hpa) |
 
 **[1]:** This metric aligns with the `maxReplicas` field of the
 [K8s HorizontalPodAutoscalerSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#horizontalpodautoscalerspec-v2-autoscaling)
@@ -1706,11 +1706,11 @@ This metric is [recommended][MetricRecommended].
 <!-- END AUTOGENERATED TEXT -->
 <!-- endsemconv -->
 
-### Metric: `k8s.hpa.min_pods`
+### Metric: `k8s.hpa.min_pod.count
 
 This metric is [recommended][MetricRecommended].
 
-<!-- semconv metric.k8s.hpa.min_pods -->
+<!-- semconv metric.k8s.hpa.min_pod.count -->
 <!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
 <!-- see templates/registry/markdown/snippet.md.j2 -->
 <!-- prettier-ignore-start -->
@@ -1719,7 +1719,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.hpa.min_pods` | UpDownCounter | `{pod}` | The lower limit for the number of replica pods to which the autoscaler can scale down. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.hpa`](/docs/registry/entities/k8s.md#k8s-hpa) |
+| `k8s.hpa.min_pod.count` | UpDownCounter | `{pod}` | The lower limit for the number of replica pods to which the autoscaler can scale down. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.hpa`](/docs/registry/entities/k8s.md#k8s-hpa) |
 
 **[1]:** This metric aligns with the `minReplicas` field of the
 [K8s HorizontalPodAutoscalerSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#horizontalpodautoscalerspec-v2-autoscaling)
@@ -1835,11 +1835,11 @@ the `k8s.container.name` attribute MUST be set to identify the specific containe
 
 **Description:** DaemonSet level metrics captured under the namespace `k8s.daemonset`.
 
-### Metric: `k8s.daemonset.current_scheduled_nodes`
+### Metric: `k8s.daemonset.current_scheduled_node.count`
 
 This metric is [recommended][MetricRecommended].
 
-<!-- semconv metric.k8s.daemonset.current_scheduled_nodes -->
+<!-- semconv metric.k8s.daemonset.current_scheduled_node.count -->
 <!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
 <!-- see templates/registry/markdown/snippet.md.j2 -->
 <!-- prettier-ignore-start -->
@@ -1848,7 +1848,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.daemonset.current_scheduled_nodes` | UpDownCounter | `{node}` | Number of nodes that are running at least 1 daemon pod and are supposed to run the daemon pod. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.daemonset`](/docs/registry/entities/k8s.md#k8s-daemonset) |
+| `k8s.daemonset.current_scheduled_node.count` | UpDownCounter | `{node}` | Number of nodes that are running at least 1 daemon pod and are supposed to run the daemon pod. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.daemonset`](/docs/registry/entities/k8s.md#k8s-daemonset) |
 
 **[1]:** This metric aligns with the `currentNumberScheduled` field of the
 [K8s DaemonSetStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#daemonsetstatus-v1-apps).
@@ -1858,11 +1858,11 @@ This metric is [recommended][MetricRecommended].
 <!-- END AUTOGENERATED TEXT -->
 <!-- endsemconv -->
 
-### Metric: `k8s.daemonset.desired_scheduled_nodes`
+### Metric: `k8s.daemonset.desired_scheduled_node.count`
 
 This metric is [recommended][MetricRecommended].
 
-<!-- semconv metric.k8s.daemonset.desired_scheduled_nodes -->
+<!-- semconv metric.k8s.daemonset.desired_scheduled_node.count -->
 <!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
 <!-- see templates/registry/markdown/snippet.md.j2 -->
 <!-- prettier-ignore-start -->
@@ -1871,7 +1871,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.daemonset.desired_scheduled_nodes` | UpDownCounter | `{node}` | Number of nodes that should be running the daemon pod (including nodes currently running the daemon pod). [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.daemonset`](/docs/registry/entities/k8s.md#k8s-daemonset) |
+| `k8s.daemonset.desired_scheduled_node.count` | UpDownCounter | `{node}` | Number of nodes that should be running the daemon pod (including nodes currently running the daemon pod). [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.daemonset`](/docs/registry/entities/k8s.md#k8s-daemonset) |
 
 **[1]:** This metric aligns with the `desiredNumberScheduled` field of the
 [K8s DaemonSetStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#daemonsetstatus-v1-apps).
@@ -1881,11 +1881,11 @@ This metric is [recommended][MetricRecommended].
 <!-- END AUTOGENERATED TEXT -->
 <!-- endsemconv -->
 
-### Metric: `k8s.daemonset.misscheduled_nodes`
+### Metric: `k8s.daemonset.misscheduled_node.count`
 
 This metric is [recommended][MetricRecommended].
 
-<!-- semconv metric.k8s.daemonset.misscheduled_nodes -->
+<!-- semconv metric.k8s.daemonset.misscheduled_node.count -->
 <!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
 <!-- see templates/registry/markdown/snippet.md.j2 -->
 <!-- prettier-ignore-start -->
@@ -1894,7 +1894,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.daemonset.misscheduled_nodes` | UpDownCounter | `{node}` | Number of nodes that are running the daemon pod, but are not supposed to run the daemon pod. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.daemonset`](/docs/registry/entities/k8s.md#k8s-daemonset) |
+| `k8s.daemonset.misscheduled_node.count` | UpDownCounter | `{node}` | Number of nodes that are running the daemon pod, but are not supposed to run the daemon pod. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.daemonset`](/docs/registry/entities/k8s.md#k8s-daemonset) |
 
 **[1]:** This metric aligns with the `numberMisscheduled` field of the
 [K8s DaemonSetStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#daemonsetstatus-v1-apps).
@@ -1904,11 +1904,11 @@ This metric is [recommended][MetricRecommended].
 <!-- END AUTOGENERATED TEXT -->
 <!-- endsemconv -->
 
-### Metric: `k8s.daemonset.ready_nodes`
+### Metric: `k8s.daemonset.ready_node.count`
 
 This metric is [recommended][MetricRecommended].
 
-<!-- semconv metric.k8s.daemonset.ready_nodes -->
+<!-- semconv metric.k8s.daemonset.ready_node.count -->
 <!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
 <!-- see templates/registry/markdown/snippet.md.j2 -->
 <!-- prettier-ignore-start -->
@@ -1917,7 +1917,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.daemonset.ready_nodes` | UpDownCounter | `{node}` | Number of nodes that should be running the daemon pod and have one or more of the daemon pod running and ready. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.daemonset`](/docs/registry/entities/k8s.md#k8s-daemonset) |
+| `k8s.daemonset.ready_node.count` | UpDownCounter | `{node}` | Number of nodes that should be running the daemon pod and have one or more of the daemon pod running and ready. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.daemonset`](/docs/registry/entities/k8s.md#k8s-daemonset) |
 
 **[1]:** This metric aligns with the `numberReady` field of the
 [K8s DaemonSetStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#daemonsetstatus-v1-apps).
@@ -1931,11 +1931,11 @@ This metric is [recommended][MetricRecommended].
 
 **Description:** Job level metrics captured under the namespace `k8s.job`.
 
-### Metric: `k8s.job.active_pods`
+### Metric: `k8s.job.active_pod.count
 
 This metric is [recommended][MetricRecommended].
 
-<!-- semconv metric.k8s.job.active_pods -->
+<!-- semconv metric.k8s.job.active_pod.count -->
 <!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
 <!-- see templates/registry/markdown/snippet.md.j2 -->
 <!-- prettier-ignore-start -->
@@ -1944,7 +1944,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.job.active_pods` | UpDownCounter | `{pod}` | The number of pending and actively running pods for a job. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.job`](/docs/registry/entities/k8s.md#k8s-job) |
+| `k8s.job.active_pod.count` | UpDownCounter | `{pod}` | The number of pending and actively running pods for a job. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.job`](/docs/registry/entities/k8s.md#k8s-job) |
 
 **[1]:** This metric aligns with the `active` field of the
 [K8s JobStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#jobstatus-v1-batch).
@@ -1954,11 +1954,11 @@ This metric is [recommended][MetricRecommended].
 <!-- END AUTOGENERATED TEXT -->
 <!-- endsemconv -->
 
-### Metric: `k8s.job.failed_pods`
+### Metric: `k8s.job.failed_pod.count
 
 This metric is [recommended][MetricRecommended].
 
-<!-- semconv metric.k8s.job.failed_pods -->
+<!-- semconv metric.k8s.job.failed_pod.count -->
 <!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
 <!-- see templates/registry/markdown/snippet.md.j2 -->
 <!-- prettier-ignore-start -->
@@ -1967,7 +1967,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.job.failed_pods` | UpDownCounter | `{pod}` | The number of pods which reached phase Failed for a job. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.job`](/docs/registry/entities/k8s.md#k8s-job) |
+| `k8s.job.failed_pod.count` | UpDownCounter | `{pod}` | The number of pods which reached phase Failed for a job. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.job`](/docs/registry/entities/k8s.md#k8s-job) |
 
 **[1]:** This metric aligns with the `failed` field of the
 [K8s JobStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#jobstatus-v1-batch).
@@ -1977,11 +1977,11 @@ This metric is [recommended][MetricRecommended].
 <!-- END AUTOGENERATED TEXT -->
 <!-- endsemconv -->
 
-### Metric: `k8s.job.successful_pods`
+### Metric: `k8s.job.successful_pod.count
 
 This metric is [recommended][MetricRecommended].
 
-<!-- semconv metric.k8s.job.successful_pods -->
+<!-- semconv metric.k8s.job.successful_pod.count -->
 <!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
 <!-- see templates/registry/markdown/snippet.md.j2 -->
 <!-- prettier-ignore-start -->
@@ -1990,7 +1990,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.job.successful_pods` | UpDownCounter | `{pod}` | The number of pods which reached phase Succeeded for a job. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.job`](/docs/registry/entities/k8s.md#k8s-job) |
+| `k8s.job.successful_pod.count` | UpDownCounter | `{pod}` | The number of pods which reached phase Succeeded for a job. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.job`](/docs/registry/entities/k8s.md#k8s-job) |
 
 **[1]:** This metric aligns with the `succeeded` field of the
 [K8s JobStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#jobstatus-v1-batch).
@@ -2000,11 +2000,11 @@ This metric is [recommended][MetricRecommended].
 <!-- END AUTOGENERATED TEXT -->
 <!-- endsemconv -->
 
-### Metric: `k8s.job.desired_successful_pods`
+### Metric: `k8s.job.desired_successful_pod.count
 
 This metric is [recommended][MetricRecommended].
 
-<!-- semconv metric.k8s.job.desired_successful_pods -->
+<!-- semconv metric.k8s.job.desired_successful_pod.count -->
 <!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
 <!-- see templates/registry/markdown/snippet.md.j2 -->
 <!-- prettier-ignore-start -->
@@ -2013,7 +2013,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.job.desired_successful_pods` | UpDownCounter | `{pod}` | The desired number of successfully finished pods the job should be run with. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.job`](/docs/registry/entities/k8s.md#k8s-job) |
+| `k8s.job.desired_successful_pod.count` | UpDownCounter | `{pod}` | The desired number of successfully finished pods the job should be run with. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.job`](/docs/registry/entities/k8s.md#k8s-job) |
 
 **[1]:** This metric aligns with the `completions` field of the
 [K8s JobSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#jobspec-v1-batch)..
@@ -2023,11 +2023,11 @@ This metric is [recommended][MetricRecommended].
 <!-- END AUTOGENERATED TEXT -->
 <!-- endsemconv -->
 
-### Metric: `k8s.job.max_parallel_pods`
+### Metric: `k8s.job.max_parallel_pod.count
 
 This metric is [recommended][MetricRecommended].
 
-<!-- semconv metric.k8s.job.max_parallel_pods -->
+<!-- semconv metric.k8s.job.max_parallel_pod.count -->
 <!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
 <!-- see templates/registry/markdown/snippet.md.j2 -->
 <!-- prettier-ignore-start -->
@@ -2036,7 +2036,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.job.max_parallel_pods` | UpDownCounter | `{pod}` | The max desired number of pods the job should run at any given time. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.job`](/docs/registry/entities/k8s.md#k8s-job) |
+| `k8s.job.max_parallel_pod.count` | UpDownCounter | `{pod}` | The max desired number of pods the job should run at any given time. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.job`](/docs/registry/entities/k8s.md#k8s-job) |
 
 **[1]:** This metric aligns with the `parallelism` field of the
 [K8s JobSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#jobspec-v1-batch).
@@ -2050,11 +2050,11 @@ This metric is [recommended][MetricRecommended].
 
 **Description:** CronJob level metrics captured under the namespace `k8s.cronjob`.
 
-### Metric: `k8s.cronjob.active_jobs`
+### Metric: `k8s.cronjob.active_job.count`
 
 This metric is [recommended][MetricRecommended].
 
-<!-- semconv metric.k8s.cronjob.active_jobs -->
+<!-- semconv metric.k8s.cronjob.active_job.count -->
 <!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
 <!-- see templates/registry/markdown/snippet.md.j2 -->
 <!-- prettier-ignore-start -->
@@ -2063,7 +2063,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.cronjob.active_jobs` | UpDownCounter | `{job}` | The number of actively running jobs for a cronjob. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.cronjob`](/docs/registry/entities/k8s.md#k8s-cronjob) |
+| `k8s.cronjob.active_job.count` | UpDownCounter | `{job}` | The number of actively running jobs for a cronjob. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.cronjob`](/docs/registry/entities/k8s.md#k8s-cronjob) |
 
 **[1]:** This metric aligns with the `active` field of the
 [K8s CronJobStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#cronjobstatus-v1-batch).
