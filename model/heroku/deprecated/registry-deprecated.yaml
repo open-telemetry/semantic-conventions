@@ -1,0 +1,32 @@
+groups:
+  - id: registry.heroku.deprecated
+    type: attribute_group
+    display_name: Deprecated Heroku Attributes
+    brief: >
+      Deprecated Heroku attributes that were removed in the Fir platform.
+    attributes:
+      - id: heroku.release.creation_timestamp
+        type: string
+        stability: development
+        brief: >
+          Time and date the release was created.
+          This attribute was deprecated in the Heroku Fir platform.
+          Users can refer to heroku.release.version instead for release identification.
+        examples: [ '2022-10-23T18:00:42Z' ]
+        deprecated:
+          reason: obsoleted
+          note: >
+            This attribute was deprecated in the Heroku Fir platform.
+
+      - id: heroku.release.commit
+        type: string
+        stability: development
+        brief: >
+          Commit hash for the current release.
+          This attribute was deprecated in the Heroku Fir platform.
+          Users can refer to heroku.release.version instead for release identification.
+        examples: [ 'e6134959463efd8966b20e75b913cafe3f5ec' ]
+        deprecated:
+          reason: obsoleted
+          note: >
+            This attribute was deprecated in the Heroku Fir platform.
