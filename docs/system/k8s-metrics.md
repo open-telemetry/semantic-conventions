@@ -12,7 +12,7 @@ This document describes instruments and attributes for common K8s level
 metrics in OpenTelemetry. These metrics are collected from technology-specific,
 well-defined APIs (e.g. Kubelet's API).
 
-Metrics in `k8s.` instruments SHOULD be attached to a [K8s Resource](/docs/resource/k8s.md)
+Metrics in `k8s.` instruments SHOULD be attached to a [K8s Resource](/docs/resource/k8s/README.md)
 and therefore inherit its attributes, like `k8s.pod.name` and `k8s.pod.uid`.
 
 <!-- toc -->
@@ -395,11 +395,11 @@ This metric is derived from the [MemoryStats.PageFaults](https://pkg.go.dev/k8s.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`system.paging.type`](/docs/registry/attributes/system.md) | string | The memory paging type | `minor` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`system.paging.fault.type`](/docs/registry/attributes/system.md) | string | The paging fault type | `minor` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
-`system.paging.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`system.paging.fault.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
@@ -1226,11 +1226,11 @@ This metric is derived from the [MemoryStats.PageFaults](https://pkg.go.dev/k8s.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`system.paging.type`](/docs/registry/attributes/system.md) | string | The memory paging type | `minor` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`system.paging.fault.type`](/docs/registry/attributes/system.md) | string | The paging fault type | `minor` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
-`system.paging.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`system.paging.fault.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
@@ -2891,7 +2891,7 @@ The value represents the configured quota limit of the resource in the namespace
 |---|---|---|---|---|---|
 | [`k8s.resourcequota.resource_name`](/docs/registry/attributes/k8s.md) | string | The name of the K8s resource a resource quota defines. [1] | `count/replicationcontrollers` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[1] `k8s.resourcequota.resource_name`:** The value for this attribute can be either the full `count/<resource>[.<group>]` string (e.g., count/deployments.apps, count/pods), or, for certain core Kubernetes resources, just the resource name (e.g., pods, services, configmaps). Both forms are supported by Kubernetes for object count quotas. See [Kubernetes Resource Quotas documentation](https://kubernetes.io/docs/concepts/policy/resource-quotas/#object-count-quota) for more details.
+**[1] `k8s.resourcequota.resource_name`:** The value for this attribute can be either the full `count/<resource>[.<group>]` string (e.g., count/deployments.apps, count/pods), or, for certain core Kubernetes resources, just the resource name (e.g., pods, services, configmaps). Both forms are supported by Kubernetes for object count quotas. See [Kubernetes Resource Quotas documentation](https://kubernetes.io/docs/concepts/policy/resource-quotas/#quota-on-object-count) for more details.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -2921,7 +2921,7 @@ The value represents the current observed total usage of the resource in the nam
 |---|---|---|---|---|---|
 | [`k8s.resourcequota.resource_name`](/docs/registry/attributes/k8s.md) | string | The name of the K8s resource a resource quota defines. [1] | `count/replicationcontrollers` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[1] `k8s.resourcequota.resource_name`:** The value for this attribute can be either the full `count/<resource>[.<group>]` string (e.g., count/deployments.apps, count/pods), or, for certain core Kubernetes resources, just the resource name (e.g., pods, services, configmaps). Both forms are supported by Kubernetes for object count quotas. See [Kubernetes Resource Quotas documentation](https://kubernetes.io/docs/concepts/policy/resource-quotas/#object-count-quota) for more details.
+**[1] `k8s.resourcequota.resource_name`:** The value for this attribute can be either the full `count/<resource>[.<group>]` string (e.g., count/deployments.apps, count/pods), or, for certain core Kubernetes resources, just the resource name (e.g., pods, services, configmaps). Both forms are supported by Kubernetes for object count quotas. See [Kubernetes Resource Quotas documentation](https://kubernetes.io/docs/concepts/policy/resource-quotas/#quota-on-object-count) for more details.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

@@ -50,7 +50,7 @@ groups:
         stability: development
         brief: >
           Container image tags. An example can be found in
-          [Docker Image Inspect](https://docs.docker.com/engine/api/v1.43/#tag/Image/operation/ImageInspect).
+          [Docker Image Inspect](https://docs.docker.com/reference/api/engine/version/v1.43/#tag/Image/operation/ImageInspect).
           Should be only the `<tag>` section of the full name for example
           from `registry.example.com/my-org/my-image:<tag>`.
         examples:
@@ -62,7 +62,7 @@ groups:
           Runtime specific image identifier. Usually a hash algorithm followed by a UUID.
         note: >
           Docker defines a sha256 of the image id; `container.image.id` corresponds to the `Image` field from the Docker
-          container inspect [API](https://docs.docker.com/engine/api/v1.43/#tag/Container/operation/ContainerInspect)
+          container inspect [API](https://docs.docker.com/reference/api/engine/version/v1.43/#tag/Container/operation/ContainerInspect)
           endpoint.
 
           K8s defines a link to the container registry repository with digest `"imageID": "registry.azurecr.io
@@ -78,7 +78,7 @@ groups:
         brief: >
           Repo digests of the container image as provided by the container runtime.
         note: >
-          [Docker](https://docs.docker.com/engine/api/v1.43/#tag/Image/operation/ImageInspect) and
+          [Docker](https://docs.docker.com/reference/api/engine/version/v1.43/#tag/Image/operation/ImageInspect) and
           [CRI](https://github.com/kubernetes/cri-api/blob/c75ef5b473bbe2d0a4fc92f82235efd665ea8e9f/pkg/apis/runtime/v1/api.proto#L1237-L1238)
           report those under the `RepoDigests` field.
         examples:
