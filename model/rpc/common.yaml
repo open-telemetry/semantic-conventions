@@ -65,6 +65,9 @@ groups:
       - ref: server.port
         requirement_level:
           conditionally_required: if the port is supported by the network transport used for communication.
+      - ref: error.type
+        requirement_level:
+          conditionally_required: If and only if the operation failed.
   - id: rpc_service
     type: attribute_group
     brief: 'This document defines semantic conventions for remote procedure calls.'
