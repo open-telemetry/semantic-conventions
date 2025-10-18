@@ -205,7 +205,7 @@ A container specification in a Pod template. This type is intended to be used to
 capture information such as name of a container in a Pod template which is different
 from the name of the running container.
 
-Note: This type is different from [container](./container.md), which corresponds
+Note: This type is different from [container](../container.md), which corresponds
 to a running container.
 
 <!-- semconv entity.k8s.container -->
@@ -599,5 +599,5 @@ A ResourceQuota provides constraints that limit aggregate resource consumption p
 
 The following guidelines are specific to Kubernetes:
 
-- [Service attributes](../non-normative/k8s-attributes.md#service-attributes)
-- [Naming known exceptions](../non-normative/naming-known-exceptions.md)
+- [Service attributes](../../non-normative/k8s-attributes.md#service-attributes)
+- [Naming known exceptions](../../non-normative/naming-known-exceptions.md)
