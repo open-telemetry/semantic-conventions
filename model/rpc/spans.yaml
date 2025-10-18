@@ -5,11 +5,12 @@ groups:
     brief: This span represents an outgoing Remote Procedure Call (RPC).
     note: |
       **Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#span-name) section.
-
-      **Span kind** MUST be `CLIENT`.
     extends: rpc_service
     span_kind: client
     events: [rpc.message]
+    annotations:
+      docs:
+        span_kind_expectation: MUST
     attributes:
       - ref: rpc.system
         requirement_level: required
@@ -23,8 +24,9 @@ groups:
     events: [rpc.message]
     note: |
       **Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#span-name) section.
-
-      **Span kind** MUST be `SERVER`.
+    annotations:
+      docs:
+        span_kind_expectation: MUST
     attributes:
       - ref: rpc.system
         requirement_level: required
@@ -37,8 +39,9 @@ groups:
       `rpc.system` MUST be set to `"connect_rpc"` and SHOULD be provided **at span creation time.**
 
       **Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#span-name) section.
-
-      **Span kind** MUST be `CLIENT`.
+    annotations:
+      docs:
+        span_kind_expectation: MUST
     extends: rpc_service
     span_kind: client
     attributes:
@@ -60,8 +63,9 @@ groups:
       `rpc.system` MUST be set to `"connect_rpc"` and SHOULD be provided **at span creation time.**
 
       **Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#span-name) section.
-
-      **Span kind** MUST be `SERVER`.
+    annotations:
+      docs:
+        span_kind_expectation: MUST
     attributes:
       - ref: rpc.connect_rpc.error_code
         requirement_level:
@@ -79,12 +83,12 @@ groups:
       `rpc.system` MUST be set to `"grpc"` and SHOULD be provided **at span creation time.**
 
       **Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#span-name) section.
-
-      **Span kind** MUST be `CLIENT`.
-
-      **Span status** Should be set based on the grpc status code. A mapping is defined in the [grpc status](/docs/rpc/grpc.md#grpc-status) section.
     extends: rpc_service
     span_kind: client
+    annotations:
+      docs:
+        span_kind_expectation: MUST
+        span_status_brief: An error is defined based on the grpc status code. A mapping is defined in the [grpc status](/docs/rpc/grpc.md#grpc-status) section.
     attributes:
       - ref: rpc.method
         requirement_level: required
@@ -107,10 +111,10 @@ groups:
       `rpc.system` MUST be set to `"grpc"` and SHOULD be provided **at span creation time.**
 
       **Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#span-name) section.
-
-      **Span kind** MUST be `SERVER`.
-
-      **Span status** Should be set based on the grpc status code. A mapping is defined in the [grpc status](/docs/rpc/grpc.md#grpc-status) section.
+    annotations:
+      docs:
+        span_kind_expectation: MUST
+        span_status_brief: An error is defined based on the grpc status code. A mapping is defined in the [grpc status](/docs/rpc/grpc.md#grpc-status) section.
     attributes:
       - ref: rpc.grpc.status_code
         requirement_level: required
@@ -127,10 +131,11 @@ groups:
       `rpc.system` MUST be set to `"jsonrpc"` and SHOULD be provided **at span creation time.**
 
       **Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#span-name) section.
-
-      **Span kind** MUST be `CLIENT`.
     extends: rpc
     span_kind: client
+    annotations:
+      docs:
+        span_kind_expectation: MUST
     attributes:
       - ref: rpc.method
         requirement_level: required
@@ -155,8 +160,9 @@ groups:
       `rpc.system` MUST be set to `"jsonrpc"` and SHOULD be provided **at span creation time.**
 
       **Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#span-name) section.
-
-      **Span kind** MUST be `SERVER`.
+    annotations:
+      docs:
+        span_kind_expectation: MUST
     attributes:
       - ref: rpc.method
         requirement_level: required
