@@ -29,7 +29,7 @@ This span represents an outgoing Remote Procedure Call (RPC).
 
 **Span kind** MUST be `CLIENT`.
 
-**Span status** Should be set based on the grpc status code. A mapping is defined in the [grpc status](/docs/rpc/grpc.md#grpc-status) section.
+**Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document. An error is defined based on the grpc status code. A mapping is defined in the [grpc status](/docs/rpc/grpc.md#grpc-status) section.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -179,7 +179,7 @@ This span represents an incoming Remote Procedure Call (RPC).
 
 **Span kind** MUST be `SERVER`.
 
-**Span status** Should be set based on the grpc status code. A mapping is defined in the [grpc status](/docs/rpc/grpc.md#grpc-status) section.
+**Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document. An error is defined based on the grpc status code. A mapping is defined in the [grpc status](/docs/rpc/grpc.md#grpc-status) section.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|

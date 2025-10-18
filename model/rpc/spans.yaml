@@ -83,13 +83,12 @@ groups:
       `rpc.system` MUST be set to `"grpc"` and SHOULD be provided **at span creation time.**
 
       **Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#span-name) section.
-
-      **Span status** Should be set based on the grpc status code. A mapping is defined in the [grpc status](/docs/rpc/grpc.md#grpc-status) section.
     extends: rpc_service
     span_kind: client
     annotations:
       docs:
         span_kind_expectation: MUST
+        span_status_brief: An error is defined based on the grpc status code. A mapping is defined in the [grpc status](/docs/rpc/grpc.md#grpc-status) section.
     attributes:
       - ref: rpc.method
         requirement_level: required
@@ -115,7 +114,7 @@ groups:
     annotations:
       docs:
         span_kind_expectation: MUST
-        span_status_brief: An error is defined based on the grpc status code. A mapping is defined in the [grpc status](/docs/rpc/grpc.md#grpc-status) section. 
+        span_status_brief: An error is defined based on the grpc status code. A mapping is defined in the [grpc status](/docs/rpc/grpc.md#grpc-status) section.
     attributes:
       - ref: rpc.grpc.status_code
         requirement_level: required
