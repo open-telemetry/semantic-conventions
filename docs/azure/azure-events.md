@@ -37,19 +37,19 @@ Describes Azure Resource Log event, see [Azure Resource Log Top-level Schema](ht
 semantic convention tooling supports complex attributes
 (see [#1870](https://github.com/open-telemetry/semantic-conventions/issues/1870)).
 
-| Body Field  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+| Field Name | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
-| `category` | string | The Azure category of the log entry. | `AuditEvent`; `GatewayLogs`; `ApplicationGatewayAccessLog` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `correlation.id` | string | The correlation ID of the log entry. | `607964b6-41a5-4e24-a5db-db7aab3b9b34` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `duration` | int | The duration of the operations in milliseconds. | `1000` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `identity` | undefined | "A JSON blob that describes the identity of the user or application that performed the operation." [1] |  | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `operation.name` | string | The name of the operation. | `SecretGet`; `Microsoft.ApiManagement/GatewayLogs`; `ApplicationGatewayAccess` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `operation.version` | string | The version of the operation. | `1.0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `properties` | undefined | The properties provided in the Azure Resource Log. |  | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `result.description` | string | The description of the result. | `The operation was successful`; `The operation failed` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `result.signature` | string | The substatus of associated with the logged event. | `OK` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `result.type` | string | The status associated with the logged event. | `Succeeded`; `Failed`; `Started` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `tenant.id` | string | The tenant ID of the Active Directory tenant that this event is tied to. | `00000000-0000-0000-0000-000000000000` | `Conditionally Required` [2] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `category` | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The Azure category of the log entry. | `AuditEvent`; `GatewayLogs`; `ApplicationGatewayAccessLog` |
+| `correlation.id` | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The correlation ID of the log entry. | `607964b6-41a5-4e24-a5db-db7aab3b9b34` |
+| `duration` | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | int | The duration of the operations in milliseconds. | `1000` |
+| `identity` | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | undefined | "A JSON blob that describes the identity of the user or application that performed the operation." [1] |  |
+| `operation.name` | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the operation. | `SecretGet`; `Microsoft.ApiManagement/GatewayLogs`; `ApplicationGatewayAccess` |
+| `operation.version` | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The version of the operation. | `1.0` |
+| `properties` | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | undefined | The properties provided in the Azure Resource Log. |  |
+| `result.description` | ![Development](https://img.shields.io/badge/-development-blue) |`Recommended` | string | The description of the result. | `The operation was successful`; `The operation failed` |
+| `result.signature` | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The substatus of associated with the logged event. | `OK` |
+| `result.type` | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The status associated with the logged event. | `Succeeded`; `Failed`; `Started` |
+| `tenant.id` | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [2] | | string | The tenant ID of the Active Directory tenant that this event is tied to. | `00000000-0000-0000-0000-000000000000` |
 
 **[1]:** Typically, this field includes the authorization and claims or JWT token from Active Directory.
 
