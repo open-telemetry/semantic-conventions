@@ -9,7 +9,7 @@ This document defines the shared attributes used to report an error.
 
 **Attributes:**
 
-| Key | Stability | Value Type | Summary | Example Values |
+| Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="error-message" href="#error-message">`error.message`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | A message providing more detail about an error in human-readable form. [1] | `Unexpected input type: string`; `The user has exceeded their storage quota` |
 | <a id="error-type" href="#error-type">`error.type`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | Describes a class of error the operation ended with. [2] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` |

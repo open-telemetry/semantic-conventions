@@ -9,7 +9,7 @@ These attributes may be used for any disk related operation.
 
 **Attributes:**
 
-| Key | Stability | Value Type | Summary | Example Values |
+| Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="disk-io-direction" href="#disk-io-direction">`disk.io.direction`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The disk IO operation direction. | `read` |
 

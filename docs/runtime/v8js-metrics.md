@@ -43,7 +43,7 @@ of `[ 0.01, 0.1, 1, 10 ]`.
 
 **Attributes:**
 
-| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Summary | Example Values |
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
 | [`v8js.gc.type`](/docs/registry/attributes/v8js.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The type of garbage collection. | `major`; `minor`; `incremental` |
 
@@ -82,7 +82,7 @@ This metric is [recommended][MetricRecommended].
 
 **Attributes:**
 
-| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Summary | Example Values |
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
 | [`v8js.heap.space.name`](/docs/registry/attributes/v8js.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the space type of heap memory. [1] | `new_space`; `old_space`; `code_space` |
 
@@ -124,7 +124,7 @@ This metric is [recommended][MetricRecommended].
 
 **Attributes:**
 
-| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Summary | Example Values |
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
 | [`v8js.heap.space.name`](/docs/registry/attributes/v8js.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the space type of heap memory. [1] | `new_space`; `old_space`; `code_space` |
 
@@ -166,7 +166,7 @@ This metric is [recommended][MetricRecommended].
 
 **Attributes:**
 
-| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Summary | Example Values |
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
 | [`v8js.heap.space.name`](/docs/registry/attributes/v8js.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the space type of heap memory. [1] | `new_space`; `old_space`; `code_space` |
 
@@ -208,7 +208,7 @@ This metric is [recommended][MetricRecommended].
 
 **Attributes:**
 
-| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Summary | Example Values |
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
 | [`v8js.heap.space.name`](/docs/registry/attributes/v8js.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the space type of heap memory. [1] | `new_space`; `old_space`; `code_space` |
 

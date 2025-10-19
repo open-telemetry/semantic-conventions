@@ -13,7 +13,7 @@ An operating system process.
 
 **Attributes:**
 
-| Key | Stability | Value Type | Summary | Example Values |
+| Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="process-args-count" href="#process-args-count">`process.args_count`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | Length of the process.command_args array [1] | `4` |
 | <a id="process-command" href="#process-command">`process.command`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The command used to launch the process (i.e. the command name). On Linux based systems, can be set to the zeroth string in `proc/[pid]/cmdline`. On Windows, can be set to the first parameter extracted from `GetCommandLineW`. | `cmd/otelcol` |
@@ -78,7 +78,7 @@ Describes Linux Process attributes
 
 **Attributes:**
 
-| Key | Stability | Value Type | Summary | Example Values |
+| Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="process-linux-cgroup" href="#process-linux-cgroup">`process.linux.cgroup`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The control group associated with the process. [5] | `1:name=systemd:/user.slice/user-1000.slice/session-3.scope`; `0::/user.slice/user-1000.slice/user@1000.service/tmux-spawn-0267755b-4639-4a27-90ed-f19f88e53748.scope` |
 
@@ -90,7 +90,7 @@ Deprecated process attributes.
 
 **Attributes:**
 
-| Key | Stability | Value Type | Summary | Example Values |
+| Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="process-context-switch-type" href="#process-context-switch-type">`process.context_switch_type`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `process.context_switch.type`. | string | "Deprecated, use `process.context_switch.type` instead." | `voluntary`; `involuntary` |
 | <a id="process-cpu-state" href="#process-cpu-state">`process.cpu.state`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `cpu.mode`. | string | Deprecated, use `cpu.mode` instead. | `system`; `user`; `wait` |

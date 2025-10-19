@@ -223,7 +223,7 @@ This metric is [recommended][MetricRecommended].
 
 **Attributes:**
 
-| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Summary | Example Values |
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
 | [`nodejs.eventloop.state`](/docs/registry/attributes/nodejs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The state of event loop time. | `active`; `idle` |
 

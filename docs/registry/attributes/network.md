@@ -12,7 +12,7 @@ These attributes may be used for any network related operation.
 
 **Attributes:**
 
-| Key | Stability | Value Type | Summary | Example Values |
+| Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="network-carrier-icc" href="#network-carrier-icc">`network.carrier.icc`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The ISO 3166-1 alpha-2 2-character country code associated with the mobile carrier network. | `DE` |
 | <a id="network-carrier-mcc" href="#network-carrier-mcc">`network.carrier.mcc`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The mobile carrier country code. | `310` |
@@ -140,7 +140,7 @@ These attributes may be used for any network related operation.
 
 **Attributes:**
 
-| Key | Stability | Value Type | Summary | Example Values |
+| Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="net-host-ip" href="#net-host-ip">`net.host.ip`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `network.local.address`. | string | Deprecated, use `network.local.address`. | `192.168.0.1` |
 | <a id="net-host-name" href="#net-host-name">`net.host.name`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `server.address`. | string | Deprecated, use `server.address`. | `example.com` |

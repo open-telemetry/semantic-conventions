@@ -18,7 +18,7 @@ Attributes describing telemetry around messaging systems and messaging activitie
 
 **Attributes:**
 
-| Key | Stability | Value Type | Summary | Example Values |
+| Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="messaging-batch-message-count" href="#messaging-batch-message-count">`messaging.batch.message_count`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The number of messages sent, received, or processed in the scope of the batching operation. [1] | `0`; `1`; `2` |
 | <a id="messaging-client-id" href="#messaging-client-id">`messaging.client.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | A unique identifier for the client that consumes or produces a message. | `client-5`; `myhost@8742@s8083jm` |
@@ -95,7 +95,7 @@ This group describes attributes specific to Azure Event Hubs.
 
 **Attributes:**
 
-| Key | Stability | Value Type | Summary | Example Values |
+| Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="messaging-eventhubs-message-enqueued-time" href="#messaging-eventhubs-message-enqueued-time">`messaging.eventhubs.message.enqueued_time`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The UTC epoch seconds at which the message has been accepted and stored in the entity. | `1701393730` |
 
@@ -105,7 +105,7 @@ This group describes attributes specific to GCP Pub/Sub.
 
 **Attributes:**
 
-| Key | Stability | Value Type | Summary | Example Values |
+| Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="messaging-gcp-pubsub-message-ack-deadline" href="#messaging-gcp-pubsub-message-ack-deadline">`messaging.gcp_pubsub.message.ack_deadline`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The ack deadline in seconds set for the modify ack deadline request. | `10` |
 | <a id="messaging-gcp-pubsub-message-ack-id" href="#messaging-gcp-pubsub-message-ack-id">`messaging.gcp_pubsub.message.ack_id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The ack id for a given message. | `ack_id` |
@@ -118,7 +118,7 @@ This group describes attributes specific to Apache Kafka.
 
 **Attributes:**
 
-| Key | Stability | Value Type | Summary | Example Values |
+| Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="messaging-kafka-message-key" href="#messaging-kafka-message-key">`messaging.kafka.message.key`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Message keys in Kafka are used for grouping alike messages to ensure they're processed on the same partition. They differ from `messaging.message.id` in that they're not unique. If the key is `null`, the attribute MUST NOT be set. [10] | `myKey` |
 | <a id="messaging-kafka-message-tombstone" href="#messaging-kafka-message-tombstone">`messaging.kafka.message.tombstone`</a> | ![Development](https://img.shields.io/badge/-development-blue) | boolean | A boolean that is true if the message is a tombstone. |  |
@@ -132,7 +132,7 @@ This group describes attributes specific to RabbitMQ.
 
 **Attributes:**
 
-| Key | Stability | Value Type | Summary | Example Values |
+| Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="messaging-rabbitmq-destination-routing-key" href="#messaging-rabbitmq-destination-routing-key">`messaging.rabbitmq.destination.routing_key`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | RabbitMQ message routing key. | `myKey` |
 | <a id="messaging-rabbitmq-message-delivery-tag" href="#messaging-rabbitmq-message-delivery-tag">`messaging.rabbitmq.message.delivery_tag`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | RabbitMQ message delivery tag | `123` |
@@ -143,7 +143,7 @@ This group describes attributes specific to RocketMQ.
 
 **Attributes:**
 
-| Key | Stability | Value Type | Summary | Example Values |
+| Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="messaging-rocketmq-consumption-model" href="#messaging-rocketmq-consumption-model">`messaging.rocketmq.consumption_model`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Model of message consumption. This only applies to consumer spans. | `clustering`; `broadcasting` |
 | <a id="messaging-rocketmq-message-delay-time-level" href="#messaging-rocketmq-message-delay-time-level">`messaging.rocketmq.message.delay_time_level`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The delay time level for delay message, which determines the message delay time. | `3` |
@@ -180,7 +180,7 @@ This group describes attributes specific to Azure Service Bus.
 
 **Attributes:**
 
-| Key | Stability | Value Type | Summary | Example Values |
+| Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="messaging-servicebus-disposition-status" href="#messaging-servicebus-disposition-status">`messaging.servicebus.disposition_status`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Describes the [settlement type](https://learn.microsoft.com/azure/service-bus-messaging/message-transfers-locks-settlement#peeklock). | `complete`; `abandon`; `dead_letter` |
 | <a id="messaging-servicebus-message-delivery-count" href="#messaging-servicebus-message-delivery-count">`messaging.servicebus.message.delivery_count`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | Number of deliveries that have been attempted for this message. | `2` |
@@ -203,7 +203,7 @@ Describes deprecated messaging attributes.
 
 **Attributes:**
 
-| Key | Stability | Value Type | Summary | Example Values |
+| Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="messaging-client-id" href="#messaging-client-id">`messaging.client_id`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `messaging.client.id`. | string | Deprecated, use `messaging.client.id` instead. | `client-5`; `myhost@8742@s8083jm` |
 | <a id="messaging-destination-publish-anonymous" href="#messaging-destination-publish-anonymous">`messaging.destination_publish.anonymous`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Removed. No replacement at this time. | boolean | Deprecated, no replacement at this time. |  |

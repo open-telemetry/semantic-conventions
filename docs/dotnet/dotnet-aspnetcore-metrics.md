@@ -73,7 +73,7 @@ All routing metrics are reported by the `Microsoft.AspNetCore.Routing` meter.
 
 **Attributes:**
 
-| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Summary | Example Values |
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
 | [`aspnetcore.routing.match_status`](/docs/registry/attributes/aspnetcore.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | Match result - success or failure | `success`; `failure` |
 | [`aspnetcore.routing.is_fallback`](/docs/registry/attributes/aspnetcore.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if and only if a route was successfully matched. | boolean | A value that indicates whether the matched route is a fallback route. | `true` |
@@ -125,7 +125,7 @@ Exceptions Metric is reported by the `Microsoft.AspNetCore.Diagnostics` meter.
 
 **Attributes:**
 
-| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Summary | Example Values |
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
 | [`aspnetcore.diagnostics.exception.result`](/docs/registry/attributes/aspnetcore.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | ASP.NET Core exception middleware handling result. | `handled`; `unhandled` |
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | The full name of exception type. | `System.OperationCanceledException`; `Contoso.MyException` |
@@ -178,7 +178,7 @@ All rate-limiting metrics are reported by the `Microsoft.AspNetCore.RateLimiting
 
 **Attributes:**
 
-| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Summary | Example Values |
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
 | [`aspnetcore.rate_limiting.policy`](/docs/registry/attributes/aspnetcore.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [1] | string | Rate limiting policy name. | `fixed`; `sliding`; `token` |
 
@@ -210,7 +210,7 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 
 **Attributes:**
 
-| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Summary | Example Values |
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
 | [`aspnetcore.rate_limiting.policy`](/docs/registry/attributes/aspnetcore.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [1] | string | Rate limiting policy name. | `fixed`; `sliding`; `token` |
 
@@ -238,7 +238,7 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 
 **Attributes:**
 
-| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Summary | Example Values |
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
 | [`aspnetcore.rate_limiting.policy`](/docs/registry/attributes/aspnetcore.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [1] | string | Rate limiting policy name. | `fixed`; `sliding`; `token` |
 
@@ -270,7 +270,7 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 
 **Attributes:**
 
-| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Summary | Example Values |
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
 | [`aspnetcore.rate_limiting.result`](/docs/registry/attributes/aspnetcore.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | Rate-limiting result, shows whether the lease was acquired or contains a rejection reason | `acquired`; `request_canceled` |
 | [`aspnetcore.rate_limiting.policy`](/docs/registry/attributes/aspnetcore.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [1] | string | Rate limiting policy name. | `fixed`; `sliding`; `token` |
@@ -315,7 +315,7 @@ Meter name: `Microsoft.AspNetCore.RateLimiting`; Added in: ASP.NET Core 8.0
 
 **Attributes:**
 
-| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Summary | Example Values |
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
 | [`aspnetcore.rate_limiting.result`](/docs/registry/attributes/aspnetcore.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | Rate-limiting result, shows whether the lease was acquired or contains a rejection reason | `acquired`; `request_canceled` |
 | [`aspnetcore.rate_limiting.policy`](/docs/registry/attributes/aspnetcore.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [1] | string | Rate limiting policy name. | `fixed`; `sliding`; `token` |
@@ -359,7 +359,7 @@ All memory pool metrics are reported by the `Microsoft.AspNetCore.MemoryPool` me
 
 **Attributes:**
 
-| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Summary | Example Values |
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
 | [`aspnetcore.memory_pool.owner`](/docs/registry/attributes/aspnetcore.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [1] | string | The name of the library or subsystem using the memory pool instance. | `kestrel`; `iis` |
 
@@ -387,7 +387,7 @@ All memory pool metrics are reported by the `Microsoft.AspNetCore.MemoryPool` me
 
 **Attributes:**
 
-| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Summary | Example Values |
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
 | [`aspnetcore.memory_pool.owner`](/docs/registry/attributes/aspnetcore.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [1] | string | The name of the library or subsystem using the memory pool instance. | `kestrel`; `iis` |
 
@@ -415,7 +415,7 @@ All memory pool metrics are reported by the `Microsoft.AspNetCore.MemoryPool` me
 
 **Attributes:**
 
-| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Summary | Example Values |
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
 | [`aspnetcore.memory_pool.owner`](/docs/registry/attributes/aspnetcore.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [1] | string | The name of the library or subsystem using the memory pool instance. | `kestrel`; `iis` |
 
@@ -443,7 +443,7 @@ All memory pool metrics are reported by the `Microsoft.AspNetCore.MemoryPool` me
 
 **Attributes:**
 
-| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Summary | Example Values |
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
 | [`aspnetcore.memory_pool.owner`](/docs/registry/attributes/aspnetcore.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [1] | string | The name of the library or subsystem using the memory pool instance. | `kestrel`; `iis` |
 
@@ -475,7 +475,7 @@ All authentication metrics are reported by the `Microsoft.AspNetCore.Authenticat
 
 **Attributes:**
 
-| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Summary | Example Values |
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
 | [`aspnetcore.authentication.result`](/docs/registry/attributes/aspnetcore.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The result of the authentication operation. | `success`; `failure` |
 | [`aspnetcore.authentication.scheme`](/docs/registry/attributes/aspnetcore.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` if a scheme is specified during authentication. | string | The identifier that names a particular authentication handler. | `Cookies`; `Bearer`; `Identity.Application` |
@@ -521,7 +521,7 @@ All authentication metrics are reported by the `Microsoft.AspNetCore.Authenticat
 
 **Attributes:**
 
-| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Summary | Example Values |
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
 | [`aspnetcore.authentication.scheme`](/docs/registry/attributes/aspnetcore.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` if a scheme is specified during authentication. | string | The identifier that names a particular authentication handler. | `Cookies`; `Bearer`; `Identity.Application` |
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if and only if an error has occurred. | string | The full name of exception type. | `System.OperationCanceledException` |
@@ -556,7 +556,7 @@ All authentication metrics are reported by the `Microsoft.AspNetCore.Authenticat
 
 **Attributes:**
 
-| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Summary | Example Values |
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
 | [`aspnetcore.authentication.scheme`](/docs/registry/attributes/aspnetcore.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` if a scheme is specified during authentication. | string | The identifier that names a particular authentication handler. | `Cookies`; `Bearer`; `Identity.Application` |
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if and only if an error has occurred. | string | The full name of exception type. | `System.OperationCanceledException` |
@@ -591,7 +591,7 @@ All authentication metrics are reported by the `Microsoft.AspNetCore.Authenticat
 
 **Attributes:**
 
-| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Summary | Example Values |
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
 | [`aspnetcore.authentication.scheme`](/docs/registry/attributes/aspnetcore.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` if a scheme is specified during authentication. | string | The identifier that names a particular authentication handler. | `Cookies`; `Bearer`; `Identity.Application` |
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if and only if an error has occurred. | string | The full name of exception type. | `System.OperationCanceledException` |
@@ -626,7 +626,7 @@ All authentication metrics are reported by the `Microsoft.AspNetCore.Authenticat
 
 **Attributes:**
 
-| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Summary | Example Values |
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
 | [`aspnetcore.authentication.scheme`](/docs/registry/attributes/aspnetcore.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` if a scheme is specified during authentication. | string | The identifier that names a particular authentication handler. | `Cookies`; `Bearer`; `Identity.Application` |
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if and only if an error has occurred. | string | The full name of exception type. | `System.OperationCanceledException` |
@@ -665,7 +665,7 @@ All authorization metrics are reported by the `Microsoft.AspNetCore.Authorizatio
 
 **Attributes:**
 
-| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Summary | Example Values |
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
 | [`aspnetcore.user.is_authenticated`](/docs/registry/attributes/aspnetcore.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | boolean | A value that indicates whether the user is authenticated. | `true` |
 | [`aspnetcore.authorization.policy`](/docs/registry/attributes/aspnetcore.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` if a policy is specified. | string | The name of the authorization policy. | `RequireAdminRole` |
@@ -715,7 +715,7 @@ All ASP.NET Core Identity metrics are reported by the `Microsoft.AspNetCore.Iden
 
 **Attributes:**
 
-| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Summary | Example Values |
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
 | [`aspnetcore.identity.user_type`](/docs/registry/attributes/aspnetcore.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The full name of the identity user type. | `Contoso.ContosoUser` |
 | [`aspnetcore.identity.error_code`](/docs/registry/attributes/aspnetcore.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` if an error was set on a failed identity result. | string | The error code for a failed identity operation. | `DefaultError`; `PasswordMismatch` |
@@ -761,7 +761,7 @@ All ASP.NET Core Identity metrics are reported by the `Microsoft.AspNetCore.Iden
 
 **Attributes:**
 
-| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Summary | Example Values |
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
 | [`aspnetcore.identity.user.update_type`](/docs/registry/attributes/aspnetcore.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The user update type. | `update`; `user_name`; `reset_password` |
 | [`aspnetcore.identity.user_type`](/docs/registry/attributes/aspnetcore.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The full name of the identity user type. | `Contoso.ContosoUser` |
@@ -848,7 +848,7 @@ All ASP.NET Core Identity metrics are reported by the `Microsoft.AspNetCore.Iden
 
 **Attributes:**
 
-| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Summary | Example Values |
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
 | [`aspnetcore.identity.user_type`](/docs/registry/attributes/aspnetcore.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The full name of the identity user type. | `Contoso.ContosoUser` |
 | [`aspnetcore.identity.error_code`](/docs/registry/attributes/aspnetcore.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` if an error was set on a failed identity result. | string | The error code for a failed identity operation. | `DefaultError`; `PasswordMismatch` |
@@ -894,7 +894,7 @@ All ASP.NET Core Identity metrics are reported by the `Microsoft.AspNetCore.Iden
 
 **Attributes:**
 
-| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Summary | Example Values |
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
 | [`aspnetcore.identity.user_type`](/docs/registry/attributes/aspnetcore.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The full name of the identity user type. | `Contoso.ContosoUser` |
 | [`aspnetcore.identity.password_check_result`](/docs/registry/attributes/aspnetcore.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` if no exception was thrown. | string | The result from checking the password. | `success`; `failure` |
@@ -942,7 +942,7 @@ All ASP.NET Core Identity metrics are reported by the `Microsoft.AspNetCore.Iden
 
 **Attributes:**
 
-| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Summary | Example Values |
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
 | [`aspnetcore.identity.token_purpose`](/docs/registry/attributes/aspnetcore.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | What the token will be used for. | `success`; `failure` |
 | [`aspnetcore.identity.user_type`](/docs/registry/attributes/aspnetcore.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The full name of the identity user type. | `Contoso.ContosoUser` |
@@ -991,7 +991,7 @@ All ASP.NET Core Identity metrics are reported by the `Microsoft.AspNetCore.Iden
 
 **Attributes:**
 
-| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Summary | Example Values |
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
 | [`aspnetcore.identity.token_purpose`](/docs/registry/attributes/aspnetcore.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | What the token will be used for. | `success`; `failure` |
 | [`aspnetcore.identity.user_type`](/docs/registry/attributes/aspnetcore.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The full name of the identity user type. | `Contoso.ContosoUser` |
@@ -1050,7 +1050,7 @@ All ASP.NET Core Identity metrics are reported by the `Microsoft.AspNetCore.Iden
 
 **Attributes:**
 
-| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Summary | Example Values |
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
 | [`aspnetcore.authentication.scheme`](/docs/registry/attributes/aspnetcore.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The identifier that names a particular authentication handler. | `Cookies`; `Bearer`; `Identity.Application` |
 | [`aspnetcore.identity.sign_in.type`](/docs/registry/attributes/aspnetcore.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The authentication type. | `password`; `two_factor` |
@@ -1114,7 +1114,7 @@ All ASP.NET Core Identity metrics are reported by the `Microsoft.AspNetCore.Iden
 
 **Attributes:**
 
-| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Summary | Example Values |
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
 | [`aspnetcore.identity.user_type`](/docs/registry/attributes/aspnetcore.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The full name of the identity user type. | `Contoso.ContosoUser` |
 | [`aspnetcore.identity.sign_in.result`](/docs/registry/attributes/aspnetcore.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` if no exception was thrown. | string | Whether the sign in result was success or failure. | `password`; `two_factor` |
@@ -1162,7 +1162,7 @@ All ASP.NET Core Identity metrics are reported by the `Microsoft.AspNetCore.Iden
 
 **Attributes:**
 
-| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Summary | Example Values |
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
 | [`aspnetcore.authentication.scheme`](/docs/registry/attributes/aspnetcore.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The identifier that names a particular authentication handler. | `Cookies`; `Bearer`; `Identity.Application` |
 | [`aspnetcore.identity.user_type`](/docs/registry/attributes/aspnetcore.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The full name of the identity user type. | `Contoso.ContosoUser` |
@@ -1199,7 +1199,7 @@ All ASP.NET Core Identity metrics are reported by the `Microsoft.AspNetCore.Iden
 
 **Attributes:**
 
-| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Summary | Example Values |
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
 | [`aspnetcore.authentication.scheme`](/docs/registry/attributes/aspnetcore.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The identifier that names a particular authentication handler. | `Cookies`; `Bearer`; `Identity.Application` |
 | [`aspnetcore.identity.user_type`](/docs/registry/attributes/aspnetcore.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The full name of the identity user type. | `Contoso.ContosoUser` |
@@ -1235,7 +1235,7 @@ All ASP.NET Core Identity metrics are reported by the `Microsoft.AspNetCore.Iden
 
 **Attributes:**
 
-| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Summary | Example Values |
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
 | [`aspnetcore.authentication.scheme`](/docs/registry/attributes/aspnetcore.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The identifier that names a particular authentication handler. | `Cookies`; `Bearer`; `Identity.Application` |
 | [`aspnetcore.identity.user_type`](/docs/registry/attributes/aspnetcore.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The full name of the identity user type. | `Contoso.ContosoUser` |
@@ -1271,7 +1271,7 @@ All ASP.NET Core Identity metrics are reported by the `Microsoft.AspNetCore.Iden
 
 **Attributes:**
 
-| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Summary | Example Values |
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
 | [`aspnetcore.authentication.scheme`](/docs/registry/attributes/aspnetcore.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The identifier that names a particular authentication handler. | `Cookies`; `Bearer`; `Identity.Application` |
 | [`aspnetcore.identity.user_type`](/docs/registry/attributes/aspnetcore.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The full name of the identity user type. | `Contoso.ContosoUser` |

@@ -12,7 +12,7 @@ This document defines attributes for software deployments.
 
 **Attributes:**
 
-| Key | Stability | Value Type | Summary | Example Values |
+| Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="deployment-environment-name" href="#deployment-environment-name">`deployment.environment.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Name of the [deployment environment](https://wikipedia.org/wiki/Deployment_environment) (aka deployment tier). [1] | `staging`; `production` |
 | <a id="deployment-id" href="#deployment-id">`deployment.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The id of the deployment. | `1208` |
@@ -42,6 +42,6 @@ Describes deprecated deployment attributes.
 
 **Attributes:**
 
-| Key | Stability | Value Type | Summary | Example Values |
+| Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="deployment-environment" href="#deployment-environment">`deployment.environment`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `deployment.environment.name`. | string | Deprecated, use `deployment.environment.name` instead. | `staging`; `production` |

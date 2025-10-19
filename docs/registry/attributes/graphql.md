@@ -9,7 +9,7 @@ This document defines attributes for GraphQL.
 
 **Attributes:**
 
-| Key | Stability | Value Type | Summary | Example Values |
+| Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="graphql-document" href="#graphql-document">`graphql.document`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The GraphQL document being executed. [1] | `query findBookById { bookById(id: ?) { name } }` |
 | <a id="graphql-operation-name" href="#graphql-operation-name">`graphql.operation.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the operation being executed. | `findBookById` |

@@ -13,7 +13,7 @@ This section defines generic attributes used by Azure Client Libraries.
 
 **Attributes:**
 
-| Key | Stability | Value Type | Summary | Example Values |
+| Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="azure-client-id" href="#azure-client-id">`azure.client.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The unique identifier of the client instance. | `3ba4827d-4422-483f-b59f-85b74211c11d`; `storage-client-1` |
 | <a id="azure-resource-provider-namespace" href="#azure-resource-provider-namespace">`azure.resource_provider.namespace`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | [Azure Resource Provider Namespace](https://learn.microsoft.com/azure/azure-resource-manager/management/azure-services-resource-providers) as recognized by the client. | `Microsoft.Storage`; `Microsoft.KeyVault`; `Microsoft.ServiceBus` |
@@ -25,7 +25,7 @@ This section defines attributes for Azure Cosmos DB.
 
 **Attributes:**
 
-| Key | Stability | Value Type | Summary | Example Values |
+| Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="azure-cosmosdb-connection-mode" href="#azure-cosmosdb-connection-mode">`azure.cosmosdb.connection.mode`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Cosmos client connection mode. | `gateway`; `direct` |
 | <a id="azure-cosmosdb-consistency-level" href="#azure-cosmosdb-consistency-level">`azure.cosmosdb.consistency.level`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Account or request [consistency level](https://learn.microsoft.com/azure/cosmos-db/consistency-levels). | `Eventual`; `ConsistentPrefix`; `BoundedStaleness`; `Strong`; `Session` |
@@ -63,7 +63,7 @@ This section describes deprecated Azure attributes.
 
 **Attributes:**
 
-| Key | Stability | Value Type | Summary | Example Values |
+| Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="az-namespace" href="#az-namespace">`az.namespace`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `azure.resource_provider.namespace`. | string | Deprecated, use `azure.resource_provider.namespace` instead. | `Microsoft.Storage`; `Microsoft.KeyVault`; `Microsoft.ServiceBus` |
 | <a id="az-service-request-id" href="#az-service-request-id">`az.service_request_id`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `azure.service.request.id`. | string | Deprecated, use `azure.service.request.id` instead. | `00000000-0000-0000-0000-000000000000` |

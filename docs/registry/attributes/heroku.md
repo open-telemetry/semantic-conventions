@@ -9,7 +9,7 @@ This document defines attributes for the Heroku platform on which application/s 
 
 **Attributes:**
 
-| Key | Stability | Value Type | Summary | Example Values |
+| Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="heroku-app-id" href="#heroku-app-id">`heroku.app.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Unique identifier for the application | `2daa2797-e42b-4624-9322-ec3f968df4da` |
 | <a id="heroku-release-commit" href="#heroku-release-commit">`heroku.release.commit`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Commit hash for the current release | `e6134959463efd8966b20e75b913cafe3f5ec` |

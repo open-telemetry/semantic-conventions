@@ -12,7 +12,7 @@ A container instance.
 
 **Attributes:**
 
-| Key | Stability | Value Type | Summary | Example Values |
+| Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="container-command" href="#container-command">`container.command`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The command used to run the container (i.e. the command name). [1] | `otelcontribcol` |
 | <a id="container-command-args" href="#container-command-args">`container.command_args`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string[] | All the command arguments (including the command/executable itself) run by the container. | `["otelcontribcol", "--config", "config.yaml"]` |
@@ -50,7 +50,7 @@ Describes deprecated container attributes.
 
 **Attributes:**
 
-| Key | Stability | Value Type | Summary | Example Values |
+| Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="container-cpu-state" href="#container-cpu-state">`container.cpu.state`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `cpu.mode`. | string | Deprecated, use `cpu.mode` instead. | `user`; `kernel` |
 | <a id="container-labels" href="#container-labels">`container.labels.<key>`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `container.label`. | string | Deprecated, use `container.label` instead. | `nginx` |

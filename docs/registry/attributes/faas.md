@@ -9,7 +9,7 @@ FaaS attributes
 
 **Attributes:**
 
-| Key | Stability | Value Type | Summary | Example Values |
+| Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="faas-coldstart" href="#faas-coldstart">`faas.coldstart`</a> | ![Development](https://img.shields.io/badge/-development-blue) | boolean | A boolean that is true if the serverless function is executed for the first time (aka cold-start). |  |
 | <a id="faas-cron" href="#faas-cron">`faas.cron`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | A string containing the schedule period as [Cron Expression](https://docs.oracle.com/cd/E12058_01/doc/doc.1014/e12030/cron_expressions.htm). | `0/5 * * * ? *` |

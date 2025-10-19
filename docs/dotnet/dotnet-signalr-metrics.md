@@ -36,7 +36,7 @@ of `[ 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10, 30, 60, 120, 300 ]`.
 
 **Attributes:**
 
-| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Summary | Example Values |
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
 | [`signalr.connection.status`](/docs/registry/attributes/signalr.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | SignalR HTTP connection closure status. | `app_shutdown`; `timeout` |
 | [`signalr.transport`](/docs/registry/attributes/signalr.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | [SignalR transport type](https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/TransportProtocols.md) | `web_sockets`; `long_polling` |
@@ -83,7 +83,7 @@ of `[ 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10, 30, 60, 120, 300 ]`.
 
 **Attributes:**
 
-| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Summary | Example Values |
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
 | [`signalr.connection.status`](/docs/registry/attributes/signalr.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | SignalR HTTP connection closure status. | `app_shutdown`; `timeout` |
 | [`signalr.transport`](/docs/registry/attributes/signalr.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | [SignalR transport type](https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/TransportProtocols.md) | `web_sockets`; `long_polling` |

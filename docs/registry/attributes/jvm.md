@@ -9,7 +9,7 @@ This document defines Java Virtual machine related attributes.
 
 **Attributes:**
 
-| Key | Stability | Value Type | Summary | Example Values |
+| Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="jvm-buffer-pool-name" href="#jvm-buffer-pool-name">`jvm.buffer.pool.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Name of the buffer pool. [1] | `mapped`; `direct` |
 | <a id="jvm-gc-action" href="#jvm-gc-action">`jvm.gc.action`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | Name of the garbage collector action. [2] | `end of minor GC`; `end of major GC` |

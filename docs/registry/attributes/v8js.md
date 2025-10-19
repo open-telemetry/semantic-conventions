@@ -9,7 +9,7 @@ Describes V8 JS Engine Runtime related attributes.
 
 **Attributes:**
 
-| Key | Stability | Value Type | Summary | Example Values |
+| Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="v8js-gc-type" href="#v8js-gc-type">`v8js.gc.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The type of garbage collection. | `major`; `minor`; `incremental` |
 | <a id="v8js-heap-space-name" href="#v8js-heap-space-name">`v8js.heap.space.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the space type of heap memory. [1] | `new_space`; `old_space`; `code_space` |

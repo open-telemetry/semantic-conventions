@@ -16,7 +16,7 @@
 
 **Attributes:**
 
-| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Summary | Example Values |
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
 | [`heroku.app.id`](/docs/registry/attributes/heroku.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Unique identifier for the application | `2daa2797-e42b-4624-9322-ec3f968df4da` |
 | [`heroku.release.commit`](/docs/registry/attributes/heroku.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Commit hash for the current release | `e6134959463efd8966b20e75b913cafe3f5ec` |

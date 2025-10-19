@@ -9,7 +9,7 @@ Attributes for hardware.
 
 **Attributes:**
 
-| Key | Stability | Value Type | Summary | Example Values |
+| Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="hw-battery-capacity" href="#hw-battery-capacity">`hw.battery.capacity`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Design capacity in Watts-hours or Amper-hours | `9.3Ah`; `50Wh` |
 | <a id="hw-battery-chemistry" href="#hw-battery-chemistry">`hw.battery.chemistry`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Battery [chemistry](https://schemas.dmtf.org/wbem/cim-html/2.31.0/CIM_Battery.html), e.g. Lithium-Ion, Nickel-Cadmium, etc. | `Li-ion`; `NiMH` |

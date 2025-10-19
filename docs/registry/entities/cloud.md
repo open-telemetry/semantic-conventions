@@ -18,7 +18,7 @@
 > :warning: This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
-| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Summary | Example Values |
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
 | [`cloud.account.id`](/docs/registry/attributes/cloud.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The cloud account ID the resource is assigned to. | `111111111111`; `opentelemetry` |
 | [`cloud.availability_zone`](/docs/registry/attributes/cloud.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Cloud regions often have multiple, isolated locations known as zones to increase availability. Availability zone represents the zone where the resource is running. [1] | `us-east-1c` |

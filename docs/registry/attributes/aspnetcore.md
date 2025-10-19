@@ -9,7 +9,7 @@ ASP.NET Core attributes
 
 **Attributes:**
 
-| Key | Stability | Value Type | Summary | Example Values |
+| Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="aspnetcore-authentication-result" href="#aspnetcore-authentication-result">`aspnetcore.authentication.result`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The result of the authentication operation. | `success`; `failure` |
 | <a id="aspnetcore-authentication-scheme" href="#aspnetcore-authentication-scheme">`aspnetcore.authentication.scheme`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The identifier that names a particular authentication handler. | `Cookies`; `Bearer`; `Identity.Application` |

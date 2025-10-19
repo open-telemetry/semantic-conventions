@@ -13,7 +13,7 @@ This group defines the attributes used to describe telemetry in the context of d
 
 **Attributes:**
 
-| Key | Stability | Value Type | Summary | Example Values |
+| Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="db-client-connection-pool-name" href="#db-client-connection-pool-name">`db.client.connection.pool.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation SHOULD use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`, and `db.namespace`, formatted as `server.address:server.port/db.namespace`. Instrumentations that generate connection pool name following different patterns SHOULD document it. | `myDataSource` |
 | <a id="db-client-connection-state" href="#db-client-connection-state">`db.client.connection.state`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The state of a connection in the pool | `idle` |
@@ -174,7 +174,7 @@ Describes deprecated database attributes.
 
 **Attributes:**
 
-| Key | Stability | Value Type | Summary | Example Values |
+| Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="db-cassandra-consistency-level" href="#db-cassandra-consistency-level">`db.cassandra.consistency_level`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `cassandra.consistency.level`. | string | Deprecated, use `cassandra.consistency.level` instead. | `all`; `each_quorum`; `quorum` |
 | <a id="db-cassandra-coordinator-dc" href="#db-cassandra-coordinator-dc">`db.cassandra.coordinator.dc`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `cassandra.coordinator.dc`. | string | Deprecated, use `cassandra.coordinator.dc` instead. | `us-west-2` |
@@ -332,7 +332,7 @@ Describes deprecated db metrics attributes.
 
 **Attributes:**
 
-| Key | Stability | Value Type | Summary | Example Values |
+| Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="db-client-connections-pool-name" href="#db-client-connections-pool-name">`db.client.connections.pool.name`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.client.connection.pool.name`. | string | Deprecated, use `db.client.connection.pool.name` instead. | `myDataSource` |
 | <a id="db-client-connections-state" href="#db-client-connections-state">`db.client.connections.state`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.client.connection.state`. | string | Deprecated, use `db.client.connection.state` instead. | `idle` |

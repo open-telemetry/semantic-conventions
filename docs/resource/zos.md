@@ -18,7 +18,7 @@ This document defines z/OS software entity and documents how to populate other e
 **Description:** A software resource running on a z/OS system.
 **Attributes:**
 
-| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Summary | Example Values |
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
 | [`zos.smf.id`](/docs/registry/attributes/zos.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The System Management Facility (SMF) Identifier uniquely identified a z/OS system within a SYSPLEX or mainframe environment and is used for system and performance analysis. | `SYS1` |
 | [`zos.sysplex.name`](/docs/registry/attributes/zos.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the SYSPLEX to which the z/OS system belongs too. | `SYSPLEX1` |
@@ -42,7 +42,7 @@ The following table describes how to populate attributes on the `host` entity on
 
 **Attributes:**
 
-| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Summary | Example Values |
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
 | [`host.arch`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The CPU architecture the host system is running on. | `s390x` |
 | [`host.name`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Name of the host. On z/OS, SHOULD be the full qualified hostname used to register the z/OS system in DNS. | `SYS1.DOMAIN.COM` |
@@ -80,7 +80,7 @@ The following table describes how to populate the operating system attributes on
 
 **Attributes:**
 
-| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Summary | Example Values |
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
 | [`os.type`](/docs/registry/attributes/os.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The operating system type. | `zos` |
 | [`os.version`](/docs/registry/attributes/os.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The version string of the operating system. On z/OS, SHOULD be the release returned by the command `d iplinfo`. | `3.1.0` |
@@ -122,7 +122,7 @@ The following table describes how to populate attributes on the `process` entity
 
 **Attributes:**
 
-| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Summary | Example Values |
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
 | [`process.command`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The command used to launch the process (i.e. the command name). On z/OS, SHOULD be set to the name of the job used to start the z/OS system software. | `CICSSTRT` |
 | [`process.pid`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | int | Process identifier (PID). [1] | `008A` |

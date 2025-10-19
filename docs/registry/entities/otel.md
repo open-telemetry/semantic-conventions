@@ -18,7 +18,7 @@
 > :warning: This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
-| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Summary | Example Values |
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
 | [`otel.scope.name`](/docs/registry/attributes/otel.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The name of the instrumentation scope - (`InstrumentationScope.Name` in OTLP). | `io.opentelemetry.contrib.mongodb` |
 | [`otel.scope.version`](/docs/registry/attributes/otel.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The version of the instrumentation scope - (`InstrumentationScope.Version` in OTLP). | `1.0.0` |

@@ -83,7 +83,7 @@ as specified in the [Resource SDK specification](https://github.com/open-telemet
 
 **Attributes:**
 
-| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Summary | Example Values |
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
 | [`service.name`](/docs/registry/attributes/service.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | Logical name of the service. [1] | `shoppingcart` |
 | [`service.instance.id`](/docs/registry/attributes/service.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The string ID of the service instance. [2] | `627cc493-f310-47de-96bd-71410b7dec09` |
@@ -158,7 +158,7 @@ service.name = Shop.shoppingcart
 
 **Attributes:**
 
-| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Summary | Example Values |
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
 | [`telemetry.sdk.language`](/docs/registry/attributes/telemetry.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | The language of the telemetry SDK. | `cpp`; `dotnet`; `erlang` |
 | [`telemetry.sdk.name`](/docs/registry/attributes/telemetry.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | The name of the telemetry SDK as defined above. [1] | `opentelemetry` |
@@ -213,7 +213,7 @@ All custom identifiers SHOULD be stable across different versions of an implemen
 
 **Attributes:**
 
-| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Summary | Example Values |
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
 | [`telemetry.distro.name`](/docs/registry/attributes/telemetry.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the auto instrumentation agent or distribution, if used. [1] | `parts-unlimited-java` |
 | [`telemetry.distro.version`](/docs/registry/attributes/telemetry.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The version string of the auto instrumentation agent or distribution, if used. | `1.2.3` |

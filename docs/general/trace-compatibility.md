@@ -31,7 +31,7 @@ between a child Span and a parent Span, as defined by
 
 **Attributes:**
 
-| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Summary | Example Values |
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
 | [`opentracing.ref_type`](/docs/registry/attributes/opentracing.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Parent-child Reference type [1] | `child_of`; `follows_from` |
 

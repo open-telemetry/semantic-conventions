@@ -18,7 +18,7 @@
 > :warning: This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
-| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Summary | Example Values |
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
 | [`cloudfoundry.app.id`](/docs/registry/attributes/cloudfoundry.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The guid of the application. [1] | `218fc5a9-a5f1-4b54-aa05-46717d0ab26d` |
 | [`cloudfoundry.app.name`](/docs/registry/attributes/cloudfoundry.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the application. [2] | `my-app-name` |
@@ -44,7 +44,7 @@ as reported by `cf apps`.
 > :warning: This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
-| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Summary | Example Values |
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
 | [`cloudfoundry.org.id`](/docs/registry/attributes/cloudfoundry.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The guid of the CloudFoundry org the application is running in. [3] | `218fc5a9-a5f1-4b54-aa05-46717d0ab26d` |
 | [`cloudfoundry.org.name`](/docs/registry/attributes/cloudfoundry.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the CloudFoundry organization the app is running in. [4] | `my-org-name` |
@@ -70,7 +70,7 @@ reported by `cf orgs`.
 > :warning: This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
-| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Summary | Example Values |
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
 | [`cloudfoundry.process.id`](/docs/registry/attributes/cloudfoundry.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The UID identifying the process. [5] | `218fc5a9-a5f1-4b54-aa05-46717d0ab26d` |
 | [`cloudfoundry.process.type`](/docs/registry/attributes/cloudfoundry.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The type of process. [6] | `web` |
@@ -97,7 +97,7 @@ tasks or side-cars with different process types.
 > :warning: This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
-| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Summary | Example Values |
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
 | [`cloudfoundry.space.id`](/docs/registry/attributes/cloudfoundry.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The guid of the CloudFoundry space the application is running in. [7] | `218fc5a9-a5f1-4b54-aa05-46717d0ab26d` |
 | [`cloudfoundry.space.name`](/docs/registry/attributes/cloudfoundry.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the CloudFoundry space the application is running in. [8] | `my-space-name` |
@@ -123,7 +123,7 @@ reported by `cf spaces`.
 > :warning: This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
-| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Summary | Example Values |
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
 | [`cloudfoundry.system.id`](/docs/registry/attributes/cloudfoundry.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A guid or another name describing the event source. [9] | `cf/gorouter` |
 | [`cloudfoundry.system.instance.id`](/docs/registry/attributes/cloudfoundry.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A guid describing the concrete instance of the event source. [10] | `218fc5a9-a5f1-4b54-aa05-46717d0ab26d` |

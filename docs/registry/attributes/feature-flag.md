@@ -12,7 +12,7 @@ This document defines attributes for Feature Flags.
 
 **Attributes:**
 
-| Key | Stability | Value Type | Summary | Example Values |
+| Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="feature-flag-context-id" href="#feature-flag-context-id">`feature_flag.context.id`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The unique identifier for the flag evaluation context. For example, the targeting key. | `5157782b-2203-4c80-a857-dbbd5e7761db` |
 | <a id="feature-flag-key" href="#feature-flag-key">`feature_flag.key`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The lookup key of the feature flag. | `logo-color` |
@@ -56,7 +56,7 @@ Describes deprecated feature flag attributes.
 
 **Attributes:**
 
-| Key | Stability | Value Type | Summary | Example Values |
+| Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="feature-flag-evaluation-error-message" href="#feature-flag-evaluation-error-message">`feature_flag.evaluation.error.message`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `error.message`. | string | Deprecated, use `error.message` instead. | `Flag `header-color` expected type `string` but found type `number`` |
 | <a id="feature-flag-evaluation-reason" href="#feature-flag-evaluation-reason">`feature_flag.evaluation.reason`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `feature_flag.result.reason`. | string | Deprecated, use `feature_flag.result.reason` instead. | `static`; `targeting_match`; `error`; `default` |

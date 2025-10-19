@@ -16,7 +16,7 @@
 
 **Attributes:**
 
-| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Summary | Example Values |
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
 | [`device.manufacturer`](/docs/registry/attributes/device.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the device manufacturer [1] | `Apple`; `Samsung` |
 | [`device.model.identifier`](/docs/registry/attributes/device.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The model identifier for the device [2] | `iPhone3,4`; `SM-G920F` |

@@ -62,7 +62,7 @@ This metric is obtained from [`MemoryPoolMXBean#getUsage()`](https://docs.oracle
 
 **Attributes:**
 
-| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Summary | Example Values |
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
 | [`jvm.memory.pool.name`](/docs/registry/attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Name of the memory pool. [1] | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` |
 | [`jvm.memory.type`](/docs/registry/attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The type of memory. | `heap`; `non_heap` |
@@ -101,7 +101,7 @@ This metric is obtained from [`MemoryPoolMXBean#getUsage()`](https://docs.oracle
 
 **Attributes:**
 
-| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Summary | Example Values |
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
 | [`jvm.memory.pool.name`](/docs/registry/attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Name of the memory pool. [1] | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` |
 | [`jvm.memory.type`](/docs/registry/attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The type of memory. | `heap`; `non_heap` |
@@ -140,7 +140,7 @@ This metric is obtained from [`MemoryPoolMXBean#getUsage()`](https://docs.oracle
 
 **Attributes:**
 
-| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Summary | Example Values |
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
 | [`jvm.memory.pool.name`](/docs/registry/attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Name of the memory pool. [1] | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` |
 | [`jvm.memory.type`](/docs/registry/attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The type of memory. | `heap`; `non_heap` |
@@ -179,7 +179,7 @@ This metric is obtained from [`MemoryPoolMXBean#getCollectionUsage()`](https://d
 
 **Attributes:**
 
-| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Summary | Example Values |
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
 | [`jvm.memory.pool.name`](/docs/registry/attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Name of the memory pool. [1] | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` |
 | [`jvm.memory.type`](/docs/registry/attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The type of memory. | `heap`; `non_heap` |
@@ -229,7 +229,7 @@ of `[ 0.01, 0.1, 1, 10 ]`.
 
 **Attributes:**
 
-| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Summary | Example Values |
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
 | [`jvm.gc.action`](/docs/registry/attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Name of the garbage collector action. [1] | `end of minor GC`; `end of major GC` |
 | [`jvm.gc.name`](/docs/registry/attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Name of the garbage collector. [2] | `G1 Young Generation`; `G1 Old Generation` |
@@ -277,7 +277,7 @@ Note that this is the number of platform threads (as opposed to virtual threads)
 
 **Attributes:**
 
-| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Summary | Example Values |
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
 | [`jvm.thread.daemon`](/docs/registry/attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | boolean | Whether the thread is daemon or not. |  |
 | [`jvm.thread.state`](/docs/registry/attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | State of the thread. | `runnable`; `blocked` |
@@ -469,7 +469,7 @@ This metric is obtained from [`MemoryPoolMXBean#getUsage()`](https://docs.oracle
 
 **Attributes:**
 
-| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Summary | Example Values |
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
 | [`jvm.memory.pool.name`](/docs/registry/attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Name of the memory pool. [1] | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` |
 | [`jvm.memory.type`](/docs/registry/attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The type of memory. | `heap`; `non_heap` |
@@ -555,7 +555,7 @@ This metric is obtained from [`BufferPoolMXBean#getMemoryUsed()`](https://docs.o
 
 **Attributes:**
 
-| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Summary | Example Values |
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
 | [`jvm.buffer.pool.name`](/docs/registry/attributes/jvm.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Name of the buffer pool. [1] | `mapped`; `direct` |
 
@@ -584,7 +584,7 @@ This metric is obtained from [`BufferPoolMXBean#getTotalCapacity()`](https://doc
 
 **Attributes:**
 
-| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Summary | Example Values |
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
 | [`jvm.buffer.pool.name`](/docs/registry/attributes/jvm.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Name of the buffer pool. [1] | `mapped`; `direct` |
 
@@ -613,7 +613,7 @@ This metric is obtained from [`BufferPoolMXBean#getCount()`](https://docs.oracle
 
 **Attributes:**
 
-| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Summary | Example Values |
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
 | [`jvm.buffer.pool.name`](/docs/registry/attributes/jvm.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Name of the buffer pool. [1] | `mapped`; `direct` |
 

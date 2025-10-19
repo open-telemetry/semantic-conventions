@@ -38,7 +38,7 @@ Spans representing calls to Microsoft SQL Server adhere to the general [Semantic
 
 **Attributes:**
 
-| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Summary | Example Values |
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
 | [`db.namespace`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If available without an additional network call. | string | The database associated with the connection, qualified by the instance name. [1] | `instance1\|products`; `customers` |
 | [`db.response.status_code`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If response has ended with warning or an error. | string | [Microsoft SQL Server error](https://learn.microsoft.com/sql/relational-databases/errors-events/database-engine-events-and-errors) number represented as a string. [2] | `102`; `40020` |

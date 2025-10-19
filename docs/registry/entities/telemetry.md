@@ -18,7 +18,7 @@
 > :warning: This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
-| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Summary | Example Values |
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
 | [`telemetry.distro.name`](/docs/registry/attributes/telemetry.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the auto instrumentation agent or distribution, if used. [1] | `parts-unlimited-java` |
 | [`telemetry.distro.version`](/docs/registry/attributes/telemetry.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The version string of the auto instrumentation agent or distribution, if used. | `1.2.3` |
@@ -36,7 +36,7 @@ a string starting with `opentelemetry-`, e.g. `opentelemetry-java-instrumentatio
 
 **Identifying Attributes:**
 
-| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Summary | Example Values |
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
 | [`telemetry.sdk.language`](/docs/registry/attributes/telemetry.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | The language of the telemetry SDK. | `cpp`; `dotnet`; `erlang` |
 | [`telemetry.sdk.name`](/docs/registry/attributes/telemetry.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | The name of the telemetry SDK as defined above. [2] | `opentelemetry` |
@@ -69,7 +69,7 @@ All custom identifiers SHOULD be stable across different versions of an implemen
 
 **Descriptive Attributes:**
 
-| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Summary | Example Values |
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
 | [`telemetry.sdk.version`](/docs/registry/attributes/telemetry.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | The version string of the telemetry SDK. | `1.2.3` |
 

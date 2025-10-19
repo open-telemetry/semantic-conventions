@@ -12,7 +12,7 @@ This group describes iOS-specific attributes.
 
 **Attributes:**
 
-| Key | Stability | Value Type | Summary | Example Values |
+| Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="ios-app-state" href="#ios-app-state">`ios.app.state`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | This attribute represents the state of the application. [1] | `active`; `inactive`; `background` |
 
@@ -36,7 +36,7 @@ The iOS platform on which the iOS application is running.
 
 **Attributes:**
 
-| Key | Stability | Value Type | Summary | Example Values |
+| Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="ios-state" href="#ios-state">`ios.state`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `ios.app.state`. | string | Deprecated. Use the `ios.app.state` attribute. [2] | `active`; `inactive`; `background` |
 

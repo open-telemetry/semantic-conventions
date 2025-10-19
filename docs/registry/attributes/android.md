@@ -12,7 +12,7 @@ The Android platform on which the Android application is running.
 
 **Attributes:**
 
-| Key | Stability | Value Type | Summary | Example Values |
+| Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="android-app-state" href="#android-app-state">`android.app.state`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | This attribute represents the state of the application. [1] | `created` |
 | <a id="android-os-api-level" href="#android-os-api-level">`android.os.api_level`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Uniquely identifies the framework API revision offered by a version (`os.version`) of the android operating system. More information can be found in the [Android API levels documentation](https://developer.android.com/guide/topics/manifest/uses-sdk-element#ApiLevels). | `33`; `32` |
@@ -35,7 +35,7 @@ This document defines attributes that represents an occurrence of a lifecycle tr
 
 **Attributes:**
 
-| Key | Stability | Value Type | Summary | Example Values |
+| Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="android-state" href="#android-state">`android.state`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `android.app.state`. | string | Deprecated. Use `android.app.state` attribute instead. | `created`; `background`; `foreground` |
 

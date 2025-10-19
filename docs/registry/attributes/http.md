@@ -12,7 +12,7 @@ This document defines semantic convention attributes in the HTTP namespace.
 
 **Attributes:**
 
-| Key | Stability | Value Type | Summary | Example Values |
+| Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="http-connection-state" href="#http-connection-state">`http.connection.state`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | State of the HTTP connection in the HTTP connection pool. | `active`; `idle` |
 | <a id="http-request-body-size" href="#http-request-body-size">`http.request.body.size`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The size of the request payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size. | `3495` |
@@ -122,7 +122,7 @@ Describes deprecated HTTP attributes.
 
 **Attributes:**
 
-| Key | Stability | Value Type | Summary | Example Values |
+| Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="http-client-ip" href="#http-client-ip">`http.client_ip`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `client.address`. | string | Deprecated, use `client.address` instead. | `83.164.160.102` |
 | <a id="http-flavor" href="#http-flavor">`http.flavor`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Split into `network.protocol.name` and `network.protocol.version` | string | Deprecated, use `network.protocol.name` and `network.protocol.version` instead. | `1.0`; `1.1`; `2.0` |

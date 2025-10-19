@@ -9,7 +9,7 @@ A host is defined as a computing instance. For example, physical servers, virtua
 
 **Attributes:**
 
-| Key | Stability | Value Type | Summary | Example Values |
+| Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="host-arch" href="#host-arch">`host.arch`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The CPU architecture the host system is running on. | `amd64`; `arm32`; `arm64` |
 | <a id="host-cpu-cache-l2-size" href="#host-cpu-cache-l2-size">`host.cpu.cache.l2.size`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The amount of level 2 memory cache available to the processor (in Bytes). | `12288000` |

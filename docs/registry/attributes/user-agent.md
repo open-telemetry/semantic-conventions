@@ -12,7 +12,7 @@ Describes user-agent attributes.
 
 **Attributes:**
 
-| Key | Stability | Value Type | Summary | Example Values |
+| Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="user-agent-name" href="#user-agent-name">`user_agent.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Name of the user-agent extracted from original. Usually refers to the browser's name. [1] | `Safari`; `YourApp` |
 | <a id="user-agent-original" href="#user-agent-original">`user_agent.original`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | Value of the [HTTP User-Agent](https://www.rfc-editor.org/rfc/rfc9110.html#field.user-agent) header sent by the client. | `CERN-LineMode/2.15 libwww/2.17b3`; `Mozilla/5.0 (iPhone; CPU iPhone OS 14_7_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.2 Mobile/15E148 Safari/604.1`; `YourApp/1.0.0 grpc-java-okhttp/1.27.2` |
@@ -28,7 +28,7 @@ Describes the OS user-agent attributes.
 
 **Attributes:**
 
-| Key | Stability | Value Type | Summary | Example Values |
+| Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="user-agent-os-name" href="#user-agent-os-name">`user_agent.os.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Human readable operating system name. [3] | `iOS`; `Android`; `Ubuntu` |
 | <a id="user-agent-os-version" href="#user-agent-os-version">`user_agent.os.version`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The version string of the operating system as defined in [Version Attributes](/docs/resource/README.md#version-attributes). [4] | `14.2.1`; `18.04.1` |

@@ -9,7 +9,7 @@ This group describes attributes specific to pipelines within a Continuous Integr
 
 **Attributes:**
 
-| Key | Stability | Value Type | Summary | Example Values |
+| Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="cicd-pipeline-action-name" href="#cicd-pipeline-action-name">`cicd.pipeline.action.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The kind of action a pipeline run is performing. | `BUILD`; `RUN`; `SYNC` |
 | <a id="cicd-pipeline-name" href="#cicd-pipeline-name">`cicd.pipeline.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The human readable name of the pipeline within a CI/CD system. | `Build and Test`; `Lint`; `Deploy Go Project`; `deploy_to_environment` |
