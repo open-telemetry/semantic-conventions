@@ -49,7 +49,7 @@ The metric is
 rather than a `Gauge`. This is a deliberate choice, as it is a reasonable use
 case to count objects that are in a particular state. Since the metric value is
 either `0` or `1` for a given state attribute value, this means you can do a
-simplesum aggregation to count instances of particular states.
+simple sum aggregation to count instances of particular states.
 
 ### Should it be an Entity Attribute?
 
@@ -76,7 +76,7 @@ The general recommendation is to use the word "state" for the attribute and
 "status" for the metric. This is derived from common turns of phrase for each
 word, respectively:
 
-"What **state** is X in?"  
+"What **state** is X in?"
 "What is the **current status** of X?"
 
 The english-language semantics of this are heavily debatable, thus for the sake
