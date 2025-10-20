@@ -1,5 +1,5 @@
 change_type: enhancement
 component: gen-ai
-note: Add 'name' for generative AI message parts.
+note: Add 'name' for generative AI chat message.
 issues: [2943]
 subtext:
