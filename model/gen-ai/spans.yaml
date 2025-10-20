@@ -287,9 +287,6 @@ groups:
       - ref: server.address
         requirement_level:
           recommended: when span kind is `CLIENT`.
-      - ref: server.port
-        requirement_level:
-          conditionally_required: when span kind is `CLIENT` and `server.address` is set.
       - ref: gen_ai.system_instructions
         requirement_level: opt_in
       - ref: gen_ai.input.messages
