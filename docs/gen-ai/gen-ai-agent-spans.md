@@ -352,12 +352,9 @@ form. When recorded on spans, it MAY be recorded as a JSON string if structured
 format is not supported and SHOULD be recorded in structured form otherwise.
 
 If instrumentations can reliably deserialize and extract the tool definitions,
-it's RECOMMENDED to only populate required fields of the definition objects
-by default. Otherwise, it's NOT RECOMMENDED to populate it by default.
+it's RECOMMENDED to only populate required fields (`name`, `type`) of the definition
+objects by default. Otherwise, it's NOT RECOMMENDED to populate it by default.
 Instrumentations MAY provide a way to enable populating this attribute.
-
-> [!Warning]
-> This attribute is likely to contain sensitive information including user/PII data.
 
 ---
 

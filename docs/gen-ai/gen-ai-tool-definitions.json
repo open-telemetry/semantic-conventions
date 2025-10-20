@@ -22,6 +22,7 @@
                     "type": "string"
                 },
                 "description": {
+                    "default": null,
                     "description": "Description of the tool.",
                     "title": "Description",
                     "type": "string"
@@ -39,8 +40,7 @@
             },
             "required": [
                 "type",
-                "name",
-                "description"
+                "name"
             ],
             "title": "ToolDefinition",
             "type": "object"
