@@ -110,6 +110,19 @@
                     "description": "Text content sent to or received from the model.",
                     "title": "Content",
                     "type": "string"
+                },
+                "name": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "The name for the participant.",
+                    "title": "Name"
                 }
             },
             "required": [
