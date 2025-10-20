@@ -49,7 +49,7 @@ The metric is
 rather than a `Gauge`. This is a deliberate choice, as it is a reasonable use
 case to count objects that are in a particular state. Since the metric value is
 either `0` or `1` for a given state attribute value, this means you can do a
-simple sum aggregation to count instances of particular states.
+simplesum aggregation to count instances of particular states.
 
 ### Should it be an Entity Attribute?
 
