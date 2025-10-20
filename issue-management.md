@@ -77,7 +77,7 @@ graph TD
 These labels are applied to issues when it is not yet clear if the project will
 address them.
 
-- `triage:deciding:needs-info`:  Indicates that the issue lacks sufficient
+- `triage:deciding:needs-info`: Indicates that the issue lacks sufficient
   information for the project to accept it. The issue remains open to allow the
   Author to add the requested details.
 
