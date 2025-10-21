@@ -2,7 +2,7 @@ name: 'Check changes ownership'
 on:
   pull_request_target:
     types: [opened, synchronize]
-    branches: [ 'main*' ]
+    branches: [ 'main' ]
     paths:
       - 'model/**'
 jobs:
@@ -46,11 +46,11 @@ jobs:
           cache: 'npm'
           cache-dependency-path: |
             .github/scripts/triage/package-lock.json
-          node-version: '22'
+          node-version: '24'
 
       - name: Install script dependencies
         working-directory: .github/scripts/triage
-        run: npm install
+        run: npm ci --ignore-scripts
 
       - name: Validate if PR has active owners
         env:

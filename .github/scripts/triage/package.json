@@ -2,7 +2,7 @@
   "type": "module",
   "scripts": {},
   "keywords": [],
-  "author": "Semantic Conventions",
+  "author": "OpenTelemetry Authors",
   "description": "Automation scripts for issue and pull request triage",
   "dependencies": {
     "@octokit/action": "^8.0.2",
