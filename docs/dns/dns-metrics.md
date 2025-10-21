@@ -41,7 +41,7 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 | [`dns.question.name`](/docs/registry/attributes/dns.md) | string | The name being queried. [1] | `www.example.com`; `dot.net` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`error.type`](/docs/registry/attributes/error.md) | string | Describes the error the DNS lookup failed with. [2] | `host_not_found`; `no_recovery`; `java.net.UnknownHostException` | `Conditionally Required` if and only if an error has occurred. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
-**[1] `dns.question.name`:** If the name field contains non-printable characters (below 32 or above 126), those characters should be represented as escaped base 10 integers (\DDD). Back slashes and quotes should be escaped. Tabs, carriage returns, and line feeds should be converted to \t, \r, and \n respectively.
+**[1] `dns.question.name`:** The name represents the queried domain name as it appears in the DNS query. If the name contains non-ASCII characters, it will be encoded using Punycode as per [RFC 3492](https://datatracker.ietf.org/doc/html/rfc3492), but no additional normalization is required. The name should be recorded as provided to the DNS resolution function.
 
 **[2] `error.type`:** Instrumentations SHOULD use error code such as one of errors reported by `getaddrinfo`([Linux or other POSIX systems](https://man7.org/linux/man-pages/man3/getaddrinfo.3.html) / [Windows](https://learn.microsoft.com/windows/win32/api/ws2tcpip/nf-ws2tcpip-getaddrinfo)) or one reported by the runtime or client library. If error code is not available, the full name of exception type SHOULD be used.
 

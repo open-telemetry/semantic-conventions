@@ -11,11 +11,10 @@ groups:
         brief: The name being queried.
         examples: ["www.example.com", "opentelemetry.io"]
         note: >
-          If the name field contains non-printable
-          characters (below 32 or above 126), those characters should be represented
-          as escaped base 10 integers (\DDD). Back slashes and quotes should be escaped.
-          Tabs, carriage returns, and line feeds should be converted to \t, \r, and
-          \n respectively.
+          The name represents the queried domain name as it appears in the DNS query.
+          If the name contains non-ASCII characters, it will be encoded using Punycode as per
+          [RFC 3492](https://datatracker.ietf.org/doc/html/rfc3492), but no additional normalization
+          is required. The name should be recorded as provided to the DNS resolution function.
       - id: dns.answers
         type: string[]
         stability: development
