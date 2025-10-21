@@ -79,7 +79,7 @@ The following well-known definitions MUST be used if you set this attribute and 
 - **Google Cloud Run (Services):** The [revision](https://cloud.google.com/run/docs/managing/revisions)
   (i.e., the function name plus the revision suffix).
 - **Google Cloud Functions:** The value of the
-  [`K_REVISION` environment variable](https://cloud.google.com/functions/docs/env-var#runtime_environment_variables_set_automatically).
+  [`K_REVISION` environment variable](https://cloud.google.com/functions/docs/env-var).
 - **Azure Functions:** Not applicable. Do not set this attribute.
 
 <!-- markdownlint-restore -->

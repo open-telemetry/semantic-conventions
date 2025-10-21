@@ -1,8 +1,8 @@
 <!--- Hugo front matter used to generate the website version of this page:
-linkTitle: How to define new semantic conventions
+linkTitle: How to write conventions
 --->
 
-# How to define new semantic conventions
+# How to write semantic conventions
 
 **Status**: [Development][DocumentStatus]
 
@@ -104,7 +104,7 @@ When defining a new attribute:
     This is useful for capturing user-defined key-value pairs, such as HTTP headers.
   - Represent complex values as a set of flat attributes whenever possible.
     - Complex or structured attributes (not listed in the
-      [set of standard attributes](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.49.0/specification/common/README.md#attribute))
+      [set of standard attributes](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.50.0/specification/common/README.md#attribute))
       could be referenced on events and spans (![Development](https://img.shields.io/badge/-development-blue)) only.
 
       Semantic convention authors should assume that backends do not index individual properties of complex attributes,
