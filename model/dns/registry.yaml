@@ -11,10 +11,8 @@ groups:
         brief: The name being queried.
         examples: ["www.example.com", "opentelemetry.io"]
         note: >
-          The name represents the queried domain name as it appears in the DNS query.
-          If the name contains non-ASCII characters, it will be encoded using Punycode as per
-          [RFC 3492](https://datatracker.ietf.org/doc/html/rfc3492), but no additional normalization
-          is required. The name should be recorded as provided to the DNS resolution function.
+          The name represents the queried domain name as it appears in the DNS query
+          without any additional normalization.
       - id: dns.answers
         type: string[]
         stability: development

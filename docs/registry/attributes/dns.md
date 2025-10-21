@@ -12,4 +12,4 @@ This document defines the shared attributes used to report a DNS query.
 | <a id="dns-answers" href="#dns-answers">`dns.answers`</a> | string[] | The list of IPv4 or IPv6 addresses resolved during DNS lookup. | `["10.0.0.1", "2001:0db8:85a3:0000:0000:8a2e:0370:7334"]` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="dns-question-name" href="#dns-question-name">`dns.question.name`</a> | string | The name being queried. [1] | `www.example.com`; `opentelemetry.io` | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[1] `dns.question.name`:** The name represents the queried domain name as it appears in the DNS query. If the name contains non-ASCII characters, it will be encoded using Punycode as per [RFC 3492](https://datatracker.ietf.org/doc/html/rfc3492), but no additional normalization is required. The name should be recorded as provided to the DNS resolution function.
+**[1] `dns.question.name`:** The name represents the queried domain name as it appears in the DNS query without any additional normalization.
