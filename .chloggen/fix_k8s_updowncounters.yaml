@@ -10,7 +10,7 @@ change_type: breaking
 component: k8s
 
 # A brief description of the change. Surround your text with quotes ("") if it needs to start with a backtick (`).
-note: "Fix plural-named updowncounter k8s metrics; replace with singular + .count names."
+note: "Fix plural-named updowncounter k8s metrics"
 
 # Mandatory: One or more tracking issues related to the change. You can use the PR number here if no issue exists.
 # The values here must be integers.
@@ -21,28 +21,28 @@ issues: [2301]
 # Use pipe (|) for multiline entries.
 subtext: |
   Renamed metrics:
-  - k8s.node.allocatable.pods -> k8s.node.allocatable.pod.count
-  - k8s.daemonset.current_scheduled_nodes -> k8s.daemonset.current_scheduled_node.count
-  - k8s.daemonset.desired_scheduled_nodes -> k8s.daemonset.desired_scheduled_node.count
-  - k8s.daemonset.misscheduled_nodes -> k8s.daemonset.misscheduled_node.count
-  - k8s.daemonset.ready_nodes -> k8s.daemonset.ready_node.count
-  - k8s.job.active_pods -> k8s.job.active_pod.count
-  - k8s.job.failed_pods -> k8s.job.failed_pod.count
-  - k8s.job.successful_pods -> k8s.job.successful_pod.count
-  - k8s.job.desired_successful_pods -> k8s.job.desired_successful_pod.count
-  - k8s.job.max_parallel_pods -> k8s.job.max_parallel_pod.count
-  - k8s.cronjob.active_jobs -> k8s.cronjob.active_job.count
-  - k8s.deployment.desired_pods -> k8s.deployment.desired_pod.count
-  - k8s.deployment.available_pods -> k8s.deployment.available_pod.count
-  - k8s.replicaset.desired_pods -> k8s.replicaset.desired_pod.count
-  - k8s.replicaset.available_pods -> k8s.replicaset.available_pod.count
-  - k8s.replicationcontroller.desired_pods -> k8s.replicationcontroller.desired_pod.count
-  - k8s.replicationcontroller.available_pods -> k8s.replicationcontroller.available_pod.count
-  - k8s.statefulset.desired_pods -> k8s.statefulset.desired_pod.count
-  - k8s.statefulset.ready_pods -> k8s.statefulset.ready_pod.count
-  - k8s.statefulset.current_pods -> k8s.statefulset.current_pod.count
-  - k8s.statefulset.updated_pods -> k8s.statefulset.updated_pod.count
-  - k8s.hpa.desired_pods -> k8s.hpa.desired_pod.count
-  - k8s.hpa.current_pods -> k8s.hpa.current_pod.count
-  - k8s.hpa.max_pods -> k8s.hpa.max_pod.count
-  - k8s.hpa.min_pods -> k8s.hpa.min_pod.count
+  - k8s.node.allocatable.pods -> k8s.node.pod.allocatable
+  - k8s.daemonset.current_scheduled_nodes -> k8s.daemonset.node.current_scheduled
+  - k8s.daemonset.desired_scheduled_nodes -> k8s.daemonset.node.desired_scheduled
+  - k8s.daemonset.misscheduled_nodes -> k8s.daemonset.node.misscheduled
+  - k8s.daemonset.ready_nodes -> k8s.daemonset.node.ready
+  - k8s.job.active_pods -> k8s.job.pod.active
+  - k8s.job.failed_pods -> k8s.job.pod.failed
+  - k8s.job.successful_pods -> k8s.job.pod.successful
+  - k8s.job.desired_successful_pods -> k8s.job.pod.desired_successful
+  - k8s.job.max_parallel_pods -> k8s.job.pod.max_parallel
+  - k8s.cronjob.active_jobs -> k8s.cronjob.job.active
+  - k8s.deployment.desired_pods -> k8s.deployment.pod.desired
+  - k8s.deployment.available_pods -> k8s.deployment.pod.available
+  - k8s.replicaset.desired_pods -> k8s.replicaset.pod.desired
+  - k8s.replicaset.available_pods -> k8s.replicaset.pod.available
+  - k8s.replicationcontroller.desired_pods -> k8s.replicationcontroller.pod.desired
+  - k8s.replicationcontroller.available_pods -> k8s.replicationcontroller.pod.available
+  - k8s.statefulset.desired_pods -> k8s.statefulset.pod.desired
+  - k8s.statefulset.ready_pods -> k8s.statefulset.pod.ready
+  - k8s.statefulset.current_pods -> k8s.statefulset.pod.current
+  - k8s.statefulset.updated_pods -> k8s.statefulset.pod.updated
+  - k8s.hpa.desired_pods -> k8s.hpa.pod.desired
+  - k8s.hpa.current_pods -> k8s.hpa.pod.current
+  - k8s.hpa.max_pods -> k8s.hpa.pod.max
+  - k8s.hpa.min_pods -> k8s.hpa.pod.min
