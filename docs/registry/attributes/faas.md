@@ -60,7 +60,7 @@ definition of function name MUST be used for this attribute
 - **Google Cloud Run (Services):** The [revision](https://cloud.google.com/run/docs/managing/revisions)
   (i.e., the function name plus the revision suffix).
 - **Google Cloud Functions:** The value of the
-  [`K_REVISION` environment variable](https://cloud.google.com/functions/docs/env-var).
+  [`K_REVISION` environment variable](https://cloud.google.com/run/docs/container-contract#services-env-vars).
 - **Azure Functions:** Not applicable. Do not set this attribute.
 
 ---
