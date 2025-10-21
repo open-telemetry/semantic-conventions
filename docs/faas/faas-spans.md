@@ -121,7 +121,7 @@ The span attribute `faas.invocation_id` differs from the [resource attribute][Fa
 
 [AWS lambda]: https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html
 [Azure functions]: https://docs.microsoft.com/azure/azure-functions/manage-connections#static-clients
-[Google functions]: https://cloud.google.com/functions/docs/concepts/execution-environment#scope
+[Google functions]: https://cloud.google.com/functions/docs/concepts/execution-environment
 
 ## Incoming invocations
 

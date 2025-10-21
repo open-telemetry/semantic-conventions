@@ -47,7 +47,7 @@ linkTitle: Spans
 
 ## Name
 
-Database spans MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.49.0/specification/trace/api.md#span).
+Database spans MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.50.0/specification/trace/api.md#span).
 
 The **span name** SHOULD be `{db.query.summary}` if a summary is available.
 
@@ -366,12 +366,12 @@ instrumentation hooks or other sources.
 Otherwise:
 
 - When instrumenting higher-level APIs that build queries internally - for example,
-those that create a table or execute a stored procedure - instrumentations SHOULD
-generate a `db.query.summary` from available operation(s) and target(s) using the
-format described in this section.
+  those that create a table or execute a stored procedure - instrumentations SHOULD
+  generate a `db.query.summary` from available operation(s) and target(s) using the
+  format described in this section.
 
 - When instrumenting APIs that operate at the query level, instrumentations that
-support query parsing SHOULD generate a query summary based on the `db.query.text`.
+  support query parsing SHOULD generate a query summary based on the `db.query.text`.
 
 The summary SHOULD preserve the following parts of query in the order they were provided:
 
@@ -504,7 +504,6 @@ The instrumentation SHOULD allow users to pass a propagator to overwrite the glo
   ```
 
   Note that adding high cardinality comments, like `traceparent` and `tracestate`, to queries can impact the performance for some database systems, such as:
-  
   - Prepared statements in MySQL. See [this related issue](https://github.com/google/sqlcommenter/issues/284) for more details.
   - Oracle and SQL Server for both prepared and non-prepared statements.
 
