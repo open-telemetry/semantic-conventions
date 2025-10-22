@@ -8,7 +8,7 @@ export interface Owner {
 
 export interface Area {
     name: string
-    owner: Owner[]
+    owner?: Owner[]
     project: string
     board: string
     labels: string[]
@@ -30,7 +30,7 @@ export function getActiveAreasWithCodeOwners(areas: Area[]): Map<string, Set<str
             }
             // add all owners - an area can be owned by multiple teams
             // as well as a team own many areas.
-            area.owner.forEach((owner) => {
+            area.owner?.forEach((owner) => {
                 areaOwnersMap.get(labelWithoutPrefix)!.add(owner.github);
             });
         });
