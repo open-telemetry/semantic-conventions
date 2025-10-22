@@ -104,7 +104,7 @@ This span represents an outgoing Remote Procedure Call (RPC).
 **Span status** Refer to the [Recording Errors](/docs/general/recording-errors.md)
 document for details on how to record span status. Semantic conventions for
 individual systems SHOULD specify which values of `rpc.status_code`
-classify as errors.
+are classified as errors.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|

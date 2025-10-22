@@ -188,7 +188,7 @@ groups:
       **Span status** Refer to the [Recording Errors](/docs/general/recording-errors.md)
       document for details on how to record span status. Responses that include
       [`error` object](https://www.jsonrpc.org/specification#error_object)
-      are considered errors. When error object is returned  with
+      are considered errors. When error object is returned with
       [`message`](https://www.jsonrpc.org/specification#error_object) property,
       the error message SHOULD be recorded as the span status description.
     extends: rpc
@@ -226,7 +226,7 @@ groups:
       **Span status** Refer to the [Recording Errors](/docs/general/recording-errors.md)
       document for details on how to record span status. Responses that include
       [`error` object](https://www.jsonrpc.org/specification#error_object)
-      are considered errors. When error object is returned  with
+      are considered errors. When error object is returned with
       [`message`](https://www.jsonrpc.org/specification#error_object) property,
       the error message SHOULD be recorded as the span status description.
     attributes:
