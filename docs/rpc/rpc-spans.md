@@ -97,6 +97,13 @@ Generally, a user SHOULD NOT set `peer.service` to a fully qualified RPC service
 
 This span represents an outgoing Remote Procedure Call (RPC).
 
+RPC client spans SHOULD cover the entire client-side lifecycle of an RPC,
+starting when the RPC is initiated and ending when the response is received
+or the RPC is terminated due to an error or cancellation.
+
+For streaming RPCs, the span covers the full lifetime of the request and/or
+response streams until they are closed or terminated.
+
 **Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#span-name) section.
 
 **Span kind** MUST be `CLIENT`.
@@ -222,6 +229,13 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
 This span represents an incoming Remote Procedure Call (RPC).
+
+RPC server spans SHOULD cover the entire server-side lifecycle of an RPC,
+starting when the request is received and ending when the response is sent
+or the RPC is terminated due to an error or cancellation.
+
+For streaming RPCs, the span SHOULD cover the full lifetime of the request
+and/or response streams until they are closed or terminated.
 
 **Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#span-name) section.
 
