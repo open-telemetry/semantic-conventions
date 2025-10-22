@@ -70,6 +70,7 @@ The following well-known definitions MUST be used if you set this attribute and 
 | `azure.functions` | Azure Functions | ![Development](https://img.shields.io/badge/-development-blue) |
 | `azure.openshift` | Azure Red Hat OpenShift | ![Development](https://img.shields.io/badge/-development-blue) |
 | `azure.vm` | Azure Virtual Machines | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gcp_agent_engine` | Google Vertex AI Agent Engine | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gcp_app_engine` | Google Cloud App Engine (GAE) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gcp_bare_metal_solution` | Google Bare Metal Solution (BMS) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gcp_cloud_functions` | Google Cloud Functions (GCF) | ![Development](https://img.shields.io/badge/-development-blue) |

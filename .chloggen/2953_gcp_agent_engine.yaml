@@ -1,0 +1,4 @@
+change_type: enhancement
+component: gcp
+note: Add `gcp_agent_engine` as a value for `cloud.platform`
+issues: [2953]
