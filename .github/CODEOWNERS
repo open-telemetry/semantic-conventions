@@ -118,13 +118,15 @@
 /model/vcs/                       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-cicd-approvers
 
 # Code attribute semantic conventions
-/docs/code/                       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-code-attribute-approvers
-/model/code/                      @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-code-attribute-approvers
+/docs/code/                                     @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-code-attribute-approvers
+/model/code/                                    @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-code-attribute-approvers
+/docs/non-normative/code-attrs-migration.md     @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-code-attribute-approvers
 
 # Database semantic conventions
-/docs/database/                      @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-db-approvers
-/model/database/                     @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-db-approvers
-/docs/non-normative/db-migration.md  @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-db-approvers
+/docs/database/                             @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-db-approvers
+/model/database/                            @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-db-approvers
+/docs/non-normative/database-test-cases/    @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-db-approvers
+/docs/non-normative/db-migration.md         @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-db-approvers
 
 # Messaging semantic conventions
 /docs/messaging/                  @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-messaging-approvers
