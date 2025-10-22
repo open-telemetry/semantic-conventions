@@ -385,7 +385,7 @@ FaaS providers. This list is not exhaustive.
 * [AWS Lambda Metrics](https://docs.aws.amazon.com/lambda/latest/dg/monitoring-metrics.html)
 * [AWS Lambda Insight Metrics](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Lambda-Insights-metrics.html)
 * [Azure Functions Metrics](https://docs.microsoft.com/azure/azure-monitor/platform/metrics-supported)
-* [Google CloudFunctions Metrics](https://cloud.google.com/monitoring/api/metrics_gcp)
+* [Google CloudFunctions Metrics](https://cloud.google.com/monitoring/api/metrics_gcp_c#gcp-cloudfunctions)
 * [OpenFaas Metrics](https://docs.openfaas.com/architecture/metrics/)
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
