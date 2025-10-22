@@ -245,6 +245,10 @@ groups:
               annotations:
                 code_generation:
                   exclude: true
+            - id: gcp_agent_engine
+              value: 'gcp_agent_engine'
+              brief: Google Vertex AI Agent Engine
+              stability: development
             - id: gcp_bare_metal_solution
               value: 'gcp_bare_metal_solution'
               brief: Google Bare Metal Solution (BMS)
