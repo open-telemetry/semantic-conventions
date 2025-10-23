@@ -32,9 +32,7 @@ This span represents an outgoing Remote Procedure Call (RPC).
 **Span status** Refer to the [Recording Errors](/docs/general/recording-errors.md)
 document for details on how to record span status. Responses that include
 [`error` object](https://www.jsonrpc.org/specification#error_object)
-are considered errors. When error object is returned with
-[`message`](https://www.jsonrpc.org/specification#error_object) property,
-the error message SHOULD be recorded as the span status description.
+are considered errors.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -150,9 +148,7 @@ This span represents an incoming Remote Procedure Call (RPC).
 **Span status** Refer to the [Recording Errors](/docs/general/recording-errors.md)
 document for details on how to record span status. Responses that include
 [`error` object](https://www.jsonrpc.org/specification#error_object)
-are considered errors. When error object is returned with
-[`message`](https://www.jsonrpc.org/specification#error_object) property,
-the error message SHOULD be recorded as the span status description.
+are considered errors.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|

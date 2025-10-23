@@ -51,9 +51,7 @@ groups:
       **Span kind** MUST be `CLIENT`.
 
       **Span status** Refer to the [Recording Errors](/docs/general/recording-errors.md)
-      document for details on how to record span status. When error response is returned and
-      it contains [`message`](https://connectrpc.com/docs/web/errors/#error-messages),
-      the raw error message SHOULD be recorded as the span status description.
+      document for details on how to record span status.
     extends: rpc_service
     span_kind: client
     attributes:
@@ -82,9 +80,7 @@ groups:
       **Span kind** MUST be `SERVER`.
 
       **Span status** Refer to the [Recording Errors](/docs/general/recording-errors.md)
-      document for details on how to record span status. When error response is returned and
-      it contains [`message`](https://connectrpc.com/docs/web/errors/#error-messages),
-      the raw error message SHOULD be recorded as the span status description.
+      document for details on how to record span status.
     attributes:
       - ref: rpc.status_code
         requirement_level:
@@ -188,9 +184,7 @@ groups:
       **Span status** Refer to the [Recording Errors](/docs/general/recording-errors.md)
       document for details on how to record span status. Responses that include
       [`error` object](https://www.jsonrpc.org/specification#error_object)
-      are considered errors. When error object is returned with
-      [`message`](https://www.jsonrpc.org/specification#error_object) property,
-      the error message SHOULD be recorded as the span status description.
+      are considered errors.
     extends: rpc
     span_kind: client
     attributes:
@@ -226,9 +220,7 @@ groups:
       **Span status** Refer to the [Recording Errors](/docs/general/recording-errors.md)
       document for details on how to record span status. Responses that include
       [`error` object](https://www.jsonrpc.org/specification#error_object)
-      are considered errors. When error object is returned with
-      [`message`](https://www.jsonrpc.org/specification#error_object) property,
-      the error message SHOULD be recorded as the span status description.
+      are considered errors.
     attributes:
       - ref: rpc.method
         requirement_level: required
