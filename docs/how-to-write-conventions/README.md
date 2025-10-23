@@ -9,14 +9,15 @@ linkTitle: How to write conventions
 <!-- toc -->
 
 - [Defining new conventions](#defining-new-conventions)
-  - [Best practices](#best-practices)
-    - [Prototyping](#prototyping)
-    - [Defining attributes](#defining-attributes)
+  - [Defining attributes](#defining-attributes)
     - [Defining enum attribute members](#defining-enum-attribute-members)
+  - [Defining entities](#defining-entities)
+  - [Defining Telemetry Signals](#Ddefining-telemetry-signals)
     - [Defining spans](#defining-spans)
     - [Defining metrics](#defining-metrics)
-    - [Defining entities](#defining-entities)
     - [Defining events](#defining-events)
+- [Recomendations](#recomendations)
+  - [Prototyping](#prototyping)
 - [Stabilizing existing conventions](#stabilizing-existing-conventions)
   - [Migration plan](#migration-plan)
 
@@ -27,14 +28,6 @@ for new areas or make substantial changes to the existing ones.
 
 ## Defining new conventions
 
-- New conventions MUST have a group of codeowners. See [project management](https://github.com/open-telemetry/community/blob/main/project-management.md) for more details.
-  <!-- TODO: add CI check for CODEOWNERS file (when a new area is added) -->
-- New conventions SHOULD be defined in YAML files. See [YAML Model for Semantic Conventions](/model/README.md) for the details.
-- New conventions SHOULD be defined with `development` stability level.
-- New conventions SHOULD include telemetry signal definitions (spans, metrics, events, resources, profiles) and MAY include new attribute definitions.
-
-### Best practices
-
 > [!NOTE]
 >
 > This section contains non-normative guidance.
@@ -43,19 +36,13 @@ Please read [T-Shaped Signals](t-shaped-signals.md)
 for guidance on how to approach creating Semantic Conventions through defining
 key use cases for conventions.
 
-#### Prototyping
+- New conventions MUST have a group of codeowners. See [project management](https://github.com/open-telemetry/community/blob/main/project-management.md) for more details.
+  <!-- TODO: add CI check for CODEOWNERS file (when a new area is added) -->
+- New conventions SHOULD be defined in YAML files. See [YAML Model for Semantic Conventions](/model/README.md) for the details.
+- New conventions SHOULD be defined with `development` stability level.
+- New conventions SHOULD include telemetry signal definitions (spans, metrics, events, resources, profiles) and MAY include new attribute definitions.
 
-It is strongly recommended to prototype proposed conventions in one or more instrumentations and:
-
-- validate the feasibility of collecting the proposed telemetry and attributes, ensuring the information is available and can be gathered with reasonable overhead,
-
-- confirm that the proposed terminology applies across the diverse libraries and technologies covered by the conventions,
-
-- provide actionable guidance to instrumentation authors on when and how to collect attributes and record telemetry,
-
-- evaluate how the new or updated telemetry integrates with other instrumentation layers, identifying gaps, duplication, or opportunities to improve the end-user experience.
-
-#### Defining attributes
+### Defining attributes
 
 Reuse existing attributes when possible. Look through [existing conventions](/docs/registry/attributes/) for similar areas,
 check out [common attributes](/docs/general/attributes.md).
@@ -183,6 +170,28 @@ to that system. For example, when adding a new `db.system.name` value, create
 documentation and span definitions that show how generic attributes work for that
 database.
 
+### Defining entities
+
+Follow the [Entity Modeling Guide](resource-and-entities.md).
+
+### Defining Telemetry Signals
+
+The first step in defining a telemetry signal is to decide on what type of signal to use based on their strengths and weaknesses.
+
+- Event:
+  - Pro: Can Record the exact time when something with a large amount of detail.
+  - Con: Vendor support is not at the same level as other signals and can only be associated with the active span no other signal.
+- Metric: 
+  - Pro: Good for capturing measurements which are aggregated based on attributes.
+  - Con: Usually lacks contextual information due to aggregation.
+- Trace:
+  - Pro: Allows for the visualization of when an operation/process is running including start/stop as well as,
+    what children both local and remote are performed as a part of this operation.
+  - Con: Only emitted once trace is completed and lacks granularity to see what was happening when during the operation.
+
+It could very well be that you end up using multiple, if not all of the signal types and that is ok.
+It is all about selecting the right signal type for your needs.
+
 #### Defining spans
 
 TBD
@@ -191,13 +200,23 @@ TBD
 
 TBD
 
-#### Defining entities
-
-Follow the [Entity Modeling Guide](resource-and-entities.md).
-
 #### Defining events
 
 TBD
+
+## Recomendations
+
+### Prototyping
+
+It is strongly recommended to prototype proposed conventions in one or more instrumentations and:
+
+- validate the feasibility of collecting the proposed telemetry and attributes, ensuring the information is available and can be gathered with reasonable overhead,
+
+- confirm that the proposed terminology applies across the diverse libraries and technologies covered by the conventions,
+
+- provide actionable guidance to instrumentation authors on when and how to collect attributes and record telemetry,
+
+- evaluate how the new or updated telemetry integrates with other instrumentation layers, identifying gaps, duplication, or opportunities to improve the end-user experience.
 
 ## Stabilizing existing conventions
 
