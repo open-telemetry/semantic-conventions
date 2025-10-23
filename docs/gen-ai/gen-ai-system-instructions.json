@@ -16,6 +16,29 @@
             "title": "GenericPart",
             "type": "object"
         },
+        "ReasoningPart": {
+            "additionalProperties": true,
+            "description": "Represents reasoning/thinking content received from the model.",
+            "properties": {
+                "type": {
+                    "const": "reasoning",
+                    "description": "The type of the content captured in this part.",
+                    "title": "Type",
+                    "type": "string"
+                },
+                "content": {
+                    "description": "Reasoning/thinking content received from the model.",
+                    "title": "Content",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "type",
+                "content"
+            ],
+            "title": "ReasoningPart",
+            "type": "object"
+        },
         "TextPart": {
             "additionalProperties": true,
             "description": "Represents text content sent to or received from the model.",
@@ -127,6 +150,9 @@
             },
             {
                 "$ref": "#/$defs/ToolCallResponsePart"
+            },
+            {
+                "$ref": "#/$defs/ReasoningPart"
             },
             {
                 "$ref": "#/$defs/GenericPart"

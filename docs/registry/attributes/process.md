@@ -17,7 +17,7 @@ An operating system process.
 | <a id="process-command" href="#process-command">`process.command`</a> | string | The command used to launch the process (i.e. the command name). On Linux based systems, can be set to the zeroth string in `proc/[pid]/cmdline`. On Windows, can be set to the first parameter extracted from `GetCommandLineW`. | `cmd/otelcol` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="process-command-args" href="#process-command-args">`process.command_args`</a> | string[] | All the command arguments (including the command/executable itself) as received by the process. On Linux-based systems (and some other Unixoid systems supporting procfs), can be set according to the list of null-delimited strings extracted from `proc/[pid]/cmdline`. For libc-based executables, this would be the full argv vector passed to `main`. SHOULD NOT be collected by default unless there is sanitization that excludes sensitive data. | `["cmd/otecol", "--config=config.yaml"]` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="process-command-line" href="#process-command-line">`process.command_line`</a> | string | The full command used to launch the process as a single string representing the full command. On Windows, can be set to the result of `GetCommandLineW`. Do not set this if you have to assemble it just for monitoring; use `process.command_args` instead. SHOULD NOT be collected by default unless there is sanitization that excludes sensitive data. | `C:\cmd\otecol --config="my directory\config.yaml"` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="process-context-switch-type" href="#process-context-switch-type">`process.context_switch_type`</a> | string | Specifies whether the context switches for this data point were voluntary or involuntary. | `voluntary`; `involuntary` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="process-context-switch-type" href="#process-context-switch-type">`process.context_switch.type`</a> | string | Specifies whether the context switches for this data point were voluntary or involuntary. | `voluntary`; `involuntary` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="process-creation-time" href="#process-creation-time">`process.creation.time`</a> | string | The date and time the process was created, in ISO 8601 format. | `2023-11-21T09:25:34.853Z` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="process-environment-variable" href="#process-environment-variable">`process.environment_variable.<key>`</a> | string | Process environment variables, `<key>` being the environment variable name, the value being the environment variable value. [2] | `ubuntu`; `/usr/local/bin:/usr/bin` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="process-executable-build-id-gnu" href="#process-executable-build-id-gnu">`process.executable.build_id.gnu`</a> | string | The GNU build ID as found in the `.note.gnu.build-id` ELF section (hex string). | `c89b11207f6479603b0d49bf291c092c2b719293` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -30,7 +30,6 @@ An operating system process.
 | <a id="process-group-leader-pid" href="#process-group-leader-pid">`process.group_leader.pid`</a> | int | The PID of the process's group leader. This is also the process group ID (PGID) of the process. | `23` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="process-interactive" href="#process-interactive">`process.interactive`</a> | boolean | Whether the process is connected to an interactive shell. |  | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="process-owner" href="#process-owner">`process.owner`</a> | string | The username of the user that owns the process. | `root` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="process-paging-fault-type" href="#process-paging-fault-type">`process.paging.fault_type`</a> | string | The type of page fault for this data point. Type `major` is for major/hard page faults, and `minor` is for minor/soft page faults. | `major`; `minor` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="process-parent-pid" href="#process-parent-pid">`process.parent_pid`</a> | int | Parent Process identifier (PPID). | `111` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="process-pid" href="#process-pid">`process.pid`</a> | int | Process identifier (PID). | `1234` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="process-real-user-id" href="#process-real-user-id">`process.real_user.id`</a> | int | The real user ID (RUID) of the process. | `1000` | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -64,21 +63,12 @@ with value `"/usr/local/bin:/usr/bin"`.
 
 ---
 
-`process.context_switch_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`process.context_switch.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
 | `involuntary` | involuntary | ![Development](https://img.shields.io/badge/-development-blue) |
 | `voluntary` | voluntary | ![Development](https://img.shields.io/badge/-development-blue) |
-
----
-
-`process.paging.fault_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `major` | major | ![Development](https://img.shields.io/badge/-development-blue) |
-| `minor` | minor | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ## Process Linux Attributes
 
@@ -96,8 +86,19 @@ Deprecated process attributes.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
+| <a id="process-context-switch-type" href="#process-context-switch-type">`process.context_switch_type`</a> | string | "Deprecated, use `process.context_switch.type` instead." | `voluntary`; `involuntary` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `process.context_switch.type`. |
 | <a id="process-cpu-state" href="#process-cpu-state">`process.cpu.state`</a> | string | Deprecated, use `cpu.mode` instead. | `system`; `user`; `wait` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `cpu.mode`. |
 | <a id="process-executable-build-id-profiling" href="#process-executable-build-id-profiling">`process.executable.build_id.profiling`</a> | string | "Deprecated, use `process.executable.build_id.htlhash` instead." | `600DCAFE4A110000F2BF38C493F5FB92` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `process.executable.build_id.htlhash`. |
+| <a id="process-paging-fault-type" href="#process-paging-fault-type">`process.paging.fault_type`</a> | string | Deprecated, use `system.paging.fault.type` instead. | `major`; `minor` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `system.paging.fault.type`. |
+
+---
+
+`process.context_switch_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `involuntary` | involuntary | ![Development](https://img.shields.io/badge/-development-blue) |
+| `voluntary` | voluntary | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -108,3 +109,12 @@ Deprecated process attributes.
 | `system` | system | ![Development](https://img.shields.io/badge/-development-blue) |
 | `user` | user | ![Development](https://img.shields.io/badge/-development-blue) |
 | `wait` | wait | ![Development](https://img.shields.io/badge/-development-blue) |
+
+---
+
+`process.paging.fault_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `major` | major | ![Development](https://img.shields.io/badge/-development-blue) |
+| `minor` | minor | ![Development](https://img.shields.io/badge/-development-blue) |

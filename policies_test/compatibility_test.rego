@@ -520,7 +520,7 @@ test_removed_metrics if {
                 "id": "metric.test",
                 "type": "metric",
                 "metric_name": "test.missing",
-                "stability": "stable",
+                "stability": "development",
             }],
     }
     count(deny) == 0 with data.semconv as {
@@ -528,13 +528,13 @@ test_removed_metrics if {
                 "id": "metric.test",
                 "type": "metric",
                 "metric_name": "test.missing",
-                "stability": "stable",
+                "stability": "development",
             }],
             "groups": [{
                 "id": "metric.test",
                 "type": "metric",
                 "metric_name": "test.missing",
-                "stability": "stable",
+                "stability": "development",
             }]
     }
 }

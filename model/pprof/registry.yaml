@@ -35,3 +35,12 @@ groups:
           profile changes.
         stability: development
         type: boolean
+      - id: pprof.profile.comment
+        brief: >
+          Free-form text associated with the profile. This field should not be
+          used to store any machine-readable information, it is only for
+          human-friendly content.
+        type: string[]
+        examples:
+          - ["hello world", "bazinga"]
+        stability: development

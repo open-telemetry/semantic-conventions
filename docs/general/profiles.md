@@ -81,6 +81,7 @@ They may be used in any Profiles record they apply to.
 | [`pprof.mapping.has_functions`](/docs/registry/attributes/pprof.md) | boolean | Indicates that there are functions related to this mapping. |  | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`pprof.mapping.has_inline_frames`](/docs/registry/attributes/pprof.md) | boolean | Indicates that there are inline frames related to this mapping. |  | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`pprof.mapping.has_line_numbers`](/docs/registry/attributes/pprof.md) | boolean | Indicates that there are line numbers related to this mapping. |  | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`pprof.profile.comment`](/docs/registry/attributes/pprof.md) | string[] | Free-form text associated with the profile. This field should not be used to store any machine-readable information, it is only for human-friendly content. | `["hello world", "bazinga"]` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

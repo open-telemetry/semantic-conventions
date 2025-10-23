@@ -48,7 +48,7 @@ The Semantic Conventions for [Apache Kafka](https://kafka.apache.org/) extend an
 
 ## Span attributes
 
-For Apache Kafka producers, [`peer.service`](/docs/general/attributes.md#general-remote-service-attributes) SHOULD be set to the name of the broker or service the message will be sent to.
+For Apache Kafka producers, [`peer.service`](/docs/registry/attributes/peer.md) SHOULD be set to the name of the broker or service the message will be sent to.
 The `service.name` of a Consumer's Resource SHOULD match the `peer.service` of the Producer, when the message is directly passed to another service.
 If an intermediary broker is present, `service.name` and `peer.service` will not be the same.
 

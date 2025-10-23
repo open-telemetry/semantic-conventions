@@ -147,6 +147,8 @@ groups:
     note: |
       Linux: this metric is taken from the Linux kernel's svc_stat.nettcpcnt and svc_stat.netudpcnt
     instrument: counter
+    attributes:
+      - ref: network.transport
     unit: "{record}"
     entity_associations:
       - host

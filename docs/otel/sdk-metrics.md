@@ -1144,7 +1144,7 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 This metric is [recommended][MetricRecommended].
 
 This metric SHOULD be specified with
-[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.42.0/specification/metrics/api.md#instrument-advisory-parameters)
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.42.0/specification/metrics/api.md#instrument-advisory-parameters)
 with a single bucket with no boundaries.
 
 <!-- semconv metric.otel.sdk.metric_reader.collection.duration -->
@@ -1245,7 +1245,7 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 This metric is [recommended][MetricRecommended].
 
 This metric SHOULD be specified with
-[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.42.0/specification/metrics/api.md#instrument-advisory-parameters)
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.42.0/specification/metrics/api.md#instrument-advisory-parameters)
 with a single bucket with no boundaries.
 
 <!-- semconv metric.otel.sdk.exporter.operation.duration -->

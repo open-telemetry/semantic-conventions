@@ -610,7 +610,7 @@ groups:
     type: attribute_group
     display_name: Deprecated Database Metrics
     brief: >
-      "Describes deprecated db metrics attributes."
+      Describes deprecated db metrics attributes.
     stability: development
     attributes:
       - id: state

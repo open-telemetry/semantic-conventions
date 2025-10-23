@@ -30,6 +30,9 @@ internal/tools/bin
 node_modules/
 package-lock.json
 
+# Allow package-lock.json files in scripts directories
+!.github/scripts/triage/package-lock.json
+
 # Visual Studio Code
 .vscode
 

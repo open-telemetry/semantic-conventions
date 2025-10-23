@@ -324,7 +324,7 @@ Describes deprecated database attributes.
 
 ## Deprecated Database Metrics
 
-"Describes deprecated db metrics attributes."
+Describes deprecated db metrics attributes.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|

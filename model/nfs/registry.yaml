@@ -1,9 +1,9 @@
 groups:
-  - id: registry.nfs.server.repcache.status
+  - id: registry.nfs
     type: attribute_group
-    display_name: NFS Server Reply Cache Attributes
+    display_name: NFS Attributes
     brief: >
-      NFS Server replies check a Reply Cache (repcache), which can have one of 3 result states
+      Describes NFS Attributes
     attributes:
       - id: nfs.server.repcache.status
         type: string

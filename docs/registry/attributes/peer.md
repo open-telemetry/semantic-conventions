@@ -5,8 +5,13 @@
 
 ## Peer Attributes
 
-Operations that access some remote service.
+These attribute may be used for any operation that accesses some remote service.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="peer-service" href="#peer-service">`peer.service`</a> | string | The [`service.name`](/docs/resource/README.md#service) of the remote service. SHOULD be equal to the actual `service.name` resource attribute of the remote service if any. | `AuthTokenCache` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="peer-service" href="#peer-service">`peer.service`</a> | string | The [`service.name`](/docs/resource/README.md#service) of the remote service. SHOULD be equal to the actual `service.name` resource attribute of the remote service if any. [1] | `AuthTokenCache` | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**[1] `peer.service`:** Examples of `peer.service` that users may specify:
+
+- A Redis cache of auth tokens as `peer.service="AuthTokenCache"`.
+- A gRPC service `rpc.service="io.opentelemetry.AuthService"` may be hosted in both a gateway, `peer.service="ExternalApiService"` and a backend, `peer.service="AuthService"`.

@@ -52,7 +52,6 @@ body:
         - area:elasticsearch
         - area:enduser
         - area:error
-        - area:event
         - area:exception
         - area:faas
         - area:feature-flag
@@ -79,6 +78,7 @@ body:
         - area:oci
         - area:onc-rpc
         - area:openai
+        - area:openshift
         - area:opentracing
         - area:os
         - area:otel

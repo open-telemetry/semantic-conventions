@@ -58,7 +58,7 @@ This span represents a client call to Generative AI model or service that genera
 
 **Span name** SHOULD be `{gen_ai.operation.name} {gen_ai.request.model}`.
 Semantic conventions for individual GenAI systems and frameworks MAY specify different span name format
-and MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.37.0/specification/trace/api.md#span).
+and MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.37.0/specification/trace/api.md#span).
 
 **Span kind** SHOULD be `CLIENT`and MAY be set to `INTERNAL` on spans representing
 call to models running in the same process. It's RECOMMENDED to use `CLIENT` kind

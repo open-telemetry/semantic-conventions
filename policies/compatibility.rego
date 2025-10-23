@@ -243,7 +243,7 @@ deny contains back_comp_violation(description, group_id, attr.name) if {
 deny contains back_comp_violation(description, group_id, "") if {
     # Find data we need to enforce
     some metric in baseline_metrics
-    metric.stability == "stable"
+
     # Enforce the policy
     not registry_metric_names[metric.metric_name]
 
@@ -369,7 +369,7 @@ deny contains back_comp_violation(description, group_id, "") if {
 deny contains back_comp_violation(description, group_id, "") if {
     # Find data we need to enforce
     some resource in baseline_resources
-    resource.stability == "stable" # remove after https://github.com/open-telemetry/semantic-conventions/pull/1423 is merged
+
     # Enforce the policy
     not registry_resource_names[resource.name]
 

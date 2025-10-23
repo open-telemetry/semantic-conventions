@@ -44,4 +44,7 @@ Semantic Conventions by signals:
 * [Resource](resource/README.md): Semantic Conventions for resources.
 * [Trace](general/trace.md): Semantic Conventions for traces and spans.
 
-Also see, [Non-normative supplementary information](non-normative/README.md).
+Also see:
+
+* [How to write semantic conventions](how-to-write-conventions/README.md)
+* [Non-normative supplementary information](non-normative/README.md)
