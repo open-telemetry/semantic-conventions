@@ -295,9 +295,9 @@ When this occurs, the exact value as reported by the Kubernetes API SHOULD be us
 
 | Value  | Description | Stability |
 |---|---|---|
-| `false` | condition_false | ![Development](https://img.shields.io/badge/-development-blue) |
-| `true` | condition_true | ![Development](https://img.shields.io/badge/-development-blue) |
-| `unknown` | condition_unknown | ![Development](https://img.shields.io/badge/-development-blue) |
+| `false` | The k8s node does not have the condition specified in `k8s.node.condition.type`. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `true` | The k8s node has the condition specified in `k8s.node.condition.type`. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `unknown` | The condition of the node is unknown. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
