@@ -18,13 +18,9 @@ Describes attributes related to client-side applications (e.g. web apps or mobil
 | <a id="app-screen-coordinate-y" href="#app-screen-coordinate-y">`app.screen.coordinate.y`</a> | int | The y (vertical) component of a screen coordinate, in screen pixels. | `12`; `99` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="app-screen-id" href="#app-screen-id">`app.screen.id`</a> | string | An identifier that uniquely differentiates this screen from other screens in the same application. [3] | `f9bc787d-ff05-48ad-90e1-fca1d46130b3`; `com.example.app.MainActivity`; `com.example.shop.ProductDetailFragment`; `MyApp.ProfileView`; `MyApp.ProfileViewController` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="app-screen-name" href="#app-screen-name">`app.screen.name`</a> | string | The name of an application screen. [4] | `MainActivity`; `ProductDetailFragment`; `ProfileView`; `ProfileViewController` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="app-screen-time-on-screen-duration" href="#app-screen-time-on-screen-duration">`app.screen.time_on_screen.duration`</a> | double | The total time, in seconds, that the screen remained visible to the user. [5] | `30.0`; `10.21` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="app-screen-time-to-first-draw-duration" href="#app-screen-time-to-first-draw-duration">`app.screen.time_to_first_draw.duration`</a> | double | The time, in seconds, from screen initialization to the first frame being rendered. [6] | `0.95`; `2.0` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="app-screen-type" href="#app-screen-type">`app.screen.type`</a> | string | The type of UI management component or framework used to render and manage the screen's presentation and interactions. [7] | `swiftui`; `uikit`; `activity`; `fragment` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="app-start-duration" href="#app-start-duration">`app.start.duration`</a> | double | The total time, in seconds, taken for the application to start, from user initiation to being ready for interaction. [8] | `0.95`; `2.0` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="app-start-type" href="#app-start-type">`app.start.type`</a> | string | The type of application start, indicating the state of the app when it was initiated. | `cold`; `warm` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="app-widget-id" href="#app-widget-id">`app.widget.id`</a> | string | An identifier that uniquely differentiates this widget from other widgets in the same application. [9] | `f9bc787d-ff05-48ad-90e1-fca1d46130b3`; `submit_order_1829` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="app-widget-name" href="#app-widget-name">`app.widget.name`</a> | string | The name of an application widget. [10] | `submit`; `attack`; `Clear Cart` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="app-screen-type" href="#app-screen-type">`app.screen.type`</a> | string | The type of UI management component or framework used to render and manage the screen's presentation and interactions. [5] | `swiftui`; `uikit`; `activity`; `fragment` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="app-widget-id" href="#app-widget-id">`app.widget.id`</a> | string | An identifier that uniquely differentiates this widget from other widgets in the same application. [6] | `f9bc787d-ff05-48ad-90e1-fca1d46130b3`; `submit_order_1829` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="app-widget-name" href="#app-widget-name">`app.widget.name`</a> | string | The name of an application widget. [7] | `submit`; `attack`; `Clear Cart` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `app.installation.id`:** Its value SHOULD persist across launches of the same application installation, including through application upgrades.
 It SHOULD change if the application is uninstalled or if all applications of the vendor are uninstalled.
@@ -50,17 +46,11 @@ More information about Android identifier best practices can be found in the [An
 
 **[4] `app.screen.name`:** A screen represents only the part of the device display drawn by the app. It typically contains multiple widgets or UI components and is larger in scope than individual widgets. Multiple screens can coexist on the same display simultaneously (e.g., split view on tablets).
 
-**[5] `app.screen.time_on_screen.duration`:** This attribute measures the duration during which the screen is visible and actively being displayed to the user. It begins when the screen becomes visible (e.g., `viewDidAppear` on iOS or `onResume` on Android) and ends when it is no longer visible (e.g., `viewWillDisappear` on iOS or `onPause` on Android). It does **not** include the time when the screen is in the background, nor does it account for time the screen may be obscured by other views or overlays (e.g., modals, popups, or other screens in split-view).
+**[5] `app.screen.type`:** This attribute indicates which framework or structure is used to manage and display the screen’s content. For iOS, it may refer to either SwiftUI (declarative) or UIKit (imperative) for managing views. On Android, it can refer to either an Activity or a Fragment.
 
-**[6] `app.screen.time_to_first_draw.duration`:** This measures the time, in seconds, until the first frame of the screen is rendered and becomes visible to the user.
+**[6] `app.widget.id`:** A widget is an application component, typically an on-screen visual GUI element.
 
-**[7] `app.screen.type`:** This attribute indicates which framework or structure is used to manage and display the screen’s content. For iOS, it may refer to either SwiftUI (declarative) or UIKit (imperative) for managing views. On Android, it can refer to either an Activity or a Fragment.
-
-**[8] `app.start.duration`:** This is the time, in seconds, between the user's initiation of the app start (e.g., tapping the app icon or opening a link) and the point when the app is fully ready for interaction, such as the main screen becoming visible or the app’s main functionality being accessible.
-
-**[9] `app.widget.id`:** A widget is an application component, typically an on-screen visual GUI element.
-
-**[10] `app.widget.name`:** A widget is an application component, typically an on-screen visual GUI element.
+**[7] `app.widget.name`:** A widget is an application component, typically an on-screen visual GUI element.
 
 ---
 
@@ -72,16 +62,3 @@ More information about Android identifier best practices can be found in the [An
 | `fragment` | Android Fragment (Android) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `swiftui` | SwiftUI View (iOS) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `uikit` | UIKit ViewController (iOS) | ![Development](https://img.shields.io/badge/-development-blue) |
-
----
-
-`app.start.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `cold` | App start from terminated state [11] | ![Development](https://img.shields.io/badge/-development-blue) |
-| `warm` | App start from background state [12] | ![Development](https://img.shields.io/badge/-development-blue) |
-
-**[11]:** The app is started from a terminated state, meaning no prior instance of the app is running.
-
-**[12]:** The app is started from the background, meaning an instance of the app is still in memory, but not active.

@@ -10,7 +10,6 @@ linkTitle: App spans
 
 - [Time to first draw span](#time-to-first-draw-span)
 - [Time on screen span](#time-on-screen-span)
-- [App start span](#app-start-span)
 
 <!-- tocstop -->
 
@@ -38,18 +37,15 @@ of an application UI screen being drawn.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`app.screen.time_to_first_draw.duration`](/docs/registry/attributes/app.md) | double | The time, in seconds, from screen initialization to the first frame being rendered. [1] | `0.95`; `2.0` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`app.screen.id`](/docs/registry/attributes/app.md) | string | An identifier that uniquely differentiates this screen from other screens in the same application. [2] | `f9bc787d-ff05-48ad-90e1-fca1d46130b3`; `com.example.app.MainActivity`; `com.example.shop.ProductDetailFragment`; `MyApp.ProfileView`; `MyApp.ProfileViewController` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`app.screen.name`](/docs/registry/attributes/app.md) | string | The name of an application screen. [3] | `MainActivity`; `ProductDetailFragment`; `ProfileView`; `ProfileViewController` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`app.screen.type`](/docs/registry/attributes/app.md) | string | The type of UI management component or framework used to render and manage the screen's presentation and interactions. [4] | `swiftui`; `uikit`; `activity`; `fragment` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`app.screen.id`](/docs/registry/attributes/app.md) | string | An identifier that uniquely differentiates this screen from other screens in the same application. [1] | `f9bc787d-ff05-48ad-90e1-fca1d46130b3`; `com.example.app.MainActivity`; `com.example.shop.ProductDetailFragment`; `MyApp.ProfileView`; `MyApp.ProfileViewController` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`app.screen.name`](/docs/registry/attributes/app.md) | string | The name of an application screen. [2] | `MainActivity`; `ProductDetailFragment`; `ProfileView`; `ProfileViewController` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`app.screen.type`](/docs/registry/attributes/app.md) | string | The type of UI management component or framework used to render and manage the screen's presentation and interactions. [3] | `swiftui`; `uikit`; `activity`; `fragment` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[1] `app.screen.time_to_first_draw.duration`:** This measures the time, in seconds, until the first frame of the screen is rendered and becomes visible to the user.
+**[1] `app.screen.id`:** A screen represents only the part of the device display drawn by the app. It typically contains multiple widgets or UI components and is larger in scope than individual widgets. Multiple screens can coexist on the same display simultaneously (e.g., split view on tablets).
 
-**[2] `app.screen.id`:** A screen represents only the part of the device display drawn by the app. It typically contains multiple widgets or UI components and is larger in scope than individual widgets. Multiple screens can coexist on the same display simultaneously (e.g., split view on tablets).
+**[2] `app.screen.name`:** A screen represents only the part of the device display drawn by the app. It typically contains multiple widgets or UI components and is larger in scope than individual widgets. Multiple screens can coexist on the same display simultaneously (e.g., split view on tablets).
 
-**[3] `app.screen.name`:** A screen represents only the part of the device display drawn by the app. It typically contains multiple widgets or UI components and is larger in scope than individual widgets. Multiple screens can coexist on the same display simultaneously (e.g., split view on tablets).
-
-**[4] `app.screen.type`:** This attribute indicates which framework or structure is used to manage and display the screen’s content. For iOS, it may refer to either SwiftUI (declarative) or UIKit (imperative) for managing views. On Android, it can refer to either an Activity or a Fragment.
+**[3] `app.screen.type`:** This attribute indicates which framework or structure is used to manage and display the screen’s content. For iOS, it may refer to either SwiftUI (declarative) or UIKit (imperative) for managing views. On Android, it can refer to either an Activity or a Fragment.
 
 ---
 
@@ -78,7 +74,7 @@ of an application UI screen being drawn.
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-This span_kind captures the duration that a screen was visible to the user, indicating the time between when the screen becomes visible and when it stops being visible.
+This span_kind captures the time that a screen was visible to the user, indicating the time between when the screen becomes visible and when it stops being visible.
 
 **Span name:** MUST be `app.screen.time_on_screen`.
 
@@ -93,18 +89,15 @@ It does not include times when the app is in the background or when other screen
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`app.screen.time_on_screen.duration`](/docs/registry/attributes/app.md) | double | The total time, in seconds, that the screen remained visible to the user. [1] | `30.0`; `10.21` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`app.screen.id`](/docs/registry/attributes/app.md) | string | An identifier that uniquely differentiates this screen from other screens in the same application. [2] | `f9bc787d-ff05-48ad-90e1-fca1d46130b3`; `com.example.app.MainActivity`; `com.example.shop.ProductDetailFragment`; `MyApp.ProfileView`; `MyApp.ProfileViewController` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`app.screen.name`](/docs/registry/attributes/app.md) | string | The name of an application screen. [3] | `MainActivity`; `ProductDetailFragment`; `ProfileView`; `ProfileViewController` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`app.screen.type`](/docs/registry/attributes/app.md) | string | The type of UI management component or framework used to render and manage the screen's presentation and interactions. [4] | `swiftui`; `uikit`; `activity`; `fragment` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`app.screen.id`](/docs/registry/attributes/app.md) | string | An identifier that uniquely differentiates this screen from other screens in the same application. [1] | `f9bc787d-ff05-48ad-90e1-fca1d46130b3`; `com.example.app.MainActivity`; `com.example.shop.ProductDetailFragment`; `MyApp.ProfileView`; `MyApp.ProfileViewController` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`app.screen.name`](/docs/registry/attributes/app.md) | string | The name of an application screen. [2] | `MainActivity`; `ProductDetailFragment`; `ProfileView`; `ProfileViewController` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`app.screen.type`](/docs/registry/attributes/app.md) | string | The type of UI management component or framework used to render and manage the screen's presentation and interactions. [3] | `swiftui`; `uikit`; `activity`; `fragment` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[1] `app.screen.time_on_screen.duration`:** This attribute measures the duration during which the screen is visible and actively being displayed to the user. It begins when the screen becomes visible (e.g., `viewDidAppear` on iOS or `onResume` on Android) and ends when it is no longer visible (e.g., `viewWillDisappear` on iOS or `onPause` on Android). It does **not** include the time when the screen is in the background, nor does it account for time the screen may be obscured by other views or overlays (e.g., modals, popups, or other screens in split-view).
+**[1] `app.screen.id`:** A screen represents only the part of the device display drawn by the app. It typically contains multiple widgets or UI components and is larger in scope than individual widgets. Multiple screens can coexist on the same display simultaneously (e.g., split view on tablets).
 
-**[2] `app.screen.id`:** A screen represents only the part of the device display drawn by the app. It typically contains multiple widgets or UI components and is larger in scope than individual widgets. Multiple screens can coexist on the same display simultaneously (e.g., split view on tablets).
+**[2] `app.screen.name`:** A screen represents only the part of the device display drawn by the app. It typically contains multiple widgets or UI components and is larger in scope than individual widgets. Multiple screens can coexist on the same display simultaneously (e.g., split view on tablets).
 
-**[3] `app.screen.name`:** A screen represents only the part of the device display drawn by the app. It typically contains multiple widgets or UI components and is larger in scope than individual widgets. Multiple screens can coexist on the same display simultaneously (e.g., split view on tablets).
-
-**[4] `app.screen.type`:** This attribute indicates which framework or structure is used to manage and display the screen’s content. For iOS, it may refer to either SwiftUI (declarative) or UIKit (imperative) for managing views. On Android, it can refer to either an Activity or a Fragment.
+**[3] `app.screen.type`:** This attribute indicates which framework or structure is used to manage and display the screen’s content. For iOS, it may refer to either SwiftUI (declarative) or UIKit (imperative) for managing views. On Android, it can refer to either an Activity or a Fragment.
 
 ---
 
@@ -116,53 +109,6 @@ It does not include times when the app is in the background or when other screen
 | `fragment` | Android Fragment (Android) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `swiftui` | SwiftUI View (iOS) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `uikit` | UIKit ViewController (iOS) | ![Development](https://img.shields.io/badge/-development-blue) |
-
-<!-- markdownlint-restore -->
-<!-- prettier-ignore-end -->
-<!-- END AUTOGENERATED TEXT -->
-<!-- endsemconv -->
-
-## App start span
-
-<!-- semconv span.app.start.internal -->
-<!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
-<!-- see templates/registry/markdown/snippet.md.j2 -->
-<!-- prettier-ignore-start -->
-<!-- markdownlint-capture -->
-<!-- markdownlint-disable -->
-
-**Status:** ![Development](https://img.shields.io/badge/-development-blue)
-
-This span represents an application start operation.
-
-**Span name:** MUST be `app.start`.
-
-**Span kind** MUST be `INTERNAL`.
-
-This span captures the time from user initiation (e.g., tapping the app icon or opening a link)
-to the moment the app begins UI rendering.
-
-**Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
-
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`app.start.duration`](/docs/registry/attributes/app.md) | double | The total time, in seconds, taken for the application to start, from user initiation to being ready for interaction. [1] | `0.95`; `2.0` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`app.start.type`](/docs/registry/attributes/app.md) | string | The type of application start, indicating the state of the app when it was initiated. | `cold`; `warm` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-
-**[1] `app.start.duration`:** This is the time, in seconds, between the user's initiation of the app start (e.g., tapping the app icon or opening a link) and the point when the app is fully ready for interaction, such as the main screen becoming visible or the app’s main functionality being accessible.
-
----
-
-`app.start.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `cold` | App start from terminated state [2] | ![Development](https://img.shields.io/badge/-development-blue) |
-| `warm` | App start from background state [3] | ![Development](https://img.shields.io/badge/-development-blue) |
-
-**[2]:** The app is started from a terminated state, meaning no prior instance of the app is running.
-
-**[3]:** The app is started from the background, meaning an instance of the app is still in memory, but not active.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
