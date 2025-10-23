@@ -284,12 +284,18 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `buffers` | buffers | ![Development](https://img.shields.io/badge/-development-blue) |
-| `cached` | cached | ![Development](https://img.shields.io/badge/-development-blue) |
-| `free` | free | ![Development](https://img.shields.io/badge/-development-blue) |
-| `used` | Actual used virtual memory in bytes. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `buffers` | Relatively temporary storage for raw disk blocks. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `cached` | In-memory cache for files read from the disk (the page cache). [2] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `free` | Memory that can be used by user-space programs, page cache or kernel. [3] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `used` | Memory that is being used by user-space programs, page cache or kernel. [4] | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[1]:** Calculation based on the operating system metrics. On Linux, this corresponds to "MemTotal - MemAvailable" from /proc/meminfo, which more accurately reflects memory in active use by applications compared to older formulas based on free, cached, and buffers. If MemAvailable is not available, a fallback to those older formulas may be used.
+**[1]:** Shouldn't get tremendously large (20 MB or so).
+
+**[2]:** Doesn't include SwapCached.
+
+**[3]:** Calculation based on the operating system metrics. On Linux, this corresponds to "LowFree + HighFree" from /proc/meminfo.
+
+**[4]:** Calculation based on the operating system metrics. On Linux, this corresponds to "MemTotal - MemAvailable" from /proc/meminfo, which more accurately reflects memory in active use by applications compared to older formulas based on free, cached, and buffers. If MemAvailable is not available, a fallback to those older formulas may be used.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -364,12 +370,18 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `buffers` | buffers | ![Development](https://img.shields.io/badge/-development-blue) |
-| `cached` | cached | ![Development](https://img.shields.io/badge/-development-blue) |
-| `free` | free | ![Development](https://img.shields.io/badge/-development-blue) |
-| `used` | Actual used virtual memory in bytes. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `buffers` | Relatively temporary storage for raw disk blocks. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `cached` | In-memory cache for files read from the disk (the page cache). [2] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `free` | Memory that can be used by user-space programs, page cache or kernel. [3] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `used` | Memory that is being used by user-space programs, page cache or kernel. [4] | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[1]:** Calculation based on the operating system metrics. On Linux, this corresponds to "MemTotal - MemAvailable" from /proc/meminfo, which more accurately reflects memory in active use by applications compared to older formulas based on free, cached, and buffers. If MemAvailable is not available, a fallback to those older formulas may be used.
+**[1]:** Shouldn't get tremendously large (20 MB or so).
+
+**[2]:** Doesn't include SwapCached.
+
+**[3]:** Calculation based on the operating system metrics. On Linux, this corresponds to "LowFree + HighFree" from /proc/meminfo.
+
+**[4]:** Calculation based on the operating system metrics. On Linux, this corresponds to "MemTotal - MemAvailable" from /proc/meminfo, which more accurately reflects memory in active use by applications compared to older formulas based on free, cached, and buffers. If MemAvailable is not available, a fallback to those older formulas may be used.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -406,8 +418,12 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `free` | free | ![Development](https://img.shields.io/badge/-development-blue) |
-| `used` | used | ![Development](https://img.shields.io/badge/-development-blue) |
+| `free` | Memory which is available for paging without the page/swap file needing to be expanded. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `used` | Memory which is being used for paging. [2] | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**[1]:** On linux this is the free column from '/proc/swaps'
+
+**[2]:** On linux this is calculated as the total - free column from '/proc/swaps'
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -440,8 +456,12 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `free` | free | ![Development](https://img.shields.io/badge/-development-blue) |
-| `used` | used | ![Development](https://img.shields.io/badge/-development-blue) |
+| `free` | Memory which is available for paging without the page/swap file needing to be expanded. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `used` | Memory which is being used for paging. [2] | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**[1]:** On linux this is the free column from '/proc/swaps'
+
+**[2]:** On linux this is calculated as the total - free column from '/proc/swaps'
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -473,8 +493,8 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `major` | major | ![Development](https://img.shields.io/badge/-development-blue) |
-| `minor` | minor | ![Development](https://img.shields.io/badge/-development-blue) |
+| `major` | Major page fault. Sometimes referred to as hard page fault. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `minor` | Minor page fault. Sometimes referred to as soft page fault. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -507,8 +527,8 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `in` | in | ![Development](https://img.shields.io/badge/-development-blue) |
-| `out` | out | ![Development](https://img.shields.io/badge/-development-blue) |
+| `in` | Data is coming in to the page/swap area, otherwise known as writing. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `out` | Data is coming out of the page/swap area, otherwise known as reading. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -516,8 +536,8 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `major` | major | ![Development](https://img.shields.io/badge/-development-blue) |
-| `minor` | minor | ![Development](https://img.shields.io/badge/-development-blue) |
+| `major` | Major page fault. Sometimes referred to as hard page fault. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `minor` | Minor page fault. Sometimes referred to as soft page fault. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -760,9 +780,11 @@ SHOULD equal the total storage capacity of the filesystem, that is `system.files
 
 | Value  | Description | Stability |
 |---|---|---|
-| `free` | free | ![Development](https://img.shields.io/badge/-development-blue) |
-| `reserved` | reserved | ![Development](https://img.shields.io/badge/-development-blue) |
-| `used` | used | ![Development](https://img.shields.io/badge/-development-blue) |
+| `free` | Filesystem storage space that could have have data written to it. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `reserved` | Filesystem storage space that has been set aside for a dedicated purpose. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `used` | Filesystem storage space that has data written to it. | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**[1]:** This space could be used for system restore points, OS updates etc.
 
 ---
 
@@ -770,11 +792,11 @@ SHOULD equal the total storage capacity of the filesystem, that is `system.files
 
 | Value  | Description | Stability |
 |---|---|---|
-| `exfat` | exfat | ![Development](https://img.shields.io/badge/-development-blue) |
+| `exfat` | exFAT | ![Development](https://img.shields.io/badge/-development-blue) |
 | `ext4` | ext4 | ![Development](https://img.shields.io/badge/-development-blue) |
-| `fat32` | fat32 | ![Development](https://img.shields.io/badge/-development-blue) |
-| `hfsplus` | hfsplus | ![Development](https://img.shields.io/badge/-development-blue) |
-| `ntfs` | ntfs | ![Development](https://img.shields.io/badge/-development-blue) |
+| `fat32` | FAT32 | ![Development](https://img.shields.io/badge/-development-blue) |
+| `hfsplus` | HFS+ | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ntfs` | NTFS | ![Development](https://img.shields.io/badge/-development-blue) |
 | `refs` | refs | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
@@ -811,9 +833,11 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `free` | free | ![Development](https://img.shields.io/badge/-development-blue) |
-| `reserved` | reserved | ![Development](https://img.shields.io/badge/-development-blue) |
-| `used` | used | ![Development](https://img.shields.io/badge/-development-blue) |
+| `free` | Filesystem storage space that could have have data written to it. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `reserved` | Filesystem storage space that has been set aside for a dedicated purpose. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `used` | Filesystem storage space that has data written to it. | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**[1]:** This space could be used for system restore points, OS updates etc.
 
 ---
 
@@ -821,11 +845,11 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `exfat` | exfat | ![Development](https://img.shields.io/badge/-development-blue) |
+| `exfat` | exFAT | ![Development](https://img.shields.io/badge/-development-blue) |
 | `ext4` | ext4 | ![Development](https://img.shields.io/badge/-development-blue) |
-| `fat32` | fat32 | ![Development](https://img.shields.io/badge/-development-blue) |
-| `hfsplus` | hfsplus | ![Development](https://img.shields.io/badge/-development-blue) |
-| `ntfs` | ntfs | ![Development](https://img.shields.io/badge/-development-blue) |
+| `fat32` | FAT32 | ![Development](https://img.shields.io/badge/-development-blue) |
+| `hfsplus` | HFS+ | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ntfs` | NTFS | ![Development](https://img.shields.io/badge/-development-blue) |
 | `refs` | refs | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
@@ -861,11 +885,11 @@ This metric is [opt-in][MetricOptIn].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `exfat` | exfat | ![Development](https://img.shields.io/badge/-development-blue) |
+| `exfat` | exFAT | ![Development](https://img.shields.io/badge/-development-blue) |
 | `ext4` | ext4 | ![Development](https://img.shields.io/badge/-development-blue) |
-| `fat32` | fat32 | ![Development](https://img.shields.io/badge/-development-blue) |
-| `hfsplus` | hfsplus | ![Development](https://img.shields.io/badge/-development-blue) |
-| `ntfs` | ntfs | ![Development](https://img.shields.io/badge/-development-blue) |
+| `fat32` | FAT32 | ![Development](https://img.shields.io/badge/-development-blue) |
+| `hfsplus` | HFS+ | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ntfs` | NTFS | ![Development](https://img.shields.io/badge/-development-blue) |
 | `refs` | refs | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
@@ -1119,10 +1143,12 @@ This metric is [recommended][MetricRecommended].
 
 | Value  | Description | Stability |
 |---|---|---|
-| `defunct` | defunct | ![Development](https://img.shields.io/badge/-development-blue) |
-| `running` | running | ![Development](https://img.shields.io/badge/-development-blue) |
-| `sleeping` | sleeping | ![Development](https://img.shields.io/badge/-development-blue) |
-| `stopped` | stopped | ![Development](https://img.shields.io/badge/-development-blue) |
+| `defunct` | The process has exited and has a parent, but has not yet been waited for by the parent. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `running` | The process is currently running. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `sleeping` | The process is currently sleeping which may interruptable. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `stopped` | The process has been stopped by a job control signal. | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**[1]:** This includes both interruptable (waiting for an event to complete) and uninterruptable (usually I/O) sleep states.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
