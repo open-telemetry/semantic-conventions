@@ -5,8 +5,7 @@
 /docs/**
 !/docs/cloud*
 !/docs/cloud*/**
-!/docs/registry*
-!/docs/registry*/**
+/docs/registry
 !/docs/non-normative*
 !/docs/non-normative/groups*
 !/docs/non-normative/groups/system*

@@ -92,9 +92,8 @@ the `Opt-In` requirement level on the attribute.
 
 <!-- TODO(jsuereth) - make examples not break on changes to semconv -->
 
-For example, `server.address` is `Conditionally Required` by the
-[Database convention](../database/README.md) when available. When
-`network.peer.address` is available instead, instrumentation can do a DNS
+For example, `server.address` is `Conditionally Required` by a convention. When
+server IP address is available instead, instrumentation can do a DNS
 lookup, cache and populate `server.address`, but only if the user explicitly
 enables the instrumentation to do so, considering the performance issues that
 DNS lookups introduce.
@@ -133,5 +132,4 @@ Here are several examples of expensive operations to be avoided by default:
 - reading response stream to find `http.response.body.size` when
   `Content-Length` header is not available
 
-[DocumentStatus]:
-  https://opentelemetry.io/docs/specs/otel/document-status
+[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
