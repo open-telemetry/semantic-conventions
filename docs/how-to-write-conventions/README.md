@@ -179,7 +179,7 @@ Follow the [Entity Modeling Guide](resource-and-entities.md).
 The first step in defining a telemetry signal is to decide on what type of signal to use based on their strengths and weaknesses.
 
 - Event:
-  - Pro: Can Record the exact time when something with a large amount of detail.
+  - Pro: Can Record the exact time when something happened with ability to include a large amount of detail.
   - Con: Vendor support is not at the same level as other signals and can only be associated with the active span no other signal.
 - Metric:
   - Pro: Good for capturing measurements which are aggregated based on attributes.
