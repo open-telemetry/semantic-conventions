@@ -12,7 +12,7 @@ linkTitle: How to write conventions
   - [Defining attributes](#defining-attributes)
     - [Defining enum attribute members](#defining-enum-attribute-members)
   - [Defining entities](#defining-entities)
-  - [Defining Telemetry Signals](#Ddefining-telemetry-signals)
+  - [Defining Telemetry Signals](#defining-telemetry-signals)
     - [Defining spans](#defining-spans)
     - [Defining metrics](#defining-metrics)
     - [Defining events](#defining-events)
@@ -181,7 +181,7 @@ The first step in defining a telemetry signal is to decide on what type of signa
 - Event:
   - Pro: Can Record the exact time when something with a large amount of detail.
   - Con: Vendor support is not at the same level as other signals and can only be associated with the active span no other signal.
-- Metric: 
+- Metric:
   - Pro: Good for capturing measurements which are aggregated based on attributes.
   - Con: Usually lacks contextual information due to aggregation.
 - Trace:
