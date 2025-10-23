@@ -1,0 +1,16 @@
+groups:
+  - id: span.app.start.internal
+    type: span
+    span_kind: internal
+    brief: This span represents an application start operation.
+    note: |
+      **Span name:** MUST be `app.start`.
+
+      **Span kind** MUST be `INTERNAL`.
+
+      This span captures the time from user initiation (e.g., tapping the app icon or opening a link)
+      to the moment the app begins UI rendering.
+    stability: development
+    attributes:
+      - ref: app.start.type
+        requirement_level: required

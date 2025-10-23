@@ -86,6 +86,22 @@ groups:
           is larger in scope than individual widgets. Multiple screens can
           coexist on the same display simultaneously (e.g., split view on tablets).
         examples: ["MainActivity", "ProductDetailFragment", "ProfileView", "ProfileViewController"]
+      - id: app.start.type
+        type:
+          members:
+            - id: cold
+              value: "cold"
+              brief: App start from terminated state
+              note: The app is started from a terminated state, meaning no prior instance of the app is running.
+              stability: development
+            - id: warm
+              value: "warm"
+              brief: App start from background state
+              note: The app is started from the background, meaning an instance of the app is still in memory, but not active.
+              stability: development
+        stability: development
+        brief: The type of application start, indicating the state of the app when it was initiated.
+        examples: ["cold", "warm"]
       - id: app.widget.id
         type: string
         stability: development

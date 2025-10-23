@@ -18,6 +18,7 @@ Describes attributes related to client-side applications (e.g. web apps or mobil
 | <a id="app-screen-coordinate-y" href="#app-screen-coordinate-y">`app.screen.coordinate.y`</a> | int | The y (vertical) component of a screen coordinate, in screen pixels. | `12`; `99` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="app-screen-id" href="#app-screen-id">`app.screen.id`</a> | string | An identifier that uniquely differentiates this screen from other screens in the same application. [3] | `f9bc787d-ff05-48ad-90e1-fca1d46130b3`; `com.example.app.MainActivity`; `com.example.shop.ProductDetailFragment`; `MyApp.ProfileView`; `MyApp.ProfileViewController` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="app-screen-name" href="#app-screen-name">`app.screen.name`</a> | string | The name of an application screen. [4] | `MainActivity`; `ProductDetailFragment`; `ProfileView`; `ProfileViewController` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="app-start-type" href="#app-start-type">`app.start.type`</a> | string | The type of application start, indicating the state of the app when it was initiated. | `cold`; `warm` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="app-widget-id" href="#app-widget-id">`app.widget.id`</a> | string | An identifier that uniquely differentiates this widget from other widgets in the same application. [5] | `f9bc787d-ff05-48ad-90e1-fca1d46130b3`; `submit_order_1829` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="app-widget-name" href="#app-widget-name">`app.widget.name`</a> | string | The name of an application widget. [6] | `submit`; `attack`; `Clear Cart` | ![Development](https://img.shields.io/badge/-development-blue) |
 
@@ -48,3 +49,16 @@ More information about Android identifier best practices can be found in the [An
 **[5] `app.widget.id`:** A widget is an application component, typically an on-screen visual GUI element.
 
 **[6] `app.widget.name`:** A widget is an application component, typically an on-screen visual GUI element.
+
+---
+
+`app.start.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `cold` | App start from terminated state [7] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `warm` | App start from background state [8] | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**[7]:** The app is started from a terminated state, meaning no prior instance of the app is running.
+
+**[8]:** The app is started from the background, meaning an instance of the app is still in memory, but not active.
