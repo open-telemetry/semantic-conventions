@@ -249,6 +249,18 @@ They are likely to be siblings if there is an encompassing span.
 | `gen_ai.usage.output_tokens`    | `17`                                        |
 | `gen_ai.usage.input_tokens`     | `47`                                        |
 | `gen_ai.response.finish_reasons`| `["tool_calls"]`                            |
+| `gen_ai.tool.definitions`       | [`gen_ai.tool.definitions`](#gen-ai-tool-definitions-tool-call-span-0) |
+
+<span id="gen-ai-tool-definitions-tool-call-span-0">`gen_ai.tool.definitions` value</span>
+
+```json
+[
+  {
+    "type": "function",
+    "name": "get_weather"
+  }
+]
+```
 
 **Tool call:**
 
@@ -299,6 +311,7 @@ They are likely to be siblings if there is an encompassing span.
 | `gen_ai.response.finish_reasons`| `["tool_calls"]`                            |
 | `gen_ai.input.messages`         | [`gen_ai.input.messages`](#gen-ai-input-messages-tool-call-span-1) |
 | `gen_ai.output.messages`        | [`gen_ai.output.messages`](#gen-ai-output-messages-tool-call-span-1) |
+| `gen_ai.tool.definitions`       | [`gen_ai.tool.definitions`](#gen-ai-tool-definitions-tool-call-span-1) |
 
 <span id="gen-ai-input-messages-tool-call-span-1">`gen_ai.input.messages` value</span>
 
@@ -333,6 +346,30 @@ They are likely to be siblings if there is an encompassing span.
       }
     ],
     "finish_reason": "tool_call"
+  }
+]
+```
+
+<span id="gen-ai-tool-definitions-tool-call-span-1">`gen_ai.tool.definitions` value</span>
+
+```json
+[
+  {
+    "type": "function",
+    "name": "get_weather",
+    "description": "Get the weather in a given location",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "location": {
+          "type": "string",
+          "description": "The city and state, e.g. San Francisco, CA"
+        },
+        "required": [
+          "location"
+        ]
+      }
+    }
   }
 ]
 ```
