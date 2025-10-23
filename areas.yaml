@@ -104,6 +104,7 @@ areas:
     board: "https://github.com/orgs/open-telemetry/projects/85"
     labels:
       - area:entities
+      - area:cloud
     status:
       - accepting_contributions
       - active
