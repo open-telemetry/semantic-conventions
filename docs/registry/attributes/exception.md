@@ -20,6 +20,11 @@ This document defines the shared attributes used to report a single exception as
 
 Deprecated exception attributes.
 
-| Attribute | Type | Description | Examples | Stability |
+<details>
+<summary><b>Deprecated Attributes:</b></summary>
+
+| Key | Value Type | Summary | Example Values | Deprecation Explanation |
 |---|---|---|---|---|
-| <a id="exception-escaped" href="#exception-escaped">`exception.escaped`</a> | boolean | Indicates that the exception is escaping the scope of the span. |  | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>It's no longer recommended to record exceptions that are handled and do not escape the scope of a span. |
+| <a id="exception-escaped" href="#exception-escaped">`exception.escaped`</a> | boolean | Indicates that the exception is escaping the scope of the span. |  |  It's no longer recommended to record exceptions that are handled and do not escape the scope of a span.  |
+
+</details>

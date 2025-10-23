@@ -29,7 +29,12 @@ Describes the end user.
 
 Describes deprecated enduser attributes.
 
-| Attribute | Type | Description | Examples | Stability |
+<details>
+<summary><b>Deprecated Attributes:</b></summary>
+
+| Key | Value Type | Summary | Example Values | Deprecation Explanation |
 |---|---|---|---|---|
-| <a id="enduser-role" href="#enduser-role">`enduser.role`</a> | string | Deprecated, use `user.roles` instead. | `admin` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Uncategorized. |
-| <a id="enduser-scope" href="#enduser-scope">`enduser.scope`</a> | string | Deprecated, no replacement at this time. | `read:message, write:files` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Removed, no replacement at this time. |
+| <a id="enduser-role" href="#enduser-role">`enduser.role`</a> | string | Deprecated, use `user.roles` instead. | `admin` |  Uncategorized.  |
+| <a id="enduser-scope" href="#enduser-scope">`enduser.scope`</a> | string | Deprecated, no replacement at this time. | `read:message, write:files` |  Removed, no replacement at this time.  |
+
+</details>

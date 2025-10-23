@@ -46,11 +46,14 @@ The ID is assigned by the container runtime and can vary in different environmen
 
 Describes deprecated container attributes.
 
-| Attribute | Type | Description | Examples | Stability |
+<details>
+<summary><b>Deprecated Attributes:</b></summary>
+
+| Key | Value Type | Summary | Example Values | Deprecation Explanation |
 |---|---|---|---|---|
-| <a id="container-cpu-state" href="#container-cpu-state">`container.cpu.state`</a> | string | Deprecated, use `cpu.mode` instead. | `user`; `kernel` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `cpu.mode`. |
-| <a id="container-labels" href="#container-labels">`container.labels.<key>`</a> | string | Deprecated, use `container.label` instead. | `nginx` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `container.label`. |
-| <a id="container-runtime" href="#container-runtime">`container.runtime`</a> | string | The container runtime managing this container. | `docker`; `containerd`; `rkt` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `container.runtime.name`. |
+| <a id="container-cpu-state" href="#container-cpu-state">`container.cpu.state`</a> | string | Deprecated, use `cpu.mode` instead. | `user`; `kernel` |  Use `cpu.mode` instead.  |
+| <a id="container-labels" href="#container-labels">`container.labels.<key>`</a> | string | Deprecated, use `container.label` instead. | `nginx` |  Use `container.label` instead.  |
+| <a id="container-runtime" href="#container-runtime">`container.runtime`</a> | string | The container runtime managing this container. | `docker`; `containerd`; `rkt` |  Use `container.runtime.name` instead.  |
 
 ---
 
@@ -61,3 +64,5 @@ Describes deprecated container attributes.
 | `kernel` | When tasks of the cgroup are in kernel mode (Linux). When all container processes are in kernel mode (Windows). | ![Development](https://img.shields.io/badge/-development-blue) |
 | `system` | When CPU is used by the system (host OS) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `user` | When tasks of the cgroup are in user mode (Linux). When all container processes are in user mode (Windows). | ![Development](https://img.shields.io/badge/-development-blue) |
+
+</details>
