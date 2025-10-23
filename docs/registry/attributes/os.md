@@ -32,3 +32,12 @@ The operating system (OS) on which the process represented by this resource is r
 | `solaris` | SunOS, Oracle Solaris | ![Development](https://img.shields.io/badge/-development-blue) |
 | `windows` | Microsoft Windows | ![Development](https://img.shields.io/badge/-development-blue) |
 | `zos` | IBM z/OS | ![Development](https://img.shields.io/badge/-development-blue) |
+
+<details>
+<summary><b>Deprecated Values:</b></summary>
+
+| Value  | Description | Deprecation Explanation |
+|---|---|---|
+| `z_os` | IBM z/OS | Use `zos` value  instead. |
+
+</details>
