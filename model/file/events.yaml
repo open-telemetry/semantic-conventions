@@ -1,0 +1,24 @@
+groups:
+  - id: event.file.access
+    stability: experimental
+    type: event
+    name: file.access
+    brief: >
+      This event is recorded when a file is accessed.
+    attributes:
+      - ref: error.type
+      - ref: file.created
+      - ref: file.mode
+      - ref: file.attributes
+      - ref: file.path
+      - ref: file.size
+      - ref: file.owner.name
+      - ref: file.owner.id
+      - ref: file.origin_referrer_url
+      - ref: file.origin_url
+      - ref: process.pid
+        brief: Process id of the process that accessed the file.
+      - ref: process.user.name
+        brief: Process name of the process that accessed the file.
+      - ref: process.executable.name
+        brief: Executable file name of the process that accessed the file.
