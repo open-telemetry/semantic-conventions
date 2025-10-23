@@ -6,6 +6,9 @@
   - [GenAI client span when content capturing is disabled](#genai-client-span-when-content-capturing-is-disabled)
   - [GenAI client span when content capturing is enabled on span attributes](#genai-client-span-when-content-capturing-is-enabled-on-span-attributes)
   - [GenAI telemetry when content capturing is enabled on event attributes](#genai-telemetry-when-content-capturing-is-enabled-on-event-attributes)
+- [Multimodal chat completion](#multimodal-chat-completion)
+  - [Multimodal inputs example](#multimodal-inputs-example)
+  - [Multimodal output example](#multimodal-output-example)
 - [Tool calls (functions)](#tool-calls-functions)
   - [GenAI client spans when content capturing is disabled](#genai-client-spans-when-content-capturing-is-disabled)
   - [GenAI client spans when content capturing is enabled on span attributes](#genai-client-spans-when-content-capturing-is-enabled-on-span-attributes)
@@ -197,6 +200,96 @@ Event:
       }
     ],
     "finish_reason": "stop"
+  }
+]
+```
+
+## Multimodal chat completion
+
+Multimodal chat completions follow the same sequence and telemetry structure as [simple chat
+completion](#simple-chat-completion) above, but contain additional types of Parts in the
+`gen_ai.input.messages` and `gen_ai.output.messages` span/event attributes:
+
+- `blob` parts, which represent data sent inline to or from the model.
+- `uri` parts, which represent a reference to a remote file by URI.
+- `file` parts, which represent a reference to a pre-uploaded file by ID.
+
+These parts contain an optional `modality` field to capture the general category of the
+content, and an optional `mime_type` to capture the specific [IANA media
+type](https://www.iana.org/assignments/media-types/media-types.xhtml) of the content, if known.
+See the [normative JSON schema](../gen-ai-input-messages.json) for more details.
+
+### Multimodal inputs example
+
+```jsonc
+[
+  {
+    "role": "user",
+    "parts": [
+      {
+        "type": "text",
+        "content": "What is in the attached data?"
+      },
+      // A image with a URI
+      {
+        "type": "uri",
+        "modality": "image",
+        "mime_type": "image/png",
+        "uri": "https://raw.githubusercontent.com/open-telemetry/opentelemetry.io/refs/heads/main/static/img/logos/opentelemetry-horizontal-color.png"
+      },
+      // A video with a vendor specific URI
+      {
+        "type": "uri",
+        "modality": "video",
+        "mime_type": "video/mp4",
+        "uri": "gs://my-bucket/my-video.mp4"
+      },
+      // An image with opaque file ID e.g. the OpenAI files api
+      {
+        "type": "file",
+        "file_id": "provider_fileid_123"
+      },
+      // An image with unknown mime_type but known modality
+      {
+        "type": "file",
+        "modality": "image",
+        "file_id": "provider_fileid_123"
+      },
+      // An inline image
+      {
+        "type": "blob",
+        "modality": "image",
+        "mime_type": "image/png",
+        "content": "aGVsbG8gd29ybGQgaW1hZ2luZSB0aGlzIGlzIGFuIGltYWdlCg=="
+      },
+      // Inline audio
+      {
+        "type": "blob",
+        "modality": "audio",
+        "mime_type": "audio/wav",
+        "content": "aGVsbG8gd29ybGQgaW1hZ2luZSB0aGlzIGlzIGFuIGltYWdlCg=="
+      }
+    ]
+  }
+]
+```
+
+### Multimodal output example
+
+```jsonc
+[
+  {
+    "role": "assistant",
+    "finish_reason": "stop",
+    "parts": [
+      // Model generated an inline image
+      {
+        "type": "blob",
+        "modality": "image",
+        "mime_type": "image/jpg",
+        "content": "aGVsbG8gd29ybGQgaW1hZ2luZSB0aGlzIGlzIGFuIGltYWdlCg=="
+      }
+    ]
   }
 ]
 ```
