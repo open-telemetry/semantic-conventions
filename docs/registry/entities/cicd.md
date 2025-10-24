@@ -14,14 +14,17 @@
 **Description:** A pipeline is a series of automated steps that helps software teams deliver code.
 
 
-**Other Attributes:**
-
 > :warning: This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`cicd.pipeline.name`](/docs/registry/attributes/cicd.md) | string | The human readable name of the pipeline within a CI/CD system. | `Build and Test`; `Lint`; `Deploy Go Project`; `deploy_to_environment` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+
+| | Attribute | Type | Description | Examples | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|---|
+| **identity** | | | | | |
+| **other** | | | | | |
+| | [`cicd.pipeline.name`](/docs/registry/attributes/cicd.md) | string | The human readable name of the pipeline within a CI/CD system. | `Build and Test`; `Lint`; `Deploy Go Project`; `deploy_to_environment` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+
+
 
 ## CICD Pipeline Run
 
@@ -32,15 +35,18 @@
 **Description:** A pipeline run is a singular execution of a given pipeline's tasks.
 
 
-**Other Attributes:**
-
 > :warning: This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`cicd.pipeline.run.id`](/docs/registry/attributes/cicd.md) | string | The unique identifier of a pipeline run within a CI/CD system. | `120912` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`cicd.pipeline.run.url.full`](/docs/registry/attributes/cicd.md) | string | The [URL](https://wikipedia.org/wiki/URL) of the pipeline run, providing the complete address in order to locate and identify the pipeline run. | `https://github.com/open-telemetry/semantic-conventions/actions/runs/9753949763?pr=1075` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+
+| | Attribute | Type | Description | Examples | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|---|
+| **identity** | | | | | |
+| **other** | | | | | |
+| | [`cicd.pipeline.run.id`](/docs/registry/attributes/cicd.md) | string | The unique identifier of a pipeline run within a CI/CD system. | `120912` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| | [`cicd.pipeline.run.url.full`](/docs/registry/attributes/cicd.md) | string | The [URL](https://wikipedia.org/wiki/URL) of the pipeline run, providing the complete address in order to locate and identify the pipeline run. | `https://github.com/open-telemetry/semantic-conventions/actions/runs/9753949763?pr=1075` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+
+
 
 ## CICD Worker
 
@@ -53,15 +59,18 @@ A single pipeline run may be distributed across multiple workers. Any OpenTeleme
 For example, when a pipeline run involves several workers, its task run spans may reference the different `cicd.worker` resources corresponding to the workers that executed each task run. The pipeline run's parent span may instead reference the CICD controller as the `cicd.worker` resource.
 
 
-**Other Attributes:**
-
 > :warning: This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`cicd.worker.id`](/docs/registry/attributes/cicd.md) | string | The unique identifier of a worker within a CICD system. | `abc123`; `10.0.1.2`; `controller` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`cicd.worker.name`](/docs/registry/attributes/cicd.md) | string | The name of a worker within a CICD system. | `agent-abc`; `controller`; `Ubuntu LTS` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`cicd.worker.url.full`](/docs/registry/attributes/cicd.md) | string | The [URL](https://wikipedia.org/wiki/URL) of the worker, providing the complete address in order to locate and identify the worker. | `https://cicd.example.org/worker/abc123` | `Recommended` If available | ![Development](https://img.shields.io/badge/-development-blue) |
+
+| | Attribute | Type | Description | Examples | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|---|
+| **identity** | | | | | |
+| **other** | | | | | |
+| | [`cicd.worker.id`](/docs/registry/attributes/cicd.md) | string | The unique identifier of a worker within a CICD system. | `abc123`; `10.0.1.2`; `controller` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| | [`cicd.worker.name`](/docs/registry/attributes/cicd.md) | string | The name of a worker within a CICD system. | `agent-abc`; `controller`; `Ubuntu LTS` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| | [`cicd.worker.url.full`](/docs/registry/attributes/cicd.md) | string | The [URL](https://wikipedia.org/wiki/URL) of the worker, providing the complete address in order to locate and identify the worker. | `https://cicd.example.org/worker/abc123` | `Recommended` If available | ![Development](https://img.shields.io/badge/-development-blue) |
+
+
 
 <!-- markdownlint-restore -->

@@ -1,5 +1,11 @@
 {#- Macros for simplifying creating "Entity" documentation. -#}
+{% import 'requirement.j2' as requirement %}
 {% import 'stability.j2' as stability %}
+{% import 'notes.j2' as notes %}
+{% import 'attribute_macros.j2' as attrs %}
+{% import 'enum_macros.j2' as enums %}
+{% import 'sampling_macros.j2' as sampling %}
+{% import 'examples_macros.j2' as examples %}
 {%- import 'attribute_table.j2' as at -%}
 {#- Create registry URLs. -#}
 {% macro registry_url(id, registry) -%}
@@ -24,28 +30,32 @@
 
 **Description:** {{ entity.brief }}
 {%- endmacro %}
-{#- Render attribute tabnles for entities. -#}
-{% macro attributes(e) -%}
+{#- Render a single row on the entity table. -#}
+{% macro attribute_row(attribute, attribute_registry_base_url, lineage_attributes, notes) -%}
+| | {{ attrs.name_with_link(attribute, attribute_registry_base_url, lineage_attributes) }} | {{ attrs.type(attribute) }} | {{ attribute.brief | trim }}{{ notes.add({"note": attribute.note, "name": attrs.name(attribute)}) }} | {{ examples.format(attribute) | trim }} | {{ requirement.render({"level": attribute.requirement_level, "name": attrs.name(attribute)}, notes) | trim }} | {{ stability.badge(attribute.stability, attribute.deprecated, attribute.brief) | trim }} |
+{%- endmacro %}
+{#- Render attribute tables for entities. -#}
+{% macro attribute_table(attributes, attribute_registry_base_url, lineage_attributes, notes) %}{% for attribute in attributes | attribute_sort %}{{ attribute_row(attribute, attribute_registry_base_url, lineage_attributes, notes) }}
+{% endfor %}
+{%- endmacro %}
+{% macro all_attribute_table(e) -%}
 {%- set id_attrs = e.attributes | selectattr("role", "equalto", "identifying") -%}
 {%- set desc_attrs = e.attributes | selectattr("role", "equalto", "descriptive") -%}
 {%- set misc_attrs = e.attributes | rejectattr("role", "defined") -%}
-{%- if id_attrs | length > 0 %}
-
-**Identifying Attributes:**
-
-{{ at.generate(id_attrs, "", "/docs/registry/attributes", e.lineage.attributes) | trim }}
-{%- endif %}{%- if desc_attrs | length > 0 %}
-
-**Descriptive Attributes:**
-
-{{ at.generate(desc_attrs, "", "/docs/registry/attributes", e.lineage.attributes) | trim }}
-{%- endif %}{%- if misc_attrs | length > 0 %}
-
-**Other Attributes:**
+{%- if misc_attrs | length > 0 %}
 
 > :warning: This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
-{{ at.generate(misc_attrs, "", "/docs/registry/attributes", e.lineage.attributes) | trim}}
-{%- endif %}
+{% endif %}
+| | Attribute | Type | Description | Examples | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|---|
+| **identity** | | | | | |{%- if id_attrs | length > 0 %}
+{{ attribute_table(id_attrs, "/docs/registry/attributes", e.lineage.attributes, notes) | trim }}{% endif %}{%- if desc_attrs | length > 0 %}
+| **description** | | | | | |
+{{ attribute_table(desc_attrs, "/docs/registry/attributes", e.lineage.attributes, notes) | trim }}{% endif %}{%- if misc_attrs | length > 0 %}
+| **other** | | | | | |
+{{ attribute_table(misc_attrs, "/docs/registry/attributes", e.lineage.attributes, notes) | trim }}
+{% endif %}
+{{ notes.render() }}
 {%- endmacro %}

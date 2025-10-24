@@ -14,7 +14,7 @@
 {% macro generate_event(group) -%}
 {{ event.header(group) }}{{ generate_attributes(group) }}{{ event.body(group.body) }}{% endmacro -%}
 {%- macro generate_entity(group) -%}
-{{ entity.header(group) }}{{ entity.attributes(group) }}
+{{ entity.header(group) }}{{ entity.all_attribute_table(group) }}
 {% endmacro -%}
 {%- macro generate_metric(group, entity_registry_base_url) -%}
 {{ mt.generate(group, entity_registry_base_url) }}

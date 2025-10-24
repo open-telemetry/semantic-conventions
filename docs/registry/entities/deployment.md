@@ -14,14 +14,16 @@
 **Description:** The software deployment.
 
 
-**Other Attributes:**
-
 > :warning: This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`deployment.environment.name`](/docs/registry/attributes/deployment.md) | string | Name of the [deployment environment](https://wikipedia.org/wiki/Deployment_environment) (aka deployment tier). [1] | `staging`; `production` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+
+| | Attribute | Type | Description | Examples | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|---|
+| **identity** | | | | | |
+| **other** | | | | | |
+| | [`deployment.environment.name`](/docs/registry/attributes/deployment.md) | string | Name of the [deployment environment](https://wikipedia.org/wiki/Deployment_environment) (aka deployment tier). [1] | `staging`; `production` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+
 
 **[1] `deployment.environment.name`:** `deployment.environment.name` does not affect the uniqueness constraints defined through
 the `service.namespace`, `service.name` and `service.instance.id` resource attributes.
@@ -30,5 +32,6 @@ considered to be identifying the same service:
 
 - `service.name=frontend`, `deployment.environment.name=production`
 - `service.name=frontend`, `deployment.environment.name=staging`.
+
 
 <!-- markdownlint-restore -->

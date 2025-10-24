@@ -8,7 +8,7 @@
 {% for e in ctx.groups | sort(attribute='name') %}
 ## {{ e.name | title_case | acronym }}
 
-{{ entity.header(e) }}{{ entity.attributes(e) }}
+{{ entity.header(e) }}{{ entity.all_attribute_table(e) }}
 {% endfor %}
 <!-- markdownlint-restore -->
 
