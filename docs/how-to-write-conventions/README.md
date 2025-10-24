@@ -7,6 +7,7 @@ linkTitle: How to write conventions
 **Status**: [Development][DocumentStatus]
 
 <!-- toc -->
+
 - [Recomendations](#recomendations)
   - [Prototyping](#prototyping)
 - [Defining new conventions](#defining-new-conventions)
