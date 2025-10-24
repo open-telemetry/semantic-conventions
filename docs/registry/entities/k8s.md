@@ -5,6 +5,8 @@
 
 # K8s
 
+
+
 ## K8s Cluster
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
@@ -12,6 +14,8 @@
 **type:** `k8s.cluster`
 
 **Description:** A Kubernetes Cluster.
+
+
 
 **Other Attributes:**
 
@@ -46,6 +50,8 @@ Which states:
 Therefore, UIDs between clusters should be extremely unlikely to
 conflict.
 
+
+
 ## K8s Container
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
@@ -53,6 +59,8 @@ conflict.
 **type:** `k8s.container`
 
 **Description:** A container in a [PodTemplate](https://kubernetes.io/docs/concepts/workloads/pods/#pod-templates).
+
+
 
 **Other Attributes:**
 
@@ -65,6 +73,8 @@ conflict.
 | [`k8s.container.restart_count`](/docs/registry/attributes/k8s.md) | int | Number of times the container was restarted. This attribute can be used to identify a particular container (running or stopped) within a container spec. |  | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`k8s.container.status.last_terminated_reason`](/docs/registry/attributes/k8s.md) | string | Last terminated reason of the Container. | `Evicted`; `Error` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
+
+
 ## K8s Cronjob
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
@@ -72,6 +82,8 @@ conflict.
 **type:** `k8s.cronjob`
 
 **Description:** A Kubernetes CronJob object.
+
+
 
 **Other Attributes:**
 
@@ -99,6 +111,8 @@ conflict.
 - A label `automated` with empty string value SHOULD be recorded as
   the `k8s.cronjob.label.automated` attribute with value `""`.
 
+
+
 ## K8s Daemonset
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
@@ -106,6 +120,8 @@ conflict.
 **type:** `k8s.daemonset`
 
 **Description:** A Kubernetes DaemonSet object.
+
+
 
 **Other Attributes:**
 
@@ -133,6 +149,8 @@ conflict.
 - A label `data` with empty string value SHOULD be recorded as
   the `k8s.daemonset.label.injected` attribute with value `""`.
 
+
+
 ## K8s Deployment
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
@@ -140,6 +158,8 @@ conflict.
 **type:** `k8s.deployment`
 
 **Description:** A Kubernetes Deployment object.
+
+
 
 **Other Attributes:**
 
@@ -167,6 +187,8 @@ conflict.
 - A label `injected` with empty string value SHOULD be recorded as
   the `k8s.deployment.label.injected` attribute with value `""`.
 
+
+
 ## K8s Hpa
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
@@ -174,6 +196,8 @@ conflict.
 **type:** `k8s.hpa`
 
 **Description:** A Kubernetes HorizontalPodAutoscaler object.
+
+
 
 **Other Attributes:**
 
@@ -194,6 +218,8 @@ conflict.
 
 **[10] `k8s.hpa.scaletargetref.name`:** This maps to the `name` field in the `scaleTargetRef` of the HPA spec.
 
+
+
 ## K8s Job
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
@@ -201,6 +227,8 @@ conflict.
 **type:** `k8s.job`
 
 **Description:** A Kubernetes Job object.
+
+
 
 **Other Attributes:**
 
@@ -228,6 +256,8 @@ conflict.
 - A label `data` with empty string value SHOULD be recorded as
   the `k8s.job.label.automated` attribute with value `""`.
 
+
+
 ## K8s Namespace
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
@@ -235,6 +265,8 @@ conflict.
 **type:** `k8s.namespace`
 
 **Description:** A Kubernetes Namespace.
+
+
 
 **Other Attributes:**
 
@@ -261,6 +293,8 @@ conflict.
 - A label `data` with empty string value SHOULD be recorded as
   the `k8s.namespace.label.data` attribute with value `""`.
 
+
+
 ## K8s Node
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
@@ -268,6 +302,8 @@ conflict.
 **type:** `k8s.node`
 
 **Description:** A Kubernetes Node object.
+
+
 
 **Other Attributes:**
 
@@ -295,6 +331,8 @@ conflict.
 - A label `data` with empty string value SHOULD be recorded as
   the `k8s.node.label.data` attribute with value `""`.
 
+
+
 ## K8s Pod
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
@@ -302,6 +340,8 @@ conflict.
 **type:** `k8s.pod`
 
 **Description:** A Kubernetes Pod object.
+
+
 
 **Other Attributes:**
 
@@ -333,6 +373,8 @@ conflict.
 - A label `data` with empty string value SHOULD be recorded as
   the `k8s.pod.label.data` attribute with value `""`.
 
+
+
 ## K8s Replicaset
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
@@ -340,6 +382,8 @@ conflict.
 **type:** `k8s.replicaset`
 
 **Description:** A Kubernetes ReplicaSet object.
+
+
 
 **Other Attributes:**
 
@@ -367,6 +411,8 @@ conflict.
 - A label `injected` with empty string value SHOULD be recorded as
   the `k8s.replicaset.label.injected` attribute with value `""`.
 
+
+
 ## K8s Replicationcontroller
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
@@ -374,6 +420,8 @@ conflict.
 **type:** `k8s.replicationcontroller`
 
 **Description:** A Kubernetes ReplicationController object.
+
+
 
 **Other Attributes:**
 
@@ -385,6 +433,8 @@ conflict.
 | [`k8s.replicationcontroller.name`](/docs/registry/attributes/k8s.md) | string | The name of the replication controller. | `opentelemetry` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`k8s.replicationcontroller.uid`](/docs/registry/attributes/k8s.md) | string | The UID of the replication controller. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
+
+
 ## K8s Resourcequota
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
@@ -392,6 +442,8 @@ conflict.
 **type:** `k8s.resourcequota`
 
 **Description:** A Kubernetes ResourceQuota object.
+
+
 
 **Other Attributes:**
 
@@ -403,6 +455,8 @@ conflict.
 | [`k8s.resourcequota.name`](/docs/registry/attributes/k8s.md) | string | The name of the resource quota. | `opentelemetry` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`k8s.resourcequota.uid`](/docs/registry/attributes/k8s.md) | string | The UID of the resource quota. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
+
+
 ## K8s Statefulset
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
@@ -410,6 +464,8 @@ conflict.
 **type:** `k8s.statefulset`
 
 **Description:** A Kubernetes StatefulSet object.
+
+
 
 **Other Attributes:**
 

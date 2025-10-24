@@ -5,13 +5,17 @@
 
 # Service
 
+
+
 ## Service
 
-**Status:** ![Stable](https://img.shields.io/badge/-stable-lightgreen)
+**Status:** ![Mixed](https://img.shields.io/badge/-mixed-yellow)
 
 **type:** `service`
 
 **Description:** A service instance.
+
+
 
 **Identifying Attributes:**
 

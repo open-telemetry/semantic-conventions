@@ -5,6 +5,8 @@
 
 # Android
 
+
+
 ## Android
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
@@ -12,6 +14,8 @@
 **type:** `android`
 
 **Description:** The Android platform on which the Android application is running.
+
+
 
 **Other Attributes:**
 

@@ -5,6 +5,8 @@
 
 # App
 
+
+
 ## App
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
@@ -12,6 +14,8 @@
 **type:** `app`
 
 **Description:** An app used directly by end users — like mobile, web, or desktop.
+
+
 
 **Identifying Attributes:**
 

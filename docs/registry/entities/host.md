@@ -5,6 +5,8 @@
 
 # Host
 
+
+
 ## Host
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
@@ -12,6 +14,8 @@
 **type:** `host`
 
 **Description:** A host is defined as a computing instance. For example, physical servers, virtual machines, switches or disk array.
+
+
 
 **Other Attributes:**
 
@@ -75,6 +79,8 @@ privileged lookup of `host.id` is required, the value should be injected via the
 | `s390x` | IBM z/Architecture | ![Development](https://img.shields.io/badge/-development-blue) |
 | `x86` | 32-bit x86 | ![Development](https://img.shields.io/badge/-development-blue) |
 
+
+
 ## Host CPU
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
@@ -82,6 +88,8 @@ privileged lookup of `host.id` is required, the value should be injected via the
 **type:** `host.cpu`
 
 **Description:** A host's CPU information
+
+
 
 **Other Attributes:**
 

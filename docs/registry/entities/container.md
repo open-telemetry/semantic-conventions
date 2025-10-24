@@ -5,6 +5,8 @@
 
 # Container
 
+
+
 ## Container
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
@@ -12,6 +14,8 @@
 **type:** `container`
 
 **Description:** A container instance.
+
+
 
 **Other Attributes:**
 
@@ -35,6 +39,8 @@ An example can be found in [Example Image Manifest](https://github.com/openconta
 
 **[3] `container.command`:** If using embedded credentials or sensitive data, it is recommended to remove them to prevent potential leakage.
 
+
+
 ## Container Image
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
@@ -42,6 +48,8 @@ An example can be found in [Example Image Manifest](https://github.com/openconta
 **type:** `container.image`
 
 **Description:** The image used for the container.
+
+
 
 **Other Attributes:**
 
@@ -61,6 +69,8 @@ The ID is assigned by the container runtime and can vary in different environmen
 
 **[5] `container.image.repo_digests`:** [Docker](https://docs.docker.com/reference/api/engine/version/v1.43/#tag/Image/operation/ImageInspect) and [CRI](https://github.com/kubernetes/cri-api/blob/c75ef5b473bbe2d0a4fc92f82235efd665ea8e9f/pkg/apis/runtime/v1/api.proto#L1237-L1238) report those under the `RepoDigests` field.
 
+
+
 ## Container Runtime
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
@@ -68,6 +78,8 @@ The ID is assigned by the container runtime and can vary in different environmen
 **type:** `container.runtime`
 
 **Description:** The runtime being used to run the container
+
+
 
 **Identifying Attributes:**
 

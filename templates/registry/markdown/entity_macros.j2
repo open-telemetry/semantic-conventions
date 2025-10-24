@@ -1,6 +1,54 @@
+{#- Macros for simplifying creating "Entity" documentation. -#}
+{% import 'stability.j2' as stability %}
+{%- import 'attribute_table.j2' as at -%}
+{#- Create registry URLs. -#}
 {% macro registry_url(id, registry) -%}
 {{registry}}/{{ id | split_id | list | first | kebab_case }}.md#{{ id | kebab_case }}
 {%- endmacro %}
 {% macro print_associations(associations, registry) -%}
 {%- for e in associations %}{%if loop.first == false %}; {% endif %}[`{{ e | trim }}`]({{registry_url(e, registry)}}){%- endfor %}
 {%- endmacro %}
+{#- Figure out actual entity stability. -#}
+{% macro real_stability(resource) %}
+{% if resource.attributes | map(attribute='stability') | unique | length > 1 -%}
+{{ stability.badge("mixed", "", "") }}
+{%- else -%}
+{{ stability.badge(resource.stability, resource.deprecated, resource.brief) }}
+{%- endif %}
+{% endmacro %}
+{#- Header for snippets. -#}
+{% macro header(entity) %}
+**Status:** {{ real_stability(entity) | trim }}
+
+**type:** `{{ entity.name }}`
+
+**Description:** {{ entity.brief }}
+{% endmacro %}
+{#- Render attribute tabnles for entities. -#}
+{% macro attributes(e) %}
+{%- set id_attrs = e.attributes | selectattr("role", "equalto", "identifying") -%}
+{%- set desc_attrs = e.attributes | selectattr("role", "equalto", "descriptive") -%}
+{%- set misc_attrs = e.attributes | rejectattr("role", "defined") -%}
+
+{%- if id_attrs | length > 0 %}
+
+**Identifying Attributes:**
+
+{{ at.generate(id_attrs, "", "/docs/registry/attributes", e.lineage.attributes) | trim }}
+{%- endif %}
+{%- if desc_attrs | length > 0 %}
+
+**Descriptive Attributes:**
+
+{{ at.generate(desc_attrs, "", "/docs/registry/attributes", e.lineage.attributes) | trim }}
+{%- endif %}
+{%- if misc_attrs | length > 0 %}
+
+**Other Attributes:**
+
+> :warning: This entity definition contains attributes without a role.
+> Stable Entities MUST NOT have attributes without a defined role.
+
+{{ at.generate(misc_attrs, "", "/docs/registry/attributes", e.lineage.attributes) | trim}}
+{%- endif %}
+{% endmacro %}

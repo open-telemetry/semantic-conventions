@@ -5,6 +5,8 @@
 
 # Process
 
+
+
 ## Process
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
@@ -12,6 +14,8 @@
 **type:** `process`
 
 **Description:** An operating system process.
+
+
 
 **Other Attributes:**
 
@@ -42,6 +46,8 @@
 
 **[6] `process.linux.cgroup`:** Control groups (cgroups) are a kernel feature used to organize and manage process resources. This attribute provides the path(s) to the cgroup(s) associated with the process, which should match the contents of the [/proc/\[PID\]/cgroup](https://man7.org/linux/man-pages/man7/cgroups.7.html) file.
 
+
+
 ## Process Runtime
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
@@ -49,6 +55,8 @@
 **type:** `process.runtime`
 
 **Description:** The single (language) runtime instance which is monitored.
+
+
 
 **Other Attributes:**
 

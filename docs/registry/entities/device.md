@@ -5,6 +5,8 @@
 
 # Device
 
+
+
 ## Device
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
@@ -12,6 +14,8 @@
 **type:** `device`
 
 **Description:** The device on which the process represented by this resource is running.
+
+
 
 **Other Attributes:**
 

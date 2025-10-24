@@ -5,6 +5,8 @@
 
 # AWS
 
+
+
 ## AWS ECS
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
@@ -12,6 +14,8 @@
 **type:** `aws.ecs`
 
 **Description:** Entities used by AWS Elastic Container Service (ECS).
+
+
 
 **Other Attributes:**
 
@@ -37,6 +41,8 @@
 | `ec2` | Amazon EC2 | ![Development](https://img.shields.io/badge/-development-blue) |
 | `fargate` | Amazon Fargate | ![Development](https://img.shields.io/badge/-development-blue) |
 
+
+
 ## AWS EKS
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
@@ -44,6 +50,8 @@
 **type:** `aws.eks`
 
 **Description:** Entities used by AWS Elastic Kubernetes Service (EKS).
+
+
 
 **Other Attributes:**
 
@@ -54,6 +62,8 @@
 |---|---|---|---|---|---|
 | [`aws.eks.cluster.arn`](/docs/registry/attributes/aws.md) | string | The ARN of an EKS cluster. | `arn:aws:ecs:us-west-2:123456789123:cluster/my-cluster` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
+
+
 ## AWS Log
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
@@ -61,6 +71,8 @@
 **type:** `aws.log`
 
 **Description:** Entities specific to Amazon Web Services.
+
+
 
 **Other Attributes:**
 

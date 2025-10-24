@@ -5,6 +5,8 @@
 
 # OTel
 
+
+
 ## OTel Scope
 
 **Status:** ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Obsoleted.
@@ -12,6 +14,7 @@
 **type:** `otel.scope`
 
 **Description:** Attributes used by non-OTLP exporters to represent OpenTelemetry Scope's concepts.
+
 
 **Other Attributes:**
 
