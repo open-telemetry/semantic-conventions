@@ -9,10 +9,10 @@ data (events, metrics, spans, etc.).
 
 In modern, distributed, application architectures:
 
-- An `service.namespace` is an entire system of components designed for end-users
-  or other applications to leverage.
-- A `service` is one of the distinct components that make up the application,
-  typically running as a separate process or microservice.
+- An `service.namespace` is an entire system of components designed for
+  end-users or other applications to leverage.
+- A `service` is one of the logical, distinct components that make up the
+  application, typically running as a separate process or microservice.
 - A `service.instance` is a distinct instance of a service component, e.g. a
   specific kubernetes container that is part of a kubernetes deployment which
   offers a service.
@@ -58,7 +58,7 @@ between them. Additionally, there's a single database instance.
 
 **type:** `service`
 
-**Description:** A logical, distinct, component that makes up an Application, e.g. a microservice.
+**Description:** A logical, distinct, component that makes up a system.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -86,7 +86,7 @@ between them. Additionally, there's a single database instance.
 
 **type:** `service.instance`
 
-**Description:** A service instance.
+**Description:** A distinct instance of a service component.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|

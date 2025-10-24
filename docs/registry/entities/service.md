@@ -11,7 +11,7 @@
 
 **type:** `service`
 
-**Description:** A logical, distinct, component that makes up an Application, e.g. a microservice.
+**Description:** A logical, distinct, component that makes up a system.
 
 **Identifying Attributes:**
 
@@ -33,7 +33,7 @@
 
 **type:** `service.instance`
 
-**Description:** A service instance.
+**Description:** A distinct instance of a service component.
 
 **Identifying Attributes:**
 

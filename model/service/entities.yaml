@@ -3,8 +3,11 @@ groups:
     type: entity
     name: service
     brief: >
-      A logical, distinct, component that makes up an Application,
-      e.g. a microservice.
+      A logical, distinct, component that makes up a system.
+    note: >
+      A `service` is a logical component used in a system, product or
+      application. Examples include a microservice, a database,
+      a kubernetes deployment.
     stability: stable
     attributes:
       - ref: service.name
@@ -16,7 +19,11 @@ groups:
     type: entity
     name: service.instance
     brief: >
-      A service instance.
+      A distinct instance of a service component.
+    note: >
+      A `service.instance` is a specific instance of a component. For example,
+      a specific kubernetes container that is part of a kuebrnetes deployment
+      that offers a service.
     stability: development
     attributes:
       - ref: service.instance.id
@@ -27,6 +34,9 @@ groups:
     name: service.namespace
     brief: >
       A system of components designed for end-users or other applications.
+    note: >
+      A `service.namespace` is system, product or application that is
+      composed of services.
     stability: development
     attributes:
       - ref: service.namespace
