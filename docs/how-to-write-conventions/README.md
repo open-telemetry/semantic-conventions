@@ -8,7 +8,8 @@ linkTitle: How to write conventions
 
 <!-- toc -->
 
-- [Recomendations](#recomendations)
+- [Recomendations and Requirements](#recomendations-and-requirements)
+  - [Addition to Semantic Conventions Spec](#addition-to-semantic-conventions-spec)
   - [Prototyping](#prototyping)
 - [Defining new conventions](#defining-new-conventions)
   - [Defining attributes](#defining-attributes)
@@ -26,7 +27,15 @@ linkTitle: How to write conventions
 This document describes requirements, recommendations, and best practices on how to define conventions
 for new areas or make substantial changes to the existing ones.
 
-## Recomendations
+## Recomendations and Requirements
+
+### Addition to Semantic Conventions Spec
+
+- New conventions MUST have a group of codeowners. See [project management](https://github.com/open-telemetry/community/blob/main/project-management.md) for more details.
+  <!-- TODO: add CI check for CODEOWNERS file (when a new area is added) -->
+- New conventions SHOULD be defined in YAML files. See [YAML Model for Semantic Conventions](/model/README.md) for the details.
+- New conventions SHOULD be defined with `development` stability level.
+- New conventions SHOULD include telemetry signal definitions (spans, metrics, events, resources, profiles) and MAY include new attribute definitions.
 
 ### Prototyping
 
@@ -49,12 +58,6 @@ It is strongly recommended to prototype proposed conventions in one or more inst
 Please read [T-Shaped Signals](t-shaped-signals.md)
 for guidance on how to approach creating Semantic Conventions through defining
 key use cases for conventions.
-
-- New conventions MUST have a group of codeowners. See [project management](https://github.com/open-telemetry/community/blob/main/project-management.md) for more details.
-  <!-- TODO: add CI check for CODEOWNERS file (when a new area is added) -->
-- New conventions SHOULD be defined in YAML files. See [YAML Model for Semantic Conventions](/model/README.md) for the details.
-- New conventions SHOULD be defined with `development` stability level.
-- New conventions SHOULD include telemetry signal definitions (spans, metrics, events, resources, profiles) and MAY include new attribute definitions.
 
 ### Defining attributes
 
