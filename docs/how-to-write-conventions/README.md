@@ -7,7 +7,8 @@ linkTitle: How to write conventions
 **Status**: [Development][DocumentStatus]
 
 <!-- toc -->
-
+- [Recomendations](#recomendations)
+  - [Prototyping](#prototyping)
 - [Defining new conventions](#defining-new-conventions)
   - [Defining attributes](#defining-attributes)
     - [Defining enum attribute members](#defining-enum-attribute-members)
@@ -16,8 +17,6 @@ linkTitle: How to write conventions
     - [Defining spans](#defining-spans)
     - [Defining metrics](#defining-metrics)
     - [Defining events](#defining-events)
-- [Recomendations](#recomendations)
-  - [Prototyping](#prototyping)
 - [Stabilizing existing conventions](#stabilizing-existing-conventions)
   - [Migration plan](#migration-plan)
 
@@ -25,6 +24,20 @@ linkTitle: How to write conventions
 
 This document describes requirements, recommendations, and best practices on how to define conventions
 for new areas or make substantial changes to the existing ones.
+
+## Recomendations
+
+### Prototyping
+
+It is strongly recommended to prototype proposed conventions in one or more instrumentations and:
+
+- validate the feasibility of collecting the proposed telemetry and attributes, ensuring the information is available and can be gathered with reasonable overhead,
+
+- confirm that the proposed terminology applies across the diverse libraries and technologies covered by the conventions,
+
+- provide actionable guidance to instrumentation authors on when and how to collect attributes and record telemetry,
+
+- evaluate how the new or updated telemetry integrates with other instrumentation layers, identifying gaps, duplication, or opportunities to improve the end-user experience.
 
 ## Defining new conventions
 
@@ -176,18 +189,17 @@ Follow the [Entity Modeling Guide](resource-and-entities.md).
 
 ### Defining Telemetry Signals
 
-The first step in defining a telemetry signal is to decide on what type of signal to use based on their strengths and weaknesses.
+The first step in defining a telemetry signal is to decide on what type of signal to use based on their strengths and weaknesses,
+as well as what you want to achieve.
 
-- Event:
-  - Pro: Can Record the exact time when something happened with ability to include a large amount of detail.
-  - Con: Vendor support is not at the same level as other signals and can only be associated with the active span no other signal.
-- Metric:
-  - Pro: Good for capturing measurements which are aggregated based on attributes.
-  - Con: Usually lacks contextual information due to aggregation.
-- Trace:
-  - Pro: Allows for the visualization of when an operation/process is running including start/stop as well as,
-    what children both local and remote are performed as a part of this operation.
-  - Con: Only emitted once trace is completed and lacks granularity to see what was happening when during the operation.
+Here are some rules to guide you in choosing the correct signal type:
+
+- I want to debug/investigate the operations which are being performed including hoe long. Use a span.
+- I want to see what operations are triggered from another operation. Use a span.
+- I want to analyze how long operations take to complete. Use a metric.
+- I want to see how much/many of a resource is used/available. Use a metric.
+- I want to see when something happened ie state changed. Use an event.
+- I want to capture the time between state changes within an operation. Use an event.
 
 It could very well be that you end up using multiple, if not all of the signal types and that is ok.
 It is all about selecting the right signal type for your needs.
@@ -203,20 +215,6 @@ TBD
 #### Defining events
 
 TBD
-
-## Recomendations
-
-### Prototyping
-
-It is strongly recommended to prototype proposed conventions in one or more instrumentations and:
-
-- validate the feasibility of collecting the proposed telemetry and attributes, ensuring the information is available and can be gathered with reasonable overhead,
-
-- confirm that the proposed terminology applies across the diverse libraries and technologies covered by the conventions,
-
-- provide actionable guidance to instrumentation authors on when and how to collect attributes and record telemetry,
-
-- evaluate how the new or updated telemetry integrates with other instrumentation layers, identifying gaps, duplication, or opportunities to improve the end-user experience.
 
 ## Stabilizing existing conventions
 
