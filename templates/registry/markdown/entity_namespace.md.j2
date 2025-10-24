@@ -5,13 +5,10 @@
 {%- import 'entity_macros.j2' as entity %}
 
 # {{ ctx.id | title_case | acronym }}
-
 {% for e in ctx.groups | sort(attribute='name') %}
-
 ## {{ e.name | title_case | acronym }}
 
-{{ entity.header(e) }}
-{{ entity.attributes(e) }}
+{{ entity.header(e) }}{{ entity.attributes(e) }}
 {% endfor %}
 <!-- markdownlint-restore -->
 

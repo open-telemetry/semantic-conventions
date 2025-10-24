@@ -5,8 +5,6 @@
 
 # Process
 
-
-
 ## Process
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
@@ -14,7 +12,6 @@
 **type:** `process`
 
 **Description:** An operating system process.
-
 
 
 **Other Attributes:**
@@ -46,8 +43,6 @@
 
 **[6] `process.linux.cgroup`:** Control groups (cgroups) are a kernel feature used to organize and manage process resources. This attribute provides the path(s) to the cgroup(s) associated with the process, which should match the contents of the [/proc/\[PID\]/cgroup](https://man7.org/linux/man-pages/man7/cgroups.7.html) file.
 
-
-
 ## Process Runtime
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
@@ -55,7 +50,6 @@
 **type:** `process.runtime`
 
 **Description:** The single (language) runtime instance which is monitored.
-
 
 
 **Other Attributes:**
@@ -68,6 +62,5 @@
 | [`process.runtime.description`](/docs/registry/attributes/process.md) | string | An additional description about the runtime of the process, for example a specific vendor customization of the runtime environment. | `Eclipse OpenJ9 Eclipse OpenJ9 VM openj9-0.21.0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`process.runtime.name`](/docs/registry/attributes/process.md) | string | The name of the runtime of this process. | `OpenJDK Runtime Environment` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`process.runtime.version`](/docs/registry/attributes/process.md) | string | The version of the runtime of this process, as returned by the runtime without modification. | `14.0.2` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-
 
 <!-- markdownlint-restore -->

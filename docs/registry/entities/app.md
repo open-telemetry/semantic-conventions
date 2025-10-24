@@ -5,8 +5,6 @@
 
 # App
 
-
-
 ## App
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
@@ -14,7 +12,6 @@
 **type:** `app`
 
 **Description:** An app used directly by end users — like mobile, web, or desktop.
-
 
 
 **Identifying Attributes:**
@@ -49,6 +46,5 @@ For Android, examples of `app.installation.id` implementations include:
 - [`Settings.getString(Settings.Secure.ANDROID_ID)`](https://developer.android.com/reference/android/provider/Settings.Secure#ANDROID_ID).
 
 More information about Android identifier best practices can be found in the [Android user data IDs guide](https://developer.android.com/training/articles/user-data-ids).
-
 
 <!-- markdownlint-restore -->

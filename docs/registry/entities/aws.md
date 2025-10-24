@@ -5,8 +5,6 @@
 
 # AWS
 
-
-
 ## AWS ECS
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
@@ -14,7 +12,6 @@
 **type:** `aws.ecs`
 
 **Description:** Entities used by AWS Elastic Container Service (ECS).
-
 
 
 **Other Attributes:**
@@ -41,8 +38,6 @@
 | `ec2` | Amazon EC2 | ![Development](https://img.shields.io/badge/-development-blue) |
 | `fargate` | Amazon Fargate | ![Development](https://img.shields.io/badge/-development-blue) |
 
-
-
 ## AWS EKS
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
@@ -50,7 +45,6 @@
 **type:** `aws.eks`
 
 **Description:** Entities used by AWS Elastic Kubernetes Service (EKS).
-
 
 
 **Other Attributes:**
@@ -62,8 +56,6 @@
 |---|---|---|---|---|---|
 | [`aws.eks.cluster.arn`](/docs/registry/attributes/aws.md) | string | The ARN of an EKS cluster. | `arn:aws:ecs:us-west-2:123456789123:cluster/my-cluster` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
-
-
 ## AWS Log
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
@@ -71,7 +63,6 @@
 **type:** `aws.log`
 
 **Description:** Entities specific to Amazon Web Services.
-
 
 
 **Other Attributes:**
@@ -91,6 +82,5 @@
 **[2] `aws.log.group.names`:** Multiple log groups must be supported for cases like multi-container applications, where a single application has sidecar containers, and each write to their own log group.
 
 **[3] `aws.log.stream.arns`:** See the [log stream ARN format documentation](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/iam-access-control-overview-cwl.html#CWL_ARN_Format). One log group can contain several log streams, so these ARNs necessarily identify both a log group and a log stream.
-
 
 <!-- markdownlint-restore -->

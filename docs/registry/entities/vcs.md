@@ -5,8 +5,6 @@
 
 # VCS
 
-
-
 ## VCS Ref
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
@@ -14,7 +12,6 @@
 **type:** `vcs.ref`
 
 **Description:** A reference to a specific version in the Version Control System.
-
 
 
 **Other Attributes:**
@@ -52,8 +49,6 @@ revision based on the VCS system and situational context.
 | `branch` | [branch](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddefbranchabranch) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `tag` | [tag](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddeftagatag) | ![Development](https://img.shields.io/badge/-development-blue) |
 
-
-
 ## VCS Repo
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
@@ -61,7 +56,6 @@ revision based on the VCS system and situational context.
 **type:** `vcs.repo`
 
 **Description:** A repository in the Version Control System.
-
 
 
 **Other Attributes:**
@@ -80,6 +74,5 @@ the same backends.
 
 **[4] `vcs.repository.url.full`:** In Git Version Control Systems, the canonical URL SHOULD NOT include
 the `.git` extension.
-
 
 <!-- markdownlint-restore -->

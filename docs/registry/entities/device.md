@@ -5,8 +5,6 @@
 
 # Device
 
-
-
 ## Device
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
@@ -14,7 +12,6 @@
 **type:** `device`
 
 **Description:** The device on which the process represented by this resource is running.
-
 
 
 **Other Attributes:**
@@ -51,6 +48,5 @@ More information about Android identifier best practices can be found in the [An
 > Any instrumentation providing this identifier MUST implement it as an opt-in feature.
 >
 > See [`app.installation.id`](/docs/registry/attributes/app.md#app-installation-id) for a more privacy-preserving alternative.
-
 
 <!-- markdownlint-restore -->

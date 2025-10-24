@@ -5,8 +5,6 @@
 
 # Deployment
 
-
-
 ## Deployment
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
@@ -14,7 +12,6 @@
 **type:** `deployment`
 
 **Description:** The software deployment.
-
 
 
 **Other Attributes:**
@@ -33,6 +30,5 @@ considered to be identifying the same service:
 
 - `service.name=frontend`, `deployment.environment.name=production`
 - `service.name=frontend`, `deployment.environment.name=staging`.
-
 
 <!-- markdownlint-restore -->

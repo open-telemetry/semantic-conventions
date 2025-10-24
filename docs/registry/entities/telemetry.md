@@ -5,8 +5,6 @@
 
 # Telemetry
 
-
-
 ## Telemetry Distro
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
@@ -14,7 +12,6 @@
 **type:** `telemetry.distro`
 
 **Description:** The distribution of telemetry SDK used to capture data recorded by the instrumentation libraries.
-
 
 
 **Other Attributes:**
@@ -30,8 +27,6 @@
 **[1] `telemetry.distro.name`:** Official auto instrumentation agents and distributions SHOULD set the `telemetry.distro.name` attribute to
 a string starting with `opentelemetry-`, e.g. `opentelemetry-java-instrumentation`.
 
-
-
 ## Telemetry Sdk
 
 **Status:** ![Stable](https://img.shields.io/badge/-stable-lightgreen)
@@ -39,7 +34,6 @@ a string starting with `opentelemetry-`, e.g. `opentelemetry-java-instrumentatio
 **type:** `telemetry.sdk`
 
 **Description:** The telemetry SDK used to capture data recorded by the instrumentation libraries.
-
 
 
 **Identifying Attributes:**
@@ -80,6 +74,5 @@ All custom identifiers SHOULD be stable across different versions of an implemen
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`telemetry.sdk.version`](/docs/registry/attributes/telemetry.md) | string | The version string of the telemetry SDK. | `1.2.3` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
 
 <!-- markdownlint-restore -->

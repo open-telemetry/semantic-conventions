@@ -17,32 +17,29 @@
 {%- endif %}
 {% endmacro %}
 {#- Header for snippets. -#}
-{% macro header(entity) %}
+{% macro header(entity) -%}
 **Status:** {{ real_stability(entity) | trim }}
 
 **type:** `{{ entity.name }}`
 
 **Description:** {{ entity.brief }}
-{% endmacro %}
+{%- endmacro %}
 {#- Render attribute tabnles for entities. -#}
-{% macro attributes(e) %}
+{% macro attributes(e) -%}
 {%- set id_attrs = e.attributes | selectattr("role", "equalto", "identifying") -%}
 {%- set desc_attrs = e.attributes | selectattr("role", "equalto", "descriptive") -%}
 {%- set misc_attrs = e.attributes | rejectattr("role", "defined") -%}
-
 {%- if id_attrs | length > 0 %}
 
 **Identifying Attributes:**
 
 {{ at.generate(id_attrs, "", "/docs/registry/attributes", e.lineage.attributes) | trim }}
-{%- endif %}
-{%- if desc_attrs | length > 0 %}
+{%- endif %}{%- if desc_attrs | length > 0 %}
 
 **Descriptive Attributes:**
 
 {{ at.generate(desc_attrs, "", "/docs/registry/attributes", e.lineage.attributes) | trim }}
-{%- endif %}
-{%- if misc_attrs | length > 0 %}
+{%- endif %}{%- if misc_attrs | length > 0 %}
 
 **Other Attributes:**
 
@@ -51,4 +48,4 @@
 
 {{ at.generate(misc_attrs, "", "/docs/registry/attributes", e.lineage.attributes) | trim}}
 {%- endif %}
-{% endmacro %}
+{%- endmacro %}

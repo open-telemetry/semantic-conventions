@@ -5,8 +5,6 @@
 
 # GCP
 
-
-
 ## GCP Apphub Application
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
@@ -14,7 +12,6 @@
 **type:** `gcp.apphub.application`
 
 **Description:** Attributes denoting data from an Application in AppHub. See [AppHub overview](https://cloud.google.com/app-hub/docs/overview).
-
 
 
 **Other Attributes:**
@@ -28,8 +25,6 @@
 | [`gcp.apphub.application.id`](/docs/registry/attributes/gcp.md) | string | The name of the application as configured in AppHub. | `my-application` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`gcp.apphub.application.location`](/docs/registry/attributes/gcp.md) | string | The GCP zone or region where the application is defined. | `us-central1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 
-
-
 ## GCP Apphub Service
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
@@ -37,7 +32,6 @@
 **type:** `gcp.apphub.service`
 
 **Description:** Attributes denoting data from a Service in AppHub. See [AppHub overview](https://cloud.google.com/app-hub/docs/overview).
-
 
 
 **Other Attributes:**
@@ -77,8 +71,6 @@
 | `STAGING` | Staging environment. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `TEST` | Test environment. | ![Development](https://img.shields.io/badge/-development-blue) |
 
-
-
 ## GCP Apphub Workload
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
@@ -86,7 +78,6 @@
 **type:** `gcp.apphub.workload`
 
 **Description:** Attributes denoting data from a Workload in AppHub. See [AppHub overview](https://cloud.google.com/app-hub/docs/overview).
-
 
 
 **Other Attributes:**
@@ -126,8 +117,6 @@
 | `STAGING` | Staging environment. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `TEST` | Test environment. | ![Development](https://img.shields.io/badge/-development-blue) |
 
-
-
 ## GCP Cloud Run
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
@@ -135,7 +124,6 @@
 **type:** `gcp.cloud_run`
 
 **Description:** Resource used by Google Cloud Run.
-
 
 
 **Other Attributes:**
@@ -148,8 +136,6 @@
 | [`gcp.cloud_run.job.execution`](/docs/registry/attributes/gcp.md) | string | The name of the Cloud Run [execution](https://cloud.google.com/run/docs/managing/job-executions) being run for the Job, as set by the [`CLOUD_RUN_EXECUTION`](https://cloud.google.com/run/docs/container-contract#jobs-env-vars) environment variable. | `job-name-xxxx`; `sample-job-mdw84` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`gcp.cloud_run.job.task_index`](/docs/registry/attributes/gcp.md) | int | The index for a task within an execution as provided by the [`CLOUD_RUN_TASK_INDEX`](https://cloud.google.com/run/docs/container-contract#jobs-env-vars) environment variable. | `0`; `1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
-
-
 ## GCP GCE
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
@@ -157,7 +143,6 @@
 **type:** `gcp.gce`
 
 **Description:** Resources used by Google Compute Engine (GCE).
-
 
 
 **Other Attributes:**
@@ -169,6 +154,5 @@
 |---|---|---|---|---|---|
 | [`gcp.gce.instance.hostname`](/docs/registry/attributes/gcp.md) | string | The hostname of a GCE instance. This is the full value of the default or [custom hostname](https://cloud.google.com/compute/docs/instances/custom-hostname-vm). | `my-host1234.example.com`; `sample-vm.us-west1-b.c.my-project.internal` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`gcp.gce.instance.name`](/docs/registry/attributes/gcp.md) | string | The instance name of a GCE instance. This is the value provided by `host.name`, the visible name of the instance in the Cloud Console UI, and the prefix for the default hostname of the instance as defined by the [default internal DNS name](https://cloud.google.com/compute/docs/internal-dns#instance-fully-qualified-domain-names). | `instance-1`; `my-vm-name` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-
 
 <!-- markdownlint-restore -->

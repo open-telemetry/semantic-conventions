@@ -5,8 +5,6 @@
 
 # Faas
 
-
-
 ## Faas
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
@@ -14,7 +12,6 @@
 **type:** `faas`
 
 **Description:** A serverless instance.
-
 
 
 **Other Attributes:**
@@ -78,6 +75,5 @@ The following well-known definitions MUST be used if you set this attribute and 
 - **Google Cloud Functions:** The value of the
   [`K_REVISION` environment variable](https://cloud.google.com/run/docs/container-contract#services-env-vars).
 - **Azure Functions:** Not applicable. Do not set this attribute.
-
 
 <!-- markdownlint-restore -->

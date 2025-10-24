@@ -5,8 +5,6 @@
 
 # Cloud
 
-
-
 ## Cloud
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
@@ -14,7 +12,6 @@
 **type:** `cloud`
 
 **Description:** A cloud environment (e.g. GCP, Azure, AWS)
-
 
 
 **Other Attributes:**
@@ -106,6 +103,5 @@ The following well-known definitions MUST be used if you set this attribute and 
 | `ibm_cloud` | IBM Cloud | ![Development](https://img.shields.io/badge/-development-blue) |
 | `oracle_cloud` | Oracle Cloud Infrastructure (OCI) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `tencent_cloud` | Tencent Cloud | ![Development](https://img.shields.io/badge/-development-blue) |
-
 
 <!-- markdownlint-restore -->

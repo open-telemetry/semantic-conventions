@@ -5,8 +5,6 @@
 
 # Openshift
 
-
-
 ## Openshift Clusterquota
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
@@ -14,7 +12,6 @@
 **type:** `openshift.clusterquota`
 
 **Description:** An OpenShift [ClusterResourceQuota](https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/schedule_and_quota_apis/clusterresourcequota-quota-openshift-io-v1#clusterresourcequota-quota-openshift-io-v1) object.
-
 
 
 **Identifying Attributes:**
@@ -28,6 +25,5 @@
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | [`openshift.clusterquota.name`](/docs/registry/attributes/openshift.md) | string | The name of the cluster quota. | `opentelemetry` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-
 
 <!-- markdownlint-restore -->

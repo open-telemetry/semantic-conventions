@@ -5,8 +5,6 @@
 
 # zOS
 
-
-
 ## zOS Software
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
@@ -14,7 +12,6 @@
 **type:** `zos.software`
 
 **Description:** A software resource running on a z/OS system.
-
 
 **Other Attributes:**
 
@@ -26,6 +23,5 @@
 | [`zos.smf.id`](/docs/registry/attributes/zos.md) | string | The System Management Facility (SMF) Identifier uniquely identified a z/OS system within a SYSPLEX or mainframe environment and is used for system and performance analysis. | `SYS1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`zos.sysplex.name`](/docs/registry/attributes/zos.md) | string | The name of the SYSPLEX to which the z/OS system belongs too. | `SYSPLEX1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`mainframe.lpar.name`](/docs/registry/attributes/mainframe.md) | string | Name of the logical partition that hosts a systems with a mainframe operating system. | `LPAR01` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-
 
 <!-- markdownlint-restore -->
