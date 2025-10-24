@@ -1,0 +1,20 @@
+groups:
+  - id: span.app.screen.time_to_first_draw.internal
+    type: span
+    span_kind: internal
+    brief: This span represents an application screen first draw operation.
+    note: |
+      **Span name**: MUST be `app.screen.time_to_first_draw`.
+
+      **Span kind** MUST be `INTERNAL`.
+
+      This span captures the time from screen initialization to the first frame
+      of an application UI screen being drawn.
+    stability: development
+    attributes:
+      - ref: app.screen.id
+        requirement_level: recommended
+      - ref: app.screen.name
+        requirement_level: opt_in
+      - ref: app.screen.type
+        requirement_level: opt_in

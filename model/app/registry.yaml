@@ -86,6 +86,34 @@ groups:
           is larger in scope than individual widgets. Multiple screens can
           coexist on the same display simultaneously (e.g., split view on tablets).
         examples: ["MainActivity", "ProductDetailFragment", "ProfileView", "ProfileViewController"]
+      - id: app.screen.type
+        type:
+          members:
+            - id: swiftui
+              value: "swiftui"
+              brief: SwiftUI View (iOS)
+              stability: development
+            - id: uikit
+              value: "uikit"
+              brief: UIKit ViewController (iOS)
+              stability: development
+            - id: activity
+              value: "activity"
+              brief: Android Activity (Android)
+              stability: development
+            - id: fragment
+              value: "fragment"
+              brief: Android Fragment (Android)
+              stability: development
+        stability: development
+        brief: >
+          The type of UI management component or framework used to render and manage the screen's
+          presentation and interactions.
+        note: >
+          This attribute indicates which framework or structure is used to manage and display the
+          screen’s content. For iOS, it may refer to either SwiftUI (declarative) or UIKit (imperative) for managing views.
+          On Android, it can refer to either an Activity or a Fragment.
+        examples: ["swiftui", "uikit", "activity", "fragment"]
       - id: app.widget.id
         type: string
         stability: development
