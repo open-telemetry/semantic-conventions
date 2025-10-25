@@ -9,6 +9,11 @@ areas:
       - area:system
       - area:host
       - area:process
+      - area:nfs
+      - area:os
+      - area:cpu
+      - area:disk
+      - area:network
     status:
       - accepting_contributions
       - active
@@ -76,9 +81,6 @@ areas:
     board: "https://github.com/orgs/open-telemetry/projects/146"
     labels:
       - area:browser
-      - area:enduser
-      - area:user
-      - area:user-agent
     status:
       - accepting_contributions
       - active
@@ -90,8 +92,12 @@ areas:
     project: "https://github.com/open-telemetry/community/blob/main/projects/completed-projects/client-instrumentation.md"
     board: "https://github.com/orgs/open-telemetry/projects/19"
     labels:
-      - area:client
-      - area:event
+      - area:app
+      - area:enduser
+      - area:device
+      - area:mobile
+      - area:session
+
     status:
       - accepting_contributions
       - active
@@ -131,6 +137,11 @@ areas:
     board: "https://github.com/orgs/open-telemetry/projects/41"
     labels:
       - area:http
+      - area:user-agent
+      - area:url
+      - area:client
+      - area:server
+      - area:network
     status:
       - inactive
   - name: "Semantic Conventions: Database"
@@ -174,6 +185,8 @@ areas:
     board: "N/A"
     labels:
       - area:log
+      - area:event
+      - area:exception
     status:
       - accepting_contributions
       - active
@@ -186,6 +199,7 @@ areas:
     board: "N/A"
     labels:
       - area:mainframe
+      - area:zos
     status:
       - accepting_contributions
       - active
@@ -198,6 +212,7 @@ areas:
     board: "N/A"
     labels:
       - area:profile
+      - area:pprof
     status:
       - accepting_contributions
       - active
@@ -211,6 +226,7 @@ areas:
     labels:
       - area:dotnet
       - area:aspnetcore
+      - area:signalr
     status:
       - accepting_contributions
       - active
