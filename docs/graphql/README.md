@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
+# Hugo front matter used to generate the website version of this page:
 linkTitle: GraphQL
---->
+---
 
 # Semantic conventions for GraphQL
 

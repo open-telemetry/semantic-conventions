@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
+# Hugo front matter used to generate the website version of this page:
 linkTitle: Cloud providers
---->
+---
 
 # Semantic conventions for cloud providers
 
