@@ -195,12 +195,13 @@ At the top of all Markdown files under the `docs/` directory, you will see
 headers like the following:
 
 ```md
-<!--- Hugo front matter used to generate the website version of this page:
+---
+# Hugo front matter used to generate the website version of this page:
 linkTitle: HTTP
 path_base_for_github_subdir:
   from: content/en/docs/specs/semconv/http/_index.md
   to: http/README.md
---->
+---
 ```
 
 When creating new markdown files, you should provide the `linkTitle` attribute.
