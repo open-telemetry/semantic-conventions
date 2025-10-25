@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
+# Hugo front matter used to generate the website version of this page:
 linkTitle: Code attributes migration
---->
+---
 
 # Code attributes semantic convention stability migration guide
 
