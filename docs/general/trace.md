@@ -1,7 +1,8 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
+# Hugo front matter used to generate the website version of this page:
 linkTitle: Trace
 aliases: [trace-general]
---->
+---
 
 # Trace semantic conventions
 

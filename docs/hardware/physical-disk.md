@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
+# Hugo front matter used to generate the website version of this page:
 linkTitle: Physical Disk
---->
+---
 
 # Semantic conventions for physical disk metrics
 
