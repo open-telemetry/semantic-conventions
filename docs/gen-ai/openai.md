@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
+# Hugo front matter used to generate the website version of this page:
 linkTitle: OpenAI
---->
+---
 
 # Semantic conventions for OpenAI client operations
 
