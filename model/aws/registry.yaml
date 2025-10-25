@@ -581,3 +581,75 @@ groups:
           A [knowledge base](https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html) is a bank of information
           that can be queried by models to generate more relevant responses and augment prompts.
         examples: ["XFWUPB9PAW"]
+  - id: registry.aws.auth
+    type: attribute_group
+    display_name: AWS Authentication Attributes
+    brief: >
+        This document defines attributes for AWS authentication and credential components.
+    attributes:
+      - id: aws.auth.credential_provider.arn
+        type: string
+        stability: development
+        brief: >
+          The Amazon Resource Name (ARN) of the credential provider.
+        examples: ["arn:aws:acps:us-east-1:123456789012:token-vault/my-vault/oauth2credentialprovider/my-provider", "arn:aws:iam::123456789012:oidc-provider/example.com", "arn:aws:iam::123456789012:role/MyRole"]
+  - id: registry.aws.gateway
+    type: attribute_group
+    display_name: AWS Gateway Attributes
+    brief: >
+        This document defines attributes for AWS gateway components.
+    attributes:
+      - id: aws.gateway.target.id
+        type: string
+        stability: development
+        brief: >
+          The unique identifier of the gateway target. A gateway target is the destination endpoint or resource that the gateway routes requests to.
+        examples: ["a1b2c3d4e5"]
+  - id: registry.aws.bedrock.agentcore
+    type: attribute_group
+    display_name: Amazon Bedrock AgentCore Attributes
+    brief: >
+        This document defines attributes for AWS Bedrock AgentCore.
+    attributes:
+      - id: aws.bedrock.agentcore.code_interpreter.arn
+        type: string
+        stability: development
+        brief: >
+          The Amazon Resource Name (ARN) of the code interpreter.
+        examples: ["arn:aws:bedrock-agentcore:us-east-1:123456789012:code-interpreter/myInterpreter-a1b2c3d4e5"]
+      - id: aws.bedrock.agentcore.browser.arn
+        type: string
+        stability: development
+        brief: >
+          The Amazon Resource Name (ARN) of the browser.
+        examples: ["arn:aws:bedrock-agentcore:us-east-1:123456789012:browser/myBrowser-a1b2c3d4e5"]
+      - id: aws.bedrock.agentcore.memory.arn
+        type: string
+        stability: development
+        brief: >
+          The Amazon Resource Name (ARN) of the memory.
+        examples: ["arn:aws:bedrock-agentcore:us-east-1:123456789012:memory/myMemory-a1b2c3d4e5"]
+      - id: aws.bedrock.agentcore.runtime.arn
+        type: string
+        stability: development
+        brief: >
+          The Amazon Resource Name (ARN) of the runtime.
+        examples: ["arn:aws:bedrock-agentcore:us-east-1:123456789012:runtime/myRuntime-a1b2c3d4e5"]
+      - id: aws.bedrock.agentcore.runtime_endpoint.arn
+        type: string
+        stability: development
+        brief: >
+          The Amazon Resource Name (ARN) of the AgentCore Runtime endpoint.
+        examples: ["arn:aws:bedrock-agentcore:us-east-1:123456789012:agentEndpoint/a1b2c3d4-e5f6-7890-abcd-ef1234567890"]
+      - id: aws.bedrock.agentcore.gateway.arn
+        type: string
+        stability: development
+        brief: >
+          The Amazon Resource Name (ARN) of the gateway.
+        examples: ["arn:aws:bedrock-agentcore:us-east-1:123456789012:gateway/mygateway-a1b2c3d4e5"]
+      - id: aws.bedrock.agentcore.identity.workload_identity.arn
+        type: string
+        stability: development
+        brief: >
+          The Amazon Resource Name (ARN) of the workload identity.
+        examples: ["arn:aws:bedrock-agentcore:us-east-1:123456789012:workload-identity/my-workload-identity"]
