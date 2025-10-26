@@ -192,7 +192,7 @@ database.
 The first step in defining a telemetry signal is to decide on what signal type (
 Event, Entities, [Metric](https://opentelemetry.io/docs/concepts/signals/metrics/),
 [Span/Trace](https://opentelemetry.io/docs/concepts/signals/traces/)),
-to use. To help with the decision, below you will find some guidance based on bes practice:
+to use. To help with the decision, below you will find some guidance based on best practice:
 
 - I want to debug/investigate the operations which are being performed including how long. Use a span.
 - I want to be able to see what operation invoked my operation (parent) or what child operation was invoked. Use a span.
