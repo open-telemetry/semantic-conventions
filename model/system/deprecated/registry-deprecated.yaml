@@ -123,3 +123,24 @@ groups:
           renamed_to: system.paging.fault.type
         brief: "Deprecated, use `system.paging.fault.type` instead."
         examples: [ "minor" ]
+      - id: system.process.status
+        type:
+          members:
+            - id: running
+              value: 'running'
+              stability: development
+            - id: sleeping
+              value: 'sleeping'
+              stability: development
+            - id: stopped
+              value: 'stopped'
+              stability: development
+            - id: defunct
+              value: 'defunct'
+              stability: development
+        stability: development
+        deprecated:
+          reason: renamed
+          renamed_to: process.state
+        brief: "Deprecated, use `process.state` instead."
+        examples: [ "running" ]

@@ -506,7 +506,7 @@ groups:
     instrument: updowncounter
     unit: "{process}"
     attributes:
-      - ref: system.process.status
+      - ref: process.state
     entity_associations:
       - host
 
