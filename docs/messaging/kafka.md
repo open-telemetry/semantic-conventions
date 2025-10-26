@@ -48,6 +48,10 @@ The Semantic Conventions for [Apache Kafka](https://kafka.apache.org/) extend an
 
 ## Span attributes
 
+For Apache Kafka producers, [`peer.service`](/docs/registry/attributes/peer.md) SHOULD be set to the name of the broker or service the message will be sent to.
+The `service.name` of a Consumer's Resource SHOULD match the `peer.service` of the Producer, when the message is directly passed to another service.
+If an intermediary broker is present, `service.name` and `peer.service` will not be the same.
+
 For Apache Kafka, the following additional attributes are defined:
 
 <!-- semconv messaging.kafka -->
@@ -66,14 +70,14 @@ For Apache Kafka, the following additional attributes are defined:
 | [`messaging.kafka.message.tombstone`](/docs/registry/attributes/messaging.md) | boolean | A boolean that is true if the message is a tombstone. |  | `Conditionally Required` [6] | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`messaging.operation.type`](/docs/registry/attributes/messaging.md) | string | A string identifying the type of the messaging operation. [7] | `create`; `send`; `receive` | `Conditionally Required` If applicable. | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`server.address`](/docs/registry/attributes/server.md) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [8] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Conditionally Required` If available. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`messaging.client.id`](/docs/registry/attributes/messaging.md) | string | A unique identifier for the client that consumes or produces a message. | `client-5`; `myhost@8742@s8083jm` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`messaging.client.id`](/docs/registry/attributes/messaging.md) | string | A unique identifier for the client that consumes or produces a message. [9] | `client-5`; `myhost@8742@s8083jm` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`messaging.consumer.group.name`](/docs/registry/attributes/messaging.md) | string | Kafka [consumer group id](https://docs.confluent.io/platform/current/clients/consumer.html). | `my-group`; `indexer` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`messaging.destination.partition.id`](/docs/registry/attributes/messaging.md) | string | String representation of the partition id the message (or batch) is sent to or received from. | `1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`messaging.kafka.message.key`](/docs/registry/attributes/messaging.md) | string | Message keys in Kafka are used for grouping alike messages to ensure they're processed on the same partition. They differ from `messaging.message.id` in that they're not unique. If the key is `null`, the attribute MUST NOT be set. [9] | `myKey` | `Recommended` If span describes operation on a single message. | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`messaging.kafka.message.key`](/docs/registry/attributes/messaging.md) | string | Message keys in Kafka are used for grouping alike messages to ensure they're processed on the same partition. They differ from `messaging.message.id` in that they're not unique. If the key is `null`, the attribute MUST NOT be set. [10] | `myKey` | `Recommended` If span describes operation on a single message. | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`messaging.kafka.offset`](/docs/registry/attributes/messaging.md) | int | The offset of a record in the corresponding Kafka partition. | `42` | `Recommended` If span describes operation on a single message. | ![Development](https://img.shields.io/badge/-development-blue) |
 | [`messaging.message.id`](/docs/registry/attributes/messaging.md) | string | A value used by the messaging system as an identifier for the message, represented as a string. | `452a7c7c7c7048c2f887f61572b18fc2` | `Recommended` If span describes operation on a single message. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`server.port`](/docs/registry/attributes/server.md) | int | Server port number. [10] | `80`; `8080`; `443` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`messaging.message.body.size`](/docs/registry/attributes/messaging.md) | int | The size of the message body in bytes. Only applicable for spans describing single message operations. [11] | `1439` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`server.port`](/docs/registry/attributes/server.md) | int | Server port number. [11] | `80`; `8080`; `443` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`messaging.message.body.size`](/docs/registry/attributes/messaging.md) | int | The size of the message body in bytes. Only applicable for spans describing single message operations. [12] | `1439` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
@@ -110,11 +114,13 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 
 **[8] `server.address`:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name.
 
-**[9] `messaging.kafka.message.key`:** If the key type is not string, it's string representation has to be supplied for the attribute. If the key has no unambiguous, canonical string form, don't include its value.
+**[9] `messaging.client.id`:** SHOULD be set to the client name of a consumer or producer, which is unique for each individual instance.
 
-**[10] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[10] `messaging.kafka.message.key`:** If the key type is not string, it's string representation has to be supplied for the attribute. If the key has no unambiguous, canonical string form, don't include its value.
 
-**[11] `messaging.message.body.size`:** This can refer to both the compressed or uncompressed body size. If both sizes are known, the uncompressed
+**[11] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+
+**[12] `messaging.message.body.size`:** This can refer to both the compressed or uncompressed body size. If both sizes are known, the uncompressed
 body size should be used.
 
 The following attributes can be important for making sampling decisions
@@ -152,12 +158,6 @@ and SHOULD be provided **at span creation time** (if provided at all):
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
 <!-- endsemconv -->
-
-For Apache Kafka producers, [`peer.service`](/docs/registry/attributes/peer.md) SHOULD be set to the name of the broker or service the message will be sent to.
-The `service.name` of a Consumer's Resource SHOULD match the `peer.service` of the Producer, when the message is directly passed to another service.
-If an intermediary broker is present, `service.name` and `peer.service` will not be the same.
-
-`messaging.client.id` SHOULD be set to the client name of a consumer or producer, which is unique for each individual instance.
 
 ## Examples
 
