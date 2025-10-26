@@ -1,0 +1,48 @@
+# Use this changelog template to create an entry for release notes.
+#
+# If your change doesn't affect end users you should instead start
+# your pull request title with [chore] or use the "Skip Changelog" label.
+
+# One of 'breaking', 'deprecation', 'new_component', 'enhancement', 'bug_fix'
+change_type: breaking
+
+# The name of the area of concern in the attributes-registry, (e.g. http, cloud, db)
+component: k8s
+
+# A brief description of the change. Surround your text with quotes ("") if it needs to start with a backtick (`).
+note: "Fix plural-named updowncounter k8s metrics"
+
+# Mandatory: One or more tracking issues related to the change. You can use the PR number here if no issue exists.
+# The values here must be integers.
+issues: [2301]
+
+# (Optional) One or more lines of additional information to render under the primary note.
+# These lines will be padded with 2 spaces and then inserted directly into the document.
+# Use pipe (|) for multiline entries.
+subtext: |
+  Renamed metrics:
+  - k8s.node.allocatable.pods -> k8s.node.pod.allocatable
+  - k8s.daemonset.current_scheduled_nodes -> k8s.daemonset.node.current_scheduled
+  - k8s.daemonset.desired_scheduled_nodes -> k8s.daemonset.node.desired_scheduled
+  - k8s.daemonset.misscheduled_nodes -> k8s.daemonset.node.misscheduled
+  - k8s.daemonset.ready_nodes -> k8s.daemonset.node.ready
+  - k8s.job.active_pods -> k8s.job.pod.active
+  - k8s.job.failed_pods -> k8s.job.pod.failed
+  - k8s.job.successful_pods -> k8s.job.pod.successful
+  - k8s.job.desired_successful_pods -> k8s.job.pod.desired_successful
+  - k8s.job.max_parallel_pods -> k8s.job.pod.max_parallel
+  - k8s.cronjob.active_jobs -> k8s.cronjob.job.active
+  - k8s.deployment.desired_pods -> k8s.deployment.pod.desired
+  - k8s.deployment.available_pods -> k8s.deployment.pod.available
+  - k8s.replicaset.desired_pods -> k8s.replicaset.pod.desired
+  - k8s.replicaset.available_pods -> k8s.replicaset.pod.available
+  - k8s.replicationcontroller.desired_pods -> k8s.replicationcontroller.pod.desired
+  - k8s.replicationcontroller.available_pods -> k8s.replicationcontroller.pod.available
+  - k8s.statefulset.desired_pods -> k8s.statefulset.pod.desired
+  - k8s.statefulset.ready_pods -> k8s.statefulset.pod.ready
+  - k8s.statefulset.current_pods -> k8s.statefulset.pod.current
+  - k8s.statefulset.updated_pods -> k8s.statefulset.pod.updated
+  - k8s.hpa.desired_pods -> k8s.hpa.pod.desired
+  - k8s.hpa.current_pods -> k8s.hpa.pod.current
+  - k8s.hpa.max_pods -> k8s.hpa.pod.max
+  - k8s.hpa.min_pods -> k8s.hpa.pod.min
