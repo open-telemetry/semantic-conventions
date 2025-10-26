@@ -14,10 +14,10 @@ linkTitle: How to write conventions
 - [Defining new conventions](#defining-new-conventions)
   - [Defining attributes](#defining-attributes)
     - [Defining enum attribute members](#defining-enum-attribute-members)
-  - [Defining entities](#defining-entities)
   - [Defining Telemetry Signals](#defining-telemetry-signals)
     - [Defining spans](#defining-spans)
     - [Defining metrics](#defining-metrics)
+    - [Defining entities](#defining-entities)
     - [Defining events](#defining-events)
 - [Stabilizing existing conventions](#stabilizing-existing-conventions)
   - [Migration plan](#migration-plan)
@@ -187,10 +187,6 @@ to that system. For example, when adding a new `db.system.name` value, create
 documentation and span definitions that show how generic attributes work for that
 database.
 
-### Defining entities
-
-Follow the [Entity Modeling Guide](resource-and-entities.md).
-
 ### Defining Telemetry Signals
 
 The first step in defining a telemetry signal is to decide on what type of signal to use based on their strengths and weaknesses,
@@ -198,12 +194,14 @@ as well as what you want to achieve.
 
 Here are some rules to guide you in choosing the correct signal type:
 
-- I want to debug/investigate the operations which are being performed including hoe long. Use a span.
-- I want to see what operations are triggered from another operation. Use a span.
-- I want to analyze how long operations take to complete. Use a metric.
+- I want to debug/investigate the operations which are being performed including how long. Use a span.
+- I want to be able to see what operation invoked my operation (parent) or what child operation was invoked. Use a span.
+- I want to analyze how long operations are taking to complete. Use a metric.
 - I want to see how much/many of a resource is used/available. Use a metric.
-- I want to see when something happened ie state changed. Use an event.
+- I want to track measurements ie errors, latency, volume (golden signals) over time.  Use a metric.
+- I want to record the time when something happened ie state changed. Use an event.
 - I want to capture the time between state changes within an operation. Use an event.
+- I want to describe a part of a resource based on a reproducible identity. Use an entity.
 
 It could very well be that you end up using multiple, if not all of the signal types and that is ok.
 It is all about selecting the right signal type for your needs.
@@ -215,6 +213,10 @@ TBD
 #### Defining metrics
 
 TBD
+
+#### Defining entities
+
+Follow the [Entity Modeling Guide](resource-and-entities.md).
 
 #### Defining events
 
