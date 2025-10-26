@@ -108,10 +108,10 @@ The changes between collector implementation and semantic conventions:
 
 | Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                              |
 |------------------------------------------------------------------------------------|------------------------------------------------------------------|
-| `k8s.node.allocatable_cpu`                 (type: `gauge`)                         | `k8s.node.allocatable.cpu`               (type: `updowncounter`) |
-| `k8s.node.allocatable_memory`              (type: `gauge`)                         | `k8s.node.allocatable.memory`            (type: `updowncounter`) |
-| `k8s.node.allocatable_ephemeral_storage`   (type: `gauge`)                         | `k8s.node.allocatable.ephemeral_storage` (type: `updowncounter`) |
-| `k8s.node.allocatable_pods`                (type: `gauge`)                         | `k8s.node.pod.allocatable`              (type: `updowncounter`) |
+| `k8s.node.allocatable_cpu`                 (type: `gauge`)                         | `k8s.node.cpu.allocatable`               (type: `updowncounter`)            |
+| `k8s.node.allocatable_memory`              (type: `gauge`)                         | `k8s.node.memory.allocatable`            (type: `updowncounter`) |
+| `k8s.node.allocatable_ephemeral_storage`   (type: `gauge`)                         | `k8s.node.ephemeral_storage.allocatable` (type: `updowncounter`) |
+| `k8s.node.allocatable_pods`                (type: `gauge`)                         | `k8s.node.pod.allocatable`              (type: `updowncounter`)  |
 
 <!-- prettier-ignore-end -->
 

@@ -465,3 +465,48 @@ groups:
     entity_associations:
       - k8s.hpa
     unit: "{pod}"
+  - id: metric.k8s.node.allocatable.cpu
+    type: metric
+    metric_name: k8s.node.allocatable.cpu
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    deprecated:
+      reason: renamed
+      renamed_to: metric.k8s.node.cpu.allocatable
+    brief: "Deprecated, use `k8s.node.cpu.allocatable` instead."
+    entity_associations:
+      - k8s.node
+    instrument: updowncounter
+    unit: "{cpu}"
+  - id: metric.k8s.node.allocatable.ephemeral_storage
+    type: metric
+    metric_name: k8s.node.allocatable.ephemeral_storage
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    deprecated:
+      reason: renamed
+      renamed_to: metric.k8s.node.ephemeral_storage.allocatable
+    brief: "Deprecated, use `k8s.node.ephemeral_storage.allocatable` instead."
+    entity_associations:
+      - k8s.node
+    instrument: updowncounter
+    unit: "By"
+  - id: metric.k8s.node.allocatable.memory
+    type: metric
+    metric_name: k8s.node.allocatable.memory
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    deprecated:
+      reason: renamed
+      renamed_to: metric.k8s.node.memory.allocatable
+    brief: "Deprecated, use `k8s.node.memory.allocatable` instead."
+    entity_associations:
+      - k8s.node
+    instrument: updowncounter
+    unit: "By"

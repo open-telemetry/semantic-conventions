@@ -458,10 +458,10 @@ groups:
     unit: "s"
     entity_associations:
       - k8s.node
-  # k8s.node.allocatable.* metrics
-  - id: metric.k8s.node.allocatable.cpu
+  # k8s.node.*.allocatable metrics
+  - id: metric.k8s.node.cpu.allocatable
     type: metric
-    metric_name: k8s.node.allocatable.cpu
+    metric_name: k8s.node.cpu.allocatable
     annotations:
       code_generation:
         metric_value_type: double
@@ -471,9 +471,9 @@ groups:
       - k8s.node
     instrument: updowncounter
     unit: "{cpu}"
-  - id: metric.k8s.node.allocatable.ephemeral_storage
+  - id: metric.k8s.node.ephemeral_storage.allocatable
     type: metric
-    metric_name: k8s.node.allocatable.ephemeral_storage
+    metric_name: k8s.node.ephemeral_storage.allocatable
     annotations:
       code_generation:
         metric_value_type: int
@@ -483,9 +483,9 @@ groups:
       - k8s.node
     instrument: updowncounter
     unit: "By"
-  - id: metric.k8s.node.allocatable.memory
+  - id: metric.k8s.node.memory.allocatable
     type: metric
-    metric_name: k8s.node.allocatable.memory
+    metric_name: k8s.node.memory.allocatable
     annotations:
       code_generation:
         metric_value_type: int
