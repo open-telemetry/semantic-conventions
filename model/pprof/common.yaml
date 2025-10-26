@@ -15,3 +15,5 @@ groups:
         requirement_level: recommended
       - ref: pprof.location.is_folded
         requirement_level: recommended
+      - ref: pprof.profile.comment
+        requirement_level: recommended

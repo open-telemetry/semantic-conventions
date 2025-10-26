@@ -174,7 +174,7 @@ groups:
     type: span
     span_kind: client
     brief: >
-      Semantic Conventions for [Azure AI Inference](https://learn.microsoft.com/azure/ai-studio/reference/reference-model-inference-api)
+      Semantic Conventions for [Azure AI Inference](https://learn.microsoft.com/rest/api/aifoundry/modelinference/)
       client spans extend and override the semantic conventions for [Gen AI Spans](gen-ai-spans.md).
     note: |
       `gen_ai.provider.name` MUST be set to `"azure.ai.inference"` and SHOULD be provided **at span creation time**.
@@ -252,13 +252,22 @@ groups:
     stability: development
     span_kind: client
     brief: >
-      Describes GenAI agent invocation and is usually applicable when working
-      with remote agent services.
+      Describes GenAI agent invocation.
     note: |
       The `gen_ai.operation.name` SHOULD be `invoke_agent`.
       The **span name** SHOULD be `invoke_agent {gen_ai.agent.name}` if `gen_ai.agent.name` is readily available.
       When `gen_ai.agent.name` is not available, it SHOULD be `invoke_agent`.
       Semantic conventions for individual GenAI systems and frameworks MAY specify different span name format.
+
+      **Span kind** SHOULD be `CLIENT` and MAY be set to `INTERNAL` on spans representing
+      invocation of agents running in the same process.
+      It's RECOMMENDED to use `CLIENT` kind when the agent being instrumented usually runs
+      in a different process than its caller or when the agent invocation happens over
+      instrumented protocol such as HTTP.
+
+      Examples of span kinds for different agent scenarios:
+      - `CLIENT`: Remote agent services (e.g., OpenAI Assistants API, AWS Bedrock Agents)
+      - `INTERNAL`: In-process agents (e.g., LangChain agents, CrewAI agents)
     extends: attributes.gen_ai.inference.client
     attributes:
       - ref: gen_ai.provider.name
@@ -275,6 +284,9 @@ groups:
       - ref: gen_ai.data_source.id
         requirement_level:
           conditionally_required: if applicable.
+      - ref: server.address
+        requirement_level:
+          recommended: when span kind is `CLIENT`.
       - ref: gen_ai.system_instructions
         requirement_level: opt_in
       - ref: gen_ai.input.messages
