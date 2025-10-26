@@ -189,10 +189,10 @@ database.
 
 ### Defining Telemetry Signals
 
-The first step in defining a telemetry signal is to decide on what type of signal to use based on their strengths and weaknesses,
-as well as what you want to achieve.
-
-Here are some rules to guide you in choosing the correct signal type:
+The first step in defining a telemetry signal is to decide on what signal type (
+Event, Entities, [Metric](https://opentelemetry.io/docs/concepts/signals/metrics/),
+[Span/Trace](https://opentelemetry.io/docs/concepts/signals/traces/)),
+to use. To help with the decision, below you will find some guidance based on bes practice:
 
 - I want to debug/investigate the operations which are being performed including how long. Use a span.
 - I want to be able to see what operation invoked my operation (parent) or what child operation was invoked. Use a span.
