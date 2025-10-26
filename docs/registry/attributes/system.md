@@ -120,7 +120,7 @@ Deprecated system attributes.
 | <a id="system-network-state" href="#system-network-state">`system.network.state`</a> | string | Deprecated, use `network.connection.state` instead. | `close_wait` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `network.connection.state`. |
 | <a id="system-paging-type" href="#system-paging-type">`system.paging.type`</a> | string | Deprecated, use `system.paging.fault.type` instead. | `minor` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `system.paging.fault.type`. |
 | <a id="system-process-status" href="#system-process-status">`system.process.status`</a> | string | Deprecated, use `process.state` instead. | `running` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `process.state`. |
-| <a id="system-processes-status" href="#system-processes-status">`system.processes.status`</a> | string | Deprecated, use `system.process.status` instead. | `running` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `system.process.status`. |
+| <a id="system-processes-status" href="#system-processes-status">`system.processes.status`</a> | string | Deprecated, use `process.state` instead. | `running` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `process.state`. |
 
 ---
 
