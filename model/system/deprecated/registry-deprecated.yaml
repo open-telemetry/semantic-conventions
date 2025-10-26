@@ -19,10 +19,10 @@ groups:
             - id: defunct
               value: 'defunct'
               stability: development
-        brief: "Deprecated, use `system.process.status` instead."
+        brief: "Deprecated, use `process.state` instead."
         deprecated:
           reason: renamed
-          renamed_to: system.process.status
+          renamed_to: process.state
         stability: development
         examples: ["running"]
       - id: system.cpu.state
