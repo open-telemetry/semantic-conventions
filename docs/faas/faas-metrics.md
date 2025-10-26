@@ -58,9 +58,9 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `faas.invoke_duration` | Histogram | `s` | Measures the duration of the function's logic execution. | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Role |
 |---|---|---|---|---|---|---|
-| [`faas.trigger`](/docs/registry/attributes/faas.md) | string | Type of the trigger which caused this function invocation. | `datasource`; `http`; `pubsub` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`faas.trigger`](/docs/registry/attributes/faas.md) | string | Type of the trigger which caused this function invocation. | `datasource`; `http`; `pubsub` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 ---
 
@@ -98,9 +98,9 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `faas.init_duration` | Histogram | `s` | Measures the duration of the function's initialization, such as a cold start. | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Role |
 |---|---|---|---|---|---|---|
-| [`faas.trigger`](/docs/registry/attributes/faas.md) | string | Type of the trigger which caused this function invocation. | `datasource`; `http`; `pubsub` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`faas.trigger`](/docs/registry/attributes/faas.md) | string | Type of the trigger which caused this function invocation. | `datasource`; `http`; `pubsub` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 ---
 
@@ -134,9 +134,9 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `faas.coldstarts` | Counter | `{coldstart}` | Number of invocation cold starts. | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Role |
 |---|---|---|---|---|---|---|
-| [`faas.trigger`](/docs/registry/attributes/faas.md) | string | Type of the trigger which caused this function invocation. | `datasource`; `http`; `pubsub` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`faas.trigger`](/docs/registry/attributes/faas.md) | string | Type of the trigger which caused this function invocation. | `datasource`; `http`; `pubsub` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 ---
 
@@ -170,9 +170,9 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `faas.errors` | Counter | `{error}` | Number of invocation errors. | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Role |
 |---|---|---|---|---|---|---|
-| [`faas.trigger`](/docs/registry/attributes/faas.md) | string | Type of the trigger which caused this function invocation. | `datasource`; `http`; `pubsub` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`faas.trigger`](/docs/registry/attributes/faas.md) | string | Type of the trigger which caused this function invocation. | `datasource`; `http`; `pubsub` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 ---
 
@@ -206,9 +206,9 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `faas.invocations` | Counter | `{invocation}` | Number of successful invocations. | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Role |
 |---|---|---|---|---|---|---|
-| [`faas.trigger`](/docs/registry/attributes/faas.md) | string | Type of the trigger which caused this function invocation. | `datasource`; `http`; `pubsub` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`faas.trigger`](/docs/registry/attributes/faas.md) | string | Type of the trigger which caused this function invocation. | `datasource`; `http`; `pubsub` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 ---
 
@@ -242,9 +242,9 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `faas.timeouts` | Counter | `{timeout}` | Number of invocation timeouts. | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Role |
 |---|---|---|---|---|---|---|
-| [`faas.trigger`](/docs/registry/attributes/faas.md) | string | Type of the trigger which caused this function invocation. | `datasource`; `http`; `pubsub` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`faas.trigger`](/docs/registry/attributes/faas.md) | string | Type of the trigger which caused this function invocation. | `datasource`; `http`; `pubsub` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 ---
 
@@ -278,9 +278,9 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `faas.mem_usage` | Histogram | `By` | Distribution of max memory usage per invocation. | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Role |
 |---|---|---|---|---|---|---|
-| [`faas.trigger`](/docs/registry/attributes/faas.md) | string | Type of the trigger which caused this function invocation. | `datasource`; `http`; `pubsub` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`faas.trigger`](/docs/registry/attributes/faas.md) | string | Type of the trigger which caused this function invocation. | `datasource`; `http`; `pubsub` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 ---
 
@@ -318,9 +318,9 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `faas.cpu_usage` | Histogram | `s` | Distribution of CPU usage per invocation. | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Role |
 |---|---|---|---|---|---|---|
-| [`faas.trigger`](/docs/registry/attributes/faas.md) | string | Type of the trigger which caused this function invocation. | `datasource`; `http`; `pubsub` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`faas.trigger`](/docs/registry/attributes/faas.md) | string | Type of the trigger which caused this function invocation. | `datasource`; `http`; `pubsub` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 ---
 
@@ -354,9 +354,9 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `faas.net_io` | Histogram | `By` | Distribution of net I/O usage per invocation. | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Role |
 |---|---|---|---|---|---|---|
-| [`faas.trigger`](/docs/registry/attributes/faas.md) | string | Type of the trigger which caused this function invocation. | `datasource`; `http`; `pubsub` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`faas.trigger`](/docs/registry/attributes/faas.md) | string | Type of the trigger which caused this function invocation. | `datasource`; `http`; `pubsub` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 ---
 

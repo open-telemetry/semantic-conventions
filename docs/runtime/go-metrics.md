@@ -50,9 +50,9 @@ This metric is [recommended][MetricRecommended].
 
 **[1]:** Computed from `(/memory/classes/total:bytes - /memory/classes/heap/released:bytes)`.
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Role |
 |---|---|---|---|---|---|---|
-| [`go.memory.type`](/docs/registry/attributes/go.md) | string | The type of memory. | `other`; `stack` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`go.memory.type`](/docs/registry/attributes/go.md) | string | The type of memory. | `other`; `stack` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 ---
 

@@ -86,9 +86,9 @@ This metric is [recommended][MetricRecommended].
 **[1]:** Meter name: `System.Runtime`; Added in: .NET 9.0.
 This metric reports the same values as accessing the corresponding processor time properties on [`System.Diagnostics.Process`](https://learn.microsoft.com/dotnet/api/system.diagnostics.process).
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Role |
 |---|---|---|---|---|---|---|
-| [`cpu.mode`](/docs/registry/attributes/cpu.md) | string | The mode of the CPU | `user`; `system` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`cpu.mode`](/docs/registry/attributes/cpu.md) | string | The mode of the CPU | `user`; `system` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 ---
 
@@ -157,9 +157,9 @@ This metric is [recommended][MetricRecommended].
 **[1]:** Meter name: `System.Runtime`; Added in: .NET 9.0.
 This metric uses the [`GC.CollectionCount(int generation)`](https://learn.microsoft.com/dotnet/api/system.gc.collectioncount) API to calculate exclusive collections per generation.
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Role |
 |---|---|---|---|---|---|---|
-| [`dotnet.gc.heap.generation`](/docs/registry/attributes/dotnet.md) | string | Name of the garbage collector managed heap generation. | `gen0`; `gen1`; `gen2` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any  |
+| [`dotnet.gc.heap.generation`](/docs/registry/attributes/dotnet.md) | string | Name of the garbage collector managed heap generation. | `gen0`; `gen1`; `gen2` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | |
 
 ---
 
@@ -242,9 +242,9 @@ This metric is [recommended][MetricRecommended].
 **[1]:** Meter name: `System.Runtime`; Added in: .NET 9.0.
 This metric reports the same values as calling [`GC.GetGCMemoryInfo().GenerationInfo.SizeAfterBytes`](https://learn.microsoft.com/dotnet/api/system.gcgenerationinfo.sizeafterbytes).
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Role |
 |---|---|---|---|---|---|---|
-| [`dotnet.gc.heap.generation`](/docs/registry/attributes/dotnet.md) | string | Name of the garbage collector managed heap generation. | `gen0`; `gen1`; `gen2` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any  |
+| [`dotnet.gc.heap.generation`](/docs/registry/attributes/dotnet.md) | string | Name of the garbage collector managed heap generation. | `gen0`; `gen1`; `gen2` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | |
 
 ---
 
@@ -281,9 +281,9 @@ This metric is [recommended][MetricRecommended].
 **[1]:** Meter name: `System.Runtime`; Added in: .NET 9.0.
 This metric reports the same values as calling [`GC.GetGCMemoryInfo().GenerationInfo.FragmentationAfterBytes`](https://learn.microsoft.com/dotnet/api/system.gcgenerationinfo.fragmentationafterbytes).
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Role |
 |---|---|---|---|---|---|---|
-| [`dotnet.gc.heap.generation`](/docs/registry/attributes/dotnet.md) | string | Name of the garbage collector managed heap generation. | `gen0`; `gen1`; `gen2` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any  |
+| [`dotnet.gc.heap.generation`](/docs/registry/attributes/dotnet.md) | string | Name of the garbage collector managed heap generation. | `gen0`; `gen1`; `gen2` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | |
 
 ---
 
@@ -568,9 +568,9 @@ This metric is [recommended][MetricRecommended].
 **[1]:** Meter name: `System.Runtime`; Added in: .NET 9.0.
 This metric reports the same values as counting calls to [`AppDomain.CurrentDomain.FirstChanceException`](https://learn.microsoft.com/dotnet/api/system.appdomain.firstchanceexception).
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Role |
 |---|---|---|---|---|---|---|
-| [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. | `System.OperationCanceledException`; `Contoso.MyException` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any  |
+| [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. | `System.OperationCanceledException`; `Contoso.MyException` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | |
 
 ---
 

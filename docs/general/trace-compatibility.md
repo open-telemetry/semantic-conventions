@@ -29,9 +29,9 @@ between a child Span and a parent Span, as defined by
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Role |
 |---|---|---|---|---|---|---|
-| [`opentracing.ref_type`](/docs/registry/attributes/opentracing.md) | string | Parent-child Reference type [1] | `child_of`; `follows_from` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`opentracing.ref_type`](/docs/registry/attributes/opentracing.md) | string | Parent-child Reference type [1] | `child_of`; `follows_from` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 **[1] `opentracing.ref_type`:** The causal relationship between a child Span and a parent Span.
 

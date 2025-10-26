@@ -18,9 +18,9 @@
 > :warning: This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Role |
 |---|---|---|---|---|---|---|
-| [`android.os.api_level`](/docs/registry/attributes/android.md) | string | Uniquely identifies the framework API revision offered by a version (`os.version`) of the android operating system. More information can be found in the [Android API levels documentation](https://developer.android.com/guide/topics/manifest/uses-sdk-element#ApiLevels). | `33`; `32` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`android.os.api_level`](/docs/registry/attributes/android.md) | string | Uniquely identifies the framework API revision offered by a version (`os.version`) of the android operating system. More information can be found in the [Android API levels documentation](https://developer.android.com/guide/topics/manifest/uses-sdk-element#ApiLevels). | `33`; `32` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 
 <!-- markdownlint-restore -->

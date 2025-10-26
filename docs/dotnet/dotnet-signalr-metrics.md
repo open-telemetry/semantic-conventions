@@ -34,10 +34,10 @@ of `[ 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10, 30, 60, 120, 300 ]`.
 
 **[1]:** Meter name: `Microsoft.AspNetCore.Http.Connections`; Added in: ASP.NET Core 8.0
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Role |
 |---|---|---|---|---|---|---|
-| [`signalr.connection.status`](/docs/registry/attributes/signalr.md) | string | SignalR HTTP connection closure status. | `app_shutdown`; `timeout` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any  |
-| [`signalr.transport`](/docs/registry/attributes/signalr.md) | string | [SignalR transport type](https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/TransportProtocols.md) | `web_sockets`; `long_polling` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any  |
+| [`signalr.connection.status`](/docs/registry/attributes/signalr.md) | string | SignalR HTTP connection closure status. | `app_shutdown`; `timeout` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | |
+| [`signalr.transport`](/docs/registry/attributes/signalr.md) | string | [SignalR transport type](https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/TransportProtocols.md) | `web_sockets`; `long_polling` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | |
 
 ---
 
@@ -79,10 +79,10 @@ of `[ 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10, 30, 60, 120, 300 ]`.
 
 **[1]:** Meter name: `Microsoft.AspNetCore.Http.Connections`; Added in: ASP.NET Core 8.0
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Role |
 |---|---|---|---|---|---|---|
-| [`signalr.connection.status`](/docs/registry/attributes/signalr.md) | string | SignalR HTTP connection closure status. | `app_shutdown`; `timeout` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any  |
-| [`signalr.transport`](/docs/registry/attributes/signalr.md) | string | [SignalR transport type](https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/TransportProtocols.md) | `web_sockets`; `long_polling` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any  |
+| [`signalr.connection.status`](/docs/registry/attributes/signalr.md) | string | SignalR HTTP connection closure status. | `app_shutdown`; `timeout` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | |
+| [`signalr.transport`](/docs/registry/attributes/signalr.md) | string | [SignalR transport type](https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/TransportProtocols.md) | `web_sockets`; `long_polling` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | |
 
 ---
 

@@ -19,8 +19,8 @@
 
 {#- Macro for creating attribute table -#}
 {% macro generate_table(attributes, attribute_registry_base_url, lineage_attributes) %}{% if (attributes is defined) and (attributes | length > 0) %}
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Role |
 |---|---|---|---|---|---|---|
-{% for attribute in attributes if attribute.deprecated is not defined or attribute.deprecated is none %}| {{ attrs.name_with_link(attribute, attribute_registry_base_url, lineage_attributes) }} | {{ attrs.type(attribute) }} | {{ attribute.brief | trim }}{{ notes.add({"note": attribute.note, "name": attrs.name(attribute)}) }} | {{ examples.format(attribute) | trim }} | {{ requirement.render({"level": attribute.requirement_level, "name": attrs.name(attribute), "deprecated": attribute.deprecated}, notes) | trim }} | {{ stability.badge(attribute.stability, attribute.deprecated, attribute.brief) | trim }} | {% if attribute.sampling_relevant == true %} Span Creation {% else %} Any {% endif %} |
+{% for attribute in attributes if attribute.deprecated is not defined or attribute.deprecated is none %}| {{ attrs.name_with_link(attribute, attribute_registry_base_url, lineage_attributes) }} | {{ attrs.type(attribute) }} | {{ attribute.brief | trim }}{{ notes.add({"note": attribute.note, "name": attrs.name(attribute)}) }} | {{ examples.format(attribute) | trim }} | {{ requirement.render({"level": attribute.requirement_level, "name": attrs.name(attribute), "deprecated": attribute.deprecated}, notes) | trim }} | {{ stability.badge(attribute.stability, attribute.deprecated, attribute.brief) | trim }} | {% if attribute.sampling_relevant == true %}Head Sampling{% else %}{% endif %} |
 {% endfor %}{{ notes.render() }}{{ enums.tables(attributes | selectattr("type", "mapping"), notes) }}
 {% endif %}{% endmacro %}

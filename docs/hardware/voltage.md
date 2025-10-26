@@ -31,12 +31,12 @@ All voltage metrics may include the below attributes:
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Role |
 |---|---|---|---|---|---|---|
-| [`hw.id`](/docs/registry/attributes/hardware.md) | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
-| [`hw.name`](/docs/registry/attributes/hardware.md) | string | An easily-recognizable name for the hardware component | `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
-| [`hw.parent`](/docs/registry/attributes/hardware.md) | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
-| [`hw.sensor_location`](/docs/registry/attributes/hardware.md) | string | Location of the sensor | `cpu0`; `ps1`; `INLET`; `CPU0_DIE`; `AMBIENT`; `MOTHERBOARD`; `PS0 V3_3`; `MAIN_12V`; `CPU_VCORE` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`hw.id`](/docs/registry/attributes/hardware.md) | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) | |
+| [`hw.name`](/docs/registry/attributes/hardware.md) | string | An easily-recognizable name for the hardware component | `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) | |
+| [`hw.parent`](/docs/registry/attributes/hardware.md) | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) | |
+| [`hw.sensor_location`](/docs/registry/attributes/hardware.md) | string | Location of the sensor | `cpu0`; `ps1`; `INLET`; `CPU0_DIE`; `AMBIENT`; `MOTHERBOARD`; `PS0 V3_3`; `MAIN_12V`; `CPU_VCORE` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -60,12 +60,12 @@ Voltage measured by the sensor.
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `hw.voltage` | Gauge | `V` | Voltage measured by the sensor. | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Role |
 |---|---|---|---|---|---|---|
-| [`hw.id`](/docs/registry/attributes/hardware.md) | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
-| [`hw.name`](/docs/registry/attributes/hardware.md) | string | An easily-recognizable name for the hardware component | `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
-| [`hw.parent`](/docs/registry/attributes/hardware.md) | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
-| [`hw.sensor_location`](/docs/registry/attributes/hardware.md) | string | Location of the sensor | `cpu0`; `ps1`; `INLET`; `CPU0_DIE`; `AMBIENT`; `MOTHERBOARD`; `PS0 V3_3`; `MAIN_12V`; `CPU_VCORE` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`hw.id`](/docs/registry/attributes/hardware.md) | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) | |
+| [`hw.name`](/docs/registry/attributes/hardware.md) | string | An easily-recognizable name for the hardware component | `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) | |
+| [`hw.parent`](/docs/registry/attributes/hardware.md) | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) | |
+| [`hw.sensor_location`](/docs/registry/attributes/hardware.md) | string | Location of the sensor | `cpu0`; `ps1`; `INLET`; `CPU0_DIE`; `AMBIENT`; `MOTHERBOARD`; `PS0 V3_3`; `MAIN_12V`; `CPU_VCORE` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -93,13 +93,13 @@ The following attributes SHOULD be set:
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `hw.voltage.limit` | Gauge | `V` | Voltage limit in Volts. | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Role |
 |---|---|---|---|---|---|---|
-| [`hw.id`](/docs/registry/attributes/hardware.md) | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
-| [`hw.limit_type`](/docs/registry/attributes/hardware.md) | string | Type of limit for hardware components | `low.critical`; `low.degraded`; `high.degraded`; `high.critical` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
-| [`hw.name`](/docs/registry/attributes/hardware.md) | string | An easily-recognizable name for the hardware component | `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
-| [`hw.parent`](/docs/registry/attributes/hardware.md) | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
-| [`hw.sensor_location`](/docs/registry/attributes/hardware.md) | string | Location of the sensor | `cpu0`; `ps1`; `INLET`; `CPU0_DIE`; `AMBIENT`; `MOTHERBOARD`; `PS0 V3_3`; `MAIN_12V`; `CPU_VCORE` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`hw.id`](/docs/registry/attributes/hardware.md) | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) | |
+| [`hw.limit_type`](/docs/registry/attributes/hardware.md) | string | Type of limit for hardware components | `low.critical`; `low.degraded`; `high.degraded`; `high.critical` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) | |
+| [`hw.name`](/docs/registry/attributes/hardware.md) | string | An easily-recognizable name for the hardware component | `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) | |
+| [`hw.parent`](/docs/registry/attributes/hardware.md) | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) | |
+| [`hw.sensor_location`](/docs/registry/attributes/hardware.md) | string | Location of the sensor | `cpu0`; `ps1`; `INLET`; `CPU0_DIE`; `AMBIENT`; `MOTHERBOARD`; `PS0 V3_3`; `MAIN_12V`; `CPU_VCORE` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 ---
 
@@ -139,12 +139,12 @@ Nominal (expected) voltage.
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `hw.voltage.nominal` | Gauge | `V` | Nominal (expected) voltage. | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Role |
 |---|---|---|---|---|---|---|
-| [`hw.id`](/docs/registry/attributes/hardware.md) | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
-| [`hw.name`](/docs/registry/attributes/hardware.md) | string | An easily-recognizable name for the hardware component | `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
-| [`hw.parent`](/docs/registry/attributes/hardware.md) | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
-| [`hw.sensor_location`](/docs/registry/attributes/hardware.md) | string | Location of the sensor | `cpu0`; `ps1`; `INLET`; `CPU0_DIE`; `AMBIENT`; `MOTHERBOARD`; `PS0 V3_3`; `MAIN_12V`; `CPU_VCORE` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`hw.id`](/docs/registry/attributes/hardware.md) | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) | |
+| [`hw.name`](/docs/registry/attributes/hardware.md) | string | An easily-recognizable name for the hardware component | `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) | |
+| [`hw.parent`](/docs/registry/attributes/hardware.md) | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) | |
+| [`hw.sensor_location`](/docs/registry/attributes/hardware.md) | string | Location of the sensor | `cpu0`; `ps1`; `INLET`; `CPU0_DIE`; `AMBIENT`; `MOTHERBOARD`; `PS0 V3_3`; `MAIN_12V`; `CPU_VCORE` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -178,13 +178,13 @@ When using this metric for voltage status, the following attributes MUST be set:
 
 **[1]:** `hw.status` is currently specified as an *UpDownCounter* but would ideally be represented using a [*StateSet* as defined in OpenMetrics](https://github.com/prometheus/OpenMetrics/blob/v1.0.0/specification/OpenMetrics.md#stateset). This semantic convention will be updated once *StateSet* is specified in OpenTelemetry. This planned change is not expected to have any consequence on the way users query their timeseries backend to retrieve the values of `hw.status` over time.
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Role |
 |---|---|---|---|---|---|---|
-| [`hw.id`](/docs/registry/attributes/hardware.md) | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
-| [`hw.state`](/docs/registry/attributes/hardware.md) | string | The current state of the component | `degraded`; `failed`; `needs_cleaning` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
-| [`hw.type`](/docs/registry/attributes/hardware.md) | string | Type of the component [1] | `battery`; `cpu`; `disk_controller` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
-| [`hw.name`](/docs/registry/attributes/hardware.md) | string | An easily-recognizable name for the hardware component | `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
-| [`hw.parent`](/docs/registry/attributes/hardware.md) | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`hw.id`](/docs/registry/attributes/hardware.md) | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) | |
+| [`hw.state`](/docs/registry/attributes/hardware.md) | string | The current state of the component | `degraded`; `failed`; `needs_cleaning` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) | |
+| [`hw.type`](/docs/registry/attributes/hardware.md) | string | Type of the component [1] | `battery`; `cpu`; `disk_controller` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) | |
+| [`hw.name`](/docs/registry/attributes/hardware.md) | string | An easily-recognizable name for the hardware component | `eth0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) | |
+| [`hw.parent`](/docs/registry/attributes/hardware.md) | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 **[1] `hw.type`:** Describes the category of the hardware component for which `hw.state` is being reported. For example, `hw.type=temperature` along with `hw.state=degraded` would indicate that the temperature of the hardware component has been reported as `degraded`.
 

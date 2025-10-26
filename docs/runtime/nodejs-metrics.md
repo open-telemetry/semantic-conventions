@@ -221,9 +221,9 @@ This metric is [recommended][MetricRecommended].
 
 **[1]:** Value can be retrieved from [`performance.eventLoopUtilization([utilization1[, utilization2]])`](https://nodejs.org/api/perf_hooks.html#performanceeventlooputilizationutilization1-utilization2)
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Role |
 |---|---|---|---|---|---|---|
-| [`nodejs.eventloop.state`](/docs/registry/attributes/nodejs.md) | string | The state of event loop time. | `active`; `idle` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`nodejs.eventloop.state`](/docs/registry/attributes/nodejs.md) | string | The state of event loop time. | `active`; `idle` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 ---
 

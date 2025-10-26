@@ -79,21 +79,21 @@ of `[ 0.001, 0.005, 0.01, 0.05, 0.1, 0.5, 1, 5, 10 ]`.
 
 **[1]:** Batch operations SHOULD be recorded as a single operation.
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Role |
 |---|---|---|---|---|---|---|
-| [`db.system.name`](/docs/registry/attributes/db.md) | string | The database management system (DBMS) product as identified by the client instrumentation. [1] | `other_sql`; `softwareag.adabas`; `actian.ingres` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any  |
-| [`db.collection.name`](/docs/registry/attributes/db.md) | string | The name of a collection (table, container) within the database. [2] | `public.users`; `customers` | `Conditionally Required` [3] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any  |
-| [`db.namespace`](/docs/registry/attributes/db.md) | string | The name of the database, fully qualified within the server address and port. [4] | `customers`; `test.users` | `Conditionally Required` If available. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any  |
-| [`db.operation.name`](/docs/registry/attributes/db.md) | string | The name of the operation or command being executed. [5] | `findAndModify`; `HMSET`; `SELECT` | `Conditionally Required` [6] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any  |
-| [`db.response.status_code`](/docs/registry/attributes/db.md) | string | Database response status code. [7] | `102`; `ORA-17002`; `08P01`; `404` | `Conditionally Required` [8] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any  |
-| [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [9] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any  |
-| [`server.port`](/docs/registry/attributes/server.md) | int | Server port number. [10] | `80`; `8080`; `443` | `Conditionally Required` [11] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any  |
-| [`db.query.summary`](/docs/registry/attributes/db.md) | string | Low cardinality summary of a database query. [12] | `SELECT wuser_table`; `INSERT shipping_details SELECT orders`; `get user by id` | `Recommended` [13] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any  |
-| [`db.stored_procedure.name`](/docs/registry/attributes/db.md) | string | The name of a stored procedure within the database. [14] | `GetCustomer` | `Recommended` [15] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any  |
-| [`network.peer.address`](/docs/registry/attributes/network.md) | string | Peer address of the database node where the operation was performed. [16] | `10.1.2.80`; `/tmp/my.sock` | `Recommended` If applicable for this database system. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any  |
-| [`network.peer.port`](/docs/registry/attributes/network.md) | int | Peer port number of the network connection. | `65123` | `Recommended` If and only if `network.peer.address` is set. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any  |
-| [`server.address`](/docs/registry/attributes/server.md) | string | Name of the database host. [17] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any  |
-| [`db.query.text`](/docs/registry/attributes/db.md) | string | The database query being executed. [18] | `SELECT * FROM wuser_table where username = ?`; `SET mykey ?` | `Opt-In` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any  |
+| [`db.system.name`](/docs/registry/attributes/db.md) | string | The database management system (DBMS) product as identified by the client instrumentation. [1] | `other_sql`; `softwareag.adabas`; `actian.ingres` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | |
+| [`db.collection.name`](/docs/registry/attributes/db.md) | string | The name of a collection (table, container) within the database. [2] | `public.users`; `customers` | `Conditionally Required` [3] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | |
+| [`db.namespace`](/docs/registry/attributes/db.md) | string | The name of the database, fully qualified within the server address and port. [4] | `customers`; `test.users` | `Conditionally Required` If available. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | |
+| [`db.operation.name`](/docs/registry/attributes/db.md) | string | The name of the operation or command being executed. [5] | `findAndModify`; `HMSET`; `SELECT` | `Conditionally Required` [6] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | |
+| [`db.response.status_code`](/docs/registry/attributes/db.md) | string | Database response status code. [7] | `102`; `ORA-17002`; `08P01`; `404` | `Conditionally Required` [8] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | |
+| [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [9] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | |
+| [`server.port`](/docs/registry/attributes/server.md) | int | Server port number. [10] | `80`; `8080`; `443` | `Conditionally Required` [11] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | |
+| [`db.query.summary`](/docs/registry/attributes/db.md) | string | Low cardinality summary of a database query. [12] | `SELECT wuser_table`; `INSERT shipping_details SELECT orders`; `get user by id` | `Recommended` [13] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | |
+| [`db.stored_procedure.name`](/docs/registry/attributes/db.md) | string | The name of a stored procedure within the database. [14] | `GetCustomer` | `Recommended` [15] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | |
+| [`network.peer.address`](/docs/registry/attributes/network.md) | string | Peer address of the database node where the operation was performed. [16] | `10.1.2.80`; `/tmp/my.sock` | `Recommended` If applicable for this database system. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | |
+| [`network.peer.port`](/docs/registry/attributes/network.md) | int | Peer port number of the network connection. | `65123` | `Recommended` If and only if `network.peer.address` is set. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | |
+| [`server.address`](/docs/registry/attributes/server.md) | string | Name of the database host. [17] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | |
+| [`db.query.text`](/docs/registry/attributes/db.md) | string | The database query being executed. [18] | `SELECT * FROM wuser_table where username = ?`; `SET mykey ?` | `Opt-In` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | |
 
 **[1] `db.system.name`:** The actual DBMS may differ from the one identified by the client. For example, when using PostgreSQL client libraries to connect to a CockroachDB, the `db.system.name` is set to `postgresql` based on the instrumentation's best knowledge.
 
@@ -267,20 +267,20 @@ Explaining bucket configuration:
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `db.client.response.returned_rows` | Histogram | `{row}` | The actual number of records returned by the database operation. | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Role |
 |---|---|---|---|---|---|---|
-| [`db.system.name`](/docs/registry/attributes/db.md) | string | The database management system (DBMS) product as identified by the client instrumentation. [1] | `other_sql`; `softwareag.adabas`; `actian.ingres` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any  |
-| [`db.collection.name`](/docs/registry/attributes/db.md) | string | The name of a collection (table, container) within the database. [2] | `public.users`; `customers` | `Conditionally Required` [3] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any  |
-| [`db.namespace`](/docs/registry/attributes/db.md) | string | The name of the database, fully qualified within the server address and port. [4] | `customers`; `test.users` | `Conditionally Required` If available. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any  |
-| [`db.operation.name`](/docs/registry/attributes/db.md) | string | The name of the operation or command being executed. [5] | `findAndModify`; `HMSET`; `SELECT` | `Conditionally Required` [6] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any  |
-| [`db.response.status_code`](/docs/registry/attributes/db.md) | string | Database response status code. [7] | `102`; `ORA-17002`; `08P01`; `404` | `Conditionally Required` [8] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any  |
-| [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [9] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any  |
-| [`server.port`](/docs/registry/attributes/server.md) | int | Server port number. [10] | `80`; `8080`; `443` | `Conditionally Required` [11] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any  |
-| [`db.query.summary`](/docs/registry/attributes/db.md) | string | Low cardinality summary of a database query. [12] | `SELECT wuser_table`; `INSERT shipping_details SELECT orders`; `get user by id` | `Recommended` [13] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any  |
-| [`network.peer.address`](/docs/registry/attributes/network.md) | string | Peer address of the database node where the operation was performed. [14] | `10.1.2.80`; `/tmp/my.sock` | `Recommended` If applicable for this database system. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any  |
-| [`network.peer.port`](/docs/registry/attributes/network.md) | int | Peer port number of the network connection. | `65123` | `Recommended` If and only if `network.peer.address` is set. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any  |
-| [`server.address`](/docs/registry/attributes/server.md) | string | Name of the database host. [15] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any  |
-| [`db.query.text`](/docs/registry/attributes/db.md) | string | The database query being executed. [16] | `SELECT * FROM wuser_table where username = ?`; `SET mykey ?` | `Opt-In` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  Any  |
+| [`db.system.name`](/docs/registry/attributes/db.md) | string | The database management system (DBMS) product as identified by the client instrumentation. [1] | `other_sql`; `softwareag.adabas`; `actian.ingres` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | |
+| [`db.collection.name`](/docs/registry/attributes/db.md) | string | The name of a collection (table, container) within the database. [2] | `public.users`; `customers` | `Conditionally Required` [3] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | |
+| [`db.namespace`](/docs/registry/attributes/db.md) | string | The name of the database, fully qualified within the server address and port. [4] | `customers`; `test.users` | `Conditionally Required` If available. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | |
+| [`db.operation.name`](/docs/registry/attributes/db.md) | string | The name of the operation or command being executed. [5] | `findAndModify`; `HMSET`; `SELECT` | `Conditionally Required` [6] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | |
+| [`db.response.status_code`](/docs/registry/attributes/db.md) | string | Database response status code. [7] | `102`; `ORA-17002`; `08P01`; `404` | `Conditionally Required` [8] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | |
+| [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [9] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | |
+| [`server.port`](/docs/registry/attributes/server.md) | int | Server port number. [10] | `80`; `8080`; `443` | `Conditionally Required` [11] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | |
+| [`db.query.summary`](/docs/registry/attributes/db.md) | string | Low cardinality summary of a database query. [12] | `SELECT wuser_table`; `INSERT shipping_details SELECT orders`; `get user by id` | `Recommended` [13] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | |
+| [`network.peer.address`](/docs/registry/attributes/network.md) | string | Peer address of the database node where the operation was performed. [14] | `10.1.2.80`; `/tmp/my.sock` | `Recommended` If applicable for this database system. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | |
+| [`network.peer.port`](/docs/registry/attributes/network.md) | int | Peer port number of the network connection. | `65123` | `Recommended` If and only if `network.peer.address` is set. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | |
+| [`server.address`](/docs/registry/attributes/server.md) | string | Name of the database host. [15] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | |
+| [`db.query.text`](/docs/registry/attributes/db.md) | string | The database query being executed. [16] | `SELECT * FROM wuser_table where username = ?`; `SET mykey ?` | `Opt-In` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | |
 
 **[1] `db.system.name`:** The actual DBMS may differ from the one identified by the client. For example, when using PostgreSQL client libraries to connect to a CockroachDB, the `db.system.name` is set to `postgresql` based on the instrumentation's best knowledge.
 
@@ -431,10 +431,10 @@ This metric is [required][MetricRequired].
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `db.client.connection.count` | UpDownCounter | `{connection}` | The number of connections that are currently in state described by the `state` attribute. | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Role |
 |---|---|---|---|---|---|---|
-| [`db.client.connection.pool.name`](/docs/registry/attributes/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation SHOULD use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`, and `db.namespace`, formatted as `server.address:server.port/db.namespace`. Instrumentations that generate connection pool name following different patterns SHOULD document it. | `myDataSource` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
-| [`db.client.connection.state`](/docs/registry/attributes/db.md) | string | The state of a connection in the pool | `idle` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`db.client.connection.pool.name`](/docs/registry/attributes/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation SHOULD use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`, and `db.namespace`, formatted as `server.address:server.port/db.namespace`. Instrumentations that generate connection pool name following different patterns SHOULD document it. | `myDataSource` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) | |
+| [`db.client.connection.state`](/docs/registry/attributes/db.md) | string | The state of a connection in the pool | `idle` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 ---
 
@@ -465,9 +465,9 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `db.client.connection.idle.max` | UpDownCounter | `{connection}` | The maximum number of idle open connections allowed. | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Role |
 |---|---|---|---|---|---|---|
-| [`db.client.connection.pool.name`](/docs/registry/attributes/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation SHOULD use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`, and `db.namespace`, formatted as `server.address:server.port/db.namespace`. Instrumentations that generate connection pool name following different patterns SHOULD document it. | `myDataSource` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`db.client.connection.pool.name`](/docs/registry/attributes/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation SHOULD use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`, and `db.namespace`, formatted as `server.address:server.port/db.namespace`. Instrumentations that generate connection pool name following different patterns SHOULD document it. | `myDataSource` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -489,9 +489,9 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `db.client.connection.idle.min` | UpDownCounter | `{connection}` | The minimum number of idle open connections allowed. | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Role |
 |---|---|---|---|---|---|---|
-| [`db.client.connection.pool.name`](/docs/registry/attributes/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation SHOULD use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`, and `db.namespace`, formatted as `server.address:server.port/db.namespace`. Instrumentations that generate connection pool name following different patterns SHOULD document it. | `myDataSource` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`db.client.connection.pool.name`](/docs/registry/attributes/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation SHOULD use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`, and `db.namespace`, formatted as `server.address:server.port/db.namespace`. Instrumentations that generate connection pool name following different patterns SHOULD document it. | `myDataSource` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -513,9 +513,9 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `db.client.connection.max` | UpDownCounter | `{connection}` | The maximum number of open connections allowed. | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Role |
 |---|---|---|---|---|---|---|
-| [`db.client.connection.pool.name`](/docs/registry/attributes/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation SHOULD use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`, and `db.namespace`, formatted as `server.address:server.port/db.namespace`. Instrumentations that generate connection pool name following different patterns SHOULD document it. | `myDataSource` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`db.client.connection.pool.name`](/docs/registry/attributes/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation SHOULD use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`, and `db.namespace`, formatted as `server.address:server.port/db.namespace`. Instrumentations that generate connection pool name following different patterns SHOULD document it. | `myDataSource` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -537,9 +537,9 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `db.client.connection.pending_requests` | UpDownCounter | `{request}` | The number of current pending requests for an open connection. | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Role |
 |---|---|---|---|---|---|---|
-| [`db.client.connection.pool.name`](/docs/registry/attributes/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation SHOULD use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`, and `db.namespace`, formatted as `server.address:server.port/db.namespace`. Instrumentations that generate connection pool name following different patterns SHOULD document it. | `myDataSource` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`db.client.connection.pool.name`](/docs/registry/attributes/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation SHOULD use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`, and `db.namespace`, formatted as `server.address:server.port/db.namespace`. Instrumentations that generate connection pool name following different patterns SHOULD document it. | `myDataSource` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -561,9 +561,9 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `db.client.connection.timeouts` | Counter | `{timeout}` | The number of connection timeouts that have occurred trying to obtain a connection from the pool. | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Role |
 |---|---|---|---|---|---|---|
-| [`db.client.connection.pool.name`](/docs/registry/attributes/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation SHOULD use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`, and `db.namespace`, formatted as `server.address:server.port/db.namespace`. Instrumentations that generate connection pool name following different patterns SHOULD document it. | `myDataSource` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`db.client.connection.pool.name`](/docs/registry/attributes/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation SHOULD use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`, and `db.namespace`, formatted as `server.address:server.port/db.namespace`. Instrumentations that generate connection pool name following different patterns SHOULD document it. | `myDataSource` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -585,9 +585,9 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `db.client.connection.create_time` | Histogram | `s` | The time it took to create a new connection. | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Role |
 |---|---|---|---|---|---|---|
-| [`db.client.connection.pool.name`](/docs/registry/attributes/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation SHOULD use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`, and `db.namespace`, formatted as `server.address:server.port/db.namespace`. Instrumentations that generate connection pool name following different patterns SHOULD document it. | `myDataSource` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`db.client.connection.pool.name`](/docs/registry/attributes/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation SHOULD use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`, and `db.namespace`, formatted as `server.address:server.port/db.namespace`. Instrumentations that generate connection pool name following different patterns SHOULD document it. | `myDataSource` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -609,9 +609,9 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `db.client.connection.wait_time` | Histogram | `s` | The time it took to obtain an open connection from the pool. | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Role |
 |---|---|---|---|---|---|---|
-| [`db.client.connection.pool.name`](/docs/registry/attributes/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation SHOULD use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`, and `db.namespace`, formatted as `server.address:server.port/db.namespace`. Instrumentations that generate connection pool name following different patterns SHOULD document it. | `myDataSource` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`db.client.connection.pool.name`](/docs/registry/attributes/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation SHOULD use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`, and `db.namespace`, formatted as `server.address:server.port/db.namespace`. Instrumentations that generate connection pool name following different patterns SHOULD document it. | `myDataSource` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -633,9 +633,9 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `db.client.connection.use_time` | Histogram | `s` | The time between borrowing a connection and returning it to the pool. | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Capture Scope |
+| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Role |
 |---|---|---|---|---|---|---|
-| [`db.client.connection.pool.name`](/docs/registry/attributes/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation SHOULD use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`, and `db.namespace`, formatted as `server.address:server.port/db.namespace`. Instrumentations that generate connection pool name following different patterns SHOULD document it. | `myDataSource` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |  Any  |
+| [`db.client.connection.pool.name`](/docs/registry/attributes/db.md) | string | The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation SHOULD use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`, and `db.namespace`, formatted as `server.address:server.port/db.namespace`. Instrumentations that generate connection pool name following different patterns SHOULD document it. | `myDataSource` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
