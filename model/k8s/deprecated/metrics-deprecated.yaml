@@ -8,8 +8,8 @@ groups:
     stability: development
     deprecated:
       reason: renamed
-      renamed_to: k8s.replicationcontroller.desired_pods
-    brief: "Deprecated, use `k8s.replicationcontroller.desired_pods` instead."
+      renamed_to: k8s.replicationcontroller.pod.desired
+    brief: "Deprecated, use `k8s.replicationcontroller.pod.desired` instead."
     instrument: updowncounter
     unit: "{pod}"
   - id: metric.k8s.replication_controller.available_pods
@@ -21,8 +21,8 @@ groups:
     stability: development
     deprecated:
       reason: renamed
-      renamed_to: k8s.replicationcontroller.available_pods
-    brief: "Deprecated, use `k8s.replicationcontroller.available_pods` instead."
+      renamed_to: k8s.replicationcontroller.pod.available
+    brief: "Deprecated, use `k8s.replicationcontroller.pod.available` instead."
     instrument: updowncounter
     unit: "{pod}"
   - id: metric.k8s.replicationcontroller.desired_pods
