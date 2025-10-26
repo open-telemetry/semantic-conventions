@@ -8,18 +8,21 @@ groups:
     stability: development
     extends: attribute.metric.workflow.execution
     attributes:
-      - ref: workflow.execution.outcome
+      - ref: workflow.execution.state
         requirement_level: required
-  - id: metric.workflow.execution.count
+      - ref: workflow.execution.result
+        requirement_level:
+          conditionally_required: If and only if the state produces a result.
+  - id: metric.workflow.execution.outcome
     type: metric
-    metric_name: workflow.execution.count
+    metric_name: workflow.execution.outcome
     brief: The number of task executions which have been initiated.
     instrument: counter
     unit: "{executions}"
     stability: development
     extends: attribute.metric.workflow.execution
     attributes:
-      - ref: workflow.execution.outcome
+      - ref: workflow.execution.result
         requirement_level: required
   - id: metric.workflow.execution.status
     type: metric
@@ -57,18 +60,21 @@ groups:
     stability: development
     extends: attribute.metric.workflow.run
     attributes:
-      - ref: workflow.outcome
+      - ref: workflow.state
         requirement_level: required
-  - id: metric.workflow.count
+      - ref: workflow.result
+        requirement_level:
+          conditionally_required: If and only if the state produces a result.
+  - id: metric.workflow.outcome
     type: metric
-    metric_name: workflow.count
+    metric_name: workflow.outcome
     brief: The number of workflow instances which have been initiated.
     instrument: counter
     unit: "{workflows}"
     stability: development
     extends: attribute.metric.workflow.run
     attributes:
-      - ref: workflow.outcome
+      - ref: workflow.result
         requirement_level: required
   - id: metric.workflow.status
     type: metric
@@ -105,5 +111,5 @@ groups:
     stability: development
     extends: attribute.metric.workflow.execution
     attributes:
-      - ref: workflow.execution.outcome
+      - ref: workflow.execution.result
         requirement_level: required

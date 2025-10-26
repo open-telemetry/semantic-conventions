@@ -12,7 +12,7 @@ groups:
         brief: >
           Unique ID for this execution of the workflow and will be shared across all the task runs.
         examples: [ '5c6e9a4b-69ab-499f-b4a7-4cf5c8720d66' ]
-      - id: workflow.outcome
+      - id: workflow.result
         type:
           members:
             - id: success
@@ -51,25 +51,21 @@ groups:
           members:
             - id: pending
               value: pending
-              brief: >
-                The run pending state spans from the event triggering the pipeline run until the execution of the run starts (eg. time spent in a queue, provisioning agents, creating run resources).
+              brief: The pending state spans from the event triggering the workflow until the creation of the first task execution.
+              note: This can cover time spent in a queue, provisioning agents, creating resources etc.
               stability: development
             - id: executing
               value: executing
-              brief: The executing state spans the execution of any run tasks (eg. build, test).
+              brief: The executing state spans from the creation of the first task execution till the completion of the last task execution.
               stability: development
             - id: finalizing
               value: finalizing
-              brief: The finalizing state spans from when the run has finished executing and covers cleanup of resources etc.
-              stability: development
-            - id: completed
-              value: completed
-              brief: The completed state spans from when the run has finished finalizing (eg. cleanup of run resources).
+              brief: The finalizing state spans from when all the task executions have finished executing but before the result is set.
+              note: This can cover clean up of resources etc.
               stability: development
         stability: development
         brief: >
-          The pipeline run goes through these states during its lifecycle.
-        examples: ["pending", "executing", "finalizing"]
+          The workflow goes through these states during its lifecycle.
       - id: workflow.url.full
         type: string
         stability: development
@@ -171,7 +167,7 @@ groups:
           This counter starts at 1 and is incremented on each re-run of the task.
           The uniqueness is based upon `workflow.execution.id` & `workflow.execution.item.id`.
         examples: [ 1 ]
-      - id: workflow.execution.outcome
+      - id: workflow.execution.result
         type:
           members:
             - id: success
@@ -200,26 +196,21 @@ groups:
               stability: development
         stability: development
         brief: The outcome of executing the task.
-        examples: ["success", "failure", "timeout", "skipped"]
       - id: workflow.execution.state
         type:
           members:
             - id: pending
               value: pending
-              brief: >
-                The run pending state spans from the event triggering the pipeline run until the execution of the run starts (eg. time spent in a queue, provisioning agents, creating run resources).
+              brief: The pending state spans from the execution being crated until it starts executing.
+              note: This can cover time spent in a queue, provisioning agents, creating resources etc.
               stability: development
             - id: executing
               value: executing
-              brief: The executing state spans the execution of any run tasks (eg. build, test).
+              brief: The executing state spans the execution of any tasks.
               stability: development
             - id: finalizing
               value: finalizing
-              brief: The finalizing state spans from when the run has finished executing and covers cleanup of resources etc.
-              stability: development
-            - id: completed
-              value: completed
-              brief: The completed state spans from when the run has finished finalizing (eg. cleanup of run resources).
+              brief: The finalizing state spans from when the execution has finished executing and covers cleanup of resources etc.
               stability: development
         stability: development
         brief: >
@@ -291,7 +282,7 @@ groups:
         brief: >
           Name of the trigger
         examples: [ 'Nightly build' ]
-      - id: workflow.trigger.outcome
+      - id: workflow.trigger.result
         type:
           members:
             - id: success

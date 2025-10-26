@@ -28,7 +28,7 @@ groups:
         brief: "The name of the k8s CronJob/Job."
       - ref: workflow.platform.name
         examples: "k8s"
-      - ref: workflow.outcome
+      - ref: workflow.result
         requirement_level: required
   - id: event.workflow.status
     type: event
@@ -65,7 +65,7 @@ groups:
         brief: "The name of the k8s CronJob/Job."
       - ref: workflow.platform.name
         examples: "k8s"
-      - ref: workflow.execution.outcome
+      - ref: workflow.execution.result
         requirement_level: required
       - ref: workflow.iteration.limit
         requirement_level:

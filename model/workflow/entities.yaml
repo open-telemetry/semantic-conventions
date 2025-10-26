@@ -40,7 +40,7 @@ groups:
     attributes:
       - ref: workflow.id
         role: identifying
-      - ref: workflow.outcome
+      - ref: workflow.result
         role: descriptive
       - ref: workflow.url.full
         role: descriptive
@@ -66,7 +66,7 @@ groups:
         role: identifying
       - ref: workflow.execution.attempt
         role: descriptive
-      - ref: workflow.execution.outcome
+      - ref: workflow.execution.result
         role: descriptive
       - ref: workflow.execution.state
         role: descriptive
