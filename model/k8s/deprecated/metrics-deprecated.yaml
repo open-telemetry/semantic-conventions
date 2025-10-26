@@ -474,7 +474,7 @@ groups:
     stability: development
     deprecated:
       reason: renamed
-      renamed_to: metric.k8s.node.cpu.allocatable
+      renamed_to: k8s.node.cpu.allocatable
     brief: "Deprecated, use `k8s.node.cpu.allocatable` instead."
     entity_associations:
       - k8s.node
@@ -489,7 +489,7 @@ groups:
     stability: development
     deprecated:
       reason: renamed
-      renamed_to: metric.k8s.node.ephemeral_storage.allocatable
+      renamed_to: k8s.node.ephemeral_storage.allocatable
     brief: "Deprecated, use `k8s.node.ephemeral_storage.allocatable` instead."
     entity_associations:
       - k8s.node
@@ -504,7 +504,7 @@ groups:
     stability: development
     deprecated:
       reason: renamed
-      renamed_to: metric.k8s.node.memory.allocatable
+      renamed_to: k8s.node.memory.allocatable
     brief: "Deprecated, use `k8s.node.memory.allocatable` instead."
     entity_associations:
       - k8s.node
