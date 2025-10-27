@@ -14,28 +14,27 @@
 {% macro print_associations(associations, registry) -%}
 {%- for e in associations %}{%if loop.first == false %}; {% endif %}[`{{ e | trim }}`]({{registry_url(e, registry)}}){%- endfor %}
 {%- endmacro %}
-{#- Figure out actual entity stability. -#}
-{% macro real_stability(resource) %}
-{% if resource.attributes | map(attribute='stability') | unique | length > 1 -%}
-{{ stability.badge("mixed", "", "") }}
-{%- else -%}
-{{ stability.badge(resource.stability, resource.deprecated, resource.brief) }}
-{%- endif %}
-{% endmacro %}
+{#- Create role tags #}
+{% macro role_tag(role) -%}
+{% if role == "identity" %}![Identity](https://img.shields.io/badge/-identity-purple)
+{% elif role == "description" %}![Descriptive](https://img.shields.io/badge/-descriptive-blue)
+{% else %}![Other](https://img.shields.io/badge/-other-red)
+{% endif %}
+{%- endmacro %}
 {#- Header for snippets. -#}
 {% macro header(entity) -%}
-**Status:** {{ real_stability(entity) | trim }}
+**Status:** {{ stability.badge(entity.stability, entity.deprecated, entity.brief) | trim }}
 
 **type:** `{{ entity.name }}`
 
 **Description:** {{ entity.brief }}
 {%- endmacro %}
 {#- Render a single row on the entity table. -#}
-{% macro attribute_row(attribute, attribute_registry_base_url, lineage_attributes, notes) -%}
-| | {{ attrs.name_with_link(attribute, attribute_registry_base_url, lineage_attributes) }} | {{ attrs.type(attribute) }} | {{ attribute.brief | trim }}{{ notes.add({"note": attribute.note, "name": attrs.name(attribute)}) }} | {{ examples.format(attribute) | trim }} | {{ requirement.render({"level": attribute.requirement_level, "name": attrs.name(attribute)}, notes) | trim }} | {{ stability.badge(attribute.stability, attribute.deprecated, attribute.brief) | trim }} |
+{% macro attribute_row(attribute, attribute_registry_base_url, lineage_attributes, notes, role) -%}
+| {{ role_tag(role) | trim }} | {{ attrs.name_with_link(attribute, attribute_registry_base_url, lineage_attributes) }} | {{ attrs.type(attribute) }} | {{ attribute.brief | trim }}{{ notes.add({"note": attribute.note, "name": attrs.name(attribute)}) }} | {{ examples.format(attribute) | trim }} | {{ requirement.render({"level": attribute.requirement_level, "name": attrs.name(attribute)}, notes) | trim }} | {{ stability.badge(attribute.stability, attribute.deprecated, attribute.brief) | trim }} |
 {%- endmacro %}
 {#- Render attribute tables for entities. -#}
-{% macro attribute_table(attributes, attribute_registry_base_url, lineage_attributes, notes) %}{% for attribute in attributes | attribute_sort %}{{ attribute_row(attribute, attribute_registry_base_url, lineage_attributes, notes) }}
+{% macro attribute_table(attributes, attribute_registry_base_url, lineage_attributes, notes, role) %}{% for attribute in attributes | attribute_sort %}{{ attribute_row(attribute, attribute_registry_base_url, lineage_attributes, notes, role) }}
 {% endfor %}
 {%- endmacro %}
 {% macro all_attribute_table(e) -%}
@@ -48,14 +47,11 @@
 > Stable Entities MUST NOT have attributes without a defined role.
 
 {% endif %}
-| | Attribute | Type | Description | Examples | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|---|
-| **identity** | | | | | |{%- if id_attrs | length > 0 %}
-{{ attribute_table(id_attrs, "/docs/registry/attributes", e.lineage.attributes, notes) | trim }}{% endif %}{%- if desc_attrs | length > 0 %}
-| **description** | | | | | |
-{{ attribute_table(desc_attrs, "/docs/registry/attributes", e.lineage.attributes, notes) | trim }}{% endif %}{%- if misc_attrs | length > 0 %}
-| **other** | | | | | |
-{{ attribute_table(misc_attrs, "/docs/registry/attributes", e.lineage.attributes, notes) | trim }}
+| Role | Attribute | Type | Description | Examples | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+|---|---|---|---|---|---|---|{%- if id_attrs | length > 0 %}
+{{ attribute_table(id_attrs, "/docs/registry/attributes", e.lineage.attributes, notes, "identity") | trim }}{% endif %}{%- if desc_attrs | length > 0 %}
+{{ attribute_table(desc_attrs, "/docs/registry/attributes", e.lineage.attributes, notes, "description") | trim }}{% endif %}{%- if misc_attrs | length > 0 %}
+{{ attribute_table(misc_attrs, "/docs/registry/attributes", e.lineage.attributes, notes, "other") | trim }}
 {% endif %}
 {{ notes.render() }}
 {%- endmacro %}

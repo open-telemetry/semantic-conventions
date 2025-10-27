@@ -17,12 +17,10 @@
 > Stable Entities MUST NOT have attributes without a defined role.
 
 
-| | Attribute | Type | Description | Examples | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+| Role | Attribute | Type | Description | Examples | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|---|
-| **identity** | | | | | |
-| **other** | | | | | |
-| | [`otel.scope.name`](/docs/registry/attributes/otel.md) | string | The name of the instrumentation scope - (`InstrumentationScope.Name` in OTLP). | `io.opentelemetry.contrib.mongodb` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| | [`otel.scope.version`](/docs/registry/attributes/otel.md) | string | The version of the instrumentation scope - (`InstrumentationScope.Version` in OTLP). | `1.0.0` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| ![Other](https://img.shields.io/badge/-other-red) | [`otel.scope.name`](/docs/registry/attributes/otel.md) | string | The name of the instrumentation scope - (`InstrumentationScope.Name` in OTLP). | `io.opentelemetry.contrib.mongodb` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| ![Other](https://img.shields.io/badge/-other-red) | [`otel.scope.version`](/docs/registry/attributes/otel.md) | string | The version of the instrumentation scope - (`InstrumentationScope.Version` in OTLP). | `1.0.0` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 
 
