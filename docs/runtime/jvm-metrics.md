@@ -205,7 +205,7 @@ This metric is obtained by subscribing to
 [`GarbageCollectionNotificationInfo`](https://docs.oracle.com/javase/8/docs/jre/api/management/extension/com/sun/management/GarbageCollectionNotificationInfo.html) events provided by [`GarbageCollectorMXBean`](https://docs.oracle.com/javase/8/docs/api/java/lang/management/GarbageCollectorMXBean.html). The duration value is obtained from [`GcInfo`](https://docs.oracle.com/javase/8/docs/jre/api/management/extension/com/sun/management/GcInfo.html#getDuration--)
 
 This metric SHOULD be specified with
-[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.49.0/specification/metrics/api.md#instrument-advisory-parameters)
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.50.0/specification/metrics/api.md#instrument-advisory-parameters)
 of `[ 0.01, 0.1, 1, 10 ]`.
 
 <!-- semconv metric.jvm.gc.duration -->
@@ -367,7 +367,7 @@ This metric is obtained from [`ClassLoadingMXBean#getLoadedClassCount()`](https:
 
 This metric is [recommended][MetricRecommended].
 
-This metric is obtained from [`com.sun.management.OperatingSystemMXBean#getProcessCpuTime()`](https://docs.oracle.com/en/java/javase/17/docs/api/jdk.management/com/sun/management/OperatingSystemMXBean.html#getProcessCpuTime()) on HotSpot
+This metric is obtained from [`com.sun.management.OperatingSystemMXBean#getProcessCpuTime()`](<https://docs.oracle.com/en/java/javase/17/docs/api/jdk.management/com/sun/management/OperatingSystemMXBean.html#getProcessCpuTime()>) on HotSpot
 and [`com.ibm.lang.management.OperatingSystemMXBean#getProcessCpuTime()`](https://www.ibm.com/docs/api/v1/content/SSYKE2_8.0.0/openj9/api/jdk8/jre/management/extension/com/ibm/lang/management/OperatingSystemMXBean.html#getProcessCpuTime--) on OpenJ9.
 
 <!-- semconv metric.jvm.cpu.time -->
@@ -411,7 +411,7 @@ Note that this is always an integer value (i.e. fractional or millicores are not
 ### Metric: `jvm.cpu.recent_utilization`
 
 This metric is [recommended][MetricRecommended].
-This metric is obtained from [`com.sun.management.OperatingSystemMXBean#getProcessCpuLoad()`](https://docs.oracle.com/en/java/javase/17/docs/api/jdk.management/com/sun/management/OperatingSystemMXBean.html#getProcessCpuLoad()) on HotSpot
+This metric is obtained from [`com.sun.management.OperatingSystemMXBean#getProcessCpuLoad()`](<https://docs.oracle.com/en/java/javase/17/docs/api/jdk.management/com/sun/management/OperatingSystemMXBean.html#getProcessCpuLoad()>) on HotSpot
 and [`com.ibm.lang.management.OperatingSystemMXBean#getProcessCpuLoad()`](https://www.ibm.com/docs/api/v1/content/SSYKE2_8.0.0/openj9/api/jdk8/jre/management/extension/com/ibm/lang/management/OperatingSystemMXBean.html#getProcessCpuLoad--) on OpenJ9.
 Note that the JVM does not provide a definition of what "recent" means.
 
@@ -479,7 +479,7 @@ This metric is obtained from [`MemoryPoolMXBean#getUsage()`](https://docs.oracle
 ### Metric: `jvm.system.cpu.utilization`
 
 This metric is [Opt-In][MetricOptIn].
-This metric is obtained from [`com.sun.management.OperatingSystemMXBean#getSystemCpuLoad()`](https://docs.oracle.com/en/java/javase/17/docs/api/jdk.management/com/sun/management/OperatingSystemMXBean.html#getSystemCpuLoad()) on Java version 8..13, [`com.sun.management.OperatingSystemMXBean#getCpuLoad()`](https://docs.oracle.com/en/java/javase/17/docs/api/jdk.management/com/sun/management/OperatingSystemMXBean.html#getCpuLoad()) on Java version 14+,
+This metric is obtained from [`com.sun.management.OperatingSystemMXBean#getSystemCpuLoad()`](<https://docs.oracle.com/en/java/javase/17/docs/api/jdk.management/com/sun/management/OperatingSystemMXBean.html#getSystemCpuLoad()>) on Java version 8..13, [`com.sun.management.OperatingSystemMXBean#getCpuLoad()`](<https://docs.oracle.com/en/java/javase/17/docs/api/jdk.management/com/sun/management/OperatingSystemMXBean.html#getCpuLoad()>) on Java version 14+,
 and [`com.ibm.lang.management.OperatingSystemMXBean#getSystemCpuLoad()`](https://www.ibm.com/docs/api/v1/content/SSYKE2_8.0.0/openj9/api/jdk8/jre/management/extension/com/ibm/lang/management/OperatingSystemMXBean.html) on OpenJ9.
 
 <!-- semconv metric.jvm.system.cpu.utilization -->
@@ -607,7 +607,7 @@ This metric is obtained from [`BufferPoolMXBean#getCount()`](https://docs.oracle
 ### Metric: `jvm.file_descriptor.count`
 
 This metric is [Opt-In][MetricOptIn].
-This metric is obtained from [`UnixOperatingSystemMXBean#getOpenFileDescriptorCount()`](https://docs.oracle.com/en/java/javase/17/docs/api/jdk.management/com/sun/management/UnixOperatingSystemMXBean.html#getOpenFileDescriptorCount()).
+This metric is obtained from [`UnixOperatingSystemMXBean#getOpenFileDescriptorCount()`](<https://docs.oracle.com/en/java/javase/17/docs/api/jdk.management/com/sun/management/UnixOperatingSystemMXBean.html#getOpenFileDescriptorCount()>).
 
 <!-- semconv metric.jvm.file_descriptor.count -->
 <!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->

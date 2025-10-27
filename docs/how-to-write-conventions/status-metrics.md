@@ -76,8 +76,8 @@ The general recommendation is to use the word "state" for the attribute and
 "status" for the metric. This is derived from common turns of phrase for each
 word, respectively:
 
-"What **state** is X in?"  
-"What is the **current status** of X?"  
+"What **state** is X in?"
+"What is the **current status** of X?"
 
 The english-language semantics of this are heavily debatable, thus for the sake
 of consistency it is recommended to adopt this naming scheme if there is no

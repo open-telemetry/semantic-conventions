@@ -77,6 +77,8 @@ Currently, the following namespaces exist:
 | | [k8s.replicationcontroller](k8s.md#k8s-replicationcontroller) | ![Development](https://img.shields.io/badge/-development-blue) |
 | | [k8s.resourcequota](k8s.md#k8s-resourcequota) | ![Development](https://img.shields.io/badge/-development-blue) |
 | | [k8s.statefulset](k8s.md#k8s-statefulset) | ![Development](https://img.shields.io/badge/-development-blue) |
+| Openshift | | |
+| | [openshift.clusterquota](openshift.md#openshift-clusterquota) | ![Development](https://img.shields.io/badge/-development-blue) |
 | OS | | |
 | | [os](os.md#os) | ![Development](https://img.shields.io/badge/-development-blue) |
 | OTel | | |

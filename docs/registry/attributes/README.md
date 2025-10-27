@@ -86,6 +86,7 @@ Currently, the following namespaces exist:
 - [OCI](oci.md)
 - [ONC RPC](onc-rpc.md)
 - [OpenAI](openai.md)
+- [Openshift](openshift.md)
 - [OpenTracing](opentracing.md)
 - [OS](os.md)
 - [OTel](otel.md)
