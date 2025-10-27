@@ -10,3 +10,13 @@ groups:
         requirement_level: recommended
       - ref: gcp.gce.instance.hostname
         requirement_level: recommended
+      - ref: gcp.gce.instance.labels
+        stability: development
+        requirement_level: opt_in
+        brief: >
+          GCE instance labels, `<key>` being the label name and the value being the label value.
+        note: >
+          For example, a GCE instance label `team` with value `observability` SHOULD be recorded as the
+          `gcp.gce.instance.labels.team` attribute with value `"observability"`.
+          The `<key>` MUST be the exact GCE instance label key.
+        examples: ["observability"]
