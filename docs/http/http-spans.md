@@ -20,8 +20,6 @@ and various HTTP versions like 1.1, 2 and SPDY.
 - [HTTP server](#http-server)
   - [HTTP server definitions](#http-server-definitions)
     - [Setting `server.address` and `server.port` attributes](#setting-serveraddress-and-serverport-attributes)
-    - [Simple client/server example](#simple-clientserver-example)
-    - [Client/server example with reverse proxy](#clientserver-example-with-reverse-proxy)
   - [HTTP server span](#http-server-span)
 - [Examples](#examples)
   - [HTTP client-server example](#http-client-server-example)
@@ -410,13 +408,7 @@ HTTP server instrumentations SHOULD do the best effort when populating `server.a
 
 Application developers MAY overwrite potentially inaccurate values of `server.*` attributes using a [SpanProcessor][SpanProcessor] and MAY capture private host information using applicable [resource attributes](/docs/resource/README.md).
 
-#### Simple client/server example
-
-![simple-http-server.png](simple-http-server.png)
-
-#### Client/server example with reverse proxy
-
-![reverse-proxy-http-server.png](reverse-proxy-http-server.png)
+For more information on recording addresses, consult the [Recording network addresses](/docs/general/recording-network-address.md) guide.
 
 [Host and authority]: https://tools.ietf.org/html/rfc9110#section-7.2
 [Host header]: https://tools.ietf.org/html/rfc7230#section-5.4
