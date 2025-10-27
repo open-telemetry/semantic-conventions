@@ -3,13 +3,13 @@
 
 # Linux
 
-## Linux Memory Attributes
+## Deprecated Linux Attributes
 
-Describes Linux Memory attributes
+Deprecated Linux attributes.
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
-| <a id="linux-memory-slab-state" href="#linux-memory-slab-state">`linux.memory.slab.state`</a> | string | The Linux Slab memory state | `reclaimable`; `unreclaimable` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="linux-memory-slab-state" href="#linux-memory-slab-state">`linux.memory.slab.state`</a> | string | The Linux Slab memory state | `reclaimable`; `unreclaimable` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `system.memory.linux.slab.state`. |
 
 ---
 

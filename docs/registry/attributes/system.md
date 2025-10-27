@@ -58,7 +58,17 @@ Describes System Memory attributes
 
 | Attribute | Type | Description | Examples | Stability |
 |---|---|---|---|---|
+| <a id="system-memory-linux-slab-state" href="#system-memory-linux-slab-state">`system.memory.linux.slab.state`</a> | string | The Linux Slab memory state | `reclaimable`; `unreclaimable` | ![Development](https://img.shields.io/badge/-development-blue) |
 | <a id="system-memory-state" href="#system-memory-state">`system.memory.state`</a> | string | The memory state | `free`; `cached` | ![Development](https://img.shields.io/badge/-development-blue) |
+
+---
+
+`system.memory.linux.slab.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `reclaimable` | reclaimable | ![Development](https://img.shields.io/badge/-development-blue) |
+| `unreclaimable` | unreclaimable | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
