@@ -101,7 +101,10 @@ This span represents an outgoing Remote Procedure Call (RPC).
 
 **Span kind** MUST be `CLIENT`.
 
-**Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
+**Span status** Refer to the [Recording Errors](/docs/general/recording-errors.md)
+document for details on how to record span status. Semantic conventions for
+individual systems SHOULD specify which values of `rpc.status_code`
+classify as errors.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
@@ -225,7 +228,10 @@ This span represents an incoming Remote Procedure Call (RPC).
 
 **Span kind** MUST be `SERVER`.
 
-**Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
+**Span status** Refer to the [Recording Errors](/docs/general/recording-errors.md)
+document for details on how to record span status. Semantic conventions for
+individual systems SHOULD specify which values of `rpc.status_code`
+classify as errors.
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
