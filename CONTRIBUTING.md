@@ -313,7 +313,7 @@ A review from [@specs-semconv-approvers](https://github.com/orgs/open-telemetry/
 is required on every PR and, in most cases, follows after area(s) owners approval.
 
 Before merging a PR, [@specs-semconv-maintainers](https://github.com/orgs/open-telemetry/teams/specs-semconv-maintainers)
-MUST verify that the PR has been approved by the corresponding code owner(s). For
+MUST verify that the PR has been approved by the corresponding area owner(s). For
 non-trivial changes, maintainers SHOULD NOT merge PRs without other code owner approvals.
 
 Reviews from non-code owners are encouraged, with the following assumptions:
@@ -326,7 +326,7 @@ Reviews from non-code owners are encouraged, with the following assumptions:
 When reviewing changes, reviewers SHOULD include relevant context such as:
 
 - Links to documentation related to the technology in question
-- Links to applicable semantic conventions or OpenTelemetry policies
+- Links to applicable semantic conventions or OpenTelemetry guidelines
 - Links to relevant PRs, issues, or discussions
 - Reasons for suggesting the change
 
