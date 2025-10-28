@@ -7,9 +7,11 @@
 
 Describes the origin of a single frame in a Profile.
 
-| Attribute | Type | Description | Examples | Stability |
+**Attributes:**
+
+| Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
-| <a id="profile-frame-type" href="#profile-frame-type">`profile.frame.type`</a> | string | Describes the interpreter or compiler of a single frame. | `cpython` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="profile-frame-type" href="#profile-frame-type">`profile.frame.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Describes the interpreter or compiler of a single frame. | `cpython` |
 
 ---
 
