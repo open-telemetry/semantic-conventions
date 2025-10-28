@@ -4,7 +4,7 @@ linkTitle: Oracle Database
 
 # Semantic conventions for Oracle Database
 
-**Status**: [Development][DocumentStatus]
+**Status**: [Release Candidate][DocumentStatus]
 
 <!-- toc -->
 
