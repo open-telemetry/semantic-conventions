@@ -74,16 +74,26 @@ groups:
           {"id": "123", "name": "Name"}.
           Arbitrary maps are not supported as attribute types in OTel, so this is stored as string.
         examples: ['{"id": "123", "name": "Name"}']
-      - id: browser.user_action.type
-        type: string
-        stability: development
-        brief: 'Type of user interaction.'
-        note: >
-          Possible values inspired by
-          [ApplicationInsights Click Analytics Enums](https://github.com/microsoft/ApplicationInsights-JS/blob/main/extensions/applicationinsights-clickanalytics-js/src/Enums.ts).
-        examples: ['click.right']
       - id: browser.xpath
         type: string
         stability: development
         brief: 'Target element XPath using the XPathExpression API.'
         examples: ["//*[@id='testBtn']"]
+      - id: browser.mouse_event.button
+        type:
+          members:
+            - id: left
+              value: 'left'
+              brief: Left button
+              stability: development
+            - id: middle
+              value: 'middle'
+              brief: Middle button
+              stability: development
+            - id: right
+              value: 'right'
+              brief: Right button
+              stability: development
+        stability: development
+        brief: 'User friendly name of the mouse button pressed. See [MouseEvent.buttons](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/buttons#value).'
+        examples: ["left"]
