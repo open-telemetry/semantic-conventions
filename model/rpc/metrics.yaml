@@ -1,8 +1,8 @@
 groups:
   # RPC Server metrics
-  - id: metric.rpc.server.duration
+  - id: metric.rpc.server.call.duration
     type: metric
-    metric_name: rpc.server.duration
+    metric_name: rpc.server.call.duration
     annotations:
       code_generation:
         metric_value_type: double
@@ -46,9 +46,9 @@ groups:
 
 
   # RPC Client metrics
-  - id: metric.rpc.client.duration
+  - id: metric.rpc.client.call.duration
     type: metric
-    metric_name: rpc.client.duration
+    metric_name: rpc.client.call.duration
     annotations:
       code_generation:
         metric_value_type: double

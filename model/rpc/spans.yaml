@@ -1,5 +1,5 @@
 groups:
-  - id: span.rpc.client
+  - id: span.rpc.call.client
     type: span
     stability: development
     brief: This span represents an outgoing Remote Procedure Call (RPC).
@@ -11,6 +11,9 @@ groups:
       For streaming RPCs, the span covers the full lifetime of the request and/or
       response streams until they are closed or terminated.
 
+      If a transient issue happened and was retried within this RPC, the corresponding
+      span SHOULD cover the duration of the logical call with all retries.
+
       **Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#span-name) section.
 
       **Span kind** MUST be `CLIENT`.
@@ -21,7 +24,7 @@ groups:
       - ref: rpc.system
         requirement_level: required
 
-  - id: span.rpc.server
+  - id: span.rpc.call.server
     type: span
     stability: development
     extends: rpc_service.server
@@ -43,7 +46,7 @@ groups:
       - ref: rpc.system
         requirement_level: required
 
-  - id: span.rpc.connect_rpc.client
+  - id: span.rpc.connect_rpc.call.client
     type: span
     stability: development
     brief: This span represents an outgoing Remote Procedure Call (RPC).
@@ -64,7 +67,7 @@ groups:
       - ref: rpc.connect_rpc.response.metadata
         requirement_level: opt_in
 
-  - id: span.rpc.connect_rpc.server
+  - id: span.rpc.connect_rpc.call.server
     type: span
     stability: development
     extends: rpc_service.server
@@ -85,7 +88,7 @@ groups:
       - ref: rpc.connect_rpc.response.metadata
         requirement_level: opt_in
 
-  - id: span.rpc.grpc.client
+  - id: span.rpc.grpc.call.client
     type: span
     stability: development
     brief: This span represents an outgoing Remote Procedure Call (RPC).
@@ -111,7 +114,7 @@ groups:
       - ref: rpc.grpc.response.metadata
         requirement_level: opt_in
 
-  - id: span.rpc.grpc.server
+  - id: span.rpc.grpc.call.server
     type: span
     stability: development
     extends: rpc_service.server
@@ -133,7 +136,7 @@ groups:
       - ref: rpc.grpc.response.metadata
         requirement_level: opt_in
 
-  - id: span.rpc.jsonrpc.client
+  - id: span.rpc.jsonrpc.call.client
     type: span
     stability: development
     brief: This span represents an outgoing Remote Procedure Call (RPC).
@@ -159,7 +162,7 @@ groups:
       - ref: rpc.jsonrpc.error_message
         requirement_level: recommended
 
-  - id: span.rpc.jsonrpc.server
+  - id: span.rpc.jsonrpc.call.server
     type: span
     stability: development
     extends: rpc.server
