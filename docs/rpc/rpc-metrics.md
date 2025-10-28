@@ -16,7 +16,7 @@ metrics can be filtered for finer grain analysis.
 
 - [Metric instruments](#metric-instruments)
   - [RPC server](#rpc-server)
-    - [Metric: `rpc.server.duration`](#metric-rpcserverduration)
+    - [Metric: `rpc.server.call.duration`](#metric-rpcservercallduration)
     - [Metric: `rpc.server.request.size`](#metric-rpcserverrequestsize)
     - [Metric: `rpc.server.response.size`](#metric-rpcserverresponsesize)
   - [RPC client](#rpc-client)
@@ -63,7 +63,7 @@ MUST be of the specified type and units.
 
 Below is a list of RPC server metric instruments.
 
-#### Metric: `rpc.server.duration`
+#### Metric: `rpc.server.call.duration`
 
 This metric is [recommended][MetricRecommended].
 
