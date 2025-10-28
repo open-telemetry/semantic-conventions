@@ -26,7 +26,7 @@ The Semantic Conventions for *Oracle Database* extend and override the [Database
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-**Status:** ![Development](https://img.shields.io/badge/-development-blue)
+**Status:** ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid)
 
 Spans representing calls to a Oracle SQL Database adhere to the general [Semantic Conventions for Database Client Spans](database-spans.md).
 
