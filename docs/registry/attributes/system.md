@@ -7,7 +7,6 @@
 - [Filesystem Attributes](#filesystem-attributes)
 - [System Memory Attributes](#system-memory-attributes)
 - [System Paging Attributes](#system-paging-attributes)
-- [System Process Attributes](#system-process-attributes)
 - [Deprecated System Attributes](#deprecated-system-attributes)
 
 ## General System Attributes
@@ -118,27 +117,6 @@ Describes System Memory Paging attributes
 | `free` | free | ![Development](https://img.shields.io/badge/-development-blue) |
 | `used` | used | ![Development](https://img.shields.io/badge/-development-blue) |
 
-## System Process Attributes
-
-Describes System Process attributes
-
-**Attributes:**
-
-| Key | Stability | Value Type | Description | Example Values |
-|---|---|---|---|---|
-| <a id="system-process-status" href="#system-process-status">`system.process.status`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The process state, e.g., [Linux Process State Codes](https://man7.org/linux/man-pages/man1/ps.1.html#PROCESS_STATE_CODES) | `running` |
-
----
-
-`system.process.status` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `defunct` | defunct | ![Development](https://img.shields.io/badge/-development-blue) |
-| `running` | running | ![Development](https://img.shields.io/badge/-development-blue) |
-| `sleeping` | sleeping | ![Development](https://img.shields.io/badge/-development-blue) |
-| `stopped` | stopped | ![Development](https://img.shields.io/badge/-development-blue) |
-
 ## Deprecated System Attributes
 
 Deprecated system attributes.
@@ -151,7 +129,8 @@ Deprecated system attributes.
 | <a id="system-cpu-state" href="#system-cpu-state">`system.cpu.state`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `cpu.mode`. | string | Deprecated, use `cpu.mode` instead. | `idle`; `interrupt` |
 | <a id="system-network-state" href="#system-network-state">`system.network.state`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `network.connection.state`. | string | Deprecated, use `network.connection.state` instead. | `close_wait` |
 | <a id="system-paging-type" href="#system-paging-type">`system.paging.type`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `system.paging.fault.type`. | string | Deprecated, use `system.paging.fault.type` instead. | `minor` |
-| <a id="system-processes-status" href="#system-processes-status">`system.processes.status`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `system.process.status`. | string | Deprecated, use `system.process.status` instead. | `running` |
+| <a id="system-process-status" href="#system-process-status">`system.process.status`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `process.state`. | string | Deprecated, use `process.state` instead. | `running` |
+| <a id="system-processes-status" href="#system-processes-status">`system.processes.status`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `process.state`. | string | Deprecated, use `process.state` instead. | `running` |
 
 ---
 
@@ -194,6 +173,17 @@ Deprecated system attributes.
 |---|---|---|
 | `major` | major | ![Development](https://img.shields.io/badge/-development-blue) |
 | `minor` | minor | ![Development](https://img.shields.io/badge/-development-blue) |
+
+---
+
+`system.process.status` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `defunct` | defunct | ![Development](https://img.shields.io/badge/-development-blue) |
+| `running` | running | ![Development](https://img.shields.io/badge/-development-blue) |
+| `sleeping` | sleeping | ![Development](https://img.shields.io/badge/-development-blue) |
+| `stopped` | stopped | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 

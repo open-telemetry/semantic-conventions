@@ -118,7 +118,7 @@ In addition to these attributes, [`telemetry.sdk.language`](README.md#telemetry-
 ### Erlang runtimes
 
 - `process.runtime.name` - The name of the Erlang VM being used, i.e., `erlang:system_info(machine)`.
-- `process.runtime.version` -  The version of the runtime (ERTS - Erlang Runtime System), i.e., `erlang:system_info(version)`.
+- `process.runtime.version` - The version of the runtime (ERTS - Erlang Runtime System), i.e., `erlang:system_info(version)`.
 - `process.runtime.description` - string | An additional description about the runtime made by combining the OTP version, i.e., `erlang:system_info(otp_release)`, and ERTS version.
 
 Example:

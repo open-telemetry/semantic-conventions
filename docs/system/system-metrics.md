@@ -165,8 +165,8 @@ This metric is [recommended][MetricRecommended].
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
-| [`cpu.logical_number`](/docs/registry/attributes/cpu.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | int | The logical CPU number [0..n-1] | `1` |
 | [`cpu.mode`](/docs/registry/attributes/cpu.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The mode of the CPU [1] | `user`; `system` |
+| [`cpu.logical_number`](/docs/registry/attributes/cpu.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The logical CPU number [0..n-1] | `1` |
 
 **[1] `cpu.mode`:** Following states SHOULD be used: `user`, `system`, `nice`, `idle`, `iowait`, `interrupt`, `steal`
 
@@ -235,8 +235,8 @@ This metric is [opt-in][MetricOptIn].
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
-| [`cpu.logical_number`](/docs/registry/attributes/cpu.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | int | The logical CPU number [0..n-1] | `1` |
 | [`cpu.mode`](/docs/registry/attributes/cpu.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The mode of the CPU [1] | `user`; `system` |
+| [`cpu.logical_number`](/docs/registry/attributes/cpu.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The logical CPU number [0..n-1] | `1` |
 
 **[1] `cpu.mode`:** Following modes SHOULD be used: `user`, `system`, `nice`, `idle`, `iowait`, `interrupt`, `steal`
 
@@ -360,7 +360,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.memory.utilization` | Gauge | `1` | TODO. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
+| `system.memory.utilization` | Gauge | `1` | Percentage of memory bytes in use. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
 
 **Attributes:**
 
@@ -439,7 +439,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.paging.utilization` | Gauge | `1` | TODO. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
+| `system.paging.utilization` | Gauge | `1` | Swap (unix) or pagefile (windows) utilization. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
 
 **Attributes:**
 
@@ -475,7 +475,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.paging.faults` | Counter | `{fault}` | TODO. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
+| `system.paging.faults` | Counter | `{fault}` | The number of page faults. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
 
 **Attributes:**
 
@@ -510,7 +510,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.paging.operations` | Counter | `{operation}` | TODO. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
+| `system.paging.operations` | Counter | `{operation}` | The number of paging operations. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
 
 **Attributes:**
 
@@ -559,7 +559,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.disk.io` | Counter | `By` | TODO. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
+| `system.disk.io` | Counter | `By` | Disk bytes transferred. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
 
 **Attributes:**
 
@@ -595,7 +595,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.disk.operations` | Counter | `{operation}` | TODO. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
+| `system.disk.operations` | Counter | `{operation}` | Disk operations count. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
 
 **Attributes:**
 
@@ -705,7 +705,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.disk.merged` | Counter | `{operation}` | TODO. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
+| `system.disk.merged` | Counter | `{operation}` | The number of disk reads/writes merged into single physical disk access operations. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
 
 **Attributes:**
 
@@ -827,7 +827,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.filesystem.utilization` | Gauge | `1` | TODO. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
+| `system.filesystem.utilization` | Gauge | `1` | Fraction of filesystem bytes used. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
 
 **Attributes:**
 
@@ -968,7 +968,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.network.packet.count` | Counter | `{packet}` | TODO. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
+| `system.network.packet.count` | Counter | `{packet}` | The number of packets transferred. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
 
 **Attributes:**
 
@@ -1046,7 +1046,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.network.io` | Counter | `By` | TODO. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
+| `system.network.io` | Counter | `By` | The number of bytes transmitted and received. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
 
 **Attributes:**
 
@@ -1082,7 +1082,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.network.connection.count` | UpDownCounter | `{connection}` | TODO. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
+| `system.network.connection.count` | UpDownCounter | `{connection}` | The number of connections. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
 
 **Attributes:**
 
@@ -1159,11 +1159,11 @@ This metric is [recommended][MetricRecommended].
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
-| [`system.process.status`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The process state, e.g., [Linux Process State Codes](https://man7.org/linux/man-pages/man1/ps.1.html#PROCESS_STATE_CODES) | `running` |
+| [`process.state`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The process state, e.g., [Linux Process State Codes](https://man7.org/linux/man-pages/man1/ps.1.html#PROCESS_STATE_CODES) | `running` |
 
 ---
 
-`system.process.status` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`process.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
@@ -1210,11 +1210,11 @@ interval is not well standardized and its value across different UNIX like
 OSes may vary despite being under similar load:
 
 > Without getting into the vagaries of every Unix-like operating system in
-existence, the load average more or less represents the average number of
-processes that are in the running (using the CPU) or runnable (waiting for
-the CPU) states. One notable exception exists: Linux includes processes in
-uninterruptible sleep states, typically waiting for some I/O activity to
-complete. This can markedly increase the load average on Linux systems.
+> existence, the load average more or less represents the average number of
+> processes that are in the running (using the CPU) or runnable (waiting for
+> the CPU) states. One notable exception exists: Linux includes processes in
+> uninterruptible sleep states, typically waiting for some I/O activity to
+> complete. This can markedly increase the load average on Linux systems.
 
 ([source of
 quote](https://github.com/torvalds/linux/blob/e4cbce4d131753eca271d9d67f58c6377f27ad21/kernel/sched/loadavg.c#L11-L18),

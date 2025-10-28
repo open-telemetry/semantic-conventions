@@ -46,10 +46,10 @@ semantic convention tooling supports complex attributes
 | `operation.name` | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the operation. | `SecretGet`; `Microsoft.ApiManagement/GatewayLogs`; `ApplicationGatewayAccess` |
 | `operation.version` | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The version of the operation. | `1.0` |
 | `properties` | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | undefined | The properties provided in the Azure Resource Log. |  |
-| `result.description` | ![Development](https://img.shields.io/badge/-development-blue) |`Recommended` | string | The description of the result. | `The operation was successful`; `The operation failed` |
+| `result.description` | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The description of the result. | `The operation was successful`; `The operation failed` |
 | `result.signature` | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The substatus of associated with the logged event. | `OK` |
 | `result.type` | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The status associated with the logged event. | `Succeeded`; `Failed`; `Started` |
-| `tenant.id` | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [2] | | string | The tenant ID of the Active Directory tenant that this event is tied to. | `00000000-0000-0000-0000-000000000000` |
+| `tenant.id` | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [2] | string | The tenant ID of the Active Directory tenant that this event is tied to. | `00000000-0000-0000-0000-000000000000` |
 
 **[1]:** Typically, this field includes the authorization and claims or JWT token from Active Directory.
 

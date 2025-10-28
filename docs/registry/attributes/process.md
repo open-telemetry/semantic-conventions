@@ -42,6 +42,7 @@ An operating system process.
 | <a id="process-saved-user-id" href="#process-saved-user-id">`process.saved_user.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The saved user ID (SUID) of the process. | `1002` |
 | <a id="process-saved-user-name" href="#process-saved-user-name">`process.saved_user.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The username of the saved user. | `operator` |
 | <a id="process-session-leader-pid" href="#process-session-leader-pid">`process.session_leader.pid`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The PID of the process's session leader. This is also the session ID (SID) of the process. | `14` |
+| <a id="process-state" href="#process-state">`process.state`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The process state, e.g., [Linux Process State Codes](https://man7.org/linux/man-pages/man1/ps.1.html#PROCESS_STATE_CODES) | `running` |
 | <a id="process-title" href="#process-title">`process.title`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Process title (proctitle) [3] | `cat /etc/hostname`; `xfce4-session`; `bash` |
 | <a id="process-user-id" href="#process-user-id">`process.user.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The effective user ID (EUID) of the process. | `1001` |
 | <a id="process-user-name" href="#process-user-name">`process.user.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The username of the effective user of the process. | `root` |
@@ -71,6 +72,17 @@ with value `"/usr/local/bin:/usr/bin"`.
 |---|---|---|
 | `involuntary` | involuntary | ![Development](https://img.shields.io/badge/-development-blue) |
 | `voluntary` | voluntary | ![Development](https://img.shields.io/badge/-development-blue) |
+
+---
+
+`process.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `defunct` | defunct | ![Development](https://img.shields.io/badge/-development-blue) |
+| `running` | running | ![Development](https://img.shields.io/badge/-development-blue) |
+| `sleeping` | sleeping | ![Development](https://img.shields.io/badge/-development-blue) |
+| `stopped` | stopped | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ## Process Linux Attributes
 

@@ -183,7 +183,7 @@ Run the following command on the same physical connection as the SQL statement:
 -- The binary conversion may be done by the application or the driver.
 DECLARE @traceparent varbinary(55);
 SET @traceparent = CAST('00-0af7651916cd43dd8448eb211c80319c-b7ad6b7169203331-01' AS varbinary(55));
-SET CONTEXT_INFO @traceparent; 
+SET CONTEXT_INFO @traceparent;
 ```
 
 Then run the query:
