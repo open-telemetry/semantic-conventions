@@ -52,3 +52,47 @@ groups:
           brief: A unique ID representing this particular metric instance.
           requirement_level: required
           examples: ["v3-1677874579383-6381583661209"]
+  - id: event.browser.user_action
+    stability: development
+    type: event
+    name: browser.user_action
+    brief: >
+      This event describes actions performed by the user such as click, scroll, zoom, resize, etc.
+    attributes:
+      - id: browser.page.x
+        type: int
+        stability: development
+        brief: 'Click x (horizontal) coordinates (in pixels) relative to the entire document.'
+        examples: [10]
+      - id: browser.page.y
+        type: int
+        stability: development
+        brief: 'Click y (vertical) coordinates (in pixels) relative to the entire document.'
+        examples: [10]
+      - id: browser.tag_name
+        type: string
+        stability: development
+        brief: 'Target element tag name obtained via event.target.tagName.'
+        examples: ['BUTTON']
+      - id: browser.element.attributes
+        type: string
+        stability: development
+        brief: 'JSON-serialized map of data-otel-* attributes from the target element.'
+        note: >
+          Represented as a JSON object string. Example:
+          {"id": "123", "name": "Name"}.
+          Arbitrary maps are not supported as attribute types in OTel, so this is stored as string.
+        examples: ['{"id": "123", "name": "Name"}']
+      - id: browser.user_action.type
+        type: string
+        stability: development
+        brief: 'Type of user interaction.'
+        note: >
+          Possible values inspired by
+          [ApplicationInsights Click Analytics Enums](https://github.com/microsoft/ApplicationInsights-JS/blob/main/extensions/applicationinsights-clickanalytics-js/src/Enums.ts).
+        examples: ['click.right']
+      - id: browser.xpath
+        type: string
+        stability: development
+        brief: 'Target element XPath using the XPathExpression API.'
+        examples: ["//*[@id='testBtn']"]
