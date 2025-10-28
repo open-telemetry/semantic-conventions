@@ -155,3 +155,64 @@ groups:
         stability: development
         brief: "The filesystem mount path"
         examples: ["/mnt/data"]
+  # system.psi.* attribute group
+  - id: registry.system.psi
+    type: attribute_group
+    display_name: System PSI (Pressure Stall Information) Attributes
+    brief: "Describes Linux Pressure Stall Information attributes"
+    attributes:
+      - id: system.psi.resource
+        type:
+          members:
+            - id: cpu
+              value: 'cpu'
+              stability: development
+              brief: "CPU resource pressure"
+            - id: memory
+              value: 'memory'
+              stability: development
+              brief: "Memory resource pressure"
+            - id: io
+              value: 'io'
+              stability: development
+              brief: "I/O resource pressure"
+        stability: development
+        brief: "The PSI resource being measured"
+        examples: ["cpu", "memory", "io"]
+        note: >
+          Linux PSI (Pressure Stall Information) measures resource pressure for CPU, memory, and I/O.
+          See [Linux kernel PSI documentation](https://docs.kernel.org/accounting/psi.html).
+      - id: system.psi.stall_type
+        type:
+          members:
+            - id: some
+              value: 'some'
+              stability: development
+              brief: "At least some tasks are stalled on the resource"
+              note: >
+                The "some" line indicates the share of time in which at least some
+                tasks are stalled on a given resource.
+            - id: full
+              value: 'full'
+              stability: development
+              brief: "All non-idle tasks are stalled on the resource simultaneously"
+              note: >
+                The "full" line indicates the share of time in which all non-idle
+                tasks are stalled on a given resource simultaneously. This represents
+                a state where actual CPU cycles are going to waste and the workload
+                is thrashing. CPU full is undefined at the system level and is set to
+                zero for backward compatibility (available since Linux 5.13).
+        stability: development
+        brief: "The PSI stall type"
+        examples: ["some", "full"]
+        note: >
+          PSI distinguishes between "some" stall (at least some tasks stalled) and
+          "full" stall (all non-idle tasks stalled simultaneously).
+      - id: system.psi.window
+        type: string
+        stability: development
+        brief: "The time window for PSI pressure calculation"
+        examples: ["10s", "60s", "300s"]
+        note: >
+          PSI tracks pressure as percentages over 10-second, 60-second, and 300-second windows.
+          This attribute identifies which time window the metric represents.
