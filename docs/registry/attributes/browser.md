@@ -12,7 +12,7 @@ The web browser attributes
 | Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="browser-brands" href="#browser-brands">`browser.brands`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string[] | Array of brand name and version separated by a space [1] | `[" Not A;Brand 99", "Chromium 99", "Chrome 99"]` |
-| <a id="browser-element-attributes" href="#browser-element-attributes">`browser.element.attributes`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | JSON-serialized map of data-otel-* attributes from the target element. [2] | `{"id": "123", "name": "Name"}` |
+| <a id="browser-element-attributes" href="#browser-element-attributes">`browser.element.attributes.<key>`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Map of data-otel-* attributes from the target element. [2] | `testBtn`; `submit` |
 | <a id="browser-language" href="#browser-language">`browser.language`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Preferred language of the user using the browser [3] | `en`; `en-US`; `fr`; `fr-FR` |
 | <a id="browser-mobile" href="#browser-mobile">`browser.mobile`</a> | ![Development](https://img.shields.io/badge/-development-blue) | boolean | A boolean that is true if the browser is running on a mobile device [4] |  |
 | <a id="browser-page-x" href="#browser-page-x">`browser.page.x`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | Click x (horizontal) coordinates (in pixels) relative to the entire document. | `10` |
@@ -24,7 +24,7 @@ The web browser attributes
 
 **[1] `browser.brands`:** This value is intended to be taken from the [UA client hints API](https://wicg.github.io/ua-client-hints/#interface) (`navigator.userAgentData.brands`).
 
-**[2] `browser.element.attributes`:** Represented as a JSON object string. Example: {"id": "123", "name": "Name"}. Arbitrary maps are not supported as attribute types in OTel, so this is stored as string.
+**[2] `browser.element.attributes.<key>`:** Key is the attribute name after "data-otel-" and value is the attribute value. Example: `<button data-otel-id="testBtn" data-otel-role="submit">` SHOULD be recorded as `browser.element.attributes.id = "testBtn"` and `browser.element.attributes.role = "submit"`.
 
 **[3] `browser.language`:** This value is intended to be taken from the Navigator API `navigator.language`.
 

@@ -66,14 +66,15 @@ groups:
         brief: 'Target element tag name obtained via event.target.tagName.'
         examples: ['BUTTON']
       - id: browser.element.attributes
-        type: string
+        type: template[string]
         stability: development
-        brief: 'JSON-serialized map of data-otel-* attributes from the target element.'
+        brief: 'Map of data-otel-* attributes from the target element.'
         note: >
-          Represented as a JSON object string. Example:
-          {"id": "123", "name": "Name"}.
-          Arbitrary maps are not supported as attribute types in OTel, so this is stored as string.
-        examples: ['{"id": "123", "name": "Name"}']
+          Key is the attribute name after "data-otel-" and value is the attribute value. Example:
+          `<button data-otel-id="testBtn" data-otel-role="submit">`
+          SHOULD be recorded as `browser.element.attributes.id = "testBtn"`
+          and `browser.element.attributes.role = "submit"`.
+        examples: ["testBtn", "submit"]
       - id: browser.xpath
         type: string
         stability: development
