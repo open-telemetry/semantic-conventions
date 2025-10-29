@@ -25,12 +25,15 @@ groups:
       - ref: heroku.release.version
         role: descriptive
 
-  - id: entity.heroku.workload
+  - id: entity.heroku.dyno
     type: entity
     stability: development
-    name: heroku.workload
+    name: heroku.dyno
     brief: >
-      Heroku Fir Workload Attributes representing individual dyno instances running within a Heroku application.
+      Heroku Fir Dyno Attributes representing individual dyno instances running within a Heroku application.
     attributes:
-      - ref: heroku.workload.id
+      - ref: heroku.dyno.name
         role: identifying
+      - ref: heroku.dyno.type
+        role: descriptive
+      

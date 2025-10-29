@@ -29,18 +29,27 @@ groups:
           This attribute can be customized by renaming the application in the Heroku dashboard.
           It is used as the default value for service.name if not explicitly set.
 
-      # Workload Attributes
-      - id: heroku.workload.id
+      # Dyno Attributes
+      - id: heroku.dyno.type
         type: string
         stability: stable
         brief: >
-          The workload identifier, as defined by the process type.
-          This typically corresponds to the process type (web, worker, etc.) or
-          specific workload identifier in the telemetry system.
+          The type of the Heroku dyno.
+          This corresponds to the process type (web, worker, etc.) as defined in the Procfile.
         examples: [ 'web', 'worker', 'scheduler', 'release' ]
         note: >
           This attribute is automatically provided by Heroku and is used to identify
-          the workload type. It is particularly useful for filtering telemetry data by process type.
+          the dyno process type.
+
+      - id: heroku.dyno.name
+        type: string
+        stability: stable
+        brief: >
+          The name of the dyno instance.
+          This is a unique identifier for the specific dyno instance running within the application.
+        examples: [ 'web.1', 'worker.2', 'scheduler.1' ]
+        note: >
+          This attribute is automatically provided by Heroku.
 
       # Release Attributes
       - id: heroku.release.id

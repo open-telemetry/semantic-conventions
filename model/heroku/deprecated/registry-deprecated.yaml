@@ -5,6 +5,18 @@ groups:
     brief: >
       Deprecated Heroku attributes that were removed in the Fir platform.
     attributes:
+      - id: heroku.workload.id
+        type: string
+        stability: development
+        brief: >
+          The workload identifier, as defined by the process type.
+          This attribute was deprecated in the Heroku Fir platform.
+          Users can refer to heroku.dyno.type instead, which provides the same information.
+        examples: [ 'web', 'worker', 'scheduler', 'release' ]
+        deprecated:
+          reason: renamed
+          renamed_to: heroku.dyno.type
+
       - id: heroku.release.creation_timestamp
         type: string
         stability: development
