@@ -40,9 +40,11 @@ This metric is [recommended][MetricRecommended].
 
 **[1]:** This metric reports data from [`gc.stats()`](https://docs.python.org/3/library/gc.html#gc.get_stats).
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+**Attributes:**
+
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
-| [`cpython.gc.generation`](/docs/registry/attributes/cpython.md) | int | Value of the garbage collector collection generation. | `0`; `1`; `2` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`cpython.gc.generation`](/docs/registry/attributes/cpython.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | int | Value of the garbage collector collection generation. | `0`; `1`; `2` |
 
 ---
 
@@ -76,9 +78,11 @@ This metric is [recommended][MetricRecommended].
 
 **[1]:** This metric reports data from [`gc.stats()`](https://docs.python.org/3/library/gc.html#gc.get_stats).
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+**Attributes:**
+
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
-| [`cpython.gc.generation`](/docs/registry/attributes/cpython.md) | int | Value of the garbage collector collection generation. | `0`; `1`; `2` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`cpython.gc.generation`](/docs/registry/attributes/cpython.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | int | Value of the garbage collector collection generation. | `0`; `1`; `2` |
 
 ---
 
@@ -112,9 +116,11 @@ This metric is [recommended][MetricRecommended].
 
 **[1]:** This metric reports data from [`gc.stats()`](https://docs.python.org/3/library/gc.html#gc.get_stats).
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+**Attributes:**
+
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
-| [`cpython.gc.generation`](/docs/registry/attributes/cpython.md) | int | Value of the garbage collector collection generation. | `0`; `1`; `2` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`cpython.gc.generation`](/docs/registry/attributes/cpython.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | int | Value of the garbage collector collection generation. | `0`; `1`; `2` |
 
 ---
 

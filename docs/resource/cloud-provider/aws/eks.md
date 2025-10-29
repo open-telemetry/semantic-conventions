@@ -17,10 +17,8 @@ linkTitle: EKS
 
 **Description:** Entities used by AWS Elastic Kubernetes Service (EKS).
 
-
 > :warning: This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
-
 
 | Role | Attribute | Type | Description | Examples | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|---|

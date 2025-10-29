@@ -17,10 +17,8 @@ These conventions are recommended for resources running on Cloud Run.
 
 **Description:** Resource used by Google Cloud Run.
 
-
 > :warning: This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
-
 
 | Role | Attribute | Type | Description | Examples | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|---|

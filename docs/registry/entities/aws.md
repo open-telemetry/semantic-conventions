@@ -13,10 +13,8 @@
 
 **Description:** Entities used by AWS Elastic Container Service (ECS).
 
-
 > :warning: This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
-
 
 | Role | Attribute | Type | Description | Examples | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|---|
@@ -28,8 +26,6 @@
 | ![Other](https://img.shields.io/badge/-other-red) | [`aws.ecs.task.family`](/docs/registry/attributes/aws.md) | string | The family name of the [ECS task definition](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definitions.html) used to create the ECS task. | `opentelemetry-family` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | ![Other](https://img.shields.io/badge/-other-red) | [`aws.ecs.task.revision`](/docs/registry/attributes/aws.md) | string | The revision for the task definition used to create the ECS task. | `8`; `26` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
-
-
 ## AWS EKS
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
@@ -38,16 +34,12 @@
 
 **Description:** Entities used by AWS Elastic Kubernetes Service (EKS).
 
-
 > :warning: This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
-
 
 | Role | Attribute | Type | Description | Examples | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|---|
 | ![Other](https://img.shields.io/badge/-other-red) | [`aws.eks.cluster.arn`](/docs/registry/attributes/aws.md) | string | The ARN of an EKS cluster. | `arn:aws:ecs:us-west-2:123456789123:cluster/my-cluster` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-
-
 
 ## AWS Log
 
@@ -57,10 +49,8 @@
 
 **Description:** Entities specific to Amazon Web Services.
 
-
 > :warning: This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
-
 
 | Role | Attribute | Type | Description | Examples | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|---|
@@ -69,12 +59,10 @@
 | ![Other](https://img.shields.io/badge/-other-red) | [`aws.log.stream.arns`](/docs/registry/attributes/aws.md) | string[] | The ARN(s) of the AWS log stream(s). [3] | `["arn:aws:logs:us-west-1:123456789012:log-group:/aws/my/group:log-stream:logs/main/10838bed-421f-43ef-870a-f43feacbbb5b"]` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | ![Other](https://img.shields.io/badge/-other-red) | [`aws.log.stream.names`](/docs/registry/attributes/aws.md) | string[] | The name(s) of the AWS log stream(s) an application is writing to. | `["logs/main/10838bed-421f-43ef-870a-f43feacbbb5b"]` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
-
 **[1] `aws.log.group.arns`:** See the [log group ARN format documentation](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/iam-access-control-overview-cwl.html#CWL_ARN_Format).
 
 **[2] `aws.log.group.names`:** Multiple log groups must be supported for cases like multi-container applications, where a single application has sidecar containers, and each write to their own log group.
 
 **[3] `aws.log.stream.arns`:** See the [log stream ARN format documentation](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/iam-access-control-overview-cwl.html#CWL_ARN_Format). One log group can contain several log streams, so these ARNs necessarily identify both a log group and a log stream.
-
 
 <!-- markdownlint-restore -->

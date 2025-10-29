@@ -7,9 +7,11 @@
 
 Describes Linux Memory attributes
 
-| Attribute | Type | Description | Examples | Stability |
+**Attributes:**
+
+| Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
-| <a id="linux-memory-slab-state" href="#linux-memory-slab-state">`linux.memory.slab.state`</a> | string | The Linux Slab memory state | `reclaimable`; `unreclaimable` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="linux-memory-slab-state" href="#linux-memory-slab-state">`linux.memory.slab.state`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The Linux Slab memory state | `reclaimable`; `unreclaimable` |
 
 ---
 

@@ -13,10 +13,8 @@
 
 **Description:** A host is defined as a computing instance. For example, physical servers, virtual machines, switches or disk array.
 
-
 > :warning: This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
-
 
 | Role | Attribute | Type | Description | Examples | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|---|
@@ -29,7 +27,6 @@
 | ![Other](https://img.shields.io/badge/-other-red) | [`host.type`](/docs/registry/attributes/host.md) | string | Type of host. For Cloud, this must be the machine type. | `n1-standard-1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | ![Other](https://img.shields.io/badge/-other-red) | [`host.ip`](/docs/registry/attributes/host.md) | string[] | Available IP addresses of the host, excluding loopback interfaces. [2] | `["192.168.1.140", "fe80::abc2:4a28:737a:609e"]` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 | ![Other](https://img.shields.io/badge/-other-red) | [`host.mac`](/docs/registry/attributes/host.md) | string[] | Available MAC addresses of the host, excluding loopback interfaces. [3] | `["AC-DE-48-23-45-67", "AC-DE-48-23-45-67-01-9F"]` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
-
 
 **[1] `host.id`:** Collecting `host.id` from non-containerized systems
 
@@ -61,7 +58,6 @@ privileged lookup of `host.id` is required, the value should be injected via the
 
 **[3] `host.mac`:** MAC Addresses MUST be represented in [IEEE RA hexadecimal form](https://standards.ieee.org/wp-content/uploads/import/documents/tutorials/eui.pdf): as hyphen-separated octets in uppercase hexadecimal form from most to least significant.
 
-
 ## Host CPU
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
@@ -70,10 +66,8 @@ privileged lookup of `host.id` is required, the value should be injected via the
 
 **Description:** A host's CPU information
 
-
 > :warning: This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
-
 
 | Role | Attribute | Type | Description | Examples | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|---|
@@ -84,8 +78,6 @@ privileged lookup of `host.id` is required, the value should be injected via the
 | ![Other](https://img.shields.io/badge/-other-red) | [`host.cpu.stepping`](/docs/registry/attributes/host.md) | string | Stepping or core revisions. | `1`; `r1p1` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 | ![Other](https://img.shields.io/badge/-other-red) | [`host.cpu.vendor.id`](/docs/registry/attributes/host.md) | string | Processor manufacturer identifier. A maximum 12-character string. [4] | `GenuineIntel` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
 
-
 **[4] `host.cpu.vendor.id`:** [CPUID](https://wiki.osdev.org/CPUID) command returns the vendor ID string in EBX, EDX and ECX registers. Writing these to memory in this order results in a 12-character string.
-
 
 <!-- markdownlint-restore -->

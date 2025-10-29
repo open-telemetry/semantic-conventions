@@ -13,10 +13,8 @@
 
 **Description:** The operating system (OS) on which the process represented by this resource is running.
 
-
 > :warning: This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
-
 
 | Role | Attribute | Type | Description | Examples | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|---|
@@ -26,7 +24,6 @@
 | ![Other](https://img.shields.io/badge/-other-red) | [`os.name`](/docs/registry/attributes/os.md) | string | Human readable operating system name. | `iOS`; `Android`; `Ubuntu` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | ![Other](https://img.shields.io/badge/-other-red) | [`os.version`](/docs/registry/attributes/os.md) | string | The version string of the operating system as defined in [Version Attributes](/docs/resource/README.md#version-attributes). | `14.2.1`; `18.04.1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
-
 **[1] `os.build_id`:** `build_id` values SHOULD be obtained from the following sources:
 
 | OS | Primary | Fallback |
@@ -34,6 +31,5 @@
 | Windows | `CurrentBuildNumber` from registry `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion` | - |
 | MacOS | `ProductBuildVersion` from `/System/Library/CoreServices/SystemVersion.plist` | `ProductBuildVersion` from `/System/Library/CoreServices/ServerVersion.plist` |
 | Linux | `BUILD_ID` from `/etc/os-release` | `BUILD_ID` from `/usr/lib/os-release`; <br> contents of `/proc/sys/kernel/osrelease`|
-
 
 <!-- markdownlint-restore -->

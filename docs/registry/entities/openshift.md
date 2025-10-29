@@ -18,5 +18,4 @@
 | ![Identity](https://img.shields.io/badge/-identity-purple) | [`openshift.clusterquota.uid`](/docs/registry/attributes/openshift.md) | string | The UID of the cluster quota. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | ![Descriptive](https://img.shields.io/badge/-descriptive-blue) | [`openshift.clusterquota.name`](/docs/registry/attributes/openshift.md) | string | The name of the cluster quota. | `opentelemetry` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
-
 <!-- markdownlint-restore -->

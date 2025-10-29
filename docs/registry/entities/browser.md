@@ -13,10 +13,8 @@
 
 **Description:** The web browser in which the application represented by the resource is running. The `browser.*` attributes MUST be used only for resources that represent applications running in a web browser (regardless of whether running on a mobile or desktop device).
 
-
 > :warning: This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
-
 
 | Role | Attribute | Type | Description | Examples | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|---|
@@ -25,7 +23,6 @@
 | ![Other](https://img.shields.io/badge/-other-red) | [`browser.mobile`](/docs/registry/attributes/browser.md) | boolean | A boolean that is true if the browser is running on a mobile device [3] |  | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | ![Other](https://img.shields.io/badge/-other-red) | [`browser.platform`](/docs/registry/attributes/browser.md) | string | The platform on which the browser is running [4] | `Windows`; `macOS`; `Android` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | ![Other](https://img.shields.io/badge/-other-red) | [`user_agent.original`](/docs/registry/attributes/user-agent.md) | string | Full user-agent string provided by the browser [5] | `Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.54 Safari/537.36` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
 
 **[1] `browser.brands`:** This value is intended to be taken from the [UA client hints API](https://wicg.github.io/ua-client-hints/#interface) (`navigator.userAgentData.brands`).
 
@@ -37,6 +34,5 @@
 The list of possible values is defined in the [W3C User-Agent Client Hints specification](https://wicg.github.io/ua-client-hints/#sec-ch-ua-platform). Note that some (but not all) of these values can overlap with values in the [`os.type` and `os.name` attributes](./os.md). However, for consistency, the values in the `browser.platform` attribute should capture the exact value that the user agent provides.
 
 **[5] `user_agent.original`:** The user-agent value SHOULD be provided only from browsers that do not have a mechanism to retrieve brands and platform individually from the User-Agent Client Hints API. To retrieve the value, the legacy `navigator.userAgent` API can be used.
-
 
 <!-- markdownlint-restore -->

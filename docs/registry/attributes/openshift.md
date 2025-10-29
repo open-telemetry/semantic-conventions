@@ -7,7 +7,9 @@
 
 OpenShift resource attributes.
 
-| Attribute | Type | Description | Examples | Stability |
+**Attributes:**
+
+| Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
-| <a id="openshift-clusterquota-name" href="#openshift-clusterquota-name">`openshift.clusterquota.name`</a> | string | The name of the cluster quota. | `opentelemetry` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="openshift-clusterquota-uid" href="#openshift-clusterquota-uid">`openshift.clusterquota.uid`</a> | string | The UID of the cluster quota. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="openshift-clusterquota-name" href="#openshift-clusterquota-name">`openshift.clusterquota.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the cluster quota. | `opentelemetry` |
+| <a id="openshift-clusterquota-uid" href="#openshift-clusterquota-uid">`openshift.clusterquota.uid`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The UID of the cluster quota. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` |

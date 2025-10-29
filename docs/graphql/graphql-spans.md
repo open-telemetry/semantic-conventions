@@ -34,11 +34,13 @@ the span SHOULD be named `GraphQL Operation`.
 
 **Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+**Attributes:**
+
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
-| [`graphql.document`](/docs/registry/attributes/graphql.md) | string | The GraphQL document being executed. [1] | `query findBookById { bookById(id: ?) { name } }` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`graphql.operation.name`](/docs/registry/attributes/graphql.md) | string | The name of the operation being executed. | `findBookById` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`graphql.operation.type`](/docs/registry/attributes/graphql.md) | string | The type of the operation being executed. | `query`; `mutation`; `subscription` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`graphql.document`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The GraphQL document being executed. [1] | `query findBookById { bookById(id: ?) { name } }` |
+| [`graphql.operation.name`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the operation being executed. | `findBookById` |
+| [`graphql.operation.type`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The type of the operation being executed. | `query`; `mutation`; `subscription` |
 
 **[1] `graphql.document`:** The value may be sanitized to exclude sensitive information.
 

@@ -13,18 +13,14 @@
 
 **Description:** Attributes denoting data from an Application in AppHub. See [AppHub overview](https://cloud.google.com/app-hub/docs/overview).
 
-
 > :warning: This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
-
 
 | Role | Attribute | Type | Description | Examples | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|---|
 | ![Other](https://img.shields.io/badge/-other-red) | [`gcp.apphub.application.container`](/docs/registry/attributes/gcp.md) | string | The container within GCP where the AppHub application is defined. | `projects/my-container-project` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | ![Other](https://img.shields.io/badge/-other-red) | [`gcp.apphub.application.id`](/docs/registry/attributes/gcp.md) | string | The name of the application as configured in AppHub. | `my-application` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | ![Other](https://img.shields.io/badge/-other-red) | [`gcp.apphub.application.location`](/docs/registry/attributes/gcp.md) | string | The GCP zone or region where the application is defined. | `us-central1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-
-
 
 ## GCP Apphub Service
 
@@ -34,10 +30,8 @@
 
 **Description:** Attributes denoting data from a Service in AppHub. See [AppHub overview](https://cloud.google.com/app-hub/docs/overview).
 
-
 > :warning: This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
-
 
 | Role | Attribute | Type | Description | Examples | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|---|
@@ -45,11 +39,9 @@
 | ![Other](https://img.shields.io/badge/-other-red) | [`gcp.apphub.service.environment_type`](/docs/registry/attributes/gcp.md) | string | Environment of a service is the stage of a software lifecycle. [2] | `PRODUCTION`; `STAGING`; `TEST` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | ![Other](https://img.shields.io/badge/-other-red) | [`gcp.apphub.service.id`](/docs/registry/attributes/gcp.md) | string | The name of the service as configured in AppHub. | `my-service` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 
-
 **[1] `gcp.apphub.service.criticality_type`:** [See AppHub type enum](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type)
 
 **[2] `gcp.apphub.service.environment_type`:** [See AppHub environment type](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type_1)
-
 
 ## GCP Apphub Workload
 
@@ -59,10 +51,8 @@
 
 **Description:** Attributes denoting data from a Workload in AppHub. See [AppHub overview](https://cloud.google.com/app-hub/docs/overview).
 
-
 > :warning: This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
-
 
 | Role | Attribute | Type | Description | Examples | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|---|
@@ -70,11 +60,9 @@
 | ![Other](https://img.shields.io/badge/-other-red) | [`gcp.apphub.workload.environment_type`](/docs/registry/attributes/gcp.md) | string | Environment of a workload is the stage of a software lifecycle. [4] | `PRODUCTION`; `STAGING`; `TEST` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 | ![Other](https://img.shields.io/badge/-other-red) | [`gcp.apphub.workload.id`](/docs/registry/attributes/gcp.md) | string | The name of the workload as configured in AppHub. | `my-workload` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
 
-
 **[3] `gcp.apphub.workload.criticality_type`:** [See AppHub type enum](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type)
 
 **[4] `gcp.apphub.workload.environment_type`:** [See AppHub environment type](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type_1)
-
 
 ## GCP Cloud Run
 
@@ -84,17 +72,13 @@
 
 **Description:** Resource used by Google Cloud Run.
 
-
 > :warning: This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
-
 
 | Role | Attribute | Type | Description | Examples | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|---|
 | ![Other](https://img.shields.io/badge/-other-red) | [`gcp.cloud_run.job.execution`](/docs/registry/attributes/gcp.md) | string | The name of the Cloud Run [execution](https://cloud.google.com/run/docs/managing/job-executions) being run for the Job, as set by the [`CLOUD_RUN_EXECUTION`](https://cloud.google.com/run/docs/container-contract#jobs-env-vars) environment variable. | `job-name-xxxx`; `sample-job-mdw84` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | ![Other](https://img.shields.io/badge/-other-red) | [`gcp.cloud_run.job.task_index`](/docs/registry/attributes/gcp.md) | int | The index for a task within an execution as provided by the [`CLOUD_RUN_TASK_INDEX`](https://cloud.google.com/run/docs/container-contract#jobs-env-vars) environment variable. | `0`; `1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-
-
 
 ## GCP GCE
 
@@ -104,16 +88,12 @@
 
 **Description:** Resources used by Google Compute Engine (GCE).
 
-
 > :warning: This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
-
 
 | Role | Attribute | Type | Description | Examples | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|---|
 | ![Other](https://img.shields.io/badge/-other-red) | [`gcp.gce.instance.hostname`](/docs/registry/attributes/gcp.md) | string | The hostname of a GCE instance. This is the full value of the default or [custom hostname](https://cloud.google.com/compute/docs/instances/custom-hostname-vm). | `my-host1234.example.com`; `sample-vm.us-west1-b.c.my-project.internal` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | ![Other](https://img.shields.io/badge/-other-red) | [`gcp.gce.instance.name`](/docs/registry/attributes/gcp.md) | string | The instance name of a GCE instance. This is the value provided by `host.name`, the visible name of the instance in the Cloud Console UI, and the prefix for the default hostname of the instance as defined by the [default internal DNS name](https://cloud.google.com/compute/docs/internal-dns#instance-fully-qualified-domain-names). | `instance-1`; `my-vm-name` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-
-
 
 <!-- markdownlint-restore -->
