@@ -15,15 +15,15 @@
 
 **Identifying Attributes:**
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
-| [`openshift.clusterquota.uid`](/docs/registry/attributes/openshift.md) | string | The UID of the cluster quota. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`openshift.clusterquota.uid`](/docs/registry/attributes/openshift.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The UID of the cluster quota. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` |
 
 **Descriptive Attributes:**
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
-| [`openshift.clusterquota.name`](/docs/registry/attributes/openshift.md) | string | The name of the cluster quota. | `opentelemetry` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`openshift.clusterquota.name`](/docs/registry/attributes/openshift.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the cluster quota. | `opentelemetry` |
 
 
 <!-- markdownlint-restore -->

@@ -10,12 +10,14 @@
 
 This document defines attributes for software deployments.
 
-| Attribute | Type | Description | Examples | Stability |
+**Attributes:**
+
+| Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
-| <a id="deployment-environment-name" href="#deployment-environment-name">`deployment.environment.name`</a> | string | Name of the [deployment environment](https://wikipedia.org/wiki/Deployment_environment) (aka deployment tier). [1] | `staging`; `production` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="deployment-id" href="#deployment-id">`deployment.id`</a> | string | The id of the deployment. | `1208` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="deployment-name" href="#deployment-name">`deployment.name`</a> | string | The name of the deployment. | `deploy my app`; `deploy-frontend` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="deployment-status" href="#deployment-status">`deployment.status`</a> | string | The status of the deployment. | `failed`; `succeeded` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="deployment-environment-name" href="#deployment-environment-name">`deployment.environment.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Name of the [deployment environment](https://wikipedia.org/wiki/Deployment_environment) (aka deployment tier). [1] | `staging`; `production` |
+| <a id="deployment-id" href="#deployment-id">`deployment.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The id of the deployment. | `1208` |
+| <a id="deployment-name" href="#deployment-name">`deployment.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the deployment. | `deploy my app`; `deploy-frontend` |
+| <a id="deployment-status" href="#deployment-status">`deployment.status`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The status of the deployment. | `failed`; `succeeded` |
 
 **[1] `deployment.environment.name`:** `deployment.environment.name` does not affect the uniqueness constraints defined through
 the `service.namespace`, `service.name` and `service.instance.id` resource attributes.
@@ -38,6 +40,8 @@ considered to be identifying the same service:
 
 Describes deprecated deployment attributes.
 
-| Attribute | Type | Description | Examples | Stability |
+**Attributes:**
+
+| Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
-| <a id="deployment-environment" href="#deployment-environment">`deployment.environment`</a> | string | Deprecated, use `deployment.environment.name` instead. | `staging`; `production` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `deployment.environment.name`. |
+| <a id="deployment-environment" href="#deployment-environment">`deployment.environment`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `deployment.environment.name`. | string | Deprecated, use `deployment.environment.name` instead. | `staging`; `production` |

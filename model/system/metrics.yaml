@@ -61,6 +61,7 @@ groups:
       - ref: cpu.mode
         note: "Following states SHOULD be used: `user`, `system`, `nice`, `idle`, `iowait`, `interrupt`, `steal`"
       - ref: cpu.logical_number
+        requirement_level: opt_in
     entity_associations:
       - host
 
@@ -78,6 +79,7 @@ groups:
       - ref: cpu.mode
         note: "Following modes SHOULD be used: `user`, `system`, `nice`, `idle`, `iowait`, `interrupt`, `steal`"
       - ref: cpu.logical_number
+        requirement_level: opt_in
     entity_associations:
       - host
 
@@ -504,7 +506,7 @@ groups:
     instrument: updowncounter
     unit: "{process}"
     attributes:
-      - ref: system.process.status
+      - ref: process.state
     entity_associations:
       - host
 

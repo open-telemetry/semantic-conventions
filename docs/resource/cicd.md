@@ -38,9 +38,11 @@ See also:
 
 **Description:** A pipeline is a series of automated steps that helps software teams deliver code.
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+**Attributes:**
+
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
-| [`cicd.pipeline.name`](/docs/registry/attributes/cicd.md) | string | The human readable name of the pipeline within a CI/CD system. | `Build and Test`; `Lint`; `Deploy Go Project`; `deploy_to_environment` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`cicd.pipeline.name`](/docs/registry/attributes/cicd.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The human readable name of the pipeline within a CI/CD system. | `Build and Test`; `Lint`; `Deploy Go Project`; `deploy_to_environment` |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -69,10 +71,12 @@ Using the CICD pipeline run resource with metrics inherently causes high cardina
 
 **Description:** A pipeline run is a singular execution of a given pipeline's tasks.
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+**Attributes:**
+
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
-| [`cicd.pipeline.run.id`](/docs/registry/attributes/cicd.md) | string | The unique identifier of a pipeline run within a CI/CD system. | `120912` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`cicd.pipeline.run.url.full`](/docs/registry/attributes/cicd.md) | string | The [URL](https://wikipedia.org/wiki/URL) of the pipeline run, providing the complete address in order to locate and identify the pipeline run. | `https://github.com/open-telemetry/semantic-conventions/actions/runs/9753949763?pr=1075` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`cicd.pipeline.run.id`](/docs/registry/attributes/cicd.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The unique identifier of a pipeline run within a CI/CD system. | `120912` |
+| [`cicd.pipeline.run.url.full`](/docs/registry/attributes/cicd.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The [URL](https://wikipedia.org/wiki/URL) of the pipeline run, providing the complete address in order to locate and identify the pipeline run. | `https://github.com/open-telemetry/semantic-conventions/actions/runs/9753949763?pr=1075` |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -97,11 +101,13 @@ Using the CICD pipeline run resource with metrics inherently causes high cardina
 A single pipeline run may be distributed across multiple workers. Any OpenTelemetry signal associated with a worker should be associated to the worker that performed the corresponding work.
 For example, when a pipeline run involves several workers, its task run spans may reference the different `cicd.worker` resources corresponding to the workers that executed each task run. The pipeline run's parent span may instead reference the CICD controller as the `cicd.worker` resource.
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+**Attributes:**
+
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
-| [`cicd.worker.id`](/docs/registry/attributes/cicd.md) | string | The unique identifier of a worker within a CICD system. | `abc123`; `10.0.1.2`; `controller` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`cicd.worker.name`](/docs/registry/attributes/cicd.md) | string | The name of a worker within a CICD system. | `agent-abc`; `controller`; `Ubuntu LTS` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`cicd.worker.url.full`](/docs/registry/attributes/cicd.md) | string | The [URL](https://wikipedia.org/wiki/URL) of the worker, providing the complete address in order to locate and identify the worker. | `https://cicd.example.org/worker/abc123` | `Recommended` If available | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`cicd.worker.id`](/docs/registry/attributes/cicd.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The unique identifier of a worker within a CICD system. | `abc123`; `10.0.1.2`; `controller` |
+| [`cicd.worker.name`](/docs/registry/attributes/cicd.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of a worker within a CICD system. | `agent-abc`; `controller`; `Ubuntu LTS` |
+| [`cicd.worker.url.full`](/docs/registry/attributes/cicd.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` If available | string | The [URL](https://wikipedia.org/wiki/URL) of the worker, providing the complete address in order to locate and identify the worker. | `https://cicd.example.org/worker/abc123` |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -126,10 +132,12 @@ For example, when a pipeline run involves several workers, its task run spans ma
 
 **Description:** A repository in the Version Control System.
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+**Attributes:**
+
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
-| [`vcs.repository.name`](/docs/registry/attributes/vcs.md) | string | The human readable name of the repository. It SHOULD NOT include any additional identifier like Group/SubGroup in GitLab or organization in GitHub. [1] | `semantic-conventions`; `my-cool-repo` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`vcs.repository.url.full`](/docs/registry/attributes/vcs.md) | string | The [canonical URL](https://support.google.com/webmasters/answer/10347851?hl=en#:~:text=A%20canonical%20URL%20is%20the,Google%20chooses%20one%20as%20canonical.) of the repository providing the complete HTTP(S) address in order to locate and identify the repository through a browser. [2] | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`vcs.repository.name`](/docs/registry/attributes/vcs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The human readable name of the repository. It SHOULD NOT include any additional identifier like Group/SubGroup in GitLab or organization in GitHub. [1] | `semantic-conventions`; `my-cool-repo` |
+| [`vcs.repository.url.full`](/docs/registry/attributes/vcs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The [canonical URL](https://support.google.com/webmasters/answer/10347851) of the repository providing the complete HTTP(S) address in order to locate and identify the repository through a browser. [2] | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` |
 
 **[1] `vcs.repository.name`:** Due to it only being the name, it can clash with forks of the same
 repository if collecting telemetry across multiple orgs or groups in
@@ -159,11 +167,13 @@ the `.git` extension.
 
 **Description:** A reference to a specific version in the Version Control System.
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+**Attributes:**
+
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
-| [`vcs.ref.head.name`](/docs/registry/attributes/vcs.md) | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. [1] | `my-feature-branch`; `tag-1-test` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`vcs.ref.head.revision`](/docs/registry/attributes/vcs.md) | string | The revision, literally [revised version](https://www.merriam-webster.com/dictionary/revision), The revision most often refers to a commit object in Git, or a revision number in SVN. [2] | `9d59409acf479dfa0df1aa568182e43e43df8bbe28d60fcf2bc52e30068802cc`; `main`; `123`; `HEAD` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`vcs.ref.type`](/docs/registry/attributes/vcs.md) | string | The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository. | `branch`; `tag` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`vcs.ref.head.name`](/docs/registry/attributes/vcs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. [1] | `my-feature-branch`; `tag-1-test` |
+| [`vcs.ref.head.revision`](/docs/registry/attributes/vcs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The revision, literally [revised version](https://www.merriam-webster.com/dictionary/revision), The revision most often refers to a commit object in Git, or a revision number in SVN. [2] | `9d59409acf479dfa0df1aa568182e43e43df8bbe28d60fcf2bc52e30068802cc`; `main`; `123`; `HEAD` |
+| [`vcs.ref.type`](/docs/registry/attributes/vcs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository. | `branch`; `tag` |
 
 **[1] `vcs.ref.head.name`:** `head` refers to where you are right now; the current reference at a
 given time.

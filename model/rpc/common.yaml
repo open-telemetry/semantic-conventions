@@ -7,6 +7,9 @@ groups:
         requirement_level: required
       - ref: rpc.service
       - ref: rpc.method
+      - ref: network.protocol.name
+        examples: ["http"]
+      - ref: network.protocol.version
       - ref: network.transport
       - ref: server.address
         requirement_level: required
@@ -31,6 +34,9 @@ groups:
     type: attribute_group
     brief: 'This document defines semantic conventions for remote procedure calls.'
     attributes:
+      - ref: network.protocol.name
+        examples: ["http"]
+      - ref: network.protocol.version
       - ref: rpc.method
         requirement_level: recommended
         note: >
@@ -57,6 +63,9 @@ groups:
       - ref: server.port
         requirement_level:
           conditionally_required: if the port is supported by the network transport used for communication.
+      - ref: error.type
+        requirement_level:
+          conditionally_required: If and only if the operation failed.
   - id: rpc_service
     type: attribute_group
     brief: 'This document defines semantic conventions for remote procedure calls.'
