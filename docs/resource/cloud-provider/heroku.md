@@ -16,10 +16,12 @@
 
 **Description:** Heroku Fir Application Attributes as defined in the  [Heroku OpenTelemetry Signals and Attributes Reference](https://devcenter.heroku.com/articles/heroku-opentelemetry-signals-and-attributes-reference)
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+**Attributes:**
+
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
-| [`heroku.app.id`](/docs/registry/attributes/heroku.md) | string | The unique identifier of the Heroku application. This is a UUID that uniquely identifies the application across the Heroku platform. [1] | `9daa2797-e49b-4624-932f-ec3f9688e3da`; `c3d3df33-8afb-4323-ac49-a9bf41a50dd1` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`heroku.app.name`](/docs/registry/attributes/heroku.md) | string | The name of the Heroku application. This is the human-readable name of the application as it appears in the Heroku dashboard. [2] | `my-app`; `test-app` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`heroku.app.id`](/docs/registry/attributes/heroku.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The unique identifier of the Heroku application. This is a UUID that uniquely identifies the application across the Heroku platform. [1] | `9daa2797-e49b-4624-932f-ec3f9688e3da`; `c3d3df33-8afb-4323-ac49-a9bf41a50dd1` |
+| [`heroku.app.name`](/docs/registry/attributes/heroku.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The name of the Heroku application. This is the human-readable name of the application as it appears in the Heroku dashboard. [2] | `my-app`; `test-app` |
 
 **[1] `heroku.app.id`:** This attribute is automatically provided by Heroku and cannot be customized.
 
@@ -46,10 +48,12 @@
 
 **Description:** Heroku Fir Release Attributes representing individual deployments. Each release is a specific version of an application deployed to Heroku.
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+**Attributes:**
+
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
-| [`heroku.release.id`](/docs/registry/attributes/heroku.md) | string | The unique identifier of the app release. This is a UUID that uniquely identifies each deployment/release of the application. [1] | `release-afc4d88c-7d89-4bc6-b364-7658cd60ba57`; `release-3bd90b80-16a1-4f5b-9465-a61e1b7464d4` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`heroku.release.version`](/docs/registry/attributes/heroku.md) | string | The version of the app release when telemetry is generated. This is typically a version number or identifier for the specific release. [2] | `v19`; `v42`; `v1.2.3` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`heroku.release.id`](/docs/registry/attributes/heroku.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The unique identifier of the app release. This is a UUID that uniquely identifies each deployment/release of the application. [1] | `release-afc4d88c-7d89-4bc6-b364-7658cd60ba57`; `release-3bd90b80-16a1-4f5b-9465-a61e1b7464d4` |
+| [`heroku.release.version`](/docs/registry/attributes/heroku.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The version of the app release when telemetry is generated. This is typically a version number or identifier for the specific release. [2] | `v19`; `v42`; `v1.2.3` |
 
 **[1] `heroku.release.id`:** This attribute is automatically provided by Heroku.
 
@@ -76,14 +80,16 @@
 
 **Description:** Heroku Fir Dyno Attributes representing individual dyno instances running within a Heroku application.
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+**Attributes:**
+
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
-| [`heroku.dyno.name`](/docs/registry/attributes/heroku.md) | string | The name of the dyno instance. This is a unique identifier for the specific dyno instance running within the application. [1] | `web.1`; `worker.2`; `scheduler.1` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`heroku.dyno.type`](/docs/registry/attributes/heroku.md) | string | The type of the Heroku dyno. This corresponds to the process type (web, worker, etc.) as defined in the Procfile. [2] | `web`; `worker`; `scheduler`; `release` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`heroku.dyno.name`](/docs/registry/attributes/heroku.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The name of the dyno instance. This is a unique identifier for the specific dyno instance running within the application. [1] | `web.1`; `worker.2`; `scheduler.1` |
+| [`heroku.dyno.type`](/docs/registry/attributes/heroku.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The type of the Heroku dyno. This corresponds to the process type (web, worker, etc.) as defined in the Procfile. [2] | `web`; `worker`; `scheduler`; `release` |
 
 **[1] `heroku.dyno.name`:** This attribute is automatically provided by Heroku.
 
-**[2] `heroku.dyno.type`:** This attribute is automatically provided by Heroku and is used to identify the dyno type. It is particularly useful for filtering telemetry data by process type.
+**[2] `heroku.dyno.type`:** This attribute is automatically provided by Heroku and is used to identify the dyno process type.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
