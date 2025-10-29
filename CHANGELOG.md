@@ -46,7 +46,7 @@
   - k8s.hpa.min_pods -> k8s.hpa.pod.min
   
 - `process`: Renames process.context_switch_type to process.context_switch.type ([#1501](https://github.com/open-telemetry/semantic-conventions/issues/1501))
-- `rpc`: This attributes for rpc metric are now explicitly associated with the metrics. ([#2311](https://github.com/open-telemetry/semantic-conventions/issues/2311))
+- `rpc`: Attributes for rpc metric are now explicitly associated with metrics. ([#2311](https://github.com/open-telemetry/semantic-conventions/issues/2311))
   The breaking change is due to the removal of network.type from the metrics.
 - `system`: Mark `cpu.logical_number` attribute as opt-in for `system.cpu.time` and `system.cpu.utilization` metrics ([#2932](https://github.com/open-telemetry/semantic-conventions/issues/2932))
 - `system, process`: Rename `system.process.status` to `process.state` ([#1803](https://github.com/open-telemetry/semantic-conventions/issues/1803))
