@@ -217,7 +217,7 @@ completion](#simple-chat-completion) above, but contain additional types of Part
 These parts contain an optional `modality` field to capture the general category of the
 content, and an optional `mime_type` to capture the specific [IANA media
 type](https://www.iana.org/assignments/media-types/media-types.xhtml) of the content, if known.
-See the [normative JSON schema](../gen-ai-input-messages.json) for more details.
+See the [normative JSON schema](/docs/gen-ai/gen-ai-input-messages.json) for more details.
 
 ### Multimodal inputs example
 
@@ -345,7 +345,7 @@ They are likely to be siblings if there is an encompassing span.
 
 **Tool call:**
 
-If tool call is [instrumented according to execute-tool span definition](../gen-ai-spans.md#execute-tool-span), it may look like
+If tool call is [instrumented according to execute-tool span definition](/docs/gen-ai/gen-ai-spans.md#execute-tool-span), it may look like
 
 |   Property                      |                     Value                   |
 |---------------------------------|---------------------------------------------|
@@ -432,7 +432,7 @@ They are likely to be siblings if there is an encompassing span.
 
 **Tool call:**
 
-If tool call is [instrumented according to execute-tool span definition](../gen-ai-spans.md#execute-tool-span), it may look like this:
+If tool call is [instrumented according to execute-tool span definition](/docs/gen-ai/gen-ai-spans.md#execute-tool-span), it may look like this:
 
 |   Property                      |                     Value                   |
 |---------------------------------|---------------------------------------------|
