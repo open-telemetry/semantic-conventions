@@ -7,13 +7,15 @@
 
 The operating system (OS) on which the process represented by this resource is running.
 
-| Attribute | Type | Description | Examples | Stability |
+**Attributes:**
+
+| Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
-| <a id="os-build-id" href="#os-build-id">`os.build_id`</a> | string | Unique identifier for a particular build or compilation of the operating system. | `TQ3C.230805.001.B2`; `20E247`; `22621` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="os-description" href="#os-description">`os.description`</a> | string | Human readable (not intended to be parsed) OS version information, like e.g. reported by `ver` or `lsb_release -a` commands. | `Microsoft Windows [Version 10.0.18363.778]`; `Ubuntu 18.04.1 LTS` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="os-name" href="#os-name">`os.name`</a> | string | Human readable operating system name. | `iOS`; `Android`; `Ubuntu` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="os-type" href="#os-type">`os.type`</a> | string | The operating system type. | `windows`; `linux`; `darwin` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="os-version" href="#os-version">`os.version`</a> | string | The version string of the operating system as defined in [Version Attributes](/docs/resource/README.md#version-attributes). | `14.2.1`; `18.04.1` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="os-build-id" href="#os-build-id">`os.build_id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Unique identifier for a particular build or compilation of the operating system. | `TQ3C.230805.001.B2`; `20E247`; `22621` |
+| <a id="os-description" href="#os-description">`os.description`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Human readable (not intended to be parsed) OS version information, like e.g. reported by `ver` or `lsb_release -a` commands. | `Microsoft Windows [Version 10.0.18363.778]`; `Ubuntu 18.04.1 LTS` |
+| <a id="os-name" href="#os-name">`os.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Human readable operating system name. | `iOS`; `Android`; `Ubuntu` |
+| <a id="os-type" href="#os-type">`os.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The operating system type. | `windows`; `linux`; `darwin` |
+| <a id="os-version" href="#os-version">`os.version`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The version string of the operating system as defined in [Version Attributes](/docs/resource/README.md#version-attributes). | `14.2.1`; `18.04.1` |
 
 ---
 

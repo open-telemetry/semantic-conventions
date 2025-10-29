@@ -7,7 +7,9 @@
 
 This document defines attributes for Heroku Fir applications. These attributes are automatically added to all telemetry data by the Heroku platform and provide context about the application and release information.
 
-| Attribute | Type | Description | Examples | Stability |
+**Attributes:**
+
+| Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="heroku-app-id" href="#heroku-app-id">`heroku.app.id`</a> | string | The unique identifier of the Heroku application. This is a UUID that uniquely identifies the application across the Heroku platform. [1] | `9daa2797-e49b-4624-932f-ec3f9688e3da`; `c3d3df33-8afb-4323-ac49-a9bf41a50dd1` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | <a id="heroku-app-name" href="#heroku-app-name">`heroku.app.name`</a> | string | The name of the Heroku application. This is the human-readable name of the application as it appears in the Heroku dashboard. [2] | `my-app`; `test-app` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |

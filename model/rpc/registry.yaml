@@ -205,25 +205,12 @@ groups:
       - id: rpc.method
         type: string
         stability: development
-        brief: 'The name of the (logical) method being called, must be equal to the $method part in the span name.'
-        note: >
-          This is the logical name of the method from the RPC interface perspective,
-          which can be different from the name of any implementing method/function.
-          The `code.function.name` attribute may be used to store the latter
-          (e.g., method actually executing the call on the server side,
-          RPC client stub method on the client side).
+        brief: This is the logical name of the method from the RPC interface perspective.
         examples: "exampleMethod"
       - id: rpc.service
         type: string
         stability: development
         brief: 'The full (logical) name of the service being called, including its package name, if applicable.'
-        note: >
-          This is the logical name of the service from the RPC interface perspective,
-          which can be different from the name of any implementing class.
-          The `code.namespace` attribute may be used to store the latter
-          (despite the attribute name, it may include a class name;
-          e.g., class with method actually executing the call on the server side,
-          RPC client stub class on the client side).
         examples: "myservice.EchoService"
       - id: rpc.system
         brief: 'A string identifying the remoting system. See below for a list of well-known identifiers.'
@@ -252,6 +239,10 @@ groups:
             - id: onc_rpc
               value: 'onc_rpc'
               brief: '[ONC RPC (Sun RPC)](https://datatracker.ietf.org/doc/html/rfc5531)'
+              stability: development
+            - id: jsonrpc
+              value: 'jsonrpc'
+              brief: 'JSON-RPC'
               stability: development
         stability: development
       - id: rpc.message.type

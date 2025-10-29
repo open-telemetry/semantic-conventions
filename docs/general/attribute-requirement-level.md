@@ -7,10 +7,11 @@
 
 <!-- toc -->
 
-- [Required](#required)
-- [Conditionally Required](#conditionally-required)
-- [Recommended](#recommended)
-- [Opt-In](#opt-in)
+- [Requirement Levels](#requirement-levels)
+  - [Required](#required)
+  - [Conditionally Required](#conditionally-required)
+  - [Recommended](#recommended)
+  - [Opt-In](#opt-in)
 - [Performance suggestions](#performance-suggestions)
 
 <!-- tocstop -->
@@ -22,13 +23,6 @@ requirement levels for attributes defined in semantic conventions._
 
 Attribute requirement levels apply to the
 [instrumentation library](https://opentelemetry.io/docs/concepts/glossary/#instrumentation-library).
-
-The following attribute requirement levels are specified:
-
-- [Required](#required)
-- [Conditionally Required](#conditionally-required)
-- [Recommended](#recommended)
-- [Opt-In](#opt-in)
 
 The requirement level for an attribute is specified by semantic conventions
 depending on attribute availability across instrumented entities, performance,
@@ -48,7 +42,23 @@ For example, [Database semantic convention](../database/README.md) references
 `network.transport` attribute defined in [General attributes](./README.md) with
 `Conditionally Required` level on it.
 
-## Required
+## Requirement Levels
+
+The below table details the default inclusion behaviour of attributes on telemetry signals and
+if it can be changed via configuration options.
+
+| Level | Included by default | Can be included via config | Can be excluded via Config |
+| --- | --- | --- | --- |
+| [Required](#required) | Yes | n/a | No |
+| [Conditionally Required](#conditionally-required) | Yes [1] | No [1] | No [1] |
+| [Recommended](#recommended) | Yes [2] | No [2] | Yes |
+| [Opt-In](#opt-in) | No | Yes | Yes |
+
+**[1]:** unless the attribute requirement conditions or instructions are not satisfied.
+
+**[2]:** unless it was excluded for a reason outlined in [Recommended](#recommended) section.
+
+### Required
 
 All instrumentations MUST populate the attribute. A semantic convention defining
 a Required attribute expects an absolute majority of instrumentation libraries
@@ -63,7 +73,7 @@ defined by such convention. For example, the presence of the `db.system.name`
 attribute on a span can be used as an indication that the span follows database
 semantics._
 
-## Conditionally Required
+### Conditionally Required
 
 All instrumentations MUST populate the attribute when the given condition is
 satisfied. The semantic convention of a `Conditionally Required` attribute MUST
@@ -82,14 +92,13 @@ the `Opt-In` requirement level on the attribute.
 
 <!-- TODO(jsuereth) - make examples not break on changes to semconv -->
 
-For example, `server.address` is `Conditionally Required` by the
-[Database convention](../database/README.md) when available. When
-`network.peer.address` is available instead, instrumentation can do a DNS
+For example, `server.address` is `Conditionally Required` by a convention. When
+server IP address is available instead, instrumentation can do a DNS
 lookup, cache and populate `server.address`, but only if the user explicitly
 enables the instrumentation to do so, considering the performance issues that
 DNS lookups introduce.
 
-## Recommended
+### Recommended
 
 Instrumentations SHOULD add the attribute by default if it's readily available
 and can be [efficiently populated](#performance-suggestions). Instrumentations
@@ -101,7 +110,7 @@ consideration by default, SHOULD allow for users to opt-in to emit them as
 defined for the `Opt-In` requirement level (if the attributes are logically
 applicable).
 
-## Opt-In
+### Opt-In
 
 Instrumentations SHOULD populate the attribute if and only if the user
 configures the instrumentation to do so. Instrumentation that doesn't support
@@ -123,5 +132,4 @@ Here are several examples of expensive operations to be avoided by default:
 - reading response stream to find `http.response.body.size` when
   `Content-Length` header is not available
 
-[DocumentStatus]:
-  https://opentelemetry.io/docs/specs/otel/document-status
+[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status

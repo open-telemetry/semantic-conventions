@@ -23,6 +23,7 @@ jobs:
   make-default-target:
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false # it's helpful to know if only one of these fails
       matrix:
         container-runner: ["docker", "podman"]
     steps:
@@ -47,6 +48,7 @@ jobs:
   make-generation-from-contributing-guide:
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false # it's helpful to know if only one of these fails
       matrix:
         container-runner: ["docker", "podman"]
     steps:
@@ -68,6 +70,7 @@ jobs:
   make-check-policies-from-contributing-guide:
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false # it's helpful to know if only one of these fails
       matrix:
         container-runner: ["docker", "podman"]
     steps:
@@ -89,6 +92,7 @@ jobs:
   make-check-from-contributing-guide:
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false # it's helpful to know if only one of these fails
       matrix:
         container-runner: ["docker", "podman"]
     steps:

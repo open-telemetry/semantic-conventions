@@ -30,12 +30,12 @@ This event describes the website performance metrics introduced by Google, See [
 semantic convention tooling supports complex attributes
 (see [#1870](https://github.com/open-telemetry/semantic-conventions/issues/1870)).
 
-| Body Field  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+| Field Name | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
-| `delta` | double | The delta between the current value and the last-reported value. See [delta](https://github.com/GoogleChrome/web-vitals?tab=readme-ov-file#report-only-the-delta-of-changes). | `0.2` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `id` | string | A unique ID representing this particular metric instance. | `v3-1677874579383-6381583661209` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `name` | enum | Name of the web vital. | `cls` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `value` | double | Value of the web vital. | `1.0` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| `delta` | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | double | The delta between the current value and the last-reported value. See [delta](https://github.com/GoogleChrome/web-vitals?tab=readme-ov-file#report-only-the-delta-of-changes). | `0.2` |
+| `id` | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | A unique ID representing this particular metric instance. | `v3-1677874579383-6381583661209` |
+| `name` | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | enum | Name of the web vital. | `cls` |
+| `value` | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | double | Value of the web vital. | `1.0` |
 
 `name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 

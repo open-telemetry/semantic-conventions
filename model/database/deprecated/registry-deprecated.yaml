@@ -127,7 +127,7 @@ groups:
         stability: development
         deprecated:
           reason: uncategorized
-          renamed_to: Use `db.response.status_code` instead.
+          note: Use `db.response.status_code` instead.
         brief: 'Deprecated, use `db.response.status_code` instead.'
         examples: [200, 201]
       - id: db.cosmosdb.operation_type
