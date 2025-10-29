@@ -52,5 +52,5 @@
 {{ attribute_table(desc_attrs, "/docs/registry/attributes", e.lineage.attributes, notes, "description") | trim }}{% endif %}{%- if misc_attrs | length > 0 %}
 {{ attribute_table(misc_attrs, "/docs/registry/attributes", e.lineage.attributes, notes, "other") | trim }}
 {% endif %}
-{{ notes.render() }}
+{{ notes.render() | trim }}
 {%- endmacro %}
