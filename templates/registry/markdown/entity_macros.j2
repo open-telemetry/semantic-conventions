@@ -27,7 +27,7 @@
 
 **type:** `{{ entity.name }}`
 
-**Description:** {{ entity.brief }}
+**Description:** {{ entity.brief | trim }}
 {%- endmacro %}
 {#- Render a single row on the entity table. -#}
 {% macro attribute_row(attribute, attribute_registry_base_url, lineage_attributes, notes, role) -%}
