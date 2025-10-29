@@ -33,11 +33,11 @@ See [Supported Resources](https://cloud.google.com/app-hub/docs/supported-resour
 > :warning: This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
-| Role | Attribute | Type | Description | Examples | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|---|
-| ![Other](https://img.shields.io/badge/-other-red) | [`gcp.apphub.application.container`](/docs/registry/attributes/gcp.md) | string | The container within GCP where the AppHub application is defined. | `projects/my-container-project` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| ![Other](https://img.shields.io/badge/-other-red) | [`gcp.apphub.application.id`](/docs/registry/attributes/gcp.md) | string | The name of the application as configured in AppHub. | `my-application` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| ![Other](https://img.shields.io/badge/-other-red) | [`gcp.apphub.application.location`](/docs/registry/attributes/gcp.md) | string | The GCP zone or region where the application is defined. | `us-central1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| ![Other](https://img.shields.io/badge/-other-red) | [`gcp.apphub.application.container`](/docs/registry/attributes/gcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The container within GCP where the AppHub application is defined. | `projects/my-container-project` |
+| ![Other](https://img.shields.io/badge/-other-red) | [`gcp.apphub.application.id`](/docs/registry/attributes/gcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the application as configured in AppHub. | `my-application` |
+| ![Other](https://img.shields.io/badge/-other-red) | [`gcp.apphub.application.location`](/docs/registry/attributes/gcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The GCP zone or region where the application is defined. | `us-central1` |
 
 
 <!-- markdownlint-restore -->
@@ -63,11 +63,11 @@ See [Supported Resources](https://cloud.google.com/app-hub/docs/supported-resour
 > :warning: This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
-| Role | Attribute | Type | Description | Examples | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|---|
-| ![Other](https://img.shields.io/badge/-other-red) | [`gcp.apphub.service.criticality_type`](/docs/registry/attributes/gcp.md) | string | Criticality of a service indicates its importance to the business. [1] | `MISSION_CRITICAL`; `HIGH`; `MEDIUM` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| ![Other](https://img.shields.io/badge/-other-red) | [`gcp.apphub.service.environment_type`](/docs/registry/attributes/gcp.md) | string | Environment of a service is the stage of a software lifecycle. [2] | `PRODUCTION`; `STAGING`; `TEST` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| ![Other](https://img.shields.io/badge/-other-red) | [`gcp.apphub.service.id`](/docs/registry/attributes/gcp.md) | string | The name of the service as configured in AppHub. | `my-service` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| ![Other](https://img.shields.io/badge/-other-red) | [`gcp.apphub.service.criticality_type`](/docs/registry/attributes/gcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Criticality of a service indicates its importance to the business. [1] | `MISSION_CRITICAL`; `HIGH`; `MEDIUM` |
+| ![Other](https://img.shields.io/badge/-other-red) | [`gcp.apphub.service.environment_type`](/docs/registry/attributes/gcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Environment of a service is the stage of a software lifecycle. [2] | `PRODUCTION`; `STAGING`; `TEST` |
+| ![Other](https://img.shields.io/badge/-other-red) | [`gcp.apphub.service.id`](/docs/registry/attributes/gcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the service as configured in AppHub. | `my-service` |
 
 **[1] `gcp.apphub.service.criticality_type`:** [See AppHub type enum](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type)
 
@@ -95,11 +95,11 @@ See [Supported Resources](https://cloud.google.com/app-hub/docs/supported-resour
 > :warning: This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
-| Role | Attribute | Type | Description | Examples | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|---|
-| ![Other](https://img.shields.io/badge/-other-red) | [`gcp.apphub.workload.criticality_type`](/docs/registry/attributes/gcp.md) | string | Criticality of a workload indicates its importance to the business. [1] | `MISSION_CRITICAL`; `HIGH`; `MEDIUM` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| ![Other](https://img.shields.io/badge/-other-red) | [`gcp.apphub.workload.environment_type`](/docs/registry/attributes/gcp.md) | string | Environment of a workload is the stage of a software lifecycle. [2] | `PRODUCTION`; `STAGING`; `TEST` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| ![Other](https://img.shields.io/badge/-other-red) | [`gcp.apphub.workload.id`](/docs/registry/attributes/gcp.md) | string | The name of the workload as configured in AppHub. | `my-workload` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| ![Other](https://img.shields.io/badge/-other-red) | [`gcp.apphub.workload.criticality_type`](/docs/registry/attributes/gcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Criticality of a workload indicates its importance to the business. [1] | `MISSION_CRITICAL`; `HIGH`; `MEDIUM` |
+| ![Other](https://img.shields.io/badge/-other-red) | [`gcp.apphub.workload.environment_type`](/docs/registry/attributes/gcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Environment of a workload is the stage of a software lifecycle. [2] | `PRODUCTION`; `STAGING`; `TEST` |
+| ![Other](https://img.shields.io/badge/-other-red) | [`gcp.apphub.workload.id`](/docs/registry/attributes/gcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the workload as configured in AppHub. | `my-workload` |
 
 **[1] `gcp.apphub.workload.criticality_type`:** [See AppHub type enum](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type)
 

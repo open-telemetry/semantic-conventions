@@ -16,10 +16,10 @@
 > :warning: This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
-| Role | Attribute | Type | Description | Examples | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|---|
-| ![Other](https://img.shields.io/badge/-other-red) | [`telemetry.distro.name`](/docs/registry/attributes/telemetry.md) | string | The name of the auto instrumentation agent or distribution, if used. [1] | `parts-unlimited-java` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| ![Other](https://img.shields.io/badge/-other-red) | [`telemetry.distro.version`](/docs/registry/attributes/telemetry.md) | string | The version string of the auto instrumentation agent or distribution, if used. | `1.2.3` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| ![Other](https://img.shields.io/badge/-other-red) | [`telemetry.distro.name`](/docs/registry/attributes/telemetry.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the auto instrumentation agent or distribution, if used. [1] | `parts-unlimited-java` |
+| ![Other](https://img.shields.io/badge/-other-red) | [`telemetry.distro.version`](/docs/registry/attributes/telemetry.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The version string of the auto instrumentation agent or distribution, if used. | `1.2.3` |
 
 **[1] `telemetry.distro.name`:** Official auto instrumentation agents and distributions SHOULD set the `telemetry.distro.name` attribute to
 a string starting with `opentelemetry-`, e.g. `opentelemetry-java-instrumentation`.
@@ -32,11 +32,11 @@ a string starting with `opentelemetry-`, e.g. `opentelemetry-java-instrumentatio
 
 **Description:** The telemetry SDK used to capture data recorded by the instrumentation libraries.
 
-| Role | Attribute | Type | Description | Examples | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|---|
-| ![Identity](https://img.shields.io/badge/-identity-purple) | [`telemetry.sdk.language`](/docs/registry/attributes/telemetry.md) | string | The language of the telemetry SDK. | `cpp`; `dotnet`; `erlang` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| ![Identity](https://img.shields.io/badge/-identity-purple) | [`telemetry.sdk.name`](/docs/registry/attributes/telemetry.md) | string | The name of the telemetry SDK as defined above. [2] | `opentelemetry` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| ![Descriptive](https://img.shields.io/badge/-descriptive-blue) | [`telemetry.sdk.version`](/docs/registry/attributes/telemetry.md) | string | The version string of the telemetry SDK. | `1.2.3` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| ![Identity](https://img.shields.io/badge/-identity-purple) | [`telemetry.sdk.language`](/docs/registry/attributes/telemetry.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | The language of the telemetry SDK. | `cpp`; `dotnet`; `erlang` |
+| ![Identity](https://img.shields.io/badge/-identity-purple) | [`telemetry.sdk.name`](/docs/registry/attributes/telemetry.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | The name of the telemetry SDK as defined above. [2] | `opentelemetry` |
+| ![Descriptive](https://img.shields.io/badge/-descriptive-blue) | [`telemetry.sdk.version`](/docs/registry/attributes/telemetry.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | The version string of the telemetry SDK. | `1.2.3` |
 **[2] `telemetry.sdk.name`:** The OpenTelemetry SDK MUST set the `telemetry.sdk.name` attribute to `opentelemetry`.
 If another SDK, like a fork or a vendor-provided implementation, is used, this SDK MUST set the
 `telemetry.sdk.name` attribute to the fully-qualified class or module name of this SDK's main entry point

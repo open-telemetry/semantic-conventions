@@ -31,7 +31,7 @@
 {%- endmacro %}
 {#- Render a single row on the entity table. -#}
 {% macro attribute_row(attribute, attribute_registry_base_url, lineage_attributes, notes, role) -%}
-| {{ role_tag(role) | trim }} | {{ attrs.name_with_link(attribute, attribute_registry_base_url, lineage_attributes) }} | {{ attrs.type(attribute) }} | {{ attribute.brief | trim }}{{ notes.add({"note": attribute.note, "name": attrs.name(attribute)}) }} | {{ examples.format(attribute) | trim }} | {{ requirement.render({"level": attribute.requirement_level, "name": attrs.name(attribute)}, notes) | trim }} | {{ stability.badge(attribute.stability, attribute.deprecated, attribute.brief) | trim }} |
+| {{ role_tag(role) | trim }} | {{ attrs.name_with_link(attribute, attribute_registry_base_url, lineage_attributes) }} | {{ stability.badge(attribute.stability, attribute.deprecated, attribute.brief) | trim }} | {{ requirement.render({"level": attribute.requirement_level, "name": attrs.name(attribute)}, notes) | trim }} | {{ attrs.type(attribute) }} | {{ attribute.brief | trim }}{{ notes.add({"note": attribute.note, "name": attrs.name(attribute)}) }} | {{ examples.format(attribute) | trim }} |
 {%- endmacro %}
 {#- Render attribute tables for entities. -#}
 {% macro attribute_table(attributes, attribute_registry_base_url, lineage_attributes, notes, role) %}{% for attribute in attributes | attribute_sort %}{{ attribute_row(attribute, attribute_registry_base_url, lineage_attributes, notes, role) }}
@@ -46,7 +46,7 @@
 > :warning: This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 {% endif %}
-| Role | Attribute | Type | Description | Examples | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|---|{%- if id_attrs | length > 0 %}
 {{ attribute_table(id_attrs, "/docs/registry/attributes", e.lineage.attributes, notes, "identity") | trim }}{% endif %}{%- if desc_attrs | length > 0 %}
 {{ attribute_table(desc_attrs, "/docs/registry/attributes", e.lineage.attributes, notes, "description") | trim }}{% endif %}{%- if misc_attrs | length > 0 %}
