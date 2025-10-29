@@ -35,5 +35,5 @@ Describes deprecated enduser attributes.
 
 | Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
-| <a id="enduser-role" href="#enduser-role">`enduser.role`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Uncategorized. | string | Deprecated, use `user.roles` instead. | `admin` |
+| <a id="enduser-role" href="#enduser-role">`enduser.role`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Use `user.roles` instead. | string | Deprecated, use `user.roles` instead. | `admin` |
 | <a id="enduser-scope" href="#enduser-scope">`enduser.scope`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Removed, no replacement at this time. | string | Deprecated, no replacement at this time. | `read:message, write:files` |
