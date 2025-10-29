@@ -15,10 +15,10 @@
 {%- for e in associations %}{%if loop.first == false %}; {% endif %}[`{{ e | trim }}`]({{registry_url(e, registry)}}){%- endfor %}
 {%- endmacro %}
 {#- Create role tags #}
-{% macro role_tag(role) -%}
-{% if role == "identity" %}![Identity](https://img.shields.io/badge/-identity-purple)
-{% elif role == "description" %}![Descriptive](https://img.shields.io/badge/-descriptive-blue)
-{% else %}![Other](https://img.shields.io/badge/-other-red)
+{% macro role_tag(role) -%}{# Note: Rendering badges looks bad due to inability to size them in markdown. #}
+{% if role == "identity" %}Identity{# ![Identity](https://img.shields.io/badge/-identity-purple) #}
+{% elif role == "description" %}Description {# ![Description](https://img.shields.io/badge/-description-blue) #}
+{% else %}Other{# ![Other](https://img.shields.io/badge/-other-red) #}
 {% endif %}
 {%- endmacro %}
 {#- Header for snippets. -#}

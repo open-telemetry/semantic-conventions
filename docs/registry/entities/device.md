@@ -18,10 +18,10 @@
 
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|---|
-| ![Other](https://img.shields.io/badge/-other-red) | [`device.manufacturer`](/docs/registry/attributes/device.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the device manufacturer [1] | `Apple`; `Samsung` |
-| ![Other](https://img.shields.io/badge/-other-red) | [`device.model.identifier`](/docs/registry/attributes/device.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The model identifier for the device [2] | `iPhone3,4`; `SM-G920F` |
-| ![Other](https://img.shields.io/badge/-other-red) | [`device.model.name`](/docs/registry/attributes/device.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The marketing name for the device model [3] | `iPhone 6s Plus`; `Samsung Galaxy S6` |
-| ![Other](https://img.shields.io/badge/-other-red) | [`device.id`](/docs/registry/attributes/device.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | A unique identifier representing the device [4] | `123456789012345`; `01:23:45:67:89:AB` |
+| Other | [`device.manufacturer`](/docs/registry/attributes/device.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the device manufacturer [1] | `Apple`; `Samsung` |
+| Other | [`device.model.identifier`](/docs/registry/attributes/device.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The model identifier for the device [2] | `iPhone3,4`; `SM-G920F` |
+| Other | [`device.model.name`](/docs/registry/attributes/device.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The marketing name for the device model [3] | `iPhone 6s Plus`; `Samsung Galaxy S6` |
+| Other | [`device.id`](/docs/registry/attributes/device.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | A unique identifier representing the device [4] | `123456789012345`; `01:23:45:67:89:AB` |
 
 
 **[1] `device.manufacturer`:** The Android OS provides this field via [Build](https://developer.android.com/reference/android/os/Build#MANUFACTURER). iOS apps SHOULD hardcode the value `Apple`.

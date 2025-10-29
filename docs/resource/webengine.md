@@ -18,9 +18,9 @@
 
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|---|
-| ![Other](https://img.shields.io/badge/-other-red) | [`webengine.name`](/docs/registry/attributes/webengine.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the web engine. | `WildFly` |
-| ![Other](https://img.shields.io/badge/-other-red) | [`webengine.description`](/docs/registry/attributes/webengine.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Additional description of the web engine (e.g. detailed version and edition information). | `WildFly Full 21.0.0.Final (WildFly Core 13.0.1.Final) - 2.2.2.Final` |
-| ![Other](https://img.shields.io/badge/-other-red) | [`webengine.version`](/docs/registry/attributes/webengine.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The version of the web engine. | `21.0.0` |
+| Other | [`webengine.name`](/docs/registry/attributes/webengine.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the web engine. | `WildFly` |
+| Other | [`webengine.description`](/docs/registry/attributes/webengine.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Additional description of the web engine (e.g. detailed version and edition information). | `WildFly Full 21.0.0.Final (WildFly Core 13.0.1.Final) - 2.2.2.Final` |
+| Other | [`webengine.version`](/docs/registry/attributes/webengine.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The version of the web engine. | `21.0.0` |
 
 
 
