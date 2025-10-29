@@ -1,4 +1,0 @@
-change_type: enhancement
-component: gen_ai
-note: Add multimodal `uri`, `file`, and `blob` parts to GenAI JSON Schemas
-issues: [1556]

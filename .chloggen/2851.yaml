@@ -1,7 +1,0 @@
-change_type: enhancement
-component: rpc
-note: "Remove `network.type` attribute from RPC spans and metrics"
-issues: [2851]
-subtext: |
-  The `network.type` attribute is no longer included in RPC semantic conventions.
-  It remains available in the attribute registry for opt-in usage when needed.
