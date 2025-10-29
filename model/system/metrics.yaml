@@ -591,14 +591,10 @@ groups:
     attributes:
       - ref: system.psi.resource
         requirement_level: required
-        brief: "The resource experiencing pressure (cpu, memory, or io)"
       - ref: system.psi.stall_type
         requirement_level: required
-        brief: "The stall type (some or full)"
       - ref: system.psi.window
         requirement_level: required
-        brief: "The time window over which pressure is calculated"
-        note: "Typically one of: 10s, 60s, or 300s"
     entity_associations:
       - host
 
@@ -621,16 +617,13 @@ groups:
 
       This is a monotonically increasing counter that resets on system reboot.
 
-      See [Linux kernel PSI documentation](https://docs.kernel.org/accounting/psi.html) and
-      [/proc/pressure/*](https://man7.org/linux/man-pages/man5/proc.5.html) files.
+      See [Linux kernel PSI documentation](https://docs.kernel.org/accounting/psi.html)
     instrument: counter
     unit: "us"
     attributes:
       - ref: system.psi.resource
         requirement_level: required
-        brief: "The resource experiencing pressure (cpu, memory, or io)"
       - ref: system.psi.stall_type
         requirement_level: required
-        brief: "The stall type (some or full)"
     entity_associations:
       - host

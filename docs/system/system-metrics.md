@@ -1332,14 +1332,10 @@ This metric is [recommended][MetricRecommended].
 The metric represents the percentage of time that tasks were stalled on a given resource
 over the specified time window.
 
-The "some" stall type indicates at least some tasks are stalled on the resource.
-The "full" stall type indicates all non-idle tasks are stalled simultaneously, representing
-a more severe state where the system is thrashing and CPU cycles are wasted.
-
 PSI is available on Linux systems with kernel 4.20 or later and requires CONFIG_PSI=y.
 CPU "full" stall is reported as zero at the system level for backward compatibility (available since 5.13).
 
-Values are percentages in the range [0, 100]. The ratios are tracked over 10-second, 60-second,
+The ratios are tracked over 10-second, 60-second,
 and 300-second windows.
 
 See [Linux kernel PSI documentation](https://docs.kernel.org/accounting/psi.html) and
@@ -1349,15 +1345,13 @@ See [Linux kernel PSI documentation](https://docs.kernel.org/accounting/psi.html
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
-| [`system.psi.resource`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The resource experiencing pressure (cpu, memory, or io) [1] | `cpu`; `memory`; `io` |
-| [`system.psi.stall_type`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The stall type (some or full) [2] | `some`; `full` |
-| [`system.psi.window`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The time window over which pressure is calculated [3] | `10s`; `60s`; `300s` |
+| [`system.psi.resource`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The resource experiencing pressure [1] | `cpu`; `memory`; `io` |
+| [`system.psi.stall_type`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The PSI stall type | `some`; `full` |
+| [`system.psi.window`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The time window over which pressure is calculated [2] | `10s`; `60s`; `300s` |
 
 **[1] `system.psi.resource`:** Linux PSI (Pressure Stall Information) measures resource pressure for CPU, memory, and I/O. See [Linux kernel PSI documentation](https://docs.kernel.org/accounting/psi.html).
 
-**[2] `system.psi.stall_type`:** PSI distinguishes between "some" stall (at least some tasks stalled) and "full" stall (all non-idle tasks stalled simultaneously).
-
-**[3] `system.psi.window`:** Typically one of: 10s, 60s, or 300s
+**[2] `system.psi.window`:** PSI tracks pressure as percentages over 10-second, 60-second, and 300-second windows. This attribute identifies which time window the metric represents.
 
 ---
 
@@ -1375,12 +1369,12 @@ See [Linux kernel PSI documentation](https://docs.kernel.org/accounting/psi.html
 
 | Value  | Description | Stability |
 |---|---|---|
-| `full` | All non-idle tasks are stalled on the resource simultaneously [4] | ![Development](https://img.shields.io/badge/-development-blue) |
-| `some` | At least some tasks are stalled on the resource [5] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `full` | All non-idle tasks are stalled on the resource simultaneously [3] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `some` | At least some tasks are stalled on the resource [4] | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[4]:** The "full" line indicates the share of time in which all non-idle tasks are stalled on a given resource simultaneously. This represents a state where actual CPU cycles are going to waste and the workload is thrashing. CPU full is undefined at the system level and is set to zero for backward compatibility (available since Linux 5.13).
+**[3]:** The "full" line indicates the share of time in which all non-idle tasks are stalled on a given resource simultaneously. This represents a state where actual CPU cycles are going to waste and the workload is thrashing. CPU full is undefined at the system level and is set to zero for backward compatibility (available since Linux 5.13).
 
-**[5]:** The "some" line indicates the share of time in which at least some tasks are stalled on a given resource.
+**[4]:** The "some" line indicates the share of time in which at least some tasks are stalled on a given resource.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -1407,27 +1401,21 @@ Unlike the percentage-based `system.linux.psi.pressure` metric, this allows dete
 of latency spikes that wouldn't necessarily make a noticeable impact on time averages.
 It also enables calculating average trends over custom time frames.
 
-The "some" stall type indicates at least some tasks are stalled on the resource.
-The "full" stall type indicates all non-idle tasks are stalled simultaneously.
-
 PSI is available on Linux systems with kernel 4.20 or later and requires CONFIG_PSI=y.
 CPU "full" stall is reported as zero at the system level for backward compatibility (available since 5.13).
 
 This is a monotonically increasing counter that resets on system reboot.
 
-See [Linux kernel PSI documentation](https://docs.kernel.org/accounting/psi.html) and
-[/proc/pressure/*](https://man7.org/linux/man-pages/man5/proc.5.html) files.
+See [Linux kernel PSI documentation](https://docs.kernel.org/accounting/psi.html)
 
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
-| [`system.psi.resource`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The resource experiencing pressure (cpu, memory, or io) [1] | `cpu`; `memory`; `io` |
-| [`system.psi.stall_type`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The stall type (some or full) [2] | `some`; `full` |
+| [`system.psi.resource`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The resource experiencing pressure [1] | `cpu`; `memory`; `io` |
+| [`system.psi.stall_type`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The PSI stall type | `some`; `full` |
 
 **[1] `system.psi.resource`:** Linux PSI (Pressure Stall Information) measures resource pressure for CPU, memory, and I/O. See [Linux kernel PSI documentation](https://docs.kernel.org/accounting/psi.html).
-
-**[2] `system.psi.stall_type`:** PSI distinguishes between "some" stall (at least some tasks stalled) and "full" stall (all non-idle tasks stalled simultaneously).
 
 ---
 
@@ -1445,12 +1433,12 @@ See [Linux kernel PSI documentation](https://docs.kernel.org/accounting/psi.html
 
 | Value  | Description | Stability |
 |---|---|---|
-| `full` | All non-idle tasks are stalled on the resource simultaneously [3] | ![Development](https://img.shields.io/badge/-development-blue) |
-| `some` | At least some tasks are stalled on the resource [4] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `full` | All non-idle tasks are stalled on the resource simultaneously [2] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `some` | At least some tasks are stalled on the resource [3] | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[3]:** The "full" line indicates the share of time in which all non-idle tasks are stalled on a given resource simultaneously. This represents a state where actual CPU cycles are going to waste and the workload is thrashing. CPU full is undefined at the system level and is set to zero for backward compatibility (available since Linux 5.13).
+**[2]:** The "full" line indicates the share of time in which all non-idle tasks are stalled on a given resource simultaneously. This represents a state where actual CPU cycles are going to waste and the workload is thrashing. CPU full is undefined at the system level and is set to zero for backward compatibility (available since Linux 5.13).
 
-**[4]:** The "some" line indicates the share of time in which at least some tasks are stalled on a given resource.
+**[3]:** The "some" line indicates the share of time in which at least some tasks are stalled on a given resource.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

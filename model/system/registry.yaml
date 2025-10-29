@@ -177,7 +177,7 @@ groups:
               stability: development
               brief: "I/O resource pressure"
         stability: development
-        brief: "The PSI resource being measured"
+        brief: "The resource experiencing pressure"
         examples: ["cpu", "memory", "io"]
         note: >
           Linux PSI (Pressure Stall Information) measures resource pressure for CPU, memory, and I/O.
@@ -205,13 +205,10 @@ groups:
         stability: development
         brief: "The PSI stall type"
         examples: ["some", "full"]
-        note: >
-          PSI distinguishes between "some" stall (at least some tasks stalled) and
-          "full" stall (all non-idle tasks stalled simultaneously).
       - id: system.psi.window
         type: string
         stability: development
-        brief: "The time window for PSI pressure calculation"
+        brief: "The time window over which pressure is calculated"
         examples: ["10s", "60s", "300s"]
         note: >
           PSI tracks pressure as percentages over 10-second, 60-second, and 300-second windows.
