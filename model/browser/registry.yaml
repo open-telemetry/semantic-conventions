@@ -79,7 +79,7 @@ groups:
         stability: development
         brief: 'Target element XPath using the XPathExpression API.'
         examples: ["//*[@id='testBtn']"]
-      - id: browser.mouse_event.button
+      - id: hw.mouse.button
         type:
           members:
             - id: left

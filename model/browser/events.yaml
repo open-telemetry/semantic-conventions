@@ -59,7 +59,7 @@ groups:
     brief: >
       This event describes a user click action in the browser.
     attributes:
-      - ref: browser.mouse_event.button
+      - ref: hw.mouse.button
         requirement_level: recommended
       - ref: browser.page.x
         requirement_level: required

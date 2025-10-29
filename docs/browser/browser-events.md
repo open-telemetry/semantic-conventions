@@ -75,13 +75,13 @@ This event describes a user click action in the browser.
 | [`browser.tag_name`](/docs/registry/attributes/browser.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Target element tag name obtained via event.target.tagName. | `BUTTON` |
 | [`browser.xpath`](/docs/registry/attributes/browser.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Target element XPath using the XPathExpression API. | `//*[@id='testBtn']` |
 | [`browser.element.attributes`](/docs/registry/attributes/browser.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | JSON-serialized map of data-otel-* attributes from the target element. [1] | `{"id": "123", "name": "Name"}` |
-| [`browser.mouse_event.button`](/docs/registry/attributes/browser.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | User friendly name of the mouse button pressed. See [MouseEvent.buttons](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/buttons#value). | `left` |
+| [`hw.mouse.button`](/docs/registry/attributes/browser.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | User friendly name of the mouse button pressed. See [MouseEvent.buttons](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/buttons#value). | `left` |
 
 **[1] `browser.element.attributes`:** Represented as a JSON object string. Example: {"id": "123", "name": "Name"}. Arbitrary maps are not supported as attribute types in OTel, so this is stored as string.
 
 ---
 
-`browser.mouse_event.button` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`hw.mouse.button` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
