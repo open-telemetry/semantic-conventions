@@ -51,6 +51,7 @@ linkTitle: Process
 | ![Descriptive](https://img.shields.io/badge/-descriptive-blue) | [`process.parent_pid`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | int | Parent Process identifier (PPID). | `111` |
 | ![Descriptive](https://img.shields.io/badge/-descriptive-blue) | [`process.title`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Process title (proctitle) [9] | `cat /etc/hostname`; `xfce4-session`; `bash` |
 | ![Descriptive](https://img.shields.io/badge/-descriptive-blue) | [`process.working_directory`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The working directory of the process. | `/root` |
+
 **[1] `process.args_count`:** See [Selecting process attributes](/docs/resource/process.md#selecting-process-attributes) for details.
 
 **[2] `process.args_count`:** This field can be useful for querying or performing bucket analysis on how many arguments were provided to start a process. More arguments may be an indication of suspicious activity.
@@ -108,6 +109,7 @@ On Windows and other systems where the native format of process commands is a si
 | ![Identity](https://img.shields.io/badge/-identity-purple) | [`process.runtime.name`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the runtime of this process. | `OpenJDK Runtime Environment` |
 | ![Identity](https://img.shields.io/badge/-identity-purple) | [`process.runtime.version`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The version of the runtime of this process, as returned by the runtime without modification. | `14.0.2` |
 | ![Descriptive](https://img.shields.io/badge/-descriptive-blue) | [`process.runtime.description`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | An additional description about the runtime of the process, for example a specific vendor customization of the runtime environment. | `Eclipse OpenJ9 Eclipse OpenJ9 VM openj9-0.21.0` |
+
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

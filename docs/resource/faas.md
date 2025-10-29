@@ -35,6 +35,7 @@ See also:
 | ![Other](https://img.shields.io/badge/-other-red) | [`faas.max_memory`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | int | The amount of memory available to the serverless function converted to Bytes. [4] | `134217728` |
 | ![Other](https://img.shields.io/badge/-other-red) | [`faas.version`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The immutable version of the function being executed. [5] | `26`; `pinkfroid-00002` |
 
+
 **[1] `faas.name`:** This is the name of the function as configured/deployed on the FaaS
 platform and is usually different from the name of the callback
 function (which may be stored in the
