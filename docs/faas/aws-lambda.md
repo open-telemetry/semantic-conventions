@@ -116,7 +116,7 @@ extract(context, carrier) {
 }
 ```
 
-*Note:* Java implementations should use the system property value of the key `com.amazonaws.xray.traceHeader`
+_Note:_ Java implementations should use the system property value of the key `com.amazonaws.xray.traceHeader`
 instead of the environment variable if the system property is not empty.
 
 #### `xray-lambda` Propagator Configuration

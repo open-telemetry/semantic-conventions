@@ -52,7 +52,7 @@ This document defines how to describe remote procedure calls
 
 ### Span name
 
-The *span name* MUST be the full RPC method name formatted as:
+The _span name_ MUST be the full RPC method name formatted as:
 
 ```
 $package.$service/$method
@@ -366,14 +366,14 @@ In the lifetime of an RPC stream, an event for each message sent/received on cli
 
 HTTP calls can generally be represented using just [HTTP spans](/docs/http/http-spans.md).
 If they address a particular remote service and method known to the caller, i.e., when it is a remote procedure call transported over HTTP, the `rpc.*` attributes might be added additionally on that span, or in a separate RPC span that is a parent of the transporting HTTP call.
-Note that *method* in this context is about the called remote procedure and *not* the HTTP verb (GET, POST, etc.).
+Note that _method_ in this context is about the called remote procedure and _not_ the HTTP verb (GET, POST, etc.).
 
 ## Semantic conventions for specific RPC technologies
 
 More specific Semantic Conventions are defined for the following RPC technologies:
 
-* [Connect](connect-rpc.md): Semantic Conventions for *Connect RPC*.
-* [gRPC](grpc.md): Semantic Conventions for *gRPC*.
-* [JSON-RPC](json-rpc.md): Semantic Conventions for *JSON-RPC*.
+* [Connect](connect-rpc.md): Semantic Conventions for _Connect RPC_.
+* [gRPC](grpc.md): Semantic Conventions for _gRPC_.
+* [JSON-RPC](json-rpc.md): Semantic Conventions for _JSON-RPC_.
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
