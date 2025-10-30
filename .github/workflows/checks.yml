@@ -21,7 +21,7 @@ jobs:
       run: npm install
 
     - name: run prettier
-      run: npm run _check:format || (echo '[help] Run: npm run format'; exit 1)
+      run: make prettier
 
   markdownlint:
     runs-on: ubuntu-latest

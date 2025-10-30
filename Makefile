@@ -150,6 +150,11 @@ install-yamllint:
 yamllint:
 	yamllint .
 
+.PHONY: prettier
+prettier:
+	@if ! npm ls prettier; then npm install; fi
+	npx --no -- prettier --check . || (echo '[help] Run: npm run format'; exit
+
 # Generate markdown tables from YAML definitions
 .PHONY: table-generation
 table-generation:
@@ -209,7 +214,7 @@ schema-check:
 # Run all checks in order of speed / likely failure.
 # As a last thing, run attribute registry generation and git-diff for differences.
 .PHONY: check
-check: misspell markdownlint markdown-toc markdown-link-check check-policies registry-generation
+check: misspell markdownlint markdown-toc prettier markdown-link-check check-policies registry-generation
 	git diff --exit-code ':*.md' || (echo 'Generated markdown Table of Contents is out of date, please run "make markdown-toc" and commit the changes in this PR.' && exit 1)
 	@echo "All checks complete"
 
