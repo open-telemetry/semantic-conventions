@@ -92,19 +92,19 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 ### Example
 
-| Key                     | Value |
-|:------------------------| :----------------------------------------------------------- |
-| Span name               | `"findAndModify products"` |
-| `db.system.name`        | `"mongodb"` |
-| `server.address`        | `"mongodb0.example.com"` |
-| `server.port`           | `27017` |
-| `network.peer.address`  | `"192.0.2.14"` |
-| `network.peer.port`     | `27017` |
-| `network.transport`     | `"tcp"` |
-| `db.collection.name`    | `"products"` |
-| `db.namespace`          | `"shopDb"` |
-| `db.query.text`         | not set |
-| `db.operation.name`     | `"findAndModify"` |
+| Key                    | Value                      |
+| :--------------------- | :------------------------- |
+| Span name              | `"findAndModify products"` |
+| `db.system.name`       | `"mongodb"`                |
+| `server.address`       | `"mongodb0.example.com"`   |
+| `server.port`          | `27017`                    |
+| `network.peer.address` | `"192.0.2.14"`             |
+| `network.peer.port`    | `27017`                    |
+| `network.transport`    | `"tcp"`                    |
+| `db.collection.name`   | `"products"`               |
+| `db.namespace`         | `"shopDb"`                 |
+| `db.query.text`        | not set                    |
+| `db.operation.name`    | `"findAndModify"`          |
 
 ## Metrics
 
