@@ -18,11 +18,11 @@
 > :warning: This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
-| [`heroku.app.id`](/docs/registry/attributes/heroku.md) | string | Unique identifier for the application | `2daa2797-e42b-4624-9322-ec3f968df4da` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`heroku.release.commit`](/docs/registry/attributes/heroku.md) | string | Commit hash for the current release | `e6134959463efd8966b20e75b913cafe3f5ec` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`heroku.release.creation_timestamp`](/docs/registry/attributes/heroku.md) | string | Time and date the release was created | `2022-10-23T18:00:42Z` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`heroku.app.id`](/docs/registry/attributes/heroku.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Unique identifier for the application | `2daa2797-e42b-4624-9322-ec3f968df4da` |
+| [`heroku.release.commit`](/docs/registry/attributes/heroku.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Commit hash for the current release | `e6134959463efd8966b20e75b913cafe3f5ec` |
+| [`heroku.release.creation_timestamp`](/docs/registry/attributes/heroku.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Time and date the release was created | `2022-10-23T18:00:42Z` |
 
 
 <!-- markdownlint-restore -->

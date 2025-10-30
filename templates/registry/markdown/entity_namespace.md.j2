@@ -22,15 +22,11 @@
 
 {%- if id_attrs | length > 0 %}
 
-**Identifying Attributes:**
-
-{{ at.generate(id_attrs, "", "/docs/registry/attributes", e.lineage.attributes) | trim }}
+{{ at.generate(id_attrs, "", "/docs/registry/attributes", e.lineage.attributes, "Identifying Attributes") | trim }}
 {%- endif %}
 {%- if desc_attrs | length > 0 %}
 
-**Descriptive Attributes:**
-
-{{ at.generate(desc_attrs, "", "/docs/registry/attributes", e.lineage.attributes) | trim }}
+{{ at.generate(desc_attrs, "", "/docs/registry/attributes", e.lineage.attributes, "Descriptive Attributes") | trim }}
 {%- endif %}
 {%- if misc_attrs | length > 0 %}
 
@@ -39,7 +35,7 @@
 > :warning: This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
-{{ at.generate(misc_attrs, "", "/docs/registry/attributes", e.lineage.attributes) | trim}}
+{{ at.generate(misc_attrs, "", "/docs/registry/attributes", e.lineage.attributes, "Other") | trim }}
 {%- endif %}
 
 {% endfor %}

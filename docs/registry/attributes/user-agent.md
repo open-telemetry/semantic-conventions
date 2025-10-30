@@ -10,11 +10,13 @@
 
 Describes user-agent attributes.
 
-| Attribute | Type | Description | Examples | Stability |
+**Attributes:**
+
+| Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
-| <a id="user-agent-name" href="#user-agent-name">`user_agent.name`</a> | string | Name of the user-agent extracted from original. Usually refers to the browser's name. [1] | `Safari`; `YourApp` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="user-agent-original" href="#user-agent-original">`user_agent.original`</a> | string | Value of the [HTTP User-Agent](https://www.rfc-editor.org/rfc/rfc9110.html#field.user-agent) header sent by the client. | `CERN-LineMode/2.15 libwww/2.17b3`; `Mozilla/5.0 (iPhone; CPU iPhone OS 14_7_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.2 Mobile/15E148 Safari/604.1`; `YourApp/1.0.0 grpc-java-okhttp/1.27.2` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| <a id="user-agent-version" href="#user-agent-version">`user_agent.version`</a> | string | Version of the user-agent extracted from original. Usually refers to the browser's version [2] | `14.1.2`; `1.0.0` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="user-agent-name" href="#user-agent-name">`user_agent.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Name of the user-agent extracted from original. Usually refers to the browser's name. [1] | `Safari`; `YourApp` |
+| <a id="user-agent-original" href="#user-agent-original">`user_agent.original`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | Value of the [HTTP User-Agent](https://www.rfc-editor.org/rfc/rfc9110.html#field.user-agent) header sent by the client. | `CERN-LineMode/2.15 libwww/2.17b3`; `Mozilla/5.0 (iPhone; CPU iPhone OS 14_7_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.2 Mobile/15E148 Safari/604.1`; `YourApp/1.0.0 grpc-java-okhttp/1.27.2` |
+| <a id="user-agent-version" href="#user-agent-version">`user_agent.version`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Version of the user-agent extracted from original. Usually refers to the browser's version [2] | `14.1.2`; `1.0.0` |
 
 **[1] `user_agent.name`:** [Example](https://www.whatsmyua.info) of extracting browser's name from original string. In the case of using a user-agent for non-browser products, such as microservices with multiple names/versions inside the `user_agent.original`, the most significant name SHOULD be selected. In such a scenario it should align with `user_agent.version`
 
@@ -24,11 +26,13 @@ Describes user-agent attributes.
 
 Describes the OS user-agent attributes.
 
-| Attribute | Type | Description | Examples | Stability |
+**Attributes:**
+
+| Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
-| <a id="user-agent-os-name" href="#user-agent-os-name">`user_agent.os.name`</a> | string | Human readable operating system name. [3] | `iOS`; `Android`; `Ubuntu` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="user-agent-os-version" href="#user-agent-os-version">`user_agent.os.version`</a> | string | The version string of the operating system as defined in [Version Attributes](/docs/resource/README.md#version-attributes). [4] | `14.2.1`; `18.04.1` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="user-agent-synthetic-type" href="#user-agent-synthetic-type">`user_agent.synthetic.type`</a> | string | Specifies the category of synthetic traffic, such as tests or bots. [5] | `bot`; `test` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="user-agent-os-name" href="#user-agent-os-name">`user_agent.os.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Human readable operating system name. [3] | `iOS`; `Android`; `Ubuntu` |
+| <a id="user-agent-os-version" href="#user-agent-os-version">`user_agent.os.version`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The version string of the operating system as defined in [Version Attributes](/docs/resource/README.md#version-attributes). [4] | `14.2.1`; `18.04.1` |
+| <a id="user-agent-synthetic-type" href="#user-agent-synthetic-type">`user_agent.synthetic.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Specifies the category of synthetic traffic, such as tests or bots. [5] | `bot`; `test` |
 
 **[3] `user_agent.os.name`:** For mapping user agent strings to OS names, libraries such as [ua-parser](https://github.com/ua-parser) can be utilized.
 

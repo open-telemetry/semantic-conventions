@@ -7,24 +7,45 @@ groups:
         An operating system process.
     attributes:
       - ref: process.pid
+        role: identifying
       - ref: process.parent_pid
+        role: descriptive
       - ref: process.executable.name
+        role: descriptive
         requirement_level:
           conditionally_required: See [Selecting process attributes](/docs/resource/process.md#selecting-process-attributes) for details.
       - ref: process.executable.path
+        role: descriptive
         requirement_level:
           conditionally_required: See [Selecting process attributes](/docs/resource/process.md#selecting-process-attributes) for details.
       - ref: process.command
+        role: descriptive
         requirement_level:
           conditionally_required: See [Selecting process attributes](/docs/resource/process.md#selecting-process-attributes) for details.
       - ref: process.command_line
+        role: descriptive
         requirement_level:
           conditionally_required: See [Selecting process attributes](/docs/resource/process.md#selecting-process-attributes) for details.
       - ref: process.command_args
+        role: descriptive
         requirement_level:
           conditionally_required: See [Selecting process attributes](/docs/resource/process.md#selecting-process-attributes) for details.
+      - ref: process.args_count
+        role: descriptive
+        requirement_level:
+          conditionally_required: See [Selecting process attributes](/docs/resource/process.md#selecting-process-attributes) for details.
+      - ref: process.creation.time
+        role: identifying
+      - ref: process.interactive
+        role: descriptive
+      - ref: process.title
+        role: descriptive
+      - ref: process.working_directory
+        role: descriptive
       - ref: process.owner
+        role: descriptive
       - ref: process.linux.cgroup
+        role: descriptive
 
   - id: entity.process.runtime
     type: entity
@@ -34,5 +55,8 @@ groups:
       The single (language) runtime instance which is monitored.
     attributes:
       - ref: process.runtime.name
+        role: identifying
       - ref: process.runtime.version
+        role: identifying
       - ref: process.runtime.description
+        role: descriptive

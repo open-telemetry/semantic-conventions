@@ -1,7 +1,0 @@
-change_type: enhancement
-component: gen_ai
-note: Add `gen_ai.embeddings.dimension.count` attribute to capture the dimension count of embeddings.
-issues: [2361]
-subtext: |
-  The `gen_ai.embeddings.dimension.count` is added to the `span.gen_ai.embeddings.client` span
-  and `gen_ai.client.operation.duration` metric.
