@@ -78,9 +78,9 @@ This envelope may offer the possibility to convey additional metadata, often in 
 
 A message is sent by a message *producer* to:
 
-* Physically: some message *broker* (which can be e.g., a single server, or a cluster, or a local process reached via IPC). The broker handles the actual delivery, re-delivery, persistence, etc. In some messaging systems the broker may be identical or co-located with (some) message consumers.
-With Apache Kafka, the physical broker a message is written to depends on the number of partitions, and which broker is the *leader* of the partition the record is written to.
-* Logically: some particular message *destination*.
+- Physically: some message _broker_ (which can be e.g., a single server, or a cluster, or a local process reached via IPC). The broker handles the actual delivery, re-delivery, persistence, etc. In some messaging systems the broker may be identical or co-located with (some) message consumers.
+  With Apache Kafka, the physical broker a message is written to depends on the number of partitions, and which broker is the _leader_ of the partition the record is written to.
+- Logically: some particular message _destination_.
 
 Messages can be delivered to 0, 1, or multiple consumers depending on the dispatching semantic of the protocol.
 
@@ -212,13 +212,13 @@ a specific operation, the instrumentation SHOULD omit the `{destination}`.
 
 Examples:
 
-* `publish shop.orders`
-* `send shop.orders`
-* `subscribe shop.orders`
-* `ack shop.orders`
-* `nack print_jobs`
-* `process topic with spaces`
-* `settle AuthenticationRequest-Conversations`
+- `publish shop.orders`
+- `send shop.orders`
+- `subscribe shop.orders`
+- `ack shop.orders`
+- `nack print_jobs`
+- `process topic with spaces`
+- `settle AuthenticationRequest-Conversations`
 
 ### Operation types
 

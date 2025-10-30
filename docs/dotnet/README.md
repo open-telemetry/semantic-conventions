@@ -8,13 +8,13 @@ This article documents semantic conventions for metrics and traces emitted by th
 
 The following span are currently supported:
 
-- [HTTP client, DNS, and TLS](dotnet-network-traces.md): Semantic Conventions for HTTP client and connection-related *spans*.
+- [HTTP client, DNS, and TLS](dotnet-network-traces.md): Semantic Conventions for HTTP client and connection-related _spans_.
 
 The following metrics are currently supported:
 
-- [ASP.NET Core](dotnet-aspnetcore-metrics.md): Semantic Conventions for ASP.NET Core routing, exceptions, and rate-limiting *metrics*.
-- [DNS](dotnet-dns-metrics.md): Semantic Conventions for client-side DNS lookups associated with *metrics*.
-- [HTTP](dotnet-http-metrics.md): Semantic Conventions for HTTP client and server *metrics*.
-- [Kestrel](dotnet-kestrel-metrics.md): Semantic Conventions for Kestrel web server *metrics*.
-- [SignalR](dotnet-signalr-metrics.md): Semantic Conventions for SignalR server *metrics*.
-- [Runtime](/docs/runtime/dotnet-metrics.md): Semantic conventions for .NET Runtime *metrics*.
+- [ASP.NET Core](dotnet-aspnetcore-metrics.md): Semantic Conventions for ASP.NET Core routing, exceptions, and rate-limiting _metrics_.
+- [DNS](dotnet-dns-metrics.md): Semantic Conventions for client-side DNS lookups associated with _metrics_.
+- [HTTP](dotnet-http-metrics.md): Semantic Conventions for HTTP client and server _metrics_.
+- [Kestrel](dotnet-kestrel-metrics.md): Semantic Conventions for Kestrel web server _metrics_.
+- [SignalR](dotnet-signalr-metrics.md): Semantic Conventions for SignalR server _metrics_.
+- [Runtime](/docs/runtime/dotnet-metrics.md): Semantic conventions for .NET Runtime _metrics_.

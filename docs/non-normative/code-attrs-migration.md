@@ -40,12 +40,12 @@ to
 >
 > Examples:
 >
-> * Java method: `com.example.MyHttpService.serveRequest`
-> * Java anonymous class method: `com.mycompany.Main$1.myMethod`
-> * Java lambda method: `com.mycompany.Main$$Lambda/0x0000748ae4149c00.myMethod`
-> * PHP function: `GuzzleHttp\Client::transfer`
-> * Go function: `github.com/my/repo/pkg.foo.func5`
-> * Elixir: `OpenTelemetry.Ctx.new`
-> * Erlang: `opentelemetry_ctx:new`
-> * Rust: `playground::my_module::my_cool_func`
-> * C function: `fopen`
+> - Java method: `com.example.MyHttpService.serveRequest`
+> - Java anonymous class method: `com.mycompany.Main$1.myMethod`
+> - Java lambda method: `com.mycompany.Main$$Lambda/0x0000748ae4149c00.myMethod`
+> - PHP function: `GuzzleHttp\Client::transfer`
+> - Go function: `github.com/my/repo/pkg.foo.func5`
+> - Elixir: `OpenTelemetry.Ctx.new`
+> - Erlang: `opentelemetry_ctx:new`
+> - Rust: `playground::my_module::my_cool_func`
+> - C function: `fopen`
