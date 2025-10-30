@@ -300,12 +300,12 @@ Describes deprecated database attributes.
 | Value  | Description | Deprecation Explanation |
 |---|---|---|
 | `adabas` | Adabas (Adaptable Database System) | Use `adabas` value for `db.system.name` attribute instead. |
-| `cache` | InterSystems Caché | Use `intersystems_cache` value  for `db.system.name` attribute  instead. |
+| `cache` | Deprecated, use `intersystems_cache` instead. | Use `intersystems_cache` value  for `db.system.name` attribute  instead. |
 | `cassandra` | Apache Cassandra | Use `cassandra` value for `db.system.name` attribute instead. |
 | `clickhouse` | ClickHouse | Use `clickhouse` value for `db.system.name` attribute instead. |
-| `cloudscape` | Cloudscape | Use `other_sql` value  for `db.system.name` attribute  instead. |
+| `cloudscape` | Deprecated, use `other_sql` instead. | Use `other_sql` value  for `db.system.name` attribute  instead. |
 | `cockroachdb` | CockroachDB | Use `cockroachdb` value for `db.system.name` attribute instead. |
-| `coldfusion` | ColdFusion IMQ | No replacement at this time. |
+| `coldfusion` | Deprecated, no replacement at this time. | Obsoleted. |
 | `cosmosdb` | Microsoft Azure Cosmos DB | Use `cosmosdb` value for `db.system.name` attribute instead. |
 | `couchbase` | Couchbase | Use `couchbase` value for `db.system.name` attribute instead. |
 | `couchdb` | CouchDB | Use `couchdb` value for `db.system.name` attribute instead. |
@@ -316,7 +316,7 @@ Describes deprecated database attributes.
 | `elasticsearch` | Elasticsearch | Use `elasticsearch` value for `db.system.name` attribute instead. |
 | `filemaker` | FileMaker | Use `filemaker` value for `db.system.name` attribute instead. |
 | `firebird` | Firebird | Use `firebird` value for `db.system.name` attribute instead. |
-| `firstsql` | FirstSQL | Use `other_sql` value  for `db.system.name` attribute  instead. |
+| `firstsql` | Deprecated, use `other_sql` instead. | Use `other_sql` value  for `db.system.name` attribute  instead. |
 | `geode` | Apache Geode | Use `geode` value for `db.system.name` attribute instead. |
 | `h2` | H2 | Use `h2` value for `db.system.name` attribute instead. |
 | `hanadb` | SAP HANA | Use `hanadb` value for `db.system.name` attribute instead. |
@@ -334,7 +334,7 @@ Describes deprecated database attributes.
 | `memcached` | Memcached | Use `memcached` value for `db.system.name` attribute instead. |
 | `mongodb` | MongoDB | Use `mongodb` value for `db.system.name` attribute instead. |
 | `mssql` | Microsoft SQL Server | Use `mssql` value for `db.system.name` attribute instead. |
-| `mssqlcompact` | Microsoft SQL Server Compact | Use `other_sql` value  for `db.system.name` attribute  instead. |
+| `mssqlcompact` | Deprecated, Microsoft SQL Server Compact is discontinued. | Use `other_sql` value  for `db.system.name` attribute  instead. |
 | `mysql` | MySQL | Use `mysql` value for `db.system.name` attribute instead. |
 | `neo4j` | Neo4j | Use `neo4j` value for `db.system.name` attribute instead. |
 | `netezza` | Netezza | Use `netezza` value for `db.system.name` attribute instead. |

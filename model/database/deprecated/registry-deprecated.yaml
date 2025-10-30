@@ -387,7 +387,7 @@ groups:
               deprecated:
                 reason: renamed
                 renamed_to: "intersystems_cache"
-              brief: InterSystems Caché
+              brief: "Deprecated, use `intersystems_cache` instead."
               stability: development
             - id: intersystems_cache
               value: "intersystems_cache"
@@ -406,7 +406,7 @@ groups:
               deprecated:
                 reason: renamed
                 renamed_to: "other_sql"
-              brief: Cloudscape
+              brief: "Deprecated, use `other_sql` instead."
               stability: development
             - id: cockroachdb
               value: "cockroachdb"
@@ -416,8 +416,7 @@ groups:
               value: "coldfusion"
               deprecated:
                 reason: obsoleted
-                note: No replacement at this time.
-              brief: ColdFusion IMQ
+              brief: "Deprecated, no replacement at this time."
               stability: development
             - id: cosmosdb
               value: "cosmosdb"
@@ -464,7 +463,7 @@ groups:
               deprecated:
                 reason: renamed
                 renamed_to: "other_sql"
-              brief: FirstSQL
+              brief: "Deprecated, use `other_sql` instead."
               stability: development
             - id: geode
               value: "geode"
@@ -535,8 +534,7 @@ groups:
               deprecated:
                 reason: renamed
                 renamed_to: "other_sql"
-                note: Microsoft SQL Server Compact is discontinued.
-              brief: Microsoft SQL Server Compact
+              brief: "Deprecated, Microsoft SQL Server Compact is discontinued."
               stability: development
             - id: mysql
               value: "mysql"

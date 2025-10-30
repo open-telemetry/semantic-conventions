@@ -146,8 +146,8 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 | Value  | Description | Deprecation Explanation |
 |---|---|---|
-| `deliver` | One or more messages are delivered to a consumer. | Use `process` value  instead. |
-| `publish` | One or more messages are provided for publishing to an intermediary. If a single message is published, the context of the "Publish" span can be used as the creation context and no "Create" span needs to be created. | Use `send` value  instead. |
+| `deliver` | Deprecated. Use `process` instead. | Use `process` value  instead. |
+| `publish` | Deprecated. Use `send` instead. | Use `send` value  instead. |
 
 </details>
 
