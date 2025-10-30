@@ -1,5 +1,4 @@
 ---
-# Hugo front matter used to generate the website version of this page:
 linkTitle: General
 weight: -1
 auto_gen: below
