@@ -31,9 +31,7 @@ The Android platform on which the Android application is running.
 
 | Key | Value Type | Summary | Example Values | Deprecation Explanation |
 |---|---|---|---|---|
-| <a id="android-state" href="#android-state">`android.state`</a> | string | This attribute represents the state of the application. [1] | `created`; `background`; `foreground` |  Use `android.app.state` instead.  |
-
-**[1] `android.state`:** The Android lifecycle states are defined in [Activity lifecycle callbacks](https://developer.android.com/guide/components/activities/activity-lifecycle#lc), and from which the `OS identifiers` are derived.
+| <a id="android-state" href="#android-state">`android.state`</a> | string | Deprecated. Use `android.app.state` attribute instead. | `created`; `background`; `foreground` |  Use `android.app.state` instead.  |
 
 ---
 

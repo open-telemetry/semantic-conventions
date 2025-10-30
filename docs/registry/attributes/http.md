@@ -3,9 +3,6 @@
 
 # HTTP
 
-- [HTTP Attributes](#http-attributes)
-- [Deprecated HTTP Attributes](#deprecated-http-attributes)
-
 ## HTTP Attributes
 
 This document defines semantic convention attributes in the HTTP namespace.
@@ -115,10 +112,6 @@ support custom route formatting. Instrumentations SHOULD document the format and
 | `PUT` | PUT method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `QUERY` | QUERY method. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `TRACE` | TRACE method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
-## Deprecated HTTP Attributes
-
-Describes deprecated HTTP attributes.
 
 <details>
 <summary><b>Deprecated Attributes:</b></summary>

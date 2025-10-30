@@ -3,9 +3,6 @@
 
 # Deployment
 
-- [Deployment Attributes](#deployment-attributes)
-- [Deployment Deprecated Attributes](#deployment-deprecated-attributes)
-
 ## Deployment Attributes
 
 This document defines attributes for software deployments.
@@ -35,10 +32,6 @@ considered to be identifying the same service:
 |---|---|---|
 | `failed` | failed | ![Development](https://img.shields.io/badge/-development-blue) |
 | `succeeded` | succeeded | ![Development](https://img.shields.io/badge/-development-blue) |
-
-## Deployment Deprecated Attributes
-
-Describes deprecated deployment attributes.
 
 <details>
 <summary><b>Deprecated Attributes:</b></summary>

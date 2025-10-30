@@ -3,9 +3,6 @@
 
 # Container
 
-- [Container Attributes](#container-attributes)
-- [Deprecated Container Attributes](#deprecated-container-attributes)
-
 ## Container Attributes
 
 A container instance.
@@ -43,10 +40,6 @@ The ID is assigned by the container runtime and can vary in different environmen
 **[5] `container.image.repo_digests`:** [Docker](https://docs.docker.com/reference/api/engine/version/v1.43/#tag/Image/operation/ImageInspect) and [CRI](https://github.com/kubernetes/cri-api/blob/c75ef5b473bbe2d0a4fc92f82235efd665ea8e9f/pkg/apis/runtime/v1/api.proto#L1237-L1238) report those under the `RepoDigests` field.
 
 **[6] `container.label.<key>`:** For example, a docker container label `app` with value `nginx` SHOULD be recorded as the `container.label.app` attribute with value `"nginx"`.
-
-## Deprecated Container Attributes
-
-Describes deprecated container attributes.
 
 <details>
 <summary><b>Deprecated Attributes:</b></summary>

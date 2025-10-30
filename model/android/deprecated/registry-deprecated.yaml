@@ -1,26 +1,16 @@
 groups:
-  - id: registry.android
+  - id: registry.android.deprecated
     type: attribute_group
-    display_name: Android Attributes
+    display_name: Deprecated Android Attributes
     brief: >
-      The Android platform on which the Android application is running.
+        This document defines attributes that represents an occurrence of a lifecycle transition on the Android platform.
     attributes:
-      - id: android.os.api_level
-        type: string
+      - id: android.state
         stability: development
-        brief: >
-          Uniquely identifies the framework API revision offered by a version
-          (`os.version`) of the android operating system. More information can be found
-          in the [Android API levels documentation](https://developer.android.com/guide/topics/manifest/uses-sdk-element#ApiLevels).
-        examples: ['33', '32']
-      - id: android.app.state
-        stability: development
-        brief: >
-          This attribute represents the state of the application.
-        note: >
-          The Android lifecycle states are defined in [Activity lifecycle callbacks](https://developer.android.com/guide/components/activities/activity-lifecycle#lc),
-          and from which the `OS identifiers` are derived.
-        examples: [ "created" ]
+        brief: Deprecated. Use `android.app.state` attribute instead.
+        deprecated:
+          reason: renamed
+          renamed_to: android.app.state
         type:
           members:
             - id: created
