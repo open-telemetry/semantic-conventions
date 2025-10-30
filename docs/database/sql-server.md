@@ -15,7 +15,7 @@ linkTitle: SQL Server
 
 <!-- tocstop -->
 
-The Semantic Conventions for *Microsoft SQL Server* extend and override the [Database Semantic Conventions](README.md).
+The Semantic Conventions for _Microsoft SQL Server_ extend and override the [Database Semantic Conventions](README.md).
 
 ## Spans
 

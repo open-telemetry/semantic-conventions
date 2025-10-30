@@ -38,18 +38,18 @@ This document defines semantic conventions for messaging systems spans, metrics 
 
 Semantic conventions for messaging systems are defined for the following signals:
 
-- [Messaging Spans](messaging-spans.md): Semantic Conventions for messaging *spans*.
-- [Messaging Metrics](messaging-metrics.md): Semantic Conventions for messaging *metrics*.
+- [Messaging Spans](messaging-spans.md): Semantic Conventions for messaging _spans_.
+- [Messaging Metrics](messaging-metrics.md): Semantic Conventions for messaging _metrics_.
 
 Technology specific semantic conventions are defined for the following messaging systems:
 
-- [Kafka](kafka.md): Semantic Conventions for *Apache Kafka*.
-- [RabbitMQ](rabbitmq.md): Semantic Conventions for *RabbitMQ*.
-- [RocketMQ](rocketmq.md): Semantic Conventions for *Apache RocketMQ*.
-- [SNS](sns.md): Semantic Conventions for *Amazon SNS*.
-- [SQS](sqs.md): Semantic Conventions for *Amazon SQS*.
-- [Google Cloud Pub/Sub](gcp-pubsub.md): Semantic Conventions for *Google Cloud Pub/Sub*.
-- [Azure Service Bus](azure-messaging.md#azure-service-bus): Semantic Conventions for *Azure Service Bus*.
-- [Azure Event Hubs](azure-messaging.md#azure-event-hubs): Semantic Conventions for *Azure Event Hubs*.
+- [Kafka](kafka.md): Semantic Conventions for _Apache Kafka_.
+- [RabbitMQ](rabbitmq.md): Semantic Conventions for _RabbitMQ_.
+- [RocketMQ](rocketmq.md): Semantic Conventions for _Apache RocketMQ_.
+- [SNS](sns.md): Semantic Conventions for _Amazon SNS_.
+- [SQS](sqs.md): Semantic Conventions for _Amazon SQS_.
+- [Google Cloud Pub/Sub](gcp-pubsub.md): Semantic Conventions for _Google Cloud Pub/Sub_.
+- [Azure Service Bus](azure-messaging.md#azure-service-bus): Semantic Conventions for _Azure Service Bus_.
+- [Azure Event Hubs](azure-messaging.md#azure-event-hubs): Semantic Conventions for _Azure Event Hubs_.
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status

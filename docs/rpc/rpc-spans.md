@@ -372,8 +372,8 @@ Note that *method* in this context is about the called remote procedure and *not
 
 More specific Semantic Conventions are defined for the following RPC technologies:
 
-- [Connect](connect-rpc.md): Semantic Conventions for *Connect RPC*.
-- [gRPC](grpc.md): Semantic Conventions for *gRPC*.
-- [JSON-RPC](json-rpc.md): Semantic Conventions for *JSON-RPC*.
+- [Connect](connect-rpc.md): Semantic Conventions for _Connect RPC_.
+- [gRPC](grpc.md): Semantic Conventions for _gRPC_.
+- [JSON-RPC](json-rpc.md): Semantic Conventions for _JSON-RPC_.
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
