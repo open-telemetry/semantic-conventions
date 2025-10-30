@@ -108,14 +108,14 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 In this example, Redis is connected using a unix domain socket and therefore the connection string is left out.
 
-| Key                       | Value |
-|:--------------------------| :-------------------------------------------- |
-| Span name                 | `"HMSET"` |
-| `db.system.name`          | `"redis"` |
-| `network.peer.address`    | `"/tmp/redis.sock"` |
-| `network.transport`       | `"unix"` |
-| `db.namespace`            | `"15"` |
-| `db.query.text`           | `"HMSET myhash field1 'Hello' field2 'World"` |
-| `db.operation.name`       | `"HMSET"` |
+| Key                    | Value                                         |
+| :--------------------- | :-------------------------------------------- |
+| Span name              | `"HMSET"`                                     |
+| `db.system.name`       | `"redis"`                                     |
+| `network.peer.address` | `"/tmp/redis.sock"`                           |
+| `network.transport`    | `"unix"`                                      |
+| `db.namespace`         | `"15"`                                        |
+| `db.query.text`        | `"HMSET myhash field1 'Hello' field2 'World"` |
+| `db.operation.name`    | `"HMSET"`                                     |
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status

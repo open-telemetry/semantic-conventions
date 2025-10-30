@@ -39,7 +39,7 @@ note: |
 instrument: updowncounter
 unit: "1"
 attributes:
-- ref: example.state
+  - ref: example.state
 ```
 
 ### Instrument

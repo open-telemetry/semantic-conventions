@@ -1205,7 +1205,7 @@ follow the hierarchies listed above for different entities like CPU, memory,
 and network.
 
 For example, [UNIX load
-average](https://wikipedia.org/wiki/Load_(computing)) over a given
+average](<https://wikipedia.org/wiki/Load_(computing)>) over a given
 interval is not well standardized and its value across different UNIX like
 OSes may vary despite being under similar load:
 

@@ -55,7 +55,7 @@ for details on what these mean.
 ### Declaring associations between signals
 
 You can declare which entities should be used with specific observability
-signals.  For example, process metrics should be used with the process
+signals. For example, process metrics should be used with the process
 entity, so that the metric is associated with a known process. To declare
 this, use the `entity_associations` field on the signal and reference
 another resource group *by name*.

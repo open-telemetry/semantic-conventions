@@ -295,21 +295,21 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 ### Example
 
-| Key                                  | Value |
-|:-------------------------------------| :------------------- |
-| Span name                            | `"read_item orders"` |
-| `azure.client.id`                    | `"3ba4827d-4422-483f-b59f-85b74211c11d"` |
-| `azure.cosmosdb.operation.request_charge`  | `7.43` |
-| `azure.cosmosdb.request.body.size`   | `20` |
-| `azure.cosmosdb.response.sub_status_code` | `0` |
-| `azure.resource_provider.namespace`  | `"Microsoft.DocumentDB"` |
-| `db.system.name`                     | `"azure.cosmosdb"` |
-| `db.collection.name`                 | `"orders"` |
-| `db.namespace`                       | `"ShopDb"` |
-| `db.operation.name`                  | `"read_item"` |
-| `db.response.status_code`            | `201` |
-| `server.address`                     | `"account.documents.azure.com"` |
-| `user_agent.original`                | `"cosmos-netstandard-sdk/3.23.0\|3.23.1\|1\|X64\|Linux 5.4.0-1098-azure 104 18\|.NET Core 3.1.32\|S\|"` |
+| Key                                       | Value                                                                                                   |
+| :---------------------------------------- | :------------------------------------------------------------------------------------------------------ |
+| Span name                                 | `"read_item orders"`                                                                                    |
+| `azure.client.id`                         | `"3ba4827d-4422-483f-b59f-85b74211c11d"`                                                                |
+| `azure.cosmosdb.operation.request_charge` | `7.43`                                                                                                  |
+| `azure.cosmosdb.request.body.size`        | `20`                                                                                                    |
+| `azure.cosmosdb.response.sub_status_code` | `0`                                                                                                     |
+| `azure.resource_provider.namespace`       | `"Microsoft.DocumentDB"`                                                                                |
+| `db.system.name`                          | `"azure.cosmosdb"`                                                                                      |
+| `db.collection.name`                      | `"orders"`                                                                                              |
+| `db.namespace`                            | `"ShopDb"`                                                                                              |
+| `db.operation.name`                       | `"read_item"`                                                                                           |
+| `db.response.status_code`                 | `201`                                                                                                   |
+| `server.address`                          | `"account.documents.azure.com"`                                                                         |
+| `user_agent.original`                     | `"cosmos-netstandard-sdk/3.23.0\|3.23.1\|1\|X64\|Linux 5.4.0-1098-azure 104 18\|.NET Core 3.1.32\|S\|"` |
 
 ## Metrics
 

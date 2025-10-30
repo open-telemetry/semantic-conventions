@@ -172,20 +172,20 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 ### Example
 
-| Key                                 | Value                                                                                                                               |
-|:------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------|
-| Span name                           | `"search my-index"`                                                                                                                 |
-| `db.system.name`                    | `"elasticsearch"`                                                                                                                   |
-| `server.address`                    | `"elasticsearch.mydomain.com"`                                                                                                      |
-| `server.port`                       | `9200`                                                                                                                              |
-| `http.request.method`               | `"GET"`                                                                                                                             |
-| `db.query.text`                     | `"{\"query\":{\"term\":{\"user.id\":\"kimchy\"}}}"`                                                                                 |
-| `db.operation.name`                 | `"search"`                                                                                                                          |
-| `db.collection.name`                | `"my-index"`                                                                                                                        |
-| `url.full`                          | `"https://elasticsearch.mydomain.com:9200/my-index-000001/_search?from=40&size=20"`                                                 |
-| `db.namespace`                      | `"my-cluster"`                                                                                                                      |
-| `elasticsearch.node.name`           | `"instance-0000000001"`                                                                                                             |
-| `db.operation.parameter.index`    | `"my-index-000001"`                                                                                                                 |
+| Key                            | Value                                                                               |
+| :----------------------------- | :---------------------------------------------------------------------------------- |
+| Span name                      | `"search my-index"`                                                                 |
+| `db.system.name`               | `"elasticsearch"`                                                                   |
+| `server.address`               | `"elasticsearch.mydomain.com"`                                                      |
+| `server.port`                  | `9200`                                                                              |
+| `http.request.method`          | `"GET"`                                                                             |
+| `db.query.text`                | `"{\"query\":{\"term\":{\"user.id\":\"kimchy\"}}}"`                                 |
+| `db.operation.name`            | `"search"`                                                                          |
+| `db.collection.name`           | `"my-index"`                                                                        |
+| `url.full`                     | `"https://elasticsearch.mydomain.com:9200/my-index-000001/_search?from=40&size=20"` |
+| `db.namespace`                 | `"my-cluster"`                                                                      |
+| `elasticsearch.node.name`      | `"instance-0000000001"`                                                             |
+| `db.operation.parameter.index` | `"my-index-000001"`                                                                 |
 
 ## Metrics
 

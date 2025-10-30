@@ -98,7 +98,7 @@ Units should follow the
 [Unified Code for Units of Measure](https://ucum.org/ucum).
 
 - Instruments for **utilization** metrics (that measure the fraction out of a
-total) are dimensionless and SHOULD use the default unit `1` (the unity).
+  total) are dimensionless and SHOULD use the default unit `1` (the unity).
 - All non-units that use curly braces to annotate a quantity need to match the
   grammatical number of the quantity it represent. For example if measuring the
   number of individual requests to a process the unit would be `{request}`, not

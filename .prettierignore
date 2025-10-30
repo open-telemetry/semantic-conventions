@@ -10,6 +10,8 @@
 !/docs/non-normative/groups*
 !/docs/non-normative/groups/system*
 !/docs/non-normative/groups/system*/**
-/model
+/docs/**/*.json
+/docs/dotnet*
+/model/**/*.yaml
 /schemas
 CHANGELOG.md

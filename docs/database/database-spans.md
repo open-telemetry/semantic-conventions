@@ -400,60 +400,60 @@ name or target).
 
 - Query that consist of a single operation:
 
-   ```sql
-   SELECT *
-   FROM   wuser_table
-   WHERE  username = ?
-   ```
+  ```sql
+  SELECT *
+  FROM   wuser_table
+  WHERE  username = ?
+  ```
 
-   the corresponding `db.query.summary` is `SELECT wuser_table`.
+  the corresponding `db.query.summary` is `SELECT wuser_table`.
 
 - Query that performs multiple operations:
 
-   ```sql
-   INSERT INTO shipping_details
-               (order_id,
-               address)
-   SELECT order_id,
-          address
-   FROM   orders
-   WHERE  order_id = ?
-   ```
+  ```sql
+  INSERT INTO shipping_details
+              (order_id,
+              address)
+  SELECT order_id,
+         address
+  FROM   orders
+  WHERE  order_id = ?
+  ```
 
-   the corresponding `db.query.summary` is `INSERT shipping_details SELECT orders`.
+  the corresponding `db.query.summary` is `INSERT shipping_details SELECT orders`.
 
 - Query that performs an operation that's applied to multiple collections:
 
-   ```sql
-   SELECT *
-   FROM   songs,
-          artists
-   WHERE  songs.artist_id == artists.id
-   ```
+  ```sql
+  SELECT *
+  FROM   songs,
+         artists
+  WHERE  songs.artist_id == artists.id
+  ```
 
-   the corresponding `db.query.summary` is `SELECT songs artists`.
+  the corresponding `db.query.summary` is `SELECT songs artists`.
 
 - Query that performs an operation on an anonymous table:
 
-   ```sql
-   SELECT order_date
-   FROM   (SELECT *
-           FROM   orders o
-                  JOIN customers c
-                    ON o.customer_id = c.customer_id)
-   ```
+  ```sql
+  SELECT order_date
+  FROM   (SELECT *
+          FROM   orders o
+                 JOIN customers c
+                   ON o.customer_id = c.customer_id)
+  ```
 
-   the corresponding `db.query.summary` is `SELECT SELECT orders customers`.
+  the corresponding `db.query.summary` is `SELECT SELECT orders customers`.
 
 - Query that performs an operation on multiple collections with double-quotes or other punctuation:
 
-    ```sql
-    SELECT *
-    FROM   "song list",
-           'artists'
-    ```
+  ```sql
+  SELECT *
+  FROM   "song list",
+         'artists'
+  ```
 
-    the corresponding `db.query.summary` is `SELECT "song list" 'artists'`.
+  the corresponding `db.query.summary` is `SELECT "song list" 'artists'`.
 
 - Stored procedure is executed using a convenience API such as one available in
   [JDBC](https://docs.oracle.com/javase/8/docs/api/java/sql/Connection.html#prepareCall-java.lang.String-):
@@ -469,16 +469,16 @@ name or target).
 - Stored procedure is executed using Microsoft SQL Server driver's convenience API
   [Microsoft.Data.SqlClient](https://learn.microsoft.com/dotnet/api/microsoft.data.sqlclient.sqlcommand.commandtype):
 
-    ```csharp
-    var command = new SqlCommand();
-    command.CommandType = CommandType.StoredProcedure;
-    command.CommandText = "some_stored_procedure";
-    ```
+  ```csharp
+  var command = new SqlCommand();
+  command.CommandType = CommandType.StoredProcedure;
+  command.CommandText = "some_stored_procedure";
+  ```
 
-    the corresponding `db.query.summary` is `EXECUTE some_stored_procedure`,
-    `db.query.text` is not populated. Note that Microsoft SQL Server does not
-    support the SQL Standard `CALL` keyword, but uses instead `EXECUTE`
-    to invoke a stored procedure.
+  the corresponding `db.query.summary` is `EXECUTE some_stored_procedure`,
+  `db.query.text` is not populated. Note that Microsoft SQL Server does not
+  support the SQL Standard `CALL` keyword, but uses instead `EXECUTE`
+  to invoke a stored procedure.
 
 Semantic conventions for individual database systems or specialized instrumentations
 MAY specify a different `db.query.summary` format as long as produced summary remains
