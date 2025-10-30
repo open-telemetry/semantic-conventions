@@ -36,7 +36,7 @@ The operating system (OS) on which the process represented by this resource is r
 | `zos` | IBM z/OS | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <details>
-<summary><b>Deprecated Values:</b></summary>
+<summary><i>Deprecated Values:</i></summary>
 
 | Value  | Description | Deprecation Explanation |
 |---|---|---|
