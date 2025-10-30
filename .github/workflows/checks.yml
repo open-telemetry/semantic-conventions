@@ -14,15 +14,8 @@ jobs:
   prettier:
     runs-on: ubuntu-latest
     steps:
-    - name: check out code
-      uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
-
-    - name: Run Prettier
-      id: prettier-run
-      uses: rutajdash/prettier-cli-action@v1.0.0
-      with:
-        file_pattern: .
-        fail_on_error: true
+      - uses: actions/checkout@v5
+      - run: npm run check:format
 
   markdownlint:
     runs-on: ubuntu-latest
