@@ -23,7 +23,7 @@
 
 {#- Macro for creating deprecated enum member table -#}
 {% macro generate_deprecated(enum, members, notes) %}{% set filtered_members = members %}{% if (filtered_members is defined) and (filtered_members | length > 0) %}{% if enum.deprecated is undefined %}{{"\n"}}{%endif%}<details>
-<summary><b>Deprecated Values:</b></summary>
+<summary><i>Deprecated Values:</i></summary>
 
 | Value  | Description | Deprecation Explanation |
 |---|---|---|

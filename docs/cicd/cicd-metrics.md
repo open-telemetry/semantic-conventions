@@ -388,7 +388,7 @@ the same backends.
 | `gitlab` | [GitLab](https://gitlab.com) | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <details>
-<summary><b>Deprecated Values:</b></summary>
+<summary><i>Deprecated Values:</i></summary>
 
 | Value  | Description | Deprecation Explanation |
 |---|---|---|
@@ -460,7 +460,7 @@ the same backends.
 | `gitlab` | [GitLab](https://gitlab.com) | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <details>
-<summary><b>Deprecated Values:</b></summary>
+<summary><i>Deprecated Values:</i></summary>
 
 | Value  | Description | Deprecation Explanation |
 |---|---|---|
@@ -553,7 +553,7 @@ revision based on the VCS system and situational context.
 | `gitlab` | [GitLab](https://gitlab.com) | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <details>
-<summary><b>Deprecated Values:</b></summary>
+<summary><i>Deprecated Values:</i></summary>
 
 | Value  | Description | Deprecation Explanation |
 |---|---|---|
@@ -646,7 +646,7 @@ revision based on the VCS system and situational context.
 | `gitlab` | [GitLab](https://gitlab.com) | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <details>
-<summary><b>Deprecated Values:</b></summary>
+<summary><i>Deprecated Values:</i></summary>
 
 | Value  | Description | Deprecation Explanation |
 |---|---|---|
@@ -693,7 +693,7 @@ This metric is [recommended][MetricRecommended].
 | `gitlab` | [GitLab](https://gitlab.com) | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <details>
-<summary><b>Deprecated Values:</b></summary>
+<summary><i>Deprecated Values:</i></summary>
 
 | Value  | Description | Deprecation Explanation |
 |---|---|---|
@@ -750,7 +750,7 @@ the same backends.
 | `gitlab` | [GitLab](https://gitlab.com) | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <details>
-<summary><b>Deprecated Values:</b></summary>
+<summary><i>Deprecated Values:</i></summary>
 
 | Value  | Description | Deprecation Explanation |
 |---|---|---|
@@ -848,7 +848,7 @@ the same backends.
 | `gitlab` | [GitLab](https://gitlab.com) | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <details>
-<summary><b>Deprecated Values:</b></summary>
+<summary><i>Deprecated Values:</i></summary>
 
 | Value  | Description | Deprecation Explanation |
 |---|---|---|
@@ -945,7 +945,7 @@ the same backends.
 | `gitlab` | [GitLab](https://gitlab.com) | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <details>
-<summary><b>Deprecated Values:</b></summary>
+<summary><i>Deprecated Values:</i></summary>
 
 | Value  | Description | Deprecation Explanation |
 |---|---|---|
@@ -1036,7 +1036,7 @@ the same backends.
 | `gitlab` | [GitLab](https://gitlab.com) | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <details>
-<summary><b>Deprecated Values:</b></summary>
+<summary><i>Deprecated Values:</i></summary>
 
 | Value  | Description | Deprecation Explanation |
 |---|---|---|
@@ -1101,7 +1101,7 @@ the same backends.
 | `gitlab` | [GitLab](https://gitlab.com) | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <details>
-<summary><b>Deprecated Values:</b></summary>
+<summary><i>Deprecated Values:</i></summary>
 
 | Value  | Description | Deprecation Explanation |
 |---|---|---|

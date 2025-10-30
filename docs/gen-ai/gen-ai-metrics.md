@@ -167,7 +167,7 @@ applicable `aws.bedrock.*` attributes and are not expected to include
 | `output` | Output tokens (completion, response, etc.) | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <details>
-<summary><b>Deprecated Values:</b></summary>
+<summary><i>Deprecated Values:</i></summary>
 
 | Value  | Description | Deprecation Explanation |
 |---|---|---|

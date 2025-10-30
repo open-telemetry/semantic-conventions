@@ -18,7 +18,7 @@ Deprecated Linux attributes.
 `linux.memory.slab.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 <details>
-<summary><b>Deprecated Values:</b></summary>
+<summary><i>Deprecated Values:</i></summary>
 
 | Value  | Description | Deprecation Explanation |
 |---|---|---|

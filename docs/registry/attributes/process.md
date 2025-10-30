@@ -114,7 +114,7 @@ Deprecated process attributes.
 `process.context_switch_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 <details>
-<summary><b>Deprecated Values:</b></summary>
+<summary><i>Deprecated Values:</i></summary>
 
 | Value  | Description | Deprecation Explanation |
 |---|---|---|
@@ -128,7 +128,7 @@ Deprecated process attributes.
 `process.cpu.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 <details>
-<summary><b>Deprecated Values:</b></summary>
+<summary><i>Deprecated Values:</i></summary>
 
 | Value  | Description | Deprecation Explanation |
 |---|---|---|
@@ -143,7 +143,7 @@ Deprecated process attributes.
 `process.paging.fault_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 <details>
-<summary><b>Deprecated Values:</b></summary>
+<summary><i>Deprecated Values:</i></summary>
 
 | Value  | Description | Deprecation Explanation |
 |---|---|---|
