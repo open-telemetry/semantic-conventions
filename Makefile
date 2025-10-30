@@ -153,7 +153,7 @@ yamllint:
 .PHONY: prettier
 prettier:
 	@if ! npm ls prettier; then npm install; fi
-	npx --no -- prettier --check . || (echo '[help] Run: npm run format'; )
+	npm run fix:format
 
 # Generate markdown tables from YAML definitions
 .PHONY: table-generation
