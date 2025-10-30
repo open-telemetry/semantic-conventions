@@ -48,7 +48,7 @@ Examples include:
 
 Defining semantic conventions is a balance between generating
 broadly applicable signals and ensuring rich observability for a specific
-technology. It is recommended to start with the *broad* use cases and signals
+technology. It is recommended to start with the _broad_ use cases and signals
 for a particular domain first. After providing a baseline set of signals for
 that domain, then explore deeper integrations that may be vendor or
 implementation specific.

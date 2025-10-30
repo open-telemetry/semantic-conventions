@@ -104,9 +104,9 @@ total) are dimensionless and SHOULD use the default unit `1` (the unity).
   number of individual requests to a process the unit would be `{request}`, not
   `{requests}`.
 - Instruments that measure an integer count of something SHOULD only use
-[annotations](https://ucum.org/ucum.html#para-curly) with curly braces to
-give additional meaning *without* the leading default unit (`1`). For example,
-use `{packet}`, `{error}`, `{fault}`, etc.
+  [annotations](https://ucum.org/ucum.html#para-curly) with curly braces to
+  give additional meaning _without_ the leading default unit (`1`). For example,
+  use `{packet}`, `{error}`, `{fault}`, etc.
 - Instrument units other than `1` and those that use
   [annotations](https://ucum.org/ucum.html#para-curly) SHOULD be specified using
   the UCUM case sensitive ("c/s") variant.

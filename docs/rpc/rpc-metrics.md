@@ -57,7 +57,7 @@ metrics can be filtered for finer grain analysis.
 The following metric instruments MUST be used to describe RPC operations. They
 MUST be of the specified type and units.
 
-*Note: RPC server and client metrics are split to allow correlation across client/server boundaries, e.g. Lining up an RPC method latency to determine if the server is responsible for latency the client is seeing.*
+_Note: RPC server and client metrics are split to allow correlation across client/server boundaries, e.g. Lining up an RPC method latency to determine if the server is responsible for latency the client is seeing._
 
 ### RPC server
 
@@ -690,13 +690,13 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 More specific Semantic Conventions are defined for the following RPC technologies:
 
-* [Connect](connect-rpc.md): Semantic Conventions for *Connect RPC*.
-* [gRPC](grpc.md): Semantic Conventions for *gRPC*.
-* [JSON-RPC](json-rpc.md): Semantic Conventions for *JSON-RPC*.
+* [Connect](connect-rpc.md): Semantic Conventions for _Connect RPC_.
+* [gRPC](grpc.md): Semantic Conventions for _gRPC_.
+* [JSON-RPC](json-rpc.md): Semantic Conventions for _JSON-RPC_.
 
 Specifications defined by maintainers of RPC systems:
 
-* [gRPC](https://github.com/grpc/proposal/blob/master/A66-otel-stats.md): Semantic Conventions for *gRPC*.
+* [gRPC](https://github.com/grpc/proposal/blob/master/A66-otel-stats.md): Semantic Conventions for _gRPC_.
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
 [MetricRecommended]: /docs/general/metric-requirement-level.md#recommended

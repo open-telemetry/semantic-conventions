@@ -58,7 +58,7 @@ You can declare which entities should be used with specific observability
 signals.  For example, process metrics should be used with the process
 entity, so that the metric is associated with a known process. To declare
 this, use the `entity_associations` field on the signal and reference
-another resource group *by name*.
+another resource group _by name_.
 
 `model/{my_domain}/metrics.yaml`:
 
@@ -73,11 +73,11 @@ groups:
 
 Notes:
 
-- You cannot declare an association on an *unstable* resource from a
-  *stable* signal.
+- You cannot declare an association on an _unstable_ resource from a
+  _stable_ signal.
 - You can declare multiple associations. These form a "one or many" set,
   where one or many of the named entities may be associated with the
-  metric. There is *no* requirement to have one and only one entity
+  metric. There is _no_ requirement to have one and only one entity
   attached to a signal.
 
 ### Extending an entity
@@ -155,7 +155,7 @@ There are two key rules:
       metrics and spans would be reported against the `container` entity.
   - The extending entity doesn’t have any other entities that logically can
     only be associated with it.
-    *Note: this only applies to entities as signals with relationships.*
+    _Note: this only applies to entities as signals with relationships._
 
 This avoids the complexities of subtyping and ambiguous attribute usage.
 
@@ -205,7 +205,7 @@ to avoid this problem where possible.
 The choice of `service.instance.id` should be an exception, not the rule, for
 most Entities being modelled. Service instancing is a fundamental feature of
 OpenTelemetry, and we think it is a critical "fall back" identity. It works
-best when there is *one* generator of the id shared across all observers.
+best when there is _one_ generator of the id shared across all observers.
 However, in practice, this is difficult or "non standard" in the following
 scenarios:
 
@@ -257,16 +257,16 @@ several key differences between the two:
 
 - An Entity has a known "type", e.g. `service`, `k8s.pod`,
   `host`, etc.
-- An Entity can distinguish *identifying* attributes from
-  *descriptive* attributes.
+- An Entity can distinguish _identifying_ attributes from
+  _descriptive_ attributes.
   - Identifying attributes can be used to identify the entity
     within some system (See
     [minimally sufficient id](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.45.0/specification/entities/data-model.md#minimally-sufficient-identity)).
     For Example, the `k8s.pod.uid` would be considered an
     identifying attribute for a pod within kubernetes.
-  - *Descriptive* attributes can be used to provide additional labels for
+  - _Descriptive_ attributes can be used to provide additional labels for
     entities, but are not necessary to uniquely identify the Entity.
-- A Resource is composed of *multiple* Entities.
+- A Resource is composed of _multiple_ Entities.
   - Each of the entities within Resource is considered
     'contributing' to that telemetry.
   - For Example, today, most SDKs include the service entity,
@@ -283,9 +283,9 @@ several key differences between the two:
 There are two key principles that are important for Entities
 and Resource in OpenTelemetry:
 
-1. *Open expansion*: Allowing users outside of OpenTelemetry to provide
+1. _Open expansion_: Allowing users outside of OpenTelemetry to provide
    Entity definitions and relationships within the system.
-2. *Telescoping Identity*: Allowing flexible denormalization of
+2. _Telescoping Identity_: Allowing flexible denormalization of
    observability data to optimise critical queries (e.g. alerts, dashboard,
    etc.)
 
@@ -317,9 +317,9 @@ entities are `aws.eks.cluster` entities.
 ### Telescoping Identity
 
 Within OpenTelemetry, we want to give users the flexibility to decide
-what information needs to be sent *with* observability signals and what
+what information needs to be sent _with_ observability signals and what
 information can be later joined. We call this "telescoping identity"
-where users can decide how *small* or *large* the size of an OpenTelemetry
+where users can decide how _small_ or _large_ the size of an OpenTelemetry
 resource will be on the wire (and correspondingly, how large data points
 may be when stored, depending on storage solution).
 
@@ -338,6 +338,6 @@ minimal identity may limit their resource detection just to a
 `service.instance.id`. Some users highly customize resource detection with
 many concepts being appended.
 
-*OpenTelemetry should provide a good "out of the box" set of resource
+_OpenTelemetry should provide a good "out of the box" set of resource
 detection that makes appropriate denormalization trade-offs for most
-users, but allows users to fine-tune the system to their needs.*
+users, but allows users to fine-tune the system to their needs._

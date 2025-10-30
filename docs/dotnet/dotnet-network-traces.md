@@ -33,7 +33,7 @@ The connection lifetime is usually measured in minutes, so when application is u
 overloaded, the rate of connection-related spans is expected to be much lower than the rate of
 HTTP client request spans.
 
-Applications are encouraged to enable *HTTP client request* spans by default in production environments.
+Applications are encouraged to enable _HTTP client request_ spans by default in production environments.
 
 Connection-level spans are experimental - their semantics may be changed in the future in a breaking manner.
 Using connection-level instrumentation in production environments should be done after appropriate validation.
@@ -406,9 +406,9 @@ side and `TLS server handshake` when authenticating the server.
 ### HTTP request was performed on a connection that was immediately available
 
 If connection is immediately available for the request, `HttpClient` creates one span for HTTP request
-and links it to the *HTTP connection_setup* span associated with this connection.
+and links it to the _HTTP connection_setup_ span associated with this connection.
 
-The *HTTP connection_setup* span has already ended at this point.
+The _HTTP connection_setup_ span has already ended at this point.
 
 ```
 <- HTTP connection_setup - (trace=t1, span=s1) ->
@@ -421,8 +421,8 @@ The *HTTP connection_setup* span has already ended at this point.
 ### HTTP request has to wait for connection setup
 
 If connection was not immediately available for the request, HTTP client and handlers create HTTP request and
-*Wait for connection* spans. In this example, a new connection was created and the request was executed on it immediately
-after the connection was created. Instrumentation added a link to *HTTP connection_setup* span on the HTTP request `GET` span.
+_Wait for connection_ spans. In this example, a new connection was created and the request was executed on it immediately
+after the connection was created. Instrumentation added a link to _HTTP connection_setup_ span on the HTTP request `GET` span.
 
 ```
 <--------- HTTP connection_setup (trace=t1, span=s1) -------->
@@ -438,7 +438,7 @@ after the connection was created. Instrumentation added a link to *HTTP connecti
 ### HTTP request has to wait for connection setup and other requests on that connection to complete
 
 If connection was not immediately available for the request, HTTP client and handlers create HTTP request and
-*Wait for connection* spans. In this example, request was performed on an existing connection,
+_Wait for connection_ spans. In this example, request was performed on an existing connection,
 but this connection served other requests in the queue before it became available for this request.
 
 ```
@@ -447,19 +447,19 @@ but this connection served other requests in the queue before it became availabl
                                         <---- HTTP wait_for_connection (trace=t2, span=s2, link_to=t1,s1) ---->
 ```
 
-The *HTTP connection_setup* span has started before this request, the corresponding connection
+The _HTTP connection_setup_ span has started before this request, the corresponding connection
 was serving other requests until it became available to the GET request above.
 
-The long *Wait for connection* span here is indicating that there is a queue of requests
+The long _Wait for connection_ span here is indicating that there is a queue of requests
 and a high demand for connections in the pool.
 
 ### HTTP request fails because connection cannot be established
 
 If HTTP request fails before connection is established:
 
-- all attempts to establish connections are recorded as *HTTP connection_setup* spans
-- HTTP request `GET` span is recorded with the corresponding error type along with *Wait for connection* span.
-- HTTP request `GET` span is **not** linked to any of the *HTTP connection_setup* spans since these connections were never associated with corresponding request.
+- all attempts to establish connections are recorded as _HTTP connection_setup_ spans
+- HTTP request `GET` span is recorded with the corresponding error type along with _Wait for connection_ span.
+- HTTP request `GET` span is **not** linked to any of the _HTTP connection_setup_ spans since these connections were never associated with corresponding request.
 
 ```
 <- HTTP connection_setup - (trace=t1, span=s1) - ERROR ->
