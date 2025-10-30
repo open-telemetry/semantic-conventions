@@ -24,15 +24,6 @@ jobs:
         file_pattern: .
         fail_on_error: true
 
-    # This step only runs if prettier finds errors causing the previous step to fail
-    # This steps lists the files where errors were found
-    - name: Prettier Output
-      if: ${{ failure() }}
-      shell: bash
-      run: |
-        echo "The following files are not formatted:"
-        echo "${{steps.prettier-run.outputs.prettier_output}}"
-
   markdownlint:
     runs-on: ubuntu-latest
     steps:
