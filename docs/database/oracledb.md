@@ -15,7 +15,7 @@ linkTitle: Oracle Database
 
 <!-- tocstop -->
 
-The Semantic Conventions for *Oracle Database* extend and override the [Database Semantic Conventions](README.md).
+The Semantic Conventions for _Oracle Database_ extend and override the [Database Semantic Conventions](README.md).
 
 ## Spans
 

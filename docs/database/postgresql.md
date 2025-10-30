@@ -13,7 +13,7 @@ linkTitle: PostgreSQL
 
 <!-- tocstop -->
 
-The Semantic Conventions for *PostgreSQL* extend and override the [Database Semantic Conventions](README.md).
+The Semantic Conventions for _PostgreSQL_ extend and override the [Database Semantic Conventions](README.md).
 
 ## Spans
 

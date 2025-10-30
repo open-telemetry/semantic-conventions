@@ -457,9 +457,9 @@ and a high demand for connections in the pool.
 
 If HTTP request fails before connection is established:
 
-- all attempts to establish connections are recorded as *HTTP connection_setup* spans
-- HTTP request `GET` span is recorded with the corresponding error type along with *Wait for connection* span.
-- HTTP request `GET` span is **not** linked to any of the *HTTP connection_setup* spans since these connections were never associated with corresponding request.
+- all attempts to establish connections are recorded as _HTTP connection_setup_ spans
+- HTTP request `GET` span is recorded with the corresponding error type along with _Wait for connection_ span.
+- HTTP request `GET` span is **not** linked to any of the _HTTP connection_setup_ spans since these connections were never associated with corresponding request.
 
 ```
 <- HTTP connection_setup - (trace=t1, span=s1) - ERROR ->

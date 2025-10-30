@@ -55,7 +55,7 @@ make check-policies
 
 See also:
 
-* [Markdown Templates](../templates/registry/markdown)
-* [Weaver Template Documentation](https://github.com/open-telemetry/weaver/blob/main/crates/weaver_forge/README.md)
-* [Weaver Usage Documentation](https://github.com/open-telemetry/weaver/blob/main/docs/usage.md#registry-generate)
-* [Code Generator Documentation](../docs/non-normative/code-generation.md)
+- [Markdown Templates](../templates/registry/markdown)
+- [Weaver Template Documentation](https://github.com/open-telemetry/weaver/blob/main/crates/weaver_forge/README.md)
+- [Weaver Usage Documentation](https://github.com/open-telemetry/weaver/blob/main/docs/usage.md#registry-generate)
+- [Code Generator Documentation](../docs/non-normative/code-generation.md)

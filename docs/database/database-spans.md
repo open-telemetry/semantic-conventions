@@ -518,15 +518,15 @@ The instrumentation SHOULD allow users to pass a propagator to overwrite the glo
 
 More specific Semantic Conventions are defined for the following database technologies:
 
-- [AWS DynamoDB](dynamodb.md): Semantic Conventions for *AWS DynamoDB*.
-- [Cassandra](cassandra.md): Semantic Conventions for *Cassandra*.
-- [Azure Cosmos DB](cosmosdb.md): Semantic Conventions for *Azure Cosmos DB*.
-- [CouchDB](couchdb.md): Semantic Conventions for *CouchDB*.
-- [Elasticsearch](elasticsearch.md): Semantic Conventions for *Elasticsearch*.
-- [HBase](hbase.md): Semantic Conventions for *HBase*.
-- [MongoDB](mongodb.md): Semantic Conventions for *MongoDB*.
-- [Microsoft SQL Server](sql-server.md): Semantic Conventions for *Microsoft SQL Server*.
-- [Redis](redis.md): Semantic Conventions for *Redis*.
-- [SQL](sql.md): Semantic Conventions for *SQL* databases.
+- [AWS DynamoDB](dynamodb.md): Semantic Conventions for _AWS DynamoDB_.
+- [Cassandra](cassandra.md): Semantic Conventions for _Cassandra_.
+- [Azure Cosmos DB](cosmosdb.md): Semantic Conventions for _Azure Cosmos DB_.
+- [CouchDB](couchdb.md): Semantic Conventions for _CouchDB_.
+- [Elasticsearch](elasticsearch.md): Semantic Conventions for _Elasticsearch_.
+- [HBase](hbase.md): Semantic Conventions for _HBase_.
+- [MongoDB](mongodb.md): Semantic Conventions for _MongoDB_.
+- [Microsoft SQL Server](sql-server.md): Semantic Conventions for _Microsoft SQL Server_.
+- [Redis](redis.md): Semantic Conventions for _Redis_.
+- [SQL](sql.md): Semantic Conventions for _SQL_ databases.
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status

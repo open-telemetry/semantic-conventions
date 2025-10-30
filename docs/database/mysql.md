@@ -13,7 +13,7 @@ linkTitle: MySQL
 
 <!-- tocstop -->
 
-The Semantic Conventions for *MySQL* extend and override the [Database Semantic Conventions](README.md).
+The Semantic Conventions for _MySQL_ extend and override the [Database Semantic Conventions](README.md).
 
 ## Spans
 

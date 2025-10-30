@@ -36,14 +36,14 @@ This document defines semantic conventions for remote procedure calls (RPC)
 
 Semantic conventions for RPC are defined for the following signals:
 
-- [RPC Spans](rpc-spans.md): Semantic Conventions for RPC client and server *spans*.
-- [RPC Metrics](rpc-metrics.md): Semantic Conventions for RPC *metrics*.
+- [RPC Spans](rpc-spans.md): Semantic Conventions for RPC client and server _spans_.
+- [RPC Metrics](rpc-metrics.md): Semantic Conventions for RPC _metrics_.
 
 Technology specific semantic conventions are defined for the following RPC systems:
 
-- [Connect](connect-rpc.md): Semantic Conventions for *Connect RPC*.
-- [gRPC](grpc.md): Semantic Conventions for *gRPC*.
-- [JSON-RPC](json-rpc.md): Semantic Conventions for *JSON-RPC*.
+- [Connect](connect-rpc.md): Semantic Conventions for _Connect RPC_.
+- [gRPC](grpc.md): Semantic Conventions for _gRPC_.
+- [JSON-RPC](json-rpc.md): Semantic Conventions for _JSON-RPC_.
 
 Specifications defined by maintainers of RPC systems:
 

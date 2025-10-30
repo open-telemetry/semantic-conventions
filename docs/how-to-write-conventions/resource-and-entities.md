@@ -73,11 +73,11 @@ groups:
 
 Notes:
 
-- You cannot declare an association on an *unstable* resource from a
-  *stable* signal.
+- You cannot declare an association on an _unstable_ resource from a
+  _stable_ signal.
 - You can declare multiple associations. These form a "one or many" set,
   where one or many of the named entities may be associated with the
-  metric. There is *no* requirement to have one and only one entity
+  metric. There is _no_ requirement to have one and only one entity
   attached to a signal.
 
 ### Extending an entity
@@ -257,16 +257,16 @@ several key differences between the two:
 
 - An Entity has a known "type", e.g. `service`, `k8s.pod`,
   `host`, etc.
-- An Entity can distinguish *identifying* attributes from
-  *descriptive* attributes.
+- An Entity can distinguish _identifying_ attributes from
+  _descriptive_ attributes.
   - Identifying attributes can be used to identify the entity
     within some system (See
     [minimally sufficient id](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.45.0/specification/entities/data-model.md#minimally-sufficient-identity)).
     For Example, the `k8s.pod.uid` would be considered an
     identifying attribute for a pod within kubernetes.
-  - *Descriptive* attributes can be used to provide additional labels for
+  - _Descriptive_ attributes can be used to provide additional labels for
     entities, but are not necessary to uniquely identify the Entity.
-- A Resource is composed of *multiple* Entities.
+- A Resource is composed of _multiple_ Entities.
   - Each of the entities within Resource is considered
     'contributing' to that telemetry.
   - For Example, today, most SDKs include the service entity,
@@ -283,9 +283,9 @@ several key differences between the two:
 There are two key principles that are important for Entities
 and Resource in OpenTelemetry:
 
-1. *Open expansion*: Allowing users outside of OpenTelemetry to provide
+1. _Open expansion_: Allowing users outside of OpenTelemetry to provide
    Entity definitions and relationships within the system.
-2. *Telescoping Identity*: Allowing flexible denormalization of
+2. _Telescoping Identity_: Allowing flexible denormalization of
    observability data to optimise critical queries (e.g. alerts, dashboard,
    etc.)
 
