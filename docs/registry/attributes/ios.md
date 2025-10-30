@@ -3,9 +3,6 @@
 
 # iOS
 
-- [iOS Attributes](#ios-attributes)
-- [Deprecated iOS Attributes](#deprecated-ios-attributes)
-
 ## iOS Attributes
 
 This group describes iOS-specific attributes.
@@ -29,10 +26,6 @@ This group describes iOS-specific attributes.
 | `foreground` | The app is now in the foreground. This value is associated with UIKit notification `applicationWillEnterForeground`. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `inactive` | The app is now `inactive`. Associated with UIKit notification `applicationWillResignActive`. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `terminate` | The app is about to terminate. Associated with UIKit notification `applicationWillTerminate`. | ![Development](https://img.shields.io/badge/-development-blue) |
-
-## Deprecated iOS Attributes
-
-The iOS platform on which the iOS application is running.
 
 <details>
 <summary><b>Deprecated Attributes:</b></summary>

@@ -3,9 +3,6 @@
 
 # K8s
 
-- [Kubernetes Attributes](#kubernetes-attributes)
-- [Deprecated Kubernetes Attributes](#deprecated-kubernetes-attributes)
-
 ## Kubernetes Attributes
 
 Kubernetes resource attributes.
@@ -349,10 +346,6 @@ When this occurs, the exact value as reported by the Kubernetes API SHOULD be us
 | `local` | A [local](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#local) volume | ![Development](https://img.shields.io/badge/-development-blue) |
 | `persistentVolumeClaim` | A [persistentVolumeClaim](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#persistentvolumeclaim) volume | ![Development](https://img.shields.io/badge/-development-blue) |
 | `secret` | A [secret](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#secret) volume | ![Development](https://img.shields.io/badge/-development-blue) |
-
-## Deprecated Kubernetes Attributes
-
-Describes deprecated k8s attributes.
 
 <details>
 <summary><b>Deprecated Attributes:</b></summary>

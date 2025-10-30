@@ -3,9 +3,6 @@
 
 # Network
 
-- [Network Attributes](#network-attributes)
-- [Deprecated Network Attributes](#deprecated-network-attributes)
-
 ## Network Attributes
 
 These attributes may be used for any network related operation.
@@ -133,10 +130,6 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 |---|---|---|
 | `ipv4` | IPv4 | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `ipv6` | IPv6 | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
-## Deprecated Network Attributes
-
-These attributes may be used for any network related operation.
 
 <details>
 <summary><b>Deprecated Attributes:</b></summary>

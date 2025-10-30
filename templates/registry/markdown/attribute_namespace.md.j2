@@ -12,9 +12,21 @@
 {%- set groups = namespace(deprecated=[], non_deprecated=[]) -%}
 {%- for group in ctx.groups | sort(attribute="id") -%}
 {%- if group.id[-10:] == "deprecated" -%}
+{% if ctx.groups | selectattr("id", "eq", group.id[:-11]) | length != 1 %}
 {%- set groups.deprecated = groups.deprecated + [group] -%}
+{% endif %}
 {%- else -%}
+{% set deprecatedAttrs = ctx.groups | selectattr("id", "eq", group.id + ".deprecated") %}{% if deprecatedAttrs | length > 0 %}{% set combined = {
+    "brief": group.brief,
+    "note": group.note,
+    "id": group.id,
+    "attributes": group.attributes + deprecatedAttrs[0].attributes,
+    "display_name": group.display_name
+ } %}
+{%- set groups.non_deprecated = groups.non_deprecated + [combined] -%}
+{% else %}
 {%- set groups.non_deprecated = groups.non_deprecated + [group] -%}
+{% endif %}
 {%- endif -%}
 {%- endfor -%}
 {%- set attr_groups = groups.non_deprecated + groups.deprecated -%}

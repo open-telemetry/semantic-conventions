@@ -3,9 +3,6 @@
 
 # Feature flag
 
-- [Feature Flag Attributes](#feature-flag-attributes)
-- [Deprecated Feature Flag Attributes](#deprecated-feature-flag-attributes)
-
 ## Feature Flag Attributes
 
 This document defines attributes for Feature Flags.
@@ -49,10 +46,6 @@ For example, the variant `red` maybe be used for the value `#c05543`.
 | `static` | The resolved value is static (no dynamic evaluation). | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | `targeting_match` | The resolved value was the result of a dynamic evaluation, such as a rule or specific user-targeting. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | `unknown` | The reason for the resolved value could not be determined. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-
-## Deprecated Feature Flag Attributes
-
-Describes deprecated feature flag attributes.
 
 <details>
 <summary><b>Deprecated Attributes:</b></summary>

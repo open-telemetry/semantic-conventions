@@ -4,7 +4,6 @@
 # Gen AI
 
 - [GenAI Attributes](#genai-attributes)
-- [Deprecated GenAI Attributes](#deprecated-genai-attributes)
 - [Deprecated OpenAI GenAI Attributes](#deprecated-openai-genai-attributes)
 
 ## GenAI Attributes
@@ -234,10 +233,6 @@ Datastore: A tool used by the agent to access and query structured or unstructur
 |---|---|---|
 | `input` | Input tokens (prompt, input, etc.) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `output` | Output tokens (completion, response, etc.) | ![Development](https://img.shields.io/badge/-development-blue) |
-
-## Deprecated GenAI Attributes
-
-Describes deprecated `gen_ai` attributes.
 
 <details>
 <summary><b>Deprecated Attributes:</b></summary>

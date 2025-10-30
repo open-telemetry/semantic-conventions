@@ -10,7 +10,6 @@
 - [RabbitMQ Attributes](#rabbitmq-attributes)
 - [RocketMQ Attributes](#rocketmq-attributes)
 - [Azure Service Bus Attributes](#azure-service-bus-attributes)
-- [Deprecated Messaging Attributes](#deprecated-messaging-attributes)
 
 ## General Messaging Attributes
 
@@ -88,6 +87,24 @@ size should be used.
 | `rabbitmq` | RabbitMQ | ![Development](https://img.shields.io/badge/-development-blue) |
 | `rocketmq` | Apache RocketMQ | ![Development](https://img.shields.io/badge/-development-blue) |
 | `servicebus` | Azure Service Bus | ![Development](https://img.shields.io/badge/-development-blue) |
+
+<details>
+<summary><b>Deprecated Attributes:</b></summary>
+
+| Key | Value Type | Summary | Example Values | Deprecation Explanation |
+|---|---|---|---|---|
+| <a id="messaging-client-id" href="#messaging-client-id">`messaging.client_id`</a> | string | Deprecated, use `messaging.client.id` instead. | `client-5`; `myhost@8742@s8083jm` |  Use `messaging.client.id` instead.  |
+| <a id="messaging-destination-publish-anonymous" href="#messaging-destination-publish-anonymous">`messaging.destination_publish.anonymous`</a> | boolean | Deprecated, no replacement at this time. |  |  Removed. No replacement at this time.  |
+| <a id="messaging-destination-publish-name" href="#messaging-destination-publish-name">`messaging.destination_publish.name`</a> | string | Deprecated, no replacement at this time. | `MyQueue`; `MyTopic` |  Removed. No replacement at this time.  |
+| <a id="messaging-eventhubs-consumer-group" href="#messaging-eventhubs-consumer-group">`messaging.eventhubs.consumer.group`</a> | string | Deprecated, use `messaging.consumer.group.name` instead. | `$Default` |  Use `messaging.consumer.group.name` instead.  |
+| <a id="messaging-kafka-consumer-group" href="#messaging-kafka-consumer-group">`messaging.kafka.consumer.group`</a> | string | Deprecated, use `messaging.consumer.group.name` instead. | `my-group` |  Use `messaging.consumer.group.name` instead.  |
+| <a id="messaging-kafka-destination-partition" href="#messaging-kafka-destination-partition">`messaging.kafka.destination.partition`</a> | int | Deprecated, use `messaging.destination.partition.id` instead. | `2` |  Record string representation of the partition id in `messaging.destination.partition.id` attribute.  |
+| <a id="messaging-kafka-message-offset" href="#messaging-kafka-message-offset">`messaging.kafka.message.offset`</a> | int | Deprecated, use `messaging.kafka.offset` instead. | `42` |  Use `messaging.kafka.offset` instead.  |
+| <a id="messaging-operation" href="#messaging-operation">`messaging.operation`</a> | string | Deprecated, use `messaging.operation.type` instead. | `publish`; `create`; `process` |  Use `messaging.operation.type` instead.  |
+| <a id="messaging-rocketmq-client-group" href="#messaging-rocketmq-client-group">`messaging.rocketmq.client_group`</a> | string | Deprecated, use `messaging.consumer.group.name` instead. | `myConsumerGroup` |  Replaced by `messaging.consumer.group.name` on the consumer spans. No replacement for producer spans.  |
+| <a id="messaging-servicebus-destination-subscription-name" href="#messaging-servicebus-destination-subscription-name">`messaging.servicebus.destination.subscription_name`</a> | string | Deprecated, use `messaging.destination.subscription.name` instead. | `subscription-a` |  Use `messaging.destination.subscription.name` instead.  |
+
+</details>
 
 ## Azure Event Hubs Attributes
 
@@ -196,25 +213,3 @@ This group describes attributes specific to Azure Service Bus.
 | `complete` | Message is completed | ![Development](https://img.shields.io/badge/-development-blue) |
 | `dead_letter` | Message is sent to dead letter queue | ![Development](https://img.shields.io/badge/-development-blue) |
 | `defer` | Message is deferred | ![Development](https://img.shields.io/badge/-development-blue) |
-
-## Deprecated Messaging Attributes
-
-Describes deprecated messaging attributes.
-
-<details>
-<summary><b>Deprecated Attributes:</b></summary>
-
-| Key | Value Type | Summary | Example Values | Deprecation Explanation |
-|---|---|---|---|---|
-| <a id="messaging-client-id" href="#messaging-client-id">`messaging.client_id`</a> | string | Deprecated, use `messaging.client.id` instead. | `client-5`; `myhost@8742@s8083jm` |  Use `messaging.client.id` instead.  |
-| <a id="messaging-destination-publish-anonymous" href="#messaging-destination-publish-anonymous">`messaging.destination_publish.anonymous`</a> | boolean | Deprecated, no replacement at this time. |  |  Removed. No replacement at this time.  |
-| <a id="messaging-destination-publish-name" href="#messaging-destination-publish-name">`messaging.destination_publish.name`</a> | string | Deprecated, no replacement at this time. | `MyQueue`; `MyTopic` |  Removed. No replacement at this time.  |
-| <a id="messaging-eventhubs-consumer-group" href="#messaging-eventhubs-consumer-group">`messaging.eventhubs.consumer.group`</a> | string | Deprecated, use `messaging.consumer.group.name` instead. | `$Default` |  Use `messaging.consumer.group.name` instead.  |
-| <a id="messaging-kafka-consumer-group" href="#messaging-kafka-consumer-group">`messaging.kafka.consumer.group`</a> | string | Deprecated, use `messaging.consumer.group.name` instead. | `my-group` |  Use `messaging.consumer.group.name` instead.  |
-| <a id="messaging-kafka-destination-partition" href="#messaging-kafka-destination-partition">`messaging.kafka.destination.partition`</a> | int | Deprecated, use `messaging.destination.partition.id` instead. | `2` |  Record string representation of the partition id in `messaging.destination.partition.id` attribute.  |
-| <a id="messaging-kafka-message-offset" href="#messaging-kafka-message-offset">`messaging.kafka.message.offset`</a> | int | Deprecated, use `messaging.kafka.offset` instead. | `42` |  Use `messaging.kafka.offset` instead.  |
-| <a id="messaging-operation" href="#messaging-operation">`messaging.operation`</a> | string | Deprecated, use `messaging.operation.type` instead. | `publish`; `create`; `process` |  Use `messaging.operation.type` instead.  |
-| <a id="messaging-rocketmq-client-group" href="#messaging-rocketmq-client-group">`messaging.rocketmq.client_group`</a> | string | Deprecated, use `messaging.consumer.group.name` instead. | `myConsumerGroup` |  Replaced by `messaging.consumer.group.name` on the consumer spans. No replacement for producer spans.  |
-| <a id="messaging-servicebus-destination-subscription-name" href="#messaging-servicebus-destination-subscription-name">`messaging.servicebus.destination.subscription_name`</a> | string | Deprecated, use `messaging.destination.subscription.name` instead. | `subscription-a` |  Use `messaging.destination.subscription.name` instead.  |
-
-</details>

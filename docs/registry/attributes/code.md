@@ -3,9 +3,6 @@
 
 # Code
 
-- [Code Attributes](#code-attributes)
-- [Deprecated Code Attributes](#deprecated-code-attributes)
-
 ## Code Attributes
 
 These attributes provide context about source code
@@ -35,10 +32,6 @@ Examples:
 * Erlang: `opentelemetry_ctx:new`
 * Rust: `playground::my_module::my_cool_func`
 * C function: `fopen`
-
-## Deprecated Code Attributes
-
-These deprecated attributes provide context about source code
 
 <details>
 <summary><b>Deprecated Attributes:</b></summary>

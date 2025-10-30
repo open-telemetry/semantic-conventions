@@ -3,9 +3,6 @@
 
 # RPC
 
-- [Remote Procedure Call (RPC) Attributes](#remote-procedure-call-rpc-attributes)
-- [Deprecated RPC Attributes](#deprecated-rpc-attributes)
-
 ## Remote Procedure Call (RPC) Attributes
 
 This document defines attributes for remote procedure calls.
@@ -127,10 +124,6 @@ the `rpc.grpc.response.metadata.my-custom-key` attribute with value `["attribute
 | `java_rmi` | Java RMI | ![Development](https://img.shields.io/badge/-development-blue) |
 | `jsonrpc` | JSON-RPC | ![Development](https://img.shields.io/badge/-development-blue) |
 | `onc_rpc` | [ONC RPC (Sun RPC)](https://datatracker.ietf.org/doc/html/rfc5531) | ![Development](https://img.shields.io/badge/-development-blue) |
-
-## Deprecated RPC Attributes
-
-Deprecated rpc message attributes.
 
 <details>
 <summary><b>Deprecated Attributes:</b></summary>

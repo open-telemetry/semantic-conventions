@@ -4,7 +4,6 @@
 # DB
 
 - [General Database Attributes](#general-database-attributes)
-- [Deprecated Database Attributes](#deprecated-database-attributes)
 - [Deprecated Database Metrics](#deprecated-database-metrics)
 
 ## General Database Attributes
@@ -167,10 +166,6 @@ stored procedure name then that stored procedure name SHOULD be used.
 | `sqlite` | [SQLite](https://www.sqlite.org/) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `teradata` | [Teradata](https://www.teradata.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `trino` | [Trino](https://trino.io/) | ![Development](https://img.shields.io/badge/-development-blue) |
-
-## Deprecated Database Attributes
-
-Describes deprecated database attributes.
 
 <details>
 <summary><b>Deprecated Attributes:</b></summary>
