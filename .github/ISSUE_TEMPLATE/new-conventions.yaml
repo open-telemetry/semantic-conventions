@@ -98,6 +98,7 @@ body:
         - area:test
         - area:thread
         - area:tls
+        - area:unix
         - area:url
         - area:user
         - area:user-agent
