@@ -1,4 +1,0 @@
-change_type: enhancement
-component: http
-note: Clarify value for `http.route` attribute may contain static and dynamic segments.
-issues: [2616]
