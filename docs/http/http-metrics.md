@@ -210,7 +210,7 @@ This metric is optional.
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `http.server.active_requests` | UpDownCounter | `{request}` | Number of active HTTP server requests. | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `http.server.active_requests` | UpDownCounter | `{request}` | Number of active HTTP server requests. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |  |
 
 **Attributes:**
 
@@ -912,7 +912,7 @@ This metric is optional.
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `http.client.open_connections` | UpDownCounter | `{connection}` | Number of outbound HTTP connections that are currently active or idle on the client. | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `http.client.open_connections` | UpDownCounter | `{connection}` | Number of outbound HTTP connections that are currently active or idle on the client. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |  |
 
 **Attributes:**
 
@@ -962,7 +962,7 @@ This metric is optional.
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `http.client.connection.duration` | Histogram | `s` | The duration of the successfully established outbound HTTP connections. | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `http.client.connection.duration` | Histogram | `s` | The duration of the successfully established outbound HTTP connections. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |  |
 
 **Attributes:**
 
@@ -1000,7 +1000,7 @@ This metric is optional.
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `http.client.active_requests` | UpDownCounter | `{request}` | Number of active HTTP requests. | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `http.client.active_requests` | UpDownCounter | `{request}` | Number of active HTTP requests. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |  |
 
 **Attributes:**
 
