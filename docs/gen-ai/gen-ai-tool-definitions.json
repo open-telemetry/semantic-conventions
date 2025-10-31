@@ -1,0 +1,63 @@
+{
+    "$defs": {
+        "ToolDefinition": {
+            "additionalProperties": true,
+            "description": "Represents a tool definition.",
+            "properties": {
+                "type": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/ToolType"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ],
+                    "description": "Type of the tool.",
+                    "title": "Type"
+                },
+                "name": {
+                    "description": "Name of the tool.",
+                    "title": "Name",
+                    "type": "string"
+                },
+                "description": {
+                    "default": null,
+                    "description": "Description of the tool.",
+                    "title": "Description",
+                    "type": "string"
+                },
+                "parameters": {
+                    "default": null,
+                    "description": "Schema that defines the parameters accepted by the tool. The RECOMMENDED format is JSON Schema.",
+                    "title": "Parameters"
+                },
+                "response": {
+                    "default": null,
+                    "description": "Schema that defines the response returned by the tool. The RECOMMENDED format is JSON Schema.",
+                    "title": "Response"
+                }
+            },
+            "required": [
+                "type",
+                "name"
+            ],
+            "title": "ToolDefinition",
+            "type": "object"
+        },
+        "ToolType": {
+            "enum": [
+                "function",
+                "custom"
+            ],
+            "title": "ToolType",
+            "type": "string"
+        }
+    },
+    "description": "Represents the list of tool definitions available to the GenAI agent or model.",
+    "items": {
+        "$ref": "#/$defs/ToolDefinition"
+    },
+    "title": "ToolDefinitions",
+    "type": "array"
+}
