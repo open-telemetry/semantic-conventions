@@ -1,6 +1,6 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
 linkTitle: Tracing compatibility
---->
+---
 
 # Semantic conventions for tracing compatibility components
 
