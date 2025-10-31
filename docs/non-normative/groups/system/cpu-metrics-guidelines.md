@@ -13,8 +13,8 @@ metrics across the different areas of the Semantic Conventions.
 
 ## Policy
 
-* **recommended**: `*.cpu.time`
-* **opt-in** (optional): `*.cpu.utilization`, `*.cpu.usage`,
+- **recommended**: `*.cpu.time`
+- **opt-in** (optional): `*.cpu.utilization`, `*.cpu.usage`,
   `*.cpu.limit_utilization`, `*.cpu.request_utilization`
 
 ## Rationale
@@ -40,16 +40,16 @@ uniquely implemented in other systems like the
 
 ## Implementation Guidance
 
-* SHOULD emit `*.cpu.time` by default for system, process container, and k8s
+- SHOULD emit `*.cpu.time` by default for system, process container, and k8s
   resources.
-* SHOULD gate `*.cpu.*utilization` and `*.cpu.usage` metrics behind explicit
+- SHOULD gate `*.cpu.*utilization` and `*.cpu.usage` metrics behind explicit
   configuration.
 
 ## Backend Guidance
 
-* SHOULD provide transforms or views to derive utilization/usage from
+- SHOULD provide transforms or views to derive utilization/usage from
   `*.cpu.time` when helpful.
-* SHOULD treat `*.cpu.time` as the canonical source of truth across system,
+- SHOULD treat `*.cpu.time` as the canonical source of truth across system,
   container, and k8s resources.
 
 ## Using CPU Time
