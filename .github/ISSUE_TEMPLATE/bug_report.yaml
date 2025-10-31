@@ -65,7 +65,6 @@ body:
         - area:ios
         - area:jvm
         - area:k8s
-        - area:linux
         - area:log
         - area:mainframe
         - area:messaging
