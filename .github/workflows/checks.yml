@@ -11,6 +11,15 @@ permissions:
   contents: read
 
 jobs:
+  prettier:
+    runs-on: ubuntu-latest
+    steps:
+      - name: check out code
+        uses: actions/checkout@v5
+
+      - name: run prettier
+        run: npm run check:format
+
   markdownlint:
     runs-on: ubuntu-latest
     steps:
