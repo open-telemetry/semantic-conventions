@@ -48,6 +48,28 @@
 
 **[9] `process.title`:** In many Unix-like systems, process title (proctitle), is the string that represents the name or command line of a running process, displayed by system monitoring tools like ps, top, and htop.
 
+## Process Executable
+
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
+
+**type:** `process.executable`
+
+**Description:** The executable which is being run by the process.
+
+**Identifying Attributes:**
+
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
+|---|---|---|---|---|---|
+| [`process.executable.name`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the process executable. On Linux based systems, this SHOULD be set to the base name of the target of `/proc/[pid]/exe`. On Windows, this SHOULD be set to the base name of `GetProcessImageFileNameW`. | `otelcol` |
+
+**Descriptive Attributes:**
+
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
+|---|---|---|---|---|---|
+| [`process.executable.build_id.gnu`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The GNU build ID as found in the `.note.gnu.build-id` ELF section (hex string). | `c89b11207f6479603b0d49bf291c092c2b719293` |
+| [`process.executable.build_id.go`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The Go build ID as retrieved by `go tool buildid <go executable>`. | `foh3mEXu7BLZjsN9pOwG/kATcXlYVCDEFouRMQed_/WwRFB1hPo9LBkekthSPG/x8hMC8emW2cCjXD0_1aY` |
+| [`process.executable.build_id.htlhash`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Profiling specific build ID for executables. See the OTel specification for Profiles for more information. | `600DCAFE4A110000F2BF38C493F5FB92` |
+
 ## Process Runtime
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)

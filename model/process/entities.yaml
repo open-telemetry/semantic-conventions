@@ -60,3 +60,18 @@ groups:
         role: identifying
       - ref: process.runtime.description
         role: descriptive
+
+  - id: entity.process.executable
+    type: entity
+    stability: development
+    name: process.executable
+    brief: The executable which is being run by the process.
+    attributes:
+      - ref: process.executable.name
+        role: identifying
+      - ref: process.executable.build_id.gnu
+        role: descriptive
+      - ref: process.executable.build_id.go
+        role: descriptive
+      - ref: process.executable.build_id.htlhash
+        role: descriptive
