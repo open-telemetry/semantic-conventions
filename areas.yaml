@@ -39,6 +39,7 @@ areas:
     labels:
       - area:gen-ai
       - area:openai
+      - area:mcp
     status:
       - accepting_contributions
       - active
