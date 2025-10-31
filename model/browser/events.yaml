@@ -52,3 +52,22 @@ groups:
           brief: A unique ID representing this particular metric instance.
           requirement_level: required
           examples: ["v3-1677874579383-6381583661209"]
+  - id: event.browser.user_action.click
+    stability: development
+    type: event
+    name: browser.user_action.click
+    brief: >
+      This event describes a user click action in the browser.
+    attributes:
+      - ref: hw.mouse.button
+        requirement_level: recommended
+      - ref: browser.page.x
+        requirement_level: required
+      - ref: browser.page.y
+        requirement_level: required
+      - ref: browser.tag_name
+        requirement_level: required
+      - ref: browser.xpath
+        requirement_level: required
+      - ref: browser.element.attributes
+        requirement_level: recommended

@@ -50,3 +50,51 @@ groups:
           This value is intended to be taken from the Navigator API
           `navigator.language`.
         examples: ["en", "en-US", "fr", "fr-FR"]
+      - id: browser.page.x
+        type: int
+        stability: development
+        brief: 'Click x (horizontal) coordinates (in pixels) relative to the entire document.'
+        examples: [10]
+      - id: browser.page.y
+        type: int
+        stability: development
+        brief: 'Click y (vertical) coordinates (in pixels) relative to the entire document.'
+        examples: [10]
+      - id: browser.tag_name
+        type: string
+        stability: development
+        brief: 'Target element tag name obtained via event.target.tagName.'
+        examples: ['BUTTON']
+      - id: browser.element.attributes
+        type: template[string]
+        stability: development
+        brief: 'Map of data-otel-* attributes from the target element.'
+        note: >
+          Key is the attribute name after "data-otel-" and value is the attribute value. Example:
+          `<button data-otel-id="testBtn" data-otel-role="submit">`
+          SHOULD be recorded as `browser.element.attributes.id = "testBtn"`
+          and `browser.element.attributes.role = "submit"`.
+        examples: ["testBtn", "submit"]
+      - id: browser.xpath
+        type: string
+        stability: development
+        brief: 'Target element XPath using the XPathExpression API.'
+        examples: ["//*[@id='testBtn']"]
+      - id: hw.mouse.button
+        type:
+          members:
+            - id: left
+              value: 'left'
+              brief: Left button
+              stability: development
+            - id: middle
+              value: 'middle'
+              brief: Middle button
+              stability: development
+            - id: right
+              value: 'right'
+              brief: Right button
+              stability: development
+        stability: development
+        brief: 'User friendly name of the mouse button pressed. See [MouseEvent.buttons](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/buttons#value).'
+        examples: ["left"]

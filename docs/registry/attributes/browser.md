@@ -12,15 +12,33 @@ The web browser attributes
 | Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="browser-brands" href="#browser-brands">`browser.brands`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string[] | Array of brand name and version separated by a space [1] | `[" Not A;Brand 99", "Chromium 99", "Chrome 99"]` |
-| <a id="browser-language" href="#browser-language">`browser.language`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Preferred language of the user using the browser [2] | `en`; `en-US`; `fr`; `fr-FR` |
-| <a id="browser-mobile" href="#browser-mobile">`browser.mobile`</a> | ![Development](https://img.shields.io/badge/-development-blue) | boolean | A boolean that is true if the browser is running on a mobile device [3] |  |
-| <a id="browser-platform" href="#browser-platform">`browser.platform`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The platform on which the browser is running [4] | `Windows`; `macOS`; `Android` |
+| <a id="browser-element-attributes" href="#browser-element-attributes">`browser.element.attributes.<key>`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Map of data-otel-* attributes from the target element. [2] | `testBtn`; `submit` |
+| <a id="browser-language" href="#browser-language">`browser.language`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Preferred language of the user using the browser [3] | `en`; `en-US`; `fr`; `fr-FR` |
+| <a id="browser-mobile" href="#browser-mobile">`browser.mobile`</a> | ![Development](https://img.shields.io/badge/-development-blue) | boolean | A boolean that is true if the browser is running on a mobile device [4] |  |
+| <a id="browser-page-x" href="#browser-page-x">`browser.page.x`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | Click x (horizontal) coordinates (in pixels) relative to the entire document. | `10` |
+| <a id="browser-page-y" href="#browser-page-y">`browser.page.y`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | Click y (vertical) coordinates (in pixels) relative to the entire document. | `10` |
+| <a id="browser-platform" href="#browser-platform">`browser.platform`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The platform on which the browser is running [5] | `Windows`; `macOS`; `Android` |
+| <a id="browser-tag-name" href="#browser-tag-name">`browser.tag_name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Target element tag name obtained via event.target.tagName. | `BUTTON` |
+| <a id="browser-xpath" href="#browser-xpath">`browser.xpath`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Target element XPath using the XPathExpression API. | `//*[@id='testBtn']` |
+| <a id="hw-mouse-button" href="#hw-mouse-button">`hw.mouse.button`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | User friendly name of the mouse button pressed. See [MouseEvent.buttons](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/buttons#value). | `left` |
 
 **[1] `browser.brands`:** This value is intended to be taken from the [UA client hints API](https://wicg.github.io/ua-client-hints/#interface) (`navigator.userAgentData.brands`).
 
-**[2] `browser.language`:** This value is intended to be taken from the Navigator API `navigator.language`.
+**[2] `browser.element.attributes.<key>`:** Key is the attribute name after "data-otel-" and value is the attribute value. Example: `<button data-otel-id="testBtn" data-otel-role="submit">` SHOULD be recorded as `browser.element.attributes.id = "testBtn"` and `browser.element.attributes.role = "submit"`.
 
-**[3] `browser.mobile`:** This value is intended to be taken from the [UA client hints API](https://wicg.github.io/ua-client-hints/#interface) (`navigator.userAgentData.mobile`). If unavailable, this attribute SHOULD be left unset.
+**[3] `browser.language`:** This value is intended to be taken from the Navigator API `navigator.language`.
 
-**[4] `browser.platform`:** This value is intended to be taken from the [UA client hints API](https://wicg.github.io/ua-client-hints/#interface) (`navigator.userAgentData.platform`). If unavailable, the legacy `navigator.platform` API SHOULD NOT be used instead and this attribute SHOULD be left unset in order for the values to be consistent.
+**[4] `browser.mobile`:** This value is intended to be taken from the [UA client hints API](https://wicg.github.io/ua-client-hints/#interface) (`navigator.userAgentData.mobile`). If unavailable, this attribute SHOULD be left unset.
+
+**[5] `browser.platform`:** This value is intended to be taken from the [UA client hints API](https://wicg.github.io/ua-client-hints/#interface) (`navigator.userAgentData.platform`). If unavailable, the legacy `navigator.platform` API SHOULD NOT be used instead and this attribute SHOULD be left unset in order for the values to be consistent.
 The list of possible values is defined in the [W3C User-Agent Client Hints specification](https://wicg.github.io/ua-client-hints/#sec-ch-ua-platform). Note that some (but not all) of these values can overlap with values in the [`os.type` and `os.name` attributes](./os.md). However, for consistency, the values in the `browser.platform` attribute should capture the exact value that the user agent provides.
+
+---
+
+`hw.mouse.button` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `left` | Left button | ![Development](https://img.shields.io/badge/-development-blue) |
+| `middle` | Middle button | ![Development](https://img.shields.io/badge/-development-blue) |
+| `right` | Right button | ![Development](https://img.shields.io/badge/-development-blue) |
