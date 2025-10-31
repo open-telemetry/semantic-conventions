@@ -9,11 +9,13 @@ aliases: [/docs/specs/semconv/general/how-to-define-semantic-conventions]
 
 <!-- toc -->
 
+- [Recomendations and Requirements](#recomendations-and-requirements)
+  - [Addition to Semantic Conventions Spec](#addition-to-semantic-conventions-spec)
+  - [Prototyping](#prototyping)
 - [Defining new conventions](#defining-new-conventions)
-  - [Best practices](#best-practices)
-    - [Prototyping](#prototyping)
-    - [Defining attributes](#defining-attributes)
+  - [Defining attributes](#defining-attributes)
     - [Defining enum attribute members](#defining-enum-attribute-members)
+  - [Defining Telemetry Signals](#defining-telemetry-signals)
     - [Defining spans](#defining-spans)
     - [Defining metrics](#defining-metrics)
     - [Defining entities](#defining-entities)
@@ -26,7 +28,9 @@ aliases: [/docs/specs/semconv/general/how-to-define-semantic-conventions]
 This document describes requirements, recommendations, and best practices on how to define conventions
 for new areas or make substantial changes to the existing ones.
 
-## Defining new conventions
+## Recomendations and Requirements
+
+### Addition to Semantic Conventions Spec
 
 - New conventions MUST have a group of codeowners. See [project management](https://github.com/open-telemetry/community/blob/main/project-management.md) for more details.
   <!-- TODO: add CI check for CODEOWNERS file (when a new area is added) -->
@@ -34,17 +38,7 @@ for new areas or make substantial changes to the existing ones.
 - New conventions SHOULD be defined with `development` stability level.
 - New conventions SHOULD include telemetry signal definitions (spans, metrics, events, resources, profiles) and MAY include new attribute definitions.
 
-### Best practices
-
-> [!NOTE]
->
-> This section contains non-normative guidance.
-
-Please read [T-Shaped Signals](t-shaped-signals.md)
-for guidance on how to approach creating Semantic Conventions through defining
-key use cases for conventions.
-
-#### Prototyping
+### Prototyping
 
 It is strongly recommended to prototype proposed conventions in one or more instrumentations and:
 
@@ -56,7 +50,17 @@ It is strongly recommended to prototype proposed conventions in one or more inst
 
 - evaluate how the new or updated telemetry integrates with other instrumentation layers, identifying gaps, duplication, or opportunities to improve the end-user experience.
 
-#### Defining attributes
+## Defining new conventions
+
+> [!NOTE]
+>
+> This section contains non-normative guidance.
+
+Please read [T-Shaped Signals](t-shaped-signals.md)
+for guidance on how to approach creating Semantic Conventions through defining
+key use cases for conventions.
+
+### Defining attributes
 
 Reuse existing attributes when possible. Look through [existing conventions](/docs/registry/attributes/) for similar areas,
 check out [common attributes](/docs/general/attributes.md).
@@ -183,6 +187,25 @@ Only define new system identifiers when you also document how conventions apply
 to that system. For example, when adding a new `db.system.name` value, create
 documentation and span definitions that show how generic attributes work for that
 database.
+
+### Defining Telemetry Signals
+
+The first step in defining a telemetry signal is to decide on what signal type (
+Event, Entities, [Metric](https://opentelemetry.io/docs/concepts/signals/metrics/),
+[Span/Trace](https://opentelemetry.io/docs/concepts/signals/traces/)),
+to use. To help with the decision, below you will find some guidance based on best practice:
+
+- I want to debug/investigate the operations which are being performed including how long. Use a span.
+- I want to be able to see what operation invoked my operation (parent) or what child operation was invoked. Use a span.
+- I want to analyze how long operations are taking to complete. Use a metric.
+- I want to see how much/many of a resource is used/available. Use a metric.
+- I want to track measurements ie errors, latency, volume (golden signals) over time.  Use a metric.
+- I want to record the time when something happened ie state changed. Use an event.
+- I want to capture the time between state changes within an operation. Use an event.
+- I want to describe a part of a resource based on a reproducible identity. Use an entity.
+
+It could very well be that you end up using multiple, if not all of the signal types and that is ok.
+It is all about selecting the right signal type for your needs.
 
 #### Defining spans
 
