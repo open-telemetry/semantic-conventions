@@ -1335,11 +1335,9 @@ over the specified time window.
 PSI is available on Linux systems with kernel 4.20 or later and requires CONFIG_PSI=y.
 CPU "full" stall is reported as zero at the system level for backward compatibility (available since 5.13).
 
-The ratios are tracked over 10-second, 60-second,
-and 300-second windows.
+The ratios are tracked over 10-second, 60-second and 300-second windows.
 
-See [Linux kernel PSI documentation](https://docs.kernel.org/accounting/psi.html) and
-[/proc/pressure/*](https://man7.org/linux/man-pages/man5/proc.5.html) files.
+See [Linux kernel PSI documentation](https://docs.kernel.org/accounting/psi.html)
 
 **Attributes:**
 
@@ -1394,9 +1392,9 @@ This metric is [recommended][MetricRecommended].
 
 | Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.linux.psi.total_time` | Counter | `us` | Linux Pressure Stall Information (PSI) total cumulative stall time. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
+| `system.linux.psi.total_time` | Counter | `s` | Linux Pressure Stall Information (PSI) total cumulative stall time. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
 
-**[1]:** This metric tracks the total absolute stall time in microseconds since system boot.
+**[1]:** This metric tracks the total absolute stall time since system boot.
 Unlike the percentage-based `system.linux.psi.pressure` metric, this allows detection
 of latency spikes that wouldn't necessarily make a noticeable impact on time averages.
 It also enables calculating average trends over custom time frames.
@@ -1405,6 +1403,9 @@ PSI is available on Linux systems with kernel 4.20 or later and requires CONFIG_
 CPU "full" stall is reported as zero at the system level for backward compatibility (available since 5.13).
 
 This is a monotonically increasing counter that resets on system reboot.
+
+Linux exposes this metric in microseconds. Following OpenTelemetry guidelines for measuring durations,
+this metric uses seconds.
 
 See [Linux kernel PSI documentation](https://docs.kernel.org/accounting/psi.html)
 
