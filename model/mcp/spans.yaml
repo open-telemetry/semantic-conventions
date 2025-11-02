@@ -5,13 +5,17 @@ groups:
     brief: MCP common span attributes
     attributes:
       - ref: mcp.session.id
+        requirement_level:
+          recommended: When the MCP request or notification is part of a session.
       - ref: mcp.resource.uri
         requirement_level:
           conditionally_required: When the client executes a request type that includes a resource URI parameter.
       - ref: mcp.request.id
         requirement_level:
           conditionally_required: When the client executes a request.
-      - ref: mcp.request.argument
+      - ref: mcp.input.param
+        requirement_level: opt_in
+      - ref: mcp.response.result
         requirement_level: opt_in
 
   - id: span.mcp.client
@@ -24,8 +28,13 @@ groups:
       It covers the time to receive the response or ack from the peer.
 
       **Span name** SHOULD follow the format `{mcp.method.name} {target}`
-      where target is the `{mcp.tool.name}`, `{mcp.prompt.name}` or `{mcp.resource.uri}`
-      depending on the request or notification type.
+      where target SHOULD match `{mcp.tool.name}` or `{mcp.prompt.name}` when
+      applicable.
+      If there is no low-cardinality `target` available, the Span name SHOULD be `{mcp.method.name}`.
+
+      Instrumentation MAY provide optional configuration to include
+      `{mcp.resource.uri}` as `target` in the span name when applicable. But by default
+      it SHOULD NOT be included to avoid high cardinality span names.
 
       **Span status** SHOULD be set to `ERROR` using the same condition as the `error.type`
       attribute. The status description SHOULD match the `JSONRPCError.message`
@@ -37,6 +46,8 @@ groups:
     extends: trace.mcp.common.attributes
     attributes:
       - ref: server.address
+        requirement_level:
+          recommended: If applicable
       - ref: server.port
         requirement_level:
           recommended: When `server.address` is set
@@ -51,8 +62,13 @@ groups:
       (or notification) or by the MCP client when server initiates the operation.
 
       **Span name** SHOULD follow the format `{mcp.method.name} {target}`
-      where target is the `{mcp.tool.name}`, `{mcp.prompt.name}` or `{mcp.resource.uri}`
-      depending on the request or notification type.
+      where target SHOULD match `{mcp.tool.name}` or `{mcp.prompt.name}` when
+      applicable.
+      If there is no low-cardinality `target` available, the Span name SHOULD be `{mcp.method.name}`.
+
+      Instrumentation MAY provide optional configuration to include
+      `{mcp.resource.uri}` as `target` in the span name when applicable. But by default
+      it SHOULD NOT be included to avoid high cardinality span names.
 
       **Span status** SHOULD be set to `ERROR` using the same condition as the `error.type`
       attribute. The status description SHOULD match the `JSONRPCError.message`
@@ -64,7 +80,9 @@ groups:
     extends: trace.mcp.common.attributes
     attributes:
       - ref: client.address
-        requirement_level: recommended
+        requirement_level:
+          recommended: If applicable
+
       - ref: client.port
         requirement_level:
           recommended: When `client.address` is set

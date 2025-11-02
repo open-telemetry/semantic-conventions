@@ -15,7 +15,6 @@ groups:
           This attribute SHOULD be set to `tcp` or `quic` if the transport protocol
           is HTTP.
           It SHOULD be set to `pipe` if the transport is stdio.
-
       - ref: error.type
         requirement_level:
           conditionally_required: If and only if the operation fails.
@@ -31,10 +30,23 @@ groups:
           `tool_error`.
       - ref: mcp.method.name
         requirement_level: required
-      - ref: rpc.jsonrpc.error_code
+      - ref: mcp.protocol.version
+        requirement_level: recommended
+      - ref: rpc.jsonrpc.error_code  # todo: this is being unified in https://github.com/open-telemetry/semantic-conventions/pull/2920
         requirement_level:
           conditionally_required: If response contains an error code.
+      - ref: network.protocol.name
+        note: |
+          When MCP is used over HTTP, this attribute SHOULD be set to `http`.
+          If MCP is used over WebSocket, it SHOULD be set to `websocket`.
+          Other protocols MAY be used as well.
+        requirement_level:
+          recommended: When applicable.
       - ref: network.protocol.version
+        note: ""  # overriding the default note
+        requirement_level:
+          recommended: When applicable.
+      - ref: rpc.jsonrpc.version
         brief: The version of JSON RPC protocol used.
         note: ""  # overriding the default note
         requirement_level:

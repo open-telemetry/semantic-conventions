@@ -167,27 +167,86 @@ groups:
           `resources/read`, `resources/subscribe`, `resources/unsubscribe`, or `notifications/resources/updated`.
         stability: development
         examples: ["postgres://database/customers/schema", "file:///home/user/documents/report.pdf"]
-      - id: mcp.request.argument
+      - id: mcp.input.param
         type: template[any]
-        brief: Additional arguments passed to the request within `params` object.
-          `<key>` being the normalized argument name (lowercase), the value being the argument value.
+        brief: Parameters passed to the request within `params` object.
+          `<key>` being the normalized parameter key (lowercase), the value being the parameter value.
         note: |
-          Instrumentations SHOULD require an explicit configuration of which arguments
-          are to be captured. Including all request arguments can be a security risk -
-          explicit configuration helps avoid leaking sensitive information.
+          Instrumentations SHOULD require an explicit configuration of which keys
+          are to be captured. Including all request or notifications parameters
+          can be a security risk - explicit configuration helps avoid leaking sensitive information.
 
-          Value type SHOULD match the value of the argument as passed in the request.
+          Value type SHOULD match the value of the parameter as passed in the request
+          or notification.
 
           Examples:
 
-          - A `param.location` argument with value `"Seattle, WA"` SHOULD be recorded as the
-            `mcp.request.argument.location` attribute with value `"Seattle, WA"`.
-          - A `param.a` argument with value `42` SHOULD be recorded as the `mcp.request.argument.a` attribute with value `42`.
-          - A `param.complex` argument with value `{"foo": "bar"}` SHOULD be recorded as the
-            `mcp.request.argument.complex` attribute with complex value type `{"foo": "bar"}`.
+          In a params object with the following structure:
 
-          When the attribute value SHOULD be recorded in structured form when it's possible
+          ```json
+          {
+            "jsonrpc": "2.0",
+            "id": 12345,
+            "method": "some/method",
+            "params": {
+              "location": "Seattle, WA",
+              "a": 42,
+              "complex": {"foo": "bar"}
+            }
+          }
+
+          - A `param.location` key with string value `"Seattle, WA"` SHOULD be recorded as the
+            `mcp.input.param.location` attribute with string value `"Seattle, WA"`.
+          - A `param.a` key with integer value `42` SHOULD be recorded as the `mcp.input.param.a`
+            attribute with integer (signed 64 bit) value `42`.
+          - A `param.complex` key with complex value `{"foo": "bar"}` SHOULD be recorded as the
+            `mcp.input.param.complex` attribute with complex value type `{"foo": "bar"}`.
+
+          The attribute value SHOULD be recorded in structured form when it's possible
           and MAY be recorded as a JSON string if structured format is not yet supported
           by the OpenTelemetry implementation.
         stability: development
         examples: ["Seattle, WA", '42', '{"foo": "bar"}']
+      - id: mcp.response.result
+        type: template[any]
+        brief: Result property returned in the response.
+          `<key>` being the normalized result key (lowercase), the value being the result value.
+        note: |
+          Instrumentations SHOULD require an explicit configuration to capture this attribute,
+          as response result can contain sensitive information.
+
+          Value type SHOULD match the value of the `result` object property as returned in the response.
+
+          Examples:
+
+          In a response with the following structure:
+
+          ```json
+          {
+            "jsonrpc": "2.0",
+            "id": 12345,
+            "result": {
+              "location": "Seattle, WA",
+              "a": 42,
+              "complex": {"foo": "bar"}
+            }
+          }
+          ```
+
+          - A `location` key with value `"Seattle, WA"` SHOULD be recorded as the
+            `mcp.response.result.location` attribute with string value `"Seattle, WA"`.
+          - A `a` key with value `42` SHOULD be recorded as the `mcp.response.result.a`
+            attribute with integer (signed 64 bit) value `42`.
+          - A `complex` key with value `{"foo": "bar"}` SHOULD be recorded as the
+            `mcp.response.result.complex` attribute with complex value type `{"foo": "bar"}`.
+
+          The attribute value SHOULD be recorded in structured form when it's possible
+          and MAY be recorded as a JSON string if structured format is not yet supported
+          by the OpenTelemetry implementation.
+        stability: development
+        examples: ['{"output": "The weather is sunny."}', '42', '{"data": {"id": 1, "name": "Alice"}}']
+      - id: mcp.protocol.version
+        type: string
+        brief: The [version](https://modelcontextprotocol.io/specification/versioning) of the Model Context Protocol (MCP) used.
+        stability: development
+        examples: ["2025-06-18"]

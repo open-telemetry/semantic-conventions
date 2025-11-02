@@ -7,35 +7,87 @@
 
 [Model Context Protocol (MCP)](https://spec.modelcontextprotocol.io) attributes
 
-| Attribute | Type | Description | Examples | Stability |
+**Attributes:**
+
+| Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
-| <a id="mcp-method-name" href="#mcp-method-name">`mcp.method.name`</a> | string | The name of the request or notification method. | `notifications/cancelled`; `initialize`; `notifications/initialized` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="mcp-prompt-name" href="#mcp-prompt-name">`mcp.prompt.name`</a> | string | The name of the prompt or prompt template provided in the request or response. | `analyze-code` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="mcp-request-argument" href="#mcp-request-argument">`mcp.request.argument.<key>`</a> | template[any] | Additional arguments passed to the request within `params` object. `<key>` being the normalized argument name (lowercase), the value being the argument value. [1] | `Seattle, WA`; `42`; `{"foo": "bar"}` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="mcp-request-id" href="#mcp-request-id">`mcp.request.id`</a> | string | This is a unique identifier for the request. | `42` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="mcp-resource-uri" href="#mcp-resource-uri">`mcp.resource.uri`</a> | string | The value of the resource uri. [2] | `postgres://database/customers/schema`; `file:///home/user/documents/report.pdf` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="mcp-session-id" href="#mcp-session-id">`mcp.session.id`</a> | string | Identifies MCP session. | `191c4850af6c49e08843a3f6c80e5046` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="mcp-tool-name" href="#mcp-tool-name">`mcp.tool.name`</a> | string | The name of the tool provided in the request. | `get-weather`; `execute_command` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="mcp-input-param" href="#mcp-input-param">`mcp.input.param.<key>`</a> | ![Development](https://img.shields.io/badge/-development-blue) | template[any] | Parameters passed to the request within `params` object. `<key>` being the normalized parameter key (lowercase), the value being the parameter value. [1] | `Seattle, WA`; `42`; `{"foo": "bar"}` |
+| <a id="mcp-method-name" href="#mcp-method-name">`mcp.method.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the request or notification method. | `notifications/cancelled`; `initialize`; `notifications/initialized` |
+| <a id="mcp-prompt-name" href="#mcp-prompt-name">`mcp.prompt.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the prompt or prompt template provided in the request or response. | `analyze-code` |
+| <a id="mcp-protocol-version" href="#mcp-protocol-version">`mcp.protocol.version`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The [version](https://modelcontextprotocol.io/specification/versioning) of the Model Context Protocol (MCP) used. | `2025-06-18` |
+| <a id="mcp-request-id" href="#mcp-request-id">`mcp.request.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | This is a unique identifier for the request. | `42` |
+| <a id="mcp-resource-uri" href="#mcp-resource-uri">`mcp.resource.uri`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The value of the resource uri. [2] | `postgres://database/customers/schema`; `file:///home/user/documents/report.pdf` |
+| <a id="mcp-response-result" href="#mcp-response-result">`mcp.response.result.<key>`</a> | ![Development](https://img.shields.io/badge/-development-blue) | template[any] | Result property returned in the response. `<key>` being the normalized result key (lowercase), the value being the result value. [3] | `{"output": "The weather is sunny."}`; `42`; `{"data": {"id": 1, "name": "Alice"}}` |
+| <a id="mcp-session-id" href="#mcp-session-id">`mcp.session.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Identifies MCP session. | `191c4850af6c49e08843a3f6c80e5046` |
+| <a id="mcp-tool-name" href="#mcp-tool-name">`mcp.tool.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the tool provided in the request. | `get-weather`; `execute_command` |
 
-**[1] `mcp.request.argument.<key>`:** Instrumentations SHOULD require an explicit configuration of which arguments
-are to be captured. Including all request arguments can be a security risk -
-explicit configuration helps avoid leaking sensitive information.
+**[1] `mcp.input.param.<key>`:** Instrumentations SHOULD require an explicit configuration of which keys
+are to be captured. Including all request or notifications parameters
+can be a security risk - explicit configuration helps avoid leaking sensitive information.
 
-Value type SHOULD match the value of the argument as passed in the request.
+Value type SHOULD match the value of the parameter as passed in the request
+or notification.
 
 Examples:
 
-- A `param.location` argument with value `"Seattle, WA"` SHOULD be recorded as the
-  `mcp.request.argument.location` attribute with value `"Seattle, WA"`.
-- A `param.a` argument with value `42` SHOULD be recorded as the `mcp.request.argument.a` attribute with value `42`.
-- A `param.complex` argument with value `{"foo": "bar"}` SHOULD be recorded as the
-  `mcp.request.argument.complex` attribute with complex value type `{"foo": "bar"}`.
+In a params object with the following structure:
 
-When the attribute value SHOULD be recorded in structured form when it's possible
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 12345,
+  "method": "some/method",
+  "params": {
+    "location": "Seattle, WA",
+    "a": 42,
+    "complex": {"foo": "bar"}
+  }
+}
+
+- A `param.location` key with string value `"Seattle, WA"` SHOULD be recorded as the
+  `mcp.input.param.location` attribute with string value `"Seattle, WA"`.
+- A `param.a` key with integer value `42` SHOULD be recorded as the `mcp.input.param.a`
+  attribute with integer (signed 64 bit) value `42`.
+- A `param.complex` key with complex value `{"foo": "bar"}` SHOULD be recorded as the
+  `mcp.input.param.complex` attribute with complex value type `{"foo": "bar"}`.
+
+The attribute value SHOULD be recorded in structured form when it's possible
 and MAY be recorded as a JSON string if structured format is not yet supported
 by the OpenTelemetry implementation.
 
 **[2] `mcp.resource.uri`:** This is a URI of the resource provided in the following requests or notifications: `resources/read`, `resources/subscribe`, `resources/unsubscribe`, or `notifications/resources/updated`.
+
+**[3] `mcp.response.result.<key>`:** Instrumentations SHOULD require an explicit configuration to capture this attribute,
+as response result can contain sensitive information.
+
+Value type SHOULD match the value of the `result` object property as returned in the response.
+
+Examples:
+
+In a response with the following structure:
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 12345,
+  "result": {
+    "location": "Seattle, WA",
+    "a": 42,
+    "complex": {"foo": "bar"}
+  }
+}
+```
+
+- A `location` key with value `"Seattle, WA"` SHOULD be recorded as the
+  `mcp.response.result.location` attribute with string value `"Seattle, WA"`.
+- A `a` key with value `42` SHOULD be recorded as the `mcp.response.result.a`
+  attribute with integer (signed 64 bit) value `42`.
+- A `complex` key with value `{"foo": "bar"}` SHOULD be recorded as the
+  `mcp.response.result.complex` attribute with complex value type `{"foo": "bar"}`.
+
+The attribute value SHOULD be recorded in structured form when it's possible
+and MAY be recorded as a JSON string if structured format is not yet supported
+by the OpenTelemetry implementation.
 
 ---
 
