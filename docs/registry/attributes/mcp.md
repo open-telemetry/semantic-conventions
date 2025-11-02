@@ -14,7 +14,7 @@
 | <a id="mcp-input-param" href="#mcp-input-param">`mcp.input.param.<key>`</a> | ![Development](https://img.shields.io/badge/-development-blue) | template[any] | Parameters passed to the request within `params` object. `<key>` being the normalized parameter key (lowercase), the value being the parameter value. [1] | `Seattle, WA`; `42`; `{"foo": "bar"}` |
 | <a id="mcp-method-name" href="#mcp-method-name">`mcp.method.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the request or notification method. | `notifications/cancelled`; `initialize`; `notifications/initialized` |
 | <a id="mcp-prompt-name" href="#mcp-prompt-name">`mcp.prompt.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the prompt or prompt template provided in the request or response. | `analyze-code` |
-| <a id="mcp-protocol-version" href="#mcp-protocol-version">`mcp.protocol.version`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The [version](https://modelcontextprotocol.io/specification/versioning) of the Model Context Protocol (MCP) used. | `2025-06-18` |
+| <a id="mcp-protocol-version" href="#mcp-protocol-version">`mcp.protocol.version`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The [version](https://modelcontextprotocol.io/specification/versioning) of the Model Context Protocol used. | `2025-06-18` |
 | <a id="mcp-request-id" href="#mcp-request-id">`mcp.request.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | This is a unique identifier for the request. | `42` |
 | <a id="mcp-resource-uri" href="#mcp-resource-uri">`mcp.resource.uri`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The value of the resource uri. [2] | `postgres://database/customers/schema`; `file:///home/user/documents/report.pdf` |
 | <a id="mcp-response-result" href="#mcp-response-result">`mcp.response.result.<key>`</a> | ![Development](https://img.shields.io/badge/-development-blue) | template[any] | Result property returned in the response. `<key>` being the normalized result key (lowercase), the value being the result value. [3] | `{"output": "The weather is sunny."}`; `42`; `{"data": {"id": 1, "name": "Alice"}}` |
@@ -43,6 +43,7 @@ In a params object with the following structure:
     "complex": {"foo": "bar"}
   }
 }
+```
 
 - A `param.location` key with string value `"Seattle, WA"` SHOULD be recorded as the
   `mcp.input.param.location` attribute with string value `"Seattle, WA"`.

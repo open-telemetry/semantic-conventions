@@ -34,9 +34,8 @@ HTTP request in the corresponding request and response streams.
 
 ### Context propagation
 
-Model Context Protocol works on top of JSON RPC and does not define a standard
-Trace Context propagation mechanism. It also works on top of different transports
-including stdio and HTTP streams.
+Model Context Protocol works on top of JSON-RPC and does not define a standard
+Trace Context propagation mechanism. MCP is transport independent and works across different transports. The specification expects clients to implement at least stdio or HTTP streams.
 
 HTTP trace context propagation only covers the HTTP request, but not the individual
 messages client and server exchange within the request/response streams.
@@ -116,13 +115,12 @@ where target SHOULD match `{mcp.tool.name}` or `{mcp.prompt.name}` when
 applicable.
 If there is no low-cardinality `target` available, the Span name SHOULD be `{mcp.method.name}`.
 
-Instrumentation MAY provide optional configuration to include
-`{mcp.resource.uri}` as `target` in the span name when applicable. But by default
-it SHOULD NOT be included to avoid high cardinality span names.
+Instrumentation MAY allow users to opt into including `{mcp.resource.uri}`
+as `target` in the span name when it is available but SHOULD NOT include it by default
+to avoid high cardinality span names.
 
-**Span status** SHOULD be set to `ERROR` using the same condition as the `error.type`
-attribute. The status description SHOULD match the `JSONRPCError.message`
-if the message is available.
+**Span status** SHOULD be set to `ERROR` when `error.type` attribute is present.
+The status description SHOULD match the `JSONRPCError.message` if the message is available.
 
 Refer to the [Recording Errors](/docs/general/recording-errors.md) document
 for more details.
@@ -140,21 +138,21 @@ for more details.
 | [`mcp.resource.uri`](/docs/registry/attributes/mcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [2] | string | The value of the resource uri. [3] | `postgres://database/customers/schema`; `file:///home/user/documents/report.pdf` |
 | [`mcp.tool.name`](/docs/registry/attributes/mcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` When operation is related to a specific tool. | string | The name of the tool provided in the request. | `get-weather`; `execute_command` |
 | [`rpc.jsonrpc.error_code`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If response contains an error code. | int | `error.code` property of response if it is an error response. | `-32700`; `100` |
-| [`mcp.protocol.version`](/docs/registry/attributes/mcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The [version](https://modelcontextprotocol.io/specification/versioning) of the Model Context Protocol (MCP) used. | `2025-06-18` |
+| [`mcp.protocol.version`](/docs/registry/attributes/mcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The [version](https://modelcontextprotocol.io/specification/versioning) of the Model Context Protocol used. | `2025-06-18` |
 | [`mcp.session.id`](/docs/registry/attributes/mcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` [4] | string | Identifies MCP session. | `191c4850af6c49e08843a3f6c80e5046` |
-| [`network.protocol.name`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` When applicable. | string | [OSI application layer](https://wikipedia.org/wiki/Application_layer) or non-OSI equivalent. [5] | `amqp`; `http`; `mqtt` |
+| [`network.protocol.name`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` When applicable. | string | [OSI application layer](https://wikipedia.org/wiki/Application_layer) or non-OSI equivalent. [5] | `http`; `websocket` |
 | [`network.protocol.version`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` When applicable. | string | The actual version of the protocol used for network communication. | `1.1`; `2` |
 | [`network.transport`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The transport protocol used for the MCP session. [6] | `tcp`; `udp` |
-| [`rpc.jsonrpc.version`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` when it's not `2.0`. | string | The version of JSON RPC protocol used. | `2.0`; `1.0` |
+| [`rpc.jsonrpc.version`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` when it's not `2.0`. | string | The version of JSON-RPC protocol used. | `2.0`; `1.0` |
 | [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` If applicable | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [7] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` When `server.address` is set | int | Server port number. [8] | `80`; `8080`; `443` |
 | [`mcp.input.param.<key>`](/docs/registry/attributes/mcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | template[any] | Parameters passed to the request within `params` object. `<key>` being the normalized parameter key (lowercase), the value being the parameter value. [9] | `Seattle, WA`; `42`; `{"foo": "bar"}` |
 | [`mcp.response.result.<key>`](/docs/registry/attributes/mcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | template[any] | Result property returned in the response. `<key>` being the normalized result key (lowercase), the value being the result value. [10] | `{"output": "The weather is sunny."}`; `42`; `{"data": {"id": 1, "name": "Alice"}}` |
 
-**[1] `error.type`:** This attribute SHOULD be set to the string representation of the JSON RPC
+**[1] `error.type`:** This attribute SHOULD be set to the string representation of the JSON-RPC
 error code, if one is returned.
 
-When JSON RPC call is successful, but an error is returned within the
+When JSON-RPC call is successful, but an error is returned within the
 result payload, this attribute SHOULD be set to the low-cardinality
 string representation of the error. When
 [CallToolResult](https://github.com/modelcontextprotocol/modelcontextprotocol/blob/9c8a44e47e16b789a1f9d47c89ea23ed13a37cf9/schema/2025-06-18/schema.ts#L715)
@@ -167,9 +165,7 @@ is returned with `isError` set to `true`, this attribute SHOULD be set to
 
 **[4] `mcp.session.id`:** When the MCP request or notification is part of a session.
 
-**[5] `network.protocol.name`:** When MCP is used over HTTP, this attribute SHOULD be set to `http`.
-If MCP is used over WebSocket, it SHOULD be set to `websocket`.
-Other protocols MAY be used as well.
+**[5] `network.protocol.name`:** The value SHOULD be normalized to lowercase.
 
 **[6] `network.transport`:** This attribute SHOULD be set to `tcp` or `quic` if the transport protocol
 is HTTP.
@@ -201,6 +197,7 @@ In a params object with the following structure:
     "complex": {"foo": "bar"}
   }
 }
+```
 
 - A `param.location` key with string value `"Seattle, WA"` SHOULD be recorded as the
   `mcp.input.param.location` attribute with string value `"Seattle, WA"`.
@@ -323,13 +320,12 @@ where target SHOULD match `{mcp.tool.name}` or `{mcp.prompt.name}` when
 applicable.
 If there is no low-cardinality `target` available, the Span name SHOULD be `{mcp.method.name}`.
 
-Instrumentation MAY provide optional configuration to include
-`{mcp.resource.uri}` as `target` in the span name when applicable. But by default
-it SHOULD NOT be included to avoid high cardinality span names.
+Instrumentation MAY allow users to opt into including `{mcp.resource.uri}`
+as `target` in the span name when it is available but SHOULD NOT include it by default
+to avoid high cardinality span names.
 
-**Span status** SHOULD be set to `ERROR` using the same condition as the `error.type`
-attribute. The status description SHOULD match the `JSONRPCError.message`
-if the message is available.
+**Span status** SHOULD be set to `ERROR` when `error.type` attribute is present.
+The status description SHOULD match the `JSONRPCError.message` if the message is available.
 
 Refer to the [Recording Errors](/docs/general/recording-errors.md) document
 for more details.
@@ -349,19 +345,19 @@ for more details.
 | [`rpc.jsonrpc.error_code`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If response contains an error code. | int | `error.code` property of response if it is an error response. | `-32700`; `100` |
 | [`client.address`](/docs/registry/attributes/client.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` If applicable | string | Client address - domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [4] | `client.example.com`; `10.1.2.80`; `/tmp/my.sock` |
 | [`client.port`](/docs/registry/attributes/client.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` When `client.address` is set | int | Client port number. [5] | `65123` |
-| [`mcp.protocol.version`](/docs/registry/attributes/mcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The [version](https://modelcontextprotocol.io/specification/versioning) of the Model Context Protocol (MCP) used. | `2025-06-18` |
+| [`mcp.protocol.version`](/docs/registry/attributes/mcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The [version](https://modelcontextprotocol.io/specification/versioning) of the Model Context Protocol used. | `2025-06-18` |
 | [`mcp.session.id`](/docs/registry/attributes/mcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` [6] | string | Identifies MCP session. | `191c4850af6c49e08843a3f6c80e5046` |
-| [`network.protocol.name`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` When applicable. | string | [OSI application layer](https://wikipedia.org/wiki/Application_layer) or non-OSI equivalent. [7] | `amqp`; `http`; `mqtt` |
+| [`network.protocol.name`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` When applicable. | string | [OSI application layer](https://wikipedia.org/wiki/Application_layer) or non-OSI equivalent. [7] | `http`; `websocket` |
 | [`network.protocol.version`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` When applicable. | string | The actual version of the protocol used for network communication. | `1.1`; `2` |
 | [`network.transport`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The transport protocol used for the MCP session. [8] | `tcp`; `udp` |
-| [`rpc.jsonrpc.version`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` when it's not `2.0`. | string | The version of JSON RPC protocol used. | `2.0`; `1.0` |
+| [`rpc.jsonrpc.version`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` when it's not `2.0`. | string | The version of JSON-RPC protocol used. | `2.0`; `1.0` |
 | [`mcp.input.param.<key>`](/docs/registry/attributes/mcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | template[any] | Parameters passed to the request within `params` object. `<key>` being the normalized parameter key (lowercase), the value being the parameter value. [9] | `Seattle, WA`; `42`; `{"foo": "bar"}` |
 | [`mcp.response.result.<key>`](/docs/registry/attributes/mcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | template[any] | Result property returned in the response. `<key>` being the normalized result key (lowercase), the value being the result value. [10] | `{"output": "The weather is sunny."}`; `42`; `{"data": {"id": 1, "name": "Alice"}}` |
 
-**[1] `error.type`:** This attribute SHOULD be set to the string representation of the JSON RPC
+**[1] `error.type`:** This attribute SHOULD be set to the string representation of the JSON-RPC
 error code, if one is returned.
 
-When JSON RPC call is successful, but an error is returned within the
+When JSON-RPC call is successful, but an error is returned within the
 result payload, this attribute SHOULD be set to the low-cardinality
 string representation of the error. When
 [CallToolResult](https://github.com/modelcontextprotocol/modelcontextprotocol/blob/9c8a44e47e16b789a1f9d47c89ea23ed13a37cf9/schema/2025-06-18/schema.ts#L715)
@@ -378,9 +374,7 @@ is returned with `isError` set to `true`, this attribute SHOULD be set to
 
 **[6] `mcp.session.id`:** When the MCP request or notification is part of a session.
 
-**[7] `network.protocol.name`:** When MCP is used over HTTP, this attribute SHOULD be set to `http`.
-If MCP is used over WebSocket, it SHOULD be set to `websocket`.
-Other protocols MAY be used as well.
+**[7] `network.protocol.name`:** The value SHOULD be normalized to lowercase.
 
 **[8] `network.transport`:** This attribute SHOULD be set to `tcp` or `quic` if the transport protocol
 is HTTP.
@@ -408,6 +402,7 @@ In a params object with the following structure:
     "complex": {"foo": "bar"}
   }
 }
+```
 
 - A `param.location` key with string value `"Seattle, WA"` SHOULD be recorded as the
   `mcp.input.param.location` attribute with string value `"Seattle, WA"`.
@@ -539,28 +534,26 @@ of `[ 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10, 30, 60, 120, 300 ]`.
 | [`mcp.prompt.name`](/docs/registry/attributes/mcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` When operation is related to a specific prompt. | string | The name of the prompt or prompt template provided in the request or response. | `analyze-code` |
 | [`mcp.tool.name`](/docs/registry/attributes/mcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` When operation is related to a specific tool. | string | The name of the tool provided in the request. | `get-weather`; `execute_command` |
 | [`rpc.jsonrpc.error_code`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If response contains an error code. | int | `error.code` property of response if it is an error response. | `-32700`; `100` |
-| [`mcp.protocol.version`](/docs/registry/attributes/mcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The [version](https://modelcontextprotocol.io/specification/versioning) of the Model Context Protocol (MCP) used. | `2025-06-18` |
-| [`network.protocol.name`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` When applicable. | string | [OSI application layer](https://wikipedia.org/wiki/Application_layer) or non-OSI equivalent. [2] | `amqp`; `http`; `mqtt` |
+| [`mcp.protocol.version`](/docs/registry/attributes/mcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The [version](https://modelcontextprotocol.io/specification/versioning) of the Model Context Protocol used. | `2025-06-18` |
+| [`network.protocol.name`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` When applicable. | string | [OSI application layer](https://wikipedia.org/wiki/Application_layer) or non-OSI equivalent. [2] | `http`; `websocket` |
 | [`network.protocol.version`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` When applicable. | string | The actual version of the protocol used for network communication. | `1.1`; `2` |
 | [`network.transport`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The transport protocol used for the MCP session. [3] | `tcp`; `udp` |
-| [`rpc.jsonrpc.version`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` when it's not `2.0`. | string | The version of JSON RPC protocol used. | `2.0`; `1.0` |
-| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [4] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
+| [`rpc.jsonrpc.version`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` when it's not `2.0`. | string | The version of JSON-RPC protocol used. | `2.0`; `1.0` |
+| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` If applicable | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [4] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` When `server.address` is set | int | Server port number. [5] | `80`; `8080`; `443` |
 | [`mcp.resource.uri`](/docs/registry/attributes/mcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The value of the resource uri. [6] | `postgres://database/customers/schema`; `file:///home/user/documents/report.pdf` |
 
-**[1] `error.type`:** This attribute SHOULD be set to the string representation of the JSON RPC
+**[1] `error.type`:** This attribute SHOULD be set to the string representation of the JSON-RPC
 error code, if one is returned.
 
-When JSON RPC call is successful, but an error is returned within the
+When JSON-RPC call is successful, but an error is returned within the
 result payload, this attribute SHOULD be set to the low-cardinality
 string representation of the error. When
 [CallToolResult](https://github.com/modelcontextprotocol/modelcontextprotocol/blob/9c8a44e47e16b789a1f9d47c89ea23ed13a37cf9/schema/2025-06-18/schema.ts#L715)
 is returned with `isError` set to `true`, this attribute SHOULD be set to
 `tool_error`.
 
-**[2] `network.protocol.name`:** When MCP is used over HTTP, this attribute SHOULD be set to `http`.
-If MCP is used over WebSocket, it SHOULD be set to `websocket`.
-Other protocols MAY be used as well.
+**[2] `network.protocol.name`:** The value SHOULD be normalized to lowercase.
 
 **[3] `network.transport`:** This attribute SHOULD be set to `tcp` or `quic` if the transport protocol
 is HTTP.
@@ -657,26 +650,24 @@ of `[ 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10, 30, 60, 120, 300 ]`.
 | [`mcp.prompt.name`](/docs/registry/attributes/mcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` When operation is related to a specific prompt. | string | The name of the prompt or prompt template provided in the request or response. | `analyze-code` |
 | [`mcp.tool.name`](/docs/registry/attributes/mcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` When operation is related to a specific tool. | string | The name of the tool provided in the request. | `get-weather`; `execute_command` |
 | [`rpc.jsonrpc.error_code`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If response contains an error code. | int | `error.code` property of response if it is an error response. | `-32700`; `100` |
-| [`mcp.protocol.version`](/docs/registry/attributes/mcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The [version](https://modelcontextprotocol.io/specification/versioning) of the Model Context Protocol (MCP) used. | `2025-06-18` |
-| [`network.protocol.name`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` When applicable. | string | [OSI application layer](https://wikipedia.org/wiki/Application_layer) or non-OSI equivalent. [2] | `amqp`; `http`; `mqtt` |
+| [`mcp.protocol.version`](/docs/registry/attributes/mcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The [version](https://modelcontextprotocol.io/specification/versioning) of the Model Context Protocol used. | `2025-06-18` |
+| [`network.protocol.name`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` When applicable. | string | [OSI application layer](https://wikipedia.org/wiki/Application_layer) or non-OSI equivalent. [2] | `http`; `websocket` |
 | [`network.protocol.version`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` When applicable. | string | The actual version of the protocol used for network communication. | `1.1`; `2` |
 | [`network.transport`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The transport protocol used for the MCP session. [3] | `tcp`; `udp` |
-| [`rpc.jsonrpc.version`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` when it's not `2.0`. | string | The version of JSON RPC protocol used. | `2.0`; `1.0` |
+| [`rpc.jsonrpc.version`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` when it's not `2.0`. | string | The version of JSON-RPC protocol used. | `2.0`; `1.0` |
 | [`mcp.resource.uri`](/docs/registry/attributes/mcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The value of the resource uri. [4] | `postgres://database/customers/schema`; `file:///home/user/documents/report.pdf` |
 
-**[1] `error.type`:** This attribute SHOULD be set to the string representation of the JSON RPC
+**[1] `error.type`:** This attribute SHOULD be set to the string representation of the JSON-RPC
 error code, if one is returned.
 
-When JSON RPC call is successful, but an error is returned within the
+When JSON-RPC call is successful, but an error is returned within the
 result payload, this attribute SHOULD be set to the low-cardinality
 string representation of the error. When
 [CallToolResult](https://github.com/modelcontextprotocol/modelcontextprotocol/blob/9c8a44e47e16b789a1f9d47c89ea23ed13a37cf9/schema/2025-06-18/schema.ts#L715)
 is returned with `isError` set to `true`, this attribute SHOULD be set to
 `tool_error`.
 
-**[2] `network.protocol.name`:** When MCP is used over HTTP, this attribute SHOULD be set to `http`.
-If MCP is used over WebSocket, it SHOULD be set to `websocket`.
-Other protocols MAY be used as well.
+**[2] `network.protocol.name`:** The value SHOULD be normalized to lowercase.
 
 **[3] `network.transport`:** This attribute SHOULD be set to `tcp` or `quic` if the transport protocol
 is HTTP.
@@ -765,9 +756,13 @@ of `[ 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10, 30, 60, 120, 300 ]`.
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if session ends with an error. | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` |
-| [`network.transport`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [2] | `tcp`; `udp` |
-| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [3] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
-| [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` When `server.address` is set | int | Server port number. [4] | `80`; `8080`; `443` |
+| [`mcp.protocol.version`](/docs/registry/attributes/mcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The [version](https://modelcontextprotocol.io/specification/versioning) of the Model Context Protocol used. | `2025-06-18` |
+| [`network.protocol.name`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` When applicable. | string | [OSI application layer](https://wikipedia.org/wiki/Application_layer) or non-OSI equivalent. [2] | `http`; `websocket` |
+| [`network.protocol.version`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` When applicable. | string | The actual version of the protocol used for network communication. | `1.1`; `2` |
+| [`network.transport`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The transport protocol used for the MCP session. [3] | `tcp`; `udp` |
+| [`rpc.jsonrpc.version`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` when it's not `2.0`. | string | The version of JSON-RPC protocol used. | `2.0`; `1.0` |
+| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` If applicable | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [4] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
+| [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` When `server.address` is set | int | Server port number. [5] | `80`; `8080`; `443` |
 
 **[1] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
@@ -789,15 +784,14 @@ it's RECOMMENDED to:
 - Use a domain-specific attribute
 - Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
 
-**[2] `network.transport`:** The value SHOULD be normalized to lowercase.
+**[2] `network.protocol.name`:** The value SHOULD be normalized to lowercase.
 
-Consider always setting the transport when setting a port number, since
-a port number is ambiguous without knowing the transport. For example
-different processes could be listening on TCP port 12345 and UDP port 12345.
+**[3] `network.transport`:** This attribute SHOULD be set to `tcp` or `quic` if the transport protocol
+is HTTP. It SHOULD be set to `pipe` if the transport is stdio.
 
-**[3] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
+**[4] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
-**[4] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[5] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
 ---
 
@@ -848,7 +842,11 @@ of `[ 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10, 30, 60, 120, 300 ]`.
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if session ends with an error. | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` |
-| [`network.transport`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [2] | `tcp`; `udp` |
+| [`mcp.protocol.version`](/docs/registry/attributes/mcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The [version](https://modelcontextprotocol.io/specification/versioning) of the Model Context Protocol used. | `2025-06-18` |
+| [`network.protocol.name`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` When applicable. | string | [OSI application layer](https://wikipedia.org/wiki/Application_layer) or non-OSI equivalent. [2] | `http`; `websocket` |
+| [`network.protocol.version`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` When applicable. | string | The actual version of the protocol used for network communication. | `1.1`; `2` |
+| [`network.transport`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The transport protocol used for the MCP session. [3] | `tcp`; `udp` |
+| [`rpc.jsonrpc.version`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` when it's not `2.0`. | string | The version of JSON-RPC protocol used. | `2.0`; `1.0` |
 
 **[1] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
@@ -870,11 +868,10 @@ it's RECOMMENDED to:
 - Use a domain-specific attribute
 - Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
 
-**[2] `network.transport`:** The value SHOULD be normalized to lowercase.
+**[2] `network.protocol.name`:** The value SHOULD be normalized to lowercase.
 
-Consider always setting the transport when setting a port number, since
-a port number is ambiguous without knowing the transport. For example
-different processes could be listening on TCP port 12345 and UDP port 12345.
+**[3] `network.transport`:** This attribute SHOULD be set to `tcp` or `quic` if the transport protocol
+is HTTP. It SHOULD be set to `pipe` if the transport is stdio.
 
 ---
 

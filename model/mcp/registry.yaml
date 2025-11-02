@@ -194,6 +194,7 @@ groups:
               "complex": {"foo": "bar"}
             }
           }
+          ```
 
           - A `param.location` key with string value `"Seattle, WA"` SHOULD be recorded as the
             `mcp.input.param.location` attribute with string value `"Seattle, WA"`.
@@ -247,6 +248,6 @@ groups:
         examples: ['{"output": "The weather is sunny."}', '42', '{"data": {"id": 1, "name": "Alice"}}']
       - id: mcp.protocol.version
         type: string
-        brief: The [version](https://modelcontextprotocol.io/specification/versioning) of the Model Context Protocol (MCP) used.
+        brief: The [version](https://modelcontextprotocol.io/specification/versioning) of the Model Context Protocol used.
         stability: development
         examples: ["2025-06-18"]

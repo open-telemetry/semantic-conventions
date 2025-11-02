@@ -32,13 +32,12 @@ groups:
       applicable.
       If there is no low-cardinality `target` available, the Span name SHOULD be `{mcp.method.name}`.
 
-      Instrumentation MAY provide optional configuration to include
-      `{mcp.resource.uri}` as `target` in the span name when applicable. But by default
-      it SHOULD NOT be included to avoid high cardinality span names.
+      Instrumentation MAY allow users to opt into including `{mcp.resource.uri}`
+      as `target` in the span name when it is available but SHOULD NOT include it by default
+      to avoid high cardinality span names.
 
-      **Span status** SHOULD be set to `ERROR` using the same condition as the `error.type`
-      attribute. The status description SHOULD match the `JSONRPCError.message`
-      if the message is available.
+      **Span status** SHOULD be set to `ERROR` when `error.type` attribute is present.
+      The status description SHOULD match the `JSONRPCError.message` if the message is available.
 
       Refer to the [Recording Errors](/docs/general/recording-errors.md) document
       for more details.
@@ -66,13 +65,12 @@ groups:
       applicable.
       If there is no low-cardinality `target` available, the Span name SHOULD be `{mcp.method.name}`.
 
-      Instrumentation MAY provide optional configuration to include
-      `{mcp.resource.uri}` as `target` in the span name when applicable. But by default
-      it SHOULD NOT be included to avoid high cardinality span names.
+      Instrumentation MAY allow users to opt into including `{mcp.resource.uri}`
+      as `target` in the span name when it is available but SHOULD NOT include it by default
+      to avoid high cardinality span names.
 
-      **Span status** SHOULD be set to `ERROR` using the same condition as the `error.type`
-      attribute. The status description SHOULD match the `JSONRPCError.message`
-      if the message is available.
+      **Span status** SHOULD be set to `ERROR` when `error.type` attribute is present.
+      The status description SHOULD match the `JSONRPCError.message` if the message is available.
 
       Refer to the [Recording Errors](/docs/general/recording-errors.md) document
       for more details.

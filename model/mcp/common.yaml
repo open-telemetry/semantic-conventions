@@ -19,10 +19,10 @@ groups:
         requirement_level:
           conditionally_required: If and only if the operation fails.
         note: |
-          This attribute SHOULD be set to the string representation of the JSON RPC
+          This attribute SHOULD be set to the string representation of the JSON-RPC
           error code, if one is returned.
 
-          When JSON RPC call is successful, but an error is returned within the
+          When JSON-RPC call is successful, but an error is returned within the
           result payload, this attribute SHOULD be set to the low-cardinality
           string representation of the error. When
           [CallToolResult](https://github.com/modelcontextprotocol/modelcontextprotocol/blob/9c8a44e47e16b789a1f9d47c89ea23ed13a37cf9/schema/2025-06-18/schema.ts#L715)
@@ -31,23 +31,21 @@ groups:
       - ref: mcp.method.name
         requirement_level: required
       - ref: mcp.protocol.version
-        requirement_level: recommended
       - ref: rpc.jsonrpc.error_code  # todo: this is being unified in https://github.com/open-telemetry/semantic-conventions/pull/2920
         requirement_level:
           conditionally_required: If response contains an error code.
       - ref: network.protocol.name
-        note: |
-          When MCP is used over HTTP, this attribute SHOULD be set to `http`.
-          If MCP is used over WebSocket, it SHOULD be set to `websocket`.
-          Other protocols MAY be used as well.
         requirement_level:
           recommended: When applicable.
+        examples:
+          - "http"
+          - "websocket"
       - ref: network.protocol.version
         note: ""  # overriding the default note
         requirement_level:
           recommended: When applicable.
       - ref: rpc.jsonrpc.version
-        brief: The version of JSON RPC protocol used.
+        brief: The version of JSON-RPC protocol used.
         note: ""  # overriding the default note
         requirement_level:
           recommended: when it's not `2.0`.
