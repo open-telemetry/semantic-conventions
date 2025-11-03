@@ -10,20 +10,22 @@
 
 This document defines semantic convention attributes in the HTTP namespace.
 
-| Attribute | Type | Description | Examples | Stability |
+**Attributes:**
+
+| Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
-| <a id="http-connection-state" href="#http-connection-state">`http.connection.state`</a> | string | State of the HTTP connection in the HTTP connection pool. | `active`; `idle` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="http-request-body-size" href="#http-request-body-size">`http.request.body.size`</a> | int | The size of the request payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size. | `3495` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="http-request-header" href="#http-request-header">`http.request.header.<key>`</a> | string[] | HTTP request headers, `<key>` being the normalized HTTP Header name (lowercase), the value being the header values. [1] | `["application/json"]`; `["1.2.3.4", "1.2.3.5"]` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| <a id="http-request-method" href="#http-request-method">`http.request.method`</a> | string | HTTP request method. [2] | `GET`; `POST`; `HEAD` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| <a id="http-request-method-original" href="#http-request-method-original">`http.request.method_original`</a> | string | Original HTTP method sent by the client in the request line. | `GeT`; `ACL`; `foo` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| <a id="http-request-resend-count" href="#http-request-resend-count">`http.request.resend_count`</a> | int | The ordinal number of request resending attempt (for any reason, including redirects). [3] | `3` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| <a id="http-request-size" href="#http-request-size">`http.request.size`</a> | int | The total size of the request in bytes. This should be the total number of bytes sent over the wire, including the request line (HTTP/1.1), framing (HTTP/2 and HTTP/3), headers, and request body if any. | `1437` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="http-response-body-size" href="#http-response-body-size">`http.response.body.size`</a> | int | The size of the response payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size. | `3495` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="http-response-header" href="#http-response-header">`http.response.header.<key>`</a> | string[] | HTTP response headers, `<key>` being the normalized HTTP Header name (lowercase), the value being the header values. [4] | `["application/json"]`; `["abc", "def"]` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| <a id="http-response-size" href="#http-response-size">`http.response.size`</a> | int | The total size of the response in bytes. This should be the total number of bytes sent over the wire, including the status line (HTTP/1.1), framing (HTTP/2 and HTTP/3), headers, and response body and trailers if any. | `1437` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="http-response-status-code" href="#http-response-status-code">`http.response.status_code`</a> | int | [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6). | `200` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| <a id="http-route" href="#http-route">`http.route`</a> | string | The matched route, that is, the path template in the format used by the respective server framework. [5] | `/users/:userID?`; `{controller}/{action}/{id?}` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| <a id="http-connection-state" href="#http-connection-state">`http.connection.state`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | State of the HTTP connection in the HTTP connection pool. | `active`; `idle` |
+| <a id="http-request-body-size" href="#http-request-body-size">`http.request.body.size`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The size of the request payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size. | `3495` |
+| <a id="http-request-header" href="#http-request-header">`http.request.header.<key>`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string[] | HTTP request headers, `<key>` being the normalized HTTP Header name (lowercase), the value being the header values. [1] | `["application/json"]`; `["1.2.3.4", "1.2.3.5"]` |
+| <a id="http-request-method" href="#http-request-method">`http.request.method`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | HTTP request method. [2] | `GET`; `POST`; `HEAD` |
+| <a id="http-request-method-original" href="#http-request-method-original">`http.request.method_original`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | Original HTTP method sent by the client in the request line. | `GeT`; `ACL`; `foo` |
+| <a id="http-request-resend-count" href="#http-request-resend-count">`http.request.resend_count`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | int | The ordinal number of request resending attempt (for any reason, including redirects). [3] | `3` |
+| <a id="http-request-size" href="#http-request-size">`http.request.size`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The total size of the request in bytes. This should be the total number of bytes sent over the wire, including the request line (HTTP/1.1), framing (HTTP/2 and HTTP/3), headers, and request body if any. | `1437` |
+| <a id="http-response-body-size" href="#http-response-body-size">`http.response.body.size`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The size of the response payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size. | `3495` |
+| <a id="http-response-header" href="#http-response-header">`http.response.header.<key>`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string[] | HTTP response headers, `<key>` being the normalized HTTP Header name (lowercase), the value being the header values. [4] | `["application/json"]`; `["abc", "def"]` |
+| <a id="http-response-size" href="#http-response-size">`http.response.size`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The total size of the response in bytes. This should be the total number of bytes sent over the wire, including the status line (HTTP/1.1), framing (HTTP/2 and HTTP/3), headers, and response body and trailers if any. | `1437` |
+| <a id="http-response-status-code" href="#http-response-status-code">`http.response.status_code`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | int | [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6). | `200` |
+| <a id="http-route" href="#http-route">`http.route`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The matched route template for the request. This MUST be low-cardinality and include all static path segments, with dynamic path segments represented with placeholders. [5] | `/users/:userID?`; `my-controller/my-action/{id?}` |
 
 **[1] `http.request.header.<key>`:** Instrumentations SHOULD require an explicit configuration of which headers are to be captured.
 Including all request headers can be a security risk - explicit configuration helps avoid leaking sensitive information.
@@ -43,8 +45,9 @@ Examples:
   attribute with value `["1.2.3.4", "1.2.3.5"]` or `["1.2.3.4, 1.2.3.5"]` depending on the HTTP library.
 
 **[2] `http.request.method`:** HTTP request method value SHOULD be "known" to the instrumentation.
-By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
-and the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
+By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods),
+the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html)
+and the QUERY method defined in [httpbis-safe-method-w-body](https://datatracker.ietf.org/doc/draft-ietf-httpbis-safe-method-w-body/?include_text=1).
 
 If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `_OTHER`.
 
@@ -78,6 +81,14 @@ Examples:
 **[5] `http.route`:** MUST NOT be populated when this is not supported by the HTTP server framework as the route attribute should have low-cardinality and the URI path can NOT substitute it.
 SHOULD include the [application root](/docs/http/http-spans.md#http-server-definitions) if there is one.
 
+A static path segment is a part of the route template with a fixed, low-cardinality value. This includes literal strings like `/users/` and placeholders that
+are constrained to a finite, predefined set of values, e.g. `{controller}` or `{action}`.
+
+A dynamic path segment is a placeholder for a value that can have high cardinality and is not constrained to a predefined list like static path segments.
+
+Instrumentations SHOULD use routing information provided by the corresponding web framework. They SHOULD pick the most precise source of routing information and MAY
+support custom route formatting. Instrumentations SHOULD document the format and the API used to obtain the route string.
+
 ---
 
 `http.connection.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
@@ -102,28 +113,31 @@ SHOULD include the [application root](/docs/http/http-spans.md#http-server-defin
 | `PATCH` | PATCH method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `POST` | POST method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `PUT` | PUT method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `QUERY` | QUERY method. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `TRACE` | TRACE method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ## Deprecated HTTP Attributes
 
 Describes deprecated HTTP attributes.
 
-| Attribute | Type | Description | Examples | Stability |
+**Attributes:**
+
+| Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
-| <a id="http-client-ip" href="#http-client-ip">`http.client_ip`</a> | string | Deprecated, use `client.address` instead. | `83.164.160.102` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `client.address`. |
-| <a id="http-flavor" href="#http-flavor">`http.flavor`</a> | string | Deprecated, use `network.protocol.name` instead. | `1.0`; `1.1`; `2.0` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `network.protocol.name`. |
-| <a id="http-host" href="#http-host">`http.host`</a> | string | Deprecated, use one of `server.address`, `client.address` or `http.request.header.host` instead, depending on the usage. | `www.example.org` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by one of `server.address`, `client.address` or `http.request.header.host`, depending on the usage. |
-| <a id="http-method" href="#http-method">`http.method`</a> | string | Deprecated, use `http.request.method` instead. | `GET`; `POST`; `HEAD` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `http.request.method`. |
-| <a id="http-request-content-length" href="#http-request-content-length">`http.request_content_length`</a> | int | Deprecated, use `http.request.header.content-length` instead. | `3495` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `http.request.header.content-length`. |
-| <a id="http-request-content-length-uncompressed" href="#http-request-content-length-uncompressed">`http.request_content_length_uncompressed`</a> | int | Deprecated, use `http.request.body.size` instead. | `5493` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `http.request.body.size`. |
-| <a id="http-response-content-length" href="#http-response-content-length">`http.response_content_length`</a> | int | Deprecated, use `http.response.header.content-length` instead. | `3495` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `http.response.header.content-length`. |
-| <a id="http-response-content-length-uncompressed" href="#http-response-content-length-uncompressed">`http.response_content_length_uncompressed`</a> | int | Deprecated, use `http.response.body.size` instead. | `5493` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `http.response.body.size`. |
-| <a id="http-scheme" href="#http-scheme">`http.scheme`</a> | string | Deprecated, use `url.scheme` instead. | `http`; `https` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `url.scheme`. |
-| <a id="http-server-name" href="#http-server-name">`http.server_name`</a> | string | Deprecated, use `server.address` instead. | `example.com` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `server.address`. |
-| <a id="http-status-code" href="#http-status-code">`http.status_code`</a> | int | Deprecated, use `http.response.status_code` instead. | `200` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `http.response.status_code`. |
-| <a id="http-target" href="#http-target">`http.target`</a> | string | Deprecated, use `url.path` and `url.query` instead. | `/search?q=OpenTelemetry#SemConv` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Split to `url.path` and `url.query`. |
-| <a id="http-url" href="#http-url">`http.url`</a> | string | Deprecated, use `url.full` instead. | `https://www.foo.bar/search?q=OpenTelemetry#SemConv` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `url.full`. |
-| <a id="http-user-agent" href="#http-user-agent">`http.user_agent`</a> | string | Deprecated, use `user_agent.original` instead. | `CERN-LineMode/2.15 libwww/2.17b3`; `Mozilla/5.0 (iPhone; CPU iPhone OS 14_7_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.2 Mobile/15E148 Safari/604.1` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `user_agent.original`. |
+| <a id="http-client-ip" href="#http-client-ip">`http.client_ip`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `client.address`. | string | Deprecated, use `client.address` instead. | `83.164.160.102` |
+| <a id="http-flavor" href="#http-flavor">`http.flavor`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Split into `network.protocol.name` and `network.protocol.version` | string | Deprecated, use `network.protocol.name` and `network.protocol.version` instead. | `1.0`; `1.1`; `2.0` |
+| <a id="http-host" href="#http-host">`http.host`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by one of `server.address`, `client.address` or `http.request.header.host`, depending on the usage. | string | Deprecated, use one of `server.address`, `client.address` or `http.request.header.host` instead, depending on the usage. | `www.example.org` |
+| <a id="http-method" href="#http-method">`http.method`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `http.request.method`. | string | Deprecated, use `http.request.method` instead. | `GET`; `POST`; `HEAD` |
+| <a id="http-request-content-length" href="#http-request-content-length">`http.request_content_length`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `http.request.header.content-length`. | int | Deprecated, use `http.request.header.content-length` instead. | `3495` |
+| <a id="http-request-content-length-uncompressed" href="#http-request-content-length-uncompressed">`http.request_content_length_uncompressed`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `http.request.body.size`. | int | Deprecated, use `http.request.body.size` instead. | `5493` |
+| <a id="http-response-content-length" href="#http-response-content-length">`http.response_content_length`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `http.response.header.content-length`. | int | Deprecated, use `http.response.header.content-length` instead. | `3495` |
+| <a id="http-response-content-length-uncompressed" href="#http-response-content-length-uncompressed">`http.response_content_length_uncompressed`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `http.response.body.size`. | int | Deprecated, use `http.response.body.size` instead. | `5493` |
+| <a id="http-scheme" href="#http-scheme">`http.scheme`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `url.scheme`. | string | Deprecated, use `url.scheme` instead. | `http`; `https` |
+| <a id="http-server-name" href="#http-server-name">`http.server_name`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `server.address`. | string | Deprecated, use `server.address` instead. | `example.com` |
+| <a id="http-status-code" href="#http-status-code">`http.status_code`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `http.response.status_code`. | int | Deprecated, use `http.response.status_code` instead. | `200` |
+| <a id="http-target" href="#http-target">`http.target`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Split to `url.path` and `url.query`. | string | Deprecated, use `url.path` and `url.query` instead. | `/search?q=OpenTelemetry#SemConv` |
+| <a id="http-url" href="#http-url">`http.url`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `url.full`. | string | Deprecated, use `url.full` instead. | `https://www.foo.bar/search?q=OpenTelemetry#SemConv` |
+| <a id="http-user-agent" href="#http-user-agent">`http.user_agent`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `user_agent.original`. | string | Deprecated, use `user_agent.original` instead. | `CERN-LineMode/2.15 libwww/2.17b3`; `Mozilla/5.0 (iPhone; CPU iPhone OS 14_7_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.2 Mobile/15E148 Safari/604.1` |
 
 ---
 

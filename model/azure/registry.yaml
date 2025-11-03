@@ -61,7 +61,7 @@ groups:
           it indicates that the operation was performed on multiple regions i.e. cross-regional call.
         note: >
           Region name matches the format of `displayName`
-          in [Azure Location API](https://learn.microsoft.com/rest/api/subscription/subscriptions/list-locations?view=rest-subscription-2021-10-01&tabs=HTTP#location)
+          in [Azure Location API](https://learn.microsoft.com/rest/api/resources/subscriptions/list-locations)
         examples:
           - ["North Central US", "Australia East", "Australia Southeast"]
       - id: azure.cosmosdb.response.sub_status_code
@@ -74,18 +74,23 @@ groups:
           members:
             - id: strong
               value: "Strong"
+              brief: Strong
               stability: development
             - id: bounded_staleness
               value: "BoundedStaleness"
+              brief: Bounded Staleness
               stability: development
             - id: session
               value: "Session"
+              brief: Session
               stability: development
             - id: eventual
               value: "Eventual"
+              brief: Eventual
               stability: development
             - id: consistent_prefix
               value: "ConsistentPrefix"
+              brief: Consistent Prefix
               stability: development
         stability: development
         brief: Account or request [consistency level](https://learn.microsoft.com/azure/cosmos-db/consistency-levels).

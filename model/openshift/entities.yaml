@@ -1,0 +1,14 @@
+groups:
+  - id: entity.openshift.clusterquota
+    type: entity
+    stability: development
+    name: openshift.clusterquota
+    brief: >
+      An OpenShift
+      [ClusterResourceQuota](https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/schedule_and_quota_apis/clusterresourcequota-quota-openshift-io-v1#clusterresourcequota-quota-openshift-io-v1)
+      object.
+    attributes:
+      - ref: openshift.clusterquota.uid
+        role: identifying
+      - ref: openshift.clusterquota.name
+        role: descriptive

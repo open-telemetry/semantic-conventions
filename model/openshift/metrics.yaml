@@ -1,0 +1,418 @@
+groups:
+  # openshift.clusterquota.cpu.* metrics
+  - id: metric.openshift.clusterquota.cpu.limit.hard
+    type: metric
+    metric_name: openshift.clusterquota.cpu.limit.hard
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: |
+      The enforced hard limit of the resource across all projects.
+    instrument: updowncounter
+    unit: "{cpu}"
+    entity_associations:
+      - openshift.clusterquota
+    note: |
+      This metric is retrieved from the `Status.Total.Hard` field of the
+      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core)
+      of the
+      [ClusterResourceQuota](https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/schedule_and_quota_apis/clusterresourcequota-quota-openshift-io-v1#status-total).
+  - id: metric.openshift.clusterquota.cpu.limit.used
+    type: metric
+    metric_name: openshift.clusterquota.cpu.limit.used
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: |
+      The current observed total usage of the resource across all projects.
+    instrument: updowncounter
+    unit: "{cpu}"
+    entity_associations:
+      - openshift.clusterquota
+    note: |
+      This metric is retrieved from the `Status.Total.Used` field of the
+      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core)
+      of the
+      [ClusterResourceQuota](https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/schedule_and_quota_apis/clusterresourcequota-quota-openshift-io-v1#status-total).
+  - id: metric.openshift.clusterquota.cpu.request.hard
+    type: metric
+    metric_name: openshift.clusterquota.cpu.request.hard
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: |
+      The enforced hard limit of the resource across all projects.
+    instrument: updowncounter
+    unit: "{cpu}"
+    entity_associations:
+      - openshift.clusterquota
+    note: |
+      This metric is retrieved from the `Status.Total.Hard` field of the
+      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core)
+      of the
+      [ClusterResourceQuota](https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/schedule_and_quota_apis/clusterresourcequota-quota-openshift-io-v1#status-total).
+  - id: metric.openshift.clusterquota.cpu.request.used
+    type: metric
+    metric_name: openshift.clusterquota.cpu.request.used
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: |
+      The current observed total usage of the resource across all projects.
+    instrument: updowncounter
+    unit: "{cpu}"
+    entity_associations:
+      - openshift.clusterquota
+    note: |
+      This metric is retrieved from the `Status.Total.Used` field of the
+      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core)
+      of the
+      [ClusterResourceQuota](https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/schedule_and_quota_apis/clusterresourcequota-quota-openshift-io-v1#status-total).
+
+  # openshift.clusterquota.memory.* metrics
+  - id: metric.openshift.clusterquota.memory.limit.hard
+    type: metric
+    metric_name: openshift.clusterquota.memory.limit.hard
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: |
+      The enforced hard limit of the resource across all projects.
+    instrument: updowncounter
+    unit: "By"
+    entity_associations:
+      - openshift.clusterquota
+    note: |
+      This metric is retrieved from the `Status.Total.Hard` field of the
+      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core)
+      of the
+      [ClusterResourceQuota](https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/schedule_and_quota_apis/clusterresourcequota-quota-openshift-io-v1#status-total).
+  - id: metric.openshift.clusterquota.memory.limit.used
+    type: metric
+    metric_name: openshift.clusterquota.memory.limit.used
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: |
+      The current observed total usage of the resource across all projects.
+    instrument: updowncounter
+    unit: "By"
+    entity_associations:
+      - openshift.clusterquota
+    note: |
+      This metric is retrieved from the `Status.Total.Used` field of the
+      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core)
+      of the
+      [ClusterResourceQuota](https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/schedule_and_quota_apis/clusterresourcequota-quota-openshift-io-v1#status-total).
+  - id: metric.openshift.clusterquota.memory.request.hard
+    type: metric
+    metric_name: openshift.clusterquota.memory.request.hard
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: |
+      The enforced hard limit of the resource across all projects.
+    instrument: updowncounter
+    unit: "By"
+    entity_associations:
+      - openshift.clusterquota
+    note: |
+      This metric is retrieved from the `Status.Total.Hard` field of the
+      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core)
+      of the
+      [ClusterResourceQuota](https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/schedule_and_quota_apis/clusterresourcequota-quota-openshift-io-v1#status-total).
+  - id: metric.openshift.clusterquota.memory.request.used
+    type: metric
+    metric_name: openshift.clusterquota.memory.request.used
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: |
+      The current observed total usage of the resource across all projects.
+    instrument: updowncounter
+    unit: "By"
+    entity_associations:
+      - openshift.clusterquota
+    note: |
+      This metric is retrieved from the `Status.Total.Used` field of the
+      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core)
+      of the
+      [ClusterResourceQuota](https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/schedule_and_quota_apis/clusterresourcequota-quota-openshift-io-v1#status-total).
+
+  # openshift.clusterquota.hugepage_count.* metrics
+  - id: metric.openshift.clusterquota.hugepage_count.request.hard
+    type: metric
+    metric_name: openshift.clusterquota.hugepage_count.request.hard
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: |
+      The enforced hard limit of the resource across all projects.
+    instrument: updowncounter
+    unit: "{hugepage}"
+    entity_associations:
+      - openshift.clusterquota
+    note: |
+      This metric is retrieved from the `Status.Total.Hard` field of the
+      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core)
+      of the
+      [ClusterResourceQuota](https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/schedule_and_quota_apis/clusterresourcequota-quota-openshift-io-v1#status-total).
+    attributes:
+      - ref: k8s.hugepage.size
+        requirement_level: required
+  - id: metric.openshift.clusterquota.hugepage_count.request.used
+    type: metric
+    metric_name: openshift.clusterquota.hugepage_count.request.used
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: |
+      The current observed total usage of the resource across all projects.
+    instrument: updowncounter
+    unit: "{hugepage}"
+    entity_associations:
+      - openshift.clusterquota
+    note: |
+      This metric is retrieved from the `Status.Total.Used` field of the
+      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core)
+      of the
+      [ClusterResourceQuota](https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/schedule_and_quota_apis/clusterresourcequota-quota-openshift-io-v1#status-total).
+    attributes:
+      - ref: k8s.hugepage.size
+        requirement_level: required
+
+  # openshift.clusterquota.storage.* metrics
+  - id: metric.openshift.clusterquota.storage.request.hard
+    type: metric
+    metric_name: openshift.clusterquota.storage.request.hard
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: |
+      The enforced hard limit of the resource across all projects.
+    instrument: updowncounter
+    unit: "By"
+    entity_associations:
+      - openshift.clusterquota
+    note: |
+      This metric is retrieved from the `Status.Total.Hard` field of the
+      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core)
+      of the
+      [ClusterResourceQuota](https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/schedule_and_quota_apis/clusterresourcequota-quota-openshift-io-v1#status-total).
+
+      The `k8s.storageclass.name` should be required when a resource quota is defined for a specific
+      storage class.
+    attributes:
+      - ref: k8s.storageclass.name
+        requirement_level:
+          conditionally_required: |
+            The `k8s.storageclass.name` should be required when a resource quota is defined for a specific
+            storage class.
+  - id: metric.openshift.clusterquota.storage.request.used
+    type: metric
+    metric_name: openshift.clusterquota.storage.request.used
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: |
+      The current observed total usage of the resource across all projects.
+    instrument: updowncounter
+    unit: "By"
+    entity_associations:
+      - openshift.clusterquota
+    note: |
+      This metric is retrieved from the `Status.Total.Used` field of the
+      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core)
+      of the
+      [ClusterResourceQuota](https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/schedule_and_quota_apis/clusterresourcequota-quota-openshift-io-v1#status-total).
+
+      The `k8s.storageclass.name` should be required when a resource quota is defined for a specific
+      storage class.
+    attributes:
+      - ref: k8s.storageclass.name
+        requirement_level:
+          conditionally_required: |
+            The `k8s.storageclass.name` should be required when a resource quota is defined for a specific
+            storage class.
+
+  # openshift.clusterquota.persistentvolumeclaim_count.* metrics
+  - id: metric.openshift.clusterquota.persistentvolumeclaim_count.hard
+    type: metric
+    metric_name: openshift.clusterquota.persistentvolumeclaim_count.hard
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: |
+      The enforced hard limit of the resource across all projects.
+    instrument: updowncounter
+    unit: "{persistentvolumeclaim}"
+    note: |
+      This metric is retrieved from the `Status.Total.Hard` field of the
+      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core)
+      of the
+      [ClusterResourceQuota](https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/schedule_and_quota_apis/clusterresourcequota-quota-openshift-io-v1#status-total).
+
+      The `k8s.storageclass.name` should be required when a resource quota is defined for a specific
+      storage class.
+    attributes:
+      - ref: k8s.storageclass.name
+        requirement_level:
+          conditionally_required: |
+            The `k8s.storageclass.name` should be required when a resource quota is defined for a specific
+            storage class.
+  - id: metric.openshift.clusterquota.persistentvolumeclaim_count.used
+    type: metric
+    metric_name: openshift.clusterquota.persistentvolumeclaim_count.used
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: |
+      The current observed total usage of the resource across all projects.
+    instrument: updowncounter
+    unit: "{persistentvolumeclaim}"
+    note: |
+      This metric is retrieved from the `Status.Total.Used` field of the
+      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core)
+      of the
+      [ClusterResourceQuota](https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/schedule_and_quota_apis/clusterresourcequota-quota-openshift-io-v1#status-total).
+
+      The `k8s.storageclass.name` should be required when a resource quota is defined for a specific
+      storage class.
+    attributes:
+      - ref: k8s.storageclass.name
+        requirement_level:
+          conditionally_required: |
+            The `k8s.storageclass.name` should be required when a resource quota is defined for a specific
+            storage class.
+
+  # openshift.clusterquota.ephemeral_storage.* metrics
+  - id: metric.openshift.clusterquota.ephemeral_storage.request.hard
+    type: metric
+    metric_name: openshift.clusterquota.ephemeral_storage.request.hard
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: |
+      The enforced hard limit of the resource across all projects.
+    instrument: updowncounter
+    unit: "By"
+    entity_associations:
+      - openshift.clusterquota
+    note: |
+      This metric is retrieved from the `Status.Total.Hard` field of the
+      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core)
+      of the
+      [ClusterResourceQuota](https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/schedule_and_quota_apis/clusterresourcequota-quota-openshift-io-v1#status-total).
+  - id: metric.openshift.clusterquota.ephemeral_storage.request.used
+    type: metric
+    metric_name: openshift.clusterquota.ephemeral_storage.request.used
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: |
+      The current observed total usage of the resource across all projects.
+    instrument: updowncounter
+    unit: "By"
+    entity_associations:
+      - openshift.clusterquota
+    note: |
+      This metric is retrieved from the `Status.Total.Used` field of the
+      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core)
+      of the
+      [ClusterResourceQuota](https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/schedule_and_quota_apis/clusterresourcequota-quota-openshift-io-v1#status-total).
+  - id: metric.openshift.clusterquota.ephemeral_storage.limit.hard
+    type: metric
+    metric_name: openshift.clusterquota.ephemeral_storage.limit.hard
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: |
+      The enforced hard limit of the resource across all projects.
+    instrument: updowncounter
+    unit: "By"
+    entity_associations:
+      - openshift.clusterquota
+    note: |
+      This metric is retrieved from the `Status.Total.Hard` field of the
+      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core)
+      of the
+      [ClusterResourceQuota](https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/schedule_and_quota_apis/clusterresourcequota-quota-openshift-io-v1#status-total).
+  - id: metric.openshift.clusterquota.ephemeral_storage.limit.used
+    type: metric
+    metric_name: openshift.clusterquota.ephemeral_storage.limit.used
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: |
+      The current observed total usage of the resource across all projects.
+    instrument: updowncounter
+    unit: "By"
+    entity_associations:
+      - openshift.clusterquota
+    note: |
+      This metric is retrieved from the `Status.Total.Used` field of the
+      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core)
+      of the
+      [ClusterResourceQuota](https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/schedule_and_quota_apis/clusterresourcequota-quota-openshift-io-v1#status-total).
+
+  # openshift.clusterquota.object_count metric
+  - id: metric.openshift.clusterquota.object_count.hard
+    type: metric
+    metric_name: openshift.clusterquota.object_count.hard
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: |
+      The enforced hard limit of the resource across all projects.
+    instrument: updowncounter
+    unit: "{object}"
+    entity_associations:
+      - openshift.clusterquota
+    note: |
+      This metric is retrieved from the `Status.Total.Hard` field of the
+      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core)
+      of the
+      [ClusterResourceQuota](https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/schedule_and_quota_apis/clusterresourcequota-quota-openshift-io-v1#status-total).
+    attributes:
+      - ref: k8s.resourcequota.resource_name
+        requirement_level: required
+  - id: metric.openshift.clusterquota.object_count.used
+    type: metric
+    metric_name: openshift.clusterquota.object_count.used
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: |
+      The current observed total usage of the resource across all projects.
+    instrument: updowncounter
+    unit: "{object}"
+    entity_associations:
+      - openshift.clusterquota
+    note: |
+      This metric is retrieved from the `Status.Total.Used` field of the
+      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core)
+      of the
+      [ClusterResourceQuota](https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/schedule_and_quota_apis/clusterresourcequota-quota-openshift-io-v1#status-total).
+    attributes:
+      - ref: k8s.resourcequota.resource_name
+        requirement_level: required

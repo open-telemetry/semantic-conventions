@@ -31,12 +31,14 @@ The event name MUST be `exception`.
 
 This event describes a single exception.
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+**Attributes:**
+
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
-| [`exception.message`](/docs/registry/attributes/exception.md) | string | The exception message. | `Division by zero`; `Can't convert 'int' object to str implicitly` | `Conditionally Required` [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`exception.type`](/docs/registry/attributes/exception.md) | string | The type of the exception (its fully-qualified class name, if applicable). The dynamic type of the exception should be preferred over the static type in languages that support it. | `java.net.ConnectException`; `OSError` | `Conditionally Required` [2] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`exception.escaped`](/docs/registry/attributes/exception.md) | boolean | Indicates that the exception is escaping the scope of the span. |  | `Recommended` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>It's no longer recommended to record exceptions that are handled and do not escape the scope of a span. |
-| [`exception.stacktrace`](/docs/registry/attributes/exception.md) | string | A stacktrace as a string in the natural representation for the language runtime. The representation is to be determined and documented by each language SIG. | `Exception in thread "main" java.lang.RuntimeException: Test exception\n at com.example.GenerateTrace.methodB(GenerateTrace.java:13)\n at com.example.GenerateTrace.methodA(GenerateTrace.java:9)\n at com.example.GenerateTrace.main(GenerateTrace.java:5)` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`exception.message`](/docs/registry/attributes/exception.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [1] | string | The exception message. | `Division by zero`; `Can't convert 'int' object to str implicitly` |
+| [`exception.type`](/docs/registry/attributes/exception.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [2] | string | The type of the exception (its fully-qualified class name, if applicable). The dynamic type of the exception should be preferred over the static type in languages that support it. | `java.net.ConnectException`; `OSError` |
+| [`exception.escaped`](/docs/registry/attributes/exception.md) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>It's no longer recommended to record exceptions that are handled and do not escape the scope of a span. | `Recommended` | boolean | Indicates that the exception is escaping the scope of the span. |  |
+| [`exception.stacktrace`](/docs/registry/attributes/exception.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | A stacktrace as a string in the natural representation for the language runtime. The representation is to be determined and documented by each language SIG. | `Exception in thread "main" java.lang.RuntimeException: Test exception\n at com.example.GenerateTrace.methodB(GenerateTrace.java:13)\n at com.example.GenerateTrace.methodA(GenerateTrace.java:9)\n at com.example.GenerateTrace.main(GenerateTrace.java:5)` |
 
 **[1] `exception.message`:** Required if `exception.type` is not set, recommended otherwise.
 
@@ -54,16 +56,16 @@ possible representations of stacktraces in various languages. The table is not
 meant to be a recommendation for any particular language, although SIGs are free
 to adopt them if they see fit.
 
-| Language   | Format                                                              |
-| ---------- | ------------------------------------------------------------------- |
-| C#         | the return value of [Exception.ToString()][csharp-stacktrace]       |
-| Elixir     | the return value of [Exception.format/3][elixir-stacktrace]         |
-| Erlang     | the return value of [`erl_error:format`][erlang-stacktrace]         |
-| Go         | the return value of [runtime.Stack][go-stacktrace]                  |
-| Java       | the contents of [Throwable.printStackTrace()][java-stacktrace]      |
-| Javascript | the return value of [error.stack][js-stacktrace] as returned by V8  |
-| Python     | the return value of [traceback.format_exc()][python-stacktrace]     |
-| Ruby       | the return value of [Exception.full_message][ruby-full-message]     |
+| Language   | Format                                                             |
+| ---------- | ------------------------------------------------------------------ |
+| C#         | the return value of [Exception.ToString()][csharp-stacktrace]      |
+| Elixir     | the return value of [Exception.format/3][elixir-stacktrace]        |
+| Erlang     | the return value of [`erl_error:format`][erlang-stacktrace]        |
+| Go         | the return value of [runtime.Stack][go-stacktrace]                 |
+| Java       | the contents of [Throwable.printStackTrace()][java-stacktrace]     |
+| Javascript | the return value of [error.stack][js-stacktrace] as returned by V8 |
+| Python     | the return value of [traceback.format_exc()][python-stacktrace]    |
+| Ruby       | the return value of [Exception.full_message][ruby-full-message]    |
 
 Backends can use the language specified methodology for generating a stacktrace
 combined with platform information from the

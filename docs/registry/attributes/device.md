@@ -7,18 +7,20 @@
 
 Describes device attributes.
 
-| Attribute | Type | Description | Examples | Stability |
+**Attributes:**
+
+| Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
-| <a id="device-id" href="#device-id">`device.id`</a> | string | A unique identifier representing the device [1] | `123456789012345`; `01:23:45:67:89:AB` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="device-manufacturer" href="#device-manufacturer">`device.manufacturer`</a> | string | The name of the device manufacturer [2] | `Apple`; `Samsung` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="device-model-identifier" href="#device-model-identifier">`device.model.identifier`</a> | string | The model identifier for the device [3] | `iPhone3,4`; `SM-G920F` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="device-model-name" href="#device-model-name">`device.model.name`</a> | string | The marketing name for the device model [4] | `iPhone 6s Plus`; `Samsung Galaxy S6` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="device-id" href="#device-id">`device.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | A unique identifier representing the device [1] | `123456789012345`; `01:23:45:67:89:AB` |
+| <a id="device-manufacturer" href="#device-manufacturer">`device.manufacturer`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the device manufacturer [2] | `Apple`; `Samsung` |
+| <a id="device-model-identifier" href="#device-model-identifier">`device.model.identifier`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The model identifier for the device [3] | `iPhone3,4`; `SM-G920F` |
+| <a id="device-model-name" href="#device-model-name">`device.model.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The marketing name for the device model [4] | `iPhone 6s Plus`; `Samsung Galaxy S6` |
 
 **[1] `device.id`:** Its value SHOULD be identical for all apps on a device and it SHOULD NOT change if an app is uninstalled and re-installed.
 However, it might be resettable by the user for all apps on a device.
 Hardware IDs (e.g. vendor-specific serial number, IMEI or MAC address) MAY be used as values.
 
-More information about Android identifier best practices can be found [here](https://developer.android.com/training/articles/user-data-ids).
+More information about Android identifier best practices can be found in the [Android user data IDs guide](https://developer.android.com/training/articles/user-data-ids).
 
 > [!WARNING]
 >
