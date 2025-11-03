@@ -15,6 +15,7 @@ groups:
           This attribute SHOULD be set to `tcp` or `quic` if the transport protocol
           is HTTP.
           It SHOULD be set to `pipe` if the transport is stdio.
+        examples: ["tcp", "quic", "pipe"]
       - ref: error.type
         requirement_level:
           conditionally_required: If and only if the operation fails.

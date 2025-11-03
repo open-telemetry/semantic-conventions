@@ -17,7 +17,7 @@
 | <a id="mcp-protocol-version" href="#mcp-protocol-version">`mcp.protocol.version`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The [version](https://modelcontextprotocol.io/specification/versioning) of the Model Context Protocol used. | `2025-06-18` |
 | <a id="mcp-request-id" href="#mcp-request-id">`mcp.request.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | This is a unique identifier for the request. | `42` |
 | <a id="mcp-resource-uri" href="#mcp-resource-uri">`mcp.resource.uri`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The value of the resource uri. [2] | `postgres://database/customers/schema`; `file:///home/user/documents/report.pdf` |
-| <a id="mcp-response-result" href="#mcp-response-result">`mcp.response.result.<key>`</a> | ![Development](https://img.shields.io/badge/-development-blue) | template[any] | Result property returned in the response. `<key>` being the normalized result key (lowercase), the value being the result value. [3] | `{"output": "The weather is sunny."}`; `42`; `{"data": {"id": 1, "name": "Alice"}}` |
+| <a id="mcp-result" href="#mcp-result">`mcp.result.<key>`</a> | ![Development](https://img.shields.io/badge/-development-blue) | template[any] | Result property returned in the response. `<key>` being the normalized result key (lowercase), the value being the result value. [3] | `{"output": "The weather is sunny."}`; `42`; `{"data": {"id": 1, "name": "Alice"}}` |
 | <a id="mcp-session-id" href="#mcp-session-id">`mcp.session.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Identifies MCP session. | `191c4850af6c49e08843a3f6c80e5046` |
 | <a id="mcp-tool-name" href="#mcp-tool-name">`mcp.tool.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the tool provided in the request. | `get-weather`; `execute_command` |
 
@@ -58,7 +58,7 @@ by the OpenTelemetry implementation.
 
 **[2] `mcp.resource.uri`:** This is a URI of the resource provided in the following requests or notifications: `resources/read`, `resources/subscribe`, `resources/unsubscribe`, or `notifications/resources/updated`.
 
-**[3] `mcp.response.result.<key>`:** Instrumentations SHOULD require an explicit configuration to capture this attribute,
+**[3] `mcp.result.<key>`:** Instrumentations SHOULD require an explicit configuration to capture this attribute,
 as response result can contain sensitive information.
 
 Value type SHOULD match the value of the `result` object property as returned in the response.
@@ -80,11 +80,11 @@ In a response with the following structure:
 ```
 
 - A `location` key with value `"Seattle, WA"` SHOULD be recorded as the
-  `mcp.response.result.location` attribute with string value `"Seattle, WA"`.
-- A `a` key with value `42` SHOULD be recorded as the `mcp.response.result.a`
+  `mcp.result.location` attribute with string value `"Seattle, WA"`.
+- A `a` key with value `42` SHOULD be recorded as the `mcp.result.a`
   attribute with integer (signed 64 bit) value `42`.
 - A `complex` key with value `{"foo": "bar"}` SHOULD be recorded as the
-  `mcp.response.result.complex` attribute with complex value type `{"foo": "bar"}`.
+  `mcp.result.complex` attribute with complex value type `{"foo": "bar"}`.
 
 The attribute value SHOULD be recorded in structured form when it's possible
 and MAY be recorded as a JSON string if structured format is not yet supported
