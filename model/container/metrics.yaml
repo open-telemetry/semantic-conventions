@@ -7,7 +7,7 @@ groups:
       code_generation:
         metric_value_type: double
     stability: development
-    brief: "The time the container has been running"
+    brief: "The time the container has been running."
     note: |
       Instrumentations SHOULD use a gauge with type `double` and measure uptime in seconds as a floating point number with the highest precision available.
       The actual accuracy would depend on the instrumentation and operating system.
@@ -21,7 +21,7 @@ groups:
       code_generation:
         metric_value_type: double
     stability: development
-    brief: "Total CPU time consumed"
+    brief: "Total CPU time consumed."
     note: >
       Total CPU time consumed by the specific container on all available CPU cores
     instrument: counter
@@ -40,7 +40,7 @@ groups:
       code_generation:
         metric_value_type: double
     stability: development
-    brief: "Container's CPU usage, measured in cpus. Range from 0 to the number of allocatable CPUs"
+    brief: "Container's CPU usage, measured in cpus. Range from 0 to the number of allocatable CPUs."
     note: >
       CPU usage of the specific container on all available CPU cores, averaged over the sample window
     instrument: gauge
@@ -65,6 +65,98 @@ groups:
       Memory usage of the container.
     instrument: counter
     unit: "By"
+  - id: metric.container.memory.available
+    type: metric
+    metric_name: container.memory.available
+    stability: development
+    annotations:
+      code_generation:
+        metric_value_type: int
+    entity_associations:
+      - container
+    brief: "Container memory available."
+    note: >
+      Available memory for use.  This is defined as the memory limit - workingSetBytes.
+      If memory limit is undefined, the available bytes is omitted.
+
+      In general, this metric can be derived from
+      [cadvisor](https://github.com/google/cadvisor/blob/v0.53.0/docs/storage/prometheus.md#prometheus-container-metrics)
+      and by subtracting the `container_memory_working_set_bytes` metric
+      from the `container_spec_memory_limit_bytes` metric.
+
+      In K8s, this metric is derived from the
+      [MemoryStats.AvailableBytes](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#MemoryStats)
+      field of the [PodStats.Memory](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#PodStats)
+      of the Kubelet's stats API.
+    instrument: updowncounter
+    unit: "By"
+  - id: metric.container.memory.rss
+    type: metric
+    metric_name: container.memory.rss
+    stability: development
+    entity_associations:
+      - container
+    brief: "Container memory RSS."
+    annotations:
+      code_generation:
+        metric_value_type: int
+    note: >
+      In general, this metric can be derived from
+      [cadvisor](https://github.com/google/cadvisor/blob/v0.53.0/docs/storage/prometheus.md#prometheus-container-metrics)
+      and specifically the `container_memory_rss` metric.
+
+      In K8s, this metric is derived from the
+      [MemoryStats.RSSBytes](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#MemoryStats)
+      field of the [PodStats.Memory](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#PodStats)
+      of the Kubelet's stats API.
+    instrument: updowncounter
+    unit: "By"
+  - id: metric.container.memory.working_set
+    type: metric
+    metric_name: container.memory.working_set
+    stability: development
+    annotations:
+      code_generation:
+        metric_value_type: int
+    entity_associations:
+      - container
+    brief: "Container memory working set."
+    note: >
+      In general, this metric can be derived from
+      [cadvisor](https://github.com/google/cadvisor/blob/v0.53.0/docs/storage/prometheus.md#prometheus-container-metrics)
+      and specifically the `container_memory_working_set_bytes` metric.
+
+      In K8s, this metric is derived from the
+      [MemoryStats.WorkingSetBytes](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#MemoryStats)
+      field of the [PodStats.Memory](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#PodStats)
+      of the Kubelet's stats API.
+    instrument: updowncounter
+    unit: "By"
+  - id: metric.container.memory.paging.faults
+    type: metric
+    metric_name: container.memory.paging.faults
+    stability: development
+    annotations:
+      code_generation:
+        metric_value_type: int
+    entity_associations:
+      - container
+    brief: "Container memory paging faults."
+    attributes:
+      - ref: system.paging.fault.type
+    note: >
+      In general, this metric can be derived from
+      [cadvisor](https://github.com/google/cadvisor/blob/v0.53.0/docs/storage/prometheus.md#prometheus-container-metrics)
+      and specifically the `container_memory_failures_total{failure_type=pgfault, scope=container}`
+      and `container_memory_failures_total{failure_type=pgmajfault, scope=container}`metric.
+
+      In K8s, this metric is derived from the
+      [MemoryStats.PageFaults](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#MemoryStats) and
+      [MemoryStats.MajorPageFaults](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#MemoryStats)
+      field of the [PodStats.Memory](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#PodStats)
+      of the Kubelet's stats API.
+    instrument: counter
+    unit: "{fault}"
 
   # container.disk.io.* metrics and attribute group
   - id: metric.container.disk.io
@@ -102,3 +194,58 @@ groups:
     attributes:
       - ref: network.io.direction
       - ref: network.interface.name
+
+  # container.filesystem.* metrics
+  - id: metric.container.filesystem.available
+    type: metric
+    metric_name: container.filesystem.available
+    stability: development
+    brief: "Container filesystem available bytes."
+    instrument: updowncounter
+    unit: "By"
+    annotations:
+      code_generation:
+        metric_value_type: int
+    entity_associations:
+      - container
+    note: |
+      In K8s, this metric is derived from the
+      [FsStats.AvailableBytes](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#FsStats) field
+      of the [ContainerStats.Rootfs](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#ContainerStats)
+      of the Kubelet's stats API.
+  - id: metric.container.filesystem.capacity
+    type: metric
+    metric_name: container.filesystem.capacity
+    stability: development
+    brief: "Container filesystem capacity."
+    instrument: updowncounter
+    unit: "By"
+    annotations:
+      code_generation:
+        metric_value_type: int
+    entity_associations:
+      - container
+    note: |
+      In K8s, this metric is derived from the
+      [FsStats.CapacityBytes](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#FsStats) field
+      of the [ContainerStats.Rootfs](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#ContainerStats)
+      of the Kubelet's stats API.
+  - id: metric.container.filesystem.usage
+    type: metric
+    metric_name: container.filesystem.usage
+    stability: development
+    brief: "Container filesystem usage."
+    instrument: updowncounter
+    unit: "By"
+    annotations:
+      code_generation:
+        metric_value_type: int
+    entity_associations:
+      - container
+    note: |
+      This may not equal capacity - available.
+
+      In K8s, this metric is derived from the
+      [FsStats.UsedBytes](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#FsStats) field
+      of the [ContainerStats.Rootfs](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#ContainerStats)
+      of the Kubelet's stats API.

@@ -18,7 +18,6 @@ requirements and recommendations.
   - [Prerequisites](#prerequisites)
   - [1. Modify the YAML model](#1-modify-the-yaml-model)
     - [Code structure](#code-structure)
-    - [Schema files](#schema-files)
   - [2. Update the markdown files](#2-update-the-markdown-files)
     - [Hugo frontmatter](#hugo-frontmatter)
   - [3. Check new convention](#3-check-new-convention)
@@ -28,6 +27,7 @@ requirements and recommendations.
       - [Examples](#examples)
     - [Adding a changelog entry](#adding-a-changelog-entry)
   - [5. Getting your PR merged](#5-getting-your-pr-merged)
+- [Reviewer guidelines](#reviewer-guidelines)
 - [Automation](#automation)
   - [Consistency checks](#consistency-checks)
   - [Auto formatting](#auto-formatting)
@@ -36,6 +36,7 @@ requirements and recommendations.
   - [Update the tables of content](#update-the-tables-of-content)
   - [Markdown link check](#markdown-link-check)
   - [Yamllint check](#yamllint-check)
+- [Schema files](#schema-files)
 - [Merging existing ECS conventions](#merging-existing-ecs-conventions)
 
 <!-- tocstop -->
@@ -52,13 +53,13 @@ Agreement](https://identity.linuxfoundation.org/projects/cncf).
 When contributing to semantic conventions, it's important to understand a few
 key, but non-obvious, aspects:
 
+- In the PR description, include links to the relevant instrumentation and any applicable prototypes. Non-trivial changes to semantic conventions should be prototyped in the corresponding instrumentation(s).
 - All attributes, metrics, etc. are formally defined in YAML files under
   the `model/` directory.
 - All descriptions, normative language are defined in the `docs/` directory.
 - All changes to existing attributes, metrics, etc. MUST be allowed as
   per our [stability guarantees][stability guarantees] and
-  defined in a schema file. As part of any contribution, you should
-  include attribute changes defined in the `schema-next.yaml` file.
+  defined in a schema file.
 - Links to the specification repository MUST point to a tag and **not** to the `main` branch.
   The tag version MUST match with the one defined in [README](README.md).
 
@@ -92,7 +93,7 @@ pull requests, issues, and questions in this area.
 Check out [project management](https://github.com/open-telemetry/community/blob/main/project-management.md)
 for the details on how to start.
 
-Refer to the [How to define new conventions](/docs/general/how-to-define-semantic-conventions.md)
+Refer to the [How to define new conventions](/docs/how-to-write-conventions/README.md)
 document for guidance.
 
 ### Prerequisites
@@ -164,21 +165,6 @@ are defined in `/model/aws/lambda-spans.yaml` and `/model/aws/sdk-spans.yaml` fi
 Deprecated conventions should be placed under `/model/{root-namespace}/deprecated`
 folder.
 
-#### Schema files
-
-When making changes to existing semantic conventions (attributes, metrics, etc)
-you MUST also update the `schema-next.yaml` file with the changes.
-
-For details, please read
-[the schema specification](https://opentelemetry.io/docs/specs/otel/schemas/).
-
-You can also take examples from past changes inside the `schemas` folder.
-
-> [!WARNING]
->
-> DO NOT add your changes to files inside the `schemas` folder. Always add your
-> changes to the `schema-next.yaml` file.
-
 ### 2. Update the markdown files
 
 After updating the YAML file(s), you need to update
@@ -212,9 +198,6 @@ headers like the following:
 ```md
 <!--- Hugo front matter used to generate the website version of this page:
 linkTitle: HTTP
-path_base_for_github_subdir:
-  from: content/en/docs/specs/semconv/http/_index.md
-  to: http/README.md
 --->
 ```
 
@@ -302,10 +285,9 @@ Alternately, copy `./.chloggen/TEMPLATE.yaml`, or just create your file from scr
 
 A PR (pull request) is considered to be **ready to merge** when:
 
-- It has received at least two approvals from the [code
-  owners](./.github/CODEOWNERS) (if approvals are from only one company, they
-  won't count)
-- There is no `request changes` from the [code owners](./.github/CODEOWNERS)
+- It has received at least two approvals from the [code owners](./.github/CODEOWNERS)
+- There is no `request changes` from the [code owners](./.github/CODEOWNERS) for
+  affected area(s)
 - There is no open discussions
 - It has been at least two working days since the last modification (except for
   the trivial updates, such like typo, cosmetic, rebase, etc.). This gives
@@ -315,6 +297,35 @@ A PR (pull request) is considered to be **ready to merge** when:
 
 Any [maintainer](./README.md#contributing) can merge the PR once it is **ready
 to merge**.
+
+## Reviewer guidelines
+
+Semantic conventions consist of multiple [areas](./AREAS.md) with ownership
+defined in the [CODEOWNERS](./.github/CODEOWNERS) file.
+
+When a PR is raised against specific area(s), it is recommended to allow the corresponding
+area(s) owners to review and iterate on it first before approving or rejecting the PR.
+
+A review from [@specs-semconv-approvers](https://github.com/orgs/open-telemetry/teams/specs-semconv-approvers)
+is required on every PR and, in most cases, follows after area(s) owners approval.
+
+Before merging a PR, [@specs-semconv-maintainers](https://github.com/orgs/open-telemetry/teams/specs-semconv-maintainers)
+MUST verify that the PR has been approved by the corresponding area owner(s). For
+non-trivial changes, maintainers SHOULD NOT merge PRs without other code owner approvals.
+
+Reviews from non-code owners are encouraged, with the following assumptions:
+
+- There is a reasonable intersection between the change and the reviewer's area of expertise or interest
+- Area owners have autonomy to accept or dismiss feedback from non-codeowners and
+  SHOULD consult with [@specs-semconv-maintainers](https://github.com/orgs/open-telemetry/teams/specs-semconv-maintainers)
+  in case of conflicts
+
+When reviewing changes, reviewers SHOULD include relevant context such as:
+
+- Links to documentation related to the technology in question
+- Links to applicable semantic conventions or OpenTelemetry guidelines
+- Links to relevant PRs, issues, or discussions
+- Reasons for suggesting the change
 
 ## Automation
 
@@ -433,6 +444,23 @@ If it is the first time to run this command, install `yamllint` first:
 ```bash
 make install-yamllint
 ```
+
+## Schema files
+
+> [!WARNING]
+>
+> DO NOT add your changes to files inside the `schemas` folder. These files are
+> generated automatically by the release scripts and can't be updated after
+> the corresponding version is released.
+
+Release script uses the following command to generate new schema file:
+
+```bash
+make generate-schema-next NEXT_SEMCONV_VERSION={next version}
+```
+
+For details, please read
+[the schema specification](https://opentelemetry.io/docs/specs/otel/schemas/).
 
 ## Merging existing ECS conventions
 

@@ -7,10 +7,12 @@
 
 Attributes specific to a cpu instance.
 
-| Attribute | Type | Description | Examples | Stability |
+**Attributes:**
+
+| Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
-| <a id="cpu-logical-number" href="#cpu-logical-number">`cpu.logical_number`</a> | int | The logical CPU number [0..n-1] | `1` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="cpu-mode" href="#cpu-mode">`cpu.mode`</a> | string | The mode of the CPU | `user`; `system` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="cpu-logical-number" href="#cpu-logical-number">`cpu.logical_number`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The logical CPU number [0..n-1] | `1` |
+| <a id="cpu-mode" href="#cpu-mode">`cpu.mode`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The mode of the CPU | `user`; `system` |
 
 ---
 
@@ -18,11 +20,11 @@ Attributes specific to a cpu instance.
 
 | Value  | Description | Stability |
 |---|---|---|
-| `idle` | idle | ![Development](https://img.shields.io/badge/-development-blue) |
-| `interrupt` | interrupt | ![Development](https://img.shields.io/badge/-development-blue) |
-| `iowait` | iowait | ![Development](https://img.shields.io/badge/-development-blue) |
-| `kernel` | kernel | ![Development](https://img.shields.io/badge/-development-blue) |
-| `nice` | nice | ![Development](https://img.shields.io/badge/-development-blue) |
-| `steal` | steal | ![Development](https://img.shields.io/badge/-development-blue) |
-| `system` | system | ![Development](https://img.shields.io/badge/-development-blue) |
-| `user` | user | ![Development](https://img.shields.io/badge/-development-blue) |
+| `idle` | Idle | ![Development](https://img.shields.io/badge/-development-blue) |
+| `interrupt` | Interrupt | ![Development](https://img.shields.io/badge/-development-blue) |
+| `iowait` | IO Wait | ![Development](https://img.shields.io/badge/-development-blue) |
+| `kernel` | Kernel | ![Development](https://img.shields.io/badge/-development-blue) |
+| `nice` | Nice | ![Development](https://img.shields.io/badge/-development-blue) |
+| `steal` | Steal | ![Development](https://img.shields.io/badge/-development-blue) |
+| `system` | System | ![Development](https://img.shields.io/badge/-development-blue) |
+| `user` | User | ![Development](https://img.shields.io/badge/-development-blue) |

@@ -10,10 +10,12 @@
 
 The Android platform on which the Android application is running.
 
-| Attribute | Type | Description | Examples | Stability |
+**Attributes:**
+
+| Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
-| <a id="android-app-state" href="#android-app-state">`android.app.state`</a> | string | This attribute represents the state of the application. [1] | `created` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="android-os-api-level" href="#android-os-api-level">`android.os.api_level`</a> | string | Uniquely identifies the framework API revision offered by a version (`os.version`) of the android operating system. More information can be found [here](https://developer.android.com/guide/topics/manifest/uses-sdk-element#ApiLevels). | `33`; `32` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="android-app-state" href="#android-app-state">`android.app.state`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | This attribute represents the state of the application. [1] | `created` |
+| <a id="android-os-api-level" href="#android-os-api-level">`android.os.api_level`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Uniquely identifies the framework API revision offered by a version (`os.version`) of the android operating system. More information can be found in the [Android API levels documentation](https://developer.android.com/guide/topics/manifest/uses-sdk-element#ApiLevels). | `33`; `32` |
 
 **[1] `android.app.state`:** The Android lifecycle states are defined in [Activity lifecycle callbacks](https://developer.android.com/guide/components/activities/activity-lifecycle#lc), and from which the `OS identifiers` are derived.
 
@@ -31,9 +33,11 @@ The Android platform on which the Android application is running.
 
 This document defines attributes that represents an occurrence of a lifecycle transition on the Android platform.
 
-| Attribute | Type | Description | Examples | Stability |
+**Attributes:**
+
+| Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
-| <a id="android-state" href="#android-state">`android.state`</a> | string | Deprecated. Use `android.app.state` body field instead. | `created`; `background`; `foreground` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Use `android.app.state` body field instead. |
+| <a id="android-state" href="#android-state">`android.state`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `android.app.state`. | string | Deprecated. Use `android.app.state` attribute instead. | `created`; `background`; `foreground` |
 
 ---
 

@@ -15,7 +15,7 @@ groups:
       - ref: gen_ai.request.model
         requirement_level:
           conditionally_required: If available.
-      - ref: gen_ai.system
+      - ref: gen_ai.provider.name
         requirement_level: required
       - ref: gen_ai.operation.name
         requirement_level: required
@@ -31,13 +31,13 @@ groups:
           The `error.type` SHOULD match the error code returned by the Generative AI service,
           the canonical name of exception that occurred, or another low-cardinality error identifier.
           Instrumentations SHOULD document the list of errors they report.
-  - id: metric_attributes.gen_ai.openai
+  - id: metric_attributes.openai
     type: attribute_group
     brief: 'This group describes GenAI server metrics attributes'
     attributes:
-      - ref: gen_ai.openai.response.service_tier
+      - ref: openai.response.service_tier
         requirement_level: recommended
-      - ref: gen_ai.openai.response.system_fingerprint
+      - ref: openai.response.system_fingerprint
         requirement_level: recommended
   - id: metric.gen_ai.client.token.usage
     type: metric
@@ -45,7 +45,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
-    brief: 'Measures number of input and output tokens used'
+    brief: 'Number of input and output tokens used.'
     instrument: histogram
     unit: "{token}"
     stability: development
@@ -59,7 +59,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
-    brief: 'GenAI operation duration'
+    brief: 'GenAI operation duration.'
     instrument: histogram
     unit: "s"
     stability: development
@@ -78,7 +78,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
-    brief: 'Generative AI server request duration such as time-to-last byte or last output token'
+    brief: 'Generative AI server request duration such as time-to-last byte or last output token.'
     instrument: histogram
     unit: "s"
     stability: development
@@ -89,7 +89,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
-    brief: 'Time per output token generated after the first token for successful responses'
+    brief: 'Time per output token generated after the first token for successful responses.'
     instrument: histogram
     unit: "s"
     stability: development
@@ -100,7 +100,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
-    brief: 'Time to generate first token for successful responses'
+    brief: 'Time to generate first token for successful responses.'
     instrument: histogram
     unit: "s"
     stability: development

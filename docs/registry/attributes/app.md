@@ -7,13 +7,21 @@
 
 Describes attributes related to client-side applications (e.g. web apps or mobile apps).
 
-| Attribute | Type | Description | Examples | Stability |
+**Attributes:**
+
+| Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
-| <a id="app-installation-id" href="#app-installation-id">`app.installation.id`</a> | string | A unique identifier representing the installation of an application on a specific device [1] | `2ab2916d-a51f-4ac8-80ee-45ac31a28092` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="app-screen-coordinate-x" href="#app-screen-coordinate-x">`app.screen.coordinate.x`</a> | int | The x (horizontal) coordinate of a screen coordinate, in screen pixels. | `0`; `131` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="app-screen-coordinate-y" href="#app-screen-coordinate-y">`app.screen.coordinate.y`</a> | int | The y (vertical) component of a screen coordinate, in screen pixels. | `12`; `99` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="app-widget-id" href="#app-widget-id">`app.widget.id`</a> | string | An identifier that uniquely differentiates this widget from other widgets in the same application. [2] | `f9bc787d-ff05-48ad-90e1-fca1d46130b3`; `submit_order_1829` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="app-widget-name" href="#app-widget-name">`app.widget.name`</a> | string | The name of an application widget. [3] | `submit`; `attack`; `Clear Cart` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="app-build-id" href="#app-build-id">`app.build_id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Unique identifier for a particular build or compilation of the application. | `6cff0a7e-cefc-4668-96f5-1273d8b334d0`; `9f2b833506aa6973a92fde9733e6271f`; `my-app-1.0.0-code-123` |
+| <a id="app-installation-id" href="#app-installation-id">`app.installation.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | A unique identifier representing the installation of an application on a specific device [1] | `2ab2916d-a51f-4ac8-80ee-45ac31a28092` |
+| <a id="app-jank-frame-count" href="#app-jank-frame-count">`app.jank.frame_count`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | A number of frame renders that experienced jank. [2] | `9`; `42` |
+| <a id="app-jank-period" href="#app-jank-period">`app.jank.period`</a> | ![Development](https://img.shields.io/badge/-development-blue) | double | The time period, in seconds, for which this jank is being reported. | `1.0`; `5.0`; `10.24` |
+| <a id="app-jank-threshold" href="#app-jank-threshold">`app.jank.threshold`</a> | ![Development](https://img.shields.io/badge/-development-blue) | double | The minimum rendering threshold for this jank, in seconds. | `0.016`; `0.7`; `1.024` |
+| <a id="app-screen-coordinate-x" href="#app-screen-coordinate-x">`app.screen.coordinate.x`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The x (horizontal) coordinate of a screen coordinate, in screen pixels. | `0`; `131` |
+| <a id="app-screen-coordinate-y" href="#app-screen-coordinate-y">`app.screen.coordinate.y`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The y (vertical) component of a screen coordinate, in screen pixels. | `12`; `99` |
+| <a id="app-screen-id" href="#app-screen-id">`app.screen.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | An identifier that uniquely differentiates this screen from other screens in the same application. [3] | `f9bc787d-ff05-48ad-90e1-fca1d46130b3`; `com.example.app.MainActivity`; `com.example.shop.ProductDetailFragment`; `MyApp.ProfileView`; `MyApp.ProfileViewController` |
+| <a id="app-screen-name" href="#app-screen-name">`app.screen.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of an application screen. [4] | `MainActivity`; `ProductDetailFragment`; `ProfileView`; `ProfileViewController` |
+| <a id="app-widget-id" href="#app-widget-id">`app.widget.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | An identifier that uniquely differentiates this widget from other widgets in the same application. [5] | `f9bc787d-ff05-48ad-90e1-fca1d46130b3`; `submit_order_1829` |
+| <a id="app-widget-name" href="#app-widget-name">`app.widget.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of an application widget. [6] | `submit`; `attack`; `Clear Cart` |
 
 **[1] `app.installation.id`:** Its value SHOULD persist across launches of the same application installation, including through application upgrades.
 It SHOULD change if the application is uninstalled or if all applications of the vendor are uninstalled.
@@ -31,8 +39,14 @@ For Android, examples of `app.installation.id` implementations include:
 - [App set ID](https://developer.android.com/identity/app-set-id).
 - [`Settings.getString(Settings.Secure.ANDROID_ID)`](https://developer.android.com/reference/android/provider/Settings.Secure#ANDROID_ID).
 
-More information about Android identifier best practices can be found [here](https://developer.android.com/training/articles/user-data-ids).
+More information about Android identifier best practices can be found in the [Android user data IDs guide](https://developer.android.com/training/articles/user-data-ids).
 
-**[2] `app.widget.id`:** A widget is an application component, typically an on-screen visual GUI element.
+**[2] `app.jank.frame_count`:** Depending on platform limitations, the value provided MAY be approximation.
 
-**[3] `app.widget.name`:** A widget is an application component, typically an on-screen visual GUI element.
+**[3] `app.screen.id`:** A screen represents only the part of the device display drawn by the app. It typically contains multiple widgets or UI components and is larger in scope than individual widgets. Multiple screens can coexist on the same display simultaneously (e.g., split view on tablets).
+
+**[4] `app.screen.name`:** A screen represents only the part of the device display drawn by the app. It typically contains multiple widgets or UI components and is larger in scope than individual widgets. Multiple screens can coexist on the same display simultaneously (e.g., split view on tablets).
+
+**[5] `app.widget.id`:** A widget is an application component, typically an on-screen visual GUI element.
+
+**[6] `app.widget.name`:** A widget is an application component, typically an on-screen visual GUI element.

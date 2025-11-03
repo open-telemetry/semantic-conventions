@@ -130,16 +130,16 @@ groups:
       runs in a different process than its client or when database calls happen over
       instrumented protocol such as HTTP.
 
-      **Span status** Refer to the [Recording Errors](/docs/general/recording-errors.md)
-      document for details on how to record span status. Semantic conventions for
-      individual systems SHOULD specify which values of `db.response.status_code`
+      **Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
+      Semantic conventions for individual systems SHOULD specify which values of `db.response.status_code`
       classify as errors.
     span_kind: client
     extends: trace.db.common.full
     attributes:
+      # experimental attributes must be opt-in stable spans
+      # TODO (trask) make this recommended once it is stable
       - ref: db.response.returned_rows
-        requirement_level: opt_in  # experimental attributes must be opt-in stable spans
-                                   # TODO (trask) make this recommended once it is stable
+        requirement_level: opt_in
 
   - id: span.db.sql_server.client
     type: span
@@ -169,7 +169,7 @@ groups:
           Instrumentation SHOULD document if `db.namespace` reflects the database provided when the connection was established.
 
           It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
-        examples: ["instance1.products", "customers"]
+        examples: ['instance1\|products', 'customers']
       - ref: db.response.status_code
         brief: >
           [Microsoft SQL Server error](https://learn.microsoft.com/sql/relational-databases/errors-events/database-engine-events-and-errors) number
@@ -750,8 +750,9 @@ groups:
         note: |
           The collection name SHOULD NOT be extracted from `db.query.text`.
       - ref: db.response.returned_rows
-        requirement_level: opt_in  # experimental attributes must be opt-in stable spans
-                                   # TODO (trask) make this recommended once it is stable
+        # experimental attributes must be opt-in stable spans
+        # TODO (trask) make this recommended once it is stable
+        requirement_level: opt_in
 
   - id: span.azure.cosmosdb.client
     type: span
@@ -840,7 +841,7 @@ groups:
           Bulk operations:
 
           - `execute_bulk` SHOULD be used on spans reported for methods like
-            [`executeBulkOperations`](https://javadoc.io/doc/com.azure/azure-cosmos/latest/com/azure/cosmos/CosmosAsyncContainer.html#executeBulkOperations)).
+            [`executeBulkOperations`](https://javadoc.io/doc/com.azure/azure-cosmos/latest/com/azure/cosmos/CosmosAsyncContainer.html#executeBulkOperations(reactor.core.publisher.Flux)),
             which represents a bulk execution of multiple operations.
           - `bulk_{operation name}` (`bulk_create_item`, `bulk_upsert_item`, etc) SHOULD be used on spans describing individual operations (when they are reported)
             within the bulk. This pattern SHOULD be used when instrumentation creates span per each operation, but operations are buffered and then performed in bulk.
