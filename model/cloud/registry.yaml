@@ -8,6 +8,10 @@ groups:
       - id: cloud.provider
         type:
           members:
+            - id: 'akamai_cloud'
+              value: 'akamai_cloud'
+              brief: 'Akamai Cloud'
+              stability: development
             - id: 'alibaba_cloud'
               value: 'alibaba_cloud'
               brief: 'Alibaba Cloud'
@@ -107,6 +111,10 @@ groups:
       - id: cloud.platform
         type:
           members:
+            - id: akamai_cloud.compute
+              value: 'akamai_cloud.compute'
+              brief: Akamai Cloud Compute
+              stability: development
             - id: alibaba_cloud_ecs
               value: 'alibaba_cloud_ecs'
               brief: Alibaba Cloud Elastic Compute Service
