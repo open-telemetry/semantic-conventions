@@ -32,6 +32,10 @@ groups:
               value: 'heroku'
               brief: 'Heroku Platform as a Service'
               stability: development
+            - id: 'hetzner'
+              value: 'hetzner'
+              brief: 'Hetzner'
+              stability: development
             - id: 'ibm_cloud'
               value: 'ibm_cloud'
               brief: 'IBM Cloud'
@@ -284,6 +288,10 @@ groups:
             - id: gcp_openshift
               value: 'gcp_openshift'
               brief: Red Hat OpenShift on Google Cloud
+              stability: development
+            - id: hetzner.cloud_server
+              value: 'hetzner.cloud_server'
+              brief: Server on Hetzner Cloud
               stability: development
             - id: ibm_cloud_openshift
               value: 'ibm_cloud_openshift'
