@@ -7,13 +7,15 @@
 
 Describes information about the user.
 
-| Attribute | Type | Description | Examples | Stability |
+**Attributes:**
+
+| Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
-| <a id="user-email" href="#user-email">`user.email`</a> | string | User email address. | `a.einstein@example.com` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="user-full-name" href="#user-full-name">`user.full_name`</a> | string | User's full name | `Albert Einstein` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="user-hash" href="#user-hash">`user.hash`</a> | string | Unique user hash to correlate information for a user in anonymized form. [1] | `364fc68eaf4c8acec74a4e52d7d1feaa` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="user-id" href="#user-id">`user.id`</a> | string | Unique identifier of the user. | `S-1-5-21-202424912787-2692429404-2351956786-1000` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="user-name" href="#user-name">`user.name`</a> | string | Short name or login/username of the user. | `a.einstein` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="user-roles" href="#user-roles">`user.roles`</a> | string[] | Array of user roles at the time of the event. | `["admin", "reporting_user"]` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="user-email" href="#user-email">`user.email`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | User email address. | `a.einstein@example.com` |
+| <a id="user-full-name" href="#user-full-name">`user.full_name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | User's full name | `Albert Einstein` |
+| <a id="user-hash" href="#user-hash">`user.hash`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Unique user hash to correlate information for a user in anonymized form. [1] | `364fc68eaf4c8acec74a4e52d7d1feaa` |
+| <a id="user-id" href="#user-id">`user.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Unique identifier of the user. | `S-1-5-21-202424912787-2692429404-2351956786-1000` |
+| <a id="user-name" href="#user-name">`user.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Short name or login/username of the user. | `a.einstein` |
+| <a id="user-roles" href="#user-roles">`user.roles`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string[] | Array of user roles at the time of the event. | `["admin", "reporting_user"]` |
 
 **[1] `user.hash`:** Useful if `user.id` or `user.name` contain confidential information and cannot be used.

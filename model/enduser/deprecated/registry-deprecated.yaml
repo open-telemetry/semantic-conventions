@@ -8,7 +8,7 @@ groups:
         type: string
         deprecated:
           reason: uncategorized
-          note: "Use `user.roles` attribute instead."
+          note: Use `user.roles` instead.
         stability: development
         brief: "Deprecated, use `user.roles` instead."
         examples: 'admin'

@@ -1,0 +1,76 @@
+groups:
+  - id: metric.rpc.client.requests_per_rpc
+    type: metric
+    metric_name: rpc.client.requests_per_rpc
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: Measures the number of messages received per RPC.
+    instrument: histogram
+    unit: "{count}"
+    note: |
+      Should be 1 for all non-streaming RPCs.
+
+      **Streaming**: This metric is required for server and client streaming RPCs
+    extends: attributes.metrics.rpc.client
+    deprecated:
+      reason: obsoleted
+      note: Removed, no replacement at this time.
+
+  - id: metric.rpc.client.responses_per_rpc
+    type: metric
+    metric_name: rpc.client.responses_per_rpc
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: Measures the number of messages sent per RPC.
+    instrument: histogram
+    unit: "{count}"
+    note: |
+      Should be 1 for all non-streaming RPCs.
+
+      **Streaming**: This metric is required for server and client streaming RPCs
+    extends: attributes.metrics.rpc.client
+    deprecated:
+      reason: obsoleted
+      note: Removed, no replacement at this time.
+
+  - id: metric.rpc.server.requests_per_rpc
+    type: metric
+    metric_name: rpc.server.requests_per_rpc
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: Measures the number of messages received per RPC.
+    instrument: histogram
+    unit: "{count}"
+    note: |
+      Should be 1 for all non-streaming RPCs.
+
+      **Streaming** : This metric is required for server and client streaming RPCs
+    extends: attributes.metrics.rpc.server
+    deprecated:
+      reason: obsoleted
+      note: Removed, no replacement at this time.
+
+  - id: metric.rpc.server.responses_per_rpc
+    type: metric
+    metric_name: rpc.server.responses_per_rpc
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: Measures the number of messages sent per RPC.
+    instrument: histogram
+    unit: "{count}"
+    note: |
+      Should be 1 for all non-streaming RPCs.
+
+      **Streaming**: This metric is required for server and client streaming RPCs
+    extends: attributes.metrics.rpc.server
+    deprecated:
+      reason: obsoleted
+      note: Removed, no replacement at this time.

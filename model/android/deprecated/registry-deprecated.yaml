@@ -9,8 +9,8 @@ groups:
         stability: development
         brief: Deprecated. Use `android.app.state` attribute instead.
         deprecated:
-          reason: uncategorized
-          note: Use `android.app.state` attribute instead.
+          reason: renamed
+          renamed_to: android.app.state
         type:
           members:
             - id: created
