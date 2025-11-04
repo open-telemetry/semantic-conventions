@@ -22,17 +22,19 @@ with attributes and the type of the body if any.
 
 ## General event semantics
 
-* An event MUST have an [Event name property](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.50.0/specification/logs/data-model.md#field-eventname)
-  that uniquely identifies the event. Event names are subject to the [Naming guidelines](/docs/general/naming.md). Event name SHOULD be of a low-cardinality.
-* Events MAY have [attributes](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.50.0/specification/logs/data-model.md#field-attributes)
-  that provide additional context about the event.
-* Events MAY contain a [body](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.50.0/specification/logs/data-model.md#field-body) of type [`any`](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.50.0/specification/logs/data-model.md#type-any).
-* The event name uniquely identifies event structure: the set of attributes and
-  the type of the body.
-* Events MAY have [severity number](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.50.0/specification/logs/data-model.md#field-severitynumber).
+* An event MUST have an [event name](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.50.0/specification/logs/data-model.md#field-eventname)
+  that uniquely identifies the event structure: its [attributes](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.50.0/specification/logs/data-model.md#field-attributes)
+  and the type of the [body](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.50.0/specification/logs/data-model.md#field-body).
 
-It's RECOMMENDED to use the collection of attributes to represent the details of
-the event.
+* Event name SHOULD be of a low-cardinality.
+  Event names are subject to the [Naming guidelines](/docs/general/naming.md).
+
+* It's RECOMMENDED to use [attributes](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.50.0/specification/logs/data-model.md#field-attributes) to represent the details and additional
+  context of the event.
+
+* Events SHOULD have [severity number](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.50.0/specification/logs/data-model.md#field-severitynumber)
+  specified.
+
 
 <!-- Body use cases are not clear - see https://github.com/open-telemetry/semantic-conventions/issues/1651 for the context.-->
 
