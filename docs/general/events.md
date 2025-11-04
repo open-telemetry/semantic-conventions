@@ -35,7 +35,6 @@ with attributes and the type of the body if any.
 * Events SHOULD have [severity number](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.50.0/specification/logs/data-model.md#field-severitynumber)
   specified.
 
-
 <!-- Body use cases are not clear - see https://github.com/open-telemetry/semantic-conventions/issues/1651 for the context.-->
 
 ## External event compatibility
