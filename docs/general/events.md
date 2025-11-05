@@ -29,7 +29,7 @@ Semantic conventions that define events SHOULD document the event name, its attr
 
 * Attributes SHOULD be used to represent details and provide additional context about the event.
 
-* Events SHOULD NOT use [body](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.50.0/specification/logs/data-model.md#field-body)
+* Events SHOULD NOT use [body](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.50.0/specification/logs/data-model.md#field-body).
 
 * Events SHOULD specify a [severity number](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.50.0/specification/logs/data-model.md#field-severitynumber).
 
