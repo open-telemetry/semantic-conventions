@@ -17,7 +17,7 @@ network connection severed, etc.
 
 In OpenTelemetry, Events are implemented as a specific type of [`LogRecord`](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.50.0/specification/logs/api.md) that conforms to the conventions included here.
 
-Semantic conventions that define events SHOULD document the event name, its attributes, and the type of the body (if any).
+Semantic conventions that define events MUST document the event name, its attributes, and the type of the body (if any).
 
 ## General event semantics
 
