@@ -66,6 +66,21 @@ groups:
       - ref: error.type
         requirement_level:
           conditionally_required: If and only if the operation failed.
+        examples: ['DEADLINE_EXCEEDED', 'java.net.UnknownHostException', '-32602',]
+        note: |
+          If the RPC fails with an error before status code is returned,
+          `error.type` SHOULD be set to the exception type (its fully-qualified class name, if applicable)
+          or a component-specific, low cardinality error identifier.
+
+          If a response status code is returned and status indicates an error,
+          `error.type` SHOULD be set to that status code. Check system-specific conventions
+          for the details on which values of `rpc.status_code` are considered errors.
+
+          The `error.type` value SHOULD be predictable and SHOULD have low cardinality.
+          Instrumentations SHOULD document the list of errors they report.
+
+          If the request has completed successfully, instrumentations SHOULD NOT set
+          `error.type`.
   - id: rpc_service
     type: attribute_group
     brief: 'This document defines semantic conventions for remote procedure calls.'
