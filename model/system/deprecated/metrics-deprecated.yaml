@@ -58,3 +58,37 @@ groups:
       - ref: network.io.direction
     entity_associations:
       - host
+
+  - id: metric.system.linux.memory.available
+    type: metric
+    metric_name: system.linux.memory.available
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    deprecated:
+      reason: renamed
+      renamed_to: system.memory.linux.available
+    brief: The number of packets transferred.
+    instrument: counter
+    unit: "{packet}"
+    entity_associations:
+      - host
+
+  - id: metric.system.linux.memory.slab.usage
+    type: metric
+    metric_name: system.linux.memory.slab.usage
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    deprecated:
+      reason: renamed
+      renamed_to: system.memory.linux.slab.usage
+    brief: The number of packets transferred.
+    instrument: counter
+    unit: "{packet}"
+    attributes:
+      - ref: linux.memory.slab.state
+    entity_associations:
+      - host
