@@ -75,11 +75,11 @@ groups:
           SHOULD be recorded as `browser.element.attributes.id = "testBtn"`
           and `browser.element.attributes.role = "submit"`.
         examples: ["testBtn", "submit"]
-      - id: browser.xpath
+      - id: browser.css_selector
         type: string
         stability: development
-        brief: 'Target element XPath using the XPathExpression API.'
-        examples: ["//*[@id='testBtn']"]
+        brief: 'Target element CSS Selector'
+        examples: ["#main > div:nth-child(2) > button.submit"]
       - id: hw.mouse.button
         type:
           members:

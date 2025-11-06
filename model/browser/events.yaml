@@ -67,7 +67,7 @@ groups:
         requirement_level: required
       - ref: browser.tag_name
         requirement_level: required
-      - ref: browser.xpath
+      - ref: browser.css_selector
         requirement_level: required
       - ref: browser.element.attributes
         requirement_level: recommended

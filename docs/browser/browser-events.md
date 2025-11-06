@@ -70,10 +70,10 @@ This event describes a user click action in the browser.
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
+| [`browser.css_selector`](/docs/registry/attributes/browser.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Target element CSS Selector | `#main > div:nth-child(2) > button.submit` |
 | [`browser.page.x`](/docs/registry/attributes/browser.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | int | Click x (horizontal) coordinates (in pixels) relative to the entire document. | `10` |
 | [`browser.page.y`](/docs/registry/attributes/browser.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | int | Click y (vertical) coordinates (in pixels) relative to the entire document. | `10` |
 | [`browser.tag_name`](/docs/registry/attributes/browser.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Target element tag name obtained via event.target.tagName. | `BUTTON` |
-| [`browser.xpath`](/docs/registry/attributes/browser.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Target element XPath using the XPathExpression API. | `//*[@id='testBtn']` |
 | [`browser.element.attributes.<key>`](/docs/registry/attributes/browser.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Map of data-otel-* attributes from the target element. [1] | `testBtn`; `submit` |
 | [`hw.mouse.button`](/docs/registry/attributes/browser.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | User friendly name of the mouse button pressed. See [MouseEvent.buttons](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/buttons#value). | `left` |
 
