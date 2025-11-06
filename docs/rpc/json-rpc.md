@@ -42,7 +42,7 @@ are considered errors.
 | [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | RPC server [host name](https://grpc.github.io/grpc/core/md_doc_naming.html). [2] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the operation failed. | string | Describes a class of error the operation ended with. [3] | `DEADLINE_EXCEEDED`; `java.net.UnknownHostException`; `-32602` |
 | [`rpc.jsonrpc.version`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If other than the default version (`1.0`) | string | Protocol version as in `jsonrpc` property of request/response. Since JSON-RPC 1.0 doesn't specify this, the value can be omitted. | `2.0`; `1.0` |
-| [`rpc.status_code`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` when available | string | The [`error.code`](https://www.jsonrpc.org/specification#error_object) property of response if it is an error response recorded as a string. [4] | `OK`; `DEADLINE_EXCEEDED`; `-32602` |
+| [`rpc.response.status_code`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` when available | string | The [`error.code`](https://www.jsonrpc.org/specification#error_object) property of response if it is an error response recorded as a string. [4] | `OK`; `DEADLINE_EXCEEDED`; `-32602` |
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [5] | int | Server port number. [6] | `80`; `8080`; `443` |
 | [`network.peer.address`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Peer address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` |
 | [`network.peer.port`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` If `network.peer.address` is set. | int | Peer port number of the network connection. | `65123` |
@@ -61,7 +61,7 @@ or a component-specific, low cardinality error identifier.
 
 If a response status code is returned and status indicates an error,
 `error.type` SHOULD be set to that status code. Check system-specific conventions
-for the details on which values of `rpc.status_code` are considered errors.
+for the details on which values of `rpc.response.status_code` are considered errors.
 
 The `error.type` value SHOULD be predictable and SHOULD have low cardinality.
 Instrumentations SHOULD document the list of errors they report.
@@ -69,7 +69,7 @@ Instrumentations SHOULD document the list of errors they report.
 If the request has completed successfully, instrumentations SHOULD NOT set
 `error.type`.
 
-**[4] `rpc.status_code`:** All JSON RPC error codes SHOULD be considered errors.
+**[4] `rpc.response.status_code`:** All JSON RPC error codes SHOULD be considered errors.
 
 **[5] `server.port`:** if the port is supported by the network transport used for communication.
 
@@ -142,7 +142,7 @@ are considered errors.
 | [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | RPC server [host name](https://grpc.github.io/grpc/core/md_doc_naming.html). [2] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the operation failed. | string | Describes a class of error the operation ended with. [3] | `DEADLINE_EXCEEDED`; `java.net.UnknownHostException`; `-32602` |
 | [`rpc.jsonrpc.version`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If other than the default version (`1.0`) | string | Protocol version as in `jsonrpc` property of request/response. Since JSON-RPC 1.0 doesn't specify this, the value can be omitted. | `2.0`; `1.0` |
-| [`rpc.status_code`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` when available | string | The [`error.code`](https://www.jsonrpc.org/specification#error_object) property of response recorded as a string. [4] | `OK`; `DEADLINE_EXCEEDED`; `-32602` |
+| [`rpc.response.status_code`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` when available | string | The [`error.code`](https://www.jsonrpc.org/specification#error_object) property of response recorded as a string. [4] | `OK`; `DEADLINE_EXCEEDED`; `-32602` |
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [5] | int | Server port number. [6] | `80`; `8080`; `443` |
 | [`client.address`](/docs/registry/attributes/client.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Client address - domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [7] | `client.example.com`; `10.1.2.80`; `/tmp/my.sock` |
 | [`client.port`](/docs/registry/attributes/client.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | Client port number. [8] | `65123` |
@@ -163,7 +163,7 @@ or a component-specific, low cardinality error identifier.
 
 If a response status code is returned and status indicates an error,
 `error.type` SHOULD be set to that status code. Check system-specific conventions
-for the details on which values of `rpc.status_code` are considered errors.
+for the details on which values of `rpc.response.status_code` are considered errors.
 
 The `error.type` value SHOULD be predictable and SHOULD have low cardinality.
 Instrumentations SHOULD document the list of errors they report.
@@ -171,7 +171,7 @@ Instrumentations SHOULD document the list of errors they report.
 If the request has completed successfully, instrumentations SHOULD NOT set
 `error.type`.
 
-**[4] `rpc.status_code`:** All JSON RPC error codes SHOULD be considered errors.
+**[4] `rpc.response.status_code`:** All JSON RPC error codes SHOULD be considered errors.
 
 **[5] `server.port`:** if the port is supported by the network transport used for communication.
 

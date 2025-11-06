@@ -102,9 +102,7 @@ This span represents an outgoing Remote Procedure Call (RPC).
 **Span kind** MUST be `CLIENT`.
 
 **Span status** Refer to the [Recording Errors](/docs/general/recording-errors.md)
-document for details on how to record span status. Semantic conventions for
-individual systems SHOULD specify which values of `rpc.status_code`
-classify as errors.
+document for details on how to record span status.
 
 **Attributes:**
 
@@ -130,7 +128,7 @@ or a component-specific, low cardinality error identifier.
 
 If a response status code is returned and status indicates an error,
 `error.type` SHOULD be set to that status code. Check system-specific conventions
-for the details on which values of `rpc.status_code` are considered errors.
+for the details on which values of `rpc.response.status_code` are considered errors.
 
 The `error.type` value SHOULD be predictable and SHOULD have low cardinality.
 Instrumentations SHOULD document the list of errors they report.
@@ -213,9 +211,7 @@ This span represents an incoming Remote Procedure Call (RPC).
 **Span kind** MUST be `SERVER`.
 
 **Span status** Refer to the [Recording Errors](/docs/general/recording-errors.md)
-document for details on how to record span status. Semantic conventions for
-individual systems SHOULD specify which values of `rpc.status_code`
-classify as errors.
+document for details on how to record span status.
 
 **Attributes:**
 
@@ -243,7 +239,7 @@ or a component-specific, low cardinality error identifier.
 
 If a response status code is returned and status indicates an error,
 `error.type` SHOULD be set to that status code. Check system-specific conventions
-for the details on which values of `rpc.status_code` are considered errors.
+for the details on which values of `rpc.response.status_code` are considered errors.
 
 The `error.type` value SHOULD be predictable and SHOULD have low cardinality.
 Instrumentations SHOULD document the list of errors they report.

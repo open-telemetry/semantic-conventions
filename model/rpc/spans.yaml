@@ -9,9 +9,7 @@ groups:
       **Span kind** MUST be `CLIENT`.
 
       **Span status** Refer to the [Recording Errors](/docs/general/recording-errors.md)
-      document for details on how to record span status. Semantic conventions for
-      individual systems SHOULD specify which values of `rpc.status_code`
-      classify as errors.
+      document for details on how to record span status.
     extends: rpc_service
     span_kind: client
     events: [rpc.message]
@@ -32,9 +30,7 @@ groups:
       **Span kind** MUST be `SERVER`.
 
       **Span status** Refer to the [Recording Errors](/docs/general/recording-errors.md)
-      document for details on how to record span status. Semantic conventions for
-      individual systems SHOULD specify which values of `rpc.status_code`
-      classify as errors.
+      document for details on how to record span status.
     attributes:
       - ref: rpc.system
         requirement_level: required
@@ -55,7 +51,7 @@ groups:
     extends: rpc_service
     span_kind: client
     attributes:
-      - ref: rpc.status_code
+      - ref: rpc.response.status_code
         requirement_level:
           conditionally_required: if available.
         brief: The [error code](https://connectrpc.com//docs/protocol/#error-codes) of the Connect response.
@@ -82,7 +78,7 @@ groups:
       **Span status** Refer to the [Recording Errors](/docs/general/recording-errors.md)
       document for details on how to record span status.
     attributes:
-      - ref: rpc.status_code
+      - ref: rpc.response.status_code
         requirement_level:
           conditionally_required: if available.
         brief: The [error code](https://connectrpc.com//docs/protocol/#error-codes) of the Connect response.
@@ -112,7 +108,7 @@ groups:
       **Span kind** MUST be `CLIENT`.
 
       **Span status** Refer to the [Recording Errors](/docs/general/recording-errors.md)
-      document for details on how to record span status. See also `rpc.status_code` attribute
+      document for details on how to record span status. See also `rpc.response.status_code` attribute
       for the details on which values classify as errors.
     extends: rpc_service
     span_kind: client
@@ -121,7 +117,7 @@ groups:
         requirement_level: required
       - ref: rpc.service
         requirement_level: required
-      - ref: rpc.status_code
+      - ref: rpc.response.status_code
         requirement_level: required
         brief: >
           The string representation of the [status code](https://github.com/grpc/grpc/blob/v1.75.0/doc/statuscodes.md)
@@ -147,10 +143,10 @@ groups:
       **Span kind** MUST be `SERVER`.
 
       **Span status** Refer to the [Recording Errors](/docs/general/recording-errors.md)
-      document for details on how to record span status. See also `rpc.status_code` attribute
+      document for details on how to record span status. See also `rpc.response.status_code` attribute
       for the details on which values classify as errors.
     attributes:
-      - ref: rpc.status_code
+      - ref: rpc.response.status_code
         requirement_level: required
         brief: >
           The string representation of the [status code](https://github.com/grpc/grpc/blob/v1.75.0/doc/statuscodes.md)
@@ -195,7 +191,7 @@ groups:
           conditionally_required: If other than the default version (`1.0`)
       - ref: rpc.jsonrpc.request_id
         requirement_level: recommended
-      - ref: rpc.status_code
+      - ref: rpc.response.status_code
         brief: >
           The [`error.code`](https://www.jsonrpc.org/specification#error_object)
           property of response if it is an error response recorded as a string.
@@ -229,7 +225,7 @@ groups:
           conditionally_required: If other than the default version (`1.0`)
       - ref: rpc.jsonrpc.request_id
         requirement_level: recommended
-      - ref: rpc.status_code
+      - ref: rpc.response.status_code
         brief: >
           The [`error.code`](https://www.jsonrpc.org/specification#error_object) property of
           response recorded as a string.

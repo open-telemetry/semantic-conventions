@@ -111,10 +111,10 @@ groups:
               stability: development
               value: 16
         stability: development
-        brief: "Deprecated, use string representation on the `rpc.status_code` attribute instead."
+        brief: "Deprecated, use string representation on the `rpc.response.status_code` attribute instead."
         deprecated:
           reason: uncategorized
-          note: "Use string representation of the gRPC status code on the `rpc.status_code` attribute."
+          note: "Use string representation of the gRPC status code on the `rpc.response.status_code` attribute."
       - id: rpc.connect_rpc.error_code
         type:
           members:
@@ -167,18 +167,18 @@ groups:
               value: unauthenticated
               stability: development
         stability: development
-        brief: "Deprecated, use `rpc.status_code` attribute instead."
+        brief: "Deprecated, use `rpc.response.status_code` attribute instead."
         deprecated:
           reason: renamed
-          renamed_to: rpc.status_code
+          renamed_to: rpc.response.status_code
       - id: rpc.jsonrpc.error_code
         type: int
         stability: development
-        brief: "Deprecated, use string representation on the `rpc.status_code` attribute instead."
+        brief: "Deprecated, use string representation on the `rpc.response.status_code` attribute instead."
         examples: [-32700, 100]
         deprecated:
           reason: uncategorized
-          note: "Use string representation of the error code on the `rpc.status_code` attribute."
+          note: "Use string representation of the error code on the `rpc.response.status_code` attribute."
       - id: rpc.jsonrpc.error_message
         type: string
         stability: development

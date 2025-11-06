@@ -74,7 +74,7 @@ groups:
 
           If a response status code is returned and status indicates an error,
           `error.type` SHOULD be set to that status code. Check system-specific conventions
-          for the details on which values of `rpc.status_code` are considered errors.
+          for the details on which values of `rpc.response.status_code` are considered errors.
 
           The `error.type` value SHOULD be predictable and SHOULD have low cardinality.
           Instrumentations SHOULD document the list of errors they report.
