@@ -6,7 +6,7 @@
 FROM otel/weaver:v0.18.0@sha256:5425ade81dc22ddd840902b0638b4b6a9186fb654c5b50c1d1ccd31299437390 AS weaver
 
 # OPA is used to test policies enforced by weaver.
-FROM openpolicyagent/opa:1.10.0@sha256:c0814ce7811ecef8f1297a8e55774a1d5422e5c18b996b665acbc126124fab19 AS opa
+FROM openpolicyagent/opa:1.10.1@sha256:4715d0574ca2f8c5ecd65b4e5b0833a53aea0f79c31e52a93972b104bbd614fd AS opa
 
 # Lychee is used for checking links in documentation.
 FROM lycheeverse/lychee:sha-0a96dc2@sha256:2d397eb32e4add073deb5af328f7d644538cd62c007892c57b57551b073b6a12 AS lychee
