@@ -1,5 +1,0 @@
-change_type: enhancement
-component: gen-ai
-note: Add participant's name on generative AI chat message.
-issues: [2943]
-subtext:

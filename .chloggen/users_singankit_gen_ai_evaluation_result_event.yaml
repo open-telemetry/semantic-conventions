@@ -1,6 +1,0 @@
-change_type: enhancement
-component: gen-ai
-note: |
-  Introducing `Evaluation Event` in GenAI Semantic Conventions to represent and capture evaluation results.
-
-issues: [2563]
