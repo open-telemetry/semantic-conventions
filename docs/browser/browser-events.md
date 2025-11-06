@@ -70,14 +70,16 @@ This event describes a user click action in the browser.
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
-| [`browser.css_selector`](/docs/registry/attributes/browser.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Target element CSS Selector | `#main > div:nth-child(2) > button.submit` |
+| [`browser.css_selector`](/docs/registry/attributes/browser.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Target element CSS Selector [1] | `#main > div:nth-child(2) > button.submit` |
 | [`browser.page.x`](/docs/registry/attributes/browser.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | int | Click x (horizontal) coordinates (in pixels) relative to the entire document. | `10` |
 | [`browser.page.y`](/docs/registry/attributes/browser.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | int | Click y (vertical) coordinates (in pixels) relative to the entire document. | `10` |
 | [`browser.tag_name`](/docs/registry/attributes/browser.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Target element tag name obtained via event.target.tagName. | `BUTTON` |
-| [`browser.element.attributes.<key>`](/docs/registry/attributes/browser.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Map of data-otel-* attributes from the target element. [1] | `testBtn`; `submit` |
+| [`browser.element.attributes.<key>`](/docs/registry/attributes/browser.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Map of data-otel-* attributes from the target element. [2] | `testBtn`; `submit` |
 | [`hw.mouse.button`](/docs/registry/attributes/browser.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | User friendly name of the mouse button pressed. See [MouseEvent.buttons](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/buttons#value). | `left` |
 
-**[1] `browser.element.attributes.<key>`:** Key is the attribute name after "data-otel-" and value is the attribute value. Example: `<button data-otel-id="testBtn" data-otel-role="submit">` SHOULD be recorded as `browser.element.attributes.id = "testBtn"` and `browser.element.attributes.role = "submit"`.
+**[1] `browser.css_selector`:** Value SHOULD be a CSS selector that uniquely identifies the target element within the document. Value SHOULD be escaped using CSS.escape() to avoid issues with special characters.
+
+**[2] `browser.element.attributes.<key>`:** Key is the attribute name after "data-otel-" and value is the attribute value. Example: `<button data-otel-id="testBtn" data-otel-role="submit">` SHOULD be recorded as `browser.element.attributes.id = "testBtn"` and `browser.element.attributes.role = "submit"`.
 
 ---
 

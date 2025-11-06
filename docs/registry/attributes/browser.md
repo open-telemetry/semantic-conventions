@@ -12,25 +12,27 @@ The web browser attributes
 | Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
 | <a id="browser-brands" href="#browser-brands">`browser.brands`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string[] | Array of brand name and version separated by a space [1] | `[" Not A;Brand 99", "Chromium 99", "Chrome 99"]` |
-| <a id="browser-css-selector" href="#browser-css-selector">`browser.css_selector`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Target element CSS Selector | `#main > div:nth-child(2) > button.submit` |
-| <a id="browser-element-attributes" href="#browser-element-attributes">`browser.element.attributes.<key>`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Map of data-otel-* attributes from the target element. [2] | `testBtn`; `submit` |
-| <a id="browser-language" href="#browser-language">`browser.language`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Preferred language of the user using the browser [3] | `en`; `en-US`; `fr`; `fr-FR` |
-| <a id="browser-mobile" href="#browser-mobile">`browser.mobile`</a> | ![Development](https://img.shields.io/badge/-development-blue) | boolean | A boolean that is true if the browser is running on a mobile device [4] |  |
+| <a id="browser-css-selector" href="#browser-css-selector">`browser.css_selector`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Target element CSS Selector [2] | `#main > div:nth-child(2) > button.submit` |
+| <a id="browser-element-attributes" href="#browser-element-attributes">`browser.element.attributes.<key>`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Map of data-otel-* attributes from the target element. [3] | `testBtn`; `submit` |
+| <a id="browser-language" href="#browser-language">`browser.language`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Preferred language of the user using the browser [4] | `en`; `en-US`; `fr`; `fr-FR` |
+| <a id="browser-mobile" href="#browser-mobile">`browser.mobile`</a> | ![Development](https://img.shields.io/badge/-development-blue) | boolean | A boolean that is true if the browser is running on a mobile device [5] |  |
 | <a id="browser-page-x" href="#browser-page-x">`browser.page.x`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | Click x (horizontal) coordinates (in pixels) relative to the entire document. | `10` |
 | <a id="browser-page-y" href="#browser-page-y">`browser.page.y`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | Click y (vertical) coordinates (in pixels) relative to the entire document. | `10` |
-| <a id="browser-platform" href="#browser-platform">`browser.platform`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The platform on which the browser is running [5] | `Windows`; `macOS`; `Android` |
+| <a id="browser-platform" href="#browser-platform">`browser.platform`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The platform on which the browser is running [6] | `Windows`; `macOS`; `Android` |
 | <a id="browser-tag-name" href="#browser-tag-name">`browser.tag_name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Target element tag name obtained via event.target.tagName. | `BUTTON` |
 | <a id="hw-mouse-button" href="#hw-mouse-button">`hw.mouse.button`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | User friendly name of the mouse button pressed. See [MouseEvent.buttons](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/buttons#value). | `left` |
 
 **[1] `browser.brands`:** This value is intended to be taken from the [UA client hints API](https://wicg.github.io/ua-client-hints/#interface) (`navigator.userAgentData.brands`).
 
-**[2] `browser.element.attributes.<key>`:** Key is the attribute name after "data-otel-" and value is the attribute value. Example: `<button data-otel-id="testBtn" data-otel-role="submit">` SHOULD be recorded as `browser.element.attributes.id = "testBtn"` and `browser.element.attributes.role = "submit"`.
+**[2] `browser.css_selector`:** Value SHOULD be a CSS selector that uniquely identifies the target element within the document. Value SHOULD be escaped using CSS.escape() to avoid issues with special characters.
 
-**[3] `browser.language`:** This value is intended to be taken from the Navigator API `navigator.language`.
+**[3] `browser.element.attributes.<key>`:** Key is the attribute name after "data-otel-" and value is the attribute value. Example: `<button data-otel-id="testBtn" data-otel-role="submit">` SHOULD be recorded as `browser.element.attributes.id = "testBtn"` and `browser.element.attributes.role = "submit"`.
 
-**[4] `browser.mobile`:** This value is intended to be taken from the [UA client hints API](https://wicg.github.io/ua-client-hints/#interface) (`navigator.userAgentData.mobile`). If unavailable, this attribute SHOULD be left unset.
+**[4] `browser.language`:** This value is intended to be taken from the Navigator API `navigator.language`.
 
-**[5] `browser.platform`:** This value is intended to be taken from the [UA client hints API](https://wicg.github.io/ua-client-hints/#interface) (`navigator.userAgentData.platform`). If unavailable, the legacy `navigator.platform` API SHOULD NOT be used instead and this attribute SHOULD be left unset in order for the values to be consistent.
+**[5] `browser.mobile`:** This value is intended to be taken from the [UA client hints API](https://wicg.github.io/ua-client-hints/#interface) (`navigator.userAgentData.mobile`). If unavailable, this attribute SHOULD be left unset.
+
+**[6] `browser.platform`:** This value is intended to be taken from the [UA client hints API](https://wicg.github.io/ua-client-hints/#interface) (`navigator.userAgentData.platform`). If unavailable, the legacy `navigator.platform` API SHOULD NOT be used instead and this attribute SHOULD be left unset in order for the values to be consistent.
 The list of possible values is defined in the [W3C User-Agent Client Hints specification](https://wicg.github.io/ua-client-hints/#sec-ch-ua-platform). Note that some (but not all) of these values can overlap with values in the [`os.type` and `os.name` attributes](./os.md). However, for consistency, the values in the `browser.platform` attribute should capture the exact value that the user agent provides.
 
 ---

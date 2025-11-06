@@ -80,6 +80,9 @@ groups:
         stability: development
         brief: 'Target element CSS Selector'
         examples: ["#main > div:nth-child(2) > button.submit"]
+        note: >
+          Value SHOULD be a CSS selector that uniquely identifies the target element within the document.
+          Value SHOULD be escaped using CSS.escape() to avoid issues with special characters.
       - id: hw.mouse.button
         type:
           members:
