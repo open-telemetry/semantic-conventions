@@ -343,6 +343,10 @@ groups:
               value: 'ec2'
               brief: 'EC2 Node'
               stability: development
+            - id: 'hybrid'
+              value: 'hybrid'
+              brief: 'Hybrid Node'
+              stability: development
         stability: development
         brief: >
           The type of the aws eks node.

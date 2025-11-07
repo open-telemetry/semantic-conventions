@@ -89,6 +89,7 @@ This document defines attributes for AWS Elastic Kubernetes Service (EKS).
 |---|---|---|
 | `ec2` | EC2 Node | ![Development](https://img.shields.io/badge/-development-blue) |
 | `fargate` | Fargate Node | ![Development](https://img.shields.io/badge/-development-blue) |
+| `hybrid` | Hybrid Node | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ## Amazon Lambda Attributes
 

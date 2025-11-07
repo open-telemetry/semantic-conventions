@@ -31,6 +31,7 @@ linkTitle: EKS
 |---|---|---|
 | `ec2` | EC2 Node | ![Development](https://img.shields.io/badge/-development-blue) |
 | `fargate` | Fargate Node | ![Development](https://img.shields.io/badge/-development-blue) |
+| `hybrid` | Hybrid Node | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
