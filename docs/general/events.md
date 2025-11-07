@@ -25,7 +25,7 @@ Semantic conventions that define events MUST document the event name, its attrib
   that uniquely identifies the event structure: its [attributes](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.50.0/specification/logs/data-model.md#field-attributes)
   and the type of the [body](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.50.0/specification/logs/data-model.md#field-body).
 
-* Event names SHOULD be of low cardinality and follow the [Naming guidelines](/docs/general/naming.md).
+* Event names SHOULD follow the [Naming guidelines](/docs/general/naming.md).
 
 * Attributes SHOULD be used to represent details and provide additional context about the event.
 
