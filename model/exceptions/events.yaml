@@ -14,7 +14,6 @@ groups:
           conditionally_required: Required if `exception.type` is not set, recommended otherwise.
       - ref: exception.stacktrace
       - ref: exception.escaped
-        requirement_level: opt_in
       - ref: code.function.name
         requirement_level: opt_in
       - ref: code.file.path
