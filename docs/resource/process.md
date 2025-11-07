@@ -198,10 +198,10 @@ JavaScript instrumentation SHOULD fill in the values by copying from built-in ru
 
 Examples for some JavaScript runtimes
 
-| Name | `process.runtime.name` | `process.runtime.version` |
-| --- | --- | --- |
-| Node.js | nodejs | 14.15.4 |
-| Web Browser | browser | Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36 |
+| Name | `process.runtime.name` | `process.runtime.version` | `process.runtime.description` |
+| --- | --- | --- | --- |
+| Node.js | nodejs | 14.15.4 | |
+| Web Browser | browser | | Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36 |
 
 ### .NET runtimes
 
