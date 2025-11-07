@@ -66,7 +66,7 @@ groups:
       - ref: error.type
         requirement_level:
           conditionally_required: If and only if the operation failed.
-        examples: ['DEADLINE_EXCEEDED', 'java.net.UnknownHostException', '-32602',]
+        examples: ['DEADLINE_EXCEEDED', 'java.net.UnknownHostException', '-32602']
         note: |
           If the RPC fails with an error before status code is returned,
           `error.type` SHOULD be set to the exception type (its fully-qualified class name, if applicable)
