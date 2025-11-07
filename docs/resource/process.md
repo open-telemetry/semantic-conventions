@@ -194,6 +194,7 @@ JavaScript instrumentation SHOULD fill in the values by copying from built-in ru
   - When the runtime is Web Browser, fill in the constant value `browser`.
 - `process.runtime.version`:
   - When the runtime is Node.js, fill in the value of `process.versions.node`.
+- `process.runtime.description`:
   - When the runtime is Web Browser, fill in the value of `navigator.userAgent`.
 
 Examples for some JavaScript runtimes
