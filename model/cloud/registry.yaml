@@ -8,6 +8,10 @@ groups:
       - id: cloud.provider
         type:
           members:
+            - id: 'akamai_cloud'
+              value: 'akamai_cloud'
+              brief: 'Akamai Cloud'
+              stability: development
             - id: 'alibaba_cloud'
               value: 'alibaba_cloud'
               brief: 'Alibaba Cloud'
@@ -28,6 +32,10 @@ groups:
               value: 'heroku'
               brief: 'Heroku Platform as a Service'
               stability: development
+            - id: 'hetzner'
+              value: 'hetzner'
+              brief: 'Hetzner'
+              stability: development
             - id: 'ibm_cloud'
               value: 'ibm_cloud'
               brief: 'IBM Cloud'
@@ -39,6 +47,10 @@ groups:
             - id: 'tencent_cloud'
               value: 'tencent_cloud'
               brief: 'Tencent Cloud'
+              stability: development
+            - id: 'vultr'
+              value: 'vultr'
+              brief: 'Vultr'
               stability: development
         stability: development
         brief: >
@@ -107,6 +119,10 @@ groups:
       - id: cloud.platform
         type:
           members:
+            - id: akamai_cloud.compute
+              value: 'akamai_cloud.compute'
+              brief: Akamai Cloud Compute
+              stability: development
             - id: alibaba_cloud_ecs
               value: 'alibaba_cloud_ecs'
               brief: Alibaba Cloud Elastic Compute Service
@@ -277,6 +293,10 @@ groups:
               value: 'gcp_openshift'
               brief: Red Hat OpenShift on Google Cloud
               stability: development
+            - id: hetzner.cloud_server
+              value: 'hetzner.cloud_server'
+              brief: Server on Hetzner Cloud
+              stability: development
             - id: ibm_cloud_openshift
               value: 'ibm_cloud_openshift'
               brief: Red Hat OpenShift on IBM Cloud
@@ -300,6 +320,10 @@ groups:
             - id: tencent_cloud_scf
               value: 'tencent_cloud_scf'
               brief: Tencent Cloud Serverless Cloud Function (SCF)
+              stability: development
+            - id: vultr.cloud_compute
+              value: 'vultr.cloud_compute'
+              brief: Vultr Cloud Compute
               stability: development
         stability: development
         brief: >

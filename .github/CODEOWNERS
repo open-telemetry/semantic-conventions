@@ -52,6 +52,7 @@
 /model/cpu/                       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-system-approvers
 /model/disk/                      @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-system-approvers
 /model/host/                      @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-system-approvers
+/model/linux/                     @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-system-approvers
 # /model/network/                 is defined in HTTP section
 /model/os/                        @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-system-approvers
 /model/process/                   @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-system-approvers @open-telemetry/semconv-security-approvers

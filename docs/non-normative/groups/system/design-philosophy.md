@@ -213,7 +213,7 @@ The `brief` field should explain what the metric/attribute is, and if the
 explanation of a value is simple (i.e. simply surfacing a value from a common
 source like `procfs`) then the explanation of what the value should be can go in
 the brief. If the value needs some calculation explanation and justification,
-the information should be moved to the `note` field.  
+the information should be moved to the `note` field.
 For enum values, it is often the case that the intention of these values is
 obvious given whatever `brief` was provided for the attribute as a whole. A
 brief can be included in a scenario where we have had to make some choice on the
@@ -277,6 +277,7 @@ down with more specificity.
 Relevant discussions:
 [\#1255](https://github.com/open-telemetry/semantic-conventions/issues/1255),
 [\#1364](https://github.com/open-telemetry/semantic-conventions/pull/1364#discussion_r1852465994)
+[\#2984](https://github.com/open-telemetry/semantic-conventions/pull/2984#discussion_r2466369361)
 
 Monitoring operating systems is an old practice, and there are numerous heavily
 differing approaches within different platforms. There are lots of metrics, even
@@ -289,7 +290,7 @@ Thus we have decided that any instrumentation that is:
 1. Specific to a particular operating system
 2. Not meant to be part of what we consider our most important general use cases
 
-will have the Operating System name as part of the namespace.
+will include the Operating System name as part of the namespace.
 
 For example, there may be `process.linux`, `process.windows`, or `process.posix`
 names for metrics and attributes. We will not have root `linux.*`, `windows.*`,
@@ -299,5 +300,7 @@ source to be represented by the root namespace of the attribute/metric. If we
 had OS root namespaces, different sources like `system`, `process`, etc. could
 get very tangled within each OS namespace, defeating the intended design
 philosophy.
+
+However, to clarify — when we refer to avoiding OS names at the “root namespace” level, we also mean avoiding them at the area level. The OS name should appear after the area of concern (such as `system.memory.linux.*`), not before it. This ensures that users can first navigate by functional area (e.g. memory, CPU, network) and then, if necessary, drill down into OS-specific variants within that area.
 
 [use cases doc]: ./use-cases.md
