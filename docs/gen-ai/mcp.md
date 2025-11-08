@@ -147,7 +147,7 @@ for more details.
 | [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` If applicable | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [7] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` When `server.address` is set | int | Server port number. [8] | `80`; `8080`; `443` |
 | [`mcp.input.param.<key>`](/docs/registry/attributes/mcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | template[any] | Parameters passed to the request within `params` object. `<key>` being the normalized parameter key (lowercase), the value being the parameter value. [9] | `Seattle, WA`; `42`; `{"foo": "bar"}` |
-| [`mcp.result.<key>`](/docs/registry/attributes/mcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | template[any] | Result property returned in the response. `<key>` being the normalized result key (lowercase), the value being the result value. [10] | `{"output": "The weather is sunny."}`; `42`; `{"data": {"id": 1, "name": "Alice"}}` |
+| [`mcp.output.result.<key>`](/docs/registry/attributes/mcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | template[any] | Result property returned in the response. `<key>` being the normalized result key (lowercase), the value being the result value. [10] | `{"output": "The weather is sunny."}`; `42`; `{"data": {"id": 1, "name": "Alice"}}` |
 
 **[1] `error.type`:** This attribute SHOULD be set to the string representation of the JSON-RPC
 error code, if one is returned.
@@ -175,12 +175,18 @@ It SHOULD be set to `pipe` if the transport is stdio.
 
 **[8] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
-**[9] `mcp.input.param.<key>`:** Instrumentations SHOULD require an explicit configuration of which keys
+**[9] `mcp.input.param.<key>`:** Instrumentations MAY support capturing input parameters passed
+to the request or notification within `params` object.
+
+Instrumentations that support it SHOULD require an explicit configuration of which keys
 are to be captured. Including all request or notifications parameters
 can be a security risk - explicit configuration helps avoid leaking sensitive information.
 
 Value type SHOULD match the value of the parameter as passed in the request
 or notification.
+
+Instrumentation SHOULD allow capturing parameters passed with MCP's
+reserved `_meta` key.
 
 Examples:
 
@@ -195,6 +201,9 @@ In a params object with the following structure:
     "location": "Seattle, WA",
     "a": 42,
     "complex": {"foo": "bar"}
+    "_meta" : {
+      "mcp.dev/baz": "qux"
+    }
   }
 }
 ```
@@ -205,15 +214,26 @@ In a params object with the following structure:
   attribute with integer (signed 64 bit) value `42`.
 - A `param.complex` key with complex value `{"foo": "bar"}` SHOULD be recorded as the
   `mcp.input.param.complex` attribute with complex value type `{"foo": "bar"}`.
+- A `param._meta.mcp.dev/baz` key with string value `"qux"` SHOULD be recorded as the
+  `mcp.input.param._meta.mcp.dev/baz` attribute with string value `"qux"`.
 
 The attribute value SHOULD be recorded in structured form when it's possible
 and MAY be recorded as a JSON string if structured format is not yet supported
 by the OpenTelemetry implementation.
 
-**[10] `mcp.result.<key>`:** Instrumentations SHOULD require an explicit configuration to capture this attribute,
-as response result can contain sensitive information.
+Keys SHOULD be captured as they appear in the request or notification
+without any additional normalization.
+
+**[10] `mcp.output.result.<key>`:** Instrumentations MAY support capturing properties returned
+to the response within `result` object.
+
+Instrumentations that support it SHOULD require an explicit configuration
+to capture this attribute, as response result can contain sensitive information.
 
 Value type SHOULD match the value of the `result` object property as returned in the response.
+
+Instrumentation SHOULD allow capturing result properties passed with MCP's
+reserved `_meta` key.
 
 Examples:
 
@@ -226,21 +246,29 @@ In a response with the following structure:
   "result": {
     "location": "Seattle, WA",
     "a": 42,
-    "complex": {"foo": "bar"}
+    "complex": {"foo": "bar"},
+    "_meta" : {
+      "mcp.dev/baz": "qux"
+    }
   }
 }
 ```
 
 - A `location` key with value `"Seattle, WA"` SHOULD be recorded as the
-  `mcp.result.location` attribute with string value `"Seattle, WA"`.
-- A `a` key with value `42` SHOULD be recorded as the `mcp.result.a`
+  `mcp.output.result.location` attribute with string value `"Seattle, WA"`.
+- A `a` key with value `42` SHOULD be recorded as the `mcp.output.result.a`
   attribute with integer (signed 64 bit) value `42`.
 - A `complex` key with value `{"foo": "bar"}` SHOULD be recorded as the
-  `mcp.result.complex` attribute with complex value type `{"foo": "bar"}`.
+  `mcp.output.result.complex` attribute with complex value type `{"foo": "bar"}`.
+- A `_meta.mcp.dev/baz` key with string value `"qux"` SHOULD be recorded as the
+  `mcp.output.result._meta.mcp.dev/baz` attribute with string value `"qux"`.
 
 The attribute value SHOULD be recorded in structured form when it's possible
 and MAY be recorded as a JSON string if structured format is not yet supported
 by the OpenTelemetry implementation.
+
+Keys SHOULD be captured as they appear in the result without any
+additional normalization.
 
 ---
 
@@ -352,7 +380,7 @@ for more details.
 | [`network.transport`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The transport protocol used for the MCP session. [8] | `tcp`; `quic`; `pipe` |
 | [`rpc.jsonrpc.version`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` when it's not `2.0`. | string | The version of JSON-RPC protocol used. | `2.0`; `1.0` |
 | [`mcp.input.param.<key>`](/docs/registry/attributes/mcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | template[any] | Parameters passed to the request within `params` object. `<key>` being the normalized parameter key (lowercase), the value being the parameter value. [9] | `Seattle, WA`; `42`; `{"foo": "bar"}` |
-| [`mcp.result.<key>`](/docs/registry/attributes/mcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | template[any] | Result property returned in the response. `<key>` being the normalized result key (lowercase), the value being the result value. [10] | `{"output": "The weather is sunny."}`; `42`; `{"data": {"id": 1, "name": "Alice"}}` |
+| [`mcp.output.result.<key>`](/docs/registry/attributes/mcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | template[any] | Result property returned in the response. `<key>` being the normalized result key (lowercase), the value being the result value. [10] | `{"output": "The weather is sunny."}`; `42`; `{"data": {"id": 1, "name": "Alice"}}` |
 
 **[1] `error.type`:** This attribute SHOULD be set to the string representation of the JSON-RPC
 error code, if one is returned.
@@ -380,12 +408,18 @@ is returned with `isError` set to `true`, this attribute SHOULD be set to
 is HTTP.
 It SHOULD be set to `pipe` if the transport is stdio.
 
-**[9] `mcp.input.param.<key>`:** Instrumentations SHOULD require an explicit configuration of which keys
+**[9] `mcp.input.param.<key>`:** Instrumentations MAY support capturing input parameters passed
+to the request or notification within `params` object.
+
+Instrumentations that support it SHOULD require an explicit configuration of which keys
 are to be captured. Including all request or notifications parameters
 can be a security risk - explicit configuration helps avoid leaking sensitive information.
 
 Value type SHOULD match the value of the parameter as passed in the request
 or notification.
+
+Instrumentation SHOULD allow capturing parameters passed with MCP's
+reserved `_meta` key.
 
 Examples:
 
@@ -400,6 +434,9 @@ In a params object with the following structure:
     "location": "Seattle, WA",
     "a": 42,
     "complex": {"foo": "bar"}
+    "_meta" : {
+      "mcp.dev/baz": "qux"
+    }
   }
 }
 ```
@@ -410,15 +447,26 @@ In a params object with the following structure:
   attribute with integer (signed 64 bit) value `42`.
 - A `param.complex` key with complex value `{"foo": "bar"}` SHOULD be recorded as the
   `mcp.input.param.complex` attribute with complex value type `{"foo": "bar"}`.
+- A `param._meta.mcp.dev/baz` key with string value `"qux"` SHOULD be recorded as the
+  `mcp.input.param._meta.mcp.dev/baz` attribute with string value `"qux"`.
 
 The attribute value SHOULD be recorded in structured form when it's possible
 and MAY be recorded as a JSON string if structured format is not yet supported
 by the OpenTelemetry implementation.
 
-**[10] `mcp.result.<key>`:** Instrumentations SHOULD require an explicit configuration to capture this attribute,
-as response result can contain sensitive information.
+Keys SHOULD be captured as they appear in the request or notification
+without any additional normalization.
+
+**[10] `mcp.output.result.<key>`:** Instrumentations MAY support capturing properties returned
+to the response within `result` object.
+
+Instrumentations that support it SHOULD require an explicit configuration
+to capture this attribute, as response result can contain sensitive information.
 
 Value type SHOULD match the value of the `result` object property as returned in the response.
+
+Instrumentation SHOULD allow capturing result properties passed with MCP's
+reserved `_meta` key.
 
 Examples:
 
@@ -431,21 +479,29 @@ In a response with the following structure:
   "result": {
     "location": "Seattle, WA",
     "a": 42,
-    "complex": {"foo": "bar"}
+    "complex": {"foo": "bar"},
+    "_meta" : {
+      "mcp.dev/baz": "qux"
+    }
   }
 }
 ```
 
 - A `location` key with value `"Seattle, WA"` SHOULD be recorded as the
-  `mcp.result.location` attribute with string value `"Seattle, WA"`.
-- A `a` key with value `42` SHOULD be recorded as the `mcp.result.a`
+  `mcp.output.result.location` attribute with string value `"Seattle, WA"`.
+- A `a` key with value `42` SHOULD be recorded as the `mcp.output.result.a`
   attribute with integer (signed 64 bit) value `42`.
 - A `complex` key with value `{"foo": "bar"}` SHOULD be recorded as the
-  `mcp.result.complex` attribute with complex value type `{"foo": "bar"}`.
+  `mcp.output.result.complex` attribute with complex value type `{"foo": "bar"}`.
+- A `_meta.mcp.dev/baz` key with string value `"qux"` SHOULD be recorded as the
+  `mcp.output.result._meta.mcp.dev/baz` attribute with string value `"qux"`.
 
 The attribute value SHOULD be recorded in structured form when it's possible
 and MAY be recorded as a JSON string if structured format is not yet supported
 by the OpenTelemetry implementation.
+
+Keys SHOULD be captured as they appear in the result without any
+additional normalization.
 
 ---
 

@@ -15,7 +15,7 @@ groups:
           conditionally_required: When the client executes a request.
       - ref: mcp.input.param
         requirement_level: opt_in
-      - ref: mcp.result
+      - ref: mcp.output.result
         requirement_level: opt_in
 
   - id: span.mcp.client

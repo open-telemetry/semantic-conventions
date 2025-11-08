@@ -172,12 +172,18 @@ groups:
         brief: Parameters passed to the request within `params` object.
           `<key>` being the normalized parameter key (lowercase), the value being the parameter value.
         note: |
-          Instrumentations SHOULD require an explicit configuration of which keys
+          Instrumentations MAY support capturing input parameters passed
+          to the request or notification within `params` object.
+
+          Instrumentations that support it SHOULD require an explicit configuration of which keys
           are to be captured. Including all request or notifications parameters
           can be a security risk - explicit configuration helps avoid leaking sensitive information.
 
           Value type SHOULD match the value of the parameter as passed in the request
           or notification.
+
+          Instrumentation SHOULD allow capturing parameters passed with MCP's
+          reserved `_meta` key.
 
           Examples:
 
@@ -192,6 +198,9 @@ groups:
               "location": "Seattle, WA",
               "a": 42,
               "complex": {"foo": "bar"}
+              "_meta" : {
+                "mcp.dev/baz": "qux"
+              }
             }
           }
           ```
@@ -202,21 +211,32 @@ groups:
             attribute with integer (signed 64 bit) value `42`.
           - A `param.complex` key with complex value `{"foo": "bar"}` SHOULD be recorded as the
             `mcp.input.param.complex` attribute with complex value type `{"foo": "bar"}`.
+          - A `param._meta.mcp.dev/baz` key with string value `"qux"` SHOULD be recorded as the
+            `mcp.input.param._meta.mcp.dev/baz` attribute with string value `"qux"`.
 
           The attribute value SHOULD be recorded in structured form when it's possible
           and MAY be recorded as a JSON string if structured format is not yet supported
           by the OpenTelemetry implementation.
+
+          Keys SHOULD be captured as they appear in the request or notification
+          without any additional normalization.
         stability: development
         examples: ["Seattle, WA", '42', '{"foo": "bar"}']
-      - id: mcp.result
+      - id: mcp.output.result
         type: template[any]
         brief: Result property returned in the response.
           `<key>` being the normalized result key (lowercase), the value being the result value.
         note: |
-          Instrumentations SHOULD require an explicit configuration to capture this attribute,
-          as response result can contain sensitive information.
+          Instrumentations MAY support capturing properties returned
+          to the response within `result` object.
+
+          Instrumentations that support it SHOULD require an explicit configuration
+          to capture this attribute, as response result can contain sensitive information.
 
           Value type SHOULD match the value of the `result` object property as returned in the response.
+
+          Instrumentation SHOULD allow capturing result properties passed with MCP's
+          reserved `_meta` key.
 
           Examples:
 
@@ -229,21 +249,29 @@ groups:
             "result": {
               "location": "Seattle, WA",
               "a": 42,
-              "complex": {"foo": "bar"}
+              "complex": {"foo": "bar"},
+              "_meta" : {
+                "mcp.dev/baz": "qux"
+              }
             }
           }
           ```
 
           - A `location` key with value `"Seattle, WA"` SHOULD be recorded as the
-            `mcp.result.location` attribute with string value `"Seattle, WA"`.
-          - A `a` key with value `42` SHOULD be recorded as the `mcp.result.a`
+            `mcp.output.result.location` attribute with string value `"Seattle, WA"`.
+          - A `a` key with value `42` SHOULD be recorded as the `mcp.output.result.a`
             attribute with integer (signed 64 bit) value `42`.
           - A `complex` key with value `{"foo": "bar"}` SHOULD be recorded as the
-            `mcp.result.complex` attribute with complex value type `{"foo": "bar"}`.
+            `mcp.output.result.complex` attribute with complex value type `{"foo": "bar"}`.
+          - A `_meta.mcp.dev/baz` key with string value `"qux"` SHOULD be recorded as the
+            `mcp.output.result._meta.mcp.dev/baz` attribute with string value `"qux"`.
 
           The attribute value SHOULD be recorded in structured form when it's possible
           and MAY be recorded as a JSON string if structured format is not yet supported
           by the OpenTelemetry implementation.
+
+          Keys SHOULD be captured as they appear in the result without any
+          additional normalization.
         stability: development
         examples: ['{"output": "The weather is sunny."}', '42', '{"data": {"id": 1, "name": "Alice"}}']
       - id: mcp.protocol.version
