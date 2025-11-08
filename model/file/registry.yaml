@@ -135,7 +135,7 @@ groups:
           and `file.origin_referrer_url` exist, or only one of them is present. Note that the URL itself may contain
           sensitive information.
         stability: experimental
-        examples: ['http://example.com/imgs/article1_img1.jpg']
+        examples: ['http://example.com/imgs/article1_img.jpg']
       - id: file.owner.name
         type: string
         brief: >
