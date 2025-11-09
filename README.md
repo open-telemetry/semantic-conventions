@@ -5,6 +5,8 @@
 [![Specification Version](https://img.shields.io/badge/OTel_specification_version-v1.50.0-blue?logo=opentelemetry&color=f5a800)](https://github.com/open-telemetry/opentelemetry-specification/releases/tag/v1.50.0)
 [![Slack](https://img.shields.io/badge/Slack-otel_semantic_conventions-purple)](https://cloud-native.slack.com/archives/C041APFBYQP)
 
+[![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/open-telemetry/semantic-conventions/badge)](https://scorecard.dev/viewer/?uri=github.com/open-telemetry/semantic-conventions)
+
 Semantic Conventions define a common set of (semantic) attributes which
 provide meaning to data when collecting, producing and consuming it.
 
