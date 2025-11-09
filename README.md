@@ -4,6 +4,9 @@
 [![GitHub tag (latest SemVer)](https://img.shields.io/github/tag/open-telemetry/semantic-conventions.svg?logo=opentelemetry&&color=f5a800&label=Latest%20release)](https://github.com/open-telemetry/semantic-conventions/releases/latest)
 [![Specification Version](https://img.shields.io/badge/OTel_specification_version-v1.50.0-blue?logo=opentelemetry&color=f5a800)](https://github.com/open-telemetry/opentelemetry-specification/releases/tag/v1.50.0)
 
+[![FOSSA License Status](https://app.fossa.com/api/projects/custom%2B162%2Fgithub.com%2Fopen-telemetry%2Fsemantic-conventions.svg?type=shield&issueType=license)](https://app.fossa.com/projects/custom%2B162%2Fgithub.com%2Fopen-telemetry%2Fsemantic-conventions?ref=badge_shield&issueType=license)
+[![FOSSA Security Status](https://app.fossa.com/api/projects/custom%2B162%2Fgithub.com%2Fopen-telemetry%2Fsemantic-conventions.svg?type=shield&issueType=security)](https://app.fossa.com/projects/custom%2B162%2Fgithub.com%2Fopen-telemetry%2Fsemantic-conventions?ref=badge_shield&issueType=security)
+
 Semantic Conventions define a common set of (semantic) attributes which
 provide meaning to data when collecting, producing and consuming it.
 
