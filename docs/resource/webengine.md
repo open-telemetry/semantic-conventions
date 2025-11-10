@@ -7,18 +7,22 @@
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
 **type:** `webengine`
 
 **Description:** Resource describing the packaged software running the application code. Web engines are typically executed using process.runtime.
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`webengine.name`](/docs/registry/attributes/webengine.md) | string | The name of the web engine. | `WildFly` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`webengine.description`](/docs/registry/attributes/webengine.md) | string | Additional description of the web engine (e.g. detailed version and edition information). | `WildFly Full 21.0.0.Final (WildFly Core 13.0.1.Final) - 2.2.2.Final` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`webengine.version`](/docs/registry/attributes/webengine.md) | string | The version of the web engine. | `21.0.0` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+> :warning: This entity definition contains attributes without a role.
+> Stable Entities MUST NOT have attributes without a defined role.
+
+| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
+|---|---|---|---|---|---|---|
+| Other | [`webengine.name`](/docs/registry/attributes/webengine.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the web engine. | `WildFly` |
+| Other | [`webengine.description`](/docs/registry/attributes/webengine.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Additional description of the web engine (e.g. detailed version and edition information). | `WildFly Full 21.0.0.Final (WildFly Core 13.0.1.Final) - 2.2.2.Final` |
+| Other | [`webengine.version`](/docs/registry/attributes/webengine.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The version of the web engine. | `21.0.0` |
+
+
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

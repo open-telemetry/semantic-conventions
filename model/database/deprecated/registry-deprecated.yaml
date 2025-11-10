@@ -85,8 +85,8 @@ groups:
         stability: development
         brief: 'Deprecated, use `db.namespace` instead.'
         deprecated:
-          reason: renamed
-          renamed_to: db.namespace
+          reason: uncategorized
+          renamed_to: Use `db.namespace` instead.
         examples: [0, 1, 15]
       - id: db.name
         type: string
@@ -126,8 +126,8 @@ groups:
         type: int
         stability: development
         deprecated:
-          reason: renamed
-          renamed_to: db.response.status_code
+          reason: uncategorized
+          note: Use `db.response.status_code` instead.
         brief: 'Deprecated, use `db.response.status_code` instead.'
         examples: [200, 201]
       - id: db.cosmosdb.operation_type
@@ -384,7 +384,9 @@ groups:
               stability: development
             - id: cache
               value: "cache"
-              deprecated: "Replaced by `intersystems_cache`."
+              deprecated:
+                reason: renamed
+                renamed_to: "intersystems_cache"
               brief: "Deprecated, use `intersystems_cache` instead."
               stability: development
             - id: intersystems_cache
@@ -401,7 +403,9 @@ groups:
               stability: development
             - id: cloudscape
               value: "cloudscape"
-              deprecated: "Replaced by `other_sql`."
+              deprecated:
+                reason: renamed
+                renamed_to: "other_sql"
               brief: "Deprecated, use `other_sql` instead."
               stability: development
             - id: cockroachdb
@@ -410,7 +414,8 @@ groups:
               stability: development
             - id: coldfusion
               value: "coldfusion"
-              deprecated: "Removed."
+              deprecated:
+                reason: obsoleted
               brief: "Deprecated, no replacement at this time."
               stability: development
             - id: cosmosdb
@@ -455,7 +460,9 @@ groups:
               stability: development
             - id: firstsql
               value: "firstsql"
-              deprecated: "Replaced by `other_sql`."
+              deprecated:
+                reason: renamed
+                renamed_to: "other_sql"
               brief: "Deprecated, use `other_sql` instead."
               stability: development
             - id: geode
@@ -524,7 +531,9 @@ groups:
               stability: development
             - id: mssqlcompact
               value: "mssqlcompact"
-              deprecated: "Removed, use `other_sql` instead."
+              deprecated:
+                reason: renamed
+                renamed_to: "other_sql"
               brief: "Deprecated, Microsoft SQL Server Compact is discontinued."
               stability: development
             - id: mysql
@@ -601,7 +610,7 @@ groups:
     type: attribute_group
     display_name: Deprecated Database Metrics
     brief: >
-      "Describes deprecated db metrics attributes."
+      Describes deprecated db metrics attributes.
     stability: development
     attributes:
       - id: state

@@ -1,0 +1,106 @@
+groups:
+  - id: attributes.metrics.rpc.client
+    type: attribute_group
+    brief: "Describes RPC metric attributes."
+    attributes:
+      - ref: rpc.system
+        requirement_level: required
+      - ref: rpc.service
+      - ref: rpc.method
+      - ref: network.protocol.name
+        examples: ["http"]
+      - ref: network.protocol.version
+      - ref: network.transport
+      - ref: server.address
+        requirement_level: required
+      - ref: server.port
+        requirement_level:
+          conditionally_required: If applicable.
+      - ref: error.type
+        requirement_level:
+          conditionally_required: If and only if the operation failed.
+  - id: attributes.metrics.rpc.server
+    type: attribute_group
+    brief: "Describes RPC metric attributes."
+    extends: attributes.metrics.rpc.client
+    attributes:
+      - ref: server.address
+        note: ""
+        requirement_level: opt_in
+      - ref: server.port
+        note: ""
+        requirement_level: opt_in
+  - id: rpc
+    type: attribute_group
+    brief: 'This document defines semantic conventions for remote procedure calls.'
+    attributes:
+      - ref: network.protocol.name
+        examples: ["http"]
+      - ref: network.protocol.version
+      - ref: rpc.method
+        requirement_level: recommended
+        note: >
+          This is the logical name of the method from the RPC interface perspective,
+          which can be different from the name of any implementing method/function.
+          The `code.function.name` attribute may be used to store the latter
+          (e.g., method actually executing the call on the server side,
+          RPC client stub method on the client side).
+      - ref: network.peer.address
+        requirement_level: recommended
+      - ref: network.peer.port
+        requirement_level:
+          recommended: If `network.peer.address` is set.
+      - ref: network.transport
+        requirement_level: recommended
+      - ref: server.address
+        requirement_level: required
+        brief: >
+          RPC server [host name](https://grpc.github.io/grpc/core/md_doc_naming.html).
+        note: >
+          May contain server IP address, DNS name, or local socket name. When host component is an IP address,
+          instrumentations SHOULD NOT do a reverse proxy lookup to obtain DNS name and SHOULD set
+          `server.address` to the IP address provided in the host component.
+      - ref: server.port
+        requirement_level:
+          conditionally_required: if the port is supported by the network transport used for communication.
+      - ref: error.type
+        requirement_level:
+          conditionally_required: If and only if the operation failed.
+  - id: rpc_service
+    type: attribute_group
+    brief: 'This document defines semantic conventions for remote procedure calls.'
+    extends: rpc
+    attributes:
+      - ref: rpc.service
+        requirement_level: recommended
+        note: >
+          This is the logical name of the service from the RPC interface perspective,
+          which can be different from the name of any implementing class.
+          The `code.namespace` attribute may be used to store the latter
+          (despite the attribute name, it may include a class name;
+          e.g., class with method actually executing the call on the server side,
+          RPC client stub class on the client side).
+
+  - id: rpc.server
+    type: attribute_group
+    brief: 'This document defines semantic conventions for remote procedure calls.'
+    extends: rpc
+    attributes:
+      - ref: client.address
+        requirement_level: recommended
+      - ref: client.port
+        requirement_level: recommended
+      - ref: network.transport
+        requirement_level: recommended
+
+  - id: rpc_service.server
+    type: attribute_group
+    brief: 'This document defines semantic conventions for remote procedure calls.'
+    extends: rpc_service
+    attributes:
+      - ref: client.address
+        requirement_level: recommended
+      - ref: client.port
+        requirement_level: recommended
+      - ref: network.transport
+        requirement_level: recommended
