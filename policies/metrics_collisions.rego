@@ -6,7 +6,11 @@ import rego.v1
 metric_names := { obj |
     group := input.groups[_];
     group.type = "metric"
-    obj := { "name": group.metric_name, "namespace_prefix": extract_metric_namespace_prefix(group.metric_name), "deprecated": is_property_set(group, "deprecated")}
+    obj := {
+    "name": group.metric_name,
+    "namespace_prefix": extract_metric_namespace_prefix(group.metric_name),
+    "deprecated": is_property_set(group, "deprecated")
+    }
 }
 
 # check that metric names do not collide with namespaces
@@ -16,6 +20,13 @@ deny contains metrics_registry_collision(description, name) if {
     name := metric_names[i].name
     prefix := metric_names[i].namespace_prefix
     not metric_names[i].deprecated
+
+
+    exceptions = {
+        # legacy hardware metrics that are known to cause collisions
+        "hw.battery.charge", "hw.cpu.speed", "hw.fan.speed", "hw.temperature", "hw.voltage"
+    }
+    not exceptions[name]
 
     collisions := [other.name |
         other := metric_names[_]
