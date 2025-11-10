@@ -23,6 +23,7 @@ deny contains metrics_registry_collision(description, name) if {
 
 
     exceptions = {
+        # TODO: https://github.com/open-telemetry/semantic-conventions/issues/3058
         # legacy hardware metrics that are known to cause collisions
         "hw.battery.charge", "hw.cpu.speed", "hw.fan.speed", "hw.temperature", "hw.voltage"
     }
