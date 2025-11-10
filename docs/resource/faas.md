@@ -70,6 +70,7 @@ The following well-known definitions MUST be used if you set this attribute and 
   `/subscriptions/<SUBSCRIPTION_GUID>/resourceGroups/<RG>/providers/Microsoft.Web/sites/<FUNCAPP>/functions/<FUNC>`.
   This means that a span attribute MUST be used, as an Azure function app can host multiple functions that would usually share
   a TracerProvider.
+- **Hetzner:** The [instance-id](https://docs.hetzner.cloud/reference/cloud#server-metadata) of the resource
 
 **[3] `faas.instance`:** - **AWS Lambda:** Use the (full) log stream name.
 

@@ -30,7 +30,7 @@
 
 **[2] `cloud.platform`:** The prefix of the service SHOULD match the one specified in `cloud.provider`.
 
-**[3] `cloud.region`:** Refer to your provider's docs to see the available regions, for example [Alibaba Cloud regions](https://www.alibabacloud.com/help/doc-detail/40654.htm), [AWS regions](https://aws.amazon.com/about-aws/global-infrastructure/regions_az/), [Azure regions](https://azure.microsoft.com/global-infrastructure/geographies/), [Google Cloud regions](https://cloud.google.com/about/locations), or [Tencent Cloud regions](https://www.tencentcloud.com/document/product/213/6091).
+**[3] `cloud.region`:** Refer to your provider's docs to see the available regions, for example [Alibaba Cloud regions](https://www.alibabacloud.com/help/doc-detail/40654.htm), [AWS regions](https://aws.amazon.com/about-aws/global-infrastructure/regions_az/), [Azure regions](https://azure.microsoft.com/global-infrastructure/geographies/), [Google Cloud regions](https://cloud.google.com/about/locations), [Hetzner Cloud Regions](https://docs.hetzner.com/cloud/general/locations/#what-locations-are-there), or [Tencent Cloud regions](https://www.tencentcloud.com/document/product/213/6091).
 
 **[4] `cloud.resource_id`:** On some cloud providers, it may not be possible to determine the full ID at startup,
 so it may be necessary to set `cloud.resource_id` as a span attribute instead.
@@ -49,5 +49,6 @@ The following well-known definitions MUST be used if you set this attribute and 
   `/subscriptions/<SUBSCRIPTION_GUID>/resourceGroups/<RG>/providers/Microsoft.Web/sites/<FUNCAPP>/functions/<FUNC>`.
   This means that a span attribute MUST be used, as an Azure function app can host multiple functions that would usually share
   a TracerProvider.
+- **Hetzner:** The [instance-id](https://docs.hetzner.cloud/reference/cloud#server-metadata) of the resource
 
 <!-- markdownlint-restore -->
