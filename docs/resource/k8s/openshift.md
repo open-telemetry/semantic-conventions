@@ -11,17 +11,16 @@
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
 **type:** `openshift.clusterquota`
 
 **Description:** An OpenShift [ClusterResourceQuota](https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/schedule_and_quota_apis/clusterresourcequota-quota-openshift-io-v1#clusterresourcequota-quota-openshift-io-v1) object.
+| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
+|---|---|---|---|---|---|---|
+| Identity | [`openshift.clusterquota.uid`](/docs/registry/attributes/openshift.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The UID of the cluster quota. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` |
+| Description | [`openshift.clusterquota.name`](/docs/registry/attributes/openshift.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the cluster quota. | `opentelemetry` |
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`openshift.clusterquota.name`](/docs/registry/attributes/openshift.md) | string | The name of the cluster quota. | `opentelemetry` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`openshift.clusterquota.uid`](/docs/registry/attributes/openshift.md) | string | The UID of the cluster quota. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

@@ -265,9 +265,11 @@ This metric is [recommended][MetricRecommended].
 of the
 [ClusterResourceQuota](https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/schedule_and_quota_apis/clusterresourcequota-quota-openshift-io-v1#status-total).
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+**Attributes:**
+
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
-| [`k8s.hugepage.size`](/docs/registry/attributes/k8s.md) | string | The size (identifier) of the K8s huge page. | `2Mi` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.hugepage.size`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The size (identifier) of the K8s huge page. | `2Mi` |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -294,9 +296,11 @@ This metric is [recommended][MetricRecommended].
 of the
 [ClusterResourceQuota](https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/schedule_and_quota_apis/clusterresourcequota-quota-openshift-io-v1#status-total).
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+**Attributes:**
+
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
-| [`k8s.hugepage.size`](/docs/registry/attributes/k8s.md) | string | The size (identifier) of the K8s huge page. | `2Mi` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.hugepage.size`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The size (identifier) of the K8s huge page. | `2Mi` |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -326,9 +330,11 @@ of the
 The `k8s.storageclass.name` should be required when a resource quota is defined for a specific
 storage class.
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+**Attributes:**
+
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
-| [`k8s.storageclass.name`](/docs/registry/attributes/k8s.md) | string | The name of K8s [StorageClass](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#storageclass-v1-storage-k8s-io) object. | `gold.storageclass.storage.k8s.io` | `Conditionally Required` [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.storageclass.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [1] | string | The name of K8s [StorageClass](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#storageclass-v1-storage-k8s-io) object. | `gold.storageclass.storage.k8s.io` |
 
 **[1] `k8s.storageclass.name`:** The `k8s.storageclass.name` should be required when a resource quota is defined for a specific
 storage class.
@@ -361,9 +367,11 @@ of the
 The `k8s.storageclass.name` should be required when a resource quota is defined for a specific
 storage class.
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+**Attributes:**
+
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
-| [`k8s.storageclass.name`](/docs/registry/attributes/k8s.md) | string | The name of K8s [StorageClass](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#storageclass-v1-storage-k8s-io) object. | `gold.storageclass.storage.k8s.io` | `Conditionally Required` [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.storageclass.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [1] | string | The name of K8s [StorageClass](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#storageclass-v1-storage-k8s-io) object. | `gold.storageclass.storage.k8s.io` |
 
 **[1] `k8s.storageclass.name`:** The `k8s.storageclass.name` should be required when a resource quota is defined for a specific
 storage class.
@@ -396,9 +404,11 @@ of the
 The `k8s.storageclass.name` should be required when a resource quota is defined for a specific
 storage class.
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+**Attributes:**
+
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
-| [`k8s.storageclass.name`](/docs/registry/attributes/k8s.md) | string | The name of K8s [StorageClass](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#storageclass-v1-storage-k8s-io) object. | `gold.storageclass.storage.k8s.io` | `Conditionally Required` [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.storageclass.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [1] | string | The name of K8s [StorageClass](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#storageclass-v1-storage-k8s-io) object. | `gold.storageclass.storage.k8s.io` |
 
 **[1] `k8s.storageclass.name`:** The `k8s.storageclass.name` should be required when a resource quota is defined for a specific
 storage class.
@@ -431,9 +441,11 @@ of the
 The `k8s.storageclass.name` should be required when a resource quota is defined for a specific
 storage class.
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+**Attributes:**
+
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
-| [`k8s.storageclass.name`](/docs/registry/attributes/k8s.md) | string | The name of K8s [StorageClass](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#storageclass-v1-storage-k8s-io) object. | `gold.storageclass.storage.k8s.io` | `Conditionally Required` [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.storageclass.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [1] | string | The name of K8s [StorageClass](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#storageclass-v1-storage-k8s-io) object. | `gold.storageclass.storage.k8s.io` |
 
 **[1] `k8s.storageclass.name`:** The `k8s.storageclass.name` should be required when a resource quota is defined for a specific
 storage class.
@@ -563,9 +575,11 @@ This metric is [recommended][MetricRecommended].
 of the
 [ClusterResourceQuota](https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/schedule_and_quota_apis/clusterresourcequota-quota-openshift-io-v1#status-total).
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+**Attributes:**
+
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
-| [`k8s.resourcequota.resource_name`](/docs/registry/attributes/k8s.md) | string | The name of the K8s resource a resource quota defines. [1] | `count/replicationcontrollers` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.resourcequota.resource_name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the K8s resource a resource quota defines. [1] | `count/replicationcontrollers` |
 
 **[1] `k8s.resourcequota.resource_name`:** The value for this attribute can be either the full `count/<resource>[.<group>]` string (e.g., count/deployments.apps, count/pods), or, for certain core Kubernetes resources, just the resource name (e.g., pods, services, configmaps). Both forms are supported by Kubernetes for object count quotas. See [Kubernetes Resource Quotas documentation](https://kubernetes.io/docs/concepts/policy/resource-quotas/#quota-on-object-count) for more details.
 
@@ -594,9 +608,11 @@ This metric is [recommended][MetricRecommended].
 of the
 [ClusterResourceQuota](https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/schedule_and_quota_apis/clusterresourcequota-quota-openshift-io-v1#status-total).
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+**Attributes:**
+
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
-| [`k8s.resourcequota.resource_name`](/docs/registry/attributes/k8s.md) | string | The name of the K8s resource a resource quota defines. [1] | `count/replicationcontrollers` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`k8s.resourcequota.resource_name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the K8s resource a resource quota defines. [1] | `count/replicationcontrollers` |
 
 **[1] `k8s.resourcequota.resource_name`:** The value for this attribute can be either the full `count/<resource>[.<group>]` string (e.g., count/deployments.apps, count/pods), or, for certain core Kubernetes resources, just the resource name (e.g., pods, services, configmaps). Both forms are supported by Kubernetes for object count quotas. See [Kubernetes Resource Quotas documentation](https://kubernetes.io/docs/concepts/policy/resource-quotas/#quota-on-object-count) for more details.
 

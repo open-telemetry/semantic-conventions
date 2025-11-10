@@ -426,7 +426,7 @@ attribute use the same system name (`azure.cosmosdb`).
 ### Known exceptions
 
 - Operational system and process-related attributes and metrics [follow a
-  pattern](/docs/system/system-metrics.md#systemos---os-specific-system-metrics)
+  pattern](/docs/system/system-metrics.md#systemmemoryos---os-specific-system-memory-metrics)
   of `system.{os}` and `process.{os}`. <!-- TODO: document why-->
 
 - [RPC](/docs/rpc/README.md) and [messaging](/docs/messaging/README.md) semantic

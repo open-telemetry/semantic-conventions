@@ -7,10 +7,12 @@
 
 Attributes specific to a cpu instance.
 
-| Attribute | Type | Description | Examples | Stability |
+**Attributes:**
+
+| Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
-| <a id="cpu-logical-number" href="#cpu-logical-number">`cpu.logical_number`</a> | int | The logical CPU number [0..n-1] | `1` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="cpu-mode" href="#cpu-mode">`cpu.mode`</a> | string | The mode of the CPU | `user`; `system` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="cpu-logical-number" href="#cpu-logical-number">`cpu.logical_number`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The logical CPU number [0..n-1] | `1` |
+| <a id="cpu-mode" href="#cpu-mode">`cpu.mode`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The mode of the CPU | `user`; `system` |
 
 ---
 
