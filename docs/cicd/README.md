@@ -12,5 +12,6 @@ Semantic conventions for CICD are defined for the following signals:
 
 * [CICD Spans](cicd-spans.md): Semantic Conventions for CICD *spans*.
 * [CICD Metrics](cicd-metrics.md): Semantic Conventions for CICD *metrics*.
+* [CICD Logs](cicd-logs.md): Semantic Conventions for CICD *logs*.
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status

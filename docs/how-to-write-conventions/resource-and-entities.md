@@ -1,3 +1,7 @@
+<!--- Hugo front matter used to generate the website version of this page:
+aliases: [/docs/specs/semconv/non-normative/how-to-write-conventions/resource-and-entities]
+--->
+
 # Resource and Entities
 
 <!-- toc -->
@@ -63,7 +67,7 @@ groups:
   - id: metric.some_metric
     type: metric
     ...
-    entity_associations: 
+    entity_associations:
       - my_entity
 ```
 
@@ -175,7 +179,7 @@ attribute to the identity is unnecessary and violates the
 rule of having a [minimally sufficient ID](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.45.0/specification/entities/data-model.md#minimally-sufficient-identity).
 
 Identifying attributes generally form the lifespan of an entity. This is
-important, particularly, for metrics written against an entity.  The lifespan
+important, particularly, for metrics written against an entity. The lifespan
 determines whether a timeseries remains "connected" between reported points, or
 if it suddenly looks like a drop. It is recommended to select an identity that
 keeps the lifespan "stable" for important alerting and monitoring use cases.
@@ -227,7 +231,7 @@ semantic convention namespacing rules.
 ## Background: Resource and Entities
 
 In OpenTelemetry, every signal is associated with a Resource.
-According to the [Specification](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.45.0/specification/resource#overview)
+According to the [Specification](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.45.0/specification/resource/README.md#overview)
 this is:
 
 > A Resource is a representation of the entity producing telemetry. Within
@@ -289,9 +293,9 @@ and Resource in OpenTelemetry:
 
 OpenTelemetry is designed to be an open system. When it comes to defining
 the core set of entities and relationships within systems, it needs to
-remain open about what these entities and possible relationships are.  Any
+remain open about what these entities and possible relationships are. Any
 system a user has should be able to model and participate with existing
-OpenTelemetry semantic conventions.  This is done through two key aspects:
+OpenTelemetry semantic conventions. This is done through two key aspects:
 
 - Namespacing
 - "Is-a" Relationships
@@ -300,13 +304,13 @@ When defining a new set of entities within OpenTelemetry Semantic
 Conventions, they should be namespaced, as per the
 [Semantic Convention naming policy](/docs/general/naming.md#general-naming-considerations).
 This gives clear indication which concepts are clearly related with each
-other.  For example, the k8s namespace would define kubernetes related
+other. For example, the k8s namespace would define kubernetes related
 entities and their relationships. Users would know to create a new
 namespace when modelling concepts on top of k8s.
 
 Expansion to existing concepts is done through "is-a" relationships.
 These are relationships where one entity is known to represent the same
-concept as another entity, but in some new scoped context.  For example,
+concept as another entity, but in some new scoped context. For example,
 an `aws.eks.cluster` is a `k8s.cluster`, but not all `k8s.cluster`
 entities are `aws.eks.cluster` entities.
 
@@ -314,13 +318,13 @@ entities are `aws.eks.cluster` entities.
 
 Within OpenTelemetry, we want to give users the flexibility to decide
 what information needs to be sent *with* observability signals and what
-information can be later joined.  We call this "telescoping identity"
+information can be later joined. We call this "telescoping identity"
 where users can decide how *small* or *large* the size of an OpenTelemetry
 resource will be on the wire (and correspondingly, how large data points
 may be when stored, depending on storage solution).
 
 For example, in the extreme, OpenTelemery could synthesize a UUID for
-every system which produces telemetry.  All identifying attributes for
+every system which produces telemetry. All identifying attributes for
 Resource and Entity could be sent via a side channel with known
 relationships to this UUID. While this would optimise the runtime
 generation and sending of telemetry, it comes at the cost of downstream

@@ -38,20 +38,18 @@ interesting conventions are found.
 
 **Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+**Attributes:**
+
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
-| [`rpc.system`](/docs/registry/attributes/rpc.md) | string | The value `aws-api`. | `aws-api` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`aws.extended_request_id`](/docs/registry/attributes/aws.md) | string | The AWS extended request ID as returned in the response header `x-amz-id-2`. | `wzHcyEWfmOGDIE5QOhTAqFDoDWP3y8IUvpNINCwL9N4TEHbUw0/gZJ+VZTmCNCWR7fezEN3eCiQ=` | `Conditionally Required` If available. | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`aws.request_id`](/docs/registry/attributes/aws.md) | string | The AWS request ID as returned in the response headers `x-amzn-requestid`, `x-amzn-request-id` or `x-amz-request-id`. | `79b9da39-b7ae-508a-a6bc-864b2829c622`; `C9ER4AJX75574TDJ` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`cloud.region`](/docs/registry/attributes/cloud.md) | string | The AWS Region where the requested service is being accessed. [1] | `us-east-1`; `us-west-2` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`rpc.method`](/docs/registry/attributes/rpc.md) | string | The name of the operation corresponding to the request, as returned by the AWS SDK [2] | `GetItem`; `PutItem` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`rpc.service`](/docs/registry/attributes/rpc.md) | string | The name of the service to which a request is made, as returned by the AWS SDK. [3] | `DynamoDB`; `S3` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`rpc.system`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The value `aws-api`. | `aws-api` |
+| [`aws.extended_request_id`](/docs/registry/attributes/aws.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If available. | string | The AWS extended request ID as returned in the response header `x-amz-id-2`. | `wzHcyEWfmOGDIE5QOhTAqFDoDWP3y8IUvpNINCwL9N4TEHbUw0/gZJ+VZTmCNCWR7fezEN3eCiQ=` |
+| [`aws.request_id`](/docs/registry/attributes/aws.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The AWS request ID as returned in the response headers `x-amzn-requestid`, `x-amzn-request-id` or `x-amz-request-id`. | `79b9da39-b7ae-508a-a6bc-864b2829c622`; `C9ER4AJX75574TDJ` |
+| [`cloud.region`](/docs/registry/attributes/cloud.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The AWS Region where the requested service is being accessed. [1] | `us-east-1`; `us-west-2` |
+| [`rpc.method`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the operation corresponding to the request, as returned by the AWS SDK | `GetItem`; `PutItem` |
+| [`rpc.service`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the service to which a request is made, as returned by the AWS SDK. | `DynamoDB`; `S3` |
 
 **[1] `cloud.region`:** Specifies the AWS Region that the SDK client targets for a given AWS service call. The attribute's value should adhere to the AWS Region codes outlined in the [AWS documentation](https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html#available-regions).
-
-**[2] `rpc.method`:** This is the logical name of the method from the RPC interface perspective, which can be different from the name of any implementing method/function. The `code.function.name` attribute may be used to store the latter (e.g., method actually executing the call on the server side, RPC client stub method on the client side).
-
-**[3] `rpc.service`:** This is the logical name of the service from the RPC interface perspective, which can be different from the name of any implementing class. The `code.namespace` attribute may be used to store the latter (despite the attribute name, it may include a class name; e.g., class with method actually executing the call on the server side, RPC client stub class on the client side).
 
 ---
 
@@ -64,6 +62,8 @@ interesting conventions are found.
 | `dotnet_wcf` | .NET WCF | ![Development](https://img.shields.io/badge/-development-blue) |
 | `grpc` | gRPC | ![Development](https://img.shields.io/badge/-development-blue) |
 | `java_rmi` | Java RMI | ![Development](https://img.shields.io/badge/-development-blue) |
+| `jsonrpc` | JSON-RPC | ![Development](https://img.shields.io/badge/-development-blue) |
+| `onc_rpc` | [ONC RPC (Sun RPC)](https://datatracker.ietf.org/doc/html/rfc5531) | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
