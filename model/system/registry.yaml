@@ -206,10 +206,10 @@ groups:
         brief: "The PSI stall type"
         examples: ["some", "full"]
       - id: system.psi.window
-        type: string
+        type: int
         stability: development
-        brief: "The time window over which pressure is calculated"
-        examples: ["10s", "60s", "300s"]
+        brief: "The time window over which pressure is calculated in seconds."
+        examples: [10, 60, 300]
         note: >
           PSI tracks pressure as percentages over 10-second, 60-second, and 300-second windows.
           This attribute identifies which time window the metric represents.
