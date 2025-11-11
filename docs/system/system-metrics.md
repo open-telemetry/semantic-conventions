@@ -1345,7 +1345,7 @@ See [Linux kernel PSI documentation](https://docs.kernel.org/accounting/psi.html
 |---|---|---|---|---|---|
 | [`system.psi.resource`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The resource experiencing pressure [1] | `cpu`; `memory`; `io` |
 | [`system.psi.stall_type`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The PSI stall type | `some`; `full` |
-| [`system.psi.window`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The time window over which pressure is calculated [2] | `10s`; `60s`; `300s` |
+| [`system.psi.window`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | int | The time window over which pressure is calculated in seconds. [2] | `10`; `60`; `300` |
 
 **[1] `system.psi.resource`:** Linux PSI (Pressure Stall Information) measures resource pressure for CPU, memory, and I/O. See [Linux kernel PSI documentation](https://docs.kernel.org/accounting/psi.html).
 
