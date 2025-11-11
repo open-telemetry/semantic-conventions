@@ -587,11 +587,11 @@ groups:
     instrument: gauge
     unit: "1"
     attributes:
-      - ref: system.psi.resource
+      - ref: system.linux.psi.resource
         requirement_level: required
-      - ref: system.psi.stall_type
+      - ref: system.linux.psi.stall_type
         requirement_level: required
-      - ref: system.psi.window
+      - ref: system.linux.psi.window
         requirement_level: required
     entity_associations:
       - host
@@ -622,9 +622,9 @@ groups:
     instrument: counter
     unit: "s"
     attributes:
-      - ref: system.psi.resource
+      - ref: system.linux.psi.resource
         requirement_level: required
-      - ref: system.psi.stall_type
+      - ref: system.linux.psi.stall_type
         requirement_level: required
     entity_associations:
       - host

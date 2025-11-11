@@ -5,9 +5,9 @@
 
 - [General System Attributes](#general-system-attributes)
 - [Filesystem Attributes](#filesystem-attributes)
+- [System PSI (Pressure Stall Information) Attributes](#system-psi-pressure-stall-information-attributes)
 - [System Memory Attributes](#system-memory-attributes)
 - [System Paging Attributes](#system-paging-attributes)
-- [System PSI (Pressure Stall Information) Attributes](#system-psi-pressure-stall-information-attributes)
 - [Deprecated System Attributes](#deprecated-system-attributes)
 
 ## General System Attributes
@@ -56,6 +56,45 @@ Describes Filesystem attributes
 | `ntfs` | ntfs | ![Development](https://img.shields.io/badge/-development-blue) |
 | `refs` | refs | ![Development](https://img.shields.io/badge/-development-blue) |
 
+## System PSI (Pressure Stall Information) Attributes
+
+Describes Linux Pressure Stall Information attributes
+
+**Attributes:**
+
+| Key | Stability | Value Type | Description | Example Values |
+|---|---|---|---|---|
+| <a id="system-linux-psi-resource" href="#system-linux-psi-resource">`system.linux.psi.resource`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The resource experiencing pressure [1] | `cpu`; `memory`; `io` |
+| <a id="system-linux-psi-stall-type" href="#system-linux-psi-stall-type">`system.linux.psi.stall_type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The PSI stall type | `some`; `full` |
+| <a id="system-linux-psi-window" href="#system-linux-psi-window">`system.linux.psi.window`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The time window over which pressure is calculated in seconds. [2] | `10`; `60`; `300` |
+
+**[1] `system.linux.psi.resource`:** Linux PSI (Pressure Stall Information) measures resource pressure for CPU, memory, and I/O. See [Linux kernel PSI documentation](https://docs.kernel.org/accounting/psi.html).
+
+**[2] `system.linux.psi.window`:** PSI tracks pressure as percentages over 10-second, 60-second, and 300-second windows. This attribute identifies which time window the metric represents.
+
+---
+
+`system.linux.psi.resource` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `cpu` | CPU resource pressure | ![Development](https://img.shields.io/badge/-development-blue) |
+| `io` | I/O resource pressure | ![Development](https://img.shields.io/badge/-development-blue) |
+| `memory` | Memory resource pressure | ![Development](https://img.shields.io/badge/-development-blue) |
+
+---
+
+`system.linux.psi.stall_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `full` | All non-idle tasks are stalled on the resource simultaneously [3] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `some` | At least some tasks are stalled on the resource [4] | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**[3]:** The "full" line indicates the share of time in which all non-idle tasks are stalled on a given resource simultaneously. This represents a state where actual CPU cycles are going to waste and the workload is thrashing. CPU full is undefined at the system level and is set to zero for backward compatibility (available since Linux 5.13).
+
+**[4]:** The "some" line indicates the share of time in which at least some tasks are stalled on a given resource.
+
 ## System Memory Attributes
 
 Describes System Memory attributes
@@ -85,9 +124,9 @@ Describes System Memory attributes
 | `buffers` | buffers | ![Development](https://img.shields.io/badge/-development-blue) |
 | `cached` | cached | ![Development](https://img.shields.io/badge/-development-blue) |
 | `free` | free | ![Development](https://img.shields.io/badge/-development-blue) |
-| `used` | Actual used virtual memory in bytes. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `used` | Actual used virtual memory in bytes. [5] | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[1]:** Calculation based on the operating system metrics. On Linux, this corresponds to "MemTotal - MemAvailable" from /proc/meminfo, which more accurately reflects memory in active use by applications compared to older formulas based on free, cached, and buffers. If MemAvailable is not available, a fallback to those older formulas may be used.
+**[5]:** Calculation based on the operating system metrics. On Linux, this corresponds to "MemTotal - MemAvailable" from /proc/meminfo, which more accurately reflects memory in active use by applications compared to older formulas based on free, cached, and buffers. If MemAvailable is not available, a fallback to those older formulas may be used.
 
 ## System Paging Attributes
 
@@ -127,45 +166,6 @@ Describes System Memory Paging attributes
 |---|---|---|
 | `free` | free | ![Development](https://img.shields.io/badge/-development-blue) |
 | `used` | used | ![Development](https://img.shields.io/badge/-development-blue) |
-
-## System PSI (Pressure Stall Information) Attributes
-
-Describes Linux Pressure Stall Information attributes
-
-**Attributes:**
-
-| Key | Stability | Value Type | Description | Example Values |
-|---|---|---|---|---|
-| <a id="system-psi-resource" href="#system-psi-resource">`system.psi.resource`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The resource experiencing pressure [2] | `cpu`; `memory`; `io` |
-| <a id="system-psi-stall-type" href="#system-psi-stall-type">`system.psi.stall_type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The PSI stall type | `some`; `full` |
-| <a id="system-psi-window" href="#system-psi-window">`system.psi.window`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The time window over which pressure is calculated in seconds. [3] | `10`; `60`; `300` |
-
-**[2] `system.psi.resource`:** Linux PSI (Pressure Stall Information) measures resource pressure for CPU, memory, and I/O. See [Linux kernel PSI documentation](https://docs.kernel.org/accounting/psi.html).
-
-**[3] `system.psi.window`:** PSI tracks pressure as percentages over 10-second, 60-second, and 300-second windows. This attribute identifies which time window the metric represents.
-
----
-
-`system.psi.resource` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `cpu` | CPU resource pressure | ![Development](https://img.shields.io/badge/-development-blue) |
-| `io` | I/O resource pressure | ![Development](https://img.shields.io/badge/-development-blue) |
-| `memory` | Memory resource pressure | ![Development](https://img.shields.io/badge/-development-blue) |
-
----
-
-`system.psi.stall_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `full` | All non-idle tasks are stalled on the resource simultaneously [4] | ![Development](https://img.shields.io/badge/-development-blue) |
-| `some` | At least some tasks are stalled on the resource [5] | ![Development](https://img.shields.io/badge/-development-blue) |
-
-**[4]:** The "full" line indicates the share of time in which all non-idle tasks are stalled on a given resource simultaneously. This represents a state where actual CPU cycles are going to waste and the workload is thrashing. CPU full is undefined at the system level and is set to zero for backward compatibility (available since Linux 5.13).
-
-**[5]:** The "some" line indicates the share of time in which at least some tasks are stalled on a given resource.
 
 ## Deprecated System Attributes
 

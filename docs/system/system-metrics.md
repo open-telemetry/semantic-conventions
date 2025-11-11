@@ -1343,17 +1343,17 @@ See [Linux kernel PSI documentation](https://docs.kernel.org/accounting/psi.html
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
-| [`system.psi.resource`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The resource experiencing pressure [1] | `cpu`; `memory`; `io` |
-| [`system.psi.stall_type`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The PSI stall type | `some`; `full` |
-| [`system.psi.window`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | int | The time window over which pressure is calculated in seconds. [2] | `10`; `60`; `300` |
+| [`system.linux.psi.resource`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The resource experiencing pressure [1] | `cpu`; `memory`; `io` |
+| [`system.linux.psi.stall_type`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The PSI stall type | `some`; `full` |
+| [`system.linux.psi.window`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | int | The time window over which pressure is calculated in seconds. [2] | `10`; `60`; `300` |
 
-**[1] `system.psi.resource`:** Linux PSI (Pressure Stall Information) measures resource pressure for CPU, memory, and I/O. See [Linux kernel PSI documentation](https://docs.kernel.org/accounting/psi.html).
+**[1] `system.linux.psi.resource`:** Linux PSI (Pressure Stall Information) measures resource pressure for CPU, memory, and I/O. See [Linux kernel PSI documentation](https://docs.kernel.org/accounting/psi.html).
 
-**[2] `system.psi.window`:** PSI tracks pressure as percentages over 10-second, 60-second, and 300-second windows. This attribute identifies which time window the metric represents.
+**[2] `system.linux.psi.window`:** PSI tracks pressure as percentages over 10-second, 60-second, and 300-second windows. This attribute identifies which time window the metric represents.
 
 ---
 
-`system.psi.resource` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`system.linux.psi.resource` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
@@ -1363,7 +1363,7 @@ See [Linux kernel PSI documentation](https://docs.kernel.org/accounting/psi.html
 
 ---
 
-`system.psi.stall_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`system.linux.psi.stall_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
@@ -1413,14 +1413,14 @@ See [Linux kernel PSI documentation](https://docs.kernel.org/accounting/psi.html
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
-| [`system.psi.resource`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The resource experiencing pressure [1] | `cpu`; `memory`; `io` |
-| [`system.psi.stall_type`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The PSI stall type | `some`; `full` |
+| [`system.linux.psi.resource`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The resource experiencing pressure [1] | `cpu`; `memory`; `io` |
+| [`system.linux.psi.stall_type`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The PSI stall type | `some`; `full` |
 
-**[1] `system.psi.resource`:** Linux PSI (Pressure Stall Information) measures resource pressure for CPU, memory, and I/O. See [Linux kernel PSI documentation](https://docs.kernel.org/accounting/psi.html).
+**[1] `system.linux.psi.resource`:** Linux PSI (Pressure Stall Information) measures resource pressure for CPU, memory, and I/O. See [Linux kernel PSI documentation](https://docs.kernel.org/accounting/psi.html).
 
 ---
 
-`system.psi.resource` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`system.linux.psi.resource` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
@@ -1430,7 +1430,7 @@ See [Linux kernel PSI documentation](https://docs.kernel.org/accounting/psi.html
 
 ---
 
-`system.psi.stall_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`system.linux.psi.stall_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
 |---|---|---|
