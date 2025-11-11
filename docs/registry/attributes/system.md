@@ -138,7 +138,7 @@ Describes Linux Pressure Stall Information attributes
 |---|---|---|---|---|
 | <a id="system-psi-resource" href="#system-psi-resource">`system.psi.resource`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The resource experiencing pressure [2] | `cpu`; `memory`; `io` |
 | <a id="system-psi-stall-type" href="#system-psi-stall-type">`system.psi.stall_type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The PSI stall type | `some`; `full` |
-| <a id="system-psi-window" href="#system-psi-window">`system.psi.window`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The time window over which pressure is calculated [3] | `10s`; `60s`; `300s` |
+| <a id="system-psi-window" href="#system-psi-window">`system.psi.window`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The time window over which pressure is calculated in seconds. [3] | `10`; `60`; `300` |
 
 **[2] `system.psi.resource`:** Linux PSI (Pressure Stall Information) measures resource pressure for CPU, memory, and I/O. See [Linux kernel PSI documentation](https://docs.kernel.org/accounting/psi.html).
 
