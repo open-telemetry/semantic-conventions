@@ -4,7 +4,7 @@ groups:
     type: event
     name: browser.web_vital
     brief: >
-      This event describes the website performance metrics introduced by Google, See [web vitals](https://web.dev/vitals).
+      This event describes the website performance metrics introduced by Google. See [web vitals](https://web.dev/vitals).
     body:
       id: browser.web_vital
       requirement_level: required
@@ -28,7 +28,7 @@ groups:
               stability: development
             - id: inp
               value: 'inp'
-              brief: Interation to Next Paint. See [inp](https://web.dev/articles/inp).
+              brief: Interaction to Next Paint. See [inp](https://web.dev/articles/inp).
               stability: development
           stability: development
           brief: Name of the web vital.
@@ -109,9 +109,9 @@ groups:
           type: double
           stability: development
           brief: >
-             The [time] (https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp) immediately before
-             the user agent starts establishing the connection to the server to retrieve the resource, in milliseconds.
-             See [connectStart](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/connectStart).
+            The [time](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp) immediately before
+            the user agent starts establishing the connection to the server to retrieve the resource, in milliseconds.
+            See [connectStart](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/connectStart).
           requirement_level: recommended
           examples: [476.6000000014901]
         - id: secureConnectionStart
