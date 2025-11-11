@@ -43,7 +43,7 @@ semantic convention tooling supports complex attributes
 |---|---|---|
 | `cls` | Cumulative Layout Shift. See [cls](https://web.dev/articles/cls). | ![Development](https://img.shields.io/badge/-development-blue) |
 | `fid` | First Input Delay. See [fid](https://web.dev/articles/fid). | ![Development](https://img.shields.io/badge/-development-blue) |
-| `inp` | Interation to Next Paint. See [inp](https://web.dev/articles/inp). | ![Development](https://img.shields.io/badge/-development-blue) |
+| `inp` | Interaction to Next Paint. See [inp](https://web.dev/articles/inp). | ![Development](https://img.shields.io/badge/-development-blue) |
 | `lcp` | Largest Contentful Paint. See [lcp](https://web.dev/articles/lcp). | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
@@ -70,7 +70,7 @@ This event captures data from the [ResourceTiming](https://www.w3.org/TR/resourc
 
 | Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
-| [`url.full`](/docs/attributes-registry/url.md) | string | Absolute URL describing a network resource according to [RFC3986](https://www.rfc-editor.org/rfc/rfc3986) [1] | `https://www.foo.bar/search?q=OpenTelemetry#SemConv`; `//localhost` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`url.full`](/docs/registry/attributes/url.md) | string | Absolute URL describing a network resource according to [RFC3986](https://www.rfc-editor.org/rfc/rfc3986) [1] | `https://www.foo.bar/search?q=OpenTelemetry#SemConv`; `//localhost` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 **[1] `url.full`:** Generally the url doesn't include any query strings or any leading credentials, and it's formatted as scheme://full domain/path only, for example https://user:pwd@www.example.com/path?a=b&c=d would be sent as https://www.example.com/path by both removing any potential PII and reducing the cardinality of the name.
 
@@ -83,7 +83,7 @@ semantic convention tooling supports complex attributes
 | Body Field  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
 |---|---|---|---|---|---|
 | `connectEnd` | double | The [time](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp) immediately after the browser finishes establishing the connection to the server to retrieve the resource, in milliseconds. See [connectEnd](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/connectEnd). | `476.6000000014906` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `connectStart` | double | The [time] (https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp) immediately before the user agent starts establishing the connection to the server to retrieve the resource, in milliseconds. See [connectStart](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/connectStart). | `476.6000000014901` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| `connectStart` | double | The [time](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp) immediately before the user agent starts establishing the connection to the server to retrieve the resource, in milliseconds. See [connectStart](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/connectStart). | `476.6000000014901` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | `domainLookupEnd` | double | The [time](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp) immediately after the browser finishes the domain name lookup for the resource, in milliseconds. See [domainLookupEnd](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/domainLookupEnd). | `100.6000000014906` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | `domainLookupStart` | double | The [time](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp) immediately before the browser starts the domain name lookup for the resource, in milliseconds. See [domainLookupStart](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/domainLookupStart). | `100.6000000014901` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
 | `fetchStart` | double | The [time](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp) immediately before the browser starts to fetch the resource, in milliseconds. See [fetchStart](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/fetchStart). | `9.600000000558794` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
