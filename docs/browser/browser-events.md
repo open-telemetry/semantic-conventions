@@ -22,7 +22,7 @@ that emit events.
 
 The event name MUST be `browser.web_vital`.
 
-This event describes the website performance metrics introduced by Google, See [web vitals](https://web.dev/vitals).
+This event describes the website performance metrics introduced by Google. See [web vitals](https://web.dev/vitals).
 
 **Body fields:**
 
@@ -43,7 +43,7 @@ semantic convention tooling supports complex attributes
 |---|---|---|
 | `cls` | Cumulative Layout Shift. See [cls](https://web.dev/articles/cls). | ![Development](https://img.shields.io/badge/-development-blue) |
 | `fid` | First Input Delay. See [fid](https://web.dev/articles/fid). | ![Development](https://img.shields.io/badge/-development-blue) |
-| `inp` | Interation to Next Paint. See [inp](https://web.dev/articles/inp). | ![Development](https://img.shields.io/badge/-development-blue) |
+| `inp` | Interaction to Next Paint. See [inp](https://web.dev/articles/inp). | ![Development](https://img.shields.io/badge/-development-blue) |
 | `lcp` | Largest Contentful Paint. See [lcp](https://web.dev/articles/lcp). | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
