@@ -57,7 +57,7 @@ metrics can be filtered for finer grain analysis.
 The following metric instruments MUST be used to describe RPC operations. They
 MUST be of the specified type and units.
 
-*Note: RPC server and client metrics are split to allow correlation across client/server boundaries, e.g. Lining up an RPC method latency to determine if the server is responsible for latency the client is seeing.*
+_Note: RPC server and client metrics are split to allow correlation across client/server boundaries, e.g. Lining up an RPC method latency to determine if the server is responsible for latency the client is seeing._
 
 ### RPC server
 
