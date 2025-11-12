@@ -65,19 +65,23 @@ groups:
       It is recommended to be captured by using the PerformanceResourceTiming API.
       If the page starts unloading before the page loads,
       then the partial data can be captured by calling the [performance.getEntriesByType](https://developer.mozilla.org/en-US/docs/Web/API/Performance/getEntriesByType) method.
-    attributes:
-      - ref: url.full
-        requirement_level: required
-        note: >
-          Generally the url doesn't include any query strings or any leading credentials,
-          and it's formatted as scheme://full domain/path only, for example https://user:pwd@www.example.com/path?a=b&c=d
-          would be sent as https://www.example.com/path by both removing any potential PII and reducing the cardinality of the name.
     body:
       id: browser.resource_timing
       requirement_level: required
       stability: development
       type: map
       fields:
+        - id: url
+          type: string
+          stability: development
+          brief: The full URL of the resource being fetched.
+          requirement_level: required
+          examples: ["https://www.example.com/path", "//localhost"]
+          note: >
+            This is the URL of the resource being measured, not the page URL.
+            Generally the url doesn't include any query strings or any leading credentials,
+            and it's formatted as scheme://full domain/path only, for example https://user:pwd@www.example.com/path?a=b&c=d
+            would be sent as https://www.example.com/path by both removing any potential PII and reducing the cardinality of the name.
         - id: fetchStart
           type: double
           stability: development

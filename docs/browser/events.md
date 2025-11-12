@@ -26,14 +26,6 @@ This event describes the timing metrics as provided by PerformanceResourceTiming
 
 This event captures data from the [ResourceTiming](https://www.w3.org/TR/resource-timing/). It is recommended to be captured by using the PerformanceResourceTiming API. If the page starts unloading before the page loads, then the partial data can be captured by calling the [performance.getEntriesByType](https://developer.mozilla.org/en-US/docs/Web/API/Performance/getEntriesByType) method.
 
-**Attributes:**
-
-| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-|---|---|---|---|---|---|
-| [`url.full`](/docs/registry/attributes/url.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | Absolute URL describing a network resource according to [RFC3986](https://www.rfc-editor.org/rfc/rfc3986) [1] | `https://www.foo.bar/search?q=OpenTelemetry#SemConv`; `//localhost` |
-
-**[1] `url.full`:** Generally the url doesn't include any query strings or any leading credentials, and it's formatted as scheme://full domain/path only, for example https://user:pwd@www.example.com/path?a=b&c=d would be sent as https://www.example.com/path by both removing any potential PII and reducing the cardinality of the name.
-
 **Body fields:**
 
 :warning: Body fields will be moved to complex attributes once the
@@ -42,6 +34,7 @@ semantic convention tooling supports complex attributes
 
 | Field Name | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
+| `url` | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The full URL of the resource being fetched. [1] | `https://www.example.com/path`; `//localhost` |
 | `connectEnd` | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | double | The [time](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp) immediately after the browser finishes establishing the connection to the server to retrieve the resource, in milliseconds. See [connectEnd](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/connectEnd). | `476.6000000014906` |
 | `connectStart` | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | double | The [time](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp) immediately before the user agent starts establishing the connection to the server to retrieve the resource, in milliseconds. See [connectStart](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/connectStart). | `476.6000000014901` |
 | `domainLookupEnd` | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | double | The [time](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp) immediately after the browser finishes the domain name lookup for the resource, in milliseconds. See [domainLookupEnd](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/domainLookupEnd). | `100.6000000014906` |
@@ -51,6 +44,8 @@ semantic convention tooling supports complex attributes
 | `responseEnd` | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | double | The [time](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp) immediately after the browser receives the last byte of the resource or immediately before the transport connection is closed, whichever comes first, in milliseconds. See [responseEnd](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/responseEnd). | `510.6000000014906` |
 | `responseStart` | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | double | The [time](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp) immediately after the browser receives the first byte of the response from the server, cache, or local resource, in milliseconds. See [responseStart](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/responseStart). | `508.6000000014901` |
 | `secureConnectionStart` | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | double | The [time](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp) immediately before the browser starts the handshake process to secure the current connection, in milliseconds. See [secureConnectionStart](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/secureConnectionStart). | `476.6000000014903` |
+
+**[1] `url`:** This is the URL of the resource being measured, not the page URL. Generally the url doesn't include any query strings or any leading credentials, and it's formatted as scheme://full domain/path only, for example https://user:pwd@www.example.com/path?a=b&c=d would be sent as https://www.example.com/path by both removing any potential PII and reducing the cardinality of the name.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
