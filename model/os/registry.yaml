@@ -19,7 +19,7 @@ groups:
             - id: linux
               value: 'linux'
               brief: "Linux"
-              deprecated: 
+              deprecated:
                 reason: renamed
                 renamed_to: unix
               stability: development
