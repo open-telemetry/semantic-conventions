@@ -36,7 +36,9 @@ groups:
           conditionally_required: See [Selecting process attributes](/docs/resource/process.md#selecting-process-attributes) for details.
       - ref: process.creation.time
         role: identifying
-        note: If the exact creation time is not available, a best-effort approximation is acceptable such as using the current time when the resource is describing itself, otherwise another method should be used if available.
+        note: >
+          If the exact creation time is not available, a best-effort approximation is acceptable such as using the current time when the resource is describing itself,
+          otherwise another method should be used if available.
       - ref: process.interactive
         role: descriptive
       - ref: process.title
