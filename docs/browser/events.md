@@ -22,7 +22,7 @@ that emit events.
 
 The event name MUST be `browser.web_vital`.
 
-This event describes the website performance metrics introduced by Google, See [web vitals](https://web.dev/vitals).
+This event describes the website performance metrics introduced by Google. See [web vitals](https://web.dev/vitals).
 
 **Body fields:**
 
@@ -30,12 +30,12 @@ This event describes the website performance metrics introduced by Google, See [
 semantic convention tooling supports complex attributes
 (see [#1870](https://github.com/open-telemetry/semantic-conventions/issues/1870)).
 
-| Body Field  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+| Field Name | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
-| `delta` | double | The delta between the current value and the last-reported value. See [delta](https://github.com/GoogleChrome/web-vitals?tab=readme-ov-file#report-only-the-delta-of-changes). | `0.2` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `id` | string | A unique ID representing this particular metric instance. | `v3-1677874579383-6381583661209` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `name` | enum | Name of the web vital. | `cls` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `value` | double | Value of the web vital. | `1.0` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
+| `delta` | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | double | The delta between the current value and the last-reported value. See [delta](https://github.com/GoogleChrome/web-vitals?tab=readme-ov-file#report-only-the-delta-of-changes). | `0.2` |
+| `id` | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | A unique ID representing this particular metric instance. | `v3-1677874579383-6381583661209` |
+| `name` | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | enum | Name of the web vital. | `cls` |
+| `value` | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | double | Value of the web vital. | `1.0` |
 
 `name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
@@ -68,9 +68,11 @@ This event describes the timing metrics as provided by PerformanceResourceTiming
 
 This event captures data from the [ResourceTiming](https://www.w3.org/TR/resource-timing/). It is recommended to be captured by using the PerformanceResourceTiming API. If the page starts unloading before the page loads, then the partial data can be captured by calling the [performance.getEntriesByType](https://developer.mozilla.org/en-US/docs/Web/API/Performance/getEntriesByType) method.
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+**Attributes:**
+
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
-| [`url.full`](/docs/registry/attributes/url.md) | string | Absolute URL describing a network resource according to [RFC3986](https://www.rfc-editor.org/rfc/rfc3986) [1] | `https://www.foo.bar/search?q=OpenTelemetry#SemConv`; `//localhost` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`url.full`](/docs/registry/attributes/url.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | Absolute URL describing a network resource according to [RFC3986](https://www.rfc-editor.org/rfc/rfc3986) [1] | `https://www.foo.bar/search?q=OpenTelemetry#SemConv`; `//localhost` |
 
 **[1] `url.full`:** Generally the url doesn't include any query strings or any leading credentials, and it's formatted as scheme://full domain/path only, for example https://user:pwd@www.example.com/path?a=b&c=d would be sent as https://www.example.com/path by both removing any potential PII and reducing the cardinality of the name.
 
@@ -80,17 +82,17 @@ This event captures data from the [ResourceTiming](https://www.w3.org/TR/resourc
 semantic convention tooling supports complex attributes
 (see [#1870](https://github.com/open-telemetry/semantic-conventions/issues/1870)).
 
-| Body Field  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+| Field Name | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
-| `connectEnd` | double | The [time](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp) immediately after the browser finishes establishing the connection to the server to retrieve the resource, in milliseconds. See [connectEnd](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/connectEnd). | `476.6000000014906` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `connectStart` | double | The [time](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp) immediately before the user agent starts establishing the connection to the server to retrieve the resource, in milliseconds. See [connectStart](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/connectStart). | `476.6000000014901` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `domainLookupEnd` | double | The [time](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp) immediately after the browser finishes the domain name lookup for the resource, in milliseconds. See [domainLookupEnd](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/domainLookupEnd). | `100.6000000014906` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `domainLookupStart` | double | The [time](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp) immediately before the browser starts the domain name lookup for the resource, in milliseconds. See [domainLookupStart](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/domainLookupStart). | `100.6000000014901` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `fetchStart` | double | The [time](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp) immediately before the browser starts to fetch the resource, in milliseconds. See [fetchStart](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/fetchStart). | `9.600000000558794` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `requestStart` | double | The [time](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp) immediately before the browser starts requesting the resource from the server, cache, or local resource, in milliseconds. See [requestStart](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/requestStart). | `506.70000000298023` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `responseEnd` | double | The [time](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp) immediately after the browser receives the last byte of the resource or immediately before the transport connection is closed, whichever comes first, in milliseconds. See [responseEnd](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/responseEnd). | `510.6000000014906` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `responseStart` | double | The [time](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp) immediately after the browser receives the first byte of the response from the server, cache, or local resource, in milliseconds. See [responseStart](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/responseStart). | `508.6000000014901` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| `secureConnectionStart` | double | The [time](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp) immediately before the browser starts the handshake process to secure the current connection, in milliseconds. See [secureConnectionStart](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/secureConnectionStart). | `476.6000000014903` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| `connectEnd` | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | double | The [time](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp) immediately after the browser finishes establishing the connection to the server to retrieve the resource, in milliseconds. See [connectEnd](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/connectEnd). | `476.6000000014906` |
+| `connectStart` | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | double | The [time](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp) immediately before the user agent starts establishing the connection to the server to retrieve the resource, in milliseconds. See [connectStart](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/connectStart). | `476.6000000014901` |
+| `domainLookupEnd` | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | double | The [time](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp) immediately after the browser finishes the domain name lookup for the resource, in milliseconds. See [domainLookupEnd](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/domainLookupEnd). | `100.6000000014906` |
+| `domainLookupStart` | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | double | The [time](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp) immediately before the browser starts the domain name lookup for the resource, in milliseconds. See [domainLookupStart](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/domainLookupStart). | `100.6000000014901` |
+| `fetchStart` | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | double | The [time](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp) immediately before the browser starts to fetch the resource, in milliseconds. See [fetchStart](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/fetchStart). | `9.600000000558794` |
+| `requestStart` | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | double | The [time](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp) immediately before the browser starts requesting the resource from the server, cache, or local resource, in milliseconds. See [requestStart](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/requestStart). | `506.70000000298023` |
+| `responseEnd` | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | double | The [time](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp) immediately after the browser receives the last byte of the resource or immediately before the transport connection is closed, whichever comes first, in milliseconds. See [responseEnd](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/responseEnd). | `510.6000000014906` |
+| `responseStart` | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | double | The [time](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp) immediately after the browser receives the first byte of the response from the server, cache, or local resource, in milliseconds. See [responseStart](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/responseStart). | `508.6000000014901` |
+| `secureConnectionStart` | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | double | The [time](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp) immediately before the browser starts the handshake process to secure the current connection, in milliseconds. See [secureConnectionStart](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/secureConnectionStart). | `476.6000000014903` |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
