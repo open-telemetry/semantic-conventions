@@ -16,6 +16,8 @@
 > :warning: This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
+**Attributes:**
+
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|---|
 | Other | [`webengine.name`](/docs/registry/attributes/webengine.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the web engine. | `WildFly` |
