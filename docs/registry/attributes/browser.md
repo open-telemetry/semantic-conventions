@@ -3,6 +3,9 @@
 
 # Browser
 
+- [Browser Attributes](#browser-attributes)
+- [Browser Resource Timing Attributes](#browser-resource-timing-attributes)
+
 ## Browser Attributes
 
 The web browser attributes
@@ -24,3 +27,45 @@ The web browser attributes
 
 **[4] `browser.platform`:** This value is intended to be taken from the [UA client hints API](https://wicg.github.io/ua-client-hints/#interface) (`navigator.userAgentData.platform`). If unavailable, the legacy `navigator.platform` API SHOULD NOT be used instead and this attribute SHOULD be left unset in order for the values to be consistent.
 The list of possible values is defined in the [W3C User-Agent Client Hints specification](https://wicg.github.io/ua-client-hints/#sec-ch-ua-platform). Note that some (but not all) of these values can overlap with values in the [`os.type` and `os.name` attributes](./os.md). However, for consistency, the values in the `browser.platform` attribute should capture the exact value that the user agent provides.
+
+## Browser Resource Timing Attributes
+
+Attributes for browser resource timing events
+
+**Attributes:**
+
+| Key | Stability | Value Type | Description | Example Values |
+|---|---|---|---|---|
+| <a id="browser-resource-timing-connect-end" href="#browser-resource-timing-connect-end">`browser.resource_timing.connect_end`</a> | ![Development](https://img.shields.io/badge/-development-blue) | double | Time immediately after the browser completes establishing the connection to the server [5] | `145.7`; `275.2` |
+| <a id="browser-resource-timing-connect-start" href="#browser-resource-timing-connect-start">`browser.resource_timing.connect_start`</a> | ![Development](https://img.shields.io/badge/-development-blue) | double | Time immediately before the browser starts to establish the connection to the server [6] | `131.0`; `261.3` |
+| <a id="browser-resource-timing-domain-lookup-end" href="#browser-resource-timing-domain-lookup-end">`browser.resource_timing.domain_lookup_end`</a> | ![Development](https://img.shields.io/badge/-development-blue) | double | Time immediately after the browser completes the domain name lookup for the resource [7] | `130.2`; `260.5` |
+| <a id="browser-resource-timing-domain-lookup-start" href="#browser-resource-timing-domain-lookup-start">`browser.resource_timing.domain_lookup_start`</a> | ![Development](https://img.shields.io/badge/-development-blue) | double | Time immediately before the browser starts the domain name lookup for the resource [8] | `125.3`; `255.8` |
+| <a id="browser-resource-timing-fetch-start" href="#browser-resource-timing-fetch-start">`browser.resource_timing.fetch_start`</a> | ![Development](https://img.shields.io/badge/-development-blue) | double | Time immediately before the browser starts to fetch the resource [9] | `120.5`; `250.75` |
+| <a id="browser-resource-timing-request-start" href="#browser-resource-timing-request-start">`browser.resource_timing.request_start`</a> | ![Development](https://img.shields.io/badge/-development-blue) | double | Time immediately before the browser starts requesting the resource from the server [10] | `146.0`; `276.0` |
+| <a id="browser-resource-timing-response-end" href="#browser-resource-timing-response-end">`browser.resource_timing.response_end`</a> | ![Development](https://img.shields.io/badge/-development-blue) | double | Time immediately after the browser receives the last byte of the resource [11] | `220.3`; `350.5` |
+| <a id="browser-resource-timing-response-start" href="#browser-resource-timing-response-start">`browser.resource_timing.response_start`</a> | ![Development](https://img.shields.io/badge/-development-blue) | double | Time immediately after the browser receives the first byte of the response from the server [12] | `180.5`; `310.8` |
+| <a id="browser-resource-timing-secure-connection-start" href="#browser-resource-timing-secure-connection-start">`browser.resource_timing.secure_connection_start`</a> | ![Development](https://img.shields.io/badge/-development-blue) | double | Time immediately before the browser starts the handshake process to secure the connection [13] | `132.5`; `262.8` |
+| <a id="browser-resource-timing-url-canonical" href="#browser-resource-timing-url-canonical">`browser.resource_timing.url.canonical`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The canonical URL of the resource, excluding query parameters and credentials [14] | `https://example.com/path/to/resource.js`; `https://cdn.example.com/styles/main.css` |
+| <a id="browser-resource-timing-url-query" href="#browser-resource-timing-url-query">`browser.resource_timing.url.query`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The query string component of the resource URL [15] | `?version=1.2.3`; `?id=abc123&type=json` |
+
+**[5] `browser.resource_timing.connect_end`:** Measured in milliseconds as a DOMHighResTimeStamp relative to the time origin. See the [Performance Resource Timing API](https://www.w3.org/TR/resource-timing-2/#dom-performanceresourcetiming-connectend).
+
+**[6] `browser.resource_timing.connect_start`:** Measured in milliseconds as a DOMHighResTimeStamp relative to the time origin. See the [Performance Resource Timing API](https://www.w3.org/TR/resource-timing-2/#dom-performanceresourcetiming-connectstart).
+
+**[7] `browser.resource_timing.domain_lookup_end`:** Measured in milliseconds as a DOMHighResTimeStamp relative to the time origin. See the [Performance Resource Timing API](https://www.w3.org/TR/resource-timing-2/#dom-performanceresourcetiming-domainlookupend).
+
+**[8] `browser.resource_timing.domain_lookup_start`:** Measured in milliseconds as a DOMHighResTimeStamp relative to the time origin. See the [Performance Resource Timing API](https://www.w3.org/TR/resource-timing-2/#dom-performanceresourcetiming-domainlookupstart).
+
+**[9] `browser.resource_timing.fetch_start`:** Measured in milliseconds as a DOMHighResTimeStamp relative to the time origin. See the [Performance Resource Timing API](https://www.w3.org/TR/resource-timing-2/#dom-performanceresourcetiming-fetchstart).
+
+**[10] `browser.resource_timing.request_start`:** Measured in milliseconds as a DOMHighResTimeStamp relative to the time origin. See the [Performance Resource Timing API](https://www.w3.org/TR/resource-timing-2/#dom-performanceresourcetiming-requeststart).
+
+**[11] `browser.resource_timing.response_end`:** Measured in milliseconds as a DOMHighResTimeStamp relative to the time origin. See the [Performance Resource Timing API](https://www.w3.org/TR/resource-timing-2/#dom-performanceresourcetiming-responseend).
+
+**[12] `browser.resource_timing.response_start`:** Measured in milliseconds as a DOMHighResTimeStamp relative to the time origin. See the [Performance Resource Timing API](https://www.w3.org/TR/resource-timing-2/#dom-performanceresourcetiming-responsestart).
+
+**[13] `browser.resource_timing.secure_connection_start`:** Measured in milliseconds as a DOMHighResTimeStamp relative to the time origin. If the scheme is not HTTPS, this value is 0. See the [Performance Resource Timing API](https://www.w3.org/TR/resource-timing-2/#dom-performanceresourcetiming-secureconnectionstart).
+
+**[14] `browser.resource_timing.url.canonical`:** The canonical URL includes scheme, domain, and path components only. Query parameters and URL fragments MUST be excluded. User credentials (username and password) MUST be excluded.
+
+**[15] `browser.resource_timing.url.query`:** The query string includes the leading `?` character. This attribute is opt-in as it may contain sensitive information.
