@@ -41,10 +41,12 @@ The event body fields MUST be used to describe the state of the application at t
 This event is meant to be used in conjunction with `os.name` [resource semantic convention](/docs/resource/os.md) to identify the mobile operating system (e.g. Android, iOS).
 The `android.app.state` and `ios.app.state` fields are mutually exclusive and MUST NOT be used together, each field MUST be used with its corresponding `os.name` value.
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Role |
+**Attributes:**
+
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values | Role |
 |---|---|---|---|---|---|---|
-| [`android.app.state`](/docs/registry/attributes/android.md) | string | This attribute represents the state of the application. [1] | `created` | `Conditionally Required` if and only if `os.name` is `android` | ![Development](https://img.shields.io/badge/-development-blue) | |
-| [`ios.app.state`](/docs/registry/attributes/ios.md) | string | This attribute represents the state of the application. [2] | `active`; `inactive`; `background` | `Conditionally Required` if and only if `os.name` is `ios` | ![Development](https://img.shields.io/badge/-development-blue) | |
+| [`android.app.state`](/docs/registry/attributes/android.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` if and only if `os.name` is `android` | string | This attribute represents the state of the application. [1] | `created` |  |
+| [`ios.app.state`](/docs/registry/attributes/ios.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` if and only if `os.name` is `ios` | string | This attribute represents the state of the application. [2] | `active`; `inactive`; `background` |  |
 
 **[1] `android.app.state`:** The Android lifecycle states are defined in [Activity lifecycle callbacks](https://developer.android.com/guide/components/activities/activity-lifecycle#lc), and from which the `OS identifiers` are derived.
 

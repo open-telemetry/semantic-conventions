@@ -49,9 +49,9 @@ groups:
       The value can be retrieved from value `space_used_size` of
       [`v8.getHeapSpaceStatistics()`](https://nodejs.org/api/v8.html#v8getheapspacestatistics)
 
-  - id: metric.v8js.heap.space.available_size
+  - id: metric.v8js.memory.heap.space.available_size
     type: metric
-    metric_name: v8js.heap.space.available_size
+    metric_name: v8js.memory.heap.space.available_size
     annotations:
       code_generation:
         metric_value_type: int
@@ -65,9 +65,9 @@ groups:
     note: >
       Value can be retrieved from value `space_available_size` of [`v8.getHeapSpaceStatistics()`](https://nodejs.org/api/v8.html#v8getheapspacestatistics)
 
-  - id: metric.v8js.heap.space.physical_size
+  - id: metric.v8js.memory.heap.space.physical_size
     type: metric
-    metric_name: v8js.heap.space.physical_size
+    metric_name: v8js.memory.heap.space.physical_size
     annotations:
       code_generation:
         metric_value_type: int

@@ -50,9 +50,11 @@ This metric is [recommended][MetricRecommended].
 
 **[1]:** Linux: this metric is taken from the Linux kernel's svc_stat.netudpcnt and svc_stat.nettcpcnt
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Role |
+**Attributes:**
+
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values | Role |
 |---|---|---|---|---|---|---|
-| [`network.transport`](/docs/registry/attributes/network.md) | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [1] | `tcp`; `udp` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | |
+| [`network.transport`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [1] | `tcp`; `udp` |  |
 
 **[1] `network.transport`:** The value SHOULD be normalized to lowercase.
 
@@ -180,10 +182,12 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `nfs.client.operation.count` | Counter | `{operation}` | Reports the count of kernel NFSv4+ client operations. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Role |
+**Attributes:**
+
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values | Role |
 |---|---|---|---|---|---|---|
-| [`nfs.operation.name`](/docs/registry/attributes/nfs.md) | string | NFSv4+ operation name. | `OPEN`; `READ`; `GETATTR` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) | |
-| [`onc_rpc.version`](/docs/registry/attributes/onc-rpc.md) | int | ONC/Sun RPC program version. |  | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) | |
+| [`nfs.operation.name`](/docs/registry/attributes/nfs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | NFSv4+ operation name. | `OPEN`; `READ`; `GETATTR` |  |
+| [`onc_rpc.version`](/docs/registry/attributes/onc-rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | int | ONC/Sun RPC program version. |  |  |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -205,10 +209,12 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `nfs.client.procedure.count` | Counter | `{procedure}` | Reports the count of kernel NFS client procedures. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Role |
+**Attributes:**
+
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values | Role |
 |---|---|---|---|---|---|---|
-| [`onc_rpc.procedure.name`](/docs/registry/attributes/onc-rpc.md) | string | ONC/Sun RPC procedure name. | `OPEN`; `READ`; `GETATTR` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) | |
-| [`onc_rpc.version`](/docs/registry/attributes/onc-rpc.md) | int | ONC/Sun RPC program version. |  | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) | |
+| [`onc_rpc.procedure.name`](/docs/registry/attributes/onc-rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | ONC/Sun RPC procedure name. | `OPEN`; `READ`; `GETATTR` |  |
+| [`onc_rpc.version`](/docs/registry/attributes/onc-rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | int | ONC/Sun RPC program version. |  |  |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -232,9 +238,11 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `nfs.server.repcache.requests` | Counter | `{request}` | Reports the kernel NFS server reply cache request count by cache hit status. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Role |
+**Attributes:**
+
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values | Role |
 |---|---|---|---|---|---|---|
-| [`nfs.server.repcache.status`](/docs/registry/attributes/nfs.md) | string | Linux: one of "hit" (NFSD_STATS_RC_HITS), "miss" (NFSD_STATS_RC_MISSES), or "nocache" (NFSD_STATS_RC_NOCACHE -- uncacheable) | `hit` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) | |
+| [`nfs.server.repcache.status`](/docs/registry/attributes/nfs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Linux: one of "hit" (NFSD_STATS_RC_HITS), "miss" (NFSD_STATS_RC_MISSES), or "nocache" (NFSD_STATS_RC_NOCACHE -- uncacheable) | `hit` |  |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -280,9 +288,11 @@ This metric is [recommended][MetricRecommended].
 
 **[1]:** Linux: this metric is taken from the Linux kernel NFSD_STATS_IO_READ and NFSD_STATS_IO_WRITE counters in the nfsd_net struct
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Role |
+**Attributes:**
+
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values | Role |
 |---|---|---|---|---|---|---|
-| [`network.io.direction`](/docs/registry/attributes/network.md) | string | The network IO operation direction. | `transmit` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) | |
+| [`network.io.direction`](/docs/registry/attributes/network.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The network IO operation direction. | `transmit` |  |
 
 ---
 
@@ -337,6 +347,30 @@ This metric is [recommended][MetricRecommended].
 
 **[1]:** Linux: this metric is taken from the Linux kernel's svc_stat.nettcpcnt and svc_stat.netudpcnt
 
+**Attributes:**
+
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values | Role |
+|---|---|---|---|---|---|---|
+| [`network.transport`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [1] | `tcp`; `udp` |  |
+
+**[1] `network.transport`:** The value SHOULD be normalized to lowercase.
+
+Consider always setting the transport when setting a port number, since
+a port number is ambiguous without knowing the transport. For example
+different processes could be listening on TCP port 12345 and UDP port 12345.
+
+---
+
+`network.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `pipe` | Named or anonymous pipe. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `quic` | QUIC | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `tcp` | TCP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `udp` | UDP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `unix` | Unix domain socket | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
@@ -382,9 +416,11 @@ This metric is [recommended][MetricRecommended].
 **[1]:** Linux: this metric is taken from the Linux kernel's svc_stat.rpccnt, the count of good RPCs. This metric can have
 an error.type of "format", "auth", or "client" for svc_stat.badfmt, svc_stat.badauth, and svc_stat.badclnt.
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Role |
+**Attributes:**
+
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values | Role |
 |---|---|---|---|---|---|---|
-| [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | |
+| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` |  |
 
 **[1] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
@@ -434,10 +470,12 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `nfs.server.operation.count` | Counter | `{operation}` | Reports the count of kernel NFSv4+ server operations. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Role |
+**Attributes:**
+
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values | Role |
 |---|---|---|---|---|---|---|
-| [`nfs.operation.name`](/docs/registry/attributes/nfs.md) | string | NFSv4+ operation name. | `OPEN`; `READ`; `GETATTR` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) | |
-| [`onc_rpc.version`](/docs/registry/attributes/onc-rpc.md) | int | ONC/Sun RPC program version. |  | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) | |
+| [`nfs.operation.name`](/docs/registry/attributes/nfs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | NFSv4+ operation name. | `OPEN`; `READ`; `GETATTR` |  |
+| [`onc_rpc.version`](/docs/registry/attributes/onc-rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | int | ONC/Sun RPC program version. |  |  |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -459,10 +497,12 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `nfs.server.procedure.count` | Counter | `{procedure}` | Reports the count of kernel NFS server procedures. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Role |
+**Attributes:**
+
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values | Role |
 |---|---|---|---|---|---|---|
-| [`onc_rpc.procedure.name`](/docs/registry/attributes/onc-rpc.md) | string | ONC/Sun RPC procedure name. | `OPEN`; `READ`; `GETATTR` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) | |
-| [`onc_rpc.version`](/docs/registry/attributes/onc-rpc.md) | int | ONC/Sun RPC program version. |  | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) | |
+| [`onc_rpc.procedure.name`](/docs/registry/attributes/onc-rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | ONC/Sun RPC procedure name. | `OPEN`; `READ`; `GETATTR` |  |
+| [`onc_rpc.version`](/docs/registry/attributes/onc-rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | int | ONC/Sun RPC program version. |  |  |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

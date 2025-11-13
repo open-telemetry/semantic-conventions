@@ -27,19 +27,21 @@ This span describes CLI (Command Line Interfaces) program execution from a calle
 Instrumentations that have additional context about executed commands MAY use
 a different low-cardinality span name format and SHOULD document it.
 
-**Span status** SHOULD be set to Error if {process.exit.code} is not 0. Refer to
-the [Recording Errors](/docs/general/recording-errors.md) document for details on how to record span status.
+**Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
+An Error is defined as when the `{process.exit.code}` attribute is not 0.
 
 **Span kind** SHOULD be `INTERNAL`.
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Role |
+**Attributes:**
+
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values | Role |
 |---|---|---|---|---|---|---|
-| [`process.executable.name`](/docs/registry/attributes/process.md) | string | The name of the process executable. On Linux based systems, this SHOULD be set to the base name of the target of `/proc/[pid]/exe`. On Windows, this SHOULD be set to the base name of `GetProcessImageFileNameW`. | `otelcol` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) | |
-| [`process.exit.code`](/docs/registry/attributes/process.md) | int | The exit code of the process. | `127` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) | |
-| [`process.pid`](/docs/registry/attributes/process.md) | int | Process identifier (PID). | `1234` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) | |
-| [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` if and only if process.exit.code is not 0 | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | |
-| [`process.command_args`](/docs/registry/attributes/process.md) | string[] | All the command arguments (including the command/executable itself) as received by the process. On Linux-based systems (and some other Unixoid systems supporting procfs), can be set according to the list of null-delimited strings extracted from `proc/[pid]/cmdline`. For libc-based executables, this would be the full argv vector passed to `main`. SHOULD NOT be collected by default unless there is sanitization that excludes sensitive data. | `["cmd/otecol", "--config=config.yaml"]` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) | |
-| [`process.executable.path`](/docs/registry/attributes/process.md) | string | The full path to the process executable. On Linux based systems, can be set to the target of `proc/[pid]/exe`. On Windows, can be set to the result of `GetProcessImageFileNameW`. | `/usr/bin/cmd/otelcol` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) | |
+| [`process.executable.name`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the process executable. On Linux based systems, this SHOULD be set to the base name of the target of `/proc/[pid]/exe`. On Windows, this SHOULD be set to the base name of `GetProcessImageFileNameW`. | `otelcol` |  |
+| [`process.exit.code`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | int | The exit code of the process. | `127` |  |
+| [`process.pid`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | int | Process identifier (PID). | `1234` |  |
+| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if and only if process.exit.code is not 0 | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` |  |
+| [`process.command_args`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string[] | All the command arguments (including the command/executable itself) as received by the process. On Linux-based systems (and some other Unixoid systems supporting procfs), can be set according to the list of null-delimited strings extracted from `proc/[pid]/cmdline`. For libc-based executables, this would be the full argv vector passed to `main`. SHOULD NOT be collected by default unless there is sanitization that excludes sensitive data. | `["cmd/otecol", "--config=config.yaml"]` |  |
+| [`process.executable.path`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The full path to the process executable. On Linux based systems, can be set to the target of `proc/[pid]/exe`. On Windows, can be set to the result of `GetProcessImageFileNameW`. | `/usr/bin/cmd/otelcol` |  |
 
 **[1] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
@@ -91,19 +93,21 @@ This span describes CLI (Command Line Interfaces) program execution from a calle
 Instrumentations that have additional context about executed commands MAY use
 a different low-cardinality span name format and SHOULD document it.
 
-**Span status** SHOULD be set to Error if {process.exit.code} is not 0. Refer to
-the [Recording Errors](/docs/general/recording-errors.md) document for details on how to record span status.
+**Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
+An Error is defined as when the `{process.exit.code}` attribute is not 0.
 
 **Span kind** SHOULD be `CLIENT`.
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Role |
+**Attributes:**
+
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values | Role |
 |---|---|---|---|---|---|---|
-| [`process.executable.name`](/docs/registry/attributes/process.md) | string | The name of the process executable. On Linux based systems, this SHOULD be set to the base name of the target of `/proc/[pid]/exe`. On Windows, this SHOULD be set to the base name of `GetProcessImageFileNameW`. | `otelcol` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) | |
-| [`process.exit.code`](/docs/registry/attributes/process.md) | int | The exit code of the process. | `127` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) | |
-| [`process.pid`](/docs/registry/attributes/process.md) | int | Process identifier (PID). | `1234` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) | |
-| [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` if and only if process.exit.code is not 0 | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | |
-| [`process.command_args`](/docs/registry/attributes/process.md) | string[] | All the command arguments (including the command/executable itself) as received by the process. On Linux-based systems (and some other Unixoid systems supporting procfs), can be set according to the list of null-delimited strings extracted from `proc/[pid]/cmdline`. For libc-based executables, this would be the full argv vector passed to `main`. SHOULD NOT be collected by default unless there is sanitization that excludes sensitive data. | `["cmd/otecol", "--config=config.yaml"]` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) | |
-| [`process.executable.path`](/docs/registry/attributes/process.md) | string | The full path to the process executable. On Linux based systems, can be set to the target of `proc/[pid]/exe`. On Windows, can be set to the result of `GetProcessImageFileNameW`. | `/usr/bin/cmd/otelcol` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) | |
+| [`process.executable.name`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the process executable. On Linux based systems, this SHOULD be set to the base name of the target of `/proc/[pid]/exe`. On Windows, this SHOULD be set to the base name of `GetProcessImageFileNameW`. | `otelcol` |  |
+| [`process.exit.code`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | int | The exit code of the process. | `127` |  |
+| [`process.pid`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | int | Process identifier (PID). | `1234` |  |
+| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if and only if process.exit.code is not 0 | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` |  |
+| [`process.command_args`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string[] | All the command arguments (including the command/executable itself) as received by the process. On Linux-based systems (and some other Unixoid systems supporting procfs), can be set according to the list of null-delimited strings extracted from `proc/[pid]/cmdline`. For libc-based executables, this would be the full argv vector passed to `main`. SHOULD NOT be collected by default unless there is sanitization that excludes sensitive data. | `["cmd/otecol", "--config=config.yaml"]` |  |
+| [`process.executable.path`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The full path to the process executable. On Linux based systems, can be set to the target of `proc/[pid]/exe`. On Windows, can be set to the result of `GetProcessImageFileNameW`. | `/usr/bin/cmd/otelcol` |  |
 
 **[1] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 

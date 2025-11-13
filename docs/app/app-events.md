@@ -39,12 +39,14 @@ This event represents an instantaneous click on the screen of an application.
 
 The `app.screen.click` event can be used to indicate that a user has clicked or tapped on the screen portion of an application. Clicks outside of an application's active area SHOULD NOT generate this event. This event does not differentiate between touch/mouse down and touch/mouse up. Implementations SHOULD give preference to generating this event at the time the click is complete, typically on touch release or mouse up. The location of the click event MUST be provided in absolute screen pixels.
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Role |
+**Attributes:**
+
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values | Role |
 |---|---|---|---|---|---|---|
-| [`app.screen.coordinate.x`](/docs/registry/attributes/app.md) | int | The x (horizontal) coordinate of a screen coordinate, in screen pixels. | `0`; `131` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) | |
-| [`app.screen.coordinate.y`](/docs/registry/attributes/app.md) | int | The y (vertical) component of a screen coordinate, in screen pixels. | `12`; `99` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) | |
-| [`app.screen.id`](/docs/registry/attributes/app.md) | string | An identifier that uniquely differentiates this screen from other screens in the same application. [1] | `f9bc787d-ff05-48ad-90e1-fca1d46130b3`; `com.example.app.MainActivity`; `com.example.shop.ProductDetailFragment`; `MyApp.ProfileView`; `MyApp.ProfileViewController` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) | |
-| [`app.screen.name`](/docs/registry/attributes/app.md) | string | The name of an application screen. [2] | `MainActivity`; `ProductDetailFragment`; `ProfileView`; `ProfileViewController` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) | |
+| [`app.screen.coordinate.x`](/docs/registry/attributes/app.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | int | The x (horizontal) coordinate of a screen coordinate, in screen pixels. | `0`; `131` |  |
+| [`app.screen.coordinate.y`](/docs/registry/attributes/app.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | int | The y (vertical) component of a screen coordinate, in screen pixels. | `12`; `99` |  |
+| [`app.screen.id`](/docs/registry/attributes/app.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | An identifier that uniquely differentiates this screen from other screens in the same application. [1] | `f9bc787d-ff05-48ad-90e1-fca1d46130b3`; `com.example.app.MainActivity`; `com.example.shop.ProductDetailFragment`; `MyApp.ProfileView`; `MyApp.ProfileViewController` |  |
+| [`app.screen.name`](/docs/registry/attributes/app.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The name of an application screen. [2] | `MainActivity`; `ProductDetailFragment`; `ProfileView`; `ProfileViewController` |  |
 
 **[1] `app.screen.id`:** A screen represents only the part of the device display drawn by the app. It typically contains multiple widgets or UI components and is larger in scope than individual widgets. Multiple screens can coexist on the same display simultaneously (e.g., split view on tablets).
 
@@ -72,14 +74,16 @@ This event indicates that an application widget has been clicked.
 
 Use this event to indicate that visual application component has been clicked, typically through a user's manual interaction.
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Role |
+**Attributes:**
+
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values | Role |
 |---|---|---|---|---|---|---|
-| [`app.widget.id`](/docs/registry/attributes/app.md) | string | An identifier that uniquely differentiates this widget from other widgets in the same application. [1] | `f9bc787d-ff05-48ad-90e1-fca1d46130b3`; `submit_order_1829` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) | |
-| [`app.screen.id`](/docs/registry/attributes/app.md) | string | An identifier that uniquely differentiates this screen from other screens in the same application. [2] | `f9bc787d-ff05-48ad-90e1-fca1d46130b3`; `com.example.app.MainActivity`; `com.example.shop.ProductDetailFragment`; `MyApp.ProfileView`; `MyApp.ProfileViewController` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) | |
-| [`app.screen.coordinate.x`](/docs/registry/attributes/app.md) | int | The x (horizontal) coordinate of a screen coordinate, in screen pixels. | `0`; `131` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) | |
-| [`app.screen.coordinate.y`](/docs/registry/attributes/app.md) | int | The y (vertical) component of a screen coordinate, in screen pixels. | `12`; `99` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) | |
-| [`app.screen.name`](/docs/registry/attributes/app.md) | string | The name of an application screen. [3] | `MainActivity`; `ProductDetailFragment`; `ProfileView`; `ProfileViewController` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) | |
-| [`app.widget.name`](/docs/registry/attributes/app.md) | string | The name of an application widget. [4] | `submit`; `attack`; `Clear Cart` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) | |
+| [`app.widget.id`](/docs/registry/attributes/app.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | An identifier that uniquely differentiates this widget from other widgets in the same application. [1] | `f9bc787d-ff05-48ad-90e1-fca1d46130b3`; `submit_order_1829` |  |
+| [`app.screen.id`](/docs/registry/attributes/app.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | An identifier that uniquely differentiates this screen from other screens in the same application. [2] | `f9bc787d-ff05-48ad-90e1-fca1d46130b3`; `com.example.app.MainActivity`; `com.example.shop.ProductDetailFragment`; `MyApp.ProfileView`; `MyApp.ProfileViewController` |  |
+| [`app.screen.coordinate.x`](/docs/registry/attributes/app.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The x (horizontal) coordinate of a screen coordinate, in screen pixels. | `0`; `131` |  |
+| [`app.screen.coordinate.y`](/docs/registry/attributes/app.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The y (vertical) component of a screen coordinate, in screen pixels. | `12`; `99` |  |
+| [`app.screen.name`](/docs/registry/attributes/app.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The name of an application screen. [3] | `MainActivity`; `ProductDetailFragment`; `ProfileView`; `ProfileViewController` |  |
+| [`app.widget.name`](/docs/registry/attributes/app.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The name of an application widget. [4] | `submit`; `attack`; `Clear Cart` |  |
 
 **[1] `app.widget.id`:** A widget is an application component, typically an on-screen visual GUI element.
 
@@ -117,11 +121,13 @@ This event indicates that the application has detected substandard UI rendering 
 
 Jank happens when the UI is rendered slowly enough for the user to experience some disruption or sluggishness.
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability | Role |
+**Attributes:**
+
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values | Role |
 |---|---|---|---|---|---|---|
-| [`app.jank.frame_count`](/docs/registry/attributes/app.md) | int | A number of frame renders that experienced jank. [1] | `9`; `42` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) | |
-| [`app.jank.period`](/docs/registry/attributes/app.md) | double | The time period, in seconds, for which this jank is being reported. | `1.0`; `5.0`; `10.24` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) | |
-| [`app.jank.threshold`](/docs/registry/attributes/app.md) | double | The minimum rendering threshold for this jank, in seconds. | `0.016`; `0.7`; `1.024` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) | |
+| [`app.jank.frame_count`](/docs/registry/attributes/app.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | int | A number of frame renders that experienced jank. [1] | `9`; `42` |  |
+| [`app.jank.period`](/docs/registry/attributes/app.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | double | The time period, in seconds, for which this jank is being reported. | `1.0`; `5.0`; `10.24` |  |
+| [`app.jank.threshold`](/docs/registry/attributes/app.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | double | The minimum rendering threshold for this jank, in seconds. | `0.016`; `0.7`; `1.024` |  |
 
 **[1] `app.jank.frame_count`:** Depending on platform limitations, the value provided MAY be approximation.
 

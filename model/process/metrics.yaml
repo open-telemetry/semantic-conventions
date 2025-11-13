@@ -149,7 +149,7 @@ groups:
     instrument: counter
     unit: "{fault}"
     attributes:
-      - ref: process.paging.fault_type
+      - ref: system.paging.fault.type
     entity_associations:
       - process
 
