@@ -65,101 +65,109 @@ groups:
       It is recommended to be captured by using the PerformanceResourceTiming API.
       If the page starts unloading before the page loads,
       then the partial data can be captured by calling the [performance.getEntriesByType](https://developer.mozilla.org/en-US/docs/Web/API/Performance/getEntriesByType) method.
-    body:
-      id: browser.resource_timing
-      requirement_level: required
-      stability: development
-      type: map
-      fields:
-        - id: url
-          type: string
-          stability: development
-          brief: The full URL of the resource being fetched.
-          requirement_level: required
-          examples: ["https://www.example.com/path", "//localhost"]
-          note: >
-            This is the URL of the resource being measured, not the page URL.
-            Generally the url doesn't include any query strings or any leading credentials,
-            and it's formatted as scheme://full domain/path only, for example https://www.example.com/path?a=b&c=d
-            would be sent as https://www.example.com/path by both removing any potential PII and reducing the cardinality of the name.
-        - id: fetchStart
-          type: double
-          stability: development
-          brief: >
-            The [time](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp) immediately before
-            the browser starts to fetch the resource, in milliseconds.
-            See [fetchStart](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/fetchStart).
-          requirement_level: recommended
-          examples: [9.600000000558794]
-        - id: domainLookupStart
-          type: double
-          stability: development
-          brief: >
-            The [time](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp) immediately before
-            the browser starts the domain name lookup for the resource, in milliseconds.
-            See [domainLookupStart](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/domainLookupStart).
-          requirement_level: recommended
-          examples: [100.6000000014901]
-        - id: domainLookupEnd
-          type: double
-          stability: development
-          brief: >
-            The [time](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp) immediately after
-            the browser finishes the domain name lookup for the resource, in milliseconds.
-            See [domainLookupEnd](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/domainLookupEnd).
-          requirement_level: recommended
-          examples: [100.6000000014906]
-        - id: connectStart
-          type: double
-          stability: development
-          brief: >
-            The [time](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp) immediately before
-            the user agent starts establishing the connection to the server to retrieve the resource, in milliseconds.
-            See [connectStart](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/connectStart).
-          requirement_level: recommended
-          examples: [476.6000000014901]
-        - id: secureConnectionStart
-          type: double
-          stability: development
-          brief: >
-            The [time](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp) immediately before
-            the browser starts the handshake process to secure the current connection, in milliseconds.
-            See [secureConnectionStart](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/secureConnectionStart).
-          requirement_level: recommended
-          examples: [476.6000000014903]
-        - id: connectEnd
-          type: double
-          stability: development
-          brief: >
-            The [time](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp) immediately after
-            the browser finishes establishing the connection to the server to retrieve the resource, in milliseconds.
-            See [connectEnd](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/connectEnd).
-          requirement_level: recommended
-          examples: [476.6000000014906]
-        - id: requestStart
-          type: double
-          stability: development
-          brief: >
-            The [time](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp) immediately before
-            the browser starts requesting the resource from the server, cache, or local resource, in milliseconds.
-            See [requestStart](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/requestStart).
-          requirement_level: recommended
-          examples: [506.70000000298023]
-        - id: responseStart
-          type: double
-          stability: development
-          brief: >
-            The [time](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp) immediately after
-            the browser receives the first byte of the response from the server, cache, or local resource, in milliseconds.
-            See [responseStart](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/responseStart).
-          requirement_level: recommended
-          examples: [508.6000000014901]
-        - id: responseEnd
-          type: double
-          stability: development
-          brief: >
-            The [time](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp) immediately after
-            the browser receives the last byte of the resource or immediately before the transport connection is closed, whichever comes first,
-            in milliseconds. See [responseEnd](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/responseEnd).
-          requirement_level: recommended
-          examples: [510.6000000014906]
+    attributes:
+      - id: browser.resource_timing.url.canonical
+        type: string
+        stability: development
+        brief: The canonical URL of the resource, consisting of scheme, domain, and path.
+        requirement_level: required
+        examples: ["https://www.example.com/path", "https://cdn.example.com/assets/image.png", "//localhost/api/resource"]
+        note: >
+          This is the canonical URL of the resource being measured, not the page URL.
+          It represents the resource in its standard form for identification purposes.
+          The canonical URL includes the scheme (if present), full domain, and path only.
+          Query strings and credentials MUST be excluded to reduce cardinality and avoid capturing PII.
+          For example, `https://www.example.com/path?a=b&c=d` would be captured as `https://www.example.com/path`.
+          In JavaScript, this typically corresponds to `${url.origin}${url.pathname}` or `${location.protocol}//${location.host}${location.pathname}`.
+      - id: browser.resource_timing.url.query
+        type: string
+        stability: development
+        brief: >
+          The [URI query](https://www.rfc-editor.org/rfc/rfc3986#section-3.4) component of the resource URL.
+        requirement_level: opt_in
+        examples: ["size=large", "format=webp", "width=800&height=600"]
+        note: >
+          This attribute is opt-in due to potential high cardinality and PII concerns.
+          Sensitive content provided in the query string SHOULD be scrubbed when instrumentations can identify it.
+          Use this attribute when query parameters are relevant to the resource being fetched (e.g., image dimensions, format specifications).
+      - id: browser.resource_timing.fetch_start
+        type: double
+        stability: development
+        brief: >
+          The [time](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp) immediately before
+          the browser starts to fetch the resource, in milliseconds.
+          See [fetchStart](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/fetchStart).
+        requirement_level: recommended
+        examples: [9.600000000558794]
+      - id: browser.resource_timing.domain_lookup_start
+        type: double
+        stability: development
+        brief: >
+          The [time](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp) immediately before
+          the browser starts the domain name lookup for the resource, in milliseconds.
+          See [domainLookupStart](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/domainLookupStart).
+        requirement_level: recommended
+        examples: [100.6000000014901]
+      - id: browser.resource_timing.domain_lookup_end
+        type: double
+        stability: development
+        brief: >
+          The [time](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp) immediately after
+          the browser finishes the domain name lookup for the resource, in milliseconds.
+          See [domainLookupEnd](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/domainLookupEnd).
+        requirement_level: recommended
+        examples: [100.6000000014906]
+      - id: browser.resource_timing.connect_start
+        type: double
+        stability: development
+        brief: >
+          The [time](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp) immediately before
+          the user agent starts establishing the connection to the server to retrieve the resource, in milliseconds.
+          See [connectStart](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/connectStart).
+        requirement_level: recommended
+        examples: [476.6000000014901]
+      - id: browser.resource_timing.secure_connection_start
+        type: double
+        stability: development
+        brief: >
+          The [time](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp) immediately before
+          the browser starts the handshake process to secure the current connection, in milliseconds.
+          See [secureConnectionStart](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/secureConnectionStart).
+        requirement_level: recommended
+        examples: [476.6000000014903]
+      - id: browser.resource_timing.connect_end
+        type: double
+        stability: development
+        brief: >
+          The [time](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp) immediately after
+          the browser finishes establishing the connection to the server to retrieve the resource, in milliseconds.
+          See [connectEnd](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/connectEnd).
+        requirement_level: recommended
+        examples: [476.6000000014906]
+      - id: browser.resource_timing.request_start
+        type: double
+        stability: development
+        brief: >
+          The [time](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp) immediately before
+          the browser starts requesting the resource from the server, cache, or local resource, in milliseconds.
+          See [requestStart](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/requestStart).
+        requirement_level: recommended
+        examples: [506.70000000298023]
+      - id: browser.resource_timing.response_start
+        type: double
+        stability: development
+        brief: >
+          The [time](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp) immediately after
+          the browser receives the first byte of the response from the server, cache, or local resource, in milliseconds.
+          See [responseStart](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/responseStart).
+        requirement_level: recommended
+        examples: [508.6000000014901]
+      - id: browser.resource_timing.response_end
+        type: double
+        stability: development
+        brief: >
+          The [time](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp) immediately after
+          the browser receives the last byte of the resource or immediately before the transport connection is closed, whichever comes first,
+          in milliseconds. See [responseEnd](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/responseEnd).
+        requirement_level: recommended
+        examples: [510.6000000014906]
