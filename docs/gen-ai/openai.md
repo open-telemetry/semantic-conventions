@@ -120,6 +120,7 @@ libraries.
 **[5] `gen_ai.output.type`:** when applicable and if the request includes an output format.
 
 **[6] `gen_ai.output.type`:** This attribute SHOULD be set to the output type requested by the client:
+
 - `json` for structured outputs with defined or undefined schema
 - `image` for image output
 - `speech` for speech output

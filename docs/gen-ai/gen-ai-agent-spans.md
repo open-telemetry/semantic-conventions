@@ -193,6 +193,7 @@ in a different process than its caller or when the agent invocation happens over
 instrumented protocol such as HTTP.
 
 Examples of span kinds for different agent scenarios:
+
 - `CLIENT`: Remote agent services (e.g., OpenAI Assistants API, AWS Bedrock Agents)
 - `INTERNAL`: In-process agents (e.g., LangChain agents, CrewAI agents)
 

@@ -462,7 +462,6 @@ Application developers should choose an appropriate usage pattern based on
 application needs and maturity:
 
 1. [Default] Don't record instructions, inputs, or outputs.
-
 2. Record instructions, inputs, and outputs on the GenAI spans using corresponding
    attributes (`gen_ai.system_instructions`, `gen_ai.input.messages`,
    `gen_ai.output.messages`).
@@ -473,7 +472,6 @@ application needs and maturity:
 
    See [Recording content on attributes](#recording-content-on-attributes)
    section for more details.
-
 3. Store content externally and record references on the spans.
 
    This pattern is recommended in production environments where telemetry volume

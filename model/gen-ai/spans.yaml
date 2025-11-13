@@ -131,6 +131,7 @@ groups:
       - ref: gen_ai.output.type
         note: |
           This attribute SHOULD be set to the output type requested by the client:
+
           - `json` for structured outputs with defined or undefined schema
           - `image` for image output
           - `speech` for speech output
@@ -266,6 +267,7 @@ groups:
       instrumented protocol such as HTTP.
 
       Examples of span kinds for different agent scenarios:
+
       - `CLIENT`: Remote agent services (e.g., OpenAI Assistants API, AWS Bedrock Agents)
       - `INTERNAL`: In-process agents (e.g., LangChain agents, CrewAI agents)
     extends: attributes.gen_ai.inference.client
