@@ -5,8 +5,11 @@ on:
     branches: [ 'main' ]
     paths:
       - 'model/**'
-jobs:
 
+permissions:
+  contents: read
+
+jobs:
   get-changed-files:
     runs-on: ubuntu-latest
     permissions:
