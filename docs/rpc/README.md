@@ -44,6 +44,7 @@ The details of this invocation can be captured using the following signals:
 These generic conventions can be extended based on the [RPC Protocol](#what-is-a-rpc-protocol) being used with the following protocols defined:
 
 - [gRPC](grpc.md)
+- GWT
 - [Http](/docs/http/README.md)
 - Triple
 - Twirp
