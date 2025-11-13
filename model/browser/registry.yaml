@@ -50,3 +50,100 @@ groups:
           This value is intended to be taken from the Navigator API
           `navigator.language`.
         examples: ["en", "en-US", "fr", "fr-FR"]
+
+  - id: registry.browser.resource_timing
+    type: attribute_group
+    display_name: Browser Resource Timing Attributes
+    brief: >
+      Attributes for browser resource timing events
+    attributes:
+      - id: browser.resource_timing.url.canonical
+        type: string
+        stability: development
+        brief: 'The canonical URL of the resource, excluding query parameters and credentials'
+        note: >
+          The canonical URL includes scheme, domain, and path components only.
+          Query parameters and URL fragments MUST be excluded. User credentials
+          (username and password) MUST be excluded.
+        examples: ['https://example.com/path/to/resource.js', 'https://cdn.example.com/styles/main.css']
+      - id: browser.resource_timing.url.query
+        type: string
+        stability: development
+        brief: 'The query string component of the resource URL'
+        note: >
+          The query string includes the leading `?` character.
+          This attribute is opt-in as it may contain sensitive information.
+        examples: ['?version=1.2.3', '?id=abc123&type=json']
+      - id: browser.resource_timing.fetch_start
+        type: double
+        stability: development
+        brief: 'Time immediately before the browser starts to fetch the resource'
+        note: >
+          Measured in milliseconds as a DOMHighResTimeStamp relative to the time origin.
+          See the [Performance Resource Timing API](https://www.w3.org/TR/resource-timing-2/#dom-performanceresourcetiming-fetchstart).
+        examples: [120.5, 250.75]
+      - id: browser.resource_timing.domain_lookup_start
+        type: double
+        stability: development
+        brief: 'Time immediately before the browser starts the domain name lookup for the resource'
+        note: >
+          Measured in milliseconds as a DOMHighResTimeStamp relative to the time origin.
+          See the [Performance Resource Timing API](https://www.w3.org/TR/resource-timing-2/#dom-performanceresourcetiming-domainlookupstart).
+        examples: [125.3, 255.8]
+      - id: browser.resource_timing.domain_lookup_end
+        type: double
+        stability: development
+        brief: 'Time immediately after the browser completes the domain name lookup for the resource'
+        note: >
+          Measured in milliseconds as a DOMHighResTimeStamp relative to the time origin.
+          See the [Performance Resource Timing API](https://www.w3.org/TR/resource-timing-2/#dom-performanceresourcetiming-domainlookupend).
+        examples: [130.2, 260.5]
+      - id: browser.resource_timing.connect_start
+        type: double
+        stability: development
+        brief: 'Time immediately before the browser starts to establish the connection to the server'
+        note: >
+          Measured in milliseconds as a DOMHighResTimeStamp relative to the time origin.
+          See the [Performance Resource Timing API](https://www.w3.org/TR/resource-timing-2/#dom-performanceresourcetiming-connectstart).
+        examples: [131.0, 261.3]
+      - id: browser.resource_timing.secure_connection_start
+        type: double
+        stability: development
+        brief: 'Time immediately before the browser starts the handshake process to secure the connection'
+        note: >
+          Measured in milliseconds as a DOMHighResTimeStamp relative to the time origin.
+          If the scheme is not HTTPS, this value is 0.
+          See the [Performance Resource Timing API](https://www.w3.org/TR/resource-timing-2/#dom-performanceresourcetiming-secureconnectionstart).
+        examples: [132.5, 262.8]
+      - id: browser.resource_timing.connect_end
+        type: double
+        stability: development
+        brief: 'Time immediately after the browser completes establishing the connection to the server'
+        note: >
+          Measured in milliseconds as a DOMHighResTimeStamp relative to the time origin.
+          See the [Performance Resource Timing API](https://www.w3.org/TR/resource-timing-2/#dom-performanceresourcetiming-connectend).
+        examples: [145.7, 275.2]
+      - id: browser.resource_timing.request_start
+        type: double
+        stability: development
+        brief: 'Time immediately before the browser starts requesting the resource from the server'
+        note: >
+          Measured in milliseconds as a DOMHighResTimeStamp relative to the time origin.
+          See the [Performance Resource Timing API](https://www.w3.org/TR/resource-timing-2/#dom-performanceresourcetiming-requeststart).
+        examples: [146.0, 276.0]
+      - id: browser.resource_timing.response_start
+        type: double
+        stability: development
+        brief: 'Time immediately after the browser receives the first byte of the response from the server'
+        note: >
+          Measured in milliseconds as a DOMHighResTimeStamp relative to the time origin.
+          See the [Performance Resource Timing API](https://www.w3.org/TR/resource-timing-2/#dom-performanceresourcetiming-responsestart).
+        examples: [180.5, 310.8]
+      - id: browser.resource_timing.response_end
+        type: double
+        stability: development
+        brief: 'Time immediately after the browser receives the last byte of the resource'
+        note: >
+          Measured in milliseconds as a DOMHighResTimeStamp relative to the time origin.
+          See the [Performance Resource Timing API](https://www.w3.org/TR/resource-timing-2/#dom-performanceresourcetiming-responseend).
+        examples: [220.3, 350.5]
