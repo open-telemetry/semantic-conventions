@@ -5,23 +5,37 @@
 {% import 'enum_macros.j2' as enums %}
 {% import 'examples_macros.j2' as examples %}
 {#- Macro for creating attribute table -#}
-{% macro generate(attributes, tag_filter, attribute_registry_base_url, lineage_attributes) %}{% if (tag_filter | length == 0) %}{% set filtered_attributes = attributes | attribute_sort %}{% else %}{% set filtered_attributes = attributes | selectattr("tag", "in", tag_filter) | attribute_sort %}{% endif %}
+{% macro generate(group, tag_filter, attribute_registry_base_url) %}{% if (tag_filter | length == 0) %}{% set filtered_attributes = group.attributes | attribute_sort %}{% else %}{% set filtered_attributes = group.attributes | selectattr("tag", "in", tag_filter) | attribute_sort %}{% endif %}
 {% set general_attributes = filtered_attributes %}
 
-{{ generate_general(general_attributes, attribute_registry_base_url, lineage_attributes) | trim }}
-{% endmacro %}
-
-{#- Macro for creating general attribute table -#}
-{% macro generate_general(attributes, attribute_registry_base_url, lineage_attributes) %}{% if (attributes is defined) and (attributes | length > 0) %}
-{{ generate_table(attributes, attribute_registry_base_url, lineage_attributes)}}
+{% if (general_attributes is defined) and (general_attributes | length > 0) %}
+{{ generate_any(group, general_attributes, attribute_registry_base_url) | trim }}
+{{ notes.render() }}{{ enums.tables(general_attributes  | selectattr("type", "mapping"), notes) }}
 {% endif %}
 {% endmacro %}
 
-{#- Macro for creating attribute table -#}
-{% macro generate_table(attributes, attribute_registry_base_url, lineage_attributes) %}{% if (attributes is defined) and (attributes | length > 0) %}**Attributes:**
+{#- Macro for creating general attribute table -#}
+{% macro generate_any(group, attributes, attribute_registry_base_url) %}
+{% if group.type == "span"%}
+{{ generate_span_table(group, attributes, attribute_registry_base_url) | trim }}
+{% else %}
+{{ generate_general_table(group, attributes, attribute_registry_base_url) | trim }}{% endif %}
+{% endmacro %}
 
-| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values | Role |
-|---|---|---|---|---|---|---|
-{% for attribute in attributes if attribute.deprecated is not defined or attribute.deprecated is none %}| {{ attrs.name_with_link(attribute, attribute_registry_base_url, lineage_attributes) }} | {{ stability.badge(attribute.stability, attribute.deprecated, attribute.brief) | trim }} | {{ requirement.render({"level": attribute.requirement_level, "name": attrs.name(attribute)}, notes) | trim }} | {{ attrs.type(attribute) }} | {{ attribute.brief | trim }}{{ notes.add({"note": attribute.note, "name": attrs.name(attribute)}) }} | {{ examples.format(attribute) | trim }} | {% if attribute.sampling_relevant == true %}Head Sampling{% else %}{% endif %} |
-{% endfor %}{{ notes.render() }}{{ enums.tables(attributes  | selectattr("type", "mapping"), notes) }}
+{#- Macro for creating attribute table -#}
+{% macro generate_general_table(group, attributes, attribute_registry_base_url) %}{% if (attributes is defined) and (attributes | length > 0) %}**Attributes:**
+
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
+|---|---|---|---|---|---|
+{% for attribute in attributes if attribute.deprecated is not defined or attribute.deprecated is none %}| {{ attrs.name_with_link(attribute, attribute_registry_base_url, group.lineage.attributes) }} | {{ stability.badge(attribute.stability, attribute.deprecated, attribute.brief) | trim }} | {{ requirement.render({"level": attribute.requirement_level, "name": attrs.name(attribute)}, notes) | trim }} | {{ attrs.type(attribute) }} | {{ attribute.brief | trim }}{{ notes.add({"note": attribute.note, "name": attrs.name(attribute)}) }} | {{ examples.format(attribute) | trim }} |
+{% endfor %}
+{% endif %}{% endmacro %}
+
+{#- Macro for creating span attribute table -#}
+{% macro generate_span_table(group, attributes, attribute_registry_base_url) %}{% if (attributes is defined) and (attributes | length > 0) %}**Attributes:**
+
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values | Additional Uses |
+| --- | --- | --- | --- | --- | --- | --- |
+{% for attribute in attributes if attribute.deprecated is not defined or attribute.deprecated is none %}| {{ attrs.name_with_link(attribute, attribute_registry_base_url, group.lineage.attributes) }} | {{ stability.badge(attribute.stability, attribute.deprecated, attribute.brief) | trim }} | {{ requirement.render({"level": attribute.requirement_level, "name": attrs.name(attribute)}, notes) | trim }} | {{ attrs.type(attribute) }} | {{ attribute.brief | trim }}{{ notes.add({"note": attribute.note, "name": attrs.name(attribute)}) }} | {{ examples.format(attribute) | trim }} |{% if attribute.sampling_relevant == true %}- Head Sampling{% else %} {% endif %} |
+{% endfor %}
 {% endif %}{% endmacro %}

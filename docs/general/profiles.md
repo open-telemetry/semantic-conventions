@@ -32,9 +32,9 @@ They may be used in any Profiles record they apply to.
 
 **Attributes:**
 
-| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values | Role |
-|---|---|---|---|---|---|---|
-| [`profile.frame.type`](/docs/registry/attributes/profile.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Describes the interpreter or compiler of a single frame. | `cpython` |  |
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
+|---|---|---|---|---|---|
+| [`profile.frame.type`](/docs/registry/attributes/profile.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Describes the interpreter or compiler of a single frame. | `cpython` |
 
 ---
 
@@ -78,14 +78,14 @@ They may be used in any Profiles record they apply to.
 
 **Attributes:**
 
-| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values | Role |
-|---|---|---|---|---|---|---|
-| [`pprof.location.is_folded`](/docs/registry/attributes/pprof.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | boolean | Provides an indication that multiple symbols map to this location's address, for example due to identical code folding by the linker. In that case the line information represents one of the multiple symbols. This field must be recomputed when the symbolization state of the profile changes. |  |  |
-| [`pprof.mapping.has_filenames`](/docs/registry/attributes/pprof.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | boolean | Indicates that there are filenames related to this mapping. |  |  |
-| [`pprof.mapping.has_functions`](/docs/registry/attributes/pprof.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | boolean | Indicates that there are functions related to this mapping. |  |  |
-| [`pprof.mapping.has_inline_frames`](/docs/registry/attributes/pprof.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | boolean | Indicates that there are inline frames related to this mapping. |  |  |
-| [`pprof.mapping.has_line_numbers`](/docs/registry/attributes/pprof.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | boolean | Indicates that there are line numbers related to this mapping. |  |  |
-| [`pprof.profile.comment`](/docs/registry/attributes/pprof.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string[] | Free-form text associated with the profile. This field should not be used to store any machine-readable information, it is only for human-friendly content. | `["hello world", "bazinga"]` |  |
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
+|---|---|---|---|---|---|
+| [`pprof.location.is_folded`](/docs/registry/attributes/pprof.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | boolean | Provides an indication that multiple symbols map to this location's address, for example due to identical code folding by the linker. In that case the line information represents one of the multiple symbols. This field must be recomputed when the symbolization state of the profile changes. |  |
+| [`pprof.mapping.has_filenames`](/docs/registry/attributes/pprof.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | boolean | Indicates that there are filenames related to this mapping. |  |
+| [`pprof.mapping.has_functions`](/docs/registry/attributes/pprof.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | boolean | Indicates that there are functions related to this mapping. |  |
+| [`pprof.mapping.has_inline_frames`](/docs/registry/attributes/pprof.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | boolean | Indicates that there are inline frames related to this mapping. |  |
+| [`pprof.mapping.has_line_numbers`](/docs/registry/attributes/pprof.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | boolean | Indicates that there are line numbers related to this mapping. |  |
+| [`pprof.profile.comment`](/docs/registry/attributes/pprof.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string[] | Free-form text associated with the profile. This field should not be used to store any machine-readable information, it is only for human-friendly content. | `["hello world", "bazinga"]` |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

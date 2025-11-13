@@ -27,7 +27,7 @@
 {%- macro generate_span(group) -%}
 {{ span.header(group) }}{{ generate_attributes(group) }}{% endmacro -%}
 {%- macro generate_attributes(group) -%}
-{{ at.generate(group.attributes, tag_filter, attribute_registry_base_url, group.lineage.attributes) | trim }}
+{{ at.generate(group, tag_filter, attribute_registry_base_url) | trim }}
 
 {% endmacro -%}
 
