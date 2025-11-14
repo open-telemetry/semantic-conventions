@@ -79,6 +79,7 @@ as specified in the [Resource SDK specification](https://github.com/open-telemet
 **type:** `service`
 
 **Description:** A service instance.
+
 **Attributes:**
 
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
@@ -151,6 +152,7 @@ service.name = Shop.shoppingcart
 **type:** `telemetry.sdk`
 
 **Description:** The telemetry SDK used to capture data recorded by the instrumentation libraries.
+
 **Attributes:**
 
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
