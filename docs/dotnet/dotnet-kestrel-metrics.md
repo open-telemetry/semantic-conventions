@@ -127,8 +127,8 @@ of `[ 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10, 30, 60, 120, 300 ]`.
 **[1] `error.type`:** Starting from .NET 9, Kestrel `kestrel.connection.duration` metric reports
 the following errors types when a corresponding error occurs:
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value  | Description |
+| --- | --- |
 | `aborted_by_app` | The HTTP/1.1 connection was aborted when app code aborted an HTTP request with `HttpContext.Abort()`. |
 | `app_shutdown_timeout` | The connection was aborted during app shutdown. During shutdown, the server stops accepting new connections and HTTP requests, and it is given time for active requests to complete. If the app shutdown timeout is exceeded, all remaining connections are aborted. |
 | `closed_critical_stream` | A critical control stream for an HTTP/3 connection was closed. |
