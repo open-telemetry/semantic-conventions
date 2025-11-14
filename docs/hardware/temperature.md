@@ -33,7 +33,7 @@ All temperature metrics may include the below attributes:
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- |
 | [`hw.id`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` |
 | [`hw.name`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | An easily-recognizable name for the hardware component | `eth0` |
 | [`hw.parent`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` |
@@ -57,14 +57,14 @@ Temperature in degrees Celsius.
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `hw.temperature` | Gauge | `Cel` | Temperature in degrees Celsius. | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- |
 | [`hw.id`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` |
 | [`hw.name`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | An easily-recognizable name for the hardware component | `eth0` |
 | [`hw.parent`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` |
@@ -92,14 +92,14 @@ The following attributes SHOULD be set:
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `hw.temperature.limit` | Gauge | `Cel` | Temperature limit in degrees Celsius. | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- |
 | [`hw.id`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` |
 | [`hw.limit_type`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Type of limit for hardware components | `low.critical`; `low.degraded`; `high.degraded`; `high.critical` |
 | [`hw.name`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | An easily-recognizable name for the hardware component | `eth0` |
@@ -110,8 +110,8 @@ The following attributes SHOULD be set:
 
 `hw.limit_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `critical` | Critical | ![Development](https://img.shields.io/badge/-development-blue) |
 | `degraded` | Degraded | ![Development](https://img.shields.io/badge/-development-blue) |
 | `high.critical` | High Critical | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -148,7 +148,7 @@ When using this metric for temperature status, the following attributes MUST be 
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `hw.status` | UpDownCounter | `1` | Operational status: `1` (true) or `0` (false) for each of the possible states. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
@@ -157,7 +157,7 @@ When using this metric for temperature status, the following attributes MUST be 
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- |
 | [`hw.id`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` |
 | [`hw.state`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The current state of the component | `degraded`; `failed`; `needs_cleaning` |
 | [`hw.type`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Type of the component [1] | `battery`; `cpu`; `disk_controller` |
@@ -170,8 +170,8 @@ When using this metric for temperature status, the following attributes MUST be 
 
 `hw.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `degraded` | Degraded | ![Development](https://img.shields.io/badge/-development-blue) |
 | `failed` | Failed | ![Development](https://img.shields.io/badge/-development-blue) |
 | `needs_cleaning` | Needs Cleaning | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -182,8 +182,8 @@ When using this metric for temperature status, the following attributes MUST be 
 
 `hw.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `battery` | Battery | ![Development](https://img.shields.io/badge/-development-blue) |
 | `cpu` | CPU | ![Development](https://img.shields.io/badge/-development-blue) |
 | `disk_controller` | Disk controller | ![Development](https://img.shields.io/badge/-development-blue) |

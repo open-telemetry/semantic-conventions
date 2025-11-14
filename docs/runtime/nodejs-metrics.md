@@ -39,7 +39,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `nodejs.eventloop.delay.min` | Gauge | `s` | Event loop minimum delay. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
@@ -61,7 +61,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `nodejs.eventloop.delay.max` | Gauge | `s` | Event loop maximum delay. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
@@ -83,7 +83,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `nodejs.eventloop.delay.mean` | Gauge | `s` | Event loop mean delay. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
@@ -105,7 +105,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `nodejs.eventloop.delay.stddev` | Gauge | `s` | Event loop standard deviation delay. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
@@ -127,7 +127,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `nodejs.eventloop.delay.p50` | Gauge | `s` | Event loop 50 percentile delay. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
@@ -149,7 +149,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `nodejs.eventloop.delay.p90` | Gauge | `s` | Event loop 90 percentile delay. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
@@ -171,7 +171,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `nodejs.eventloop.delay.p99` | Gauge | `s` | Event loop 99 percentile delay. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
@@ -193,7 +193,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `nodejs.eventloop.utilization` | Gauge | `1` | Event loop utilization. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
@@ -215,7 +215,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `nodejs.eventloop.time` | Counter | `s` | Cumulative duration of time the event loop has been in each state. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
@@ -224,15 +224,15 @@ This metric is [recommended][MetricRecommended].
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- |
 | [`nodejs.eventloop.state`](/docs/registry/attributes/nodejs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The state of event loop time. | `active`; `idle` |
 
 ---
 
 `nodejs.eventloop.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `active` | Active time. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `idle` | Idle time. | ![Development](https://img.shields.io/badge/-development-blue) |
 

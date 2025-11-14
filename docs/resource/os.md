@@ -19,7 +19,7 @@ In case of virtualized environments, this is the operating system as it is obser
 > Stable Entities MUST NOT have attributes without a defined role.
 
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-|---|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- | --- |
 | Other | [`os.type`](/docs/registry/attributes/os.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The operating system type. | `windows`; `linux`; `darwin` |
 | Other | [`os.build_id`](/docs/registry/attributes/os.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Unique identifier for a particular build or compilation of the operating system. [1] | `TQ3C.230805.001.B2`; `20E247`; `22621` |
 | Other | [`os.description`](/docs/registry/attributes/os.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Human readable (not intended to be parsed) OS version information, like e.g. reported by `ver` or `lsb_release -a` commands. | `Microsoft Windows [Version 10.0.18363.778]`; `Ubuntu 18.04.1 LTS` |

@@ -10,7 +10,7 @@ Attributes for hardware.
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | <a id="hw-battery-capacity" href="#hw-battery-capacity">`hw.battery.capacity`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Design capacity in Watts-hours or Amper-hours | `9.3Ah`; `50Wh` |
 | <a id="hw-battery-chemistry" href="#hw-battery-chemistry">`hw.battery.chemistry`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Battery [chemistry](https://schemas.dmtf.org/wbem/cim-html/2.31.0/CIM_Battery.html), e.g. Lithium-Ion, Nickel-Cadmium, etc. | `Li-ion`; `NiMH` |
 | <a id="hw-battery-state" href="#hw-battery-state">`hw.battery.state`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The current state of the battery | `charging`; `discharging` |
@@ -45,8 +45,8 @@ Attributes for hardware.
 
 `hw.battery.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `charging` | Charging | ![Development](https://img.shields.io/badge/-development-blue) |
 | `discharging` | Discharging | ![Development](https://img.shields.io/badge/-development-blue) |
 
@@ -54,8 +54,8 @@ Attributes for hardware.
 
 `hw.gpu.task` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `decoder` | Decoder | ![Development](https://img.shields.io/badge/-development-blue) |
 | `encoder` | Encoder | ![Development](https://img.shields.io/badge/-development-blue) |
 | `general` | General | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -64,8 +64,8 @@ Attributes for hardware.
 
 `hw.limit_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `critical` | Critical | ![Development](https://img.shields.io/badge/-development-blue) |
 | `degraded` | Degraded | ![Development](https://img.shields.io/badge/-development-blue) |
 | `high.critical` | High Critical | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -80,8 +80,8 @@ Attributes for hardware.
 
 `hw.logical_disk.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `free` | Free | ![Development](https://img.shields.io/badge/-development-blue) |
 | `used` | Used | ![Development](https://img.shields.io/badge/-development-blue) |
 
@@ -89,16 +89,16 @@ Attributes for hardware.
 
 `hw.physical_disk.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `remaining` | Remaining | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
 `hw.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `degraded` | Degraded | ![Development](https://img.shields.io/badge/-development-blue) |
 | `failed` | Failed | ![Development](https://img.shields.io/badge/-development-blue) |
 | `needs_cleaning` | Needs Cleaning | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -109,8 +109,8 @@ Attributes for hardware.
 
 `hw.tape_drive.operation_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `clean` | Clean | ![Development](https://img.shields.io/badge/-development-blue) |
 | `mount` | Mount | ![Development](https://img.shields.io/badge/-development-blue) |
 | `unmount` | Unmount | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -119,8 +119,8 @@ Attributes for hardware.
 
 `hw.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `battery` | Battery | ![Development](https://img.shields.io/badge/-development-blue) |
 | `cpu` | CPU | ![Development](https://img.shields.io/badge/-development-blue) |
 | `disk_controller` | Disk controller | ![Development](https://img.shields.io/badge/-development-blue) |

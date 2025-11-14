@@ -37,7 +37,7 @@ All network metrics may include the below attributes:
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- |
 | [`hw.id`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` |
 | [`hw.model`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Descriptive model name of the hardware component | `PERC H740P`; `Intel(R) Core(TM) i7-10700K`; `Dell XPS 15 Battery` |
 | [`hw.name`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | An easily-recognizable name for the hardware component | `eth0` |
@@ -74,14 +74,14 @@ The following attributes SHOULD be set:
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `hw.errors` | Counter | `{error}` | Number of errors encountered by the component. | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- |
 | [`hw.id`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` |
 | [`hw.type`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Type of the component [1] | `battery`; `cpu`; `disk_controller` |
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if and only if an error has occurred | string | The type of error encountered by the component. [2] | `uncorrected`; `zero_buffer_credit`; `crc`; `bad_sector` |
@@ -99,16 +99,16 @@ The following attributes SHOULD be set:
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ---
 
 `hw.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `battery` | Battery | ![Development](https://img.shields.io/badge/-development-blue) |
 | `cpu` | CPU | ![Development](https://img.shields.io/badge/-development-blue) |
 | `disk_controller` | Disk controller | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -128,8 +128,8 @@ The following attributes SHOULD be set:
 
 `network.io.direction` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `receive` | receive | ![Development](https://img.shields.io/badge/-development-blue) |
 | `transmit` | transmit | ![Development](https://img.shields.io/badge/-development-blue) |
 
@@ -151,14 +151,14 @@ Link speed.
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `hw.network.bandwidth.limit` | UpDownCounter | `By/s` | Link speed. | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- |
 | [`hw.id`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` |
 | [`hw.model`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Descriptive model name of the hardware component | `PERC H740P`; `Intel(R) Core(TM) i7-10700K`; `Dell XPS 15 Battery` |
 | [`hw.name`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | An easily-recognizable name for the hardware component | `eth0` |
@@ -186,14 +186,14 @@ Utilization of the network bandwidth as a fraction.
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `hw.network.bandwidth.utilization` | Gauge | `1` | Utilization of the network bandwidth as a fraction. | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- |
 | [`hw.id`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` |
 | [`hw.model`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Descriptive model name of the hardware component | `PERC H740P`; `Intel(R) Core(TM) i7-10700K`; `Dell XPS 15 Battery` |
 | [`hw.name`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | An easily-recognizable name for the hardware component | `eth0` |
@@ -227,14 +227,14 @@ When using this metric, the following attributes MUST be set:
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `hw.network.io` | Counter | `By` | Received and transmitted network traffic in bytes. | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- |
 | [`hw.id`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` |
 | [`network.io.direction`](/docs/registry/attributes/network.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The network IO operation direction. | `receive`; `transmit` |
 | [`hw.model`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Descriptive model name of the hardware component | `PERC H740P`; `Intel(R) Core(TM) i7-10700K`; `Dell XPS 15 Battery` |
@@ -249,8 +249,8 @@ When using this metric, the following attributes MUST be set:
 
 `network.io.direction` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `receive` | receive | ![Development](https://img.shields.io/badge/-development-blue) |
 | `transmit` | transmit | ![Development](https://img.shields.io/badge/-development-blue) |
 
@@ -278,14 +278,14 @@ When using this metric, the following attributes MUST be set:
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `hw.network.packets` | Counter | `{packet}` | Received and transmitted network traffic in packets (or frames). | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- |
 | [`hw.id`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` |
 | [`network.io.direction`](/docs/registry/attributes/network.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The network IO operation direction. | `receive`; `transmit` |
 | [`hw.model`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Descriptive model name of the hardware component | `PERC H740P`; `Intel(R) Core(TM) i7-10700K`; `Dell XPS 15 Battery` |
@@ -300,8 +300,8 @@ When using this metric, the following attributes MUST be set:
 
 `network.io.direction` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `receive` | receive | ![Development](https://img.shields.io/badge/-development-blue) |
 | `transmit` | transmit | ![Development](https://img.shields.io/badge/-development-blue) |
 
@@ -323,14 +323,14 @@ Link status: `1` (up) or `0` (down).
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `hw.network.up` | UpDownCounter | `1` | Link status: `1` (up) or `0` (down). | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- |
 | [`hw.id`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` |
 | [`hw.model`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Descriptive model name of the hardware component | `PERC H740P`; `Intel(R) Core(TM) i7-10700K`; `Dell XPS 15 Battery` |
 | [`hw.name`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | An easily-recognizable name for the hardware component | `eth0` |
@@ -366,7 +366,7 @@ When using this metric for network status, the following attributes MUST be set:
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `hw.status` | UpDownCounter | `1` | Operational status: `1` (true) or `0` (false) for each of the possible states. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
@@ -375,7 +375,7 @@ When using this metric for network status, the following attributes MUST be set:
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- |
 | [`hw.id`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` |
 | [`hw.state`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The current state of the component | `degraded`; `failed`; `needs_cleaning` |
 | [`hw.type`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Type of the component [1] | `battery`; `cpu`; `disk_controller` |
@@ -388,8 +388,8 @@ When using this metric for network status, the following attributes MUST be set:
 
 `hw.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `degraded` | Degraded | ![Development](https://img.shields.io/badge/-development-blue) |
 | `failed` | Failed | ![Development](https://img.shields.io/badge/-development-blue) |
 | `needs_cleaning` | Needs Cleaning | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -400,8 +400,8 @@ When using this metric for network status, the following attributes MUST be set:
 
 `hw.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `battery` | Battery | ![Development](https://img.shields.io/badge/-development-blue) |
 | `cpu` | CPU | ![Development](https://img.shields.io/badge/-development-blue) |
 | `disk_controller` | Disk controller | ![Development](https://img.shields.io/badge/-development-blue) |
