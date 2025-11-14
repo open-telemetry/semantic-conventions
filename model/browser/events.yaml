@@ -66,21 +66,8 @@ groups:
       If the page starts unloading before the page loads,
       then the partial data can be captured by calling the [performance.getEntriesByType](https://developer.mozilla.org/en-US/docs/Web/API/Performance/getEntriesByType) method.
     attributes:
-      - ref: browser.resource_timing.url.canonical
+      - ref: browser.resource_timing.url
         requirement_level: required
-        note: >
-          This is the canonical URL of the resource being measured, not the page URL.
-          It represents the resource in its standard form for identification purposes.
-          The canonical URL includes the scheme (if present), full domain, and path only.
-          Query strings and credentials MUST be excluded to reduce cardinality and avoid capturing PII.
-          For example, `https://www.example.com/path?a=b&c=d` would be captured as `https://www.example.com/path`.
-          In JavaScript, this typically corresponds to `${url.origin}${url.pathname}` or `${location.protocol}//${location.host}${location.pathname}`.
-      - ref: browser.resource_timing.url.query
-        requirement_level: opt_in
-        note: >
-          This attribute is opt-in due to potential high cardinality and PII concerns.
-          Sensitive content provided in the query string SHOULD be scrubbed when instrumentations can identify it.
-          Use this attribute when query parameters are relevant to the resource being fetched (e.g., image dimensions, format specifications).
       - ref: browser.resource_timing.fetch_start
         requirement_level: recommended
       - ref: browser.resource_timing.domain_lookup_start
