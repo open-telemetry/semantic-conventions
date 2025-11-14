@@ -29,6 +29,8 @@ groups:
       - ref: service.instance.id
         role: identifying
         requirement_level: required
+      - ref: service.criticality
+        role: descriptive
   - id: entity.service.namespace
     type: entity
     name: service.namespace
