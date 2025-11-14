@@ -83,7 +83,7 @@ This event captures data from the [ResourceTiming](https://www.w3.org/TR/resourc
 | [`browser.resource_timing.response_start`](/docs/registry/attributes/browser.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | double | Time immediately after the browser receives the first byte of the response from the server [9] | `180.5`; `310.8` |
 | [`browser.resource_timing.secure_connection_start`](/docs/registry/attributes/browser.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | double | Time immediately before the browser starts the handshake process to secure the connection [10] | `132.5`; `262.8` |
 
-**[1] `browser.resource_timing.url`:** Generally the url doesn't include any query strings or any leading credentials, and it's formatted as scheme://full domain/path only, for example https://www.example.com/path?a=b&c=d would be sent as https://www.example.com/path by both removing any potential PII and reducing the cardinality of the name.
+**[1] `browser.resource_timing.url`:** Generally the url doesn't include any query strings or any leading credentials, and it's formatted as scheme://full domain/path only, for example `https://www.example.com/path?a=b&c=d` would be sent as `https://www.example.com/path` by both removing any potential PII and reducing the cardinality of the name.
 
 **[2] `browser.resource_timing.connect_end`:** Measured in milliseconds as a DOMHighResTimeStamp relative to the time origin. See the [Performance Resource Timing API](https://www.w3.org/TR/resource-timing-2/#dom-performanceresourcetiming-connectend).
 
