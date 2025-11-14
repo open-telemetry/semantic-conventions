@@ -45,8 +45,7 @@ Attributes for browser resource timing events
 | <a id="browser-resource-timing-response-end" href="#browser-resource-timing-response-end">`browser.resource_timing.response_end`</a> | ![Development](https://img.shields.io/badge/-development-blue) | double | Time immediately after the browser receives the last byte of the resource [11] | `220.3`; `350.5` |
 | <a id="browser-resource-timing-response-start" href="#browser-resource-timing-response-start">`browser.resource_timing.response_start`</a> | ![Development](https://img.shields.io/badge/-development-blue) | double | Time immediately after the browser receives the first byte of the response from the server [12] | `180.5`; `310.8` |
 | <a id="browser-resource-timing-secure-connection-start" href="#browser-resource-timing-secure-connection-start">`browser.resource_timing.secure_connection_start`</a> | ![Development](https://img.shields.io/badge/-development-blue) | double | Time immediately before the browser starts the handshake process to secure the connection [13] | `132.5`; `262.8` |
-| <a id="browser-resource-timing-url-canonical" href="#browser-resource-timing-url-canonical">`browser.resource_timing.url.canonical`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The canonical URL of the resource, excluding query parameters and credentials [14] | `https://example.com/path/to/resource.js`; `https://cdn.example.com/styles/main.css` |
-| <a id="browser-resource-timing-url-query" href="#browser-resource-timing-url-query">`browser.resource_timing.url.query`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The query string component of the resource URL [15] | `?version=1.2.3`; `?id=abc123&type=json` |
+| <a id="browser-resource-timing-url" href="#browser-resource-timing-url">`browser.resource_timing.url`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Absolute URL describing a network resource according to [RFC3986](https://www.rfc-editor.org/rfc/rfc3986) [14] | `https://www.example.com/path`; `https://cdn.example.com/styles/main.css` |
 
 **[5] `browser.resource_timing.connect_end`:** Measured in milliseconds as a DOMHighResTimeStamp relative to the time origin. See the [Performance Resource Timing API](https://www.w3.org/TR/resource-timing-2/#dom-performanceresourcetiming-connectend).
 
@@ -66,6 +65,4 @@ Attributes for browser resource timing events
 
 **[13] `browser.resource_timing.secure_connection_start`:** Measured in milliseconds as a DOMHighResTimeStamp relative to the time origin. If the scheme is not HTTPS, this value is 0. See the [Performance Resource Timing API](https://www.w3.org/TR/resource-timing-2/#dom-performanceresourcetiming-secureconnectionstart).
 
-**[14] `browser.resource_timing.url.canonical`:** The canonical URL includes scheme, domain, and path components only. Query parameters and URL fragments MUST be excluded. User credentials (username and password) MUST be excluded.
-
-**[15] `browser.resource_timing.url.query`:** The query string includes the leading `?` character. This attribute is opt-in as it may contain sensitive information.
+**[14] `browser.resource_timing.url`:** Generally the url doesn't include any query strings or any leading credentials, and it's formatted as scheme://full domain/path only, for example https://www.example.com/path?a=b&c=d would be sent as https://www.example.com/path by both removing any potential PII and reducing the cardinality of the name.

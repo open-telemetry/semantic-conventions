@@ -72,7 +72,7 @@ This event captures data from the [ResourceTiming](https://www.w3.org/TR/resourc
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
-| [`browser.resource_timing.url.canonical`](/docs/registry/attributes/browser.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The canonical URL of the resource, excluding query parameters and credentials [1] | `https://example.com/path/to/resource.js`; `https://cdn.example.com/styles/main.css` |
+| [`browser.resource_timing.url`](/docs/registry/attributes/browser.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Absolute URL describing a network resource according to [RFC3986](https://www.rfc-editor.org/rfc/rfc3986) [1] | `https://www.example.com/path`; `https://cdn.example.com/styles/main.css` |
 | [`browser.resource_timing.connect_end`](/docs/registry/attributes/browser.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | double | Time immediately after the browser completes establishing the connection to the server [2] | `145.7`; `275.2` |
 | [`browser.resource_timing.connect_start`](/docs/registry/attributes/browser.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | double | Time immediately before the browser starts to establish the connection to the server [3] | `131.0`; `261.3` |
 | [`browser.resource_timing.domain_lookup_end`](/docs/registry/attributes/browser.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | double | Time immediately after the browser completes the domain name lookup for the resource [4] | `130.2`; `260.5` |
@@ -82,9 +82,8 @@ This event captures data from the [ResourceTiming](https://www.w3.org/TR/resourc
 | [`browser.resource_timing.response_end`](/docs/registry/attributes/browser.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | double | Time immediately after the browser receives the last byte of the resource [8] | `220.3`; `350.5` |
 | [`browser.resource_timing.response_start`](/docs/registry/attributes/browser.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | double | Time immediately after the browser receives the first byte of the response from the server [9] | `180.5`; `310.8` |
 | [`browser.resource_timing.secure_connection_start`](/docs/registry/attributes/browser.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | double | Time immediately before the browser starts the handshake process to secure the connection [10] | `132.5`; `262.8` |
-| [`browser.resource_timing.url.query`](/docs/registry/attributes/browser.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The query string component of the resource URL [11] | `?version=1.2.3`; `?id=abc123&type=json` |
 
-**[1] `browser.resource_timing.url.canonical`:** This is the canonical URL of the resource being measured, not the page URL. It represents the resource in its standard form for identification purposes. The canonical URL includes the scheme (if present), full domain, and path only. Query strings and credentials MUST be excluded to reduce cardinality and avoid capturing PII. For example, `https://www.example.com/path?a=b&c=d` would be captured as `https://www.example.com/path`. In JavaScript, this typically corresponds to `${url.origin}${url.pathname}` or `${location.protocol}//${location.host}${location.pathname}`.
+**[1] `browser.resource_timing.url`:** Generally the url doesn't include any query strings or any leading credentials, and it's formatted as scheme://full domain/path only, for example https://user:pwd@www.example.com/path?a=b&c=d would be sent as https://www.example.com/path by both removing any potential PII and reducing the cardinality of the name.
 
 **[2] `browser.resource_timing.connect_end`:** Measured in milliseconds as a DOMHighResTimeStamp relative to the time origin. See the [Performance Resource Timing API](https://www.w3.org/TR/resource-timing-2/#dom-performanceresourcetiming-connectend).
 
@@ -103,8 +102,6 @@ This event captures data from the [ResourceTiming](https://www.w3.org/TR/resourc
 **[9] `browser.resource_timing.response_start`:** Measured in milliseconds as a DOMHighResTimeStamp relative to the time origin. See the [Performance Resource Timing API](https://www.w3.org/TR/resource-timing-2/#dom-performanceresourcetiming-responsestart).
 
 **[10] `browser.resource_timing.secure_connection_start`:** Measured in milliseconds as a DOMHighResTimeStamp relative to the time origin. If the scheme is not HTTPS, this value is 0. See the [Performance Resource Timing API](https://www.w3.org/TR/resource-timing-2/#dom-performanceresourcetiming-secureconnectionstart).
-
-**[11] `browser.resource_timing.url.query`:** This attribute is opt-in due to potential high cardinality and PII concerns. Sensitive content provided in the query string SHOULD be scrubbed when instrumentations can identify it. Use this attribute when query parameters are relevant to the resource being fetched (e.g., image dimensions, format specifications).
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

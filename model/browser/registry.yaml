@@ -57,23 +57,17 @@ groups:
     brief: >
       Attributes for browser resource timing events
     attributes:
-      - id: browser.resource_timing.url.canonical
+      - id: browser.resource_timing.url
         type: string
         stability: development
-        brief: 'The canonical URL of the resource, excluding query parameters and credentials'
+        brief: 'Absolute URL describing a network resource according to [RFC3986](https://www.rfc-editor.org/rfc/rfc3986)'
         note: >
-          The canonical URL includes scheme, domain, and path components only.
-          Query parameters and URL fragments MUST be excluded. User credentials
-          (username and password) MUST be excluded.
-        examples: ['https://example.com/path/to/resource.js', 'https://cdn.example.com/styles/main.css']
-      - id: browser.resource_timing.url.query
-        type: string
-        stability: development
-        brief: 'The query string component of the resource URL'
-        note: >
-          The query string includes the leading `?` character.
-          This attribute is opt-in as it may contain sensitive information.
-        examples: ['?version=1.2.3', '?id=abc123&type=json']
+          Generally the url doesn't include any query strings or any leading credentials,
+          and it's formatted as scheme://full domain/path only, for example
+          https://www.example.com/path?a=b&c=d would be sent as
+          https://www.example.com/path by both removing any potential PII and
+          reducing the cardinality of the name.
+        examples: ['https://www.example.com/path', 'https://cdn.example.com/styles/main.css']
       - id: browser.resource_timing.fetch_start
         type: double
         stability: development
