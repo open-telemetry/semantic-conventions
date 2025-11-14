@@ -65,4 +65,4 @@ Attributes for browser resource timing events
 
 **[13] `browser.resource_timing.secure_connection_start`:** Measured in milliseconds as a DOMHighResTimeStamp relative to the time origin. If the scheme is not HTTPS, this value is 0. See the [Performance Resource Timing API](https://www.w3.org/TR/resource-timing-2/#dom-performanceresourcetiming-secureconnectionstart).
 
-**[14] `browser.resource_timing.url`:** Generally the url doesn't include any query strings or any leading credentials, and it's formatted as scheme://full domain/path only, for example https://www.example.com/path?a=b&c=d would be sent as https://www.example.com/path by both removing any potential PII and reducing the cardinality of the name.
+**[14] `browser.resource_timing.url`:** Generally the url doesn't include any query strings or any leading credentials, and it's formatted as scheme://full domain/path only, for example `https://www.example.com/path?a=b&c=d` would be sent as `https://www.example.com/path` by both removing any potential PII and reducing the cardinality of the name.

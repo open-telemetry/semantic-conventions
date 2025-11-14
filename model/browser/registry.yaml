@@ -64,8 +64,8 @@ groups:
         note: >
           Generally the url doesn't include any query strings or any leading credentials,
           and it's formatted as scheme://full domain/path only, for example
-          https://www.example.com/path?a=b&c=d would be sent as
-          https://www.example.com/path by both removing any potential PII and
+          `https://www.example.com/path?a=b&c=d` would be sent as
+          `https://www.example.com/path` by both removing any potential PII and
           reducing the cardinality of the name.
         examples: ['https://www.example.com/path', 'https://cdn.example.com/styles/main.css']
       - id: browser.resource_timing.fetch_start
