@@ -26,6 +26,15 @@
 | Other | [`aws.ecs.task.family`](/docs/registry/attributes/aws.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The family name of the [ECS task definition](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definitions.html) used to create the ECS task. | `opentelemetry-family` |
 | Other | [`aws.ecs.task.revision`](/docs/registry/attributes/aws.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The revision for the task definition used to create the ECS task. | `8`; `26` |
 
+---
+
+`aws.ecs.launchtype` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `ec2` | Amazon EC2 | ![Development](https://img.shields.io/badge/-development-blue) |
+| `fargate` | Amazon Fargate | ![Development](https://img.shields.io/badge/-development-blue) |
+
 ## AWS EKS
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)

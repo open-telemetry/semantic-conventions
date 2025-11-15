@@ -2,6 +2,7 @@
 <!-- see templates/registry/markdown/entity_namespace.md.j2 -->
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
+{%- import 'attribute_table.j2' as at -%}
 {%- import 'entity_macros.j2' as entity %}
 
 # {{ ctx.id | title_case | acronym }}
@@ -10,7 +11,7 @@
 
 {{ entity.header(e) | trim }}
 
-{{ entity.all_attribute_table(e) | trim }}
+{{ at.generate(e, "", "/docs/registry/attributes") | trim }}
 {% endfor %}
 <!-- markdownlint-restore -->
 
