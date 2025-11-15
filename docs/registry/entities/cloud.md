@@ -50,4 +50,63 @@ The following well-known definitions MUST be used if you set this attribute and 
   This means that a span attribute MUST be used, as an Azure function app can host multiple functions that would usually share
   a TracerProvider.
 
+---
+
+`cloud.platform` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `akamai_cloud.compute` | Akamai Cloud Compute | ![Development](https://img.shields.io/badge/-development-blue) |
+| `alibaba_cloud_ecs` | Alibaba Cloud Elastic Compute Service | ![Development](https://img.shields.io/badge/-development-blue) |
+| `alibaba_cloud_fc` | Alibaba Cloud Function Compute | ![Development](https://img.shields.io/badge/-development-blue) |
+| `alibaba_cloud_openshift` | Red Hat OpenShift on Alibaba Cloud | ![Development](https://img.shields.io/badge/-development-blue) |
+| `aws_app_runner` | AWS App Runner | ![Development](https://img.shields.io/badge/-development-blue) |
+| `aws_ec2` | AWS Elastic Compute Cloud | ![Development](https://img.shields.io/badge/-development-blue) |
+| `aws_ecs` | AWS Elastic Container Service | ![Development](https://img.shields.io/badge/-development-blue) |
+| `aws_eks` | AWS Elastic Kubernetes Service | ![Development](https://img.shields.io/badge/-development-blue) |
+| `aws_elastic_beanstalk` | AWS Elastic Beanstalk | ![Development](https://img.shields.io/badge/-development-blue) |
+| `aws_lambda` | AWS Lambda | ![Development](https://img.shields.io/badge/-development-blue) |
+| `aws_openshift` | Red Hat OpenShift on AWS (ROSA) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.aks` | Azure Kubernetes Service | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.app_service` | Azure App Service | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.container_apps` | Azure Container Apps | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.container_instances` | Azure Container Instances | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.functions` | Azure Functions | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.openshift` | Azure Red Hat OpenShift | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.vm` | Azure Virtual Machines | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gcp.agent_engine` | Google Vertex AI Agent Engine | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gcp_app_engine` | Google Cloud App Engine (GAE) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gcp_bare_metal_solution` | Google Bare Metal Solution (BMS) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gcp_cloud_functions` | Google Cloud Functions (GCF) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gcp_cloud_run` | Google Cloud Run | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gcp_compute_engine` | Google Cloud Compute Engine (GCE) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gcp_kubernetes_engine` | Google Cloud Kubernetes Engine (GKE) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gcp_openshift` | Red Hat OpenShift on Google Cloud | ![Development](https://img.shields.io/badge/-development-blue) |
+| `hetzner.cloud_server` | Server on Hetzner Cloud | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ibm_cloud_openshift` | Red Hat OpenShift on IBM Cloud | ![Development](https://img.shields.io/badge/-development-blue) |
+| `oracle_cloud_compute` | Compute on Oracle Cloud Infrastructure (OCI) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `oracle_cloud_oke` | Kubernetes Engine (OKE) on Oracle Cloud Infrastructure (OCI) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `tencent_cloud_cvm` | Tencent Cloud Cloud Virtual Machine (CVM) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `tencent_cloud_eks` | Tencent Cloud Elastic Kubernetes Service (EKS) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `tencent_cloud_scf` | Tencent Cloud Serverless Cloud Function (SCF) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `vultr.cloud_compute` | Vultr Cloud Compute | ![Development](https://img.shields.io/badge/-development-blue) |
+
+---
+
+`cloud.provider` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `akamai_cloud` | Akamai Cloud | ![Development](https://img.shields.io/badge/-development-blue) |
+| `alibaba_cloud` | Alibaba Cloud | ![Development](https://img.shields.io/badge/-development-blue) |
+| `aws` | Amazon Web Services | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure` | Microsoft Azure | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gcp` | Google Cloud Platform | ![Development](https://img.shields.io/badge/-development-blue) |
+| `heroku` | Heroku Platform as a Service | ![Development](https://img.shields.io/badge/-development-blue) |
+| `hetzner` | Hetzner | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ibm_cloud` | IBM Cloud | ![Development](https://img.shields.io/badge/-development-blue) |
+| `oracle_cloud` | Oracle Cloud Infrastructure (OCI) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `tencent_cloud` | Tencent Cloud | ![Development](https://img.shields.io/badge/-development-blue) |
+| `vultr` | Vultr | ![Development](https://img.shields.io/badge/-development-blue) |
+
 <!-- markdownlint-restore -->

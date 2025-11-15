@@ -33,4 +33,22 @@
 | MacOS | `ProductBuildVersion` from `/System/Library/CoreServices/SystemVersion.plist` | `ProductBuildVersion` from `/System/Library/CoreServices/ServerVersion.plist` |
 | Linux | `BUILD_ID` from `/etc/os-release` | `BUILD_ID` from `/usr/lib/os-release`; <br> contents of `/proc/sys/kernel/osrelease`|
 
+---
+
+`os.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `aix` | AIX (Advanced Interactive eXecutive) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `darwin` | Apple Darwin | ![Development](https://img.shields.io/badge/-development-blue) |
+| `dragonflybsd` | DragonFly BSD | ![Development](https://img.shields.io/badge/-development-blue) |
+| `freebsd` | FreeBSD | ![Development](https://img.shields.io/badge/-development-blue) |
+| `hpux` | HP-UX (Hewlett Packard Unix) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `linux` | Linux | ![Development](https://img.shields.io/badge/-development-blue) |
+| `netbsd` | NetBSD | ![Development](https://img.shields.io/badge/-development-blue) |
+| `openbsd` | OpenBSD | ![Development](https://img.shields.io/badge/-development-blue) |
+| `solaris` | SunOS, Oracle Solaris | ![Development](https://img.shields.io/badge/-development-blue) |
+| `windows` | Microsoft Windows | ![Development](https://img.shields.io/badge/-development-blue) |
+| `zos` | IBM z/OS | ![Development](https://img.shields.io/badge/-development-blue) |
+
 <!-- markdownlint-restore -->

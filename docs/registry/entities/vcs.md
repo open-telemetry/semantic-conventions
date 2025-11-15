@@ -38,6 +38,15 @@ it is identical to the `ref.head.name`, it SHOULD still be included.
 It is up to the implementer to decide which value to set as the
 revision based on the VCS system and situational context.
 
+---
+
+`vcs.ref.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `branch` | [branch](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddefbranchabranch) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `tag` | [tag](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddeftagatag) | ![Development](https://img.shields.io/badge/-development-blue) |
+
 ## VCS Repo
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
