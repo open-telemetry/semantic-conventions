@@ -27,7 +27,6 @@
     "enabled": true,
     "schedule": ["before 8am on Monday"]
   },
-  "ignoreDeps": ["@types/node"],
   "labels": [
     "dependencies"
   ]
