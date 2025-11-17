@@ -22,4 +22,3 @@ issues: [2986]
 subtext: |
   This attribute enables observability platforms to implement criticality-aware tracing, monitoring,
   and sampling strategies. Supports four levels: critical, high, medium, and low.
-
