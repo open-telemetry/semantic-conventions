@@ -1,0 +1,9 @@
+groups:
+  - id: service.peer
+    type: attribute_group
+    brief: "Operations that access some remote service."
+    attributes:
+      - ref: service.peer.name
+        requirement_level: recommended
+      - ref: service.peer.namespace
+        requirement_level: recommended
