@@ -15,19 +15,20 @@ Semantically, an Event is a named occurrence at an instant in time. It signals t
 Examples of Events might include things like button clicks, user logout,
 network connection severed, etc.
 
-In OpenTelemetry, Events are implemented as a specific type of [`LogRecord`](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.50.0/specification/logs/api.md) that conforms to the conventions included here.
+In OpenTelemetry, Events are implemented as a specific type of [`LogRecord`](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.50.0/specification/logs/api.md)
+that conforms to the conventions included here.
 
-Semantic conventions that define events MUST document the event name, its attributes, and the type of the body (if any).
+Semantic conventions that define events MUST document the event name and its attributes.
 
 ## General event semantics
 
 * An event MUST have an [event name](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.50.0/specification/logs/data-model.md#field-eventname)
-  that uniquely identifies the event structure: its [attributes](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.50.0/specification/logs/data-model.md#field-attributes)
-  and the type of the [body](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.50.0/specification/logs/data-model.md#field-body).
+  that uniquely identifies the event structure.
 
 * Event names SHOULD follow the [Naming guidelines](/docs/general/naming.md).
 
-* Attributes SHOULD be used to represent details and provide additional context about the event.
+* [Attributes](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.50.0/specification/logs/data-model.md#field-attributes)
+  SHOULD be used to represent details and provide additional context about the event.
 
 * Events SHOULD NOT use [body](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.50.0/specification/logs/data-model.md#field-body).
 
