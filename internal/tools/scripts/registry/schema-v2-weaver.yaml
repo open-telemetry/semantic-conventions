@@ -1,0 +1,50 @@
+templates:
+  - pattern: schema.j2
+    filter: .
+    application_mode: single
+    file_name: next-version-dev/schema.yaml # how to parametrize this?
+  - pattern: schema.j2
+    filter: >
+      def filter_members:
+        if type == "array" then
+          map(select(.stability == "stable") | filter_members)
+        elif type == "object" then
+          if has("members") and (.members | type == "array") then
+            .members |= filter_members
+          else
+            .
+          end
+        else
+          .
+        end;
+
+      .groups |= map(
+        select(
+          (.stability == "stable") or
+          (
+            .type == "attribute_group" and
+            (.attributes | map(select(.stability == "stable")) | length > 0)
+          )
+        )
+        |
+        if .attributes then
+          .attributes |= map(
+            select(.stability == "stable")
+            |
+            if (.type | type == "object") and (.type.members) then
+              .type |= filter_members
+            else
+              .
+            end
+          )
+        else
+          .
+        end
+      )
+    application_mode: single
+    file_name: next-version/schema.yaml
+
+whitespace_control:
+  trim_blocks: true
+  lstrip_blocks: true
+  keep_trailing_newline: true
