@@ -591,3 +591,8 @@ groups:
         type: string
         brief: A free-form explanation for the assigned score provided by the evaluator.
         examples: ["The response is factually accurate but lacks sufficient detail to fully address the question."]
+      - id: gen_ai.prompt.name
+        type: string
+        brief: The name of the prompt that uniquely identifies it.
+        stability: development
+        examples: ["analyze-code"]

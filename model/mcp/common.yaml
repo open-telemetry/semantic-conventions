@@ -3,10 +3,11 @@ groups:
     type: attribute_group
     brief: Common MCP attributes
     attributes:
-      - ref: mcp.tool.name
+      - ref: gen_ai.tool.name
         requirement_level:
           conditionally_required: When operation is related to a specific tool.
-      - ref: mcp.prompt.name
+      - ref: gen_ai.prompt.name
+        brief: The name of the prompt or prompt template provided in the request or response.
         requirement_level:
           conditionally_required: When operation is related to a specific prompt.
       - ref: network.transport

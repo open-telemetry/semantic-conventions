@@ -28,7 +28,7 @@ groups:
       It covers the time to receive the response or ack from the peer.
 
       **Span name** SHOULD follow the format `{mcp.method.name} {target}`
-      where target SHOULD match `{mcp.tool.name}` or `{mcp.prompt.name}` when
+      where target SHOULD match `{gen_ai.tool.name}` or `{gen_ai.prompt.name}` when
       applicable.
       If there is no low-cardinality `target` available, the Span name SHOULD be `{mcp.method.name}`.
 
@@ -61,7 +61,7 @@ groups:
       (or notification) or by the MCP client when server initiates the operation.
 
       **Span name** SHOULD follow the format `{mcp.method.name} {target}`
-      where target SHOULD match `{mcp.tool.name}` or `{mcp.prompt.name}` when
+      where target SHOULD match `{gen_ai.tool.name}` or `{gen_ai.prompt.name}` when
       applicable.
       If there is no low-cardinality `target` available, the Span name SHOULD be `{mcp.method.name}`.
 

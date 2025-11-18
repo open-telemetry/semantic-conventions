@@ -146,19 +146,6 @@ groups:
         brief: Identifies MCP session.
         stability: development
         examples: ["191c4850af6c49e08843a3f6c80e5046"]
-      - id: mcp.tool.name
-        # This is effectively the same as `gen_ai.tool.name`, but it's not clear
-        # which one of them should survive. MCP can be used outside of GenAI domain,
-        # and GenAI can be used without MCP.
-        type: string
-        brief: The name of the tool provided in the request.
-        stability: development
-        examples: ["get-weather", "execute_command"]
-      - id: mcp.prompt.name
-        type: string
-        brief: The name of the prompt or prompt template provided in the request or response.
-        stability: development
-        examples: ["analyze-code"]
       - id: mcp.resource.uri
         type: string
         brief: The value of the resource uri.
