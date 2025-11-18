@@ -143,7 +143,7 @@ groups:
         examples: ["42"]
       - id: mcp.session.id
         type: string
-        brief: Identifies MCP session.
+        brief: Identifies [MCP session](https://modelcontextprotocol.io/specification/2025-06-18/basic/transports#session-management).
         stability: development
         examples: ["191c4850af6c49e08843a3f6c80e5046"]
       - id: mcp.resource.uri
