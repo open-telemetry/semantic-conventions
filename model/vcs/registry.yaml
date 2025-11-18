@@ -262,7 +262,7 @@ groups:
               stability: development
             - id: gittea
               value: gittea
-              brief: "Deprecated, use `gitea` instead."
+              brief: "[Gitea](https://gitea.io)"
               deprecated:
                 reason: renamed
                 renamed_to: "gitea"
