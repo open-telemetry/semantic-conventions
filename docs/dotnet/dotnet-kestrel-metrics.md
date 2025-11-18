@@ -95,7 +95,7 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 ## Metric: `kestrel.connection.duration`
 
 this metric SHOULD be specified with
-[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.50.0/specification/metrics/api.md#instrument-advisory-parameters)
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.51.0/specification/metrics/api.md#instrument-advisory-parameters)
 of `[ 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10, 30, 60, 120, 300 ]`.
 
 <!-- semconv metric.kestrel.connection.duration -->
@@ -127,8 +127,8 @@ of `[ 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10, 30, 60, 120, 300 ]`.
 **[1] `error.type`:** Starting from .NET 9, Kestrel `kestrel.connection.duration` metric reports
 the following errors types when a corresponding error occurs:
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value  | Description |
+| --- | --- |
 | `aborted_by_app` | The HTTP/1.1 connection was aborted when app code aborted an HTTP request with `HttpContext.Abort()`. |
 | `app_shutdown_timeout` | The connection was aborted during app shutdown. During shutdown, the server stops accepting new connections and HTTP requests, and it is given time for active requests to complete. If the app shutdown timeout is exceeded, all remaining connections are aborted. |
 | `closed_critical_stream` | A critical control stream for an HTTP/3 connection was closed. |
@@ -486,7 +486,7 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 ## Metric: `kestrel.tls_handshake.duration`
 
 this metric SHOULD be specified with
-[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.50.0/specification/metrics/api.md#instrument-advisory-parameters)
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.51.0/specification/metrics/api.md#instrument-advisory-parameters)
 of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 ]`.
 
 <!-- semconv metric.kestrel.tls_handshake.duration -->

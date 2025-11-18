@@ -5,6 +5,7 @@
 
 - [OTel Attributes](#otel-attributes)
 - [OTel Component Attributes](#otel-component-attributes)
+- [OTel Event Attributes](#otel-event-attributes)
 - [OTel Scope Attributes](#otel-scope-attributes)
 - [Deprecated OTel Library Attributes](#deprecated-otel-library-attributes)
 
@@ -100,6 +101,18 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 | `simple_log_processor` | The builtin SDK simple log record processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `simple_span_processor` | The builtin SDK simple span processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `zipkin_http_span_exporter` | Zipkin span exporter over HTTP | ![Development](https://img.shields.io/badge/-development-blue) |
+
+## OTel Event Attributes
+
+Attributes used by non-OTLP exporters to represent OpenTelemetry Event's concepts.
+
+**Attributes:**
+
+| Key | Stability | Value Type | Description | Example Values |
+|---|---|---|---|---|
+| <a id="otel-event-name" href="#otel-event-name">`otel.event.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Identifies the class / type of event. [3] | `browser.mouse.click`; `device.app.lifecycle` |
+
+**[3] `otel.event.name`:** This attribute SHOULD be used by non-OTLP exporters when destination does not support `EventName` or equivalent field. This attribute MAY be used by applications using existing logging libraries so that it can be used to set the `EventName` field by Collector or SDK components.
 
 ## OTel Scope Attributes
 

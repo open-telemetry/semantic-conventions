@@ -14,6 +14,7 @@ areas:
       - area:cpu
       - area:disk
       - area:network
+      - area:linux
     status:
       - accepting_contributions
       - active
@@ -47,7 +48,7 @@ areas:
     owner:
       - name: "semconv-cicd-approvers"
         github: semconv-cicd-approvers
-    project: "https://github.com/open-telemetry/community/blob/main/projects/ci-cd.md"
+    project: "https://github.com/open-telemetry/community/blob/main/projects/ci-cd-phase-2.md"
     board: "https://github.com/orgs/open-telemetry/projects/79"
     labels:
       - area:cicd
