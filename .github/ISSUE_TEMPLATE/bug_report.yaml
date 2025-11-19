@@ -71,6 +71,7 @@ body:
         - area:network
         - area:nfs
         - area:nodejs
+        - area:ntp
         - area:oci
         - area:onc-rpc
         - area:openai
