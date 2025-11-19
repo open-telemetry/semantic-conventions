@@ -11,110 +11,13 @@
 
 | Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
-| <a id="mcp-input-param" href="#mcp-input-param">`mcp.input.param.<key>`</a> | ![Development](https://img.shields.io/badge/-development-blue) | template[any] | Parameters passed to the request within `params` object. `<key>` being the normalized parameter key (lowercase), the value being the parameter value. [1] | `Seattle, WA`; `42`; `{"foo": "bar"}` |
 | <a id="mcp-method-name" href="#mcp-method-name">`mcp.method.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the request or notification method. | `notifications/cancelled`; `initialize`; `notifications/initialized` |
-| <a id="mcp-output-result" href="#mcp-output-result">`mcp.output.result.<key>`</a> | ![Development](https://img.shields.io/badge/-development-blue) | template[any] | Result property returned in the response. `<key>` being the normalized result key (lowercase), the value being the result value. [2] | `{"output": "The weather is sunny."}`; `42`; `{"data": {"id": 1, "name": "Alice"}}` |
 | <a id="mcp-protocol-version" href="#mcp-protocol-version">`mcp.protocol.version`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The [version](https://modelcontextprotocol.io/specification/versioning) of the Model Context Protocol used. | `2025-06-18` |
 | <a id="mcp-request-id" href="#mcp-request-id">`mcp.request.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | This is a unique identifier for the request. | `42` |
-| <a id="mcp-resource-uri" href="#mcp-resource-uri">`mcp.resource.uri`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The value of the resource uri. [3] | `postgres://database/customers/schema`; `file:///home/user/documents/report.pdf` |
+| <a id="mcp-resource-uri" href="#mcp-resource-uri">`mcp.resource.uri`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The value of the resource uri. [1] | `postgres://database/customers/schema`; `file:///home/user/documents/report.pdf` |
 | <a id="mcp-session-id" href="#mcp-session-id">`mcp.session.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Identifies [MCP session](https://modelcontextprotocol.io/specification/2025-06-18/basic/transports#session-management). | `191c4850af6c49e08843a3f6c80e5046` |
 
-**[1] `mcp.input.param.<key>`:** Instrumentations MAY support capturing input parameters passed
-to the request or notification within `params` object.
-
-Instrumentations that support it SHOULD require an explicit configuration of which keys
-are to be captured. Including all request or notifications parameters
-can be a security risk - explicit configuration helps avoid leaking sensitive information.
-
-Value type SHOULD match the value of the parameter as passed in the request
-or notification.
-
-Instrumentation SHOULD allow capturing parameters passed with MCP's
-reserved `_meta` key.
-
-Examples:
-
-In a params object with the following structure:
-
-```json
-{
-  "jsonrpc": "2.0",
-  "id": 12345,
-  "method": "some/method",
-  "params": {
-    "location": "Seattle, WA",
-    "a": 42,
-    "complex": {"foo": "bar"}
-    "_meta" : {
-      "mcp.dev/baz": "qux"
-    }
-  }
-}
-```
-
-- A `param.location` key with string value `"Seattle, WA"` SHOULD be recorded as the
-  `mcp.input.param.location` attribute with string value `"Seattle, WA"`.
-- A `param.a` key with integer value `42` SHOULD be recorded as the `mcp.input.param.a`
-  attribute with integer (signed 64 bit) value `42`.
-- A `param.complex` key with complex value `{"foo": "bar"}` SHOULD be recorded as the
-  `mcp.input.param.complex` attribute with complex value type `{"foo": "bar"}`.
-- A `param._meta.mcp.dev/baz` key with string value `"qux"` SHOULD be recorded as the
-  `mcp.input.param._meta.mcp.dev/baz` attribute with string value `"qux"`.
-
-The attribute value SHOULD be recorded in structured form when it's possible
-and MAY be recorded as a JSON string if structured format is not yet supported
-by the OpenTelemetry implementation.
-
-Keys SHOULD be captured as they appear in the request or notification
-without any additional normalization.
-
-**[2] `mcp.output.result.<key>`:** Instrumentations MAY support capturing properties returned
-to the response within `result` object.
-
-Instrumentations that support it SHOULD require an explicit configuration
-to capture this attribute, as response result can contain sensitive information.
-
-Value type SHOULD match the value of the `result` object property as returned in the response.
-
-Instrumentation SHOULD allow capturing result properties passed with MCP's
-reserved `_meta` key.
-
-Examples:
-
-In a response with the following structure:
-
-```json
-{
-  "jsonrpc": "2.0",
-  "id": 12345,
-  "result": {
-    "location": "Seattle, WA",
-    "a": 42,
-    "complex": {"foo": "bar"},
-    "_meta" : {
-      "mcp.dev/baz": "qux"
-    }
-  }
-}
-```
-
-- A `location` key with value `"Seattle, WA"` SHOULD be recorded as the
-  `mcp.output.result.location` attribute with string value `"Seattle, WA"`.
-- A `a` key with value `42` SHOULD be recorded as the `mcp.output.result.a`
-  attribute with integer (signed 64 bit) value `42`.
-- A `complex` key with value `{"foo": "bar"}` SHOULD be recorded as the
-  `mcp.output.result.complex` attribute with complex value type `{"foo": "bar"}`.
-- A `_meta.mcp.dev/baz` key with string value `"qux"` SHOULD be recorded as the
-  `mcp.output.result._meta.mcp.dev/baz` attribute with string value `"qux"`.
-
-The attribute value SHOULD be recorded in structured form when it's possible
-and MAY be recorded as a JSON string if structured format is not yet supported
-by the OpenTelemetry implementation.
-
-Keys SHOULD be captured as they appear in the result without any
-additional normalization.
-
-**[3] `mcp.resource.uri`:** This is a URI of the resource provided in the following requests or notifications: `resources/read`, `resources/subscribe`, `resources/unsubscribe`, or `notifications/resources/updated`.
+**[1] `mcp.resource.uri`:** This is a URI of the resource provided in the following requests or notifications: `resources/read`, `resources/subscribe`, `resources/unsubscribe`, or `notifications/resources/updated`.
 
 ---
 
