@@ -22,6 +22,10 @@
       "schedule": ["before 8am on Monday"]
     }
   ],
+  "lockFileMaintenance": {
+    "enabled": true,
+    "schedule": ["before 8am on Monday"]
+  },
   "labels": [
     "dependencies"
   ]
