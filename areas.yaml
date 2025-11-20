@@ -70,6 +70,11 @@ areas:
       - area:security
       - area:log
       - area:user
+      - area:dns
+      - area:file
+      - area:tls
+      - area:network
+      - area:process
     status:
       - accepting_contributions
       - active
