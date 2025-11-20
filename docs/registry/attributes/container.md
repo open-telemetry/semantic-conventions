@@ -10,23 +10,25 @@
 
 A container instance.
 
-| Attribute | Type | Description | Examples | Stability |
+**Attributes:**
+
+| Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
-| <a id="container-command" href="#container-command">`container.command`</a> | string | The command used to run the container (i.e. the command name). [1] | `otelcontribcol` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="container-command-args" href="#container-command-args">`container.command_args`</a> | string[] | All the command arguments (including the command/executable itself) run by the container. | `["otelcontribcol", "--config", "config.yaml"]` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="container-command-line" href="#container-command-line">`container.command_line`</a> | string | The full command run by the container as a single string representing the full command. | `otelcontribcol --config config.yaml` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="container-csi-plugin-name" href="#container-csi-plugin-name">`container.csi.plugin.name`</a> | string | The name of the CSI ([Container Storage Interface](https://github.com/container-storage-interface/spec)) plugin used by the volume. [2] | `pd.csi.storage.gke.io` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="container-csi-volume-id" href="#container-csi-volume-id">`container.csi.volume.id`</a> | string | The unique volume ID returned by the CSI ([Container Storage Interface](https://github.com/container-storage-interface/spec)) plugin. [3] | `projects/my-gcp-project/zones/my-gcp-zone/disks/my-gcp-disk` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="container-id" href="#container-id">`container.id`</a> | string | Container ID. Usually a UUID, as for example used to [identify Docker containers](https://docs.docker.com/engine/containers/run/#container-identification). The UUID might be abbreviated. | `a3bf90e006b2` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="container-image-id" href="#container-image-id">`container.image.id`</a> | string | Runtime specific image identifier. Usually a hash algorithm followed by a UUID. [4] | `sha256:19c92d0a00d1b66d897bceaa7319bee0dd38a10a851c60bcec9474aa3f01e50f` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="container-image-name" href="#container-image-name">`container.image.name`</a> | string | Name of the image the container was built on. | `gcr.io/opentelemetry/operator` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="container-image-repo-digests" href="#container-image-repo-digests">`container.image.repo_digests`</a> | string[] | Repo digests of the container image as provided by the container runtime. [5] | `["example@sha256:afcc7f1ac1b49db317a7196c902e61c6c3c4607d63599ee1a82d702d249a0ccb", "internal.registry.example.com:5000/example@sha256:b69959407d21e8a062e0416bf13405bb2b71ed7a84dde4158ebafacfa06f5578"]` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="container-image-tags" href="#container-image-tags">`container.image.tags`</a> | string[] | Container image tags. An example can be found in [Docker Image Inspect](https://docs.docker.com/reference/api/engine/version/v1.43/#tag/Image/operation/ImageInspect). Should be only the `<tag>` section of the full name for example from `registry.example.com/my-org/my-image:<tag>`. | `["v1.27.1", "3.5.7-0"]` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="container-label" href="#container-label">`container.label.<key>`</a> | string | Container labels, `<key>` being the label name, the value being the label value. [6] | `nginx` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="container-name" href="#container-name">`container.name`</a> | string | Container name used by container runtime. | `opentelemetry-autoconf` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="container-runtime-description" href="#container-runtime-description">`container.runtime.description`</a> | string | A description about the runtime which could include, for example details about the CRI/API version being used or other customisations. | `docker://19.3.1 - CRI: 1.22.0` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="container-runtime-name" href="#container-runtime-name">`container.runtime.name`</a> | string | The container runtime managing this container. | `docker`; `containerd`; `rkt` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="container-runtime-version" href="#container-runtime-version">`container.runtime.version`</a> | string | The version of the runtime of this process, as returned by the runtime without modification. | `1.0.0` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="container-command" href="#container-command">`container.command`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The command used to run the container (i.e. the command name). [1] | `otelcontribcol` |
+| <a id="container-command-args" href="#container-command-args">`container.command_args`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string[] | All the command arguments (including the command/executable itself) run by the container. | `["otelcontribcol", "--config", "config.yaml"]` |
+| <a id="container-command-line" href="#container-command-line">`container.command_line`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The full command run by the container as a single string representing the full command. | `otelcontribcol --config config.yaml` |
+| <a id="container-csi-plugin-name" href="#container-csi-plugin-name">`container.csi.plugin.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the CSI ([Container Storage Interface](https://github.com/container-storage-interface/spec)) plugin used by the volume. [2] | `pd.csi.storage.gke.io` |
+| <a id="container-csi-volume-id" href="#container-csi-volume-id">`container.csi.volume.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The unique volume ID returned by the CSI ([Container Storage Interface](https://github.com/container-storage-interface/spec)) plugin. [3] | `projects/my-gcp-project/zones/my-gcp-zone/disks/my-gcp-disk` |
+| <a id="container-id" href="#container-id">`container.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Container ID. Usually a UUID, as for example used to [identify Docker containers](https://docs.docker.com/engine/containers/run/#container-identification). The UUID might be abbreviated. | `a3bf90e006b2` |
+| <a id="container-image-id" href="#container-image-id">`container.image.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Runtime specific image identifier. Usually a hash algorithm followed by a UUID. [4] | `sha256:19c92d0a00d1b66d897bceaa7319bee0dd38a10a851c60bcec9474aa3f01e50f` |
+| <a id="container-image-name" href="#container-image-name">`container.image.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Name of the image the container was built on. | `gcr.io/opentelemetry/operator` |
+| <a id="container-image-repo-digests" href="#container-image-repo-digests">`container.image.repo_digests`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string[] | Repo digests of the container image as provided by the container runtime. [5] | `["example@sha256:afcc7f1ac1b49db317a7196c902e61c6c3c4607d63599ee1a82d702d249a0ccb", "internal.registry.example.com:5000/example@sha256:b69959407d21e8a062e0416bf13405bb2b71ed7a84dde4158ebafacfa06f5578"]` |
+| <a id="container-image-tags" href="#container-image-tags">`container.image.tags`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string[] | Container image tags. An example can be found in [Docker Image Inspect](https://docs.docker.com/reference/api/engine/version/v1.43/#tag/Image/operation/ImageInspect). Should be only the `<tag>` section of the full name for example from `registry.example.com/my-org/my-image:<tag>`. | `["v1.27.1", "3.5.7-0"]` |
+| <a id="container-label" href="#container-label">`container.label.<key>`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Container labels, `<key>` being the label name, the value being the label value. [6] | `nginx` |
+| <a id="container-name" href="#container-name">`container.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Container name used by container runtime. | `opentelemetry-autoconf` |
+| <a id="container-runtime-description" href="#container-runtime-description">`container.runtime.description`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | A description about the runtime which could include, for example details about the CRI/API version being used or other customisations. | `docker://19.3.1 - CRI: 1.22.0` |
+| <a id="container-runtime-name" href="#container-runtime-name">`container.runtime.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The container runtime managing this container. | `docker`; `containerd`; `rkt` |
+| <a id="container-runtime-version" href="#container-runtime-version">`container.runtime.version`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The version of the runtime of this process, as returned by the runtime without modification. | `1.0.0` |
 
 **[1] `container.command`:** If using embedded credentials or sensitive data, it is recommended to remove them to prevent potential leakage.
 
@@ -46,11 +48,13 @@ The ID is assigned by the container runtime and can vary in different environmen
 
 Describes deprecated container attributes.
 
-| Attribute | Type | Description | Examples | Stability |
+**Attributes:**
+
+| Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
-| <a id="container-cpu-state" href="#container-cpu-state">`container.cpu.state`</a> | string | Deprecated, use `cpu.mode` instead. | `user`; `kernel` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `cpu.mode`. |
-| <a id="container-labels" href="#container-labels">`container.labels.<key>`</a> | string | Deprecated, use `container.label` instead. | `nginx` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `container.label`. |
-| <a id="container-runtime" href="#container-runtime">`container.runtime`</a> | string | The container runtime managing this container. | `docker`; `containerd`; `rkt` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `container.runtime.name`. |
+| <a id="container-cpu-state" href="#container-cpu-state">`container.cpu.state`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `cpu.mode`. | string | Deprecated, use `cpu.mode` instead. | `user`; `kernel` |
+| <a id="container-labels" href="#container-labels">`container.labels.<key>`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `container.label`. | string | Deprecated, use `container.label` instead. | `nginx` |
+| <a id="container-runtime" href="#container-runtime">`container.runtime`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `container.runtime.name`. | string | The container runtime managing this container. | `docker`; `containerd`; `rkt` |
 
 ---
 

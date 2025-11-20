@@ -58,14 +58,16 @@ and the [cloud resource conventions][cloud].
 **Span name** MUST be set to the function name from the Lambda `Context`
 unless stated otherwise.
 
-**Span kind** MUST be set to `SERVER` unless stated otherwise.
+**Span kind** MUST be `SERVER` unless stated otherwise.
 
 **Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+**Attributes:**
+
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
-| [`aws.lambda.invoked_arn`](/docs/registry/attributes/aws.md) | string | The full invoked ARN as provided on the `Context` passed to the function (`Lambda-Runtime-Invoked-Function-Arn` header on the `/runtime/invocation/next` applicable). [1] | `arn:aws:lambda:us-east-1:123456:function:myfunction:myalias` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`aws.lambda.resource_mapping.id`](/docs/registry/attributes/aws.md) | string | The UUID of the [AWS Lambda EvenSource Mapping](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-eventsourcemapping.html). An event source is mapped to a lambda function. It's contents are read by Lambda and used to trigger a function. This isn't available in the lambda execution context or the lambda runtime environtment. This is going to be populated by the AWS SDK for each language when that UUID is present. Some of these operations are Create/Delete/Get/List/Update EventSourceMapping. | `587ad24b-03b9-4413-8202-bbd56b36e5b7` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`aws.lambda.invoked_arn`](/docs/registry/attributes/aws.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The full invoked ARN as provided on the `Context` passed to the function (`Lambda-Runtime-Invoked-Function-Arn` header on the `/runtime/invocation/next` applicable). [1] | `arn:aws:lambda:us-east-1:123456:function:myfunction:myalias` |
+| [`aws.lambda.resource_mapping.id`](/docs/registry/attributes/aws.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The UUID of the [AWS Lambda EvenSource Mapping](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-eventsourcemapping.html). An event source is mapped to a lambda function. It's contents are read by Lambda and used to trigger a function. This isn't available in the lambda execution context or the lambda runtime environtment. This is going to be populated by the AWS SDK for each language when that UUID is present. Some of these operations are Create/Delete/Get/List/Update EventSourceMapping. | `587ad24b-03b9-4413-8202-bbd56b36e5b7` |
 
 **[1] `aws.lambda.invoked_arn`:** This may be different from `cloud.resource_id` if an alias is involved.
 
@@ -175,7 +177,7 @@ be `<event source> process`. If there are multiple sources in the batch, the nam
 
 For every message in the event, the [message system attributes][] (not message attributes, which are provided by
 the user) SHOULD be checked for the key `AWSTraceHeader`. If it is present, an OpenTelemetry `Context` SHOULD be
-parsed from the value of the attribute using the [AWS X-Ray Propagator](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.50.0/specification/context/api-propagators.md) and
+parsed from the value of the attribute using the [AWS X-Ray Propagator](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.51.0/specification/context/api-propagators.md) and
 added as a link to the span. This means the span may have as many links as messages in the batch.
 See [compatibility](../non-normative/compatibility/aws.md#context-propagation) for more info.
 
@@ -188,7 +190,7 @@ See [compatibility](../non-normative/compatibility/aws.md#context-propagation) f
 For the SQS message span, the name MUST be `<event source> process`. The parent MUST be the `CONSUMER` span
 corresponding to the SQS event. The [message system attributes][] (not message attributes, which are provided by
 the user) SHOULD be checked for the key `AWSTraceHeader`. If it is present, an OpenTelemetry `Context` SHOULD be
-parsed from the value of the attribute using the [AWS X-Ray Propagator](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.50.0/specification/context/api-propagators.md) and
+parsed from the value of the attribute using the [AWS X-Ray Propagator](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.51.0/specification/context/api-propagators.md) and
 added as a link to the span.
 See [compatibility](../non-normative/compatibility/aws.md#context-propagation) for more info.
 

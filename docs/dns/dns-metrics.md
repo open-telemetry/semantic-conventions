@@ -22,7 +22,7 @@ This document defines semantic conventions to apply when instrumenting DNS queri
 This metric is optional.
 
 This metric SHOULD be specified with
-[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.50.0/specification/metrics/api.md#instrument-advisory-parameters)
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.51.0/specification/metrics/api.md#instrument-advisory-parameters)
 of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 ]`.
 
 <!-- semconv metric.dns.lookup.duration -->
@@ -36,10 +36,12 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `dns.lookup.duration` | Histogram | `s` | Measures the time taken to perform a DNS lookup. | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+**Attributes:**
+
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
-| [`dns.question.name`](/docs/registry/attributes/dns.md) | string | The name being queried. [1] | `www.example.com`; `dot.net` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`error.type`](/docs/registry/attributes/error.md) | string | Describes the error the DNS lookup failed with. [2] | `host_not_found`; `no_recovery`; `java.net.UnknownHostException` | `Conditionally Required` if and only if an error has occurred. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`dns.question.name`](/docs/registry/attributes/dns.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name being queried. [1] | `www.example.com`; `dot.net` |
+| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if and only if an error has occurred. | string | Describes the error the DNS lookup failed with. [2] | `host_not_found`; `no_recovery`; `java.net.UnknownHostException` |
 
 **[1] `dns.question.name`:** The name represents the queried domain name as it appears in the DNS query without any additional normalization.
 

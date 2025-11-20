@@ -506,7 +506,7 @@ groups:
     instrument: updowncounter
     unit: "{process}"
     attributes:
-      - ref: system.process.status
+      - ref: process.state
     entity_associations:
       - host
 
@@ -524,10 +524,10 @@ groups:
     entity_associations:
       - host
 
-  # system.linux.* metrics
-  - id: metric.system.linux.memory.available
+  # system.memory.linux.* metrics
+  - id: metric.system.memory.linux.available
     type: metric
-    metric_name: system.linux.memory.available
+    metric_name: system.memory.linux.available
     annotations:
       code_generation:
         metric_value_type: int
@@ -545,21 +545,21 @@ groups:
     entity_associations:
       - host
 
-  - id: metric.system.linux.memory.slab.usage
+  - id: metric.system.memory.linux.slab.usage
     type: metric
-    metric_name: system.linux.memory.slab.usage
+    metric_name: system.memory.linux.slab.usage
     annotations:
       code_generation:
         metric_value_type: int
     stability: development
     brief: "Reports the memory used by the Linux kernel for managing caches of frequently used objects."
     note: |
-      The sum over the `reclaimable` and `unreclaimable` state values in `linux.memory.slab.usage` SHOULD be equal to the total slab memory available on the system.
+      The sum over the `reclaimable` and `unreclaimable` state values in `memory.linux.slab.usage` SHOULD be equal to the total slab memory available on the system.
       Note that the total slab memory is not constant and may vary over time.
       See also the [Slab allocator](https://blogs.oracle.com/linux/post/understanding-linux-kernel-memory-statistics) and `Slab` in [/proc/meminfo](https://man7.org/linux/man-pages/man5/proc.5.html).
     instrument: updowncounter
     unit: "By"
     attributes:
-      - ref: linux.memory.slab.state
+      - ref: system.memory.linux.slab.state
     entity_associations:
       - host

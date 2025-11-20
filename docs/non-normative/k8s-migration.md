@@ -108,10 +108,10 @@ The changes between collector implementation and semantic conventions:
 
 | Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                              |
 |------------------------------------------------------------------------------------|------------------------------------------------------------------|
-| `k8s.node.allocatable_cpu`                 (type: `gauge`)                         | `k8s.node.allocatable.cpu`               (type: `updowncounter`) |
-| `k8s.node.allocatable_memory`              (type: `gauge`)                         | `k8s.node.allocatable.memory`            (type: `updowncounter`) |
-| `k8s.node.allocatable_ephemeral_storage`   (type: `gauge`)                         | `k8s.node.allocatable.ephemeral_storage` (type: `updowncounter`) |
-| `k8s.node.allocatable_pods`                (type: `gauge`)                         | `k8s.node.allocatable.pods`              (type: `updowncounter`) |
+| `k8s.node.allocatable_cpu`                 (type: `gauge`)                         | `k8s.node.cpu.allocatable`               (type: `updowncounter`)            |
+| `k8s.node.allocatable_memory`              (type: `gauge`)                         | `k8s.node.memory.allocatable`            (type: `updowncounter`) |
+| `k8s.node.allocatable_ephemeral_storage`   (type: `gauge`)                         | `k8s.node.ephemeral_storage.allocatable` (type: `updowncounter`) |
+| `k8s.node.allocatable_pods`                (type: `gauge`)                         | `k8s.node.pod.allocatable`              (type: `updowncounter`)  |
 
 <!-- prettier-ignore-end -->
 
@@ -128,8 +128,8 @@ The changes in their metric names and types are the following:
 
 | Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                          |
 |------------------------------------------------------------------------------------|--------------------------------------------------------------|
-| `k8s.deployment.desired`       (type: `gauge`)                                     | `k8s.deployment.desired_pods` (type: `updowncounter`)        |
-| `k8s.deployment.available`     (type: `gauge`)                                     | `k8s.deployment.available_pods`      (type: `updowncounter`) |
+| `k8s.deployment.desired`       (type: `gauge`)                                     | `k8s.deployment.pod.desired` (type: `updowncounter`)        |
+| `k8s.deployment.available`     (type: `gauge`)                                     | `k8s.deployment.pod.available`      (type: `updowncounter`) |
 
 <!-- prettier-ignore-end -->
 
@@ -146,8 +146,8 @@ The changes in their metric names and types are the following:
 
 | Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                     |
 |------------------------------------------------------------------------------------|---------------------------------------------------------|
-| `k8s.replicaset.desired`           (type: `gauge`)                                 | `k8s.replicaset.desired_pods` (type: `updowncounter`)   |
-| `k8s.replicaset.available`         (type: `gauge`)                                 | `k8s.replicaset.available_pods` (type: `updowncounter`) |
+| `k8s.replicaset.desired`           (type: `gauge`)                                 | `k8s.replicaset.pod.desired` (type: `updowncounter`)   |
+| `k8s.replicaset.available`         (type: `gauge`)                                 | `k8s.replicaset.pod.available` (type: `updowncounter`) |
 
 <!-- prettier-ignore-end -->
 
@@ -164,8 +164,8 @@ The changes in their metric names and types are the following:
 
 | Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                                |
 |------------------------------------------------------------------------------------|--------------------------------------------------------------------|
-| `k8s.replication_controller.desired`           (type: `gauge`)                     | `k8s.replicationcontroller.desired_pods` (type: `updowncounter`)   |
-| `k8s.replication_controller.available`         (type: `gauge`)                     | `k8s.replicationcontroller.available_pods` (type: `updowncounter`) |
+| `k8s.replication_controller.desired`           (type: `gauge`)                     | `k8s.replicationcontroller.pod.desired` (type: `updowncounter`)   |
+| `k8s.replication_controller.available`         (type: `gauge`)                     | `k8s.replicationcontroller.pod.available` (type: `updowncounter`) |
 
 <!-- prettier-ignore-end -->
 
@@ -180,12 +180,12 @@ The changes in their metric types are the following:
 
 <!-- prettier-ignore-start -->
 
-| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                      |
-|------------------------------------------------------------------------------------|----------------------------------------------------------|
-| `k8s.statefulset.desired_pods`                  (type: `gauge`)                    | `k8s.statefulset.desired_pods` (type: `updowncounter`)   |
-| `k8s.statefulset.ready_pods`                  (type: `gauge`)                      | `k8s.statefulset.ready_pods` (type: `updowncounter`)     |
-| `k8s.statefulset.current_pods`                       (type: `gauge`)               | `k8s.statefulset.current_pods`  (type: `updowncounter`)  |
-| `k8s.statefulset.updated_pods`                      (type: `gauge`)                | `k8s.statefulset.updated_pods`   (type: `updowncounter`) |
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                           |
+|------------------------------------------------------------------------------------|---------------------------------------------------------------|
+| `k8s.statefulset.desired_pods`                  (type: `gauge`)                    | `k8s.statefulset.pod.desired` (type: `updowncounter`)   |
+| `k8s.statefulset.ready_pods`                  (type: `gauge`)                      | `k8s.statefulset.pod.ready` (type: `updowncounter`)     |
+| `k8s.statefulset.current_pods`                       (type: `gauge`)               | `k8s.statefulset.pod.current`  (type: `updowncounter`)  |
+| `k8s.statefulset.updated_pods`                      (type: `gauge`)                | `k8s.statefulset.pod.updated`   (type: `updowncounter`) |
 
 <!-- prettier-ignore-end -->
 
@@ -200,12 +200,12 @@ The changes in their metric names and types are the following:
 
 <!-- prettier-ignore-start -->
 
-| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                            |
-|------------------------------------------------------------------------------------|------------------------------------------------|
-| `k8s.hpa.desired_replicas`                  (type: `gauge`)                        | `k8s.hpa.desired_pods` (type: `updowncounter`) |
-| `k8s.hpa.current_replicas`                  (type: `gauge`)                        | `k8s.hpa.current_pods` (type: `updowncounter`) |
-| `k8s.hpa.max_replicas`                       (type: `gauge`)                       | `k8s.hpa.max_pods`  (type: `updowncounter`)    |
-| `k8s.hpa.min_replicas`                      (type: `gauge`)                        | `k8s.hpa.min_pods`   (type: `updowncounter`)   |
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                 |
+|------------------------------------------------------------------------------------|-----------------------------------------------------|
+| `k8s.hpa.desired_replicas`                  (type: `gauge`)                        | `k8s.hpa.pod.desired` (type: `updowncounter`) |
+| `k8s.hpa.current_replicas`                  (type: `gauge`)                        | `k8s.hpa.pod.current` (type: `updowncounter`) |
+| `k8s.hpa.max_replicas`                       (type: `gauge`)                       | `k8s.hpa.pod.max`  (type: `updowncounter`)    |
+| `k8s.hpa.min_replicas`                      (type: `gauge`)                        | `k8s.hpa.pod.min`   (type: `updowncounter`)   |
 
 <!-- prettier-ignore-end -->
 
@@ -220,12 +220,12 @@ The changes in their metric types are the following:
 
 <!-- prettier-ignore-start -->
 
-| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                             |
-|------------------------------------------------------------------------------------|-----------------------------------------------------------------|
-| `k8s.daemonset.current_scheduled_nodes`                  (type: `gauge`)           | `k8s.daemonset.current_scheduled_nodes` (type: `updowncounter`) |
-| `k8s.daemonset.desired_scheduled_nodes`                  (type: `gauge`)           | `k8s.daemonset.desired_scheduled_nodes` (type: `updowncounter`) |
-| `k8s.daemonset.misscheduled_nodes`                       (type: `gauge`)           | `k8s.daemonset.misscheduled_nodes`  (type: `updowncounter`)     |
-| `k8s.daemonset.ready_nodes`                      (type: `gauge`)                   | `k8s.daemonset.ready_nodes`   (type: `updowncounter`)           |
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                                  |
+|------------------------------------------------------------------------------------|----------------------------------------------------------------------|
+| `k8s.daemonset.current_scheduled_nodes`                  (type: `gauge`)           | `k8s.daemonset.node.current_scheduled` (type: `updowncounter`) |
+| `k8s.daemonset.desired_scheduled_nodes`                  (type: `gauge`)           | `k8s.daemonset.node.desired_scheduled` (type: `updowncounter`) |
+| `k8s.daemonset.misscheduled_nodes`                       (type: `gauge`)           | `k8s.daemonset.node.misscheduled`  (type: `updowncounter`)     |
+| `k8s.daemonset.ready_nodes`                      (type: `gauge`)                   | `k8s.daemonset.node.ready`   (type: `updowncounter`)           |
 
 <!-- prettier-ignore-end -->
 
@@ -240,12 +240,12 @@ The changes in their metric types are the following:
 
 <!-- prettier-ignore-start -->
 
-| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                    |
-|----------------------------------------------------------|----------------------------------------|
-| `k8s.job.active_pods`                  (type: `gauge`) | `k8s.job.active_pods` (type: `updowncounter`) |
-| `k8s.job.failed_pods`                  (type: `gauge`) | `k8s.job.failed_pods` (type: `updowncounter`) |
-| `k8s.job.desired_successful_pods`                       (type: `gauge`) | `k8s.job.desired_successful_pods`  (type: `updowncounter`) |
-| `k8s.job.max_parallel_pods`                      (type: `gauge`) | `k8s.job.max_parallel_pods`   (type: `updowncounter`) |
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                             |
+|----------------------------------------------------------|-----------------------------------------------------------------|
+| `k8s.job.active_pods`                  (type: `gauge`) | `k8s.job.pod.active` (type: `updowncounter`)              |
+| `k8s.job.failed_pods`                  (type: `gauge`) | `k8s.job.pod.failed` (type: `updowncounter`)              |
+| `k8s.job.desired_successful_pods`                       (type: `gauge`) | `k8s.job.pod.desired_successful`  (type: `updowncounter`) |
+| `k8s.job.max_parallel_pods`                      (type: `gauge`) | `k8s.job.pod.max_parallel`   (type: `updowncounter`)      |
 
 ### K8s Cronjob metrics
 
@@ -258,9 +258,9 @@ The changes in their metric types are the following:
 
 <!-- prettier-ignore-start -->
 
-| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                            |
-|--------------------------------------------------|--------------------------------|
-| `k8s.cronjob.active_jobs`                  (type: `gauge`) | `k8s.cronjob.active_jobs` (type: `updowncounter`) |
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                    |
+|--------------------------------------------------|--------------------------------------------------------|
+| `k8s.cronjob.active_jobs`                  (type: `gauge`) | `k8s.cronjob.job.active` (type: `updowncounter`) |
 
 <!-- prettier-ignore-end -->
 
