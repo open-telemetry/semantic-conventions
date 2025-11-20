@@ -10,6 +10,8 @@ endif
 
 TOOLS_DIR := $(PWD)/internal/tools
 
+README_DIRS := $(shell find ./docs -mindepth 1 -maxdepth 5 -type d ! -name ".*")
+
 MISSPELL_BINARY=bin/misspell
 MISSPELL = $(TOOLS_DIR)/$(MISSPELL_BINARY)
 
@@ -72,7 +74,28 @@ endif
 
 # TODO: add `yamllint` step to `all` after making sure it works on Mac.
 .PHONY: all
-all: install-tools markdownlint misspell table-check schema-check check-file-and-folder-names-in-docs markdown-link-check
+all: install-tools markdownlint misspell table-check schema-check check-readmes check-file-and-folder-names-in-docs markdown-link-check
+
+.PHONY: check-readmes
+check-readmes:
+	echo "Checking for README.md files in subdirectories of docs/..."
+	@missing=0; \
+	for dir in $(README_DIRS); do \
+		if [ "`find $$dir -maxdepth 1 -name 'README.md'`" ]; then \
+			echo "✅: Found README.md in $$dir"; \
+		elif [ -z "`find $$dir -maxdepth 5 -name '*.md'`" ]; then \
+			echo "⚠️: $$dir has no markdown files"; \
+		else \
+			echo "❌: Missing README.md in $$dir"; \
+			missing=$$((missing+1)); \
+		fi; \
+	done; \
+	if [ $$missing -ne 0 ]; then \
+		echo "$$missing subdirectories are missing README.md files."; \
+		exit 1; \
+	else \
+		echo "All subdirectories have README.md files."; \
+	fi
 
 .PHONY: check-file-and-folder-names-in-docs
 check-file-and-folder-names-in-docs:
@@ -209,7 +232,7 @@ schema-check:
 # Run all checks in order of speed / likely failure.
 # As a last thing, run attribute registry generation and git-diff for differences.
 .PHONY: check
-check: misspell markdownlint markdown-toc markdown-link-check check-policies registry-generation
+check: misspell markdownlint markdown-toc markdown-link-check check-readmes check-policies registry-generation
 	git diff --exit-code ':*.md' || (echo 'Generated markdown Table of Contents is out of date, please run "make markdown-toc" and commit the changes in this PR.' && exit 1)
 	@echo "All checks complete"
 
