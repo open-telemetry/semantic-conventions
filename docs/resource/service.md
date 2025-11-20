@@ -4,7 +4,7 @@ linkTitle: Service
 
 # Service semantic conventions
 
-Service is a logical component of an application that prodcues telemetry
+Service is a logical component of an application that produces telemetry
 data (events, metrics, spans, etc.).
 
 In modern, distributed, application architectures:
@@ -12,7 +12,7 @@ In modern, distributed, application architectures:
 - An `service.namespace` is an entire system of components designed for
   end-users or other applications to leverage.
 - A `service` is one of the logical, distinct components that make up the
-  application, typically running as a separate process or microservice.
+  application, typically running as a bundle of the instances that run the same container image for load balancing.
 - A `service.instance` is a distinct instance of a service component, e.g. a
   specific kubernetes container that is part of a kubernetes deployment which
   offers a service.
@@ -57,11 +57,11 @@ between them. Additionally, there's a single database instance.
 
 **type:** `service`
 
-**Description:** A logical, distinct, component that makes up a system.
+**Description:** A logical unit of an application or system that performs a specific function.
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|---|
 | Identity | [`service.name`](/docs/registry/attributes/service.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | Logical name of the service. [1] | `shoppingcart` |
-| Description | [`service.version`](/docs/registry/attributes/service.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The version string of the service API or implementation. The format is not defined by these conventions. | `2.0.0`; `a01dbef8a` |
+| Description | [`service.version`](/docs/registry/attributes/service.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The version string of the service component. The format is not defined by these conventions. | `2.0.0`; `a01dbef8a` |
 
 **[1] `service.name`:** MUST be the same for all instances of horizontally scaled services. If the value was not specified, SDKs MUST fallback to `unknown_service:` concatenated with [`process.executable.name`](process.md), e.g. `unknown_service:bash`. If `process.executable.name` is not available, the value MUST be set to `unknown_service`.
 <!-- markdownlint-restore -->
@@ -82,7 +82,7 @@ between them. Additionally, there's a single database instance.
 
 **type:** `service.instance`
 
-**Description:** A distinct instance of a service component.
+**Description:** A unique instance of a logical service.
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|---|
 | Identity | [`service.instance.id`](/docs/registry/attributes/service.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The string ID of the service instance. [1] | `627cc493-f310-47de-96bd-71410b7dec09` |
@@ -131,7 +131,7 @@ port.
 
 **type:** `service.namespace`
 
-**Description:** A system of components designed for end-users or other applications.
+**Description:** Groups related services that compose a system or application under a common namespace.
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|---|
 | Identity | [`service.namespace`](/docs/registry/attributes/service.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | A namespace for `service.name`. [1] | `Shop` |
