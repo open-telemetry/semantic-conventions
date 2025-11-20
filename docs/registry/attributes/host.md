@@ -3,6 +3,9 @@
 
 # Host
 
+- [Host Attributes](#host-attributes)
+- [Deprecated Host Attributes](#deprecated-host-attributes)
+
 ## Host Attributes
 
 A host is defined as a computing instance. For example, physical servers, virtual machines, switches or disk array.
@@ -11,7 +14,7 @@ A host is defined as a computing instance. For example, physical servers, virtua
 
 | Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
-| <a id="host-arch" href="#host-arch">`host.arch`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The CPU architecture the host system is running on. | `amd64`; `arm32`; `arm64` |
+| <a id="host-cpu-arch" href="#host-cpu-arch">`host.cpu.arch`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The CPU architecture the host system is running on. | `amd64`; `arm32`; `arm64` |
 | <a id="host-cpu-cache-l2-size" href="#host-cpu-cache-l2-size">`host.cpu.cache.l2.size`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The amount of level 2 memory cache available to the processor (in Bytes). | `12288000` |
 | <a id="host-cpu-family" href="#host-cpu-family">`host.cpu.family`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Family or generation of the CPU. | `6`; `PA-RISC 1.1e` |
 | <a id="host-cpu-model-id" href="#host-cpu-model-id">`host.cpu.model.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Model identifier. It provides more granular information about the CPU, distinguishing it from other CPUs within the same family. | `6`; `9000/778/B180L` |
@@ -32,6 +35,31 @@ A host is defined as a computing instance. For example, physical servers, virtua
 **[2] `host.ip`:** IPv4 Addresses MUST be specified in dotted-quad notation. IPv6 addresses MUST be specified in the [RFC 5952](https://www.rfc-editor.org/rfc/rfc5952.html) format.
 
 **[3] `host.mac`:** MAC Addresses MUST be represented in [IEEE RA hexadecimal form](https://standards.ieee.org/wp-content/uploads/import/documents/tutorials/eui.pdf): as hyphen-separated octets in uppercase hexadecimal form from most to least significant.
+
+---
+
+`host.cpu.arch` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `amd64` | AMD64 | ![Development](https://img.shields.io/badge/-development-blue) |
+| `arm32` | ARM32 | ![Development](https://img.shields.io/badge/-development-blue) |
+| `arm64` | ARM64 | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ia64` | Itanium | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ppc32` | 32-bit PowerPC | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ppc64` | 64-bit PowerPC | ![Development](https://img.shields.io/badge/-development-blue) |
+| `s390x` | IBM z/Architecture | ![Development](https://img.shields.io/badge/-development-blue) |
+| `x86` | 32-bit x86 | ![Development](https://img.shields.io/badge/-development-blue) |
+
+## Deprecated Host Attributes
+
+A host is defined as a computing instance. For example, physical servers, virtual machines, switches or disk array.
+
+**Attributes:**
+
+| Key | Stability | Value Type | Description | Example Values |
+|---|---|---|---|---|
+| <a id="host-arch" href="#host-arch">`host.arch`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `host.cpu.arch`. | string | The CPU architecture the host system is running on. | `amd64`; `arm32`; `arm64` |
 
 ---
 

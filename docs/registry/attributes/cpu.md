@@ -5,7 +5,8 @@
 
 ## CPU Attributes
 
-Attributes specific to a cpu instance.
+CPU fields can carry data about a specific cpu instance.
+Note: These CPU attributes are typically used to capture system metrics about a CPU. The CPU attributes under host are for describing the cpu in the host.
 
 **Attributes:**
 
