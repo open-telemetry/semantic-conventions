@@ -2,6 +2,7 @@ groups:
   - id: metric.process.cpu.time
     type: metric
     metric_name: process.cpu.time
+    requirement_level: recommended
     annotations:
       code_generation:
         metric_value_type: double
@@ -11,6 +12,7 @@ groups:
     unit: "s"
     attributes:
       - ref: cpu.mode
+        requirement_level: required
         brief: >
           A process SHOULD be characterized _either_ by data points with no `mode`
           labels, _or only_ data points with `mode` labels.
@@ -21,6 +23,7 @@ groups:
   - id: metric.process.cpu.utilization
     type: metric
     metric_name: process.cpu.utilization
+    requirement_level: opt_in
     annotations:
       code_generation:
         metric_value_type: double
@@ -32,6 +35,7 @@ groups:
     unit: "1"
     attributes:
       - ref: cpu.mode
+        requirement_level: required
         brief: >
           A process SHOULD be characterized _either_ by data points with no `mode`
           labels, _or only_ data points with `mode` labels.
@@ -42,6 +46,7 @@ groups:
   - id: metric.process.memory.usage
     type: metric
     metric_name: process.memory.usage
+    requirement_level: required
     annotations:
       code_generation:
         metric_value_type: int
@@ -56,6 +61,7 @@ groups:
   - id: metric.process.memory.virtual
     type: metric
     metric_name: process.memory.virtual
+    requirement_level: opt_in
     annotations:
       code_generation:
         metric_value_type: int
@@ -70,6 +76,7 @@ groups:
   - id: metric.process.disk.io
     type: metric
     metric_name: process.disk.io
+    requirement_level: recommended
     annotations:
       code_generation:
         metric_value_type: int
@@ -79,12 +86,14 @@ groups:
     unit: "By"
     attributes:
       - ref: disk.io.direction
+        requirement_level: required
     entity_associations:
       - process
 
   - id: metric.process.network.io
     type: metric
     metric_name: process.network.io
+    requirement_level: recommended
     annotations:
       code_generation:
         metric_value_type: int
@@ -94,12 +103,14 @@ groups:
     unit: "By"
     attributes:
       - ref: network.io.direction
+        requirement_level: required
     entity_associations:
       - process
 
   - id: metric.process.thread.count
     type: metric
     metric_name: process.thread.count
+    requirement_level: recommended
     annotations:
       code_generation:
         metric_value_type: int
@@ -113,6 +124,7 @@ groups:
   - id: metric.process.open_file_descriptor.count
     type: metric
     metric_name: process.open_file_descriptor.count
+    requirement_level: recommended
     annotations:
       code_generation:
         metric_value_type: int
@@ -126,6 +138,7 @@ groups:
   - id: metric.process.context_switches
     type: metric
     metric_name: process.context_switches
+    requirement_level: recommended
     annotations:
       code_generation:
         metric_value_type: int
@@ -135,12 +148,14 @@ groups:
     unit: "{context_switch}"
     attributes:
       - ref: process.context_switch.type
+        requirement_level: required
     entity_associations:
       - process
 
   - id: metric.process.paging.faults
     type: metric
     metric_name: process.paging.faults
+    requirement_level: recommended
     annotations:
       code_generation:
         metric_value_type: int
@@ -150,12 +165,14 @@ groups:
     unit: "{fault}"
     attributes:
       - ref: system.paging.fault.type
+        requirement_level: recommended
     entity_associations:
       - process
 
   - id: metric.process.uptime
     type: metric
     metric_name: process.uptime
+    requirement_level: opt_in
     annotations:
       code_generation:
         metric_value_type: double
