@@ -18,4 +18,3 @@ groups:
       - ref: service.criticality
         requirement_level: recommended
         role: descriptive
-
