@@ -30,6 +30,7 @@ groups:
         role: identifying
         requirement_level: required
       - ref: service.criticality
+        requirement_level: recommended
         role: descriptive
   - id: entity.service.namespace
     type: entity

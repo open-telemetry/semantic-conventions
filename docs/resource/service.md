@@ -117,7 +117,7 @@ However, Collectors can set the `service.instance.id` if they can unambiguously 
 for that telemetry. This is typically the case for scraping receivers, as they know the target address and
 port.
 
-**[2] `service.criticality`:** This attribute enables classification of services based on their operational importance,  allowing observability platforms to implement criticality-aware tracing, monitoring,  and sampling strategies. By standardizing service criticality, organizations can implement  adaptive sampling rates (e.g., 100% for critical, 10% for low-priority services), optimize  telemetry costs by reducing data from non-critical services, improve incident response by  surfacing critical service traces first, and enable better capacity planning and resource allocation.
+**[2] `service.criticality`:** This attribute enables classification of services based on their operational importance, allowing observability platforms to implement criticality-aware tracing, monitoring, and sampling strategies. By standardizing service criticality, organizations can implement adaptive sampling rates (e.g., 100% for critical, 10% for low-priority services), optimize telemetry costs by reducing data from non-critical services, improve incident response by surfacing critical service traces first, and enable better capacity planning and resource allocation.
 
 ---
 
