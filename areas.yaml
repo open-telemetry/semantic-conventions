@@ -148,10 +148,6 @@ areas:
       - area:client
       - area:server
       - area:network
-      - area:error
-      - area:aspnetcore
-      - area:dotnet
-      - area:signalr
     status:
       - inactive
   - name: "Semantic Conventions: Database"
