@@ -237,6 +237,7 @@ areas:
       - area:dotnet
       - area:aspnetcore
       - area:signalr
+      - area:kestrel
     status:
       - accepting_contributions
       - active
