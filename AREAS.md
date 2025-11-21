@@ -46,6 +46,7 @@ their owners, related project (and project board) as well as its current status.
 | Semantic Conventions: .NET | [semconv-dotnet-approver](https://github.com/orgs/open-telemetry/teams/semconv-dotnet-approver) | N/A | N/A | `area:dotnet`, `area:aspnetcore`, `area:signalr`, `area:kestrel` | `accepting_contributions`, `active` | SIG is driven by members of the .NET runtime team. Contributions are welcomed but must be aligned with the .NET runtime features/roadmap |
 | Semantic Conventions: RPC |  | https://github.com/open-telemetry/community/blob/main/projects/rpc-semconv.md | https://github.com/orgs/open-telemetry/projects/161 | `area:rpc` | `accepting_contributions`, `active` | The SIG is looking for contributions! |
 | Semantic Conventions: Service and Deployment |  | https://github.com/open-telemetry/community/blob/main/projects/service-and-deployment-semconv.md | https://github.com/orgs/open-telemetry/projects/168 | `area:service`, `area:deployment` | `accepting_contributions`, `active` | The SIG is looking for contributions! |
+| Semantic Conventions: Container |  | N/A | N/A | `area:container`, `area:oci` | `accepting_contributions`, `active` | The SIG is looking for contributions! |
 <!-- endareas -->
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

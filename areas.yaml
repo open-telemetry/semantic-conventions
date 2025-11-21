@@ -257,3 +257,13 @@ areas:
     status:
       - accepting_contributions
       - active
+
+  - name: "Semantic Conventions: Container"
+    project: "N/A"
+    board: "N/A"
+    labels:
+      - area:container
+      - area:oci
+    status:
+      - accepting_contributions
+      - active
