@@ -32,23 +32,27 @@ in-memory retrieval operations.
 
 **Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+**Attributes:**
+
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
-| [`db.system.name`](/docs/registry/attributes/db.md) | string | The database management system (DBMS) product as identified by the client instrumentation. [1] | `other_sql`; `softwareag.adabas`; `actian.ingres` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`db.operation.name`](/docs/registry/attributes/db.md) | string | The name of the operation or command being executed. [2] | `findAndModify`; `HMSET`; `SELECT` | `Conditionally Required` [3] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`db.response.status_code`](/docs/registry/attributes/db.md) | string | Database response status code. [4] | `102`; `ORA-17002`; `08P01`; `404` | `Conditionally Required` [5] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [6] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If and only if the operation failed. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.port`](/docs/registry/attributes/server.md) | int | Server port number. [7] | `80`; `8080`; `443` | `Conditionally Required` [8] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`db.operation.batch.size`](/docs/registry/attributes/db.md) | int | The number of queries included in a batch operation. [9] | `2`; `3`; `4` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`db.query.text`](/docs/registry/attributes/db.md) | string | The query text or vector representation used for retrieval. [10] | `[0.1, 0.2, 0.3, ...]`; `search term`; `semantic query text` | `Recommended` [11] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`db.retrieval.documents_retrieved`](/docs/registry/attributes/db.md) | int | The actual number of documents retrieved. [12] | `5`; `10`; `15` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`db.retrieval.top_k`](/docs/registry/attributes/db.md) | int | The maximum number of results requested. [13] | `5`; `10`; `20` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`db.retrieval.type`](/docs/registry/attributes/db.md) | string | The type of retrieval operation being performed. [14] | `similarity`; `hybrid`; `keyword` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`server.address`](/docs/registry/attributes/server.md) | string | Name of the database host. [15] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| [`db.system.name`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | The database management system (DBMS) product as identified by the client instrumentation. [1] | `other_sql`; `softwareag.adabas`; `actian.ingres` |
+| [`db.operation.name`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [2] | string | The name of the operation or command being executed. [3] | `findAndModify`; `HMSET`; `SELECT` |
+| [`db.response.status_code`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [4] | string | Database response status code. [5] | `102`; `ORA-17002`; `08P01`; `404` |
+| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the operation failed. | string | Describes a class of error the operation ended with. [6] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` |
+| [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [7] | int | Server port number. [8] | `80`; `8080`; `443` |
+| [`db.operation.batch.size`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | The number of queries included in a batch operation. [9] | `2`; `3`; `4` |
+| [`db.query.text`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` [10] | string | The query text or vector representation used for retrieval. [11] | `[0.1, 0.2, 0.3, ...]`; `search term`; `semantic query text` |
+| [`db.retrieval.documents_retrieved`](/docs/registry/attributes/db.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | int | The actual number of documents retrieved. [12] | `5`; `10`; `15` |
+| [`db.retrieval.top_k`](/docs/registry/attributes/db.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | int | The maximum number of results requested. [13] | `5`; `10`; `20` |
+| [`db.retrieval.type`](/docs/registry/attributes/db.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The type of retrieval operation being performed. [14] | `similarity`; `hybrid`; `keyword` |
+| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Name of the database host. [15] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 
 **[1] `db.system.name`:** For retrieval databases, this should be set to the specific system name (e.g., `"pinecone"`, `"weaviate"`, `"qdrant"`, `"chroma"`, `"milvus"`).
 
-**[2] `db.operation.name`:** It is RECOMMENDED to capture the value as provided by the application
+**[2] `db.operation.name`:** If readily available and if there is a single operation name that describes the database call.
+
+**[3] `db.operation.name`:** It is RECOMMENDED to capture the value as provided by the application
 without attempting to do any case normalization.
 
 The operation name SHOULD NOT be extracted from `db.query.text`,
@@ -63,26 +67,24 @@ then that operation name SHOULD be used prepended by `BATCH `,
 otherwise `db.operation.name` SHOULD be `BATCH` or some other database
 system specific term if more applicable.
 
-**[3] `db.operation.name`:** If readily available and if there is a single operation name that describes the database call.
+**[4] `db.response.status_code`:** If the operation failed and status code is available.
 
-**[4] `db.response.status_code`:** The status code returned by the database. Usually it represents an error code, but may also represent partial success, warning, or differentiate between various types of successful outcomes.
+**[5] `db.response.status_code`:** The status code returned by the database. Usually it represents an error code, but may also represent partial success, warning, or differentiate between various types of successful outcomes.
 Semantic conventions for individual database systems SHOULD document what `db.response.status_code` means in the context of that system.
-
-**[5] `db.response.status_code`:** If the operation failed and status code is available.
 
 **[6] `error.type`:** The `error.type` SHOULD match the `db.response.status_code` returned by the database or the client library, or the canonical name of exception that occurred.
 When using canonical exception type name, instrumentation SHOULD do the best effort to report the most relevant type. For example, if the original exception is wrapped into a generic one, the original exception SHOULD be preferred.
 Instrumentations SHOULD document how `error.type` is populated.
 
-**[7] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[7] `server.port`:** If using a port other than the default port for this DBMS and if `server.address` is set.
 
-**[8] `server.port`:** If using a port other than the default port for this DBMS and if `server.address` is set.
+**[8] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
 **[9] `db.operation.batch.size`:** Operations are only considered batches when they contain two or more operations, and so `db.operation.batch.size` SHOULD never be `1`.
 
-**[10] `db.query.text`:** For vector similarity searches, this may contain the query vector representation or a textual description of the query. For hybrid searches, it may contain the keyword query portion. The value should be sanitized to remove sensitive information.
+**[10] `db.query.text`:** Should be collected when available and after sanitization to exclude sensitive data.
 
-**[11] `db.query.text`:** Should be collected when available and after sanitization to exclude sensitive data.
+**[11] `db.query.text`:** For vector similarity searches, this may contain the query vector representation or a textual description of the query. For hybrid searches, it may contain the keyword query portion. The value should be sanitized to remove sensitive information.
 
 **[12] `db.retrieval.documents_retrieved`:** This represents the count of documents/results actually returned by the database, which may be less than `db.retrieval.top_k` if fewer matching results were found.
 
