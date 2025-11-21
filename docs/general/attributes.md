@@ -58,7 +58,7 @@ identify the transport, then setting [`network.transport`](#other-network-attrib
 
 ### Server attributes
 
-> **Warning**
+> [!IMPORTANT]
 > Attributes in this section are in use by the HTTP semantic conventions.
 Once the HTTP semantic conventions are declared stable, changes to the attributes in this section will only be allowed
 if they do not cause breaking changes to HTTP semantic conventions.
@@ -107,7 +107,7 @@ For Unix domain socket, `server.address` attribute represents remote endpoint ad
 
 ### Client attributes
 
-> **Warning**
+> [!IMPORTANT]
 > Attributes in this section are in use by the HTTP semantic conventions.
 Once the HTTP semantic conventions are declared stable, changes to the attributes in this section will only be allowed
 if they do not cause breaking changes to HTTP semantic conventions.
@@ -196,7 +196,7 @@ Destination fields capture details about the receiver of a network exchange/pack
 
 ### Other network attributes
 
-> **Warning**
+> [!IMPORTANT]
 > Attributes in this section are in use by the HTTP semantic conventions.
 Once the HTTP semantic conventions are declared stable, changes to the attributes in this section will only be allowed
 if they do not cause breaking changes to HTTP semantic conventions.
