@@ -3,7 +3,11 @@ groups:
     type: entity
     name: service
     brief: >
-      A service instance.
+      A logical unit of an application or system that performs a specific function.
+    note: >
+      A service is a logical component used in a system, product or
+      application. Examples include a microservice, a database,
+      a Kubernetes deployment.
     stability: stable
     attributes:
       - ref: service.name
@@ -11,7 +15,29 @@ groups:
         role: identifying
       - ref: service.version
         role: descriptive
-      - ref: service.namespace
-        role: identifying
+  - id: entity.service.instance
+    type: entity
+    name: service.instance
+    brief: >
+      A unique instance of a logical service.
+    note: >
+      A `service.instance` uniquely identifies an instance of a logical service. For example,
+      a container that is part of a Kubernetes deployment
+      that offers a service.
+    stability: development
+    attributes:
       - ref: service.instance.id
         role: identifying
+        requirement_level: required
+  - id: entity.service.namespace
+    type: entity
+    name: service.namespace
+    brief: >
+      Groups related services that compose a system or application under a common namespace.
+    note: >
+      A `service.namespace` can be used to logically organize and group related services under a common namespace.
+    stability: development
+    attributes:
+      - ref: service.namespace
+        role: identifying
+        requirement_level: required
