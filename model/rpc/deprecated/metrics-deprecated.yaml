@@ -74,3 +74,43 @@ groups:
     deprecated:
       reason: obsoleted
       note: Removed, no replacement at this time.
+
+  - id: metric.rpc.server.duration
+    type: metric
+    metric_name: rpc.server.duration
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    instrument: histogram
+    unit: "ms"
+    note: |
+      While streaming RPCs may record this metric as start-of-batch
+      to end-of-batch, it's hard to interpret in practice.
+
+      **Streaming**: N/A.
+    extends: attributes.metrics.rpc.server
+    deprecated:
+      reason: uncategorized
+      note: Replaced by `rpc.server.call.duration` with unit `s`.
+    brief: "Deprecated, use `rpc.server.call.duration` instead. Note: the unit also changed from `ms` to `s`."
+
+  - id: metric.rpc.client.duration
+    type: metric
+    metric_name: rpc.client.duration
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    instrument: histogram
+    unit: "ms"
+    note: |
+      While streaming RPCs may record this metric as start-of-batch
+      to end-of-batch, it's hard to interpret in practice.
+
+      **Streaming**: N/A.
+    extends: attributes.metrics.rpc.client
+    deprecated:
+      reason: uncategorized
+      note: Replaced by `rpc.client.call.duration` with unit `s`.
+    brief: "Deprecated, use `rpc.client.call.duration` instead. Note: the unit also changed from `ms` to `s`."
