@@ -27,8 +27,11 @@ This group defines the attributes used to describe telemetry in the context of d
 | <a id="db-query-text" href="#db-query-text">`db.query.text`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The database query being executed. [8] | `SELECT * FROM wuser_table where username = ?`; `SET mykey ?` |
 | <a id="db-response-returned-rows" href="#db-response-returned-rows">`db.response.returned_rows`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | Number of rows returned by the operation. | `10`; `30`; `1000` |
 | <a id="db-response-status-code" href="#db-response-status-code">`db.response.status_code`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | Database response status code. [9] | `102`; `ORA-17002`; `08P01`; `404` |
-| <a id="db-stored-procedure-name" href="#db-stored-procedure-name">`db.stored_procedure.name`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The name of a stored procedure within the database. [10] | `GetCustomer` |
-| <a id="db-system-name" href="#db-system-name">`db.system.name`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The database management system (DBMS) product as identified by the client instrumentation. [11] | `other_sql`; `softwareag.adabas`; `actian.ingres` |
+| <a id="db-retrieval-documents-retrieved" href="#db-retrieval-documents-retrieved">`db.retrieval.documents_retrieved`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The actual number of documents or results retrieved by the operation. [10] | `5`; `10`; `15` |
+| <a id="db-retrieval-top-k" href="#db-retrieval-top-k">`db.retrieval.top_k`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The maximum number of results requested to be retrieved. [11] | `5`; `10`; `20`; `100` |
+| <a id="db-retrieval-type" href="#db-retrieval-type">`db.retrieval.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The type of retrieval operation being performed. [12] | `similarity`; `hybrid`; `keyword`; `mmr` |
+| <a id="db-stored-procedure-name" href="#db-stored-procedure-name">`db.stored_procedure.name`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The name of a stored procedure within the database. [13] | `GetCustomer` |
+| <a id="db-system-name" href="#db-system-name">`db.system.name`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The database management system (DBMS) product as identified by the client instrumentation. [14] | `other_sql`; `softwareag.adabas`; `actian.ingres` |
 
 **[1] `db.collection.name`:** It is RECOMMENDED to capture the value as provided by the application
 without attempting to do any case normalization.
@@ -103,13 +106,19 @@ Parameterized query text SHOULD NOT be sanitized. Even though parameterized quer
 **[9] `db.response.status_code`:** The status code returned by the database. Usually it represents an error code, but may also represent partial success, warning, or differentiate between various types of successful outcomes.
 Semantic conventions for individual database systems SHOULD document what `db.response.status_code` means in the context of that system.
 
-**[10] `db.stored_procedure.name`:** It is RECOMMENDED to capture the value as provided by the application
+**[10] `db.retrieval.documents_retrieved`:** This represents the count of documents/results actually returned by the database, which may be less than `db.retrieval.top_k` if fewer matching results were found.
+
+**[11] `db.retrieval.top_k`:** This represents the limit parameter or top_k value specified in the retrieval query, indicating how many results the client requested. The actual number of results returned may be captured in `db.retrieval.documents_retrieved`.
+
+**[12] `db.retrieval.type`:** This attribute describes the retrieval strategy used by the database or vector store. Common types include similarity search, hybrid search (combining multiple strategies), keyword search, or other database-specific retrieval methods.
+
+**[13] `db.stored_procedure.name`:** It is RECOMMENDED to capture the value as provided by the application
 without attempting to do any case normalization.
 
 For batch operations, if the individual operations are known to have the same
 stored procedure name then that stored procedure name SHOULD be used.
 
-**[11] `db.system.name`:** The actual DBMS may differ from the one identified by the client. For example, when using PostgreSQL client libraries to connect to a CockroachDB, the `db.system.name` is set to `postgresql` based on the instrumentation's best knowledge.
+**[14] `db.system.name`:** The actual DBMS may differ from the one identified by the client. For example, when using PostgreSQL client libraries to connect to a CockroachDB, the `db.system.name` is set to `postgresql` based on the instrumentation's best knowledge.
 
 ---
 
