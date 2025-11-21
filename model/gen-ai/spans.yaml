@@ -245,28 +245,6 @@ groups:
       - ref: gen_ai.embeddings.dimension.count
         requirement_level: recommended
 
-  - id: span.gen_ai.retrieval.client
-    type: span
-    span_kind: client
-    stability: development
-    brief: >
-      Describes GenAI Retrieval Span - where relevant information or context is stored
-      in a vector database or search system to be passed to a language model at a later time.
-
-      The `gen_ai.operation.name` SHOULD be `retrieval`.
-
-      **Span name** SHOULD be `{gen_ai.operation.name} {gen_ai.request.model}`.
-    extends: attributes.gen_ai.common.client
-    attributes:
-      - ref: gen_ai.retrieval.type
-        requirement_level: recommended
-      - ref: gen_ai.retrieval.vector_store
-        requirement_level: recommended
-      - ref: gen_ai.retrieval.top_k
-        requirement_level: recommended
-      - ref: gen_ai.retrieval.documents_retrieved
-        requirement_level: recommended
-
   - id: span.gen_ai.create_agent.client
     type: span
     stability: development
