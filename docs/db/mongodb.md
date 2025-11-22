@@ -28,10 +28,10 @@ The Semantic Conventions for [MongoDB](https://www.mongodb.com/) extend and over
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-Spans representing calls to MongoDB adhere to the general [Semantic Conventions for Database Client Spans](/docs/database/database-spans.md).
+Spans representing calls to MongoDB adhere to the general [Semantic Conventions for Database Client Spans](/docs/db/database-spans.md).
 
 `db.system.name` MUST be set to `"mongodb"` and SHOULD be provided **at span creation time**.
-**Span name** SHOULD follow the general [database span name convention](/docs/database/database-spans.md#name)
+**Span name** SHOULD follow the general [database span name convention](/docs/db/database-spans.md#name)
 
 **Span kind** SHOULD be `CLIENT`.
 

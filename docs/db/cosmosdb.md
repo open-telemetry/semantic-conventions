@@ -33,14 +33,14 @@ extend and override the [Database Semantic Conventions](README.md).
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-Cosmos DB instrumentations include call-level spans that represent logical database calls and adhere to the general [Semantic Conventions for Database Client Spans](/docs/database/database-spans.md).
+Cosmos DB instrumentations include call-level spans that represent logical database calls and adhere to the general [Semantic Conventions for Database Client Spans](/docs/db/database-spans.md).
 
 Additional spans representing network calls may also be created depending on the connection mode (Gateway or Direct).
 Semantic conventions described in this document apply to the call-level spans only.
 
 `db.system.name` MUST be set to `"azure.cosmosdb"` and SHOULD be provided **at span creation time**.
 
-**Span name** SHOULD follow the general [database span name convention](/docs/database/database-spans.md#name)
+**Span name** SHOULD follow the general [database span name convention](/docs/db/database-spans.md#name)
 
 **Span kind** SHOULD be `CLIENT`.
 
@@ -214,7 +214,7 @@ Instrumentations SHOULD document how `error.type` is populated.
 
 **[9] `db.operation.batch.size`:** Operations are only considered batches when they contain two or more operations, and so `db.operation.batch.size` SHOULD never be `1`.
 
-**[10] `db.query.text`:** For sanitization see [Sanitization of `db.query.text`](/docs/database/database-spans.md#sanitization-of-dbquerytext).
+**[10] `db.query.text`:** For sanitization see [Sanitization of `db.query.text`](/docs/db/database-spans.md#sanitization-of-dbquerytext).
 For batch operations, if the individual operations are known to have the same query text then that query text SHOULD be used, otherwise all of the individual query texts SHOULD be concatenated with separator `; ` or some other database system specific separator if more applicable.
 Parameterized query text SHOULD NOT be sanitized. Even though parameterized query text can potentially have sensitive data, by using a parameterized query the user is giving a strong signal that any sensitive data will be passed as parameter values, and the benefit to observability of capturing the static part of the query text by default outweighs the risk.
 
@@ -320,7 +320,7 @@ The following metrics provide insights into Azure Cosmos DB client operation per
 
 This metric is [required][MetricRequired].
 
-It captures the total time taken by an Azure Cosmos DB operation. This metric follows the common [db.client.operation.duration](/docs/database/database-metrics.md#metric-dbclientoperationduration) definition.
+It captures the total time taken by an Azure Cosmos DB operation. This metric follows the common [db.client.operation.duration](/docs/db/database-metrics.md#metric-dbclientoperationduration) definition.
 
 Refer [azure.cosmosdb.client.operation.request_charge](#metric-azurecosmosdbclientoperationrequest_charge) metrics for dimensions.
 
@@ -328,7 +328,7 @@ Refer [azure.cosmosdb.client.operation.request_charge](#metric-azurecosmosdbclie
 
 This metric is [required][MetricRequired].
 
-It captures the number of items returned by a query or feed operation in Azure Cosmos DB. It helps identify response sizes that may contribute to high latency, increased memory/CPU usage, or network call failures. This metric follows the common [`db.client.response.returned_rows`](/docs/database/database-metrics.md#metric-dbclientresponsereturned_rows) definition.
+It captures the number of items returned by a query or feed operation in Azure Cosmos DB. It helps identify response sizes that may contribute to high latency, increased memory/CPU usage, or network call failures. This metric follows the common [`db.client.response.returned_rows`](/docs/db/database-metrics.md#metric-dbclientresponsereturned_rows) definition.
 
 Refer [azure.cosmosdb.client.operation.request_charge](#metric-azurecosmosdbclientoperationrequest_charge) metrics for dimensions.
 

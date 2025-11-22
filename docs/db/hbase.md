@@ -27,11 +27,11 @@ The Semantic Conventions for [HBase](https://hbase.apache.org/) extend and overr
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-Spans representing calls to an HBase database adhere to the general [Semantic Conventions for Database Client Spans](/docs/database/database-spans.md).
+Spans representing calls to an HBase database adhere to the general [Semantic Conventions for Database Client Spans](/docs/db/database-spans.md).
 
 `db.system.name` MUST be set to `"hbase"` and SHOULD be provided **at span creation time**.
 
-**Span name** SHOULD follow the general [database span name convention](/docs/database/database-spans.md#name)
+**Span name** SHOULD follow the general [database span name convention](/docs/db/database-spans.md#name)
 
 **Span kind** SHOULD be `CLIENT`.
 

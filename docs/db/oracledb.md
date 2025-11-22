@@ -91,7 +91,7 @@ calls involving complex queries.
 Summary may be available to the instrumentation through
 instrumentation hooks or other means. If it is not available, instrumentations
 that support query parsing SHOULD generate a summary following
-[Generating query summary](/docs/database/database-spans.md#generating-a-summary-of-the-query)
+[Generating query summary](/docs/db/database-spans.md#generating-a-summary-of-the-query)
 section.
 
 **[13] `db.query.text`:** Non-parameterized query text SHOULD NOT be collected by default unless explicitly configured and sanitized to exclude sensitive data, e.g. by redacting all literal values present in the query text. See [Sanitization of `db.query.text`](../database/database-spans.md#sanitization-of-dbquerytext). Parameterized query text MUST also NOT be collected by default unless explicitly configured. The query parameter values themselves are opt-in, see [`db.query.parameter.<key>`](../registry/attributes/db.md)).

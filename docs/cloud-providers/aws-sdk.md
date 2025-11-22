@@ -75,7 +75,7 @@ interesting conventions are found.
 
 The following Semantic Conventions extend the general AWS SDK attributes for specific AWS services:
 
-- [AWS DynamoDB](/docs/database/dynamodb.md): Semantic Conventions for _AWS DynamoDB_.
+- [AWS DynamoDB](/docs/db/dynamodb.md): Semantic Conventions for _AWS DynamoDB_.
 - [AWS S3](/docs/object-stores/s3.md): Semantic Conventions for _AWS S3_.
 - [AWS Bedrock](/docs/gen-ai/aws-bedrock.md): Semantic Conventions for _AWS Bedrock_.
 - [AWS SNS](/docs/messaging/sns.md): Semantic Conventions for _AWS SNS_.

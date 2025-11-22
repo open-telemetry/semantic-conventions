@@ -28,7 +28,7 @@ aliases: [/docs/specs/semconv/database/dynamodb.md]
 <!-- tocstop -->
 
 The Semantic Conventions for [AWS DynamoDB](https://aws.amazon.com/dynamodb/) extend and override the general
-[AWS SDK Semantic Conventions](/docs/cloud-providers/aws-sdk.md) and [Database Semantic Conventions](/docs/database/README.md).
+[AWS SDK Semantic Conventions](/docs/cloud-providers/aws-sdk.md) and [Database Semantic Conventions](/docs/db/README.md).
 
 ## Spans
 

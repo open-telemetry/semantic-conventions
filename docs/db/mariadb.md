@@ -25,7 +25,7 @@ aliases: [/docs/specs/semconv/database/mariadb.md]
 
 **Status:** ![Stable](https://img.shields.io/badge/-stable-lightgreen)
 
-Spans representing calls to MariaDB adhere to the general [Semantic Conventions for Database Client Spans](/docs/database/README.md).
+Spans representing calls to MariaDB adhere to the general [Semantic Conventions for Database Client Spans](/docs/db/README.md).
 
 `db.system.name` MUST be set to `"mariadb"` and SHOULD be provided **at span creation time**.
 
@@ -92,13 +92,13 @@ calls involving complex queries.
 Summary may be available to the instrumentation through
 instrumentation hooks or other means. If it is not available, instrumentations
 that support query parsing SHOULD generate a summary following
-[Generating query summary](/docs/database/database-spans.md#generating-a-summary-of-the-query)
+[Generating query summary](/docs/db/database-spans.md#generating-a-summary-of-the-query)
 section.
 
-**[13] `db.query.text`:** Non-parameterized query text SHOULD NOT be collected by default unless there is sanitization that excludes sensitive data, e.g. by redacting all literal values present in the query text. See [Sanitization of `db.query.text`](/docs/database/database-spans.md#sanitization-of-dbquerytext).
+**[13] `db.query.text`:** Non-parameterized query text SHOULD NOT be collected by default unless there is sanitization that excludes sensitive data, e.g. by redacting all literal values present in the query text. See [Sanitization of `db.query.text`](/docs/db/database-spans.md#sanitization-of-dbquerytext).
 Parameterized query text SHOULD be collected by default (the query parameter values themselves are opt-in, see [`db.query.parameter.<key>`](/docs/registry/attributes/db.md)).
 
-**[14] `db.query.text`:** For sanitization see [Sanitization of `db.query.text`](/docs/database/database-spans.md#sanitization-of-dbquerytext).
+**[14] `db.query.text`:** For sanitization see [Sanitization of `db.query.text`](/docs/db/database-spans.md#sanitization-of-dbquerytext).
 For batch operations, if the individual operations are known to have the same query text then that query text SHOULD be used, otherwise all of the individual query texts SHOULD be concatenated with separator `; ` or some other database system specific separator if more applicable.
 Parameterized query text SHOULD NOT be sanitized. Even though parameterized query text can potentially have sensitive data, by using a parameterized query the user is giving a strong signal that any sensitive data will be passed as parameter values, and the benefit to observability of capturing the static part of the query text by default outweighs the risk.
 

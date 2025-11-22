@@ -28,11 +28,11 @@ The Semantic Conventions for [Elasticsearch](https://www.elastic.co/) extend and
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-Spans representing calls to Elasticsearch adhere to the general [Semantic Conventions for Database Client Spans](/docs/database/database-spans.md).
+Spans representing calls to Elasticsearch adhere to the general [Semantic Conventions for Database Client Spans](/docs/db/database-spans.md).
 
 `db.system.name` MUST be set to `"elasticsearch"` and SHOULD be provided **at span creation time**.
 
-**Span name** SHOULD follow the general [database span name convention](/docs/database/database-spans.md#name)
+**Span name** SHOULD follow the general [database span name convention](/docs/db/database-spans.md#name)
 with the endpoint identifier stored in `db.operation.name`, and the index stored in `db.collection.name`.
 
 **Span kind** SHOULD be `CLIENT`.
@@ -120,7 +120,7 @@ Instrumentations SHOULD document how `error.type` is populated.
 
 **[12] `db.query.text`:** Should be collected by default for search-type queries and only if there is sanitization that excludes sensitive information.
 
-**[13] `db.query.text`:** For sanitization see [Sanitization of `db.query.text`](/docs/database/database-spans.md#sanitization-of-dbquerytext).
+**[13] `db.query.text`:** For sanitization see [Sanitization of `db.query.text`](/docs/db/database-spans.md#sanitization-of-dbquerytext).
 For batch operations, if the individual operations are known to have the same query text then that query text SHOULD be used, otherwise all of the individual query texts SHOULD be concatenated with separator `; ` or some other database system specific separator if more applicable.
 Parameterized query text SHOULD NOT be sanitized. Even though parameterized query text can potentially have sensitive data, by using a parameterized query the user is giving a strong signal that any sensitive data will be passed as parameter values, and the benefit to observability of capturing the static part of the query text by default outweighs the risk.
 

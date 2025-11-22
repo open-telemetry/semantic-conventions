@@ -18,10 +18,10 @@ aliases: [/docs/specs/semconv/database/sql.md]
 
 **Status:** ![Stable](https://img.shields.io/badge/-stable-lightgreen)
 
-The SQL databases Semantic Conventions describes how common [Database Semantic Conventions](/docs/database/database-spans.md) apply to SQL databases.
+The SQL databases Semantic Conventions describes how common [Database Semantic Conventions](/docs/db/database-spans.md) apply to SQL databases.
 
 The following database systems (defined in the
-[`db.system.name`](/docs/database/database-spans.md#notes-and-well-known-identifiers-for-dbsystemname) set)
+[`db.system.name`](/docs/db/database-spans.md#notes-and-well-known-identifiers-for-dbsystemname) set)
 are known to use SQL as their primary query language:
 
 - `actian.ingres`
@@ -44,7 +44,7 @@ are known to use SQL as their primary query language:
 Many other database systems support SQL and can be accessed via generic database driver such as JDBC or ODBC.
 Instrumentations applied to generic SQL drivers SHOULD adhere to SQL semantic conventions.
 
-**Span name** SHOULD follow the general [database span name convention](/docs/database/database-spans.md#name)
+**Span name** SHOULD follow the general [database span name convention](/docs/db/database-spans.md#name)
 
 **Span kind** SHOULD be `CLIENT`.
 
@@ -149,13 +149,13 @@ calls involving complex queries.
 Summary may be available to the instrumentation through
 instrumentation hooks or other means. If it is not available, instrumentations
 that support query parsing SHOULD generate a summary following
-[Generating query summary](/docs/database/database-spans.md#generating-a-summary-of-the-query)
+[Generating query summary](/docs/db/database-spans.md#generating-a-summary-of-the-query)
 section.
 
-**[13] `db.query.text`:** Non-parameterized query text SHOULD NOT be collected by default unless there is sanitization that excludes sensitive data, e.g. by redacting all literal values present in the query text. See [Sanitization of `db.query.text`](/docs/database/database-spans.md#sanitization-of-dbquerytext).
+**[13] `db.query.text`:** Non-parameterized query text SHOULD NOT be collected by default unless there is sanitization that excludes sensitive data, e.g. by redacting all literal values present in the query text. See [Sanitization of `db.query.text`](/docs/db/database-spans.md#sanitization-of-dbquerytext).
 Parameterized query text SHOULD be collected by default (the query parameter values themselves are opt-in, see [`db.query.parameter.<key>`](/docs/registry/attributes/db.md)).
 
-**[14] `db.query.text`:** For sanitization see [Sanitization of `db.query.text`](/docs/database/database-spans.md#sanitization-of-dbquerytext).
+**[14] `db.query.text`:** For sanitization see [Sanitization of `db.query.text`](/docs/db/database-spans.md#sanitization-of-dbquerytext).
 For batch operations, if the individual operations are known to have the same query text then that query text SHOULD be used, otherwise all of the individual query texts SHOULD be concatenated with separator `; ` or some other database system specific separator if more applicable.
 Parameterized query text SHOULD NOT be sanitized. Even though parameterized query text can potentially have sensitive data, by using a parameterized query the user is giving a strong signal that any sensitive data will be passed as parameter values, and the benefit to observability of capturing the static part of the query text by default outweighs the risk.
 
