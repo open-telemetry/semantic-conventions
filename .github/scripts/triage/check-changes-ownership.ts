@@ -8,23 +8,17 @@ const prNumber: number = +process.env.PR_NUMBER!;
 const changes: string[] = process.env.CHANGED_FILES!.split(',');
 
 /**
- * Checks if the PR already has the 'triage:accepted:ready' or 'triage:accepted:ready-with-sig' label, meaning the triage checks should be skipped.
- * Also checks if the PR title starts with '[chore]' which indicates a maintenance PR that should skip checks.
- * @returns true if the PR has the 'triage:accepted:ready' or 'triage:accepted:ready-with-sig' label or title starts with '[chore]', false otherwise.
+ * Checks if the PR already has the 'triage:accepted:ready' label, meaning the triage checks should be skipped.
+ * @returns true if the PR has the 'triage:accepted:ready' assigned to it, false otherwise.
  */
 async function shouldSkipCheck() {
-    const result = await octokit.request("GET /repos/{owner}/{repo}/issues/{issue_number}", {
+    const result = await octokit.request("GET /repos/{owner}/{repo}/issues/{issue_number}/labels", {
         owner: owner,
         repo: repo,
         issue_number: prNumber
     });
 
-    const hasAcceptedLabel = result.data.labels?.some(l =>
-        l.name === "triage:accepted:ready" || l.name === "triage:accepted:ready-with-sig"
-    ) ?? false;
-    const isChore = result.data.title.toLowerCase().startsWith('[chore]');
-
-    return hasAcceptedLabel || isChore;
+    return result.data.some(l => l.name === "triage:accepted:ready");
 }
 
 function getCommentText(changesWithoutOwners: string[]): string {
