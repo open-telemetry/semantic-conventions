@@ -6,7 +6,6 @@
 {% import 'enum_macros.j2' as enums %}
 {% import 'sampling_macros.j2' as sampling %}
 {% import 'examples_macros.j2' as examples %}
-{%- import 'attribute_table.j2' as at -%}
 {#- Create registry URLs. -#}
 {% macro registry_url(id, registry) -%}
 {{registry}}/{{ id | split_id | list | first | kebab_case }}.md#{{ id | kebab_case }}
@@ -37,10 +36,10 @@
 {% macro attribute_table(attributes, attribute_registry_base_url, lineage_attributes, notes, role) %}{% for attribute in attributes | attribute_sort %}{{ attribute_row(attribute, attribute_registry_base_url, lineage_attributes, notes, role) }}
 {% endfor %}
 {%- endmacro %}
-{% macro all_attribute_table(e) -%}
-{%- set id_attrs = e.attributes | selectattr("role", "equalto", "identifying") -%}
-{%- set desc_attrs = e.attributes | selectattr("role", "equalto", "descriptive") -%}
-{%- set misc_attrs = e.attributes | rejectattr("role", "defined") -%}
+{% macro all_attribute_table(e, filtered_attributes, attribute_registry_base_url) -%}
+{%- set id_attrs = filtered_attributes | selectattr("role", "equalto", "identifying") -%}
+{%- set desc_attrs = filtered_attributes | selectattr("role", "equalto", "descriptive") -%}
+{%- set misc_attrs = filtered_attributes | rejectattr("role", "defined") -%}
 {%- if misc_attrs | length > 0 %}
 
 > :warning: This entity definition contains attributes without a role.
@@ -48,9 +47,9 @@
 {% endif %}
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|---|{%- if id_attrs | length > 0 %}
-{{ attribute_table(id_attrs, "/docs/registry/attributes", e.lineage.attributes, notes, "identity") | trim }}{% endif %}{%- if desc_attrs | length > 0 %}
-{{ attribute_table(desc_attrs, "/docs/registry/attributes", e.lineage.attributes, notes, "description") | trim }}{% endif %}{%- if misc_attrs | length > 0 %}
-{{ attribute_table(misc_attrs, "/docs/registry/attributes", e.lineage.attributes, notes, "other") | trim }}
+{{ attribute_table(id_attrs, attribute_registry_base_url, e.lineage.attributes, notes, "identity") | trim }}{% endif %}{%- if desc_attrs | length > 0 %}
+{{ attribute_table(desc_attrs, attribute_registry_base_url, e.lineage.attributes, notes, "description") | trim }}{% endif %}{%- if misc_attrs | length > 0 %}
+{{ attribute_table(misc_attrs, attribute_registry_base_url, e.lineage.attributes, notes, "other") | trim }}
 {% endif %}
 
 {{ notes.render() | trim }}
