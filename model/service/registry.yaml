@@ -69,3 +69,45 @@ groups:
           for that telemetry. This is typically the case for scraping receivers, as they know the target address and
           port.
         examples: ["627cc493-f310-47de-96bd-71410b7dec09"]
+      - id: service.criticality
+        type:
+          members:
+            - id: critical
+              value: 'critical'
+              brief: >
+                Service is business-critical; downtime directly impacts revenue, user experience, or core functionality.
+              note: >
+                Examples include payment processing, authentication, and primary user-facing APIs.
+              stability: development
+            - id: high
+              value: 'high'
+              brief: >
+                Service is important but has degradation tolerance or fallback mechanisms.
+              note: >
+                Examples include shopping cart, search, and recommendation engines.
+              stability: development
+            - id: medium
+              value: 'medium'
+              brief: >
+                Service provides supplementary functionality; degradation has limited user impact.
+              note: >
+                Examples include analytics, reporting, and non-essential integrations.
+              stability: development
+            - id: low
+              value: 'low'
+              brief: >
+                Service is non-essential to core operations; used for background tasks or internal tools.
+              note: >
+                Examples include batch processors, cleanup jobs, and internal dashboards.
+              stability: development
+        stability: development
+        brief: >
+          The operational criticality of the service.
+        note: >
+          This attribute enables classification of services based on their operational importance,
+          allowing observability platforms to implement criticality-aware tracing, monitoring,
+          and sampling strategies. By standardizing service criticality, organizations can implement
+          adaptive sampling rates (e.g., 100% for critical, 10% for low-priority services), optimize
+          telemetry costs by reducing data from non-critical services, improve incident response by
+          surfacing critical service traces first, and enable better capacity planning and resource allocation.
+        examples: ["critical", "high", "medium", "low"]

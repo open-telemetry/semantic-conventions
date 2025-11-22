@@ -110,7 +110,7 @@ areas:
 
   - name: "Semantic Conventions: Resources and Entities"
     owner:
-      - name: "specs-semconv-maintainers" # TODO: Missing team user for entities?
+      - name: "specs-semconv-maintainers"  # TODO: Missing team user for entities?
         github: specs-semconv-maintainers
     project: "https://github.com/open-telemetry/community/blob/main/projects/resources-and-entities.md"
     board: "https://github.com/orgs/open-telemetry/projects/85"
@@ -163,7 +163,7 @@ areas:
 
   - name: "Semantic Conventions: FaaS"
     owner:
-      - name: "specs-semconv-maintainers" # TODO: Missing team user for faas?
+      - name: "specs-semconv-maintainers"  # TODO: Missing team user for faas?
         github: specs-semconv-maintainers
     project: "https://github.com/open-telemetry/community/blob/main/projects/completed-projects/faas.md"
     board: "N/A"

@@ -15,3 +15,6 @@ groups:
         role: identifying
       - ref: service.instance.id
         role: identifying
+      - ref: service.criticality
+        requirement_level: recommended
+        role: descriptive
