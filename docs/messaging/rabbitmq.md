@@ -109,15 +109,6 @@ it's RECOMMENDED to:
 **[7] `messaging.message.body.size`:** This can refer to both the compressed or uncompressed body size. If both sizes are known, the uncompressed
 body size should be used.
 
-The following attributes can be important for making sampling decisions
-and SHOULD be provided **at span creation time** (if provided at all):
-
-* [`messaging.destination.name`](/docs/registry/attributes/messaging.md)
-* [`messaging.operation.name`](/docs/registry/attributes/messaging.md)
-* [`messaging.operation.type`](/docs/registry/attributes/messaging.md)
-* [`server.address`](/docs/registry/attributes/server.md)
-* [`server.port`](/docs/registry/attributes/server.md)
-
 ---
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.

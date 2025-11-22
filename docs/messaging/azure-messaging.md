@@ -117,16 +117,6 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 
 **[10] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
-The following attributes can be important for making sampling decisions
-and SHOULD be provided **at span creation time** (if provided at all):
-
-* [`messaging.destination.name`](/docs/registry/attributes/messaging.md)
-* [`messaging.destination.subscription.name`](/docs/registry/attributes/messaging.md)
-* [`messaging.operation.name`](/docs/registry/attributes/messaging.md)
-* [`messaging.operation.type`](/docs/registry/attributes/messaging.md)
-* [`server.address`](/docs/registry/attributes/server.md)
-* [`server.port`](/docs/registry/attributes/server.md)
-
 ---
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
@@ -240,17 +230,6 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 **[8] `server.address`:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name.
 
 **[9] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
-
-The following attributes can be important for making sampling decisions
-and SHOULD be provided **at span creation time** (if provided at all):
-
-* [`messaging.consumer.group.name`](/docs/registry/attributes/messaging.md)
-* [`messaging.destination.name`](/docs/registry/attributes/messaging.md)
-* [`messaging.destination.partition.id`](/docs/registry/attributes/messaging.md)
-* [`messaging.operation.name`](/docs/registry/attributes/messaging.md)
-* [`messaging.operation.type`](/docs/registry/attributes/messaging.md)
-* [`server.address`](/docs/registry/attributes/server.md)
-* [`server.port`](/docs/registry/attributes/server.md)
 
 ---
 
