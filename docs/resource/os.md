@@ -18,6 +18,8 @@ In case of virtualized environments, this is the operating system as it is obser
 > :warning: This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
+**Attributes:**
+
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|---|
 | Other | [`os.type`](/docs/registry/attributes/os.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The operating system type. | `windows`; `linux`; `darwin` |

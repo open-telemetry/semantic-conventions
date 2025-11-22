@@ -16,6 +16,8 @@
 > :warning: This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
+**Attributes:**
+
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|---|
 | Other | [`gcp.apphub.application.container`](/docs/registry/attributes/gcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The container within GCP where the AppHub application is defined. | `projects/my-container-project` |
@@ -32,6 +34,8 @@
 
 > :warning: This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
+
+**Attributes:**
 
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|---|
@@ -55,6 +59,8 @@
 > :warning: This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
+**Attributes:**
+
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|---|
 | Other | [`gcp.apphub.workload.criticality_type`](/docs/registry/attributes/gcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Criticality of a workload indicates its importance to the business. [3] | `MISSION_CRITICAL`; `HIGH`; `MEDIUM` |
@@ -77,6 +83,8 @@
 > :warning: This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
+**Attributes:**
+
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|---|
 | Other | [`gcp.cloud_run.job.execution`](/docs/registry/attributes/gcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the Cloud Run [execution](https://cloud.google.com/run/docs/managing/job-executions) being run for the Job, as set by the [`CLOUD_RUN_EXECUTION`](https://cloud.google.com/run/docs/container-contract#jobs-env-vars) environment variable. | `job-name-xxxx`; `sample-job-mdw84` |
@@ -92,6 +100,8 @@
 
 > :warning: This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
+
+**Attributes:**
 
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|---|
