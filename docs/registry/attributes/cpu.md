@@ -10,7 +10,7 @@ Attributes specific to a cpu instance.
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | <a id="cpu-logical-number" href="#cpu-logical-number">`cpu.logical_number`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The logical CPU number [0..n-1] | `1` |
 | <a id="cpu-mode" href="#cpu-mode">`cpu.mode`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The mode of the CPU | `user`; `system` |
 
@@ -18,8 +18,8 @@ Attributes specific to a cpu instance.
 
 `cpu.mode` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `idle` | Idle | ![Development](https://img.shields.io/badge/-development-blue) |
 | `interrupt` | Interrupt | ![Development](https://img.shields.io/badge/-development-blue) |
 | `iowait` | IO Wait | ![Development](https://img.shields.io/badge/-development-blue) |

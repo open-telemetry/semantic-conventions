@@ -10,7 +10,7 @@ Describes file attributes.
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | <a id="file-accessed" href="#file-accessed">`file.accessed`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Time when the file was last accessed, in ISO 8601 format. [1] | `2021-01-01T12:00:00Z` |
 | <a id="file-attributes" href="#file-attributes">`file.attributes`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string[] | Array of file attributes. [2] | `["readonly", "hidden"]` |
 | <a id="file-changed" href="#file-changed">`file.changed`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Time when the file attributes or metadata was last changed, in ISO 8601 format. [3] | `2021-01-01T12:00:00Z` |

@@ -10,15 +10,15 @@ Describes the origin of a single frame in a Profile.
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | <a id="profile-frame-type" href="#profile-frame-type">`profile.frame.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Describes the interpreter or compiler of a single frame. | `cpython` |
 
 ---
 
 `profile.frame.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `beam` | [Erlang](https://en.wikipedia.org/wiki/BEAM_(Erlang_virtual_machine)) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `cpython` | [Python](https://wikipedia.org/wiki/Python_(programming_language)) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `dotnet` | [.NET](https://wikipedia.org/wiki/.NET) | ![Development](https://img.shields.io/badge/-development-blue) |

@@ -10,7 +10,7 @@ This group describes attributes specific to artifacts. Artifacts are files or ot
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | <a id="artifact-attestation-filename" href="#artifact-attestation-filename">`artifact.attestation.filename`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The provenance filename of the built attestation which directly relates to the build artifact filename. This filename SHOULD accompany the artifact at publish time. See the [SLSA Relationship](https://slsa.dev/spec/v1.0/distributing-provenance#relationship-between-artifacts-and-attestations) specification for more information. | `golang-binary-amd64-v0.1.0.attestation`; `docker-image-amd64-v0.1.0.intoto.json1`; `release-1.tar.gz.attestation`; `file-name-package.tar.gz.intoto.json1` |
 | <a id="artifact-attestation-hash" href="#artifact-attestation-hash">`artifact.attestation.hash`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The full [hash value (see glossary)](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.186-5.pdf), of the built attestation. Some envelopes in the [software attestation space](https://github.com/in-toto/attestation/tree/main/spec) also refer to this as the **digest**. | `1b31dfcd5b7f9267bf2ff47651df1cfb9147b9e4df1f335accf65b4cda498408` |
 | <a id="artifact-attestation-id" href="#artifact-attestation-id">`artifact.attestation.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The id of the build [software attestation](https://slsa.dev/attestation-model). | `123` |

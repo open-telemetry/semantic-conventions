@@ -10,7 +10,7 @@ This document defines attributes for CloudEvents.
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | <a id="cloudevents-event-id" href="#cloudevents-event-id">`cloudevents.event_id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The [event_id](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#id) uniquely identifies the event. | `123e4567-e89b-12d3-a456-426614174000`; `0001` |
 | <a id="cloudevents-event-source" href="#cloudevents-event-source">`cloudevents.event_source`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The [source](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#source-1) identifies the context in which an event happened. | `https://github.com/cloudevents`; `/cloudevents/spec/pull/123`; `my-service` |
 | <a id="cloudevents-event-spec-version" href="#cloudevents-event-spec-version">`cloudevents.event_spec_version`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The [version of the CloudEvents specification](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#specversion) which the event uses. | `1.0` |

@@ -10,7 +10,7 @@ This document defines attributes for telemetry SDK.
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | <a id="telemetry-distro-name" href="#telemetry-distro-name">`telemetry.distro.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the auto instrumentation agent or distribution, if used. [1] | `parts-unlimited-java` |
 | <a id="telemetry-distro-version" href="#telemetry-distro-version">`telemetry.distro.version`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The version string of the auto instrumentation agent or distribution, if used. | `1.2.3` |
 | <a id="telemetry-sdk-language" href="#telemetry-sdk-language">`telemetry.sdk.language`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The language of the telemetry SDK. | `cpp`; `dotnet`; `erlang` |
@@ -31,8 +31,8 @@ All custom identifiers SHOULD be stable across different versions of an implemen
 
 `telemetry.sdk.language` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `cpp` | cpp | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `dotnet` | dotnet | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `erlang` | erlang | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |

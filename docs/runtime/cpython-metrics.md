@@ -34,7 +34,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `cpython.gc.collections` | Counter | `{collection}` | The number of times a generation was collected since interpreter start. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
@@ -43,15 +43,15 @@ This metric is [recommended][MetricRecommended].
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- |
 | [`cpython.gc.generation`](/docs/registry/attributes/cpython.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | int | Value of the garbage collector collection generation. | `0`; `1`; `2` |
 
 ---
 
 `cpython.gc.generation` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `0` | Generation 0 | ![Development](https://img.shields.io/badge/-development-blue) |
 | `1` | Generation 1 | ![Development](https://img.shields.io/badge/-development-blue) |
 | `2` | Generation 2 | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -72,7 +72,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `cpython.gc.collected_objects` | Counter | `{object}` | The total number of objects collected inside a generation since interpreter start. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
@@ -81,15 +81,15 @@ This metric is [recommended][MetricRecommended].
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- |
 | [`cpython.gc.generation`](/docs/registry/attributes/cpython.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | int | Value of the garbage collector collection generation. | `0`; `1`; `2` |
 
 ---
 
 `cpython.gc.generation` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `0` | Generation 0 | ![Development](https://img.shields.io/badge/-development-blue) |
 | `1` | Generation 1 | ![Development](https://img.shields.io/badge/-development-blue) |
 | `2` | Generation 2 | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -110,7 +110,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `cpython.gc.uncollectable_objects` | Counter | `{object}` | The total number of objects which were found to be uncollectable inside a generation since interpreter start. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
 
@@ -119,15 +119,15 @@ This metric is [recommended][MetricRecommended].
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- |
 | [`cpython.gc.generation`](/docs/registry/attributes/cpython.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | int | Value of the garbage collector collection generation. | `0`; `1`; `2` |
 
 ---
 
 `cpython.gc.generation` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `0` | Generation 0 | ![Development](https://img.shields.io/badge/-development-blue) |
 | `1` | Generation 1 | ![Development](https://img.shields.io/badge/-development-blue) |
 | `2` | Generation 2 | ![Development](https://img.shields.io/badge/-development-blue) |

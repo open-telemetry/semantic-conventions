@@ -16,7 +16,7 @@ This document defines attributes AppHub will apply to resources in GCP. See [App
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | <a id="gcp-apphub-application-container" href="#gcp-apphub-application-container">`gcp.apphub.application.container`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The container within GCP where the AppHub application is defined. | `projects/my-container-project` |
 | <a id="gcp-apphub-application-id" href="#gcp-apphub-application-id">`gcp.apphub.application.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the application as configured in AppHub. | `my-application` |
 | <a id="gcp-apphub-application-location" href="#gcp-apphub-application-location">`gcp.apphub.application.location`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The GCP zone or region where the application is defined. | `us-central1` |
@@ -39,8 +39,8 @@ This document defines attributes AppHub will apply to resources in GCP. See [App
 
 `gcp.apphub.service.criticality_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `HIGH` | High impact. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `LOW` | Low impact. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `MEDIUM` | Medium impact. | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -50,8 +50,8 @@ This document defines attributes AppHub will apply to resources in GCP. See [App
 
 `gcp.apphub.service.environment_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `DEVELOPMENT` | Development environment. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `PRODUCTION` | Production environment. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `STAGING` | Staging environment. | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -61,8 +61,8 @@ This document defines attributes AppHub will apply to resources in GCP. See [App
 
 `gcp.apphub.workload.criticality_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `HIGH` | High impact. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `LOW` | Low impact. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `MEDIUM` | Medium impact. | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -72,8 +72,8 @@ This document defines attributes AppHub will apply to resources in GCP. See [App
 
 `gcp.apphub.workload.environment_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `DEVELOPMENT` | Development environment. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `PRODUCTION` | Production environment. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `STAGING` | Staging environment. | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -86,7 +86,7 @@ This document defines attributes AppHub will apply to destination resources in G
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | <a id="gcp-apphub-destination-application-container" href="#gcp-apphub-destination-application-container">`gcp.apphub_destination.application.container`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The container within GCP where the AppHub destination application is defined. | `projects/my-container-project` |
 | <a id="gcp-apphub-destination-application-id" href="#gcp-apphub-destination-application-id">`gcp.apphub_destination.application.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the destination application as configured in AppHub. | `my-application` |
 | <a id="gcp-apphub-destination-application-location" href="#gcp-apphub-destination-application-location">`gcp.apphub_destination.application.location`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The GCP zone or region where the destination application is defined. | `us-central1` |
@@ -101,8 +101,8 @@ This document defines attributes AppHub will apply to destination resources in G
 
 `gcp.apphub_destination.service.criticality_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `HIGH` | High impact. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `LOW` | Low impact. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `MEDIUM` | Medium impact. | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -112,8 +112,8 @@ This document defines attributes AppHub will apply to destination resources in G
 
 `gcp.apphub_destination.service.environment_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `DEVELOPMENT` | Development environment. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `PRODUCTION` | Production environment. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `STAGING` | Staging environment. | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -123,8 +123,8 @@ This document defines attributes AppHub will apply to destination resources in G
 
 `gcp.apphub_destination.workload.criticality_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `HIGH` | High impact. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `LOW` | Low impact. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `MEDIUM` | Medium impact. | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -134,8 +134,8 @@ This document defines attributes AppHub will apply to destination resources in G
 
 `gcp.apphub_destination.workload.environment_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `DEVELOPMENT` | Development environment. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `PRODUCTION` | Production environment. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `STAGING` | Staging environment. | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -148,7 +148,7 @@ Attributes for Google Cloud client libraries.
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | <a id="gcp-client-service" href="#gcp-client-service">`gcp.client.service`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Identifies the Google Cloud service for which the official client library is intended. [5] | `appengine`; `run`; `firestore`; `alloydb`; `spanner` |
 
 **[5] `gcp.client.service`:** Intended to be a stable identifier for Google Cloud client libraries that is uniform across implementation languages. The value should be derived from the canonical service domain for the service; for example, 'foo.googleapis.com' should result in a value of 'foo'.
@@ -160,7 +160,7 @@ This document defines attributes for Google Cloud Run.
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | <a id="gcp-cloud-run-job-execution" href="#gcp-cloud-run-job-execution">`gcp.cloud_run.job.execution`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the Cloud Run [execution](https://cloud.google.com/run/docs/managing/job-executions) being run for the Job, as set by the [`CLOUD_RUN_EXECUTION`](https://cloud.google.com/run/docs/container-contract#jobs-env-vars) environment variable. | `job-name-xxxx`; `sample-job-mdw84` |
 | <a id="gcp-cloud-run-job-task-index" href="#gcp-cloud-run-job-task-index">`gcp.cloud_run.job.task_index`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The index for a task within an execution as provided by the [`CLOUD_RUN_TASK_INDEX`](https://cloud.google.com/run/docs/container-contract#jobs-env-vars) environment variable. | `0`; `1` |
 
@@ -171,6 +171,6 @@ This document defines attributes for Google Compute Engine (GCE).
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | <a id="gcp-gce-instance-hostname" href="#gcp-gce-instance-hostname">`gcp.gce.instance.hostname`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The hostname of a GCE instance. This is the full value of the default or [custom hostname](https://cloud.google.com/compute/docs/instances/custom-hostname-vm). | `my-host1234.example.com`; `sample-vm.us-west1-b.c.my-project.internal` |
 | <a id="gcp-gce-instance-name" href="#gcp-gce-instance-name">`gcp.gce.instance.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The instance name of a GCE instance. This is the value provided by `host.name`, the visible name of the instance in the Cloud Console UI, and the prefix for the default hostname of the instance as defined by the [default internal DNS name](https://cloud.google.com/compute/docs/internal-dns#instance-fully-qualified-domain-names). | `instance-1`; `my-vm-name` |

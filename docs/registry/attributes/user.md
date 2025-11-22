@@ -10,7 +10,7 @@ Describes information about the user.
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | <a id="user-email" href="#user-email">`user.email`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | User email address. | `a.einstein@example.com` |
 | <a id="user-full-name" href="#user-full-name">`user.full_name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | User's full name | `Albert Einstein` |
 | <a id="user-hash" href="#user-hash">`user.hash`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Unique user hash to correlate information for a user in anonymized form. [1] | `364fc68eaf4c8acec74a4e52d7d1feaa` |

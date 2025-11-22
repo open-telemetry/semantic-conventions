@@ -10,7 +10,7 @@ Describes device attributes.
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | <a id="device-id" href="#device-id">`device.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | A unique identifier representing the device [1] | `123456789012345`; `01:23:45:67:89:AB` |
 | <a id="device-manufacturer" href="#device-manufacturer">`device.manufacturer`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the device manufacturer [2] | `Apple`; `Samsung` |
 | <a id="device-model-identifier" href="#device-model-identifier">`device.model.identifier`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The model identifier for the device [3] | `iPhone3,4`; `SM-G920F` |

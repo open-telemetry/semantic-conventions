@@ -10,7 +10,7 @@ CloudFoundry resource attributes.
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | <a id="cloudfoundry-app-id" href="#cloudfoundry-app-id">`cloudfoundry.app.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The guid of the application. [1] | `218fc5a9-a5f1-4b54-aa05-46717d0ab26d` |
 | <a id="cloudfoundry-app-instance-id" href="#cloudfoundry-app-instance-id">`cloudfoundry.app.instance.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The index of the application instance. 0 when just one instance is active. [2] | `0`; `1` |
 | <a id="cloudfoundry-app-name" href="#cloudfoundry-app-name">`cloudfoundry.app.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the application. [3] | `my-app-name` |

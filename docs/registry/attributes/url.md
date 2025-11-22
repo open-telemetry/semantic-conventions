@@ -10,7 +10,7 @@ Attributes describing URL.
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | <a id="url-domain" href="#url-domain">`url.domain`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Domain extracted from the `url.full`, such as "opentelemetry.io". [1] | `www.foo.bar`; `opentelemetry.io`; `3.12.167.2`; `[1080:0:0:0:8:800:200C:417A]` |
 | <a id="url-extension" href="#url-extension">`url.extension`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The file extension extracted from the `url.full`, excluding the leading dot. [2] | `png`; `gz` |
 | <a id="url-fragment" href="#url-fragment">`url.fragment`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The [URI fragment](https://www.rfc-editor.org/rfc/rfc3986#section-3.5) component | `SemConv` |

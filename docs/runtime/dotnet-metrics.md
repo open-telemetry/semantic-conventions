@@ -56,7 +56,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `dotnet.process.cpu.count` | UpDownCounter | `{cpu}` | The number of processors available to the process. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  |
 
@@ -79,7 +79,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `dotnet.process.cpu.time` | Counter | `s` | CPU time used by the process. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  |
 
@@ -89,15 +89,15 @@ This metric reports the same values as accessing the corresponding processor tim
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- |
 | [`cpu.mode`](/docs/registry/attributes/cpu.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The mode of the CPU | `user`; `system` |
 
 ---
 
 `cpu.mode` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `idle` | Idle | ![Development](https://img.shields.io/badge/-development-blue) |
 | `interrupt` | Interrupt | ![Development](https://img.shields.io/badge/-development-blue) |
 | `iowait` | IO Wait | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -123,7 +123,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `dotnet.process.memory.working_set` | UpDownCounter | `By` | The number of bytes of physical memory mapped to the process context. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  |
 
@@ -152,7 +152,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `dotnet.gc.collections` | Counter | `{collection}` | The number of garbage collections that have occurred since the process has started. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  |
 
@@ -162,15 +162,15 @@ This metric uses the [`GC.CollectionCount(int generation)`](https://learn.micros
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- |
 | [`dotnet.gc.heap.generation`](/docs/registry/attributes/dotnet.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | Name of the garbage collector managed heap generation. | `gen0`; `gen1`; `gen2` |
 
 ---
 
 `dotnet.gc.heap.generation` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `gen0` | Generation 0 | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `gen1` | Generation 1 | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `gen2` | Generation 2 | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -193,7 +193,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `dotnet.gc.heap.total_allocated` | Counter | `By` | The *approximate* number of bytes allocated on the managed GC heap since the process has started. The returned value does not include any native allocations. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  |
 
@@ -216,7 +216,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `dotnet.gc.last_collection.memory.committed_size` | UpDownCounter | `By` | The amount of committed virtual memory in use by the .NET GC, as observed during the latest garbage collection. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  |
 
@@ -239,7 +239,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `dotnet.gc.last_collection.heap.size` | UpDownCounter | `By` | The managed GC heap size (including fragmentation), as observed during the latest garbage collection. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  |
 
@@ -249,15 +249,15 @@ This metric reports the same values as calling [`GC.GetGCMemoryInfo().Generation
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- |
 | [`dotnet.gc.heap.generation`](/docs/registry/attributes/dotnet.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | Name of the garbage collector managed heap generation. | `gen0`; `gen1`; `gen2` |
 
 ---
 
 `dotnet.gc.heap.generation` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `gen0` | Generation 0 | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `gen1` | Generation 1 | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `gen2` | Generation 2 | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -280,7 +280,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `dotnet.gc.last_collection.heap.fragmentation.size` | UpDownCounter | `By` | The heap fragmentation, as observed during the latest garbage collection. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  |
 
@@ -290,15 +290,15 @@ This metric reports the same values as calling [`GC.GetGCMemoryInfo().Generation
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- |
 | [`dotnet.gc.heap.generation`](/docs/registry/attributes/dotnet.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | Name of the garbage collector managed heap generation. | `gen0`; `gen1`; `gen2` |
 
 ---
 
 `dotnet.gc.heap.generation` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `gen0` | Generation 0 | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `gen1` | Generation 1 | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `gen2` | Generation 2 | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -321,7 +321,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `dotnet.gc.pause.time` | Counter | `s` | The total amount of time paused in GC since the process has started. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  |
 
@@ -350,7 +350,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `dotnet.jit.compiled_il.size` | Counter | `By` | Count of bytes of intermediate language that have been compiled since the process has started. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  |
 
@@ -373,7 +373,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `dotnet.jit.compiled_methods` | Counter | `{method}` | The number of times the JIT compiler (re)compiled methods since the process has started. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  |
 
@@ -396,7 +396,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `dotnet.jit.compilation.time` | Counter | `s` | The amount of time the JIT compiler has spent compiling methods since the process has started. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  |
 
@@ -425,7 +425,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `dotnet.thread_pool.thread.count` | UpDownCounter | `{thread}` | The number of thread pool threads that currently exist. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  |
 
@@ -448,7 +448,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `dotnet.thread_pool.work_item.count` | Counter | `{work_item}` | The number of work items that the thread pool has completed since the process has started. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  |
 
@@ -471,7 +471,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `dotnet.thread_pool.queue.length` | UpDownCounter | `{work_item}` | The number of work items that are currently queued to be processed by the thread pool. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  |
 
@@ -500,7 +500,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `dotnet.monitor.lock_contentions` | Counter | `{contention}` | The number of times there was contention when trying to acquire a monitor lock since the process has started. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  |
 
@@ -523,7 +523,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `dotnet.timer.count` | UpDownCounter | `{timer}` | The number of timer instances that are currently active. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  |
 
@@ -546,7 +546,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `dotnet.assembly.count` | UpDownCounter | `{assembly}` | The number of .NET assemblies that are currently loaded. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  |
 
@@ -569,7 +569,7 @@ This metric is [recommended][MetricRecommended].
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `dotnet.exceptions` | Counter | `{exception}` | The number of exceptions that have been thrown in managed code. [1] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |  |
 
@@ -579,15 +579,15 @@ This metric reports the same values as counting calls to [`AppDomain.CurrentDoma
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- |
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | Describes a class of error the operation ended with. | `System.OperationCanceledException`; `Contoso.MyException` |
 
 ---
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 <!-- markdownlint-restore -->
