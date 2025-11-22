@@ -342,7 +342,8 @@ You can perform all checks locally using this command:
 make check
 ```
 
-> Note: `make check` can take a long time as it checks all links.
+> [!Note]
+> `make check` can take a long time as it checks all links.
 > You should use this prior to submitting a PR to ensure validity.
 > However, you can run individual checks directly.
 
@@ -406,7 +407,8 @@ To check for typos, run the following command:
 make misspell
 ```
 
-> **NOTE**: The `misspell` make target will also fetch and build the tool if
+> [!Note]
+> The `misspell` make target will also fetch and build the tool if
 > necessary. You'll need [Go](https://go.dev) to build the spellchecker.
 
 To quickly fix typos, use

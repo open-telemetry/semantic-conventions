@@ -10,7 +10,7 @@ This document defines semantic conventions for HTTP spans, metrics and logs.
 They can be used for http and https schemes
 and various HTTP versions like 1.1, 2 and SPDY.
 
-> **Warning**
+> [!IMPORTANT]
 > Existing HTTP instrumentations that are using
 > [v1.20.0 of this document](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.20.0/specification/trace/semantic_conventions/http.md)
 > (or prior):

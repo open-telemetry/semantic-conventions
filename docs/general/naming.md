@@ -139,7 +139,7 @@ no longer recommended, it SHOULD be deprecated.
   the following Unicode code points: Latin alphabet, Numeric, Underscore, Dot
   (as namespace delimiter).
 
-> Note:
+> [!Note]
 > Semantic Conventions tooling limits names to lowercase
 > Latin alphabet, Numeric, Underscore, Dot (as namespace delimiter).
 > Names must start with a letter, end with an alphanumeric character, and must not

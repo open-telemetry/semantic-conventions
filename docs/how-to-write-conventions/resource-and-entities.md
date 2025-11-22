@@ -50,7 +50,8 @@ descriptive. See
 [How to define identifying attributes?](#how-to-define-identifying-attributes)
 for details on what these mean.
 
-> Note: Declaring Entity relationships is not yet supported.
+> [!Note]
+> Declaring Entity relationships is not yet supported.
 
 ### Declaring associations between signals
 

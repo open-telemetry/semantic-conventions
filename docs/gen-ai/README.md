@@ -6,7 +6,7 @@ linkTitle: Generative AI
 
 **Status**: [Development][DocumentStatus]
 
-> [!Warning]
+> [!IMPORTANT]
 >
 > Existing GenAI instrumentations that are using
 > [v1.36.0 of this document](https://github.com/open-telemetry/semantic-conventions/blob/v1.36.0/docs/gen-ai/README.md)

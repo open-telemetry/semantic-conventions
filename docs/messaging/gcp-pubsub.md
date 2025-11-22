@@ -8,7 +8,7 @@ linkTitle: Google Cloud Pub/Sub
 
 The Semantic Conventions for [Google Cloud Pub/Sub](https://cloud.google.com/pubsub) extend and override the [Messaging Semantic Conventions](README.md).
 
-> [!Warning]
+> [!IMPORTANT]
 >
 > Existing messaging instrumentations that are using
 > [v1.24.0 of this document](https://github.com/open-telemetry/semantic-conventions/blob/v1.24.0/docs/messaging/messaging-spans.md)

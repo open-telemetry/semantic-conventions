@@ -13,7 +13,7 @@ linkTitle: Events
 
 <!-- tocstop -->
 
-> [!Warning]
+> [!IMPORTANT]
 >
 > Existing GenAI instrumentations that are using
 > [v1.36.0 of this document](https://github.com/open-telemetry/semantic-conventions/blob/v1.36.0/docs/gen-ai/README.md)
@@ -36,7 +36,7 @@ linkTitle: Events
 
 GenAI instrumentations MAY capture user inputs sent to the model and responses received from it as [events](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.51.0/specification/logs/data-model.md#events).
 
-> Note:
+> [!Note]
 > Events are in-development and not yet available in some languages. Check [spec-compliance matrix](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.51.0/spec-compliance-matrix.md#logs) to see the implementation status in corresponding language.
 
 ## Event: `event.gen_ai.client.inference.operation.details`
