@@ -66,11 +66,11 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):
 
-* [`messaging.destination.name`](/docs/registry/attributes/messaging.md)
-* [`messaging.operation.name`](/docs/registry/attributes/messaging.md)
-* [`messaging.operation.type`](/docs/registry/attributes/messaging.md)
-* [`server.address`](/docs/registry/attributes/server.md)
-* [`server.port`](/docs/registry/attributes/server.md)
+- [`messaging.destination.name`](/docs/registry/attributes/messaging.md)
+- [`messaging.operation.name`](/docs/registry/attributes/messaging.md)
+- [`messaging.operation.type`](/docs/registry/attributes/messaging.md)
+- [`server.address`](/docs/registry/attributes/server.md)
+- [`server.port`](/docs/registry/attributes/server.md)
 
 ---
 

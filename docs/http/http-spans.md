@@ -39,26 +39,26 @@ and various HTTP versions like 1.1, 2 and SPDY.
 > [v1.20.0 of this document](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.20.0/specification/trace/semantic_conventions/http.md)
 > (or prior):
 >
-> * SHOULD NOT change the version of the HTTP or networking conventions that they emit by default
+> - SHOULD NOT change the version of the HTTP or networking conventions that they emit by default
 >   until the HTTP semantic conventions are marked stable (HTTP stabilization will
 >   include stabilization of a core set of networking conventions which are also used
 >   in HTTP instrumentations). Conventions include, but are not limited to, attributes,
 >   metric and span names, and unit of measure.
-> * SHOULD introduce an environment variable `OTEL_SEMCONV_STABILITY_OPT_IN`
+> - SHOULD introduce an environment variable `OTEL_SEMCONV_STABILITY_OPT_IN`
 >   in the existing major version as a comma-separated list of category-specific values
 >   (e.g., http, databases, messaging). The list of values includes:
->   * `http` - emit the new, stable HTTP and networking conventions,
+>   - `http` - emit the new, stable HTTP and networking conventions,
 >     and stop emitting the old experimental HTTP and networking conventions
 >     that the instrumentation emitted previously.
->   * `http/dup` - emit both the old and the stable HTTP and networking conventions,
+>   - `http/dup` - emit both the old and the stable HTTP and networking conventions,
 >     allowing for a seamless transition.
->   * The default behavior (in the absence of one of these values) is to continue
+>   - The default behavior (in the absence of one of these values) is to continue
 >     emitting whatever version of the old experimental HTTP and networking conventions
 >     the instrumentation was emitting previously.
->   * Note: `http/dup` has higher precedence than `http` in case both values are present
-> * SHOULD maintain (security patching at a minimum) the existing major version
+>   - Note: `http/dup` has higher precedence than `http` in case both values are present
+> - SHOULD maintain (security patching at a minimum) the existing major version
 >   for at least six months after it starts emitting both sets of conventions.
-> * SHOULD drop the environment variable in the next major version.
+> - SHOULD drop the environment variable in the next major version.
 
 ## Name
 
@@ -295,10 +295,10 @@ Examples:
 The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):
 
-* [`http.request.method`](/docs/registry/attributes/http.md)
-* [`server.address`](/docs/registry/attributes/server.md)
-* [`server.port`](/docs/registry/attributes/server.md)
-* [`url.full`](/docs/registry/attributes/url.md)
+- [`http.request.method`](/docs/registry/attributes/http.md)
+- [`server.address`](/docs/registry/attributes/server.md)
+- [`server.port`](/docs/registry/attributes/server.md)
+- [`url.full`](/docs/registry/attributes/url.md)
 
 ---
 
@@ -356,8 +356,8 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 There are some minimal constraints that SHOULD be honored:
 
-* HTTP client spans SHOULD start sometime before the first request byte is sent. This may or may not include connection time.
-* HTTP client spans SHOULD end sometime after the HTTP response headers are fully read (or when they fail to be read). This may or may not include reading the response body.
+- HTTP client spans SHOULD start sometime before the first request byte is sent. This may or may not include connection time.
+- HTTP client spans SHOULD end sometime after the HTTP response headers are fully read (or when they fail to be read). This may or may not include reading the response body.
 
 If there is any possibility for application code to not fully read the HTTP response
 (and for the HTTP client library to then have to clean up the HTTP response asynchronously),
@@ -378,9 +378,9 @@ Each time an HTTP request is resent, the `http.request.resend_count` attribute S
 
 See the examples for more details about:
 
-* [retrying a server error](#http-client-retries-examples),
-* [redirects](#http-client-redirects-examples),
-* [authorization](#http-client-authorization-retry-examples).
+- [retrying a server error](#http-client-retries-examples),
+- [redirects](#http-client-redirects-examples),
+- [authorization](#http-client-authorization-retry-examples).
 
 ## HTTP server
 
@@ -404,9 +404,9 @@ In the context of HTTP server, `server.address` and `server.port` attributes cap
 
 HTTP server instrumentations SHOULD do the best effort when populating `server.address` and `server.port` attributes and SHOULD determine them by using the first of the following that applies:
 
-* The original host which may be passed by the reverse proxy in the [`Forwarded#host`][Forwarded#host], [`X-Forwarded-Host`][X-Forwarded-Host], or a similar header.
-* The [`:authority`][HTTP/2 authority] pseudo-header in case of HTTP/2 or HTTP/3
-* The [`Host`][Host header] header.
+- The original host which may be passed by the reverse proxy in the [`Forwarded#host`][Forwarded#host], [`X-Forwarded-Host`][X-Forwarded-Host], or a similar header.
+- The [`:authority`][HTTP/2 authority] pseudo-header in case of HTTP/2 or HTTP/3
+- The [`Host`][Host header] header.
 
 > **Note**: The `Host` and `:authority` headers contain host and port number of the server. The same applies to the `host` identifier of `Forwarded` header or the `X-Forwarded-Host` header. Instrumentations SHOULD populate both `server.address` and `server.port` attributes by parsing the value of corresponding header.
 
@@ -596,15 +596,15 @@ Examples:
 The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):
 
-* [`client.address`](/docs/registry/attributes/client.md)
-* [`http.request.header.<key>`](/docs/registry/attributes/http.md)
-* [`http.request.method`](/docs/registry/attributes/http.md)
-* [`server.address`](/docs/registry/attributes/server.md)
-* [`server.port`](/docs/registry/attributes/server.md)
-* [`url.path`](/docs/registry/attributes/url.md)
-* [`url.query`](/docs/registry/attributes/url.md)
-* [`url.scheme`](/docs/registry/attributes/url.md)
-* [`user_agent.original`](/docs/registry/attributes/user-agent.md)
+- [`client.address`](/docs/registry/attributes/client.md)
+- [`http.request.header.<key>`](/docs/registry/attributes/http.md)
+- [`http.request.method`](/docs/registry/attributes/http.md)
+- [`server.address`](/docs/registry/attributes/server.md)
+- [`server.port`](/docs/registry/attributes/server.md)
+- [`url.path`](/docs/registry/attributes/url.md)
+- [`url.query`](/docs/registry/attributes/url.md)
+- [`url.scheme`](/docs/registry/attributes/url.md)
+- [`user_agent.original`](/docs/registry/attributes/user-agent.md)
 
 ---
 

@@ -68,8 +68,8 @@ If there are not any naming options immediately available, you may use this
 recommended naming scheme.  
 This naming scheme necessitates choosing words to represent two things:
 
-* The noun representing one of the set of possible values (the attribute name)
-* The adjective describing which of the values is currently active (the metric
+- The noun representing one of the set of possible values (the attribute name)
+- The adjective describing which of the values is currently active (the metric
   name)
 
 The general recommendation is to use the word "state" for the attribute and

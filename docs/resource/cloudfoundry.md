@@ -4,10 +4,10 @@
 
 Useful resources to understand CloudFoundry metadata:
 
-* <https://docs.cloudfoundry.org/devguide/deploy-apps/environment-variable.html#VCAP-APPLICATION>
-* <https://docs.cloudfoundry.org/devguide/deploy-apps/streaming-logs.html>
-* <https://github.com/cloudfoundry/loggregator-api#v2-envelope>
-* <https://bosh.io/docs/jobs/#properties-spec>
+- <https://docs.cloudfoundry.org/devguide/deploy-apps/environment-variable.html#VCAP-APPLICATION>
+- <https://docs.cloudfoundry.org/devguide/deploy-apps/streaming-logs.html>
+- <https://github.com/cloudfoundry/loggregator-api#v2-envelope>
+- <https://bosh.io/docs/jobs/#properties-spec>
 
 CloudFoundry organizes application deployments (apps) by spaces contained in
 organizations (orgs). Names are unique only in their respective enclosing
