@@ -128,7 +128,6 @@ for a given operation, for example:
 
 -  when client framework being instrumented manages conversation history
 (see [LlamaIndex chat store](https://docs.llamaindex.ai/en/stable/module_guides/storing/chat_stores/))
-
 - when instrumenting GenAI client libraries that maintain conversation on the backend side
 (see [AWS Bedrock agent sessions](https://docs.aws.amazon.com/bedrock/latest/userguide/agents-session-state.html),
 [OpenAI Assistant threads](https://platform.openai.com/docs/api-reference/threads))
@@ -466,7 +465,6 @@ Application developers should choose an appropriate usage pattern based on
 application needs and maturity:
 
 1. [Default] Don't record instructions, inputs, or outputs.
-
 2. Record instructions, inputs, and outputs on the GenAI spans using corresponding
    attributes (`gen_ai.system_instructions`, `gen_ai.input.messages`,
    `gen_ai.output.messages`).
@@ -477,7 +475,6 @@ application needs and maturity:
 
    See [Recording content on attributes](#recording-content-on-attributes)
    section for more details.
-
 3. Store content externally and record references on the spans.
 
    This pattern is recommended in production environments where telemetry volume
