@@ -1,5 +1,6 @@
 <!--- Hugo front matter used to generate the website version of this page:
 linkTitle: Oracle Database
+aliases: [/docs/specs/semconv/database/oracledb.md]
 --->
 
 # Semantic conventions for Oracle Database

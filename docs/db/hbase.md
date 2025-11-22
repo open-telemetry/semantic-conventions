@@ -1,5 +1,6 @@
 <!--- Hugo front matter used to generate the website version of this page:
 linkTitle: HBase
+aliases: [/docs/specs/semconv/database/hbase.md]
 --->
 
 # Semantic conventions for HBase client operations

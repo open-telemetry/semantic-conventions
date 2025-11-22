@@ -1,5 +1,6 @@
 <!--- Hugo front matter used to generate the website version of this page:
 linkTitle: MongoDB
+aliases: [/docs/specs/semconv/database/mongodb.md]
 --->
 
 # Semantic conventions for MongoDB client operations

@@ -1,5 +1,6 @@
 <!--- Hugo front matter used to generate the website version of this page:
 linkTitle: PostgreSQL
+aliases: [/docs/specs/semconv/database/postgresql.md]
 --->
 
 # Semantic conventions for PostgreSQL client operations

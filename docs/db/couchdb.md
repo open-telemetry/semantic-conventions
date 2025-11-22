@@ -1,5 +1,6 @@
 <!--- Hugo front matter used to generate the website version of this page:
 linkTitle: CouchDB
+aliases: [/docs/specs/semconv/database/couchdb.md]
 --->
 
 # Semantic conventions for CouchDB client operations
