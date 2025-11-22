@@ -170,7 +170,7 @@ For example, `db.system.name` contains database names like `mongodb` or `mysql`.
 System identifier enums help differentiate telemetry signals. MongoDB and MySQL
 both follow general database conventions, but populate attributes like `db.collection.name` differently and have system-specific attributes. Each system has its own span
 definitions and documentation.
-See [MongoDB](/docs/database/mongodb.md) and [MySQL](/docs/database/mysql.md) as examples
+See [MongoDB](/docs/db/mongodb.md) and [MySQL](/docs/db/mysql.md) as examples
 and check out [system-specific naming](../general/naming.md#system-specific-attributes)
 for naming guidance.
 

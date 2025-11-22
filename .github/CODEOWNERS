@@ -129,8 +129,8 @@
 /docs/non-normative/code-attrs-migration.md     @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-code-attribute-approvers
 
 # Database semantic conventions
-/docs/database/                             @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-db-approvers
-/model/database/                            @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-db-approvers
+/docs/db/                             @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-db-approvers
+/model/db/                            @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-db-approvers
 /docs/non-normative/database-test-cases/    @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-db-approvers
 /docs/non-normative/db-migration.md         @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-db-approvers
 

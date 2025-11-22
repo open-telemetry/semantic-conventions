@@ -1,5 +1,6 @@
 <!--- Hugo front matter used to generate the website version of this page:
 linkTitle: DynamoDB
+aliases: [/docs/specs/semconv/database/dynamodb.md]
 --->
 
 # Semantic conventions for AWS DynamoDB client operations
@@ -27,7 +28,7 @@ linkTitle: DynamoDB
 <!-- tocstop -->
 
 The Semantic Conventions for [AWS DynamoDB](https://aws.amazon.com/dynamodb/) extend and override the general
-[AWS SDK Semantic Conventions](/docs/cloud-providers/aws-sdk.md) and [Database Semantic Conventions](/docs/database/README.md).
+[AWS SDK Semantic Conventions](/docs/cloud-providers/aws-sdk.md) and [Database Semantic Conventions](/docs/db/README.md).
 
 ## Spans
 

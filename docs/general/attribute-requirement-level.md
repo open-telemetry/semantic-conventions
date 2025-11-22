@@ -38,7 +38,7 @@ requirement level from the referred semantic convention applies.
 
 <!-- TODO(jsuereth) - make examples not break on changes to semconv -->
 
-For example, [Database semantic convention](../database/README.md) references
+For example, [Database semantic convention](/docs/db/README.md) references
 `network.transport` attribute defined in [General attributes](./README.md) with
 `Conditionally Required` level on it.
 

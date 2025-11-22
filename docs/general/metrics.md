@@ -20,7 +20,7 @@ aliases: [metrics-general]
 The following semantic conventions surrounding metrics are defined:
 
 * **[General Guidelines](#general-guidelines): General metrics guidelines.**
-* [Database](/docs/database/database-metrics.md): For SQL and NoSQL client metrics.
+* [Database](/docs/db/database-metrics.md): For SQL and NoSQL client metrics.
 * [FaaS](/docs/faas/faas-metrics.md): For [Function as a Service](https://wikipedia.org/wiki/Function_as_a_service) metrics.
 * [GenAI](/docs/gen-ai/gen-ai-metrics.md): For Generative AI metrics.
 * [HTTP](/docs/http/http-metrics.md): For HTTP client and server metrics.
