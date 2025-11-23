@@ -35,7 +35,7 @@ jobs:
       uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5.0.1
 
     - name: install dependencies
-      run: npm ci
+      run: npm ci --ignore-scripts
 
     - name: invoke make
       run: make
@@ -60,7 +60,7 @@ jobs:
       uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5.0.1
 
     - name: install dependencies
-      run: npm ci
+      run: npm ci --ignore-scripts
 
     - name: invoke make
       run: make table-generation registry-generation
@@ -82,7 +82,7 @@ jobs:
       uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5.0.1
 
     - name: install dependencies
-      run: npm ci
+      run: npm ci --ignore-scripts
 
     - name: invoke make
       run: make check-policies
@@ -104,7 +104,7 @@ jobs:
       uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5.0.1
 
     - name: install dependencies
-      run: npm ci
+      run: npm ci --ignore-scripts
 
     - name: invoke make
       run: make check
