@@ -21,7 +21,7 @@ This span represents an incoming operation on a GraphQL server implementation.
 `graphql.operation.type` is available. If `graphql.operation.type` is not available,
 the span SHOULD be named `GraphQL Operation`.
 
-> **Warning**
+> [!WARNING]
 > The `graphql.operation.name` value is provided by the client and can have high
 > cardinality. Using it in the GraphQL server span name (by default) is
 > NOT RECOMMENDED.
