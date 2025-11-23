@@ -245,7 +245,7 @@ This metric is obtained from a combination of
 - [`ThreadMXBean#getAllThreadIds()`](https://docs.oracle.com/javase/8/docs/api/java/lang/management/ThreadMXBean.html#getAllThreadIds--)
 - [`ThreadMXBean#getThreadInfo()`](https://docs.oracle.com/javase/8/docs/api/java/lang/management/ThreadMXBean.html#getThreadInfo-long:A-)
 - [`ThreadInfo#getThreadState()`](https://docs.oracle.com/javase/8/docs/api/java/lang/management/ThreadInfo.html#getThreadState--)
-- [`ThreadInfo#isDaemon()`](<https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/ThreadInfo.html#isDaemon()>) (requires Java 9+)
+- [`ThreadInfo#isDaemon()`](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/ThreadInfo.html#isDaemon()) (requires Java 9+)
 
 Note that this is the number of platform threads (as opposed to virtual threads).
 
