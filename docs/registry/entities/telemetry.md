@@ -21,7 +21,6 @@
 | Other | [`telemetry.distro.name`](/docs/registry/attributes/telemetry.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the auto instrumentation agent or distribution, if used. [1] | `parts-unlimited-java` |
 | Other | [`telemetry.distro.version`](/docs/registry/attributes/telemetry.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The version string of the auto instrumentation agent or distribution, if used. | `1.2.3` |
 
-
 **[1] `telemetry.distro.name`:** Official auto instrumentation agents and distributions SHOULD set the `telemetry.distro.name` attribute to
 a string starting with `opentelemetry-`, e.g. `opentelemetry-java-instrumentation`.
 

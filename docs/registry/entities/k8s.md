@@ -213,7 +213,6 @@ conflict.
 | Other | [`k8s.namespace.annotation.<key>`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The annotation placed on the Namespace, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [13] | `0`; `` |
 | Other | [`k8s.namespace.label.<key>`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The label placed on the Namespace, the `<key>` being the label name, the value being the label value, even if the value is empty. [14] | `default`; `` |
 
-
 **[13] `k8s.namespace.annotation.<key>`:** Examples:
 
 - A label `ttl` with value `0` SHOULD be recorded
