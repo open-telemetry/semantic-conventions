@@ -24,4 +24,4 @@ groups:
       - ref: graphql.operation.type
         requirement_level: recommended
       - ref: graphql.document
-        requirement_level: recommended
+        requirement_level: opt_in
