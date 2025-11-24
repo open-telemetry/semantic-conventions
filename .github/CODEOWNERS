@@ -36,7 +36,6 @@
 /docs/http/                            @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
 /docs/url/                             @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
 /model/http/                           @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
-/model/error/                          @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
 /model/client/                         @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
 /model/network/                        @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers @open-telemetry/semconv-system-approvers @open-telemetry/semconv-security-approvers
 /model/server/                         @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
@@ -96,11 +95,11 @@
 /model/oci/                       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-container-approvers
 
 # .NET semantic conventions approvers
-/docs/dotnet/                     @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-dotnet-approver @open-telemetry/semconv-http-approvers
+/docs/dotnet/                     @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-dotnet-approver
 /docs/runtime/dotnet-metrics.md   @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-dotnet-approver
-/model/aspnetcore/                @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-dotnet-approver @open-telemetry/semconv-http-approvers
-/model/dotnet/                    @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-dotnet-approver @open-telemetry/semconv-http-approvers
-/model/signalr/                   @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-dotnet-approver @open-telemetry/semconv-http-approvers
+/model/aspnetcore/                @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-dotnet-approver
+/model/dotnet/                    @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-dotnet-approver
+/model/signalr/                   @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-dotnet-approver
 
 # Gen-AI semantic conventions
 /docs/gen-ai/                     @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-genai-approvers
@@ -131,8 +130,8 @@
 /docs/non-normative/code-attrs-migration.md     @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-code-attribute-approvers
 
 # Database semantic conventions
-/docs/database/                             @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-db-approvers
-/model/database/                            @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-db-approvers
+/docs/db/                             @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-db-approvers
+/model/db/                            @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-db-approvers
 /docs/non-normative/database-test-cases/    @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-db-approvers
 /docs/non-normative/db-migration.md         @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-db-approvers
 
