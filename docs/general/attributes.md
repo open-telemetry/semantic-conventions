@@ -1,6 +1,7 @@
 ---
 linkTitle: Attributes
-aliases: [general-attributes]
+aliases:
+  - general-attributes
 ---
 
 # General attributes
