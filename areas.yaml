@@ -27,6 +27,8 @@ areas:
     board: "https://github.com/orgs/open-telemetry/projects/114"
     labels:
       - area:k8s
+      - area:container
+      - area:oci
     status:
       - accepting_contributions
       - active
@@ -254,16 +256,6 @@ areas:
     labels:
       - area:service
       - area:deployment
-    status:
-      - accepting_contributions
-      - active
-
-  - name: "Semantic Conventions: Container"
-    project: "N/A"
-    board: "N/A"
-    labels:
-      - area:container
-      - area:oci
     status:
       - accepting_contributions
       - active
