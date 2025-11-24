@@ -4,10 +4,10 @@
 
 Useful resources to understand Kubernetes objects and metadata:
 
-* [Namespace](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/)
-* [Names and UIDs](https://kubernetes.io/docs/concepts/overview/working-with-objects/names/).
-* [Pods](https://kubernetes.io/docs/concepts/workloads/pods/)
-* [Controllers](https://kubernetes.io/docs/concepts/workloads/controllers/)
+- [Namespace](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/)
+- [Names and UIDs](https://kubernetes.io/docs/concepts/overview/working-with-objects/names/).
+- [Pods](https://kubernetes.io/docs/concepts/workloads/pods/)
+- [Controllers](https://kubernetes.io/docs/concepts/workloads/controllers/)
 
 The "name" of a Kubernetes object is unique for that type of object within a
 "namespace" and only at a specific moment of time (names can be reused over

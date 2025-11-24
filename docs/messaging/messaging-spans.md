@@ -45,27 +45,27 @@ linkTitle: Spans
 > [v1.24.0 of this document](https://github.com/open-telemetry/semantic-conventions/blob/v1.24.0/docs/messaging/messaging-spans.md)
 > (or prior):
 >
-> * SHOULD NOT change the version of the messaging conventions that they emit by default
+> - SHOULD NOT change the version of the messaging conventions that they emit by default
 >   until the messaging semantic conventions are marked stable.
 >   Conventions include, but are not limited to, attributes,
 >   metric and span names, span kind and unit of measure.
-> * SHOULD introduce an environment variable `OTEL_SEMCONV_STABILITY_OPT_IN`
+> - SHOULD introduce an environment variable `OTEL_SEMCONV_STABILITY_OPT_IN`
 >   in the existing major version as a comma-separated list of category-specific values
 >   (e.g., http, databases, messaging). The list of values includes:
->   * `messaging` - emit the new, stable messaging conventions,
+>   - `messaging` - emit the new, stable messaging conventions,
 >     and stop emitting the old experimental messaging conventions
 >     that the instrumentation emitted previously.
->   * `messaging/dup` - emit both the old and the stable messaging conventions,
+>   - `messaging/dup` - emit both the old and the stable messaging conventions,
 >     allowing for a seamless transition.
->   * The default behavior (in the absence of one of these values) is to continue
+>   - The default behavior (in the absence of one of these values) is to continue
 >     emitting whatever version of the old experimental messaging conventions
 >     the instrumentation was emitting previously.
->   * Note: `messaging/dup` has higher precedence than `messaging` in case both values are present
-> * SHOULD maintain (security patching at a minimum) the existing major version
+>   - Note: `messaging/dup` has higher precedence than `messaging` in case both values are present
+> - SHOULD maintain (security patching at a minimum) the existing major version
 >   for at least six months after it starts emitting both sets of conventions.
-> * SHOULD drop the environment variable in the next major version.
-> * SHOULD emit the new, stable values for span name, span kind and similar "single"
-> valued concepts when `messaging/dup` is present in the list.
+> - SHOULD drop the environment variable in the next major version.
+> - SHOULD emit the new, stable values for span name, span kind and similar "single"
+>   valued concepts when `messaging/dup` is present in the list.
 
 ## Definitions
 
@@ -78,9 +78,9 @@ This envelope may offer the possibility to convey additional metadata, often in 
 
 A message is sent by a message *producer* to:
 
-* Physically: some message *broker* (which can be e.g., a single server, or a cluster, or a local process reached via IPC). The broker handles the actual delivery, re-delivery, persistence, etc. In some messaging systems the broker may be identical or co-located with (some) message consumers.
+- Physically: some message *broker* (which can be e.g., a single server, or a cluster, or a local process reached via IPC). The broker handles the actual delivery, re-delivery, persistence, etc. In some messaging systems the broker may be identical or co-located with (some) message consumers.
 With Apache Kafka, the physical broker a message is written to depends on the number of partitions, and which broker is the *leader* of the partition the record is written to.
-* Logically: some particular message *destination*.
+- Logically: some particular message *destination*.
 
 Messages can be delivered to 0, 1, or multiple consumers depending on the dispatching semantic of the protocol.
 
@@ -212,13 +212,13 @@ a specific operation, the instrumentation SHOULD omit the `{destination}`.
 
 Examples:
 
-* `publish shop.orders`
-* `send shop.orders`
-* `subscribe shop.orders`
-* `ack shop.orders`
-* `nack print_jobs`
-* `process topic with spaces`
-* `settle AuthenticationRequest-Conversations`
+- `publish shop.orders`
+- `send shop.orders`
+- `subscribe shop.orders`
+- `ack shop.orders`
+- `nack print_jobs`
+- `process topic with spaces`
+- `settle AuthenticationRequest-Conversations`
 
 ### Operation types
 
@@ -459,16 +459,16 @@ size should be used.
 The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):
 
-* [`messaging.consumer.group.name`](/docs/registry/attributes/messaging.md)
-* [`messaging.destination.name`](/docs/registry/attributes/messaging.md)
-* [`messaging.destination.partition.id`](/docs/registry/attributes/messaging.md)
-* [`messaging.destination.subscription.name`](/docs/registry/attributes/messaging.md)
-* [`messaging.destination.template`](/docs/registry/attributes/messaging.md)
-* [`messaging.operation.name`](/docs/registry/attributes/messaging.md)
-* [`messaging.operation.type`](/docs/registry/attributes/messaging.md)
-* [`messaging.system`](/docs/registry/attributes/messaging.md)
-* [`server.address`](/docs/registry/attributes/server.md)
-* [`server.port`](/docs/registry/attributes/server.md)
+- [`messaging.consumer.group.name`](/docs/registry/attributes/messaging.md)
+- [`messaging.destination.name`](/docs/registry/attributes/messaging.md)
+- [`messaging.destination.partition.id`](/docs/registry/attributes/messaging.md)
+- [`messaging.destination.subscription.name`](/docs/registry/attributes/messaging.md)
+- [`messaging.destination.template`](/docs/registry/attributes/messaging.md)
+- [`messaging.operation.name`](/docs/registry/attributes/messaging.md)
+- [`messaging.operation.type`](/docs/registry/attributes/messaging.md)
+- [`messaging.system`](/docs/registry/attributes/messaging.md)
+- [`server.address`](/docs/registry/attributes/server.md)
+- [`server.port`](/docs/registry/attributes/server.md)
 
 ---
 

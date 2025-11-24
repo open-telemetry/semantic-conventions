@@ -147,13 +147,13 @@ Examples:
 The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):
 
-* [`db.collection.name`](/docs/registry/attributes/db.md)
-* [`db.namespace`](/docs/registry/attributes/db.md)
-* [`db.operation.name`](/docs/registry/attributes/db.md)
-* [`db.query.summary`](/docs/registry/attributes/db.md)
-* [`db.query.text`](/docs/registry/attributes/db.md)
-* [`server.address`](/docs/registry/attributes/server.md)
-* [`server.port`](/docs/registry/attributes/server.md)
+- [`db.collection.name`](/docs/registry/attributes/db.md)
+- [`db.namespace`](/docs/registry/attributes/db.md)
+- [`db.operation.name`](/docs/registry/attributes/db.md)
+- [`db.query.summary`](/docs/registry/attributes/db.md)
+- [`db.query.text`](/docs/registry/attributes/db.md)
+- [`server.address`](/docs/registry/attributes/server.md)
+- [`server.port`](/docs/registry/attributes/server.md)
 
 ---
 

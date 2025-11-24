@@ -128,14 +128,14 @@ Parameterized query text SHOULD NOT be sanitized. Even though parameterized quer
 The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):
 
-* [`db.collection.name`](/docs/registry/attributes/db.md)
-* [`db.namespace`](/docs/registry/attributes/db.md)
-* [`db.operation.name`](/docs/registry/attributes/db.md)
-* [`db.query.text`](/docs/registry/attributes/db.md)
-* [`http.request.method`](/docs/registry/attributes/http.md)
-* [`server.address`](/docs/registry/attributes/server.md)
-* [`server.port`](/docs/registry/attributes/server.md)
-* [`url.full`](/docs/registry/attributes/url.md)
+- [`db.collection.name`](/docs/registry/attributes/db.md)
+- [`db.namespace`](/docs/registry/attributes/db.md)
+- [`db.operation.name`](/docs/registry/attributes/db.md)
+- [`db.query.text`](/docs/registry/attributes/db.md)
+- [`http.request.method`](/docs/registry/attributes/http.md)
+- [`server.address`](/docs/registry/attributes/server.md)
+- [`server.port`](/docs/registry/attributes/server.md)
+- [`url.full`](/docs/registry/attributes/url.md)
 
 ---
 

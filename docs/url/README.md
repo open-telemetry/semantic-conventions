@@ -8,7 +8,7 @@ linkTitle: URL
 
 This document defines semantic conventions for url.
 
-* [Attributes](../registry/attributes/url.md)
+- [Attributes](../registry/attributes/url.md)
 
 ## Sensitive information
 
