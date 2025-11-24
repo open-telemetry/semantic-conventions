@@ -5,7 +5,7 @@
 
 ## MCP Attributes
 
-[Model Context Protocol (MCP)](https://spec.modelcontextprotocol.io) attributes
+[Model Context Protocol (MCP)](https://modelcontextprotocol.io) attributes
 
 **Attributes:**
 

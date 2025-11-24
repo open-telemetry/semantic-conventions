@@ -2,7 +2,7 @@ groups:
   - id: registry.mcp
     type: attribute_group
     brief: >
-      [Model Context Protocol (MCP)](https://spec.modelcontextprotocol.io) attributes
+      [Model Context Protocol (MCP)](https://modelcontextprotocol.io) attributes
     attributes:
       - id: mcp.method.name
         brief: The name of the request or notification method.
