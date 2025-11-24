@@ -220,7 +220,7 @@ fix: table-generation registry-generation misspell-correction markdown-toc
 
 .PHONY: install-tools
 install-tools: $(MISSPELL)
-	npm ci
+	npm ci --ignore-scripts
 	@echo "All tools installed"
 
 $(CHLOGGEN):
