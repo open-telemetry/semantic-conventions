@@ -12,12 +12,12 @@ In modern, distributed, application architectures:
 - A `service.namespace` is an entire system of components designed for
   end-users or other applications to leverage.
 - A `service` is one of the logical, distinct components that make up the
-  application, typically running as a bundle of the instances that run the same container image for load balancing.
+  application, typically running multiple instances of the same container image for load balancing.
 - A `service.instance` is a distinct instance of a service component, e.g. a
   specific kubernetes container that is part of a kubernetes deployment which
   offers a service.
 
-For example, supposes we have a Blog site that consists of a database
+For example, suppose we have a Blog site that consists of a database
 and an HTTP server which uses the database:
 
 ```mermaid
@@ -33,7 +33,7 @@ flowchart LR
     Http2["`**service.instance.id**
            aabcd-1234`"]
     Db1["`**service.instance.id**
-         aabcd-3421`"]
+         db-gbgfx`"]
     Db --> Db1
     Http --> Http1
     Http --> Http2
