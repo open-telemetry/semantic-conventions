@@ -9,7 +9,7 @@ data (events, metrics, spans, etc.).
 
 In modern, distributed, application architectures:
 
-- An `service.namespace` is an entire system of components designed for
+- A `service.namespace` is an entire system of components designed for
   end-users or other applications to leverage.
 - A `service` is one of the logical, distinct components that make up the
   application, typically running as a bundle of the instances that run the same container image for load balancing.
