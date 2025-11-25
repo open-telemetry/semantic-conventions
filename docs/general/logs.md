@@ -40,7 +40,7 @@ These attributes may be used for identifying a Log Record.
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- |
 | [`log.record.original`](/docs/registry/attributes/log.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The complete original Log Record. [1] | `77 <86>1 2015-08-06T21:58:59.694Z 192.168.2.133 inactive - - - Something happened`; `[INFO] 8/3/24 12:34:56 Something happened` |
 | [`log.record.uid`](/docs/registry/attributes/log.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | A unique identifier for the Log Record. [2] | `01ARZ3NDEKTSV4RRFFQ69G5FAV` |
 
@@ -73,7 +73,7 @@ As such, these should be recorded as Log Record attributes when applicable. They
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- |
 | [`log.file.name`](/docs/registry/attributes/log.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The basename of the file. | `audit.log` |
 | [`log.file.name_resolved`](/docs/registry/attributes/log.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The basename of the file, with symlinks resolved. | `uuid.log` |
 | [`log.file.path`](/docs/registry/attributes/log.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The full path to the file. | `/var/log/mysql/audit.log` |
@@ -95,15 +95,15 @@ As such, these should be recorded as Log Record attributes when applicable. They
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- |
 | [`log.iostream`](/docs/registry/attributes/log.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The stream associated with the log. See below for a list of well-known values. | `stdout`; `stderr` |
 
 ---
 
 `log.iostream` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `stderr` | Events from stderr stream | ![Development](https://img.shields.io/badge/-development-blue) |
 | `stdout` | Logs from stdout stream | ![Development](https://img.shields.io/badge/-development-blue) |
 
