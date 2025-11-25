@@ -38,7 +38,7 @@ Spans representing calls to a Oracle SQL Database adhere to the general [Semanti
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- |
 | [`db.namespace`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If available without an additional network call. | string | The database associated with the connection, qualified by the instance name, database name and service name. [1] | `ORCL1\|PDB1\|db_high.adb.oraclecloud.com`; `ORCL1\|DB1\|db_low.adb.oraclecloud.com`; `ORCL1\|DB1\|order-processing-service` |
 | [`db.response.status_code`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If response has ended with warning or an error. | string | [Oracle Database error number](https://docs.oracle.com/en/error-help/db/) recorded as a string. [2] | `ORA-02813`; `ORA-02613` |
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the operation failed. | string | Describes a class of error the operation ended with. [3] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` |
@@ -138,8 +138,8 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 <!-- prettier-ignore-end -->

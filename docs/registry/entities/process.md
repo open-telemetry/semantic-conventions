@@ -16,7 +16,7 @@
 **Attributes:**
 
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-|---|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- | --- |
 | Identity | [`process.creation.time`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The date and time the process was created, in ISO 8601 format. | `2023-11-21T09:25:34.853Z` |
 | Identity | [`process.pid`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | int | Process identifier (PID). | `1234` |
 | Description | [`process.args_count`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [1] | int | Length of the process.command_args array [2] | `4` |
@@ -61,7 +61,7 @@
 **Attributes:**
 
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-|---|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- | --- |
 | Identity | [`process.runtime.name`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the runtime of this process. | `OpenJDK Runtime Environment` |
 | Identity | [`process.runtime.version`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The version of the runtime of this process, as returned by the runtime without modification. | `14.0.2` |
 | Description | [`process.runtime.description`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | An additional description about the runtime of the process, for example a specific vendor customization of the runtime environment. | `Eclipse OpenJ9 Eclipse OpenJ9 VM openj9-0.21.0` |

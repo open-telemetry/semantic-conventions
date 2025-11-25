@@ -19,7 +19,7 @@
 **Attributes:**
 
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-|---|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- | --- |
 | Other | [`browser.brands`](/docs/registry/attributes/browser.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string[] | Array of brand name and version separated by a space [1] | `[" Not A;Brand 99", "Chromium 99", "Chrome 99"]` |
 | Other | [`browser.language`](/docs/registry/attributes/browser.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Preferred language of the user using the browser [2] | `en`; `en-US`; `fr`; `fr-FR` |
 | Other | [`browser.mobile`](/docs/registry/attributes/browser.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | boolean | A boolean that is true if the browser is running on a mobile device [3] |  |

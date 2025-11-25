@@ -38,7 +38,7 @@ Spans representing calls to a Cassandra database adhere to the general [Semantic
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- |
 | [`db.collection.name`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [1] | string | The name of the Cassandra table that the operation is acting upon. [2] | `public.users`; `customers` |
 | [`db.namespace`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If available. | string | The keyspace associated with the session. [3] | `mykeyspace` |
 | [`db.operation.name`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [4] | string | The name of the operation or command being executed. [5] | `findAndModify`; `HMSET`; `SELECT` |
@@ -160,8 +160,8 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 `cassandra.consistency.level` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `all` | All | ![Development](https://img.shields.io/badge/-development-blue) |
 | `any` | Any | ![Development](https://img.shields.io/badge/-development-blue) |
 | `each_quorum` | Each Quorum | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -178,8 +178,8 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 <!-- prettier-ignore-end -->

@@ -42,7 +42,7 @@ The `android.app.state` and `ios.app.state` fields are mutually exclusive and MU
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- |
 | [`android.app.state`](/docs/registry/attributes/android.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` if and only if `os.name` is `android` | string | This attribute represents the state of the application. [1] | `created` |
 | [`ios.app.state`](/docs/registry/attributes/ios.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` if and only if `os.name` is `ios` | string | This attribute represents the state of the application. [2] | `active`; `inactive`; `background` |
 
@@ -54,8 +54,8 @@ The `android.app.state` and `ios.app.state` fields are mutually exclusive and MU
 
 `android.app.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `background` | Any time after Activity.onPause() or, if the app has no Activity, Context.stopService() has been called when the app was in the foreground state. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `created` | Any time before Activity.onResume() or, if the app has no Activity, Context.startService() has been called in the app for the first time. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `foreground` | Any time after Activity.onResume() or, if the app has no Activity, Context.startService() has been called when the app was in either the created or background states. | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -64,8 +64,8 @@ The `android.app.state` and `ios.app.state` fields are mutually exclusive and MU
 
 `ios.app.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `active` | The app has become `active`. Associated with UIKit notification `applicationDidBecomeActive`. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `background` | The app is now in the background. This value is associated with UIKit notification `applicationDidEnterBackground`. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `foreground` | The app is now in the foreground. This value is associated with UIKit notification `applicationWillEnterForeground`. | ![Development](https://img.shields.io/badge/-development-blue) |
