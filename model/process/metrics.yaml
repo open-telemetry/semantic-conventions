@@ -11,6 +11,7 @@ groups:
     unit: "s"
     attributes:
       - ref: cpu.mode
+        requirement_level: required
         brief: >
           A process SHOULD be characterized _either_ by data points with no `mode`
           labels, _or only_ data points with `mode` labels.
@@ -32,6 +33,7 @@ groups:
     unit: "1"
     attributes:
       - ref: cpu.mode
+        requirement_level: required
         brief: >
           A process SHOULD be characterized _either_ by data points with no `mode`
           labels, _or only_ data points with `mode` labels.
@@ -79,6 +81,7 @@ groups:
     unit: "By"
     attributes:
       - ref: disk.io.direction
+        requirement_level: required
     entity_associations:
       - process
 
@@ -94,6 +97,7 @@ groups:
     unit: "By"
     attributes:
       - ref: network.io.direction
+        requirement_level: required
     entity_associations:
       - process
 
@@ -135,6 +139,7 @@ groups:
     unit: "{context_switch}"
     attributes:
       - ref: process.context_switch.type
+        requirement_level: required
     entity_associations:
       - process
 
@@ -150,6 +155,7 @@ groups:
     unit: "{fault}"
     attributes:
       - ref: system.paging.fault.type
+        requirement_level: recommended
     entity_associations:
       - process
 
