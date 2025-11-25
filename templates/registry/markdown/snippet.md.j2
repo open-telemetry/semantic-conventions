@@ -17,7 +17,7 @@
 {%- macro generate_entity(group) -%}
 {{ entity.header(group) | trim }}
 
-{{ entity.all_attribute_table(group) | trim }}
+{{ at.generate(group, tag_filter, attribute_registry_base_url) | trim }}
 {% endmacro -%}
 {%- macro generate_metric(group, entity_registry_base_url) -%}
 {{ mt.generate(group, entity_registry_base_url) | trim }}
