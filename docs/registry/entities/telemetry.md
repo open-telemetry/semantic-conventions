@@ -16,6 +16,8 @@
 > :warning: This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
+**Attributes:**
+
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- | --- |
 | Other | [`telemetry.distro.name`](/docs/registry/attributes/telemetry.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the auto instrumentation agent or distribution, if used. [1] | `parts-unlimited-java` |
@@ -32,6 +34,8 @@ a string starting with `opentelemetry-`, e.g. `opentelemetry-java-instrumentatio
 **type:** `telemetry.sdk`
 
 **Description:** The telemetry SDK used to capture data recorded by the instrumentation libraries.
+
+**Attributes:**
 
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- | --- |

@@ -19,6 +19,8 @@ To report host metrics, the `system.*` namespace SHOULD be used.
 > :warning: This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
+**Attributes:**
+
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- | --- |
 | Other | [`host.arch`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The CPU architecture the host system is running on. | `amd64`; `arm32`; `arm64` |
@@ -83,6 +85,8 @@ privileged lookup of `host.id` is required, the value should be injected via the
 
 > :warning: This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
+
+**Attributes:**
 
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- | --- |

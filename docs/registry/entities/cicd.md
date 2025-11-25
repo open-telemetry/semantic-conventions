@@ -16,6 +16,8 @@
 > :warning: This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
+**Attributes:**
+
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- | --- |
 | Other | [`cicd.pipeline.name`](/docs/registry/attributes/cicd.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The human readable name of the pipeline within a CI/CD system. | `Build and Test`; `Lint`; `Deploy Go Project`; `deploy_to_environment` |
@@ -30,6 +32,8 @@
 
 > :warning: This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
+
+**Attributes:**
 
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -48,6 +52,8 @@ For example, when a pipeline run involves several workers, its task run spans ma
 
 > :warning: This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
+
+**Attributes:**
 
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- | --- |

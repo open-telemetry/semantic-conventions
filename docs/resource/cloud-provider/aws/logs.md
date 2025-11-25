@@ -20,6 +20,8 @@ linkTitle: Logs
 > :warning: This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
+**Attributes:**
+
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- | --- |
 | Other | [`aws.log.group.arns`](/docs/registry/attributes/aws.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string[] | The Amazon Resource Name(s) (ARN) of the AWS log group(s). [1] | `["arn:aws:logs:us-west-1:123456789012:log-group:/aws/my/group:*"]` |

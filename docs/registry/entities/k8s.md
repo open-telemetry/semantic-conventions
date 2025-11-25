@@ -13,6 +13,8 @@
 
 **Description:** A Kubernetes Cluster.
 
+**Attributes:**
+
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- | --- |
 | Identity | [`k8s.cluster.uid`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A pseudo-ID for the cluster, set to the UID of the `kube-system` namespace. [1] | `218fc5a9-a5f1-4b54-aa05-46717d0ab26d` |
@@ -52,6 +54,8 @@ conflict.
 > :warning: This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
+**Attributes:**
+
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- | --- |
 | Other | [`k8s.container.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the Container from Pod specification, must be unique within a Pod. Container runtime usually uses different globally unique name (`container.name`). | `redis` |
@@ -65,6 +69,8 @@ conflict.
 **type:** `k8s.cronjob`
 
 **Description:** A Kubernetes CronJob object.
+
+**Attributes:**
 
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -95,6 +101,8 @@ conflict.
 
 **Description:** A Kubernetes DaemonSet object.
 
+**Attributes:**
+
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- | --- |
 | Identity | [`k8s.daemonset.uid`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The UID of the DaemonSet. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` |
@@ -123,6 +131,8 @@ conflict.
 **type:** `k8s.deployment`
 
 **Description:** A Kubernetes Deployment object.
+
+**Attributes:**
 
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -153,6 +163,8 @@ conflict.
 
 **Description:** A Kubernetes HorizontalPodAutoscaler object.
 
+**Attributes:**
+
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- | --- |
 | Identity | [`k8s.hpa.uid`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The UID of the horizontal pod autoscaler. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` |
@@ -174,6 +186,8 @@ conflict.
 **type:** `k8s.job`
 
 **Description:** A Kubernetes Job object.
+
+**Attributes:**
 
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -207,6 +221,8 @@ conflict.
 > :warning: This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
+**Attributes:**
+
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- | --- |
 | Other | [`k8s.namespace.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the namespace that the pod is running in. | `default` |
@@ -236,6 +252,8 @@ conflict.
 
 **Description:** A Kubernetes Node object.
 
+**Attributes:**
+
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- | --- |
 | Identity | [`k8s.node.uid`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The UID of the Node. | `1eb3a0c6-0477-4080-a9cb-0cb7db65c6a2` |
@@ -264,6 +282,8 @@ conflict.
 **type:** `k8s.pod`
 
 **Description:** A Kubernetes Pod object.
+
+**Attributes:**
 
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -298,6 +318,8 @@ conflict.
 
 **Description:** A Kubernetes ReplicaSet object.
 
+**Attributes:**
+
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- | --- |
 | Identity | [`k8s.replicaset.uid`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The UID of the ReplicaSet. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` |
@@ -327,6 +349,8 @@ conflict.
 
 **Description:** A Kubernetes ReplicationController object.
 
+**Attributes:**
+
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- | --- |
 | Identity | [`k8s.replicationcontroller.uid`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The UID of the replication controller. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` |
@@ -340,6 +364,8 @@ conflict.
 
 **Description:** A Kubernetes ResourceQuota object.
 
+**Attributes:**
+
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- | --- |
 | Identity | [`k8s.resourcequota.uid`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The UID of the resource quota. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` |
@@ -352,6 +378,8 @@ conflict.
 **type:** `k8s.statefulset`
 
 **Description:** A Kubernetes StatefulSet object.
+
+**Attributes:**
 
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- | --- |
