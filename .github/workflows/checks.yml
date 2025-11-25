@@ -18,7 +18,7 @@ jobs:
       uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
 
     - name: install dependencies
-      run: npm install
+      run: npm ci --ignore-scripts
 
     - name: Check file and folder names
       run: make check-file-and-folder-names-in-docs
@@ -50,7 +50,7 @@ jobs:
       uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
 
     - name: install dependencies
-      run: npm install
+      run: npm ci --ignore-scripts
 
     - name: run markdown-toc
       run: make markdown-toc
