@@ -32,7 +32,8 @@ metrics](/docs/runtime/README.md#metrics).
 
 <!-- tocstop -->
 
-> **Warning** Existing instrumentations and collector that are using
+> [!IMPORTANT]
+> Existing instrumentations and collector that are using
 > [v1.21.0 of this document](https://github.com/open-telemetry/semantic-conventions/blob/v1.21.0/docs/system/process-metrics.md)
 > (or prior):
 >

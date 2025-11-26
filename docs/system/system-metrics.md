@@ -63,7 +63,8 @@ Resource attributes related to a host, SHOULD be reported under the `host.*` nam
 
 <!-- tocstop -->
 
-> **Warning** Existing instrumentations and collector that are using
+> [!IMPORTANT]
+> Existing instrumentations and collector that are using
 > [v1.21.0 of this document](https://github.com/open-telemetry/semantic-conventions/blob/v1.21.0/docs/system/system-metrics.md)
 > (or prior):
 >
