@@ -334,19 +334,19 @@ In this case, it is responsibility of the framework or instrumentation library t
 
 This example shows the FaaS attributes for a (non-FaaS) process hosted on Google Cloud Platform (Span A with kind `CLIENT`), which invokes a Lambda function called "my-lambda-function" in Amazon Web Services (Span B with kind `SERVER`).
 
-| Attribute Kind | Attribute               | Span A (Client, GCP)   | Span B (Server, AWS Lambda) |
-| -------------- | ----------------------- | ---------------------- | -- |
-| Resource       | `cloud.provider`        | `"gcp"`                | `"aws"` |
-| Resource       | `cloud.region`          | `"europe-west3"`       | `"eu-central-1"` |
-| Span           | `faas.invoked_name`     | `"my-lambda-function"` | n/a |
-| Span           | `faas.invoked_provider` | `"aws"`                | n/a |
-| Span           | `faas.invoked_region`   | `"eu-central-1"`       | n/a |
-| Span           | `faas.trigger`          | n/a                    | `"http"` |
-| Span           | `faas.invocation_id`    | n/a                    | `"af9d5aa4-a685-4c5f-a22b-444f80b3cc28"` |
-| Span           | `faas.coldstart`        | n/a                    | `true` |
-| Resource       | `faas.name`             | n/a                    | `"my-lambda-function"` |
-| Resource       | `faas.version`          | n/a                    | `"semver:2.0.0"` |
-| Resource       | `faas.instance`         | n/a                    | `"my-lambda-function:instance-0001"` |
+| Attribute Kind | Attribute               | Span A (Client, GCP)   | Span B (Server, AWS Lambda)                                           |
+| -------------- | ----------------------- | ---------------------- | --------------------------------------------------------------------- |
+| Resource       | `cloud.provider`        | `"gcp"`                | `"aws"`                                                               |
+| Resource       | `cloud.region`          | `"europe-west3"`       | `"eu-central-1"`                                                      |
+| Span           | `faas.invoked_name`     | `"my-lambda-function"` | n/a                                                                   |
+| Span           | `faas.invoked_provider` | `"aws"`                | n/a                                                                   |
+| Span           | `faas.invoked_region`   | `"eu-central-1"`       | n/a                                                                   |
+| Span           | `faas.trigger`          | n/a                    | `"http"`                                                              |
+| Span           | `faas.invocation_id`    | n/a                    | `"af9d5aa4-a685-4c5f-a22b-444f80b3cc28"`                              |
+| Span           | `faas.coldstart`        | n/a                    | `true`                                                                |
+| Resource       | `faas.name`             | n/a                    | `"my-lambda-function"`                                                |
+| Resource       | `faas.version`          | n/a                    | `"semver:2.0.0"`                                                      |
+| Resource       | `faas.instance`         | n/a                    | `"my-lambda-function:instance-0001"`                                  |
 | Resource       | `cloud.resource_id`     | n/a                    | `"arn:aws:lambda:us-west-2:123456789012:function:my-lambda-function"` |
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
