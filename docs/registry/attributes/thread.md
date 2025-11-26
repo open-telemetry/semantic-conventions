@@ -16,7 +16,7 @@ These attributes may be used for any operation to store information about a thre
 
 **[1] `thread.id`:** Examples of where the value can be extracted from:
 
-| Language or platform  | Source |
+| Language or platform | Source |
 | --- | --- |
 | JVM | `Thread.currentThread().threadId()` |
 | .NET | `Thread.CurrentThread.ManagedThreadId` |
@@ -27,7 +27,7 @@ These attributes may be used for any operation to store information about a thre
 
 **[2] `thread.name`:** Examples of where the value can be extracted from:
 
-| Language or platform  | Source |
+| Language or platform | Source |
 | --- | --- |
 | JVM | `Thread.currentThread().getName()` |
 | .NET | `Thread.CurrentThread.Name` |
