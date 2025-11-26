@@ -56,4 +56,6 @@
 {% endif %}
 
 {{ notes.render() | trim }}
+
+{{ enums.tables(e.attributes | selectattr("type", "mapping"), notes) | trim }}
 {%- endmacro %}
