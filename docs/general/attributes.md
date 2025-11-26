@@ -392,7 +392,7 @@ a thread that started a span.
 
 **[1] `thread.id`:** Examples of where the value can be extracted from:
 
-| Language or platform  | Source |
+| Language or platform | Source |
 | --- | --- |
 | JVM | `Thread.currentThread().threadId()` |
 | .NET | `Thread.CurrentThread.ManagedThreadId` |
@@ -403,7 +403,7 @@ a thread that started a span.
 
 **[2] `thread.name`:** Examples of where the value can be extracted from:
 
-| Language or platform  | Source |
+| Language or platform | Source |
 | --- | --- |
 | JVM | `Thread.currentThread().getName()` |
 | .NET | `Thread.CurrentThread.Name` |
