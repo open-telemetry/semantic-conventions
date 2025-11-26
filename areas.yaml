@@ -27,6 +27,8 @@ areas:
     board: "https://github.com/orgs/open-telemetry/projects/114"
     labels:
       - area:k8s
+      - area:container
+      - area:oci
     status:
       - accepting_contributions
       - active
