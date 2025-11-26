@@ -224,16 +224,16 @@ Function F:    | Span Function |
 ```
 
 | Field or Attribute | `Span Client` | `Span Function` |
-|-|-|-|
+| --- | --- | --- |
 | Span name | `HTTP GET` | `/pets/{petId}` |
-| Parent |  | Span Client |
+| Parent | | Span Client |
 | SpanKind | `CLIENT` | `SERVER` |
 | Status | `Ok` | `Ok` |
 | `faas.invocation_id` | | `79104EXAMPLEB723` |
 | `faas.trigger` | | `http` |
 | `cloud.account.id` | | `12345678912` |
-| `server.address` | `foo.execute-api.us-east-1.amazonaws.com` |  |
-| `server.port` | `413` |  |
+| `server.address` | `foo.execute-api.us-east-1.amazonaws.com` | |
+| `server.port` | `413` | |
 | `http.request.method` | `GET` | `GET` |
 | `user_agent.original` | `okhttp 3.0` | `okhttp 3.0` |
 | `url.scheme` | | `https` |
@@ -266,10 +266,10 @@ Function F:                      | Span ProcBatch |
 ```
 
 | Field or Attribute | Span Prod1 | Span Prod2 | Span ProcBatch | Span Proc1 | Span Proc2 |
-|-|-|-|-|-|-|
+| --- | --- | --- | --- | --- | --- |
 | Span name | `send Q` | `send Q` | `process Q` | `process Q` | `process Q` |
-| Parent |  |  |  | Span ProcBatch | Span ProcBatch |
-| Links |  |  |  | Span Prod1 | Span Prod2 |
+| Parent | | | | Span ProcBatch | Span ProcBatch |
+| Links | | | | Span Prod1 | Span Prod2 |
 | SpanKind | `PRODUCER` | `PRODUCER` | `CONSUMER` | `CONSUMER` | `CONSUMER` |
 | Status | `Ok` | `Ok` | `Ok` | `Ok` | `Ok` |
 | `messaging.system` | `aws_sqs` | `aws_sqs` | `aws_sqs` | `aws_sqs` | `aws_sqs` |

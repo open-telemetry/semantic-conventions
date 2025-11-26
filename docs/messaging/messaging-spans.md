@@ -226,23 +226,23 @@ The following operation types related to messages are defined for these semantic
 
 | Operation type | Description |
 | -------------- | ----------- |
-| `create`       | A message is created or passed to a client library for sending. "Create" spans always refer to a single message and are used to provide a unique creation context for messages in batch sending scenarios. |
-| `send`         | One or more messages are provided for sending to an intermediary. If a single message is sent, the context of the "Send" span can be used as the creation context and no "Create" span needs to be created. |
-| `receive`      | One or more messages are requested by a consumer. This operation refers to pull-based scenarios, where consumers explicitly call methods of messaging SDKs to receive messages. |
-| `process`      | One or more messages are processed by a consumer. |
-| `settle`       | One or more messages are settled. |
+| `create` | A message is created or passed to a client library for sending. "Create" spans always refer to a single message and are used to provide a unique creation context for messages in batch sending scenarios. |
+| `send` | One or more messages are provided for sending to an intermediary. If a single message is sent, the context of the "Send" span can be used as the creation context and no "Create" span needs to be created. |
+| `receive` | One or more messages are requested by a consumer. This operation refers to pull-based scenarios, where consumers explicitly call methods of messaging SDKs to receive messages. |
+| `process` | One or more messages are processed by a consumer. |
+| `settle` | One or more messages are settled. |
 
 ### Span kind
 
 Span kind SHOULD be set according to the following table, based on the operation type a span describes.
 
-| Operation type | Span kind|
-|----------------|-------------|
-| `create`       | `PRODUCER`  |
-| `send`         | `PRODUCER` if the context of the "Send" span is used as creation context, otherwise `CLIENT`. |
-| `receive`      | `CLIENT`    |
-| `process`      | `CONSUMER`  |
-| `settle`       | `CLIENT`    |
+| Operation type | Span kind |
+| -------------- | --------- |
+| `create` | `PRODUCER` |
+| `send` | `PRODUCER` if the context of the "Send" span is used as creation context, otherwise `CLIENT`. |
+| `receive` | `CLIENT` |
+| `process` | `CONSUMER` |
+| `settle` | `CLIENT` |
 
 Setting span kinds according to this table allows analysis tools to interpret spans
 and relationships between them without the need for additional semantic hints.
@@ -570,11 +570,11 @@ flowchart LR;
   linkStyle 0,1,2,3 color:green,stroke:green
 ```
 
-| Field or Attribute | Producer | Consumer 1| Consumer 2 |
-|-|-|-|-|
+| Field or Attribute | Producer | Consumer 1 | Consumer 2 |
+| --- | --- | --- | --- |
 | Span name | `publish T` | `consume T` | `consume T` |
 | Parent (optional) | | `publish T` | `publish T` |
-| Links |  | `publish T` | `publish T` |
+| Links | | `publish T` | `publish T` |
 | SpanKind | `PRODUCER` | `CONSUMER` | `CONSUMER` |
 | `server.address` | `"ms"` | `"ms"` | `"ms"` |
 | `server.port` | `1234` | `1234` | `1234` |
@@ -582,7 +582,7 @@ flowchart LR;
 | `messaging.destination.name` | `"T"` | `"T"` | `"T"` |
 | `messaging.operation.name` | `"publish"` | `"consume"` | `"consume"` |
 | `messaging.operation.type` | `"send"` | `"process"` | `"process"` |
-| `messaging.message.id` | `"a"` | `"a"`| `"a"` |
+| `messaging.message.id` | `"a"` | `"a"` | `"a"` |
 
 ### Batch receiving
 
@@ -609,12 +609,12 @@ flowchart LR;
 ```
 
 | Field or Attribute | Producer Span A | Producer Span B | Consumer |
-|-|-|-|-|
+| --- | --- | --- | --- |
 | Span name | `send Q` | `send Q` | `poll Q` |
-| Parent |  |  |  |
-| Links |  |  | Span Send A, Span Send B |
-| Link attributes |  |  | Span Send A: `messaging.message.id`: `"a1"`  |
-|                 |  |  | Span Send B: `messaging.message.id`: `"a2"`  |
+| Parent | | | |
+| Links | | | Span Send A, Span Send B |
+| Link attributes | | | Span Send A: `messaging.message.id`: `"a1"` |
+| | | | Span Send B: `messaging.message.id`: `"a2"` |
 | SpanKind | `PRODUCER` | `PRODUCER` | `CLIENT` |
 | `server.address` | `"ms"` | `"ms"` | `"ms"` |
 | `server.port` | `1234` | `1234` | `1234` |
@@ -623,7 +623,7 @@ flowchart LR;
 | `messaging.operation.name` | `"send"` | `"send"` | `"poll"` |
 | `messaging.operation.type` | `"send"` | `"send"` | `"receive"` |
 | `messaging.message.id` | `"a1"` | `"a2"` | |
-| `messaging.batch.message_count` |  |  | 2 |
+| `messaging.batch.message_count` | | | 2 |
 
 ### Batch publishing with "Create" spans
 
@@ -660,10 +660,10 @@ flowchart LR;
 ```
 
 | Field or Attribute | Producer Span Create A | Producer Span Create B | Producer Span Send | Consumer 1 | Consumer 2 |
-|-|-|-|-|-|-|
+| --- | --- | --- | --- | --- | --- |
 | Span name | `create Q` | `create Q` | `send Q` | `poll Q` | `poll Q` |
-| Parent |  | | | | |
-| Links |  |  |  | Span Create A | Span Create B |
+| Parent | | | | | |
+| Links | | | | Span Create A | Span Create B |
 | SpanKind | `PRODUCER` | `PRODUCER` | `CLIENT` | `CLIENT` | `CLIENT` |
 | `server.address` | `"ms"` | `"ms"` | `"ms"` | `"ms"` | `"ms"` |
 | `server.port` | `1234` | `1234` | `1234` | `1234` | `1234` |
@@ -705,10 +705,10 @@ flowchart LR;
 ```
 
 | Field or Attribute | Producer | Consumer 1 | Consumer 2 |
-|-|-|-|-|
+| --- | --- | --- | --- |
 | Span name | `send Q` | `poll Q` | `poll Q` |
 | Parent | | | |
-| Links |  | Span Send | Span Send |
+| Links | | Span Send | Span Send |
 | SpanKind | `PRODUCER` | `CLIENT` | `CLIENT` |
 | `server.address` | `"ms"` | `"ms"` | `"ms"` |
 | `server.port` | `1234` | `1234` | `1234` |
@@ -717,6 +717,6 @@ flowchart LR;
 | `messaging.operation.name` | `"send"` | `"poll"` | `"poll"` |
 | `messaging.operation.type` | `"send"` | `"receive"` | `"receive"` |
 | `messaging.message.id` | | `"a1"` | `"a2"` |
-| `messaging.batch.message_count`| 2 | | |
+| `messaging.batch.message_count` | 2 | | |
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
