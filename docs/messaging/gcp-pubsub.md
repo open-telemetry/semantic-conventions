@@ -168,13 +168,13 @@ flowchart LR;
 ```
 
 | Field or Attribute | Producer Span Create A | Producer Span Create B | Producer Span Send A B |
-|-|-|-|-|
+| --- | --- | --- | --- |
 | Span name | `create T` | `create T` | `send T` |
-| Parent |  |  |  |
-| Links |  |  | Span Create A, Span Create B |
+| Parent | | | |
+| Links | | | Span Create A, Span Create B |
 | SpanKind | `PRODUCER` | `PRODUCER` | `CLIENT` |
 | Status | `Ok` | `Ok` | `Ok` |
-| `messaging.batch.message_count` |  |  | 2 |
+| `messaging.batch.message_count` | | | 2 |
 | `messaging.destination.name` | `"T"` | `"T"` | `"T"` |
 | `messaging.operation.name` | `"create"` | `"create"` | `"send"` |
 | `messaging.operation.type` | `"create"` | `"create"` | `"send"` |
@@ -227,20 +227,20 @@ flowchart TD;
 ```
 
 | Field or Attribute | Producer Span Create A | Producer Span Send | Consumer Span Receive A | Consumer Span Modack A | Consumer Span Ack A |
-|-|-|-|-|-|-|
-| Span name | `create T` | `send T` |  `receive S` | `modack S` | `ack S` |
-| Parent |  |  |  | |  |
-| Links |  | Span Create A | Span Create A | Span Receive A | Span Receive A |
-| SpanKind | `PRODUCER` | `PRODUCER` | `CONSUMER` |`CLIENT` |`CLIENT` |
-| Status | `Ok` | `Ok` | `Ok` |`Ok` | `Ok` |
-| `messaging.destination.name` | `"T"`| `"T"`| `"S"` | `"S"` |`"S"` |
-| `messaging.system` | `"gcp_pubsub"` | `"gcp_pubsub"` | `"gcp_pubsub"` |  `"gcp_pubsub"` | `"gcp_pubsub"` |
+| --- | --- | --- | --- | --- | --- |
+| Span name | `create T` | `send T` | `receive S` | `modack S` | `ack S` |
+| Parent | | | | | |
+| Links | | Span Create A | Span Create A | Span Receive A | Span Receive A |
+| SpanKind | `PRODUCER` | `PRODUCER` | `CONSUMER` | `CLIENT` | `CLIENT` |
+| Status | `Ok` | `Ok` | `Ok` | `Ok` | `Ok` |
+| `messaging.destination.name` | `"T"` | `"T"` | `"S"` | `"S"` | `"S"` |
+| `messaging.system` | `"gcp_pubsub"` | `"gcp_pubsub"` | `"gcp_pubsub"` | `"gcp_pubsub"` | `"gcp_pubsub"` |
 | `messaging.operation.name` | `"create"` | `"send"` | `"receive"` | `"modack"` | `"ack"` |
-| `messaging.operation.type` | `"create"` | `"send"` | `"receive"` |  | `"settle"` |
+| `messaging.operation.type` | `"create"` | `"send"` | `"receive"` | | `"settle"` |
 | `messaging.message.id` | `"a1"` | | `"a1"` | | |
-| `messaging.message.envelope.size` | `1` | `1` | `1`  | | |
-| `messaging.gcp_pubsub.message.ack_id` | | |  | `"ack_id1"` |`"ack_id1"` |
-| `messaging.gcp_pubsub.message.delivery_attempt` | | |  | `0` |  |
-| `messaging.gcp_pubsub.message.ack_deadline` | | |  | | `0` |
+| `messaging.message.envelope.size` | `1` | `1` | `1` | | |
+| `messaging.gcp_pubsub.message.ack_id` | | | | `"ack_id1"` | `"ack_id1"` |
+| `messaging.gcp_pubsub.message.delivery_attempt` | | | | `0` | |
+| `messaging.gcp_pubsub.message.ack_deadline` | | | | | `0` |
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status

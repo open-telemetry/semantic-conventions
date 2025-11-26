@@ -299,16 +299,16 @@ depending on the [gRPC status code](https://github.com/grpc/grpc/blob/v1.33.2/do
 and [Span Kind](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.51.0/specification/trace/api.md#spankind).
 
 | gRPC Status Code | `SpanKind.SERVER` Span Status | `SpanKind.CLIENT` Span Status |
-|---|---|---|
+| --- | --- | --- |
 | OK | unset | unset |
 | CANCELLED | unset | `Error` |
-| UNKNOWN | `Error` | `Error`  |
+| UNKNOWN | `Error` | `Error` |
 | INVALID_ARGUMENT | unset | `Error` |
 | DEADLINE_EXCEEDED | `Error` | `Error` |
 | NOT_FOUND | unset | `Error` |
 | ALREADY_EXISTS | unset | `Error` |
 | PERMISSION_DENIED | unset | `Error` |
-| RESOURCE_EXHAUSTED | unset| `Error` |
+| RESOURCE_EXHAUSTED | unset | `Error` |
 | FAILED_PRECONDITION | unset | `Error` |
 | ABORTED | unset | `Error` |
 | OUT_OF_RANGE | unset | `Error` |

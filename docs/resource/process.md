@@ -134,7 +134,7 @@ Example:
 
 | `process.runtime.name` | `process.runtime.version` | `process.runtime.description` |
 | --- | --- | --- |
-| BEAM | 11.1 |  Erlang/OTP 23 erts-11.1 |
+| BEAM | 11.1 | Erlang/OTP 23 erts-11.1 |
 
 ### Go runtimes
 
