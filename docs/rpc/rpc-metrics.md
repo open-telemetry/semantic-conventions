@@ -27,7 +27,7 @@ metrics can be filtered for finer grain analysis.
 
 <!-- tocstop -->
 
-> **Warning**
+> [!IMPORTANT]
 > Existing RPC instrumentations that are using
 > [v1.37.0 of this document](https://github.com/open-telemetry/semantic-conventions/blob/v1.37.0/docs/rpc/rpc-metrics.md)
 > (or prior):

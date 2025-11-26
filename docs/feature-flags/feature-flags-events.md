@@ -28,7 +28,7 @@ This can be used to determine the impact a feature has on a request, enabling en
 
 Feature flag evaluations SHOULD be recorded as attributes on the [Event](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.51.0/specification/logs/data-model.md#events) passed to the [Logger](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.51.0/specification/logs/api.md#logger) emit operations.
 
-> Note:
+> [!NOTE]
 > Events are in-development and not yet available in some languages. Check the [spec-compliance matrix](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.51.0/spec-compliance-matrix.md#logs) to see the implementation status in the corresponding language.
 
 ## Evaluation event

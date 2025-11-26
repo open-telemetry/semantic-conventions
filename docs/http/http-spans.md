@@ -34,7 +34,7 @@ and various HTTP versions like 1.1, 2 and SPDY.
 
 <!-- tocstop -->
 
-> **Warning**
+> [!IMPORTANT]
 > Existing HTTP instrumentations that are using
 > [v1.20.0 of this document](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.20.0/specification/trace/semantic_conventions/http.md)
 > (or prior):
@@ -405,7 +405,8 @@ HTTP server instrumentations SHOULD do the best effort when populating `server.a
 * The [`:authority`][HTTP/2 authority] pseudo-header in case of HTTP/2 or HTTP/3
 * The [`Host`][Host header] header.
 
-> **Note**: The `Host` and `:authority` headers contain host and port number of the server. The same applies to the `host` identifier of `Forwarded` header or the `X-Forwarded-Host` header. Instrumentations SHOULD populate both `server.address` and `server.port` attributes by parsing the value of corresponding header.
+> [!NOTE]
+> The `Host` and `:authority` headers contain host and port number of the server. The same applies to the `host` identifier of `Forwarded` header or the `X-Forwarded-Host` header. Instrumentations SHOULD populate both `server.address` and `server.port` attributes by parsing the value of corresponding header.
 
 Application developers MAY overwrite potentially inaccurate values of `server.*` attributes using a [SpanProcessor][SpanProcessor] and MAY capture private host information using applicable [resource attributes](/docs/resource/README.md).
 
