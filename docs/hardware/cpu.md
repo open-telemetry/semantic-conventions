@@ -60,7 +60,7 @@ When using this metric, the following attributes MUST be set:
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `hw.errors` | Counter | `{error}` | Number of errors encountered by the component. | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `hw.errors` | Counter | `{error}` | Number of errors encountered by the component. | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 **Attributes:**
 
@@ -132,7 +132,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `hw.cpu.speed` | Gauge | `Hz` | CPU current frequency. | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `hw.cpu.speed` | Gauge | `Hz` | CPU current frequency. | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 **Attributes:**
 
@@ -159,7 +159,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `hw.cpu.speed.limit` | Gauge | `Hz` | CPU maximum frequency. | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `hw.cpu.speed.limit` | Gauge | `Hz` | CPU maximum frequency. | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 **Attributes:**
 
@@ -214,7 +214,7 @@ When using this metric for CPU status, the following attributes MUST be set:
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `hw.status` | UpDownCounter | `1` | Operational status: `1` (true) or `0` (false) for each of the possible states. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `hw.status` | UpDownCounter | `1` | Operational status: `1` (true) or `0` (false) for each of the possible states. [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 **[1]:** `hw.status` is currently specified as an *UpDownCounter* but would ideally be represented using a [*StateSet* as defined in OpenMetrics](https://github.com/prometheus/OpenMetrics/blob/v1.0.0/specification/OpenMetrics.md#stateset). This semantic convention will be updated once *StateSet* is specified in OpenTelemetry. This planned change is not expected to have any consequence on the way users query their timeseries backend to retrieve the values of `hw.status` over time.
 

@@ -30,7 +30,7 @@ An operating system process.
 | <a id="process-exit-code" href="#process-exit-code">`process.exit.code`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The exit code of the process. | `127` |
 | <a id="process-exit-time" href="#process-exit-time">`process.exit.time`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The date and time the process exited, in ISO 8601 format. | `2023-11-21T09:26:12.315Z` |
 | <a id="process-group-leader-pid" href="#process-group-leader-pid">`process.group_leader.pid`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The PID of the process's group leader. This is also the process group ID (PGID) of the process. | `23` |
-| <a id="process-interactive" href="#process-interactive">`process.interactive`</a> | ![Development](https://img.shields.io/badge/-development-blue) | boolean | Whether the process is connected to an interactive shell. |  |
+| <a id="process-interactive" href="#process-interactive">`process.interactive`</a> | ![Development](https://img.shields.io/badge/-development-blue) | boolean | Whether the process is connected to an interactive shell. | |
 | <a id="process-owner" href="#process-owner">`process.owner`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The username of the user that owns the process. | `root` |
 | <a id="process-parent-pid" href="#process-parent-pid">`process.parent_pid`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | Parent Process identifier (PPID). | `111` |
 | <a id="process-pid" href="#process-pid">`process.pid`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | Process identifier (PID). | `1234` |
