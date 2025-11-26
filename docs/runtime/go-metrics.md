@@ -44,7 +44,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `go.memory.used` | UpDownCounter | `By` | Memory used by the Go runtime. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `go.memory.used` | UpDownCounter | `By` | Memory used by the Go runtime. [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 **[1]:** Computed from `(/memory/classes/total:bytes - /memory/classes/heap/released:bytes)`.
 
@@ -80,7 +80,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `go.memory.limit` | UpDownCounter | `By` | Go runtime memory limit configured by the user, if a limit exists. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `go.memory.limit` | UpDownCounter | `By` | Go runtime memory limit configured by the user, if a limit exists. [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 **[1]:** Computed from `/gc/gomemlimit:bytes`. This metric is excluded if the limit obtained from the Go runtime is math.MaxInt64.
 
@@ -99,7 +99,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `go.memory.allocated` | Counter | `By` | Memory allocated to the heap by the application. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `go.memory.allocated` | Counter | `By` | Memory allocated to the heap by the application. [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 **[1]:** Computed from `/gc/heap/allocs:bytes`.
 
@@ -118,7 +118,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `go.memory.allocations` | Counter | `{allocation}` | Count of allocations to the heap by the application. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `go.memory.allocations` | Counter | `{allocation}` | Count of allocations to the heap by the application. [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 **[1]:** Computed from `/gc/heap/allocs:objects`.
 
@@ -141,7 +141,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `go.memory.gc.goal` | UpDownCounter | `By` | Heap size target for the end of the GC cycle. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `go.memory.gc.goal` | UpDownCounter | `By` | Heap size target for the end of the GC cycle. [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 **[1]:** Computed from `/gc/heap/goal:bytes`.
 
@@ -164,7 +164,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `go.goroutine.count` | UpDownCounter | `{goroutine}` | Count of live goroutines. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `go.goroutine.count` | UpDownCounter | `{goroutine}` | Count of live goroutines. [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 **[1]:** Computed from `/sched/goroutines:goroutines`.
 
@@ -187,7 +187,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `go.processor.limit` | UpDownCounter | `{thread}` | The number of OS threads that can execute user-level Go code simultaneously. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `go.processor.limit` | UpDownCounter | `{thread}` | The number of OS threads that can execute user-level Go code simultaneously. [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 **[1]:** Computed from `/sched/gomaxprocs:threads`.
 
@@ -210,7 +210,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `go.schedule.duration` | Histogram | `s` | The time goroutines have spent in the scheduler in a runnable state before actually running. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `go.schedule.duration` | Histogram | `s` | The time goroutines have spent in the scheduler in a runnable state before actually running. [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 **[1]:** Computed from `/sched/latencies:seconds`. Bucket boundaries are provided by the runtime, and are subject to change.
 
@@ -233,7 +233,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `go.config.gogc` | UpDownCounter | `%` | Heap size target percentage configured by the user, otherwise 100. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `go.config.gogc` | UpDownCounter | `%` | Heap size target percentage configured by the user, otherwise 100. [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 **[1]:** The value range is [0.0,100.0]. Computed from `/gc/gogc:percent`.
 

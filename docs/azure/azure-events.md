@@ -40,10 +40,10 @@ semantic convention tooling supports complex attributes
 | `category` | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The Azure category of the log entry. | `AuditEvent`; `GatewayLogs`; `ApplicationGatewayAccessLog` |
 | `correlation.id` | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The correlation ID of the log entry. | `607964b6-41a5-4e24-a5db-db7aab3b9b34` |
 | `duration` | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | int | The duration of the operations in milliseconds. | `1000` |
-| `identity` | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | undefined | "A JSON blob that describes the identity of the user or application that performed the operation." [1] |  |
+| `identity` | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | undefined | "A JSON blob that describes the identity of the user or application that performed the operation." [1] | |
 | `operation.name` | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the operation. | `SecretGet`; `Microsoft.ApiManagement/GatewayLogs`; `ApplicationGatewayAccess` |
 | `operation.version` | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The version of the operation. | `1.0` |
-| `properties` | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | undefined | The properties provided in the Azure Resource Log. |  |
+| `properties` | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | undefined | The properties provided in the Azure Resource Log. | |
 | `result.description` | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The description of the result. | `The operation was successful`; `The operation failed` |
 | `result.signature` | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The substatus of associated with the logged event. | `OK` |
 | `result.type` | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The status associated with the logged event. | `Succeeded`; `Failed`; `Started` |

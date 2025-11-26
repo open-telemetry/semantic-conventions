@@ -265,7 +265,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.pod.cpu.usage` | Gauge | `{cpu}` | Pod's CPU usage, measured in cpus. Range from 0 to the number of allocatable CPUs. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `k8s.pod.cpu.usage` | Gauge | `{cpu}` | Pod's CPU usage, measured in cpus. Range from 0 to the number of allocatable CPUs. [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 **[1]:** CPU usage of the specific Pod on all available CPU cores, averaged over the sample window
 
@@ -2528,7 +2528,7 @@ This metric is [recommended][MetricRecommended].
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `k8s.resourcequota.persistentvolumeclaim_count.hard` | UpDownCounter | `{persistentvolumeclaim}` | The total number of PersistentVolumeClaims that can exist in the namespace.
-The value represents the configured quota limit of the resource in the namespace. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+The value represents the configured quota limit of the resource in the namespace. [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 **[1]:** This metric is retrieved from the `hard` field of the
 [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
@@ -2563,7 +2563,7 @@ This metric is [recommended][MetricRecommended].
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `k8s.resourcequota.persistentvolumeclaim_count.used` | UpDownCounter | `{persistentvolumeclaim}` | The total number of PersistentVolumeClaims that can exist in the namespace.
-The value represents the current observed total usage of the resource in the namespace. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+The value represents the current observed total usage of the resource in the namespace. [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 **[1]:** This metric is retrieved from the `used` field of the
 [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).

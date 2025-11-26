@@ -35,7 +35,7 @@ of `[ 0.01, 0.1, 1, 10 ]`.
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `v8js.gc.duration` | Histogram | `s` | Garbage collection duration. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `v8js.gc.duration` | Histogram | `s` | Garbage collection duration. [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 **[1]:** The values can be retrieved from [`perf_hooks.PerformanceObserver(...).observe({ entryTypes: ['gc'] })`](https://nodejs.org/api/perf_hooks.html#performanceobserverobserveoptions)
 
@@ -71,7 +71,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `v8js.memory.heap.limit` | UpDownCounter | `By` | Total heap memory size pre-allocated. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `v8js.memory.heap.limit` | UpDownCounter | `By` | Total heap memory size pre-allocated. [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 **[1]:** The value can be retrieved from value `space_size` of [`v8.getHeapSpaceStatistics()`](https://nodejs.org/api/v8.html#v8getheapspacestatistics)
 
@@ -110,7 +110,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `v8js.memory.heap.used` | UpDownCounter | `By` | Heap Memory size allocated. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `v8js.memory.heap.used` | UpDownCounter | `By` | Heap Memory size allocated. [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 **[1]:** The value can be retrieved from value `space_used_size` of [`v8.getHeapSpaceStatistics()`](https://nodejs.org/api/v8.html#v8getheapspacestatistics)
 
@@ -149,7 +149,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `v8js.memory.heap.space.available_size` | UpDownCounter | `By` | Heap space available size. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `v8js.memory.heap.space.available_size` | UpDownCounter | `By` | Heap space available size. [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 **[1]:** Value can be retrieved from value `space_available_size` of [`v8.getHeapSpaceStatistics()`](https://nodejs.org/api/v8.html#v8getheapspacestatistics)
 
@@ -188,7 +188,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `v8js.memory.heap.space.physical_size` | UpDownCounter | `By` | Committed size of a heap space. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `v8js.memory.heap.space.physical_size` | UpDownCounter | `By` | Committed size of a heap space. [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 **[1]:** Value can be retrieved from value `physical_space_size` of [`v8.getHeapSpaceStatistics()`](https://nodejs.org/api/v8.html#v8getheapspacestatistics)
 

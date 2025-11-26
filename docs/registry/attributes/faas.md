@@ -11,7 +11,7 @@ FaaS attributes
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="faas-coldstart" href="#faas-coldstart">`faas.coldstart`</a> | ![Development](https://img.shields.io/badge/-development-blue) | boolean | A boolean that is true if the serverless function is executed for the first time (aka cold-start). |  |
+| <a id="faas-coldstart" href="#faas-coldstart">`faas.coldstart`</a> | ![Development](https://img.shields.io/badge/-development-blue) | boolean | A boolean that is true if the serverless function is executed for the first time (aka cold-start). | |
 | <a id="faas-cron" href="#faas-cron">`faas.cron`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | A string containing the schedule period as [Cron Expression](https://docs.oracle.com/cd/E12058_01/doc/doc.1014/e12030/cron_expressions.htm). | `0/5 * * * ? *` |
 | <a id="faas-document-collection" href="#faas-document-collection">`faas.document.collection`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the source on which the triggering operation was performed. For example, in Cloud Storage or S3 corresponds to the bucket name, and in Cosmos DB to the database name. | `myBucketName`; `myDbName` |
 | <a id="faas-document-name" href="#faas-document-name">`faas.document.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The document name/table subjected to the operation. For example, in Cloud Storage or S3 is the name of the file, and in Cosmos DB the table name. | `myFile.txt`; `myTableName` |

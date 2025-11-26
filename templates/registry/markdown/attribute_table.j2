@@ -10,6 +10,6 @@
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-{% for attribute in filtered_attributes | attribute_sort %}| {{ attrs.name_with_link(attribute, attribute_registry_base_url, lineage_attributes) }} | {{ stability.badge(attribute.stability, attribute.deprecated, attribute.brief) | trim }} | {{ requirement.render({"level": attribute.requirement_level, "name": attrs.name(attribute)}, notes) | trim }} | {{ attrs.type(attribute) }} | {{ attribute.brief | trim }}{{ notes.add({"note": attribute.note, "name": attrs.name(attribute)}) }} | {{ examples.format(attribute) | trim }} |
+{% for attribute in filtered_attributes | attribute_sort %}| {{ attrs.name_with_link(attribute, attribute_registry_base_url, lineage_attributes) }} | {{ stability.badge(attribute.stability, attribute.deprecated, attribute.brief) | trim }} | {{ requirement.render({"level": attribute.requirement_level, "name": attrs.name(attribute)}, notes) | trim }} | {{ attrs.type(attribute) }} | {{ attribute.brief | trim }}{{ notes.add({"note": attribute.note, "name": attrs.name(attribute)}) }} | {{ examples.format(attribute) }}|
 {% endfor %}{{ notes.render() }}{{ sampling.snippet(filtered_attributes, attribute_registry_base_url, lineage_attributes) }}{{ enums.tables(filtered_attributes | selectattr("type", "mapping"), notes) }}
 {% endif %}{% endmacro %}

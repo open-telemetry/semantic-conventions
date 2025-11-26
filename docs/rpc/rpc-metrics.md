@@ -74,7 +74,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `rpc.server.duration` | Histogram | `ms` | Measures the duration of inbound RPC. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `rpc.server.duration` | Histogram | `ms` | Measures the duration of inbound RPC. [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 **[1]:** While streaming RPCs may record this metric as start-of-batch
 to end-of-batch, it's hard to interpret in practice.
@@ -174,7 +174,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `rpc.server.request.size` | Histogram | `By` | Measures the size of RPC request messages (uncompressed). [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `rpc.server.request.size` | Histogram | `By` | Measures the size of RPC request messages (uncompressed). [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 **[1]:** **Streaming**: Recorded per message in a streaming batch
 
@@ -271,7 +271,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `rpc.server.response.size` | Histogram | `By` | Measures the size of RPC response messages (uncompressed). [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `rpc.server.response.size` | Histogram | `By` | Measures the size of RPC response messages (uncompressed). [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 **[1]:** **Streaming**: Recorded per response in a streaming batch
 
@@ -373,7 +373,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `rpc.client.duration` | Histogram | `ms` | Measures the duration of outbound RPC. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `rpc.client.duration` | Histogram | `ms` | Measures the duration of outbound RPC. [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 **[1]:** While streaming RPCs may record this metric as start-of-batch
 to end-of-batch, it's hard to interpret in practice.
@@ -477,7 +477,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `rpc.client.request.size` | Histogram | `By` | Measures the size of RPC request messages (uncompressed). [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `rpc.client.request.size` | Histogram | `By` | Measures the size of RPC request messages (uncompressed). [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 **[1]:** **Streaming**: Recorded per message in a streaming batch
 
@@ -578,7 +578,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `rpc.client.response.size` | Histogram | `By` | Measures the size of RPC response messages (uncompressed). [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `rpc.client.response.size` | Histogram | `By` | Measures the size of RPC response messages (uncompressed). [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 **[1]:** **Streaming**: Recorded per response in a streaming batch
 

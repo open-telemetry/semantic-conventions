@@ -68,7 +68,7 @@ The following attributes SHOULD be set:
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `hw.errors` | Counter | `{error}` | Number of errors encountered by the component. | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `hw.errors` | Counter | `{error}` | Number of errors encountered by the component. | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 **Attributes:**
 
@@ -146,7 +146,7 @@ When using this metric, the following attributes MUST be set:
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `hw.physical_disk.endurance_utilization` | Gauge | `1` | Endurance remaining for this SSD disk. | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `hw.physical_disk.endurance_utilization` | Gauge | `1` | Endurance remaining for this SSD disk. | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 **Attributes:**
 
@@ -187,7 +187,7 @@ Size of the disk.
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `hw.physical_disk.size` | UpDownCounter | `By` | Size of the disk. | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `hw.physical_disk.size` | UpDownCounter | `By` | Size of the disk. | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 **Attributes:**
 
@@ -223,7 +223,7 @@ The following attributes SHOULD be set:
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `hw.physical_disk.smart` | Gauge | `1` | Value of the corresponding [S.M.A.R.T.](https://wikipedia.org/wiki/S.M.A.R.T.) (Self-Monitoring, Analysis, and Reporting Technology) attribute. | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `hw.physical_disk.smart` | Gauge | `1` | Value of the corresponding [S.M.A.R.T.](https://wikipedia.org/wiki/S.M.A.R.T.) (Self-Monitoring, Analysis, and Reporting Technology) attribute. | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 **Attributes:**
 
@@ -265,7 +265,7 @@ When using this metric for physical disk status, the following attributes MUST b
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `hw.status` | UpDownCounter | `1` | Operational status: `1` (true) or `0` (false) for each of the possible states. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `hw.status` | UpDownCounter | `1` | Operational status: `1` (true) or `0` (false) for each of the possible states. [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 **[1]:** `hw.status` is currently specified as an *UpDownCounter* but would ideally be represented using a [*StateSet* as defined in OpenMetrics](https://github.com/prometheus/OpenMetrics/blob/v1.0.0/specification/OpenMetrics.md#stateset). This semantic convention will be updated once *StateSet* is specified in OpenTelemetry. This planned change is not expected to have any consequence on the way users query their timeseries backend to retrieve the values of `hw.status` over time.
 
