@@ -663,35 +663,35 @@ As an example, if a browser request for `https://example.com:8080/webshop/articl
 
 Span name: `GET`
 
-|   Attribute name     |                                       Value             |
-| :------------------- | :-------------------------------------------------------|
-| `http.request.method`| `"GET"`                                                 |
-| `network.protocol.version` | `"1.1"`                                           |
-| `url.full`           | `"https://example.com:8080/webshop/articles/4?s=1&t=2"` |
-| `server.address`     | `example.com`                                           |
-| `server.port`        | `8080`                                                  |
-| `network.peer.address` | `"192.0.2.5"`                                         |
-| `network.peer.port`    | `8080`                                                |
-| `http.response.status_code` | `200`                                            |
+| Attribute name              | Value                                                   |
+| :-------------------------- | :------------------------------------------------------ |
+| `http.request.method`       | `"GET"`                                                 |
+| `network.protocol.version`  | `"1.1"`                                                 |
+| `url.full`                  | `"https://example.com:8080/webshop/articles/4?s=1&t=2"` |
+| `server.address`            | `example.com`                                           |
+| `server.port`               | `8080`                                                  |
+| `network.peer.address`      | `"192.0.2.5"`                                           |
+| `network.peer.port`         | `8080`                                                  |
+| `http.response.status_code` | `200`                                                   |
 
 The corresponding server Span may look like this:
 
 Span name: `GET /webshop/articles/:article_id`.
 
-|   Attribute name     |                      Value                      |
-| :------------------- | :---------------------------------------------- |
-| `http.request.method`| `"GET"`                                         |
-| `network.protocol.version` | `"1.1"`                                   |
-| `url.path`           | `"/webshop/articles/4"`                         |
-| `url.query`          | `"s=1&t=2"`                                     |
-| `server.address`     | `"example.com"`                                 |
-| `server.port`        | `8080`                                          |
-| `url.scheme`         | `"https"`                                       |
-| `http.route`         | `"/webshop/articles/:article_id"`               |
-| `http.response.status_code` | `200`                                    |
-| `client.address`     | `"192.0.2.4"`                                   |
-| `network.peer.address` | `"192.0.2.5"` (the client goes through a proxy) |
-| `user_agent.original` | `"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:72.0) Gecko/20100101 Firefox/72.0"` |
+| Attribute name              | Value                                                                              |
+| :-------------------------- | :--------------------------------------------------------------------------------- |
+| `http.request.method`       | `"GET"`                                                                            |
+| `network.protocol.version`  | `"1.1"`                                                                            |
+| `url.path`                  | `"/webshop/articles/4"`                                                            |
+| `url.query`                 | `"s=1&t=2"`                                                                        |
+| `server.address`            | `"example.com"`                                                                    |
+| `server.port`               | `8080`                                                                             |
+| `url.scheme`                | `"https"`                                                                          |
+| `http.route`                | `"/webshop/articles/:article_id"`                                                  |
+| `http.response.status_code` | `200`                                                                              |
+| `client.address`            | `"192.0.2.4"`                                                                      |
+| `network.peer.address`      | `"192.0.2.5"` (the client goes through a proxy)                                    |
+| `user_agent.original`       | `"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:72.0) Gecko/20100101 Firefox/72.0"` |
 
 ### HTTP client retries examples
 
@@ -789,26 +789,26 @@ GET /hello - 200 (CLIENT, trace=t2, span=s1, http.request.resend_count=1)
 
 As an example, if a user requested `https://does-not-exist-123.com`, we may have the following span on the client side:
 
-|   Attribute name     |                                       Value             |
-| :------------------- | :-------------------------------------------------------|
-| `http.request.method`| `"GET"`                                                 |
-| `network.protocol.version` | `"1.1"`                                           |
-| `url.full`           | `"https://does-not-exist-123.com"`                      |
-| `server.address`     | `"does-not-exist-123.com"`                              |
-| `error.type`         | `"java.net.UnknownHostException"`                       |
+| Attribute name             | Value                              |
+| :------------------------- | :--------------------------------- |
+| `http.request.method`      | `"GET"`                            |
+| `network.protocol.version` | `"1.1"`                            |
+| `url.full`                 | `"https://does-not-exist-123.com"` |
+| `server.address`           | `"does-not-exist-123.com"`         |
+| `error.type`               | `"java.net.UnknownHostException"`  |
 
 ### HTTP client call: Internal Server Error
 
 As an example, if a user requested `https://example.com` and server returned 500, we may have the following span on the client side:
 
-|   Attribute name     |                                       Value             |
-| :------------------- | :-------------------------------------------------------|
-| `http.request.method`| `"GET"`                                                 |
-| `network.protocol.version` | `"1.1"`                                           |
-| `url.full`           | `"https://example.com"`                                 |
-| `server.address`     | `"example.com"`                                         |
-| `http.response.status_code` | `500`                                            |
-| `error.type`         | `"500"`                                                 |
+| Attribute name              | Value                   |
+| :-------------------------- | :---------------------- |
+| `http.request.method`       | `"GET"`                 |
+| `network.protocol.version`  | `"1.1"`                 |
+| `url.full`                  | `"https://example.com"` |
+| `server.address`            | `"example.com"`         |
+| `http.response.status_code` | `500`                   |
+| `error.type`                | `"500"`                 |
 
 ### HTTP server call: connection dropped before response body was sent
 
@@ -816,14 +816,14 @@ As an example, if a user sent a `POST` request with a body to `https://example.c
 
 Span name: `POST /uploads/:document_id`.
 
-|   Attribute name     |                      Value                      |
-| :------------------- | :---------------------------------------------- |
-| `http.request.method`| `"POST"`                                         |
-| `url.path`           | `"/uploads/4"`                                  |
-| `url.scheme`         | `"https"`                                       |
-| `http.route`         | `"/uploads/:document_id"`                       |
-| `http.response.status_code` | `201`                                    |
-| `error.type`         | `WebSocketDisconnect`                           |
+| Attribute name              | Value                     |
+| :-------------------------- | :------------------------ |
+| `http.request.method`       | `"POST"`                  |
+| `url.path`                  | `"/uploads/4"`            |
+| `url.scheme`                | `"https"`                 |
+| `http.route`                | `"/uploads/:document_id"` |
+| `http.response.status_code` | `201`                     |
+| `error.type`                | `WebSocketDisconnect`     |
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
 [SpanProcessor]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.51.0/specification/trace/sdk.md#span-processor

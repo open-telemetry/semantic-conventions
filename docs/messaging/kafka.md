@@ -192,20 +192,20 @@ flowchart LR;
 ```
 
 | Field or Attribute | Producer | Consumer Span Poll | Consumer Span Process | Consumer Span Commit T |
-|-|-|-|-|-|
+| --- | --- | --- | --- | --- |
 | Span name | `"send T"` | `"poll T"` | `"process T"` | `"commit T"` |
-| Parent |  |  |  (optional) Span Send  | Span Process |
-| Links |  | Span Send | Span Send |  |
+| Parent | | | (optional) Span Send | Span Process |
+| Links | | Span Send | Span Send | |
 | SpanKind | `PRODUCER` | `CLIENT` | `CONSUMER` | `CLIENT` |
 | Status | `UNSET` | `UNSET` | `UNSET` | `UNSET` |
 | `messaging.system` | `"kafka"` | `"kafka"` | `"kafka"` | `"kafka"` |
 | `messaging.destination.name` | `"T"` | `"T"` | `"T"` | `"T"` |
-| `messaging.consumer.group.name` |  | `"my-group"` | `"my-group"` | `"my-group"` |
+| `messaging.consumer.group.name` | | `"my-group"` | `"my-group"` | `"my-group"` |
 | `messaging.destination.partition.id` | `"1"` | `"1"` | `"1"` | `"1"` |
 | `messaging.operation.name` | `"send"` | `"poll"` | `"process"` | `"commit"` |
-| `messaging.operation.type` | `"send"`  | `"receive"` | `"process"` | `"settle"` |
+| `messaging.operation.type` | `"send"` | `"receive"` | `"process"` | `"settle"` |
 | `messaging.client.id` | `"5"` | `"8"` | `"8"` | `"8"` |
-| `messaging.kafka.message.key` | `"myKey"` | `"myKey"` | `"myKey"` |  |
-| `messaging.kafka.offset` |  | `"12"` | `"12"` | `"12"` |
+| `messaging.kafka.message.key` | `"myKey"` | `"myKey"` | `"myKey"` | |
+| `messaging.kafka.offset` | | `"12"` | `"12"` | `"12"` |
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
