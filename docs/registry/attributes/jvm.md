@@ -17,7 +17,7 @@ This document defines Java Virtual machine related attributes.
 | <a id="jvm-gc-name" href="#jvm-gc-name">`jvm.gc.name`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | Name of the garbage collector. [4] | `G1 Young Generation`; `G1 Old Generation` |
 | <a id="jvm-memory-pool-name" href="#jvm-memory-pool-name">`jvm.memory.pool.name`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | Name of the memory pool. [5] | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` |
 | <a id="jvm-memory-type" href="#jvm-memory-type">`jvm.memory.type`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The type of memory. | `heap`; `non_heap` |
-| <a id="jvm-thread-daemon" href="#jvm-thread-daemon">`jvm.thread.daemon`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | boolean | Whether the thread is daemon or not. |  |
+| <a id="jvm-thread-daemon" href="#jvm-thread-daemon">`jvm.thread.daemon`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | boolean | Whether the thread is daemon or not. | |
 | <a id="jvm-thread-state" href="#jvm-thread-state">`jvm.thread.state`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | State of the thread. | `runnable`; `blocked` |
 
 **[1] `jvm.buffer.pool.name`:** Pool names are generally obtained via [BufferPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/BufferPoolMXBean.html#getName()).

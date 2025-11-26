@@ -32,7 +32,7 @@ ASP.NET Core attributes
 | <a id="aspnetcore-request-is-unhandled" href="#aspnetcore-request-is-unhandled">`aspnetcore.request.is_unhandled`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | boolean | Flag indicating if request was handled by the application pipeline. | `true` |
 | <a id="aspnetcore-routing-is-fallback" href="#aspnetcore-routing-is-fallback">`aspnetcore.routing.is_fallback`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | boolean | A value that indicates whether the matched route is a fallback route. | `true` |
 | <a id="aspnetcore-routing-match-status" href="#aspnetcore-routing-match-status">`aspnetcore.routing.match_status`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | Match result - success or failure | `success`; `failure` |
-| <a id="aspnetcore-sign-in-is-persistent" href="#aspnetcore-sign-in-is-persistent">`aspnetcore.sign_in.is_persistent`</a> | ![Development](https://img.shields.io/badge/-development-blue) | boolean | A flag indicating whether the sign in is persistent. |  |
+| <a id="aspnetcore-sign-in-is-persistent" href="#aspnetcore-sign-in-is-persistent">`aspnetcore.sign_in.is_persistent`</a> | ![Development](https://img.shields.io/badge/-development-blue) | boolean | A flag indicating whether the sign in is persistent. | |
 | <a id="aspnetcore-user-is-authenticated" href="#aspnetcore-user-is-authenticated">`aspnetcore.user.is_authenticated`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | boolean | A value that indicates whether the user is authenticated. | `true` |
 
 ---

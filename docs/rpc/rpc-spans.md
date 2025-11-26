@@ -333,10 +333,10 @@ In the lifetime of an RPC stream, an event for each message sent/received on cli
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`rpc.message.compressed_size`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | int | Compressed size of the message in bytes. |  |
-| [`rpc.message.id`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | int | MUST be calculated as two different counters starting from `1` one for sent messages and one for received message. [1] |  |
+| [`rpc.message.compressed_size`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | int | Compressed size of the message in bytes. | |
+| [`rpc.message.id`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | int | MUST be calculated as two different counters starting from `1` one for sent messages and one for received message. [1] | |
 | [`rpc.message.type`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Whether this is a received or sent message. | `SENT`; `RECEIVED` |
-| [`rpc.message.uncompressed_size`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | int | Uncompressed size of the message in bytes. |  |
+| [`rpc.message.uncompressed_size`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | int | Uncompressed size of the message in bytes. | |
 
 **[1] `rpc.message.id`:** This way we guarantee that the values will be consistent between different implementations.
 

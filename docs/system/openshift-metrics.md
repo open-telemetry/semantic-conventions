@@ -356,7 +356,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `openshift.clusterquota.persistentvolumeclaim_count.hard` | UpDownCounter | `{persistentvolumeclaim}` | The enforced hard limit of the resource across all projects. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `openshift.clusterquota.persistentvolumeclaim_count.hard` | UpDownCounter | `{persistentvolumeclaim}` | The enforced hard limit of the resource across all projects. [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 **[1]:** This metric is retrieved from the `Status.Total.Hard` field of the
 [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core)
@@ -390,7 +390,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `openshift.clusterquota.persistentvolumeclaim_count.used` | UpDownCounter | `{persistentvolumeclaim}` | The current observed total usage of the resource across all projects. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `openshift.clusterquota.persistentvolumeclaim_count.used` | UpDownCounter | `{persistentvolumeclaim}` | The current observed total usage of the resource across all projects. [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 **[1]:** This metric is retrieved from the `Status.Total.Used` field of the
 [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core)

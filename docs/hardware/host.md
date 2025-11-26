@@ -32,7 +32,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `hw.host.ambient_temperature` | Gauge | `Cel` | Ambient (external) temperature of the physical host. | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `hw.host.ambient_temperature` | Gauge | `Cel` | Ambient (external) temperature of the physical host. | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 **Attributes:**
 
@@ -57,7 +57,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `hw.host.energy` | Counter | `J` | Total energy consumed by the entire physical host, in joules. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `hw.host.energy` | Counter | `J` | Total energy consumed by the entire physical host, in joules. [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 **[1]:** The overall energy usage of a host MUST be reported using the specific `hw.host.energy` and `hw.host.power` metrics **only**, instead of the generic `hw.energy` and `hw.power` described in the previous section, to prevent summing up overlapping values.
 
@@ -84,7 +84,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `hw.host.heating_margin` | Gauge | `Cel` | By how many degrees Celsius the temperature of the physical host can be increased, before reaching a warning threshold on one of the internal sensors. | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `hw.host.heating_margin` | Gauge | `Cel` | By how many degrees Celsius the temperature of the physical host can be increased, before reaching a warning threshold on one of the internal sensors. | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 **Attributes:**
 
@@ -109,7 +109,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `hw.host.power` | Gauge | `W` | Instantaneous power consumed by the entire physical host in Watts (`hw.host.energy` is preferred). [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `hw.host.power` | Gauge | `W` | Instantaneous power consumed by the entire physical host in Watts (`hw.host.energy` is preferred). [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 **[1]:** The overall energy usage of a host MUST be reported using the specific `hw.host.energy` and `hw.host.power` metrics **only**, instead of the generic `hw.energy` and `hw.power` described in the previous section, to prevent summing up overlapping values.
 

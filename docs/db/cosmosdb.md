@@ -61,7 +61,7 @@ Semantic conventions described in this document apply to the call-level spans on
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the operation failed. | string | Describes a class of error the operation ended with. [6] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` |
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If not default (443). | int | Server port number. [7] | `80`; `8080`; `443` |
 | [`azure.client.id`](/docs/registry/attributes/azure.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The unique identifier of the client instance. | `3ba4827d-4422-483f-b59f-85b74211c11d`; `storage-client-1` |
-| [`azure.cosmosdb.request.body.size`](/docs/registry/attributes/azure.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | int | Request payload size in bytes. |  |
+| [`azure.cosmosdb.request.body.size`](/docs/registry/attributes/azure.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | int | Request payload size in bytes. | |
 | [`azure.resource_provider.namespace`](/docs/registry/attributes/azure.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | [Azure Resource Provider Namespace](https://learn.microsoft.com/azure/azure-resource-manager/management/azure-services-resource-providers) as recognized by the client. [8] | `Microsoft.DocumentDB` |
 | [`db.operation.batch.size`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | The number of queries included in a batch operation. [9] | `2`; `3`; `4` |
 | [`db.query.text`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The database query being executed. [10] | `SELECT * FROM wuser_table where username = ?`; `SET mykey ?` |
@@ -353,7 +353,7 @@ Explaining bucket configuration:
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `azure.cosmosdb.client.operation.request_charge` | Histogram | `{request_unit}` | [Request units](https://learn.microsoft.com/azure/cosmos-db/request-units) consumed by the operation. | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `azure.cosmosdb.client.operation.request_charge` | Histogram | `{request_unit}` | [Request units](https://learn.microsoft.com/azure/cosmos-db/request-units) consumed by the operation. | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 **Attributes:**
 
@@ -441,7 +441,7 @@ It captures the number of active instances at any given time. Best practices dic
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `azure.cosmosdb.client.active_instance.count` | UpDownCounter | `{instance}` | Number of active client instances. | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `azure.cosmosdb.client.active_instance.count` | UpDownCounter | `{instance}` | Number of active client instances. | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 **Attributes:**
 
