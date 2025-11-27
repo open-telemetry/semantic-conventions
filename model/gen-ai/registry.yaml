@@ -261,6 +261,8 @@ groups:
         type: any
         brief: Parameters passed to the tool call.
         note: |
+          
+          
           > [!WARNING]
           > This attribute may contain sensitive information.
 
@@ -279,6 +281,8 @@ groups:
         type: any
         brief: The result returned by the tool call (if any and if execution was successful).
         note: |
+          
+          
           > [!WARNING]
           > This attribute may contain sensitive information.
 
