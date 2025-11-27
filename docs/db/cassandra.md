@@ -1,6 +1,5 @@
 <!--- Hugo front matter used to generate the website version of this page:
 linkTitle: Cassandra
-aliases: [/docs/specs/semconv/database/cassandra.md]
 --->
 
 # Semantic conventions for Cassandra client operations

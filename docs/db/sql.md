@@ -1,6 +1,5 @@
 <!--- Hugo front matter used to generate the website version of this page:
 linkTitle: SQL
-aliases: [/docs/specs/semconv/database/sql.md]
 --->
 
 # Semantic conventions for SQL databases client operations
