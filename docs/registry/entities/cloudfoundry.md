@@ -13,7 +13,8 @@
 
 **Description:** The application which is monitored.
 
-> :warning: This entity definition contains attributes without a role.
+> [!warning] 
+> This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
 **Attributes:**
@@ -40,7 +41,8 @@ as reported by `cf apps`.
 
 **Description:** The organization of the application which is monitored.
 
-> :warning: This entity definition contains attributes without a role.
+> [!warning] 
+> This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
 **Attributes:**
@@ -67,7 +69,8 @@ reported by `cf orgs`.
 
 **Description:** The process of the application which is monitored.
 
-> :warning: This entity definition contains attributes without a role.
+> [!warning] 
+> This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
 **Attributes:**
@@ -95,7 +98,8 @@ tasks or side-cars with different process types.
 
 **Description:** The space of the application which is monitored.
 
-> :warning: This entity definition contains attributes without a role.
+> [!warning] 
+> This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
 **Attributes:**
@@ -122,7 +126,8 @@ reported by `cf spaces`.
 
 **Description:** The system component which is monitored.
 
-> :warning: This entity definition contains attributes without a role.
+> [!warning] 
+> This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
 **Attributes:**

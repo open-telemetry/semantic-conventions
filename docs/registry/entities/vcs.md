@@ -13,7 +13,8 @@
 
 **Description:** A reference to a specific version in the Version Control System.
 
-> :warning: This entity definition contains attributes without a role.
+> [!warning] 
+> This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
 **Attributes:**
@@ -57,7 +58,8 @@ revision based on the VCS system and situational context.
 
 **Description:** A repository in the Version Control System.
 
-> :warning: This entity definition contains attributes without a role.
+> [!warning] 
+> This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
 **Attributes:**

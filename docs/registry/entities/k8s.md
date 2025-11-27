@@ -51,7 +51,8 @@ conflict.
 
 **Description:** A container in a [PodTemplate](https://kubernetes.io/docs/concepts/workloads/pods/#pod-templates).
 
-> :warning: This entity definition contains attributes without a role.
+> [!warning] 
+> This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
 **Attributes:**
@@ -218,7 +219,8 @@ conflict.
 
 **Description:** A Kubernetes Namespace.
 
-> :warning: This entity definition contains attributes without a role.
+> [!warning] 
+> This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
 **Attributes:**

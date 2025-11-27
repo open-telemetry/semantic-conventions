@@ -13,7 +13,8 @@
 
 **Description:** The distribution of telemetry SDK used to capture data recorded by the instrumentation libraries.
 
-> :warning: This entity definition contains attributes without a role.
+> [!warning] 
+> This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
 **Attributes:**
