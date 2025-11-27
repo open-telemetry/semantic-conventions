@@ -1,6 +1,6 @@
 <!--- Hugo front matter used to generate the website version of this page:
 linkTitle: Database
-redirects: [{ from: 'database/*', to: 'db/:splat' }]
+redirects: [{ from: 'database/*', to: ':splat' }]
 --->
 
 # Semantic conventions for database calls and systems
