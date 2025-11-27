@@ -13,7 +13,8 @@
 
 **Description:** Resource describing the packaged software running the application code. Web engines are typically executed using process.runtime.
 
-> :warning: This entity definition contains attributes without a role.
+> [!warning] 
+> This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
 **Attributes:**

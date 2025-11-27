@@ -13,7 +13,8 @@
 
 **Description:** Attributes used by non-OTLP exporters to represent OpenTelemetry Scope's concepts.
 
-> :warning: This entity definition contains attributes without a role.
+> [!warning] 
+> This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
 **Attributes:**
