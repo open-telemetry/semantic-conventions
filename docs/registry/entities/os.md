@@ -16,8 +16,10 @@
 > :warning: This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
+**Attributes:**
+
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-|---|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- | --- |
 | Other | [`os.type`](/docs/registry/attributes/os.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The operating system type. | `windows`; `linux`; `darwin` |
 | Other | [`os.build_id`](/docs/registry/attributes/os.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Unique identifier for a particular build or compilation of the operating system. [1] | `TQ3C.230805.001.B2`; `20E247`; `22621` |
 | Other | [`os.description`](/docs/registry/attributes/os.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Human readable (not intended to be parsed) OS version information, like e.g. reported by `ver` or `lsb_release -a` commands. | `Microsoft Windows [Version 10.0.18363.778]`; `Ubuntu 18.04.1 LTS` |
@@ -32,5 +34,23 @@
 | Windows | `CurrentBuildNumber` from registry `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion` | - |
 | MacOS | `ProductBuildVersion` from `/System/Library/CoreServices/SystemVersion.plist` | `ProductBuildVersion` from `/System/Library/CoreServices/ServerVersion.plist` |
 | Linux | `BUILD_ID` from `/etc/os-release` | `BUILD_ID` from `/usr/lib/os-release`; <br> contents of `/proc/sys/kernel/osrelease`|
+
+---
+
+`os.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value | Description | Stability |
+| --- | --- | --- |
+| `aix` | AIX (Advanced Interactive eXecutive) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `darwin` | Apple Darwin | ![Development](https://img.shields.io/badge/-development-blue) |
+| `dragonflybsd` | DragonFly BSD | ![Development](https://img.shields.io/badge/-development-blue) |
+| `freebsd` | FreeBSD | ![Development](https://img.shields.io/badge/-development-blue) |
+| `hpux` | HP-UX (Hewlett Packard Unix) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `linux` | Linux | ![Development](https://img.shields.io/badge/-development-blue) |
+| `netbsd` | NetBSD | ![Development](https://img.shields.io/badge/-development-blue) |
+| `openbsd` | OpenBSD | ![Development](https://img.shields.io/badge/-development-blue) |
+| `solaris` | SunOS, Oracle Solaris | ![Development](https://img.shields.io/badge/-development-blue) |
+| `windows` | Microsoft Windows | ![Development](https://img.shields.io/badge/-development-blue) |
+| `zos` | IBM z/OS | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->

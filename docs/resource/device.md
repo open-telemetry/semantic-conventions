@@ -16,8 +16,10 @@
 > :warning: This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
+**Attributes:**
+
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-|---|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- | --- |
 | Other | [`device.manufacturer`](/docs/registry/attributes/device.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the device manufacturer [1] | `Apple`; `Samsung` |
 | Other | [`device.model.identifier`](/docs/registry/attributes/device.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The model identifier for the device [2] | `iPhone3,4`; `SM-G920F` |
 | Other | [`device.model.name`](/docs/registry/attributes/device.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The marketing name for the device model [3] | `iPhone 6s Plus`; `Samsung Galaxy S6` |

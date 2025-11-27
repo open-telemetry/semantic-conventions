@@ -10,7 +10,7 @@ ASP.NET Core attributes
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | <a id="aspnetcore-authentication-result" href="#aspnetcore-authentication-result">`aspnetcore.authentication.result`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The result of the authentication operation. | `success`; `failure` |
 | <a id="aspnetcore-authentication-scheme" href="#aspnetcore-authentication-scheme">`aspnetcore.authentication.scheme`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The identifier that names a particular authentication handler. | `Cookies`; `Bearer`; `Identity.Application` |
 | <a id="aspnetcore-authorization-policy" href="#aspnetcore-authorization-policy">`aspnetcore.authorization.policy`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the authorization policy. | `RequireAdminRole` |
@@ -32,15 +32,15 @@ ASP.NET Core attributes
 | <a id="aspnetcore-request-is-unhandled" href="#aspnetcore-request-is-unhandled">`aspnetcore.request.is_unhandled`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | boolean | Flag indicating if request was handled by the application pipeline. | `true` |
 | <a id="aspnetcore-routing-is-fallback" href="#aspnetcore-routing-is-fallback">`aspnetcore.routing.is_fallback`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | boolean | A value that indicates whether the matched route is a fallback route. | `true` |
 | <a id="aspnetcore-routing-match-status" href="#aspnetcore-routing-match-status">`aspnetcore.routing.match_status`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | Match result - success or failure | `success`; `failure` |
-| <a id="aspnetcore-sign-in-is-persistent" href="#aspnetcore-sign-in-is-persistent">`aspnetcore.sign_in.is_persistent`</a> | ![Development](https://img.shields.io/badge/-development-blue) | boolean | A flag indicating whether the sign in is persistent. |  |
+| <a id="aspnetcore-sign-in-is-persistent" href="#aspnetcore-sign-in-is-persistent">`aspnetcore.sign_in.is_persistent`</a> | ![Development](https://img.shields.io/badge/-development-blue) | boolean | A flag indicating whether the sign in is persistent. | |
 | <a id="aspnetcore-user-is-authenticated" href="#aspnetcore-user-is-authenticated">`aspnetcore.user.is_authenticated`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | boolean | A value that indicates whether the user is authenticated. | `true` |
 
 ---
 
 `aspnetcore.authentication.result` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `failure` | Authentication failed. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `none` | No authentication information returned. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `success` | Authentication was successful. | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -49,8 +49,8 @@ ASP.NET Core attributes
 
 `aspnetcore.authorization.result` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `failure` | Authorization failed. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `success` | Authorization was successful. | ![Development](https://img.shields.io/badge/-development-blue) |
 
@@ -58,8 +58,8 @@ ASP.NET Core attributes
 
 `aspnetcore.diagnostics.exception.result` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `aborted` | Exception handling didn't run because the request was aborted. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `handled` | Exception was handled by the exception handling middleware. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `skipped` | Exception handling was skipped because the response had started. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -69,8 +69,8 @@ ASP.NET Core attributes
 
 `aspnetcore.identity.password_check_result` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `failure` | Password check failed. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `password_missing` | Password check couldn't proceed because the password was missing from the user. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `success` | Password check was successful. | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -81,8 +81,8 @@ ASP.NET Core attributes
 
 `aspnetcore.identity.result` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `failure` | Identity operation failed. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `success` | Identity operation was successful. | ![Development](https://img.shields.io/badge/-development-blue) |
 
@@ -90,8 +90,8 @@ ASP.NET Core attributes
 
 `aspnetcore.identity.sign_in.result` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `failure` | Sign in failed. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `locked_out` | User is locked out. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `not_allowed` | User is not allowed to sign in. | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -102,8 +102,8 @@ ASP.NET Core attributes
 
 `aspnetcore.identity.sign_in.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `external` | Sign in with a previously registered third-party login. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `passkey` | Sign in with passkey. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `password` | Sign in with password. | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -115,8 +115,8 @@ ASP.NET Core attributes
 
 `aspnetcore.identity.token_purpose` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `_OTHER` | Any token purpose that the instrumentation has no prior knowledge of. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `change_email` | The token is for changing the user email address. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `change_phone_number` | The token is for changing a user phone number. | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -128,8 +128,8 @@ ASP.NET Core attributes
 
 `aspnetcore.identity.token_verified` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `failure` | Token verification failed. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `success` | Token verification was successful. | ![Development](https://img.shields.io/badge/-development-blue) |
 
@@ -137,8 +137,8 @@ ASP.NET Core attributes
 
 `aspnetcore.identity.user.update_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `_OTHER` | Any update type that the instrumentation has no prior knowledge of. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `access_failed` | Identity user access failure recorded. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `add_claims` | Identity user claims added. | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -177,8 +177,8 @@ ASP.NET Core attributes
 
 `aspnetcore.rate_limiting.result` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `acquired` | Lease was acquired | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `endpoint_limiter` | Lease request was rejected by the endpoint limiter | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `global_limiter` | Lease request was rejected by the global limiter | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -188,7 +188,7 @@ ASP.NET Core attributes
 
 `aspnetcore.routing.match_status` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `failure` | Match failed | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `success` | Match succeeded | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |

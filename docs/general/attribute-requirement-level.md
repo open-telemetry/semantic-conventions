@@ -38,7 +38,7 @@ requirement level from the referred semantic convention applies.
 
 <!-- TODO(jsuereth) - make examples not break on changes to semconv -->
 
-For example, [Database semantic convention](../database/README.md) references
+For example, [Database semantic convention](/docs/db/README.md) references
 `network.transport` attribute defined in [General attributes](./README.md) with
 `Conditionally Required` level on it.
 
@@ -47,12 +47,12 @@ For example, [Database semantic convention](../database/README.md) references
 The below table details the default inclusion behaviour of attributes on telemetry signals and
 if it can be changed via configuration options.
 
-| Level | Included by default | Can be included via config | Can be excluded via Config |
-| --- | --- | --- | --- |
-| [Required](#required) | Yes | n/a | No |
-| [Conditionally Required](#conditionally-required) | Yes [1] | No [1] | No [1] |
-| [Recommended](#recommended) | Yes [2] | No [2] | Yes |
-| [Opt-In](#opt-in) | No | Yes | Yes |
+| Level                                             | Included by default | Can be included via config | Can be excluded via Config |
+| ------------------------------------------------- | ------------------- | -------------------------- | -------------------------- |
+| [Required](#required)                             | Yes                 | n/a                        | No                         |
+| [Conditionally Required](#conditionally-required) | Yes [1]             | No [1]                     | No [1]                     |
+| [Recommended](#recommended)                       | Yes [2]             | No [2]                     | Yes                        |
+| [Opt-In](#opt-in)                                 | No                  | Yes                        | Yes                        |
 
 **[1]:** unless the attribute requirement conditions or instructions are not satisfied.
 
