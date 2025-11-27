@@ -10,7 +10,7 @@ A cloud environment (e.g. GCP, Azure, AWS).
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | <a id="cloud-account-id" href="#cloud-account-id">`cloud.account.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The cloud account ID the resource is assigned to. | `111111111111`; `opentelemetry` |
 | <a id="cloud-availability-zone" href="#cloud-availability-zone">`cloud.availability_zone`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Cloud regions often have multiple, isolated locations known as zones to increase availability. Availability zone represents the zone where the resource is running. [1] | `us-east-1c` |
 | <a id="cloud-platform" href="#cloud-platform">`cloud.platform`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The cloud platform in use. [2] | `akamai_cloud.compute`; `alibaba_cloud_ecs`; `alibaba_cloud_fc` |
@@ -46,8 +46,8 @@ The following well-known definitions MUST be used if you set this attribute and 
 
 `cloud.platform` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `akamai_cloud.compute` | Akamai Cloud Compute | ![Development](https://img.shields.io/badge/-development-blue) |
 | `alibaba_cloud_ecs` | Alibaba Cloud Elastic Compute Service | ![Development](https://img.shields.io/badge/-development-blue) |
 | `alibaba_cloud_fc` | Alibaba Cloud Function Compute | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -87,8 +87,8 @@ The following well-known definitions MUST be used if you set this attribute and 
 
 `cloud.provider` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `akamai_cloud` | Akamai Cloud | ![Development](https://img.shields.io/badge/-development-blue) |
 | `alibaba_cloud` | Alibaba Cloud | ![Development](https://img.shields.io/badge/-development-blue) |
 | `aws` | Amazon Web Services | ![Development](https://img.shields.io/badge/-development-blue) |

@@ -18,7 +18,7 @@ The entities registry is the catalog of available Entities.
 Currently, the following namespaces exist:
 
 | Namespace | Entity | Stability |
-|-----------|--------|-----------|
+| --------- | ------ | --------- |
 | Android | | |
 | | [android](android.md#android) | ![Development](https://img.shields.io/badge/-development-blue) |
 | App | | |

@@ -10,7 +10,7 @@ This group describes attributes specific to pipelines within a Continuous Integr
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | <a id="cicd-pipeline-action-name" href="#cicd-pipeline-action-name">`cicd.pipeline.action.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The kind of action a pipeline run is performing. | `BUILD`; `RUN`; `SYNC` |
 | <a id="cicd-pipeline-name" href="#cicd-pipeline-name">`cicd.pipeline.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The human readable name of the pipeline within a CI/CD system. | `Build and Test`; `Lint`; `Deploy Go Project`; `deploy_to_environment` |
 | <a id="cicd-pipeline-result" href="#cicd-pipeline-result">`cicd.pipeline.result`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The result of a pipeline run. | `success`; `failure`; `timeout`; `skipped` |
@@ -32,8 +32,8 @@ This group describes attributes specific to pipelines within a Continuous Integr
 
 `cicd.pipeline.action.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `BUILD` | The pipeline run is executing a build. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `RUN` | The pipeline run is executing. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `SYNC` | The pipeline run is executing a sync. | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -42,8 +42,8 @@ This group describes attributes specific to pipelines within a Continuous Integr
 
 `cicd.pipeline.result` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `cancellation` | The pipeline run was cancelled, eg. by a user manually cancelling the pipeline run. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `error` | The pipeline run failed due to an error in the CICD system, eg. due to the worker being killed. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `failure` | The pipeline run did not finish successfully, eg. due to a compile error or a failing test. Such failures are usually detected by non-zero exit codes of the tools executed in the pipeline run. | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -55,8 +55,8 @@ This group describes attributes specific to pipelines within a Continuous Integr
 
 `cicd.pipeline.run.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `executing` | The executing state spans the execution of any run tasks (eg. build, test). | ![Development](https://img.shields.io/badge/-development-blue) |
 | `finalizing` | The finalizing state spans from when the run has finished executing (eg. cleanup of run resources). | ![Development](https://img.shields.io/badge/-development-blue) |
 | `pending` | The run pending state spans from the event triggering the pipeline run until the execution of the run starts (eg. time spent in a queue, provisioning agents, creating run resources). | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -65,8 +65,8 @@ This group describes attributes specific to pipelines within a Continuous Integr
 
 `cicd.pipeline.task.run.result` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `cancellation` | The task run was cancelled, eg. by a user manually cancelling the task run. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `error` | The task run failed due to an error in the CICD system, eg. due to the worker being killed. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `failure` | The task run did not finish successfully, eg. due to a compile error or a failing test. Such failures are usually detected by non-zero exit codes of the tools executed in the task run. | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -78,8 +78,8 @@ This group describes attributes specific to pipelines within a Continuous Integr
 
 `cicd.pipeline.task.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `build` | build | ![Development](https://img.shields.io/badge/-development-blue) |
 | `deploy` | deploy | ![Development](https://img.shields.io/badge/-development-blue) |
 | `test` | test | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -88,8 +88,8 @@ This group describes attributes specific to pipelines within a Continuous Integr
 
 `cicd.worker.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `available` | The worker is not performing work for the CICD system. It is available to the CICD system to perform work on (online / idle). [1] | ![Development](https://img.shields.io/badge/-development-blue) |
 | `busy` | The worker is performing work for the CICD system. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `offline` | The worker is not available to the CICD system (disconnected / down). | ![Development](https://img.shields.io/badge/-development-blue) |

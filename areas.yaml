@@ -27,6 +27,8 @@ areas:
     board: "https://github.com/orgs/open-telemetry/projects/114"
     labels:
       - area:k8s
+      - area:container
+      - area:oci
     status:
       - accepting_contributions
       - active
@@ -249,6 +251,9 @@ areas:
       - active
 
   - name: "Semantic Conventions: Service and Deployment"
+    owner:
+      - name: "semconv-service-and-deployment-approvers"
+        github: semconv-service-and-deployment-approvers
     project: "https://github.com/open-telemetry/community/blob/main/projects/service-and-deployment-semconv.md"
     board: "https://github.com/orgs/open-telemetry/projects/168"
     labels:

@@ -14,7 +14,7 @@ This document defines the attributes used to describe telemetry in the context o
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | <a id="gen-ai-agent-description" href="#gen-ai-agent-description">`gen_ai.agent.description`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Free-form description of the GenAI agent provided by the application. | `Helps with math problems`; `Generates fiction stories` |
 | <a id="gen-ai-agent-id" href="#gen-ai-agent-id">`gen_ai.agent.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The unique identifier of the GenAI agent. | `asst_5j66UpCpwteGg4YSxUnt7lPY` |
 | <a id="gen-ai-agent-name" href="#gen-ai-agent-name">`gen_ai.agent.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Human-readable name of the GenAI agent provided by the application. | `Math Tutor`; `Fiction Writer` |
@@ -177,8 +177,8 @@ Datastore: A tool used by the agent to access and query structured or unstructur
 
 `gen_ai.operation.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `chat` | Chat completion operation such as [OpenAI Chat API](https://platform.openai.com/docs/api-reference/chat) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `create_agent` | Create GenAI agent | ![Development](https://img.shields.io/badge/-development-blue) |
 | `embeddings` | Embeddings operation such as [OpenAI Create embeddings API](https://platform.openai.com/docs/api-reference/embeddings/create) | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -191,8 +191,8 @@ Datastore: A tool used by the agent to access and query structured or unstructur
 
 `gen_ai.output.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `image` | Image | ![Development](https://img.shields.io/badge/-development-blue) |
 | `json` | JSON object with known or unknown schema | ![Development](https://img.shields.io/badge/-development-blue) |
 | `speech` | Speech | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -202,8 +202,8 @@ Datastore: A tool used by the agent to access and query structured or unstructur
 
 `gen_ai.provider.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `anthropic` | [Anthropic](https://www.anthropic.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `aws.bedrock` | [AWS Bedrock](https://aws.amazon.com/bedrock) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `azure.ai.inference` | Azure AI Inference | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -230,8 +230,8 @@ Datastore: A tool used by the agent to access and query structured or unstructur
 
 `gen_ai.token.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `input` | Input tokens (prompt, input, etc.) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `output` | Output tokens (completion, response, etc.) | ![Development](https://img.shields.io/badge/-development-blue) |
 
@@ -242,7 +242,7 @@ Describes deprecated `gen_ai` attributes.
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | <a id="gen-ai-completion" href="#gen-ai-completion">`gen_ai.completion`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Removed, no replacement at this time. | string | Deprecated, use Event API to report completions contents. | `[{'role': 'assistant', 'content': 'The capital of France is Paris.'}]` |
 | <a id="gen-ai-prompt" href="#gen-ai-prompt">`gen_ai.prompt`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Removed, no replacement at this time. | string | Deprecated, use Event API to report prompt contents. | `[{'role': 'user', 'content': 'What is the capital of France?'}]` |
 | <a id="gen-ai-system" href="#gen-ai-system">`gen_ai.system`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `gen_ai.provider.name`. | string | Deprecated, use `gen_ai.provider.name` instead. | `openai`; `gcp.gen_ai`; `gcp.vertex_ai` |
@@ -253,8 +253,8 @@ Describes deprecated `gen_ai` attributes.
 
 `gen_ai.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `anthropic` | Anthropic | ![Development](https://img.shields.io/badge/-development-blue) |
 | `aws.bedrock` | AWS Bedrock | ![Development](https://img.shields.io/badge/-development-blue) |
 | `azure.ai.inference` | Azure AI Inference | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -284,7 +284,7 @@ Describes deprecated `gen_ai.openai` attributes.
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | <a id="gen-ai-openai-request-response-format" href="#gen-ai-openai-request-response-format">`gen_ai.openai.request.response_format`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `gen_ai.output.type`. | string | Deprecated, use `gen_ai.output.type`. | `text`; `json_object`; `json_schema` |
 | <a id="gen-ai-openai-request-seed" href="#gen-ai-openai-request-seed">`gen_ai.openai.request.seed`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `gen_ai.request.seed`. | int | Deprecated, use `gen_ai.request.seed`. | `100` |
 | <a id="gen-ai-openai-request-service-tier" href="#gen-ai-openai-request-service-tier">`gen_ai.openai.request.service_tier`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `openai.request.service_tier`. | string | Deprecated, use `openai.request.service_tier`. | `auto`; `default` |
@@ -295,8 +295,8 @@ Describes deprecated `gen_ai.openai` attributes.
 
 `gen_ai.openai.request.response_format` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `json_object` | JSON object response format | ![Development](https://img.shields.io/badge/-development-blue) |
 | `json_schema` | JSON schema response format | ![Development](https://img.shields.io/badge/-development-blue) |
 | `text` | Text response format | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -305,7 +305,7 @@ Describes deprecated `gen_ai.openai` attributes.
 
 `gen_ai.openai.request.service_tier` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `auto` | The system will utilize scale tier credits until they are exhausted. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `default` | The system will utilize the default scale tier. | ![Development](https://img.shields.io/badge/-development-blue) |

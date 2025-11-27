@@ -17,8 +17,10 @@
 > This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
+**Attributes:**
+
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-|---|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- | --- |
 | Other | [`vcs.ref.head.name`](/docs/registry/attributes/vcs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. [1] | `my-feature-branch`; `tag-1-test` |
 | Other | [`vcs.ref.head.revision`](/docs/registry/attributes/vcs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The revision, literally [revised version](https://www.merriam-webster.com/dictionary/revision), The revision most often refers to a commit object in Git, or a revision number in SVN. [2] | `9d59409acf479dfa0df1aa568182e43e43df8bbe28d60fcf2bc52e30068802cc`; `main`; `123`; `HEAD` |
 | Other | [`vcs.ref.type`](/docs/registry/attributes/vcs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository. | `branch`; `tag` |
@@ -39,6 +41,15 @@ it is identical to the `ref.head.name`, it SHOULD still be included.
 It is up to the implementer to decide which value to set as the
 revision based on the VCS system and situational context.
 
+---
+
+`vcs.ref.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value | Description | Stability |
+| --- | --- | --- |
+| `branch` | [branch](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddefbranchabranch) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `tag` | [tag](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddeftagatag) | ![Development](https://img.shields.io/badge/-development-blue) |
+
 ## VCS Repo
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
@@ -51,8 +62,10 @@ revision based on the VCS system and situational context.
 > This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
+**Attributes:**
+
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-|---|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- | --- |
 | Other | [`vcs.repository.name`](/docs/registry/attributes/vcs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The human readable name of the repository. It SHOULD NOT include any additional identifier like Group/SubGroup in GitLab or organization in GitHub. [3] | `semantic-conventions`; `my-cool-repo` |
 | Other | [`vcs.repository.url.full`](/docs/registry/attributes/vcs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The [canonical URL](https://support.google.com/webmasters/answer/10347851) of the repository providing the complete HTTP(S) address in order to locate and identify the repository through a browser. [4] | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` |
 

@@ -124,7 +124,7 @@ markdown-link-check-local-only: normalized-link-check
 #   <!-- tocstop -->
 .PHONY: markdown-toc
 markdown-toc:
-	@if ! npm ls markdown-toc; then npm install; fi
+	@if ! npm ls markdown-toc; then npm ci --ignore-scripts; fi
 	@find . -type f -name '*.md' -not -path './.github/*' -not -path './node_modules/*' -not -path './.git/*' | while read -r f; do \
 		if grep -q '<!-- tocstop -->' "$$f"; then \
 			echo markdown-toc: processing "$$f"; \
@@ -138,7 +138,7 @@ markdown-toc:
 
 .PHONY: markdownlint
 markdownlint:
-	@if ! npm ls markdownlint-cli; then npm install; fi
+	@if ! npm ls markdownlint-cli; then npm ci --ignore-scripts; fi
 	npx --no -- markdownlint-cli -c .markdownlint.yaml "**/*.md" --ignore ./.github/ --ignore ./node_modules/ --ignore ./.git/
 
 .PHONY: install-yamllint
@@ -220,7 +220,7 @@ fix: table-generation registry-generation misspell-correction markdown-toc
 
 .PHONY: install-tools
 install-tools: $(MISSPELL)
-	npm install
+	npm ci --ignore-scripts
 	@echo "All tools installed"
 
 $(CHLOGGEN):

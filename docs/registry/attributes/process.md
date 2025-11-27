@@ -14,7 +14,7 @@ An operating system process.
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | <a id="process-args-count" href="#process-args-count">`process.args_count`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | Length of the process.command_args array [1] | `4` |
 | <a id="process-command" href="#process-command">`process.command`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The command used to launch the process (i.e. the command name). On Linux based systems, can be set to the zeroth string in `proc/[pid]/cmdline`. On Windows, can be set to the first parameter extracted from `GetCommandLineW`. | `cmd/otelcol` |
 | <a id="process-command-args" href="#process-command-args">`process.command_args`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string[] | All the command arguments (including the command/executable itself) as received by the process. On Linux-based systems (and some other Unixoid systems supporting procfs), can be set according to the list of null-delimited strings extracted from `proc/[pid]/cmdline`. For libc-based executables, this would be the full argv vector passed to `main`. SHOULD NOT be collected by default unless there is sanitization that excludes sensitive data. | `["cmd/otecol", "--config=config.yaml"]` |
@@ -30,7 +30,7 @@ An operating system process.
 | <a id="process-exit-code" href="#process-exit-code">`process.exit.code`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The exit code of the process. | `127` |
 | <a id="process-exit-time" href="#process-exit-time">`process.exit.time`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The date and time the process exited, in ISO 8601 format. | `2023-11-21T09:26:12.315Z` |
 | <a id="process-group-leader-pid" href="#process-group-leader-pid">`process.group_leader.pid`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The PID of the process's group leader. This is also the process group ID (PGID) of the process. | `23` |
-| <a id="process-interactive" href="#process-interactive">`process.interactive`</a> | ![Development](https://img.shields.io/badge/-development-blue) | boolean | Whether the process is connected to an interactive shell. |  |
+| <a id="process-interactive" href="#process-interactive">`process.interactive`</a> | ![Development](https://img.shields.io/badge/-development-blue) | boolean | Whether the process is connected to an interactive shell. | |
 | <a id="process-owner" href="#process-owner">`process.owner`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The username of the user that owns the process. | `root` |
 | <a id="process-parent-pid" href="#process-parent-pid">`process.parent_pid`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | Parent Process identifier (PPID). | `111` |
 | <a id="process-pid" href="#process-pid">`process.pid`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | Process identifier (PID). | `1234` |
@@ -68,8 +68,8 @@ with value `"/usr/local/bin:/usr/bin"`.
 
 `process.context_switch.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `involuntary` | involuntary | ![Development](https://img.shields.io/badge/-development-blue) |
 | `voluntary` | voluntary | ![Development](https://img.shields.io/badge/-development-blue) |
 
@@ -77,8 +77,8 @@ with value `"/usr/local/bin:/usr/bin"`.
 
 `process.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `defunct` | defunct | ![Development](https://img.shields.io/badge/-development-blue) |
 | `running` | running | ![Development](https://img.shields.io/badge/-development-blue) |
 | `sleeping` | sleeping | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -91,7 +91,7 @@ Describes Linux Process attributes
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | <a id="process-linux-cgroup" href="#process-linux-cgroup">`process.linux.cgroup`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The control group associated with the process. [5] | `1:name=systemd:/user.slice/user-1000.slice/session-3.scope`; `0::/user.slice/user-1000.slice/user@1000.service/tmux-spawn-0267755b-4639-4a27-90ed-f19f88e53748.scope` |
 
 **[5] `process.linux.cgroup`:** Control groups (cgroups) are a kernel feature used to organize and manage process resources. This attribute provides the path(s) to the cgroup(s) associated with the process, which should match the contents of the [/proc/\[PID\]/cgroup](https://man7.org/linux/man-pages/man7/cgroups.7.html) file.
@@ -103,7 +103,7 @@ Deprecated process attributes.
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | <a id="process-context-switch-type" href="#process-context-switch-type">`process.context_switch_type`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `process.context_switch.type`. | string | "Deprecated, use `process.context_switch.type` instead." | `voluntary`; `involuntary` |
 | <a id="process-cpu-state" href="#process-cpu-state">`process.cpu.state`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `cpu.mode`. | string | Deprecated, use `cpu.mode` instead. | `system`; `user`; `wait` |
 | <a id="process-executable-build-id-profiling" href="#process-executable-build-id-profiling">`process.executable.build_id.profiling`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `process.executable.build_id.htlhash`. | string | "Deprecated, use `process.executable.build_id.htlhash` instead." | `600DCAFE4A110000F2BF38C493F5FB92` |
@@ -113,8 +113,8 @@ Deprecated process attributes.
 
 `process.context_switch_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `involuntary` | involuntary | ![Development](https://img.shields.io/badge/-development-blue) |
 | `voluntary` | voluntary | ![Development](https://img.shields.io/badge/-development-blue) |
 
@@ -122,8 +122,8 @@ Deprecated process attributes.
 
 `process.cpu.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `system` | system | ![Development](https://img.shields.io/badge/-development-blue) |
 | `user` | user | ![Development](https://img.shields.io/badge/-development-blue) |
 | `wait` | wait | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -132,7 +132,7 @@ Deprecated process attributes.
 
 `process.paging.fault_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `major` | major | ![Development](https://img.shields.io/badge/-development-blue) |
 | `minor` | minor | ![Development](https://img.shields.io/badge/-development-blue) |
