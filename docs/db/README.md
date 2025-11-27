@@ -2,7 +2,7 @@
 linkTitle: Database
 --->
 
-# Semantic conventions for database calls and systems (TEMP: fix redirect)
+# Semantic conventions for database calls and systems
 
 **Status**: [Mixed][DocumentStatus]
 
