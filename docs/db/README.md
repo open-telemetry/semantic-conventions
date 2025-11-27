@@ -3,7 +3,7 @@ linkTitle: Database
 redirects: [{ from: 'database/*', to: ':splat' }]
 --->
 
-# Semantic conventions for database calls and systems
+# Semantic conventions for database calls and systems (TEMP: fix redirect)
 
 **Status**: [Mixed][DocumentStatus]
 
