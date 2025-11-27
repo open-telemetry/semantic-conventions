@@ -63,7 +63,7 @@ Describes Linux Pressure Stall Information attributes
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | <a id="system-linux-psi-resource" href="#system-linux-psi-resource">`system.linux.psi.resource`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The resource experiencing pressure [1] | `cpu`; `memory`; `io` |
 | <a id="system-linux-psi-stall-type" href="#system-linux-psi-stall-type">`system.linux.psi.stall_type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The PSI stall type | `some`; `full` |
 | <a id="system-linux-psi-window" href="#system-linux-psi-window">`system.linux.psi.window`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The time window over which pressure is calculated in seconds. [2] | `10`; `60`; `300` |
@@ -76,8 +76,8 @@ Describes Linux Pressure Stall Information attributes
 
 `system.linux.psi.resource` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `cpu` | CPU resource pressure | ![Development](https://img.shields.io/badge/-development-blue) |
 | `io` | I/O resource pressure | ![Development](https://img.shields.io/badge/-development-blue) |
 | `memory` | Memory resource pressure | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -86,8 +86,8 @@ Describes Linux Pressure Stall Information attributes
 
 `system.linux.psi.stall_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `full` | All non-idle tasks are stalled on the resource simultaneously [3] | ![Development](https://img.shields.io/badge/-development-blue) |
 | `some` | At least some tasks are stalled on the resource [4] | ![Development](https://img.shields.io/badge/-development-blue) |
 
