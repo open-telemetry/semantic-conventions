@@ -1,6 +1,5 @@
 <!--- Hugo front matter used to generate the website version of this page:
 linkTitle: Spans
-aliases: [/docs/specs/semconv/database/database-spans.md]
 --->
 
 # Semantic conventions for database client spans

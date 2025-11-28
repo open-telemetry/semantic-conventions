@@ -1,6 +1,5 @@
 <!--- Hugo front matter used to generate the website version of this page:
 linkTitle: SQL Server
-aliases: [/docs/specs/semconv/database/sqlserver.md]
 --->
 
 # Semantic conventions for Microsoft SQL Server client operations

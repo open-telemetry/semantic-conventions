@@ -5,7 +5,9 @@ cascade:
   github_subdir: docs
   path_base_for_github_subdir: tmp/semconv/docs/
   github_project_repo: *repo
-redirects: [{ from: 'attributes-registry/*', to: 'registry/attributes/:splat' }]
+redirects:
+  - { from: 'attributes-registry/*', to: 'registry/attributes/:splat' }
+  - { from: 'database/*', to: 'db/:splat' }
 cSpell:ignore: semconv CICD
 auto_gen: below
 linkTitle: Semantic conventions

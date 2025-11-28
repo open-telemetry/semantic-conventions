@@ -1,6 +1,5 @@
 <!--- Hugo front matter used to generate the website version of this page:
 linkTitle: Cosmos DB
-aliases: [/docs/specs/semconv/database/cosmosdb.md]
 --->
 
 # Semantic conventions for Microsoft Azure Cosmos DB client operations
