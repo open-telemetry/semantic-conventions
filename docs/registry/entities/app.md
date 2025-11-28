@@ -13,7 +13,7 @@
 
 **Description:** An app used directly by end users — like mobile, web, or desktop.
 
-> [!warning] 
+> [!warning]
 > This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 

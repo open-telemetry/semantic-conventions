@@ -18,7 +18,7 @@ linkTitle: ECS
 
 **Description:** Entities used by AWS Elastic Container Service (ECS).
 
-> [!warning] 
+> [!warning]
 > This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 

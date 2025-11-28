@@ -24,7 +24,7 @@ See also:
 
 **Description:** A serverless instance.
 
-> [!warning] 
+> [!warning]
 > This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
