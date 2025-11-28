@@ -17,7 +17,7 @@ To report host metrics, the `system.*` namespace SHOULD be used.
 
 **Description:** A host is defined as a computing instance. For example, physical servers, virtual machines, switches or disk array.
 
-> [!warning] 
+> [!warning]
 > This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
@@ -101,7 +101,7 @@ privileged lookup of `host.id` is required, the value should be injected via the
 
 **Description:** A host's CPU information
 
-> [!warning] 
+> [!warning]
 > This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 

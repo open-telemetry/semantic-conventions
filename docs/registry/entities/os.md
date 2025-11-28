@@ -13,7 +13,7 @@
 
 **Description:** The operating system (OS) on which the process represented by this resource is running.
 
-> [!warning] 
+> [!warning]
 > This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
