@@ -1,6 +1,5 @@
 <!--- Hugo front matter used to generate the website version of this page:
 linkTitle: Metrics
-aliases: [/docs/specs/semconv/database/database-metrics.md]
 --->
 
 # Semantic conventions for database client metrics

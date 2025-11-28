@@ -1,6 +1,5 @@
 <!--- Hugo front matter used to generate the website version of this page:
 linkTitle: DynamoDB
-aliases: [/docs/specs/semconv/database/dynamodb.md]
 --->
 
 # Semantic conventions for AWS DynamoDB client operations

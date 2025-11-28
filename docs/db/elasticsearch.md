@@ -1,6 +1,5 @@
 <!--- Hugo front matter used to generate the website version of this page:
 linkTitle: Elasticsearch
-aliases: [/docs/specs/semconv/database/elasticsearch.md]
 --->
 
 # Semantic conventions for Elasticsearch client operations
