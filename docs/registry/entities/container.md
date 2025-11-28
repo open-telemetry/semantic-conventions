@@ -29,7 +29,6 @@
 | Other | [`container.command_args`](/docs/registry/attributes/container.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string[] | All the command arguments (including the command/executable itself) run by the container. | `["otelcontribcol", "--config", "config.yaml"]` |
 | Other | [`container.command_line`](/docs/registry/attributes/container.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The full command run by the container as a single string representing the full command. | `otelcontribcol --config config.yaml` |
 
-
 **[1] `container.label.<key>`:** For example, a docker container label `app` with value `nginx` SHOULD be recorded as the `container.label.app` attribute with value `"nginx"`.
 
 **[2] `oci.manifest.digest`:** Follows [OCI Image Manifest Specification](https://github.com/opencontainers/image-spec/blob/main/manifest.md), and specifically the [Digest property](https://github.com/opencontainers/image-spec/blob/main/descriptor.md#digests).
@@ -57,7 +56,6 @@ An example can be found in [Example Image Manifest](https://github.com/openconta
 | Other | [`container.image.name`](/docs/registry/attributes/container.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Name of the image the container was built on. | `gcr.io/opentelemetry/operator` |
 | Other | [`container.image.repo_digests`](/docs/registry/attributes/container.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string[] | Repo digests of the container image as provided by the container runtime. [5] | `["example@sha256:afcc7f1ac1b49db317a7196c902e61c6c3c4607d63599ee1a82d702d249a0ccb", "internal.registry.example.com:5000/example@sha256:b69959407d21e8a062e0416bf13405bb2b71ed7a84dde4158ebafacfa06f5578"]` |
 | Other | [`container.image.tags`](/docs/registry/attributes/container.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string[] | Container image tags. An example can be found in [Docker Image Inspect](https://docs.docker.com/reference/api/engine/version/v1.52/#tag/Image/operation/ImageInspect). Should be only the `<tag>` section of the full name for example from `registry.example.com/my-org/my-image:<tag>`. | `["v1.27.1", "3.5.7-0"]` |
-
 
 **[4] `container.image.id`:** Docker defines a sha256 of the image id; `container.image.id` corresponds to the `Image` field from the Docker container inspect [API](https://docs.docker.com/reference/api/engine/version/v1.52/#tag/Container/operation/ContainerInspect) endpoint.
 K8s defines a link to the container registry repository with digest `"imageID": "registry.azurecr.io /namespace/service/dockerfile@sha256:bdeabd40c3a8a492eaf9e8e44d0ebbb84bac7ee25ac0cf8a7159d25f62555625"`.

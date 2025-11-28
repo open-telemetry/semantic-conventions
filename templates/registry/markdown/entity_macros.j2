@@ -53,8 +53,7 @@
 | --- | --- | --- | --- | --- | --- | --- |{%- if id_attrs | length > 0 %}
 {{ attribute_table(id_attrs, "/docs/registry/attributes", e.lineage.attributes, notes, "identity") | trim }}{% endif %}{%- if desc_attrs | length > 0 %}
 {{ attribute_table(desc_attrs, "/docs/registry/attributes", e.lineage.attributes, notes, "description") | trim }}{% endif %}{%- if misc_attrs | length > 0 %}
-{{ attribute_table(misc_attrs, "/docs/registry/attributes", e.lineage.attributes, notes, "other") | trim }}
-{% endif %}
+{{ attribute_table(misc_attrs, "/docs/registry/attributes", e.lineage.attributes, notes, "other") | trim }}{% endif %}
 
 {{ notes.render() | trim }}
 
