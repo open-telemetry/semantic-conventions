@@ -27,7 +27,6 @@
 | Other | [`os.name`](/docs/registry/attributes/os.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Human readable operating system name. | `iOS`; `Android`; `Ubuntu` |
 | Other | [`os.version`](/docs/registry/attributes/os.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The version string of the operating system as defined in [Version Attributes](/docs/resource/README.md#version-attributes). | `14.2.1`; `18.04.1` |
 
-
 **[1] `os.build_id`:** `build_id` values SHOULD be obtained from the following sources:
 
 | OS | Primary | Fallback |
