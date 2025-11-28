@@ -13,7 +13,7 @@
 
 **Description:** Entities used by AWS Elastic Container Service (ECS).
 
-> [!warning] 
+> [!warning]
 > This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
@@ -49,7 +49,7 @@
 
 **Description:** Entities used by AWS Elastic Kubernetes Service (EKS).
 
-> [!warning] 
+> [!warning]
 > This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
@@ -67,7 +67,7 @@
 
 **Description:** Entities specific to Amazon Web Services.
 
-> [!warning] 
+> [!warning]
 > This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 

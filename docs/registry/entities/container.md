@@ -13,7 +13,7 @@
 
 **Description:** A container instance.
 
-> [!warning] 
+> [!warning]
 > This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
@@ -45,7 +45,7 @@ An example can be found in [Example Image Manifest](https://github.com/openconta
 
 **Description:** The image used for the container.
 
-> [!warning] 
+> [!warning]
 > This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 

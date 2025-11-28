@@ -13,7 +13,7 @@
 
 **Description:** The web browser in which the application represented by the resource is running. The `browser.*` attributes MUST be used only for resources that represent applications running in a web browser (regardless of whether running on a mobile or desktop device).
 
-> [!warning] 
+> [!warning]
 > This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 

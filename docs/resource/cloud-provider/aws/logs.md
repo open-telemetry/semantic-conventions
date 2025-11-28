@@ -17,7 +17,7 @@ linkTitle: Logs
 
 **Description:** Entities specific to Amazon Web Services.
 
-> [!warning] 
+> [!warning]
 > This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
