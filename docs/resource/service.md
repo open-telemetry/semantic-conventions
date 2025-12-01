@@ -31,7 +31,7 @@ flowchart LR
     Http1["`**service.instance.id**
             aabcd-1231`"]
     Http2["`**service.instance.id**
-           aabcd-1234`"]
+           http-server-1234`"]
     Db1["`**service.instance.id**
          db-gbgfx`"]
     Db --> Db1
