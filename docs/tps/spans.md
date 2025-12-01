@@ -18,41 +18,43 @@ This document defines semantic conventions for a HTTP server spans of Transactio
 
 **Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+**Attributes:**
+
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
-| [`http.request.method`](/docs/registry/attributes/http.md) | string | HTTP request method. [1] | `GET`; `POST`; `HEAD` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`tps.system.name`](/docs/registry/attributes/tps.md) | string | Type of Transaction Processing System | `jta`; `oracle.tuxedo`; `ibm.cics`; `ibm.ims`; `ibm.ztpf` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`tps.transaction.id`](/docs/registry/attributes/tps.md) | string | Identifier of the transaction initiated by a user or system request | `TRX1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`url.path`](/docs/registry/attributes/url.md) | string | The [URI path](https://www.rfc-editor.org/rfc/rfc3986#section-3.3) component [2] | `/search` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`url.scheme`](/docs/registry/attributes/url.md) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. [3] | `http`; `https` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`error.type`](/docs/registry/attributes/error.md) | string | Describes a class of error the operation ended with. [4] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` | `Conditionally Required` If request has ended with an error. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`http.request.method_original`](/docs/registry/attributes/http.md) | string | Original HTTP method sent by the client in the request line. | `GeT`; `ACL`; `foo` | `Conditionally Required` [5] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`http.response.status_code`](/docs/registry/attributes/http.md) | int | [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6). | `200` | `Conditionally Required` If and only if one was received/sent. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`http.route`](/docs/registry/attributes/http.md) | string | The matched route, that is, the path template in the format used by the respective server framework. [6] | `/users/:userID?`; `{controller}/{action}/{id?}` | `Conditionally Required` If and only if it's available | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.protocol.name`](/docs/registry/attributes/network.md) | string | [OSI application layer](https://wikipedia.org/wiki/Application_layer) or non-OSI equivalent. [7] | `http`; `spdy` | `Conditionally Required` [8] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.port`](/docs/registry/attributes/server.md) | int | Port of the local HTTP server that received the request. [9] | `80`; `8080`; `443` | `Conditionally Required` If available and `server.address` is set. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`url.query`](/docs/registry/attributes/url.md) | string | The [URI query](https://www.rfc-editor.org/rfc/rfc3986#section-3.4) component [10] | `q=OpenTelemetry` | `Conditionally Required` If and only if one was received/sent. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`client.address`](/docs/registry/attributes/client.md) | string | Client address - domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [11] | `83.164.160.102` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.peer.address`](/docs/registry/attributes/network.md) | string | Peer address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.peer.port`](/docs/registry/attributes/network.md) | int | Peer port number of the network connection. | `65123` | `Recommended` If `network.peer.address` is set. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.protocol.version`](/docs/registry/attributes/network.md) | string | The actual version of the protocol used for network communication. [12] | `1.0`; `1.1`; `2`; `3` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.address`](/docs/registry/attributes/server.md) | string | Name of the local HTTP server that received the request. [13] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`tps.program.name`](/docs/registry/attributes/tps.md) | string | Program name executed by the task | `PROG123` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`tps.task.id`](/docs/registry/attributes/tps.md) | string | Identifier of the task created to run the transaction | `1554` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`tps.transaction.owner.id`](/docs/registry/attributes/tps.md) | string | Identifier of the user owning the transaction | `USER` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`tps.unit_of_work.id`](/docs/registry/attributes/tps.md) | string | Unit of work executed by the program | `DF308CBF385A3C05` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`user_agent.original`](/docs/registry/attributes/user-agent.md) | string | Value of the [HTTP User-Agent](https://www.rfc-editor.org/rfc/rfc9110.html#field.user-agent) header sent by the client. | `CERN-LineMode/2.15 libwww/2.17b3`; `Mozilla/5.0 (iPhone; CPU iPhone OS 14_7_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.2 Mobile/15E148 Safari/604.1`; `YourApp/1.0.0 grpc-java-okhttp/1.27.2` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`client.port`](/docs/registry/attributes/client.md) | int | The port of whichever client was captured in `client.address`. [14] | `65123` | `Opt-In` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`http.request.body.size`](/docs/registry/attributes/http.md) | int | The size of the request payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size. | `3495` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`http.request.header.<key>`](/docs/registry/attributes/http.md) | string[] | HTTP request headers, `<key>` being the normalized HTTP Header name (lowercase), the value being the header values. [15] | `["application/json"]`; `["1.2.3.4", "1.2.3.5"]` | `Opt-In` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`http.request.size`](/docs/registry/attributes/http.md) | int | The total size of the request in bytes. This should be the total number of bytes sent over the wire, including the request line (HTTP/1.1), framing (HTTP/2 and HTTP/3), headers, and request body if any. | `1437` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`http.response.body.size`](/docs/registry/attributes/http.md) | int | The size of the response payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size. | `3495` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`http.response.header.<key>`](/docs/registry/attributes/http.md) | string[] | HTTP response headers, `<key>` being the normalized HTTP Header name (lowercase), the value being the header values. [16] | `["application/json"]`; `["abc", "def"]` | `Opt-In` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`http.response.size`](/docs/registry/attributes/http.md) | int | The total size of the response in bytes. This should be the total number of bytes sent over the wire, including the status line (HTTP/1.1), framing (HTTP/2 and HTTP/3), headers, and response body and trailers if any. | `1437` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`network.local.address`](/docs/registry/attributes/network.md) | string | Local socket address. Useful in case of a multi-IP host. | `10.1.2.80`; `/tmp/my.sock` | `Opt-In` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.local.port`](/docs/registry/attributes/network.md) | int | Local socket port. Useful in case of a multi-port host. | `65123` | `Opt-In` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.transport`](/docs/registry/attributes/network.md) | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [17] | `tcp`; `udp` | `Opt-In` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`user_agent.synthetic.type`](/docs/registry/attributes/user-agent.md) | string | Specifies the category of synthetic traffic, such as tests or bots. [18] | `bot`; `test` | `Opt-In` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`http.request.method`](/docs/registry/attributes/http.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | HTTP request method. [1] | `GET`; `POST`; `HEAD` |
+| [`tps.system.name`](/docs/registry/attributes/tps.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Type of Transaction Processing System | `jta`; `oracle.tuxedo`; `ibm.cics`; `ibm.ims`; `ibm.ztpf` |
+| [`tps.transaction.id`](/docs/registry/attributes/tps.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Identifier of the transaction initiated by a user or system request | `TRX1` |
+| [`url.path`](/docs/registry/attributes/url.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | The [URI path](https://www.rfc-editor.org/rfc/rfc3986#section-3.3) component [2] | `/search` |
+| [`url.scheme`](/docs/registry/attributes/url.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. [3] | `http`; `https` |
+| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If request has ended with an error. | string | Describes a class of error the operation ended with. [4] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` |
+| [`http.request.method_original`](/docs/registry/attributes/http.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [5] | string | Original HTTP method sent by the client in the request line. | `GeT`; `ACL`; `foo` |
+| [`http.response.status_code`](/docs/registry/attributes/http.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if one was received/sent. | int | [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6). | `200` |
+| [`http.route`](/docs/registry/attributes/http.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if it's available | string | The matched route template for the request. This MUST be low-cardinality and include all static path segments, with dynamic path segments represented with placeholders. [6] | `/users/:userID?`; `my-controller/my-action/{id?}` |
+| [`network.protocol.name`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [7] | string | [OSI application layer](https://wikipedia.org/wiki/Application_layer) or non-OSI equivalent. [8] | `http`; `spdy` |
+| [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If available and `server.address` is set. | int | Port of the local HTTP server that received the request. [9] | `80`; `8080`; `443` |
+| [`url.query`](/docs/registry/attributes/url.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if one was received/sent. | string | The [URI query](https://www.rfc-editor.org/rfc/rfc3986#section-3.4) component [10] | `q=OpenTelemetry` |
+| [`client.address`](/docs/registry/attributes/client.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Client address - domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [11] | `83.164.160.102` |
+| [`network.peer.address`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Peer address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` |
+| [`network.peer.port`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` If `network.peer.address` is set. | int | Peer port number of the network connection. | `65123` |
+| [`network.protocol.version`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The actual version of the protocol used for network communication. [12] | `1.0`; `1.1`; `2`; `3` |
+| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Name of the local HTTP server that received the request. [13] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
+| [`tps.program.name`](/docs/registry/attributes/tps.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Program name executed by the task | `PROG123` |
+| [`tps.task.id`](/docs/registry/attributes/tps.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Identifier of the task created to run the transaction | `1554` |
+| [`tps.transaction.owner.id`](/docs/registry/attributes/tps.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Identifier of the user owning the transaction | `USER` |
+| [`tps.unit_of_work.id`](/docs/registry/attributes/tps.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Unit of work executed by the program | `DF308CBF385A3C05` |
+| [`user_agent.original`](/docs/registry/attributes/user-agent.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Value of the [HTTP User-Agent](https://www.rfc-editor.org/rfc/rfc9110.html#field.user-agent) header sent by the client. | `CERN-LineMode/2.15 libwww/2.17b3`; `Mozilla/5.0 (iPhone; CPU iPhone OS 14_7_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.2 Mobile/15E148 Safari/604.1`; `YourApp/1.0.0 grpc-java-okhttp/1.27.2` |
+| [`client.port`](/docs/registry/attributes/client.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | int | The port of whichever client was captured in `client.address`. [14] | `65123` |
+| [`http.request.body.size`](/docs/registry/attributes/http.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The size of the request payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size. | `3495` |
+| [`http.request.header.<key>`](/docs/registry/attributes/http.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | string[] | HTTP request headers, `<key>` being the normalized HTTP Header name (lowercase), the value being the header values. [15] | `["application/json"]`; `["1.2.3.4", "1.2.3.5"]` |
+| [`http.request.size`](/docs/registry/attributes/http.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The total size of the request in bytes. This should be the total number of bytes sent over the wire, including the request line (HTTP/1.1), framing (HTTP/2 and HTTP/3), headers, and request body if any. | `1437` |
+| [`http.response.body.size`](/docs/registry/attributes/http.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The size of the response payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size. | `3495` |
+| [`http.response.header.<key>`](/docs/registry/attributes/http.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | string[] | HTTP response headers, `<key>` being the normalized HTTP Header name (lowercase), the value being the header values. [16] | `["application/json"]`; `["abc", "def"]` |
+| [`http.response.size`](/docs/registry/attributes/http.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The total size of the response in bytes. This should be the total number of bytes sent over the wire, including the status line (HTTP/1.1), framing (HTTP/2 and HTTP/3), headers, and response body and trailers if any. | `1437` |
+| [`network.local.address`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | string | Local socket address. Useful in case of a multi-IP host. | `10.1.2.80`; `/tmp/my.sock` |
+| [`network.local.port`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | int | Local socket port. Useful in case of a multi-port host. | `65123` |
+| [`network.transport`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [17] | `tcp`; `udp` |
+| [`user_agent.synthetic.type`](/docs/registry/attributes/user-agent.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Specifies the category of synthetic traffic, such as tests or bots. [18] | `bot`; `test` |
 
 **[1] `http.request.method`:** HTTP request method value SHOULD be "known" to the instrumentation.
 By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods),
@@ -96,9 +98,17 @@ If the request has completed successfully, instrumentations SHOULD NOT set `erro
 **[6] `http.route`:** MUST NOT be populated when this is not supported by the HTTP server framework as the route attribute should have low-cardinality and the URI path can NOT substitute it.
 SHOULD include the [application root](/docs/http/http-spans.md#http-server-definitions) if there is one.
 
-**[7] `network.protocol.name`:** The value SHOULD be normalized to lowercase.
+A static path segment is a part of the route template with a fixed, low-cardinality value. This includes literal strings like `/users/` and placeholders that
+are constrained to a finite, predefined set of values, e.g. `{controller}` or `{action}`.
 
-**[8] `network.protocol.name`:** If not `http` and `network.protocol.version` is set.
+A dynamic path segment is a placeholder for a value that can have high cardinality and is not constrained to a predefined list like static path segments.
+
+Instrumentations SHOULD use routing information provided by the corresponding web framework. They SHOULD pick the most precise source of routing information and MAY
+support custom route formatting. Instrumentations SHOULD document the format and the API used to obtain the route string.
+
+**[7] `network.protocol.name`:** If not `http` and `network.protocol.version` is set.
+
+**[8] `network.protocol.name`:** The value SHOULD be normalized to lowercase.
 
 **[9] `server.port`:** See [Setting `server.address` and `server.port` attributes](/docs/http/http-spans.md#setting-serveraddress-and-serverport-attributes).
 
@@ -243,47 +253,81 @@ This document defines semantic conventions for Remote Procedure Call (RPC) serve
 
 **Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
+**Attributes:**
+
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 |---|---|---|---|---|---|
-| [`rpc.system`](/docs/registry/attributes/rpc.md) | string | A string identifying the remoting system. See below for a list of well-known identifiers. | `grpc`; `java_rmi`; `dotnet_wcf` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`server.address`](/docs/registry/attributes/server.md) | string | RPC server [host name](https://grpc.github.io/grpc/core/md_doc_naming.html). [1] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`tps.system.name`](/docs/registry/attributes/tps.md) | string | Type of Transaction Processing System | `jta`; `oracle.tuxedo`; `ibm.cics`; `ibm.ims`; `ibm.ztpf` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`tps.transaction.id`](/docs/registry/attributes/tps.md) | string | Identifier of the transaction initiated by a user or system request | `TRX1` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`server.port`](/docs/registry/attributes/server.md) | int | Server port number. [2] | `80`; `8080`; `443` | `Conditionally Required` [3] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`client.address`](/docs/registry/attributes/client.md) | string | Client address - domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [4] | `client.example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`client.port`](/docs/registry/attributes/client.md) | int | Client port number. [5] | `65123` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.peer.address`](/docs/registry/attributes/network.md) | string | Peer address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.peer.port`](/docs/registry/attributes/network.md) | int | Peer port number of the network connection. | `65123` | `Recommended` If `network.peer.address` is set. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.transport`](/docs/registry/attributes/network.md) | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [6] | `tcp`; `udp` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.type`](/docs/registry/attributes/network.md) | string | [OSI network layer](https://wikipedia.org/wiki/Network_layer) or non-OSI equivalent. [7] | `ipv4`; `ipv6` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`rpc.method`](/docs/registry/attributes/rpc.md) | string | The name of the (logical) method being called, must be equal to the $method part in the span name. [8] | `exampleMethod` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`rpc.service`](/docs/registry/attributes/rpc.md) | string | The full (logical) name of the service being called, including its package name, if applicable. [9] | `myservice.EchoService` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`tps.program.name`](/docs/registry/attributes/tps.md) | string | Program name executed by the task | `PROG123` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`tps.task.id`](/docs/registry/attributes/tps.md) | string | Identifier of the task created to run the transaction | `1554` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`tps.transaction.owner.id`](/docs/registry/attributes/tps.md) | string | Identifier of the user owning the transaction | `USER` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`tps.unit_of_work.id`](/docs/registry/attributes/tps.md) | string | Unit of work executed by the program | `DF308CBF385A3C05` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+| [`rpc.system`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | A string identifying the remoting system. See below for a list of well-known identifiers. | `grpc`; `java_rmi`; `dotnet_wcf` |
+| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | RPC server [host name](https://grpc.github.io/grpc/core/md_doc_naming.html). [1] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
+| [`tps.system.name`](/docs/registry/attributes/tps.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Type of Transaction Processing System | `jta`; `oracle.tuxedo`; `ibm.cics`; `ibm.ims`; `ibm.ztpf` |
+| [`tps.transaction.id`](/docs/registry/attributes/tps.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Identifier of the transaction initiated by a user or system request | `TRX1` |
+| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the operation failed. | string | Describes a class of error the operation ended with. [2] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` |
+| [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [3] | int | Server port number. [4] | `80`; `8080`; `443` |
+| [`client.address`](/docs/registry/attributes/client.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Client address - domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [5] | `client.example.com`; `10.1.2.80`; `/tmp/my.sock` |
+| [`client.port`](/docs/registry/attributes/client.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | Client port number. [6] | `65123` |
+| [`network.peer.address`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Peer address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` |
+| [`network.peer.port`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` If `network.peer.address` is set. | int | Peer port number of the network connection. | `65123` |
+| [`network.protocol.name`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | [OSI application layer](https://wikipedia.org/wiki/Application_layer) or non-OSI equivalent. [7] | `http` |
+| [`network.protocol.version`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The actual version of the protocol used for network communication. [8] | `1.1`; `2` |
+| [`network.transport`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [9] | `tcp`; `udp` |
+| [`rpc.method`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | This is the logical name of the method from the RPC interface perspective. [10] | `exampleMethod` |
+| [`rpc.service`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The full (logical) name of the service being called, including its package name, if applicable. [11] | `myservice.EchoService` |
+| [`tps.program.name`](/docs/registry/attributes/tps.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Program name executed by the task | `PROG123` |
+| [`tps.task.id`](/docs/registry/attributes/tps.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Identifier of the task created to run the transaction | `1554` |
+| [`tps.transaction.owner.id`](/docs/registry/attributes/tps.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Identifier of the user owning the transaction | `USER` |
+| [`tps.unit_of_work.id`](/docs/registry/attributes/tps.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Unit of work executed by the program | `DF308CBF385A3C05` |
 
 **[1] `server.address`:** May contain server IP address, DNS name, or local socket name. When host component is an IP address, instrumentations SHOULD NOT do a reverse proxy lookup to obtain DNS name and SHOULD set `server.address` to the IP address provided in the host component.
 
-**[2] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[2] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
+
+When `error.type` is set to a type (e.g., an exception type), its
+canonical class name identifying the type within the artifact SHOULD be used.
+
+Instrumentations SHOULD document the list of errors they report.
+
+The cardinality of `error.type` within one instrumentation library SHOULD be low.
+Telemetry consumers that aggregate data from multiple instrumentation libraries and applications
+should be prepared for `error.type` to have high cardinality at query time when no
+additional filters are applied.
+
+If the operation has completed successfully, instrumentations SHOULD NOT set `error.type`.
+
+If a specific domain defines its own set of error identifiers (such as HTTP or gRPC status codes),
+it's RECOMMENDED to:
+
+- Use a domain-specific attribute
+- Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
 
 **[3] `server.port`:** if the port is supported by the network transport used for communication.
 
-**[4] `client.address`:** When observed from the server side, and when communicating through an intermediary, `client.address` SHOULD represent the client address behind any intermediaries,  for example proxies, if it's available.
+**[4] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
-**[5] `client.port`:** When observed from the server side, and when communicating through an intermediary, `client.port` SHOULD represent the client port behind any intermediaries,  for example proxies, if it's available.
+**[5] `client.address`:** When observed from the server side, and when communicating through an intermediary, `client.address` SHOULD represent the client address behind any intermediaries,  for example proxies, if it's available.
 
-**[6] `network.transport`:** The value SHOULD be normalized to lowercase.
+**[6] `client.port`:** When observed from the server side, and when communicating through an intermediary, `client.port` SHOULD represent the client port behind any intermediaries,  for example proxies, if it's available.
+
+**[7] `network.protocol.name`:** The value SHOULD be normalized to lowercase.
+
+**[8] `network.protocol.version`:** If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set.
+
+**[9] `network.transport`:** The value SHOULD be normalized to lowercase.
 
 Consider always setting the transport when setting a port number, since
 a port number is ambiguous without knowing the transport. For example
 different processes could be listening on TCP port 12345 and UDP port 12345.
 
-**[7] `network.type`:** The value SHOULD be normalized to lowercase.
+**[10] `rpc.method`:** This is the logical name of the method from the RPC interface perspective, which can be different from the name of any implementing method/function. The `code.function.name` attribute may be used to store the latter (e.g., method actually executing the call on the server side, RPC client stub method on the client side).
 
-**[8] `rpc.method`:** This is the logical name of the method from the RPC interface perspective, which can be different from the name of any implementing method/function. The `code.function.name` attribute may be used to store the latter (e.g., method actually executing the call on the server side, RPC client stub method on the client side).
+**[11] `rpc.service`:** This is the logical name of the service from the RPC interface perspective, which can be different from the name of any implementing class. The `code.namespace` attribute may be used to store the latter (despite the attribute name, it may include a class name; e.g., class with method actually executing the call on the server side, RPC client stub class on the client side).
 
-**[9] `rpc.service`:** This is the logical name of the service from the RPC interface perspective, which can be different from the name of any implementing class. The `code.namespace` attribute may be used to store the latter (despite the attribute name, it may include a class name; e.g., class with method actually executing the call on the server side, RPC client stub class on the client side).
+---
+
+`error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value  | Description | Stability |
+|---|---|---|
+| `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ---
 
@@ -299,15 +343,6 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 ---
 
-`network.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `ipv4` | IPv4 | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `ipv6` | IPv6 | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-
----
-
 `rpc.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value  | Description | Stability |
@@ -317,6 +352,8 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 | `dotnet_wcf` | .NET WCF | ![Development](https://img.shields.io/badge/-development-blue) |
 | `grpc` | gRPC | ![Development](https://img.shields.io/badge/-development-blue) |
 | `java_rmi` | Java RMI | ![Development](https://img.shields.io/badge/-development-blue) |
+| `jsonrpc` | JSON-RPC | ![Development](https://img.shields.io/badge/-development-blue) |
+| `onc_rpc` | [ONC RPC (Sun RPC)](https://datatracker.ietf.org/doc/html/rfc5531) | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

@@ -13,11 +13,8 @@
 
 **Description:** A transaction processing system that handles high-volume, concurrent transactions with low latency, ensuring reliable and consistent processing of individual units of work.
 
-**Identifying Attributes:**
-
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`tps.region.id`](/docs/registry/attributes/tps.md) | string | On z/OS, identifies the entity acting as runtime environment to execute tasks of transactions within the Transaction Processing System | `PRD1` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-
+| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
+|---|---|---|---|---|---|---|
+| Identity | [`tps.region.id`](/docs/registry/attributes/tps.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | On z/OS, identifies the entity acting as runtime environment to execute tasks of transactions within the Transaction Processing System | `PRD1` |
 
 <!-- markdownlint-restore -->

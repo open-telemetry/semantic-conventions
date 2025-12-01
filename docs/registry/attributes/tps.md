@@ -7,12 +7,14 @@
 
 This group defines generic attributes for Transaction Processing Systems (TPS).
 
-| Attribute | Type | Description | Examples | Stability |
+**Attributes:**
+
+| Key | Stability | Value Type | Description | Example Values |
 |---|---|---|---|---|
-| <a id="tps-program-name" href="#tps-program-name">`tps.program.name`</a> | string | Program name executed by the task | `PROG123` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="tps-region-id" href="#tps-region-id">`tps.region.id`</a> | string | On z/OS, identifies the entity acting as runtime environment to execute tasks of transactions within the Transaction Processing System | `PRD1` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="tps-system-name" href="#tps-system-name">`tps.system.name`</a> | string | Type of Transaction Processing System | `jta`; `oracle.tuxedo`; `ibm.cics`; `ibm.ims`; `ibm.ztpf` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="tps-task-id" href="#tps-task-id">`tps.task.id`</a> | string | Identifier of the task created to run the transaction | `1554` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="tps-transaction-id" href="#tps-transaction-id">`tps.transaction.id`</a> | string | Identifier of the transaction initiated by a user or system request | `TRX1` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="tps-transaction-owner-id" href="#tps-transaction-owner-id">`tps.transaction.owner.id`</a> | string | Identifier of the user owning the transaction | `USER` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="tps-unit-of-work-id" href="#tps-unit-of-work-id">`tps.unit_of_work.id`</a> | string | Unit of work executed by the program | `DF308CBF385A3C05` | ![Development](https://img.shields.io/badge/-development-blue) |
+| <a id="tps-program-name" href="#tps-program-name">`tps.program.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Program name executed by the task | `PROG123` |
+| <a id="tps-region-id" href="#tps-region-id">`tps.region.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | On z/OS, identifies the entity acting as runtime environment to execute tasks of transactions within the Transaction Processing System | `PRD1` |
+| <a id="tps-system-name" href="#tps-system-name">`tps.system.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Type of Transaction Processing System | `jta`; `oracle.tuxedo`; `ibm.cics`; `ibm.ims`; `ibm.ztpf` |
+| <a id="tps-task-id" href="#tps-task-id">`tps.task.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Identifier of the task created to run the transaction | `1554` |
+| <a id="tps-transaction-id" href="#tps-transaction-id">`tps.transaction.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Identifier of the transaction initiated by a user or system request | `TRX1` |
+| <a id="tps-transaction-owner-id" href="#tps-transaction-owner-id">`tps.transaction.owner.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Identifier of the user owning the transaction | `USER` |
+| <a id="tps-unit-of-work-id" href="#tps-unit-of-work-id">`tps.unit_of_work.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Unit of work executed by the program | `DF308CBF385A3C05` |
