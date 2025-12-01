@@ -200,19 +200,15 @@ section for more details.
 
 **[15] `gen_ai.tool.definitions`:** The value of this attribute matches source system tool definition format.
 
-It's expected to be an array of objects, each representing a tool definition,
-and the structure of the array is expected to match the [Tool Definitions JSON Schema](/docs/gen-ai/gen-ai-tool-definitions.json).
-In case a serialized string is available to the instrumentation, the instrumentation
-SHOULD do the best effort to deserialize it to an array.
+Instrumentations MUST follow [Tool Definitions JSON Schema](/docs/gen-ai/gen-ai-tool-definitions.json).
 
 When the attribute is recorded on events, it MUST be recorded in structured
 form. When recorded on spans, it MAY be recorded as a JSON string if structured
 format is not supported and SHOULD be recorded in structured form otherwise.
 
-If instrumentations can reliably deserialize and extract the tool definitions,
-it's RECOMMENDED to only populate required fields (`name`, `type`) of the definition
-objects by default. Otherwise, it's NOT RECOMMENDED to populate it by default.
-Instrumentations MAY provide a way to enable populating this attribute.
+It's RECOMMENDED to populate all required attributes on each tool
+definition by default. Instrumentations MAY allow to enable populating
+non-required properties.
 
 ---
 
