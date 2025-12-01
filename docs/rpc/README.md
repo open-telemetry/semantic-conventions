@@ -9,7 +9,7 @@ linkTitle: RPC
 This document defines semantic conventions for remote procedure calls (RPC)
 , also called "remote method invocations" (RMI).
 
-> **Warning**
+> [!IMPORTANT]
 > Existing RPC instrumentations that are using
 > [v1.37.0 of this document](https://github.com/open-telemetry/semantic-conventions/blob/v1.37.0/docs/rpc/README.md)
 > (or prior):

@@ -105,7 +105,7 @@ When defining a new attribute:
     This is useful for capturing user-defined key-value pairs, such as HTTP headers.
   - Represent complex values as a set of flat attributes whenever possible.
     - Complex or structured attributes (not listed in the
-      [set of standard attributes](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.50.0/specification/common/README.md#attribute))
+      [set of standard attributes](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.51.0/specification/common/README.md#attribute))
       could be referenced on events and spans (![Development](https://img.shields.io/badge/-development-blue)) only.
 
       Semantic convention authors should assume that backends do not index individual properties of complex attributes,
@@ -170,7 +170,7 @@ For example, `db.system.name` contains database names like `mongodb` or `mysql`.
 System identifier enums help differentiate telemetry signals. MongoDB and MySQL
 both follow general database conventions, but populate attributes like `db.collection.name` differently and have system-specific attributes. Each system has its own span
 definitions and documentation.
-See [MongoDB](/docs/database/mongodb.md) and [MySQL](/docs/database/mysql.md) as examples
+See [MongoDB](/docs/db/mongodb.md) and [MySQL](/docs/db/mysql.md) as examples
 and check out [system-specific naming](../general/naming.md#system-specific-attributes)
 for naming guidance.
 

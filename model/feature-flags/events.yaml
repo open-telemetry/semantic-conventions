@@ -41,8 +41,8 @@ groups:
         note: |
           If one of these values applies, then it MUST be used; otherwise, a custom value MAY be used.
 
-          | Value  | Description | Stability |
-          |---|---|---|
+          | Value | Description | Stability |
+          | --- | --- | --- |
           | `flag_not_found` | The flag could not be found. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
           | `invalid_context` | The evaluation context does not meet provider requirements. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
           | `parse_error` | An error was encountered parsing data, such as a flag configuration. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |

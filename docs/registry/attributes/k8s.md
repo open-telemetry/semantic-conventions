@@ -13,11 +13,11 @@ Kubernetes resource attributes.
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | <a id="k8s-cluster-name" href="#k8s-cluster-name">`k8s.cluster.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the cluster. | `opentelemetry-cluster` |
 | <a id="k8s-cluster-uid" href="#k8s-cluster-uid">`k8s.cluster.uid`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | A pseudo-ID for the cluster, set to the UID of the `kube-system` namespace. [1] | `218fc5a9-a5f1-4b54-aa05-46717d0ab26d` |
 | <a id="k8s-container-name" href="#k8s-container-name">`k8s.container.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the Container from Pod specification, must be unique within a Pod. Container runtime usually uses different globally unique name (`container.name`). | `redis` |
-| <a id="k8s-container-restart-count" href="#k8s-container-restart-count">`k8s.container.restart_count`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | Number of times the container was restarted. This attribute can be used to identify a particular container (running or stopped) within a container spec. |  |
+| <a id="k8s-container-restart-count" href="#k8s-container-restart-count">`k8s.container.restart_count`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | Number of times the container was restarted. This attribute can be used to identify a particular container (running or stopped) within a container spec. | |
 | <a id="k8s-container-status-last-terminated-reason" href="#k8s-container-status-last-terminated-reason">`k8s.container.status.last_terminated_reason`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Last terminated reason of the Container. | `Evicted`; `Error` |
 | <a id="k8s-container-status-reason" href="#k8s-container-status-reason">`k8s.container.status.reason`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The reason for the container state. Corresponds to the `reason` field of the: [K8s ContainerStateWaiting](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#containerstatewaiting-v1-core) or [K8s ContainerStateTerminated](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#containerstateterminated-v1-core) | `ContainerCreating`; `CrashLoopBackOff`; `CreateContainerConfigError`; `ErrImagePull`; `ImagePullBackOff`; `OOMKilled`; `Completed`; `Error`; `ContainerCannotRun` |
 | <a id="k8s-container-status-state" href="#k8s-container-status-state">`k8s.container.status.state`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The state of the container. [K8s ContainerState](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#containerstate-v1-core) | `terminated`; `running`; `waiting` |
@@ -260,8 +260,8 @@ When this occurs, the exact value as reported by the Kubernetes API SHOULD be us
 
 `k8s.container.status.reason` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `Completed` | The container has completed execution. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `ContainerCannotRun` | The container cannot run. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `ContainerCreating` | The container is being created. | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -276,8 +276,8 @@ When this occurs, the exact value as reported by the Kubernetes API SHOULD be us
 
 `k8s.container.status.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `running` | The container is running. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `terminated` | The container has terminated. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `waiting` | The container is waiting. | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -286,8 +286,8 @@ When this occurs, the exact value as reported by the Kubernetes API SHOULD be us
 
 `k8s.namespace.phase` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `active` | Active namespace phase as described by [K8s API](https://pkg.go.dev/k8s.io/api@v0.31.3/core/v1#NamespacePhase) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `terminating` | Terminating namespace phase as described by [K8s API](https://pkg.go.dev/k8s.io/api@v0.31.3/core/v1#NamespacePhase) | ![Development](https://img.shields.io/badge/-development-blue) |
 
@@ -295,8 +295,8 @@ When this occurs, the exact value as reported by the Kubernetes API SHOULD be us
 
 `k8s.node.condition.status` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `false` | condition_false | ![Development](https://img.shields.io/badge/-development-blue) |
 | `true` | condition_true | ![Development](https://img.shields.io/badge/-development-blue) |
 | `unknown` | condition_unknown | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -305,8 +305,8 @@ When this occurs, the exact value as reported by the Kubernetes API SHOULD be us
 
 `k8s.node.condition.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `DiskPressure` | Pressure exists on the disk size—that is, if the disk capacity is low | ![Development](https://img.shields.io/badge/-development-blue) |
 | `MemoryPressure` | Pressure exists on the node memory—that is, if the node memory is low | ![Development](https://img.shields.io/badge/-development-blue) |
 | `NetworkUnavailable` | The network for the node is not correctly configured | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -317,8 +317,8 @@ When this occurs, the exact value as reported by the Kubernetes API SHOULD be us
 
 `k8s.pod.status.phase` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `Failed` | All containers in the pod have terminated, and at least one container has terminated in a failure (exited with a non-zero exit code or was stopped by the system). | ![Development](https://img.shields.io/badge/-development-blue) |
 | `Pending` | The pod has been accepted by the system, but one or more of the containers has not been started. This includes time before being bound to a node, as well as time spent pulling images onto the host. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `Running` | The pod has been bound to a node and all of the containers have been started. At least one container is still running or is in the process of being restarted. | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -329,8 +329,8 @@ When this occurs, the exact value as reported by the Kubernetes API SHOULD be us
 
 `k8s.pod.status.reason` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `Evicted` | The pod is evicted. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `NodeAffinity` | The pod is in a status because of its node affinity | ![Development](https://img.shields.io/badge/-development-blue) |
 | `NodeLost` | The reason on a pod when its state cannot be confirmed as kubelet is unresponsive on the node it is (was) running. | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -341,8 +341,8 @@ When this occurs, the exact value as reported by the Kubernetes API SHOULD be us
 
 `k8s.volume.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `configMap` | A [configMap](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#configmap) volume | ![Development](https://img.shields.io/badge/-development-blue) |
 | `downwardAPI` | A [downwardAPI](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#downwardapi) volume | ![Development](https://img.shields.io/badge/-development-blue) |
 | `emptyDir` | An [emptyDir](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#emptydir) volume | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -357,5 +357,5 @@ Describes deprecated k8s attributes.
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | <a id="k8s-pod-labels" href="#k8s-pod-labels">`k8s.pod.labels.<key>`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `k8s.pod.label`. | string | Deprecated, use `k8s.pod.label` instead. | `my-app` |

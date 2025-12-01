@@ -13,8 +13,10 @@
 
 **Description:** A service instance.
 
+**Attributes:**
+
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-|---|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- | --- |
 | Identity | [`service.name`](/docs/registry/attributes/service.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | Logical name of the service. [1] | `shoppingcart` |
 | Identity | [`service.instance.id`](/docs/registry/attributes/service.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The string ID of the service instance. [2] | `627cc493-f310-47de-96bd-71410b7dec09` |
 | Identity | [`service.namespace`](/docs/registry/attributes/service.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A namespace for `service.name`. [3] | `Shop` |

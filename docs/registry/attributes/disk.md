@@ -10,14 +10,14 @@ These attributes may be used for any disk related operation.
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | <a id="disk-io-direction" href="#disk-io-direction">`disk.io.direction`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The disk IO operation direction. | `read` |
 
 ---
 
 `disk.io.direction` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `read` | read | ![Development](https://img.shields.io/badge/-development-blue) |
 | `write` | write | ![Development](https://img.shields.io/badge/-development-blue) |

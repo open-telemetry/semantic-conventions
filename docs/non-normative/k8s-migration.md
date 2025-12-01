@@ -90,7 +90,7 @@ The changes in their attributes are the following:
 <!-- prettier-ignore-start -->
 
 | Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                      |
-|------------------------------------------------------------------------------------|--------------------------|
+| ---------------------------------------------------------------------------------- | ------------------------ |
 | `interface`                                                                        | `network.interface.name` |
 | `direction`                                                                        | `network.io.direction`   |
 
@@ -107,8 +107,8 @@ The changes between collector implementation and semantic conventions:
 <!-- prettier-ignore-start -->
 
 | Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                              |
-|------------------------------------------------------------------------------------|------------------------------------------------------------------|
-| `k8s.node.allocatable_cpu`                 (type: `gauge`)                         | `k8s.node.cpu.allocatable`               (type: `updowncounter`)            |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| `k8s.node.allocatable_cpu`                 (type: `gauge`)                         | `k8s.node.cpu.allocatable`               (type: `updowncounter`) |
 | `k8s.node.allocatable_memory`              (type: `gauge`)                         | `k8s.node.memory.allocatable`            (type: `updowncounter`) |
 | `k8s.node.allocatable_ephemeral_storage`   (type: `gauge`)                         | `k8s.node.ephemeral_storage.allocatable` (type: `updowncounter`) |
 | `k8s.node.allocatable_pods`                (type: `gauge`)                         | `k8s.node.pod.allocatable`              (type: `updowncounter`)  |
@@ -126,8 +126,8 @@ The changes in their metric names and types are the following:
 
 <!-- prettier-ignore-start -->
 
-| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                          |
-|------------------------------------------------------------------------------------|--------------------------------------------------------------|
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                         |
+| ---------------------------------------------------------------------------------- | ----------------------------------------------------------- |
 | `k8s.deployment.desired`       (type: `gauge`)                                     | `k8s.deployment.pod.desired` (type: `updowncounter`)        |
 | `k8s.deployment.available`     (type: `gauge`)                                     | `k8s.deployment.pod.available`      (type: `updowncounter`) |
 
@@ -144,8 +144,8 @@ The changes in their metric names and types are the following:
 
 <!-- prettier-ignore-start -->
 
-| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                     |
-|------------------------------------------------------------------------------------|---------------------------------------------------------|
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                    |
+| ---------------------------------------------------------------------------------- | ------------------------------------------------------ |
 | `k8s.replicaset.desired`           (type: `gauge`)                                 | `k8s.replicaset.pod.desired` (type: `updowncounter`)   |
 | `k8s.replicaset.available`         (type: `gauge`)                                 | `k8s.replicaset.pod.available` (type: `updowncounter`) |
 
@@ -162,8 +162,8 @@ The changes in their metric names and types are the following:
 
 <!-- prettier-ignore-start -->
 
-| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                                |
-|------------------------------------------------------------------------------------|--------------------------------------------------------------------|
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                               |
+| ---------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
 | `k8s.replication_controller.desired`           (type: `gauge`)                     | `k8s.replicationcontroller.pod.desired` (type: `updowncounter`)   |
 | `k8s.replication_controller.available`         (type: `gauge`)                     | `k8s.replicationcontroller.pod.available` (type: `updowncounter`) |
 
@@ -180,8 +180,8 @@ The changes in their metric types are the following:
 
 <!-- prettier-ignore-start -->
 
-| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                           |
-|------------------------------------------------------------------------------------|---------------------------------------------------------------|
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                     |
+| ---------------------------------------------------------------------------------- | ------------------------------------------------------- |
 | `k8s.statefulset.desired_pods`                  (type: `gauge`)                    | `k8s.statefulset.pod.desired` (type: `updowncounter`)   |
 | `k8s.statefulset.ready_pods`                  (type: `gauge`)                      | `k8s.statefulset.pod.ready` (type: `updowncounter`)     |
 | `k8s.statefulset.current_pods`                       (type: `gauge`)               | `k8s.statefulset.pod.current`  (type: `updowncounter`)  |
@@ -200,8 +200,8 @@ The changes in their metric names and types are the following:
 
 <!-- prettier-ignore-start -->
 
-| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                 |
-|------------------------------------------------------------------------------------|-----------------------------------------------------|
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                           |
+| ---------------------------------------------------------------------------------- | --------------------------------------------- |
 | `k8s.hpa.desired_replicas`                  (type: `gauge`)                        | `k8s.hpa.pod.desired` (type: `updowncounter`) |
 | `k8s.hpa.current_replicas`                  (type: `gauge`)                        | `k8s.hpa.pod.current` (type: `updowncounter`) |
 | `k8s.hpa.max_replicas`                       (type: `gauge`)                       | `k8s.hpa.pod.max`  (type: `updowncounter`)    |
@@ -220,8 +220,8 @@ The changes in their metric types are the following:
 
 <!-- prettier-ignore-start -->
 
-| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                                  |
-|------------------------------------------------------------------------------------|----------------------------------------------------------------------|
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                            |
+| ---------------------------------------------------------------------------------- | -------------------------------------------------------------- |
 | `k8s.daemonset.current_scheduled_nodes`                  (type: `gauge`)           | `k8s.daemonset.node.current_scheduled` (type: `updowncounter`) |
 | `k8s.daemonset.desired_scheduled_nodes`                  (type: `gauge`)           | `k8s.daemonset.node.desired_scheduled` (type: `updowncounter`) |
 | `k8s.daemonset.misscheduled_nodes`                       (type: `gauge`)           | `k8s.daemonset.node.misscheduled`  (type: `updowncounter`)     |
@@ -240,12 +240,12 @@ The changes in their metric types are the following:
 
 <!-- prettier-ignore-start -->
 
-| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                             |
-|----------------------------------------------------------|-----------------------------------------------------------------|
-| `k8s.job.active_pods`                  (type: `gauge`) | `k8s.job.pod.active` (type: `updowncounter`)              |
-| `k8s.job.failed_pods`                  (type: `gauge`) | `k8s.job.pod.failed` (type: `updowncounter`)              |
-| `k8s.job.desired_successful_pods`                       (type: `gauge`) | `k8s.job.pod.desired_successful`  (type: `updowncounter`) |
-| `k8s.job.max_parallel_pods`                      (type: `gauge`) | `k8s.job.pod.max_parallel`   (type: `updowncounter`)      |
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New |
+| ------------------------------------------------------ | --- |
+| `k8s.job.active_pods`                  (type: `gauge`) | `k8s.job.pod.active` (type: `updowncounter`) |
+| `k8s.job.failed_pods`                  (type: `gauge`) | `k8s.job.pod.failed` (type: `updowncounter`) |
+| `k8s.job.desired_successful_pods`      (type: `gauge`) | `k8s.job.pod.desired_successful`  (type: `updowncounter`) |
+| `k8s.job.max_parallel_pods`            (type: `gauge`) | `k8s.job.pod.max_parallel`   (type: `updowncounter`) |
 
 ### K8s Cronjob metrics
 
@@ -258,8 +258,8 @@ The changes in their metric types are the following:
 
 <!-- prettier-ignore-start -->
 
-| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                    |
-|--------------------------------------------------|--------------------------------------------------------|
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New |
+| ------------------------------------------------ | ---- |
 | `k8s.cronjob.active_jobs`                  (type: `gauge`) | `k8s.cronjob.job.active` (type: `updowncounter`) |
 
 <!-- prettier-ignore-end -->
@@ -275,9 +275,9 @@ The changes in their metrics are the following:
 
 <!-- prettier-ignore-start -->
 
-| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                                                            |
-|------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------|
-| `k8s.namespace.phase`                  (type: `gauge`), 1 for active and 0 for terminating                      | `k8s.namespace.phase` (type: `updowncounter`), with the attribute `k8s.namespace.phase` indicating the phase |
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New |
+| ---------------------------------------------------------------------------------- | --- |
+| `k8s.namespace.phase`                  (type: `gauge`), 1 for active and 0 for terminating | `k8s.namespace.phase` (type: `updowncounter`), with the attribute `k8s.namespace.phase` indicating the phase |
 
 <!-- prettier-ignore-end -->
 
@@ -292,9 +292,9 @@ The changes are the following:
 
 <!-- prettier-ignore-start -->
 
-| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                                                       |
-|---------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------|
-| `k8s.resource_quota.{name,uid}`                                     | `k8s.resourcequota.{name,uid}`  |
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New |
+| ---------------------------------------------------------------------------------- | --- |
+| `k8s.resource_quota.{name,uid}` | `k8s.resourcequota.{name,uid}` |
 
 <!-- prettier-ignore-end -->
 
@@ -309,9 +309,9 @@ The changes are the following:
 
 <!-- prettier-ignore-start -->
 
-| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                                                       |
-|---------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------|
-| `k8s.replication_controller.{name,uid}`                                     | `k8s.replicationcontroller.{name,uid}`  |
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                    |
+| ---------------------------------------------------------------------------------- | -------------------------------------- |
+| `k8s.replication_controller.{name,uid}`                                            | `k8s.replicationcontroller.{name,uid}` |
 
 ### K8s Container metrics
 
@@ -328,20 +328,20 @@ The changes in their metrics are the following:
 
 <!-- prettier-ignore-start -->
 
-| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                              |
-|------------------------------------------------------------------------------------|------------------------------------------------------------------|
-| `k8s.container.cpu_limit`              (type: `gauge`)                                             | `k8s.container.cpu.limit`       (type: `updowncounter`)          |
-| `k8s.container.cpu_request`             (type: `gauge`)                                            | `k8s.container.cpu.request`     (type: `updowncounter`)          |
-| `k8s.container.memory_limit`            (type: `gauge`)                                            | `k8s.container.memory.limit`     (type: `updowncounter`)         |
-| `k8s.container.memory_request`           (type: `gauge`)                                           | `k8s.container.memory.request`    (type: `updowncounter`)        |
-| `k8s.container.storage_limit`             (type: `gauge`)                                          | `k8s.container.storage.limit`     (type: `updowncounter`)        |
-| `k8s.container.storage_request`           (type: `gauge`)                                          | `k8s.container.storage.request`    (type: `updowncounter`)       |
-| `k8s.container.ephemeralstorage_limit`      (type: `gauge`)                                        | `k8s.container.ephemeral_storage.limit`  (type: `updowncounter`) |
-| `k8s.container.ephemeralstorage_request`     (type: `gauge`)                                       | `k8s.container.ephemeral_storage.request` (type: `updowncounter`) |
-| `k8s.container.restarts`                  (type: `gauge`)                          | `k8s.container.restart.count` (type: `updowncounter`)            |
-| `k8s.container.ready`                  (type: `gauge`)                             | `k8s.container.ready` (type: `updowncounter`)                    |
-| `k8s.container.cpu_limit_utilization` (type: `gauge`) | `k8s.container.cpu.limit_utilization` (type: `gauge`) |
-| `k8s.container.cpu_request_utilization` (type: `gauge`) | `k8s.container.cpu.request_utilization` (type: `gauge`) |
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                               |
+| ---------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
+| `k8s.container.cpu_limit`              (type: `gauge`)                             | `k8s.container.cpu.limit`       (type: `updowncounter`)           |
+| `k8s.container.cpu_request`             (type: `gauge`)                            | `k8s.container.cpu.request`     (type: `updowncounter`)           |
+| `k8s.container.memory_limit`            (type: `gauge`)                            | `k8s.container.memory.limit`     (type: `updowncounter`)          |
+| `k8s.container.memory_request`           (type: `gauge`)                           | `k8s.container.memory.request`    (type: `updowncounter`)         |
+| `k8s.container.storage_limit`             (type: `gauge`)                          | `k8s.container.storage.limit`     (type: `updowncounter`)         |
+| `k8s.container.storage_request`           (type: `gauge`)                          | `k8s.container.storage.request`    (type: `updowncounter`)        |
+| `k8s.container.ephemeralstorage_limit`      (type: `gauge`)                        | `k8s.container.ephemeral_storage.limit`  (type: `updowncounter`)  |
+| `k8s.container.ephemeralstorage_request`     (type: `gauge`)                       | `k8s.container.ephemeral_storage.request` (type: `updowncounter`) |
+| `k8s.container.restarts`                  (type: `gauge`)                          | `k8s.container.restart.count` (type: `updowncounter`)             |
+| `k8s.container.ready`                  (type: `gauge`)                             | `k8s.container.ready` (type: `updowncounter`)                     |
+| `k8s.container.cpu_limit_utilization` (type: `gauge`)                              | `k8s.container.cpu.limit_utilization` (type: `gauge`)             |
+| `k8s.container.cpu_request_utilization` (type: `gauge`)                            | `k8s.container.cpu.request_utilization` (type: `gauge`)           |
 
 <!-- prettier-ignore-end -->
 
@@ -357,7 +357,7 @@ These metrics were completely re-designed. The changes are the following:
 <!-- prettier-ignore-start -->
 
 | Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                 |
-|------------------------------------------------------------------------------------|-------------------------------------|
+| ---------------------------------------------------------------------------------- | ----------------------------------- |
 | `k8s.resource_quota.hard_limit`                                                    | `k8s.resourcequota.{resource}.hard` |
 | `k8s.resource_quota.used`                                                          | `k8s.resourcequota.{resource}.used` |
 | `{resource}` attribute                                                             | Split in different metrics per type |
@@ -375,11 +375,11 @@ These metrics were completely re-designed. The changes are the following:
 
 <!-- prettier-ignore-start -->
 
-| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                 |
-|------------------------------------------------------------------------------------|-------------------------------------|
-| `openshift.clusterquota.hard_limit`                                                    | `openshift.clusterquota.{resource}.hard` |
-| `openshift.clusterquota.used`                                                          | `openshift.clusterquota.{resource}.used` |
-| `{resource}` attribute                                                             | Split in different metrics per type |
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                      |
+| ---------------------------------------------------------------------------------- | ---------------------------------------- |
+| `openshift.clusterquota.hard_limit`                                                | `openshift.clusterquota.{resource}.hard` |
+| `openshift.clusterquota.used`                                                      | `openshift.clusterquota.{resource}.used` |
+| `{resource}` attribute                                                             | Split in different metrics per type      |
 
 <!-- prettier-ignore-end -->
 
@@ -394,8 +394,8 @@ The changes in their metrics are the following:
 
 <!-- prettier-ignore-start -->
 
-| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                                                                                                                  |
-|------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                                                                                                                                   |
+| ---------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `k8s.node.condition_*`                                                             | `k8s.node.condition.status` metric [0,1] with attribute `k8s.node.condition.type` for the different conditions and `k8s.node.condition.status` for true/false/unknown |
 
 <!-- prettier-ignore-end -->
@@ -411,17 +411,17 @@ The changes in their metrics are the following:
 
 <!-- prettier-ignore-start -->
 
-| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                                                                                                                  |
-|------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `k8s.node.filesystem.available` gauge                                              | `k8s.node.filesystem.available` updowncounter |
-| `k8s.node.filesystem.capacity`   gauge                                             | `k8s.node.filesystem.capacity`  updowncounter |
-| `k8s.node.filesystem.usage`      gauge                                             | `k8s.node.filesystem.usage`     updowncounter |
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                              |
+| ---------------------------------------------------------------------------------- | ------------------------------------------------ |
+| `k8s.node.filesystem.available` gauge                                              | `k8s.node.filesystem.available`    updowncounter |
+| `k8s.node.filesystem.capacity`   gauge                                             | `k8s.node.filesystem.capacity`     updowncounter |
+| `k8s.node.filesystem.usage`      gauge                                             | `k8s.node.filesystem.usage`        updowncounter |
 | `k8s.pod.filesystem.available`   gauge                                             | `k8s.pod.filesystem.available`     updowncounter |
-| `k8s.pod.filesystem.capacity`    gauge                                                  | `k8s.pod.filesystem.capacity`   updowncounter |
-| `k8s.pod.filesystem.usage`      gauge                                                   | `k8s.pod.filesystem.usage`      updowncounter |
-| `container.filesystem.available`    gauge                                               | `container.filesystem.available`   updowncounter |
-| `container.filesystem.capacity`      gauge                                              | `container.filesystem.capacity`    updowncounter |
-| `container.filesystem.usage`        gauge                                               | `container.filesystem.usage`       updowncounter |
+| `k8s.pod.filesystem.capacity`    gauge                                             | `k8s.pod.filesystem.capacity`      updowncounter |
+| `k8s.pod.filesystem.usage`      gauge                                              | `k8s.pod.filesystem.usage`         updowncounter |
+| `container.filesystem.available`    gauge                                          | `container.filesystem.available`   updowncounter |
+| `container.filesystem.capacity`      gauge                                         | `container.filesystem.capacity`    updowncounter |
+| `container.filesystem.usage`        gauge                                          | `container.filesystem.usage`       updowncounter |
 
 <!-- prettier-ignore-end -->
 
@@ -436,13 +436,13 @@ The changes in these metrics are the following:
 
 <!-- prettier-ignore-start -->
 
-| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                          |
-|------------------------------------------------------------------------------------|------------------------------|
-| `k8s.volume.available` | `k8s.pod.volume.available`   |
-| `k8s.volume.capacity` | `k8s.pod.volume.capacity`    |
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New |
+| ---------------------------------------------------------------------------------- | --- |
+| `k8s.volume.available` | `k8s.pod.volume.available` |
+| `k8s.volume.capacity` | `k8s.pod.volume.capacity` |
 | `k8s.volume.inodes` | `k8s.pod.volume.inode.count` |
-| `k8s.volume.inodes.free` | `k8s.pod.volume.inode.free`  |
-| `k8s.volume.inodes.used` | `k8s.pod.volume.inode.used`  |
+| `k8s.volume.inodes.free` | `k8s.pod.volume.inode.free` |
+| `k8s.volume.inodes.used` | `k8s.pod.volume.inode.used` |
 
 <!-- prettier-ignore-end -->
 
@@ -458,9 +458,9 @@ The changes in these metrics are the following:
 <!-- prettier-ignore-start -->
 
 | Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                                                     |
-|------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------|
-| `k8s.pod.memory.page_faults`                                                         | `k8s.pod.memory.paging.faults` with attribute `system.paging.fault.type` set to `minor` |
-| `k8s.pod.memory.major_page_faults`                                                   | `k8s.pod.memory.paging.faults` with attribute `system.paging.fault.type` set to `major` |
+| ---------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| `k8s.pod.memory.page_faults`                                                       | `k8s.pod.memory.paging.faults` with attribute `system.paging.fault.type` set to `minor` |
+| `k8s.pod.memory.major_page_faults`                                                 | `k8s.pod.memory.paging.faults` with attribute `system.paging.fault.type` set to `major` |
 
 <!-- prettier-ignore-end -->
 
@@ -476,9 +476,9 @@ The changes in these metrics are the following:
 <!-- prettier-ignore-start -->
 
 | Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                                                       |
-|------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------|
+| ---------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
 | `container.memory.page_faults`                                                     | `container.memory.paging.faults` with attribute `system.paging.fault.type` set to `minor` |
-| `container.memory.major_page_faults`                                                 | `container.memory.paging.faults` with attribute `system.paging.fault.type` set to `major` |
+| `container.memory.major_page_faults`                                               | `container.memory.paging.faults` with attribute `system.paging.fault.type` set to `major` |
 
 <!-- prettier-ignore-end -->
 
@@ -494,9 +494,9 @@ The changes in these metrics are the following:
 <!-- prettier-ignore-start -->
 
 | Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                                                          |
-|------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------|
+| ---------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | `k8s.node.memory.page_faults`                                                      | `k8s.node.memory.paging.faults` with attribute `system.paging.type` set to `minor`           |
-| `k8s.node.memory.major_page_faults`                                                | `k8s.node.memory.paging.faults` with attribute `system.paging.type` set to `major` |
+| `k8s.node.memory.major_page_faults`                                                | `k8s.node.memory.paging.faults` with attribute `system.paging.type` set to `major`           |
 
 <!-- prettier-ignore-end -->
 
@@ -510,7 +510,7 @@ The changes in their attributes are the following:
 <!-- prettier-ignore-start -->
 
 | Old Attribute ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New Attribute |
-|------------------------------------------------------------------------------------|--------------------------|
+| -------------------------------------------------------------------------------- | ------------- |
 | `container.runtime` | `container.runtime.name` |
 
 <!-- prettier-ignore-end -->
@@ -527,7 +527,7 @@ The changes in their metrics are the following:
 <!-- prettier-ignore-start -->
 
 | Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                                                                   |
-|------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------|
+| ---------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
 | `k8s.pod.status_reason`    metric [1,6]                                            | `k8s.pod.status.reason` metric [0,1] with attribute `k8s.pod.status.reason` for the different reasons |
 | `k8s.pod.phase`       metric [1, 5]                                                | `k8s.pod.status.phase` metric [0,1] with attribute `k8s.pod.phase` for the different phases           |
 
