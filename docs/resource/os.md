@@ -15,7 +15,8 @@ In case of virtualized environments, this is the operating system as it is obser
 
 **Description:** The operating system (OS) on which the process represented by this resource is running.
 
-> :warning: This entity definition contains attributes without a role.
+> [!warning]
+> This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
 **Attributes:**
@@ -27,7 +28,6 @@ In case of virtualized environments, this is the operating system as it is obser
 | Other | [`os.description`](/docs/registry/attributes/os.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Human readable (not intended to be parsed) OS version information, like e.g. reported by `ver` or `lsb_release -a` commands. | `Microsoft Windows [Version 10.0.18363.778]`; `Ubuntu 18.04.1 LTS` |
 | Other | [`os.name`](/docs/registry/attributes/os.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Human readable operating system name. | `iOS`; `Android`; `Ubuntu` |
 | Other | [`os.version`](/docs/registry/attributes/os.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The version string of the operating system as defined in [Version Attributes](/docs/resource/README.md#version-attributes). | `14.2.1`; `18.04.1` |
-
 
 **[1] `os.build_id`:** `build_id` values SHOULD be obtained from the following sources:
 

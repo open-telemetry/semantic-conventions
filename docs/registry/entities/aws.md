@@ -13,7 +13,8 @@
 
 **Description:** Entities used by AWS Elastic Container Service (ECS).
 
-> :warning: This entity definition contains attributes without a role.
+> [!warning]
+> This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
 **Attributes:**
@@ -27,7 +28,6 @@
 | Other | [`aws.ecs.task.arn`](/docs/registry/attributes/aws.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The ARN of a running [ECS task](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-account-settings.html#ecs-resource-ids). | `arn:aws:ecs:us-west-1:123456789123:task/10838bed-421f-43ef-870a-f43feacbbb5b`; `arn:aws:ecs:us-west-1:123456789123:task/my-cluster/task-id/23ebb8ac-c18f-46c6-8bbe-d55d0e37cfbd` |
 | Other | [`aws.ecs.task.family`](/docs/registry/attributes/aws.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The family name of the [ECS task definition](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definitions.html) used to create the ECS task. | `opentelemetry-family` |
 | Other | [`aws.ecs.task.revision`](/docs/registry/attributes/aws.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The revision for the task definition used to create the ECS task. | `8`; `26` |
-
 
 
 
@@ -48,7 +48,8 @@
 
 **Description:** Entities used by AWS Elastic Kubernetes Service (EKS).
 
-> :warning: This entity definition contains attributes without a role.
+> [!warning]
+> This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
 **Attributes:**
@@ -65,7 +66,8 @@
 
 **Description:** Entities specific to Amazon Web Services.
 
-> :warning: This entity definition contains attributes without a role.
+> [!warning]
+> This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
 **Attributes:**
@@ -76,7 +78,6 @@
 | Other | [`aws.log.group.names`](/docs/registry/attributes/aws.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string[] | The name(s) of the AWS log group(s) an application is writing to. [2] | `["/aws/lambda/my-function", "opentelemetry-service"]` |
 | Other | [`aws.log.stream.arns`](/docs/registry/attributes/aws.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string[] | The ARN(s) of the AWS log stream(s). [3] | `["arn:aws:logs:us-west-1:123456789012:log-group:/aws/my/group:log-stream:logs/main/10838bed-421f-43ef-870a-f43feacbbb5b"]` |
 | Other | [`aws.log.stream.names`](/docs/registry/attributes/aws.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string[] | The name(s) of the AWS log stream(s) an application is writing to. | `["logs/main/10838bed-421f-43ef-870a-f43feacbbb5b"]` |
-
 
 **[1] `aws.log.group.arns`:** See the [log group ARN format documentation](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/iam-access-control-overview-cwl.html#CWL_ARN_Format).
 

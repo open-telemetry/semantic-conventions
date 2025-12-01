@@ -13,7 +13,8 @@
 
 **Description:** A container instance.
 
-> :warning: This entity definition contains attributes without a role.
+> [!warning]
+> This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
 **Attributes:**
@@ -27,7 +28,6 @@
 | Other | [`container.command`](/docs/registry/attributes/container.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The command used to run the container (i.e. the command name). [3] | `otelcontribcol` |
 | Other | [`container.command_args`](/docs/registry/attributes/container.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string[] | All the command arguments (including the command/executable itself) run by the container. | `["otelcontribcol", "--config", "config.yaml"]` |
 | Other | [`container.command_line`](/docs/registry/attributes/container.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The full command run by the container as a single string representing the full command. | `otelcontribcol --config config.yaml` |
-
 
 **[1] `container.label.<key>`:** For example, a docker container label `app` with value `nginx` SHOULD be recorded as the `container.label.app` attribute with value `"nginx"`.
 

@@ -1,6 +1,5 @@
 <!--- Hugo front matter used to generate the website version of this page:
 linkTitle: MySQL
-aliases: [/docs/specs/semconv/database/mysql.md]
 --->
 
 # Semantic conventions for MySQL client operations

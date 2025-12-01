@@ -1,6 +1,5 @@
 <!--- Hugo front matter used to generate the website version of this page:
 linkTitle: Database
-aliases: [/docs/specs/semconv/database]
 --->
 
 # Semantic conventions for database calls and systems

@@ -51,7 +51,8 @@ conflict.
 
 **Description:** A container in a [PodTemplate](https://kubernetes.io/docs/concepts/workloads/pods/#pod-templates).
 
-> :warning: This entity definition contains attributes without a role.
+> [!warning]
+> This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
 **Attributes:**
@@ -218,7 +219,8 @@ conflict.
 
 **Description:** A Kubernetes Namespace.
 
-> :warning: This entity definition contains attributes without a role.
+> [!warning]
+> This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
 **Attributes:**
@@ -228,7 +230,6 @@ conflict.
 | Other | [`k8s.namespace.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the namespace that the pod is running in. | `default` |
 | Other | [`k8s.namespace.annotation.<key>`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The annotation placed on the Namespace, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [13] | `0`; `` |
 | Other | [`k8s.namespace.label.<key>`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The label placed on the Namespace, the `<key>` being the label name, the value being the label value, even if the value is empty. [14] | `default`; `` |
-
 
 **[13] `k8s.namespace.annotation.<key>`:** Examples:
 

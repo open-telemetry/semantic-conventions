@@ -13,7 +13,8 @@
 
 **Description:** A host is defined as a computing instance. For example, physical servers, virtual machines, switches or disk array.
 
-> :warning: This entity definition contains attributes without a role.
+> [!warning]
+> This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
 **Attributes:**
@@ -29,7 +30,6 @@
 | Other | [`host.type`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Type of host. For Cloud, this must be the machine type. | `n1-standard-1` |
 | Other | [`host.ip`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string[] | Available IP addresses of the host, excluding loopback interfaces. [2] | `["192.168.1.140", "fe80::abc2:4a28:737a:609e"]` |
 | Other | [`host.mac`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string[] | Available MAC addresses of the host, excluding loopback interfaces. [3] | `["AC-DE-48-23-45-67", "AC-DE-48-23-45-67-01-9F"]` |
-
 
 **[1] `host.id`:** Collecting `host.id` from non-containerized systems
 
@@ -84,7 +84,8 @@ privileged lookup of `host.id` is required, the value should be injected via the
 
 **Description:** A host's CPU information
 
-> :warning: This entity definition contains attributes without a role.
+> [!warning]
+> This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
 **Attributes:**
@@ -97,7 +98,6 @@ privileged lookup of `host.id` is required, the value should be injected via the
 | Other | [`host.cpu.model.name`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Model designation of the processor. | `11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz` |
 | Other | [`host.cpu.stepping`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Stepping or core revisions. | `1`; `r1p1` |
 | Other | [`host.cpu.vendor.id`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Processor manufacturer identifier. A maximum 12-character string. [4] | `GenuineIntel` |
-
 
 **[4] `host.cpu.vendor.id`:** [CPUID](https://wiki.osdev.org/CPUID) command returns the vendor ID string in EBX, EDX and ECX registers. Writing these to memory in this order results in a 12-character string.
 

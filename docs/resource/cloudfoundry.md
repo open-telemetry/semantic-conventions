@@ -35,7 +35,8 @@ They align with the Bosh deployment tool of CloudFoundry.
 
 **Description:** The organization of the application which is monitored.
 
-> :warning: This entity definition contains attributes without a role.
+> [!warning]
+> This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
 **Attributes:**
@@ -44,7 +45,6 @@ They align with the Bosh deployment tool of CloudFoundry.
 | --- | --- | --- | --- | --- | --- | --- |
 | Other | [`cloudfoundry.org.id`](/docs/registry/attributes/cloudfoundry.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The guid of the CloudFoundry org the application is running in. [1] | `218fc5a9-a5f1-4b54-aa05-46717d0ab26d` |
 | Other | [`cloudfoundry.org.name`](/docs/registry/attributes/cloudfoundry.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the CloudFoundry organization the app is running in. [2] | `my-org-name` |
-
 
 **[1] `cloudfoundry.org.id`:** Application instrumentation should use the value from environment
 variable `VCAP_APPLICATION.org_id`. This is the same value as
@@ -73,7 +73,8 @@ reported by `cf orgs`.
 
 **Description:** The space of the application which is monitored.
 
-> :warning: This entity definition contains attributes without a role.
+> [!warning]
+> This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
 **Attributes:**
@@ -82,7 +83,6 @@ reported by `cf orgs`.
 | --- | --- | --- | --- | --- | --- | --- |
 | Other | [`cloudfoundry.space.id`](/docs/registry/attributes/cloudfoundry.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The guid of the CloudFoundry space the application is running in. [1] | `218fc5a9-a5f1-4b54-aa05-46717d0ab26d` |
 | Other | [`cloudfoundry.space.name`](/docs/registry/attributes/cloudfoundry.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the CloudFoundry space the application is running in. [2] | `my-space-name` |
-
 
 **[1] `cloudfoundry.space.id`:** Application instrumentation should use the value from environment
 variable `VCAP_APPLICATION.space_id`. This is the same value as
@@ -111,7 +111,8 @@ reported by `cf spaces`.
 
 **Description:** The application which is monitored.
 
-> :warning: This entity definition contains attributes without a role.
+> [!warning]
+> This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
 **Attributes:**
@@ -120,7 +121,6 @@ reported by `cf spaces`.
 | --- | --- | --- | --- | --- | --- | --- |
 | Other | [`cloudfoundry.app.id`](/docs/registry/attributes/cloudfoundry.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The guid of the application. [1] | `218fc5a9-a5f1-4b54-aa05-46717d0ab26d` |
 | Other | [`cloudfoundry.app.name`](/docs/registry/attributes/cloudfoundry.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the application. [2] | `my-app-name` |
-
 
 **[1] `cloudfoundry.app.id`:** Application instrumentation should use the value from environment
 variable `VCAP_APPLICATION.application_id`. This is the same value as
@@ -149,7 +149,8 @@ as reported by `cf apps`.
 
 **Description:** The process of the application which is monitored.
 
-> :warning: This entity definition contains attributes without a role.
+> [!warning]
+> This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
 **Attributes:**
@@ -158,7 +159,6 @@ as reported by `cf apps`.
 | --- | --- | --- | --- | --- | --- | --- |
 | Other | [`cloudfoundry.process.id`](/docs/registry/attributes/cloudfoundry.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The UID identifying the process. [1] | `218fc5a9-a5f1-4b54-aa05-46717d0ab26d` |
 | Other | [`cloudfoundry.process.type`](/docs/registry/attributes/cloudfoundry.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The type of process. [2] | `web` |
-
 
 **[1] `cloudfoundry.process.id`:** Application instrumentation should use the value from environment
 variable `VCAP_APPLICATION.process_id`. It is supposed to be equal to
@@ -188,7 +188,8 @@ tasks or side-cars with different process types.
 
 **Description:** The system component which is monitored.
 
-> :warning: This entity definition contains attributes without a role.
+> [!warning]
+> This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
 **Attributes:**
@@ -197,7 +198,6 @@ tasks or side-cars with different process types.
 | --- | --- | --- | --- | --- | --- | --- |
 | Other | [`cloudfoundry.system.id`](/docs/registry/attributes/cloudfoundry.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A guid or another name describing the event source. [1] | `cf/gorouter` |
 | Other | [`cloudfoundry.system.instance.id`](/docs/registry/attributes/cloudfoundry.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A guid describing the concrete instance of the event source. [2] | `218fc5a9-a5f1-4b54-aa05-46717d0ab26d` |
-
 
 **[1] `cloudfoundry.system.id`:** CloudFoundry defines the `source_id` in the [Loggregator v2 envelope](https://github.com/cloudfoundry/loggregator-api#v2-envelope).
 It is used for logs and metrics emitted by CloudFoundry. It is

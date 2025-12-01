@@ -24,7 +24,8 @@ See also:
 
 **Description:** A serverless instance.
 
-> :warning: This entity definition contains attributes without a role.
+> [!warning]
+> This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
 **Attributes:**
@@ -36,7 +37,6 @@ See also:
 | Other | [`faas.instance`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The execution environment ID as a string, that will be potentially reused for other invocations to the same function/function version. [3] | `2021/06/28/[$LATEST]2f399eb14537447da05ab2a2e39309de` |
 | Other | [`faas.max_memory`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | int | The amount of memory available to the serverless function converted to Bytes. [4] | `134217728` |
 | Other | [`faas.version`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The immutable version of the function being executed. [5] | `26`; `pinkfroid-00002` |
-
 
 **[1] `faas.name`:** This is the name of the function as configured/deployed on the FaaS
 platform and is usually different from the name of the callback

@@ -30,7 +30,8 @@ See [Supported Resources](https://cloud.google.com/app-hub/docs/supported-resour
 
 **Description:** Attributes denoting data from an Application in AppHub. See [AppHub overview](https://cloud.google.com/app-hub/docs/overview).
 
-> :warning: This entity definition contains attributes without a role.
+> [!warning]
+> This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
 **Attributes:**
@@ -60,7 +61,8 @@ See [Supported Resources](https://cloud.google.com/app-hub/docs/supported-resour
 
 **Description:** Attributes denoting data from a Service in AppHub. See [AppHub overview](https://cloud.google.com/app-hub/docs/overview).
 
-> :warning: This entity definition contains attributes without a role.
+> [!warning]
+> This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
 **Attributes:**
@@ -70,7 +72,6 @@ See [Supported Resources](https://cloud.google.com/app-hub/docs/supported-resour
 | Other | [`gcp.apphub.service.criticality_type`](/docs/registry/attributes/gcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Criticality of a service indicates its importance to the business. [1] | `MISSION_CRITICAL`; `HIGH`; `MEDIUM` |
 | Other | [`gcp.apphub.service.environment_type`](/docs/registry/attributes/gcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Environment of a service is the stage of a software lifecycle. [2] | `PRODUCTION`; `STAGING`; `TEST` |
 | Other | [`gcp.apphub.service.id`](/docs/registry/attributes/gcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the service as configured in AppHub. | `my-service` |
-
 
 **[1] `gcp.apphub.service.criticality_type`:** [See AppHub type enum](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type)
 
@@ -117,7 +118,8 @@ See [Supported Resources](https://cloud.google.com/app-hub/docs/supported-resour
 
 **Description:** Attributes denoting data from a Workload in AppHub. See [AppHub overview](https://cloud.google.com/app-hub/docs/overview).
 
-> :warning: This entity definition contains attributes without a role.
+> [!warning]
+> This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
 **Attributes:**
@@ -127,7 +129,6 @@ See [Supported Resources](https://cloud.google.com/app-hub/docs/supported-resour
 | Other | [`gcp.apphub.workload.criticality_type`](/docs/registry/attributes/gcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Criticality of a workload indicates its importance to the business. [1] | `MISSION_CRITICAL`; `HIGH`; `MEDIUM` |
 | Other | [`gcp.apphub.workload.environment_type`](/docs/registry/attributes/gcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Environment of a workload is the stage of a software lifecycle. [2] | `PRODUCTION`; `STAGING`; `TEST` |
 | Other | [`gcp.apphub.workload.id`](/docs/registry/attributes/gcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the workload as configured in AppHub. | `my-workload` |
-
 
 **[1] `gcp.apphub.workload.criticality_type`:** [See AppHub type enum](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type)
 

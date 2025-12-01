@@ -13,7 +13,8 @@
 
 **Description:** An app used directly by end users — like mobile, web, or desktop.
 
-> :warning: This entity definition contains attributes without a role.
+> [!warning]
+> This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 
 **Attributes:**
@@ -22,7 +23,6 @@
 | --- | --- | --- | --- | --- | --- | --- |
 | Identity | [`app.build_id`](/docs/registry/attributes/app.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Unique identifier for a particular build or compilation of the application. | `6cff0a7e-cefc-4668-96f5-1273d8b334d0`; `9f2b833506aa6973a92fde9733e6271f`; `my-app-1.0.0-code-123` |
 | Other | [`app.installation.id`](/docs/registry/attributes/app.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A unique identifier representing the installation of an application on a specific device [1] | `2ab2916d-a51f-4ac8-80ee-45ac31a28092` |
-
 
 **[1] `app.installation.id`:** Its value SHOULD persist across launches of the same application installation, including through application upgrades.
 It SHOULD change if the application is uninstalled or if all applications of the vendor are uninstalled.

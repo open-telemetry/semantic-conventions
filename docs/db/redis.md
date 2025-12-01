@@ -1,6 +1,5 @@
 <!--- Hugo front matter used to generate the website version of this page:
 linkTitle: Redis
-aliases: [/docs/specs/semconv/database/redis.md]
 --->
 
 # Semantic conventions for Redis client operations

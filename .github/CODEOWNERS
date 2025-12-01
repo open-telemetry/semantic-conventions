@@ -90,9 +90,9 @@
 /docs/non-normative/naming-known-exceptions.md  @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-k8s-approvers
 
 # Container semantic conventions
-/docs/resource/container.md       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-k8s-approvers @open-telemetry/semconv-container-approvers
-/model/container/                 @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-k8s-approvers @open-telemetry/semconv-container-approvers
-/model/oci/                       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-k8s-approvers @open-telemetry/semconv-container-approvers
+/docs/resource/container.md       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-k8s-approvers
+/model/container/                 @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-k8s-approvers
+/model/oci/                       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-k8s-approvers
 
 # .NET semantic conventions approvers
 /docs/dotnet/                     @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-dotnet-approver
