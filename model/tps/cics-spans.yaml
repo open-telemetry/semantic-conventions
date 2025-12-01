@@ -11,18 +11,16 @@ groups:
         examples: 'ibm.cics'
       - ref: ibm.cics.transaction.group.id
 
-  - id: span.ibm.cics.rpc.server
+  - id: span.ibm.cics.server
     type: span
     stability: development
-    brief: 'This group defines semantic conventions for Remote Procedure Call (RPC) server spans of IBM CICS Transaction Server for z/OS.'
-    extends: span.tps.rpc.server
+    brief: 'Defines server spans of IBM CICS Transaction Server for z/OS.'
+    extends: span.tps.server
     span_kind: server
     attributes:
       - ref: tps.system.name
         requirement_level: required
         examples: 'ibm.cics'
-      - ref: network.protocol.name
-        examples: ['ipic', 'mro']
-      - ref: rpc.system
-        examples: ['dpl', 'rmi']
+      - ref: tps.facility.type
+        examples: ['IPIC', 'MRO']
       - ref: ibm.cics.transaction.group.id

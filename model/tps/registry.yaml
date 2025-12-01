@@ -6,10 +6,18 @@ groups:
       This group defines generic attributes for Transaction Processing Systems (TPS).
     attributes:
       - id: tps.system.name
-        type: string
         stability: development
         brief: "Type of Transaction Processing System"
-        examples: ['jta', 'oracle.tuxedo', 'ibm.cics', 'ibm.ims', 'ibm.ztpf']
+        type: string
+          members:
+            - id: ibm.cics
+              value: 'ibm.cics'
+              brief: IBM CICS Transaction Server
+              stability: development
+            - id: ibm.ims
+              value: 'ibm.ims'
+              brief: IBM Information Management System
+              stability: development
       - id: tps.transaction.id
         type: string
         stability: development
@@ -40,6 +48,22 @@ groups:
         stability: development
         brief: "Unit of work executed by the program"
         examples: 'DF308CBF385A3C05'
+      - id: tps.connection.name
+        type: string
+        stability: development
+        brief: "Connection name identifies the other system that a system communicates with"
+        examples: 'CIDE'
+      - id: tps.facility.type
+        stability: development
+        type:
+          - id: IPIC
+            value: 'IPIC'
+            brief: IP interconnectivity - IPIC provides access to CICS applications over the TCP/IP protocol
+            stability: development
+          - id: MRO
+            value: 'MRO'
+            brief: Multiregion Operations - MRO enables CICS regions that are running in the same system, or in the same sysplex, to communicate with each other.
+            stability: development
 
   - id: registry.ibm.cics
     type: attribute_group

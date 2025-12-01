@@ -14,12 +14,14 @@ groups:
       - ref: tps.task.id
       - ref: tps.program.name
       - ref: tps.unit_of_work.id
+      - ref: tps.connection.name
+      - ref: tps.facility.type
 
-  - id: span.tps.rpc.server
+  - id: span.tps.server
     type: span
     stability: development
-    brief: 'This document defines semantic conventions for Remote Procedure Call (RPC) server spans of Transaction Processing Systems'
-    extends: span.rpc.server
+    brief: 'This document defines semantic conventions for a server spans of Transaction Processing Systems'
+
     span_kind: server
     attributes:
       - ref: tps.system.name
@@ -30,3 +32,5 @@ groups:
       - ref: tps.task.id
       - ref: tps.program.name
       - ref: tps.unit_of_work.id
+      - ref: tps.connection.name
+      - ref: tps.facility.type
