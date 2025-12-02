@@ -30,8 +30,10 @@
 
 **Description:** A unique instance of a logical service.
 
+**Attributes:**
+
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-|---|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- | --- |
 | Identity | [`service.instance.id`](/docs/registry/attributes/service.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The string ID of the service instance. [2] | `627cc493-f310-47de-96bd-71410b7dec09` |
 
 **[2] `service.instance.id`:** MUST be unique for each instance of the same `service.namespace,service.name` pair (in other words
@@ -69,8 +71,10 @@ port.
 
 **Description:** Groups related services that compose a system or application under a common namespace.
 
+**Attributes:**
+
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-|---|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- | --- |
 | Identity | [`service.namespace`](/docs/registry/attributes/service.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | A namespace for `service.name`. [3] | `Shop` |
 
 **[3] `service.namespace`:** A string value having a meaning that helps to distinguish a group of services, for example the team name that owns a group of services. `service.name` is expected to be unique within the same namespace. If `service.namespace` is not specified in the Resource then `service.name` is expected to be unique for all services that have no explicit namespace defined (so the empty/unspecified namespace is simply one more valid namespace). Zero-length namespace string is assumed equal to unspecified namespace.
