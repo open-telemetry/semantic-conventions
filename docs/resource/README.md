@@ -71,7 +71,6 @@ Logical grouping of components.
 
 - [Service](service.md).
 
-
 ## Telemetry SDK
 
 <!-- semconv entity.telemetry.sdk -->
