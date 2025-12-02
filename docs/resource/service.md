@@ -12,7 +12,8 @@ In modern, distributed, application architectures:
 - A `service.namespace` is an entire system of components designed for
   end-users or other applications to leverage.
 - A `service` is one of the logical, distinct components that make up the
-  application, typically running multiple instances of the same container image for load balancing.
+  application, e.g. running as a bundle of the instances that run the same
+  container image for load balancing.
 - A `service.instance` is a distinct instance of a service component, e.g. a
   specific kubernetes container that is part of a kubernetes deployment which
   offers a service.
