@@ -34,7 +34,7 @@ and various HTTP versions like 1.1, 2 and SPDY.
 
 <!-- tocstop -->
 
-> **Warning**
+> [!IMPORTANT]
 > Existing HTTP instrumentations that are using
 > [v1.20.0 of this document](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.20.0/specification/trace/semantic_conventions/http.md)
 > (or prior):
@@ -145,7 +145,7 @@ There are two ways HTTP client spans can be implemented in an instrumentation:
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- |
 | [`http.request.method`](/docs/registry/attributes/http.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | HTTP request method. [1] | `GET`; `POST`; `HEAD` |
 | [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [2] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | int | Server port number. [3] | `80`; `8080`; `443` |
@@ -302,16 +302,16 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ---
 
 `http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `_OTHER` | Any HTTP method that the instrumentation has no prior knowledge of. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `CONNECT` | CONNECT method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `DELETE` | DELETE method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -328,8 +328,8 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 `network.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `pipe` | Named or anonymous pipe. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `quic` | QUIC | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `tcp` | TCP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -340,8 +340,8 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 `user_agent.synthetic.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `bot` | Bot source. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `test` | Synthetic test source. | ![Development](https://img.shields.io/badge/-development-blue) |
 
@@ -405,7 +405,8 @@ HTTP server instrumentations SHOULD do the best effort when populating `server.a
 * The [`:authority`][HTTP/2 authority] pseudo-header in case of HTTP/2 or HTTP/3
 * The [`Host`][Host header] header.
 
-> **Note**: The `Host` and `:authority` headers contain host and port number of the server. The same applies to the `host` identifier of `Forwarded` header or the `X-Forwarded-Host` header. Instrumentations SHOULD populate both `server.address` and `server.port` attributes by parsing the value of corresponding header.
+> [!NOTE]
+> The `Host` and `:authority` headers contain host and port number of the server. The same applies to the `host` identifier of `Forwarded` header or the `X-Forwarded-Host` header. Instrumentations SHOULD populate both `server.address` and `server.port` attributes by parsing the value of corresponding header.
 
 Application developers MAY overwrite potentially inaccurate values of `server.*` attributes using a [SpanProcessor][SpanProcessor] and MAY capture private host information using applicable [resource attributes](/docs/resource/README.md).
 
@@ -443,7 +444,7 @@ This span represents an inbound HTTP request.
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- |
 | [`http.request.method`](/docs/registry/attributes/http.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | HTTP request method. [1] | `GET`; `POST`; `HEAD` |
 | [`url.path`](/docs/registry/attributes/url.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | The [URI path](https://www.rfc-editor.org/rfc/rfc3986#section-3.3) component [2] | `/search` |
 | [`url.scheme`](/docs/registry/attributes/url.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. [3] | `http`; `https` |
@@ -605,16 +606,16 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ---
 
 `http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `_OTHER` | Any HTTP method that the instrumentation has no prior knowledge of. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `CONNECT` | CONNECT method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `DELETE` | DELETE method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -631,8 +632,8 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 `network.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `pipe` | Named or anonymous pipe. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `quic` | QUIC | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `tcp` | TCP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -643,8 +644,8 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 `user_agent.synthetic.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `bot` | Bot source. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `test` | Synthetic test source. | ![Development](https://img.shields.io/badge/-development-blue) |
 
@@ -662,35 +663,35 @@ As an example, if a browser request for `https://example.com:8080/webshop/articl
 
 Span name: `GET`
 
-|   Attribute name     |                                       Value             |
-| :------------------- | :-------------------------------------------------------|
-| `http.request.method`| `"GET"`                                                 |
-| `network.protocol.version` | `"1.1"`                                           |
-| `url.full`           | `"https://example.com:8080/webshop/articles/4?s=1&t=2"` |
-| `server.address`     | `example.com`                                           |
-| `server.port`        | `8080`                                                  |
-| `network.peer.address` | `"192.0.2.5"`                                         |
-| `network.peer.port`    | `8080`                                                |
-| `http.response.status_code` | `200`                                            |
+| Attribute name              | Value                                                   |
+| :-------------------------- | :------------------------------------------------------ |
+| `http.request.method`       | `"GET"`                                                 |
+| `network.protocol.version`  | `"1.1"`                                                 |
+| `url.full`                  | `"https://example.com:8080/webshop/articles/4?s=1&t=2"` |
+| `server.address`            | `example.com`                                           |
+| `server.port`               | `8080`                                                  |
+| `network.peer.address`      | `"192.0.2.5"`                                           |
+| `network.peer.port`         | `8080`                                                  |
+| `http.response.status_code` | `200`                                                   |
 
 The corresponding server Span may look like this:
 
 Span name: `GET /webshop/articles/:article_id`.
 
-|   Attribute name     |                      Value                      |
-| :------------------- | :---------------------------------------------- |
-| `http.request.method`| `"GET"`                                         |
-| `network.protocol.version` | `"1.1"`                                   |
-| `url.path`           | `"/webshop/articles/4"`                         |
-| `url.query`          | `"s=1&t=2"`                                     |
-| `server.address`     | `"example.com"`                                 |
-| `server.port`        | `8080`                                          |
-| `url.scheme`         | `"https"`                                       |
-| `http.route`         | `"/webshop/articles/:article_id"`               |
-| `http.response.status_code` | `200`                                    |
-| `client.address`     | `"192.0.2.4"`                                   |
-| `network.peer.address` | `"192.0.2.5"` (the client goes through a proxy) |
-| `user_agent.original` | `"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:72.0) Gecko/20100101 Firefox/72.0"` |
+| Attribute name              | Value                                                                              |
+| :-------------------------- | :--------------------------------------------------------------------------------- |
+| `http.request.method`       | `"GET"`                                                                            |
+| `network.protocol.version`  | `"1.1"`                                                                            |
+| `url.path`                  | `"/webshop/articles/4"`                                                            |
+| `url.query`                 | `"s=1&t=2"`                                                                        |
+| `server.address`            | `"example.com"`                                                                    |
+| `server.port`               | `8080`                                                                             |
+| `url.scheme`                | `"https"`                                                                          |
+| `http.route`                | `"/webshop/articles/:article_id"`                                                  |
+| `http.response.status_code` | `200`                                                                              |
+| `client.address`            | `"192.0.2.4"`                                                                      |
+| `network.peer.address`      | `"192.0.2.5"` (the client goes through a proxy)                                    |
+| `user_agent.original`       | `"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:72.0) Gecko/20100101 Firefox/72.0"` |
 
 ### HTTP client retries examples
 
@@ -788,26 +789,26 @@ GET /hello - 200 (CLIENT, trace=t2, span=s1, http.request.resend_count=1)
 
 As an example, if a user requested `https://does-not-exist-123.com`, we may have the following span on the client side:
 
-|   Attribute name     |                                       Value             |
-| :------------------- | :-------------------------------------------------------|
-| `http.request.method`| `"GET"`                                                 |
-| `network.protocol.version` | `"1.1"`                                           |
-| `url.full`           | `"https://does-not-exist-123.com"`                      |
-| `server.address`     | `"does-not-exist-123.com"`                              |
-| `error.type`         | `"java.net.UnknownHostException"`                       |
+| Attribute name             | Value                              |
+| :------------------------- | :--------------------------------- |
+| `http.request.method`      | `"GET"`                            |
+| `network.protocol.version` | `"1.1"`                            |
+| `url.full`                 | `"https://does-not-exist-123.com"` |
+| `server.address`           | `"does-not-exist-123.com"`         |
+| `error.type`               | `"java.net.UnknownHostException"`  |
 
 ### HTTP client call: Internal Server Error
 
 As an example, if a user requested `https://example.com` and server returned 500, we may have the following span on the client side:
 
-|   Attribute name     |                                       Value             |
-| :------------------- | :-------------------------------------------------------|
-| `http.request.method`| `"GET"`                                                 |
-| `network.protocol.version` | `"1.1"`                                           |
-| `url.full`           | `"https://example.com"`                                 |
-| `server.address`     | `"example.com"`                                         |
-| `http.response.status_code` | `500`                                            |
-| `error.type`         | `"500"`                                                 |
+| Attribute name              | Value                   |
+| :-------------------------- | :---------------------- |
+| `http.request.method`       | `"GET"`                 |
+| `network.protocol.version`  | `"1.1"`                 |
+| `url.full`                  | `"https://example.com"` |
+| `server.address`            | `"example.com"`         |
+| `http.response.status_code` | `500`                   |
+| `error.type`                | `"500"`                 |
 
 ### HTTP server call: connection dropped before response body was sent
 
@@ -815,14 +816,14 @@ As an example, if a user sent a `POST` request with a body to `https://example.c
 
 Span name: `POST /uploads/:document_id`.
 
-|   Attribute name     |                      Value                      |
-| :------------------- | :---------------------------------------------- |
-| `http.request.method`| `"POST"`                                         |
-| `url.path`           | `"/uploads/4"`                                  |
-| `url.scheme`         | `"https"`                                       |
-| `http.route`         | `"/uploads/:document_id"`                       |
-| `http.response.status_code` | `201`                                    |
-| `error.type`         | `WebSocketDisconnect`                           |
+| Attribute name              | Value                     |
+| :-------------------------- | :------------------------ |
+| `http.request.method`       | `"POST"`                  |
+| `url.path`                  | `"/uploads/4"`            |
+| `url.scheme`                | `"https"`                 |
+| `http.route`                | `"/uploads/:document_id"` |
+| `http.response.status_code` | `201`                     |
+| `error.type`                | `WebSocketDisconnect`     |
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
 [SpanProcessor]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.51.0/specification/trace/sdk.md#span-processor

@@ -28,7 +28,7 @@ This can be used to determine the impact a feature has on a request, enabling en
 
 Feature flag evaluations SHOULD be recorded as attributes on the [Event](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.51.0/specification/logs/data-model.md#events) passed to the [Logger](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.51.0/specification/logs/api.md#logger) emit operations.
 
-> Note:
+> [!NOTE]
 > Events are in-development and not yet available in some languages. Check the [spec-compliance matrix](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.51.0/spec-compliance-matrix.md#logs) to see the implementation status in the corresponding language.
 
 ## Evaluation event
@@ -51,7 +51,7 @@ A `feature_flag.evaluation` event SHOULD be emitted whenever a feature flag valu
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- |
 | [`feature_flag.key`](/docs/registry/attributes/feature-flag.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | string | The lookup key of the feature flag. | `logo-color` |
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [1] | string | Describes a class of error the operation ended with. [2] | `provider_not_ready`; `targeting_key_missing`; `provider_fatal`; `general` |
 | [`feature_flag.result.value`](/docs/registry/attributes/feature-flag.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Conditionally Required` [3] | any | The evaluated value of the feature flag. [4] | `#ff0000`; `true`; `3` |
@@ -67,8 +67,8 @@ A `feature_flag.evaluation` event SHOULD be emitted whenever a feature flag valu
 
 **[2] `error.type`:** If one of these values applies, then it MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `flag_not_found` | The flag could not be found. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | `invalid_context` | The evaluation context does not meet provider requirements. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | `parse_error` | An error was encountered parsing data, such as a flag configuration. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
@@ -101,16 +101,16 @@ For example, the variant `red` maybe be used for the value `#c05543`.
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ---
 
 `feature_flag.result.reason` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `cached` | The resolved value was retrieved from cache. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | `default` | The resolved value fell back to a pre-configured value (no dynamic evaluation occurred or dynamic evaluation yielded no result). | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | `disabled` | The resolved value was the result of the flag being disabled in the management system. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |

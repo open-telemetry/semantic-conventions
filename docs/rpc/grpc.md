@@ -32,7 +32,7 @@ This span represents an outgoing Remote Procedure Call (RPC).
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- |
 | [`rpc.grpc.status_code`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | int | The [numeric status code](https://github.com/grpc/grpc/blob/v1.33.2/doc/statuscodes.md) of the gRPC request. | `0`; `1`; `2` |
 | [`rpc.method`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | This is the logical name of the method from the RPC interface perspective. [1] | `exampleMethod` |
 | [`rpc.service`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The full (logical) name of the service being called, including its package name, if applicable. [2] | `myservice.EchoService` |
@@ -103,16 +103,16 @@ the `rpc.grpc.response.metadata.my-custom-key` attribute with value `["attribute
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ---
 
 `network.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `pipe` | Named or anonymous pipe. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `quic` | QUIC | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `tcp` | TCP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -123,8 +123,8 @@ the `rpc.grpc.response.metadata.my-custom-key` attribute with value `["attribute
 
 `rpc.grpc.status_code` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `0` | OK | ![Development](https://img.shields.io/badge/-development-blue) |
 | `1` | CANCELLED | ![Development](https://img.shields.io/badge/-development-blue) |
 | `2` | UNKNOWN | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -169,7 +169,7 @@ This span represents an incoming Remote Procedure Call (RPC).
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- |
 | [`rpc.grpc.status_code`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | int | The [numeric status code](https://github.com/grpc/grpc/blob/v1.33.2/doc/statuscodes.md) of the gRPC request. | `0`; `1`; `2` |
 | [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | RPC server [host name](https://grpc.github.io/grpc/core/md_doc_naming.html). [1] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the operation failed. | string | Describes a class of error the operation ended with. [2] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` |
@@ -246,16 +246,16 @@ the `rpc.grpc.response.metadata.my-custom-key` attribute with value `["attribute
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ---
 
 `network.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `pipe` | Named or anonymous pipe. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `quic` | QUIC | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `tcp` | TCP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -266,8 +266,8 @@ the `rpc.grpc.response.metadata.my-custom-key` attribute with value `["attribute
 
 `rpc.grpc.status_code` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `0` | OK | ![Development](https://img.shields.io/badge/-development-blue) |
 | `1` | CANCELLED | ![Development](https://img.shields.io/badge/-development-blue) |
 | `2` | UNKNOWN | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -299,16 +299,16 @@ depending on the [gRPC status code](https://github.com/grpc/grpc/blob/v1.33.2/do
 and [Span Kind](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.51.0/specification/trace/api.md#spankind).
 
 | gRPC Status Code | `SpanKind.SERVER` Span Status | `SpanKind.CLIENT` Span Status |
-|---|---|---|
+| --- | --- | --- |
 | OK | unset | unset |
 | CANCELLED | unset | `Error` |
-| UNKNOWN | `Error` | `Error`  |
+| UNKNOWN | `Error` | `Error` |
 | INVALID_ARGUMENT | unset | `Error` |
 | DEADLINE_EXCEEDED | `Error` | `Error` |
 | NOT_FOUND | unset | `Error` |
 | ALREADY_EXISTS | unset | `Error` |
 | PERMISSION_DENIED | unset | `Error` |
-| RESOURCE_EXHAUSTED | unset| `Error` |
+| RESOURCE_EXHAUSTED | unset | `Error` |
 | FAILED_PRECONDITION | unset | `Error` |
 | ABORTED | unset | `Error` |
 | OUT_OF_RANGE | unset | `Error` |

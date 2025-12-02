@@ -1,6 +1,5 @@
 <!--- Hugo front matter used to generate the website version of this page:
 linkTitle: Cassandra
-aliases: [/docs/specs/semconv/database/cassandra.md]
 --->
 
 # Semantic conventions for Cassandra client operations
@@ -38,7 +37,7 @@ Spans representing calls to a Cassandra database adhere to the general [Semantic
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- |
 | [`db.collection.name`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [1] | string | The name of the Cassandra table that the operation is acting upon. [2] | `public.users`; `customers` |
 | [`db.namespace`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If available. | string | The keyspace associated with the session. [3] | `mykeyspace` |
 | [`db.operation.name`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [4] | string | The name of the operation or command being executed. [5] | `findAndModify`; `HMSET`; `SELECT` |
@@ -49,7 +48,7 @@ Spans representing calls to a Cassandra database adhere to the general [Semantic
 | [`cassandra.coordinator.dc`](/docs/registry/attributes/cassandra.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The data center of the coordinating node for a query. | `us-west-2` |
 | [`cassandra.coordinator.id`](/docs/registry/attributes/cassandra.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The ID of the coordinating node for a query. | `be13faa2-8574-4d71-926d-27f16cf8a7af` |
 | [`cassandra.page.size`](/docs/registry/attributes/cassandra.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | int | The fetch size used for paging, i.e. how many rows will be returned at once. | `5000` |
-| [`cassandra.query.idempotent`](/docs/registry/attributes/cassandra.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | boolean | Whether or not the query is idempotent. |  |
+| [`cassandra.query.idempotent`](/docs/registry/attributes/cassandra.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | boolean | Whether or not the query is idempotent. | |
 | [`cassandra.speculative_execution.count`](/docs/registry/attributes/cassandra.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | int | The number of times a query was speculatively executed. Not set or `0` if the query was not executed speculatively. | `0`; `2` |
 | [`db.operation.batch.size`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | The number of queries included in a batch operation. [11] | `2`; `3`; `4` |
 | [`db.query.summary`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` [12] | string | Low cardinality summary of a database query. [13] | `SELECT wuser_table`; `INSERT shipping_details SELECT orders`; `get user by id` |
@@ -160,8 +159,8 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 `cassandra.consistency.level` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `all` | All | ![Development](https://img.shields.io/badge/-development-blue) |
 | `any` | Any | ![Development](https://img.shields.io/badge/-development-blue) |
 | `each_quorum` | Each Quorum | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -178,8 +177,8 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 <!-- prettier-ignore-end -->

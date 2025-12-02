@@ -1,6 +1,5 @@
 <!--- Hugo front matter used to generate the website version of this page:
 linkTitle: Cosmos DB
-aliases: [/docs/specs/semconv/database/cosmosdb.md]
 --->
 
 # Semantic conventions for Microsoft Azure Cosmos DB client operations
@@ -47,7 +46,7 @@ Semantic conventions described in this document apply to the call-level spans on
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- |
 | [`db.operation.name`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | The name of the operation or command being executed. [1] | `create_item`; `query_items`; `read_item` |
 | [`azure.cosmosdb.connection.mode`](/docs/registry/attributes/azure.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [2] | string | Cosmos client connection mode. | `gateway`; `direct` |
 | [`azure.cosmosdb.consistency.level`](/docs/registry/attributes/azure.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If available. | string | Account or request [consistency level](https://learn.microsoft.com/azure/cosmos-db/consistency-levels). | `Eventual`; `ConsistentPrefix`; `BoundedStaleness`; `Strong`; `Session` |
@@ -61,7 +60,7 @@ Semantic conventions described in this document apply to the call-level spans on
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the operation failed. | string | Describes a class of error the operation ended with. [6] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` |
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If not default (443). | int | Server port number. [7] | `80`; `8080`; `443` |
 | [`azure.client.id`](/docs/registry/attributes/azure.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The unique identifier of the client instance. | `3ba4827d-4422-483f-b59f-85b74211c11d`; `storage-client-1` |
-| [`azure.cosmosdb.request.body.size`](/docs/registry/attributes/azure.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | int | Request payload size in bytes. |  |
+| [`azure.cosmosdb.request.body.size`](/docs/registry/attributes/azure.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | int | Request payload size in bytes. | |
 | [`azure.resource_provider.namespace`](/docs/registry/attributes/azure.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | [Azure Resource Provider Namespace](https://learn.microsoft.com/azure/azure-resource-manager/management/azure-services-resource-providers) as recognized by the client. [8] | `Microsoft.DocumentDB` |
 | [`db.operation.batch.size`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | The number of queries included in a batch operation. [9] | `2`; `3`; `4` |
 | [`db.query.text`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The database query being executed. [10] | `SELECT * FROM wuser_table where username = ?`; `SET mykey ?` |
@@ -262,8 +261,8 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 `azure.cosmosdb.connection.mode` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `direct` | Direct connection. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `gateway` | Gateway (HTTP) connection. | ![Development](https://img.shields.io/badge/-development-blue) |
 
@@ -271,8 +270,8 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 `azure.cosmosdb.consistency.level` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `BoundedStaleness` | Bounded Staleness | ![Development](https://img.shields.io/badge/-development-blue) |
 | `ConsistentPrefix` | Consistent Prefix | ![Development](https://img.shields.io/badge/-development-blue) |
 | `Eventual` | Eventual | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -283,8 +282,8 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 <!-- prettier-ignore-end -->
@@ -293,21 +292,21 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 ### Example
 
-| Key                                  | Value |
-|:-------------------------------------| :------------------- |
-| Span name                            | `"read_item orders"` |
-| `azure.client.id`                    | `"3ba4827d-4422-483f-b59f-85b74211c11d"` |
-| `azure.cosmosdb.operation.request_charge`  | `7.43` |
-| `azure.cosmosdb.request.body.size`   | `20` |
-| `azure.cosmosdb.response.sub_status_code` | `0` |
-| `azure.resource_provider.namespace`  | `"Microsoft.DocumentDB"` |
-| `db.system.name`                     | `"azure.cosmosdb"` |
-| `db.collection.name`                 | `"orders"` |
-| `db.namespace`                       | `"ShopDb"` |
-| `db.operation.name`                  | `"read_item"` |
-| `db.response.status_code`            | `201` |
-| `server.address`                     | `"account.documents.azure.com"` |
-| `user_agent.original`                | `"cosmos-netstandard-sdk/3.23.0\|3.23.1\|1\|X64\|Linux 5.4.0-1098-azure 104 18\|.NET Core 3.1.32\|S\|"` |
+| Key                                       | Value                                                                                                   |
+| :---------------------------------------- | :------------------------------------------------------------------------------------------------------ |
+| Span name                                 | `"read_item orders"`                                                                                    |
+| `azure.client.id`                         | `"3ba4827d-4422-483f-b59f-85b74211c11d"`                                                                |
+| `azure.cosmosdb.operation.request_charge` | `7.43`                                                                                                  |
+| `azure.cosmosdb.request.body.size`        | `20`                                                                                                    |
+| `azure.cosmosdb.response.sub_status_code` | `0`                                                                                                     |
+| `azure.resource_provider.namespace`       | `"Microsoft.DocumentDB"`                                                                                |
+| `db.system.name`                          | `"azure.cosmosdb"`                                                                                      |
+| `db.collection.name`                      | `"orders"`                                                                                              |
+| `db.namespace`                            | `"ShopDb"`                                                                                              |
+| `db.operation.name`                       | `"read_item"`                                                                                           |
+| `db.response.status_code`                 | `201`                                                                                                   |
+| `server.address`                          | `"account.documents.azure.com"`                                                                         |
+| `user_agent.original`                     | `"cosmos-netstandard-sdk/3.23.0\|3.23.1\|1\|X64\|Linux 5.4.0-1098-azure 104 18\|.NET Core 3.1.32\|S\|"` |
 
 ## Metrics
 
@@ -351,14 +350,14 @@ Explaining bucket configuration:
 <!-- see templates/registry/markdown/snippet.md.j2 -->
 <!-- prettier-ignore-start -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `azure.cosmosdb.client.operation.request_charge` | Histogram | `{request_unit}` | [Request units](https://learn.microsoft.com/azure/cosmos-db/request-units) consumed by the operation. | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `azure.cosmosdb.client.operation.request_charge` | Histogram | `{request_unit}` | [Request units](https://learn.microsoft.com/azure/cosmos-db/request-units) consumed by the operation. | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- |
 | [`db.operation.name`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | The name of the operation or command being executed. [1] | `findAndModify`; `HMSET`; `SELECT` |
 | [`azure.cosmosdb.consistency.level`](/docs/registry/attributes/azure.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If available. | string | Account or request [consistency level](https://learn.microsoft.com/azure/cosmos-db/consistency-levels). | `Eventual`; `ConsistentPrefix`; `BoundedStaleness`; `Strong`; `Session` |
 | [`azure.cosmosdb.response.sub_status_code`](/docs/registry/attributes/azure.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` when response was received and contained sub-code. | int | Cosmos DB sub status code. | `1000`; `1002` |
@@ -408,8 +407,8 @@ Instrumentations SHOULD document how `error.type` is populated.
 
 `azure.cosmosdb.consistency.level` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `BoundedStaleness` | Bounded Staleness | ![Development](https://img.shields.io/badge/-development-blue) |
 | `ConsistentPrefix` | Consistent Prefix | ![Development](https://img.shields.io/badge/-development-blue) |
 | `Eventual` | Eventual | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -420,8 +419,8 @@ Instrumentations SHOULD document how `error.type` is populated.
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 <!-- prettier-ignore-end -->
@@ -439,14 +438,14 @@ It captures the number of active instances at any given time. Best practices dic
 <!-- see templates/registry/markdown/snippet.md.j2 -->
 <!-- prettier-ignore-start -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `azure.cosmosdb.client.active_instance.count` | UpDownCounter | `{instance}` | Number of active client instances. | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `azure.cosmosdb.client.active_instance.count` | UpDownCounter | `{instance}` | Number of active client instances. | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- |
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [1] | int | Server port number. [2] | `80`; `8080`; `443` |
 | [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Name of the database host. [3] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 

@@ -46,7 +46,7 @@ If Spans following this convention are produced, a Resource of type `faas` MUST 
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- |
 | [`cloud.resource_id`](/docs/registry/attributes/cloud.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Cloud provider-specific native identifier of the monitored cloud resource (e.g. an [ARN](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) on AWS, a [fully qualified resource ID](https://learn.microsoft.com/rest/api/resources/resources/get-by-id) on Azure, a [full resource name](https://google.aip.dev/122#full-resource-names) on GCP) [1] | `arn:aws:lambda:REGION:ACCOUNT_ID:function:my-function`; `//run.googleapis.com/projects/PROJECT_ID/locations/LOCATION_ID/services/SERVICE_ID`; `/subscriptions/<SUBSCRIPTION_GUID>/resourceGroups/<RG>/providers/Microsoft.Web/sites/<FUNCAPP>/functions/<FUNC>` |
 | [`faas.invocation_id`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The invocation ID of the current function invocation. | `af9d5aa4-a685-4c5f-a22b-444f80b3cc28` |
 | [`faas.trigger`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Type of the trigger which caused this function invocation. [2] | `datasource`; `http`; `pubsub` |
@@ -83,8 +83,8 @@ call to invoke the lambda, which is often HTTP).
 
 `faas.trigger` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `datasource` | A response to some data source operation such as a database or filesystem read/write | ![Development](https://img.shields.io/badge/-development-blue) |
 | `http` | To provide an answer to an inbound HTTP request | ![Development](https://img.shields.io/badge/-development-blue) |
 | `other` | If none of the others apply | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -144,9 +144,9 @@ This span represents server (incoming) side of the FaaS invocation.
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- |
 | [`faas.trigger`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Type of the trigger which caused this function invocation. [1] | `datasource`; `http`; `pubsub` |
-| [`faas.coldstart`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | boolean | A boolean that is true if the serverless function is executed for the first time (aka cold-start). |  |
+| [`faas.coldstart`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | boolean | A boolean that is true if the serverless function is executed for the first time (aka cold-start). | |
 
 **[1] `faas.trigger`:** For the server/consumer span on the incoming side,
 `faas.trigger` MUST be set.
@@ -162,8 +162,8 @@ call to invoke the lambda, which is often HTTP).
 
 `faas.trigger` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `datasource` | A response to some data source operation such as a database or filesystem read/write | ![Development](https://img.shields.io/badge/-development-blue) |
 | `http` | To provide an answer to an inbound HTTP request | ![Development](https://img.shields.io/badge/-development-blue) |
 | `other` | If none of the others apply | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -210,7 +210,7 @@ which the invoked FaaS instance reports about itself, if it's instrumented.
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- |
 | [`faas.invoked_name`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the invoked function. [1] | `my-function` |
 | [`faas.invoked_provider`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The cloud provider of the invoked function. [2] | `alibaba_cloud`; `aws`; `azure` |
 | [`faas.invoked_region`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [3] | string | The cloud region of the invoked function. [4] | `eu-central-1` |
@@ -227,8 +227,8 @@ which the invoked FaaS instance reports about itself, if it's instrumented.
 
 `faas.invoked_provider` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `alibaba_cloud` | Alibaba Cloud | ![Development](https://img.shields.io/badge/-development-blue) |
 | `aws` | Amazon Web Services | ![Development](https://img.shields.io/badge/-development-blue) |
 | `azure` | Microsoft Azure | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -264,7 +264,7 @@ This span represents server side if the FaaS invocations triggered in response r
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- |
 | [`faas.document.collection`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the source on which the triggering operation was performed. For example, in Cloud Storage or S3 corresponds to the bucket name, and in Cosmos DB to the database name. | `myBucketName`; `myDbName` |
 | [`faas.document.operation`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Describes the type of the operation that was performed on the data. | `insert`; `edit`; `delete` |
 | [`faas.document.name`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The document name/table subjected to the operation. For example, in Cloud Storage or S3 is the name of the file, and in Cosmos DB the table name. | `myFile.txt`; `myTableName` |
@@ -274,8 +274,8 @@ This span represents server side if the FaaS invocations triggered in response r
 
 `faas.document.operation` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `delete` | When an object is deleted. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `edit` | When an object is modified. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `insert` | When a new object is created. | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -316,7 +316,7 @@ This span represents server side if the FaaS invocations triggered by a timer.
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- |
 | [`faas.cron`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A string containing the schedule period as [Cron Expression](https://docs.oracle.com/cd/E12058_01/doc/doc.1014/e12030/cron_expressions.htm). | `0/5 * * * ? *` |
 | [`faas.time`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A string containing the function invocation time in the [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format expressed in [UTC](https://www.w3.org/TR/NOTE-datetime). | `2020-01-23T13:47:06Z` |
 
@@ -334,19 +334,19 @@ In this case, it is responsibility of the framework or instrumentation library t
 
 This example shows the FaaS attributes for a (non-FaaS) process hosted on Google Cloud Platform (Span A with kind `CLIENT`), which invokes a Lambda function called "my-lambda-function" in Amazon Web Services (Span B with kind `SERVER`).
 
-| Attribute Kind | Attribute               | Span A (Client, GCP)   | Span B (Server, AWS Lambda) |
-| -------------- | ----------------------- | ---------------------- | -- |
-| Resource       | `cloud.provider`        | `"gcp"`                | `"aws"` |
-| Resource       | `cloud.region`          | `"europe-west3"`       | `"eu-central-1"` |
-| Span           | `faas.invoked_name`     | `"my-lambda-function"` | n/a |
-| Span           | `faas.invoked_provider` | `"aws"`                | n/a |
-| Span           | `faas.invoked_region`   | `"eu-central-1"`       | n/a |
-| Span           | `faas.trigger`          | n/a                    | `"http"` |
-| Span           | `faas.invocation_id`    | n/a                    | `"af9d5aa4-a685-4c5f-a22b-444f80b3cc28"` |
-| Span           | `faas.coldstart`        | n/a                    | `true` |
-| Resource       | `faas.name`             | n/a                    | `"my-lambda-function"` |
-| Resource       | `faas.version`          | n/a                    | `"semver:2.0.0"` |
-| Resource       | `faas.instance`         | n/a                    | `"my-lambda-function:instance-0001"` |
+| Attribute Kind | Attribute               | Span A (Client, GCP)   | Span B (Server, AWS Lambda)                                           |
+| -------------- | ----------------------- | ---------------------- | --------------------------------------------------------------------- |
+| Resource       | `cloud.provider`        | `"gcp"`                | `"aws"`                                                               |
+| Resource       | `cloud.region`          | `"europe-west3"`       | `"eu-central-1"`                                                      |
+| Span           | `faas.invoked_name`     | `"my-lambda-function"` | n/a                                                                   |
+| Span           | `faas.invoked_provider` | `"aws"`                | n/a                                                                   |
+| Span           | `faas.invoked_region`   | `"eu-central-1"`       | n/a                                                                   |
+| Span           | `faas.trigger`          | n/a                    | `"http"`                                                              |
+| Span           | `faas.invocation_id`    | n/a                    | `"af9d5aa4-a685-4c5f-a22b-444f80b3cc28"`                              |
+| Span           | `faas.coldstart`        | n/a                    | `true`                                                                |
+| Resource       | `faas.name`             | n/a                    | `"my-lambda-function"`                                                |
+| Resource       | `faas.version`          | n/a                    | `"semver:2.0.0"`                                                      |
+| Resource       | `faas.instance`         | n/a                    | `"my-lambda-function:instance-0001"`                                  |
 | Resource       | `cloud.resource_id`     | n/a                    | `"arn:aws:lambda:us-west-2:123456789012:function:my-lambda-function"` |
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
