@@ -6,6 +6,23 @@ groups:
       - ref: gen_ai.tool.name
         requirement_level:
           conditionally_required: When operation is related to a specific tool.
+      - ref: gen_ai.tool.call.arguments
+        requirement_level:
+          conditionally_required: When operation describes a tool call.
+      - ref: gen_ai.tool.call.result
+        requirement_level:
+          conditionally_required: When operation describes a tool call.
+      - ref: gen_ai.operation.name
+        brief: The name of the GenAI operation being performed.
+        examples: ["execute_tool"]
+        requirement_level:
+          recommended: >
+            SHOULD be set to `execute_tool` when the operation describes a tool
+            call and SHOULD NOT be set otherwise.
+        note: >
+          Populating this attribute for tool calling along with `mcp.method.name`
+          allows consumers to treat MCP tool calls spans similarly with other tool
+          call types.
       - ref: gen_ai.prompt.name
         brief: The name of the prompt or prompt template provided in the request or response.
         requirement_level:

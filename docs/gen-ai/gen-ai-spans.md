@@ -364,10 +364,15 @@ Describes tool execution span.
 
 **Span name** SHOULD be `execute_tool {gen_ai.tool.name}`.
 
-GenAI instrumentations that are able to instrument tool execution call SHOULD do so.
-However, it's common for tools to be executed by the application code. It's recommended
-for the application developers to follow this semantic convention for tools invoked
-by the application code.
+GenAI instrumentations that can instrument tool execution calls SHOULD do so,
+unless another instrumentation can reliably cover all supported tool types.
+MCP tool executions may also be traced by the
+[corresponding MCP instrumentation](/docs/gen-ai/mcp#client).
+
+Tools are often executed directly by application code. Application developers
+are encouraged to follow this semantic convention for tools invoked by their
+own code and to manually instrument any tool calls that automatic
+instrumentations do not cover.
 
 **Span kind** SHOULD be `INTERNAL`.
 
@@ -382,7 +387,7 @@ by the application code.
 | [`gen_ai.tool.call.id`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` if available | string | The tool call identifier. | `call_mszuSIzqtI65i1wAUOE8w5H4` |
 | [`gen_ai.tool.description`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` if available | string | The tool description. | `Multiply two numbers` |
 | [`gen_ai.tool.name`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Name of the tool utilized by the agent. | `Flights` |
-| [`gen_ai.tool.type`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` if available | string | Type of the tool utilized by the agent [3] | `function`; `extension`; `datastore` |
+| [`gen_ai.tool.type`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` if available | string | Type of the tool utilized by the agent [3] | `function`; `extension`; `datastore`; `mcp` |
 | [`gen_ai.tool.call.arguments`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | any | Parameters passed to the tool call. [4] | {<br>&nbsp;&nbsp;&nbsp;&nbsp;"location": "San Francisco?",<br>&nbsp;&nbsp;&nbsp;&nbsp;"date": "2025-10-01"<br>} |
 | [`gen_ai.tool.call.result`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | any | The result returned by the tool call (if any and if execution was successful). [5] | {<br>&nbsp;&nbsp;"temperature_range": {<br>&nbsp;&nbsp;&nbsp;&nbsp;"high": 75,<br>&nbsp;&nbsp;&nbsp;&nbsp;"low": 60<br>&nbsp;&nbsp;},<br>&nbsp;&nbsp;"conditions": "sunny"<br>} |
 

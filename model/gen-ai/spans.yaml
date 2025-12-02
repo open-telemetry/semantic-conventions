@@ -307,10 +307,15 @@ groups:
 
       **Span name** SHOULD be `execute_tool {gen_ai.tool.name}`.
 
-      GenAI instrumentations that are able to instrument tool execution call SHOULD do so.
-      However, it's common for tools to be executed by the application code. It's recommended
-      for the application developers to follow this semantic convention for tools invoked
-      by the application code.
+      GenAI instrumentations that can instrument tool execution calls SHOULD do so,
+      unless another instrumentation can reliably cover all supported tool types.
+      MCP tool executions may also be traced by the
+      [corresponding MCP instrumentation](/docs/gen-ai/mcp#client).
+
+      Tools are often executed directly by application code. Application developers
+      are encouraged to follow this semantic convention for tools invoked by their
+      own code and to manually instrument any tool calls that automatic
+      instrumentations do not cover.
     attributes:
       - ref: gen_ai.operation.name
         requirement_level: required
