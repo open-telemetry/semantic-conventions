@@ -38,10 +38,14 @@ groups:
       Refer to the [Recording Errors](/docs/general/recording-errors.md) document
       for more details.
 
-      MCP tool call execution spans are compatible with Gen AI [execute_tool spans](/docs/gen-ai/gen-ai-spans##execute-tool-span).
-      MCP instrumentations MAY suppress their spans when they can detect that
-      the Gen AI instrumentation is already tracing the tool execution and MAY
-      provide configuration options to disable tool execution spans.
+      MCP tool call execution spans are compatible with GenAI [execute_tool spans](/docs/gen-ai/gen-ai-spans##execute-tool-span).
+
+      If the MCP instrumentation can reliably detect that outer GenAI instrumentation
+      is already tracing the tool execution, it SHOULD NOT create a separate span.
+      Instead, it SHOULD add MCP-specific attributes to the existing tool execution span.
+
+      Instrumentations that support this behavior MAY provide a configuration
+      option to enable it.
     stability: development
     extends: trace.mcp.common.attributes
     attributes:

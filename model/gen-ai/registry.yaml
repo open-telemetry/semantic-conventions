@@ -254,7 +254,7 @@ groups:
           Function: A tool executed on the client-side, where the agent generates parameters for a predefined function, and the client executes the logic.
             Client-side operations are actions taken on the user's end or within the client application.
           Datastore: A tool used by the agent to access and query structured or unstructured external data for retrieval-augmented tasks or knowledge updates.
-        examples: ['function', 'extension', 'datastore', 'mcp']
+        examples: ['function', 'extension', 'datastore']
 
       - id: gen_ai.tool.call.arguments
         stability: development
