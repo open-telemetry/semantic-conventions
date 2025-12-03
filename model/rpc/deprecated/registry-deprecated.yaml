@@ -39,3 +39,39 @@ groups:
         deprecated:
           reason: renamed
           renamed_to: rpc.message.uncompressed_size
+      - id: rpc.connect_rpc.request.metadata
+        type: template[string[]]
+        stability: development
+        brief: >
+          Deprecated, use `rpc.request.metadata` instead.
+        deprecated:
+          reason: renamed
+          renamed_to: rpc.request.metadata
+        examples: [["1.2.3.4", "1.2.3.5"]]
+      - id: rpc.connect_rpc.response.metadata
+        type: template[string[]]
+        stability: development
+        brief: >
+          Deprecated, use `rpc.response.metadata` instead.
+        examples: [["attribute_value"]]
+        deprecated:
+          reason: renamed
+          renamed_to: rpc.response.metadata
+      - id: rpc.grpc.request.metadata
+        type: template[string[]]
+        stability: development
+        brief: >
+          Deprecated, use `rpc.request.metadata` instead.
+        examples: [["1.2.3.4", "1.2.3.5"]]
+        deprecated:
+          reason: renamed
+          renamed_to: rpc.request.metadata
+      - id: rpc.grpc.response.metadata
+        type: template[string[]]
+        stability: development
+        brief: >
+          Deprecated, use `rpc.response.metadata` instead.
+        examples: [["attribute_value"]]
+        deprecated:
+          reason: renamed
+          renamed_to: rpc.response.metadata
