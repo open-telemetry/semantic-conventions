@@ -367,7 +367,7 @@ Describes tool execution span.
 GenAI instrumentations that can instrument tool execution calls SHOULD do so,
 unless another instrumentation can reliably cover all supported tool types.
 MCP tool executions may also be traced by the
-[corresponding MCP instrumentation](/docs/gen-ai/mcp#client).
+[corresponding MCP instrumentation](/docs/gen-ai/mcp.md#client).
 
 Tools are often executed directly by application code. Application developers
 are encouraged to follow this semantic convention for tools invoked by their

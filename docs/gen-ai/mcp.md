@@ -124,7 +124,7 @@ The status description SHOULD match the `JSONRPCError.message` if the message is
 Refer to the [Recording Errors](/docs/general/recording-errors.md) document
 for more details.
 
-MCP tool call execution spans are compatible with GenAI [execute_tool spans](/docs/gen-ai/gen-ai-spans#execute-tool-span).
+MCP tool call execution spans are compatible with GenAI [execute_tool spans](/docs/gen-ai/gen-ai-spans.md#execute-tool-span).
 
 If the MCP instrumentation can reliably detect that outer GenAI instrumentation
 is already tracing the tool execution, it SHOULD NOT create a separate span.
@@ -852,13 +852,13 @@ is HTTP. It SHOULD be set to `pipe` if the transport is stdio.
 The following table shows how to capture MCP transport and can be used be telemetry
 consumers to deduce transport type.
 
-| MCP transport | `network.transport` attribute | `network.protocol.*` attributes | `mcp.protocol.version` attribute | comments |
-| ------------- | ----------------------------- | ------------------------------- | -------------------------------- | -------- |
-| stdio         | `pipe`                        |                                 | any                              |          |
-| Streamable HTTP | `tcp` (or `quic`)           | `network.protocol.name = http` <br> `network.protocol.version = 2` | `2025-06-18` or newer | `mcp.protocol.version` distinguishes streamable HTTP from SSE |
-| HTTP with SSE   | `tcp` (or `quic`)           | `network.protocol.name = http` <br> `network.protocol.version = 1.1` (or 2) | `2024-11-05` or older | `mcp.protocol.version` distinguishes streamable HTTP from SSE |
-| Custom: websockets | `tcp` (or another applicable protocol) | `network.protocol.name = websocket` | any            |          |
-| Custom: gRPC | `tcp` (or another applicable protocol) | `network.protocol.name = http` <br> `network.protocol.version = 2` | any | See [gRPC conventions](/docs/rpc/grpc.md) for additional details |
+| MCP transport      | `network.transport` attribute          | `network.protocol.*` attributes                                             | `mcp.protocol.version` attribute | Comments                                                         |
+| :----------------- | :------------------------------------- | :-------------------------------------------------------------------------- | :------------------------------- | :--------------------------------------------------------------- |
+| stdio              | `pipe`                                 |                                                                             | any                              |                                                                  |
+| Streamable HTTP    | `tcp` (or `quic`)                      | `network.protocol.name = http` <br> `network.protocol.version = 2`          | `2025-06-18` or newer            | `mcp.protocol.version` distinguishes streamable HTTP from SSE    |
+| HTTP with SSE      | `tcp` (or `quic`)                      | `network.protocol.name = http` <br> `network.protocol.version = 1.1` (or 2) | `2024-11-05` or older            | `mcp.protocol.version` distinguishes streamable HTTP from SSE    |
+| Custom: websockets | `tcp` (or another applicable protocol) | `network.protocol.name = websocket`                                         | any                              |                                                                  |
+| Custom: gRPC       | `tcp` (or another applicable protocol) | `network.protocol.name = http` <br> `network.protocol.version = 2`          | any                              | See [gRPC conventions](/docs/rpc/grpc.md) for additional details |
 
 Note: Applications may enable instrumentation for the underlying application protocol
 like HTTP (when applicable) alongside MCP instrumentation to capture additional
