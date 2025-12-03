@@ -160,7 +160,7 @@ table-generation:
 		--mount 'type=bind,source=$(PWD)/docs,target=/home/weaver/target' \
 		$(WEAVER_CONTAINER) registry update-markdown \
 		--registry=/home/weaver/source \
-		-Dregistry_base_url=/docs/registry/ \
+		-D registry_base_url=/docs/registry/ \
 		--templates=/home/weaver/templates \
 		--target=markdown \
 		--future \
