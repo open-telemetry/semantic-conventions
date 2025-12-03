@@ -179,7 +179,7 @@ groups:
 
       **Span status** Refer to the [Recording Errors](/docs/general/recording-errors.md)
       document for details on how to record span status. Responses that include
-      [`error` object](https://www.jsonrpc.org/specification#error_object)
+      an [`error` object](https://www.jsonrpc.org/specification#error_object)
       are considered errors.
     extends: rpc
     span_kind: client
@@ -215,7 +215,7 @@ groups:
 
       **Span status** Refer to the [Recording Errors](/docs/general/recording-errors.md)
       document for details on how to record span status. Responses that include
-      [`error` object](https://www.jsonrpc.org/specification#error_object)
+      an [`error` object](https://www.jsonrpc.org/specification#error_object)
       are considered errors.
     attributes:
       - ref: rpc.method
