@@ -420,8 +420,12 @@ They are likely to be siblings if there is an encompassing span.
         "type": "tool_call",
         "id": "call_VSPygqKTWdrhaFErNvMV18Yl",
         "name": "get_weather",
-        "arguments": {
-          "location": "Paris"
+        "tool_call": {
+          "type": "function",
+          "name": "get_weather",
+          "arguments": {
+            "location": "Paris"
+          }
         }
       }
     ],
@@ -479,8 +483,12 @@ If tool call is [instrumented according to execute-tool span definition](/docs/g
         "type": "tool_call",
         "id": "call_VSPygqKTWdrhaFErNvMV18Yl",
         "name": "get_weather",
-        "arguments": {
-          "location": "Paris"
+        "tool_call": {
+          "type": "function",
+          "name": "get_weather",
+          "arguments": {
+            "location": "Paris"
+          }
         }
       }
     ]
@@ -491,7 +499,10 @@ If tool call is [instrumented according to execute-tool span definition](/docs/g
       {
         "type": "tool_call_response",
         "id": " call_VSPygqKTWdrhaFErNvMV18Yl",
-        "response": "rainy, 57°F"
+        "response": {
+          "type": "function",
+          "content": "rainy, 57°F"
+        }
       }
     ]
   }
@@ -759,20 +770,24 @@ sequenceDiagram
         "type": "tool_call",
         "id": "call_VSPygqKTWdrhaFErNvMV18Yl",
         "name": "code_interpreter",
-        "arguments": {
+        "tool_call": {
+          "type": "code_interpreter",
           "code": "import random\n\n# Generate a random number\nrandom_number = random.randint(1, 100)\n\n# Execute some operation with the random number (e.g., squaring it)\nresult = random_number ** 2\n\nrandom_number, result",
-        "container_id": "cntr_690bdbfed8688190884efd4c7ae6435b0db1f006442e8941",
+          "container_id": "cntr_690bdbfed8688190884efd4c7ae6435b0db1f006442e8941"
         }
       },
       {
         "type": "tool_call_response",
-        "id": " call_VSPygqKTWdrhaFErNvMV18Yl",
-        "response": [
+        "id": "call_VSPygqKTWdrhaFErNvMV18Yl",
+        "response": {
+          "type": "code_interpreter",
+          "outputs": [
             {
-              "logs": "(10, 20)",
-              "type": "logs"
+              "type": "logs",
+              "logs": "(10, 20)"
             }
-        ],
+          ]
+        }
       },
       {
         "type": "text",

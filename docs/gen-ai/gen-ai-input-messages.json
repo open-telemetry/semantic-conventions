@@ -151,6 +151,85 @@
             "title": "CodeInterpreterToolCall",
             "type": "object"
         },
+        "CodeInterpreterToolCallResponse": {
+            "additionalProperties": false,
+            "description": "Code interpreter tool call response.",
+            "properties": {
+                "type": {
+                    "const": "code_interpreter",
+                    "description": "Type identifier for code interpreter responses.",
+                    "title": "Type",
+                    "type": "string"
+                },
+                "outputs": {
+                    "description": "Array of outputs from code execution.",
+                    "items": {
+                        "oneOf": [
+                            {
+                                "description": "Logs output from code execution.",
+                                "properties": {
+                                    "type": {
+                                        "const": "logs",
+                                        "description": "Output type identifier.",
+                                        "title": "Type",
+                                        "type": "string"
+                                    },
+                                    "logs": {
+                                        "description": "Text output from code execution.",
+                                        "title": "Logs",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": ["type", "logs"],
+                                "title": "LogsOutput",
+                                "type": "object",
+                                "additionalProperties": false
+                            },
+                            {
+                                "description": "Image output from code execution.",
+                                "properties": {
+                                    "type": {
+                                        "const": "image",
+                                        "description": "Output type identifier.",
+                                        "title": "Type",
+                                        "type": "string"
+                                    },
+                                    "image": {
+                                        "description": "Image data from code execution.",
+                                        "properties": {
+                                            "file_id": {
+                                                "anyOf": [
+                                                    {
+                                                        "type": "string"
+                                                    },
+                                                    {
+                                                        "type": "null"
+                                                    }
+                                                ],
+                                                "default": null,
+                                                "description": "File identifier for the generated image.",
+                                                "title": "File Id"
+                                            }
+                                        },
+                                        "title": "Image",
+                                        "type": "object"
+                                    }
+                                },
+                                "required": ["type", "image"],
+                                "title": "ImageOutput",
+                                "type": "object",
+                                "additionalProperties": false
+                            }
+                        ]
+                    },
+                    "title": "Outputs",
+                    "type": "array"
+                }
+            },
+            "required": ["type", "outputs"],
+            "title": "CodeInterpreterToolCallResponse",
+            "type": "object"
+        },
         "FilePart": {
             "additionalProperties": true,
             "description": "Represents an external referenced file sent to the model by file id",
@@ -223,6 +302,25 @@
             },
             "required": ["type", "name"],
             "title": "FunctionToolCall",
+            "type": "object"
+        },
+        "FunctionToolCallResponse": {
+            "additionalProperties": false,
+            "description": "Function tool call response.",
+            "properties": {
+                "type": {
+                    "const": "function",
+                    "description": "Type identifier for function responses.",
+                    "title": "Type",
+                    "type": "string"
+                },
+                "content": {
+                    "description": "The response content from the function call.",
+                    "title": "Content"
+                }
+            },
+            "required": ["type", "content"],
+            "title": "FunctionToolCallResponse",
             "type": "object"
         },
         "GenericPart": {
@@ -379,7 +477,15 @@
                     "title": "Id"
                 },
                 "response": {
-                    "description": "Tool call response.",
+                    "description": "Polymorphic tool call response with type discriminator.",
+                    "oneOf": [
+                        {
+                            "$ref": "#/$defs/FunctionToolCallResponse"
+                        },
+                        {
+                            "$ref": "#/$defs/CodeInterpreterToolCallResponse"
+                        }
+                    ],
                     "title": "Response"
                 }
             },
