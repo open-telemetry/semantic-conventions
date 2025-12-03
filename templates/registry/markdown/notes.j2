@@ -4,7 +4,7 @@
 {% macro render() %}{% if ns.notes | length > 0 %}
 {%- for note in ns.notes %}
 {% if note.name %}**[{{ns.index+loop.index}}] `{{note.name}}`:**{% else -%}**[{{ns.index+loop.index}}]:**{%- endif -%}
-{% if note.note.startswith('>') or note.note.startswith('`') or note.note.startswith('|')%}{{"\n\n"}}{% else %} {% endif %}{{ note.note | trim }}{# If the note text starts with a '>', '|' or '```', insert 2 line breaks before the note content to ensure it starts on a new line after an empty line, otherwise just add a space before the note #}
+{% if note.note.startswith('>') or note.note.startswith('```') or note.note.startswith('|')%}{{"\n\n"}}{% else %} {% endif %}{{ note.note | trim }}{# If the note text starts with a '>', '|' or '```', insert 2 line breaks before the note content to ensure it starts on a new line after an empty line, otherwise just add a space before the note #}
 {%- if not loop.last -%}{{"\n"}}{%- endif -%}
 {% endfor %}{% set ns.index = ns.notes | length + ns.index %}{% set ns.notes = [] %}
 {% endif %}{% endmacro %}
