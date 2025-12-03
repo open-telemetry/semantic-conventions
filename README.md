@@ -48,7 +48,7 @@ For more information about the maintainer role, see the [community repository](h
 
 - [Alexandra Konrad](https://github.com/trisch-me), Elastic
 - [Daniel Dyla](https://github.com/dyladan), Dynatrace
-- [Ted Young](https://github.com/tedsuo), Lightstep
+- [Ted Young](https://github.com/tedsuo), Grafana Labs
 
 For more information about the approver role, see the [community repository](https://github.com/open-telemetry/community/blob/main/guides/contributor/membership.md#approver).
 
