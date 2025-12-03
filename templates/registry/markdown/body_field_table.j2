@@ -12,7 +12,7 @@
 {{ name }}{% endif %}{% endmacro %}
 {#- Macro for creating body table -#}
 {% macro generate(fields) %}{% if (fields | length > 0) %}{% set ns = namespace(flat=[])%}{% set _ = flatten(fields, ns, 0) %}| Field Name | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-|---|---|---|---|---|---|
-{% for f in ns.flat %}| {{ field_name(f.field, f.depth) }} | {{ stability.badge(f.field.stability, f.field.deprecated, f.field.brief) | trim }} | {{ requirement.render({"level": f.field.requirement_level, "name": f.field.id}, notes) | trim }} | {{ f.field.type }} | {{ f.field.brief | trim }}{{ notes.add({"note": f.field.note}) }} | {{ examples.format(f.field) | trim }} |
+| --- | --- | --- | --- | --- | --- |
+{% for f in ns.flat %}| {{ field_name(f.field, f.depth) }} | {{ stability.badge(f.field.stability, f.field.deprecated, f.field.brief) | trim }} | {{ requirement.render({"level": f.field.requirement_level, "name": f.field.id}, notes) | trim }} | {{ f.field.type }} | {{ f.field.brief | trim }}{{ notes.add({"note": f.field.note}) }} | {{ examples.format(f.field) }}|
 {% endfor %}{{ notes.render() }}{{ enums.field_tables(ns.flat | map(attribute="field") | selectattr("type", "eq", "enum"), notes) -}}
 {%- endif %}{% endmacro %}

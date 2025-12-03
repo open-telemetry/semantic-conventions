@@ -1,4 +1,4 @@
-package before_resolution
+package after_resolution
 import rego.v1
 
 # This file enforces policies requiring all attributes to be defined within
@@ -29,11 +29,11 @@ deny contains attr_registry_violation(description, group.id, "") if {
 
 # Any group that is NOT in the attribute registry that has an attribute id is
 # in violation of not using the attribute registry.
-deny contains attr_registry_violation(description, group.id, attr.id) if {
+deny contains attr_registry_violation(description, group.id, attr.name) if {
     group := input.groups[_]
     not startswith(group.id, "registry.")
     attr := group.attributes[_]
-    attr.id != null
+    attr.name != null
 
     attr_name := get_attribute_name(attr, group)
 
@@ -57,7 +57,7 @@ deny contains attr_registry_violation(description, group.id, attr.ref) if {
 }
 
 # We don't allow attribute definitions to have requirement_level
-deny contains attr_registry_violation(description, group.id, attr.id) if {
+deny contains attr_registry_violation(description, group.id, attr.name) if {
     group := input.groups[_]
     startswith(group.id, "registry.")
 
@@ -67,15 +67,15 @@ deny contains attr_registry_violation(description, group.id, attr.id) if {
     attr.requirement_level != "recommended"
 
     # TODO (https://github.com/open-telemetry/weaver/issues/279): provide other violation properties once weaver supports it.
-    description := sprintf("Attribute definition '%s' has requirement_level set to %s. Only attribute references can set requirement_level.", [attr.id, attr.requirement_level])
+    description := sprintf("Attribute definition '%s' has requirement_level set to %s. Only attribute references can set requirement_level.", [attr.name, attr.requirement_level])
 }
 
 # We require attribute definitions to have stability
-deny contains attr_registry_violation(description, group.id, attr.id) if {
+deny contains attr_registry_violation(description, group.id, attr.name) if {
     group := input.groups[_]
     attr := group.attributes[_]
     not attr.stability
-    description := sprintf("Attribute definition '%s' does not contain stability field. All attribute definitions must include stability level.", [attr.id])
+    description := sprintf("Attribute definition '%s' does not contain stability field. All attribute definitions must include stability level.", [attr.name])
 }
 
 # We require span, metrics, events, resources definitions to have stability
@@ -90,7 +90,7 @@ deny contains attr_registry_violation(description, group.id, "") if {
 }
 
 # check that member ids do not collide within the same attribute
-deny contains attr_registry_violation(description, group.id, attr.id) if {
+deny contains attr_registry_violation(description, group.id, attr.name) if {
     group := input.groups[_]
     startswith(group.id, "registry.")
 
@@ -100,11 +100,11 @@ deny contains attr_registry_violation(description, group.id, attr.id) if {
     collisions := [n | n := attr.type.members[_].id; n == member.id ]
     count(collisions) > 1
 
-    description := sprintf("Member with id '%s' is already defined on the attribute '%s' in the group '%s'. Member id must be unique.", [member.id, attr.id, group.id])
+    description := sprintf("Member with id '%s' is already defined on the attribute '%s' in the group '%s'. Member id must be unique.", [member.id, attr.name, group.id])
 }
 
 # check that member values do not collide within the same attribute
-deny contains attr_registry_violation(description, group.id, attr.id) if {
+deny contains attr_registry_violation(description, group.id, attr.name) if {
     group := input.groups[_]
     startswith(group.id, "registry.")
     attr := group.attributes[_]
@@ -118,11 +118,11 @@ deny contains attr_registry_violation(description, group.id, attr.id) if {
     ]
     count(collisions) > 1
 
-    description := sprintf("Member with value '%s' (id '%s') is already defined on the attribute '%s' in the group '%s'. Member value must be unique.", [member.value, member.id, attr.id, group.id])
+    description := sprintf("Member with value '%s' (id '%s') is already defined on the attribute '%s' in the group '%s'. Member value must be unique.", [member.value, member.id, attr.name, group.id])
 }
 
 # check that member const names do not collide within the same attribute
-deny contains attr_registry_violation(description, group.id, attr.id) if {
+deny contains attr_registry_violation(description, group.id, attr.name) if {
     group := input.groups[_]
     startswith(group.id, "registry.")
     attr := group.attributes[_]
@@ -138,11 +138,11 @@ deny contains attr_registry_violation(description, group.id, attr.id) if {
     ]
     count(collisions) > 1
 
-    description := sprintf("Member with const name '%s' (id '%s'), is already defined on the attribute '%s' in the group '%s'. Member const names must be unique.", [const_name, member.id, attr.id, group.id])
+    description := sprintf("Member with const name '%s' (id '%s'), is already defined on the attribute '%s' in the group '%s'. Member const names must be unique.", [const_name, member.id, attr.name, group.id])
 }
 
 get_attribute_name(attr, group) := name if {
-    full_name := concat(".", [group.prefix, attr.id])
+    full_name := concat(".", [group.prefix, attr.name])
 
     # if there was no prefix, we have a leading dot
     name := trim(full_name, ".")
