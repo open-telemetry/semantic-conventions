@@ -38,7 +38,7 @@ groups:
       Refer to the [Recording Errors](/docs/general/recording-errors.md) document
       for more details.
 
-      MCP tool call execution spans are compatible with GenAI [execute_tool spans](/docs/gen-ai/gen-ai-spans##execute-tool-span).
+      MCP tool call execution spans are compatible with GenAI [execute_tool spans](/docs/gen-ai/gen-ai-spans#execute-tool-span).
 
       If the MCP instrumentation can reliably detect that outer GenAI instrumentation
       is already tracing the tool execution, it SHOULD NOT create a separate span.
@@ -55,6 +55,12 @@ groups:
       - ref: server.port
         requirement_level:
           recommended: When `server.address` is set
+      - ref: gen_ai.tool.call.arguments
+        requirement_level:
+          conditionally_required: When operation describes a tool call.
+      - ref: gen_ai.tool.call.result
+        requirement_level:
+          conditionally_required: When operation describes a tool call.
 
   - id: span.mcp.server
     type: span
