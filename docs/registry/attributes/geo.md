@@ -11,7 +11,7 @@ Note: Geo attributes are typically used under another namespace, such as client.
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | <a id="geo-continent-code" href="#geo-continent-code">`geo.continent.code`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Two-letter code representing continent’s name. | `AF`; `AN`; `AS` |
 | <a id="geo-country-iso-code" href="#geo-country-iso-code">`geo.country.iso_code`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Two-letter ISO Country Code ([ISO 3166-1 alpha2](https://wikipedia.org/wiki/ISO_3166-1#Codes)). | `CA` |
 | <a id="geo-locality-name" href="#geo-locality-name">`geo.locality.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Locality name. Represents the name of a city, town, village, or similar populated place. | `Montreal`; `Berlin` |
@@ -24,8 +24,8 @@ Note: Geo attributes are typically used under another namespace, such as client.
 
 `geo.continent.code` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `AF` | Africa | ![Development](https://img.shields.io/badge/-development-blue) |
 | `AN` | Antarctica | ![Development](https://img.shields.io/badge/-development-blue) |
 | `AS` | Asia | ![Development](https://img.shields.io/badge/-development-blue) |

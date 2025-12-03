@@ -1,12 +1,15 @@
 name: 'Check changes ownership'
 on:
   pull_request_target:
-    types: [opened, synchronize]
+    types: [opened, synchronize, edited, labeled, unlabeled]
     branches: [ 'main' ]
     paths:
       - 'model/**'
-jobs:
 
+permissions:
+  contents: read
+
+jobs:
   get-changed-files:
     runs-on: ubuntu-latest
     permissions:
@@ -16,7 +19,7 @@ jobs:
       any_changed: ${{ steps.changed-files.outputs.any_changed }}
     steps:
        # Checkout the PR branch only to get the changed files from the .git folder
-      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
         with:
           ref: ${{ github.event.pull_request.head.ref }}
           repository: ${{ github.event.pull_request.head.repo.full_name }}
@@ -37,7 +40,7 @@ jobs:
     if: ${{ needs.get-changed-files.outputs.any_changed == 'true' && github.repository_owner == 'open-telemetry' }}
     steps:
       # Checkout the base branch (main, secure context)
-      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
         with:
           ref: ${{ github.event.pull_request.base.ref }}
 
