@@ -175,32 +175,6 @@ groups:
         stability: development
         brief: Number of rows returned by the operation.
         examples: [10, 30, 1000]
-      - id: db.retrieval.type
-        type: string
-        stability: development
-        brief: The type of retrieval operation being performed.
-        note: >
-          This attribute describes the retrieval strategy used by the database or vector store.
-          Common types include similarity search, hybrid search (combining multiple strategies),
-          keyword search, or other database-specific retrieval methods.
-        examples: ["similarity", "hybrid", "keyword", "mmr"]
-      - id: db.retrieval.top_k
-        type: int
-        stability: development
-        brief: The maximum number of results requested to be retrieved.
-        note: >
-          This represents the limit parameter or top_k value specified in the retrieval query,
-          indicating how many results the client requested. The actual number of results
-          returned may be captured in `db.retrieval.documents_retrieved`.
-        examples: [5, 10, 20, 100]
-      - id: db.retrieval.documents_retrieved
-        type: int
-        stability: development
-        brief: The actual number of documents or results retrieved by the operation.
-        note: >
-          This represents the count of documents/results actually returned by the database,
-          which may be less than `db.retrieval.top_k` if fewer matching results were found.
-        examples: [5, 10, 15]
       - id: db.system.name
         brief: The database management system (DBMS) product as identified by the client instrumentation.
         note: >
