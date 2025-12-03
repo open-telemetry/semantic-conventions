@@ -1,0 +1,18 @@
+groups:
+  - id: registry.nfs
+    type: attribute_group
+    display_name: NFS Attributes
+    brief: >
+      Describes NFS Attributes
+    attributes:
+      - id: nfs.server.repcache.status
+        type: string
+        stability: development
+        brief: >
+          Linux: one of "hit" (NFSD_STATS_RC_HITS), "miss" (NFSD_STATS_RC_MISSES), or "nocache" (NFSD_STATS_RC_NOCACHE -- uncacheable)
+        examples: 'hit'
+      - id: nfs.operation.name
+        type: string
+        stability: development
+        brief: "NFSv4+ operation name."
+        examples: ['OPEN', 'READ', 'GETATTR']

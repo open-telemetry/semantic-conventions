@@ -23,6 +23,7 @@ jobs:
   make-default-target:
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false # it's helpful to know if only one of these fails
       matrix:
         container-runner: ["docker", "podman"]
     steps:
@@ -31,10 +32,10 @@ jobs:
       run: sudo apt-get install podman podman-docker
 
     - name: check out code
-      uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
 
     - name: install dependencies
-      run: npm install
+      run: npm ci --ignore-scripts
 
     - name: invoke make
       run: make
@@ -47,6 +48,7 @@ jobs:
   make-generation-from-contributing-guide:
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false # it's helpful to know if only one of these fails
       matrix:
         container-runner: ["docker", "podman"]
     steps:
@@ -55,10 +57,10 @@ jobs:
       run: sudo apt-get install podman podman-docker
 
     - name: check out code
-      uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
 
     - name: install dependencies
-      run: npm install
+      run: npm ci --ignore-scripts
 
     - name: invoke make
       run: make table-generation registry-generation
@@ -68,6 +70,7 @@ jobs:
   make-check-policies-from-contributing-guide:
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false # it's helpful to know if only one of these fails
       matrix:
         container-runner: ["docker", "podman"]
     steps:
@@ -76,10 +79,10 @@ jobs:
       run: sudo apt-get install podman podman-docker
 
     - name: check out code
-      uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
 
     - name: install dependencies
-      run: npm install
+      run: npm ci --ignore-scripts
 
     - name: invoke make
       run: make check-policies
@@ -89,6 +92,7 @@ jobs:
   make-check-from-contributing-guide:
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false # it's helpful to know if only one of these fails
       matrix:
         container-runner: ["docker", "podman"]
     steps:
@@ -97,10 +101,10 @@ jobs:
       run: sudo apt-get install podman podman-docker
 
     - name: check out code
-      uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
 
     - name: install dependencies
-      run: npm install
+      run: npm ci --ignore-scripts
 
     - name: invoke make
       run: make check

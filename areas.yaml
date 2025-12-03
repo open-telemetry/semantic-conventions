@@ -1,0 +1,264 @@
+areas:
+  - name: "Semantic Conventions: System"
+    owner:
+      - name: "semconv-system-approvers"
+        github: semconv-system-approvers
+    project: "https://github.com/open-telemetry/community/blob/main/projects/system-semconv.md"
+    board: "https://github.com/orgs/open-telemetry/projects/55"
+    labels:
+      - area:system
+      - area:host
+      - area:process
+      - area:nfs
+      - area:os
+      - area:cpu
+      - area:disk
+      - area:network
+      - area:linux
+    status:
+      - accepting_contributions
+      - active
+
+  - name: "Semantic Conventions: K8s"
+    owner:
+      - name: "semconv-k8s-approvers"
+        github: semconv-k8s-approvers
+    project: "https://github.com/open-telemetry/community/blob/main/projects/k8s-semconv.md"
+    board: "https://github.com/orgs/open-telemetry/projects/114"
+    labels:
+      - area:k8s
+      - area:container
+      - area:oci
+    status:
+      - accepting_contributions
+      - active
+
+  - name: "Semantic Conventions: GenAI"
+    owner:
+      - name: "semconv-genai-approvers"
+        github: semconv-genai-approvers
+    project: "https://github.com/open-telemetry/community/blob/main/projects/gen-ai.md"
+    board: "https://github.com/orgs/open-telemetry/projects/82"
+    labels:
+      - area:gen-ai
+      - area:openai
+    status:
+      - accepting_contributions
+      - active
+
+  - name: "Semantic Conventions: CI/CD"
+    owner:
+      - name: "semconv-cicd-approvers"
+        github: semconv-cicd-approvers
+    project: "https://github.com/open-telemetry/community/blob/main/projects/ci-cd-phase-2.md"
+    board: "https://github.com/orgs/open-telemetry/projects/79"
+    labels:
+      - area:cicd
+      - area:artifact
+      - area:deployment
+      - area:test
+      - area:vcs
+    status:
+      - accepting_contributions
+      - active
+
+  - name: "Semantic Conventions: Security"
+    owner:
+      - name: "semconv-security-approvers"
+        github: semconv-security-approvers
+    project: "https://github.com/open-telemetry/community/blob/main/projects/security-semconv.md"
+    board: "https://github.com/orgs/open-telemetry/projects/104"
+    labels:
+      - area:security
+      - area:log
+      - area:user
+      - area:dns
+      - area:file
+      - area:tls
+      - area:network
+      - area:process
+    status:
+      - accepting_contributions
+      - active
+
+  - name: "Semantic Conventions: Browser Instrumentation"
+    owner:
+      - name: "semconv-browser-approvers"
+        github: semconv-browser-approvers
+    project: "https://github.com/open-telemetry/community/blob/main/projects/browser-phase-1.md"
+    board: "https://github.com/orgs/open-telemetry/projects/146"
+    labels:
+      - area:browser
+    status:
+      - accepting_contributions
+      - active
+
+  - name: "Semantic Conventions: Client Instrumentation"
+    owner:
+      - name: "semconv-client-approvers"
+        github: semconv-client-approvers
+    project: "https://github.com/open-telemetry/community/blob/main/projects/completed-projects/client-instrumentation.md"
+    board: "https://github.com/orgs/open-telemetry/projects/19"
+    labels:
+      - area:app
+      - area:enduser
+      - area:device
+      - area:mobile
+      - area:session
+
+    status:
+      - accepting_contributions
+      - active
+
+  - name: "Semantic Conventions: Resources and Entities"
+    owner:
+      - name: "specs-semconv-maintainers" # TODO: Missing team user for entities?
+        github: specs-semconv-maintainers
+    project: "https://github.com/open-telemetry/community/blob/main/projects/resources-and-entities.md"
+    board: "https://github.com/orgs/open-telemetry/projects/85"
+    labels:
+      - area:entities
+    status:
+      - accepting_contributions
+      - active
+
+  - name: "Semantic Conventions: Messaging"
+    owner:
+      - name: "semconv-messaging-approvers"
+        github: semconv-messaging-approvers
+    project: "https://github.com/open-telemetry/community/blob/main/projects/currently-inactive/messaging-semconv.md"
+    board: "https://github.com/orgs/open-telemetry/projects/20"
+    labels:
+      - area:messaging
+    status:
+      - inactive
+      - needs_staffing
+    notes: >
+      The SIG is inactive. If you have interest in working towards messaging stabilization,
+      consider proposing a [project update](https://github.com/open-telemetry/community/blob/main/projects/currently-inactive/messaging-semconv.md)
+
+  - name: "Semantic Conventions: HTTP"
+    owner:
+      - name: "semconv-http-approvers"
+        github: semconv-http-approvers
+    project: "https://github.com/open-telemetry/community/blob/main/projects/completed-projects/http.md"
+    board: "https://github.com/orgs/open-telemetry/projects/41"
+    labels:
+      - area:http
+      - area:user-agent
+      - area:url
+      - area:client
+      - area:server
+      - area:network
+    status:
+      - inactive
+  - name: "Semantic Conventions: Database"
+    owner:
+      - name: "semconv-db-approvers"
+        github: semconv-db-approvers
+    project: "https://github.com/open-telemetry/community/blob/main/projects/completed-projects/database-client-semconv.md"
+    board: "https://github.com/orgs/open-telemetry/projects/73"
+    labels:
+      - area:db
+    status:
+      - inactive
+
+  - name: "Semantic Conventions: FaaS"
+    owner:
+      - name: "specs-semconv-maintainers" # TODO: Missing team user for faas?
+        github: specs-semconv-maintainers
+    project: "https://github.com/open-telemetry/community/blob/main/projects/completed-projects/faas.md"
+    board: "N/A"
+    labels:
+      - area:faas
+    status:
+      - inactive
+
+  - name: "Semantic Conventions: JVM"
+    owner:
+      - name: "semconv-jvm-approvers"
+        github: semconv-jvm-approvers
+    project: "N/A"
+    board: "https://github.com/orgs/open-telemetry/projects/49"
+    labels:
+      - area:jvm
+    status:
+      - inactive
+
+  - name: "Semantic Conventions: Logs"
+    owner:
+      - name: "semconv-log-approvers"
+        github: semconv-log-approvers
+    project: "N/A"
+    board: "N/A"
+    labels:
+      - area:log
+      - area:event
+      - area:exception
+    status:
+      - accepting_contributions
+      - active
+
+  - name: "Semantic Conventions: Mainframe"
+    owner:
+      - name: "sig-mainframe-approvers"
+        github: sig-mainframe-approvers
+    project: "https://github.com/open-telemetry/community/blob/main/projects/mainframe.md"
+    board: "N/A"
+    labels:
+      - area:mainframe
+      - area:zos
+    status:
+      - accepting_contributions
+      - active
+
+  - name: "Semantic Conventions: Profiling"
+    owner:
+      - name: "profiling-approvers"
+        github: profiling-approvers
+    project: "N/A"
+    board: "N/A"
+    labels:
+      - area:profile
+      - area:pprof
+    status:
+      - accepting_contributions
+      - active
+
+  - name: "Semantic Conventions: .NET"
+    owner:
+      - name: "semconv-dotnet-approver"
+        github: semconv-dotnet-approver
+    project: "N/A"
+    board: "N/A"
+    labels:
+      - area:dotnet
+      - area:aspnetcore
+      - area:signalr
+      - area:kestrel
+    status:
+      - accepting_contributions
+      - active
+    notes: "SIG is driven by members of the .NET runtime team. Contributions are welcomed but must be aligned with the .NET runtime features/roadmap"
+
+  - name: "Semantic Conventions: RPC"
+    project: "https://github.com/open-telemetry/community/blob/main/projects/rpc-semconv.md"
+    board: "https://github.com/orgs/open-telemetry/projects/161"
+    labels:
+      - area:rpc
+    status:
+      - accepting_contributions
+      - active
+
+  - name: "Semantic Conventions: Service and Deployment"
+    owner:
+      - name: "semconv-service-and-deployment-approvers"
+        github: semconv-service-and-deployment-approvers
+    project: "https://github.com/open-telemetry/community/blob/main/projects/service-and-deployment-semconv.md"
+    board: "https://github.com/orgs/open-telemetry/projects/168"
+    labels:
+      - area:service
+      - area:deployment
+    status:
+      - accepting_contributions
+      - active

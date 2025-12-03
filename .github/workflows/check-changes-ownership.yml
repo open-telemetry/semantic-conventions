@@ -1,0 +1,64 @@
+name: 'Check changes ownership'
+on:
+  pull_request_target:
+    types: [opened, synchronize, edited, labeled, unlabeled]
+    branches: [ 'main' ]
+    paths:
+      - 'model/**'
+
+permissions:
+  contents: read
+
+jobs:
+  get-changed-files:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    outputs:
+      changed_files: ${{ steps.changed-files.outputs.all_changed_files }}
+      any_changed: ${{ steps.changed-files.outputs.any_changed }}
+    steps:
+       # Checkout the PR branch only to get the changed files from the .git folder
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@24d32ffd492484c1d75e0c0b894501ddb9d30d62 # v47
+        with:
+          dir_names: "true"
+          files: model/**
+          separator: ","
+
+  validate-area-ownership:
+    runs-on: ubuntu-latest
+    needs: get-changed-files
+    permissions:
+      contents: read
+      pull-requests: write
+    if: ${{ needs.get-changed-files.outputs.any_changed == 'true' && github.repository_owner == 'open-telemetry' }}
+    steps:
+      # Checkout the base branch (main, secure context)
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
+        with:
+          ref: ${{ github.event.pull_request.base.ref }}
+
+      # uses node 22 to be able to use Typescript
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903 # v6.0.0
+        with:
+          cache: 'npm'
+          cache-dependency-path: |
+            .github/scripts/triage/package-lock.json
+          node-version: '24'
+
+      - name: Install script dependencies
+        working-directory: .github/scripts/triage
+        run: npm ci --ignore-scripts
+
+      - name: Validate if PR has active owners
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          CHANGED_FILES: ${{ needs.get-changed-files.outputs.changed_files }}
+        run: node .github/scripts/triage/check-changes-ownership.ts

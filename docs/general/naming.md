@@ -20,7 +20,6 @@ aliases: [attribute-naming]
   - [otel.\* namespace](#otel-namespace)
   - [Attribute name pluralization guidelines](#attribute-name-pluralization-guidelines)
   - [Signal-specific attributes](#signal-specific-attributes)
-  - [System-specific attributes](#system-specific-attributes)
 - [Metrics](#metrics)
   - [Naming rules for counters and UpDownCounters](#naming-rules-for-counters-and-updowncounters)
     - [Pluralization](#pluralization)
@@ -31,7 +30,7 @@ aliases: [attribute-naming]
 - [System-specific naming](#system-specific-naming)
   - [System (project/product/provider) name attribute](#system-projectproductprovider-name-attribute)
   - [Choosing a system name](#choosing-a-system-name)
-  - [System-specific attributes](#system-specific-attributes-1)
+  - [System-specific attributes](#system-specific-attributes)
   - [System-specific metrics](#system-specific-metrics)
   - [Known exceptions](#known-exceptions)
 
@@ -85,7 +84,6 @@ Names SHOULD follow these rules:
 
 - Be precise. Attribute, event, metric, and other names should be descriptive and
   unambiguous.
-
   - When introducing a name describing a certain property of the object,
     include the property name. For example, use `file.owner.name` instead of `file.owner`
     and `system.network.packet.dropped` instead of `system.network.dropped`
@@ -141,7 +139,7 @@ no longer recommended, it SHOULD be deprecated.
   the following Unicode code points: Latin alphabet, Numeric, Underscore, Dot
   (as namespace delimiter).
 
-> Note:
+> [!Note]
 > Semantic Conventions tooling limits names to lowercase
 > Latin alphabet, Numeric, Underscore, Dot (as namespace delimiter).
 > Names must start with a letter, end with an alphanumeric character, and must not
@@ -238,32 +236,6 @@ Examples:
 
 Metric `http.server.request.duration` uses attributes from the registry such as
 `server.port`, `error.type`.
-
-### System-specific attributes
-
-**Status**: [Development][DocumentStatus]
-
-When an attribute is specific to a particular system (e.g., project, provider, product),
-the system name should be used in the attribute name, following the pattern:
-`{optional domain}.{system}.*.{property}` pattern.
-
-Examples:
-
-- `db.cassandra.consistency_level` - Describes the consistency level property
-  specific to the Cassandra database.
-- `aws.s3.key` - Refers to the `key` property of the AWS S3 product.
-- `signalr.connection.status` – Indicates the connection status of the SignalR
-  network protocol. In this case, no domain is included.
-
-Semantic conventions for a specific domain are generally applicable to multiple systems.
-These conventions should define an attribute to represent the name of the system.
-For example, database conventions include the `db.system.name` attribute.
-
-The name of the system used in the corresponding attribute should match the name
-used inside system-specific attributes.
-
-For example, if the database name specified in `db.system.name` is `foo.bar`, system-specific
-attributes for this database should follow the `db.foo.bar.*` pattern.
 
 ## Metrics
 
@@ -403,7 +375,6 @@ When adding new a system to the semantic conventions, follow these principles in
    multiple Oracle products.
 
 3. The system name SHOULD match the corresponding project or product name in the following cases:
-
    - Independent projects that do not belong to a specific company, such as Apache Foundation projects like
      `kafka` or `cassandra`.
    - Products with names similar to the owning company, such as `mongodb` or `elasticsearch`
@@ -455,11 +426,11 @@ attribute use the same system name (`azure.cosmosdb`).
 ### Known exceptions
 
 - Operational system and process-related attributes and metrics [follow a
-  pattern](/docs/system/system-metrics.md#systemos---os-specific-system-metrics)
+  pattern](/docs/system/system-metrics.md#systemmemoryos---os-specific-system-memory-metrics)
   of `system.{os}` and `process.{os}`. <!-- TODO: document why-->
 
-- [RPC](/docs/rpc/README.md), [messaging](/docs/messaging/README.md), and
-  [GenAI](/docs/gen-ai/README.md) semantic conventions don't follow the
-  system-specific naming guidance yet, and will be updated one-by-one.
+- [RPC](/docs/rpc/README.md) and [messaging](/docs/messaging/README.md) semantic
+  conventions don't follow the system-specific naming guidance yet, and will be
+  updated one-by-one.
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status

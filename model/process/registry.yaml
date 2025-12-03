@@ -217,7 +217,7 @@ groups:
         brief: >
           The working directory of the process.
         examples: ["/root"]
-      - id: process.context_switch_type
+      - id: process.context_switch.type
         brief: "Specifies whether the context switches for this data point were voluntary or involuntary."
         type:
           members:
@@ -226,19 +226,6 @@ groups:
               stability: development
             - id: involuntary
               value: 'involuntary'
-              stability: development
-        stability: development
-      - id: process.paging.fault_type
-        brief: >
-          The type of page fault for this data point. Type `major` is for major/hard page faults, and `minor`
-          is for minor/soft page faults.
-        type:
-          members:
-            - id: major
-              value: 'major'
-              stability: development
-            - id: minor
-              value: 'minor'
               stability: development
         stability: development
       - id: process.environment_variable
@@ -258,6 +245,25 @@ groups:
         type: template[string]
         stability: development
         examples: ['ubuntu', '/usr/local/bin:/usr/bin']
+      - id: process.state
+        type:
+          members:
+            - id: running
+              value: 'running'
+              stability: development
+            - id: sleeping
+              value: 'sleeping'
+              stability: development
+            - id: stopped
+              value: 'stopped'
+              stability: development
+            - id: defunct
+              value: 'defunct'
+              stability: development
+        stability: development
+        brief: >
+          The process state, e.g., [Linux Process State Codes](https://man7.org/linux/man-pages/man1/ps.1.html#PROCESS_STATE_CODES)
+        examples: [ "running" ]
   # process.linux* attribute group
   - id: registry.process.linux
     type: attribute_group

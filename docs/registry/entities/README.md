@@ -18,7 +18,7 @@ The entities registry is the catalog of available Entities.
 Currently, the following namespaces exist:
 
 | Namespace | Entity | Stability |
-|-----------|--------|-----------|
+| --------- | ------ | --------- |
 | Android | | |
 | | [android](android.md#android) | ![Development](https://img.shields.io/badge/-development-blue) |
 | App | | |
@@ -77,6 +77,8 @@ Currently, the following namespaces exist:
 | | [k8s.replicationcontroller](k8s.md#k8s-replicationcontroller) | ![Development](https://img.shields.io/badge/-development-blue) |
 | | [k8s.resourcequota](k8s.md#k8s-resourcequota) | ![Development](https://img.shields.io/badge/-development-blue) |
 | | [k8s.statefulset](k8s.md#k8s-statefulset) | ![Development](https://img.shields.io/badge/-development-blue) |
+| Openshift | | |
+| | [openshift.clusterquota](openshift.md#openshift-clusterquota) | ![Development](https://img.shields.io/badge/-development-blue) |
 | OS | | |
 | | [os](os.md#os) | ![Development](https://img.shields.io/badge/-development-blue) |
 | OTel | | |
@@ -86,6 +88,8 @@ Currently, the following namespaces exist:
 | | [process.runtime](process.md#process-runtime) | ![Development](https://img.shields.io/badge/-development-blue) |
 | Service | | |
 | | [service](service.md#service) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| | [service.instance](service.md#service-instance) | ![Development](https://img.shields.io/badge/-development-blue) |
+| | [service.namespace](service.md#service-namespace) | ![Development](https://img.shields.io/badge/-development-blue) |
 | Telemetry | | |
 | | [telemetry.distro](telemetry.md#telemetry-distro) | ![Development](https://img.shields.io/badge/-development-blue) |
 | | [telemetry.sdk](telemetry.md#telemetry-sdk) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
