@@ -63,12 +63,8 @@ groups:
         requirement_level:
           conditionally_required: if available.
       - ref: rpc.request.metadata
-        brief: >
-          Connect request metadata, `<key>` being the normalized Connect Metadata key (lowercase), the value being the metadata values.
         requirement_level: opt_in
       - ref: rpc.response.metadata
-        brief: >
-          Connect response metadata, `<key>` being the normalized Connect Metadata key (lowercase), the value being the metadata values.
         requirement_level: opt_in
 
   - id: span.rpc.connect_rpc.call.server
@@ -88,12 +84,8 @@ groups:
         requirement_level:
           conditionally_required: if available.
       - ref: rpc.request.metadata
-        brief: >
-          Connect request metadata, `<key>` being the normalized Connect Metadata key (lowercase), the value being the metadata values.
         requirement_level: opt_in
       - ref: rpc.response.metadata
-        brief: >
-          Connect response metadata, `<key>` being the normalized Connect Metadata key (lowercase), the value being the metadata values.
         requirement_level: opt_in
 
   - id: span.rpc.grpc.call.client
@@ -118,12 +110,8 @@ groups:
       - ref: rpc.grpc.status_code
         requirement_level: required
       - ref: rpc.request.metadata
-        brief: >
-          gRPC request metadata, `<key>` being the normalized gRPC metadata key (lowercase), the value being the metadata value.
         requirement_level: opt_in
       - ref: rpc.response.metadata
-        brief: >
-          gRPC response metadata, `<key>` being the normalized gRPC metadata key (lowercase), the value being the metadata value.
         requirement_level: opt_in
 
   - id: span.rpc.grpc.call.server
@@ -144,12 +132,8 @@ groups:
       - ref: rpc.grpc.status_code
         requirement_level: required
       - ref: rpc.request.metadata
-        brief: >
-          gRPC request metadata, `<key>` being the normalized gRPC metadata key (lowercase), the value being the metadata value.
         requirement_level: opt_in
       - ref: rpc.response.metadata
-        brief: >
-          gRPC response metadata, `<key>` being the normalized gRPC metadata key (lowercase), the value being the metadata value.
         requirement_level: opt_in
 
   - id: span.rpc.jsonrpc.call.client
