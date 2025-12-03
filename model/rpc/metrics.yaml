@@ -1,20 +1,19 @@
 groups:
   # RPC Server metrics
-  - id: metric.rpc.server.duration
+  - id: metric.rpc.server.call.duration
     type: metric
-    metric_name: rpc.server.duration
+    metric_name: rpc.server.call.duration
     annotations:
       code_generation:
         metric_value_type: double
     stability: development
-    brief: Measures the duration of inbound RPC.
+    brief: Measures the duration of inbound remote procedure calls (RPC).
     instrument: histogram
-    unit: "ms"
+    unit: "s"
     note: |
-      While streaming RPCs may record this metric as start-of-batch
-      to end-of-batch, it's hard to interpret in practice.
+      When this metric is reported alongside an RPC server span, the metric value
+      SHOULD be the same as the RPC server span duration.
 
-      **Streaming**: N/A.
     extends: attributes.metrics.rpc.server
 
   - id: metric.rpc.server.request.size
@@ -47,21 +46,19 @@ groups:
 
 
   # RPC Client metrics
-  - id: metric.rpc.client.duration
+  - id: metric.rpc.client.call.duration
     type: metric
-    metric_name: rpc.client.duration
+    metric_name: rpc.client.call.duration
     annotations:
       code_generation:
         metric_value_type: double
     stability: development
-    brief: Measures the duration of outbound RPC.
+    brief: Measures the duration of outbound remote procedure calls (RPC).
     instrument: histogram
-    unit: "ms"
+    unit: "s"
     note: |
-      While streaming RPCs may record this metric as start-of-batch
-      to end-of-batch, it's hard to interpret in practice.
-
-      **Streaming**: N/A.
+      When this metric is reported alongside an RPC client span, the metric value
+      SHOULD be the same as the RPC client span duration.
     extends: attributes.metrics.rpc.client
 
   - id: metric.rpc.client.request.size
