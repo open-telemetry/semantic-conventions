@@ -118,6 +118,39 @@
             "title": "ChatMessage",
             "type": "object"
         },
+        "CodeInterpreterToolCall": {
+            "additionalProperties": false,
+            "description": "Code interpreter tool call.",
+            "properties": {
+                "type": {
+                    "const": "code_interpreter",
+                    "description": "Type identifier for code interpreter calls.",
+                    "title": "Type",
+                    "type": "string"
+                },
+                "code": {
+                    "description": "The Python code to execute.",
+                    "title": "Code",
+                    "type": "string"
+                },
+                "container_id": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "Container identifier for code execution environment.",
+                    "title": "Container Id"
+                }
+            },
+            "required": ["type", "code"],
+            "title": "CodeInterpreterToolCall",
+            "type": "object"
+        },
         "FilePart": {
             "additionalProperties": true,
             "description": "Represents an external referenced file sent to the model by file id",
@@ -165,6 +198,31 @@
                 "file_id"
             ],
             "title": "FilePart",
+            "type": "object"
+        },
+        "FunctionToolCall": {
+            "additionalProperties": false,
+            "description": "Function tool call.",
+            "properties": {
+                "type": {
+                    "const": "function",
+                    "description": "Type identifier for function calls.",
+                    "title": "Type",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Name of the function.",
+                    "title": "Name",
+                    "type": "string"
+                },
+                "arguments": {
+                    "default": null,
+                    "description": "Arguments for the function call.",
+                    "title": "Arguments"
+                }
+            },
+            "required": ["type", "name"],
+            "title": "FunctionToolCall",
             "type": "object"
         },
         "GenericPart": {
@@ -276,15 +334,23 @@
                     "title": "Name",
                     "type": "string"
                 },
-                "arguments": {
-                    "default": null,
-                    "description": "Arguments for the tool call.",
-                    "title": "Arguments"
+                "tool_call": {
+                    "description": "Polymorphic tool call details with type discriminator.",
+                    "oneOf": [
+                        {
+                            "$ref": "#/$defs/FunctionToolCall"
+                        },
+                        {
+                            "$ref": "#/$defs/CodeInterpreterToolCall"
+                        }
+                    ],
+                    "title": "Tool Call"
                 }
             },
             "required": [
                 "type",
-                "name"
+                "name",
+                "tool_call"
             ],
             "title": "ToolCallRequestPart",
             "type": "object"
