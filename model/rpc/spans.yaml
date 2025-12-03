@@ -81,7 +81,7 @@ groups:
       - ref: rpc.response.status_code
         requirement_level:
           conditionally_required: if available.
-        brief: The [error code](https://connectrpc.com//docs/protocol/#error-codes) of the Connect response.
+        brief: The [error code](https://connectrpc.com/docs/protocol/#error-codes) of the Connect response.
         note: |
           The following error codes SHOULD be considered errors:
 
