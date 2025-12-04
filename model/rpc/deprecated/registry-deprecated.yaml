@@ -187,3 +187,55 @@ groups:
         deprecated:
           reason: uncategorized
           note: "Use the span status description or `error.message` attribute on other signals."
+      - id: rpc.system
+        brief: 'Deprecated, use `rpc.system.name` attribute instead.'
+        deprecated:
+          reason: renamed
+          renamed_to: "rpc.system.name"
+        type:
+          members:
+            - id: grpc
+              value: 'grpc'
+              brief: 'gRPC'
+              stability: development
+            - id: java_rmi
+              value: 'java_rmi'
+              brief: 'Java RMI'
+              stability: development
+            - id: dotnet_wcf
+              value: 'dotnet_wcf'
+              brief: '.NET WCF'
+              stability: development
+            - id: apache_dubbo
+              value: 'apache_dubbo'
+              brief: 'Apache Dubbo'
+              stability: development
+            - id: connect_rpc
+              value: 'connect_rpc'
+              brief: 'Connect RPC'
+              stability: development
+            - id: onc_rpc
+              value: 'onc_rpc'
+              brief: '[ONC RPC (Sun RPC)](https://datatracker.ietf.org/doc/html/rfc5531)'
+              stability: development
+            - id: jsonrpc
+              value: 'jsonrpc'
+              brief: 'JSON-RPC'
+              stability: development
+        stability: development
+      - id: rpc.jsonrpc.request_id
+        type: string
+        stability: development
+        deprecated:
+          reason: renamed
+          renamed_to: "jsonrpc.request.id"
+        brief: 'Deprecated, use `jsonrpc.request.id` instead.'
+        examples: ['10', 'request-7', '']
+      - id: rpc.jsonrpc.version
+        type: string
+        stability: development
+        deprecated:
+          reason: renamed
+          renamed_to: "jsonrpc.protocol.version"
+        brief: 'Deprecated, use `jsonrpc.protocol.version` instead.'
+        examples: ['2.0', '1.0']
