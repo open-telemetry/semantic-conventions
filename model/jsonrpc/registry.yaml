@@ -1,4 +1,3 @@
-
 groups:
   - id: registry.jsonrpc
     type: attribute_group
@@ -16,7 +15,7 @@ groups:
           The `id` property may be a string, number, null, or omitted entirely.
           When omitted, the request is treated as a notification.
           Using `null` is not equivalent to omitting the `id`, but it is
-          [discouraged](https://www.jsonrpc.org/specification#id1).
+          [discouraged](https://www.jsonrpc.org/specification).
 
           Instrumentations SHOULD NOT capture this attribute when the `id` is
           `null` or omitted.

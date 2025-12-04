@@ -73,7 +73,7 @@ If the request has completed successfully, instrumentations SHOULD NOT set
 
 **[6] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
-**[7] `jsonrpc.request.id`:** The `id` property may be a string, number, null, or omitted entirely. When omitted, the request is treated as a notification. Using `null` is not equivalent to omitting the `id`, but it is [discouraged](https://www.jsonrpc.org/specification#id1).
+**[7] `jsonrpc.request.id`:** The `id` property may be a string, number, null, or omitted entirely. When omitted, the request is treated as a notification. Using `null` is not equivalent to omitting the `id`, but it is [discouraged](https://www.jsonrpc.org/specification).
 Instrumentations SHOULD NOT capture this attribute when the `id` is `null` or omitted.
 
 **[8] `network.protocol.name`:** The value SHOULD be normalized to lowercase.
@@ -179,7 +179,7 @@ If the request has completed successfully, instrumentations SHOULD NOT set
 
 **[8] `client.port`:** When observed from the server side, and when communicating through an intermediary, `client.port` SHOULD represent the client port behind any intermediaries,  for example proxies, if it's available.
 
-**[9] `jsonrpc.request.id`:** The `id` property may be a string, number, null, or omitted entirely. When omitted, the request is treated as a notification. Using `null` is not equivalent to omitting the `id`, but it is [discouraged](https://www.jsonrpc.org/specification#id1).
+**[9] `jsonrpc.request.id`:** The `id` property may be a string, number, null, or omitted entirely. When omitted, the request is treated as a notification. Using `null` is not equivalent to omitting the `id`, but it is [discouraged](https://www.jsonrpc.org/specification).
 Instrumentations SHOULD NOT capture this attribute when the `id` is `null` or omitted.
 
 **[10] `network.protocol.name`:** The value SHOULD be normalized to lowercase.

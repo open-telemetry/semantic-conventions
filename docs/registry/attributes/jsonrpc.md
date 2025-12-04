@@ -14,5 +14,5 @@ This document defines attributes for JSON-RPC.
 | <a id="jsonrpc-protocol-version" href="#jsonrpc-protocol-version">`jsonrpc.protocol.version`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Protocol version, as specified in the `jsonrpc` property of the request and its corresponding response. | `2.0`; `1.0` |
 | <a id="jsonrpc-request-id" href="#jsonrpc-request-id">`jsonrpc.request.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | A string representation of the `id` property of the request and its corresponding response. [1] | `10`; `request-7` |
 
-**[1] `jsonrpc.request.id`:** The `id` property may be a string, number, null, or omitted entirely. When omitted, the request is treated as a notification. Using `null` is not equivalent to omitting the `id`, but it is [discouraged](https://www.jsonrpc.org/specification#id1).
+**[1] `jsonrpc.request.id`:** The `id` property may be a string, number, null, or omitted entirely. When omitted, the request is treated as a notification. Using `null` is not equivalent to omitting the `id`, but it is [discouraged](https://www.jsonrpc.org/specification).
 Instrumentations SHOULD NOT capture this attribute when the `id` is `null` or omitted.
