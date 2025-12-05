@@ -4,7 +4,7 @@ groups:
     type: event
     name: browser.web_vital
     brief: >
-      This event describes the website performance metrics introduced by Google, See [web vitals](https://web.dev/vitals).
+      This event describes the website performance metrics introduced by Google. See [web vitals](https://web.dev/vitals).
     body:
       id: browser.web_vital
       requirement_level: required
@@ -28,7 +28,7 @@ groups:
               stability: development
             - id: inp
               value: 'inp'
-              brief: Interation to Next Paint. See [inp](https://web.dev/articles/inp).
+              brief: Interaction to Next Paint. See [inp](https://web.dev/articles/inp).
               stability: development
           stability: development
           brief: Name of the web vital.
@@ -52,3 +52,37 @@ groups:
           brief: A unique ID representing this particular metric instance.
           requirement_level: required
           examples: ["v3-1677874579383-6381583661209"]
+  - id: event.browser.resource_timing
+    stability: development
+    type: event
+    name: browser.resource_timing
+    brief: >
+      This event describes the timing metrics as provided by PerformanceResourceTiming Performance API.
+      These metrics are related to fetching a resource, such as
+      XMLHttpRequest, Fetch, sendBeacon APIs, SVG, image or script.
+    note: >
+      This event captures data from the [ResourceTiming](https://www.w3.org/TR/resource-timing/).
+      It is recommended to be captured by using the PerformanceResourceTiming API.
+      If the page starts unloading before the page loads,
+      then the partial data can be captured by calling the [performance.getEntriesByType](https://developer.mozilla.org/en-US/docs/Web/API/Performance/getEntriesByType) method.
+    attributes:
+      - ref: browser.resource_timing.url
+        requirement_level: required
+      - ref: browser.resource_timing.fetch_start
+        requirement_level: recommended
+      - ref: browser.resource_timing.domain_lookup_start
+        requirement_level: recommended
+      - ref: browser.resource_timing.domain_lookup_end
+        requirement_level: recommended
+      - ref: browser.resource_timing.connect_start
+        requirement_level: recommended
+      - ref: browser.resource_timing.secure_connection_start
+        requirement_level: recommended
+      - ref: browser.resource_timing.connect_end
+        requirement_level: recommended
+      - ref: browser.resource_timing.request_start
+        requirement_level: recommended
+      - ref: browser.resource_timing.response_start
+        requirement_level: recommended
+      - ref: browser.resource_timing.response_end
+        requirement_level: recommended
