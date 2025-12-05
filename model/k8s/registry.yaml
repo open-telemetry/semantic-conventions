@@ -154,11 +154,12 @@ groups:
           The start timestamp of the Pod.
         examples: [ '2025-12-04T08:41:03Z' ]
         note: |
-          RFC 3339 date and time at which the object was acknowledged by the Kubelet.
+          Date and time at which the object was acknowledged by the Kubelet.
           This is before the Kubelet pulled the container image(s) for the pod.
 
           This attribute aligns with the `startTime` field of the
-          [K8s PodStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#podstatus-v1-core).
+          [K8s PodStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#podstatus-v1-core),
+          in ISO 8601 (RFC 3339 compatible) format.
       - id: k8s.pod.label
         type: template[string]
         stability: development

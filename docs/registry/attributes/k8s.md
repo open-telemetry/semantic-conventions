@@ -239,11 +239,12 @@ This attribute aligns with the `hostname` field of the
 - A label `data` with empty string value SHOULD be recorded as
   the `k8s.pod.label.data` attribute with value `""`.
 
-**[25] `k8s.pod.start_time`:** RFC 3339 date and time at which the object was acknowledged by the Kubelet.
+**[25] `k8s.pod.start_time`:** Date and time at which the object was acknowledged by the Kubelet.
 This is before the Kubelet pulled the container image(s) for the pod.
 
 This attribute aligns with the `startTime` field of the
-[K8s PodStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#podstatus-v1-core).
+[K8s PodStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#podstatus-v1-core),
+in ISO 8601 (RFC 3339 compatible) format.
 
 **[26] `k8s.replicaset.annotation.<key>`:** Examples:
 
