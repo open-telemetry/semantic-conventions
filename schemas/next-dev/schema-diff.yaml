@@ -1,0 +1,10 @@
+baseline:
+  semconv_version: v1.38.0
+changes:
+  entities: []
+  events: []
+  metrics: []
+  registry_attributes: []
+  spans: []
+head:
+  semconv_version: next

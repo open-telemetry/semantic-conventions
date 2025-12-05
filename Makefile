@@ -343,3 +343,42 @@ areas-table-generation:
 .PHONY: areas-table-check
 areas-table-check:
 	docker run --rm -v ${PWD}:/repo -w /repo python:3-alpine python internal/tools/scripts/update-areas-table.py --install --check;
+
+SCHEMAS_PATH = $(PWD)/schemas
+.PHONY: generate-schema-v2-dev
+generate-schema-v2-dev:
+	$(DOCKER_RUN) --rm \
+	$(DOCKER_USER_IS_HOST_USER_ARG) \
+	--mount 'type=bind,source=$(PWD)/internal/tools/scripts,target=/home/weaver/templates,readonly' \
+	--mount 'type=bind,source=$(PWD)/model,target=/home/weaver/source,readonly' \
+	--mount 'type=bind,source=$(SCHEMAS_PATH),target=/home/weaver/target' \
+	$(WEAVER_CONTAINER) registry generate \
+		--registry=/home/weaver/source \
+		--templates=/home/weaver/templates \
+		--param next_version=$(NEXT_SEMCONV_VERSION) \
+		--config=/home/weaver/templates/registry/schema-v2-weaver.yaml \
+		. \
+		/home/weaver/target
+
+	# TODO: diff does not have indication about stability, so we can only generate
+	# dev diff
+	$(DOCKER_RUN) --rm \
+	$(DOCKER_USER_IS_HOST_USER_ARG) \
+	--mount 'type=bind,source=$(PWD)/internal/tools/scripts,target=/home/weaver/templates,readonly' \
+	--mount 'type=bind,source=$(PWD)/model,target=/home/weaver/source,readonly' \
+	--mount 'type=bind,source=$(SCHEMAS_PATH),target=/home/weaver/target' \
+	$(WEAVER_CONTAINER) registry diff \
+		--registry=/home/weaver/source \
+		--baseline-registry=https://github.com/open-telemetry/semantic-conventions/archive/refs/tags/v$(LATEST_RELEASED_SEMCONV_VERSION).zip[model] \
+		--diff-format yaml \
+		--diff-template /home/weaver/templates/schema-v2-diff \
+		--output /home/weaver/target
+
+	# TODO: these commands should not be necessary:
+	$(SED) -i 's/semconv_version: unversioned/semconv_version: $(NEXT_SEMCONV_VERSION)/' $(SCHEMAS_PATH)/next-version-dev/schema-diff.yaml
+
+	rm -rf $(SCHEMAS_PATH)/${NEXT_SEMCONV_VERSION}-dev
+	mv $(SCHEMAS_PATH)/next-version-dev $(SCHEMAS_PATH)/${NEXT_SEMCONV_VERSION}-dev
+
+	rm -rf $(SCHEMAS_PATH)/${NEXT_SEMCONV_VERSION}
+	mv $(SCHEMAS_PATH)/next-version $(SCHEMAS_PATH)/${NEXT_SEMCONV_VERSION}
