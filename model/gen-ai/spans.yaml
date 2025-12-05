@@ -349,3 +349,89 @@ groups:
         requirement_level: required
       - ref: aws.bedrock.knowledge_base.id
         requirement_level: recommended
+
+
+  - id: span.gen_ai.workflow.client
+    type: span
+    span_kind: client
+    stability: development
+    brief: >
+      Represents a workflow orchestrating multiple agents and steps.
+
+      **Span name** SHOULD be `workflow {gen_ai.workflow.name}`.
+      When `gen_ai.workflow.name` is not available, it SHOULD be `workflow`.
+    extends: attributes.gen_ai.common.client
+    attributes:
+      - ref: gen_ai.workflow.name
+        requirement_level:
+          conditionally_required: when available
+      - ref: gen_ai.workflow.description
+        requirement_level:
+          conditionally_required: when available
+      - ref: gen_ai.framework
+        requirement_level:
+          conditionally_required: when available
+      - ref: gen_ai.input.messages
+        requirement_level: opt_in
+      - ref: gen_ai.output.messages
+        requirement_level: opt_in
+
+  - id: span.gen_ai.step_created.client
+    type: span
+    span_kind: client
+    stability: development
+    brief: >
+      Step represents a discrete unit of work for an agent or a fallback type in an agentic AI system. Represents step creation.
+
+      The `gen_ai.operation.name` SHOULD be `step_created`.
+
+      **Span name** SHOULD be `{gen_ai.operation.name} {gen_ai.step.name}`.
+      SHOULD be `step_created {gen_ai.step.name}` if `gen_ai.step.name` is readily available. When `gen_ai.step.name` is not available, it SHOULD be step_created.
+    extends: attributes.gen_ai.common.client
+    attributes:
+      - ref: gen_ai.step.name
+        requirement_level:
+          conditionally_required: when available
+      - ref: gen_ai.step.description
+        requirement_level:
+          conditionally_required: when available
+      - ref: gen_ai.step.objective
+        requirement_level:
+          conditionally_required: when available
+      - ref: gen_ai.step.assigned_agents
+        requirement_level:
+          conditionally_required: when available
+      - ref: gen_ai.input.messages
+        requirement_level: opt_in
+      - ref: gen_ai.output.messages
+        requirement_level: opt_in
+
+  - id: span.gen_ai.step_execution.client
+    type: span
+    span_kind: client
+    stability: development
+    brief: >
+      Step represents a discrete unit of work for an agent or a fallback type in an agentic AI system. Represents step execution.
+
+      The `gen_ai.operation.name` SHOULD be `step_created`.
+
+      **Span name** SHOULD be `{gen_ai.operation.name} {gen_ai.step.name}`.
+      SHOULD be `step_execution {gen_ai.step.name}` if `gen_ai.step.name` is readily available. When `gen_ai.step.name` is not available, it SHOULD be step_execution.
+    extends: attributes.gen_ai.common.client
+    attributes:
+      - ref: gen_ai.step.name
+        requirement_level:
+          conditionally_required: when available
+      - ref: gen_ai.step.description
+        requirement_level:
+          conditionally_required: when available
+      - ref: gen_ai.step.objective
+        requirement_level:
+          conditionally_required: when available
+      - ref: gen_ai.step.assigned_agents
+        requirement_level:
+          conditionally_required: when available
+      - ref: gen_ai.input.messages
+        requirement_level: opt_in
+      - ref: gen_ai.output.messages
+        requirement_level: opt_in
