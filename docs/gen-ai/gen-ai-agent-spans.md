@@ -542,8 +542,4 @@ output messages.
 See [Recording content on attributes](/docs/gen-ai/gen-ai-spans.md#recording-content-on-attributes)
 section for more details.
 
-
-See [Recording content on attributes](/docs/gen-ai/gen-ai-spans.md#recording-content-on-attributes)
-section for more details.
-
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
