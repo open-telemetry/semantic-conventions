@@ -1,6 +1,6 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
 linkTitle: System use cases
---->
+---
 
 # System semantic conventions: general use cases
 
