@@ -6,7 +6,8 @@ linkTitle: Metrics
 
 **Status**: [Development][DocumentStatus]
 
-<!-- toc -->
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 - [Common metrics](#common-metrics)
   - [Metric: `messaging.client.operation.duration`](#metric-messagingclientoperationduration)
@@ -16,7 +17,7 @@ linkTitle: Metrics
   - [Metric: `messaging.client.consumed.messages`](#metric-messagingclientconsumedmessages)
   - [Metric: `messaging.process.duration`](#metric-messagingprocessduration)
 
-<!-- tocstop -->
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 > [!IMPORTANT]
 >

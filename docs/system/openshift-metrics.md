@@ -15,7 +15,8 @@ well-defined API.
 Metrics in `openshift.` instruments SHOULD be attached to an [OpenShift Resource](/docs/resource/k8s/openshift.md)
 and therefore inherit its attributes, like `openshift.clusterquota.name` and `openshift.clusterquota.uid`.
 
-<!-- toc -->
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 - [ClusterResourceQuota metrics](#clusterresourcequota-metrics)
   - [Metric: `openshift.clusterquota.cpu.limit.hard`](#metric-openshiftclusterquotacpulimithard)
@@ -39,7 +40,7 @@ and therefore inherit its attributes, like `openshift.clusterquota.name` and `op
   - [Metric: `openshift.clusterquota.object_count.hard`](#metric-openshiftclusterquotaobject_counthard)
   - [Metric: `openshift.clusterquota.object_count.used`](#metric-openshiftclusterquotaobject_countused)
 
-<!-- tocstop -->
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## ClusterResourceQuota metrics
 

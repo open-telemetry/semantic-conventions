@@ -6,7 +6,8 @@ linkTitle: Status Metrics
 
 **Status**: [Development][DocumentStatus]
 
-<!-- toc -->
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 - [Definition](#definition)
 - [Design](#design)
@@ -14,7 +15,7 @@ linkTitle: Status Metrics
   - [Should it be an Entity Attribute?](#should-it-be-an-entity-attribute)
   - [Naming](#naming)
 
-<!-- tocstop -->
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## Definition
 

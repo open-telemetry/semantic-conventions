@@ -6,7 +6,8 @@ linkTitle: Metrics
 
 **Status**: [Development][DocumentStatus]
 
-<!-- toc -->
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 - [Generative AI client metrics](#generative-ai-client-metrics)
   - [Metric: `gen_ai.client.token.usage`](#metric-gen_aiclienttokenusage)
@@ -18,7 +19,7 @@ linkTitle: Metrics
   - [Metric: `gen_ai.server.time_per_output_token`](#metric-gen_aiservertime_per_output_token)
   - [Metric: `gen_ai.server.time_to_first_token`](#metric-gen_aiservertime_to_first_token)
 
-<!-- tocstop -->
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 > [!IMPORTANT]
 >

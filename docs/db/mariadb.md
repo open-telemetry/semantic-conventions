@@ -6,12 +6,13 @@ linkTitle: MariaDB
 
 **Status**: [Stable][DocumentStatus], Unless otherwise specified.
 
-<!-- toc -->
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 - [Spans](#spans)
 - [Metrics](#metrics)
 
-<!-- tocstop -->
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## Spans
 

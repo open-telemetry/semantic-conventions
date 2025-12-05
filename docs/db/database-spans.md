@@ -6,7 +6,8 @@ linkTitle: Spans
 
 **Status**: [Stable][DocumentStatus], Unless otherwise specified.
 
-<!-- toc -->
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 - [Name](#name)
 - [Span definition](#span-definition)
@@ -18,7 +19,7 @@ linkTitle: Spans
   - [SQL commenter](#sql-commenter)
 - [Semantic conventions for specific database technologies](#semantic-conventions-for-specific-database-technologies)
 
-<!-- tocstop -->
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 > [!IMPORTANT]
 >

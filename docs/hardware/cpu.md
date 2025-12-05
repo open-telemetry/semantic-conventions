@@ -6,7 +6,8 @@ linkTitle: CPU
 
 **Status**: [Development][DocumentStatus]
 
-<!-- toc -->
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 - [CPU metrics `hw.cpu.*`](#cpu-metrics-hwcpu)
   - [Metric: `hw.errors` (CPU)](#metric-hwerrors-cpu)
@@ -14,7 +15,7 @@ linkTitle: CPU
   - [Metric: `hw.cpu.speed.limit`](#metric-hwcpuspeedlimit)
   - [Metric: `hw.status` (CPU)](#metric-hwstatus-cpu)
 
-<!-- tocstop -->
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## CPU metrics `hw.cpu.*`
 

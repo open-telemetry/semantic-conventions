@@ -6,7 +6,8 @@ linkTitle: Spans
 
 **Status**: [Development][DocumentStatus]
 
-<!-- toc -->
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 - [Definitions](#definitions)
   - [Message](#message)
@@ -37,7 +38,7 @@ linkTitle: Spans
   - [Batch publishing with "Create" spans](#batch-publishing-with-create-spans)
   - [Batch publishing without "Create" spans](#batch-publishing-without-create-spans)
 
-<!-- tocstop -->
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 > [!IMPORTANT]
 >

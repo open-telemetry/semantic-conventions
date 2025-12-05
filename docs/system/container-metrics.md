@@ -12,7 +12,8 @@ This document describes instruments and attributes for common container level
 metrics in OpenTelemetry. These metrics are collected from technology-specific,
 well-defined APIs (e.g. Kubelet's API or container runtimes).
 
-<!-- toc -->
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 - [Metric: `container.uptime`](#metric-containeruptime)
 - [Metric: `container.cpu.time`](#metric-containercputime)
@@ -28,7 +29,7 @@ well-defined APIs (e.g. Kubelet's API or container runtimes).
 - [Metric: `container.filesystem.capacity`](#metric-containerfilesystemcapacity)
 - [Metric: `container.filesystem.usage`](#metric-containerfilesystemusage)
 
-<!-- tocstop -->
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ### Metric: `container.uptime`
 

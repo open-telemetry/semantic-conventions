@@ -5,7 +5,8 @@
 <details>
 <summary>Table of Contents</summary>
 
-<!-- toc -->
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 - [Requirement Levels](#requirement-levels)
   - [Required](#required)
@@ -14,7 +15,7 @@
   - [Opt-In](#opt-in)
 - [Performance suggestions](#performance-suggestions)
 
-<!-- tocstop -->
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 </details>
 

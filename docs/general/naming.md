@@ -9,7 +9,8 @@ aliases: [attribute-naming]
 <details>
 <summary>Table of Contents</summary>
 
-<!-- toc -->
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 - [General naming considerations](#general-naming-considerations)
 - [Name abbreviation guidelines](#name-abbreviation-guidelines)
@@ -34,7 +35,7 @@ aliases: [attribute-naming]
   - [System-specific metrics](#system-specific-metrics)
   - [Known exceptions](#known-exceptions)
 
-<!-- tocstop -->
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 </details>
 

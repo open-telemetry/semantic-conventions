@@ -6,7 +6,8 @@ linkTitle: Network
 
 **Status**: [Development][DocumentStatus]
 
-<!-- toc -->
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 - [Network metrics `hw.network.*`](#network-metrics-hwnetwork)
   - [Metric: `hw.errors` (Network)](#metric-hwerrors-network)
@@ -17,7 +18,7 @@ linkTitle: Network
   - [Metric: `hw.network.up`](#metric-hwnetworkup)
   - [Metric: `hw.status` (Network)](#metric-hwstatus-network)
 
-<!-- tocstop -->
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## Network metrics `hw.network.*`
 

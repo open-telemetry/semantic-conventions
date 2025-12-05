@@ -9,7 +9,8 @@ requirements and recommendations.
 <details>
 <summary>Table of Contents</summary>
 
-<!-- toc -->
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 - [Sign the CLA](#sign-the-cla)
 - [How to contribute](#how-to-contribute)
@@ -39,7 +40,7 @@ requirements and recommendations.
 - [Schema files](#schema-files)
 - [Merging existing ECS conventions](#merging-existing-ecs-conventions)
 
-<!-- tocstop -->
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 </details>
 
