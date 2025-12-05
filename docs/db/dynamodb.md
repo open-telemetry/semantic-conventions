@@ -6,7 +6,8 @@ linkTitle: DynamoDB
 
 **Status**: [Development][DocumentStatus]
 
-<!-- toc -->
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 - [Spans](#spans)
   - [DynamoDB.BatchGetItem](#dynamodbbatchgetitem)
@@ -24,7 +25,7 @@ linkTitle: DynamoDB
   - [DynamoDB.UpdateTable](#dynamodbupdatetable)
 - [Metrics](#metrics)
 
-<!-- tocstop -->
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 The Semantic Conventions for [AWS DynamoDB](https://aws.amazon.com/dynamodb/) extend and override the general
 [AWS SDK Semantic Conventions](/docs/cloud-providers/aws-sdk.md) and [Database Semantic Conventions](/docs/db/README.md).

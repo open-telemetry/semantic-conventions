@@ -6,7 +6,8 @@ linkTitle: Spans
 
 **Status**: [Development][DocumentStatus]
 
-<!-- toc -->
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 - [Spans](#spans)
   - [Inference](#inference)
@@ -19,7 +20,7 @@ linkTitle: Spans
     - [Uploading content to external storage](#uploading-content-to-external-storage)
   - [Streaming chunks](#streaming-chunks)
 
-<!-- tocstop -->
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 > [!IMPORTANT]
 >

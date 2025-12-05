@@ -9,13 +9,14 @@ linkTitle: Spans
 This document defines how to describe remote procedure calls
 (also called "remote method invocations" / "RMI") with spans.
 
-<!-- toc -->
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 - [Name](#name)
 - [RPC client span](#rpc-client-span)
 - [RPC server span](#rpc-server-span)
 
-<!-- tocstop -->
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 > [!IMPORTANT]
 > Existing RPC instrumentations that are using

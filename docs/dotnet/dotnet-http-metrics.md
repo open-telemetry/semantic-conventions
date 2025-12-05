@@ -8,7 +8,8 @@ linkTitle: HTTP
 
 This article defines semantic conventions for HTTP metrics emitted by .NET components and runtime.
 
-<!-- toc -->
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 - [HTTP client](#http-client)
   - [Metric: `http.client.request.duration`](#metric-httpclientrequestduration)
@@ -20,7 +21,7 @@ This article defines semantic conventions for HTTP metrics emitted by .NET compo
   - [Metric: `http.server.request.duration`](#metric-httpserverrequestduration)
   - [Metric: `http.server.active_requests`](#metric-httpserveractive_requests)
 
-<!-- tocstop -->
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## HTTP client
 

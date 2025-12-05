@@ -6,14 +6,15 @@ linkTitle: Temperature
 
 **Status**: [Development][DocumentStatus]
 
-<!-- toc -->
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 - [Temperature metrics `hw.temperature.*`](#temperature-metrics-hwtemperature)
   - [Metric: `hw.temperature`](#metric-hwtemperature)
   - [Metric: `hw.temperature.limit`](#metric-hwtemperaturelimit)
   - [Metric: `hw.status` (Temperature)](#metric-hwstatus-temperature)
 
-<!-- tocstop -->
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## Temperature metrics `hw.temperature.*`
 

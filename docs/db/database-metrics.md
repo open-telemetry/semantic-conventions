@@ -6,7 +6,8 @@ linkTitle: Metrics
 
 **Status**: [Mixed][DocumentStatus]
 
-<!-- toc -->
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 - [Database operation](#database-operation)
   - [Metric: `db.client.operation.duration`](#metric-dbclientoperationduration)
@@ -24,7 +25,7 @@ linkTitle: Metrics
     - [Metric: `db.client.connection.wait_time`](#metric-dbclientconnectionwait_time)
     - [Metric: `db.client.connection.use_time`](#metric-dbclientconnectionuse_time)
 
-<!-- tocstop -->
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 > [!IMPORTANT]
 >

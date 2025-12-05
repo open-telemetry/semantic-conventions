@@ -6,7 +6,8 @@ linkTitle: GPU
 
 **Status**: [Development][DocumentStatus]
 
-<!-- toc -->
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 - [GPU metrics `hw.gpu.*`](#gpu-metrics-hwgpu)
   - [Metric: `hw.errors` (GPU)](#metric-hwerrors-gpu)
@@ -17,7 +18,7 @@ linkTitle: GPU
   - [Metric: `hw.gpu.utilization`](#metric-hwgpuutilization)
   - [Metric: `hw.status` (GPU)](#metric-hwstatus-gpu)
 
-<!-- tocstop -->
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## GPU metrics `hw.gpu.*`
 

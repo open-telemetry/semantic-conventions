@@ -6,7 +6,8 @@ linkTitle: Logical Disk
 
 **Status**: [Development][DocumentStatus]
 
-<!-- toc -->
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 - [Logical disk metrics `hw.logical_disk.*`](#logical-disk-metrics-hwlogical_disk)
   - [Metric: `hw.errors` (Logical Disk)](#metric-hwerrors-logical-disk)
@@ -15,7 +16,7 @@ linkTitle: Logical Disk
   - [Metric: `hw.logical_disk.utilization`](#metric-hwlogical_diskutilization)
   - [Metric: `hw.status` (Logical Disk)](#metric-hwstatus-logical-disk)
 
-<!-- tocstop -->
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## Logical disk metrics `hw.logical_disk.*`
 

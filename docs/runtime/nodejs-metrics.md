@@ -8,7 +8,8 @@ linkTitle: Node.js
 
 This document describes semantic conventions for Node.js Runtime metrics in OpenTelemetry.
 
-<!-- toc -->
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 - [Metric: `nodejs.eventloop.delay.min`](#metric-nodejseventloopdelaymin)
 - [Metric: `nodejs.eventloop.delay.max`](#metric-nodejseventloopdelaymax)
@@ -20,7 +21,7 @@ This document describes semantic conventions for Node.js Runtime metrics in Open
 - [Metric: `nodejs.eventloop.utilization`](#metric-nodejseventlooputilization)
 - [Metric: `nodejs.eventloop.time`](#metric-nodejseventlooptime)
 
-<!-- tocstop -->
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 **Description:** In-development Node.js Runtime metrics captured under `nodejs`.
 

@@ -6,14 +6,15 @@ linkTitle: Memory
 
 **Status**: [Development][DocumentStatus]
 
-<!-- toc -->
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 - [Memory metrics `hw.memory.*`](#memory-metrics-hwmemory)
   - [Metric: `hw.errors` (Memory)](#metric-hwerrors-memory)
   - [Metric: `hw.memory.size`](#metric-hwmemorysize)
   - [Metric: `hw.status` (Memory)](#metric-hwstatus-memory)
 
-<!-- tocstop -->
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## Memory metrics `hw.memory.*`
 

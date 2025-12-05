@@ -9,7 +9,8 @@ linkTitle: Resource
 This document defines standard attributes for resources. These attributes are typically used in the [Resource](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.55.0/specification/resource/sdk.md) and are also recommended to be used anywhere else where there is a need to describe a resource in a consistent manner. The majority of these attributes are inherited from
 [OpenCensus Resource standard](https://github.com/census-instrumentation/opencensus-specs/blob/master/resource/StandardResources.md).
 
-<!-- toc -->
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 - [TODOs](#todos)
 - [Document conventions](#document-conventions)
@@ -25,7 +26,7 @@ This document defines standard attributes for resources. These attributes are ty
 - [Version attributes](#version-attributes)
 - [Cloud-Provider-specific attributes](#cloud-provider-specific-attributes)
 
-<!-- tocstop -->
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## TODOs
 

@@ -6,7 +6,8 @@ linkTitle: Physical Disk
 
 **Status**: [Development][DocumentStatus]
 
-<!-- toc -->
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 - [Physical disk metrics `hw.physical_disk.*`](#physical-disk-metrics-hwphysical_disk)
   - [Metric: `hw.errors` (Physical Disk)](#metric-hwerrors-physical-disk)
@@ -15,7 +16,7 @@ linkTitle: Physical Disk
   - [Metric: `hw.physical_disk.smart`](#metric-hwphysical_disksmart)
   - [Metric: `hw.status` (Physical Disk)](#metric-hwstatus-physical-disk)
 
-<!-- tocstop -->
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## Physical disk metrics `hw.physical_disk.*`
 

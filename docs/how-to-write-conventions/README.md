@@ -7,7 +7,8 @@ aliases: [/docs/specs/semconv/general/how-to-define-semantic-conventions]
 
 **Status**: [Development][DocumentStatus]
 
-<!-- toc -->
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 - [Defining new conventions](#defining-new-conventions)
   - [Best practices](#best-practices)
@@ -26,7 +27,7 @@ aliases: [/docs/specs/semconv/general/how-to-define-semantic-conventions]
 - [Stabilizing existing conventions](#stabilizing-existing-conventions)
   - [Migration plan](#migration-plan)
 
-<!-- tocstop -->
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 This document describes requirements, recommendations, and best practices on how to define conventions
 for new areas or make substantial changes to the existing ones.

@@ -6,12 +6,13 @@ linkTitle: Disk Controller
 
 **Status**: [Development][DocumentStatus]
 
-<!-- toc -->
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 - [Disk controller metrics `hw.disk_controller.*`](#disk-controller-metrics-hwdisk_controller)
   - [Metric: `hw.status` (Disk Controller)](#metric-hwstatus-disk-controller)
 
-<!-- tocstop -->
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## Disk controller metrics `hw.disk_controller.*`
 
