@@ -356,7 +356,7 @@ groups:
     span_kind: client
     stability: development
     brief: >
-      Represents a workflow orchestrating multiple agents and steps.
+      Represents a workflow orchestrating multiple agents and steps through predefined code paths.
 
       **Span name** SHOULD be `workflow {gen_ai.workflow.name}`.
       When `gen_ai.workflow.name` is not available, it SHOULD be `workflow`.
@@ -380,7 +380,7 @@ groups:
     span_kind: client
     stability: development
     brief: >
-      Step represents a discrete unit of work for an agent or a fallback type in an agentic AI system. Represents step creation.
+      Step represents a discrete unit of work for an agent or a fallback type in an agentic AI system.
 
       **Span name** SHOULD be `step {gen_ai.step.name}`.
       SHOULD be `step {gen_ai.step.name}` if `gen_ai.step.name` is readily available. When `gen_ai.step.name` is not available, it SHOULD be `step`.

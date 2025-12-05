@@ -425,7 +425,7 @@ If you are using some tools in your agent, refer to [Execute Tool Span](./gen-ai
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-Represents a workflow orchestrating multiple agents and steps.
+Represents a workflow orchestrating multiple agents and steps through predefined code paths.
 
 **Span name** SHOULD be `workflow {gen_ai.workflow.name}`.
 When `gen_ai.workflow.name` is not available, it SHOULD be `workflow`.
@@ -488,7 +488,7 @@ Represents a discrete unit of work for an agent or a fallback type in an agentic
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
 **Span name** SHOULD be `step {gen_ai.step.name}`.
-SHOULD be `step {gen_ai.step.name}` if `gen_ai.step.name` is readily available. When `gen_ai.step.name` is not available, it SHOULD be `step`. 
+When `gen_ai.step.name` is not available, it SHOULD be `step`. 
 Semantic conventions for individual GenAI systems and frameworks MAY specify different span name format
 and MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.37.0/specification/trace/api.md#span).
 
