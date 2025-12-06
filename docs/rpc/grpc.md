@@ -46,8 +46,8 @@ for the details on which values classify as errors.
 | [`network.protocol.name`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | [OSI application layer](https://wikipedia.org/wiki/Application_layer) or non-OSI equivalent. [8] | `http` |
 | [`network.protocol.version`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The actual version of the protocol used for network communication. [9] | `1.1`; `2` |
 | [`network.transport`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [10] | `tcp`; `udp` |
-| [`rpc.grpc.request.metadata.<key>`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string[] | gRPC request metadata, `<key>` being the normalized gRPC Metadata key (lowercase), the value being the metadata values. [11] | `["1.2.3.4", "1.2.3.5"]` |
-| [`rpc.grpc.response.metadata.<key>`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string[] | gRPC response metadata, `<key>` being the normalized gRPC Metadata key (lowercase), the value being the metadata values. [12] | `["attribute_value"]` |
+| [`rpc.request.metadata.<key>`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string[] | RPC request metadata, `<key>` being the normalized RPC metadata key (lowercase), the value being the metadata values. [11] | `["1.2.3.4", "1.2.3.5"]` |
+| [`rpc.response.metadata.<key>`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string[] | RPC response metadata, `<key>` being the normalized RPC metadata key (lowercase), the value being the metadata values. [12] | `["attribute_value"]` |
 
 **[1] `rpc.method`:** This is the logical name of the method from the RPC interface perspective, which can be different from the name of any implementing method/function. The `code.function.name` attribute may be used to store the latter (e.g., method actually executing the call on the server side, RPC client stub method on the client side).
 
@@ -85,17 +85,17 @@ Consider always setting the transport when setting a port number, since
 a port number is ambiguous without knowing the transport. For example
 different processes could be listening on TCP port 12345 and UDP port 12345.
 
-**[11] `rpc.grpc.request.metadata.<key>`:** Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
+**[11] `rpc.request.metadata.<key>`:** Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
 Including all request metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
 
 For example, a property `my-custom-key` with value `["1.2.3.4", "1.2.3.5"]` SHOULD be recorded as
-`rpc.grpc.request.metadata.my-custom-key` attribute with value `["1.2.3.4", "1.2.3.5"]`
+`rpc.request.metadata.my-custom-key` attribute with value `["1.2.3.4", "1.2.3.5"]`
 
-**[12] `rpc.grpc.response.metadata.<key>`:** Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
+**[12] `rpc.response.metadata.<key>`:** Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
 Including all response metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
 
 For example, a property `my-custom-key` with value `["attribute_value"]` SHOULD be recorded as
-the `rpc.grpc.response.metadata.my-custom-key` attribute with value `["attribute_value"]`
+the `rpc.response.metadata.my-custom-key` attribute with value `["attribute_value"]`
 
 ---
 
@@ -159,8 +159,8 @@ for the details on which values classify as errors.
 | [`network.transport`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [10] | `tcp`; `udp` |
 | [`rpc.method`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | This is the logical name of the method from the RPC interface perspective. [11] | `exampleMethod` |
 | [`rpc.service`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The full (logical) name of the service being called, including its package name, if applicable. [12] | `myservice.EchoService` |
-| [`rpc.grpc.request.metadata.<key>`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string[] | gRPC request metadata, `<key>` being the normalized gRPC Metadata key (lowercase), the value being the metadata values. [13] | `["1.2.3.4", "1.2.3.5"]` |
-| [`rpc.grpc.response.metadata.<key>`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string[] | gRPC response metadata, `<key>` being the normalized gRPC Metadata key (lowercase), the value being the metadata values. [14] | `["attribute_value"]` |
+| [`rpc.request.metadata.<key>`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string[] | RPC request metadata, `<key>` being the normalized RPC metadata key (lowercase), the value being the metadata values. [13] | `["1.2.3.4", "1.2.3.5"]` |
+| [`rpc.response.metadata.<key>`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string[] | RPC response metadata, `<key>` being the normalized RPC metadata key (lowercase), the value being the metadata values. [14] | `["attribute_value"]` |
 
 **[1] `rpc.response.status_code`:** The following status codes SHOULD be considered errors:
 
@@ -209,17 +209,17 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 **[12] `rpc.service`:** This is the logical name of the service from the RPC interface perspective, which can be different from the name of any implementing class. The `code.namespace` attribute may be used to store the latter (despite the attribute name, it may include a class name; e.g., class with method actually executing the call on the server side, RPC client stub class on the client side).
 
-**[13] `rpc.grpc.request.metadata.<key>`:** Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
+**[13] `rpc.request.metadata.<key>`:** Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
 Including all request metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
 
 For example, a property `my-custom-key` with value `["1.2.3.4", "1.2.3.5"]` SHOULD be recorded as
-`rpc.grpc.request.metadata.my-custom-key` attribute with value `["1.2.3.4", "1.2.3.5"]`
+`rpc.request.metadata.my-custom-key` attribute with value `["1.2.3.4", "1.2.3.5"]`
 
-**[14] `rpc.grpc.response.metadata.<key>`:** Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
+**[14] `rpc.response.metadata.<key>`:** Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
 Including all response metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
 
 For example, a property `my-custom-key` with value `["attribute_value"]` SHOULD be recorded as
-the `rpc.grpc.response.metadata.my-custom-key` attribute with value `["attribute_value"]`
+the `rpc.response.metadata.my-custom-key` attribute with value `["attribute_value"]`
 
 ---
 
