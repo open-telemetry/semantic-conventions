@@ -73,6 +73,7 @@ Currently, the following namespaces exist:
 - [Host](host.md)
 - [HTTP](http.md)
 - [iOS](ios.md)
+- [JSONRPC](jsonrpc.md)
 - [JVM](jvm.md)
 - [K8s](k8s.md)
 - [Linux](linux.md)

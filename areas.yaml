@@ -246,6 +246,7 @@ areas:
     board: "https://github.com/orgs/open-telemetry/projects/161"
     labels:
       - area:rpc
+      - area:jsonrpc
     status:
       - accepting_contributions
       - active

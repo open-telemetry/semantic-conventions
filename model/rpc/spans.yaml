@@ -24,7 +24,7 @@ groups:
     span_kind: client
     events: [rpc.message]
     attributes:
-      - ref: rpc.system
+      - ref: rpc.system.name
         requirement_level: required
 
   - id: span.rpc.call.server
@@ -49,7 +49,7 @@ groups:
       **Span status** Refer to the [Recording Errors](/docs/general/recording-errors.md)
       document for details on how to record span status.
     attributes:
-      - ref: rpc.system
+      - ref: rpc.system.name
         requirement_level: required
 
   - id: span.rpc.connect_rpc.call.client
@@ -203,10 +203,10 @@ groups:
     attributes:
       - ref: rpc.method
         requirement_level: required
-      - ref: rpc.jsonrpc.version
+      - ref: jsonrpc.protocol.version
         requirement_level:
           conditionally_required: If other than the default version (`1.0`)
-      - ref: rpc.jsonrpc.request_id
+      - ref: jsonrpc.request.id
         requirement_level: recommended
       - ref: rpc.response.status_code
         brief: >
@@ -237,10 +237,10 @@ groups:
     attributes:
       - ref: rpc.method
         requirement_level: required
-      - ref: rpc.jsonrpc.version
+      - ref: jsonrpc.protocol.version
         requirement_level:
           conditionally_required: If other than the default version (`1.0`)
-      - ref: rpc.jsonrpc.request_id
+      - ref: jsonrpc.request.id
         requirement_level: recommended
       - ref: rpc.response.status_code
         brief: >
