@@ -59,6 +59,7 @@ body:
         - area:k8s
         - area:log
         - area:mainframe
+        - area:mcp
         - area:messaging
         - area:network
         - area:nfs
