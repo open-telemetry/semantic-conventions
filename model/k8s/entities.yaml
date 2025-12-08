@@ -82,7 +82,7 @@ groups:
       - ref: k8s.container.name
         role: identifying
       - ref: k8s.container.restart_count
-        role: identifying
+        role: descriptive
       - ref: k8s.container.status.last_terminated_reason
         role: descriptive
 
