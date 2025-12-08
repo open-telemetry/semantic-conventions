@@ -12,10 +12,12 @@ groups:
           corresponding response.
         examples: ['10', 'request-7']
         note: >
-          The `id` property may be a string, number, null, or omitted entirely.
+          Under the
+          [JSON-RPC specification](https://www.jsonrpc.org/specification),
+          the `id` property may be a string, number, null, or omitted entirely.
           When omitted, the request is treated as a notification.
           Using `null` is not equivalent to omitting the `id`, but it is
-          [discouraged](https://www.jsonrpc.org/specification).
+          discouraged.
 
           Instrumentations SHOULD NOT capture this attribute when the `id` is
           `null` or omitted.
