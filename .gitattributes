@@ -2,3 +2,5 @@
 
 *.cmd text eol=crlf
 *.bat text eol=crlf
+
+**/package.lock.json linguist-generated
