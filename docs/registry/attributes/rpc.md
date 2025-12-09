@@ -27,7 +27,7 @@ This document defines attributes for remote procedure calls.
 
 **[1] `rpc.message.id`:** This way we guarantee that the values will be consistent between different implementations.
 
-**[2] `rpc.method`:** This is the logical name of the method from the RPC interface perspective, which can be different from the name of any implementing method/function. The `code.function.name` attribute may be used to record fully fully-qualified method actually executing the call on the server side or the RPC client stub class on the client side.
+**[2] `rpc.method`:** This is the logical name of the method from the RPC interface perspective, which can be different from the name of any implementing method/function. The `code.function.name` attribute may be used to record the fully-qualified method actually executing the call on the server side, or the RPC client stub method on the client side.
 
 **[3] `rpc.request.metadata.<key>`:** Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
 Including all request metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
@@ -44,7 +44,7 @@ the `rpc.response.metadata.my-custom-key` attribute with value `["attribute_valu
 **[5] `rpc.response.status_code`:** Usually it represents an error code, but may also represent partial success, warning, or differentiate between various types of successful outcomes.
 Semantic conventions for individual RPC frameworks SHOULD document what `rpc.response.status_code` means in the context of that system and which values are considered to represent errors.
 
-**[6] `rpc.service`:** This is the logical name of the service from the RPC interface perspective, which can be different from the name of any implementing class. The `code.function.name` attribute may be used to record fully fully-qualified method actually executing the call on the server side or the RPC client stub class on the client side.
+**[6] `rpc.service`:** This is the logical name of the service from the RPC interface perspective, which can be different from the name of any implementing class. The `code.function.name` attribute may be used to record the fully-qualified method actually executing the call on the server side, or the RPC client stub class on the client side.
 
 **[7] `rpc.system.name`:** The client and server RPC systems may differ for the same RPC interaction. For example, a client may use Apache Dubbo or Connect RPC to communicate with a server that uses gRPC since both protocols provide compatibility with gRPC.
 

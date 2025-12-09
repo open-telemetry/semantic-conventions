@@ -49,11 +49,11 @@ for the details on which values classify as errors.
 | [`rpc.request.metadata.<key>`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string[] | RPC request metadata, `<key>` being the normalized RPC metadata key (lowercase), the value being the metadata values. [11] | `["1.2.3.4", "1.2.3.5"]` |
 | [`rpc.response.metadata.<key>`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string[] | RPC response metadata, `<key>` being the normalized RPC metadata key (lowercase), the value being the metadata values. [12] | `["attribute_value"]` |
 
-**[1] `rpc.method`:** This is the logical name of the method from the RPC interface perspective, which can be different from the name of any implementing method/function. The `code.function.name` attribute may be used to record fully fully-qualified method actually executing the call on the server side or the RPC client stub class on the client side.
+**[1] `rpc.method`:** This is the logical name of the method from the RPC interface perspective, which can be different from the name of any implementing method/function. The `code.function.name` attribute may be used to record the fully-qualified method actually executing the call on the server side, or the RPC client stub method on the client side.
 
 **[2] `rpc.response.status_code`:** All status codes except `OK` SHOULD be considered errors.
 
-**[3] `rpc.service`:** This is the logical name of the service from the RPC interface perspective, which can be different from the name of any implementing class. The `code.function.name` attribute may be used to record fully fully-qualified method actually executing the call on the server side or the RPC client stub class on the client side.
+**[3] `rpc.service`:** This is the logical name of the service from the RPC interface perspective, which can be different from the name of any implementing class. The `code.function.name` attribute may be used to record the fully-qualified method actually executing the call on the server side, or the RPC client stub class on the client side.
 
 **[4] `server.address`:** May contain server IP address, DNS name, or local socket name. When host component is an IP address, instrumentations SHOULD NOT do a reverse proxy lookup to obtain DNS name and SHOULD set `server.address` to the IP address provided in the host component.
 
@@ -205,9 +205,9 @@ Consider always setting the transport when setting a port number, since
 a port number is ambiguous without knowing the transport. For example
 different processes could be listening on TCP port 12345 and UDP port 12345.
 
-**[11] `rpc.method`:** This is the logical name of the method from the RPC interface perspective, which can be different from the name of any implementing method/function. The `code.function.name` attribute may be used to record fully fully-qualified method actually executing the call on the server side or the RPC client stub class on the client side.
+**[11] `rpc.method`:** This is the logical name of the method from the RPC interface perspective, which can be different from the name of any implementing method/function. The `code.function.name` attribute may be used to record the fully-qualified method actually executing the call on the server side, or the RPC client stub method on the client side.
 
-**[12] `rpc.service`:** This is the logical name of the service from the RPC interface perspective, which can be different from the name of any implementing class. The `code.function.name` attribute may be used to record fully fully-qualified method actually executing the call on the server side or the RPC client stub class on the client side.
+**[12] `rpc.service`:** This is the logical name of the service from the RPC interface perspective, which can be different from the name of any implementing class. The `code.function.name` attribute may be used to record the fully-qualified method actually executing the call on the server side, or the RPC client stub class on the client side.
 
 **[13] `rpc.request.metadata.<key>`:** Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
 Including all request metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
