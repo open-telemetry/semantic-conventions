@@ -3,7 +3,7 @@ groups:
     type: attribute_group
     brief: "Describes RPC metric attributes."
     attributes:
-      - ref: rpc.system
+      - ref: rpc.system.name
         requirement_level: required
       - ref: rpc.service
       - ref: rpc.method
