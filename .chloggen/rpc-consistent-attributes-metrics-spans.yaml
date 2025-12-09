@@ -1,0 +1,5 @@
+change_type: enhancement
+component: rpc
+note: Use consistent notes on attributes shared between RPC spans and metrics. Promote
+      `rpc.method`and `rpc.service` to attribute definition.
+issues: [2922, TODO]

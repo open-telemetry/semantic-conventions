@@ -1,4 +1,38 @@
 groups:
+
+  - id: rpc
+    type: attribute_group
+    brief: 'This document defines semantic conventions for remote procedure calls.'
+    extends: common.rpc.attributes
+    attributes:
+      - ref: network.peer.address
+        requirement_level: recommended
+      - ref: network.peer.port
+        requirement_level:
+          recommended: If `network.peer.address` is set.
+
+  - id: rpc.server
+    type: attribute_group
+    brief: 'This document defines semantic conventions for remote procedure calls.'
+    extends: rpc
+    attributes:
+      - ref: client.address
+        requirement_level: recommended
+      - ref: client.port
+        requirement_level: recommended
+
+  - id: rpc_service.server
+    type: attribute_group
+    brief: 'This document defines semantic conventions for remote procedure calls.'
+    extends: rpc
+    attributes:
+      - ref: client.address
+        requirement_level: recommended
+      - ref: client.port
+        requirement_level: recommended
+      - ref: rpc.service
+        requirement_level: recommended
+
   - id: span.rpc.call.client
     type: span
     stability: development
@@ -20,12 +54,13 @@ groups:
 
       **Span status** Refer to the [Recording Errors](/docs/general/recording-errors.md)
       document for details on how to record span status.
-    extends: rpc_service
+    extends: rpc
     span_kind: client
     events: [rpc.message]
     attributes:
       - ref: rpc.system.name
         requirement_level: required
+      - ref: rpc.service
 
   - id: span.rpc.call.server
     type: span
@@ -65,7 +100,7 @@ groups:
 
       **Span status** Refer to the [Recording Errors](/docs/general/recording-errors.md)
       document for details on how to record span status.
-    extends: rpc_service
+    extends: rpc
     span_kind: client
     attributes:
       - ref: rpc.response.status_code
@@ -78,6 +113,7 @@ groups:
         requirement_level: opt_in
       - ref: rpc.response.metadata
         requirement_level: opt_in
+      - ref: rpc.service
 
   - id: span.rpc.connect_rpc.call.server
     type: span
@@ -127,7 +163,7 @@ groups:
       **Span status** Refer to the [Recording Errors](/docs/general/recording-errors.md)
       document for details on how to record span status. See also `rpc.response.status_code` attribute
       for the details on which values classify as errors.
-    extends: rpc_service
+    extends: rpc
     span_kind: client
     attributes:
       - ref: rpc.method
