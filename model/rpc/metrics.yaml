@@ -70,7 +70,6 @@ groups:
       **Streaming**: Recorded per response in a streaming batch
     extends: attributes.metrics.rpc.server
 
-
   # RPC Client metrics
   - id: metric.rpc.client.call.duration
     type: metric

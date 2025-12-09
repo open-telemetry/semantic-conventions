@@ -16,7 +16,9 @@ groups:
       - ref: server.port
         requirement_level:
           conditionally_required: if the port is supported by the network transport used for communication.
-
+      - ref: rpc.response.status_code
+        requirement_level:
+          conditionally_required: if available.
       - ref: error.type
         requirement_level:
           conditionally_required: If and only if the operation failed.
