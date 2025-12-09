@@ -4,30 +4,6 @@ groups:
     display_name: Remote Procedure Call (RPC) Attributes
     brief: 'This document defines attributes for remote procedure calls.'
     attributes:
-      - id: rpc.connect_rpc.request.metadata
-        type: template[string[]]
-        stability: development
-        brief: >
-          Connect request metadata, `<key>` being the normalized Connect Metadata key (lowercase), the value being the metadata values.
-        note: |
-          Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
-          Including all request metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
-
-          For example, a property `my-custom-key` with value `["1.2.3.4", "1.2.3.5"]` SHOULD be recorded as
-          the `rpc.connect_rpc.request.metadata.my-custom-key` attribute with value `["1.2.3.4", "1.2.3.5"]`
-        examples: [["1.2.3.4", "1.2.3.5"]]
-      - id: rpc.connect_rpc.response.metadata
-        type: template[string[]]
-        stability: development
-        brief: >
-          Connect response metadata, `<key>` being the normalized Connect Metadata key (lowercase), the value being the metadata values.
-        note: |
-          Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
-          Including all response metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
-
-          For example, a property `my-custom-key` with value `"attribute_value"` SHOULD be recorded as
-          the `rpc.connect_rpc.response.metadata.my-custom-key` attribute with value `["attribute_value"]`
-        examples: [["attribute_value"]]
       - id: rpc.response.status_code
         type: string
         stability: development
@@ -40,29 +16,29 @@ groups:
           `rpc.response.status_code` means in the context of that system and which values
           are considered to represent errors.
         examples: ["OK", "DEADLINE_EXCEEDED", "-32602"]
-      - id: rpc.grpc.request.metadata
+      - id: rpc.request.metadata
         type: template[string[]]
         stability: development
         brief: >
-          gRPC request metadata, `<key>` being the normalized gRPC Metadata key (lowercase), the value being the metadata values.
+          RPC request metadata, `<key>` being the normalized RPC metadata key (lowercase), the value being the metadata values.
         note: |
           Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
           Including all request metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
 
           For example, a property `my-custom-key` with value `["1.2.3.4", "1.2.3.5"]` SHOULD be recorded as
-          `rpc.grpc.request.metadata.my-custom-key` attribute with value `["1.2.3.4", "1.2.3.5"]`
+          `rpc.request.metadata.my-custom-key` attribute with value `["1.2.3.4", "1.2.3.5"]`
         examples: [["1.2.3.4", "1.2.3.5"]]
-      - id: rpc.grpc.response.metadata
+      - id: rpc.response.metadata
         type: template[string[]]
         stability: development
         brief: >
-          gRPC response metadata, `<key>` being the normalized gRPC Metadata key (lowercase), the value being the metadata values.
+          RPC response metadata, `<key>` being the normalized RPC metadata key (lowercase), the value being the metadata values.
         note: |
           Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
           Including all response metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
 
           For example, a property `my-custom-key` with value `["attribute_value"]` SHOULD be recorded as
-          the `rpc.grpc.response.metadata.my-custom-key` attribute with value `["attribute_value"]`
+          the `rpc.response.metadata.my-custom-key` attribute with value `["attribute_value"]`
         examples: [["attribute_value"]]
 
       - id: rpc.jsonrpc.request_id
