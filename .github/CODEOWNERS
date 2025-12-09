@@ -171,3 +171,8 @@
 # NFS
 /docs/nfs                         @open-telemetry/semconv-system-approvers @open-telemetry/specs-semconv-approvers
 /model/nfs                        @open-telemetry/semconv-system-approvers @open-telemetry/specs-semconv-approvers
+
+# RPC
+/docs/rpc                         @open-telemetry/semconv-rpc-approvers @open-telemetry/specs-semconv-approvers
+/model/rpc                        @open-telemetry/semconv-rpc-approvers @open-telemetry/specs-semconv-approvers
+/model/jsonrpc                    @open-telemetry/semconv-rpc-approvers @open-telemetry/specs-semconv-approvers
