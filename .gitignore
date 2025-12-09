@@ -29,9 +29,6 @@ internal/tools/bin
 # Node.js files for tools (e.g. markdown-toc)
 node_modules/
 
-# Visual Studio Code
-.vscode
-
 # Visual Studio
 .vs/
 
