@@ -614,7 +614,7 @@ groups:
       - id: gen_ai.step.description
         stability: development
         type: string
-        brief: Name/identifier of the step.
+        brief: Description of the step.
         examples: [ "Create a comprehensive market analysis report with recommendations" ]
       - id: gen_ai.step.objective
         stability: development
@@ -624,5 +624,5 @@ groups:
       - id: gen_ai.step.assigned_agents
         stability: development
         type: string
-        brief: Name/identifier of the step.
-        examples: [ "researcher", "writer" ]
+        brief: Name of agents assigned to execute the step.
+        examples: [ "researcher" ]
