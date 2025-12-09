@@ -60,6 +60,15 @@ groups:
       - ref: k8s.pod.annotation
         role: descriptive
         requirement_level: opt_in
+      - ref: k8s.pod.ip
+        role: descriptive
+        requirement_level: opt_in
+      - ref: k8s.pod.hostname
+        role: descriptive
+        requirement_level: opt_in
+      - ref: k8s.pod.start_time
+        role: descriptive
+        requirement_level: opt_in
 
   - id: entity.k8s.container
     type: entity
