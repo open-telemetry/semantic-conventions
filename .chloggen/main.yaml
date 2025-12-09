@@ -1,0 +1,36 @@
+# Use this changelog template to create an entry for release notes.
+#
+# If your change doesn't affect end users you should instead start
+# your pull request title with [chore] or use the "Skip Changelog" label.
+
+# One of 'breaking', 'deprecation', 'new_component', 'enhancement', 'bug_fix'
+change_type: enhancement
+
+# The name of the area of concern in the attributes-registry, (e.g. http, cloud, db)
+component: aws
+
+# A brief description of the change. Surround your text with quotes ("") if it needs to start with a backtick (`).
+note: Add AWS authentication and Bedrock AgentCore attributes
+
+# Mandatory: One or more tracking issues related to the change. You can use the PR number here if no issue exists.
+# The values here must be integers.
+issues: [0]
+
+# (Optional) One or more lines of additional information to render under the primary note.
+# These lines will be padded with 2 spaces and then inserted directly into the document.
+# Use pipe (|) for multiline entries.
+subtext: |
+  Added AWS authentication attributes:
+  - `aws.auth.account.access_key`: The AWS account access key used for authentication
+  - `aws.auth.region`: The AWS region used for authentication
+  - `aws.auth.credential_provider`: The AWS credential provider used for authentication
+  
+  Added Amazon Bedrock AgentCore attributes:
+  - `aws.bedrock.agentcore.runtime.arn`: The ARN of the Amazon Bedrock AgentCore runtime
+  - `aws.bedrock.agentcore.runtime_endpoint.arn`: The ARN of the Amazon Bedrock AgentCore runtime endpoint
+  - `aws.bedrock.agentcore.code_interpreter.arn`: The ARN of the Amazon Bedrock AgentCore code interpreter
+  - `aws.bedrock.agentcore.browser.arn`: The ARN of the Amazon Bedrock AgentCore browser
+  - `aws.bedrock.agentcore.memory.arn`: The ARN of the Amazon Bedrock AgentCore memory
+  - `aws.bedrock.agentcore.gateway.arn`: The ARN of the Amazon Bedrock AgentCore gateway
+  - `aws.bedrock.agentcore.gateway.target.id`: The unique identifier of a target registered with an Amazon Bedrock AgentCore gateway
+  - `aws.bedrock.agentcore.identity.workload_identity.arn`: The ARN of the Amazon Bedrock AgentCore workload identity

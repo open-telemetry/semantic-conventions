@@ -18,6 +18,41 @@ groups:
         brief: "The AWS extended request ID as returned in the response header `x-amz-id-2`."
         examples:
           - wzHcyEWfmOGDIE5QOhTAqFDoDWP3y8IUvpNINCwL9N4TEHbUw0/gZJ+VZTmCNCWR7fezEN3eCiQ=
+      - id: aws.auth.account.access_key
+        type: string
+        stability: development
+        brief: "The AWS account access key ID used for authentication."
+        examples:
+          - AKIAIOSFODNN7EXAMPLE
+        note: |
+          The access key ID alone is not considered sensitive information. The combination of
+          access key ID and secret access key together are considered sensitive credentials.
+          The access key ID is an encoding of the AWS account ID (after removing the 4-letter prefix),
+          and AWS account IDs are [not considered secret, sensitive, or confidential information](https://docs.aws.amazon.com/accounts/latest/reference/manage-acct-identifiers.html).
+      - id: aws.auth.region
+        type: string
+        stability: development
+        brief: "The AWS region used for authentication."
+        examples:
+          - us-east-1
+          - eu-west-1
+      - id: aws.auth.credential_provider
+        type: string
+        stability: development
+        brief: "The AWS credential provider used for authentication."
+        examples:
+          - arn:aws:acps:us-east-1:123456789012:token-vault/prod-vault/apikeycredentialprovider/bedrock-keys
+          - arn:aws:acps:us-east-1:123456789012:token-vault/dev-vault/oauth2credentialprovider/google-oauth
+          - arn:aws:iam::123456789012:role/MyEksPodRole
+          - arn:aws:iam::123456789012:user/MyUser
+          - arn:aws:cognito-identity:us-east-1:123456789012:identitypool/us-east-1:12345678-1234-1234-1234-123456789012
+          - arn:aws:sso:::permissionSet/ssoins-1234567890abcdef/ps-1234567890abcdef
+          - instance-profile
+          - container-credentials
+        note: |
+          If a credentials provider ARN is available, it must be used as the highest-priority value.
+          If no ARN exists, the resource credential provider name should be used next.
+          If neither of these are available, a profile name may be used as the lowest-priority fallback.
   - id: registry.aws.dynamodb
     type: attribute_group
     display_name: Amazon DynamoDB Attributes
@@ -581,3 +616,73 @@ groups:
           A [knowledge base](https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html) is a bank of information
           that can be queried by models to generate more relevant responses and augment prompts.
         examples: ["XFWUPB9PAW"]
+  - id: registry.aws.bedrock.agentcore
+    type: attribute_group
+    display_name: Amazon Bedrock AgentCore Attributes
+    brief: >
+        This document defines attributes for AWS Bedrock AgentCore.
+    attributes:
+      - id: aws.bedrock.agentcore.runtime.arn
+        type: string
+        stability: development
+        brief: >
+          The ARN of an Amazon Bedrock AgentCore [Runtime](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/agents-tools-runtime.html).
+          Runtimes provide secure, serverless hosting for AI agents.
+        examples:
+          - arn:aws:bedrock-agentcore:us-east-1:123456789012:runtime/my-runtime
+      - id: aws.bedrock.agentcore.runtime_endpoint.arn
+        type: string
+        stability: development
+        brief: >
+          The ARN of an Amazon Bedrock AgentCore runtime endpoint.
+          Runtime endpoints provide access points for invoking agents.
+        examples:
+          - arn:aws:bedrock-agentcore:us-east-1:123456789012:runtime-endpoint/my-endpoint
+      - id: aws.bedrock.agentcore.code_interpreter.arn
+        type: string
+        stability: development
+        brief: >
+          The ARN of an Amazon Bedrock AgentCore [Code Interpreter](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/code-interpreter-tool.html).
+          Code Interpreters enable agents to execute Python code.
+        examples:
+          - arn:aws:bedrock-agentcore:us-east-1:123456789012:code-interpreter/my-interpreter
+      - id: aws.bedrock.agentcore.browser.arn
+        type: string
+        stability: development
+        brief: >
+          The ARN of an Amazon Bedrock AgentCore [Browser](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/browser-tool.html) tool.
+          Browser tools enable agents to interact with web content.
+        examples:
+          - arn:aws:bedrock-agentcore:us-east-1:123456789012:browser/my-browser
+      - id: aws.bedrock.agentcore.memory.arn
+        type: string
+        stability: development
+        brief: >
+          The ARN of an Amazon Bedrock AgentCore [Memory](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/memory.html) resource.
+          Memory provides context retention for agents across interactions.
+        examples:
+          - arn:aws:bedrock-agentcore:us-east-1:123456789012:memory/my-memory
+      - id: aws.bedrock.agentcore.gateway.arn
+        type: string
+        stability: development
+        brief: >
+          The ARN of an Amazon Bedrock AgentCore [Gateway](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/gateway.html).
+          Gateways enable agents to access external tools through registered targets.
+        examples:
+          - arn:aws:bedrock-agentcore:us-east-1:123456789012:gateway/my-gateway
+      - id: aws.bedrock.agentcore.gateway.target.id
+        type: string
+        stability: development
+        brief: >
+          The unique identifier of a [target](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/gateway-supported-targets.html) registered with an Amazon Bedrock AgentCore gateway.
+        examples:
+          - target-abc123def456
+          - my-lambda-target
+      - id: aws.bedrock.agentcore.identity.workload_identity.arn
+        type: string
+        stability: development
+        brief: >
+          The ARN of an Amazon Bedrock AgentCore [workload identity](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/identity.html).
+          Workload identities assign distinct identities to agents for authentication.
+        examples:
+          - arn:aws:bedrock-agentcore:us-east-1:123456789012:workload-identity/my-identity

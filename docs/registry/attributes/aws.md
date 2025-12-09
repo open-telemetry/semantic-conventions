@@ -5,6 +5,7 @@
 
 - [General AWS Attributes](#general-aws-attributes)
 - [Amazon Bedrock Attributes](#amazon-bedrock-attributes)
+- [Amazon Bedrock AgentCore Attributes](#amazon-bedrock-agentcore-attributes)
 - [Amazon DynamoDB Attributes](#amazon-dynamodb-attributes)
 - [Amazon ECS Attributes](#amazon-ecs-attributes)
 - [Amazon EKS Attributes](#amazon-eks-attributes)
@@ -25,8 +26,20 @@ This section defines generic attributes for AWS services.
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
+| <a id="aws-auth-account-access-key" href="#aws-auth-account-access-key">`aws.auth.account.access_key`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The AWS account access key ID used for authentication. [1] | `AKIAIOSFODNN7EXAMPLE` |
+| <a id="aws-auth-credential-provider" href="#aws-auth-credential-provider">`aws.auth.credential_provider`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The AWS credential provider used for authentication. [2] | `arn:aws:acps:us-east-1:123456789012:token-vault/prod-vault/apikeycredentialprovider/bedrock-keys`; `arn:aws:acps:us-east-1:123456789012:token-vault/dev-vault/oauth2credentialprovider/google-oauth`; `arn:aws:iam::123456789012:role/MyEksPodRole`; `arn:aws:iam::123456789012:user/MyUser`; `arn:aws:cognito-identity:us-east-1:123456789012:identitypool/us-east-1:12345678-1234-1234-1234-123456789012`; `arn:aws:sso:::permissionSet/ssoins-1234567890abcdef/ps-1234567890abcdef`; `instance-profile`; `container-credentials` |
+| <a id="aws-auth-region" href="#aws-auth-region">`aws.auth.region`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The AWS region used for authentication. | `us-east-1`; `eu-west-1` |
 | <a id="aws-extended-request-id" href="#aws-extended-request-id">`aws.extended_request_id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The AWS extended request ID as returned in the response header `x-amz-id-2`. | `wzHcyEWfmOGDIE5QOhTAqFDoDWP3y8IUvpNINCwL9N4TEHbUw0/gZJ+VZTmCNCWR7fezEN3eCiQ=` |
 | <a id="aws-request-id" href="#aws-request-id">`aws.request_id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The AWS request ID as returned in the response headers `x-amzn-requestid`, `x-amzn-request-id` or `x-amz-request-id`. | `79b9da39-b7ae-508a-a6bc-864b2829c622`; `C9ER4AJX75574TDJ` |
+
+**[1] `aws.auth.account.access_key`:** The access key ID alone is not considered sensitive information. The combination of
+access key ID and secret access key together are considered sensitive credentials.
+The access key ID is an encoding of the AWS account ID (after removing the 4-letter prefix),
+and AWS account IDs are [not considered secret, sensitive, or confidential information](https://docs.aws.amazon.com/accounts/latest/reference/manage-acct-identifiers.html).
+
+**[2] `aws.auth.credential_provider`:** If a credentials provider ARN is available, it must be used as the highest-priority value.
+If no ARN exists, the resource credential provider name should be used next.
+If neither of these are available, a profile name may be used as the lowest-priority fallback.
 
 ## Amazon Bedrock Attributes
 
@@ -38,6 +51,23 @@ This document defines attributes for AWS Bedrock.
 | --- | --- | --- | --- | --- |
 | <a id="aws-bedrock-guardrail-id" href="#aws-bedrock-guardrail-id">`aws.bedrock.guardrail.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The unique identifier of the AWS Bedrock Guardrail. A [guardrail](https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html) helps safeguard and prevent unwanted behavior from model responses or user messages. | `sgi5gkybzqak` |
 | <a id="aws-bedrock-knowledge-base-id" href="#aws-bedrock-knowledge-base-id">`aws.bedrock.knowledge_base.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The unique identifier of the AWS Bedrock Knowledge base. A [knowledge base](https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html) is a bank of information that can be queried by models to generate more relevant responses and augment prompts. | `XFWUPB9PAW` |
+
+## Amazon Bedrock AgentCore Attributes
+
+This document defines attributes for AWS Bedrock AgentCore.
+
+**Attributes:**
+
+| Key | Stability | Value Type | Description | Example Values |
+| --- | --- | --- | --- | --- |
+| <a id="aws-bedrock-agentcore-browser-arn" href="#aws-bedrock-agentcore-browser-arn">`aws.bedrock.agentcore.browser.arn`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The ARN of an Amazon Bedrock AgentCore [Browser](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/browser-tool.html) tool. Browser tools enable agents to interact with web content. | `arn:aws:bedrock-agentcore:us-east-1:123456789012:browser/my-browser` |
+| <a id="aws-bedrock-agentcore-code-interpreter-arn" href="#aws-bedrock-agentcore-code-interpreter-arn">`aws.bedrock.agentcore.code_interpreter.arn`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The ARN of an Amazon Bedrock AgentCore [Code Interpreter](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/code-interpreter-tool.html). Code Interpreters enable agents to execute Python code. | `arn:aws:bedrock-agentcore:us-east-1:123456789012:code-interpreter/my-interpreter` |
+| <a id="aws-bedrock-agentcore-gateway-arn" href="#aws-bedrock-agentcore-gateway-arn">`aws.bedrock.agentcore.gateway.arn`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The ARN of an Amazon Bedrock AgentCore [Gateway](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/gateway.html). Gateways enable agents to access external tools through registered targets. | `arn:aws:bedrock-agentcore:us-east-1:123456789012:gateway/my-gateway` |
+| <a id="aws-bedrock-agentcore-gateway-target-id" href="#aws-bedrock-agentcore-gateway-target-id">`aws.bedrock.agentcore.gateway.target.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The unique identifier of a [target](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/gateway-supported-targets.html) registered with an Amazon Bedrock AgentCore gateway. | `target-abc123def456`; `my-lambda-target` |
+| <a id="aws-bedrock-agentcore-identity-workload-identity-arn" href="#aws-bedrock-agentcore-identity-workload-identity-arn">`aws.bedrock.agentcore.identity.workload_identity.arn`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The ARN of an Amazon Bedrock AgentCore [workload identity](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/identity.html). Workload identities assign distinct identities to agents for authentication. | `arn:aws:bedrock-agentcore:us-east-1:123456789012:workload-identity/my-identity` |
+| <a id="aws-bedrock-agentcore-memory-arn" href="#aws-bedrock-agentcore-memory-arn">`aws.bedrock.agentcore.memory.arn`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The ARN of an Amazon Bedrock AgentCore [Memory](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/memory.html) resource. Memory provides context retention for agents across interactions. | `arn:aws:bedrock-agentcore:us-east-1:123456789012:memory/my-memory` |
+| <a id="aws-bedrock-agentcore-runtime-arn" href="#aws-bedrock-agentcore-runtime-arn">`aws.bedrock.agentcore.runtime.arn`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The ARN of an Amazon Bedrock AgentCore [Runtime](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/agents-tools-runtime.html). Runtimes provide secure, serverless hosting for AI agents. | `arn:aws:bedrock-agentcore:us-east-1:123456789012:runtime/my-runtime` |
+| <a id="aws-bedrock-agentcore-runtime-endpoint-arn" href="#aws-bedrock-agentcore-runtime-endpoint-arn">`aws.bedrock.agentcore.runtime_endpoint.arn`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The ARN of an Amazon Bedrock AgentCore runtime endpoint. Runtime endpoints provide access points for invoking agents. | `arn:aws:bedrock-agentcore:us-east-1:123456789012:runtime-endpoint/my-endpoint` |
 
 ## Amazon DynamoDB Attributes
 
@@ -123,10 +153,10 @@ This document defines attributes for AWS Lambda.
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="aws-lambda-invoked-arn" href="#aws-lambda-invoked-arn">`aws.lambda.invoked_arn`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The full invoked ARN as provided on the `Context` passed to the function (`Lambda-Runtime-Invoked-Function-Arn` header on the `/runtime/invocation/next` applicable). [1] | `arn:aws:lambda:us-east-1:123456:function:myfunction:myalias` |
+| <a id="aws-lambda-invoked-arn" href="#aws-lambda-invoked-arn">`aws.lambda.invoked_arn`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The full invoked ARN as provided on the `Context` passed to the function (`Lambda-Runtime-Invoked-Function-Arn` header on the `/runtime/invocation/next` applicable). [3] | `arn:aws:lambda:us-east-1:123456:function:myfunction:myalias` |
 | <a id="aws-lambda-resource-mapping-id" href="#aws-lambda-resource-mapping-id">`aws.lambda.resource_mapping.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The UUID of the [AWS Lambda EvenSource Mapping](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-eventsourcemapping.html). An event source is mapped to a lambda function. It's contents are read by Lambda and used to trigger a function. This isn't available in the lambda execution context or the lambda runtime environtment. This is going to be populated by the AWS SDK for each language when that UUID is present. Some of these operations are Create/Delete/Get/List/Update EventSourceMapping. | `587ad24b-03b9-4413-8202-bbd56b36e5b7` |
 
-**[1] `aws.lambda.invoked_arn`:** This may be different from `cloud.resource_id` if an alias is involved.
+**[3] `aws.lambda.invoked_arn`:** This may be different from `cloud.resource_id` if an alias is involved.
 
 ## Amazon Logs Attributes
 
@@ -136,16 +166,16 @@ This document defines attributes for AWS Logs.
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="aws-log-group-arns" href="#aws-log-group-arns">`aws.log.group.arns`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string[] | The Amazon Resource Name(s) (ARN) of the AWS log group(s). [2] | `["arn:aws:logs:us-west-1:123456789012:log-group:/aws/my/group:*"]` |
-| <a id="aws-log-group-names" href="#aws-log-group-names">`aws.log.group.names`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string[] | The name(s) of the AWS log group(s) an application is writing to. [3] | `["/aws/lambda/my-function", "opentelemetry-service"]` |
-| <a id="aws-log-stream-arns" href="#aws-log-stream-arns">`aws.log.stream.arns`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string[] | The ARN(s) of the AWS log stream(s). [4] | `["arn:aws:logs:us-west-1:123456789012:log-group:/aws/my/group:log-stream:logs/main/10838bed-421f-43ef-870a-f43feacbbb5b"]` |
+| <a id="aws-log-group-arns" href="#aws-log-group-arns">`aws.log.group.arns`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string[] | The Amazon Resource Name(s) (ARN) of the AWS log group(s). [4] | `["arn:aws:logs:us-west-1:123456789012:log-group:/aws/my/group:*"]` |
+| <a id="aws-log-group-names" href="#aws-log-group-names">`aws.log.group.names`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string[] | The name(s) of the AWS log group(s) an application is writing to. [5] | `["/aws/lambda/my-function", "opentelemetry-service"]` |
+| <a id="aws-log-stream-arns" href="#aws-log-stream-arns">`aws.log.stream.arns`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string[] | The ARN(s) of the AWS log stream(s). [6] | `["arn:aws:logs:us-west-1:123456789012:log-group:/aws/my/group:log-stream:logs/main/10838bed-421f-43ef-870a-f43feacbbb5b"]` |
 | <a id="aws-log-stream-names" href="#aws-log-stream-names">`aws.log.stream.names`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string[] | The name(s) of the AWS log stream(s) an application is writing to. | `["logs/main/10838bed-421f-43ef-870a-f43feacbbb5b"]` |
 
-**[2] `aws.log.group.arns`:** See the [log group ARN format documentation](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/iam-access-control-overview-cwl.html#CWL_ARN_Format).
+**[4] `aws.log.group.arns`:** See the [log group ARN format documentation](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/iam-access-control-overview-cwl.html#CWL_ARN_Format).
 
-**[3] `aws.log.group.names`:** Multiple log groups must be supported for cases like multi-container applications, where a single application has sidecar containers, and each write to their own log group.
+**[5] `aws.log.group.names`:** Multiple log groups must be supported for cases like multi-container applications, where a single application has sidecar containers, and each write to their own log group.
 
-**[4] `aws.log.stream.arns`:** See the [log stream ARN format documentation](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/iam-access-control-overview-cwl.html#CWL_ARN_Format). One log group can contain several log streams, so these ARNs necessarily identify both a log group and a log stream.
+**[6] `aws.log.stream.arns`:** See the [log stream ARN format documentation](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/iam-access-control-overview-cwl.html#CWL_ARN_Format). One log group can contain several log streams, so these ARNs necessarily identify both a log group and a log stream.
 
 ## Amazon S3 Attributes
 
@@ -155,28 +185,28 @@ This document defines attributes for AWS S3.
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="aws-s3-bucket" href="#aws-s3-bucket">`aws.s3.bucket`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The S3 bucket name the request refers to. Corresponds to the `--bucket` parameter of the [S3 API](https://docs.aws.amazon.com/cli/latest/reference/s3api/index.html) operations. [5] | `some-bucket-name` |
-| <a id="aws-s3-copy-source" href="#aws-s3-copy-source">`aws.s3.copy_source`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The source object (in the form `bucket`/`key`) for the copy operation. [6] | `someFile.yml` |
-| <a id="aws-s3-delete" href="#aws-s3-delete">`aws.s3.delete`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The delete request container that specifies the objects to be deleted. [7] | `Objects=[{Key=string,VersionId=string},{Key=string,VersionId=string}],Quiet=boolean` |
-| <a id="aws-s3-key" href="#aws-s3-key">`aws.s3.key`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The S3 object key the request refers to. Corresponds to the `--key` parameter of the [S3 API](https://docs.aws.amazon.com/cli/latest/reference/s3api/index.html) operations. [8] | `someFile.yml` |
-| <a id="aws-s3-part-number" href="#aws-s3-part-number">`aws.s3.part_number`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The part number of the part being uploaded in a multipart-upload operation. This is a positive integer between 1 and 10,000. [9] | `3456` |
-| <a id="aws-s3-upload-id" href="#aws-s3-upload-id">`aws.s3.upload_id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Upload ID that identifies the multipart upload. [10] | `dfRtDYWFbkRONycy.Yxwh66Yjlx.cph0gtNBtJ` |
+| <a id="aws-s3-bucket" href="#aws-s3-bucket">`aws.s3.bucket`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The S3 bucket name the request refers to. Corresponds to the `--bucket` parameter of the [S3 API](https://docs.aws.amazon.com/cli/latest/reference/s3api/index.html) operations. [7] | `some-bucket-name` |
+| <a id="aws-s3-copy-source" href="#aws-s3-copy-source">`aws.s3.copy_source`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The source object (in the form `bucket`/`key`) for the copy operation. [8] | `someFile.yml` |
+| <a id="aws-s3-delete" href="#aws-s3-delete">`aws.s3.delete`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The delete request container that specifies the objects to be deleted. [9] | `Objects=[{Key=string,VersionId=string},{Key=string,VersionId=string}],Quiet=boolean` |
+| <a id="aws-s3-key" href="#aws-s3-key">`aws.s3.key`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The S3 object key the request refers to. Corresponds to the `--key` parameter of the [S3 API](https://docs.aws.amazon.com/cli/latest/reference/s3api/index.html) operations. [10] | `someFile.yml` |
+| <a id="aws-s3-part-number" href="#aws-s3-part-number">`aws.s3.part_number`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The part number of the part being uploaded in a multipart-upload operation. This is a positive integer between 1 and 10,000. [11] | `3456` |
+| <a id="aws-s3-upload-id" href="#aws-s3-upload-id">`aws.s3.upload_id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Upload ID that identifies the multipart upload. [12] | `dfRtDYWFbkRONycy.Yxwh66Yjlx.cph0gtNBtJ` |
 
-**[5] `aws.s3.bucket`:** The `bucket` attribute is applicable to all S3 operations that reference a bucket, i.e. that require the bucket name as a mandatory parameter.
+**[7] `aws.s3.bucket`:** The `bucket` attribute is applicable to all S3 operations that reference a bucket, i.e. that require the bucket name as a mandatory parameter.
 This applies to almost all S3 operations except `list-buckets`.
 
-**[6] `aws.s3.copy_source`:** The `copy_source` attribute applies to S3 copy operations and corresponds to the `--copy-source` parameter
+**[8] `aws.s3.copy_source`:** The `copy_source` attribute applies to S3 copy operations and corresponds to the `--copy-source` parameter
 of the [copy-object operation within the S3 API](https://docs.aws.amazon.com/cli/latest/reference/s3api/copy-object.html).
 This applies in particular to the following operations:
 
 - [copy-object](https://docs.aws.amazon.com/cli/latest/reference/s3api/copy-object.html)
 - [upload-part-copy](https://docs.aws.amazon.com/cli/latest/reference/s3api/upload-part-copy.html)
 
-**[7] `aws.s3.delete`:** The `delete` attribute is only applicable to the [delete-object](https://docs.aws.amazon.com/cli/latest/reference/s3api/delete-object.html) operation.
+**[9] `aws.s3.delete`:** The `delete` attribute is only applicable to the [delete-object](https://docs.aws.amazon.com/cli/latest/reference/s3api/delete-object.html) operation.
 The `delete` attribute corresponds to the `--delete` parameter of the
 [delete-objects operation within the S3 API](https://docs.aws.amazon.com/cli/latest/reference/s3api/delete-objects.html).
 
-**[8] `aws.s3.key`:** The `key` attribute is applicable to all object-related S3 operations, i.e. that require the object key as a mandatory parameter.
+**[10] `aws.s3.key`:** The `key` attribute is applicable to all object-related S3 operations, i.e. that require the object key as a mandatory parameter.
 This applies in particular to the following operations:
 
 - [copy-object](https://docs.aws.amazon.com/cli/latest/reference/s3api/copy-object.html)
@@ -193,12 +223,12 @@ This applies in particular to the following operations:
 - [upload-part](https://docs.aws.amazon.com/cli/latest/reference/s3api/upload-part.html)
 - [upload-part-copy](https://docs.aws.amazon.com/cli/latest/reference/s3api/upload-part-copy.html)
 
-**[9] `aws.s3.part_number`:** The `part_number` attribute is only applicable to the [upload-part](https://docs.aws.amazon.com/cli/latest/reference/s3api/upload-part.html)
+**[11] `aws.s3.part_number`:** The `part_number` attribute is only applicable to the [upload-part](https://docs.aws.amazon.com/cli/latest/reference/s3api/upload-part.html)
 and [upload-part-copy](https://docs.aws.amazon.com/cli/latest/reference/s3api/upload-part-copy.html) operations.
 The `part_number` attribute corresponds to the `--part-number` parameter of the
 [upload-part operation within the S3 API](https://docs.aws.amazon.com/cli/latest/reference/s3api/upload-part.html).
 
-**[10] `aws.s3.upload_id`:** The `upload_id` attribute applies to S3 multipart-upload operations and corresponds to the `--upload-id` parameter
+**[12] `aws.s3.upload_id`:** The `upload_id` attribute applies to S3 multipart-upload operations and corresponds to the `--upload-id` parameter
 of the [S3 API](https://docs.aws.amazon.com/cli/latest/reference/s3api/index.html) multipart operations.
 This applies in particular to the following operations:
 
