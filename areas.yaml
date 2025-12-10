@@ -244,6 +244,9 @@ areas:
   - name: "Semantic Conventions: RPC"
     project: "https://github.com/open-telemetry/community/blob/main/projects/rpc-semconv.md"
     board: "https://github.com/orgs/open-telemetry/projects/161"
+    owner:
+      - name: "semconv-rpc-approvers"
+        github: semconv-rpc-approvers
     labels:
       - area:rpc
       - area:jsonrpc
