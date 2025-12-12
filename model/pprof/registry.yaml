@@ -70,10 +70,3 @@ groups:
         examples:
           - "http://pprof.example.com/cpu-profile.html"
         stability: development
-      - id: pprof.profile.default_sample_type
-        brief: >
-          Type of the preferred sample value.
-        type: string
-        examples:
-          - "cpu"
-        stability: development

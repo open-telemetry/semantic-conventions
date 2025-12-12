@@ -23,5 +23,3 @@ groups:
         requirement_level: recommended
       - ref: pprof.profile.doc_url
         requirement_level: recommended
-      - ref: pprof.profile.default_sample_type
-        requirement_level: recommended
