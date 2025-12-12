@@ -71,7 +71,6 @@ body:
         - area:opentracing
         - area:os
         - area:otel
-        - area:peer
         - area:pprof
         - area:process
         - area:profile
