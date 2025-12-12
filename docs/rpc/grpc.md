@@ -97,6 +97,14 @@ Including all response metadata values can be a security risk - explicit configu
 For example, a property `my-custom-key` with value `["attribute_value"]` SHOULD be recorded as
 the `rpc.response.metadata.my-custom-key` attribute with value `["attribute_value"]`
 
+The following attributes can be important for making sampling decisions
+and SHOULD be provided **at span creation time** (if provided at all):
+
+* [`rpc.method`](/docs/registry/attributes/rpc.md)
+* [`rpc.service`](/docs/registry/attributes/rpc.md)
+* [`server.address`](/docs/registry/attributes/server.md)
+* [`server.port`](/docs/registry/attributes/server.md)
+
 ---
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
@@ -220,6 +228,14 @@ Including all response metadata values can be a security risk - explicit configu
 
 For example, a property `my-custom-key` with value `["attribute_value"]` SHOULD be recorded as
 the `rpc.response.metadata.my-custom-key` attribute with value `["attribute_value"]`
+
+The following attributes can be important for making sampling decisions
+and SHOULD be provided **at span creation time** (if provided at all):
+
+* [`rpc.method`](/docs/registry/attributes/rpc.md)
+* [`rpc.service`](/docs/registry/attributes/rpc.md)
+* [`server.address`](/docs/registry/attributes/server.md)
+* [`server.port`](/docs/registry/attributes/server.md)
 
 ---
 
