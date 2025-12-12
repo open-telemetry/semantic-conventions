@@ -398,14 +398,18 @@ Function: A tool executed on the client-side, where the agent generates paramete
   Client-side operations are actions taken on the user's end or within the client application.
 Datastore: A tool used by the agent to access and query structured or unstructured external data for retrieval-augmented tasks or knowledge updates.
 
-**[4] `gen_ai.tool.call.arguments`:** > [!WARNING]
+**[4] `gen_ai.tool.call.arguments`:**
+
+> [!WARNING]
 > This attribute may contain sensitive information.
 
 It's expected to be an object - in case a serialized string is available
 to the instrumentation, the instrumentation SHOULD do the best effort to
 deserialize it to an object. When recorded on spans, it MAY be recorded as a JSON string if structured format is not supported and SHOULD be recorded in structured form otherwise.
 
-**[5] `gen_ai.tool.call.result`:** > [!WARNING]
+**[5] `gen_ai.tool.call.result`:**
+
+> [!WARNING]
 > This attribute may contain sensitive information.
 
 It's expected to be an object - in case a serialized string is available
