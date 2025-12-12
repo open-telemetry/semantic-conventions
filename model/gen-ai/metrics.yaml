@@ -105,3 +105,71 @@ groups:
     unit: "s"
     stability: development
     extends: metric_attributes.gen_ai
+  - id: metric.gen_ai.workflow.duration
+    type: metric
+    metric_name: gen_ai.workflow.duration
+    annotations:
+      code_generation:
+        metric_value_type: double
+    brief: 'GenAI workflow duration.'
+    instrument: histogram
+    unit: "s"
+    stability: development
+    attributes:
+      - ref: gen_ai.workflow.name
+        brief: Workflow name.
+        requirement_level: required
+      - ref: gen_ai.framework
+        brief: Framework name.
+        requirement_level:
+          conditionally_required: If `gen_ai.framework` is available.
+  - id: metric.gen_ai.step.duration
+    type: metric
+    metric_name: gen_ai.step.duration
+    annotations:
+      code_generation:
+        metric_value_type: double
+    brief: 'GenAI step duration.'
+    instrument: histogram
+    unit: "s"
+    stability: development
+    attributes:
+      - ref: gen_ai.step.name
+        brief: Step name.
+        requirement_level: required
+      - ref: gen_ai.step.description
+        brief: Step description.
+        requirement_level:
+          conditionally_required: If `gen_ai.framework` is available.
+      - ref: gen_ai.agent.name
+        brief: Human-readable name of the GenAI agent provided by the application.
+        requirement_level:
+          conditionally_required: If `gen_ai.agent.name` is available.
+      - ref: gen_ai.agent.id
+        brief: The unique identifier of the GenAI agent.
+        requirement_level:
+          conditionally_required: If `gen_ai.agent.id` is available.
+  - id: metric.gen_ai.agent.duration
+    type: metric
+    metric_name: gen_ai.agent.duration
+    annotations:
+      code_generation:
+        metric_value_type: double
+    brief: 'GenAI agent duration.'
+    instrument: histogram
+    unit: "s"
+    stability: development
+    attributes:
+      - ref: gen_ai.gen_ai.operation.name
+        brief: The name of the operation being performed.
+        requirement_level: required
+      - ref: gen_ai.agent.name
+        brief: Human-readable name of the GenAI agent provided by the application.
+        requirement_level: required
+      - ref: gen_ai.agent.id
+        brief: The unique identifier of the GenAI agent.
+        requirement_level: required
+      - ref: gen_ai.framework
+        brief: Agent's framework.
+        requirement_level:
+          conditionally_required: If `gen_ai.framework` is available.
