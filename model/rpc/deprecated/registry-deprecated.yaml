@@ -275,3 +275,23 @@ groups:
           renamed_to: "jsonrpc.protocol.version"
         brief: 'Deprecated, use `jsonrpc.protocol.version` instead.'
         examples: ['2.0', '1.0']
+      - id: rpc.service
+        type: string
+        stability: development
+        brief: 'Deprecated, usefully-qualified  `rpc.method.name` instead.'
+        examples: "myservice.EchoService"
+        deprecated:
+          reason: uncategorized
+          note: 'Value should be included in `rpc.method.name` which is expected
+            to be a fully-qualified name.'
+      - id: rpc.method
+        type: string
+        stability: development
+        brief: 'Deprecated, use fully-qualified `rpc.method.name` instead.'
+        examples: "exampleMethod"
+        deprecated:
+          reason: uncategorized
+          note: 'Value should be included in `rpc.method.name` which is expected
+            to be a fully-qualified name.'
+
+
