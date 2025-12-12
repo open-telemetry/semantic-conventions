@@ -55,7 +55,7 @@ groups:
           Starting from .NET 9, Kestrel `kestrel.connection.duration` metric reports
           the following errors types when a corresponding error occurs:
 
-          | Value  | Description |
+          | Value | Description |
           | --- | --- |
           | `aborted_by_app` | The HTTP/1.1 connection was aborted when app code aborted an HTTP request with `HttpContext.Abort()`. |
           | `app_shutdown_timeout` | The connection was aborted during app shutdown. During shutdown, the server stops accepting new connections and HTTP requests, and it is given time for active requests to complete. If the app shutdown timeout is exceeded, all remaining connections are aborted. |

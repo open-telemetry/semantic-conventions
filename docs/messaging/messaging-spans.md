@@ -39,7 +39,7 @@ linkTitle: Spans
 
 <!-- tocstop -->
 
-> [!Warning]
+> [!IMPORTANT]
 >
 > Existing messaging instrumentations that are using
 > [v1.24.0 of this document](https://github.com/open-telemetry/semantic-conventions/blob/v1.24.0/docs/messaging/messaging-spans.md)
@@ -226,23 +226,23 @@ The following operation types related to messages are defined for these semantic
 
 | Operation type | Description |
 | -------------- | ----------- |
-| `create`       | A message is created or passed to a client library for sending. "Create" spans always refer to a single message and are used to provide a unique creation context for messages in batch sending scenarios. |
-| `send`         | One or more messages are provided for sending to an intermediary. If a single message is sent, the context of the "Send" span can be used as the creation context and no "Create" span needs to be created. |
-| `receive`      | One or more messages are requested by a consumer. This operation refers to pull-based scenarios, where consumers explicitly call methods of messaging SDKs to receive messages. |
-| `process`      | One or more messages are processed by a consumer. |
-| `settle`       | One or more messages are settled. |
+| `create` | A message is created or passed to a client library for sending. "Create" spans always refer to a single message and are used to provide a unique creation context for messages in batch sending scenarios. |
+| `send` | One or more messages are provided for sending to an intermediary. If a single message is sent, the context of the "Send" span can be used as the creation context and no "Create" span needs to be created. |
+| `receive` | One or more messages are requested by a consumer. This operation refers to pull-based scenarios, where consumers explicitly call methods of messaging SDKs to receive messages. |
+| `process` | One or more messages are processed by a consumer. |
+| `settle` | One or more messages are settled. |
 
 ### Span kind
 
 Span kind SHOULD be set according to the following table, based on the operation type a span describes.
 
-| Operation type | Span kind|
-|----------------|-------------|
-| `create`       | `PRODUCER`  |
-| `send`         | `PRODUCER` if the context of the "Send" span is used as creation context, otherwise `CLIENT`. |
-| `receive`      | `CLIENT`    |
-| `process`      | `CONSUMER`  |
-| `settle`       | `CLIENT`    |
+| Operation type | Span kind |
+| -------------- | --------- |
+| `create` | `PRODUCER` |
+| `send` | `PRODUCER` if the context of the "Send" span is used as creation context, otherwise `CLIENT`. |
+| `receive` | `CLIENT` |
+| `process` | `CONSUMER` |
+| `settle` | `CLIENT` |
 
 Setting span kinds according to this table allows analysis tools to interpret spans
 and relationships between them without the need for additional semantic hints.
@@ -374,17 +374,17 @@ Messaging system-specific attributes MUST be defined in the corresponding `messa
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- |
 | [`messaging.operation.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The system-specific name of the messaging operation. | `ack`; `nack`; `send` |
 | [`messaging.system`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The messaging system as identified by the client instrumentation. [1] | `activemq`; `aws.sns`; `aws_sqs` |
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the messaging operation has failed. | string | Describes a class of error the operation ended with. [2] | `amqp:decode-error`; `KAFKA_STORAGE_ERROR`; `channel-error` |
 | [`messaging.batch.message_count`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [3] | int | The number of messages sent, received, or processed in the scope of the batching operation. [4] | `0`; `1`; `2` |
 | [`messaging.consumer.group.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If applicable. | string | The name of the consumer group with which a consumer is associated. [5] | `my-group`; `indexer` |
-| [`messaging.destination.anonymous`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [6] | boolean | A boolean that is true if the message destination is anonymous (could be unnamed or have auto-generated name). |  |
+| [`messaging.destination.anonymous`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [6] | boolean | A boolean that is true if the message destination is anonymous (could be unnamed or have auto-generated name). | |
 | [`messaging.destination.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [7] | string | The message destination name [8] | `MyQueue`; `MyTopic` |
 | [`messaging.destination.subscription.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If applicable. | string | The name of the destination subscription from which a message is consumed. [9] | `subscription-a` |
 | [`messaging.destination.template`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [10] | string | Low cardinality representation of the messaging destination name [11] | `/customers/{customerId}` |
-| [`messaging.destination.temporary`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [12] | boolean | A boolean that is true if the message destination is temporary and might not exist anymore after messages are processed. |  |
+| [`messaging.destination.temporary`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [12] | boolean | A boolean that is true if the message destination is temporary and might not exist anymore after messages are processed. | |
 | [`messaging.operation.type`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If applicable. | string | A string identifying the type of the messaging operation. [13] | `create`; `send`; `receive` |
 | [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If available. | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [14] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 | [`messaging.client.id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A unique identifier for the client that consumes or produces a message. | `client-5`; `myhost@8742@s8083jm` |
@@ -413,7 +413,7 @@ additional filters are applied.
 
 If the operation has completed successfully, instrumentations SHOULD NOT set `error.type`.
 
-If a specific domain defines its own set of error identifiers (such as HTTP or gRPC status codes),
+If a specific domain defines its own set of error identifiers (such as HTTP or RPC status codes),
 it's RECOMMENDED to:
 
 - Use a domain-specific attribute
@@ -474,16 +474,16 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ---
 
 `messaging.operation.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `create` | A message is created. "Create" spans always refer to a single message and are used to provide a unique creation context for messages in batch sending scenarios. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `process` | One or more messages are processed by a consumer. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `receive` | One or more messages are requested by a consumer. This operation refers to pull-based scenarios, where consumers explicitly call methods of messaging SDKs to receive messages. | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -494,8 +494,8 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 `messaging.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `activemq` | Apache ActiveMQ | ![Development](https://img.shields.io/badge/-development-blue) |
 | `aws.sns` | Amazon Simple Notification Service (SNS) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `aws_sqs` | Amazon Simple Queue Service (SQS) | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -570,11 +570,11 @@ flowchart LR;
   linkStyle 0,1,2,3 color:green,stroke:green
 ```
 
-| Field or Attribute | Producer | Consumer 1| Consumer 2 |
-|-|-|-|-|
+| Field or Attribute | Producer | Consumer 1 | Consumer 2 |
+| --- | --- | --- | --- |
 | Span name | `publish T` | `consume T` | `consume T` |
 | Parent (optional) | | `publish T` | `publish T` |
-| Links |  | `publish T` | `publish T` |
+| Links | | `publish T` | `publish T` |
 | SpanKind | `PRODUCER` | `CONSUMER` | `CONSUMER` |
 | `server.address` | `"ms"` | `"ms"` | `"ms"` |
 | `server.port` | `1234` | `1234` | `1234` |
@@ -582,7 +582,7 @@ flowchart LR;
 | `messaging.destination.name` | `"T"` | `"T"` | `"T"` |
 | `messaging.operation.name` | `"publish"` | `"consume"` | `"consume"` |
 | `messaging.operation.type` | `"send"` | `"process"` | `"process"` |
-| `messaging.message.id` | `"a"` | `"a"`| `"a"` |
+| `messaging.message.id` | `"a"` | `"a"` | `"a"` |
 
 ### Batch receiving
 
@@ -609,12 +609,12 @@ flowchart LR;
 ```
 
 | Field or Attribute | Producer Span A | Producer Span B | Consumer |
-|-|-|-|-|
+| --- | --- | --- | --- |
 | Span name | `send Q` | `send Q` | `poll Q` |
-| Parent |  |  |  |
-| Links |  |  | Span Send A, Span Send B |
-| Link attributes |  |  | Span Send A: `messaging.message.id`: `"a1"`  |
-|                 |  |  | Span Send B: `messaging.message.id`: `"a2"`  |
+| Parent | | | |
+| Links | | | Span Send A, Span Send B |
+| Link attributes | | | Span Send A: `messaging.message.id`: `"a1"` |
+| | | | Span Send B: `messaging.message.id`: `"a2"` |
 | SpanKind | `PRODUCER` | `PRODUCER` | `CLIENT` |
 | `server.address` | `"ms"` | `"ms"` | `"ms"` |
 | `server.port` | `1234` | `1234` | `1234` |
@@ -623,7 +623,7 @@ flowchart LR;
 | `messaging.operation.name` | `"send"` | `"send"` | `"poll"` |
 | `messaging.operation.type` | `"send"` | `"send"` | `"receive"` |
 | `messaging.message.id` | `"a1"` | `"a2"` | |
-| `messaging.batch.message_count` |  |  | 2 |
+| `messaging.batch.message_count` | | | 2 |
 
 ### Batch publishing with "Create" spans
 
@@ -660,10 +660,10 @@ flowchart LR;
 ```
 
 | Field or Attribute | Producer Span Create A | Producer Span Create B | Producer Span Send | Consumer 1 | Consumer 2 |
-|-|-|-|-|-|-|
+| --- | --- | --- | --- | --- | --- |
 | Span name | `create Q` | `create Q` | `send Q` | `poll Q` | `poll Q` |
-| Parent |  | | | | |
-| Links |  |  |  | Span Create A | Span Create B |
+| Parent | | | | | |
+| Links | | | | Span Create A | Span Create B |
 | SpanKind | `PRODUCER` | `PRODUCER` | `CLIENT` | `CLIENT` | `CLIENT` |
 | `server.address` | `"ms"` | `"ms"` | `"ms"` | `"ms"` | `"ms"` |
 | `server.port` | `1234` | `1234` | `1234` | `1234` | `1234` |
@@ -705,10 +705,10 @@ flowchart LR;
 ```
 
 | Field or Attribute | Producer | Consumer 1 | Consumer 2 |
-|-|-|-|-|
+| --- | --- | --- | --- |
 | Span name | `send Q` | `poll Q` | `poll Q` |
 | Parent | | | |
-| Links |  | Span Send | Span Send |
+| Links | | Span Send | Span Send |
 | SpanKind | `PRODUCER` | `CLIENT` | `CLIENT` |
 | `server.address` | `"ms"` | `"ms"` | `"ms"` |
 | `server.port` | `1234` | `1234` | `1234` |
@@ -717,6 +717,6 @@ flowchart LR;
 | `messaging.operation.name` | `"send"` | `"poll"` | `"poll"` |
 | `messaging.operation.type` | `"send"` | `"receive"` | `"receive"` |
 | `messaging.message.id` | | `"a1"` | `"a2"` |
-| `messaging.batch.message_count`| 2 | | |
+| `messaging.batch.message_count` | 2 | | |
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status

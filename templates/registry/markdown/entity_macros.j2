@@ -12,7 +12,7 @@
 {{registry}}/{{ id | split_id | list | first | kebab_case }}.md#{{ id | kebab_case }}
 {%- endmacro %}
 {% macro print_associations(associations, registry) -%}
-{%- for e in associations %}{%if loop.first == false %}; {% endif %}[`{{ e | trim }}`]({{registry_url(e, registry)}}){%- endfor %}
+{% if associations is defined %}{%- for e in associations %}{%if loop.first == false %}; {% endif %}[`{{ e | trim }}`]({{registry_url(e, registry)}}){%- endfor %} {% endif %}
 {%- endmacro %}
 {#- Create role tags #}
 {% macro role_tag(role) -%}{# Note: Rendering badges looks bad due to inability to size them in markdown. #}
@@ -31,7 +31,7 @@
 {%- endmacro %}
 {#- Render a single row on the entity table. -#}
 {% macro attribute_row(attribute, attribute_registry_base_url, lineage_attributes, notes, role) -%}
-| {{ role_tag(role) | trim }} | {{ attrs.name_with_link(attribute, attribute_registry_base_url, lineage_attributes) }} | {{ stability.badge(attribute.stability, attribute.deprecated, attribute.brief) | trim }} | {{ requirement.render({"level": attribute.requirement_level, "name": attrs.name(attribute)}, notes) | trim }} | {{ attrs.type(attribute) }} | {{ attribute.brief | trim }}{{ notes.add({"note": attribute.note, "name": attrs.name(attribute)}) }} | {{ examples.format(attribute) | trim }} |
+| {{ role_tag(role) | trim }} | {{ attrs.name_with_link(attribute, attribute_registry_base_url, lineage_attributes) }} | {{ stability.badge(attribute.stability, attribute.deprecated, attribute.brief) | trim }} | {{ requirement.render({"level": attribute.requirement_level, "name": attrs.name(attribute)}, notes) | trim }} | {{ attrs.type(attribute) }} | {{ attribute.brief | trim }}{{ notes.add({"note": attribute.note, "name": attrs.name(attribute)}) }} | {{ examples.format(attribute) }}|
 {%- endmacro %}
 {#- Render attribute tables for entities. -#}
 {% macro attribute_table(attributes, attribute_registry_base_url, lineage_attributes, notes, role) %}{% for attribute in attributes | attribute_sort %}{{ attribute_row(attribute, attribute_registry_base_url, lineage_attributes, notes, role) }}
@@ -43,15 +43,19 @@
 {%- set misc_attrs = e.attributes | rejectattr("role", "defined") -%}
 {%- if misc_attrs | length > 0 %}
 
-> :warning: This entity definition contains attributes without a role.
+> [!warning]
+> This entity definition contains attributes without a role.
 > Stable Entities MUST NOT have attributes without a defined role.
 {% endif %}
+**Attributes:**
+
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-|---|---|---|---|---|---|---|{%- if id_attrs | length > 0 %}
+| --- | --- | --- | --- | --- | --- | --- |{%- if id_attrs | length > 0 %}
 {{ attribute_table(id_attrs, "/docs/registry/attributes", e.lineage.attributes, notes, "identity") | trim }}{% endif %}{%- if desc_attrs | length > 0 %}
 {{ attribute_table(desc_attrs, "/docs/registry/attributes", e.lineage.attributes, notes, "description") | trim }}{% endif %}{%- if misc_attrs | length > 0 %}
-{{ attribute_table(misc_attrs, "/docs/registry/attributes", e.lineage.attributes, notes, "other") | trim }}
-{% endif %}
+{{ attribute_table(misc_attrs, "/docs/registry/attributes", e.lineage.attributes, notes, "other") | trim }}{% endif %}
 
 {{ notes.render() | trim }}
+
+{{ enums.tables(e.attributes | selectattr("type", "mapping"), notes) | trim }}
 {%- endmacro %}

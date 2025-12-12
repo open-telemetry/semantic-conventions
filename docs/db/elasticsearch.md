@@ -25,11 +25,11 @@ The Semantic Conventions for [Elasticsearch](https://www.elastic.co/) extend and
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-Spans representing calls to Elasticsearch adhere to the general [Semantic Conventions for Database Client Spans](/docs/database/database-spans.md).
+Spans representing calls to Elasticsearch adhere to the general [Semantic Conventions for Database Client Spans](/docs/db/database-spans.md).
 
 `db.system.name` MUST be set to `"elasticsearch"` and SHOULD be provided **at span creation time**.
 
-**Span name** SHOULD follow the general [database span name convention](/docs/database/database-spans.md#name)
+**Span name** SHOULD follow the general [database span name convention](/docs/db/database-spans.md#name)
 with the endpoint identifier stored in `db.operation.name`, and the index stored in `db.collection.name`.
 
 **Span kind** SHOULD be `CLIENT`.
@@ -39,7 +39,7 @@ with the endpoint identifier stored in `db.operation.name`, and the index stored
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- |
 | [`db.operation.name`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | The name of the operation or command being executed. [1] | `search`; `ml.close_job`; `cat.aliases` |
 | [`http.request.method`](/docs/registry/attributes/http.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | HTTP request method. [2] | `GET`; `POST`; `HEAD` |
 | [`url.full`](/docs/registry/attributes/url.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | Absolute URL describing a network resource according to [RFC3986](https://www.rfc-editor.org/rfc/rfc3986) [3] | `https://localhost:9200/index/_search?q=user.id:kimchy` |
@@ -117,7 +117,7 @@ Instrumentations SHOULD document how `error.type` is populated.
 
 **[12] `db.query.text`:** Should be collected by default for search-type queries and only if there is sanitization that excludes sensitive information.
 
-**[13] `db.query.text`:** For sanitization see [Sanitization of `db.query.text`](/docs/database/database-spans.md#sanitization-of-dbquerytext).
+**[13] `db.query.text`:** For sanitization see [Sanitization of `db.query.text`](/docs/db/database-spans.md#sanitization-of-dbquerytext).
 For batch operations, if the individual operations are known to have the same query text then that query text SHOULD be used, otherwise all of the individual query texts SHOULD be concatenated with separator `; ` or some other database system specific separator if more applicable.
 Parameterized query text SHOULD NOT be sanitized. Even though parameterized query text can potentially have sensitive data, by using a parameterized query the user is giving a strong signal that any sensitive data will be passed as parameter values, and the benefit to observability of capturing the static part of the query text by default outweighs the risk.
 
@@ -141,16 +141,16 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ---
 
 `http.request.method` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `_OTHER` | Any HTTP method that the instrumentation has no prior knowledge of. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `CONNECT` | CONNECT method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `DELETE` | DELETE method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -169,20 +169,20 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 ### Example
 
-| Key                                 | Value                                                                                                                               |
-|:------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------|
-| Span name                           | `"search my-index"`                                                                                                                 |
-| `db.system.name`                    | `"elasticsearch"`                                                                                                                   |
-| `server.address`                    | `"elasticsearch.mydomain.com"`                                                                                                      |
-| `server.port`                       | `9200`                                                                                                                              |
-| `http.request.method`               | `"GET"`                                                                                                                             |
-| `db.query.text`                     | `"{\"query\":{\"term\":{\"user.id\":\"kimchy\"}}}"`                                                                                 |
-| `db.operation.name`                 | `"search"`                                                                                                                          |
-| `db.collection.name`                | `"my-index"`                                                                                                                        |
-| `url.full`                          | `"https://elasticsearch.mydomain.com:9200/my-index-000001/_search?from=40&size=20"`                                                 |
-| `db.namespace`                      | `"my-cluster"`                                                                                                                      |
-| `elasticsearch.node.name`           | `"instance-0000000001"`                                                                                                             |
-| `db.operation.parameter.index`    | `"my-index-000001"`                                                                                                                 |
+| Key                            | Value                                                                               |
+| :----------------------------- | :---------------------------------------------------------------------------------- |
+| Span name                      | `"search my-index"`                                                                 |
+| `db.system.name`               | `"elasticsearch"`                                                                   |
+| `server.address`               | `"elasticsearch.mydomain.com"`                                                      |
+| `server.port`                  | `9200`                                                                              |
+| `http.request.method`          | `"GET"`                                                                             |
+| `db.query.text`                | `"{\"query\":{\"term\":{\"user.id\":\"kimchy\"}}}"`                                 |
+| `db.operation.name`            | `"search"`                                                                          |
+| `db.collection.name`           | `"my-index"`                                                                        |
+| `url.full`                     | `"https://elasticsearch.mydomain.com:9200/my-index-000001/_search?from=40&size=20"` |
+| `db.namespace`                 | `"my-cluster"`                                                                      |
+| `elasticsearch.node.name`      | `"instance-0000000001"`                                                             |
+| `db.operation.parameter.index` | `"my-index-000001"`                                                                 |
 
 ## Metrics
 

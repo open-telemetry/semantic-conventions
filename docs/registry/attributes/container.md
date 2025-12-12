@@ -13,7 +13,7 @@ A container instance.
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | <a id="container-command" href="#container-command">`container.command`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The command used to run the container (i.e. the command name). [1] | `otelcontribcol` |
 | <a id="container-command-args" href="#container-command-args">`container.command_args`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string[] | All the command arguments (including the command/executable itself) run by the container. | `["otelcontribcol", "--config", "config.yaml"]` |
 | <a id="container-command-line" href="#container-command-line">`container.command_line`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The full command run by the container as a single string representing the full command. | `otelcontribcol --config config.yaml` |
@@ -51,7 +51,7 @@ Describes deprecated container attributes.
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | <a id="container-cpu-state" href="#container-cpu-state">`container.cpu.state`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `cpu.mode`. | string | Deprecated, use `cpu.mode` instead. | `user`; `kernel` |
 | <a id="container-labels" href="#container-labels">`container.labels.<key>`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `container.label`. | string | Deprecated, use `container.label` instead. | `nginx` |
 | <a id="container-runtime" href="#container-runtime">`container.runtime`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `container.runtime.name`. | string | The container runtime managing this container. | `docker`; `containerd`; `rkt` |
@@ -60,8 +60,8 @@ Describes deprecated container attributes.
 
 `container.cpu.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `kernel` | When tasks of the cgroup are in kernel mode (Linux). When all container processes are in kernel mode (Windows). | ![Development](https://img.shields.io/badge/-development-blue) |
 | `system` | When CPU is used by the system (host OS) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `user` | When tasks of the cgroup are in user mode (Linux). When all container processes are in user mode (Windows). | ![Development](https://img.shields.io/badge/-development-blue) |

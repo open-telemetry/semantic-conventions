@@ -9,7 +9,7 @@ linkTitle: Database
 This document defines semantic conventions for database client spans as well as
 database metrics and logs.
 
-> **Warning**
+> [!IMPORTANT]
 >
 > Existing database instrumentations that are using
 > [v1.24.0 of this document](https://github.com/open-telemetry/semantic-conventions/blob/v1.24.0/docs/database/database-spans.md)

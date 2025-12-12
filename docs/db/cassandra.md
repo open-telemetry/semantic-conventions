@@ -24,11 +24,11 @@ The Semantic Conventions for [Cassandra](https://cassandra.apache.org/) extend a
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-Spans representing calls to a Cassandra database adhere to the general [Semantic Conventions for Database Client Spans](/docs/database/database-spans.md).
+Spans representing calls to a Cassandra database adhere to the general [Semantic Conventions for Database Client Spans](/docs/db/database-spans.md).
 
 `db.system.name` MUST be set to `"cassandra"` and SHOULD be provided **at span creation time**.
 
-**Span name** SHOULD follow the general [database span name convention](/docs/database/database-spans.md#name)
+**Span name** SHOULD follow the general [database span name convention](/docs/db/database-spans.md#name)
 
 **Span kind** SHOULD be `CLIENT`.
 
@@ -37,7 +37,7 @@ Spans representing calls to a Cassandra database adhere to the general [Semantic
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- |
 | [`db.collection.name`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [1] | string | The name of the Cassandra table that the operation is acting upon. [2] | `public.users`; `customers` |
 | [`db.namespace`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If available. | string | The keyspace associated with the session. [3] | `mykeyspace` |
 | [`db.operation.name`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [4] | string | The name of the operation or command being executed. [5] | `findAndModify`; `HMSET`; `SELECT` |
@@ -48,7 +48,7 @@ Spans representing calls to a Cassandra database adhere to the general [Semantic
 | [`cassandra.coordinator.dc`](/docs/registry/attributes/cassandra.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The data center of the coordinating node for a query. | `us-west-2` |
 | [`cassandra.coordinator.id`](/docs/registry/attributes/cassandra.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The ID of the coordinating node for a query. | `be13faa2-8574-4d71-926d-27f16cf8a7af` |
 | [`cassandra.page.size`](/docs/registry/attributes/cassandra.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | int | The fetch size used for paging, i.e. how many rows will be returned at once. | `5000` |
-| [`cassandra.query.idempotent`](/docs/registry/attributes/cassandra.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | boolean | Whether or not the query is idempotent. |  |
+| [`cassandra.query.idempotent`](/docs/registry/attributes/cassandra.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | boolean | Whether or not the query is idempotent. | |
 | [`cassandra.speculative_execution.count`](/docs/registry/attributes/cassandra.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | int | The number of times a query was speculatively executed. Not set or `0` if the query was not executed speculatively. | `0`; `2` |
 | [`db.operation.batch.size`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | The number of queries included in a batch operation. [11] | `2`; `3`; `4` |
 | [`db.query.summary`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` [12] | string | Low cardinality summary of a database query. [13] | `SELECT wuser_table`; `INSERT shipping_details SELECT orders`; `get user by id` |
@@ -111,13 +111,13 @@ calls involving complex queries.
 Summary may be available to the instrumentation through
 instrumentation hooks or other means. If it is not available, instrumentations
 that support query parsing SHOULD generate a summary following
-[Generating query summary](/docs/database/database-spans.md#generating-a-summary-of-the-query)
+[Generating query summary](/docs/db/database-spans.md#generating-a-summary-of-the-query)
 section.
 
-**[14] `db.query.text`:** Non-parameterized query text SHOULD NOT be collected by default unless there is sanitization that excludes sensitive data, e.g. by redacting all literal values present in the query text. See [Sanitization of `db.query.text`](/docs/database/database-spans.md#sanitization-of-dbquerytext).
+**[14] `db.query.text`:** Non-parameterized query text SHOULD NOT be collected by default unless there is sanitization that excludes sensitive data, e.g. by redacting all literal values present in the query text. See [Sanitization of `db.query.text`](/docs/db/database-spans.md#sanitization-of-dbquerytext).
 Parameterized query text SHOULD be collected by default (the query parameter values themselves are opt-in, see [`db.query.parameter.<key>`](/docs/registry/attributes/db.md)).
 
-**[15] `db.query.text`:** For sanitization see [Sanitization of `db.query.text`](/docs/database/database-spans.md#sanitization-of-dbquerytext).
+**[15] `db.query.text`:** For sanitization see [Sanitization of `db.query.text`](/docs/db/database-spans.md#sanitization-of-dbquerytext).
 For batch operations, if the individual operations are known to have the same query text then that query text SHOULD be used, otherwise all of the individual query texts SHOULD be concatenated with separator `; ` or some other database system specific separator if more applicable.
 Parameterized query text SHOULD NOT be sanitized. Even though parameterized query text can potentially have sensitive data, by using a parameterized query the user is giving a strong signal that any sensitive data will be passed as parameter values, and the benefit to observability of capturing the static part of the query text by default outweighs the risk.
 
@@ -159,8 +159,8 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 `cassandra.consistency.level` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `all` | All | ![Development](https://img.shields.io/badge/-development-blue) |
 | `any` | Any | ![Development](https://img.shields.io/badge/-development-blue) |
 | `each_quorum` | Each Quorum | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -177,8 +177,8 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 <!-- prettier-ignore-end -->

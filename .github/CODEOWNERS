@@ -90,9 +90,9 @@
 /docs/non-normative/naming-known-exceptions.md  @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-k8s-approvers
 
 # Container semantic conventions
-/docs/resource/container.md       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-container-approvers
-/model/container/                 @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-container-approvers
-/model/oci/                       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-container-approvers
+/docs/resource/container.md       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-k8s-approvers
+/model/container/                 @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-k8s-approvers
+/model/oci/                       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-k8s-approvers
 
 # .NET semantic conventions approvers
 /docs/dotnet/                     @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-dotnet-approver
@@ -117,9 +117,10 @@
 
 # CICD semantic conventions
 /docs/cicd/                       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-cicd-approvers
+/docs/resource/deployment-environment.md  @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-cicd-approvers @open-telemetry/semconv-service-and-deployment-approvers
 /model/artifact/                  @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-cicd-approvers
 /model/cicd/                      @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-cicd-approvers
-/model/deployment/                @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-cicd-approvers
+/model/deployment/                @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-cicd-approvers @open-telemetry/semconv-service-and-deployment-approvers
 /model/test/                      @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-cicd-approvers
 /model/vcs/                       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-cicd-approvers
 
@@ -129,8 +130,8 @@
 /docs/non-normative/code-attrs-migration.md     @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-code-attribute-approvers
 
 # Database semantic conventions
-/docs/database/                             @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-db-approvers
-/model/database/                            @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-db-approvers
+/docs/db/                             @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-db-approvers
+/model/db/                            @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-db-approvers
 /docs/non-normative/database-test-cases/    @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-db-approvers
 /docs/non-normative/db-migration.md         @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-db-approvers
 
@@ -164,6 +165,14 @@
 /docs/zos                         @open-telemetry/specs-semconv-approvers @open-telemetry/sig-mainframe-approvers
 /model/zos                        @open-telemetry/specs-semconv-approvers @open-telemetry/sig-mainframe-approvers
 
+# Service semantic conventions
+/model/service/                   @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-service-and-deployment-approvers
+
 # NFS
 /docs/nfs                         @open-telemetry/semconv-system-approvers @open-telemetry/specs-semconv-approvers
 /model/nfs                        @open-telemetry/semconv-system-approvers @open-telemetry/specs-semconv-approvers
+
+# RPC
+/docs/rpc                         @open-telemetry/semconv-rpc-approvers @open-telemetry/specs-semconv-approvers
+/model/rpc                        @open-telemetry/semconv-rpc-approvers @open-telemetry/specs-semconv-approvers
+/model/jsonrpc                    @open-telemetry/semconv-rpc-approvers @open-telemetry/specs-semconv-approvers

@@ -29,7 +29,7 @@ semantic convention tooling supports complex attributes
 (see [#1870](https://github.com/open-telemetry/semantic-conventions/issues/1870)).
 
 | Field Name | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- |
 | `delta` | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | double | The delta between the current value and the last-reported value. See [delta](https://github.com/GoogleChrome/web-vitals?tab=readme-ov-file#report-only-the-delta-of-changes). | `0.2` |
 | `id` | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | A unique ID representing this particular metric instance. | `v3-1677874579383-6381583661209` |
 | `name` | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | enum | Name of the web vital. | `cls` |
@@ -37,8 +37,8 @@ semantic convention tooling supports complex attributes
 
 `name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `cls` | Cumulative Layout Shift. See [cls](https://web.dev/articles/cls). | ![Development](https://img.shields.io/badge/-development-blue) |
 | `fid` | First Input Delay. See [fid](https://web.dev/articles/fid). | ![Development](https://img.shields.io/badge/-development-blue) |
 | `inp` | Interation to Next Paint. See [inp](https://web.dev/articles/inp). | ![Development](https://img.shields.io/badge/-development-blue) |

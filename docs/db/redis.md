@@ -17,11 +17,11 @@ The Semantic Conventions for [Redis](https://redis.com/) extend and override the
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-Spans representing calls to Redis adhere to the general [Semantic Conventions for Database Client Spans](/docs/database/database-spans.md).
+Spans representing calls to Redis adhere to the general [Semantic Conventions for Database Client Spans](/docs/db/database-spans.md).
 
 `db.system.name` MUST be set to `"redis"` and SHOULD be provided **at span creation time**.
 
-**Span name** SHOULD follow the general [database span name convention](/docs/database/database-spans.md#name)
+**Span name** SHOULD follow the general [database span name convention](/docs/db/database-spans.md#name)
 except that `db.namespace` SHOULD NOT be used in the span name since it is a numeric value that ends up
 looking confusing.
 
@@ -32,7 +32,7 @@ looking confusing.
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- |
 | [`db.operation.name`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | The Redis command name. [1] | `HMSET`; `GET`; `SET` |
 | [`db.namespace`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if it can be captured reliably. | string | The [database index] associated with the connection, represented as a string. [2] | `0`; `1`; `15` |
 | [`db.response.status_code`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [3] | string | The Redis [simple error](https://redis.io/docs/latest/develop/reference/protocol-spec/#simple-errors) prefix. [4] | `ERR`; `WRONGTYPE`; `CLUSTERDOWN` |
@@ -71,7 +71,7 @@ Instrumentations SHOULD document how `error.type` is populated.
 **[8] `db.operation.batch.size`:** Operations are only considered batches when they contain two or more operations, and so `db.operation.batch.size` SHOULD never be `1`.
 
 **[9] `db.query.text`:** Query text SHOULD NOT be collected by default unless there is sanitization that excludes sensitive data, e.g. by redacting all literal values present in the query text.
-See [Sanitization of `db.query.text`](/docs/database/database-spans.md#sanitization-of-dbquerytext).
+See [Sanitization of `db.query.text`](/docs/db/database-spans.md#sanitization-of-dbquerytext).
 The value provided for `db.query.text` SHOULD correspond to the syntax of the Redis CLI. If, for example, the [`HMSET` command](https://redis.io/docs/latest/commands/hmset) is invoked, `"HMSET myhash field1 ? field2 ?"` would be a suitable value for `db.query.text`.
 
 **[10] `db.stored_procedure.name`:** See [FCALL](https://redis.io/docs/latest/commands/fcall/) and [EVALSHA](https://redis.io/docs/latest/commands/evalsha/).
@@ -93,8 +93,8 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 <!-- prettier-ignore-end -->
@@ -105,14 +105,14 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 In this example, Redis is connected using a unix domain socket and therefore the connection string is left out.
 
-| Key                       | Value |
-|:--------------------------| :-------------------------------------------- |
-| Span name                 | `"HMSET"` |
-| `db.system.name`          | `"redis"` |
-| `network.peer.address`    | `"/tmp/redis.sock"` |
-| `network.transport`       | `"unix"` |
-| `db.namespace`            | `"15"` |
-| `db.query.text`           | `"HMSET myhash field1 'Hello' field2 'World"` |
-| `db.operation.name`       | `"HMSET"` |
+| Key                    | Value                                         |
+| :--------------------- | :-------------------------------------------- |
+| Span name              | `"HMSET"`                                     |
+| `db.system.name`       | `"redis"`                                     |
+| `network.peer.address` | `"/tmp/redis.sock"`                           |
+| `network.transport`    | `"unix"`                                      |
+| `db.namespace`         | `"15"`                                        |
+| `db.query.text`        | `"HMSET myhash field1 'Hello' field2 'World"` |
+| `db.operation.name`    | `"HMSET"`                                     |
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status

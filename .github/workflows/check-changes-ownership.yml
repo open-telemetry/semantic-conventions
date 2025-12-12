@@ -1,7 +1,7 @@
 name: 'Check changes ownership'
 on:
   pull_request_target:
-    types: [opened, synchronize]
+    types: [opened, synchronize, edited, labeled, unlabeled]
     branches: [ 'main' ]
     paths:
       - 'model/**'
@@ -19,7 +19,7 @@ jobs:
       any_changed: ${{ steps.changed-files.outputs.any_changed }}
     steps:
        # Checkout the PR branch only to get the changed files from the .git folder
-      - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5.0.1
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
         with:
           ref: ${{ github.event.pull_request.head.ref }}
           repository: ${{ github.event.pull_request.head.repo.full_name }}
@@ -40,12 +40,12 @@ jobs:
     if: ${{ needs.get-changed-files.outputs.any_changed == 'true' && github.repository_owner == 'open-telemetry' }}
     steps:
       # Checkout the base branch (main, secure context)
-      - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5.0.1
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
         with:
           ref: ${{ github.event.pull_request.base.ref }}
 
       # uses node 22 to be able to use Typescript
-      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903 # v6.0.0
+      - uses: actions/setup-node@395ad3262231945c25e8478fd5baf05154b1d79f # v6.1.0
         with:
           cache: 'npm'
           cache-dependency-path: |
