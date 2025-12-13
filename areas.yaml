@@ -266,3 +266,15 @@ areas:
     status:
       - accepting_contributions
       - active
+
+  - name: "Semantic Conventions: Oracle Cloud Infrastructure"
+    owner: 
+      - name: "semconv-oracle-cloud-approvers"
+        github: semconv-oracle-cloud-approvers
+    project: "N/A"
+    board: "https://github.com/orgs/open-telemetry/projects/184"
+    labels:
+      - area:oracle-cloud
+    status: 
+      - accepting_contributions
+      - active
