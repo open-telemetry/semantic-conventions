@@ -19,4 +19,6 @@ issues: [2945]
 # (Optional) One or more lines of additional information to render under the primary note.
 # These lines will be padded with 2 spaces and then inserted directly into the document.
 # Use pipe (|) for multiline entries.
-subtext: The `peer.service` attribute could not fully represent the `service.{name|namespace}` resource attributes; `service.peer.name` and `service.peer.namespace` provide a more complete representation.
+subtext: |
+  The `peer.service` attribute could not fully represent the `service.{name|namespace}` resource attributes;
+  `service.peer.name` and `service.peer.namespace` provide a more complete representation.
