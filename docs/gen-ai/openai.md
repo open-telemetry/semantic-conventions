@@ -206,9 +206,9 @@ When the attribute is recorded on events, it MUST be recorded in structured
 form. When recorded on spans, it MAY be recorded as a JSON string if structured
 format is not supported and SHOULD be recorded in structured form otherwise.
 
-It's RECOMMENDED to populate all required attributes on each tool
-definition by default. Instrumentations MAY allow to enable populating
-non-required properties.
+Since this attribute could be large, it's NOT RECOMMENDED to populate
+non-required properties by default. Instrumentations MAY allow to enable
+populating optional properties.
 
 ---
 
