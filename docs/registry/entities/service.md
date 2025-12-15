@@ -33,6 +33,7 @@
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- | --- |
 | Identity | [`service.instance.id`](/docs/registry/attributes/service.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The string ID of the service instance. [2] | `627cc493-f310-47de-96bd-71410b7dec09` |
+| Description | [`service.criticality`](/docs/registry/attributes/service.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The operational criticality of the service. [3] | `critical`; `high`; `medium`; `low` |
 
 **[2] `service.instance.id`:** MUST be unique for each instance of the same `service.namespace,service.name` pair (in other words
 `service.namespace,service.name,service.instance.id` triplet MUST be globally unique). The ID helps to
@@ -61,6 +62,27 @@ However, Collectors can set the `service.instance.id` if they can unambiguously 
 for that telemetry. This is typically the case for scraping receivers, as they know the target address and
 port.
 
+**[3] `service.criticality`:** This attribute enables classification of services based on their operational importance, allowing observability platforms to implement criticality-aware tracing, monitoring, and sampling strategies. By standardizing service criticality, organizations can implement adaptive sampling rates (e.g., 100% for critical, 10% for low-priority services), optimize telemetry costs by reducing data from non-critical services, improve incident response by surfacing critical service traces first, and enable better capacity planning and resource allocation.
+
+---
+
+`service.criticality` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value | Description | Stability |
+| --- | --- | --- |
+| `critical` | Service is business-critical; downtime directly impacts revenue, user experience, or core functionality. [4] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `high` | Service is important but has degradation tolerance or fallback mechanisms. [5] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `low` | Service is non-essential to core operations; used for background tasks or internal tools. [6] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `medium` | Service provides supplementary functionality; degradation has limited user impact. [7] | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**[4]:** Examples include payment processing, authentication, and primary user-facing APIs.
+
+**[5]:** Examples include shopping cart, search, and recommendation engines.
+
+**[6]:** Examples include batch processors, cleanup jobs, and internal dashboards.
+
+**[7]:** Examples include analytics, reporting, and non-essential integrations.
+
 ## Service Namespace
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
@@ -73,6 +95,6 @@ port.
 
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- | --- |
-| Identity | [`service.namespace`](/docs/registry/attributes/service.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | A namespace for `service.name`. [3] | `Shop` |
+| Identity | [`service.namespace`](/docs/registry/attributes/service.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | A namespace for `service.name`. [8] | `Shop` |
 
-**[3] `service.namespace`:** A string value having a meaning that helps to distinguish a group of services, for example the team name that owns a group of services. `service.name` is expected to be unique within the same namespace. If `service.namespace` is not specified in the Resource then `service.name` is expected to be unique for all services that have no explicit namespace defined (so the empty/unspecified namespace is simply one more valid namespace). Zero-length namespace string is assumed equal to unspecified namespace.
+**[8] `service.namespace`:** A string value having a meaning that helps to distinguish a group of services, for example the team name that owns a group of services. `service.name` is expected to be unique within the same namespace. If `service.namespace` is not specified in the Resource then `service.name` is expected to be unique for all services that have no explicit namespace defined (so the empty/unspecified namespace is simply one more valid namespace). Zero-length namespace string is assumed equal to unspecified namespace.
