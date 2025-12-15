@@ -92,7 +92,7 @@ groups:
     stability: development
     brief: This span represents an outgoing Remote Procedure Call (RPC).
     note: |
-      `rpc.system` MUST be set to `"connect_rpc"` and SHOULD be provided **at span creation time.**
+      `rpc.system.name` MUST be set to `"connect_rpc"` and SHOULD be provided **at span creation time.**
 
       **Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#span-name) section.
 
@@ -122,7 +122,7 @@ groups:
     span_kind: server
     brief: This span represents an incoming Remote Procedure Call (RPC).
     note: |
-      `rpc.system` MUST be set to `"connect_rpc"` and SHOULD be provided **at span creation time.**
+      `rpc.system.name` MUST be set to `"connect_rpc"` and SHOULD be provided **at span creation time.**
 
       **Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#span-name) section.
 
@@ -154,7 +154,7 @@ groups:
     stability: development
     brief: This span represents an outgoing Remote Procedure Call (RPC).
     note: |
-      `rpc.system` MUST be set to `"grpc"` and SHOULD be provided **at span creation time.**
+      `rpc.system.name` MUST be set to `"grpc"` and SHOULD be provided **at span creation time.**
 
       **Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#span-name) section.
 
@@ -189,7 +189,7 @@ groups:
     span_kind: server
     brief: This span represents an incoming Remote Procedure Call (RPC).
     note: |
-      `rpc.system` MUST be set to `"grpc"` and SHOULD be provided **at span creation time.**
+      `rpc.system.name` MUST be set to `"grpc"` and SHOULD be provided **at span creation time.**
 
       **Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#span-name) section.
 
@@ -224,7 +224,7 @@ groups:
     stability: development
     brief: This span represents an outgoing Remote Procedure Call (RPC).
     note: |
-      `rpc.system` MUST be set to `"jsonrpc"` and SHOULD be provided **at span creation time.**
+      `rpc.system.name` MUST be set to `"jsonrpc"` and SHOULD be provided **at span creation time.**
 
       **Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#span-name) section.
 
@@ -260,7 +260,7 @@ groups:
     span_kind: server
     brief: This span represents an incoming Remote Procedure Call (RPC).
     note: |
-      `rpc.system` MUST be set to `"jsonrpc"` and SHOULD be provided **at span creation time.**
+      `rpc.system.name` MUST be set to `"jsonrpc"` and SHOULD be provided **at span creation time.**
 
       **Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#span-name) section.
 
