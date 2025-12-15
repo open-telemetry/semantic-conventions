@@ -144,14 +144,18 @@ system instructions.
 See [Recording content on attributes](/docs/gen-ai/gen-ai-spans.md#recording-content-on-attributes)
 section for more details.
 
-**[10] `gen_ai.tool.call.arguments`:** > [!WARNING]
+**[10] `gen_ai.tool.call.arguments`:**
+
+> [!WARNING]
 > This attribute may contain sensitive information.
 
 It's expected to be an object - in case a serialized string is available
 to the instrumentation, the instrumentation SHOULD do the best effort to
 deserialize it to an object. When recorded on spans, it MAY be recorded as a JSON string if structured format is not supported and SHOULD be recorded in structured form otherwise.
 
-**[11] `gen_ai.tool.call.result`:** > [!WARNING]
+**[11] `gen_ai.tool.call.result`:**
+
+> [!WARNING]
 > This attribute may contain sensitive information.
 
 It's expected to be an object - in case a serialized string is available

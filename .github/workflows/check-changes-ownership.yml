@@ -25,7 +25,7 @@ jobs:
           repository: ${{ github.event.pull_request.head.repo.full_name }}
       - name: Get changed files
         id: changed-files
-        uses: tj-actions/changed-files@24d32ffd492484c1d75e0c0b894501ddb9d30d62 # v47
+        uses: tj-actions/changed-files@e0021407031f5be11a464abee9a0776171c79891 # v47.0.1
         with:
           dir_names: "true"
           files: model/**
@@ -45,7 +45,7 @@ jobs:
           ref: ${{ github.event.pull_request.base.ref }}
 
       # uses node 22 to be able to use Typescript
-      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903 # v6.0.0
+      - uses: actions/setup-node@395ad3262231945c25e8478fd5baf05154b1d79f # v6.1.0
         with:
           cache: 'npm'
           cache-dependency-path: |
