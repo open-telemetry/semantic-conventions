@@ -19,7 +19,7 @@ groups:
       - id: service.version
         type: string
         brief: >
-          The version string of the service API or implementation. The format is not defined by these conventions.
+          The version string of the service component. The format is not defined by these conventions.
         examples: ["2.0.0", "a01dbef8a"]
         stability: stable
       - id: service.namespace

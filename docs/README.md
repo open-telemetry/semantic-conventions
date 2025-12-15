@@ -5,7 +5,9 @@ cascade:
   github_subdir: docs
   path_base_for_github_subdir: tmp/semconv/docs/
   github_project_repo: *repo
-redirects: [{ from: 'attributes-registry/*', to: 'registry/attributes/:splat' }]
+redirects:
+  - { from: 'attributes-registry/*', to: 'registry/attributes/:splat' }
+  - { from: 'database/*', to: 'db/:splat' }
 cSpell:ignore: semconv CICD
 auto_gen: below
 linkTitle: Semantic conventions
@@ -21,15 +23,14 @@ Semantic Conventions are defined for the following areas:
 
 * **[General](general/README.md): General Semantic Conventions**.
 * [CICD](cicd/README.md): Semantic Conventions for CICD systems.
-* [Code](code/README.md): Semantic Conventions for code.
 * [Cloud Providers](cloud-providers/README.md): Semantic Conventions for cloud providers libraries.
 * [CloudEvents](cloudevents/README.md): Semantic Conventions for the CloudEvents specification.
-* [Database](database/README.md): Semantic Conventions for database operations.
+* [Database](db/README.md): Semantic Conventions for database operations.
 * [Exceptions](exceptions/README.md): Semantic Conventions for exceptions.
 * [FaaS](faas/README.md): Semantic Conventions for Function as a Service (FaaS) operations.
 * [Feature Flags](feature-flags/README.md): Semantic Conventions for feature flag evaluations.
 * [Generative AI](gen-ai/README.md): Semantic Conventions for generative AI (LLM, etc.) operations.
-* [GraphQL](graphql/graphql-spans.md): Semantic Conventions for GraphQL implementations.
+* [GraphQL](graphql/README.md): Semantic Conventions for GraphQL implementations.
 * [HTTP](http/README.md): Semantic Conventions for HTTP client and server operations.
 * [Messaging](messaging/README.md): Semantic Conventions for messaging operations and systems.
 * [Object Stores](object-stores/README.md): Semantic Conventions for object stores operations.
@@ -45,4 +46,7 @@ Semantic Conventions by signals:
 * [Resource](resource/README.md): Semantic Conventions for resources.
 * [Trace](general/trace.md): Semantic Conventions for traces and spans.
 
-Also see, [Non-normative supplementary information](non-normative/README.md).
+Also see:
+
+* [How to write semantic conventions](how-to-write-conventions/README.md)
+* [Non-normative supplementary information](non-normative/README.md)

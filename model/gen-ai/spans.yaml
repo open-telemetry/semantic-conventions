@@ -78,9 +78,8 @@ groups:
           Instrumentations SHOULD populate conversation id when they have it readily available
           for a given operation, for example:
 
-          -  when client framework being instrumented manages conversation history
+          - when client framework being instrumented manages conversation history
           (see [LlamaIndex chat store](https://docs.llamaindex.ai/en/stable/module_guides/storing/chat_stores/))
-
           - when instrumenting GenAI client libraries that maintain conversation on the backend side
           (see [AWS Bedrock agent sessions](https://docs.aws.amazon.com/bedrock/latest/userguide/agents-session-state.html),
           [OpenAI Assistant threads](https://platform.openai.com/docs/api-reference/threads))
@@ -88,6 +87,15 @@ groups:
           Application developers that manage conversation history MAY add conversation id to GenAI and other
           spans or logs using custom span or log record processors or hooks provided by instrumentation
           libraries.
+
+      - ref: gen_ai.system_instructions
+        requirement_level: opt_in
+      - ref: gen_ai.input.messages
+        requirement_level: opt_in
+      - ref: gen_ai.output.messages
+        requirement_level: opt_in
+      - ref: gen_ai.tool.definitions
+        requirement_level: opt_in
 
   - id: span.gen_ai.inference.client
     type: span
@@ -99,9 +107,9 @@ groups:
     note: |
       **Span name** SHOULD be `{gen_ai.operation.name} {gen_ai.request.model}`.
       Semantic conventions for individual GenAI systems and frameworks MAY specify different span name format
-      and MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/tree/v1.37.0/specification/trace/api.md#span).
+      and MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.37.0/specification/trace/api.md#span).
 
-      **Span kind** SHOULD be `CLIENT`and MAY be set to `INTERNAL` on spans representing
+      **Span kind** SHOULD be `CLIENT` and MAY be set to `INTERNAL` on spans representing
       call to models running in the same process. It's RECOMMENDED to use `CLIENT` kind
       when the GenAI system being instrumented usually runs in a different process than its
       client or when the GenAI call happens over instrumented protocol such as HTTP.
@@ -123,6 +131,7 @@ groups:
       - ref: gen_ai.output.type
         note: |
           This attribute SHOULD be set to the output type requested by the client:
+
           - `json` for structured outputs with defined or undefined schema
           - `image` for image output
           - `speech` for speech output
@@ -165,7 +174,7 @@ groups:
     type: span
     span_kind: client
     brief: >
-      Semantic Conventions for [Azure AI Inference](https://learn.microsoft.com/azure/ai-studio/reference/reference-model-inference-api)
+      Semantic Conventions for [Azure AI Inference](https://learn.microsoft.com/rest/api/aifoundry/modelinference/)
       client spans extend and override the semantic conventions for [Gen AI Spans](gen-ai-spans.md).
     note: |
       `gen_ai.provider.name` MUST be set to `"azure.ai.inference"` and SHOULD be provided **at span creation time**.
@@ -205,6 +214,8 @@ groups:
         requirement_level: recommended
       - ref: gen_ai.usage.input_tokens
         requirement_level: recommended
+      - ref: gen_ai.embeddings.dimension.count
+        requirement_level: recommended
 
   - id: span.gen_ai.create_agent.client
     type: span
@@ -231,19 +242,34 @@ groups:
       - ref: gen_ai.agent.description
         requirement_level:
           conditionally_required: If provided by the application.
+      - ref: gen_ai.system_instructions
+        requirement_level: opt_in
+        note: ""  # note is not needed here
+
 
   - id: span.gen_ai.invoke_agent.client
     type: span
     stability: development
     span_kind: client
     brief: >
-      Describes GenAI agent invocation and is usually applicable when working
-      with remote agent services.
+      Describes GenAI agent invocation.
     note: |
       The `gen_ai.operation.name` SHOULD be `invoke_agent`.
-      The **span name** SHOULD be `invoke_agent {gen_ai.agent.name}` if `gen_ai.agent.name` is readily available.
+
+      **Span name** SHOULD be `invoke_agent {gen_ai.agent.name}` if `gen_ai.agent.name` is readily available.
       When `gen_ai.agent.name` is not available, it SHOULD be `invoke_agent`.
       Semantic conventions for individual GenAI systems and frameworks MAY specify different span name format.
+
+      **Span kind** SHOULD be `CLIENT` and MAY be set to `INTERNAL` on spans representing
+      invocation of agents running in the same process.
+      It's RECOMMENDED to use `CLIENT` kind when the agent being instrumented usually runs
+      in a different process than its caller or when the agent invocation happens over
+      instrumented protocol such as HTTP.
+
+      Examples of span kinds for different agent scenarios:
+
+      - `CLIENT`: Remote agent services (e.g., OpenAI Assistants API, AWS Bedrock Agents)
+      - `INTERNAL`: In-process agents (e.g., LangChain agents, CrewAI agents)
     extends: attributes.gen_ai.inference.client
     attributes:
       - ref: gen_ai.provider.name
@@ -260,6 +286,16 @@ groups:
       - ref: gen_ai.data_source.id
         requirement_level:
           conditionally_required: if applicable.
+      - ref: server.address
+        requirement_level:
+          recommended: when span kind is `CLIENT`.
+      - ref: gen_ai.system_instructions
+        requirement_level: opt_in
+      - ref: gen_ai.input.messages
+        requirement_level: opt_in
+      - ref: gen_ai.output.messages
+        requirement_level: opt_in
+
 
   - id: span.gen_ai.execute_tool.internal
     type: span
@@ -289,6 +325,10 @@ groups:
       - ref: gen_ai.tool.type
         requirement_level:
           recommended: if available
+      - ref: gen_ai.tool.call.arguments
+        requirement_level: opt_in
+      - ref: gen_ai.tool.call.result
+        requirement_level: opt_in
       - ref: error.type
         requirement_level:
           conditionally_required: "if the operation ended in an error"

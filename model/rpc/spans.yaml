@@ -1,112 +1,303 @@
 groups:
+
   - id: rpc
     type: attribute_group
     brief: 'This document defines semantic conventions for remote procedure calls.'
+    extends: common.rpc.attributes
     attributes:
-      - ref: rpc.system
-        requirement_level: required
-      - ref: rpc.service
-        requirement_level: recommended
       - ref: rpc.method
-        requirement_level: recommended
-      - ref: network.transport
-        requirement_level: recommended
-      - ref: network.type
-        requirement_level: recommended
+        sampling_relevant: true
       - ref: server.address
-        requirement_level: required
-        brief: >
-          RPC server [host name](https://grpc.github.io/grpc/core/md_doc_naming.html).
-        note: >
-          May contain server IP address, DNS name, or local socket name. When host component is an IP address,
-          instrumentations SHOULD NOT do a reverse proxy lookup to obtain DNS name and SHOULD set
-          `server.address` to the IP address provided in the host component.
+        sampling_relevant: true
       - ref: server.port
-        requirement_level:
-          conditionally_required: if the port is supported by the network transport used for communication.
-
-  - id: span.rpc.client
-    type: span
-    stability: development
-    brief: This span represents an outgoing Remote Procedure Call (RPC).
-    note: |
-      Remote procedure calls can only be represented with these semantic conventions
-      when the names of the called service and method are known and available.
-
-      **Span name:** refer to the [Span Name](#span-name) section.
-
-      **Span kind** MUST be `CLIENT`.
-    extends: rpc
-    span_kind: client
-    events: [rpc.message]
-    attributes:
+        sampling_relevant: true
       - ref: network.peer.address
         requirement_level: recommended
       - ref: network.peer.port
         requirement_level:
           recommended: If `network.peer.address` is set.
 
-  - id: span.rpc.server
-    type: span
-    stability: development
+  - id: rpc.server
+    type: attribute_group
+    brief: 'This document defines semantic conventions for remote procedure calls.'
     extends: rpc
-    span_kind: server
-    brief: This span represents an incoming Remote Procedure Call (RPC).
-    events: [rpc.message]
-    note: |
-      Remote procedure calls can only be represented with these semantic conventions
-      when the names of the called service and method are known and available.
-
-      **Span name:** refer to the [Span Name](#span-name) section.
-
-      **Span kind** MUST be `SERVER`.
     attributes:
       - ref: client.address
         requirement_level: recommended
       - ref: client.port
         requirement_level: recommended
-      - ref: network.peer.address
-        requirement_level: recommended
-      - ref: network.peer.port
-        requirement_level:
-          recommended: If `network.peer.address` is set.
-      - ref: network.transport
-        requirement_level: recommended
-      - ref: network.type
-        requirement_level: recommended
 
-  - id: rpc.grpc.attributes
-    stability: development
+  - id: rpc_service.server
     type: attribute_group
-    brief: 'Tech-specific attributes for gRPC.'
+    brief: 'This document defines semantic conventions for remote procedure calls.'
+    extends: rpc
     attributes:
-      - ref: rpc.grpc.status_code
+      - ref: client.address
+        requirement_level: recommended
+      - ref: client.port
+        requirement_level: recommended
+      - ref: rpc.service
+        requirement_level: recommended
+        sampling_relevant: true
+
+  - id: span.rpc.call.client
+    type: span
+    stability: development
+    brief: This span represents an outgoing Remote Procedure Call (RPC).
+    note: |
+      RPC client spans SHOULD cover the entire client-side lifecycle of an RPC,
+      starting when the RPC is initiated and ending when the response is received
+      or the RPC is terminated due to an error or cancellation.
+
+      For streaming RPCs, the span covers the full lifetime of the request and/or
+      response streams until they are closed or terminated.
+
+      If a transient issue happened and was retried within this RPC, the corresponding
+      span SHOULD cover the duration of the logical call with all retries.
+
+      **Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#span-name) section.
+
+      **Span kind** MUST be `CLIENT`.
+
+      **Span status** Refer to the [Recording Errors](/docs/general/recording-errors.md)
+      document for details on how to record span status.
+    extends: rpc
+    span_kind: client
+    events: [rpc.message]
+    attributes:
+      - ref: rpc.system.name
         requirement_level: required
-      - ref: rpc.grpc.request.metadata
+        sampling_relevant: true
+      - ref: rpc.service
+        sampling_relevant: true
+
+  - id: span.rpc.call.server
+    type: span
+    stability: development
+    extends: rpc_service.server
+    span_kind: server
+    brief: This span represents an incoming Remote Procedure Call (RPC).
+    events: [rpc.message]
+    note: |
+      RPC server spans SHOULD cover the entire server-side lifecycle of an RPC,
+      starting when the request is received and ending when the response is sent
+      or the RPC is terminated due to an error or cancellation.
+
+      For streaming RPCs, the span SHOULD cover the full lifetime of the request
+      and/or response streams until they are closed or terminated.
+
+      **Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#span-name) section.
+
+      **Span kind** MUST be `SERVER`.
+
+      **Span status** Refer to the [Recording Errors](/docs/general/recording-errors.md)
+      document for details on how to record span status.
+    attributes:
+      - ref: rpc.system.name
+        requirement_level: required
+        sampling_relevant: true
+
+  - id: span.rpc.connect_rpc.call.client
+    type: span
+    stability: development
+    brief: This span represents an outgoing Remote Procedure Call (RPC).
+    note: |
+      `rpc.system.name` MUST be set to `"connect_rpc"` and SHOULD be provided **at span creation time.**
+
+      **Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#span-name) section.
+
+      **Span kind** MUST be `CLIENT`.
+
+      **Span status** Refer to the [Recording Errors](/docs/general/recording-errors.md)
+      document for details on how to record span status.
+    extends: rpc
+    span_kind: client
+    attributes:
+      - ref: rpc.response.status_code
+        requirement_level:
+          conditionally_required: if available.
+        brief: The [error code](https://connectrpc.com//docs/protocol/#error-codes) of the Connect response.
+        note: |
+          All error codes except `OK` SHOULD be considered errors.
+      - ref: rpc.request.metadata
         requirement_level: opt_in
-      - ref: rpc.grpc.response.metadata
+      - ref: rpc.response.metadata
+        requirement_level: opt_in
+      - ref: rpc.service
+        sampling_relevant: true
+
+  - id: span.rpc.connect_rpc.call.server
+    type: span
+    stability: development
+    extends: rpc_service.server
+    span_kind: server
+    brief: This span represents an incoming Remote Procedure Call (RPC).
+    note: |
+      `rpc.system.name` MUST be set to `"connect_rpc"` and SHOULD be provided **at span creation time.**
+
+      **Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#span-name) section.
+
+      **Span kind** MUST be `SERVER`.
+
+      **Span status** Refer to the [Recording Errors](/docs/general/recording-errors.md)
+      document for details on how to record span status.
+    attributes:
+      - ref: rpc.response.status_code
+        requirement_level:
+          conditionally_required: if available.
+        brief: The [error code](https://connectrpc.com/docs/protocol/#error-codes) of the Connect response.
+        note: |
+          The following error codes SHOULD be considered errors:
+
+          - `unknown`
+          - `deadline_exceeded`
+          - `unimplemented`
+          - `internal`
+          - `unavailable`
+          - `data_loss`
+      - ref: rpc.request.metadata
+        requirement_level: opt_in
+      - ref: rpc.response.metadata
         requirement_level: opt_in
 
-  - id: rpc.jsonrpc.attributes
-    type: attribute_group
+  - id: span.rpc.grpc.call.client
+    type: span
     stability: development
-    brief: 'Tech-specific attributes for [JSON RPC](https://www.jsonrpc.org/).'
+    brief: This span represents an outgoing Remote Procedure Call (RPC).
+    note: |
+      `rpc.system.name` MUST be set to `"grpc"` and SHOULD be provided **at span creation time.**
+
+      **Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#span-name) section.
+
+      **Span kind** MUST be `CLIENT`.
+
+      **Span status** Refer to the [Recording Errors](/docs/general/recording-errors.md)
+      document for details on how to record span status. See also `rpc.response.status_code` attribute
+      for the details on which values classify as errors.
+    extends: rpc
+    span_kind: client
     attributes:
-      - ref: rpc.jsonrpc.version
-        requirement_level:
-          conditionally_required: If other than the default version (`1.0`)
-      - ref: rpc.jsonrpc.request_id
-        requirement_level: recommended
-      - ref: rpc.jsonrpc.error_code
-        requirement_level:
-          conditionally_required: If response is not successful.
-      - ref: rpc.jsonrpc.error_message
-        requirement_level: recommended
       - ref: rpc.method
         requirement_level: required
-        note: >
-          This is always required for jsonrpc. See the note in the general
-          RPC conventions for more information.
+      - ref: rpc.service
+        requirement_level: required
+        sampling_relevant: true
+      - ref: rpc.response.status_code
+        requirement_level: required
+        brief: >
+          The string representation of the [status code](https://github.com/grpc/grpc/blob/v1.75.0/doc/statuscodes.md)
+          returned by the server or generated by the client.
+        note: |
+          All status codes except `OK` SHOULD be considered errors.
+      - ref: rpc.request.metadata
+        requirement_level: opt_in
+      - ref: rpc.response.metadata
+        requirement_level: opt_in
+
+  - id: span.rpc.grpc.call.server
+    type: span
+    stability: development
+    extends: rpc_service.server
+    span_kind: server
+    brief: This span represents an incoming Remote Procedure Call (RPC).
+    note: |
+      `rpc.system.name` MUST be set to `"grpc"` and SHOULD be provided **at span creation time.**
+
+      **Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#span-name) section.
+
+      **Span kind** MUST be `SERVER`.
+
+      **Span status** Refer to the [Recording Errors](/docs/general/recording-errors.md)
+      document for details on how to record span status. See also `rpc.response.status_code` attribute
+      for the details on which values classify as errors.
+    attributes:
+      - ref: rpc.response.status_code
+        requirement_level: required
+        brief: >
+          The string representation of the [status code](https://github.com/grpc/grpc/blob/v1.75.0/doc/statuscodes.md)
+          returned by the server.
+        note: |
+          The following status codes SHOULD be considered errors:
+
+          - `UNKNOWN`
+          - `DEADLINE_EXCEEDED`
+          - `UNIMPLEMENTED`
+          - `INTERNAL`
+          - `UNAVAILABLE`
+          - `DATA_LOSS`
+
+      - ref: rpc.request.metadata
+        requirement_level: opt_in
+      - ref: rpc.response.metadata
+        requirement_level: opt_in
+
+  - id: span.rpc.jsonrpc.call.client
+    type: span
+    stability: development
+    brief: This span represents an outgoing Remote Procedure Call (RPC).
+    note: |
+      `rpc.system.name` MUST be set to `"jsonrpc"` and SHOULD be provided **at span creation time.**
+
+      **Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#span-name) section.
+
+      **Span kind** MUST be `CLIENT`.
+
+      **Span status** Refer to the [Recording Errors](/docs/general/recording-errors.md)
+      document for details on how to record span status. Responses that include
+      an [`error` object](https://www.jsonrpc.org/specification#error_object)
+      are considered errors.
+    extends: rpc
+    span_kind: client
+    attributes:
+      - ref: rpc.method
+        requirement_level: required
+      - ref: jsonrpc.protocol.version
+        requirement_level:
+          conditionally_required: If other than the default version (`1.0`)
+      - ref: jsonrpc.request.id
+        requirement_level: recommended
+      - ref: rpc.response.status_code
+        brief: >
+          The [`error.code`](https://www.jsonrpc.org/specification#error_object)
+          property of response if it is an error response recorded as a string.
+        note:
+          All JSON RPC error codes SHOULD be considered errors.
+        requirement_level:
+          conditionally_required: when available
+
+  - id: span.rpc.jsonrpc.call.server
+    type: span
+    stability: development
+    extends: rpc.server
+    span_kind: server
+    brief: This span represents an incoming Remote Procedure Call (RPC).
+    note: |
+      `rpc.system.name` MUST be set to `"jsonrpc"` and SHOULD be provided **at span creation time.**
+
+      **Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#span-name) section.
+
+      **Span kind** MUST be `SERVER`.
+
+      **Span status** Refer to the [Recording Errors](/docs/general/recording-errors.md)
+      document for details on how to record span status. Responses that include
+      an [`error` object](https://www.jsonrpc.org/specification#error_object)
+      are considered errors.
+    attributes:
+      - ref: rpc.method
+        requirement_level: required
+      - ref: jsonrpc.protocol.version
+        requirement_level:
+          conditionally_required: If other than the default version (`1.0`)
+      - ref: jsonrpc.request.id
+        requirement_level: recommended
+      - ref: rpc.response.status_code
+        brief: >
+          The [`error.code`](https://www.jsonrpc.org/specification#error_object) property of
+          response recorded as a string.
+        note:
+          All JSON RPC error codes SHOULD be considered errors.
+        requirement_level:
+          conditionally_required: when available
 
   - id: event.rpc.message
     type: event
@@ -126,16 +317,3 @@ groups:
         requirement_level: recommended
       - ref: rpc.message.uncompressed_size
         requirement_level: recommended
-
-  - id: rpc.connect_rpc.attributes
-    type: attribute_group
-    stability: development
-    brief: 'Tech-specific attributes for Connect RPC.'
-    attributes:
-      - ref: rpc.connect_rpc.error_code
-        requirement_level:
-          conditionally_required: If response is not successful and if error code available.
-      - ref: rpc.connect_rpc.request.metadata
-        requirement_level: opt_in
-      - ref: rpc.connect_rpc.response.metadata
-        requirement_level: opt_in

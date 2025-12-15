@@ -7,7 +7,30 @@
 
 These attributes may be used for any operation to store information about a thread that started a span.
 
-| Attribute | Type | Description | Examples | Stability |
-|---|---|---|---|---|
-| <a id="thread-id" href="#thread-id">`thread.id`</a> | int | Current "managed" thread ID (as opposed to OS thread ID). | `42` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="thread-name" href="#thread-name">`thread.name`</a> | string | Current thread name. | `main` | ![Development](https://img.shields.io/badge/-development-blue) |
+**Attributes:**
+
+| Key | Stability | Value Type | Description | Example Values |
+| --- | --- | --- | --- | --- |
+| <a id="thread-id" href="#thread-id">`thread.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | Current "managed" thread ID (as opposed to OS thread ID). [1] | `42` |
+| <a id="thread-name" href="#thread-name">`thread.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Current thread name. [2] | `main` |
+
+**[1] `thread.id`:** Examples of where the value can be extracted from:
+
+| Language or platform | Source |
+| --- | --- |
+| JVM | `Thread.currentThread().threadId()` |
+| .NET | `Thread.CurrentThread.ManagedThreadId` |
+| Python | `threading.current_thread().ident` |
+| Ruby | `Thread.current.object_id` |
+| C++ | `std::this_thread::get_id()` |
+| Erlang | `erlang:self()` |
+
+**[2] `thread.name`:** Examples of where the value can be extracted from:
+
+| Language or platform | Source |
+| --- | --- |
+| JVM | `Thread.currentThread().getName()` |
+| .NET | `Thread.CurrentThread.Name` |
+| Python | `threading.current_thread().name` |
+| Ruby | `Thread.current.name` |
+| Erlang | `erlang:process_info(self(), registered_name)` |

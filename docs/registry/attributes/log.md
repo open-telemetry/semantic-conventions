@@ -11,16 +11,18 @@
 
 This document defines log attributes
 
-| Attribute | Type | Description | Examples | Stability |
-|---|---|---|---|---|
-| <a id="log-iostream" href="#log-iostream">`log.iostream`</a> | string | The stream associated with the log. See below for a list of well-known values. | `stdout`; `stderr` | ![Development](https://img.shields.io/badge/-development-blue) |
+**Attributes:**
+
+| Key | Stability | Value Type | Description | Example Values |
+| --- | --- | --- | --- | --- |
+| <a id="log-iostream" href="#log-iostream">`log.iostream`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The stream associated with the log. See below for a list of well-known values. | `stdout`; `stderr` |
 
 ---
 
 `log.iostream` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `stderr` | Events from stderr stream | ![Development](https://img.shields.io/badge/-development-blue) |
 | `stdout` | Logs from stdout stream | ![Development](https://img.shields.io/badge/-development-blue) |
 
@@ -28,21 +30,25 @@ This document defines log attributes
 
 Attributes for a file to which log was emitted.
 
-| Attribute | Type | Description | Examples | Stability |
-|---|---|---|---|---|
-| <a id="log-file-name" href="#log-file-name">`log.file.name`</a> | string | The basename of the file. | `audit.log` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="log-file-name-resolved" href="#log-file-name-resolved">`log.file.name_resolved`</a> | string | The basename of the file, with symlinks resolved. | `uuid.log` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="log-file-path" href="#log-file-path">`log.file.path`</a> | string | The full path to the file. | `/var/log/mysql/audit.log` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="log-file-path-resolved" href="#log-file-path-resolved">`log.file.path_resolved`</a> | string | The full path to the file, with symlinks resolved. | `/var/lib/docker/uuid.log` | ![Development](https://img.shields.io/badge/-development-blue) |
+**Attributes:**
+
+| Key | Stability | Value Type | Description | Example Values |
+| --- | --- | --- | --- | --- |
+| <a id="log-file-name" href="#log-file-name">`log.file.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The basename of the file. | `audit.log` |
+| <a id="log-file-name-resolved" href="#log-file-name-resolved">`log.file.name_resolved`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The basename of the file, with symlinks resolved. | `uuid.log` |
+| <a id="log-file-path" href="#log-file-path">`log.file.path`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The full path to the file. | `/var/log/mysql/audit.log` |
+| <a id="log-file-path-resolved" href="#log-file-path-resolved">`log.file.path_resolved`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The full path to the file, with symlinks resolved. | `/var/lib/docker/uuid.log` |
 
 ## Log Record Attributes
 
 This document defines the generic attributes that may be used in any Log Record.
 
-| Attribute | Type | Description | Examples | Stability |
-|---|---|---|---|---|
-| <a id="log-record-original" href="#log-record-original">`log.record.original`</a> | string | The complete original Log Record. [1] | `77 <86>1 2015-08-06T21:58:59.694Z 192.168.2.133 inactive - - - Something happened`; `[INFO] 8/3/24 12:34:56 Something happened` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="log-record-uid" href="#log-record-uid">`log.record.uid`</a> | string | A unique identifier for the Log Record. [2] | `01ARZ3NDEKTSV4RRFFQ69G5FAV` | ![Development](https://img.shields.io/badge/-development-blue) |
+**Attributes:**
+
+| Key | Stability | Value Type | Description | Example Values |
+| --- | --- | --- | --- | --- |
+| <a id="log-record-original" href="#log-record-original">`log.record.original`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The complete original Log Record. [1] | `77 <86>1 2015-08-06T21:58:59.694Z 192.168.2.133 inactive - - - Something happened`; `[INFO] 8/3/24 12:34:56 Something happened` |
+| <a id="log-record-uid" href="#log-record-uid">`log.record.uid`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | A unique identifier for the Log Record. [2] | `01ARZ3NDEKTSV4RRFFQ69G5FAV` |
 
 **[1] `log.record.original`:** This value MAY be added when processing a Log Record which was originally transmitted as a string or equivalent data type AND the Body field of the Log Record does not contain the same value. (e.g. a syslog or a log record read from a file.)
 

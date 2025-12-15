@@ -1,0 +1,44 @@
+groups:
+  - id: common.rpc.attributes
+    type: attribute_group
+    brief: 'Common attributes for RPC spans and metrics.'
+    attributes:
+      - ref: rpc.method
+        requirement_level: recommended
+      - ref: server.address
+        requirement_level: required
+        brief: >
+          RPC server [host name](https://grpc.github.io/grpc/core/md_doc_naming.html).
+        note: >
+          May contain server IP address, DNS name, or local socket name. When host component is an IP address,
+          instrumentations SHOULD NOT do a reverse proxy lookup to obtain DNS name and SHOULD set
+          `server.address` to the IP address provided in the host component.
+      - ref: server.port
+        requirement_level:
+          conditionally_required: if the port is supported by the network transport used for communication.
+      - ref: rpc.response.status_code
+        requirement_level:
+          conditionally_required: if available.
+      - ref: error.type
+        requirement_level:
+          conditionally_required: If and only if the operation failed.
+        examples: ['DEADLINE_EXCEEDED', 'java.net.UnknownHostException', '-32602']
+        note: |
+          If the RPC fails with an error before status code is returned,
+          `error.type` SHOULD be set to the exception type (its fully-qualified class name, if applicable)
+          or a component-specific, low cardinality error identifier.
+
+          If a response status code is returned and status indicates an error,
+          `error.type` SHOULD be set to that status code. Check system-specific conventions
+          for the details on which values of `rpc.response.status_code` are considered errors.
+
+          The `error.type` value SHOULD be predictable and SHOULD have low cardinality.
+          Instrumentations SHOULD document the list of errors they report.
+
+          If the request has completed successfully, instrumentations SHOULD NOT set
+          `error.type`.
+      - ref: network.protocol.name
+        examples: ["http"]
+      - ref: network.protocol.version
+      - ref: network.transport
+        requirement_level: recommended

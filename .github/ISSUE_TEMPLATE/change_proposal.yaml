@@ -55,20 +55,24 @@ body:
         - area:host
         - area:http
         - area:ios
+        - area:jsonrpc
         - area:jvm
         - area:k8s
-        - area:linux
         - area:log
         - area:mainframe
         - area:messaging
         - area:network
+        - area:nfs
         - area:nodejs
         - area:oci
+        - area:onc-rpc
         - area:openai
+        - area:openshift
         - area:opentracing
         - area:os
         - area:otel
         - area:peer
+        - area:pprof
         - area:process
         - area:profile
         - area:rpc

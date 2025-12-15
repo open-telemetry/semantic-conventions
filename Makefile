@@ -1,5 +1,3 @@
-# All documents to be used in spell check.
-ALL_DOCS := $(shell find . -type f -name '*.md' -not -path './.github/*' -not -path './node_modules/*' | sort)
 PWD := $(shell pwd)
 
 # Determine OS & Arch for specific OS only tools on Unix based systems
@@ -90,11 +88,11 @@ $(MISSPELL):
 
 .PHONY: misspell
 misspell:	$(MISSPELL)
-	$(MISSPELL) -error $(ALL_DOCS)
+	find . -type f -name '*.md' -not -path './.github/*' -not -path './node_modules/*' -not -path './.git/*' -exec $(MISSPELL) -error {} +
 
 .PHONY: misspell-correction
 misspell-correction:	$(MISSPELL)
-	$(MISSPELL) -w $(ALL_DOCS)
+	find . -type f -name '*.md' -not -path './.github/*' -not -path './node_modules/*' -not -path './.git/*' -exec $(MISSPELL) -w {} +
 
 .PHONY: normalized-link-check
 # NOTE: Search "model/*/**" rather than "model" to skip `model/README.md`, which
@@ -126,22 +124,22 @@ markdown-link-check-local-only: normalized-link-check
 #   <!-- tocstop -->
 .PHONY: markdown-toc
 markdown-toc:
-	@if ! npm ls markdown-toc; then npm install; fi
-	@for f in $(ALL_DOCS); do \
-		if grep -q '<!-- tocstop -->' $$f; then \
-			echo markdown-toc: processing $$f; \
-			npx --no -- markdown-toc --bullets "-" --no-first-h1 --no-stripHeadingTags -i $$f || exit 1; \
-		elif grep -q '<!-- toc -->' $$f; then \
-			echo markdown-toc: ERROR: '<!-- tocstop -->' missing from $$f; exit 1; \
+	@if ! npm ls markdown-toc; then npm ci --ignore-scripts; fi
+	@find . -type f -name '*.md' -not -path './.github/*' -not -path './node_modules/*' -not -path './.git/*' | while read -r f; do \
+		if grep -q '<!-- tocstop -->' "$$f"; then \
+			echo markdown-toc: processing "$$f"; \
+			npx --no -- markdown-toc --bullets "-" --no-first-h1 --no-stripHeadingTags -i "$$f" || exit 1; \
+		elif grep -q '<!-- toc -->' "$$f"; then \
+			echo markdown-toc: ERROR: '<!-- tocstop -->' missing from "$$f"; exit 1; \
 		else \
-			echo markdown-toc: no TOC markers, skipping $$f; \
+			echo markdown-toc: no TOC markers, skipping "$$f"; \
 		fi; \
 	done
 
 .PHONY: markdownlint
 markdownlint:
-	@if ! npm ls markdownlint-cli; then npm install; fi
-	npx --no -- markdownlint-cli -c .markdownlint.yaml $(ALL_DOCS)
+	@if ! npm ls markdownlint-cli; then npm ci --ignore-scripts; fi
+	npx --no -- markdownlint-cli -c .markdownlint.yaml "**/*.md" --ignore ./.github/ --ignore ./node_modules/ --ignore ./.git/
 
 .PHONY: install-yamllint
 install-yamllint:
@@ -162,7 +160,7 @@ table-generation:
 		--mount 'type=bind,source=$(PWD)/docs,target=/home/weaver/target' \
 		$(WEAVER_CONTAINER) registry update-markdown \
 		--registry=/home/weaver/source \
-		-Dregistry_base_url=/docs/registry/ \
+		--param registry_base_url=/docs/registry/ \
 		--templates=/home/weaver/templates \
 		--target=markdown \
 		--future \
@@ -197,7 +195,7 @@ table-check:
 		--mount 'type=bind,source=$(PWD)/docs,target=/home/weaver/target,readonly' \
 		$(WEAVER_CONTAINER) registry update-markdown \
 		--registry=/home/weaver/source \
-		-Dregistry_base_url=/docs/registry/ \
+		--param registry_base_url=/docs/registry/ \
 		--templates=/home/weaver/templates \
 		--target=markdown \
 		--dry-run \
@@ -222,7 +220,7 @@ fix: table-generation registry-generation misspell-correction markdown-toc
 
 .PHONY: install-tools
 install-tools: $(MISSPELL)
-	npm install
+	npm ci --ignore-scripts
 	@echo "All tools installed"
 
 $(CHLOGGEN):
@@ -323,6 +321,9 @@ generate-schema-next:
 	mkdir -p $(TOOLS_DIR)/bin
 	$(DOCKER_RUN) --rm \
 	$(DOCKER_USER_IS_HOST_USER_ARG) \
+	--env USER=weaver \
+	--env HOME=/home/weaver \
+	-v $(shell mktemp -d):/home/weaver/.weaver \
 	--mount 'type=bind,source=$(PWD)/internal/tools/scripts,target=/home/weaver/templates,readonly' \
 	--mount 'type=bind,source=$(PWD)/model,target=/home/weaver/source,readonly' \
 	--mount 'type=bind,source=$(TOOLS_DIR)/bin,target=/home/weaver/target' \
@@ -334,3 +335,11 @@ generate-schema-next:
 		--output /home/weaver/target
 		# --param next_version=$(NEXT_SEMCONV_VERSION)
 	$(TOOLS_DIR)/scripts/generate-schema-next.sh $(NEXT_SEMCONV_VERSION) $(LATEST_RELEASED_SEMCONV_VERSION) $(TOOLS_DIR)/bin/schema-diff.yaml
+
+.PHONY: areas-table-generation
+areas-table-generation:
+	docker run --rm -v ${PWD}:/repo -w /repo python:3-alpine python internal/tools/scripts/update-areas-table.py --install;
+
+.PHONY: areas-table-check
+areas-table-check:
+	docker run --rm -v ${PWD}:/repo -w /repo python:3-alpine python internal/tools/scripts/update-areas-table.py --install --check;
