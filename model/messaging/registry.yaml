@@ -192,6 +192,10 @@ groups:
               value: 'gcp_pubsub'
               brief: 'Google Cloud Pub/Sub'
               stability: development
+            - id: ibmmq
+              value: 'ibmmq'
+              brief: 'IBM MQ'
+              stability: development
             - id: jms
               value: 'jms'
               brief: 'Java Message Service'
