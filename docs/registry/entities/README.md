@@ -57,6 +57,7 @@ Currently, the following namespaces exist:
 | | [gcp.apphub.workload](gcp.md#gcp-apphub-workload) | ![Development](https://img.shields.io/badge/-development-blue) |
 | | [gcp.cloud_run](gcp.md#gcp-cloud-run) | ![Development](https://img.shields.io/badge/-development-blue) |
 | | [gcp.gce](gcp.md#gcp-gce) | ![Development](https://img.shields.io/badge/-development-blue) |
+| | [gcp.gce.instance_group_manager](gcp.md#gcp-gce-instance-group-manager) | ![Development](https://img.shields.io/badge/-development-blue) |
 | Heroku | | |
 | | [heroku](heroku.md#heroku) | ![Development](https://img.shields.io/badge/-development-blue) |
 | Host | | |
