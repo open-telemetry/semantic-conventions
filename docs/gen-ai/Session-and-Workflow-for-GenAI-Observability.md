@@ -84,7 +84,7 @@ To support debugging, workflow spans may optionally capture input/output via eve
 **Examples of Workflows**
 - Crew kick off in CrewAI
 - Root chain in LangGraph
-- OpenAI Agents invocation has a callback for a trace start or explicit trace start for multiple agents.
+- OpenAI Agents higher level trace for multiple agents.
 - ADK agents have workflow agents(multi-agent sequential, loop, parallel)
 ---
 
