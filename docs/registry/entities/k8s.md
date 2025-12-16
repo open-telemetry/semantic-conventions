@@ -49,17 +49,13 @@ conflict.
 
 **Description:** A container in a [PodTemplate](https://kubernetes.io/docs/concepts/workloads/pods/#pod-templates).
 
-> [!warning]
-> This entity definition contains attributes without a role.
-> Stable Entities MUST NOT have attributes without a defined role.
-
 **Attributes:**
 
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- | --- |
-| Other | [`k8s.container.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the Container from Pod specification, must be unique within a Pod. Container runtime usually uses different globally unique name (`container.name`). | `redis` |
-| Other | [`k8s.container.restart_count`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | int | Number of times the container was restarted. This attribute can be used to identify a particular container (running or stopped) within a container spec. | |
-| Other | [`k8s.container.status.last_terminated_reason`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Last terminated reason of the Container. | `Evicted`; `Error` |
+| Identity | [`k8s.container.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the Container from Pod specification, must be unique within a Pod. Container runtime usually uses different globally unique name (`container.name`). | `redis` |
+| Description | [`k8s.container.restart_count`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | int | Number of times the container was restarted. This attribute can be used to identify a particular container (running or stopped) within a container spec. | |
+| Description | [`k8s.container.status.last_terminated_reason`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Last terminated reason of the Container. | `Evicted`; `Error` |
 
 ## K8s Cronjob
 
@@ -217,17 +213,13 @@ conflict.
 
 **Description:** A Kubernetes Namespace.
 
-> [!warning]
-> This entity definition contains attributes without a role.
-> Stable Entities MUST NOT have attributes without a defined role.
-
 **Attributes:**
 
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- | --- |
-| Other | [`k8s.namespace.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the namespace that the pod is running in. | `default` |
-| Other | [`k8s.namespace.annotation.<key>`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The annotation placed on the Namespace, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [13] | `0`; `` |
-| Other | [`k8s.namespace.label.<key>`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The label placed on the Namespace, the `<key>` being the label name, the value being the label value, even if the value is empty. [14] | `default`; `` |
+| Identity | [`k8s.namespace.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the namespace that the pod is running in. | `default` |
+| Description | [`k8s.namespace.annotation.<key>`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The annotation placed on the Namespace, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [13] | `0`; `` |
+| Description | [`k8s.namespace.label.<key>`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The label placed on the Namespace, the `<key>` being the label name, the value being the label value, even if the value is empty. [14] | `default`; `` |
 
 **[13] `k8s.namespace.annotation.<key>`:** Examples:
 
