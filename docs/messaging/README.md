@@ -24,9 +24,9 @@ This document defines semantic conventions for messaging systems spans, metrics 
 >   * `messaging` - emit the new, stable messaging conventions,
 >     and stop emitting the old experimental messaging conventions
 >     that the instrumentation emitted previously.
->   * `messaging_latest_experimental` - emit the latest experimental version of
-      Messaging semantic conventions (supported by the instrumentation) and do not emit the
-      old one (v1.24.0 or prior).
+>   * `messaging_latest_experimental` - emit the latest in-development messaging conventions
+>     and stop emitting the old experimental conventions (v1.24.0 or prior). If stable
+>     messaging conventions are available, emit both stable and latest in-development conventions.
 >   * `messaging/dup` - emit both the old and the stable messaging conventions,
 >     allowing for a seamless transition.
 >   * The default behavior (in the absence of one of these values) is to continue
