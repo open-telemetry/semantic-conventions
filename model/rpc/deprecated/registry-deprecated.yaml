@@ -293,5 +293,3 @@ groups:
           reason: uncategorized
           note: 'Value should be included in `rpc.method.name` which is expected
             to be a fully-qualified name.'
-
-

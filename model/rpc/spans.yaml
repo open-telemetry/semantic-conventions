@@ -196,8 +196,6 @@ groups:
       document for details on how to record span status. See also `rpc.response.status_code` attribute
       for the details on which values classify as errors.
     attributes:
-      - ref: rpc.method.name
-        requirement_level: required
       - ref: rpc.response.status_code
         requirement_level: required
         brief: >

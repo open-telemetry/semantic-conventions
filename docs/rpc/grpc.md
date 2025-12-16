@@ -175,10 +175,10 @@ for the details on which values classify as errors.
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`rpc.method.name`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The fully-qualified logical name of the method from the RPC interface perspective. [1] | `com.example.ExampleService/exampleMethod`; `EchoService/Echo`; `_OTHER` |
-| [`rpc.response.status_code`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The string representation of the [status code](https://github.com/grpc/grpc/blob/v1.75.0/doc/statuscodes.md) returned by the server. [2] | `OK`; `DEADLINE_EXCEEDED`; `-32602` |
-| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | RPC server [host name](https://grpc.github.io/grpc/core/md_doc_naming.html). [3] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
-| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the operation failed. | string | Describes a class of error the operation ended with. [4] | `DEADLINE_EXCEEDED`; `java.net.UnknownHostException`; `-32602` |
+| [`rpc.response.status_code`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The string representation of the [status code](https://github.com/grpc/grpc/blob/v1.75.0/doc/statuscodes.md) returned by the server. [1] | `OK`; `DEADLINE_EXCEEDED`; `-32602` |
+| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | RPC server [host name](https://grpc.github.io/grpc/core/md_doc_naming.html). [2] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
+| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the operation failed. | string | Describes a class of error the operation ended with. [3] | `DEADLINE_EXCEEDED`; `java.net.UnknownHostException`; `-32602` |
+| [`rpc.method.name`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` if available. | string | The fully-qualified logical name of the method from the RPC interface perspective. [4] | `com.example.ExampleService/exampleMethod`; `EchoService/Echo`; `_OTHER` |
 | [`rpc.method.name_original`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [5] | string | The original name of the method used by the client. | `com.myservice.EchoService/catchAll`; `com.myservice.EchoService/unknownMethod`; `InvalidMethod` |
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [6] | int | Server port number. [7] | `80`; `8080`; `443` |
 | [`client.address`](/docs/registry/attributes/client.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Client address - domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [8] | `client.example.com`; `10.1.2.80`; `/tmp/my.sock` |
@@ -191,7 +191,32 @@ for the details on which values classify as errors.
 | [`rpc.request.metadata.<key>`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string[] | RPC request metadata, `<key>` being the normalized RPC metadata key (lowercase), the value being the metadata values. [13] | `["1.2.3.4", "1.2.3.5"]` |
 | [`rpc.response.metadata.<key>`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string[] | RPC response metadata, `<key>` being the normalized RPC metadata key (lowercase), the value being the metadata values. [14] | `["attribute_value"]` |
 
-**[1] `rpc.method.name`:** The method name MAY have unbounded cardinality in edge or error cases.
+**[1] `rpc.response.status_code`:** The following status codes SHOULD be considered errors:
+
+- `UNKNOWN`
+- `DEADLINE_EXCEEDED`
+- `UNIMPLEMENTED`
+- `INTERNAL`
+- `UNAVAILABLE`
+- `DATA_LOSS`
+
+**[2] `server.address`:** May contain server IP address, DNS name, or local socket name. When host component is an IP address, instrumentations SHOULD NOT do a reverse proxy lookup to obtain DNS name and SHOULD set `server.address` to the IP address provided in the host component.
+
+**[3] `error.type`:** If the RPC fails with an error before status code is returned,
+`error.type` SHOULD be set to the exception type (its fully-qualified class name, if applicable)
+or a component-specific, low cardinality error identifier.
+
+If a response status code is returned and status indicates an error,
+`error.type` SHOULD be set to that status code. Check system-specific conventions
+for the details on which values of `rpc.response.status_code` are considered errors.
+
+The `error.type` value SHOULD be predictable and SHOULD have low cardinality.
+Instrumentations SHOULD document the list of errors they report.
+
+If the request has completed successfully, instrumentations SHOULD NOT set
+`error.type`.
+
+**[4] `rpc.method.name`:** The method name MAY have unbounded cardinality in edge or error cases.
 
 Some RPC frameworks or libraries provide a fixed set of recognized methods
 for client stubs and server implementations. Instrumentations for such
@@ -214,31 +239,6 @@ method/function.
 The `code.function.name` attribute may be used to record the fully-qualified
 method actually executing the call on the server side, or the
 RPC client stub method on the client side.
-
-**[2] `rpc.response.status_code`:** The following status codes SHOULD be considered errors:
-
-- `UNKNOWN`
-- `DEADLINE_EXCEEDED`
-- `UNIMPLEMENTED`
-- `INTERNAL`
-- `UNAVAILABLE`
-- `DATA_LOSS`
-
-**[3] `server.address`:** May contain server IP address, DNS name, or local socket name. When host component is an IP address, instrumentations SHOULD NOT do a reverse proxy lookup to obtain DNS name and SHOULD set `server.address` to the IP address provided in the host component.
-
-**[4] `error.type`:** If the RPC fails with an error before status code is returned,
-`error.type` SHOULD be set to the exception type (its fully-qualified class name, if applicable)
-or a component-specific, low cardinality error identifier.
-
-If a response status code is returned and status indicates an error,
-`error.type` SHOULD be set to that status code. Check system-specific conventions
-for the details on which values of `rpc.response.status_code` are considered errors.
-
-The `error.type` value SHOULD be predictable and SHOULD have low cardinality.
-Instrumentations SHOULD document the list of errors they report.
-
-If the request has completed successfully, instrumentations SHOULD NOT set
-`error.type`.
 
 **[5] `rpc.method.name_original`:** If and only if it's different than `rpc.method.name`.
 
