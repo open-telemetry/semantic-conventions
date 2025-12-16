@@ -22,9 +22,7 @@ groups:
         note: ""  # overriding the default note
         requirement_level:
           recommended: When applicable.
-      - ref: rpc.jsonrpc.version
-        brief: The version of JSON-RPC protocol used.
-        note: ""  # overriding the default note
+      - ref: jsonrpc.protocol.version
         requirement_level:
           recommended: when it's not `2.0`.
       - ref: network.transport

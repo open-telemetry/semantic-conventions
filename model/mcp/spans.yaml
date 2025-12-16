@@ -10,7 +10,7 @@ groups:
       - ref: mcp.resource.uri
         requirement_level:
           conditionally_required: When the client executes a request type that includes a resource URI parameter.
-      - ref: mcp.request.id
+      - ref: jsonrpc.request.id
         requirement_level:
           conditionally_required: When the client executes a request.
 

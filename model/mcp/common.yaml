@@ -44,7 +44,8 @@ groups:
       - ref: mcp.method.name
         requirement_level: required
       - ref: mcp.protocol.version
-      - ref: rpc.jsonrpc.error_code  # todo: this is being unified in https://github.com/open-telemetry/semantic-conventions/pull/2920
+      - ref: rpc.response.status_code
+        brief: The error code from the JSON-RPC response.
         requirement_level:
           conditionally_required: If response contains an error code.
       - ref: network.protocol.name
@@ -57,8 +58,6 @@ groups:
         note: ""  # overriding the default note
         requirement_level:
           recommended: When applicable.
-      - ref: rpc.jsonrpc.version
-        brief: The version of JSON-RPC protocol used.
-        note: ""  # overriding the default note
+      - ref: jsonrpc.protocol.version
         requirement_level:
           recommended: when it's not `2.0`.

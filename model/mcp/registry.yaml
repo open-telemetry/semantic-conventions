@@ -135,12 +135,6 @@ groups:
                 Request from the server to elicit additional information from the
                 user via the client
               stability: development
-      - id: mcp.request.id
-        type: string
-        brief: >
-          This is a unique identifier for the request.
-        stability: development
-        examples: ["42"]
       - id: mcp.session.id
         type: string
         brief: Identifies [MCP session](https://modelcontextprotocol.io/specification/2025-06-18/basic/transports#session-management).
