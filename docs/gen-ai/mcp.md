@@ -18,6 +18,13 @@ linkTitle: Model Context Protocol
   - [Metric: `mcp.client.session.duration`](#metric-mcpclientsessionduration)
   - [Metric: `mcp.server.session.duration`](#metric-mcpserversessionduration)
 - [Recording MCP transport](#recording-mcp-transport)
+- [Examples](#examples)
+  - [Stdio transport](#stdio-transport)
+    - [Initialize](#initialize)
+    - [Tool call](#tool-call)
+  - [Streamable HTTP](#streamable-http)
+    - [Initialize](#initialize-1)
+    - [Tool call](#tool-call-1)
 
 <!-- tocstop -->
 
@@ -938,38 +945,38 @@ invoke_agent weather-forecast-agent (INTERNAL, trace=t1, span=s1)       # GenAI 
 
 MCP client span (`s3`):
 
-| Property                               | Value                                                                                                                                                |
-| :------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Span name                              | `"tools/call get-weather"`                                                                                                                           |
-| Span kind                              | `CLIENT`                                                                                                                                             |
-| Span status                            | `UNSET`                                                                                                                                              |
-| Attribute `gen_ai.operation.name`      | `"execute_tool"`                                                                                                                                     |
-| Attribute `gen_ai.tool.call.arguments` | `{<br>&nbsp;&nbsp;&nbsp;&nbsp;"location": "San Francisco?",<br>&nbsp;&nbsp;&nbsp;&nbsp;"date": "2025-10-01"<br>}` (if enabled)                       |
-| Attribute `gen_ai.tool.call.result`    | `{<br>&nbsp;&nbsp;"temperature_range": {<br>&nbsp;&nbsp;&nbsp;&nbsp;"high": 75,<br>&nbsp;&nbsp;&nbsp;&nbsp;"low": 60<br>&nbsp;&nbsp;}}` (if enabled) |
-| Attribute `gen_ai.tool.name`           | `"get-weather"`                                                                                                                                      |
-| Attribute `mcp.method.name`            | `"tools/call"`                                                                                                                                       |
-| Attribute `mcp.request.id`             | `"3"`                                                                                                                                                |
-| Attribute `mcp.session.id`             | `"8267461134f24305af708e66b8eda71a"`                                                                                                                 |
-| Attribute `mcp.protocol.version`       | `"2025-06-18"`                                                                                                                                       |
-| Attribute `network.transport`          | `"pipe"`                                                                                                                                             |
+| Property                               | Value                                                                                                                                                     |
+| :------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Span name                              | `"tools/call get-weather"`                                                                                                                                |
+| Span kind                              | `CLIENT`                                                                                                                                                  |
+| Span status                            | `UNSET`                                                                                                                                                   |
+| Attribute `gen_ai.operation.name`      | `"execute_tool"`                                                                                                                                          |
+| Attribute `gen_ai.tool.call.arguments` | (if enabled)<br>{<br>&nbsp;&nbsp;&nbsp;&nbsp;"location": "San Francisco?",<br>&nbsp;&nbsp;&nbsp;&nbsp;"date": "2025-10-01"<br>}                           |
+| Attribute `gen_ai.tool.call.result`    | (if enabled)<br>{<br>&nbsp;&nbsp;"temperature_range": {<br>&nbsp;&nbsp;&nbsp;&nbsp;"high": 75,<br>&nbsp;&nbsp;&nbsp;&nbsp;"low": 60<br>&nbsp;&nbsp;}<br>} |
+| Attribute `gen_ai.tool.name`           | `"get-weather"`                                                                                                                                           |
+| Attribute `mcp.method.name`            | `"tools/call"`                                                                                                                                            |
+| Attribute `mcp.request.id`             | `"3"`                                                                                                                                                     |
+| Attribute `mcp.session.id`             | `"8267461134f24305af708e66b8eda71a"`                                                                                                                      |
+| Attribute `mcp.protocol.version`       | `"2025-06-18"`                                                                                                                                            |
+| Attribute `network.transport`          | `"pipe"`                                                                                                                                                  |
 
 MCP server span (`s4`):
 
-| Property                               | Value                                                                                                                                                |
-| :------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Span name                              | `"tools/call get-weather"`                                                                                                                           |
-| Span kind                              | `SERVER`                                                                                                                                             |
-| Span parent                            | `s3` (MCP client span)                                                                                                                               |
-| Span status                            | `UNSET`                                                                                                                                              |
-| Attribute `gen_ai.operation.name`      | `"execute_tool"`                                                                                                                                     |
-| Attribute `gen_ai.tool.call.arguments` | `{<br>&nbsp;&nbsp;&nbsp;&nbsp;"location": "San Francisco?",<br>&nbsp;&nbsp;&nbsp;&nbsp;"date": "2025-10-01"<br>}` (if enabled)                       |
-| Attribute `gen_ai.tool.call.result`    | `{<br>&nbsp;&nbsp;"temperature_range": {<br>&nbsp;&nbsp;&nbsp;&nbsp;"high": 75,<br>&nbsp;&nbsp;&nbsp;&nbsp;"low": 60<br>&nbsp;&nbsp;}}` (if enabled) |
-| Attribute `gen_ai.tool.name`           | `"get-weather"`                                                                                                                                      |
-| Attribute `mcp.method.name`            | `"tools/call"`                                                                                                                                       |
-| Attribute `mcp.request.id`             | `"3"`                                                                                                                                                |
-| Attribute `mcp.session.id`             | `"8267461134f24305af708e66b8eda71a"`                                                                                                                 |
-| Attribute `mcp.protocol.version`       | `"2025-06-18"`                                                                                                                                       |
-| Attribute `network.transport`          | `"pipe"`                                                                                                                                             |
+| Property                               | Value                                                                                                                                                     |
+| :------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Span name                              | `"tools/call get-weather"`                                                                                                                                |
+| Span kind                              | `SERVER`                                                                                                                                                  |
+| Span parent                            | `s3` (MCP client span)                                                                                                                                    |
+| Span status                            | `UNSET`                                                                                                                                                   |
+| Attribute `gen_ai.operation.name`      | `"execute_tool"`                                                                                                                                          |
+| Attribute `gen_ai.tool.call.arguments` | (if enabled)<br>{<br>&nbsp;&nbsp;&nbsp;&nbsp;"location": "San Francisco?",<br>&nbsp;&nbsp;&nbsp;&nbsp;"date": "2025-10-01"<br>}                           |
+| Attribute `gen_ai.tool.call.result`    | (if enabled)<br>{<br>&nbsp;&nbsp;"temperature_range": {<br>&nbsp;&nbsp;&nbsp;&nbsp;"high": 75,<br>&nbsp;&nbsp;&nbsp;&nbsp;"low": 60<br>&nbsp;&nbsp;}<br>} |
+| Attribute `gen_ai.tool.name`           | `"get-weather"`                                                                                                                                           |
+| Attribute `mcp.method.name`            | `"tools/call"`                                                                                                                                            |
+| Attribute `mcp.request.id`             | `"3"`                                                                                                                                                     |
+| Attribute `mcp.session.id`             | `"8267461134f24305af708e66b8eda71a"`                                                                                                                      |
+| Attribute `mcp.protocol.version`       | `"2025-06-18"`                                                                                                                                            |
+| Attribute `network.transport`          | `"pipe"`                                                                                                                                                  |
 
 ### Streamable HTTP
 
@@ -1053,40 +1060,40 @@ MCP client span (`s4`).
 
 MCP client span (`s4`):
 
-| Property                               | Value                                                                                                                                                |
-| :------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Span name                              | `"tools/call get-weather"`                                                                                                                           |
-| Span kind                              | `CLIENT`                                                                                                                                             |
-| Span status                            | `UNSET`                                                                                                                                              |
-| Attribute `gen_ai.operation.name`      | `"execute_tool"`                                                                                                                                     |
-| Attribute `gen_ai.tool.call.arguments` | `{<br>&nbsp;&nbsp;&nbsp;&nbsp;"location": "San Francisco?",<br>&nbsp;&nbsp;&nbsp;&nbsp;"date": "2025-10-01"<br>}` (if enabled)                       |
-| Attribute `gen_ai.tool.call.result`    | `{<br>&nbsp;&nbsp;"temperature_range": {<br>&nbsp;&nbsp;&nbsp;&nbsp;"high": 75,<br>&nbsp;&nbsp;&nbsp;&nbsp;"low": 60<br>&nbsp;&nbsp;}}` (if enabled) |
-| Attribute `gen_ai.tool.name`           | `"get-weather"`                                                                                                                                      |
-| Attribute `mcp.method.name`            | `"tools/call"`                                                                                                                                       |
-| Attribute `mcp.request.id`             | `"3"`                                                                                                                                                |
-| Attribute `mcp.session.id`             | `"8267461134f24305af708e66b8eda71a"`                                                                                                                 |
-| Attribute `mcp.protocol.version`       | `"2025-06-18"`                                                                                                                                       |
-| Attribute `network.protocol.name   `   | `"http"`                                                                                                                                             |
-| Attribute `network.protocol.version`   | `"2"`                                                                                                                                                |
-| Attribute `network.transport`          | `"tcp"`                                                                                                                                              |
+| Property                               | Value                                                                                                                                                     |
+| :------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Span name                              | `"tools/call get-weather"`                                                                                                                                |
+| Span kind                              | `CLIENT`                                                                                                                                                  |
+| Span status                            | `UNSET`                                                                                                                                                   |
+| Attribute `gen_ai.operation.name`      | `"execute_tool"`                                                                                                                                          |
+| Attribute `gen_ai.tool.call.arguments` | (if enabled)<br>{<br>&nbsp;&nbsp;&nbsp;&nbsp;"location": "San Francisco?",<br>&nbsp;&nbsp;&nbsp;&nbsp;"date": "2025-10-01"<br>}                           |
+| Attribute `gen_ai.tool.call.result`    | (if enabled)<br>{<br>&nbsp;&nbsp;"temperature_range": {<br>&nbsp;&nbsp;&nbsp;&nbsp;"high": 75,<br>&nbsp;&nbsp;&nbsp;&nbsp;"low": 60<br>&nbsp;&nbsp;}<br>} |
+| Attribute `gen_ai.tool.name`           | `"get-weather"`                                                                                                                                           |
+| Attribute `mcp.method.name`            | `"tools/call"`                                                                                                                                            |
+| Attribute `mcp.request.id`             | `"3"`                                                                                                                                                     |
+| Attribute `mcp.session.id`             | `"8267461134f24305af708e66b8eda71a"`                                                                                                                      |
+| Attribute `mcp.protocol.version`       | `"2025-06-18"`                                                                                                                                            |
+| Attribute `network.protocol.name   `   | `"http"`                                                                                                                                                  |
+| Attribute `network.protocol.version`   | `"2"`                                                                                                                                                     |
+| Attribute `network.transport`          | `"tcp"`                                                                                                                                                   |
 
 MCP server span (`s7`):
 
-| Property                               | Value                                                                                                                                                |
-| :------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Span name                              | `"tools/call get-weather"`                                                                                                                           |
-| Span kind                              | `SERVER`                                                                                                                                             |
-| Span parent                            | `s4` (MCP client span)                                                                                                                               |
-| Span links                             | [`s6`] (HTTP server span)                                                                                                                            |
-| Span status                            | `UNSET`                                                                                                                                              |
-| Attribute `gen_ai.operation.name`      | `"execute_tool"`                                                                                                                                     |
-| Attribute `gen_ai.tool.call.arguments` | `{<br>&nbsp;&nbsp;&nbsp;&nbsp;"location": "San Francisco?",<br>&nbsp;&nbsp;&nbsp;&nbsp;"date": "2025-10-01"<br>}` (if enabled)                       |
-| Attribute `gen_ai.tool.call.result`    | `{<br>&nbsp;&nbsp;"temperature_range": {<br>&nbsp;&nbsp;&nbsp;&nbsp;"high": 75,<br>&nbsp;&nbsp;&nbsp;&nbsp;"low": 60<br>&nbsp;&nbsp;}}` (if enabled) |
-| Attribute `gen_ai.tool.name`           | `"get-weather"`                                                                                                                                      |
-| Attribute `mcp.method.name`            | `"tools/call"`                                                                                                                                       |
-| Attribute `mcp.request.id`             | `"3"`                                                                                                                                                |
-| Attribute `mcp.session.id`             | `"8267461134f24305af708e66b8eda71a"`                                                                                                                 |
-| Attribute `mcp.protocol.version`       | `"2025-06-18"`                                                                                                                                       |
-| Attribute `network.protocol.name   `   | `"http"`                                                                                                                                             |
-| Attribute `network.protocol.version`   | `"2"`                                                                                                                                                |
-| Attribute `network.transport`          | `"tcp"`                                                                                                                                              |
+| Property                               | Value                                                                                                                                                     |
+| :------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Span name                              | `"tools/call get-weather"`                                                                                                                                |
+| Span kind                              | `SERVER`                                                                                                                                                  |
+| Span parent                            | `s4` (MCP client span)                                                                                                                                    |
+| Span links                             | [`s6`] (HTTP server span)                                                                                                                                 |
+| Span status                            | `UNSET`                                                                                                                                                   |
+| Attribute `gen_ai.operation.name`      | `"execute_tool"`                                                                                                                                          |
+| Attribute `gen_ai.tool.call.arguments` | (if enabled)<br>{<br>&nbsp;&nbsp;&nbsp;&nbsp;"location": "San Francisco?",<br>&nbsp;&nbsp;&nbsp;&nbsp;"date": "2025-10-01"<br>}                           |
+| Attribute `gen_ai.tool.call.result`    | (if enabled)<br>{<br>&nbsp;&nbsp;"temperature_range": {<br>&nbsp;&nbsp;&nbsp;&nbsp;"high": 75,<br>&nbsp;&nbsp;&nbsp;&nbsp;"low": 60<br>&nbsp;&nbsp;}<br>} |
+| Attribute `gen_ai.tool.name`           | `"get-weather"`                                                                                                                                           |
+| Attribute `mcp.method.name`            | `"tools/call"`                                                                                                                                            |
+| Attribute `mcp.request.id`             | `"3"`                                                                                                                                                     |
+| Attribute `mcp.session.id`             | `"8267461134f24305af708e66b8eda71a"`                                                                                                                      |
+| Attribute `mcp.protocol.version`       | `"2025-06-18"`                                                                                                                                            |
+| Attribute `network.protocol.name   `   | `"http"`                                                                                                                                                  |
+| Attribute `network.protocol.version`   | `"2"`                                                                                                                                                     |
+| Attribute `network.transport`          | `"tcp"`                                                                                                                                                   |
