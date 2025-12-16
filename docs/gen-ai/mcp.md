@@ -25,10 +25,10 @@ linkTitle: Model Context Protocol
 
 When instrumenting MCP calls, it's RECOMMENDED to follow MCP conventions instead of [RPC semantic conventions](/docs/rpc/README.md)
 since MCP spans and metrics provide domain-specific context and record details
-that are not covered by the RPC conventions such as message exchange within streaming calls.
+that are not covered by the RPC conventions such as message exchanges within streaming calls.
 
-HTTP conventions (when HTTP used as transport) do not adequately cover MCP requests
-and notifications either, given that multiple MCP requests could be sent over single
+HTTP conventions (when HTTP is used as transport) do not adequately cover MCP requests
+and notifications either, given that multiple MCP requests could be sent over a single
 HTTP request in the corresponding request and response streams.
 
 ## Spans
@@ -94,6 +94,17 @@ property bag similarly to the following example:
 }
 ```
 
+MCP server instrumentation SHOULD, by default, use context extracted from MCP
+`params._meta` as a parent for MCP server span and SHOULD link current ambient
+context, if it's present.
+
+> [!NOTE]
+> MCP and underlying transport (such as HTTP) contexts are independent. One MCP
+> request can be served by multiple HTTP requests (for example, because of retries)
+> and one streamable HTTP request can serve more than one MCP request/notification.
+> MCP client becomes a parent of the MCP server span regardless of transport used;
+> span links allow recording the transport context (if present).
+
 ### Client
 
 <!-- semconv span.mcp.client -->
@@ -142,21 +153,21 @@ option to enable it.
 | [`mcp.method.name`](/docs/registry/attributes/mcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the request or notification method. | `notifications/cancelled`; `initialize`; `notifications/initialized` |
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the operation fails. | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` |
 | [`gen_ai.prompt.name`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` When operation is related to a specific prompt. | string | The name of the prompt or prompt template provided in the request or response. | `analyze-code` |
-| [`gen_ai.tool.call.arguments`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` When operation describes a tool call. | any | Parameters passed to the tool call. [2] | {<br>&nbsp;&nbsp;&nbsp;&nbsp;"location": "San Francisco?",<br>&nbsp;&nbsp;&nbsp;&nbsp;"date": "2025-10-01"<br>} |
-| [`gen_ai.tool.call.result`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` When operation describes a tool call. | any | The result returned by the tool call (if any and if execution was successful). [3] | {<br>&nbsp;&nbsp;"temperature_range": {<br>&nbsp;&nbsp;&nbsp;&nbsp;"high": 75,<br>&nbsp;&nbsp;&nbsp;&nbsp;"low": 60<br>&nbsp;&nbsp;},<br>&nbsp;&nbsp;"conditions": "sunny"<br>} |
 | [`gen_ai.tool.name`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` When operation is related to a specific tool. | string | Name of the tool utilized by the agent. | `Flights` |
 | [`mcp.request.id`](/docs/registry/attributes/mcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` When the client executes a request. | string | This is a unique identifier for the request. | `42` |
-| [`mcp.resource.uri`](/docs/registry/attributes/mcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [4] | string | The value of the resource uri. [5] | `postgres://database/customers/schema`; `file:///home/user/documents/report.pdf` |
-| [`rpc.jsonrpc.error_code`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If response contains an error code. | int | `error.code` property of response if it is an error response. | `-32700`; `100` |
-| [`gen_ai.operation.name`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` [6] | string | The name of the GenAI operation being performed. [7] | `execute_tool` |
+| [`mcp.resource.uri`](/docs/registry/attributes/mcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [2] | string | The value of the resource uri. [3] | `postgres://database/customers/schema`; `file:///home/user/documents/report.pdf` |
+| [`rpc.jsonrpc.error_code`](/docs/registry/attributes/rpc.md) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Use string representation of the error code on the `rpc.response.status_code` attribute. | `Conditionally Required` If response contains an error code. | int | Deprecated, use string representation on the `rpc.response.status_code` attribute instead. | `-32700`; `100` |
+| [`gen_ai.operation.name`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` [4] | string | The name of the GenAI operation being performed. [5] | `execute_tool` |
 | [`mcp.protocol.version`](/docs/registry/attributes/mcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The [version](https://modelcontextprotocol.io/specification/versioning) of the Model Context Protocol used. | `2025-06-18` |
-| [`mcp.session.id`](/docs/registry/attributes/mcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` [8] | string | Identifies [MCP session](https://modelcontextprotocol.io/specification/2025-06-18/basic/transports#session-management). | `191c4850af6c49e08843a3f6c80e5046` |
-| [`network.protocol.name`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` When applicable. | string | [OSI application layer](https://wikipedia.org/wiki/Application_layer) or non-OSI equivalent. [9] | `http`; `websocket` |
+| [`mcp.session.id`](/docs/registry/attributes/mcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` [6] | string | Identifies [MCP session](https://modelcontextprotocol.io/specification/2025-06-18/basic/transports#session-management). | `191c4850af6c49e08843a3f6c80e5046` |
+| [`network.protocol.name`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` When applicable. | string | [OSI application layer](https://wikipedia.org/wiki/Application_layer) or non-OSI equivalent. [7] | `http`; `websocket` |
 | [`network.protocol.version`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` When applicable. | string | The actual version of the protocol used for network communication. | `1.1`; `2` |
-| [`network.transport`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The transport protocol used for the MCP session. [10] | `tcp`; `quic`; `pipe` |
-| [`rpc.jsonrpc.version`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` when it's not `2.0`. | string | The version of JSON-RPC protocol used. | `2.0`; `1.0` |
-| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` If applicable | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [11] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
-| [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` When `server.address` is set | int | Server port number. [12] | `80`; `8080`; `443` |
+| [`network.transport`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The transport protocol used for the MCP session. [8] | `tcp`; `quic`; `pipe` |
+| [`rpc.jsonrpc.version`](/docs/registry/attributes/rpc.md) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `jsonrpc.protocol.version`. | `Recommended` when it's not `2.0`. | string | The version of JSON-RPC protocol used. | `2.0`; `1.0` |
+| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` If applicable | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [9] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
+| [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` When `server.address` is set | int | Server port number. [10] | `80`; `8080`; `443` |
+| [`gen_ai.tool.call.arguments`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | any | Parameters passed to the tool call. [11] | {<br>&nbsp;&nbsp;&nbsp;&nbsp;"location": "San Francisco?",<br>&nbsp;&nbsp;&nbsp;&nbsp;"date": "2025-10-01"<br>} |
+| [`gen_ai.tool.call.result`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | any | The result returned by the tool call (if any and if execution was successful). [12] | {<br>&nbsp;&nbsp;"temperature_range": {<br>&nbsp;&nbsp;&nbsp;&nbsp;"high": 75,<br>&nbsp;&nbsp;&nbsp;&nbsp;"low": 60<br>&nbsp;&nbsp;},<br>&nbsp;&nbsp;"conditions": "sunny"<br>} |
 
 **[1] `error.type`:** This attribute SHOULD be set to the string representation of the JSON-RPC
 error code, if one is returned.
@@ -168,39 +179,43 @@ string representation of the error. When
 is returned with `isError` set to `true`, this attribute SHOULD be set to
 `tool_error`.
 
-**[2] `gen_ai.tool.call.arguments`:** > [!WARNING]
-> This attribute may contain sensitive information.
+**[2] `mcp.resource.uri`:** When the client executes a request type that includes a resource URI parameter.
 
-It's expected to be an object - in case a serialized string is available
-to the instrumentation, the instrumentation SHOULD do the best effort to
-deserialize it to an object. When recorded on spans, it MAY be recorded as a JSON string if structured format is not supported and SHOULD be recorded in structured form otherwise.
+**[3] `mcp.resource.uri`:** This is a URI of the resource provided in the following requests or notifications: `resources/read`, `resources/subscribe`, `resources/unsubscribe`, or `notifications/resources/updated`.
 
-**[3] `gen_ai.tool.call.result`:** > [!WARNING]
-> This attribute may contain sensitive information.
+**[4] `gen_ai.operation.name`:** SHOULD be set to `execute_tool` when the operation describes a tool call and SHOULD NOT be set otherwise.
 
-It's expected to be an object - in case a serialized string is available
-to the instrumentation, the instrumentation SHOULD do the best effort to
-deserialize it to an object. When recorded on spans, it MAY be recorded as a JSON string if structured format is not supported and SHOULD be recorded in structured form otherwise.
+**[5] `gen_ai.operation.name`:** Populating this attribute for tool calling along with `mcp.method.name` allows consumers to treat MCP tool calls spans similarly with other tool call types.
 
-**[4] `mcp.resource.uri`:** When the client executes a request type that includes a resource URI parameter.
+**[6] `mcp.session.id`:** When the MCP request or notification is part of a session.
 
-**[5] `mcp.resource.uri`:** This is a URI of the resource provided in the following requests or notifications: `resources/read`, `resources/subscribe`, `resources/unsubscribe`, or `notifications/resources/updated`.
+**[7] `network.protocol.name`:** The value SHOULD be normalized to lowercase.
 
-**[6] `gen_ai.operation.name`:** SHOULD be set to `execute_tool` when the operation describes a tool call and SHOULD NOT be set otherwise.
-
-**[7] `gen_ai.operation.name`:** Populating this attribute for tool calling along with `mcp.method.name` allows consumers to treat MCP tool calls spans similarly with other tool call types.
-
-**[8] `mcp.session.id`:** When the MCP request or notification is part of a session.
-
-**[9] `network.protocol.name`:** The value SHOULD be normalized to lowercase.
-
-**[10] `network.transport`:** This attribute SHOULD be set to `tcp` or `quic` if the transport protocol
+**[8] `network.transport`:** This attribute SHOULD be set to `tcp` or `quic` if the transport protocol
 is HTTP.
 It SHOULD be set to `pipe` if the transport is stdio.
 
-**[11] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
+**[9] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
-**[12] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[10] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+
+**[11] `gen_ai.tool.call.arguments`:**
+
+> [!WARNING]
+> This attribute may contain sensitive information.
+
+It's expected to be an object - in case a serialized string is available
+to the instrumentation, the instrumentation SHOULD do the best effort to
+deserialize it to an object. When recorded on spans, it MAY be recorded as a JSON string if structured format is not supported and SHOULD be recorded in structured form otherwise.
+
+**[12] `gen_ai.tool.call.result`:**
+
+> [!WARNING]
+> This attribute may contain sensitive information.
+
+It's expected to be an object - in case a serialized string is available
+to the instrumentation, the instrumentation SHOULD do the best effort to
+deserialize it to an object. When recorded on spans, it MAY be recorded as a JSON string if structured format is not supported and SHOULD be recorded in structured form otherwise.
 
 ---
 
@@ -250,7 +265,7 @@ It SHOULD be set to `pipe` if the transport is stdio.
 | `resources/read` | Request to read a resource. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `resources/subscribe` | Request to subscribe to a resource. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `resources/templates/list` | Request to list resource templates available on server. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `resources/unsubscribe` | Request to unsubscribe from a resource updates. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `resources/unsubscribe` | Request to unsubscribe from resource updates. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `roots/list` | Request to list roots available on server. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `sampling/createMessage` | Request to create a sampling message. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `tools/call` | Request to call a tool. | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -313,7 +328,7 @@ for more details.
 | [`gen_ai.tool.name`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` When operation is related to a specific tool. | string | Name of the tool utilized by the agent. | `Flights` |
 | [`mcp.request.id`](/docs/registry/attributes/mcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` When the client executes a request. | string | This is a unique identifier for the request. | `42` |
 | [`mcp.resource.uri`](/docs/registry/attributes/mcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [2] | string | The value of the resource uri. [3] | `postgres://database/customers/schema`; `file:///home/user/documents/report.pdf` |
-| [`rpc.jsonrpc.error_code`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If response contains an error code. | int | `error.code` property of response if it is an error response. | `-32700`; `100` |
+| [`rpc.jsonrpc.error_code`](/docs/registry/attributes/rpc.md) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Use string representation of the error code on the `rpc.response.status_code` attribute. | `Conditionally Required` If response contains an error code. | int | Deprecated, use string representation on the `rpc.response.status_code` attribute instead. | `-32700`; `100` |
 | [`client.address`](/docs/registry/attributes/client.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` If applicable | string | Client address - domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [4] | `client.example.com`; `10.1.2.80`; `/tmp/my.sock` |
 | [`client.port`](/docs/registry/attributes/client.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` When `client.address` is set | int | Client port number. [5] | `65123` |
 | [`gen_ai.operation.name`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` [6] | string | The name of the GenAI operation being performed. [7] | `execute_tool` |
@@ -322,7 +337,7 @@ for more details.
 | [`network.protocol.name`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` When applicable. | string | [OSI application layer](https://wikipedia.org/wiki/Application_layer) or non-OSI equivalent. [9] | `http`; `websocket` |
 | [`network.protocol.version`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` When applicable. | string | The actual version of the protocol used for network communication. | `1.1`; `2` |
 | [`network.transport`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The transport protocol used for the MCP session. [10] | `tcp`; `quic`; `pipe` |
-| [`rpc.jsonrpc.version`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` when it's not `2.0`. | string | The version of JSON-RPC protocol used. | `2.0`; `1.0` |
+| [`rpc.jsonrpc.version`](/docs/registry/attributes/rpc.md) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `jsonrpc.protocol.version`. | `Recommended` when it's not `2.0`. | string | The version of JSON-RPC protocol used. | `2.0`; `1.0` |
 
 **[1] `error.type`:** This attribute SHOULD be set to the string representation of the JSON-RPC
 error code, if one is returned.
@@ -402,7 +417,7 @@ It SHOULD be set to `pipe` if the transport is stdio.
 | `resources/read` | Request to read a resource. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `resources/subscribe` | Request to subscribe to a resource. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `resources/templates/list` | Request to list resource templates available on server. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `resources/unsubscribe` | Request to unsubscribe from a resource updates. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `resources/unsubscribe` | Request to unsubscribe from resource updates. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `roots/list` | Request to list roots available on server. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `sampling/createMessage` | Request to create a sampling message. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `tools/call` | Request to call a tool. | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -451,13 +466,13 @@ of `[ 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10, 30, 60, 120, 300 ]`.
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the operation fails. | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` |
 | [`gen_ai.prompt.name`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` When operation is related to a specific prompt. | string | The name of the prompt or prompt template provided in the request or response. | `analyze-code` |
 | [`gen_ai.tool.name`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` When operation is related to a specific tool. | string | Name of the tool utilized by the agent. | `Flights` |
-| [`rpc.jsonrpc.error_code`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If response contains an error code. | int | `error.code` property of response if it is an error response. | `-32700`; `100` |
+| [`rpc.jsonrpc.error_code`](/docs/registry/attributes/rpc.md) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Use string representation of the error code on the `rpc.response.status_code` attribute. | `Conditionally Required` If response contains an error code. | int | Deprecated, use string representation on the `rpc.response.status_code` attribute instead. | `-32700`; `100` |
 | [`gen_ai.operation.name`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` [2] | string | The name of the GenAI operation being performed. [3] | `execute_tool` |
 | [`mcp.protocol.version`](/docs/registry/attributes/mcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The [version](https://modelcontextprotocol.io/specification/versioning) of the Model Context Protocol used. | `2025-06-18` |
 | [`network.protocol.name`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` When applicable. | string | [OSI application layer](https://wikipedia.org/wiki/Application_layer) or non-OSI equivalent. [4] | `http`; `websocket` |
 | [`network.protocol.version`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` When applicable. | string | The actual version of the protocol used for network communication. | `1.1`; `2` |
 | [`network.transport`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The transport protocol used for the MCP session. [5] | `tcp`; `quic`; `pipe` |
-| [`rpc.jsonrpc.version`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` when it's not `2.0`. | string | The version of JSON-RPC protocol used. | `2.0`; `1.0` |
+| [`rpc.jsonrpc.version`](/docs/registry/attributes/rpc.md) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `jsonrpc.protocol.version`. | `Recommended` when it's not `2.0`. | string | The version of JSON-RPC protocol used. | `2.0`; `1.0` |
 | [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` If applicable | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [6] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` When `server.address` is set | int | Server port number. [7] | `80`; `8080`; `443` |
 | [`mcp.resource.uri`](/docs/registry/attributes/mcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The value of the resource uri. [8] | `postgres://database/customers/schema`; `file:///home/user/documents/report.pdf` |
@@ -536,7 +551,7 @@ It SHOULD be set to `pipe` if the transport is stdio.
 | `resources/read` | Request to read a resource. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `resources/subscribe` | Request to subscribe to a resource. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `resources/templates/list` | Request to list resource templates available on server. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `resources/unsubscribe` | Request to unsubscribe from a resource updates. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `resources/unsubscribe` | Request to unsubscribe from resource updates. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `roots/list` | Request to list roots available on server. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `sampling/createMessage` | Request to create a sampling message. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `tools/call` | Request to call a tool. | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -583,13 +598,13 @@ of `[ 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10, 30, 60, 120, 300 ]`.
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the operation fails. | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` |
 | [`gen_ai.prompt.name`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` When operation is related to a specific prompt. | string | The name of the prompt or prompt template provided in the request or response. | `analyze-code` |
 | [`gen_ai.tool.name`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` When operation is related to a specific tool. | string | Name of the tool utilized by the agent. | `Flights` |
-| [`rpc.jsonrpc.error_code`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If response contains an error code. | int | `error.code` property of response if it is an error response. | `-32700`; `100` |
+| [`rpc.jsonrpc.error_code`](/docs/registry/attributes/rpc.md) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Use string representation of the error code on the `rpc.response.status_code` attribute. | `Conditionally Required` If response contains an error code. | int | Deprecated, use string representation on the `rpc.response.status_code` attribute instead. | `-32700`; `100` |
 | [`gen_ai.operation.name`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` [2] | string | The name of the GenAI operation being performed. [3] | `execute_tool` |
 | [`mcp.protocol.version`](/docs/registry/attributes/mcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The [version](https://modelcontextprotocol.io/specification/versioning) of the Model Context Protocol used. | `2025-06-18` |
 | [`network.protocol.name`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` When applicable. | string | [OSI application layer](https://wikipedia.org/wiki/Application_layer) or non-OSI equivalent. [4] | `http`; `websocket` |
 | [`network.protocol.version`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` When applicable. | string | The actual version of the protocol used for network communication. | `1.1`; `2` |
 | [`network.transport`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The transport protocol used for the MCP session. [5] | `tcp`; `quic`; `pipe` |
-| [`rpc.jsonrpc.version`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` when it's not `2.0`. | string | The version of JSON-RPC protocol used. | `2.0`; `1.0` |
+| [`rpc.jsonrpc.version`](/docs/registry/attributes/rpc.md) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `jsonrpc.protocol.version`. | `Recommended` when it's not `2.0`. | string | The version of JSON-RPC protocol used. | `2.0`; `1.0` |
 | [`mcp.resource.uri`](/docs/registry/attributes/mcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The value of the resource uri. [6] | `postgres://database/customers/schema`; `file:///home/user/documents/report.pdf` |
 
 **[1] `error.type`:** This attribute SHOULD be set to the string representation of the JSON-RPC
@@ -662,7 +677,7 @@ It SHOULD be set to `pipe` if the transport is stdio.
 | `resources/read` | Request to read a resource. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `resources/subscribe` | Request to subscribe to a resource. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `resources/templates/list` | Request to list resource templates available on server. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `resources/unsubscribe` | Request to unsubscribe from a resource updates. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `resources/unsubscribe` | Request to unsubscribe from resource updates. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `roots/list` | Request to list roots available on server. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `sampling/createMessage` | Request to create a sampling message. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `tools/call` | Request to call a tool. | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -710,7 +725,7 @@ of `[ 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10, 30, 60, 120, 300 ]`.
 | [`network.protocol.name`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` When applicable. | string | [OSI application layer](https://wikipedia.org/wiki/Application_layer) or non-OSI equivalent. [2] | `http`; `websocket` |
 | [`network.protocol.version`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` When applicable. | string | The actual version of the protocol used for network communication. | `1.1`; `2` |
 | [`network.transport`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The transport protocol used for the MCP session. [3] | `tcp`; `quic`; `pipe` |
-| [`rpc.jsonrpc.version`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` when it's not `2.0`. | string | The version of JSON-RPC protocol used. | `2.0`; `1.0` |
+| [`rpc.jsonrpc.version`](/docs/registry/attributes/rpc.md) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `jsonrpc.protocol.version`. | `Recommended` when it's not `2.0`. | string | The version of JSON-RPC protocol used. | `2.0`; `1.0` |
 | [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` If applicable | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [4] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` When `server.address` is set | int | Server port number. [5] | `80`; `8080`; `443` |
 
@@ -728,7 +743,7 @@ additional filters are applied.
 
 If the operation has completed successfully, instrumentations SHOULD NOT set `error.type`.
 
-If a specific domain defines its own set of error identifiers (such as HTTP or gRPC status codes),
+If a specific domain defines its own set of error identifiers (such as HTTP or RPC status codes),
 it's RECOMMENDED to:
 
 - Use a domain-specific attribute
@@ -793,7 +808,7 @@ of `[ 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10, 30, 60, 120, 300 ]`.
 | [`network.protocol.name`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` When applicable. | string | [OSI application layer](https://wikipedia.org/wiki/Application_layer) or non-OSI equivalent. [2] | `http`; `websocket` |
 | [`network.protocol.version`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` When applicable. | string | The actual version of the protocol used for network communication. | `1.1`; `2` |
 | [`network.transport`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The transport protocol used for the MCP session. [3] | `tcp`; `quic`; `pipe` |
-| [`rpc.jsonrpc.version`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` when it's not `2.0`. | string | The version of JSON-RPC protocol used. | `2.0`; `1.0` |
+| [`rpc.jsonrpc.version`](/docs/registry/attributes/rpc.md) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `jsonrpc.protocol.version`. | `Recommended` when it's not `2.0`. | string | The version of JSON-RPC protocol used. | `2.0`; `1.0` |
 
 **[1] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
@@ -809,7 +824,7 @@ additional filters are applied.
 
 If the operation has completed successfully, instrumentations SHOULD NOT set `error.type`.
 
-If a specific domain defines its own set of error identifiers (such as HTTP or gRPC status codes),
+If a specific domain defines its own set of error identifiers (such as HTTP or RPC status codes),
 it's RECOMMENDED to:
 
 - Use a domain-specific attribute
@@ -863,3 +878,215 @@ consumers to deduce transport type.
 Note: Applications may enable instrumentation for the underlying application protocol
 like HTTP (when applicable) alongside MCP instrumentation to capture additional
 transport-level details, such as transport-specific error codes.
+
+## Examples
+
+In these examples, we assume that GenAI framework is configured to use MCP tools,
+and that tool calls are handled manually, so that GenAI framework does not
+instrument corresponding tool calls.
+
+### Stdio transport
+
+#### Initialize
+
+```
+initialize (CLIENT, trace=t1, span=s1)                     # MCP client
+|
+-- initialize - (SERVER, trace=t1, span=s2, parent=s1)     # MCP server
+```
+
+MCP client span (`s1`):
+
+| Property                         | Value                                |
+| :------------------------------- | :----------------------------------- |
+| Span name                        | `"initialize"`                       |
+| Span kind                        | `CLIENT`                             |
+| Span status                      | `UNSET`                              |
+| Attribute `mcp.method.name`      | `"initialize"`                       |
+| Attribute `mcp.request.id`       | `"1"`                                |
+| Attribute `mcp.session.id`       | `"8267461134f24305af708e66b8eda71a"` |
+| Attribute `mcp.protocol.version` | `"2025-06-18"`                       |
+| Attribute `network.transport`    | `"pipe"`                             |
+
+MCP server span (`s2`):
+
+| Property                         | Value                                |
+| :------------------------------- | :----------------------------------- |
+| Span name                        | `"initialize"`                       |
+| Span kind                        | `SERVER`                             |
+| Span parent                      | `s1` (MCP client span)               |
+| Span status                      | `UNSET`                              |
+| Attribute `mcp.method.name`      | `"initialize"`                       |
+| Attribute `mcp.request.id`       | `"1"`                                |
+| Attribute `mcp.session.id`       | `"8267461134f24305af708e66b8eda71a"` |
+| Attribute `mcp.protocol.version` | `"2025-06-18"`                       |
+| Attribute `network.transport`    | `"pipe"`                             |
+
+#### Tool call
+
+```
+invoke_agent weather-forecast-agent (INTERNAL, trace=t1, span=s1)       # GenAI agent
+  |
+  -- chat {model} - (CLIENT, trace=t1, span=s2, parent=s1)              # GenAI model client
+  |
+  -- tools/call get-weather - (CLIENT, trace=t1, span=s3, parent=s1)    # MCP client
+  |   |
+  |   --- tools/call get-weather (SERVER, trace=t1, span=s4, parent=s3) # MCP server
+  |
+  -- chat {model} - (CLIENT, trace=t1, span=s5, parent=s1)              # GenAI model client
+```
+
+MCP client span (`s3`):
+
+| Property                               | Value                                                                                                                                                |
+| :------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Span name                              | `"tools/call get-weather"`                                                                                                                           |
+| Span kind                              | `CLIENT`                                                                                                                                             |
+| Span status                            | `UNSET`                                                                                                                                              |
+| Attribute `gen_ai.operation.name`      | `"execute_tool"`                                                                                                                                     |
+| Attribute `gen_ai.tool.call.arguments` | `{<br>&nbsp;&nbsp;&nbsp;&nbsp;"location": "San Francisco?",<br>&nbsp;&nbsp;&nbsp;&nbsp;"date": "2025-10-01"<br>}` (if enabled)                       |
+| Attribute `gen_ai.tool.call.result`    | `{<br>&nbsp;&nbsp;"temperature_range": {<br>&nbsp;&nbsp;&nbsp;&nbsp;"high": 75,<br>&nbsp;&nbsp;&nbsp;&nbsp;"low": 60<br>&nbsp;&nbsp;}}` (if enabled) |
+| Attribute `gen_ai.tool.name`           | `"get-weather"`                                                                                                                                      |
+| Attribute `mcp.method.name`            | `"tools/call"`                                                                                                                                       |
+| Attribute `mcp.request.id`             | `"3"`                                                                                                                                                |
+| Attribute `mcp.session.id`             | `"8267461134f24305af708e66b8eda71a"`                                                                                                                 |
+| Attribute `mcp.protocol.version`       | `"2025-06-18"`                                                                                                                                       |
+| Attribute `network.transport`          | `"pipe"`                                                                                                                                             |
+
+MCP server span (`s4`):
+
+| Property                               | Value                                                                                                                                                |
+| :------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Span name                              | `"tools/call get-weather"`                                                                                                                           |
+| Span kind                              | `SERVER`                                                                                                                                             |
+| Span parent                            | `s3` (MCP client span)                                                                                                                               |
+| Span status                            | `UNSET`                                                                                                                                              |
+| Attribute `gen_ai.operation.name`      | `"execute_tool"`                                                                                                                                     |
+| Attribute `gen_ai.tool.call.arguments` | `{<br>&nbsp;&nbsp;&nbsp;&nbsp;"location": "San Francisco?",<br>&nbsp;&nbsp;&nbsp;&nbsp;"date": "2025-10-01"<br>}` (if enabled)                       |
+| Attribute `gen_ai.tool.call.result`    | `{<br>&nbsp;&nbsp;"temperature_range": {<br>&nbsp;&nbsp;&nbsp;&nbsp;"high": 75,<br>&nbsp;&nbsp;&nbsp;&nbsp;"low": 60<br>&nbsp;&nbsp;}}` (if enabled) |
+| Attribute `gen_ai.tool.name`           | `"get-weather"`                                                                                                                                      |
+| Attribute `mcp.method.name`            | `"tools/call"`                                                                                                                                       |
+| Attribute `mcp.request.id`             | `"3"`                                                                                                                                                |
+| Attribute `mcp.session.id`             | `"8267461134f24305af708e66b8eda71a"`                                                                                                                 |
+| Attribute `mcp.protocol.version`       | `"2025-06-18"`                                                                                                                                       |
+| Attribute `network.transport`          | `"pipe"`                                                                                                                                             |
+
+### Streamable HTTP
+
+In the HTTP examples, we assume that HTTP instrumentation is enabled on both client
+and server side along with the MCP instrumentation.
+
+#### Initialize
+
+```
+initialize (CLIENT, trace=t1, span=s1)                  # MCP client
+ |
+ -- POST - (CLIENT, trace=t1, span=s2, parent=s1)       # HTTP client
+ |   |
+ |   --- POST - (SERVER, trace=t1, span=s3, parent=s2)  # HTTP server
+ |
+ -- initialize - (SERVER, trace=t1, span=s4, parent=s1) # MCP server
+ |
+ -- HTTP - (CLIENT, trace=t1, span=s5, parent=s1)       # HTTP client - notifications channel
+```
+
+Here, in addition to MCP client and server spans, we see HTTP client (`s3`)
+and server (`s4`) spans. MCP server span remains a child of the MCP client span
+(`s1`).
+
+MCP client span (`s1`):
+
+| Property                             | Value                                |
+| :----------------------------------- | :----------------------------------- |
+| Span name                            | `"initialize"`                       |
+| Span kind                            | `CLIENT`                             |
+| Span status                          | `UNSET`                              |
+| Attribute `mcp.method.name`          | `"initialize"`                       |
+| Attribute `mcp.request.id`           | `"1"`                                |
+| Attribute `mcp.session.id`           | `"8267461134f24305af708e66b8eda71a"` |
+| Attribute `mcp.protocol.version`     | `"2025-06-18"`                       |
+| Attribute `network.protocol.name   ` | `"http"`                             |
+| Attribute `network.protocol.version` |`"2"`                                 |
+| Attribute `network.transport`        | `"tcp"`                              |
+
+MCP server span (`s4`):
+
+| Property                             | Value                                |
+| :----------------------------------- | :----------------------------------- |
+| Span name                            | `"initialize"`                       |
+| Span kind                            | `SERVER`                             |
+| Span parent                          | `s1` (MCP client span)               |
+| Span links                           | [`s3`] (HTTP server span)            |
+| Span status                          | `UNSET`                              |
+| Attribute `mcp.method.name`          | `"initialize"`                       |
+| Attribute `mcp.request.id`           | `"1"`                                |
+| Attribute `mcp.session.id`           | `"8267461134f24305af708e66b8eda71a"` |
+| Attribute `mcp.protocol.version`     | `"2025-06-18"`                       |
+| Attribute `network.protocol.name   ` | `"http"`                             |
+| Attribute `network.protocol.version` | `"2"`                                |
+| Attribute `network.transport`        | `"tcp"`                              |
+
+#### Tool call
+
+```
+invoke_agent weather-forecast-agent (INTERNAL, trace=t1, span=s1)       # GenAI agent
+  |
+  -- chat {model} - (CLIENT, trace=t1, span=s2, parent=s1)              # GenAI model
+  |   |
+  |   --- POST (CLIENT, trace=t1, span=s3, parent=s2)                   # HTTP client
+  |
+  -- tools/call get-weather - (CLIENT, trace=t1, span=s4, parent=s1)    # MCP client
+  |   |
+  |   --- POST - (CLIENT, trace=t1, span=s5, parent=s4)                 # HTTP client
+  |   |   |
+  |   |   ---- POST - (SERVER, trace=t1, span=s6, parent=s5)            # HTTP server
+  |   |
+  |   --- tools/call get-weather (SERVER, trace=t1, span=s7, parent=s4) # MCP server
+  |
+  -- chat {model} - (CLIENT, trace=t1, span=s8, parent=s1)              # GenAI model
+  |   |
+  |   --- POST (CLIENT, trace=t1, span=s9, parent=s8)                   # HTTP server
+```
+
+Similarly to HTTP `initialize` example, MCP server (`s7`) span becomes a child of
+MCP client span (`s4`).
+
+MCP client span (`s4`):
+
+| Property                               | Value                                                                                                                                                |
+| :------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Span name                              | `"tools/call get-weather"`                                                                                                                           |
+| Span kind                              | `CLIENT`                                                                                                                                             |
+| Span status                            | `UNSET`                                                                                                                                              |
+| Attribute `gen_ai.operation.name`      | `"execute_tool"`                                                                                                                                     |
+| Attribute `gen_ai.tool.call.arguments` | `{<br>&nbsp;&nbsp;&nbsp;&nbsp;"location": "San Francisco?",<br>&nbsp;&nbsp;&nbsp;&nbsp;"date": "2025-10-01"<br>}` (if enabled)                       |
+| Attribute `gen_ai.tool.call.result`    | `{<br>&nbsp;&nbsp;"temperature_range": {<br>&nbsp;&nbsp;&nbsp;&nbsp;"high": 75,<br>&nbsp;&nbsp;&nbsp;&nbsp;"low": 60<br>&nbsp;&nbsp;}}` (if enabled) |
+| Attribute `gen_ai.tool.name`           | `"get-weather"`                                                                                                                                      |
+| Attribute `mcp.method.name`            | `"tools/call"`                                                                                                                                       |
+| Attribute `mcp.request.id`             | `"3"`                                                                                                                                                |
+| Attribute `mcp.session.id`             | `"8267461134f24305af708e66b8eda71a"`                                                                                                                 |
+| Attribute `mcp.protocol.version`       | `"2025-06-18"`                                                                                                                                       |
+| Attribute `network.protocol.name   `   | `"http"`                                                                                                                                             |
+| Attribute `network.protocol.version`   | `"2"`                                                                                                                                                |
+| Attribute `network.transport`          | `"tcp"`                                                                                                                                              |
+
+MCP server span (`s7`):
+
+| Property                               | Value                                                                                                                                                |
+| :------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Span name                              | `"tools/call get-weather"`                                                                                                                           |
+| Span kind                              | `SERVER`                                                                                                                                             |
+| Span parent                            | `s4` (MCP client span)                                                                                                                               |
+| Span links                             | [`s6`] (HTTP server span)                                                                                                                            |
+| Span status                            | `UNSET`                                                                                                                                              |
+| Attribute `gen_ai.operation.name`      | `"execute_tool"`                                                                                                                                     |
+| Attribute `gen_ai.tool.call.arguments` | `{<br>&nbsp;&nbsp;&nbsp;&nbsp;"location": "San Francisco?",<br>&nbsp;&nbsp;&nbsp;&nbsp;"date": "2025-10-01"<br>}` (if enabled)                       |
+| Attribute `gen_ai.tool.call.result`    | `{<br>&nbsp;&nbsp;"temperature_range": {<br>&nbsp;&nbsp;&nbsp;&nbsp;"high": 75,<br>&nbsp;&nbsp;&nbsp;&nbsp;"low": 60<br>&nbsp;&nbsp;}}` (if enabled) |
+| Attribute `gen_ai.tool.name`           | `"get-weather"`                                                                                                                                      |
+| Attribute `mcp.method.name`            | `"tools/call"`                                                                                                                                       |
+| Attribute `mcp.request.id`             | `"3"`                                                                                                                                                |
+| Attribute `mcp.session.id`             | `"8267461134f24305af708e66b8eda71a"`                                                                                                                 |
+| Attribute `mcp.protocol.version`       | `"2025-06-18"`                                                                                                                                       |
+| Attribute `network.protocol.name   `   | `"http"`                                                                                                                                             |
+| Attribute `network.protocol.version`   | `"2"`                                                                                                                                                |
+| Attribute `network.transport`          | `"tcp"`                                                                                                                                              |

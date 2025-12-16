@@ -45,7 +45,7 @@
 | `resources/read` | Request to read a resource. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `resources/subscribe` | Request to subscribe to a resource. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `resources/templates/list` | Request to list resource templates available on server. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `resources/unsubscribe` | Request to unsubscribe from a resource updates. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `resources/unsubscribe` | Request to unsubscribe from resource updates. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `roots/list` | Request to list roots available on server. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `sampling/createMessage` | Request to create a sampling message. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `tools/call` | Request to call a tool. | ![Development](https://img.shields.io/badge/-development-blue) |

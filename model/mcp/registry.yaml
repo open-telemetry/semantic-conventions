@@ -62,7 +62,7 @@ groups:
             - id: resources_unsubscribe
               value: resources/unsubscribe
               brief: >
-                Request to unsubscribe from a resource updates.
+                Request to unsubscribe from resource updates.
               stability: development
             - id: notifications_resources_updated
               value: notifications/resources/updated
