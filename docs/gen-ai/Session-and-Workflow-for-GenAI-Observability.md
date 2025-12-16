@@ -30,7 +30,7 @@ We propose a clear hierarchy to address these gaps:
     * *Definition:* The bounded period of activity for a user or principal (e.g., "Monday's login" or "Job Run #55").
 * **Workflow (`workflow` span):** The **Orchestration Unit**.
     * *Scope:* Framework-specific (Single trace or linked traces).
-    * *Definition:* A specific execution of a pre-defined logic path (e.g., "Router pattern").
+    * *Definition:* A specific execution of a pre-defined logic path (e.g., "Routing, Parallelization patterns").
 * **Agent (`agent` span):** The **Worker Unit**.
     * *Definition:* An autonomous entity performing a specific task within the workflow.
 * **Trace (`trace_id`):** The **Execution Mechanism**.
@@ -82,8 +82,8 @@ To support debugging, workflow spans may optionally capture input/output via eve
 
 
 **Examples of Workflows**
-- Crews in CrewAI
-- Chains in LangGraph
+- Crew kick off in CrewAI
+- Root chain in LangGraph
 - OpenAI Agents invocation has a callback for a trace start or explicit trace start for multiple agents.
 - ADK agents have workflow agents(multi-agent sequential, loop, parallel)
 ---
