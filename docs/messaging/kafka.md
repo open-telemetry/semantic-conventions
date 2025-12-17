@@ -16,7 +16,7 @@ linkTitle: Kafka
 
 The Semantic Conventions for [Apache Kafka](https://kafka.apache.org/) extend and override the [Messaging Semantic Conventions](README.md).
 
-> [!Warning]
+> [!IMPORTANT]
 >
 > Existing messaging instrumentations that are using
 > [v1.24.0 of this document](https://github.com/open-telemetry/semantic-conventions/blob/v1.24.0/docs/messaging/messaging-spans.md)
@@ -58,12 +58,12 @@ For Apache Kafka, the following additional attributes are defined:
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- |
 | [`messaging.operation.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The system-specific name of the messaging operation. | `ack`; `nack`; `send` |
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the messaging operation has failed. | string | Describes a class of error the operation ended with. [1] | `amqp:decode-error`; `KAFKA_STORAGE_ERROR`; `channel-error` |
 | [`messaging.batch.message_count`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [2] | int | The number of messages sent, received, or processed in the scope of the batching operation. [3] | `0`; `1`; `2` |
 | [`messaging.destination.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [4] | string | The message destination name [5] | `MyQueue`; `MyTopic` |
-| [`messaging.kafka.message.tombstone`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [6] | boolean | A boolean that is true if the message is a tombstone. |  |
+| [`messaging.kafka.message.tombstone`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [6] | boolean | A boolean that is true if the message is a tombstone. | |
 | [`messaging.operation.type`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If applicable. | string | A string identifying the type of the messaging operation. [7] | `create`; `send`; `receive` |
 | [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If available. | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [8] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 | [`messaging.client.id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A unique identifier for the client that consumes or produces a message. | `client-5`; `myhost@8742@s8083jm` |
@@ -89,7 +89,7 @@ additional filters are applied.
 
 If the operation has completed successfully, instrumentations SHOULD NOT set `error.type`.
 
-If a specific domain defines its own set of error identifiers (such as HTTP or gRPC status codes),
+If a specific domain defines its own set of error identifiers (such as HTTP or RPC status codes),
 it's RECOMMENDED to:
 
 - Use a domain-specific attribute
@@ -132,16 +132,16 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ---
 
 `messaging.operation.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `create` | A message is created. "Create" spans always refer to a single message and are used to provide a unique creation context for messages in batch sending scenarios. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `process` | One or more messages are processed by a consumer. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `receive` | One or more messages are requested by a consumer. This operation refers to pull-based scenarios, where consumers explicitly call methods of messaging SDKs to receive messages. | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -192,20 +192,20 @@ flowchart LR;
 ```
 
 | Field or Attribute | Producer | Consumer Span Poll | Consumer Span Process | Consumer Span Commit T |
-|-|-|-|-|-|
+| --- | --- | --- | --- | --- |
 | Span name | `"send T"` | `"poll T"` | `"process T"` | `"commit T"` |
-| Parent |  |  |  (optional) Span Send  | Span Process |
-| Links |  | Span Send | Span Send |  |
+| Parent | | | (optional) Span Send | Span Process |
+| Links | | Span Send | Span Send | |
 | SpanKind | `PRODUCER` | `CLIENT` | `CONSUMER` | `CLIENT` |
 | Status | `UNSET` | `UNSET` | `UNSET` | `UNSET` |
 | `messaging.system` | `"kafka"` | `"kafka"` | `"kafka"` | `"kafka"` |
 | `messaging.destination.name` | `"T"` | `"T"` | `"T"` | `"T"` |
-| `messaging.consumer.group.name` |  | `"my-group"` | `"my-group"` | `"my-group"` |
+| `messaging.consumer.group.name` | | `"my-group"` | `"my-group"` | `"my-group"` |
 | `messaging.destination.partition.id` | `"1"` | `"1"` | `"1"` | `"1"` |
 | `messaging.operation.name` | `"send"` | `"poll"` | `"process"` | `"commit"` |
-| `messaging.operation.type` | `"send"`  | `"receive"` | `"process"` | `"settle"` |
+| `messaging.operation.type` | `"send"` | `"receive"` | `"process"` | `"settle"` |
 | `messaging.client.id` | `"5"` | `"8"` | `"8"` | `"8"` |
-| `messaging.kafka.message.key` | `"myKey"` | `"myKey"` | `"myKey"` |  |
-| `messaging.kafka.offset` |  | `"12"` | `"12"` | `"12"` |
+| `messaging.kafka.message.key` | `"myKey"` | `"myKey"` | `"myKey"` | |
+| `messaging.kafka.offset` | | `"12"` | `"12"` | `"12"` |
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status

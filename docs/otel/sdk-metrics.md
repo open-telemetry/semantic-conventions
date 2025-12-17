@@ -47,22 +47,22 @@ This metric is [recommended][MetricRecommended].
 <!-- see templates/registry/markdown/snippet.md.j2 -->
 <!-- prettier-ignore-start -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `otel.sdk.span.live` | UpDownCounter | `{span}` | The number of created spans with `recording=true` for which the end operation has not been called yet. | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `otel.sdk.span.live` | UpDownCounter | `{span}` | The number of created spans with `recording=true` for which the end operation has not been called yet. | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- |
 | [`otel.span.sampling_result`](/docs/registry/attributes/otel.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The result value of the sampler for this span | `DROP`; `RECORD_ONLY`; `RECORD_AND_SAMPLE` |
 
 ---
 
 `otel.span.sampling_result` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `DROP` | The span is not sampled and not recording | ![Development](https://img.shields.io/badge/-development-blue) |
 | `RECORD_AND_SAMPLE` | The span is sampled and recording | ![Development](https://img.shields.io/badge/-development-blue) |
 | `RECORD_ONLY` | The span is not sampled, but recording | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -80,16 +80,16 @@ This metric is [recommended][MetricRecommended].
 <!-- see templates/registry/markdown/snippet.md.j2 -->
 <!-- prettier-ignore-start -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `otel.sdk.span.started` | Counter | `{span}` | The number of created spans. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `otel.sdk.span.started` | Counter | `{span}` | The number of created spans. [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 **[1]:** Implementations MUST record this metric for all spans, even for non-recording ones.
 
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- |
 | [`otel.span.parent.origin`](/docs/registry/attributes/otel.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Determines whether the span has a parent span, and if so, [whether it is a remote parent](https://opentelemetry.io/docs/specs/otel/trace/api/#isremote) | `none`; `local`; `remote` |
 | [`otel.span.sampling_result`](/docs/registry/attributes/otel.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The result value of the sampler for this span | `DROP`; `RECORD_ONLY`; `RECORD_AND_SAMPLE` |
 
@@ -97,8 +97,8 @@ This metric is [recommended][MetricRecommended].
 
 `otel.span.parent.origin` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `local` | The span has a parent and the parent's span context [isRemote()](https://opentelemetry.io/docs/specs/otel/trace/api/#isremote) is false | ![Development](https://img.shields.io/badge/-development-blue) |
 | `none` | The span does not have a parent, it is a root span | ![Development](https://img.shields.io/badge/-development-blue) |
 | `remote` | The span has a parent and the parent's span context [isRemote()](https://opentelemetry.io/docs/specs/otel/trace/api/#isremote) is true | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -107,8 +107,8 @@ This metric is [recommended][MetricRecommended].
 
 `otel.span.sampling_result` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `DROP` | The span is not sampled and not recording | ![Development](https://img.shields.io/badge/-development-blue) |
 | `RECORD_AND_SAMPLE` | The span is sampled and recording | ![Development](https://img.shields.io/badge/-development-blue) |
 | `RECORD_ONLY` | The span is not sampled, but recording | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -126,16 +126,16 @@ This metric is [recommended][MetricRecommended].
 <!-- see templates/registry/markdown/snippet.md.j2 -->
 <!-- prettier-ignore-start -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `otel.sdk.processor.span.queue.size` | UpDownCounter | `{span}` | The number of spans in the queue of a given instance of an SDK span processor. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `otel.sdk.processor.span.queue.size` | UpDownCounter | `{span}` | The number of spans in the queue of a given instance of an SDK span processor. [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 **[1]:** Only applies to span processors which use a queue, e.g. the SDK Batching Span Processor.
 
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- |
 | [`otel.component.name`](/docs/registry/attributes/otel.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A name uniquely identifying the instance of the OpenTelemetry component within its containing SDK instance. [1] | `otlp_grpc_span_exporter/0`; `custom-name` |
 | [`otel.component.type`](/docs/registry/attributes/otel.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A name identifying the type of the OpenTelemetry component. [2] | `batching_span_processor`; `com.example.MySpanExporter` |
 
@@ -160,8 +160,8 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 
 `otel.component.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `batching_log_processor` | The builtin SDK batching log record processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `batching_span_processor` | The builtin SDK batching span processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_grpc_log_exporter` | OTLP log record exporter over gRPC with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -192,16 +192,16 @@ This metric is [recommended][MetricRecommended].
 <!-- see templates/registry/markdown/snippet.md.j2 -->
 <!-- prettier-ignore-start -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `otel.sdk.processor.span.queue.capacity` | UpDownCounter | `{span}` | The maximum number of spans the queue of a given instance of an SDK span processor can hold. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `otel.sdk.processor.span.queue.capacity` | UpDownCounter | `{span}` | The maximum number of spans the queue of a given instance of an SDK span processor can hold. [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 **[1]:** Only applies to span processors which use a queue, e.g. the SDK Batching Span Processor.
 
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- |
 | [`otel.component.name`](/docs/registry/attributes/otel.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A name uniquely identifying the instance of the OpenTelemetry component within its containing SDK instance. [1] | `otlp_grpc_span_exporter/0`; `custom-name` |
 | [`otel.component.type`](/docs/registry/attributes/otel.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A name identifying the type of the OpenTelemetry component. [2] | `batching_span_processor`; `com.example.MySpanExporter` |
 
@@ -226,8 +226,8 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 
 `otel.component.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `batching_log_processor` | The builtin SDK batching log record processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `batching_span_processor` | The builtin SDK batching span processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_grpc_log_exporter` | OTLP log record exporter over gRPC with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -258,9 +258,9 @@ This metric is [recommended][MetricRecommended].
 <!-- see templates/registry/markdown/snippet.md.j2 -->
 <!-- prettier-ignore-start -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `otel.sdk.processor.span.processed` | Counter | `{span}` | The number of spans for which the processing has finished, either successful or failed. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `otel.sdk.processor.span.processed` | Counter | `{span}` | The number of spans for which the processing has finished, either successful or failed. [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 **[1]:** For successful processing, `error.type` MUST NOT be set. For failed processing, `error.type` MUST contain the failure cause.
 For the SDK Simple and Batching Span Processor a span is considered to be processed already when it has been submitted to the exporter, not when the corresponding export call has finished.
@@ -268,7 +268,7 @@ For the SDK Simple and Batching Span Processor a span is considered to be proces
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- |
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | A low-cardinality description of the failure reason. SDK Batching Span Processors MUST use `queue_full` for spans dropped due to a full queue. [1] | `queue_full` |
 | [`otel.component.name`](/docs/registry/attributes/otel.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A name uniquely identifying the instance of the OpenTelemetry component within its containing SDK instance. [2] | `otlp_grpc_span_exporter/0`; `custom-name` |
 | [`otel.component.type`](/docs/registry/attributes/otel.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A name identifying the type of the OpenTelemetry component. [3] | `batching_span_processor`; `com.example.MySpanExporter` |
@@ -287,7 +287,7 @@ additional filters are applied.
 
 If the operation has completed successfully, instrumentations SHOULD NOT set `error.type`.
 
-If a specific domain defines its own set of error identifiers (such as HTTP or gRPC status codes),
+If a specific domain defines its own set of error identifiers (such as HTTP or RPC status codes),
 it's RECOMMENDED to:
 
 - Use a domain-specific attribute
@@ -314,16 +314,16 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ---
 
 `otel.component.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `batching_log_processor` | The builtin SDK batching log record processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `batching_span_processor` | The builtin SDK batching span processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_grpc_log_exporter` | OTLP log record exporter over gRPC with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -354,16 +354,16 @@ This metric is [recommended][MetricRecommended].
 <!-- see templates/registry/markdown/snippet.md.j2 -->
 <!-- prettier-ignore-start -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `otel.sdk.exporter.span.inflight` | UpDownCounter | `{span}` | The number of spans which were passed to the exporter, but that have not been exported yet (neither successful, nor failed). [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `otel.sdk.exporter.span.inflight` | UpDownCounter | `{span}` | The number of spans which were passed to the exporter, but that have not been exported yet (neither successful, nor failed). [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 **[1]:** For successful exports, `error.type` MUST NOT be set. For failed exports, `error.type` MUST contain the failure cause.
 
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- |
 | [`otel.component.name`](/docs/registry/attributes/otel.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A name uniquely identifying the instance of the OpenTelemetry component within its containing SDK instance. [1] | `otlp_grpc_span_exporter/0`; `custom-name` |
 | [`otel.component.type`](/docs/registry/attributes/otel.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A name identifying the type of the OpenTelemetry component. [2] | `batching_span_processor`; `com.example.MySpanExporter` |
 | [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` when applicable | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [3] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
@@ -394,8 +394,8 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 
 `otel.component.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `batching_log_processor` | The builtin SDK batching log record processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `batching_span_processor` | The builtin SDK batching span processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_grpc_log_exporter` | OTLP log record exporter over gRPC with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -426,9 +426,9 @@ This metric is [recommended][MetricRecommended].
 <!-- see templates/registry/markdown/snippet.md.j2 -->
 <!-- prettier-ignore-start -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `otel.sdk.exporter.span.exported` | Counter | `{span}` | The number of spans for which the export has finished, either successful or failed. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `otel.sdk.exporter.span.exported` | Counter | `{span}` | The number of spans for which the export has finished, either successful or failed. [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 **[1]:** For successful exports, `error.type` MUST NOT be set. For failed exports, `error.type` MUST contain the failure cause.
 For exporters with partial success semantics (e.g. OTLP with `rejected_spans`), rejected spans MUST count as failed and only non-rejected spans count as success.
@@ -437,7 +437,7 @@ If no rejection reason is available, `rejected` SHOULD be used as value for `err
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- |
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Describes a class of error the operation ended with. [1] | `rejected`; `timeout`; `500`; `java.net.UnknownHostException` |
 | [`otel.component.name`](/docs/registry/attributes/otel.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A name uniquely identifying the instance of the OpenTelemetry component within its containing SDK instance. [2] | `otlp_grpc_span_exporter/0`; `custom-name` |
 | [`otel.component.type`](/docs/registry/attributes/otel.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A name identifying the type of the OpenTelemetry component. [3] | `batching_span_processor`; `com.example.MySpanExporter` |
@@ -458,7 +458,7 @@ additional filters are applied.
 
 If the operation has completed successfully, instrumentations SHOULD NOT set `error.type`.
 
-If a specific domain defines its own set of error identifiers (such as HTTP or gRPC status codes),
+If a specific domain defines its own set of error identifiers (such as HTTP or RPC status codes),
 it's RECOMMENDED to:
 
 - Use a domain-specific attribute
@@ -489,16 +489,16 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ---
 
 `otel.component.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `batching_log_processor` | The builtin SDK batching log record processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `batching_span_processor` | The builtin SDK batching span processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_grpc_log_exporter` | OTLP log record exporter over gRPC with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -531,9 +531,9 @@ This metric is [recommended][MetricRecommended].
 <!-- see templates/registry/markdown/snippet.md.j2 -->
 <!-- prettier-ignore-start -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `otel.sdk.log.created` | Counter | `{log_record}` | The number of logs submitted to enabled SDK Loggers. | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `otel.sdk.log.created` | Counter | `{log_record}` | The number of logs submitted to enabled SDK Loggers. | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
@@ -548,16 +548,16 @@ This metric is [recommended][MetricRecommended].
 <!-- see templates/registry/markdown/snippet.md.j2 -->
 <!-- prettier-ignore-start -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `otel.sdk.processor.log.queue.size` | UpDownCounter | `{log_record}` | The number of log records in the queue of a given instance of an SDK log processor. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `otel.sdk.processor.log.queue.size` | UpDownCounter | `{log_record}` | The number of log records in the queue of a given instance of an SDK log processor. [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 **[1]:** Only applies to log record processors which use a queue, e.g. the SDK Batching Log Record Processor.
 
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- |
 | [`otel.component.name`](/docs/registry/attributes/otel.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A name uniquely identifying the instance of the OpenTelemetry component within its containing SDK instance. [1] | `otlp_grpc_span_exporter/0`; `custom-name` |
 | [`otel.component.type`](/docs/registry/attributes/otel.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A name identifying the type of the OpenTelemetry component. [2] | `batching_span_processor`; `com.example.MySpanExporter` |
 
@@ -582,8 +582,8 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 
 `otel.component.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `batching_log_processor` | The builtin SDK batching log record processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `batching_span_processor` | The builtin SDK batching span processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_grpc_log_exporter` | OTLP log record exporter over gRPC with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -614,16 +614,16 @@ This metric is [recommended][MetricRecommended].
 <!-- see templates/registry/markdown/snippet.md.j2 -->
 <!-- prettier-ignore-start -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `otel.sdk.processor.log.queue.capacity` | UpDownCounter | `{log_record}` | The maximum number of log records the queue of a given instance of an SDK Log Record processor can hold. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `otel.sdk.processor.log.queue.capacity` | UpDownCounter | `{log_record}` | The maximum number of log records the queue of a given instance of an SDK Log Record processor can hold. [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 **[1]:** Only applies to Log Record processors which use a queue, e.g. the SDK Batching Log Record Processor.
 
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- |
 | [`otel.component.name`](/docs/registry/attributes/otel.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A name uniquely identifying the instance of the OpenTelemetry component within its containing SDK instance. [1] | `otlp_grpc_span_exporter/0`; `custom-name` |
 | [`otel.component.type`](/docs/registry/attributes/otel.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A name identifying the type of the OpenTelemetry component. [2] | `batching_span_processor`; `com.example.MySpanExporter` |
 
@@ -648,8 +648,8 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 
 `otel.component.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `batching_log_processor` | The builtin SDK batching log record processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `batching_span_processor` | The builtin SDK batching span processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_grpc_log_exporter` | OTLP log record exporter over gRPC with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -680,9 +680,9 @@ This metric is [recommended][MetricRecommended].
 <!-- see templates/registry/markdown/snippet.md.j2 -->
 <!-- prettier-ignore-start -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `otel.sdk.processor.log.processed` | Counter | `{log_record}` | The number of log records for which the processing has finished, either successful or failed. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `otel.sdk.processor.log.processed` | Counter | `{log_record}` | The number of log records for which the processing has finished, either successful or failed. [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 **[1]:** For successful processing, `error.type` MUST NOT be set. For failed processing, `error.type` MUST contain the failure cause.
 For the SDK Simple and Batching Log Record Processor a log record is considered to be processed already when it has been submitted to the exporter,
@@ -691,7 +691,7 @@ not when the corresponding export call has finished.
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- |
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | A low-cardinality description of the failure reason. SDK Batching Log Record Processors MUST use `queue_full` for log records dropped due to a full queue. [1] | `queue_full` |
 | [`otel.component.name`](/docs/registry/attributes/otel.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A name uniquely identifying the instance of the OpenTelemetry component within its containing SDK instance. [2] | `otlp_grpc_span_exporter/0`; `custom-name` |
 | [`otel.component.type`](/docs/registry/attributes/otel.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A name identifying the type of the OpenTelemetry component. [3] | `batching_span_processor`; `com.example.MySpanExporter` |
@@ -710,7 +710,7 @@ additional filters are applied.
 
 If the operation has completed successfully, instrumentations SHOULD NOT set `error.type`.
 
-If a specific domain defines its own set of error identifiers (such as HTTP or gRPC status codes),
+If a specific domain defines its own set of error identifiers (such as HTTP or RPC status codes),
 it's RECOMMENDED to:
 
 - Use a domain-specific attribute
@@ -737,16 +737,16 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ---
 
 `otel.component.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `batching_log_processor` | The builtin SDK batching log record processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `batching_span_processor` | The builtin SDK batching span processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_grpc_log_exporter` | OTLP log record exporter over gRPC with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -777,16 +777,16 @@ This metric is [recommended][MetricRecommended].
 <!-- see templates/registry/markdown/snippet.md.j2 -->
 <!-- prettier-ignore-start -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `otel.sdk.exporter.log.inflight` | UpDownCounter | `{log_record}` | The number of log records which were passed to the exporter, but that have not been exported yet (neither successful, nor failed). [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `otel.sdk.exporter.log.inflight` | UpDownCounter | `{log_record}` | The number of log records which were passed to the exporter, but that have not been exported yet (neither successful, nor failed). [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 **[1]:** For successful exports, `error.type` MUST NOT be set. For failed exports, `error.type` MUST contain the failure cause.
 
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- |
 | [`otel.component.name`](/docs/registry/attributes/otel.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A name uniquely identifying the instance of the OpenTelemetry component within its containing SDK instance. [1] | `otlp_grpc_span_exporter/0`; `custom-name` |
 | [`otel.component.type`](/docs/registry/attributes/otel.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A name identifying the type of the OpenTelemetry component. [2] | `batching_span_processor`; `com.example.MySpanExporter` |
 | [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` when applicable | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [3] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
@@ -817,8 +817,8 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 
 `otel.component.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `batching_log_processor` | The builtin SDK batching log record processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `batching_span_processor` | The builtin SDK batching span processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_grpc_log_exporter` | OTLP log record exporter over gRPC with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -849,9 +849,9 @@ This metric is [recommended][MetricRecommended].
 <!-- see templates/registry/markdown/snippet.md.j2 -->
 <!-- prettier-ignore-start -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `otel.sdk.exporter.log.exported` | Counter | `{log_record}` | The number of log records for which the export has finished, either successful or failed. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `otel.sdk.exporter.log.exported` | Counter | `{log_record}` | The number of log records for which the export has finished, either successful or failed. [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 **[1]:** For successful exports, `error.type` MUST NOT be set. For failed exports, `error.type` MUST contain the failure cause.
 For exporters with partial success semantics (e.g. OTLP with `rejected_log_records`), rejected log records MUST count as failed and only non-rejected log records count as success.
@@ -860,7 +860,7 @@ If no rejection reason is available, `rejected` SHOULD be used as value for `err
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- |
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Describes a class of error the operation ended with. [1] | `rejected`; `timeout`; `500`; `java.net.UnknownHostException` |
 | [`otel.component.name`](/docs/registry/attributes/otel.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A name uniquely identifying the instance of the OpenTelemetry component within its containing SDK instance. [2] | `otlp_grpc_span_exporter/0`; `custom-name` |
 | [`otel.component.type`](/docs/registry/attributes/otel.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A name identifying the type of the OpenTelemetry component. [3] | `batching_span_processor`; `com.example.MySpanExporter` |
@@ -881,7 +881,7 @@ additional filters are applied.
 
 If the operation has completed successfully, instrumentations SHOULD NOT set `error.type`.
 
-If a specific domain defines its own set of error identifiers (such as HTTP or gRPC status codes),
+If a specific domain defines its own set of error identifiers (such as HTTP or RPC status codes),
 it's RECOMMENDED to:
 
 - Use a domain-specific attribute
@@ -912,16 +912,16 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ---
 
 `otel.component.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `batching_log_processor` | The builtin SDK batching log record processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `batching_span_processor` | The builtin SDK batching span processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_grpc_log_exporter` | OTLP log record exporter over gRPC with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -954,16 +954,16 @@ This metric is [recommended][MetricRecommended].
 <!-- see templates/registry/markdown/snippet.md.j2 -->
 <!-- prettier-ignore-start -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `otel.sdk.exporter.metric_data_point.inflight` | UpDownCounter | `{data_point}` | The number of metric data points which were passed to the exporter, but that have not been exported yet (neither successful, nor failed). [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `otel.sdk.exporter.metric_data_point.inflight` | UpDownCounter | `{data_point}` | The number of metric data points which were passed to the exporter, but that have not been exported yet (neither successful, nor failed). [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 **[1]:** For successful exports, `error.type` MUST NOT be set. For failed exports, `error.type` MUST contain the failure cause.
 
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- |
 | [`otel.component.name`](/docs/registry/attributes/otel.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A name uniquely identifying the instance of the OpenTelemetry component within its containing SDK instance. [1] | `otlp_grpc_span_exporter/0`; `custom-name` |
 | [`otel.component.type`](/docs/registry/attributes/otel.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A name identifying the type of the OpenTelemetry component. [2] | `batching_span_processor`; `com.example.MySpanExporter` |
 | [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` when applicable | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [3] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
@@ -994,8 +994,8 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 
 `otel.component.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `batching_log_processor` | The builtin SDK batching log record processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `batching_span_processor` | The builtin SDK batching span processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_grpc_log_exporter` | OTLP log record exporter over gRPC with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -1026,9 +1026,9 @@ This metric is [recommended][MetricRecommended].
 <!-- see templates/registry/markdown/snippet.md.j2 -->
 <!-- prettier-ignore-start -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `otel.sdk.exporter.metric_data_point.exported` | Counter | `{data_point}` | The number of metric data points for which the export has finished, either successful or failed. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `otel.sdk.exporter.metric_data_point.exported` | Counter | `{data_point}` | The number of metric data points for which the export has finished, either successful or failed. [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 **[1]:** For successful exports, `error.type` MUST NOT be set. For failed exports, `error.type` MUST contain the failure cause.
 For exporters with partial success semantics (e.g. OTLP with `rejected_data_points`), rejected data points MUST count as failed and only non-rejected data points count as success.
@@ -1037,7 +1037,7 @@ If no rejection reason is available, `rejected` SHOULD be used as value for `err
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- |
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Describes a class of error the operation ended with. [1] | `rejected`; `timeout`; `500`; `java.net.UnknownHostException` |
 | [`otel.component.name`](/docs/registry/attributes/otel.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A name uniquely identifying the instance of the OpenTelemetry component within its containing SDK instance. [2] | `otlp_grpc_span_exporter/0`; `custom-name` |
 | [`otel.component.type`](/docs/registry/attributes/otel.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A name identifying the type of the OpenTelemetry component. [3] | `batching_span_processor`; `com.example.MySpanExporter` |
@@ -1058,7 +1058,7 @@ additional filters are applied.
 
 If the operation has completed successfully, instrumentations SHOULD NOT set `error.type`.
 
-If a specific domain defines its own set of error identifiers (such as HTTP or gRPC status codes),
+If a specific domain defines its own set of error identifiers (such as HTTP or RPC status codes),
 it's RECOMMENDED to:
 
 - Use a domain-specific attribute
@@ -1089,16 +1089,16 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ---
 
 `otel.component.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `batching_log_processor` | The builtin SDK batching log record processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `batching_span_processor` | The builtin SDK batching span processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_grpc_log_exporter` | OTLP log record exporter over gRPC with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -1135,9 +1135,9 @@ with a single bucket with no boundaries.
 <!-- see templates/registry/markdown/snippet.md.j2 -->
 <!-- prettier-ignore-start -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `otel.sdk.metric_reader.collection.duration` | Histogram | `s` | The duration of the collect operation of the metric reader. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `otel.sdk.metric_reader.collection.duration` | Histogram | `s` | The duration of the collect operation of the metric reader. [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 **[1]:** For successful collections, `error.type` MUST NOT be set. For failed collections, `error.type` SHOULD contain the failure cause.
 It can happen that metrics collection is successful for some MetricProducers, while others fail. In that case `error.type` SHOULD be set to any of the failure causes.
@@ -1145,7 +1145,7 @@ It can happen that metrics collection is successful for some MetricProducers, wh
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- |
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` |
 | [`otel.component.name`](/docs/registry/attributes/otel.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A name uniquely identifying the instance of the OpenTelemetry component within its containing SDK instance. [2] | `otlp_grpc_span_exporter/0`; `custom-name` |
 | [`otel.component.type`](/docs/registry/attributes/otel.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A name identifying the type of the OpenTelemetry component. [3] | `batching_span_processor`; `com.example.MySpanExporter` |
@@ -1164,7 +1164,7 @@ additional filters are applied.
 
 If the operation has completed successfully, instrumentations SHOULD NOT set `error.type`.
 
-If a specific domain defines its own set of error identifiers (such as HTTP or gRPC status codes),
+If a specific domain defines its own set of error identifiers (such as HTTP or RPC status codes),
 it's RECOMMENDED to:
 
 - Use a domain-specific attribute
@@ -1191,16 +1191,16 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ---
 
 `otel.component.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `batching_log_processor` | The builtin SDK batching log record processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `batching_span_processor` | The builtin SDK batching span processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_grpc_log_exporter` | OTLP log record exporter over gRPC with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -1235,9 +1235,9 @@ with a single bucket with no boundaries.
 <!-- see templates/registry/markdown/snippet.md.j2 -->
 <!-- prettier-ignore-start -->
 
-| Name     | Instrument Type | Unit (UCUM) | Description    | Stability | Entity Associations |
+| Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `otel.sdk.exporter.operation.duration` | Histogram | `s` | The duration of exporting a batch of telemetry records. [1] | ![Development](https://img.shields.io/badge/-development-blue) |  |
+| `otel.sdk.exporter.operation.duration` | Histogram | `s` | The duration of exporting a batch of telemetry records. [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 **[1]:** This metric defines successful operations using the full success definitions for [http](https://github.com/open-telemetry/opentelemetry-proto/blob/v1.5.0/docs/specification.md#full-success-1)
 and [grpc](https://github.com/open-telemetry/opentelemetry-proto/blob/v1.5.0/docs/specification.md#full-success). Anything else is defined as an unsuccessful operation. For successful
@@ -1246,14 +1246,14 @@ operations, `error.type` MUST NOT be set. For unsuccessful export operations, `e
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- |
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If operation has ended with an error | string | Describes a class of error the operation ended with. [1] | `rejected`; `timeout`; `500`; `java.net.UnknownHostException` |
 | [`http.response.status_code`](/docs/registry/attributes/http.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` when applicable | int | The HTTP status code of the last HTTP request performed in scope of this export call. | `200` |
 | [`otel.component.name`](/docs/registry/attributes/otel.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A name uniquely identifying the instance of the OpenTelemetry component within its containing SDK instance. [2] | `otlp_grpc_span_exporter/0`; `custom-name` |
 | [`otel.component.type`](/docs/registry/attributes/otel.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A name identifying the type of the OpenTelemetry component. [3] | `otlp_grpc_span_exporter`; `com.example.MySpanExporter` |
-| [`rpc.grpc.status_code`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` when applicable | int | The gRPC status code of the last gRPC requests performed in scope of this export call. | `0`; `1`; `2` |
-| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` when applicable | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [4] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
-| [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` when applicable | int | Server port number. [5] | `80`; `8080`; `443` |
+| [`rpc.response.status_code`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` when applicable | string | The gRPC status code of the last gRPC request performed in scope of this export call. [4] | `OK`; `DEADLINE_EXCEEDED`; `-32602` |
+| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` when applicable | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [5] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
+| [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` when applicable | int | Server port number. [6] | `80`; `8080`; `443` |
 
 **[1] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
@@ -1269,7 +1269,7 @@ additional filters are applied.
 
 If the operation has completed successfully, instrumentations SHOULD NOT set `error.type`.
 
-If a specific domain defines its own set of error identifiers (such as HTTP or gRPC status codes),
+If a specific domain defines its own set of error identifiers (such as HTTP or RPC status codes),
 it's RECOMMENDED to:
 
 - Use a domain-specific attribute
@@ -1292,24 +1292,27 @@ These values will therefore be reused in the case of an application restart.
 **[3] `otel.component.type`:** If none of the standardized values apply, implementations SHOULD use the language-defined name of the type.
 E.g. for Java the fully qualified classname SHOULD be used in this case.
 
-**[4] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
+**[4] `rpc.response.status_code`:** Usually it represents an error code, but may also represent partial success, warning, or differentiate between various types of successful outcomes.
+Semantic conventions for individual RPC frameworks SHOULD document what `rpc.response.status_code` means in the context of that system and which values are considered to represent errors.
 
-**[5] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[5] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
+
+**[6] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
 ---
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ---
 
 `otel.component.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `batching_log_processor` | The builtin SDK batching log record processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `batching_span_processor` | The builtin SDK batching span processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_grpc_log_exporter` | OTLP log record exporter over gRPC with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -1326,30 +1329,6 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 | `simple_log_processor` | The builtin SDK simple log record processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `simple_span_processor` | The builtin SDK simple span processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `zipkin_http_span_exporter` | Zipkin span exporter over HTTP | ![Development](https://img.shields.io/badge/-development-blue) |
-
----
-
-`rpc.grpc.status_code` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `0` | OK | ![Development](https://img.shields.io/badge/-development-blue) |
-| `1` | CANCELLED | ![Development](https://img.shields.io/badge/-development-blue) |
-| `2` | UNKNOWN | ![Development](https://img.shields.io/badge/-development-blue) |
-| `3` | INVALID_ARGUMENT | ![Development](https://img.shields.io/badge/-development-blue) |
-| `4` | DEADLINE_EXCEEDED | ![Development](https://img.shields.io/badge/-development-blue) |
-| `5` | NOT_FOUND | ![Development](https://img.shields.io/badge/-development-blue) |
-| `6` | ALREADY_EXISTS | ![Development](https://img.shields.io/badge/-development-blue) |
-| `7` | PERMISSION_DENIED | ![Development](https://img.shields.io/badge/-development-blue) |
-| `8` | RESOURCE_EXHAUSTED | ![Development](https://img.shields.io/badge/-development-blue) |
-| `9` | FAILED_PRECONDITION | ![Development](https://img.shields.io/badge/-development-blue) |
-| `10` | ABORTED | ![Development](https://img.shields.io/badge/-development-blue) |
-| `11` | OUT_OF_RANGE | ![Development](https://img.shields.io/badge/-development-blue) |
-| `12` | UNIMPLEMENTED | ![Development](https://img.shields.io/badge/-development-blue) |
-| `13` | INTERNAL | ![Development](https://img.shields.io/badge/-development-blue) |
-| `14` | UNAVAILABLE | ![Development](https://img.shields.io/badge/-development-blue) |
-| `15` | DATA_LOSS | ![Development](https://img.shields.io/badge/-development-blue) |
-| `16` | UNAUTHENTICATED | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->

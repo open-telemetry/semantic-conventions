@@ -1,6 +1,5 @@
 <!--- Hugo front matter used to generate the website version of this page:
 linkTitle: MongoDB
-aliases: [/docs/specs/semconv/database/mongodb.md]
 --->
 
 # Semantic conventions for MongoDB client operations
@@ -38,7 +37,7 @@ Spans representing calls to MongoDB adhere to the general [Semantic Conventions 
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- |
 | [`db.collection.name`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | The MongoDB collection being accessed within the database stated in `db.namespace`. [1] | `public.users`; `customers` |
 | [`db.operation.name`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | The name of the [MongoDB command](https://www.mongodb.com/docs/manual/reference/command/) being executed. | `findAndModify`; `getMore`; `insertMany`; `bulkWrite` |
 | [`db.namespace`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If available. | string | The MongoDB database name. | `customers`; `test.users` |
@@ -80,8 +79,8 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 <!-- prettier-ignore-end -->
@@ -90,19 +89,19 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 ### Example
 
-| Key                     | Value |
-|:------------------------| :----------------------------------------------------------- |
-| Span name               | `"findAndModify products"` |
-| `db.system.name`        | `"mongodb"` |
-| `server.address`        | `"mongodb0.example.com"` |
-| `server.port`           | `27017` |
-| `network.peer.address`  | `"192.0.2.14"` |
-| `network.peer.port`     | `27017` |
-| `network.transport`     | `"tcp"` |
-| `db.collection.name`    | `"products"` |
-| `db.namespace`          | `"shopDb"` |
-| `db.query.text`         | not set |
-| `db.operation.name`     | `"findAndModify"` |
+| Key                    | Value                      |
+| :--------------------- | :------------------------- |
+| Span name              | `"findAndModify products"` |
+| `db.system.name`       | `"mongodb"`                |
+| `server.address`       | `"mongodb0.example.com"`   |
+| `server.port`          | `27017`                    |
+| `network.peer.address` | `"192.0.2.14"`             |
+| `network.peer.port`    | `27017`                    |
+| `network.transport`    | `"tcp"`                    |
+| `db.collection.name`   | `"products"`               |
+| `db.namespace`         | `"shopDb"`                 |
+| `db.query.text`        | not set                    |
+| `db.operation.name`    | `"findAndModify"`          |
 
 ## Metrics
 

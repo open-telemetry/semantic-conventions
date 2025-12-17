@@ -1,0 +1,30 @@
+groups:
+  - id: registry.jsonrpc
+    type: attribute_group
+    display_name: JSON-RPC Attributes
+    brief: 'This document defines attributes for JSON-RPC.'
+    attributes:
+      - id: jsonrpc.request.id
+        type: string
+        stability: development
+        brief: >
+          A string representation of the `id` property of the request and its
+          corresponding response.
+        examples: ['10', 'request-7']
+        note: >
+          Under the
+          [JSON-RPC specification](https://www.jsonrpc.org/specification),
+          the `id` property may be a string, number, null, or omitted entirely.
+          When omitted, the request is treated as a notification.
+          Using `null` is not equivalent to omitting the `id`, but it is
+          discouraged.
+
+          Instrumentations SHOULD NOT capture this attribute when the `id` is
+          `null` or omitted.
+      - id: jsonrpc.protocol.version
+        type: string
+        stability: development
+        brief: >
+          Protocol version, as specified in the `jsonrpc` property of the
+          request and its corresponding response.
+        examples: ['2.0', '1.0']

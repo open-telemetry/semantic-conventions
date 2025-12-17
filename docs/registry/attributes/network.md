@@ -13,7 +13,7 @@ These attributes may be used for any network related operation.
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | <a id="network-carrier-icc" href="#network-carrier-icc">`network.carrier.icc`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The ISO 3166-1 alpha-2 2-character country code associated with the mobile carrier network. | `DE` |
 | <a id="network-carrier-mcc" href="#network-carrier-mcc">`network.carrier.mcc`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The mobile carrier country code. | `310` |
 | <a id="network-carrier-mnc" href="#network-carrier-mnc">`network.carrier.mnc`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The mobile carrier network code. | `001` |
@@ -50,8 +50,8 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 `network.connection.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `close_wait` | close_wait | ![Development](https://img.shields.io/badge/-development-blue) |
 | `closed` | closed | ![Development](https://img.shields.io/badge/-development-blue) |
 | `closing` | closing | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -68,8 +68,8 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 `network.connection.subtype` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `cdma` | CDMA | ![Development](https://img.shields.io/badge/-development-blue) |
 | `cdma2000_1xrtt` | CDMA2000 1XRTT | ![Development](https://img.shields.io/badge/-development-blue) |
 | `edge` | EDGE | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -96,8 +96,8 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 `network.connection.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `cell` | cell | ![Development](https://img.shields.io/badge/-development-blue) |
 | `unavailable` | unavailable | ![Development](https://img.shields.io/badge/-development-blue) |
 | `unknown` | unknown | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -108,8 +108,8 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 `network.io.direction` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `receive` | receive | ![Development](https://img.shields.io/badge/-development-blue) |
 | `transmit` | transmit | ![Development](https://img.shields.io/badge/-development-blue) |
 
@@ -117,8 +117,8 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 `network.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `pipe` | Named or anonymous pipe. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `quic` | QUIC | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `tcp` | TCP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -129,8 +129,8 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 `network.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `ipv4` | IPv4 | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `ipv6` | IPv6 | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
@@ -141,7 +141,7 @@ These attributes may be used for any network related operation.
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | <a id="net-host-ip" href="#net-host-ip">`net.host.ip`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `network.local.address`. | string | Deprecated, use `network.local.address`. | `192.168.0.1` |
 | <a id="net-host-name" href="#net-host-name">`net.host.name`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `server.address`. | string | Deprecated, use `server.address`. | `example.com` |
 | <a id="net-host-port" href="#net-host-port">`net.host.port`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `server.port`. | int | Deprecated, use `server.port`. | `8080` |
@@ -162,8 +162,8 @@ These attributes may be used for any network related operation.
 
 `net.sock.family` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `inet` | IPv4 address | ![Development](https://img.shields.io/badge/-development-blue) |
 | `inet6` | IPv6 address | ![Development](https://img.shields.io/badge/-development-blue) |
 | `unix` | Unix domain socket path | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -172,8 +172,8 @@ These attributes may be used for any network related operation.
 
 `net.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `inproc` | In-process communication. [6] | ![Development](https://img.shields.io/badge/-development-blue) |
 | `ip_tcp` | ip_tcp | ![Development](https://img.shields.io/badge/-development-blue) |
 | `ip_udp` | ip_udp | ![Development](https://img.shields.io/badge/-development-blue) |

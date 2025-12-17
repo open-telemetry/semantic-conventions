@@ -19,7 +19,7 @@ The entities registry is the catalog of available Entities.
 Currently, the following namespaces exist:
 
 | Namespace | Entity | Stability |
-|-----------|--------|-----------|
+| --------- | ------ | --------- |
 {%- for bundle in ctx %}
 | {{ bundle.id | title_case | acronym }} | | |
 {%- for group in bundle.groups | sort(attribute='name') -%}

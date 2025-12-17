@@ -172,7 +172,7 @@ the respective markdown files.
 If you want to update existing tables, just run the following commands:
 
 ```bash
-make table-generation attribute-registry-generation
+make table-generation registry-generation
 ```
 
 When defining new telemetry signals (spans, metrics, events, resources) in YAML,
@@ -187,7 +187,7 @@ code-snippet into the markdown file:
 Then run markdown generation commands:
 
 ```bash
-make table-generation attribute-registry-generation
+make table-generation registry-generation
 ```
 
 #### Hugo frontmatter
@@ -342,7 +342,8 @@ You can perform all checks locally using this command:
 make check
 ```
 
-> Note: `make check` can take a long time as it checks all links.
+> [!Note]
+> `make check` can take a long time as it checks all links.
 > You should use this prior to submitting a PR to ensure validity.
 > However, you can run individual checks directly.
 
@@ -406,7 +407,8 @@ To check for typos, run the following command:
 make misspell
 ```
 
-> **NOTE**: The `misspell` make target will also fetch and build the tool if
+> [!Note]
+> The `misspell` make target will also fetch and build the tool if
 > necessary. You'll need [Go](https://go.dev) to build the spellchecker.
 
 To quickly fix typos, use

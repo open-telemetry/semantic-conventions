@@ -8,7 +8,7 @@ linkTitle: Google Cloud Pub/Sub
 
 The Semantic Conventions for [Google Cloud Pub/Sub](https://cloud.google.com/pubsub) extend and override the [Messaging Semantic Conventions](README.md).
 
-> [!Warning]
+> [!IMPORTANT]
 >
 > Existing messaging instrumentations that are using
 > [v1.24.0 of this document](https://github.com/open-telemetry/semantic-conventions/blob/v1.24.0/docs/messaging/messaging-spans.md)
@@ -50,7 +50,7 @@ For Google Cloud Pub/Sub, the following additional attributes are defined:
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- |
 | [`messaging.operation.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The system-specific name of the messaging operation. [1] | `ack`; `nack`; `send` |
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the messaging operation has failed. | string | Describes a class of error the operation ended with. [2] | `amqp:decode-error`; `KAFKA_STORAGE_ERROR`; `channel-error` |
 | [`messaging.batch.message_count`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [3] | int | The number of messages sent, received, or processed in the scope of the batching operation. [4] | `0`; `1`; `2` |
@@ -88,7 +88,7 @@ additional filters are applied.
 
 If the operation has completed successfully, instrumentations SHOULD NOT set `error.type`.
 
-If a specific domain defines its own set of error identifiers (such as HTTP or gRPC status codes),
+If a specific domain defines its own set of error identifiers (such as HTTP or RPC status codes),
 it's RECOMMENDED to:
 
 - Use a domain-specific attribute
@@ -123,16 +123,16 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ---
 
 `messaging.operation.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `create` | A message is created. "Create" spans always refer to a single message and are used to provide a unique creation context for messages in batch sending scenarios. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `process` | One or more messages are processed by a consumer. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `receive` | One or more messages are requested by a consumer. This operation refers to pull-based scenarios, where consumers explicitly call methods of messaging SDKs to receive messages. | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -168,13 +168,13 @@ flowchart LR;
 ```
 
 | Field or Attribute | Producer Span Create A | Producer Span Create B | Producer Span Send A B |
-|-|-|-|-|
+| --- | --- | --- | --- |
 | Span name | `create T` | `create T` | `send T` |
-| Parent |  |  |  |
-| Links |  |  | Span Create A, Span Create B |
+| Parent | | | |
+| Links | | | Span Create A, Span Create B |
 | SpanKind | `PRODUCER` | `PRODUCER` | `CLIENT` |
 | Status | `Ok` | `Ok` | `Ok` |
-| `messaging.batch.message_count` |  |  | 2 |
+| `messaging.batch.message_count` | | | 2 |
 | `messaging.destination.name` | `"T"` | `"T"` | `"T"` |
 | `messaging.operation.name` | `"create"` | `"create"` | `"send"` |
 | `messaging.operation.type` | `"create"` | `"create"` | `"send"` |
@@ -227,20 +227,20 @@ flowchart TD;
 ```
 
 | Field or Attribute | Producer Span Create A | Producer Span Send | Consumer Span Receive A | Consumer Span Modack A | Consumer Span Ack A |
-|-|-|-|-|-|-|
-| Span name | `create T` | `send T` |  `receive S` | `modack S` | `ack S` |
-| Parent |  |  |  | |  |
-| Links |  | Span Create A | Span Create A | Span Receive A | Span Receive A |
-| SpanKind | `PRODUCER` | `PRODUCER` | `CONSUMER` |`CLIENT` |`CLIENT` |
-| Status | `Ok` | `Ok` | `Ok` |`Ok` | `Ok` |
-| `messaging.destination.name` | `"T"`| `"T"`| `"S"` | `"S"` |`"S"` |
-| `messaging.system` | `"gcp_pubsub"` | `"gcp_pubsub"` | `"gcp_pubsub"` |  `"gcp_pubsub"` | `"gcp_pubsub"` |
+| --- | --- | --- | --- | --- | --- |
+| Span name | `create T` | `send T` | `receive S` | `modack S` | `ack S` |
+| Parent | | | | | |
+| Links | | Span Create A | Span Create A | Span Receive A | Span Receive A |
+| SpanKind | `PRODUCER` | `PRODUCER` | `CONSUMER` | `CLIENT` | `CLIENT` |
+| Status | `Ok` | `Ok` | `Ok` | `Ok` | `Ok` |
+| `messaging.destination.name` | `"T"` | `"T"` | `"S"` | `"S"` | `"S"` |
+| `messaging.system` | `"gcp_pubsub"` | `"gcp_pubsub"` | `"gcp_pubsub"` | `"gcp_pubsub"` | `"gcp_pubsub"` |
 | `messaging.operation.name` | `"create"` | `"send"` | `"receive"` | `"modack"` | `"ack"` |
-| `messaging.operation.type` | `"create"` | `"send"` | `"receive"` |  | `"settle"` |
+| `messaging.operation.type` | `"create"` | `"send"` | `"receive"` | | `"settle"` |
 | `messaging.message.id` | `"a1"` | | `"a1"` | | |
-| `messaging.message.envelope.size` | `1` | `1` | `1`  | | |
-| `messaging.gcp_pubsub.message.ack_id` | | |  | `"ack_id1"` |`"ack_id1"` |
-| `messaging.gcp_pubsub.message.delivery_attempt` | | |  | `0` |  |
-| `messaging.gcp_pubsub.message.ack_deadline` | | |  | | `0` |
+| `messaging.message.envelope.size` | `1` | `1` | `1` | | |
+| `messaging.gcp_pubsub.message.ack_id` | | | | `"ack_id1"` | `"ack_id1"` |
+| `messaging.gcp_pubsub.message.delivery_attempt` | | | | `0` | |
+| `messaging.gcp_pubsub.message.ack_deadline` | | | | | `0` |
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status

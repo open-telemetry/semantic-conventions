@@ -1,6 +1,5 @@
 <!--- Hugo front matter used to generate the website version of this page:
 linkTitle: SQL
-aliases: [/docs/specs/semconv/database/sql.md]
 --->
 
 # Semantic conventions for SQL databases client operations
@@ -51,7 +50,7 @@ Instrumentations applied to generic SQL drivers SHOULD adhere to SQL semantic co
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- |
 | [`db.namespace`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If available without an additional network call. | string | The database associated with the connection, fully qualified within the server address and port. [1] | `customers`; `test.users` |
 | [`db.response.status_code`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If response has ended with warning or an error. | string | Database response code recorded as a string. [2] | `ORA-17027`; `1052`; `2201B` |
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the operation failed. | string | Describes a class of error the operation ended with. [3] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` |
@@ -198,8 +197,8 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 <!-- prettier-ignore-end -->
@@ -210,13 +209,13 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 This is an example of attributes for a MySQL database span:
 
-| Key                    | Value |
-|:-----------------------| :----------------------------------------------------------- |
-| Span name              | `"SELECT orders"` |
-| `db.namespace`         | `"ShopDb"` |
-| `db.system.name`       | `"mysql"` |
-| `server.address`       | `"shopdb.example.com"` |
-| `server.port`          | `3306` |
-| `db.query.text`        | `"SELECT * FROM orders WHERE order_id = 'o4711'"` |
+| Key              | Value                                             |
+| :--------------- | :------------------------------------------------ |
+| Span name        | `"SELECT orders"`                                 |
+| `db.namespace`   | `"ShopDb"`                                        |
+| `db.system.name` | `"mysql"`                                         |
+| `server.address` | `"shopdb.example.com"`                            |
+| `server.port`    | `3306`                                            |
+| `db.query.text`  | `"SELECT * FROM orders WHERE order_id = 'o4711'"` |
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status

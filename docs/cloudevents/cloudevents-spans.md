@@ -55,7 +55,7 @@ attributes on spans created from the conventions described above.
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- |
 | [`cloudevents.event_id`](/docs/registry/attributes/cloudevents.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The [event_id](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#id) uniquely identifies the event. | `123e4567-e89b-12d3-a456-426614174000`; `0001` |
 | [`cloudevents.event_source`](/docs/registry/attributes/cloudevents.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The [source](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#source-1) identifies the context in which an event happened. | `https://github.com/cloudevents`; `/cloudevents/spec/pull/123`; `my-service` |
 | [`cloudevents.event_spec_version`](/docs/registry/attributes/cloudevents.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The [version of the CloudEvents specification](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#specversion) which the event uses. | `1.0` |

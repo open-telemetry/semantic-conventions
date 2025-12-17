@@ -1,6 +1,5 @@
 <!--- Hugo front matter used to generate the website version of this page:
 linkTitle: Redis
-aliases: [/docs/specs/semconv/database/redis.md]
 --->
 
 # Semantic conventions for Redis client operations
@@ -33,7 +32,7 @@ looking confusing.
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- |
 | [`db.operation.name`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | The Redis command name. [1] | `HMSET`; `GET`; `SET` |
 | [`db.namespace`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if it can be captured reliably. | string | The [database index] associated with the connection, represented as a string. [2] | `0`; `1`; `15` |
 | [`db.response.status_code`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [3] | string | The Redis [simple error](https://redis.io/docs/latest/develop/reference/protocol-spec/#simple-errors) prefix. [4] | `ERR`; `WRONGTYPE`; `CLUSTERDOWN` |
@@ -94,8 +93,8 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 <!-- prettier-ignore-end -->
@@ -106,14 +105,14 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 In this example, Redis is connected using a unix domain socket and therefore the connection string is left out.
 
-| Key                       | Value |
-|:--------------------------| :-------------------------------------------- |
-| Span name                 | `"HMSET"` |
-| `db.system.name`          | `"redis"` |
-| `network.peer.address`    | `"/tmp/redis.sock"` |
-| `network.transport`       | `"unix"` |
-| `db.namespace`            | `"15"` |
-| `db.query.text`           | `"HMSET myhash field1 'Hello' field2 'World"` |
-| `db.operation.name`       | `"HMSET"` |
+| Key                    | Value                                         |
+| :--------------------- | :-------------------------------------------- |
+| Span name              | `"HMSET"`                                     |
+| `db.system.name`       | `"redis"`                                     |
+| `network.peer.address` | `"/tmp/redis.sock"`                           |
+| `network.transport`    | `"unix"`                                      |
+| `db.namespace`         | `"15"`                                        |
+| `db.query.text`        | `"HMSET myhash field1 'Hello' field2 'World"` |
+| `db.operation.name`    | `"HMSET"`                                     |
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
