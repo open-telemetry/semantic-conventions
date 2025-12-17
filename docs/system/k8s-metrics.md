@@ -1620,7 +1620,7 @@ the `k8s.container.name` attribute MUST be set to identify the specific containe
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`k8s.container.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [1] | string | The name of the Container from Pod specification, must be unique within a Pod. Container runtime usually uses different globally unique name (`container.name`). | `redis` |
+| [`k8s.container.name`](/docs/registry/attributes/k8s.md) | ![Alpha](https://img.shields.io/badge/alpha-mediumpurple) | `Conditionally Required` [1] | string | The name of the Container from Pod specification, must be unique within a Pod. Container runtime usually uses different globally unique name (`container.name`). | `redis` |
 | [`k8s.hpa.metric.type`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The type of metric source for the horizontal pod autoscaler. [2] | `Resource`; `ContainerResource` |
 
 **[1] `k8s.container.name`:** if and only if k8s.hpa.metric.type is ContainerResource
@@ -1653,7 +1653,7 @@ the `k8s.container.name` attribute MUST be set to identify the specific containe
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`k8s.container.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [1] | string | The name of the Container from Pod specification, must be unique within a Pod. Container runtime usually uses different globally unique name (`container.name`). | `redis` |
+| [`k8s.container.name`](/docs/registry/attributes/k8s.md) | ![Alpha](https://img.shields.io/badge/alpha-mediumpurple) | `Conditionally Required` [1] | string | The name of the Container from Pod specification, must be unique within a Pod. Container runtime usually uses different globally unique name (`container.name`). | `redis` |
 | [`k8s.hpa.metric.type`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The type of metric source for the horizontal pod autoscaler. [2] | `Resource`; `ContainerResource` |
 
 **[1] `k8s.container.name`:** if and only if k8s.hpa.metric.type is ContainerResource
@@ -1686,7 +1686,7 @@ the `k8s.container.name` attribute MUST be set to identify the specific containe
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`k8s.container.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [1] | string | The name of the Container from Pod specification, must be unique within a Pod. Container runtime usually uses different globally unique name (`container.name`). | `redis` |
+| [`k8s.container.name`](/docs/registry/attributes/k8s.md) | ![Alpha](https://img.shields.io/badge/alpha-mediumpurple) | `Conditionally Required` [1] | string | The name of the Container from Pod specification, must be unique within a Pod. Container runtime usually uses different globally unique name (`container.name`). | `redis` |
 | [`k8s.hpa.metric.type`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The type of metric source for the horizontal pod autoscaler. [2] | `Resource`; `ContainerResource` |
 
 **[1] `k8s.container.name`:** if and only if k8s.hpa.metric.type is ContainerResource.
