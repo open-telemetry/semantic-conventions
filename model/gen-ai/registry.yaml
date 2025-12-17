@@ -190,7 +190,8 @@ groups:
       - id: gen_ai.usage.reasoning_tokens
         stability: development
         type: int
-        brief: The number of tokens used in the GenAI reasoning or thinking.
+        brief: The number of tokens used in the GenAI reasoning or thinking, only set this if
+          the GenAI model provides a separate count for reasoning tokens and they are not also included in input or output tokens.
         examples: [180]
       - id: gen_ai.token.type
         stability: development
