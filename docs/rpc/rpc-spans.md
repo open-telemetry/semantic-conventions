@@ -17,7 +17,6 @@ This document defines how to describe remote procedure calls
   - [RPC client span](#rpc-client-span)
   - [RPC server span](#rpc-server-span)
   - [Distinction from HTTP spans](#distinction-from-http-spans)
-- [Semantic conventions for specific RPC technologies](#semantic-conventions-for-specific-rpc-technologies)
 
 <!-- tocstop -->
 

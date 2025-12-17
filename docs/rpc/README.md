@@ -38,6 +38,7 @@ Semantic conventions for RPC are defined for the following signals:
 
 * [RPC Spans](rpc-spans.md): Semantic Conventions for RPC client and server *spans*.
 * [RPC Metrics](rpc-metrics.md): Semantic Conventions for RPC *metrics*.
+* [RPC Events](rpc-events.md): Semantic Conventions for RPC *events*.
 
 Technology specific semantic conventions are defined for the following RPC systems:
 
