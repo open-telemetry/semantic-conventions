@@ -10,7 +10,7 @@ This section defines generic attributes for Oracle Cloud Infrastructure (OCI).
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | <a id="oracle-cloud-realm" href="#oracle-cloud-realm">`oracle_cloud.realm`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The OCI realm identifier that indicates the isolated partition in which the tenancy and its resources reside. [1] | `oc1`; `oc2` |
 
-**[1] `oracle_cloud.realm`:** See OCI documentation on realms: https://docs.oracle.com/iaas/Content/General/Concepts/regions.htm
+**[1] `oracle_cloud.realm`:** See [OCI documentation on realms](https://docs.oracle.com/iaas/Content/General/Concepts/regions.htm)
