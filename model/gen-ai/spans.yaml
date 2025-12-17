@@ -250,12 +250,12 @@ groups:
     span_kind: client
     stability: development
     brief: >
-      Describes GenAI retrieval span - a request to a Generative AI model or service
+      Describes GenAI retrieval span - a request to a Generative AI service or framework
       that retrieves relevant information or context from a vector database or search system.
 
       The `gen_ai.operation.name` SHOULD be `retrieval`.
 
-      **Span name** SHOULD be `{gen_ai.operation.name} {gen_ai.request.model}`.
+      **Span name** SHOULD be `{gen_ai.operation.name}`.
     extends: attributes.gen_ai.common.client
     attributes:
       - ref: gen_ai.operation.name
@@ -263,13 +263,14 @@ groups:
       - ref: gen_ai.retrieval.type
         requirement_level: recommended
       - ref: gen_ai.retrieval.query.text
-        requirement_level: recommended
-      - ref: gen_ai.retrieval.top_k
-        requirement_level: recommended
-      - ref: gen_ai.retrieval.documents_retrieved
+        requirement_level: opt_in
+      - ref: gen_ai.request.top_k
         requirement_level: recommended
       - ref: gen_ai.retrieval.documents
         requirement_level: opt_in
+      - ref: gen_ai.provider.name
+        requirement_level: when applicable
+      - ref: error.type
 
   - id: span.gen_ai.create_agent.client
     type: span

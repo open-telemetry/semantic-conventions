@@ -372,7 +372,7 @@ groups:
               stability: development
             - id: retrieval
               value: "retrieval"
-              brief: 'Retrieval operation such as [OpenAI Create retrievals API](https://platform.openai.com/docs/guides/retrieval)'
+              brief: 'Retrieval operation such as [OpenAI Search Vector Store API](https://platform.openai.com/docs/api-reference/vector-stores/search)'
               stability: development
             - id: create_agent
               value: "create_agent"
@@ -430,30 +430,21 @@ groups:
         type: int
         brief: The number of dimensions the resulting output embeddings should have.
         examples: [512, 1024]
-      - id: gen_ai.retrieval.type
-        stability: development
-        type: string
-        brief: The type of retrieval operation being performed.
-        examples: ["similarity", "hybrid", "keyword"]
-      - id: gen_ai.retrieval.top_k
-        stability: development
-        type: int
-        brief: The maximum number of results requested.
-        examples: [5, 10, 20]
-      - id: gen_ai.retrieval.documents_retrieved
-        stability: development
-        type: int
-        brief: The actual number of documents retrieved.
-        examples: [5, 10, 15]
       - id: gen_ai.retrieval.documents
         stability: development
         type: any
         brief: The documents retrieved.
         note: |
-          It's expected to be an array of objects where each object represents a retrieved document.
-          In case a serialized string is available to the instrumentation, the instrumentation SHOULD
-          do the best effort to deserialize it to an array. When recorded on spans, it MAY be recorded
-          as a JSON string if structured format is not supported and SHOULD be recorded in structured form otherwise.
+          Instrumentations MUST follow [Retrieval documents JSON schema](/docs/gen-ai/gen-ai-retrieval-documents.json).
+          When the attribute is recorded on events, it MUST be recorded in structured
+          form. When recorded on spans, it MAY be recorded as a JSON string if structured
+          format is not supported and SHOULD be recorded in structured form otherwise.
+
+          Each document object SHOULD contain at least the following properties:
+          - `id` (string): A unique identifier for the document
+          - `score` (double): The relevance score of the document
+
+          Additional properties MAY be included (e.g., `content`, `metadata`, `title`, `uri`).
 
           > [!Warning]
           > This attribute may contain sensitive information.
@@ -480,6 +471,9 @@ groups:
         stability: development
         type: string
         brief: The query text used for retrieval.
+        note: |
+          > [!Warning]
+          > This attribute may contain sensitive information.
         examples: ["What is the capital of France?", "weather in Paris"]
       - id: gen_ai.system_instructions
         stability: development
