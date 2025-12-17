@@ -278,7 +278,7 @@ groups:
       - id: rpc.service
         type: string
         stability: development
-        brief: 'Deprecated, usefully-qualified  `rpc.method.name` instead.'
+        brief: 'Deprecated, use fully-qualified `rpc.method.name` instead.'
         examples: "myservice.EchoService"
         deprecated:
           reason: uncategorized

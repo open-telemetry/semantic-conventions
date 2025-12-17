@@ -56,7 +56,7 @@ RPC spans MUST follow the overall [guidelines for span names](https://github.com
 RPC span names SHOULD be `{rpc.method.name}` if there is `rpc.method.name`
 available and it's not set to `_OTHER`.
 In other cases (when `{rpc.method.name}` is set to `_OTHER` or is not available),
-span name span name SHOULD be `{rpc.system.name}`.
+span name SHOULD be `{rpc.system.name}`.
 
 Semantic conventions for individual RPC systems MAY specify different span name
 format.
