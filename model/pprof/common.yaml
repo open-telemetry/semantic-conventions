@@ -17,3 +17,9 @@ groups:
         requirement_level: recommended
       - ref: pprof.profile.comment
         requirement_level: recommended
+      - ref: pprof.profile.drop_frames
+        requirement_level: recommended
+      - ref: pprof.profile.keep_frames
+        requirement_level: recommended
+      - ref: pprof.profile.doc_url
+        requirement_level: recommended
