@@ -31,5 +31,5 @@ groups:
         brief: "The GraphQL document being executed."
         type: string
         stability: development
-        note: The value may be sanitized to exclude sensitive information.
+        note: The value SHOULD be sanitized to exclude sensitive information.
         examples: 'query findBookById { bookById(id: ?) { name } }'
