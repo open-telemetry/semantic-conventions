@@ -260,8 +260,6 @@ groups:
     attributes:
       - ref: gen_ai.operation.name
         requirement_level: required
-      - ref: gen_ai.retrieval.type
-        requirement_level: recommended
       - ref: gen_ai.retrieval.query.text
         requirement_level: opt_in
       - ref: gen_ai.request.top_k
@@ -269,8 +267,11 @@ groups:
       - ref: gen_ai.retrieval.documents
         requirement_level: opt_in
       - ref: gen_ai.provider.name
-        requirement_level: when applicable
+        requirement_level:
+          conditionally_required: when applicable
       - ref: error.type
+        requirement_level:
+          conditionally_required: "if the operation ended in an error"
 
   - id: span.gen_ai.create_agent.client
     type: span
