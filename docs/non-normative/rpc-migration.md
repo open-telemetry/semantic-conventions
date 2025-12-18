@@ -92,7 +92,7 @@ Metric changes:
 - **Name**: `rpc.server.duration` &rarr; `rpc.server.call.duration` ([#2961](https://github.com/open-telemetry/semantic-conventions/pull/2961))
 - **Unit**: `ms` &rarr; `s` ([#2961](https://github.com/open-telemetry/semantic-conventions/pull/2961))
 - **Description**: `Measures the duration of inbound RPC.` &rarr;
-  `Duration of RPC server calls.` ([#2961](https://github.com/open-telemetry/semantic-conventions/pull/2961))
+  `Measures the duration of inbound remote procedure calls (RPC).` ([#2961](https://github.com/open-telemetry/semantic-conventions/pull/2961))
 - **Histogram buckets**: boundaries updated to reflect change from milliseconds
   to seconds ([#2961](https://github.com/open-telemetry/semantic-conventions/pull/2961))
 - **Attributes**: see table below
@@ -122,7 +122,7 @@ Metric changes:
 - **Name**: `rpc.client.duration` &rarr; `rpc.client.call.duration` ([#2961](https://github.com/open-telemetry/semantic-conventions/pull/2961))
 - **Unit**: `ms` &rarr; `s` ([#2961](https://github.com/open-telemetry/semantic-conventions/pull/2961))
 - **Description**: `Measures the duration of outbound RPC.` &rarr;
-  `Duration of RPC client calls.` ([#2961](https://github.com/open-telemetry/semantic-conventions/pull/2961))
+  `Measures the duration of outbound remote procedure calls (RPC).` ([#2961](https://github.com/open-telemetry/semantic-conventions/pull/2961))
 - **Histogram buckets**: boundaries updated to reflect change from milliseconds
   to seconds ([#2961](https://github.com/open-telemetry/semantic-conventions/pull/2961))
 - **Attributes**: see table below
