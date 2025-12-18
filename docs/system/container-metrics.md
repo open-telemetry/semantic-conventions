@@ -41,7 +41,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `container.uptime` | Gauge | `s` | The time the container has been running. [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
+| `container.uptime` | Gauge | `s` | The time the container has been running. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`container`](/docs/registry/entities/container.md#container) |
 
 **[1]:** Instrumentations SHOULD use a gauge with type `double` and measure uptime in seconds as a floating point number with the highest precision available.
 The actual accuracy would depend on the instrumentation and operating system.
@@ -61,7 +61,7 @@ This metric is [opt-in][MetricOptIn].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `container.cpu.time` | Counter | `s` | Total CPU time consumed. [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
+| `container.cpu.time` | Counter | `s` | Total CPU time consumed. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`container`](/docs/registry/entities/container.md#container) |
 
 **[1]:** Total CPU time consumed by the specific container on all available CPU cores
 
@@ -105,7 +105,7 @@ This metric is [opt-in][MetricOptIn].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `container.cpu.usage` | Gauge | `{cpu}` | Container's CPU usage, measured in cpus. Range from 0 to the number of allocatable CPUs. [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
+| `container.cpu.usage` | Gauge | `{cpu}` | Container's CPU usage, measured in cpus. Range from 0 to the number of allocatable CPUs. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`container`](/docs/registry/entities/container.md#container) |
 
 **[1]:** CPU usage of the specific container on all available CPU cores, averaged over the sample window
 
@@ -149,7 +149,7 @@ This metric is [opt-in][MetricOptIn].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `container.memory.usage` | Counter | `By` | Memory usage of the container. [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
+| `container.memory.usage` | Counter | `By` | Memory usage of the container. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`container`](/docs/registry/entities/container.md#container) |
 
 **[1]:** Memory usage of the container.
 
@@ -264,7 +264,7 @@ This metric is [opt-in][MetricOptIn].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `container.disk.io` | Counter | `By` | Disk bytes for the container. [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
+| `container.disk.io` | Counter | `By` | Disk bytes for the container. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`container`](/docs/registry/entities/container.md#container) |
 
 **[1]:** The total number of bytes read/written successfully (aggregated from all disks).
 
@@ -299,7 +299,7 @@ This metric is [opt-in][MetricOptIn].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `container.network.io` | Counter | `By` | Network bytes for the container. [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
+| `container.network.io` | Counter | `By` | Network bytes for the container. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`container`](/docs/registry/entities/container.md#container) |
 
 **[1]:** The number of bytes sent/received on all network interfaces by the container.
 
