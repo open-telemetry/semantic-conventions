@@ -45,22 +45,16 @@ SHOULD NOT be recorded on spans or metrics that describe this operation.
 
 ## Recording errors
 
-Instrumentation SHOULD ensure that the same [`error.type`][ErrorType] attribute
-values are applied consistently across all signals. This means that all signals
-produce the same `error.type` value for a given error.
-
-> [!NOTE]
->
-> Logs use [`EventName`][EventName] instead of the `error.type` attribute.
-> However, the same principle applies.
+Instrumentation SHOULD ensure that, for a given error, the same value is
+used as the [`error.type`][ErrorType] attribute on spans and metrics, and as
+[`EventName`][EventName] on logs.
 
 ## Recording errors on spans
 
 When the instrumented operation failed, the instrumentation:
 
 - SHOULD set the span status code to `Error`,
-- SHOULD set the [`error.type`][ErrorType]
-  attribute,
+- SHOULD set the [`error.type`][ErrorType] attribute,
 - SHOULD set the span status description when it has additional information
   about the error that aligns with [Span Status Description][SpanStatus]
   definition, for example, an exception message.
