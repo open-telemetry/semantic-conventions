@@ -106,10 +106,10 @@ the instrumentation SHOULD NOT additionally record it as an event record.
 
 > [!NOTE]
 >
-> Applications that also want error event records corresponding to spans
-> that already record errors can use a span processor (or equivalent component)
-> that emits error logs for such spans. This is an optional, user-configured
-> mechanism and is not required by these conventions.
+> Applications that also want event records for errors that are already
+> recorded on spans can use a span processor (or equivalent component)
+> that emits corresponding error event records. This is an optional,
+> user-configured mechanism and is not required by these conventions.
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
 [SpanStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.52.0/specification/trace/api.md#set-status
