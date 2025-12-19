@@ -5,26 +5,26 @@
 <!-- toc -->
 
 - [What constitutes an error](#what-constitutes-an-error)
+- [What constitutes a failed operation](#what-constitutes-a-failed-operation)
+- [Recording errors](#recording-errors)
 - [Recording errors on spans](#recording-errors-on-spans)
 - [Recording errors on metrics](#recording-errors-on-metrics)
-- [Recording exceptions](#recording-exceptions)
+- [Recording errors on logs](#recording-errors-on-logs)
 
 <!-- tocstop -->
 
-This document provides recommendations to semantic convention and instrumentation authors
-on how to record errors on spans and metrics.
+This document provides recommendations to semantic convention
+and instrumentation authors on how to record errors on spans, metrics, and logs.
 
 Individual semantic conventions are encouraged to provide additional guidance.
 
 ## What constitutes an error
 
-An operation SHOULD be considered as failed if any of the following is true:
+In the scope of this document an error occurs when:
 
-- an exception is thrown by the instrumented method (API, block of code, or another instrumented unit)
-- the instrumented method returns an error in another way, for example, via an error code
-
-  Semantic conventions that define domain-specific status codes SHOULD specify
-  which status codes should be reported as errors by a general-purpose instrumentation.
+- an exception is thrown by an instrumented operation,
+- the instrumented operation returns an error in another way,
+  for example, via an error object or status code.
 
 > [!NOTE]
 >
@@ -33,38 +33,44 @@ An operation SHOULD be considered as failed if any of the following is true:
 > expected the resource to be available. However, it is not an error when the
 > application is simply checking whether the resource exists.
 >
-> Instrumentations that have additional context about a specific request MAY use
-> this context to set the span status more precisely.
+> Instrumentations that have additional context about a specific request SHOULD
+> use this context to classify whether the status code is an error.
 
-Errors that were retried or handled (allowing an operation to complete gracefully) SHOULD NOT
-be recorded on spans or metrics that describe this operation.
+## What constitutes a failed operation
+
+An operation SHOULD be considered as failed when it ends with an error.
+
+Errors that were retried or handled (allowing an operation to complete gracefully)
+SHOULD NOT be recorded on spans or metrics that describe this operation.
+
+## Recording errors
+
+Instrumentation SHOULD ensure that the same [`error.type`][ErrorType] values are applied
+consistently across all signals. This means that all signals produce
+the same `error.type` value for given error.
 
 ## Recording errors on spans
 
-[Span Status Code][SpanStatus] MUST be left unset if the instrumented operation has
-ended without any errors.
-
-When the operation ends with an error, instrumentation:
+When the instrumented operation failed, the instrumentation:
 
 - SHOULD set the span status code to `Error`
-- SHOULD set the [`error.type`](/docs/registry/attributes/error.md#error-type) attribute
+- SHOULD set the [`error.type`][ErrorType]
+  attribute,
 - SHOULD set the span status description when it has additional information
-  about the error which is not expected to contain sensitive details and aligns
-  with [Span Status Description][SpanStatus] definition.
+  about the error that aligns with [Span Status Description][SpanStatus]
+  definition, for example, an exception message.
 
-  It's NOT RECOMMENDED to duplicate status code or `error.type` in span status description.
+Note that [Span Status Code][SpanStatus] MUST be left unset if the instrumented
+operation has ended without any errors.
 
-  When the operation fails with an exception, the span status description SHOULD be set to
-  the exception message.
-
-Refer to the [recording exceptions](#recording-exceptions) on capturing exception
-details.
+It is NOT RECOMMENDED to record the error via a span event,
+for example, by using [`Span.RecordException`][RecordException].
 
 ## Recording errors on metrics
 
 Semantic conventions for operations usually define an operation duration histogram
-metric. This metric SHOULD include the `error.type` attribute. This enables users to derive
-throughput and error rates.
+metric. This metric SHOULD include the [`error.type`][ErrorType] attribute.
+This enables users to derive throughput and error rates.
 
 Operations that complete successfully SHOULD NOT include the `error.type` attribute,
 allowing users to filter out errors.
@@ -76,50 +82,38 @@ messaging operation may involve sending multiple messages) and includes `error.t
 It's RECOMMENDED to report one metric that includes successes and failures as opposed
 to reporting two (or more) metrics depending on the operation status.
 
-Instrumentation SHOULD ensure `error.type` is applied consistently across spans
-and metrics when both are reported. A span and its corresponding metric for a single
-operation SHOULD have the same `error.type` value if the operation failed and SHOULD NOT
-include it if the operation succeeded.
+## Recording errors on logs
 
-## Recording exceptions
+When recording an error using logs:
 
-When an instrumented operation fails with an exception, instrumentation SHOULD record
-this exception as a [span event](/docs/exceptions/exceptions-spans.md) or a [log record](/docs/exceptions/exceptions-logs.md).
+- The [`error.type`][ErrorType] attribute SHOULD be used as the event name.
+- The [`error.message`][ErrorMessage] attribute SHOULD be used to add additional
+  information about the error, for example, an exception message.
 
-It's RECOMMENDED to use the `Span.recordException` API or logging library API that takes exception instance
-instead of providing individual attributes. This enables the OpenTelemetry SDK to
-control what information is recorded based on application configuration.
+When an error is retried or handled and the overall operation completes successfully,
+it SHOULD still be recorded as an event record for diagnostic purposes.
+In such scenario, [`SeverityNumber`][SeverityNumber] MUST be below 17 (ERROR).
 
-It's NOT RECOMMENDED to record the same exception more than once.
-It's NOT RECOMMENDED to record exceptions that are handled by the instrumented library.
+When an error occurs outside the context of any span
+and it causes an operation to fail,
+the instrumentation SHOULD record it as an event record.
+In such scenario, [`SeverityNumber`][SeverityNumber] MUST be greater than
+or equal to 17 (ERROR).
 
-For example, in this code-snippet, `ResourceAlreadyExistsException` is handled and the corresponding
-native instrumentation should not record it. Exceptions which are propagated
-to the caller should be recorded (or logged) once.
+When an error occurs inside the context of a span
+and it causes an operation to fail,
+the instrumentation SHOULD NOT additionally record it as a log record.
 
-```java
-public boolean createIfNotExists(String resourceId) throws IOException {
-  Span span = startSpan();
-  try {
-    create(resourceId);
-    return true;
-  } catch (ResourceAlreadyExistsException e) {
-    // not recording exception and not setting span status to error - exception is handled
-    // but we can set attributes that capture additional details
-    span.setAttribute(AttributeKey.stringKey("acme.resource.create.status"), "already_exists");
-    return false;
-  } catch (IOException e) {
-    // recording exception here (assuming it was not recorded inside `create` method)
-    span.recordException(e);
-    // or
-    // logger.warn(e);
-
-    span.setAttribute(AttributeKey.stringKey("error.type"), e.getClass().getCanonicalName())
-    span.setStatus(StatusCode.ERROR, e.getMessage());
-    throw e;
-  }
-}
-```
+> [!NOTE]
+>
+> Applications that also want error event records corresponding to spans
+> that already record errors can use a span processor (or equivalent component)
+> that emits error logs for such spans. This is an optional, user-configured
+> mechanism and is not required by these conventions.
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
-[SpanStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.52.0/specification/trace/api.md#set-status
+[SpanStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.50.0/specification/trace/api.md#set-status
+[RecordException]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.50.0/specification/trace/api.md#record-exception
+[ErrorType]: /docs/registry/attributes/error.md#error-type
+[ErrorMessage]: /docs/registry/attributes/error.md#error-message
+[SeverityNumber]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.50.0/specification/logs/data-model.md#field-severitynumber
