@@ -58,7 +58,7 @@ produce the same `error.type` value for a given error.
 
 When the instrumented operation failed, the instrumentation:
 
-- SHOULD set the span status code to `Error`
+- SHOULD set the span status code to `Error`,
 - SHOULD set the [`error.type`][ErrorType]
   attribute,
 - SHOULD set the span status description when it has additional information
@@ -91,9 +91,9 @@ to reporting two (or more) metrics depending on the operation status.
 
 When recording an error using logs:
 
-- The [`EventName`][EventName] MUST be set with a value that would normally be
+- MUST set [`EventName`][EventName] with a value that would normally be
   used for an [`error.type`][ErrorType] attribute.
-- The [`error.message`][ErrorMessage] attribute SHOULD be used to add additional
+- SHOULD set [`error.message`][ErrorMessage] attribute to add additional
   information about the error, for example, an exception message.
 
 When an error is retried or handled and the overall operation completes successfully,
