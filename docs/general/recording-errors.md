@@ -118,9 +118,9 @@ the instrumentation SHOULD NOT additionally record it as an event record.
 > mechanism and is not required by these conventions.
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
-[SpanStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.50.0/specification/trace/api.md#set-status
-[RecordException]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.50.0/specification/trace/api.md#record-exception
+[SpanStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.52.0/specification/trace/api.md#set-status
+[RecordException]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.52.0/specification/trace/api.md#record-exception
 [ErrorType]: /docs/registry/attributes/error.md#error-type
 [ErrorMessage]: /docs/registry/attributes/error.md#error-message
-[EventName]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.50.0/specification/logs/data-model.md#field-eventname
-[SeverityNumber]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.50.0/specification/logs/data-model.md#field-severitynumber
+[EventName]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.52.0/specification/logs/data-model.md#field-eventname
+[SeverityNumber]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.52.0/specification/logs/data-model.md#field-severitynumber
