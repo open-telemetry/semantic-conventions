@@ -90,8 +90,8 @@ When recording an error using logs:
 - SHOULD set [`error.message`][ErrorMessage] attribute to add additional
   information about the error, for example, an exception message.
 
-When an error is retried or handled and the overall operation completes successfully,
-it SHOULD still be recorded as an event record for diagnostic purposes.
+When an error is retried or handled, even when the overall operation completes successfully,
+the instrumentation SHOULD record it as an event record for diagnostic purposes.
 In such scenario, [`SeverityNumber`][SeverityNumber] MUST be below 17 (ERROR).
 
 When an error occurs outside the context of any span
