@@ -48,17 +48,17 @@ This document defines the attributes used to describe telemetry in the context o
 | <a id="gen-ai-response-finish-reasons" href="#gen-ai-response-finish-reasons">`gen_ai.response.finish_reasons`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string[] | Array of reasons the model stopped generating tokens, corresponding to each generation received. | `["stop"]`; `["stop", "length"]` |
 | <a id="gen-ai-response-id" href="#gen-ai-response-id">`gen_ai.response.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The unique identifier for the completion. | `chatcmpl-123` |
 | <a id="gen-ai-response-model" href="#gen-ai-response-model">`gen_ai.response.model`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the model that generated the response. | `gpt-4-0613` |
-| <a id="gen-ai-security-content-input" href="#gen-ai-security-content-input">`gen_ai.security.content.input`</a> | ![Development](https://img.shields.io/badge/-development-blue) | any | The input content that was evaluated by the guardian. [10] | `Send an email to customer@example.com` |
-| <a id="gen-ai-security-content-input-hash" href="#gen-ai-security-content-input-hash">`gen_ai.security.content.input.hash`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Hash of the input content for forensic correlation. [11] | `sha256:a3f2b8c9...` |
-| <a id="gen-ai-security-content-output" href="#gen-ai-security-content-output">`gen_ai.security.content.output`</a> | ![Development](https://img.shields.io/badge/-development-blue) | any | The output content after guardian processing (if modified). [12] | `Send an email to [REDACTED]` |
+| <a id="gen-ai-security-content-input-hash" href="#gen-ai-security-content-input-hash">`gen_ai.security.content.input.hash`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Hash of the input content for forensic correlation. [10] | `sha256:a3f2b8c9...` |
+| <a id="gen-ai-security-content-input-value" href="#gen-ai-security-content-input-value">`gen_ai.security.content.input.value`</a> | ![Development](https://img.shields.io/badge/-development-blue) | any | The input content that was evaluated by the guardian. [11] | `Send an email to customer@example.com` |
+| <a id="gen-ai-security-content-output-value" href="#gen-ai-security-content-output-value">`gen_ai.security.content.output.value`</a> | ![Development](https://img.shields.io/badge/-development-blue) | any | The output content after guardian processing (if modified). [12] | `Send an email to [REDACTED]` |
 | <a id="gen-ai-security-content-redacted" href="#gen-ai-security-content-redacted">`gen_ai.security.content.redacted`</a> | ![Development](https://img.shields.io/badge/-development-blue) | boolean | Whether the content was redacted or modified by the guardian. | `true`; `false` |
-| <a id="gen-ai-security-decision" href="#gen-ai-security-decision">`gen_ai.security.decision`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The decision made by the security guardian. | `allow`; `deny`; `modify` |
 | <a id="gen-ai-security-decision-code" href="#gen-ai-security-decision-code">`gen_ai.security.decision.code`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | Numeric code for the security decision (provider-specific). | `112`; `403`; `5001` |
 | <a id="gen-ai-security-decision-reason" href="#gen-ai-security-decision-reason">`gen_ai.security.decision.reason`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Human-readable explanation for the security decision. [13] | `PII detected in output, masked before delivery`; `Prompt injection attempt denied`; `Action exceeds agent permission scope` |
+| <a id="gen-ai-security-decision-type" href="#gen-ai-security-decision-type">`gen_ai.security.decision.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The decision made by the security guardian. | `allow`; `deny`; `modify` |
 | <a id="gen-ai-security-policy-id" href="#gen-ai-security-policy-id">`gen_ai.security.policy.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Identifier of the policy that triggered the decision. | `policy_pii_v2`; `deny-topic-financial-advice`; `org-compliance-001` |
 | <a id="gen-ai-security-policy-name" href="#gen-ai-security-policy-name">`gen_ai.security.policy.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Human-readable name of the triggered policy. | `PII Protection Policy`; `Financial Advice Restriction` |
 | <a id="gen-ai-security-policy-version" href="#gen-ai-security-policy-version">`gen_ai.security.policy.version`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Version of the policy that triggered the decision. | `1.0`; `2024-05-01` |
-| <a id="gen-ai-security-risk-category" href="#gen-ai-security-risk-category">`gen_ai.security.risk.category`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The category of security risk detected. [14] | `prompt_injection`; `sensitive_information_disclosure`; `custom:financial_advice_violation`; `aws:denied_topic`; `azure:hate_speech` |
+| <a id="gen-ai-security-risk-category" href="#gen-ai-security-risk-category">`gen_ai.security.risk.category`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The category of security risk detected. [14] | `prompt_injection`; `sensitive_info_disclosure`; `jailbreak`; `custom:financial_advice_violation`; `aws:denied_topic`; `azure:hate_speech` |
 | <a id="gen-ai-security-risk-metadata" href="#gen-ai-security-risk-metadata">`gen_ai.security.risk.metadata`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string[] | Non-content metadata about the detected risk. [15] | `["field:bcc", "pattern:email"]`; `["count:2", "position:output.content"]` |
 | <a id="gen-ai-security-risk-score" href="#gen-ai-security-risk-score">`gen_ai.security.risk.score`</a> | ![Development](https://img.shields.io/badge/-development-blue) | double | Numeric risk/confidence score (0.0 to 1.0). | `0.85`; `0.95`; `0.42` |
 | <a id="gen-ai-security-risk-severity" href="#gen-ai-security-risk-severity">`gen_ai.security.risk.severity`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The severity level of the detected risk. | `low`; `medium`; `high`; `critical` |
@@ -144,7 +144,9 @@ applicable `aws.bedrock.*` attributes and are not expected to include
 
 **[9] `gen_ai.request.encoding_formats`:** In some GenAI systems the encoding formats are called embedding types. Also, some GenAI systems only accept a single format per request.
 
-**[10] `gen_ai.security.content.input`:** > [!WARNING]
+**[10] `gen_ai.security.content.input.hash`:** Use when full content capture is not desired but correlation is needed. Instrumentations SHOULD document the algorithm and any salting/HMAC approach used.
+
+**[11] `gen_ai.security.content.input.value`:** > [!WARNING]
 > This attribute may contain sensitive information including user/PII
 > data. Instrumentations SHOULD NOT capture this by default. Enable via
 > opt-in configuration only.
@@ -152,9 +154,7 @@ applicable `aws.bedrock.*` attributes and are not expected to include
 This attribute MAY be truncated. For correlation without full content,
 consider `gen_ai.security.content.input.hash`.
 
-**[11] `gen_ai.security.content.input.hash`:** Use when full content capture is not desired but correlation is needed. Instrumentations SHOULD document the algorithm and any salting/HMAC approach used.
-
-**[12] `gen_ai.security.content.output`:** > [!WARNING]
+**[12] `gen_ai.security.content.output.value`:** > [!WARNING]
 > This attribute may contain sensitive information. Instrumentations
 > SHOULD NOT capture this by default. Enable via opt-in configuration
 > only.
@@ -163,7 +163,23 @@ For `modify` decisions, this MAY contain the sanitized/redacted result.
 
 **[13] `gen_ai.security.decision.reason`:** The value SHOULD be low-cardinality and MUST NOT contain sensitive user content or other high-risk data.
 
-**[14] `gen_ai.security.risk.category`:** The well-known values are aligned with OWASP LLM Top 10 2025 categories. If one of them applies, the respective value MUST be used; otherwise, a custom value MAY be used.
+**[14] `gen_ai.security.risk.category`:** This attribute is free-form to accommodate provider-specific,
+organization-specific, or emerging risk categories.
+
+Suggested values aligned with OWASP LLM Top 10 2025 include:
+- `prompt_injection` (LLM01)
+- `sensitive_info_disclosure` (LLM02)
+- `supply_chain` (LLM03)
+- `data_and_model_poisoning` (LLM04)
+- `improper_output_handling` (LLM05)
+- `excessive_agency` (LLM06)
+- `system_prompt_leakage` (LLM07)
+- `vector_and_embedding_weaknesses` (LLM08)
+- `misinformation` (LLM09)
+- `unbounded_consumption` (LLM10)
+
+Instrumentations MAY use additional values when appropriate, for
+example: `jailbreak`, `toxicity`, `pii`, `custom:*`, `aws:*`, `azure:*`.
 
 **[15] `gen_ai.security.risk.metadata`:** > [!WARNING]
 > This attribute MUST NOT contain sensitive user content, PII, or other
@@ -286,7 +302,7 @@ Datastore: A tool used by the agent to access and query structured or unstructur
 
 ---
 
-`gen_ai.security.decision` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`gen_ai.security.decision.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |
 | --- | --- | --- |
@@ -295,23 +311,6 @@ Datastore: A tool used by the agent to access and query structured or unstructur
 | `deny` | Request denied and operation halted. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `modify` | Request permitted with modifications (redaction, sanitization). | ![Development](https://img.shields.io/badge/-development-blue) |
 | `warn` | Request permitted but flagged for review. | ![Development](https://img.shields.io/badge/-development-blue) |
-
----
-
-`gen_ai.security.risk.category` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value | Description | Stability |
-| --- | --- | --- |
-| `data_and_model_poisoning` | Data and model poisoning. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `excessive_agency` | Excessive agency. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `improper_output_handling` | Improper output handling. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `misinformation` | Misinformation. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `prompt_injection` | Prompt injection. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `sensitive_information_disclosure` | Sensitive information disclosure. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `supply_chain` | Supply chain. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `system_prompt_leakage` | System prompt leakage. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `unbounded_consumption` | Unbounded consumption. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `vector_and_embedding_weaknesses` | Vector and embedding weaknesses. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 

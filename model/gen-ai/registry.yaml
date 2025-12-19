@@ -365,7 +365,7 @@ groups:
         brief: The provider or vendor of the guardian service.
         examples: ['aws.bedrock', 'azure.ai.content_safety', 'zenity', 'custom']
 
-      - id: gen_ai.security.decision
+      - id: gen_ai.security.decision.type
         stability: development
         type:
           members:
@@ -464,56 +464,30 @@ groups:
 
       - id: gen_ai.security.risk.category
         stability: development
-        type:
-          members:
-            - id: prompt_injection
-              value: "prompt_injection"
-              brief: Prompt injection.
-              stability: development
-            - id: sensitive_information_disclosure
-              value: "sensitive_information_disclosure"
-              brief: Sensitive information disclosure.
-              stability: development
-            - id: supply_chain
-              value: "supply_chain"
-              brief: Supply chain.
-              stability: development
-            - id: data_and_model_poisoning
-              value: "data_and_model_poisoning"
-              brief: Data and model poisoning.
-              stability: development
-            - id: improper_output_handling
-              value: "improper_output_handling"
-              brief: Improper output handling.
-              stability: development
-            - id: excessive_agency
-              value: "excessive_agency"
-              brief: Excessive agency.
-              stability: development
-            - id: system_prompt_leakage
-              value: "system_prompt_leakage"
-              brief: System prompt leakage.
-              stability: development
-            - id: vector_and_embedding_weaknesses
-              value: "vector_and_embedding_weaknesses"
-              brief: Vector and embedding weaknesses.
-              stability: development
-            - id: misinformation
-              value: "misinformation"
-              brief: Misinformation.
-              stability: development
-            - id: unbounded_consumption
-              value: "unbounded_consumption"
-              brief: Unbounded consumption.
-              stability: development
+        type: string
         brief: The category of security risk detected.
-        note: >
-          The well-known values are aligned with OWASP LLM Top 10 2025 categories.
-          If one of them applies, the respective value MUST be used; otherwise, a
-          custom value MAY be used.
+        note: |
+          This attribute is free-form to accommodate provider-specific,
+          organization-specific, or emerging risk categories.
+
+          Suggested values aligned with OWASP LLM Top 10 2025 include:
+          - `prompt_injection` (LLM01)
+          - `sensitive_info_disclosure` (LLM02)
+          - `supply_chain` (LLM03)
+          - `data_and_model_poisoning` (LLM04)
+          - `improper_output_handling` (LLM05)
+          - `excessive_agency` (LLM06)
+          - `system_prompt_leakage` (LLM07)
+          - `vector_and_embedding_weaknesses` (LLM08)
+          - `misinformation` (LLM09)
+          - `unbounded_consumption` (LLM10)
+
+          Instrumentations MAY use additional values when appropriate, for
+          example: `jailbreak`, `toxicity`, `pii`, `custom:*`, `aws:*`, `azure:*`.
         examples:
           - 'prompt_injection'
-          - 'sensitive_information_disclosure'
+          - 'sensitive_info_disclosure'
+          - 'jailbreak'
           - 'custom:financial_advice_violation'
           - 'aws:denied_topic'
           - 'azure:hate_speech'
@@ -582,7 +556,7 @@ groups:
         brief: Version of the policy that triggered the decision.
         examples: ['1.0', '2024-05-01']
 
-      - id: gen_ai.security.content.input
+      - id: gen_ai.security.content.input.value
         stability: development
         type: any
         brief: The input content that was evaluated by the guardian.
@@ -596,7 +570,7 @@ groups:
           consider `gen_ai.security.content.input.hash`.
         examples:
           - 'Send an email to customer@example.com'
-      - id: gen_ai.security.content.output
+      - id: gen_ai.security.content.output.value
         stability: development
         type: any
         brief: The output content after guardian processing (if modified).

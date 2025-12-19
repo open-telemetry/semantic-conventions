@@ -364,11 +364,11 @@ groups:
         requirement_level: recommended
       - ref: gen_ai.guardian.provider.name
         requirement_level: recommended
-      - ref: gen_ai.security.decision
+      - ref: gen_ai.security.decision.type
         requirement_level: required
       - ref: gen_ai.security.decision.reason
         requirement_level:
-          conditionally_required: if `gen_ai.security.decision` is not `allow` and a reason is available
+          conditionally_required: if `gen_ai.security.decision.type` is not `allow` and a reason is available
       - ref: gen_ai.security.decision.code
         requirement_level: recommended
       - ref: gen_ai.security.target.type
@@ -383,16 +383,16 @@ groups:
         requirement_level: recommended
       - ref: gen_ai.security.policy.version
         requirement_level: recommended
-      - ref: gen_ai.security.content.input
+      - ref: gen_ai.security.content.input.value
         requirement_level: opt_in
-      - ref: gen_ai.security.content.output
+      - ref: gen_ai.security.content.output.value
         requirement_level: opt_in
       - ref: gen_ai.security.content.input.hash
         requirement_level:
           conditionally_required: if correlation is needed and available
       - ref: gen_ai.security.content.redacted
         requirement_level:
-          conditionally_required: if `gen_ai.security.decision` is `modify`
+          conditionally_required: if `gen_ai.security.decision.type` is `modify`
       - ref: gen_ai.agent.id
         requirement_level:
           conditionally_required: when applicable

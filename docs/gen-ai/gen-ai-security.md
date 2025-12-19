@@ -56,14 +56,14 @@ Multiple guardian spans MAY exist under a single operation span if multiple guar
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`gen_ai.operation.name`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the operation being performed. [1] | `chat`; `generate_content`; `text_completion` |
-| [`gen_ai.security.decision`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The decision made by the security guardian. | `allow`; `deny`; `modify` |
+| [`gen_ai.security.decision.type`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The decision made by the security guardian. | `allow`; `deny`; `modify` |
 | [`gen_ai.security.target.type`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The type of content or action the guardrail is applied to. [2] | `tool_call`; `llm_input`; `llm_output`; `tool_definition` |
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if the operation ended in an error | string | Describes a class of error the operation ended with. [3] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` |
 | [`gen_ai.agent.id`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` when applicable | string | The unique identifier of the GenAI agent. | `asst_5j66UpCpwteGg4YSxUnt7lPY` |
 | [`gen_ai.conversation.id`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` when available | string | The unique identifier for a conversation (session, thread), used to store and correlate messages within this conversation. | `conv_5j66UpCpwteGg4YSxUnt7lPY` |
 | [`gen_ai.guardian.id`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` if available | string | The unique identifier of the security guardian or guardrail. [4] | `guard_abc123`; `sgi5gkybzqak`; `content-filter-v2` |
 | [`gen_ai.security.content.input.hash`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` if correlation is needed and available | string | Hash of the input content for forensic correlation. [5] | `sha256:a3f2b8c9...` |
-| [`gen_ai.security.content.redacted`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` if `gen_ai.security.decision` is `modify` | boolean | Whether the content was redacted or modified by the guardian. | `true`; `false` |
+| [`gen_ai.security.content.redacted`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` if `gen_ai.security.decision.type` is `modify` | boolean | Whether the content was redacted or modified by the guardian. | `true`; `false` |
 | [`gen_ai.security.decision.reason`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [6] | string | Human-readable explanation for the security decision. [7] | `PII detected in output, masked before delivery`; `Prompt injection attempt denied`; `Action exceeds agent permission scope` |
 | [`gen_ai.security.policy.id`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` if a policy triggered the decision | string | Identifier of the policy that triggered the decision. | `policy_pii_v2`; `deny-topic-financial-advice`; `org-compliance-001` |
 | [`gen_ai.security.target.id`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` if available | string | Identifier of the specific target the guardrail is applied to. [8] | `call_xyz789`; `tool-123`; `mem_abc456` |
@@ -73,8 +73,8 @@ Multiple guardian spans MAY exist under a single operation span if multiple guar
 | [`gen_ai.security.decision.code`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | int | Numeric code for the security decision (provider-specific). | `112`; `403`; `5001` |
 | [`gen_ai.security.policy.name`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Human-readable name of the triggered policy. | `PII Protection Policy`; `Financial Advice Restriction` |
 | [`gen_ai.security.policy.version`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Version of the policy that triggered the decision. | `1.0`; `2024-05-01` |
-| [`gen_ai.security.content.input`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | any | The input content that was evaluated by the guardian. [9] | `Send an email to customer@example.com` |
-| [`gen_ai.security.content.output`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | any | The output content after guardian processing (if modified). [10] | `Send an email to [REDACTED]` |
+| [`gen_ai.security.content.input.value`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | any | The input content that was evaluated by the guardian. [9] | `Send an email to customer@example.com` |
+| [`gen_ai.security.content.output.value`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | any | The output content after guardian processing (if modified). [10] | `Send an email to [REDACTED]` |
 
 **[1] `gen_ai.operation.name`:** If one of the predefined values applies, but specific system uses a different name it's RECOMMENDED to document it in the semantic conventions for specific GenAI system and use system-specific name in the instrumentation. If a different name is not documented, instrumentation libraries SHOULD use applicable predefined value.
 
@@ -88,13 +88,13 @@ Instrumentations SHOULD document the list of errors they report.
 
 **[5] `gen_ai.security.content.input.hash`:** Use when full content capture is not desired but correlation is needed. Instrumentations SHOULD document the algorithm and any salting/HMAC approach used.
 
-**[6] `gen_ai.security.decision.reason`:** if `gen_ai.security.decision` is not `allow` and a reason is available
+**[6] `gen_ai.security.decision.reason`:** if `gen_ai.security.decision.type` is not `allow` and a reason is available
 
 **[7] `gen_ai.security.decision.reason`:** The value SHOULD be low-cardinality and MUST NOT contain sensitive user content or other high-risk data.
 
 **[8] `gen_ai.security.target.id`:** For example, a tool call identifier, request identifier, or memory entry identifier, if applicable.
 
-**[9] `gen_ai.security.content.input`:** > [!WARNING]
+**[9] `gen_ai.security.content.input.value`:** > [!WARNING]
 > This attribute may contain sensitive information including user/PII
 > data. Instrumentations SHOULD NOT capture this by default. Enable via
 > opt-in configuration only.
@@ -102,7 +102,7 @@ Instrumentations SHOULD document the list of errors they report.
 This attribute MAY be truncated. For correlation without full content,
 consider `gen_ai.security.content.input.hash`.
 
-**[10] `gen_ai.security.content.output`:** > [!WARNING]
+**[10] `gen_ai.security.content.output.value`:** > [!WARNING]
 > This attribute may contain sensitive information. Instrumentations
 > SHOULD NOT capture this by default. Enable via opt-in configuration
 > only.
@@ -134,7 +134,7 @@ For `modify` decisions, this MAY contain the sanitized/redacted result.
 
 ---
 
-`gen_ai.security.decision` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`gen_ai.security.decision.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |
 | --- | --- | --- |
@@ -187,7 +187,7 @@ Events SHOULD be parented to the `span.gen_ai.apply_guardrail.internal` span whe
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`gen_ai.security.risk.category`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The category of security risk detected. [1] | `prompt_injection`; `sensitive_information_disclosure`; `custom:financial_advice_violation`; `aws:denied_topic`; `azure:hate_speech` |
+| [`gen_ai.security.risk.category`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The category of security risk detected. [1] | `prompt_injection`; `sensitive_info_disclosure`; `jailbreak`; `custom:financial_advice_violation`; `aws:denied_topic`; `azure:hate_speech` |
 | [`gen_ai.security.risk.severity`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The severity level of the detected risk. | `low`; `medium`; `high`; `critical` |
 | [`gen_ai.security.policy.id`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` if triggered by a specific policy | string | Identifier of the policy that triggered the decision. | `policy_pii_v2`; `deny-topic-financial-advice`; `org-compliance-001` |
 | [`gen_ai.security.policy.name`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Human-readable name of the triggered policy. | `PII Protection Policy`; `Financial Advice Restriction` |
@@ -195,7 +195,23 @@ Events SHOULD be parented to the `span.gen_ai.apply_guardrail.internal` span whe
 | [`gen_ai.security.risk.metadata`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string[] | Non-content metadata about the detected risk. [2] | `["field:bcc", "pattern:email"]`; `["count:2", "position:output.content"]` |
 | [`gen_ai.security.risk.score`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | double | Numeric risk/confidence score (0.0 to 1.0). | `0.85`; `0.95`; `0.42` |
 
-**[1] `gen_ai.security.risk.category`:** The well-known values are aligned with OWASP LLM Top 10 2025 categories. If one of them applies, the respective value MUST be used; otherwise, a custom value MAY be used.
+**[1] `gen_ai.security.risk.category`:** This attribute is free-form to accommodate provider-specific,
+organization-specific, or emerging risk categories.
+
+Suggested values aligned with OWASP LLM Top 10 2025 include:
+- `prompt_injection` (LLM01)
+- `sensitive_info_disclosure` (LLM02)
+- `supply_chain` (LLM03)
+- `data_and_model_poisoning` (LLM04)
+- `improper_output_handling` (LLM05)
+- `excessive_agency` (LLM06)
+- `system_prompt_leakage` (LLM07)
+- `vector_and_embedding_weaknesses` (LLM08)
+- `misinformation` (LLM09)
+- `unbounded_consumption` (LLM10)
+
+Instrumentations MAY use additional values when appropriate, for
+example: `jailbreak`, `toxicity`, `pii`, `custom:*`, `aws:*`, `azure:*`.
 
 **[2] `gen_ai.security.risk.metadata`:** > [!WARNING]
 > This attribute MUST NOT contain sensitive user content, PII, or other
@@ -206,23 +222,6 @@ Example values include:
 - Pattern types: `pattern:ssn`, `pattern:credit_card`
 - Counts: `count:3`
 - Positions: `position:input[0].content`
-
----
-
-`gen_ai.security.risk.category` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value | Description | Stability |
-| --- | --- | --- |
-| `data_and_model_poisoning` | Data and model poisoning. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `excessive_agency` | Excessive agency. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `improper_output_handling` | Improper output handling. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `misinformation` | Misinformation. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `prompt_injection` | Prompt injection. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `sensitive_information_disclosure` | Sensitive information disclosure. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `supply_chain` | Supply chain. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `system_prompt_leakage` | System prompt leakage. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `unbounded_consumption` | Unbounded consumption. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `vector_and_embedding_weaknesses` | Vector and embedding weaknesses. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
