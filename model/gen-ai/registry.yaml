@@ -340,6 +340,290 @@ groups:
                 }
               ]
 
+      - id: gen_ai.guardian.id
+        stability: development
+        type: string
+        brief: The unique identifier of the security guardian or guardrail.
+        note: >
+          This is a vendor-neutral identifier for the security component that
+          evaluated content or an action. It may map to provider-specific IDs
+          such as `aws.bedrock.guardrail.id`.
+        examples: ['guard_abc123', 'sgi5gkybzqak', 'content-filter-v2']
+      - id: gen_ai.guardian.name
+        stability: development
+        type: string
+        brief: Human-readable name of the guardian or guardrail.
+        examples: ['PII Protection', 'Prompt Injection Shield', 'Content Safety']
+      - id: gen_ai.guardian.version
+        stability: development
+        type: string
+        brief: Version of the guardian configuration or policy.
+        examples: ['1.0.0', '2024-05-01', 'v2']
+      - id: gen_ai.guardian.provider.name
+        stability: development
+        type: string
+        brief: The provider or vendor of the guardian service.
+        examples: ['aws.bedrock', 'azure.ai.content_safety', 'zenity', 'custom']
+
+      - id: gen_ai.security.decision
+        stability: development
+        type:
+          members:
+            - id: allow
+              value: "allow"
+              brief: Request permitted to proceed without modification.
+              stability: development
+            - id: deny
+              value: "deny"
+              brief: Request denied and operation halted.
+              stability: development
+            - id: modify
+              value: "modify"
+              brief: Request permitted with modifications (redaction, sanitization).
+              stability: development
+            - id: warn
+              value: "warn"
+              brief: Request permitted but flagged for review.
+              stability: development
+            - id: audit
+              value: "audit"
+              brief: Request logged for audit purposes only, no enforcement.
+              stability: development
+        brief: The decision made by the security guardian.
+        examples: ['allow', 'deny', 'modify']
+      - id: gen_ai.security.decision.reason
+        stability: development
+        type: string
+        brief: Human-readable explanation for the security decision.
+        note: >
+          The value SHOULD be low-cardinality and MUST NOT contain sensitive user
+          content or other high-risk data.
+        examples:
+          - 'PII detected in output, masked before delivery'
+          - 'Prompt injection attempt denied'
+          - 'Action exceeds agent permission scope'
+      - id: gen_ai.security.decision.code
+        stability: development
+        type: int
+        brief: Numeric code for the security decision (provider-specific).
+        examples: [112, 403, 5001]
+
+      - id: gen_ai.security.target.type
+        stability: development
+        type:
+          members:
+            - id: llm_input
+              value: "llm_input"
+              brief: Prompt or messages being sent to the model.
+              stability: development
+            - id: llm_output
+              value: "llm_output"
+              brief: Response or messages returned from the model.
+              stability: development
+            - id: tool_call
+              value: "tool_call"
+              brief: Tool execution request (tool call invocation).
+              stability: development
+            - id: tool_definition
+              value: "tool_definition"
+              brief: Tool definition or schema (tool declaration).
+              stability: development
+            - id: memory_store
+              value: "memory_store"
+              brief: Data being written to memory.
+              stability: development
+            - id: memory_retrieve
+              value: "memory_retrieve"
+              brief: Data being read from memory.
+              stability: development
+            - id: knowledge_query
+              value: "knowledge_query"
+              brief: Knowledge/RAG query being sent.
+              stability: development
+            - id: knowledge_result
+              value: "knowledge_result"
+              brief: Knowledge/RAG results being returned.
+              stability: development
+            - id: message
+              value: "message"
+              brief: Conversation message (user, assistant, tool).
+              stability: development
+        brief: The type of content or action the guardrail is applied to.
+        note: >
+          If one of the predefined values applies, the respective value MUST be
+          used; otherwise, a custom value MAY be used.
+        examples: ['tool_call', 'llm_input', 'llm_output', 'tool_definition']
+      - id: gen_ai.security.target.id
+        stability: development
+        type: string
+        brief: Identifier of the specific target the guardrail is applied to.
+        note: >
+          For example, a tool call identifier, request identifier, or memory
+          entry identifier, if applicable.
+        examples: ['call_xyz789', 'tool-123', 'mem_abc456']
+
+      - id: gen_ai.security.risk.category
+        stability: development
+        type:
+          members:
+            - id: prompt_injection
+              value: "prompt_injection"
+              brief: Prompt injection.
+              stability: development
+            - id: sensitive_information_disclosure
+              value: "sensitive_information_disclosure"
+              brief: Sensitive information disclosure.
+              stability: development
+            - id: supply_chain
+              value: "supply_chain"
+              brief: Supply chain.
+              stability: development
+            - id: data_and_model_poisoning
+              value: "data_and_model_poisoning"
+              brief: Data and model poisoning.
+              stability: development
+            - id: improper_output_handling
+              value: "improper_output_handling"
+              brief: Improper output handling.
+              stability: development
+            - id: excessive_agency
+              value: "excessive_agency"
+              brief: Excessive agency.
+              stability: development
+            - id: system_prompt_leakage
+              value: "system_prompt_leakage"
+              brief: System prompt leakage.
+              stability: development
+            - id: vector_and_embedding_weaknesses
+              value: "vector_and_embedding_weaknesses"
+              brief: Vector and embedding weaknesses.
+              stability: development
+            - id: misinformation
+              value: "misinformation"
+              brief: Misinformation.
+              stability: development
+            - id: unbounded_consumption
+              value: "unbounded_consumption"
+              brief: Unbounded consumption.
+              stability: development
+        brief: The category of security risk detected.
+        note: >
+          The well-known values are aligned with OWASP LLM Top 10 2025 categories.
+          If one of them applies, the respective value MUST be used; otherwise, a
+          custom value MAY be used.
+        examples:
+          - 'prompt_injection'
+          - 'sensitive_information_disclosure'
+          - 'custom:financial_advice_violation'
+          - 'aws:denied_topic'
+          - 'azure:hate_speech'
+      - id: gen_ai.security.risk.severity
+        stability: development
+        type:
+          members:
+            - id: none
+              value: "none"
+              brief: No risk detected.
+              stability: development
+            - id: low
+              value: "low"
+              brief: Low severity risk.
+              stability: development
+            - id: medium
+              value: "medium"
+              brief: Medium severity risk.
+              stability: development
+            - id: high
+              value: "high"
+              brief: High severity risk.
+              stability: development
+            - id: critical
+              value: "critical"
+              brief: Critical severity risk requiring immediate action.
+              stability: development
+        brief: The severity level of the detected risk.
+        examples: ['low', 'medium', 'high', 'critical']
+      - id: gen_ai.security.risk.score
+        stability: development
+        type: double
+        brief: Numeric risk/confidence score (0.0 to 1.0).
+        examples: [0.85, 0.95, 0.42]
+      - id: gen_ai.security.risk.metadata
+        stability: development
+        type: string[]
+        brief: Non-content metadata about the detected risk.
+        note: |
+          > [!WARNING]
+          > This attribute MUST NOT contain sensitive user content, PII, or other
+          > high-risk data.
+
+          Example values include:
+          - Field identifiers: `field:bcc`, `parameter:query`
+          - Pattern types: `pattern:ssn`, `pattern:credit_card`
+          - Counts: `count:3`
+          - Positions: `position:input[0].content`
+        examples:
+          - ['field:bcc', 'pattern:email']
+          - ['count:2', 'position:output.content']
+
+      - id: gen_ai.security.policy.id
+        stability: development
+        type: string
+        brief: Identifier of the policy that triggered the decision.
+        examples: ['policy_pii_v2', 'deny-topic-financial-advice', 'org-compliance-001']
+      - id: gen_ai.security.policy.name
+        stability: development
+        type: string
+        brief: Human-readable name of the triggered policy.
+        examples: ['PII Protection Policy', 'Financial Advice Restriction']
+      - id: gen_ai.security.policy.version
+        stability: development
+        type: string
+        brief: Version of the policy that triggered the decision.
+        examples: ['1.0', '2024-05-01']
+
+      - id: gen_ai.security.content.input
+        stability: development
+        type: any
+        brief: The input content that was evaluated by the guardian.
+        note: |
+          > [!WARNING]
+          > This attribute may contain sensitive information including user/PII
+          > data. Instrumentations SHOULD NOT capture this by default. Enable via
+          > opt-in configuration only.
+
+          This attribute MAY be truncated. For correlation without full content,
+          consider `gen_ai.security.content.input.hash`.
+        examples:
+          - 'Send an email to customer@example.com'
+      - id: gen_ai.security.content.output
+        stability: development
+        type: any
+        brief: The output content after guardian processing (if modified).
+        note: |
+          > [!WARNING]
+          > This attribute may contain sensitive information. Instrumentations
+          > SHOULD NOT capture this by default. Enable via opt-in configuration
+          > only.
+
+          For `modify` decisions, this MAY contain the sanitized/redacted result.
+        examples:
+          - 'Send an email to [REDACTED]'
+      - id: gen_ai.security.content.input.hash
+        stability: development
+        type: string
+        brief: Hash of the input content for forensic correlation.
+        note: >
+          Use when full content capture is not desired but correlation is needed.
+          Instrumentations SHOULD document the algorithm and any salting/HMAC
+          approach used.
+        examples: ['sha256:a3f2b8c9...']
+      - id: gen_ai.security.content.redacted
+        stability: development
+        type: boolean
+        brief: Whether the content was redacted or modified by the guardian.
+        examples: [true, false]
+
       - id: gen_ai.data_source.id
         stability: development
         type: string
@@ -381,6 +665,10 @@ groups:
             - id: execute_tool
               value: "execute_tool"
               brief: 'Execute a tool'
+              stability: development
+            - id: apply_guardrail
+              value: "apply_guardrail"
+              brief: 'Apply a security guardrail to content or an action'
               stability: development
         brief: The name of the operation being performed.
         note: >

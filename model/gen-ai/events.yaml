@@ -44,3 +44,30 @@ groups:
           The `error.type` SHOULD match the error code returned by the Generative AI Evaluation provider or the client library,
           the canonical name of exception that occurred, or another low-cardinality error identifier.
           Instrumentations SHOULD document the list of errors they report.
+
+  - id: event.gen_ai.security.finding
+    name: gen_ai.security.finding
+    type: event
+    stability: development
+    brief: >
+      Reports a specific security finding detected during guardian evaluation.
+    note: |
+      Multiple findings MAY be emitted for a single guardian span.
+
+      Events SHOULD be parented to the `span.gen_ai.apply_guardrail.internal` span when possible.
+    attributes:
+      - ref: gen_ai.security.risk.category
+        requirement_level: required
+      - ref: gen_ai.security.risk.severity
+        requirement_level: required
+      - ref: gen_ai.security.risk.score
+        requirement_level: recommended
+      - ref: gen_ai.security.risk.metadata
+        requirement_level: recommended
+      - ref: gen_ai.security.policy.id
+        requirement_level:
+          conditionally_required: if triggered by a specific policy
+      - ref: gen_ai.security.policy.name
+        requirement_level: recommended
+      - ref: gen_ai.security.policy.version
+        requirement_level: recommended
