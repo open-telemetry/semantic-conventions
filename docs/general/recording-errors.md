@@ -20,7 +20,7 @@ Individual semantic conventions are encouraged to provide additional guidance.
 
 ## What constitutes an error
 
-In the scope of this document an error occurs when:
+In the scope of this document, an error occurs when:
 
 - an exception is thrown by an instrumented operation,
 - the instrumented operation returns an error in another way,
@@ -45,9 +45,14 @@ SHOULD NOT be recorded on spans or metrics that describe this operation.
 
 ## Recording errors
 
-Instrumentation SHOULD ensure that the same [`error.type`][ErrorType] values are applied
-consistently across all signals. This means that all signals produce
-the same `error.type` value for given error.
+Instrumentation SHOULD ensure that the same [`error.type`][ErrorType] attribute
+values are applied consistently across all signals. This means that all signals
+produce the same `error.type` value for a given error.
+
+> [!NOTE]
+>
+> Logs use [`EventName`][EventName] instead of the `error.type` attribute.
+> However, the same principle applies.
 
 ## Recording errors on spans
 
@@ -86,7 +91,8 @@ to reporting two (or more) metrics depending on the operation status.
 
 When recording an error using logs:
 
-- The [`error.type`][ErrorType] attribute SHOULD be used as the event name.
+- The [`EventName`][EventName] MUST be set with a value that would normally be
+  used for an [`error.type`][ErrorType] attribute.
 - The [`error.message`][ErrorMessage] attribute SHOULD be used to add additional
   information about the error, for example, an exception message.
 
@@ -102,7 +108,7 @@ or equal to 17 (ERROR).
 
 When an error occurs inside the context of a span
 and it causes an operation to fail,
-the instrumentation SHOULD NOT additionally record it as a log record.
+the instrumentation SHOULD NOT additionally record it as an event record.
 
 > [!NOTE]
 >
@@ -116,4 +122,5 @@ the instrumentation SHOULD NOT additionally record it as a log record.
 [RecordException]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.50.0/specification/trace/api.md#record-exception
 [ErrorType]: /docs/registry/attributes/error.md#error-type
 [ErrorMessage]: /docs/registry/attributes/error.md#error-message
+[EventName]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.50.0/specification/logs/data-model.md#field-eventname
 [SeverityNumber]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.50.0/specification/logs/data-model.md#field-severitynumber
