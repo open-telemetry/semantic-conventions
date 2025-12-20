@@ -49,14 +49,14 @@ OpenTelemetry defines a few other (non-required) gRPC metric attributes listed b
 - `network.protocol.version`
 - `network.transport`
 
-### `grpc.client.call.duration` Metric (gRPC conventions)
+### `grpc.client.call.duration` (gRPC conventions)
 
 OpenTelemetry equivalent: [`rpc.client.call.duration`](/docs/rpc/rpc-metrics.md#metric-rpcclientcallduration).
 
 Both metrics cover the end-to-end duration of an RPC call from the client perspective and
 are recorded as histograms with seconds as the unit.
 
-### `grpc.server.call.duration` Metric (gRPC conventions)
+### `grpc.server.call.duration` (gRPC conventions)
 
 OpenTelemetry equivalent: [`rpc.server.call.duration`](/docs/rpc/rpc-metrics.md#metric-rpcservercallduration).
 
@@ -90,7 +90,8 @@ The following gRPC metrics don't have an OpenTelemetry equivalent:
 > and [`rpc.server.response.size`](/docs/rpc/rpc-metrics.md#metric-rpcserverresponsesize)
 > which are similar to `grpc.server.call.sent_total_compressed_message_size`
 > and `grpc.server.call.rcvd_total_compressed_message_size`, however, OpenTelemetry
-> metrics measure uncompressed size and per-message size in the case of streaming.
+> metrics measure uncompressed size and, for streaming RPCs, record the size of each
+> individual message as separate data points.
 
 ## Spans
 
@@ -98,10 +99,10 @@ Mapping:
 
 | Property                | gRPC                                                             | OpenTelemetry                                                                | Conversion comments                                      |
 | :---------------------- | :--------------------------------------------------------------- | :--------------------------------------------------------------------------- | :-------------------------------------------------------- |
-| Span name               | `Sent.{method name}` (client), `Recv.{method name}` (server)     | `{rpc.method}`                                                               | gRPC -> OTel: remove `Sent.` or `Recv.` prefix<br>OTel -> gRPC: add prefix based on span kind  |
+| Span name               | `Sent.{method name}` (client)<br>`Recv.{method name}` (server)   | `{rpc.method}`                                                               | gRPC -> OTel: remove `Sent.` or `Recv.` prefix<br>OTel -> gRPC: add prefix based on span kind |
 | Span status code        | `ERROR` when response status code is not `OK`                    | `ERROR` for specific error status codes (see gRPC conventions)               | gRPC -> OTel: parse `rpc.response.status_code` from status description and set span status code accordingly (see [gRPC OpenTelemetry conventions](/docs/rpc/grpc.md)) |
-| Span status description | Code and description, e.g., `UNAVAILABLE, unable to resolve host`| Description only (error code is recorded separately)                         | No conversion                                            |
-| Attributes              |                                                                  | `rpc.system.name`                                                            | gRPC -> OTel: set to `grpc`<br>OTel -> gRPC: drop        |
+| Span status description | Code and description, e.g., `UNAVAILABLE, unable to resolve host`| Description only (error code is recorded separately)                         | |
+| Attributes              |                                                                  | `rpc.system.name`                                                            | gRPC -> OTel: set to `grpc`<br>OTel -> gRPC: drop |
 |                         |                                                                  | `rpc.method`                                                                 | gRPC -> OTel: parse from span name<br>OTel -> gRPC: drop |
 |                         |                                                                  | `rpc.response.status_code`                                                   | gRPC -> OTel: parse from status description<br>OTel -> gRPC: drop |
 
@@ -138,18 +139,18 @@ Both gRPC and OpenTelemetry conventions define a per-call server span.
 
 > [!WARNING]
 >
-> OpenTelemetry RPC conventions for streaming messages are in [Development][DocumentStatus]
+> OpenTelemetry RPC conventions for streaming messages are in [Development][DocumentStatus].
 > The mapping defined below is likely to change.
 
 gRPC server spans report additional span events for each inbound and outbound message.
-OpenTelemetry reports message events as log-based events (?).
+OpenTelemetry reports message events as log-based events (? TODO).
 
-Conversion from gRPC span events to OTel log-based events:
+Conversion between gRPC span events and OTel log-based(?) events:
 
 | Property   | gRPC                                  | OpenTelemetry                   | Conversion comments |
 | ---------- | ------------------------------------- | ------------------------------- | ------------------- |
 | Event name | `Outbound message`, `Inbound message` | `rpc.message`                   | gRPC -> OTel: set to `rpc.message`<br>OTel -> gRPC: set to one of the message names depending on `rpc.message.type` |
-| Attributes |                                       | `rpc.message.type`              | gRPC -> OTel: set depending on event name<br>OTel -> gRPC: drop |
+| Attributes |                                       | `rpc.message.type`              | gRPC -> OTel: set to `SENT` for `Outbound message` and `RECEIVED` for `Inbound message`<br>OTel -> gRPC: drop |
 |            | `sequence-number`                     | `rpc.message.id`                | |
 |            | `message-size`                        | `rpc.message.uncompressed_size` | |
 |            | `message-size-compressed`             | `rpc.message.compressed_size`   | |

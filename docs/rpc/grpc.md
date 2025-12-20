@@ -14,7 +14,7 @@ described on this page.
 > The gRPC project defines conventions for [OpenTelemetry Metrics](https://github.com/grpc/proposal/blob/master/A66-otel-stats.md)
 > and experimental conventions for [OpenTelemetry Tracing](https://github.com/grpc/proposal/blob/master/A72-open-telemetry-tracing.md).
 >
-> The mapping between OpenTelemetry conventions defined here and gRPC convetions
+> The mapping between OpenTelemetry conventions defined here and gRPC conventions
 > is defined in [this document](/docs/non-normative/compatibility/grpc-compatibility.md)
 
 ## Client Span
