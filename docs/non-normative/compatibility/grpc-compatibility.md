@@ -10,8 +10,8 @@ linkTitle: gRPC
 <!-- toc -->
 
 - [Metrics](#metrics)
-  - [`grpc.client.call.duration` Metric (gRPC conventions)](#grpcclientcallduration-metric-grpc-conventions)
-  - [`grpc.server.call.duration` Metric (gRPC conventions)](#grpcservercallduration-metric-grpc-conventions)
+  - [`grpc.client.call.duration` (gRPC conventions)](#grpcclientcallduration-grpc-conventions)
+  - [`grpc.server.call.duration` (gRPC conventions)](#grpcservercallduration-grpc-conventions)
   - [Other metrics](#other-metrics)
 - [Spans](#spans)
   - [Client](#client)
