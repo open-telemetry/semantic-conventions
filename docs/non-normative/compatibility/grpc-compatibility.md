@@ -2,6 +2,9 @@
 linkTitle: gRPC
 --->
 
+<!-- disable mdlint requirement for tables to be aligned -->
+<!-- markdownlint-disable-file MD060 -->
+
 # Compatibility between OpenTelemetry and gRPC semantic conventions
 
 <!-- toc -->
@@ -32,7 +35,6 @@ and [OpenTelemetry conventions](/docs/rpc/rpc-metrics.md) for details.
 
 Attribute mapping:
 
-<!-- prettier-ignore-start -->
 | gRPC attribute     | OpenTelemetry attribute(s)         | Conversion comments  |
 | :----------------- | :--------------------------------- | :------------------- |
 | `grpc.method`      | `rpc.method`                       | gRPC -> OTel: when value is `other`, replace it with `_OTHER`<br>OTel -> gRPC: when value is `_OTHER`, replace it with `other` |
@@ -40,7 +42,6 @@ Attribute mapping:
 | `grpc.target`      | `server.address` and `server.port` | gRPC -> OTel: parse address and port from the [gRPC target string](https://grpc.io/docs/guides/custom-name-resolution/) authority or path (depending on the scheme)<br>OTel -> gRPC: set `grpc.target` to `{server.address}:{server.port}` (scheme cannot be determined) |
 |                    | `rpc.system.name`                  | gRPC -> OTel: set to `grpc`<br>OTel -> gRPC: drop |
 |                    | `error.type`                       | gRPC -> OTel: set to `rpc.response.status_code` when it indicates an error (see [gRPC OpenTelemetry conventions](/docs/rpc/grpc.md))<br>OTel -> gRPC: drop |
-<!-- prettier-ignore-end -->
 
 OpenTelemetry defines a few other (non-required) gRPC metric attributes listed below. When converting from gRPC to OTel metrics or vice versa, these attributes should not be set:
 
@@ -95,7 +96,6 @@ The following gRPC metrics don't have an OpenTelemetry equivalent:
 
 Mapping:
 
-<!-- prettier-ignore-start -->
 | Property                | gRPC                                                             | OpenTelemetry                                                                | Conversion comments                                      |
 | :---------------------- | :--------------------------------------------------------------- | :--------------------------------------------------------------------------- | :-------------------------------------------------------- |
 | Span name               | `Sent.{method name}` (client), `Recv.{method name}` (server)     | `{rpc.method}`                                                               | gRPC -> OTel: remove `Sent.` or `Recv.` prefix<br>OTel -> gRPC: add prefix based on span kind  |
@@ -104,7 +104,6 @@ Mapping:
 | Attributes              |                                                                  | `rpc.system.name`                                                            | gRPC -> OTel: set to `grpc`<br>OTel -> gRPC: drop        |
 |                         |                                                                  | `rpc.method`                                                                 | gRPC -> OTel: parse from span name<br>OTel -> gRPC: drop |
 |                         |                                                                  | `rpc.response.status_code`                                                   | gRPC -> OTel: parse from status description<br>OTel -> gRPC: drop |
-<!-- prettier-ignore-end -->
 
 OpenTelemetry defines a few other (non-required) gRPC span attributes listed below. When converting from gRPC spans to OTel spans or vice versa, these attributes should not be set:
 
@@ -147,7 +146,6 @@ OpenTelemetry reports message events as log-based events (?).
 
 Conversion from gRPC span events to OTel log-based events:
 
-<!-- prettier-ignore-start -->
 | Property   | gRPC                                  | OpenTelemetry                   | Conversion comments |
 | ---------- | ------------------------------------- | ------------------------------- | ------------------- |
 | Event name | `Outbound message`, `Inbound message` | `rpc.message`                   | gRPC -> OTel: set to `rpc.message`<br>OTel -> gRPC: set to one of the message names depending on `rpc.message.type` |
@@ -155,7 +153,6 @@ Conversion from gRPC span events to OTel log-based events:
 |            | `sequence-number`                     | `rpc.message.id`                | |
 |            | `message-size`                        | `rpc.message.uncompressed_size` | |
 |            | `message-size-compressed`             | `rpc.message.compressed_size`   | |
-<!-- prettier-ignore-end -->
 
 No mapping is defined for the gRPC `Outbound message compressed` and `Inbound compressed message` span events.
 
