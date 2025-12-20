@@ -10,6 +10,13 @@ The Semantic Conventions for [gRPC](https://grpc.io/) extend and override the [R
 that describe common RPC operations attributes in addition to the Semantic Conventions
 described on this page.
 
+> [!NOTE]
+> The gRPC project defines conventions for [OpenTelemetry Metrics](https://github.com/grpc/proposal/blob/master/A66-otel-stats.md)
+> and experimental conventions for [OpenTelemetry Tracing](https://github.com/grpc/proposal/blob/master/A72-open-telemetry-tracing.md).
+>
+> The mapping between OpenTelemetry conventions defined here and gRPC convetions
+> is defined in [this document](/docs/non-normative/compatibility/grpc.md)
+
 ## Client Span
 
 <!-- semconv span.rpc.grpc.call.client -->
