@@ -1,0 +1,19 @@
+groups:
+  - id: event.rpc.message
+    type: event
+    stability: development
+    name: rpc.message
+    brief: Describes a message sent or received within the context of an RPC call.
+    note: >
+      In the lifetime of an RPC stream, an event for each message sent/received on
+      client and server spans SHOULD be created. In case of unary calls message
+      events SHOULD NOT be recorded.
+    attributes:
+      - ref: rpc.message.type
+        requirement_level: recommended
+      - ref: rpc.message.id
+        requirement_level: recommended
+      - ref: rpc.message.compressed_size
+        requirement_level: recommended
+      - ref: rpc.message.uncompressed_size
+        requirement_level: recommended

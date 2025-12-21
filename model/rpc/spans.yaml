@@ -63,7 +63,6 @@ groups:
       document for details on how to record span status.
     extends: rpc
     span_kind: client
-    events: [rpc.message]
     attributes:
       - ref: rpc.system.name
         requirement_level: required
@@ -77,7 +76,6 @@ groups:
     extends: rpc_service.server
     span_kind: server
     brief: This span represents an incoming Remote Procedure Call (RPC).
-    events: [rpc.message]
     note: |
       RPC server spans SHOULD cover the entire server-side lifecycle of an RPC,
       starting when the request is received and ending when the response is sent
@@ -298,22 +296,3 @@ groups:
           All JSON RPC error codes SHOULD be considered errors.
         requirement_level:
           conditionally_required: when available
-
-  - id: event.rpc.message
-    type: event
-    stability: development
-    name: rpc.message
-    brief: Describes a message sent or received within the context of an RPC call.
-    note: >
-      In the lifetime of an RPC stream, an event for each message sent/received on
-      client and server spans SHOULD be created. In case of unary calls only one sent
-      and one received message will be recorded for both client and server spans.
-    attributes:
-      - ref: rpc.message.type
-        requirement_level: recommended
-      - ref: rpc.message.id
-        requirement_level: recommended
-      - ref: rpc.message.compressed_size
-        requirement_level: recommended
-      - ref: rpc.message.uncompressed_size
-        requirement_level: recommended
