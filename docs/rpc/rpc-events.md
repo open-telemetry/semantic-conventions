@@ -8,6 +8,31 @@ linkTitle: Events
 
 This document defines events applicable in the context of remote procedure calls.
 
+> [!IMPORTANT]
+> Existing RPC instrumentations that are using
+> [v1.37.0 of this document](https://github.com/open-telemetry/semantic-conventions/blob/v1.37.0/docs/rpc/rpc-spans.md#events)
+> (or prior):
+>
+> * SHOULD NOT change the version of the RPC conventions that they emit by
+>   default in their existing major version. Conventions include (but are not
+>   limited to) attributes, metric and span names, and unit of measure.
+> * SHOULD introduce an environment variable `OTEL_SEMCONV_STABILITY_OPT_IN`
+>   in their existing major version as a comma-separated list of category-specific values
+>   (e.g., http, databases, rpc). The list of values includes:
+>   * `rpc` - emit the stable RPC conventions, and stop emitting
+>     the experimental RPC conventions that the instrumentation emitted
+>     previously.
+>   * `rpc/dup` - emit both the experimental and stable RPC conventions,
+>     allowing for a phased rollout of the stable semantic conventions.
+>   * The default behavior (in the absence of one of these values) is to continue
+>     emitting whatever version of the old experimental RPC conventions
+>     the instrumentation was emitting previously.
+>   * Note: `rpc/dup` has higher precedence than `rpc` in case both values are present
+> * SHOULD maintain (security patching at a minimum) their existing major version
+>   for at least six months after it starts emitting both sets of conventions.
+> * MAY drop the environment variable in their next major version and emit only
+>   the stable RPC conventions.
+
 ## Message event
 
 <!-- semconv event.rpc.message -->
@@ -21,7 +46,7 @@ The event name MUST be `rpc.message`.
 
 Describes a message sent or received within the context of an RPC call.
 
-In the lifetime of an RPC stream, an event for each message sent/received on client and server spans SHOULD be created. In case of unary calls only one sent and one received message will be recorded for both client and server spans.
+In the lifetime of an RPC stream, an event for each message sent/received on client and server spans SHOULD be created. In case of unary calls message events SHOULD NOT be recorded.
 
 **Attributes:**
 
