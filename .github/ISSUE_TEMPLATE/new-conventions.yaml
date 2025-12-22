@@ -80,6 +80,7 @@ body:
         - area:openai
         - area:openshift
         - area:opentracing
+        - area:oracle
         - area:os
         - area:otel
         - area:peer
