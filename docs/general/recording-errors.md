@@ -83,7 +83,7 @@ to reporting two (or more) metrics depending on the operation status.
 
 ## Recording errors on logs
 
-When recording an error using logs:
+When recording an error using logs ([event records][EventRecord]):
 
 - MUST set [`EventName`][EventName] with a value that would normally be
   used for an [`error.type`][ErrorType] attribute.
@@ -116,5 +116,6 @@ the instrumentation SHOULD NOT additionally record it as an event record.
 [RecordException]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.52.0/specification/trace/api.md#record-exception
 [ErrorType]: /docs/registry/attributes/error.md#error-type
 [ErrorMessage]: /docs/registry/attributes/error.md#error-message
+[EventRecord]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.52.0/specification/logs/data-model.md#log-and-event-record-definition
 [EventName]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.52.0/specification/logs/data-model.md#field-eventname
 [SeverityNumber]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.52.0/specification/logs/data-model.md#field-severitynumber
