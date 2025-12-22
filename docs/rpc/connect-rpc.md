@@ -21,7 +21,7 @@ described on this page.
 
 This span represents an outgoing Remote Procedure Call (RPC).
 
-`rpc.system` MUST be set to `"connect_rpc"` and SHOULD be provided **at span creation time.**
+`rpc.system.name` MUST be set to `"connect_rpc"` and SHOULD be provided **at span creation time.**
 
 **Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#span-name) section.
 
@@ -80,9 +80,9 @@ Consider always setting the transport when setting a port number, since
 a port number is ambiguous without knowing the transport. For example
 different processes could be listening on TCP port 12345 and UDP port 12345.
 
-**[9] `rpc.method`:** This is the logical name of the method from the RPC interface perspective, which can be different from the name of any implementing method/function. The `code.function.name` attribute may be used to store the latter (e.g., method actually executing the call on the server side, RPC client stub method on the client side).
+**[9] `rpc.method`:** This is the logical name of the method from the RPC interface perspective, which can be different from the name of any implementing method/function. The `code.function.name` attribute may be used to record the fully-qualified method actually executing the call on the server side, or the RPC client stub method on the client side.
 
-**[10] `rpc.service`:** This is the logical name of the service from the RPC interface perspective, which can be different from the name of any implementing class. The `code.namespace` attribute may be used to store the latter (despite the attribute name, it may include a class name; e.g., class with method actually executing the call on the server side, RPC client stub class on the client side).
+**[10] `rpc.service`:** This is the logical name of the service from the RPC interface perspective, which can be different from the name of any implementing class. The `code.function.name` attribute may be used to record the fully-qualified method actually executing the call on the server side, or the RPC client stub class on the client side.
 
 **[11] `rpc.request.metadata.<key>`:** Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
 Including all request metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
@@ -95,6 +95,14 @@ Including all response metadata values can be a security risk - explicit configu
 
 For example, a property `my-custom-key` with value `["attribute_value"]` SHOULD be recorded as
 the `rpc.response.metadata.my-custom-key` attribute with value `["attribute_value"]`
+
+The following attributes can be important for making sampling decisions
+and SHOULD be provided **at span creation time** (if provided at all):
+
+* [`rpc.method`](/docs/registry/attributes/rpc.md)
+* [`rpc.service`](/docs/registry/attributes/rpc.md)
+* [`server.address`](/docs/registry/attributes/server.md)
+* [`server.port`](/docs/registry/attributes/server.md)
 
 ---
 
@@ -131,7 +139,7 @@ the `rpc.response.metadata.my-custom-key` attribute with value `["attribute_valu
 
 This span represents an incoming Remote Procedure Call (RPC).
 
-`rpc.system` MUST be set to `"connect_rpc"` and SHOULD be provided **at span creation time.**
+`rpc.system.name` MUST be set to `"connect_rpc"` and SHOULD be provided **at span creation time.**
 
 **Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#span-name) section.
 
@@ -203,9 +211,9 @@ Consider always setting the transport when setting a port number, since
 a port number is ambiguous without knowing the transport. For example
 different processes could be listening on TCP port 12345 and UDP port 12345.
 
-**[11] `rpc.method`:** This is the logical name of the method from the RPC interface perspective, which can be different from the name of any implementing method/function. The `code.function.name` attribute may be used to store the latter (e.g., method actually executing the call on the server side, RPC client stub method on the client side).
+**[11] `rpc.method`:** This is the logical name of the method from the RPC interface perspective, which can be different from the name of any implementing method/function. The `code.function.name` attribute may be used to record the fully-qualified method actually executing the call on the server side, or the RPC client stub method on the client side.
 
-**[12] `rpc.service`:** This is the logical name of the service from the RPC interface perspective, which can be different from the name of any implementing class. The `code.namespace` attribute may be used to store the latter (despite the attribute name, it may include a class name; e.g., class with method actually executing the call on the server side, RPC client stub class on the client side).
+**[12] `rpc.service`:** This is the logical name of the service from the RPC interface perspective, which can be different from the name of any implementing class. The `code.function.name` attribute may be used to record the fully-qualified method actually executing the call on the server side, or the RPC client stub class on the client side.
 
 **[13] `rpc.request.metadata.<key>`:** Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
 Including all request metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
@@ -218,6 +226,14 @@ Including all response metadata values can be a security risk - explicit configu
 
 For example, a property `my-custom-key` with value `["attribute_value"]` SHOULD be recorded as
 the `rpc.response.metadata.my-custom-key` attribute with value `["attribute_value"]`
+
+The following attributes can be important for making sampling decisions
+and SHOULD be provided **at span creation time** (if provided at all):
+
+* [`rpc.method`](/docs/registry/attributes/rpc.md)
+* [`rpc.service`](/docs/registry/attributes/rpc.md)
+* [`server.address`](/docs/registry/attributes/server.md)
+* [`server.port`](/docs/registry/attributes/server.md)
 
 ---
 

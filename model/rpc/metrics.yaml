@@ -1,4 +1,30 @@
 groups:
+  - id: attributes.metrics.rpc.client
+    type: attribute_group
+    brief: "Describes RPC metric attributes."
+    extends: common.rpc.attributes
+    attributes:
+      - ref: rpc.system.name
+        requirement_level: required
+      - ref: rpc.service
+      - ref: server.address
+        requirement_level: required
+      - ref: server.port
+        requirement_level:
+          conditionally_required: If applicable.
+  - id: attributes.metrics.rpc.server
+    type: attribute_group
+    brief: "Describes RPC metric attributes."
+    extends: attributes.metrics.rpc.client
+    attributes:
+      - ref: rpc.system.name
+        requirement_level: required
+      - ref: server.address
+        note: ""
+        requirement_level: opt_in
+      - ref: server.port
+        note: ""
+        requirement_level: opt_in
   # RPC Server metrics
   - id: metric.rpc.server.call.duration
     type: metric
@@ -43,7 +69,6 @@ groups:
     note: |
       **Streaming**: Recorded per response in a streaming batch
     extends: attributes.metrics.rpc.server
-
 
   # RPC Client metrics
   - id: metric.rpc.client.call.duration
