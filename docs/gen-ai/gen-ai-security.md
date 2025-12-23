@@ -94,7 +94,9 @@ Instrumentations SHOULD document the list of errors they report.
 
 **[8] `gen_ai.security.target.id`:** For example, a tool call identifier, request identifier, or memory entry identifier, if applicable.
 
-**[9] `gen_ai.security.content.input.value`:** > [!WARNING]
+**[9] `gen_ai.security.content.input.value`:**
+
+> [!WARNING]
 > This attribute may contain sensitive information including user/PII
 > data. Instrumentations SHOULD NOT capture this by default. Enable via
 > opt-in configuration only.
@@ -102,7 +104,9 @@ Instrumentations SHOULD document the list of errors they report.
 This attribute MAY be truncated. For correlation without full content,
 consider `gen_ai.security.content.input.hash`.
 
-**[10] `gen_ai.security.content.output.value`:** > [!WARNING]
+**[10] `gen_ai.security.content.output.value`:**
+
+> [!WARNING]
 > This attribute may contain sensitive information. Instrumentations
 > SHOULD NOT capture this by default. Enable via opt-in configuration
 > only.
@@ -213,7 +217,9 @@ Suggested values aligned with OWASP LLM Top 10 2025 include:
 Instrumentations MAY use additional values when appropriate, for
 example: `jailbreak`, `toxicity`, `pii`, `custom:*`, `aws:*`, `azure:*`.
 
-**[2] `gen_ai.security.risk.metadata`:** > [!WARNING]
+**[2] `gen_ai.security.risk.metadata`:**
+
+> [!WARNING]
 > This attribute MUST NOT contain sensitive user content, PII, or other
 > high-risk data.
 
