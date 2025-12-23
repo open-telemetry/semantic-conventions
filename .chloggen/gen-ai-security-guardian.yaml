@@ -1,0 +1,6 @@
+change_type: enhancement
+component: gen-ai
+note: "Add semantic conventions for GenAI security guardian evaluations (`apply_guardrail` span and `gen_ai.security.finding` event)."
+issues: [3233]
+subtext: |
+  Adds new `gen_ai.guardian.*` and `gen_ai.security.*` attributes for vendor-neutral guardrail/guardian decisions and findings.
