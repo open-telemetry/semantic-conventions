@@ -19,7 +19,7 @@ jobs:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           stale-pr-message: >
             This PR has been labeled as stale due to lack of activity.
-            It will be automatically closed if there is no further activity over the next 14 days.
+            It will be automatically closed if there is no further activity over the next 7 days.
           exempt-pr-labels: 'never stale'
           # opt out of defaults to avoid marking issues as stale
           days-before-stale: -1

@@ -10,7 +10,7 @@
   },
   "devDependencies": {
     "markdown-toc": "1.2.0",
-    "markdownlint-cli": "0.46.0",
+    "markdownlint-cli": "0.47.0",
     "prettier": "3.7.4"
   },
   "prettier": {

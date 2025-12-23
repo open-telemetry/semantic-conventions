@@ -35,12 +35,14 @@ groups:
     name: k8s.namespace
     brief: >
       A Kubernetes Namespace.
-    # TODO: define attributes roles
     attributes:
       - ref: k8s.namespace.name
+        role: identifying
       - ref: k8s.namespace.label
+        role: descriptive
         requirement_level: opt_in
       - ref: k8s.namespace.annotation
+        role: descriptive
         requirement_level: opt_in
 
   - id: entity.k8s.pod
@@ -76,11 +78,13 @@ groups:
     name: k8s.container
     brief: >
       A container in a [PodTemplate](https://kubernetes.io/docs/concepts/workloads/pods/#pod-templates).
-    # TODO: define attributes roles
     attributes:
       - ref: k8s.container.name
+        role: identifying
       - ref: k8s.container.restart_count
+        role: descriptive
       - ref: k8s.container.status.last_terminated_reason
+        role: descriptive
 
   - id: entity.k8s.replicaset
     type: entity

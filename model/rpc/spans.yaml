@@ -5,6 +5,12 @@ groups:
     brief: 'This document defines semantic conventions for remote procedure calls.'
     extends: common.rpc.attributes
     attributes:
+      - ref: rpc.method
+        sampling_relevant: true
+      - ref: server.address
+        sampling_relevant: true
+      - ref: server.port
+        sampling_relevant: true
       - ref: network.peer.address
         requirement_level: recommended
       - ref: network.peer.port
@@ -32,6 +38,7 @@ groups:
         requirement_level: recommended
       - ref: rpc.service
         requirement_level: recommended
+        sampling_relevant: true
 
   - id: span.rpc.call.client
     type: span
@@ -60,7 +67,9 @@ groups:
     attributes:
       - ref: rpc.system.name
         requirement_level: required
+        sampling_relevant: true
       - ref: rpc.service
+        sampling_relevant: true
 
   - id: span.rpc.call.server
     type: span
@@ -86,13 +95,14 @@ groups:
     attributes:
       - ref: rpc.system.name
         requirement_level: required
+        sampling_relevant: true
 
   - id: span.rpc.connect_rpc.call.client
     type: span
     stability: development
     brief: This span represents an outgoing Remote Procedure Call (RPC).
     note: |
-      `rpc.system` MUST be set to `"connect_rpc"` and SHOULD be provided **at span creation time.**
+      `rpc.system.name` MUST be set to `"connect_rpc"` and SHOULD be provided **at span creation time.**
 
       **Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#span-name) section.
 
@@ -114,6 +124,7 @@ groups:
       - ref: rpc.response.metadata
         requirement_level: opt_in
       - ref: rpc.service
+        sampling_relevant: true
 
   - id: span.rpc.connect_rpc.call.server
     type: span
@@ -122,7 +133,7 @@ groups:
     span_kind: server
     brief: This span represents an incoming Remote Procedure Call (RPC).
     note: |
-      `rpc.system` MUST be set to `"connect_rpc"` and SHOULD be provided **at span creation time.**
+      `rpc.system.name` MUST be set to `"connect_rpc"` and SHOULD be provided **at span creation time.**
 
       **Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#span-name) section.
 
@@ -154,7 +165,7 @@ groups:
     stability: development
     brief: This span represents an outgoing Remote Procedure Call (RPC).
     note: |
-      `rpc.system` MUST be set to `"grpc"` and SHOULD be provided **at span creation time.**
+      `rpc.system.name` MUST be set to `"grpc"` and SHOULD be provided **at span creation time.**
 
       **Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#span-name) section.
 
@@ -170,6 +181,7 @@ groups:
         requirement_level: required
       - ref: rpc.service
         requirement_level: required
+        sampling_relevant: true
       - ref: rpc.response.status_code
         requirement_level: required
         brief: >
@@ -189,7 +201,7 @@ groups:
     span_kind: server
     brief: This span represents an incoming Remote Procedure Call (RPC).
     note: |
-      `rpc.system` MUST be set to `"grpc"` and SHOULD be provided **at span creation time.**
+      `rpc.system.name` MUST be set to `"grpc"` and SHOULD be provided **at span creation time.**
 
       **Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#span-name) section.
 
@@ -224,7 +236,7 @@ groups:
     stability: development
     brief: This span represents an outgoing Remote Procedure Call (RPC).
     note: |
-      `rpc.system` MUST be set to `"jsonrpc"` and SHOULD be provided **at span creation time.**
+      `rpc.system.name` MUST be set to `"jsonrpc"` and SHOULD be provided **at span creation time.**
 
       **Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#span-name) section.
 
@@ -260,7 +272,7 @@ groups:
     span_kind: server
     brief: This span represents an incoming Remote Procedure Call (RPC).
     note: |
-      `rpc.system` MUST be set to `"jsonrpc"` and SHOULD be provided **at span creation time.**
+      `rpc.system.name` MUST be set to `"jsonrpc"` and SHOULD be provided **at span creation time.**
 
       **Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#span-name) section.
 
