@@ -74,6 +74,7 @@ Currently, the following namespaces exist:
 - [HTTP](http.md)
 - [IBM](ibm.md)
 - [iOS](ios.md)
+- [JSONRPC](jsonrpc.md)
 - [JVM](jvm.md)
 - [K8s](k8s.md)
 - [Linux](linux.md)

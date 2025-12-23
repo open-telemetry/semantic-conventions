@@ -244,8 +244,12 @@ areas:
   - name: "Semantic Conventions: RPC"
     project: "https://github.com/open-telemetry/community/blob/main/projects/rpc-semconv.md"
     board: "https://github.com/orgs/open-telemetry/projects/161"
+    owner:
+      - name: "semconv-rpc-approvers"
+        github: semconv-rpc-approvers
     labels:
       - area:rpc
+      - area:jsonrpc
     status:
       - accepting_contributions
       - active
@@ -259,6 +263,18 @@ areas:
     labels:
       - area:service
       - area:deployment
+    status:
+      - accepting_contributions
+      - active
+
+  - name: "Semantic Conventions: Oracle Cloud Infrastructure"
+    owner:
+      - name: "semconv-oracle-cloud-approvers"
+        github: semconv-oracle-cloud-approvers
+    project: "N/A"
+    board: "https://github.com/orgs/open-telemetry/projects/184"
+    labels:
+      - area:oracle-cloud
     status:
       - accepting_contributions
       - active

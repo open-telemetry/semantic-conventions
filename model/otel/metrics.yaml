@@ -340,7 +340,7 @@ groups:
         brief: The HTTP status code of the last HTTP request performed in scope of this export call.
         requirement_level:
           recommended: when applicable
-      - ref: rpc.grpc.status_code
-        brief: The gRPC status code of the last gRPC requests performed in scope of this export call.
+      - ref: rpc.response.status_code
+        brief: The gRPC status code of the last gRPC request performed in scope of this export call.
         requirement_level:
           recommended: when applicable
