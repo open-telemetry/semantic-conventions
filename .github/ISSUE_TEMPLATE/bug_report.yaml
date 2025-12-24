@@ -49,7 +49,6 @@ body:
         - area:elasticsearch
         - area:enduser
         - area:error
-        - area:event
         - area:exception
         - area:faas
         - area:feature-flag
@@ -64,9 +63,9 @@ body:
         - area:host
         - area:http
         - area:ios
+        - area:jsonrpc
         - area:jvm
         - area:k8s
-        - area:linux
         - area:log
         - area:mainframe
         - area:messaging

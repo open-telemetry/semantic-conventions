@@ -7,7 +7,9 @@
 
 Describes NFS Attributes
 
-| Attribute | Type | Description | Examples | Stability |
-|---|---|---|---|---|
-| <a id="nfs-operation-name" href="#nfs-operation-name">`nfs.operation.name`</a> | string | NFSv4+ operation name. | `OPEN`; `READ`; `GETATTR` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="nfs-server-repcache-status" href="#nfs-server-repcache-status">`nfs.server.repcache.status`</a> | string | Linux: one of "hit" (NFSD_STATS_RC_HITS), "miss" (NFSD_STATS_RC_MISSES), or "nocache" (NFSD_STATS_RC_NOCACHE -- uncacheable) | `hit` | ![Development](https://img.shields.io/badge/-development-blue) |
+**Attributes:**
+
+| Key | Stability | Value Type | Description | Example Values |
+| --- | --- | --- | --- | --- |
+| <a id="nfs-operation-name" href="#nfs-operation-name">`nfs.operation.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | NFSv4+ operation name. | `OPEN`; `READ`; `GETATTR` |
+| <a id="nfs-server-repcache-status" href="#nfs-server-repcache-status">`nfs.server.repcache.status`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Linux: one of "hit" (NFSD_STATS_RC_HITS), "miss" (NFSD_STATS_RC_MISSES), or "nocache" (NFSD_STATS_RC_NOCACHE -- uncacheable) | `hit` |

@@ -10,9 +10,11 @@
 
 This group describes iOS-specific attributes.
 
-| Attribute | Type | Description | Examples | Stability |
-|---|---|---|---|---|
-| <a id="ios-app-state" href="#ios-app-state">`ios.app.state`</a> | string | This attribute represents the state of the application. [1] | `active`; `inactive`; `background` | ![Development](https://img.shields.io/badge/-development-blue) |
+**Attributes:**
+
+| Key | Stability | Value Type | Description | Example Values |
+| --- | --- | --- | --- | --- |
+| <a id="ios-app-state" href="#ios-app-state">`ios.app.state`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | This attribute represents the state of the application. [1] | `active`; `inactive`; `background` |
 
 **[1] `ios.app.state`:** The iOS lifecycle states are defined in the [UIApplicationDelegate documentation](https://developer.apple.com/documentation/uikit/uiapplicationdelegate), and from which the `OS terminology` column values are derived.
 
@@ -20,8 +22,8 @@ This group describes iOS-specific attributes.
 
 `ios.app.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `active` | The app has become `active`. Associated with UIKit notification `applicationDidBecomeActive`. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `background` | The app is now in the background. This value is associated with UIKit notification `applicationDidEnterBackground`. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `foreground` | The app is now in the foreground. This value is associated with UIKit notification `applicationWillEnterForeground`. | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -32,9 +34,11 @@ This group describes iOS-specific attributes.
 
 The iOS platform on which the iOS application is running.
 
-| Attribute | Type | Description | Examples | Stability |
-|---|---|---|---|---|
-| <a id="ios-state" href="#ios-state">`ios.state`</a> | string | Deprecated. Use the `ios.app.state` attribute. [2] | `active`; `inactive`; `background` | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `ios.app.state`. |
+**Attributes:**
+
+| Key | Stability | Value Type | Description | Example Values |
+| --- | --- | --- | --- | --- |
+| <a id="ios-state" href="#ios-state">`ios.state`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `ios.app.state`. | string | Deprecated. Use the `ios.app.state` attribute. [2] | `active`; `inactive`; `background` |
 
 **[2] `ios.state`:** The iOS lifecycle states are defined in the [UIApplicationDelegate documentation](https://developer.apple.com/documentation/uikit/uiapplicationdelegate), and from which the `OS terminology` column values are derived.
 
@@ -42,8 +46,8 @@ The iOS platform on which the iOS application is running.
 
 `ios.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `active` | The app has become `active`. Associated with UIKit notification `applicationDidBecomeActive`. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `background` | The app is now in the background. This value is associated with UIKit notification `applicationDidEnterBackground`. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `foreground` | The app is now in the foreground. This value is associated with UIKit notification `applicationWillEnterForeground`. | ![Development](https://img.shields.io/badge/-development-blue) |

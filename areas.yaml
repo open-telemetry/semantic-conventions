@@ -9,6 +9,12 @@ areas:
       - area:system
       - area:host
       - area:process
+      - area:nfs
+      - area:os
+      - area:cpu
+      - area:disk
+      - area:network
+      - area:linux
     status:
       - accepting_contributions
       - active
@@ -21,6 +27,8 @@ areas:
     board: "https://github.com/orgs/open-telemetry/projects/114"
     labels:
       - area:k8s
+      - area:container
+      - area:oci
     status:
       - accepting_contributions
       - active
@@ -42,7 +50,7 @@ areas:
     owner:
       - name: "semconv-cicd-approvers"
         github: semconv-cicd-approvers
-    project: "https://github.com/open-telemetry/community/blob/main/projects/ci-cd.md"
+    project: "https://github.com/open-telemetry/community/blob/main/projects/ci-cd-phase-2.md"
     board: "https://github.com/orgs/open-telemetry/projects/79"
     labels:
       - area:cicd
@@ -64,6 +72,11 @@ areas:
       - area:security
       - area:log
       - area:user
+      - area:dns
+      - area:file
+      - area:tls
+      - area:network
+      - area:process
     status:
       - accepting_contributions
       - active
@@ -76,9 +89,6 @@ areas:
     board: "https://github.com/orgs/open-telemetry/projects/146"
     labels:
       - area:browser
-      - area:enduser
-      - area:user
-      - area:user-agent
     status:
       - accepting_contributions
       - active
@@ -90,8 +100,12 @@ areas:
     project: "https://github.com/open-telemetry/community/blob/main/projects/completed-projects/client-instrumentation.md"
     board: "https://github.com/orgs/open-telemetry/projects/19"
     labels:
-      - area:client
-      - area:event
+      - area:app
+      - area:enduser
+      - area:device
+      - area:mobile
+      - area:session
+
     status:
       - accepting_contributions
       - active
@@ -131,6 +145,11 @@ areas:
     board: "https://github.com/orgs/open-telemetry/projects/41"
     labels:
       - area:http
+      - area:user-agent
+      - area:url
+      - area:client
+      - area:server
+      - area:network
     status:
       - inactive
   - name: "Semantic Conventions: Database"
@@ -174,6 +193,8 @@ areas:
     board: "N/A"
     labels:
       - area:log
+      - area:event
+      - area:exception
     status:
       - accepting_contributions
       - active
@@ -186,6 +207,7 @@ areas:
     board: "N/A"
     labels:
       - area:mainframe
+      - area:zos
     status:
       - accepting_contributions
       - active
@@ -198,6 +220,7 @@ areas:
     board: "N/A"
     labels:
       - area:profile
+      - area:pprof
     status:
       - accepting_contributions
       - active
@@ -211,6 +234,8 @@ areas:
     labels:
       - area:dotnet
       - area:aspnetcore
+      - area:signalr
+      - area:kestrel
     status:
       - accepting_contributions
       - active
@@ -219,18 +244,37 @@ areas:
   - name: "Semantic Conventions: RPC"
     project: "https://github.com/open-telemetry/community/blob/main/projects/rpc-semconv.md"
     board: "https://github.com/orgs/open-telemetry/projects/161"
+    owner:
+      - name: "semconv-rpc-approvers"
+        github: semconv-rpc-approvers
     labels:
       - area:rpc
+      - area:jsonrpc
     status:
       - accepting_contributions
       - active
 
   - name: "Semantic Conventions: Service and Deployment"
+    owner:
+      - name: "semconv-service-and-deployment-approvers"
+        github: semconv-service-and-deployment-approvers
     project: "https://github.com/open-telemetry/community/blob/main/projects/service-and-deployment-semconv.md"
     board: "https://github.com/orgs/open-telemetry/projects/168"
     labels:
       - area:service
       - area:deployment
+    status:
+      - accepting_contributions
+      - active
+
+  - name: "Semantic Conventions: Oracle Cloud Infrastructure"
+    owner:
+      - name: "semconv-oracle-cloud-approvers"
+        github: semconv-oracle-cloud-approvers
+    project: "N/A"
+    board: "https://github.com/orgs/open-telemetry/projects/184"
+    labels:
+      - area:oracle-cloud
     status:
       - accepting_contributions
       - active

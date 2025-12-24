@@ -84,7 +84,6 @@ Names SHOULD follow these rules:
 
 - Be precise. Attribute, event, metric, and other names should be descriptive and
   unambiguous.
-
   - When introducing a name describing a certain property of the object,
     include the property name. For example, use `file.owner.name` instead of `file.owner`
     and `system.network.packet.dropped` instead of `system.network.dropped`
@@ -140,7 +139,7 @@ no longer recommended, it SHOULD be deprecated.
   the following Unicode code points: Latin alphabet, Numeric, Underscore, Dot
   (as namespace delimiter).
 
-> Note:
+> [!Note]
 > Semantic Conventions tooling limits names to lowercase
 > Latin alphabet, Numeric, Underscore, Dot (as namespace delimiter).
 > Names must start with a letter, end with an alphanumeric character, and must not
@@ -376,7 +375,6 @@ When adding new a system to the semantic conventions, follow these principles in
    multiple Oracle products.
 
 3. The system name SHOULD match the corresponding project or product name in the following cases:
-
    - Independent projects that do not belong to a specific company, such as Apache Foundation projects like
      `kafka` or `cassandra`.
    - Products with names similar to the owning company, such as `mongodb` or `elasticsearch`
@@ -428,7 +426,7 @@ attribute use the same system name (`azure.cosmosdb`).
 ### Known exceptions
 
 - Operational system and process-related attributes and metrics [follow a
-  pattern](/docs/system/system-metrics.md#systemos---os-specific-system-metrics)
+  pattern](/docs/system/system-metrics.md#systemmemoryos---os-specific-system-memory-metrics)
   of `system.{os}` and `process.{os}`. <!-- TODO: document why-->
 
 - [RPC](/docs/rpc/README.md) and [messaging](/docs/messaging/README.md) semantic

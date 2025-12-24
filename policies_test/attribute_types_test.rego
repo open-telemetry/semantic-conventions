@@ -9,10 +9,12 @@ test_fails_on_complex_attribute if {
             count(deny) == 1 with input as {"groups": [{ "id": concat(".", [group_type, "attr"]),
                                                 "type": group_type,
                                                 "stability": "development",
+                                                "brief": "brief.",
                                                 "attributes": [{
                                                     "name": "test.any",
                                                     "stability": "development",
-                                                    "type": attribute_type
+                                                    "type": attribute_type,
+                                                    "brief": "brief.",
                                                 }]}]}
         }
     }
@@ -27,10 +29,12 @@ test_pass_on_complex_attribute if {
             count(deny) == 0 with input as {"groups": [{ "id": concat(".", [group_type, "attr"]),
                                                 "type": group_type,
                                                 "stability": "development",
+                                                "brief": "brief.",
                                                 "attributes": [{
                                                     "name": "test.any",
                                                     "stability": "development",
-                                                    "type": attribute_type
+                                                    "type": attribute_type,
+                                                    "brief": "brief.",
                                                 }]}]}
         }
     }

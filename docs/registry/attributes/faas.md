@@ -7,24 +7,26 @@
 
 FaaS attributes
 
-| Attribute | Type | Description | Examples | Stability |
-|---|---|---|---|---|
-| <a id="faas-coldstart" href="#faas-coldstart">`faas.coldstart`</a> | boolean | A boolean that is true if the serverless function is executed for the first time (aka cold-start). |  | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="faas-cron" href="#faas-cron">`faas.cron`</a> | string | A string containing the schedule period as [Cron Expression](https://docs.oracle.com/cd/E12058_01/doc/doc.1014/e12030/cron_expressions.htm). | `0/5 * * * ? *` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="faas-document-collection" href="#faas-document-collection">`faas.document.collection`</a> | string | The name of the source on which the triggering operation was performed. For example, in Cloud Storage or S3 corresponds to the bucket name, and in Cosmos DB to the database name. | `myBucketName`; `myDbName` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="faas-document-name" href="#faas-document-name">`faas.document.name`</a> | string | The document name/table subjected to the operation. For example, in Cloud Storage or S3 is the name of the file, and in Cosmos DB the table name. | `myFile.txt`; `myTableName` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="faas-document-operation" href="#faas-document-operation">`faas.document.operation`</a> | string | Describes the type of the operation that was performed on the data. | `insert`; `edit`; `delete` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="faas-document-time" href="#faas-document-time">`faas.document.time`</a> | string | A string containing the time when the data was accessed in the [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format expressed in [UTC](https://www.w3.org/TR/NOTE-datetime). | `2020-01-23T13:47:06Z` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="faas-instance" href="#faas-instance">`faas.instance`</a> | string | The execution environment ID as a string, that will be potentially reused for other invocations to the same function/function version. [1] | `2021/06/28/[$LATEST]2f399eb14537447da05ab2a2e39309de` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="faas-invocation-id" href="#faas-invocation-id">`faas.invocation_id`</a> | string | The invocation ID of the current function invocation. | `af9d5aa4-a685-4c5f-a22b-444f80b3cc28` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="faas-invoked-name" href="#faas-invoked-name">`faas.invoked_name`</a> | string | The name of the invoked function. [2] | `my-function` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="faas-invoked-provider" href="#faas-invoked-provider">`faas.invoked_provider`</a> | string | The cloud provider of the invoked function. [3] | `alibaba_cloud`; `aws`; `azure` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="faas-invoked-region" href="#faas-invoked-region">`faas.invoked_region`</a> | string | The cloud region of the invoked function. [4] | `eu-central-1` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="faas-max-memory" href="#faas-max-memory">`faas.max_memory`</a> | int | The amount of memory available to the serverless function converted to Bytes. [5] | `134217728` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="faas-name" href="#faas-name">`faas.name`</a> | string | The name of the single function that this runtime instance executes. [6] | `my-function`; `myazurefunctionapp/some-function-name` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="faas-time" href="#faas-time">`faas.time`</a> | string | A string containing the function invocation time in the [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format expressed in [UTC](https://www.w3.org/TR/NOTE-datetime). | `2020-01-23T13:47:06Z` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="faas-trigger" href="#faas-trigger">`faas.trigger`</a> | string | Type of the trigger which caused this function invocation. | `datasource`; `http`; `pubsub` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="faas-version" href="#faas-version">`faas.version`</a> | string | The immutable version of the function being executed. [7] | `26`; `pinkfroid-00002` | ![Development](https://img.shields.io/badge/-development-blue) |
+**Attributes:**
+
+| Key | Stability | Value Type | Description | Example Values |
+| --- | --- | --- | --- | --- |
+| <a id="faas-coldstart" href="#faas-coldstart">`faas.coldstart`</a> | ![Development](https://img.shields.io/badge/-development-blue) | boolean | A boolean that is true if the serverless function is executed for the first time (aka cold-start). | |
+| <a id="faas-cron" href="#faas-cron">`faas.cron`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | A string containing the schedule period as [Cron Expression](https://docs.oracle.com/cd/E12058_01/doc/doc.1014/e12030/cron_expressions.htm). | `0/5 * * * ? *` |
+| <a id="faas-document-collection" href="#faas-document-collection">`faas.document.collection`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the source on which the triggering operation was performed. For example, in Cloud Storage or S3 corresponds to the bucket name, and in Cosmos DB to the database name. | `myBucketName`; `myDbName` |
+| <a id="faas-document-name" href="#faas-document-name">`faas.document.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The document name/table subjected to the operation. For example, in Cloud Storage or S3 is the name of the file, and in Cosmos DB the table name. | `myFile.txt`; `myTableName` |
+| <a id="faas-document-operation" href="#faas-document-operation">`faas.document.operation`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Describes the type of the operation that was performed on the data. | `insert`; `edit`; `delete` |
+| <a id="faas-document-time" href="#faas-document-time">`faas.document.time`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | A string containing the time when the data was accessed in the [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format expressed in [UTC](https://www.w3.org/TR/NOTE-datetime). | `2020-01-23T13:47:06Z` |
+| <a id="faas-instance" href="#faas-instance">`faas.instance`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The execution environment ID as a string, that will be potentially reused for other invocations to the same function/function version. [1] | `2021/06/28/[$LATEST]2f399eb14537447da05ab2a2e39309de` |
+| <a id="faas-invocation-id" href="#faas-invocation-id">`faas.invocation_id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The invocation ID of the current function invocation. | `af9d5aa4-a685-4c5f-a22b-444f80b3cc28` |
+| <a id="faas-invoked-name" href="#faas-invoked-name">`faas.invoked_name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the invoked function. [2] | `my-function` |
+| <a id="faas-invoked-provider" href="#faas-invoked-provider">`faas.invoked_provider`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The cloud provider of the invoked function. [3] | `alibaba_cloud`; `aws`; `azure` |
+| <a id="faas-invoked-region" href="#faas-invoked-region">`faas.invoked_region`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The cloud region of the invoked function. [4] | `eu-central-1` |
+| <a id="faas-max-memory" href="#faas-max-memory">`faas.max_memory`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The amount of memory available to the serverless function converted to Bytes. [5] | `134217728` |
+| <a id="faas-name" href="#faas-name">`faas.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the single function that this runtime instance executes. [6] | `my-function`; `myazurefunctionapp/some-function-name` |
+| <a id="faas-time" href="#faas-time">`faas.time`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | A string containing the function invocation time in the [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format expressed in [UTC](https://www.w3.org/TR/NOTE-datetime). | `2020-01-23T13:47:06Z` |
+| <a id="faas-trigger" href="#faas-trigger">`faas.trigger`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Type of the trigger which caused this function invocation. | `datasource`; `http`; `pubsub` |
+| <a id="faas-version" href="#faas-version">`faas.version`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The immutable version of the function being executed. [7] | `26`; `pinkfroid-00002` |
 
 **[1] `faas.instance`:** - **AWS Lambda:** Use the (full) log stream name.
 
@@ -60,15 +62,15 @@ definition of function name MUST be used for this attribute
 - **Google Cloud Run (Services):** The [revision](https://cloud.google.com/run/docs/managing/revisions)
   (i.e., the function name plus the revision suffix).
 - **Google Cloud Functions:** The value of the
-  [`K_REVISION` environment variable](https://cloud.google.com/functions/docs/env-var#runtime_environment_variables_set_automatically).
+  [`K_REVISION` environment variable](https://cloud.google.com/run/docs/container-contract#services-env-vars).
 - **Azure Functions:** Not applicable. Do not set this attribute.
 
 ---
 
 `faas.document.operation` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `delete` | When an object is deleted. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `edit` | When an object is modified. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `insert` | When a new object is created. | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -77,8 +79,8 @@ definition of function name MUST be used for this attribute
 
 `faas.invoked_provider` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `alibaba_cloud` | Alibaba Cloud | ![Development](https://img.shields.io/badge/-development-blue) |
 | `aws` | Amazon Web Services | ![Development](https://img.shields.io/badge/-development-blue) |
 | `azure` | Microsoft Azure | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -89,8 +91,8 @@ definition of function name MUST be used for this attribute
 
 `faas.trigger` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `datasource` | A response to some data source operation such as a database or filesystem read/write | ![Development](https://img.shields.io/badge/-development-blue) |
 | `http` | To provide an answer to an inbound HTTP request | ![Development](https://img.shields.io/badge/-development-blue) |
 | `other` | If none of the others apply | ![Development](https://img.shields.io/badge/-development-blue) |

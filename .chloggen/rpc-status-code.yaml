@@ -1,0 +1,6 @@
+change_type: breaking
+component: rpc
+note: >
+  Deprecate `rpc.grpc.status_code`, `rpc.connect_rpc.error_code` and `rpc.jsonrpc.error_code` attributes
+  in favor of the more general `rpc.response.status_code` attribute.
+issues: [1504, 2920]

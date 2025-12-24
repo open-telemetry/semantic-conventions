@@ -1,5 +1,5 @@
 params:
-  next_version: "next_version_placeholder"  # https://github.com/open-telemetry/weaver/issues/775
+  next_version: "next_version_placeholder" # https://github.com/open-telemetry/weaver/issues/775
 templates:
   - pattern: schema-diff.j2
     filter: >

@@ -39,3 +39,239 @@ groups:
         deprecated:
           reason: renamed
           renamed_to: rpc.message.uncompressed_size
+      - id: rpc.connect_rpc.request.metadata
+        type: template[string[]]
+        stability: development
+        brief: >
+          Deprecated, use `rpc.request.metadata` instead.
+        deprecated:
+          reason: renamed
+          renamed_to: rpc.request.metadata
+        examples: [["1.2.3.4", "1.2.3.5"]]
+      - id: rpc.connect_rpc.response.metadata
+        type: template[string[]]
+        stability: development
+        brief: >
+          Deprecated, use `rpc.response.metadata` instead.
+        examples: [["attribute_value"]]
+        deprecated:
+          reason: renamed
+          renamed_to: rpc.response.metadata
+      - id: rpc.grpc.request.metadata
+        type: template[string[]]
+        stability: development
+        brief: >
+          Deprecated, use `rpc.request.metadata` instead.
+        examples: [["1.2.3.4", "1.2.3.5"]]
+        deprecated:
+          reason: renamed
+          renamed_to: rpc.request.metadata
+      - id: rpc.grpc.response.metadata
+        type: template[string[]]
+        stability: development
+        brief: >
+          Deprecated, use `rpc.response.metadata` instead.
+        examples: [["attribute_value"]]
+        deprecated:
+          reason: renamed
+          renamed_to: rpc.response.metadata
+      - id: rpc.grpc.status_code
+        type:
+          members:
+            - id: ok
+              brief: OK
+              stability: development
+              value: 0
+            - id: cancelled
+              brief: CANCELLED
+              stability: development
+              value: 1
+            - id: unknown
+              brief: UNKNOWN
+              stability: development
+              value: 2
+            - id: invalid_argument
+              brief: INVALID_ARGUMENT
+              stability: development
+              value: 3
+            - id: deadline_exceeded
+              brief: DEADLINE_EXCEEDED
+              stability: development
+              value: 4
+            - id: not_found
+              brief: NOT_FOUND
+              stability: development
+              value: 5
+            - id: already_exists
+              brief: ALREADY_EXISTS
+              stability: development
+              value: 6
+            - id: permission_denied
+              brief: PERMISSION_DENIED
+              stability: development
+              value: 7
+            - id: resource_exhausted
+              brief: RESOURCE_EXHAUSTED
+              stability: development
+              value: 8
+            - id: failed_precondition
+              brief: FAILED_PRECONDITION
+              stability: development
+              value: 9
+            - id: aborted
+              brief: ABORTED
+              stability: development
+              value: 10
+            - id: out_of_range
+              brief: OUT_OF_RANGE
+              stability: development
+              value: 11
+            - id: unimplemented
+              brief: UNIMPLEMENTED
+              stability: development
+              value: 12
+            - id: internal
+              brief: INTERNAL
+              stability: development
+              value: 13
+            - id: unavailable
+              brief: UNAVAILABLE
+              stability: development
+              value: 14
+            - id: data_loss
+              brief: DATA_LOSS
+              stability: development
+              value: 15
+            - id: unauthenticated
+              brief: UNAUTHENTICATED
+              stability: development
+              value: 16
+        stability: development
+        brief: "Deprecated, use string representation on the `rpc.response.status_code` attribute instead."
+        deprecated:
+          reason: uncategorized
+          note: "Use string representation of the gRPC status code on the `rpc.response.status_code` attribute."
+      - id: rpc.connect_rpc.error_code
+        type:
+          members:
+            - id: cancelled
+              value: cancelled
+              stability: development
+            - id: unknown
+              value: unknown
+              stability: development
+            - id: invalid_argument
+              value: invalid_argument
+              stability: development
+            - id: deadline_exceeded
+              value: deadline_exceeded
+              stability: development
+            - id: not_found
+              value: not_found
+              stability: development
+            - id: already_exists
+              value: already_exists
+              stability: development
+            - id: permission_denied
+              value: permission_denied
+              stability: development
+            - id: resource_exhausted
+              value: resource_exhausted
+              stability: development
+            - id: failed_precondition
+              value: failed_precondition
+              stability: development
+            - id: aborted
+              value: aborted
+              stability: development
+            - id: out_of_range
+              value: out_of_range
+              stability: development
+            - id: unimplemented
+              value: unimplemented
+              stability: development
+            - id: internal
+              value: internal
+              stability: development
+            - id: unavailable
+              value: unavailable
+              stability: development
+            - id: data_loss
+              value: data_loss
+              stability: development
+            - id: unauthenticated
+              value: unauthenticated
+              stability: development
+        stability: development
+        brief: "Deprecated, use `rpc.response.status_code` attribute instead."
+        deprecated:
+          reason: renamed
+          renamed_to: rpc.response.status_code
+      - id: rpc.jsonrpc.error_code
+        type: int
+        stability: development
+        brief: "Deprecated, use string representation on the `rpc.response.status_code` attribute instead."
+        examples: [-32700, 100]
+        deprecated:
+          reason: uncategorized
+          note: "Use string representation of the error code on the `rpc.response.status_code` attribute."
+      - id: rpc.jsonrpc.error_message
+        type: string
+        stability: development
+        brief: "Deprecated, use span status description or `error.message` attribute on other signals."
+        examples: ['Parse error', 'User already exists']
+        deprecated:
+          reason: uncategorized
+          note: "Use the span status description or `error.message` attribute on other signals."
+      - id: rpc.system
+        brief: 'Deprecated, use `rpc.system.name` attribute instead.'
+        deprecated:
+          reason: renamed
+          renamed_to: "rpc.system.name"
+        type:
+          members:
+            - id: grpc
+              value: 'grpc'
+              brief: 'gRPC'
+              stability: development
+            - id: java_rmi
+              value: 'java_rmi'
+              brief: 'Java RMI'
+              stability: development
+            - id: dotnet_wcf
+              value: 'dotnet_wcf'
+              brief: '.NET WCF'
+              stability: development
+            - id: apache_dubbo
+              value: 'apache_dubbo'
+              brief: 'Apache Dubbo'
+              stability: development
+            - id: connect_rpc
+              value: 'connect_rpc'
+              brief: 'Connect RPC'
+              stability: development
+            - id: onc_rpc
+              value: 'onc_rpc'
+              brief: '[ONC RPC (Sun RPC)](https://datatracker.ietf.org/doc/html/rfc5531)'
+              stability: development
+            - id: jsonrpc
+              value: 'jsonrpc'
+              brief: 'JSON-RPC'
+              stability: development
+        stability: development
+      - id: rpc.jsonrpc.request_id
+        type: string
+        stability: development
+        deprecated:
+          reason: renamed
+          renamed_to: "jsonrpc.request.id"
+        brief: 'Deprecated, use `jsonrpc.request.id` instead.'
+        examples: ['10', 'request-7', '']
+      - id: rpc.jsonrpc.version
+        type: string
+        stability: development
+        deprecated:
+          reason: renamed
+          renamed_to: "jsonrpc.protocol.version"
+        brief: 'Deprecated, use `jsonrpc.protocol.version` instead.'
+        examples: ['2.0', '1.0']
