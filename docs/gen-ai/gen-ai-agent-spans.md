@@ -1,6 +1,6 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
 linkTitle: Agent spans
---->
+---
 
 # Semantic Conventions for GenAI agent and framework spans
 
