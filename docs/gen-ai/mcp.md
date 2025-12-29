@@ -1017,7 +1017,8 @@ initialize (CLIENT, trace=t1, span=s1)                  # MCP client
 
 Here, in addition to MCP client and server spans, we see HTTP client (`s3`)
 and server (`s4`) spans. MCP server span remains a child of the MCP client span
-(`s1`).
+(`s1`) and has a link to HTTP server span (`s3`) that was current when MCP server
+span started.
 
 MCP client span (`s1`):
 
