@@ -61,7 +61,7 @@ This span represents a `DynamoDB.BatchGetItem` call.
 | [`aws.request_id`](/docs/registry/attributes/aws.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The AWS request ID as returned in the response headers `x-amzn-requestid`, `x-amzn-request-id` or `x-amz-request-id`. | `79b9da39-b7ae-508a-a6bc-864b2829c622`; `C9ER4AJX75574TDJ` |
 | [`cloud.region`](/docs/registry/attributes/cloud.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The AWS Region where the requested service is being accessed. [1] | `us-east-1`; `us-west-2` |
 | [`rpc.method`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the operation corresponding to the request, as returned by the AWS SDK | `GetItem`; `PutItem` |
-| [`rpc.service`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the service to which a request is made, as returned by the AWS SDK. | `DynamoDB`; `S3` |
+| [`rpc.service`](/docs/registry/attributes/rpc.md) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Value should be included in `rpc.method` which is expected to be a fully-qualified name. | `Recommended` | string | The name of the service to which a request is made, as returned by the AWS SDK. | `DynamoDB`; `S3` |
 
 **[1] `cloud.region`:** Specifies the AWS Region that the SDK client targets for a given AWS service call. The attribute's value should adhere to the AWS Region codes outlined in the [AWS documentation](https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html#available-regions).
 
@@ -112,7 +112,7 @@ This span represents a `DynamoDB.BatchWriteItem` call.
 | [`aws.request_id`](/docs/registry/attributes/aws.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The AWS request ID as returned in the response headers `x-amzn-requestid`, `x-amzn-request-id` or `x-amz-request-id`. | `79b9da39-b7ae-508a-a6bc-864b2829c622`; `C9ER4AJX75574TDJ` |
 | [`cloud.region`](/docs/registry/attributes/cloud.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The AWS Region where the requested service is being accessed. [1] | `us-east-1`; `us-west-2` |
 | [`rpc.method`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the operation corresponding to the request, as returned by the AWS SDK | `GetItem`; `PutItem` |
-| [`rpc.service`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the service to which a request is made, as returned by the AWS SDK. | `DynamoDB`; `S3` |
+| [`rpc.service`](/docs/registry/attributes/rpc.md) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Value should be included in `rpc.method` which is expected to be a fully-qualified name. | `Recommended` | string | The name of the service to which a request is made, as returned by the AWS SDK. | `DynamoDB`; `S3` |
 
 **[1] `cloud.region`:** Specifies the AWS Region that the SDK client targets for a given AWS service call. The attribute's value should adhere to the AWS Region codes outlined in the [AWS documentation](https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html#available-regions).
 
@@ -167,7 +167,7 @@ This span represents a `DynamoDB.CreateTable` call.
 | [`aws.request_id`](/docs/registry/attributes/aws.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The AWS request ID as returned in the response headers `x-amzn-requestid`, `x-amzn-request-id` or `x-amz-request-id`. | `79b9da39-b7ae-508a-a6bc-864b2829c622`; `C9ER4AJX75574TDJ` |
 | [`cloud.region`](/docs/registry/attributes/cloud.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The AWS Region where the requested service is being accessed. [1] | `us-east-1`; `us-west-2` |
 | [`rpc.method`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the operation corresponding to the request, as returned by the AWS SDK | `GetItem`; `PutItem` |
-| [`rpc.service`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the service to which a request is made, as returned by the AWS SDK. | `DynamoDB`; `S3` |
+| [`rpc.service`](/docs/registry/attributes/rpc.md) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Value should be included in `rpc.method` which is expected to be a fully-qualified name. | `Recommended` | string | The name of the service to which a request is made, as returned by the AWS SDK. | `DynamoDB`; `S3` |
 
 **[1] `cloud.region`:** Specifies the AWS Region that the SDK client targets for a given AWS service call. The attribute's value should adhere to the AWS Region codes outlined in the [AWS documentation](https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html#available-regions).
 
@@ -218,7 +218,7 @@ This span represents a `DynamoDB.DeleteItem` call.
 | [`aws.request_id`](/docs/registry/attributes/aws.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The AWS request ID as returned in the response headers `x-amzn-requestid`, `x-amzn-request-id` or `x-amz-request-id`. | `79b9da39-b7ae-508a-a6bc-864b2829c622`; `C9ER4AJX75574TDJ` |
 | [`cloud.region`](/docs/registry/attributes/cloud.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The AWS Region where the requested service is being accessed. [1] | `us-east-1`; `us-west-2` |
 | [`rpc.method`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the operation corresponding to the request, as returned by the AWS SDK | `GetItem`; `PutItem` |
-| [`rpc.service`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the service to which a request is made, as returned by the AWS SDK. | `DynamoDB`; `S3` |
+| [`rpc.service`](/docs/registry/attributes/rpc.md) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Value should be included in `rpc.method` which is expected to be a fully-qualified name. | `Recommended` | string | The name of the service to which a request is made, as returned by the AWS SDK. | `DynamoDB`; `S3` |
 
 **[1] `cloud.region`:** Specifies the AWS Region that the SDK client targets for a given AWS service call. The attribute's value should adhere to the AWS Region codes outlined in the [AWS documentation](https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html#available-regions).
 
@@ -267,7 +267,7 @@ This span represents a `DynamoDB.DeleteTable` call.
 | [`aws.request_id`](/docs/registry/attributes/aws.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The AWS request ID as returned in the response headers `x-amzn-requestid`, `x-amzn-request-id` or `x-amz-request-id`. | `79b9da39-b7ae-508a-a6bc-864b2829c622`; `C9ER4AJX75574TDJ` |
 | [`cloud.region`](/docs/registry/attributes/cloud.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The AWS Region where the requested service is being accessed. [1] | `us-east-1`; `us-west-2` |
 | [`rpc.method`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the operation corresponding to the request, as returned by the AWS SDK | `GetItem`; `PutItem` |
-| [`rpc.service`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the service to which a request is made, as returned by the AWS SDK. | `DynamoDB`; `S3` |
+| [`rpc.service`](/docs/registry/attributes/rpc.md) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Value should be included in `rpc.method` which is expected to be a fully-qualified name. | `Recommended` | string | The name of the service to which a request is made, as returned by the AWS SDK. | `DynamoDB`; `S3` |
 
 **[1] `cloud.region`:** Specifies the AWS Region that the SDK client targets for a given AWS service call. The attribute's value should adhere to the AWS Region codes outlined in the [AWS documentation](https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html#available-regions).
 
@@ -316,7 +316,7 @@ This span represents a `DynamoDB.DescribeTable` call.
 | [`aws.request_id`](/docs/registry/attributes/aws.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The AWS request ID as returned in the response headers `x-amzn-requestid`, `x-amzn-request-id` or `x-amz-request-id`. | `79b9da39-b7ae-508a-a6bc-864b2829c622`; `C9ER4AJX75574TDJ` |
 | [`cloud.region`](/docs/registry/attributes/cloud.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The AWS Region where the requested service is being accessed. [1] | `us-east-1`; `us-west-2` |
 | [`rpc.method`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the operation corresponding to the request, as returned by the AWS SDK | `GetItem`; `PutItem` |
-| [`rpc.service`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the service to which a request is made, as returned by the AWS SDK. | `DynamoDB`; `S3` |
+| [`rpc.service`](/docs/registry/attributes/rpc.md) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Value should be included in `rpc.method` which is expected to be a fully-qualified name. | `Recommended` | string | The name of the service to which a request is made, as returned by the AWS SDK. | `DynamoDB`; `S3` |
 
 **[1] `cloud.region`:** Specifies the AWS Region that the SDK client targets for a given AWS service call. The attribute's value should adhere to the AWS Region codes outlined in the [AWS documentation](https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html#available-regions).
 
@@ -368,7 +368,7 @@ This span represents a `DynamoDB.GetItem` call.
 | [`aws.request_id`](/docs/registry/attributes/aws.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The AWS request ID as returned in the response headers `x-amzn-requestid`, `x-amzn-request-id` or `x-amz-request-id`. | `79b9da39-b7ae-508a-a6bc-864b2829c622`; `C9ER4AJX75574TDJ` |
 | [`cloud.region`](/docs/registry/attributes/cloud.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The AWS Region where the requested service is being accessed. [1] | `us-east-1`; `us-west-2` |
 | [`rpc.method`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the operation corresponding to the request, as returned by the AWS SDK | `GetItem`; `PutItem` |
-| [`rpc.service`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the service to which a request is made, as returned by the AWS SDK. | `DynamoDB`; `S3` |
+| [`rpc.service`](/docs/registry/attributes/rpc.md) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Value should be included in `rpc.method` which is expected to be a fully-qualified name. | `Recommended` | string | The name of the service to which a request is made, as returned by the AWS SDK. | `DynamoDB`; `S3` |
 
 **[1] `cloud.region`:** Specifies the AWS Region that the SDK client targets for a given AWS service call. The attribute's value should adhere to the AWS Region codes outlined in the [AWS documentation](https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html#available-regions).
 
@@ -419,7 +419,7 @@ This span represents a `DynamoDB.ListTables` call.
 | [`aws.request_id`](/docs/registry/attributes/aws.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The AWS request ID as returned in the response headers `x-amzn-requestid`, `x-amzn-request-id` or `x-amz-request-id`. | `79b9da39-b7ae-508a-a6bc-864b2829c622`; `C9ER4AJX75574TDJ` |
 | [`cloud.region`](/docs/registry/attributes/cloud.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The AWS Region where the requested service is being accessed. [1] | `us-east-1`; `us-west-2` |
 | [`rpc.method`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the operation corresponding to the request, as returned by the AWS SDK | `GetItem`; `PutItem` |
-| [`rpc.service`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the service to which a request is made, as returned by the AWS SDK. | `DynamoDB`; `S3` |
+| [`rpc.service`](/docs/registry/attributes/rpc.md) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Value should be included in `rpc.method` which is expected to be a fully-qualified name. | `Recommended` | string | The name of the service to which a request is made, as returned by the AWS SDK. | `DynamoDB`; `S3` |
 
 **[1] `cloud.region`:** Specifies the AWS Region that the SDK client targets for a given AWS service call. The attribute's value should adhere to the AWS Region codes outlined in the [AWS documentation](https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html#available-regions).
 
@@ -470,7 +470,7 @@ This span represents a `DynamoDB.PutItem` call.
 | [`aws.request_id`](/docs/registry/attributes/aws.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The AWS request ID as returned in the response headers `x-amzn-requestid`, `x-amzn-request-id` or `x-amz-request-id`. | `79b9da39-b7ae-508a-a6bc-864b2829c622`; `C9ER4AJX75574TDJ` |
 | [`cloud.region`](/docs/registry/attributes/cloud.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The AWS Region where the requested service is being accessed. [1] | `us-east-1`; `us-west-2` |
 | [`rpc.method`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the operation corresponding to the request, as returned by the AWS SDK | `GetItem`; `PutItem` |
-| [`rpc.service`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the service to which a request is made, as returned by the AWS SDK. | `DynamoDB`; `S3` |
+| [`rpc.service`](/docs/registry/attributes/rpc.md) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Value should be included in `rpc.method` which is expected to be a fully-qualified name. | `Recommended` | string | The name of the service to which a request is made, as returned by the AWS SDK. | `DynamoDB`; `S3` |
 
 **[1] `cloud.region`:** Specifies the AWS Region that the SDK client targets for a given AWS service call. The attribute's value should adhere to the AWS Region codes outlined in the [AWS documentation](https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html#available-regions).
 
@@ -527,7 +527,7 @@ This span represents a `DynamoDB.Query` call.
 | [`aws.request_id`](/docs/registry/attributes/aws.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The AWS request ID as returned in the response headers `x-amzn-requestid`, `x-amzn-request-id` or `x-amz-request-id`. | `79b9da39-b7ae-508a-a6bc-864b2829c622`; `C9ER4AJX75574TDJ` |
 | [`cloud.region`](/docs/registry/attributes/cloud.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The AWS Region where the requested service is being accessed. [1] | `us-east-1`; `us-west-2` |
 | [`rpc.method`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the operation corresponding to the request, as returned by the AWS SDK | `GetItem`; `PutItem` |
-| [`rpc.service`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the service to which a request is made, as returned by the AWS SDK. | `DynamoDB`; `S3` |
+| [`rpc.service`](/docs/registry/attributes/rpc.md) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Value should be included in `rpc.method` which is expected to be a fully-qualified name. | `Recommended` | string | The name of the service to which a request is made, as returned by the AWS SDK. | `DynamoDB`; `S3` |
 
 **[1] `cloud.region`:** Specifies the AWS Region that the SDK client targets for a given AWS service call. The attribute's value should adhere to the AWS Region codes outlined in the [AWS documentation](https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html#available-regions).
 
@@ -587,7 +587,7 @@ This span represents a `DynamoDB.Scan` call.
 | [`aws.request_id`](/docs/registry/attributes/aws.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The AWS request ID as returned in the response headers `x-amzn-requestid`, `x-amzn-request-id` or `x-amz-request-id`. | `79b9da39-b7ae-508a-a6bc-864b2829c622`; `C9ER4AJX75574TDJ` |
 | [`cloud.region`](/docs/registry/attributes/cloud.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The AWS Region where the requested service is being accessed. [1] | `us-east-1`; `us-west-2` |
 | [`rpc.method`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the operation corresponding to the request, as returned by the AWS SDK | `GetItem`; `PutItem` |
-| [`rpc.service`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the service to which a request is made, as returned by the AWS SDK. | `DynamoDB`; `S3` |
+| [`rpc.service`](/docs/registry/attributes/rpc.md) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Value should be included in `rpc.method` which is expected to be a fully-qualified name. | `Recommended` | string | The name of the service to which a request is made, as returned by the AWS SDK. | `DynamoDB`; `S3` |
 
 **[1] `cloud.region`:** Specifies the AWS Region that the SDK client targets for a given AWS service call. The attribute's value should adhere to the AWS Region codes outlined in the [AWS documentation](https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html#available-regions).
 
@@ -638,7 +638,7 @@ This span represents a `DynamoDB.UpdateItem` call.
 | [`aws.request_id`](/docs/registry/attributes/aws.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The AWS request ID as returned in the response headers `x-amzn-requestid`, `x-amzn-request-id` or `x-amz-request-id`. | `79b9da39-b7ae-508a-a6bc-864b2829c622`; `C9ER4AJX75574TDJ` |
 | [`cloud.region`](/docs/registry/attributes/cloud.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The AWS Region where the requested service is being accessed. [1] | `us-east-1`; `us-west-2` |
 | [`rpc.method`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the operation corresponding to the request, as returned by the AWS SDK | `GetItem`; `PutItem` |
-| [`rpc.service`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the service to which a request is made, as returned by the AWS SDK. | `DynamoDB`; `S3` |
+| [`rpc.service`](/docs/registry/attributes/rpc.md) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Value should be included in `rpc.method` which is expected to be a fully-qualified name. | `Recommended` | string | The name of the service to which a request is made, as returned by the AWS SDK. | `DynamoDB`; `S3` |
 
 **[1] `cloud.region`:** Specifies the AWS Region that the SDK client targets for a given AWS service call. The attribute's value should adhere to the AWS Region codes outlined in the [AWS documentation](https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html#available-regions).
 
@@ -692,7 +692,7 @@ This span represents a `DynamoDB.UpdateTable` call.
 | [`aws.request_id`](/docs/registry/attributes/aws.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The AWS request ID as returned in the response headers `x-amzn-requestid`, `x-amzn-request-id` or `x-amz-request-id`. | `79b9da39-b7ae-508a-a6bc-864b2829c622`; `C9ER4AJX75574TDJ` |
 | [`cloud.region`](/docs/registry/attributes/cloud.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The AWS Region where the requested service is being accessed. [1] | `us-east-1`; `us-west-2` |
 | [`rpc.method`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the operation corresponding to the request, as returned by the AWS SDK | `GetItem`; `PutItem` |
-| [`rpc.service`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the service to which a request is made, as returned by the AWS SDK. | `DynamoDB`; `S3` |
+| [`rpc.service`](/docs/registry/attributes/rpc.md) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Value should be included in `rpc.method` which is expected to be a fully-qualified name. | `Recommended` | string | The name of the service to which a request is made, as returned by the AWS SDK. | `DynamoDB`; `S3` |
 
 **[1] `cloud.region`:** Specifies the AWS Region that the SDK client targets for a given AWS service call. The attribute's value should adhere to the AWS Region codes outlined in the [AWS documentation](https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html#available-regions).
 
