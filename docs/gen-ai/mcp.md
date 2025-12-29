@@ -43,12 +43,12 @@ HTTP request in the corresponding request and response streams.
 ### Context propagation
 
 Model Context Protocol works on top of JSON-RPC and does not define a standard
-Trace Context propagation mechanism. MCP is transport independent and works across different transports. The specification expects clients to implement at least stdio or HTTP streams.
+Trace Context propagation mechanism. MCP is transport independent and works across different transports. The specification expects clients to implement at least stdio or Streamable HTTP.
 
 HTTP trace context propagation only covers the HTTP request, but not the individual
 messages client and server exchange within the request/response streams.
 
-Instrumentations SHOULD propagate trace context inside MCP request `params._meta`
+Instrumentations SHOULD propagate trace context inside MCP request [`params._meta`](https://modelcontextprotocol.io/specification/2025-11-25/basic#_meta)
 property bag.
 
 > [!NOTE]
@@ -109,7 +109,7 @@ context, if it's present.
 > MCP and underlying transport (such as HTTP) contexts are independent. One MCP
 > request can be served by multiple HTTP requests (for example, because of retries)
 > and one streamable HTTP request can serve more than one MCP request/notification.
-> MCP client becomes a parent of the MCP server span regardless of transport used;
+> The MCP client span becomes a parent of the MCP server span regardless of transport used;
 > span links allow recording the transport context (if present).
 
 ### Client
