@@ -3,7 +3,7 @@ groups:
     type: attribute_group
     brief: 'Common attributes for RPC spans and metrics.'
     attributes:
-      - ref: rpc.method.name
+      - ref: rpc.method
       - ref: server.address
         requirement_level: required
         brief: >

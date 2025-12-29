@@ -11,7 +11,7 @@ groups:
       - ref: server.port
         requirement_level:
           conditionally_required: If applicable.
-      - ref: rpc.method.name
+      - ref: rpc.method
         requirement_level:
           conditionally_required: if available.
 
@@ -28,7 +28,7 @@ groups:
       - ref: server.port
         note: ""
         requirement_level: opt_in
-      - ref: rpc.method.name
+      - ref: rpc.method
         requirement_level:
           conditionally_required: if available.
 

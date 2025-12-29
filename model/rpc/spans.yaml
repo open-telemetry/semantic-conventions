@@ -14,13 +14,13 @@ groups:
       - ref: network.peer.port
         requirement_level:
           recommended: If `network.peer.address` is set.
-      - ref: rpc.method.name
+      - ref: rpc.method
         requirement_level:
           conditionally_required: if available.
         sampling_relevant: true
-      - ref: rpc.method.name_original
+      - ref: rpc.method_original
         requirement_level:
-          conditionally_required: If and only if it's different than `rpc.method.name`.
+          conditionally_required: If and only if it's different than `rpc.method`.
 
   - id: rpc.server
     type: attribute_group
@@ -165,7 +165,7 @@ groups:
     extends: rpc
     span_kind: client
     attributes:
-      - ref: rpc.method.name
+      - ref: rpc.method
         requirement_level: required
       - ref: rpc.response.status_code
         requirement_level: required
@@ -239,7 +239,7 @@ groups:
           conditionally_required: If other than the default version (`1.0`)
       - ref: jsonrpc.request.id
         requirement_level: recommended
-      - ref: rpc.method.name
+      - ref: rpc.method
         brief: JSON-RPC method name provided in the request.
         note: >
           JSON-RPC supports sending and receiving arbitrary method names without
@@ -250,7 +250,7 @@ groups:
           attribute by default and SHOULD provide a way to configure the list of
           recognized RPC methods.
           When tracing instrumentation converts RPC method to `_OTHER`, it MUST
-          also set `rpc.method.name_original` span attribute to the original value.
+          also set `rpc.method_original` span attribute to the original value.
         requirement_level: opt_in
       - ref: rpc.response.status_code
         brief: >
@@ -284,7 +284,7 @@ groups:
           conditionally_required: If other than the default version (`1.0`)
       - ref: jsonrpc.request.id
         requirement_level: recommended
-      - ref: rpc.method.name
+      - ref: rpc.method
         brief: JSON-RPC method name provided in the request.
         note: >
           JSON-RPC supports sending and receiving arbitrary method names without
@@ -295,7 +295,7 @@ groups:
           attribute by default and SHOULD provide a way to configure the list of
           recognized RPC methods.
           When tracing instrumentation converts RPC method to `_OTHER`, it MUST
-          also set `rpc.method.name_original` span attribute to the original value.
+          also set `rpc.method_original` span attribute to the original value.
         requirement_level: opt_in
       - ref: rpc.response.status_code
         brief: >
