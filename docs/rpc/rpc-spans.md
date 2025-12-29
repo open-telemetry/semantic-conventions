@@ -53,10 +53,11 @@ This document defines how to describe remote procedure calls
 
 RPC spans MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.51.0/specification/trace/api.md#span).
 
-RPC span names SHOULD be `{rpc.method.name}` if there is `rpc.method.name`
-available and it's not set to `_OTHER`.
-In other cases (when `{rpc.method.name}` is set to `_OTHER` or is not available),
-span name SHOULD be `{rpc.system.name}`.
+The *span name* SHOULD be `{rpc.method.name}` if it is
+available and not set to `_OTHER`.
+
+If `rpc.method.name` is unavailable or set to `_OTHER`,
+the span name SHOULD be `{rpc.system.name}`.
 
 Semantic conventions for individual RPC systems MAY specify different span name
 format.
