@@ -43,7 +43,7 @@ HTTP request in the corresponding request and response streams.
 ### Context propagation
 
 Model Context Protocol works on top of JSON-RPC and does not define a standard
-Trace Context propagation mechanism. MCP is transport independent and works across different transports. The specification expects clients to implement at least stdio or HTTP streams.
+Trace Context propagation mechanism. MCP is transport independent and works across different transports. The specification expects clients to implement at least stdio or Streamable HTTP.
 
 HTTP trace context propagation only covers the HTTP request, but not the individual
 messages client and server exchange within the request/response streams.
