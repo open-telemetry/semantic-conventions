@@ -48,7 +48,7 @@ Trace Context propagation mechanism. MCP is transport independent and works acro
 HTTP trace context propagation only covers the HTTP request, but not the individual
 messages client and server exchange within the request/response streams.
 
-Instrumentations SHOULD propagate trace context inside MCP request `params._meta`
+Instrumentations SHOULD propagate trace context inside MCP request [`params._meta`](https://modelcontextprotocol.io/specification/2025-11-25/basic#_meta)
 property bag.
 
 > [!NOTE]
