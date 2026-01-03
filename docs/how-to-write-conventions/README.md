@@ -192,7 +192,7 @@ Define spans when:
 
 - The corresponding operation is important for observability.
 - The operation has duration.
-- A new tracer context should be created.
+- A new trace context should be created.
 
 Don't define spans for point-in-time telemetry that does not need new context - use events instead.
 
