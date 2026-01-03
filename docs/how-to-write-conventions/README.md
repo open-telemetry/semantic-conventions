@@ -186,7 +186,128 @@ database.
 
 #### Defining spans
 
-TBD
+Spans describe the individual execution of a certain operation.
+
+Define spans when:
+
+- The corresponding operation is important for observability.
+- The operation has duration.
+- A new tracer context should be created.
+
+Don't define spans for point-in-time telemetry that does not need new context - use events instead.
+
+For example, define spans for operations that involve one or more network calls.
+
+Don't define spans for local-only operations, such as serialization or deserialization,
+(unless they need unique context and are expected to become parents or be linked from
+other spans).
+
+Don't define spans if there is an existing span definition that captures a very similar
+operation.
+
+For example, a DB client span represents DB query execution from ORM or DB
+driver perspectives. Both layers could be instrumented, but inner layers may be
+suppressed to reduce duplication.
+
+Don't try to capture all available properties as span attributes. Telemetry is
+lossy, and it's important to assess the value-to-cost ratio of each referenced attribute.
+
+Capture the details of that specific operation. Parent operations or sub-operations
+will have their own spans.
+
+For example, when recording a call to upload a file to an object store,
+include the endpoint, collection, and object identifier. Don't include details of
+the underlying HTTP/gRPC requests unless there is a strong reason to.
+
+> [!NOTE]
+> It's a common practice to accompany a span definition with a metric that measures
+> the duration of the same operation type. For example, the `http.client.request.duration`
+> metric is recorded alongside the corresponding HTTP client span.
+
+A span definition includes the following sections:
+
+##### What operation does this span represent
+
+Define the scope and boundaries of the operation:
+
+- When the span starts and ends.
+- If this span represents a client call, specify whether it captures the logical call
+  (as observed by the API caller) or the physical call (per-try/per-attempt).
+- Define a span per different operation type.
+
+  For example, HTTP client and server spans are two independent definitions.
+  Messaging publishing and consumption are also different span types.
+
+##### Naming pattern
+
+- Span names must have low cardinality and should provide a reasonable grouping
+  for that operation. See [Span name guidelines](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.52.0/specification/trace/api.md#span) for the details.
+
+- Span names usually follow the `{action} {target}` pattern. For example, `send orders_queue`.
+
+- Span names should only include information that's available as span attributes.
+  I.e., `{action}` and `{target}` are usually also available as attributes and
+  are used on metrics describing that operation.
+
+- Static text should not be included, but can be used as a fallback.
+
+  E.g., we use `GET /{controller}/{action}` instead of `HTTP GET /{controller}/{action}`.
+
+- Provide fallback values in case some of the attributes used in the span name are not
+  available or could be problematic in edge cases (e.g., have high cardinality).
+
+- If a span name can become too long, recommend limits and truncation strategies
+  (e.g., DB conventions define a 255-character limit).
+
+##### Status
+
+Define what constitutes an error for that operation.
+
+If there are no special considerations, reference the [Recording errors](/recording-errors.md)
+document.
+
+Certain conditions can't be clearly classified as errors or not-errors (cancellations,
+HTTP 404 and many others). Avoid using strict requirements - allow instrumentations
+to leverage context they might have to provide accurate status.
+
+##### Kind
+
+All span definitions MUST include a specific span kind. Don't mix definitions of
+different span kinds.
+
+##### Attributes
+
+Define which additional properties this span needs to be useful:
+
+- Include the `error.type` attribute. If the operation you're describing typically has a
+  domain-specific error code, include that as a separate attribute as well.
+  Document which error types and codes constitute an error.
+
+- Include `server.address` and `server.port` on client spans.
+
+- Include applicable `network.*` attributes on spans that describe network calls.
+
+- Include some form of operation name that allows identifying different operations
+  of the same type.
+
+  For example, in case of HTTP, it's `http.request.method`; in case of RPC,
+  it's `rpc.method`; for messaging, `messaging.operation.name`; and for GenAI, `gen_ai.operation.name`.
+  This attribute typically serves as the `{action}` in the span name and may be used
+  across multiple span definitions within the same domain.
+
+- Identify other important characteristics such as operation target (DB collection,
+  messaging queue, GenAI model, object store collection), input parameters, and
+  result properties that should be recorded on the span.
+
+- When referencing attributes, refine its properties:
+  - Specify if an attribute is relevant for head-sampling. Such attributes should be
+    provided at start time and would be passed to the sampler. Usually, these are
+    attributes that have low cardinality and are easy to obtain.
+  - Specify [requirement level](/docs/general/attribute-requirement-level.md).
+    Only absolutely essential (and always available) attributes can be `required`.
+    Attributes that may include sensitive information, are expensive to obtain,
+    or are verbose, should be `opt-in`.
+  - Update the brief and note to tailor the attribute definition to that operation.
 
 #### Defining metrics
 
