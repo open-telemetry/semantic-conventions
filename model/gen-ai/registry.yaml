@@ -347,7 +347,7 @@ groups:
         note: >
           This is a vendor-neutral identifier for the security component that
           evaluated content or an action. It may map to provider-specific IDs
-          such as `aws.bedrock.guardrail.id`.
+          such as `azure.ai.content_safety.blocklist.id`.
         examples: ['guard_abc123', 'sgi5gkybzqak', 'content-filter-v2']
       - id: gen_ai.guardian.name
         stability: development
@@ -363,7 +363,7 @@ groups:
         stability: development
         type: string
         brief: The provider or vendor of the guardian service.
-        examples: ['aws.bedrock', 'azure.ai.content_safety', 'zenity', 'custom']
+        examples: ['azure.ai.content_safety', 'zenity', 'custom']
 
       - id: gen_ai.security.decision.type
         stability: development
@@ -483,13 +483,12 @@ groups:
           - `unbounded_consumption` (LLM10)
 
           Instrumentations MAY use additional values when appropriate, for
-          example: `jailbreak`, `toxicity`, `pii`, `custom:*`, `aws:*`, `azure:*`.
+          example: `jailbreak`, `toxicity`, `pii`, `custom:*`, `azure:*`.
         examples:
           - 'prompt_injection'
           - 'sensitive_info_disclosure'
           - 'jailbreak'
           - 'custom:financial_advice_violation'
-          - 'aws:denied_topic'
           - 'azure:hate_speech'
       - id: gen_ai.security.risk.severity
         stability: development

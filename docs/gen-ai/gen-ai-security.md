@@ -68,7 +68,7 @@ Multiple guardian spans MAY exist under a single operation span if multiple guar
 | [`gen_ai.security.policy.id`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` if a policy triggered the decision | string | Identifier of the policy that triggered the decision. | `policy_pii_v2`; `deny-topic-financial-advice`; `org-compliance-001` |
 | [`gen_ai.security.target.id`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` if available | string | Identifier of the specific target the guardrail is applied to. [8] | `call_xyz789`; `tool-123`; `mem_abc456` |
 | [`gen_ai.guardian.name`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Human-readable name of the guardian or guardrail. | `PII Protection`; `Prompt Injection Shield`; `Content Safety` |
-| [`gen_ai.guardian.provider.name`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The provider or vendor of the guardian service. | `aws.bedrock`; `azure.ai.content_safety`; `zenity`; `custom` |
+| [`gen_ai.guardian.provider.name`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The provider or vendor of the guardian service. | `azure.ai.content_safety`; `zenity`; `custom` |
 | [`gen_ai.guardian.version`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Version of the guardian configuration or policy. | `1.0.0`; `2024-05-01`; `v2` |
 | [`gen_ai.security.decision.code`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | int | Numeric code for the security decision (provider-specific). | `112`; `403`; `5001` |
 | [`gen_ai.security.policy.name`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Human-readable name of the triggered policy. | `PII Protection Policy`; `Financial Advice Restriction` |
@@ -84,7 +84,7 @@ Multiple guardian spans MAY exist under a single operation span if multiple guar
 the canonical name of exception that occurred, or another low-cardinality error identifier.
 Instrumentations SHOULD document the list of errors they report.
 
-**[4] `gen_ai.guardian.id`:** This is a vendor-neutral identifier for the security component that evaluated content or an action. It may map to provider-specific IDs such as `aws.bedrock.guardrail.id`.
+**[4] `gen_ai.guardian.id`:** This is a vendor-neutral identifier for the security component that evaluated content or an action. It may map to provider-specific IDs such as `azure.ai.content_safety.blocklist.id`.
 
 **[5] `gen_ai.security.content.input.hash`:** Use when full content capture is not desired but correlation is needed. Instrumentations SHOULD document the algorithm and any salting/HMAC approach used.
 
@@ -191,7 +191,7 @@ Events SHOULD be parented to the `span.gen_ai.apply_guardrail.internal` span whe
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`gen_ai.security.risk.category`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The category of security risk detected. [1] | `prompt_injection`; `sensitive_info_disclosure`; `jailbreak`; `custom:financial_advice_violation`; `aws:denied_topic`; `azure:hate_speech` |
+| [`gen_ai.security.risk.category`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The category of security risk detected. [1] | `prompt_injection`; `sensitive_info_disclosure`; `jailbreak`; `custom:financial_advice_violation`; `azure:hate_speech` |
 | [`gen_ai.security.risk.severity`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The severity level of the detected risk. | `low`; `medium`; `high`; `critical` |
 | [`gen_ai.security.policy.id`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` if triggered by a specific policy | string | Identifier of the policy that triggered the decision. | `policy_pii_v2`; `deny-topic-financial-advice`; `org-compliance-001` |
 | [`gen_ai.security.policy.name`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Human-readable name of the triggered policy. | `PII Protection Policy`; `Financial Advice Restriction` |
@@ -215,7 +215,7 @@ Suggested values aligned with OWASP LLM Top 10 2025 include:
 - `unbounded_consumption` (LLM10)
 
 Instrumentations MAY use additional values when appropriate, for
-example: `jailbreak`, `toxicity`, `pii`, `custom:*`, `aws:*`, `azure:*`.
+example: `jailbreak`, `toxicity`, `pii`, `custom:*`, `azure:*`.
 
 **[2] `gen_ai.security.risk.metadata`:**
 
