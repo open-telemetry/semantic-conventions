@@ -85,7 +85,7 @@ to reporting two (or more) metrics depending on the operation status.
 When recording an error using logs ([event records][EventRecord]):
 
 - SHOULD set [`EventName`][EventName] with a value that help indicating
-  what operation failed,
+  what operation failed, e.g. `socket.connection_failed`,
 - SHOULD set the [`error.type`][ErrorType] attribute,
 - SHOULD set [`error.message`][ErrorMessage] attribute to add additional
   information about the error, for example, an exception message.
