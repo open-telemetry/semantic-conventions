@@ -45,9 +45,8 @@ SHOULD NOT be recorded on spans or metrics that describe this operation.
 
 ## Recording errors
 
-Instrumentation SHOULD ensure that, for a given error, the same value is
-used as the [`error.type`][ErrorType] attribute on spans and metrics, and as
-[`EventName`][EventName] on logs.
+Instrumentation SHOULD ensure that, for a given error,
+the same [`error.type`][ErrorType] attribute value is used across all signals.
 
 ## Recording errors on spans
 
@@ -85,8 +84,9 @@ to reporting two (or more) metrics depending on the operation status.
 
 When recording an error using logs ([event records][EventRecord]):
 
-- MUST set [`EventName`][EventName] with a value that would normally be
-  used for an [`error.type`][ErrorType] attribute.
+- SHOULD set [`EventName`][EventName] with a value that help indicating
+  what operation failed,
+- SHOULD set the [`error.type`][ErrorType] attribute,
 - SHOULD set [`error.message`][ErrorMessage] attribute to add additional
   information about the error, for example, an exception message.
 
