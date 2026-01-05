@@ -1,0 +1,49 @@
+# ============================================================================
+# GenAI Security Guardian Prototypes - .gitignore
+# ============================================================================
+# Keep local credentials, virtualenvs, caches, and outputs out of git.
+# Prototype source code is intended to be committed.
+# ============================================================================
+
+# Local env / credentials (git-ignored)
+.env
+.env.*
+!.env.example
+.env.local
+PLAN.local.md
+
+# Virtual environments
+.venv*/
+venv/
+env/
+
+# Python artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+
+# Logs / outputs
+*.log
+demo_output.txt
+
+# IDE/editor files
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Explicit sensitive files (never commit)
+secrets.json
+credentials.json
+applicationinsights.json
+appsettings.*.json
