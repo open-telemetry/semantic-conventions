@@ -90,10 +90,6 @@ When recording an error using logs ([event records][EventRecord]):
 - SHOULD set [`error.message`][ErrorMessage] attribute to add additional
   information about the error, for example, an exception message.
 
-When an error is retried or handled, even when the overall operation completes successfully,
-the instrumentation SHOULD record it as an event record for diagnostic purposes.
-In such scenario, [`SeverityNumber`][SeverityNumber] MUST be below 17 (ERROR).
-
 When an error occurs outside the context of any span
 and it causes an operation to fail,
 the instrumentation SHOULD record it as an event record.
@@ -110,6 +106,11 @@ the instrumentation SHOULD NOT additionally record it as an event record.
 > recorded on spans can use a span processor (or equivalent component)
 > that emits corresponding error event records. This is an optional,
 > user-configured mechanism and is not required by these conventions.
+
+When an error is retried or handled, even when the overall operation completes
+successfully, the instrumentation MAY record it as an event record for
+diagnostic purposes. In such scenario, [`SeverityNumber`][SeverityNumber]
+MUST be below 17 (ERROR).
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
 [SpanStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.52.0/specification/trace/api.md#set-status
