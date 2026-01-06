@@ -349,3 +349,27 @@ groups:
         requirement_level: required
       - ref: aws.bedrock.knowledge_base.id
         requirement_level: recommended
+
+  - id: span.gen_ai.invoke_workflow.client
+    type: span
+    span_kind: client
+    stability: development
+    brief: >
+      Represents a workflow orchestrating multiple agents with predefined code paths.
+    note: |
+      The `gen_ai.operation.name` SHOULD be `invoke_agent`.
+
+      **Span name** SHOULD be `invoke_workflow {gen_ai.workflow.name}`.
+    attributes:
+      - ref: gen_ai.workflow.name
+        requirement_level:
+          conditionally_required: when available
+      - ref: gen_ai.framework
+        requirement_level:
+          conditionally_required: when available
+      - ref: gen_ai.input.messages
+        requirement_level: opt_in
+      - ref: gen_ai.output.messages
+        requirement_level: opt_in
+      - ref: gen_ai.system_instructions
+        requirement_level: opt_in
