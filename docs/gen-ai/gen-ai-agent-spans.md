@@ -125,15 +125,16 @@ Instrumentations SHOULD document the list of errors they report.
 
 `gen_ai.operation.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value | Description | Stability |
-| --- | --- | --- |
-| `chat` | Chat completion operation such as [OpenAI Chat API](https://platform.openai.com/docs/api-reference/chat) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `create_agent` | Create GenAI agent | ![Development](https://img.shields.io/badge/-development-blue) |
-| `embeddings` | Embeddings operation such as [OpenAI Create embeddings API](https://platform.openai.com/docs/api-reference/embeddings/create) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `execute_tool` | Execute a tool | ![Development](https://img.shields.io/badge/-development-blue) |
-| `generate_content` | Multimodal content generation operation such as [Gemini Generate Content](https://ai.google.dev/api/generate-content) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `invoke_agent` | Invoke GenAI agent | ![Development](https://img.shields.io/badge/-development-blue) |
-| `text_completion` | Text completions operation such as [OpenAI Completions API (Legacy)](https://platform.openai.com/docs/api-reference/completions) | ![Development](https://img.shields.io/badge/-development-blue) |
+| Value              | Description                                                                                                                      | Stability |
+|--------------------|----------------------------------------------------------------------------------------------------------------------------------| --- |
+| `chat`             | Chat completion operation such as [OpenAI Chat API](https://platform.openai.com/docs/api-reference/chat)                         | ![Development](https://img.shields.io/badge/-development-blue) |
+| `create_agent`     | Create GenAI agent                                                                                                               | ![Development](https://img.shields.io/badge/-development-blue) |
+| `embeddings`       | Embeddings operation such as [OpenAI Create embeddings API](https://platform.openai.com/docs/api-reference/embeddings/create)    | ![Development](https://img.shields.io/badge/-development-blue) |
+| `execute_tool`     | Execute a tool                                                                                                                   | ![Development](https://img.shields.io/badge/-development-blue) |
+| `generate_content` | Multimodal content generation operation such as [Gemini Generate Content](https://ai.google.dev/api/generate-content)            | ![Development](https://img.shields.io/badge/-development-blue) |
+| `invoke_agent`     | Invoke GenAI agent                                                                                                               | ![Development](https://img.shields.io/badge/-development-blue) |
+| `text_completion`  | Text completions operation such as [OpenAI Completions API (Legacy)](https://platform.openai.com/docs/api-reference/completions) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `invoke_workflow`  | Invoke GenAI workflow                                                                                                            | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -372,6 +373,7 @@ populating this attribute.
 | `generate_content` | Multimodal content generation operation such as [Gemini Generate Content](https://ai.google.dev/api/generate-content) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `invoke_agent` | Invoke GenAI agent | ![Development](https://img.shields.io/badge/-development-blue) |
 | `text_completion` | Text completions operation such as [OpenAI Completions API (Legacy)](https://platform.openai.com/docs/api-reference/completions) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `invoke_workflow`  | Invoke GenAI workflow                                                                                                            | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -524,6 +526,7 @@ system instructions.
 | `invoke_agent`     | Invoke GenAI agent                                                                                                               | ![Development](https://img.shields.io/badge/-development-blue) |
 | `text_completion`  | Text completions operation such as [OpenAI Completions API (Legacy)](https://platform.openai.com/docs/api-reference/completions) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `invoke_workflow`  | Invoke GenAI workflow                                                                                                            | ![Development](https://img.shields.io/badge/-development-blue) |
+
 ---
 
 <!-- prettier-ignore-end -->
