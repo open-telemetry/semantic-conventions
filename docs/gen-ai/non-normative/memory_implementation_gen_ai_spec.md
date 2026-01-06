@@ -558,7 +558,7 @@ flowchart LR
 
         subgraph ops["Memory Operations"]
             S[search_memory]
-            UP[update_memory (upsert)]
+            UP["update_memory (upsert)"]
             D[delete_memory]
         end
 
