@@ -382,6 +382,10 @@ groups:
               value: "execute_tool"
               brief: 'Execute a tool'
               stability: development
+            - id: invoke_workflow
+              value: "invoke_workflow"
+              brief: 'Invoke GenAI workflow'
+              stability: development
         brief: The name of the operation being performed.
         note: >
           If one of the predefined values applies, but specific system uses a different name it's RECOMMENDED to document it in the semantic
