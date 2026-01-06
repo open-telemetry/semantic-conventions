@@ -14,7 +14,7 @@ note: Add invoke workflow operation name support to the gen-ai agent span semant
 
 # Mandatory: One or more tracking issues related to the change. You can use the PR number here if no issue exists.
 # The values here must be integers.
-PR: []
+PR: [3249]
 
 # (Optional) One or more lines of additional information to render under the primary note.
 # These lines will be padded with 2 spaces and then inserted directly into the document.
