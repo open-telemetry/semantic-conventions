@@ -47,6 +47,7 @@ For more information about the maintainer role, see the [community repository](h
 ### Approvers
 
 - [Alexandra Konrad](https://github.com/trisch-me), Elastic
+- [Christophe Kamphaus](https://github.com/kamphaus), Independent
 - [Daniel Dyla](https://github.com/dyladan), Dynatrace
 - [Ted Young](https://github.com/tedsuo), Grafana Labs
 
