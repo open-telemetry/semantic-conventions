@@ -430,6 +430,217 @@ groups:
           the canonical name of exception that occurred, or another low-cardinality error identifier.
           Instrumentations SHOULD document the list of errors they report.
 
+  # =============================================================================
+  # Memory Operation Spans
+  # =============================================================================
+
+  - id: span.gen_ai.create_memory_store.client
+    type: span
+    stability: development
+    span_kind: client
+    brief: >
+      Describes creation/initialization of a memory store.
+    note: |
+      The `gen_ai.operation.name` SHOULD be `create_memory_store`.
+
+      **Span name** SHOULD be `create_memory_store {gen_ai.memory.store.name}`
+      or `create_memory_store` if store name is not available.
+    attributes:
+      - ref: gen_ai.operation.name
+        requirement_level: required
+      - ref: gen_ai.provider.name
+        requirement_level: required
+      - ref: gen_ai.memory.store.id
+        requirement_level:
+          conditionally_required: when returned by the operation
+      - ref: gen_ai.memory.store.name
+        requirement_level: recommended
+      - ref: gen_ai.memory.scope
+        requirement_level: required
+      - ref: gen_ai.memory.type
+        requirement_level:
+          conditionally_required: when store is dedicated to a memory type
+      - ref: gen_ai.memory.namespace
+        requirement_level:
+          conditionally_required: when store is namespaced
+      - ref: error.type
+        requirement_level:
+          conditionally_required: if the operation ended in an error
+
+  - id: span.gen_ai.search_memory.client
+    type: span
+    stability: development
+    span_kind: client
+    brief: >
+      Describes a memory search/retrieval operation - querying a memory store
+      for relevant memories.
+    note: |
+      The `gen_ai.operation.name` SHOULD be `search_memory`.
+
+      **Span name** SHOULD be `search_memory {gen_ai.memory.store.name}`
+      or `search_memory` if store name is not available.
+    attributes:
+      - ref: gen_ai.operation.name
+        requirement_level: required
+      - ref: gen_ai.provider.name
+        requirement_level: required
+      - ref: gen_ai.memory.store.id
+        requirement_level:
+          conditionally_required: if applicable
+      - ref: gen_ai.memory.store.name
+        requirement_level: recommended
+      - ref: gen_ai.memory.query
+        requirement_level: opt_in
+      - ref: gen_ai.memory.type
+        requirement_level: recommended
+      - ref: gen_ai.memory.namespace
+        requirement_level:
+          conditionally_required: when memory is namespaced
+      - ref: gen_ai.memory.search.result.count
+        requirement_level: recommended
+      - ref: gen_ai.memory.search.similarity.threshold
+        requirement_level:
+          conditionally_required: when similarity filtering is used
+      - ref: gen_ai.agent.id
+        requirement_level:
+          conditionally_required: when searching agent-scoped memory
+      - ref: gen_ai.conversation.id
+        requirement_level:
+          conditionally_required: when searching session-scoped memory
+      - ref: error.type
+        requirement_level:
+          conditionally_required: if the operation ended in an error
+
+  - id: span.gen_ai.update_memory.client
+    type: span
+    stability: development
+    span_kind: client
+    brief: >
+      Describes a memory update operation (upsert) - creating or modifying
+      memory items in a memory store.
+    note: |
+      The `gen_ai.operation.name` SHOULD be `update_memory`.
+
+      This operation is an upsert to avoid ambiguity between create vs update.
+      If the underlying system distinguishes create vs update, instrumentations
+      MAY add a system-specific attribute to capture that outcome, but SHOULD
+      keep `gen_ai.operation.name` as `update_memory`.
+
+      **Span name** SHOULD be `update_memory {gen_ai.memory.store.name}`
+      or `update_memory` if store name is not available.
+    attributes:
+      - ref: gen_ai.operation.name
+        requirement_level: required
+      - ref: gen_ai.provider.name
+        requirement_level: required
+      - ref: gen_ai.memory.store.id
+        requirement_level:
+          conditionally_required: if applicable
+      - ref: gen_ai.memory.store.name
+        requirement_level: recommended
+      - ref: gen_ai.memory.id
+        requirement_level:
+          conditionally_required: when available (provided or returned)
+      - ref: gen_ai.memory.update.strategy
+        requirement_level: recommended
+      - ref: gen_ai.memory.type
+        requirement_level: recommended
+      - ref: gen_ai.memory.namespace
+        requirement_level:
+          conditionally_required: when memory is namespaced
+      - ref: gen_ai.memory.content
+        requirement_level: opt_in
+      - ref: gen_ai.memory.expiration_date
+        requirement_level:
+          conditionally_required: if expiration is set
+      - ref: gen_ai.memory.importance
+        requirement_level: recommended
+      - ref: gen_ai.agent.id
+        requirement_level:
+          conditionally_required: when operating on agent-scoped memory
+      - ref: gen_ai.conversation.id
+        requirement_level:
+          conditionally_required: when operating on session-scoped memory
+      - ref: error.type
+        requirement_level:
+          conditionally_required: if the operation ended in an error
+
+  - id: span.gen_ai.delete_memory.client
+    type: span
+    stability: development
+    span_kind: client
+    brief: >
+      Describes a memory deletion operation - removing one or more memory items.
+    note: |
+      The `gen_ai.operation.name` SHOULD be `delete_memory`.
+
+      **Span name** SHOULD be `delete_memory {gen_ai.memory.store.name}`
+      or `delete_memory` if store name is not available.
+
+      Deletion semantics SHOULD be interpreted as follows:
+
+      - If `gen_ai.memory.id` is set, delete a specific memory item.
+      - If `gen_ai.memory.id` is not set, delete all memory items in the specified
+        `gen_ai.memory.scope` (and within `gen_ai.memory.namespace`, if applicable).
+    attributes:
+      - ref: gen_ai.operation.name
+        requirement_level: required
+      - ref: gen_ai.provider.name
+        requirement_level: required
+      - ref: gen_ai.memory.store.id
+        requirement_level:
+          conditionally_required: if applicable
+      - ref: gen_ai.memory.store.name
+        requirement_level: recommended
+      - ref: gen_ai.memory.scope
+        requirement_level: required
+      - ref: gen_ai.memory.id
+        requirement_level:
+          conditionally_required: when deleting a specific memory item
+      - ref: gen_ai.memory.type
+        requirement_level:
+          conditionally_required: when deleting by type
+      - ref: gen_ai.memory.namespace
+        requirement_level:
+          conditionally_required: when memory is namespaced
+      - ref: gen_ai.agent.id
+        requirement_level:
+          conditionally_required: when deleting agent-scoped memory
+      - ref: gen_ai.conversation.id
+        requirement_level:
+          conditionally_required: when deleting session-scoped memory
+      - ref: error.type
+        requirement_level:
+          conditionally_required: if the operation ended in an error
+
+  - id: span.gen_ai.delete_memory_store.client
+    type: span
+    stability: development
+    span_kind: client
+    brief: >
+      Describes deletion/deprovisioning of a memory store.
+    note: |
+      The `gen_ai.operation.name` SHOULD be `delete_memory_store`.
+
+      **Span name** SHOULD be `delete_memory_store {gen_ai.memory.store.name}`
+      or `delete_memory_store` if store name is not available.
+    attributes:
+      - ref: gen_ai.operation.name
+        requirement_level: required
+      - ref: gen_ai.provider.name
+        requirement_level: required
+      - ref: gen_ai.memory.store.id
+        requirement_level:
+          conditionally_required: if applicable
+      - ref: gen_ai.memory.store.name
+        requirement_level: recommended
+      - ref: gen_ai.memory.namespace
+        requirement_level:
+          conditionally_required: when store is namespaced
+      - ref: error.type
+        requirement_level:
+          conditionally_required: if the operation ended in an error
+
   - id: span.aws.bedrock.client
     extends: span.gen_ai.inference.client
     stability: development

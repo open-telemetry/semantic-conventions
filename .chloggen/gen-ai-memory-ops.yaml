@@ -1,0 +1,23 @@
+# Use this changelog template to create an entry for release notes.
+#
+# If your change doesn't affect end users you should instead start
+# your pull request title with [chore] or use the "Skip Changelog" label.
+
+# One of 'breaking', 'deprecation', 'new_component', 'enhancement', 'bug_fix'
+change_type: enhancement
+
+# The name of the area of concern in the attributes-registry, (e.g. http, cloud, db)
+component: gen-ai
+
+# A brief description of the change. Surround your text with quotes ("") if it needs to start with a backtick (`).
+note: Add semantic conventions for GenAI memory operations.
+
+# Mandatory: One or more tracking issues related to the change. You can use the PR number here if no issue exists.
+# The values here must be integers.
+issues: [3250]
+
+# (Optional) One or more lines of additional information to render under the primary note.
+# These lines will be padded with 2 spaces and then inserted directly into the document.
+# Use pipe (|) for multiline entries.
+subtext: |
+  Adds `gen_ai.operation.name` values for memory operations and introduces `gen_ai.memory.*` attributes and spans for memory store lifecycle, search, upsert, and delete.
