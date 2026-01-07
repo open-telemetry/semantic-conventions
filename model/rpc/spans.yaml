@@ -5,8 +5,6 @@ groups:
     brief: 'This document defines semantic conventions for remote procedure calls.'
     extends: common.rpc.attributes
     attributes:
-      - ref: rpc.method
-        sampling_relevant: true
       - ref: server.address
         sampling_relevant: true
       - ref: server.port
@@ -16,6 +14,13 @@ groups:
       - ref: network.peer.port
         requirement_level:
           recommended: If `network.peer.address` is set.
+      - ref: rpc.method
+        requirement_level:
+          conditionally_required: if available.
+        sampling_relevant: true
+      - ref: rpc.method_original
+        requirement_level:
+          conditionally_required: If and only if it's different than `rpc.method`.
 
   - id: rpc.server
     type: attribute_group
@@ -26,19 +31,6 @@ groups:
         requirement_level: recommended
       - ref: client.port
         requirement_level: recommended
-
-  - id: rpc_service.server
-    type: attribute_group
-    brief: 'This document defines semantic conventions for remote procedure calls.'
-    extends: rpc
-    attributes:
-      - ref: client.address
-        requirement_level: recommended
-      - ref: client.port
-        requirement_level: recommended
-      - ref: rpc.service
-        requirement_level: recommended
-        sampling_relevant: true
 
   - id: span.rpc.call.client
     type: span
@@ -68,13 +60,11 @@ groups:
       - ref: rpc.system.name
         requirement_level: required
         sampling_relevant: true
-      - ref: rpc.service
-        sampling_relevant: true
 
   - id: span.rpc.call.server
     type: span
     stability: development
-    extends: rpc_service.server
+    extends: rpc.server
     span_kind: server
     brief: This span represents an incoming Remote Procedure Call (RPC).
     events: [rpc.message]
@@ -123,13 +113,11 @@ groups:
         requirement_level: opt_in
       - ref: rpc.response.metadata
         requirement_level: opt_in
-      - ref: rpc.service
-        sampling_relevant: true
 
   - id: span.rpc.connect_rpc.call.server
     type: span
     stability: development
-    extends: rpc_service.server
+    extends: rpc.server
     span_kind: server
     brief: This span represents an incoming Remote Procedure Call (RPC).
     note: |
@@ -179,9 +167,6 @@ groups:
     attributes:
       - ref: rpc.method
         requirement_level: required
-      - ref: rpc.service
-        requirement_level: required
-        sampling_relevant: true
       - ref: rpc.response.status_code
         requirement_level: required
         brief: >
@@ -197,7 +182,7 @@ groups:
   - id: span.rpc.grpc.call.server
     type: span
     stability: development
-    extends: rpc_service.server
+    extends: rpc.server
     span_kind: server
     brief: This span represents an incoming Remote Procedure Call (RPC).
     note: |
@@ -249,13 +234,24 @@ groups:
     extends: rpc
     span_kind: client
     attributes:
-      - ref: rpc.method
-        requirement_level: required
       - ref: jsonrpc.protocol.version
         requirement_level:
           conditionally_required: If other than the default version (`1.0`)
       - ref: jsonrpc.request.id
         requirement_level: recommended
+      - ref: rpc.method
+        brief: JSON-RPC method name provided in the request.
+        note: >
+          JSON-RPC supports sending and receiving arbitrary method names without
+          prior registration or definition. As a result, the method name MAY have
+          unbounded cardinality in edge or error cases.
+
+          General-purpose JSON-RPC instrumentations therefore SHOULD NOT set this
+          attribute by default and SHOULD provide a way to configure the list of
+          recognized RPC methods.
+          When tracing instrumentation converts RPC method to `_OTHER`, it MUST
+          also set `rpc.method_original` span attribute to the original value.
+        requirement_level: opt_in
       - ref: rpc.response.status_code
         brief: >
           The [`error.code`](https://www.jsonrpc.org/specification#error_object)
@@ -283,13 +279,24 @@ groups:
       an [`error` object](https://www.jsonrpc.org/specification#error_object)
       are considered errors.
     attributes:
-      - ref: rpc.method
-        requirement_level: required
       - ref: jsonrpc.protocol.version
         requirement_level:
           conditionally_required: If other than the default version (`1.0`)
       - ref: jsonrpc.request.id
         requirement_level: recommended
+      - ref: rpc.method
+        brief: JSON-RPC method name provided in the request.
+        note: >
+          JSON-RPC supports sending and receiving arbitrary method names without
+          prior registration or definition. As a result, the method name MAY have
+          unbounded cardinality in edge or error cases.
+
+          General-purpose JSON-RPC instrumentations therefore SHOULD NOT set this
+          attribute by default and SHOULD provide a way to configure the list of
+          recognized RPC methods.
+          When tracing instrumentation converts RPC method to `_OTHER`, it MUST
+          also set `rpc.method_original` span attribute to the original value.
+        requirement_level: opt_in
       - ref: rpc.response.status_code
         brief: >
           The [`error.code`](https://www.jsonrpc.org/specification#error_object) property of
