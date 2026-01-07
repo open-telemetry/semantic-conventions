@@ -5,7 +5,6 @@
 <!-- toc -->
 
 - [What constitutes an error](#what-constitutes-an-error)
-- [What constitutes a failed operation](#what-constitutes-a-failed-operation)
 - [Recording errors](#recording-errors)
 - [Recording errors on spans](#recording-errors-on-spans)
 - [Recording errors on metrics](#recording-errors-on-metrics)
@@ -36,13 +35,6 @@ In the scope of this document, an error occurs when:
 > Instrumentations that have additional context about a specific request SHOULD
 > use this context to classify whether the status code is an error.
 
-## What constitutes a failed operation
-
-An operation SHOULD be considered as failed when it ends with an error.
-
-Errors that were retried or handled (allowing an operation to complete gracefully)
-SHOULD NOT be recorded on spans or metrics that describe this operation.
-
 ## Recording errors
 
 Instrumentation SHOULD ensure that, for a given error,
@@ -72,6 +64,9 @@ Semantic conventions for operations usually define an operation duration histogr
 metric. This metric SHOULD include the [`error.type`][ErrorType] attribute.
 This enables users to derive throughput and error rates.
 
+Errors that were retried or handled (allowing an operation to complete gracefully)
+SHOULD NOT be recorded on metrics that describe this operation.
+
 Operations that complete successfully SHOULD NOT include the `error.type` attribute,
 allowing users to filter out errors.
 
@@ -90,6 +85,8 @@ When recording an error using logs ([event records][EventRecord]):
   what operation failed, e.g. `socket.connection_failed`,
 - SHOULD set [`SeverityNumber`][SeverityNumber],
   but not necessarily at the ERROR severity level.
+  Errors that were retried or handled (allowing an operation to complete gracefully)
+  SHOULD NOT be recorded with the ERROR severity level (or higher).
   For example, an error on an operation may be a DEBUG event if the operation is
   retried, and if the failure is not generally relevant to the application owner.
 - SHOULD set the [`error.type`][ErrorType] attribute,
