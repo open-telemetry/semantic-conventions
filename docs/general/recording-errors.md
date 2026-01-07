@@ -88,29 +88,20 @@ When recording an error using logs ([event records][EventRecord]):
   what operation failed, e.g. `socket.connection_failed`,
 - SHOULD set the [`error.type`][ErrorType] attribute,
 - SHOULD set [`error.message`][ErrorMessage] attribute to add additional
-  information about the error, for example, an exception message.
+  information about the error, for example, an exception message,
+- SHOULD set [`SeverityNumber`][SeverityNumber].
 
-When an error occurs outside the context of any span
-and it causes an operation to fail,
-the instrumentation SHOULD record it as an event record.
-In such scenario, [`SeverityNumber`][SeverityNumber] MUST be greater than
-or equal to 17 (ERROR).
-
-When an error occurs inside the context of a span
-and it causes an operation to fail,
-the instrumentation SHOULD NOT additionally record it as an event record.
+When the error happens during an operation,
+it is RECOMMENDED to set [`SeverityNumber`][SeverityNumber] below 9 (INFO).
 
 > [!NOTE]
 >
-> Applications that also want event records for errors that are already
-> recorded on spans can use a span processor (or equivalent component)
-> that emits corresponding error event records. This is an optional,
-> user-configured mechanism and is not required by these conventions.
-
-When an error is retried or handled, even when the overall operation completes
-successfully, the instrumentation MAY record it as an event record for
-diagnostic purposes. In such scenario, [`SeverityNumber`][SeverityNumber]
-MUST be below 17 (ERROR).
+> Sometimes an error is returned outside the operation
+> (and it is not captured by a span).
+> For instance, it can be returned by the code asynchronously,
+> or it is not even related to any operation invoked by the caller.
+> In such cases, it may be good to have [`SeverityNumber`][SeverityNumber]
+> greater than or equal to 9 (INFO).
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
 [SpanStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.52.0/specification/trace/api.md#set-status
