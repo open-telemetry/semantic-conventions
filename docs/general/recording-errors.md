@@ -64,9 +64,6 @@ Semantic conventions for operations usually define an operation duration histogr
 metric. This metric SHOULD include the [`error.type`][ErrorType] attribute.
 This enables users to derive throughput and error rates.
 
-Errors that were retried or handled (allowing an operation to complete gracefully)
-SHOULD NOT be recorded on metrics that describe this operation.
-
 Operations that complete successfully SHOULD NOT include the `error.type` attribute,
 allowing users to filter out errors.
 
