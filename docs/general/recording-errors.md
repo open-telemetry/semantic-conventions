@@ -87,7 +87,9 @@ When an instrumented operation throws an exception, instrumentation SHOULD
 record this exception as a [log record](/docs/exceptions/exceptions-logs.md).
 
 When the instrumented operation has not succeeded due to an exception,
-metrics associated with this operation SHOULD include `error.type` attribute.
+refer to the [recording errors on spans](#recording-errors-on-spans)
+and to the [recording errors on metrics](#recording-errors-on-metrics)
+on capturing exception details on these signals.
 
 It's NOT RECOMMENDED to record the same exception more than once.
 
