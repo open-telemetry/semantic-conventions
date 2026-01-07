@@ -50,9 +50,11 @@ the same [`error.type`][ErrorType] attribute value is used across all signals.
 
 ## Recording errors on spans
 
-When the instrumented operation failed, the instrumentation:
+When the instrumented operation ends with an error, the instrumentation:
 
-- SHOULD set the span status code to `Error` if this is a semantical error,
+- SHOULD set the span status code to `Error` if this is an operation error
+  according to semantics, for example, see
+  [Semantic conventions for HTTP spans: Status](../http/http-spans.md#status),
 - SHOULD set the [`error.type`][ErrorType] attribute,
 - SHOULD set [`error.message`][ErrorMessage] attribute to add additional
   information about the error, for example, an exception message,
@@ -87,22 +89,13 @@ When recording an error using logs ([event records][EventRecord]):
 - SHOULD set [`EventName`][EventName] with a value that help indicating
   what operation failed, e.g. `socket.connection_failed`,
 - SHOULD set [`SeverityNumber`][SeverityNumber],
+  but not necessarily at the ERROR severity level.
+  For example, an error on an operation may be a DEBUG event if the operation is
+  retried, and if the failure is not generally relevant to the application owner.
 - SHOULD set the [`error.type`][ErrorType] attribute,
 - SHOULD set [`error.message`][ErrorMessage] attribute to add additional
   information about the error, for example, an exception message,
 - SHOULD set the `error.stacktrace` attribute.
-
-When the error happens during an operation,
-it is RECOMMENDED to set [`SeverityNumber`][SeverityNumber] below 9 (INFO).
-
-> [!NOTE]
->
-> Sometimes an error is returned outside the operation
-> (and it is not captured by a span).
-> For instance, it can be returned by the code asynchronously,
-> or it is not even related to any operation invoked by the caller.
-> In such cases, it may be good to have [`SeverityNumber`][SeverityNumber]
-> greater than or equal to 9 (INFO).
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
 [SpanStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.52.0/specification/trace/api.md#set-status
