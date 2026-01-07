@@ -8,10 +8,7 @@ groups:
         requirement_level: required
       - ref: rpc.service
       - ref: server.address
-        requirement_level: required
       - ref: server.port
-        requirement_level:
-          conditionally_required: If applicable.
   - id: attributes.metrics.rpc.server
     type: attribute_group
     brief: "Describes RPC metric attributes."

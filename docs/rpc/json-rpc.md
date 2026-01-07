@@ -37,10 +37,10 @@ are considered errors.
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`rpc.method`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | This is the logical name of the method from the RPC interface perspective. [1] | `exampleMethod` |
-| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | RPC server [host name](https://grpc.github.io/grpc/core/md_doc_naming.html). [2] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
-| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the operation failed. | string | Describes a class of error the operation ended with. [3] | `DEADLINE_EXCEEDED`; `java.net.UnknownHostException`; `-32602` |
+| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the operation failed. | string | Describes a class of error the operation ended with. [2] | `DEADLINE_EXCEEDED`; `java.net.UnknownHostException`; `-32602` |
 | [`jsonrpc.protocol.version`](/docs/registry/attributes/jsonrpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If other than the default version (`1.0`) | string | Protocol version, as specified in the `jsonrpc` property of the request and its corresponding response. | `2.0`; `1.0` |
-| [`rpc.response.status_code`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` when available | string | The [`error.code`](https://www.jsonrpc.org/specification#error_object) property of response if it is an error response recorded as a string. [4] | `OK`; `DEADLINE_EXCEEDED`; `-32602` |
+| [`rpc.response.status_code`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` when available | string | The [`error.code`](https://www.jsonrpc.org/specification#error_object) property of response if it is an error response recorded as a string. [3] | `OK`; `DEADLINE_EXCEEDED`; `-32602` |
+| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If available. | string | RPC server [host name](https://grpc.github.io/grpc/core/md_doc_naming.html). [4] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [5] | int | Server port number. [6] | `80`; `8080`; `443` |
 | [`jsonrpc.request.id`](/docs/registry/attributes/jsonrpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A string representation of the `id` property of the request and its corresponding response. [7] | `10`; `request-7` |
 | [`network.peer.address`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Peer address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` |
@@ -51,9 +51,7 @@ are considered errors.
 
 **[1] `rpc.method`:** This is the logical name of the method from the RPC interface perspective, which can be different from the name of any implementing method/function. The `code.function.name` attribute may be used to record the fully-qualified method actually executing the call on the server side, or the RPC client stub method on the client side.
 
-**[2] `server.address`:** May contain server IP address, DNS name, or local socket name. When host component is an IP address, instrumentations SHOULD NOT do a reverse proxy lookup to obtain DNS name and SHOULD set `server.address` to the IP address provided in the host component.
-
-**[3] `error.type`:** If the RPC fails with an error before status code is returned,
+**[2] `error.type`:** If the RPC fails with an error before status code is returned,
 `error.type` SHOULD be set to the exception type (its fully-qualified class name, if applicable)
 or a component-specific, low cardinality error identifier.
 
@@ -67,9 +65,11 @@ Instrumentations SHOULD document the list of errors they report.
 If the request has completed successfully, instrumentations SHOULD NOT set
 `error.type`.
 
-**[4] `rpc.response.status_code`:** All JSON RPC error codes SHOULD be considered errors.
+**[3] `rpc.response.status_code`:** All JSON RPC error codes SHOULD be considered errors.
 
-**[5] `server.port`:** if the port is supported by the network transport used for communication.
+**[4] `server.address`:** May contain server IP address, DNS name, or local socket name. When host component is an IP address, instrumentations SHOULD NOT do a reverse proxy lookup to obtain DNS name and SHOULD set `server.address` to the IP address provided in the host component.
+
+**[5] `server.port`:** if `server.address` is set and if the port is supported by the network transport used for communication.
 
 **[6] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
@@ -144,10 +144,10 @@ are considered errors.
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`rpc.method`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | This is the logical name of the method from the RPC interface perspective. [1] | `exampleMethod` |
-| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | RPC server [host name](https://grpc.github.io/grpc/core/md_doc_naming.html). [2] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
-| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the operation failed. | string | Describes a class of error the operation ended with. [3] | `DEADLINE_EXCEEDED`; `java.net.UnknownHostException`; `-32602` |
+| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the operation failed. | string | Describes a class of error the operation ended with. [2] | `DEADLINE_EXCEEDED`; `java.net.UnknownHostException`; `-32602` |
 | [`jsonrpc.protocol.version`](/docs/registry/attributes/jsonrpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If other than the default version (`1.0`) | string | Protocol version, as specified in the `jsonrpc` property of the request and its corresponding response. | `2.0`; `1.0` |
-| [`rpc.response.status_code`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` when available | string | The [`error.code`](https://www.jsonrpc.org/specification#error_object) property of response recorded as a string. [4] | `OK`; `DEADLINE_EXCEEDED`; `-32602` |
+| [`rpc.response.status_code`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` when available | string | The [`error.code`](https://www.jsonrpc.org/specification#error_object) property of response recorded as a string. [3] | `OK`; `DEADLINE_EXCEEDED`; `-32602` |
+| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If available. | string | RPC server [host name](https://grpc.github.io/grpc/core/md_doc_naming.html). [4] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [5] | int | Server port number. [6] | `80`; `8080`; `443` |
 | [`client.address`](/docs/registry/attributes/client.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Client address - domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [7] | `client.example.com`; `10.1.2.80`; `/tmp/my.sock` |
 | [`client.port`](/docs/registry/attributes/client.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | Client port number. [8] | `65123` |
@@ -160,9 +160,7 @@ are considered errors.
 
 **[1] `rpc.method`:** This is the logical name of the method from the RPC interface perspective, which can be different from the name of any implementing method/function. The `code.function.name` attribute may be used to record the fully-qualified method actually executing the call on the server side, or the RPC client stub method on the client side.
 
-**[2] `server.address`:** May contain server IP address, DNS name, or local socket name. When host component is an IP address, instrumentations SHOULD NOT do a reverse proxy lookup to obtain DNS name and SHOULD set `server.address` to the IP address provided in the host component.
-
-**[3] `error.type`:** If the RPC fails with an error before status code is returned,
+**[2] `error.type`:** If the RPC fails with an error before status code is returned,
 `error.type` SHOULD be set to the exception type (its fully-qualified class name, if applicable)
 or a component-specific, low cardinality error identifier.
 
@@ -176,9 +174,11 @@ Instrumentations SHOULD document the list of errors they report.
 If the request has completed successfully, instrumentations SHOULD NOT set
 `error.type`.
 
-**[4] `rpc.response.status_code`:** All JSON RPC error codes SHOULD be considered errors.
+**[3] `rpc.response.status_code`:** All JSON RPC error codes SHOULD be considered errors.
 
-**[5] `server.port`:** if the port is supported by the network transport used for communication.
+**[4] `server.address`:** May contain server IP address, DNS name, or local socket name. When host component is an IP address, instrumentations SHOULD NOT do a reverse proxy lookup to obtain DNS name and SHOULD set `server.address` to the IP address provided in the host component.
+
+**[5] `server.port`:** if `server.address` is set and if the port is supported by the network transport used for communication.
 
 **[6] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 

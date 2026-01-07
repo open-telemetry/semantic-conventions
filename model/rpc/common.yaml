@@ -6,16 +6,18 @@ groups:
       - ref: rpc.method
         requirement_level: recommended
       - ref: server.address
-        requirement_level: required
         brief: >
           RPC server [host name](https://grpc.github.io/grpc/core/md_doc_naming.html).
         note: >
           May contain server IP address, DNS name, or local socket name. When host component is an IP address,
           instrumentations SHOULD NOT do a reverse proxy lookup to obtain DNS name and SHOULD set
           `server.address` to the IP address provided in the host component.
+        requirement_level:
+          conditionally_required: If available.
       - ref: server.port
         requirement_level:
-          conditionally_required: if the port is supported by the network transport used for communication.
+          conditionally_required: if `server.address` is set and if the port is
+            supported by the network transport used for communication.
       - ref: rpc.response.status_code
         requirement_level:
           conditionally_required: if available.
