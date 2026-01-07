@@ -52,7 +52,7 @@ the same [`error.type`][ErrorType] attribute value is used across all signals.
 
 When the instrumented operation failed, the instrumentation:
 
-- SHOULD set the span status code to `Error` if this is a semantical error,
+- SHOULD set the span status code to `Error` if this is a semantic error,
 - SHOULD set the [`error.type`][ErrorType] attribute,
 - SHOULD set [`error.message`][ErrorMessage] attribute to add additional
   information about the error, for example, an exception message,
