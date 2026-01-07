@@ -405,6 +405,26 @@ groups:
               value: "execute_tool"
               brief: 'Execute a tool'
               stability: development
+            - id: search_memory
+              value: "search_memory"
+              brief: 'Search/query memories from a memory store'
+              stability: development
+            - id: update_memory
+              value: "update_memory"
+              brief: 'Create or update (upsert) memory items'
+              stability: development
+            - id: delete_memory
+              value: "delete_memory"
+              brief: 'Delete memory items (by id, or by scope+namespace)'
+              stability: development
+            - id: create_memory_store
+              value: "create_memory_store"
+              brief: 'Create/initialize a memory store'
+              stability: development
+            - id: delete_memory_store
+              value: "delete_memory_store"
+              brief: 'Delete/deprovision a memory store'
+              stability: development
         brief: The name of the operation being performed.
         note: >
           If one of the predefined values applies, but specific system uses a different name it's RECOMMENDED to document it in the semantic
