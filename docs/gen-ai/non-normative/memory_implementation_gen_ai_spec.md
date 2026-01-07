@@ -9,9 +9,9 @@ Why Memory Matters for Observability:
 
 ## 2. Proposed Semantic Conventions
 
-### 2.1 Revised Operation Names
+### 2.1 Recommended Operation Names
 
-Add the following values to the `gen_ai.operation.name` enum:
+Recommended `gen_ai.operation.name` values for memory operations:
 
 ```yaml
 - id: search_memory
