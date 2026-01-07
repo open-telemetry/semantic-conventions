@@ -38,7 +38,7 @@ In the scope of this document, an error occurs when:
 
 ## What constitutes a failed operation
 
-An operation SHOULD be considered as failed when it ends with an error.
+An operation SHOULD be considered as failed when it ends with an semantical error.
 
 Errors that were retried or handled (allowing an operation to complete gracefully)
 SHOULD NOT be recorded on spans or metrics that describe this operation.
@@ -52,11 +52,10 @@ the same [`error.type`][ErrorType] attribute value is used across all signals.
 
 When the instrumented operation failed, the instrumentation:
 
-- SHOULD set the span status code to `Error`,
+- MUST set the span status code to `Error`,
 - SHOULD set the [`error.type`][ErrorType] attribute,
-- SHOULD set the span status description when it has additional information
-  about the error that aligns with [Span Status Description][SpanStatus]
-  definition, for example, an exception message.
+- SHOULD set [`error.message`][ErrorMessage] attribute to add additional
+  information about the error, for example, an exception message
 
 Note that [Span Status Code][SpanStatus] MUST be left unset if the instrumented
 operation has ended without any errors.
