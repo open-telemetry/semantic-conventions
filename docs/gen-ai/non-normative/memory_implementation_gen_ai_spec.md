@@ -586,9 +586,12 @@ flowchart LR
     L --> UP
     L --> D
 
-    S <--> MS1
-    S <--> MS2
-    S <--> MS3
+    S -->|query| MS1
+    MS1 -->|results| S
+    S -->|query| MS2
+    MS2 -->|results| S
+    S -->|query| MS3
+    MS3 -->|results| S
 
     UP --> MS1
     UP --> MS2
