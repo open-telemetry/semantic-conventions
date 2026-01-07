@@ -83,14 +83,14 @@ include it if the operation succeeded.
 
 ## Recording exceptions
 
-When an instrumented operation fails with an exception, instrumentation SHOULD record
-this exception as a [span event](/docs/exceptions/exceptions-spans.md) or a [log record](/docs/exceptions/exceptions-logs.md).
+When an instrumented operation throws an exception, instrumentation SHOULD
+record this exception as a [log record](/docs/exceptions/exceptions-logs.md).
 
-It's RECOMMENDED to use the `Span.recordException` API or logging library API that takes exception instance
-instead of providing individual attributes. This enables the OpenTelemetry SDK to
-control what information is recorded based on application configuration.
+When the instrumented operation has not succeeded due to an exception,
+metrics associated with this operation SHOULD include `error.type` attribute.
 
 It's NOT RECOMMENDED to record the same exception more than once.
+
 It's NOT RECOMMENDED to record exceptions that are handled by the instrumented library.
 
 For example, in this code-snippet, `ResourceAlreadyExistsException` is handled and the corresponding
@@ -100,22 +100,25 @@ to the caller should be recorded (or logged) once.
 ```java
 public boolean createIfNotExists(String resourceId) throws IOException {
   Span span = startSpan();
+  long startTime = System.nanoTime();
   try {
     create(resourceId);
+    recordMetric("acme.resource.create.duration", System.nanoTime() - startTime);
     return true;
   } catch (ResourceAlreadyExistsException e) {
-    // not recording exception and not setting span status to error - exception is handled
-    // but we can set attributes that capture additional details
+    // not setting span status to error - as the exception is not an error
+    // but we still log and set attributes that capture additional details
+    logger.debug(e);
     span.setAttribute(AttributeKey.stringKey("acme.resource.create.status"), "already_exists");
+    recordMetric("acme.resource.create.duration", System.nanoTime() - startTime);
     return false;
   } catch (IOException e) {
-    // recording exception here (assuming it was not recorded inside `create` method)
-    span.recordException(e);
-    // or
-    // logger.warn(e);
-
-    span.setAttribute(AttributeKey.stringKey("error.type"), e.getClass().getCanonicalName())
+    logger.error(e);
+    String errorType = e.getClass().getCanonicalName();
+    span.setAttribute(AttributeKey.stringKey("error.type"), errorType);
     span.setStatus(StatusCode.ERROR, e.getMessage());
+    recordMetric("acme.resource.create.duration", System.nanoTime() - startTime,
+                 AttributeKey.stringKey("error.type"), errorType);
     throw e;
   }
 }
