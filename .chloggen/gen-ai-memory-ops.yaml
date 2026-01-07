@@ -20,4 +20,4 @@ issues: [3250]
 # These lines will be padded with 2 spaces and then inserted directly into the document.
 # Use pipe (|) for multiline entries.
 subtext: |
-  Adds `gen_ai.operation.name` values for memory operations and introduces `gen_ai.memory.*` attributes and spans for memory store lifecycle, search, upsert, and delete.
+  Adds `gen_ai.memory.*` attributes and spans for memory store lifecycle, search, upsert, and delete operations.
