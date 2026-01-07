@@ -3,4 +3,3 @@ component: rpc
 note: Demote `server.address` from required to conditionally required (when available)
   on RPC spans and metrics. Update `server.port` requirement level accordingly.
 issues: [3236]
-
