@@ -362,13 +362,36 @@ def run_openai_agents_demo():
 
 
 # ============================================================================
+# Story Scenarios (from prototype_story.plan.md)
+# ============================================================================
+
+def run_story_5_demo():
+    """Run Story 5: Multi-Tenant SaaS Platform demo."""
+    from stories.story_5_multi_tenant import run_multi_tenant_scenario
+    run_multi_tenant_scenario()
+
+
+def run_story_7_demo():
+    """Run Story 7: Multi-Agent Security Boundary demo."""
+    from stories.story_7_multi_agent import run_multi_agent_scenario
+    run_multi_agent_scenario()
+
+
+def run_story_10_demo():
+    """Run Story 10: Progressive Jailbreak Detection demo."""
+    from stories.story_10_progressive_jailbreak import run_progressive_jailbreak_scenario
+    run_progressive_jailbreak_scenario()
+
+
+# ============================================================================
 # Main
 # ============================================================================
 
 def main():
     """Run all demos."""
 
-    demos = [
+    # Framework integration demos
+    framework_demos = [
         ("LangChain", run_langchain_demo),
         ("LangGraph", run_langgraph_demo),
         ("Google ADK", run_adk_demo),
@@ -376,9 +399,28 @@ def main():
         ("OpenAI Agents", run_openai_agents_demo),
     ]
 
-    for name, demo_func in demos:
+    # Story scenarios (from prototype_story.plan.md)
+    story_demos = [
+        ("Story 5: Multi-Tenant SaaS", run_story_5_demo),
+        ("Story 7: Multi-Agent Security", run_story_7_demo),
+        ("Story 10: Progressive Jailbreak", run_story_10_demo),
+    ]
+
+    print("\n" + "=" * 80)
+    print("  Part 1: Framework Integration Demos")
+    print("=" * 80)
+
+    for name, demo_func in framework_demos:
         run_demo(name, demo_func)
         # Small delay between demos to let spans export
+        time.sleep(1)
+
+    print("\n" + "=" * 80)
+    print("  Part 2: Story Scenario Demos (from prototype_story.plan.md)")
+    print("=" * 80)
+
+    for name, demo_func in story_demos:
+        run_demo(name, demo_func)
         time.sleep(1)
 
     print("\n" + "=" * 80)
