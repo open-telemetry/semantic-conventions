@@ -38,7 +38,7 @@ In the scope of this document, an error occurs when:
 
 ## What constitutes a failed operation
 
-An operation SHOULD be considered as failed when it ends with an semantical error.
+An operation SHOULD be considered as failed when it ends with an error.
 
 Errors that were retried or handled (allowing an operation to complete gracefully)
 SHOULD NOT be recorded on spans or metrics that describe this operation.
@@ -52,10 +52,11 @@ the same [`error.type`][ErrorType] attribute value is used across all signals.
 
 When the instrumented operation failed, the instrumentation:
 
-- MUST set the span status code to `Error`,
+- SHOULD set the span status code to `Error` if this is a semantical error,
 - SHOULD set the [`error.type`][ErrorType] attribute,
 - SHOULD set [`error.message`][ErrorMessage] attribute to add additional
-  information about the error, for example, an exception message
+  information about the error, for example, an exception message,
+- SHOULD set the `error.stacktrace` attribute.
 
 Note that [Span Status Code][SpanStatus] MUST be left unset if the instrumented
 operation has ended without any errors.
@@ -85,10 +86,11 @@ When recording an error using logs ([event records][EventRecord]):
 
 - SHOULD set [`EventName`][EventName] with a value that help indicating
   what operation failed, e.g. `socket.connection_failed`,
+- SHOULD set [`SeverityNumber`][SeverityNumber],
 - SHOULD set the [`error.type`][ErrorType] attribute,
 - SHOULD set [`error.message`][ErrorMessage] attribute to add additional
   information about the error, for example, an exception message,
-- SHOULD set [`SeverityNumber`][SeverityNumber].
+- SHOULD set the `error.stacktrace` attribute.
 
 When the error happens during an operation,
 it is RECOMMENDED to set [`SeverityNumber`][SeverityNumber] below 9 (INFO).
