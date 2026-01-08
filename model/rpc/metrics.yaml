@@ -8,6 +8,9 @@ groups:
         requirement_level: required
       - ref: server.address
       - ref: server.port
+      - ref: rpc.method
+        requirement_level:
+          conditionally_required: if available.
 
   - id: attributes.metrics.rpc.server
     type: attribute_group
