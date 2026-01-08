@@ -201,11 +201,11 @@ baseline level of knowledge of the concepts being instrumented**. The `brief`
 and `note` fields of metrics and attributes should be used to convey information
 that is crucial to understanding the instrumentation intention, i.e.:
 
-* Differences in the same piece of data when it is instrumented on different
+- Differences in the same piece of data when it is instrumented on different
   platforms
-* When we recommend calculations be done on particular data rather than
+- When we recommend calculations be done on particular data rather than
   surfacing direct values from existing tools
-* When particular names or enum values were chosen when there are common
+- When particular names or enum values were chosen when there are common
   alternate terms for the same concept
 
 For root metrics and attributes, we will strive to always have a `brief` field.
@@ -213,13 +213,13 @@ The `brief` field should explain what the metric/attribute is, and if the
 explanation of a value is simple (i.e. simply surfacing a value from a common
 source like `procfs`) then the explanation of what the value should be can go in
 the brief. If the value needs some calculation explanation and justification,
-the information should be moved to the `note` field.
-For enum values, it is often the case that the intention of these values is
-obvious given whatever `brief` was provided for the attribute as a whole. A
-brief can be included in a scenario where we have had to make some choice on the
-value that isn't immediately obvious; the most common scenario is when some
-terminology differs across platforms and we had to choose one term to represent
-all scenarios. In this case, the `brief` can be used to clarify our intention.
+the information should be moved to the `note` field. For enum values, it is
+often the case that the intention of these values is obvious given whatever
+`brief` was provided for the attribute as a whole. A brief can be included in a
+scenario where we have had to make some choice on the value that isn't
+immediately obvious; the most common scenario is when some terminology differs
+across platforms and we had to choose one term to represent all scenarios. In
+this case, the `brief` can be used to clarify our intention.
 
 In cases where information about a concept is required to describe our intention
 for instrumentation, all information must come with citations to authoritative
@@ -245,18 +245,52 @@ OS-exclusive instrumentation:
 
 ### The OS name should be included in the metric in most cases
 
-The primary reason for this is for discoverability and disambiguation. Sometimes there are metrics that are non-obviously platform exclusive. A good example is `process.handle.count`, since `handle` is common nomenclature for file descriptors in Unix-likes but is in this case specifically referring to [Windows system handles held by the process](https://learn.microsoft.com/en-us/windows/win32/sysinfo/handles-and-objects) and thus will not be enabled on any platform other than Windows. It helps to disambiguate at a glance if the metric name has the platform inside of it.
+The primary reason for this is for discoverability and disambiguation. Sometimes
+there are metrics that are non-obviously platform exclusive. A good example is
+`process.handle.count`, since `handle` is common nomenclature for file
+descriptors in Unix-likes but is in this case specifically referring to
+[Windows system handles held by the process](https://learn.microsoft.com/en-us/windows/win32/sysinfo/handles-and-objects)
+and thus will not be enabled on any platform other than Windows. It helps to
+disambiguate at a glance if the metric name has the platform inside of it.
 
-The exception to this rule is if the name also contains the name of a subsystem that is commonly understood to already belong to a particular platform. `cgroup` for example is commonly known to be a Linux-exclusive subsystem, so including `linux` in the name is redundant.
+The exception to this rule is if the name also contains the name of a subsystem
+that is commonly understood to already belong to a particular platform. `cgroup`
+for example is commonly known to be a Linux-exclusive subsystem, so including
+`linux` in the name is redundant.
 
-If a user is looking at Semantic Conventions directly within the Semantic Conventions documentation, they can easily get all the nuanced information they need. There are all kinds of varied cases where a user is not learning about their instrumentation from our docs though, instead seeing it in their observability backend UIs, Collector debug output, or auto-generated SDK code etc. So this rule is intended to make our instrumentation simpler to understand in a scenario where they need to be understood outside of our detailed documentation.
+If a user is looking at Semantic Conventions directly within the Semantic
+Conventions documentation, they can easily get all the nuanced information they
+need. There are all kinds of varied cases where a user is not learning about
+their instrumentation from our docs though, instead seeing it in their
+observability backend UIs, Collector debug output, or auto-generated SDK code
+etc. So this rule is intended to make our instrumentation simpler to understand
+in a scenario where they need to be understood outside of our detailed
+documentation.
 
 ### The OS name should not be the root namespace
 
-This is for the sake of hierarchical organization of names. We consider the root namespace of metrics to be crucial to the typical usage patterns we expect. A user who wants to discover all of their `memory` metrics should only need to search for `memory.*` to get all metrics related to `memory` in general. If the OS was the root namespace, they would need to search for `linux.memory.*`,  `windows.memory.*`, etc. This is bad partially because of complicating queries, but it would also require a user to go out of their way to gather all of the platforms they need to search for just to get the whole picture on their `memory` metrics.
+This is for the sake of hierarchical organization of names. We consider the root
+namespace of metrics to be crucial to the typical usage patterns we expect. A
+user who wants to discover all of their `memory` metrics should only need to
+search for `memory.*` to get all metrics related to `memory` in general. If the
+OS was the root namespace, they would need to search for `linux.memory.*`,
+`windows.memory.*`, etc. This is bad partially because of complicating queries,
+but it would also require a user to go out of their way to gather all of the
+platforms they need to search for just to get the whole picture on their
+`memory` metrics.
 
 ### The OS name should be after the area of concern
 
-Our expected usage pattern for these metrics is for a user to have some area of concern within their system that they are monitoring (processes, memory, filesystem, cpu, network, etc) and for a user with a specific concern to have a clear way to discover the instrumentation supporting their area of concern. Sometimes that area of concern is not just the absolute root of the namespace, but also a number of sub-components in the root. The `system` namespace in particular has many examples of this, `system.memory`, `system.network`, etc. If we named the instrumentation as `system.linux.memory`, then just as in the scenario above it becomes hard to discover all the available "system memory" metrics. As a result, the OS name goes after the area of concern, i.e. `system.memory.linux`.
+Our expected usage pattern for these metrics is for a user to have some area of
+concern within their system that they are monitoring (processes, memory,
+filesystem, cpu, network, etc) and for a user with a specific concern to have a
+clear way to discover the instrumentation supporting their area of concern.
+Sometimes that area of concern is not just the absolute root of the namespace,
+but also a number of sub-components in the root. The `system` namespace in
+particular has many examples of this, `system.memory`, `system.network`, etc. If
+we named the instrumentation as `system.linux.memory`, then just as in the
+scenario above it becomes hard to discover all the available "system memory"
+metrics. As a result, the OS name goes after the area of concern, i.e.
+`system.memory.linux`.
 
 [use cases doc]: ./use-cases.md
