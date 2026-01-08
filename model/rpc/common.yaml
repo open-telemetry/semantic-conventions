@@ -4,7 +4,6 @@ groups:
     brief: 'Common attributes for RPC spans and metrics.'
     attributes:
       - ref: rpc.method
-        requirement_level: recommended
       - ref: server.address
         brief: >
           RPC server [host name](https://grpc.github.io/grpc/core/md_doc_naming.html).
