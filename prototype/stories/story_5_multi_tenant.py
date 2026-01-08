@@ -6,14 +6,14 @@ This story demonstrates how the apply_guardrail span supports multi-tenant
 AI platforms with per-tenant security policies.
 
 Key Features:
-- tenant.id resource attribute for trace segmentation
+- tenant.id attribute for trace segmentation
 - Per-tenant policy configuration
 - SLA metrics tracking (coverage, blocks, modifications)
 - Tenant isolation proof via separate traces
 
 Trace Structure:
-    chat shared_model (CLIENT span)
-    ├── Resource: tenant.id=acme_corp
+    chat gpt-4o (CLIENT span)
+    ├── tenant.id=acme_corp
     ├── apply_guardrail Acme Input Policy (INTERNAL span)
     │   ├── gen_ai.security.policy.id: acme_custom_policy_001
     │   └── gen_ai.security.decision.type: allow
@@ -27,12 +27,11 @@ Author: OpenTelemetry GenAI SIG
 
 import sys
 import os
+import json
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from opentelemetry import trace
 from opentelemetry.trace import SpanKind, Status, StatusCode
-from opentelemetry.sdk.trace import TracerProvider
-from opentelemetry.sdk.resources import Resource
 from typing import Dict, Optional
 from dataclasses import dataclass
 import re
@@ -46,6 +45,20 @@ from otel_guardian_utils import (
     TargetType,
     RiskCategory,
     RiskSeverity,
+)
+
+from stories.chat_span_utils import (
+    GEN_AI_OPERATION_NAME,
+    GEN_AI_PROVIDER_NAME,
+    GEN_AI_REQUEST_MODEL,
+    GEN_AI_RESPONSE_MODEL,
+    GEN_AI_CONVERSATION_ID,
+    GEN_AI_USAGE_INPUT_TOKENS,
+    GEN_AI_USAGE_OUTPUT_TOKENS,
+    GEN_AI_RESPONSE_FINISH_REASONS,
+    GEN_AI_RESPONSE_ID,
+    GEN_AI_INPUT_MESSAGES,
+    GEN_AI_OUTPUT_MESSAGES,
 )
 
 
@@ -62,6 +75,7 @@ class TenantConfig:
     output_policy_id: str
     pii_sensitivity: str  # low, medium, high
     content_filter_level: str  # permissive, standard, strict
+    sensitive_topic_action: str  # allow, warn, deny
     max_token_limit: int
 
 
@@ -74,6 +88,7 @@ TENANT_CONFIGS = {
         output_policy_id="acme_pii_policy_v3",
         pii_sensitivity="high",
         content_filter_level="strict",
+        sensitive_topic_action="warn",
         max_token_limit=4096,
     ),
     "globalbank": TenantConfig(
@@ -83,6 +98,7 @@ TENANT_CONFIGS = {
         output_policy_id="globalbank_pii_v4",
         pii_sensitivity="high",
         content_filter_level="strict",
+        sensitive_topic_action="deny",
         max_token_limit=2048,
     ),
     "techstartup": TenantConfig(
@@ -92,6 +108,7 @@ TENANT_CONFIGS = {
         output_policy_id="techstartup_pii_v1",
         pii_sensitivity="medium",
         content_filter_level="permissive",
+        sensitive_topic_action="allow",
         max_token_limit=8192,
     ),
 }
@@ -124,6 +141,7 @@ class TenantInputGuard:
             conversation_id=conversation_id
         ) as ctx:
             findings = []
+            sensitive_topic_triggered = False
 
             # Tenant-specific content filtering
             if self.tenant.content_filter_level == "strict":
@@ -135,6 +153,7 @@ class TenantInputGuard:
                 ]
                 for pattern in sensitive_topics:
                     if re.search(pattern, input_text, re.IGNORECASE):
+                        sensitive_topic_triggered = True
                         findings.append(SecurityFinding(
                             risk_category=RiskCategory.SENSITIVE_INFO_DISCLOSURE,
                             risk_severity=RiskSeverity.MEDIUM,
@@ -155,7 +174,16 @@ class TenantInputGuard:
                     metadata=[f"estimated_tokens:{int(estimated_tokens)}", f"limit:{self.tenant.max_token_limit}"]
                 ))
 
-            if findings:
+            if sensitive_topic_triggered and self.tenant.sensitive_topic_action == "deny":
+                result = GuardianResult(
+                    decision_type=DecisionType.DENY,
+                    decision_reason="Tenant policy blocked sensitive request",
+                    decision_code=403,
+                    findings=findings,
+                    policy_id=self.tenant.input_policy_id,
+                    policy_name=f"{self.tenant.tenant_name} Input Policy"
+                )
+            elif findings:
                 result = GuardianResult(
                     decision_type=DecisionType.WARN,
                     decision_reason="Tenant policy flagged content for review",
@@ -214,6 +242,8 @@ class TenantOutputGuard:
             modified_content = output_text
             has_pii = False
 
+            ctx.record_content_hash(output_text)
+
             for pii_type, pattern in self.pii_patterns.items():
                 matches = re.findall(pattern, output_text)
                 if matches:
@@ -261,11 +291,22 @@ class TenantOutputGuard:
 class MultiTenantAIService:
     """
     Shared AI infrastructure with per-tenant security isolation.
+
+    Creates properly instrumented chat spans following GenAI semantic conventions.
     """
+
+    MODEL_NAME = "gpt-4o"
+    PROVIDER_NAME = "openai"
 
     def __init__(self, tracer: GuardianTracer):
         self.tracer = tracer
         self._guards: Dict[str, tuple] = {}
+        self._response_counter = 0
+
+        # Check if content capture is enabled
+        self._capture_content = os.environ.get(
+            "OTEL_DEMO_CAPTURE_GUARDIAN_CONTENT", "false"
+        ).lower() == "true"
 
     def _get_guards(self, tenant_id: str):
         """Get or create guards for a tenant."""
@@ -303,21 +344,44 @@ class MultiTenantAIService:
             schema_url="https://opentelemetry.io/schemas/1.28.0"
         )
 
+        # Span name follows convention: "chat {model}"
         with tracer.start_as_current_span(
-            "chat shared_model",
+            f"chat {self.MODEL_NAME}",
             kind=SpanKind.CLIENT
         ) as chat_span:
-            # Set tenant context
+            # === Required Attributes (gen-ai-spans.md) ===
+            chat_span.set_attribute(GEN_AI_OPERATION_NAME, "chat")
+            chat_span.set_attribute(GEN_AI_PROVIDER_NAME, self.PROVIDER_NAME)
+
+            # === Conditionally Required ===
+            chat_span.set_attribute(GEN_AI_REQUEST_MODEL, self.MODEL_NAME)
+            chat_span.set_attribute(GEN_AI_CONVERSATION_ID, conversation_id)
+
+            # === Tenant-specific context ===
             chat_span.set_attribute("tenant.id", tenant_id)
             chat_span.set_attribute("tenant.name", tenant_config.tenant_name)
-            chat_span.set_attribute("gen_ai.operation.name", "chat")
-            chat_span.set_attribute("gen_ai.request.model", "gpt-4o")
-            chat_span.set_attribute("gen_ai.conversation.id", conversation_id)
+
+            # === Opt-in: Capture input messages ===
+            if self._capture_content:
+                input_messages = [{
+                    "role": "user",
+                    "parts": [{"type": "text", "content": user_input}]
+                }]
+                chat_span.set_attribute(GEN_AI_INPUT_MESSAGES, json.dumps(input_messages))
 
             # === Input Guard ===
             input_result = input_guard.evaluate(user_input, conversation_id)
 
             if input_result.decision_type == DecisionType.DENY:
+                # Still set response attributes even on deny
+                chat_span.set_attribute(GEN_AI_RESPONSE_FINISH_REASONS, ["content_filter"])
+                if self._capture_content:
+                    output_messages = [{
+                        "role": "assistant",
+                        "parts": [{"type": "text", "content": f"Blocked by tenant policy: {input_result.decision_reason}"}],
+                        "finish_reason": "content_filter"
+                    }]
+                    chat_span.set_attribute(GEN_AI_OUTPUT_MESSAGES, json.dumps(output_messages))
                 chat_span.set_status(Status(StatusCode.OK))
                 return {
                     "tenant_id": tenant_id,
@@ -326,17 +390,33 @@ class MultiTenantAIService:
                     "policy_id": input_result.policy_id,
                 }
 
-            # === Simulated LLM Response ===
-            # In a real system, this would call the actual LLM
-            mock_response = self._generate_mock_response(tenant_id, user_input)
+            # === LLM Call (simulated) ===
+            llm_response = self._call_llm(tenant_id, user_input)
+
+            # === Recommended Response Attributes ===
+            self._response_counter += 1
+            chat_span.set_attribute(GEN_AI_RESPONSE_MODEL, self.MODEL_NAME)
+            chat_span.set_attribute(GEN_AI_RESPONSE_ID, f"chatcmpl-{tenant_id[:8]}-{self._response_counter}")
+            chat_span.set_attribute(GEN_AI_RESPONSE_FINISH_REASONS, ["stop"])
+            chat_span.set_attribute(GEN_AI_USAGE_INPUT_TOKENS, llm_response["input_tokens"])
+            chat_span.set_attribute(GEN_AI_USAGE_OUTPUT_TOKENS, llm_response["output_tokens"])
 
             # === Output Guard ===
-            output_result = output_guard.evaluate(mock_response, conversation_id)
+            output_result = output_guard.evaluate(llm_response["content"], conversation_id)
 
             if output_result.decision_type == DecisionType.MODIFY:
                 final_response = output_result.modified_content
             else:
-                final_response = mock_response
+                final_response = llm_response["content"]
+
+            # === Opt-in: Capture output messages ===
+            if self._capture_content:
+                output_messages = [{
+                    "role": "assistant",
+                    "parts": [{"type": "text", "content": final_response}],
+                    "finish_reason": "stop"
+                }]
+                chat_span.set_attribute(GEN_AI_OUTPUT_MESSAGES, json.dumps(output_messages))
 
             chat_span.set_status(Status(StatusCode.OK))
 
@@ -350,10 +430,34 @@ class MultiTenantAIService:
                 "policy_ids": {
                     "input": input_result.policy_id,
                     "output": output_result.policy_id,
+                },
+                "usage": {
+                    "input_tokens": llm_response["input_tokens"],
+                    "output_tokens": llm_response["output_tokens"],
                 }
             }
 
-    def _generate_mock_response(self, tenant_id: str, user_input: str) -> str:
+    def _call_llm(self, tenant_id: str, user_input: str) -> Dict:
+        """
+        Call the LLM (simulated) and return response with token counts.
+
+        Returns a dict with content, input_tokens, output_tokens.
+        In production, this would call the actual OpenAI/Azure API.
+        """
+        # Generate response content
+        content = self._generate_response_content(tenant_id, user_input)
+
+        # Estimate token counts (rough approximation: ~1.3 tokens per word)
+        input_tokens = int(len(user_input.split()) * 1.3)
+        output_tokens = int(len(content.split()) * 1.3)
+
+        return {
+            "content": content,
+            "input_tokens": input_tokens,
+            "output_tokens": output_tokens,
+        }
+
+    def _generate_response_content(self, tenant_id: str, user_input: str) -> str:
         """Generate mock LLM response with potential PII for testing."""
         if "contact" in user_input.lower() or "email" in user_input.lower():
             return "You can reach our support team at support@example.com or call 555-123-4567."
@@ -372,7 +476,7 @@ def run_multi_tenant_scenario():
     Run the multi-tenant SaaS story scenario.
 
     Demonstrates:
-    1. Tenant isolation via tenant.id resource attribute
+    1. Tenant isolation via tenant.id attribute
     2. Per-tenant policy application
     3. Different PII sensitivity levels
     4. SLA metrics (all requests are traced)
@@ -382,15 +486,31 @@ def run_multi_tenant_scenario():
     ║         Story 5: Multi-Tenant SaaS Platform                          ║
     ╠══════════════════════════════════════════════════════════════════════╣
     ║  Demonstrates:                                                        ║
-    ║  - tenant.id resource attribute for trace segmentation               ║
+    ║  - tenant.id attribute for trace segmentation                         ║
     ║  - Per-tenant security policies                                       ║
     ║  - Different PII sensitivity levels                                   ║
     ║  - SLA metrics tracking                                               ║
     ╚══════════════════════════════════════════════════════════════════════╝
     """)
 
+    story_title = "Multi-Tenant SaaS Platform — Tenant Isolation & SLA Monitoring"
+
     tracer = GuardianTracer(service_name="multi-tenant-demo")
     service = MultiTenantAIService(tracer)
+    story_tracer = trace.get_tracer("story_5_multi_tenant")
+    root_context = trace.set_span_in_context(trace.INVALID_SPAN)
+
+    def run_request_trace(*, tenant_id: str, scenario_name: str, user_input: str, conversation_id: str) -> Dict:
+        with story_tracer.start_as_current_span(
+            f"story_5.{tenant_id}.{scenario_name}",
+            context=root_context,
+        ) as root_span:
+            root_span.set_attribute("story.id", 5)
+            root_span.set_attribute("story.title", story_title)
+            root_span.set_attribute("tenant.id", tenant_id)
+            root_span.set_attribute("gen_ai.conversation.id", conversation_id)
+            root_span.set_attribute("scenario.name", scenario_name)
+            return service.process_request(tenant_id, user_input, conversation_id)
 
     # === Tenant 1: Acme Corp (High Sensitivity) ===
     print("\n" + "=" * 70)
@@ -399,10 +519,11 @@ def run_multi_tenant_scenario():
 
     # Request 1: Normal request
     print("\nRequest 1: Normal query")
-    result = service.process_request(
-        "acme_corp",
-        "What are your business hours?",
-        "acme_sess_001"
+    result = run_request_trace(
+        tenant_id="acme_corp",
+        scenario_name="normal_query",
+        user_input="What are your business hours?",
+        conversation_id="acme_sess_001",
     )
     print(f"  Status: {result['status']}")
     print(f"  Input Decision: {result.get('input_decision', 'N/A')}")
@@ -410,10 +531,11 @@ def run_multi_tenant_scenario():
 
     # Request 2: PII in response
     print("\nRequest 2: Request that triggers PII redaction")
-    result = service.process_request(
-        "acme_corp",
-        "What's the contact email for support?",
-        "acme_sess_002"
+    result = run_request_trace(
+        tenant_id="acme_corp",
+        scenario_name="pii_redaction_email_phone",
+        user_input="What's the contact email for support?",
+        conversation_id="acme_sess_002",
     )
     print(f"  Status: {result['status']}")
     print(f"  Redacted: {result.get('redacted', False)}")
@@ -423,10 +545,11 @@ def run_multi_tenant_scenario():
 
     # Request 3: Sensitive topic (strict filter)
     print("\nRequest 3: Sensitive topic query (strict filter)")
-    result = service.process_request(
-        "acme_corp",
-        "Tell me about the salary data for executives",
-        "acme_sess_003"
+    result = run_request_trace(
+        tenant_id="acme_corp",
+        scenario_name="sensitive_topic_warn",
+        user_input="Tell me about the salary data for executives",
+        conversation_id="acme_sess_003",
     )
     print(f"  Status: {result['status']}")
     print(f"  Input Decision: {result.get('input_decision', 'N/A')}")
@@ -438,15 +561,28 @@ def run_multi_tenant_scenario():
 
     # Request with account manager info
     print("\nRequest 1: Request that triggers name + phone redaction")
-    result = service.process_request(
-        "globalbank",
-        "Who is my account manager?",
-        "globalbank_sess_001"
+    result = run_request_trace(
+        tenant_id="globalbank",
+        scenario_name="pii_redaction_name_phone",
+        user_input="Who is my account manager?",
+        conversation_id="globalbank_sess_001",
     )
     print(f"  Status: {result['status']}")
     print(f"  Redacted: {result.get('redacted', False)}")
     if result.get('response'):
         print(f"  Response (redacted): {result['response']}")
+
+    # Request 2: Sensitive topic (strict filter - blocked)
+    print("\nRequest 2: Sensitive topic query (strict filter - blocked)")
+    result = run_request_trace(
+        tenant_id="globalbank",
+        scenario_name="sensitive_topic_deny",
+        user_input="Tell me about the merger plan details for Q4",
+        conversation_id="globalbank_sess_002",
+    )
+    print(f"  Status: {result['status']}")
+    print(f"  Input Decision: {result.get('input_decision', 'N/A')}")
+    print(f"  Reason: {result.get('reason', 'N/A')}")
 
     # === Tenant 3: TechStartup (Medium Sensitivity, Permissive) ===
     print("\n" + "=" * 70)
@@ -455,20 +591,22 @@ def run_multi_tenant_scenario():
 
     # Normal request - permissive filter
     print("\nRequest 1: Sensitive topic (permissive filter - allowed)")
-    result = service.process_request(
-        "techstartup",
-        "What's the internal project roadmap?",
-        "techstartup_sess_001"
+    result = run_request_trace(
+        tenant_id="techstartup",
+        scenario_name="sensitive_topic_allowed",
+        user_input="What's the internal project roadmap?",
+        conversation_id="techstartup_sess_001",
     )
     print(f"  Status: {result['status']}")
     print(f"  Input Decision: {result.get('input_decision', 'N/A')}")
 
     # PII request - medium sensitivity
     print("\nRequest 2: Contact info (medium sensitivity)")
-    result = service.process_request(
-        "techstartup",
-        "What's the support email?",
-        "techstartup_sess_002"
+    result = run_request_trace(
+        tenant_id="techstartup",
+        scenario_name="pii_redaction_email_phone",
+        user_input="What's the support email?",
+        conversation_id="techstartup_sess_002",
     )
     print(f"  Status: {result['status']}")
     print(f"  Redacted: {result.get('redacted', False)}")

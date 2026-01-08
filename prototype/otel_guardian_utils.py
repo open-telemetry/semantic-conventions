@@ -293,6 +293,7 @@ class _GuardianSpanContext:
         self.agent_id = agent_id
         self.conversation_id = conversation_id
         self.span: Optional[trace.Span] = None
+        self._error_recorded: bool = False
 
     def __enter__(self):
         self.span = self.tracer.start_span(
@@ -326,7 +327,9 @@ class _GuardianSpanContext:
                 self.span.set_attribute("error.type", error_type)
                 self.span.set_status(Status(StatusCode.ERROR, str(exc_val)))
             else:
-                self.span.set_status(Status(StatusCode.OK))
+                # Don't overwrite an explicitly recorded error.
+                if not self._error_recorded:
+                    self.span.set_status(Status(StatusCode.OK))
             self.span.__exit__(exc_type, exc_val, exc_tb)
 
     def record_result(self, result: GuardianResult) -> None:
@@ -398,6 +401,7 @@ class _GuardianSpanContext:
         if self.span:
             self.span.set_attribute("error.type", error_type)
             self.span.set_status(Status(StatusCode.ERROR, error_message))
+            self._error_recorded = True
 
     def record_content_input(self, content: str) -> None:
         """

@@ -45,14 +45,23 @@ from opentelemetry import trace
 # ============================================================================
 
 STORY_REGISTRY = {
+    4: {
+        "title": "Enterprise RAG Access Control — Knowledge + Memory Guardrails",
+        "module": "stories.story_4_enterprise_rag_access_control",
+        "function": "run_enterprise_rag_scenario",
+        "description": "Demonstrates knowledge_query/result and memory_store/retrieve guardrails in a RAG workflow",
+        "target_types": ["knowledge_query", "knowledge_result", "memory_store", "memory_retrieve"],
+        "decision_types": ["allow", "deny", "modify"],
+        "key_features": ["RAG access control", "result filtering/redaction", "memory protection"],
+    },
     5: {
         "title": "Multi-Tenant SaaS Platform — Tenant Isolation & SLA Monitoring",
         "module": "stories.story_5_multi_tenant",
         "function": "run_multi_tenant_scenario",
-        "description": "Demonstrates per-tenant security policies with tenant.id resource attribute",
+        "description": "Demonstrates per-tenant security policies with tenant.id attributes",
         "target_types": ["llm_input", "llm_output"],
-        "decision_types": ["allow", "modify"],
-        "key_features": ["tenant.id resource attribute", "per-tenant policy tracking", "SLA metrics"],
+        "decision_types": ["allow", "warn", "deny", "modify"],
+        "key_features": ["tenant.id attribute", "per-tenant policy tracking", "SLA metrics"],
     },
     7: {
         "title": "AI Agent Orchestration — Multi-Agent Security Boundary",
@@ -71,6 +80,15 @@ STORY_REGISTRY = {
         "target_types": ["llm_input"],
         "decision_types": ["allow", "warn", "deny"],
         "key_features": ["gen_ai.conversation.id correlation", "multi-turn analysis", "escalating risk scores"],
+    },
+    11: {
+        "title": "Guardian Error Handling — Timeout + Fallback",
+        "module": "stories.story_11_guardian_error_handling",
+        "function": "run_guardian_error_scenario",
+        "description": "Demonstrates guardian failure via error.type and a downstream fallback decision",
+        "target_types": ["llm_input"],
+        "decision_types": ["warn", "deny"],
+        "key_features": ["error.type on apply_guardrail", "fail-open vs fail-closed policies"],
     },
 }
 
@@ -153,13 +171,9 @@ def run_story(story_id: int, tracer_provider):
         module = __import__(module_name, fromlist=[func_name])
         run_func = getattr(module, func_name)
 
-        # Create a parent span for the story
-        tracer = trace.get_tracer("story_runner")
-        with tracer.start_as_current_span(f"story_{story_id}") as story_span:
-            story_span.set_attribute("story.id", story_id)
-            story_span.set_attribute("story.title", info["title"])
-
-            run_func()
+        # Each story function emits one-or-more scenario root spans (one trace per scenario).
+        # Avoid wrapping in a "story_*" span to keep trace retrieval unambiguous.
+        run_func()
 
         print(f"\n  [OK] Story {story_id} completed successfully!")
         return True
@@ -231,6 +245,14 @@ def main():
         action="store_true",
         help="Enable console output for debugging"
     )
+    parser.add_argument(
+        "--capture-content",
+        action="store_true",
+        help=(
+            "Opt-in to capturing sensitive GenAI content attributes on spans "
+            "(gen_ai.input.messages, gen_ai.output.messages, gen_ai.security.content.*.value)."
+        ),
+    )
 
     args = parser.parse_args()
 
@@ -264,6 +286,9 @@ def main():
                 break
     except ImportError:
         pass
+    if args.capture_content:
+        os.environ["OTEL_DEMO_CAPTURE_GUARDIAN_CONTENT"] = "true"
+        print("[WARN] Content capture enabled (OTEL_DEMO_CAPTURE_GUARDIAN_CONTENT=true). Do not use real secrets/PII.")
 
     # Setup tracing
     print("\n" + "=" * 80)

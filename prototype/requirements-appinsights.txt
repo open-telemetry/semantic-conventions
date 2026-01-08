@@ -6,3 +6,7 @@ opentelemetry-exporter-otlp-proto-grpc==1.29.0
 opentelemetry-exporter-otlp-proto-http==1.29.0
 protobuf==5.29.5
 python-dotenv==1.2.1
+# For trace viewer
+flask>=3.0.0
+flask-cors>=4.0.0
+requests>=2.31.0

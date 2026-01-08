@@ -30,6 +30,12 @@ deactivate
 ./run_demos.sh all
 ```
 
+## Story Scenarios (Deterministic)
+
+For fast, deterministic end-to-end demos (including a local trace viewer UI), use:
+
+- [`prototype/stories/README.md`](./stories/README.md)
+
 ### Optional: Real Chat + Safe (“Almost Real”) Tools
 
 By default, prototypes run in **auto** mode: if `OPENAI_API_KEY` is set they use real OpenAI chat, otherwise they run offline using a deterministic mock chat model. To make traces look more realistic, the prototypes can also:
@@ -778,8 +784,7 @@ Additional common categories: `jailbreak`, `toxicity`, `pii`
 
 ## Running Locally
 
-If you want to run the prototypes locally, the code is available in this directory
-but excluded from git. To set up:
+If you want to run the prototypes locally, the code is available in this directory. To set up:
 
 ```bash
 # Create virtual environment
@@ -802,4 +807,4 @@ python run_all_demos.py
 
 - [OpenTelemetry GenAI Semantic Conventions](https://github.com/open-telemetry/semantic-conventions/tree/main/docs/gen-ai)
 - [OWASP LLM Top 10 2025](https://owasp.org/www-project-top-10-for-large-language-model-applications/)
-- [Guardian Concepts Research](./GUARDIAN_CONCEPTS_RESEARCH.md)
+- [Story Scenarios (`prototype/stories`)](./stories/README.md)
