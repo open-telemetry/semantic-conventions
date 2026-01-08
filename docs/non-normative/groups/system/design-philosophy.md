@@ -1,4 +1,4 @@
-# System semantic conventions: instrumentation design philosophy
+# System Semantic Conventions: Instrumentation Design Philosophy
 
 The System Semantic Conventions are caught in a strange dichotomy that is unique
 among other semconv groups. While we want to make sure we cover obvious generic
@@ -64,7 +64,7 @@ something we're keen on dealing with all over system semconv, as the
 instrumentation ends up polluted with so many edge cases in each namespace that
 it defeats the purpose of sharing the attribute in the first place.
 
-## Two class design strategy
+## Two Class Design Strategy
 
 Relevant discussions:
 [\#1403 (particular comment)](https://github.com/open-telemetry/semantic-conventions/issues/1403#issuecomment-2368815634)
@@ -126,7 +126,7 @@ Some Specialist Class examples:
   [Process Working Set](https://learn.microsoft.com/windows/win32/procthread/process-working-set))
 - Niche process information like open file descriptors, page faults, etc.
 
-## Instrumentation design guide
+## Instrumentation Design Guide
 
 When designing new instrumentation we will follow these steps as closely as
 possible:
@@ -227,80 +227,36 @@ documentation (i.e. Linux `man` pages, Win32 API docs, etc). We do not want to
 invent any new explanations about existing concepts in our own words within our
 convention documentation.
 
-### Case study: `process.cgroup`
-
-Relevant discussions:
-[\#1357](https://github.com/open-telemetry/semantic-conventions/issues/1357),
-[\#1364 (particular thread)](https://github.com/open-telemetry/semantic-conventions/pull/1364#discussion_r1730743509)
-
-In the `hostmetricsreceiver`, there is a Resource Attribute called
-`process.cgroup`. How should this attribute be adopted in System Semantic
-Conventions?
-
-Based on our definitions, this attribute would fall under Specialist Class:
-
-- `cgroups` are a Linux-specific feature
-- It is not directly part of any of the default out-of-the-box usecases we want
-  to cover
-
-In this attribute's case, there are two important considerations when deciding
-on the name:
-
-- The attribute is specialist class
-- It is Linux exclusive, and is unlikely to ever be introduced in other
-  operating systems since the other major platforms have their own versions of
-  it (Windows Job Objects, BSD Jails, etc)
-
-This means we should pick a name that matches the verbiage used by specialists
-in context when referring to this concept. The way you would refer to this would
-be "a process's cgroup, collected from `/proc/<pid>/cgroup`". So we would start
-with the name `process.cgroup`. We also determined that this attribute is
-Linux-exclusive and are confident it will remain as such, so we land on the name
-`process.linux.cgroup`.
-
-Since this metric falls under Specialist Class, we don't want to be too
-prescriptive about the value. A user who needs to know the `cgroup` of a process
-likely already has a pretty good idea of how to interpret it and use it further,
-and it would not be worth it for this Working Group to try and come up with
-every possible edge case for how it might be used. It is much simpler for this
-attribute, insofar as it falls under our purview, to simply reflect the value
-from the OS, i.e. the direct value from `cat /proc/<pid>/cgroup`. With cgroups
-in particular, there is high likelihood that more specialized semconv
-instrumentation could be developed, particularly in support of more specialized
-container runtime or systemd instrumentation. It's more useful for a working
-group developing special instrumentation that leverages cgroups to be more
-prescriptive about how the cgroup information should be interpreted and broken
-down with more specificity.
-
-## Operating System in names
+## Naming Platform-Exclusive Metrics
 
 Relevant discussions:
 [\#1255](https://github.com/open-telemetry/semantic-conventions/issues/1255),
 [\#1364](https://github.com/open-telemetry/semantic-conventions/pull/1364#discussion_r1852465994)
 [\#2984](https://github.com/open-telemetry/semantic-conventions/pull/2984#discussion_r2466369361)
 
-Monitoring operating systems is an old practice, and there are numerous heavily
-differing approaches within different platforms. There are lots of metrics, even
-considering common stats like memory usage, where there are platform-exclusive
-pieces of information that are only valuable to those who specialize in that
-platform.
+Monitoring operating systems is a long-standing practice, and there are numerous
+heavily differing approaches within different platforms. There are lots of
+metrics, even considering common stats like patterns of memory usage, where
+there are platform-exclusive pieces of information that are only valuable to
+those who specialize in that platform.
 
-Thus we have decided that any instrumentation that is:
+With this in mind, we have made the following decision about the OS name in
+OS-exclusive instrumentation:
 
-1. Specific to a particular operating system
-2. Not meant to be part of what we consider our most important general use cases
+### The OS name should be included in the metric in most cases
 
-will include the Operating System name as part of the namespace.
+The primary reason for this is for discoverability and disambiguation. Sometimes there are metrics that are non-obviously platform exclusive. A good example is `process.handle.count`, since `handle` is common nomenclature for file descriptors in Unix-likes but is in this case specifically referring to [Windows system handles held by the process](https://learn.microsoft.com/en-us/windows/win32/sysinfo/handles-and-objects) and thus will not be enabled on any platform other than Windows. It helps to disambiguate at a glance if the metric name has the platform inside of it.
 
-For example, there may be `process.linux`, `process.windows`, or `process.posix`
-names for metrics and attributes. We will not have root `linux.*`, `windows.*`,
-or `posix.*` namespaces. This is because of the principle we’re trying to uphold
-from the [Namespaces section](#namespaces); we still want the instrumentation
-source to be represented by the root namespace of the attribute/metric. If we
-had OS root namespaces, different sources like `system`, `process`, etc. could
-get very tangled within each OS namespace, defeating the intended design
-philosophy.
+The exception to this rule is if the name also contains the name of a subsystem that is commonly understood to already belong to a particular platform. `cgroup` for example is commonly known to be a Linux-exclusive subsystem, so including `linux` in the name is redundant.
 
-However, to clarify — when we refer to avoiding OS names at the “root namespace” level, we also mean avoiding them at the area level. The OS name should appear after the area of concern (such as `system.memory.linux.*`), not before it. This ensures that users can first navigate by functional area (e.g. memory, CPU, network) and then, if necessary, drill down into OS-specific variants within that area.
+If a user is looking at Semantic Conventions directly within the Semantic Conventions documentation, they can easily get all the nuanced information they need. There are all kinds of varied cases where a user is not learning about their instrumentation from our docs though, instead seeing it in their observability backend UIs, Collector debug output, or auto-generated SDK code etc. So this rule is intended to make our instrumentation simpler to understand in a scenario where they need to be understood outside of our detailed documentation.
+
+### The OS name should not be the root namespace
+
+This is for the sake of hierarchical organization of names. We consider the root namespace of metrics to be crucial to the typical usage patterns we expect. A user who wants to discover all of their `memory` metrics should only need to search for `memory.*` to get all metrics related to `memory` in general. If the OS was the root namespace, they would need to search for `linux.memory.*`,  `windows.memory.*`, etc. This is bad partially because of complicating queries, but it would also require a user to go out of their way to gather all of the platforms they need to search for just to get the whole picture on their `memory` metrics.
+
+### The OS name should be after the area of concern
+
+Our expected usage pattern for these metrics is for a user to have some area of concern within their system that they are monitoring (processes, memory, filesystem, cpu, network, etc) and for a user with a specific concern to have a clear way to discover the instrumentation supporting their area of concern. Sometimes that area of concern is not just the absolute root of the namespace, but also a number of sub-components in the root. The `system` namespace in particular has many examples of this, `system.memory`, `system.network`, etc. If we named the instrumentation as `system.linux.memory`, then just as in the scenario above it becomes hard to discover all the available "system memory" metrics. As a result, the OS name goes after the area of concern, i.e. `system.memory.linux`.
 
 [use cases doc]: ./use-cases.md
