@@ -128,9 +128,9 @@ groups:
     entity_associations:
       - host
 
-  - id: metric.system.memory.shared
+  - id: metric.system.memory.linux.shared
     type: metric
-    metric_name: system.memory.shared
+    metric_name: system.memory.linux.shared
     annotations:
       code_generation:
         metric_value_type: int
