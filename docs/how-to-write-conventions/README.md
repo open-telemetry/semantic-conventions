@@ -264,7 +264,7 @@ Define the scope and boundaries of the operation:
 
 Define what constitutes an error for that operation.
 
-If there are no special considerations, reference the [Recording errors](/recording-errors.md)
+If there are no special considerations, reference the [Recording errors](/docs/general//recording-errors.md)
 document.
 
 Certain conditions can't be clearly classified as errors or not-errors (cancellations,
