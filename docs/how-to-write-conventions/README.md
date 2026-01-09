@@ -15,6 +15,11 @@ aliases: [/docs/specs/semconv/general/how-to-define-semantic-conventions]
     - [Defining attributes](#defining-attributes)
     - [Defining enum attribute members](#defining-enum-attribute-members)
     - [Defining spans](#defining-spans)
+      - [What operation does this span represent](#what-operation-does-this-span-represent)
+      - [Naming pattern](#naming-pattern)
+      - [Status](#status)
+      - [Kind](#kind)
+      - [Attributes](#attributes)
     - [Defining metrics](#defining-metrics)
     - [Defining entities](#defining-entities)
     - [Defining events](#defining-events)
@@ -200,7 +205,7 @@ For example, define spans for operations that involve one or more network calls.
 
 > [!NOTE]
 >
-> Known exception: [messaging `create`](/messaging/messaging-spans.md#operation-types) span
+> Known exception: [messaging `create`](/docs/messaging/messaging-spans.md#operation-types) span
 > is defined for a local call. This is necessary when publishing batches of
 > messages to ensure each message has a unique context and can be traced
 > individually end-to-end.
