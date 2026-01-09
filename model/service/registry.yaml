@@ -87,4 +87,5 @@ groups:
         stability: development
         brief: >
           A namespace for `service.peer.name`.
+          SHOULD be equal to the actual [`service.namespace`](/docs/resource/README.md#service) resource attribute of the remote service if any.
         examples: ["Shop"]
