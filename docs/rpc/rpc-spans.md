@@ -51,7 +51,7 @@ This document defines how to describe remote procedure calls
 
 ### Span name
 
-RPC spans MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.52.0/specification/trace/api.md#span).
+RPC spans MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.53.0/specification/trace/api.md#span).
 
 The *span name* SHOULD be `{rpc.method}` if it is available and not set to
 `_OTHER`.
