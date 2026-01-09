@@ -353,7 +353,7 @@ For `Unix` and `pipe`, since the connection goes over the file system instead of
 
 ### Service Peer
 
-Attributes of the `service.peer.*` namespace may also be used for any operation that accesses some remote service.
+Attributes of the `service.peer.*` namespace may be used for any operation that accesses some remote service.
 Users can define what the name of a service is based on their particular semantics in their distributed system.
 Instrumentations SHOULD provide a way for users to configure this name.
 
