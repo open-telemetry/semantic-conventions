@@ -1,0 +1,6 @@
+change_type: deprecation
+component: rpc
+note: >
+  Deprecate `rpc.server.request.size`, `rpc.server.response.size`, `rpc.client.request.size`,
+  and `rpc.client.response.size` metrics due to confusing definition and low adoption.
+issues: [TODO]
