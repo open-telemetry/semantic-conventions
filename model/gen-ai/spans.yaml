@@ -71,6 +71,9 @@ groups:
         requirement_level: recommended
       - ref: gen_ai.usage.output_tokens
         requirement_level: recommended
+      - ref: gen_ai.usage.reasoning_tokens
+        requirement_level:
+          conditionally_required: when available
       - ref: gen_ai.conversation.id
         requirement_level:
           conditionally_required: when available
@@ -193,6 +196,9 @@ groups:
       - ref: gen_ai.usage.output_tokens
         brief: >
           The number of completion tokens as reported in the usage completion_tokens property of the response.
+      - ref: gen_ai.usage.reasoning_tokens
+        brief: >
+          The number of reasoning tokens as reported in the usage reasoning_tokens property of the response.
       - ref: server.port
         requirement_level:
           conditionally_required: If not default (443).
