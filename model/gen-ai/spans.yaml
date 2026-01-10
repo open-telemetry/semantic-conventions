@@ -314,6 +314,8 @@ groups:
         sampling_relevant: true
       - ref: gen_ai.operation.name
         sampling_relevant: true
+      - ref: gen_ai.request.model
+        sampling_relevant: true
       - ref: gen_ai.agent.id
         requirement_level:
           conditionally_required: if applicable.
