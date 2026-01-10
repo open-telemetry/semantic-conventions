@@ -10,7 +10,7 @@ This document defines the shared attributes used to report an error.
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | <a id="error-message" href="#error-message">`error.message`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | A message providing more detail about an error in human-readable form. [1] | `Unexpected input type: string`; `The user has exceeded their storage quota` |
 | <a id="error-type" href="#error-type">`error.type`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | Describes a class of error the operation ended with. [2] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` |
 
@@ -34,7 +34,7 @@ additional filters are applied.
 
 If the operation has completed successfully, instrumentations SHOULD NOT set `error.type`.
 
-If a specific domain defines its own set of error identifiers (such as HTTP or gRPC status codes),
+If a specific domain defines its own set of error identifiers (such as HTTP or RPC status codes),
 it's RECOMMENDED to:
 
 - Use a domain-specific attribute
@@ -44,6 +44,6 @@ it's RECOMMENDED to:
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |

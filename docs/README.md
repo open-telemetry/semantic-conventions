@@ -5,7 +5,9 @@ cascade:
   github_subdir: docs
   path_base_for_github_subdir: tmp/semconv/docs/
   github_project_repo: *repo
-redirects: [{ from: 'attributes-registry/*', to: 'registry/attributes/:splat' }]
+redirects:
+  - { from: 'attributes-registry/*', to: 'registry/attributes/:splat' }
+  - { from: 'database/*', to: 'db/:splat' }
 cSpell:ignore: semconv CICD
 auto_gen: below
 linkTitle: Semantic conventions
@@ -23,7 +25,7 @@ Semantic Conventions are defined for the following areas:
 * [CICD](cicd/README.md): Semantic Conventions for CICD systems.
 * [Cloud Providers](cloud-providers/README.md): Semantic Conventions for cloud providers libraries.
 * [CloudEvents](cloudevents/README.md): Semantic Conventions for the CloudEvents specification.
-* [Database](database/README.md): Semantic Conventions for database operations.
+* [Database](db/README.md): Semantic Conventions for database operations.
 * [Exceptions](exceptions/README.md): Semantic Conventions for exceptions.
 * [FaaS](faas/README.md): Semantic Conventions for Function as a Service (FaaS) operations.
 * [Feature Flags](feature-flags/README.md): Semantic Conventions for feature flag evaluations.

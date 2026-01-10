@@ -9,7 +9,7 @@ linkTitle: RPC
 This document defines semantic conventions for remote procedure calls (RPC)
 , also called "remote method invocations" (RMI).
 
-> **Warning**
+> [!IMPORTANT]
 > Existing RPC instrumentations that are using
 > [v1.37.0 of this document](https://github.com/open-telemetry/semantic-conventions/blob/v1.37.0/docs/rpc/README.md)
 > (or prior):
@@ -38,6 +38,7 @@ Semantic conventions for RPC are defined for the following signals:
 
 * [RPC Spans](rpc-spans.md): Semantic Conventions for RPC client and server *spans*.
 * [RPC Metrics](rpc-metrics.md): Semantic Conventions for RPC *metrics*.
+* [RPC Events](rpc-events.md): Semantic Conventions for RPC *events*.
 
 Technology specific semantic conventions are defined for the following RPC systems:
 

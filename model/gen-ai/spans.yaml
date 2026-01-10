@@ -78,9 +78,8 @@ groups:
           Instrumentations SHOULD populate conversation id when they have it readily available
           for a given operation, for example:
 
-          -  when client framework being instrumented manages conversation history
+          - when client framework being instrumented manages conversation history
           (see [LlamaIndex chat store](https://docs.llamaindex.ai/en/stable/module_guides/storing/chat_stores/))
-
           - when instrumenting GenAI client libraries that maintain conversation on the backend side
           (see [AWS Bedrock agent sessions](https://docs.aws.amazon.com/bedrock/latest/userguide/agents-session-state.html),
           [OpenAI Assistant threads](https://platform.openai.com/docs/api-reference/threads))
@@ -110,7 +109,7 @@ groups:
       Semantic conventions for individual GenAI systems and frameworks MAY specify different span name format
       and MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.37.0/specification/trace/api.md#span).
 
-      **Span kind** SHOULD be `CLIENT`and MAY be set to `INTERNAL` on spans representing
+      **Span kind** SHOULD be `CLIENT` and MAY be set to `INTERNAL` on spans representing
       call to models running in the same process. It's RECOMMENDED to use `CLIENT` kind
       when the GenAI system being instrumented usually runs in a different process than its
       client or when the GenAI call happens over instrumented protocol such as HTTP.
@@ -141,6 +140,7 @@ groups:
       - ref: gen_ai.output.type
         note: |
           This attribute SHOULD be set to the output type requested by the client:
+
           - `json` for structured outputs with defined or undefined schema
           - `image` for image output
           - `speech` for speech output
@@ -292,7 +292,8 @@ groups:
       Describes GenAI agent invocation.
     note: |
       The `gen_ai.operation.name` SHOULD be `invoke_agent`.
-      The **span name** SHOULD be `invoke_agent {gen_ai.agent.name}` if `gen_ai.agent.name` is readily available.
+
+      **Span name** SHOULD be `invoke_agent {gen_ai.agent.name}` if `gen_ai.agent.name` is readily available.
       When `gen_ai.agent.name` is not available, it SHOULD be `invoke_agent`.
       Semantic conventions for individual GenAI systems and frameworks MAY specify different span name format.
 
@@ -303,6 +304,7 @@ groups:
       instrumented protocol such as HTTP.
 
       Examples of span kinds for different agent scenarios:
+
       - `CLIENT`: Remote agent services (e.g., OpenAI Assistants API, AWS Bedrock Agents)
       - `INTERNAL`: In-process agents (e.g., LangChain agents, CrewAI agents)
     extends: attributes.gen_ai.inference.client

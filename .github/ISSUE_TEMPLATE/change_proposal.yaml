@@ -55,9 +55,9 @@ body:
         - area:host
         - area:http
         - area:ios
+        - area:jsonrpc
         - area:jvm
         - area:k8s
-        - area:linux
         - area:log
         - area:mainframe
         - area:messaging

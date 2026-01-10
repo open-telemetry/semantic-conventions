@@ -24,7 +24,7 @@ This section defines generic attributes for AWS services.
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | <a id="aws-extended-request-id" href="#aws-extended-request-id">`aws.extended_request_id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The AWS extended request ID as returned in the response header `x-amz-id-2`. | `wzHcyEWfmOGDIE5QOhTAqFDoDWP3y8IUvpNINCwL9N4TEHbUw0/gZJ+VZTmCNCWR7fezEN3eCiQ=` |
 | <a id="aws-request-id" href="#aws-request-id">`aws.request_id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The AWS request ID as returned in the response headers `x-amzn-requestid`, `x-amzn-request-id` or `x-amz-request-id`. | `79b9da39-b7ae-508a-a6bc-864b2829c622`; `C9ER4AJX75574TDJ` |
 
@@ -35,7 +35,7 @@ This document defines attributes for AWS Bedrock.
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | <a id="aws-bedrock-guardrail-id" href="#aws-bedrock-guardrail-id">`aws.bedrock.guardrail.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The unique identifier of the AWS Bedrock Guardrail. A [guardrail](https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html) helps safeguard and prevent unwanted behavior from model responses or user messages. | `sgi5gkybzqak` |
 | <a id="aws-bedrock-knowledge-base-id" href="#aws-bedrock-knowledge-base-id">`aws.bedrock.knowledge_base.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The unique identifier of the AWS Bedrock Knowledge base. A [knowledge base](https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html) is a bank of information that can be queried by models to generate more relevant responses and augment prompts. | `XFWUPB9PAW` |
 
@@ -46,10 +46,10 @@ This document defines attributes for AWS DynamoDB.
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | <a id="aws-dynamodb-attribute-definitions" href="#aws-dynamodb-attribute-definitions">`aws.dynamodb.attribute_definitions`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string[] | The JSON-serialized value of each item in the `AttributeDefinitions` request field. | `["{ \"AttributeName\": \"string\", \"AttributeType\": \"string\" }"]` |
 | <a id="aws-dynamodb-attributes-to-get" href="#aws-dynamodb-attributes-to-get">`aws.dynamodb.attributes_to_get`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string[] | The value of the `AttributesToGet` request parameter. | `["lives", "id"]` |
-| <a id="aws-dynamodb-consistent-read" href="#aws-dynamodb-consistent-read">`aws.dynamodb.consistent_read`</a> | ![Development](https://img.shields.io/badge/-development-blue) | boolean | The value of the `ConsistentRead` request parameter. |  |
+| <a id="aws-dynamodb-consistent-read" href="#aws-dynamodb-consistent-read">`aws.dynamodb.consistent_read`</a> | ![Development](https://img.shields.io/badge/-development-blue) | boolean | The value of the `ConsistentRead` request parameter. | |
 | <a id="aws-dynamodb-consumed-capacity" href="#aws-dynamodb-consumed-capacity">`aws.dynamodb.consumed_capacity`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string[] | The JSON-serialized value of each item in the `ConsumedCapacity` response field. | `["{ \"CapacityUnits\": number, \"GlobalSecondaryIndexes\": { \"string\" : { \"CapacityUnits\": number, \"ReadCapacityUnits\": number, \"WriteCapacityUnits\": number } }, \"LocalSecondaryIndexes\": { \"string\" : { \"CapacityUnits\": number, \"ReadCapacityUnits\": number, \"WriteCapacityUnits\": number } }, \"ReadCapacityUnits\": number, \"Table\": { \"CapacityUnits\": number, \"ReadCapacityUnits\": number, \"WriteCapacityUnits\": number }, \"TableName\": \"string\", \"WriteCapacityUnits\": number }"]` |
 | <a id="aws-dynamodb-count" href="#aws-dynamodb-count">`aws.dynamodb.count`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The value of the `Count` response parameter. | `10` |
 | <a id="aws-dynamodb-exclusive-start-table" href="#aws-dynamodb-exclusive-start-table">`aws.dynamodb.exclusive_start_table`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The value of the `ExclusiveStartTableName` request parameter. | `Users`; `CatsTable` |
@@ -62,7 +62,7 @@ This document defines attributes for AWS DynamoDB.
 | <a id="aws-dynamodb-projection" href="#aws-dynamodb-projection">`aws.dynamodb.projection`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The value of the `ProjectionExpression` request parameter. | `Title`; `Title, Price, Color`; `Title, Description, RelatedItems, ProductReviews` |
 | <a id="aws-dynamodb-provisioned-read-capacity" href="#aws-dynamodb-provisioned-read-capacity">`aws.dynamodb.provisioned_read_capacity`</a> | ![Development](https://img.shields.io/badge/-development-blue) | double | The value of the `ProvisionedThroughput.ReadCapacityUnits` request parameter. | `1.0`; `2.0` |
 | <a id="aws-dynamodb-provisioned-write-capacity" href="#aws-dynamodb-provisioned-write-capacity">`aws.dynamodb.provisioned_write_capacity`</a> | ![Development](https://img.shields.io/badge/-development-blue) | double | The value of the `ProvisionedThroughput.WriteCapacityUnits` request parameter. | `1.0`; `2.0` |
-| <a id="aws-dynamodb-scan-forward" href="#aws-dynamodb-scan-forward">`aws.dynamodb.scan_forward`</a> | ![Development](https://img.shields.io/badge/-development-blue) | boolean | The value of the `ScanIndexForward` request parameter. |  |
+| <a id="aws-dynamodb-scan-forward" href="#aws-dynamodb-scan-forward">`aws.dynamodb.scan_forward`</a> | ![Development](https://img.shields.io/badge/-development-blue) | boolean | The value of the `ScanIndexForward` request parameter. | |
 | <a id="aws-dynamodb-scanned-count" href="#aws-dynamodb-scanned-count">`aws.dynamodb.scanned_count`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The value of the `ScannedCount` response parameter. | `50` |
 | <a id="aws-dynamodb-segment" href="#aws-dynamodb-segment">`aws.dynamodb.segment`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The value of the `Segment` request parameter. | `10` |
 | <a id="aws-dynamodb-select" href="#aws-dynamodb-select">`aws.dynamodb.select`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The value of the `Select` request parameter. | `ALL_ATTRIBUTES`; `COUNT` |
@@ -77,7 +77,7 @@ This document defines attributes for AWS Elastic Container Service (ECS).
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | <a id="aws-ecs-cluster-arn" href="#aws-ecs-cluster-arn">`aws.ecs.cluster.arn`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The ARN of an [ECS cluster](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/clusters.html). | `arn:aws:ecs:us-west-2:123456789123:cluster/my-cluster` |
 | <a id="aws-ecs-container-arn" href="#aws-ecs-container-arn">`aws.ecs.container.arn`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The Amazon Resource Name (ARN) of an [ECS container instance](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_instances.html). | `arn:aws:ecs:us-west-1:123456789123:container/32624152-9086-4f0e-acae-1a75b14fe4d9` |
 | <a id="aws-ecs-launchtype" href="#aws-ecs-launchtype">`aws.ecs.launchtype`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The [launch type](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/launch_types.html) for an ECS task. | `ec2`; `fargate` |
@@ -90,8 +90,8 @@ This document defines attributes for AWS Elastic Container Service (ECS).
 
 `aws.ecs.launchtype` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `ec2` | Amazon EC2 | ![Development](https://img.shields.io/badge/-development-blue) |
 | `fargate` | Amazon Fargate | ![Development](https://img.shields.io/badge/-development-blue) |
 
@@ -102,7 +102,7 @@ This document defines attributes for AWS Elastic Kubernetes Service (EKS).
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | <a id="aws-eks-cluster-arn" href="#aws-eks-cluster-arn">`aws.eks.cluster.arn`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The ARN of an EKS cluster. | `arn:aws:ecs:us-west-2:123456789123:cluster/my-cluster` |
 
 ## Amazon Kinesis Attributes
@@ -112,7 +112,7 @@ This document defines attributes for AWS Kinesis.
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | <a id="aws-kinesis-stream-name" href="#aws-kinesis-stream-name">`aws.kinesis.stream_name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the AWS Kinesis [stream](https://docs.aws.amazon.com/streams/latest/dev/introduction.html) the request refers to. Corresponds to the `--stream-name` parameter of the Kinesis [describe-stream](https://docs.aws.amazon.com/cli/latest/reference/kinesis/describe-stream.html) operation. | `some-stream-name` |
 
 ## Amazon Lambda Attributes
@@ -122,7 +122,7 @@ This document defines attributes for AWS Lambda.
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | <a id="aws-lambda-invoked-arn" href="#aws-lambda-invoked-arn">`aws.lambda.invoked_arn`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The full invoked ARN as provided on the `Context` passed to the function (`Lambda-Runtime-Invoked-Function-Arn` header on the `/runtime/invocation/next` applicable). [1] | `arn:aws:lambda:us-east-1:123456:function:myfunction:myalias` |
 | <a id="aws-lambda-resource-mapping-id" href="#aws-lambda-resource-mapping-id">`aws.lambda.resource_mapping.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The UUID of the [AWS Lambda EvenSource Mapping](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-eventsourcemapping.html). An event source is mapped to a lambda function. It's contents are read by Lambda and used to trigger a function. This isn't available in the lambda execution context or the lambda runtime environtment. This is going to be populated by the AWS SDK for each language when that UUID is present. Some of these operations are Create/Delete/Get/List/Update EventSourceMapping. | `587ad24b-03b9-4413-8202-bbd56b36e5b7` |
 
@@ -135,7 +135,7 @@ This document defines attributes for AWS Logs.
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | <a id="aws-log-group-arns" href="#aws-log-group-arns">`aws.log.group.arns`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string[] | The Amazon Resource Name(s) (ARN) of the AWS log group(s). [2] | `["arn:aws:logs:us-west-1:123456789012:log-group:/aws/my/group:*"]` |
 | <a id="aws-log-group-names" href="#aws-log-group-names">`aws.log.group.names`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string[] | The name(s) of the AWS log group(s) an application is writing to. [3] | `["/aws/lambda/my-function", "opentelemetry-service"]` |
 | <a id="aws-log-stream-arns" href="#aws-log-stream-arns">`aws.log.stream.arns`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string[] | The ARN(s) of the AWS log stream(s). [4] | `["arn:aws:logs:us-west-1:123456789012:log-group:/aws/my/group:log-stream:logs/main/10838bed-421f-43ef-870a-f43feacbbb5b"]` |
@@ -154,7 +154,7 @@ This document defines attributes for AWS S3.
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | <a id="aws-s3-bucket" href="#aws-s3-bucket">`aws.s3.bucket`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The S3 bucket name the request refers to. Corresponds to the `--bucket` parameter of the [S3 API](https://docs.aws.amazon.com/cli/latest/reference/s3api/index.html) operations. [5] | `some-bucket-name` |
 | <a id="aws-s3-copy-source" href="#aws-s3-copy-source">`aws.s3.copy_source`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The source object (in the form `bucket`/`key`) for the copy operation. [6] | `someFile.yml` |
 | <a id="aws-s3-delete" href="#aws-s3-delete">`aws.s3.delete`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The delete request container that specifies the objects to be deleted. [7] | `Objects=[{Key=string,VersionId=string},{Key=string,VersionId=string}],Quiet=boolean` |
@@ -215,7 +215,7 @@ This document defines attributes for AWS Secrets Manager.
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | <a id="aws-secretsmanager-secret-arn" href="#aws-secretsmanager-secret-arn">`aws.secretsmanager.secret.arn`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The ARN of the Secret stored in the Secrets Mangger | `arn:aws:secretsmanager:us-east-1:123456789012:secret:SecretName-6RandomCharacters` |
 
 ## Amazon SNS Attributes
@@ -225,7 +225,7 @@ This document defines attributes for AWS SNS.
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | <a id="aws-sns-topic-arn" href="#aws-sns-topic-arn">`aws.sns.topic.arn`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The ARN of the AWS SNS Topic. An Amazon SNS [topic](https://docs.aws.amazon.com/sns/latest/dg/sns-create-topic.html) is a logical access point that acts as a communication channel. | `arn:aws:sns:us-east-1:123456789012:mystack-mytopic-NZJ5JSMVGFIE` |
 
 ## Amazon SQS Attributes
@@ -235,7 +235,7 @@ This document defines attributes for AWS SQS.
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | <a id="aws-sqs-queue-url" href="#aws-sqs-queue-url">`aws.sqs.queue.url`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The URL of the AWS SQS Queue. It's a unique identifier for a queue in Amazon Simple Queue Service (SQS) and is used to access the queue and perform actions on it. | `https://sqs.us-east-1.amazonaws.com/123456789012/MyQueue` |
 
 ## Amazon Step Functions Attributes
@@ -245,6 +245,6 @@ This document defines attributes for AWS Step Functions.
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | <a id="aws-step-functions-activity-arn" href="#aws-step-functions-activity-arn">`aws.step_functions.activity.arn`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The ARN of the AWS Step Functions Activity. | `arn:aws:states:us-east-1:123456789012:activity:get-greeting` |
 | <a id="aws-step-functions-state-machine-arn" href="#aws-step-functions-state-machine-arn">`aws.step_functions.state_machine.arn`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The ARN of the AWS Step Functions State Machine. | `arn:aws:states:us-east-1:123456789012:stateMachine:myStateMachine:1` |
