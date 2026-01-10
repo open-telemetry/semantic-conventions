@@ -11,7 +11,7 @@ A service instance.
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="service-instance-id" href="#service-instance-id">`service.instance.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The string ID of the service instance. [1] | `627cc493-f310-47de-96bd-71410b7dec09` |
+| <a id="service-instance-id" href="#service-instance-id">`service.instance.id`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The string ID of the service instance. [1] | `627cc493-f310-47de-96bd-71410b7dec09` |
 | <a id="service-name" href="#service-name">`service.name`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | Logical name of the service. [2] | `shoppingcart` |
 | <a id="service-namespace" href="#service-namespace">`service.namespace`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | A namespace for `service.name`. [3] | `Shop` |
 | <a id="service-version" href="#service-version">`service.version`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The version string of the service component. The format is not defined by these conventions. | `2.0.0`; `a01dbef8a` |
@@ -46,3 +46,5 @@ port.
 **[2] `service.name`:** MUST be the same for all instances of horizontally scaled services. If the value was not specified, SDKs MUST fallback to `unknown_service:` concatenated with [`process.executable.name`](process.md), e.g. `unknown_service:bash`. If `process.executable.name` is not available, the value MUST be set to `unknown_service`.
 
 **[3] `service.namespace`:** A string value having a meaning that helps to distinguish a group of services, for example the team name that owns a group of services. `service.name` is expected to be unique within the same namespace. If `service.namespace` is not specified in the Resource then `service.name` is expected to be unique for all services that have no explicit namespace defined (so the empty/unspecified namespace is simply one more valid namespace). Zero-length namespace string is assumed equal to unspecified namespace.
+
+
