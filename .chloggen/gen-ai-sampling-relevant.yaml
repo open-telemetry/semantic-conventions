@@ -1,0 +1,4 @@
+change_type: enhancement
+component: gen_ai
+note: Added `sampling-relevant` flag to relevant GenAI span attributes to indicate their importance for sampling decisions.
+issues: [2994]
