@@ -23,7 +23,7 @@ exceptions associated with spans.
 <!-- see templates/registry/markdown/snippet.md.j2 -->
 <!-- prettier-ignore-start -->
 
-**Status:** ![Stable](https://img.shields.io/badge/-stable-lightgreen)
+**Status:** ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Use logs to record exceptions instead.
 
 The event name MUST be `exception`.
 

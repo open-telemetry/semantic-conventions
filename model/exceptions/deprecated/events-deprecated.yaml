@@ -2,6 +2,9 @@ groups:
   - id: event.exception
     name: exception
     stability: stable
+    deprecated:
+      reason: obsoleted
+      note: Use logs to record exceptions instead.
     type: event
     brief: >
       This event describes a single exception.
