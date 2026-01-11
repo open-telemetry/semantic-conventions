@@ -14,6 +14,9 @@ A service instance.
 | <a id="service-instance-id" href="#service-instance-id">`service.instance.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The string ID of the service instance. [1] | `627cc493-f310-47de-96bd-71410b7dec09` |
 | <a id="service-name" href="#service-name">`service.name`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | Logical name of the service. [2] | `shoppingcart` |
 | <a id="service-namespace" href="#service-namespace">`service.namespace`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | A namespace for `service.name`. [3] | `Shop` |
+| <a id="service-owner-contact" href="#service-owner-contact">`service.owner.contact`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The contact point or communication channel for the team responsible for the service. [4] | `https://example.slack.com/channels/checkout-team`; `#checkout-team`; `checkout-team@example.com` |
+| <a id="service-owner-name" href="#service-owner-name">`service.owner.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the team or individual responsible for the service. [5] | `Checkout Team`; `Platform Infrastructure`; `john.doe` |
+| <a id="service-owner-url" href="#service-owner-url">`service.owner.url`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | A URL or identifier pointing to the service's source code repository or documentation. [6] | `https://github.com/example/checkout-service`; `https://gitlab.example.com/platform/infra` |
 | <a id="service-version" href="#service-version">`service.version`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The version string of the service component. The format is not defined by these conventions. | `2.0.0`; `a01dbef8a` |
 
 **[1] `service.instance.id`:** MUST be unique for each instance of the same `service.namespace,service.name` pair (in other words
@@ -46,3 +49,15 @@ port.
 **[2] `service.name`:** MUST be the same for all instances of horizontally scaled services. If the value was not specified, SDKs MUST fallback to `unknown_service:` concatenated with [`process.executable.name`](process.md), e.g. `unknown_service:bash`. If `process.executable.name` is not available, the value MUST be set to `unknown_service`.
 
 **[3] `service.namespace`:** A string value having a meaning that helps to distinguish a group of services, for example the team name that owns a group of services. `service.name` is expected to be unique within the same namespace. If `service.namespace` is not specified in the Resource then `service.name` is expected to be unique for all services that have no explicit namespace defined (so the empty/unspecified namespace is simply one more valid namespace). Zero-length namespace string is assumed equal to unspecified namespace.
+
+**[4] `service.owner.contact`:** This attribute provides a way to reach the team or individual responsible for the service.
+The value can be a chat channel URL, email address, or other contact information.
+When using chat channels, the full URL is preferred for easy navigation.
+
+**[5] `service.owner.name`:** This attribute is used to identify the organizational owner of a service,
+enabling automation for notifications, incident response, and diagnostics.
+The value SHOULD be a human-readable name such as a team name.
+
+**[6] `service.owner.url`:** This attribute is typically used to link a service to its source control management system,
+allowing developers and operators to quickly navigate to the relevant codebase.
+The value SHOULD be a fully qualified URL when possible.
