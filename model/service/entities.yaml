@@ -41,3 +41,21 @@ groups:
       - ref: service.namespace
         role: identifying
         requirement_level: required
+  - id: entity.service.owner
+    type: entity
+    name: service.owner
+    brief: >
+      Identifies the team or individual responsible for a service.
+    note: >
+      A `service.owner` provides organizational ownership information for a service,
+      enabling automation for notifications, incident response, and diagnostics.
+      While `service.namespace` groups services logically, `service.owner` explicitly
+      conveys who is responsible for the service and how to contact them.
+    stability: development
+    attributes:
+      - ref: service.owner.name
+        role: descriptive
+      - ref: service.owner.url
+        role: descriptive
+      - ref: service.owner.contact
+        role: descriptive

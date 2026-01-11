@@ -69,3 +69,33 @@ groups:
           for that telemetry. This is typically the case for scraping receivers, as they know the target address and
           port.
         examples: ["627cc493-f310-47de-96bd-71410b7dec09"]
+      - id: service.owner.name
+        type: string
+        stability: development
+        brief: >
+          The name of the team or individual responsible for the service.
+        note: |
+          This attribute is used to identify the organizational owner of a service,
+          enabling automation for notifications, incident response, and diagnostics.
+          The value SHOULD be a human-readable name such as a team name.
+        examples: ["Checkout Team", "Platform Infrastructure", "john.doe"]
+      - id: service.owner.url
+        type: string
+        stability: development
+        brief: >
+          A URL or identifier pointing to the service's source code repository or documentation.
+        note: |
+          This attribute is typically used to link a service to its source control management system,
+          allowing developers and operators to quickly navigate to the relevant codebase.
+          The value SHOULD be a fully qualified URL when possible.
+        examples: ["https://github.com/example/checkout-service", "https://gitlab.example.com/platform/infra"]
+      - id: service.owner.contact
+        type: string
+        stability: development
+        brief: >
+          The contact point or communication channel for the team responsible for the service.
+        note: |
+          This attribute provides a way to reach the team or individual responsible for the service.
+          The value can be a chat channel URL, email address, or other contact information.
+          When using chat channels, the full URL is preferred for easy navigation.
+        examples: ["https://example.slack.com/channels/checkout-team", "#checkout-team", "checkout-team@example.com"]
