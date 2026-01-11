@@ -76,3 +76,31 @@ port.
 | Identity | [`service.namespace`](/docs/registry/attributes/service.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | A namespace for `service.name`. [3] | `Shop` |
 
 **[3] `service.namespace`:** A string value having a meaning that helps to distinguish a group of services, for example the team name that owns a group of services. `service.name` is expected to be unique within the same namespace. If `service.namespace` is not specified in the Resource then `service.name` is expected to be unique for all services that have no explicit namespace defined (so the empty/unspecified namespace is simply one more valid namespace). Zero-length namespace string is assumed equal to unspecified namespace.
+
+## Service Owner
+
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
+
+**type:** `service.owner`
+
+**Description:** Identifies the team or individual responsible for a service.
+
+**Attributes:**
+
+| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
+| --- | --- | --- | --- | --- | --- | --- |
+| Description | [`service.owner.contact`](/docs/registry/attributes/service.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The contact point or communication channel for the team responsible for the service. [4] | `https://example.slack.com/channels/checkout-team`; `#checkout-team`; `checkout-team@example.com` |
+| Description | [`service.owner.name`](/docs/registry/attributes/service.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the team or individual responsible for the service. [5] | `Checkout Team`; `Platform Infrastructure`; `john.doe` |
+| Description | [`service.owner.url`](/docs/registry/attributes/service.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A URL or identifier pointing to the service's source code repository or documentation. [6] | `https://github.com/example/checkout-service`; `https://gitlab.example.com/platform/infra` |
+
+**[4] `service.owner.contact`:** This attribute provides a way to reach the team or individual responsible for the service.
+The value can be a chat channel URL, email address, or other contact information.
+When using chat channels, the full URL is preferred for easy navigation.
+
+**[5] `service.owner.name`:** This attribute is used to identify the organizational owner of a service,
+enabling automation for notifications, incident response, and diagnostics.
+The value SHOULD be a human-readable name such as a team name.
+
+**[6] `service.owner.url`:** This attribute is typically used to link a service to its source control management system,
+allowing developers and operators to quickly navigate to the relevant codebase.
+The value SHOULD be a fully qualified URL when possible.
