@@ -157,6 +157,9 @@ class ToolDefinitionGuard:
                 target_id=f"tool_{tool_name}",
                 agent_id=agent_id
             ) as ctx:
+                tool_payload = json.dumps(tool, sort_keys=True)
+                ctx.record_content_input(tool_payload)
+                ctx.record_content_hash(tool_payload)
                 findings = []
                 decision = DecisionType.ALLOW
 
@@ -228,6 +231,16 @@ class AgentDelegationGuard:
             target_id=f"delegate_to_{target_agent_id}",
             agent_id=source_agent.id
         ) as ctx:
+            delegation_payload = json.dumps(
+                {
+                    "source_agent_id": source_agent.id,
+                    "target_agent_id": target_agent_id,
+                    "task_description": task_description,
+                },
+                sort_keys=True,
+            )
+            ctx.record_content_input(delegation_payload)
+            ctx.record_content_hash(delegation_payload)
             findings = []
 
             # Check if delegation is allowed
@@ -342,6 +355,7 @@ class MessageGuard:
             else:
                 result = GuardianResult(decision_type=DecisionType.ALLOW)
 
+            ctx.record_content_input(message_content)
             ctx.record_content_hash(message_content)
             ctx.record_result(result)
             return result
@@ -372,6 +386,12 @@ class AgentToolGuard:
             target_id=f"call_{tool_name}",
             agent_id=self.agent.id
         ) as ctx:
+            tool_call_payload = json.dumps(
+                {"tool_name": tool_name, "tool_args": tool_args},
+                sort_keys=True,
+            )
+            ctx.record_content_input(tool_call_payload)
+            ctx.record_content_hash(tool_call_payload)
             # Check if tool is in agent's toolkit
             agent_tools = [t["name"] for t in self.agent.tools]
             if tool_name not in agent_tools:

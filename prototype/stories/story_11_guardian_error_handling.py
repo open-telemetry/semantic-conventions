@@ -25,6 +25,8 @@ from otel_guardian_utils import (
     RiskSeverity,
 )
 
+from stories.demo_llm import DemoLLM, estimate_message_tokens, estimate_tokens
+
 
 class ExternalGuardianService:
     """Simulates an external guardian that can fail."""
@@ -44,6 +46,7 @@ class ExternalGuardianService:
             TargetType.LLM_INPUT,
             conversation_id=conversation_id,
         ) as ctx:
+            ctx.record_content_input(content)
             ctx.record_content_hash(content)
             ctx.record_error(
                 error_type="GuardianTimeoutError",
@@ -94,6 +97,15 @@ def run_guardian_error_scenario():
     story_title = "Guardian Error Handling — Timeout + Fallback"
     tracer = GuardianTracer(service_name="guardian-error-demo")
     external = ExternalGuardianService(tracer)
+    llm = DemoLLM()
+    model_name = llm.runtime.model_name
+    provider_name = llm.runtime.provider_name
+    server_address = llm.runtime.server_address
+    system_prompt = (
+        "You are a helpful AI assistant.\n"
+        "- Keep responses concise (1 sentence).\n"
+        "- Refuse requests for passwords or secrets.\n"
+    )
 
     story_tracer = trace.get_tracer("story_11_guardian_error")
     root_context = trace.set_span_in_context(trace.INVALID_SPAN)
@@ -112,12 +124,16 @@ def run_guardian_error_scenario():
         otel_tracer = trace.get_tracer("guardian_error_demo")
         capture_content = os.environ.get("OTEL_DEMO_CAPTURE_GUARDIAN_CONTENT", "false").lower() == "true"
 
-        with otel_tracer.start_as_current_span("chat gpt-4o", kind=SpanKind.CLIENT) as chat_span:
+        with otel_tracer.start_as_current_span(f"chat {model_name}", kind=SpanKind.CLIENT) as chat_span:
             chat_span.set_attribute("gen_ai.operation.name", "chat")
-            chat_span.set_attribute("gen_ai.provider.name", "mock")
-            chat_span.set_attribute("gen_ai.request.model", "gpt-4o")
+            chat_span.set_attribute("gen_ai.provider.name", provider_name)
+            chat_span.set_attribute("gen_ai.request.model", model_name)
             chat_span.set_attribute("gen_ai.conversation.id", conversation_id)
+            if server_address:
+                chat_span.set_attribute("server.address", server_address)
             if capture_content:
+                system_instructions = [{"type": "text", "content": system_prompt}]
+                chat_span.set_attribute("gen_ai.system_instructions", json.dumps(system_instructions))
                 input_messages = [{
                     "role": "user",
                     "parts": [{"type": "text", "content": user_input}],
@@ -133,7 +149,8 @@ def run_guardian_error_scenario():
 
             if decision.decision_type == DecisionType.DENY:
                 chat_span.set_attribute("gen_ai.response.finish_reasons", ["content_filter"])
-                chat_span.set_attribute("gen_ai.usage.input_tokens", int(len(user_input.split()) * 1.3))
+                chat_span.set_attribute("gen_ai.response.model", model_name)
+                chat_span.set_attribute("gen_ai.usage.input_tokens", estimate_tokens(user_input))
                 chat_span.set_attribute("gen_ai.usage.output_tokens", 0)
                 if capture_content:
                     output_messages = [{
@@ -146,12 +163,27 @@ def run_guardian_error_scenario():
                 return {"status": "blocked", "decision": decision.decision_type}
 
             # Simulate a successful response.
-            assistant_reply = "Here’s a safe summary you can share with the team (generated under fallback policy)."
-            chat_span.set_attribute("gen_ai.response.model", "gpt-4o")
+            llm_messages = [
+                {"role": "system", "content": system_prompt},
+                {
+                    "role": "user",
+                    "content": (
+                        "The primary guardian timed out, but the system is in fail-open mode. "
+                        f"User request: {user_input}\n"
+                        "Reply safely under fallback policy."
+                    ),
+                },
+            ]
+            try:
+                assistant_reply = llm.invoke(llm_messages).strip()
+            except Exception:
+                assistant_reply = "Here’s a safe summary you can share with the team (generated under fallback policy)."
+
+            chat_span.set_attribute("gen_ai.response.model", model_name)
             chat_span.set_attribute("gen_ai.response.id", f"chatcmpl-{conversation_id}")
             chat_span.set_attribute("gen_ai.response.finish_reasons", ["stop"])
-            chat_span.set_attribute("gen_ai.usage.input_tokens", int(len(user_input.split()) * 1.3))
-            chat_span.set_attribute("gen_ai.usage.output_tokens", 42)
+            chat_span.set_attribute("gen_ai.usage.input_tokens", estimate_message_tokens(llm_messages))
+            chat_span.set_attribute("gen_ai.usage.output_tokens", estimate_tokens(assistant_reply))
             if capture_content:
                 output_messages = [{
                     "role": "assistant",

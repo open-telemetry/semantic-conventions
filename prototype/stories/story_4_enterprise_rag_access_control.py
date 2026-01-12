@@ -36,6 +36,8 @@ from otel_guardian_utils import (
     RiskSeverity,
 )
 
+from stories.demo_llm import DemoLLM, estimate_message_tokens, estimate_tokens
+
 
 # =============================================================================
 # Mock Knowledge + Memory Stores
@@ -112,6 +114,7 @@ class KnowledgeQueryGuard:
             target_id=KNOWLEDGE_BASE_ID,
             conversation_id=conversation_id,
         ) as ctx:
+            ctx.record_content_input(query)
             ctx.record_content_hash(query)
 
             lowered = query.lower()
@@ -169,6 +172,7 @@ class KnowledgeResultGuard:
             target_id=f"kb_results:{query_fingerprint}",
             conversation_id=conversation_id,
         ) as ctx:
+            ctx.record_content_input(",".join(d.doc_id for d in docs))
             ctx.record_content_hash("|".join(d.doc_id for d in docs))
 
             allowed_docs = [d for d in docs if _is_role_allowed_for(d, user_role)]
@@ -228,6 +232,7 @@ class MemoryStoreGuard:
             target_id=key,
             conversation_id=conversation_id,
         ) as ctx:
+            ctx.record_content_input(value)
             ctx.record_content_hash(value)
 
             lowered = value.lower()
@@ -279,6 +284,7 @@ class MemoryRetrieveGuard:
             target_id=key,
             conversation_id=conversation_id,
         ) as ctx:
+            ctx.record_content_input(key)
             ctx.record_content_hash(key)
             result = GuardianResult(
                 decision_type=DecisionType.ALLOW,
@@ -294,9 +300,6 @@ class MemoryRetrieveGuard:
 # =============================================================================
 
 class EnterpriseRAGService:
-    MODEL_NAME = "gpt-4o"
-    PROVIDER_NAME = "mock"
-
     def __init__(self, tracer: GuardianTracer):
         self.tracer = tracer
         self.query_guard = KnowledgeQueryGuard(tracer)
@@ -304,6 +307,18 @@ class EnterpriseRAGService:
         self.mem_store_guard = MemoryStoreGuard(tracer)
         self.mem_retrieve_guard = MemoryRetrieveGuard(tracer)
         self._memory: Dict[str, str] = {}
+        self._llm = DemoLLM()
+        self._model_name = self._llm.runtime.model_name
+        self._provider_name = self._llm.runtime.provider_name
+        self._server_address = self._llm.runtime.server_address
+
+    def _system_prompt(self) -> str:
+        return (
+            "You are an enterprise assistant helping users with HR and company policy questions.\n"
+            "- Use ONLY the provided document titles and context.\n"
+            "- Keep answers short (1-2 sentences).\n"
+            "- Do not reveal secrets or store sensitive tokens.\n"
+        )
 
     def _search(self, query: str) -> List[KnowledgeDoc]:
         q = query.lower()
@@ -317,14 +332,20 @@ class EnterpriseRAGService:
         otel_tracer = trace.get_tracer("enterprise_rag_service")
         capture_content = os.environ.get("OTEL_DEMO_CAPTURE_GUARDIAN_CONTENT", "false").lower() == "true"
 
-        with otel_tracer.start_as_current_span(f"chat {self.MODEL_NAME}", kind=SpanKind.CLIENT) as chat_span:
+        system_prompt = self._system_prompt()
+
+        with otel_tracer.start_as_current_span(f"chat {self._model_name}", kind=SpanKind.CLIENT) as chat_span:
             chat_span.set_attribute("gen_ai.operation.name", "chat")
-            chat_span.set_attribute("gen_ai.provider.name", self.PROVIDER_NAME)
-            chat_span.set_attribute("gen_ai.request.model", self.MODEL_NAME)
+            chat_span.set_attribute("gen_ai.provider.name", self._provider_name)
+            chat_span.set_attribute("gen_ai.request.model", self._model_name)
             chat_span.set_attribute("gen_ai.conversation.id", conversation_id)
             chat_span.set_attribute("enduser.role", user_role)
             chat_span.set_attribute("gen_ai.data_source.id", KNOWLEDGE_BASE_ID)
+            if self._server_address:
+                chat_span.set_attribute("server.address", self._server_address)
             if capture_content:
+                system_instructions = [{"type": "text", "content": system_prompt}]
+                chat_span.set_attribute("gen_ai.system_instructions", json.dumps(system_instructions))
                 input_messages = [{
                     "role": "user",
                     "parts": [{"type": "text", "content": query}],
@@ -339,7 +360,7 @@ class EnterpriseRAGService:
             )
             if query_result.decision_type == DecisionType.DENY:
                 chat_span.set_attribute("gen_ai.response.finish_reasons", ["content_filter"])
-                chat_span.set_attribute("gen_ai.response.model", self.MODEL_NAME)
+                chat_span.set_attribute("gen_ai.response.model", self._model_name)
                 chat_span.set_attribute("gen_ai.usage.input_tokens", int(len(query.split()) * 1.3))
                 chat_span.set_attribute("gen_ai.usage.output_tokens", 0)
                 if capture_content:
@@ -382,18 +403,35 @@ class EnterpriseRAGService:
             _ = self.mem_retrieve_guard.evaluate(key=mem_key, conversation_id=conversation_id)
             remembered = self._memory.get(mem_key, "")
 
-            # Mock response attributes (recommended)
-            chat_span.set_attribute("gen_ai.response.model", self.MODEL_NAME)
-            chat_span.set_attribute("gen_ai.response.id", f"chatcmpl-{fingerprint}")
-            chat_span.set_attribute("gen_ai.response.finish_reasons", ["stop"])
-            chat_span.set_attribute("gen_ai.usage.input_tokens", int(len(query.split()) * 1.3))
-            chat_span.set_attribute("gen_ai.usage.output_tokens", int(80))
-            if capture_content:
+            # LLM response (real if configured; offline fallback otherwise)
+            llm_messages = [
+                {"role": "system", "content": system_prompt},
+                {
+                    "role": "user",
+                    "content": (
+                        f"User role: {user_role}\n"
+                        f"Question: {query}\n"
+                        f"Allowed docs: {', '.join(d.title for d in allowed_docs)}\n"
+                        f"Remembered doc ids: {remembered or '(none)'}\n"
+                        "Answer using the allowed docs only."
+                    ),
+                },
+            ]
+            try:
+                assistant_reply = self._llm.invoke(llm_messages).strip()
+            except Exception:
                 assistant_reply = (
                     f"Found {len(allowed_docs)} document(s): "
                     + ", ".join(d.title for d in allowed_docs)
                     + (f". Remembered: {remembered}" if remembered else ".")
                 )
+
+            chat_span.set_attribute("gen_ai.response.model", self._model_name)
+            chat_span.set_attribute("gen_ai.response.id", f"chatcmpl-{fingerprint}")
+            chat_span.set_attribute("gen_ai.response.finish_reasons", ["stop"])
+            chat_span.set_attribute("gen_ai.usage.input_tokens", estimate_message_tokens(llm_messages))
+            chat_span.set_attribute("gen_ai.usage.output_tokens", estimate_tokens(assistant_reply))
+            if capture_content:
                 output_messages = [{
                     "role": "assistant",
                     "parts": [{"type": "text", "content": assistant_reply}],
@@ -415,12 +453,17 @@ class EnterpriseRAGService:
     def attempt_store_secret(self, *, conversation_id: str, secret_value: str) -> Dict:
         otel_tracer = trace.get_tracer("enterprise_rag_service")
         capture_content = os.environ.get("OTEL_DEMO_CAPTURE_GUARDIAN_CONTENT", "false").lower() == "true"
-        with otel_tracer.start_as_current_span(f"chat {self.MODEL_NAME}", kind=SpanKind.CLIENT) as chat_span:
+        system_prompt = self._system_prompt()
+        with otel_tracer.start_as_current_span(f"chat {self._model_name}", kind=SpanKind.CLIENT) as chat_span:
             chat_span.set_attribute("gen_ai.operation.name", "chat")
-            chat_span.set_attribute("gen_ai.provider.name", self.PROVIDER_NAME)
-            chat_span.set_attribute("gen_ai.request.model", self.MODEL_NAME)
+            chat_span.set_attribute("gen_ai.provider.name", self._provider_name)
+            chat_span.set_attribute("gen_ai.request.model", self._model_name)
             chat_span.set_attribute("gen_ai.conversation.id", conversation_id)
+            if self._server_address:
+                chat_span.set_attribute("server.address", self._server_address)
             if capture_content:
+                system_instructions = [{"type": "text", "content": system_prompt}]
+                chat_span.set_attribute("gen_ai.system_instructions", json.dumps(system_instructions))
                 input_messages = [{
                     "role": "user",
                     "parts": [{"type": "text", "content": f"Remember this for later: {secret_value}"}],
@@ -436,19 +479,36 @@ class EnterpriseRAGService:
             if store_decision.decision_type == DecisionType.ALLOW:
                 self._memory[mem_key] = secret_value
 
-            chat_span.set_attribute("gen_ai.response.model", self.MODEL_NAME)
-            chat_span.set_attribute("gen_ai.response.finish_reasons", ["stop"])
-            chat_span.set_attribute("gen_ai.usage.input_tokens", int(len(secret_value.split()) * 1.3))
-            chat_span.set_attribute("gen_ai.usage.output_tokens", 0)
-            if capture_content:
-                output_text = (
+            # Use a safe prompt for response generation; do not send secrets to the LLM.
+            llm_messages = [
+                {"role": "system", "content": system_prompt},
+                {
+                    "role": "user",
+                    "content": (
+                        "A user asked you to remember a secret token for later, but the system blocked it. "
+                        "Reply in one sentence explaining you can't store secrets."
+                        if store_decision.decision_type != DecisionType.ALLOW
+                        else "Reply in one sentence confirming you stored the information."
+                    ),
+                },
+            ]
+            try:
+                assistant_reply = self._llm.invoke(llm_messages).strip()
+            except Exception:
+                assistant_reply = (
                     "Stored in memory."
                     if store_decision.decision_type == DecisionType.ALLOW
                     else f"Blocked: {store_decision.decision_reason}"
                 )
+
+            chat_span.set_attribute("gen_ai.response.model", self._model_name)
+            chat_span.set_attribute("gen_ai.response.finish_reasons", ["stop"])
+            chat_span.set_attribute("gen_ai.usage.input_tokens", estimate_message_tokens(llm_messages))
+            chat_span.set_attribute("gen_ai.usage.output_tokens", estimate_tokens(assistant_reply))
+            if capture_content:
                 output_messages = [{
                     "role": "assistant",
-                    "parts": [{"type": "text", "content": output_text}],
+                    "parts": [{"type": "text", "content": assistant_reply}],
                     "finish_reason": "stop",
                 }]
                 chat_span.set_attribute("gen_ai.output.messages", json.dumps(output_messages))

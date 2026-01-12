@@ -61,6 +61,8 @@ from stories.chat_span_utils import (
     GEN_AI_OUTPUT_MESSAGES,
 )
 
+from stories.demo_llm import DemoLLM, estimate_message_tokens, estimate_tokens
+
 
 # ============================================================================
 # Tenant Configuration
@@ -143,6 +145,7 @@ class TenantInputGuard:
             findings = []
             sensitive_topic_triggered = False
 
+            ctx.record_content_input(input_text)
             # Tenant-specific content filtering
             if self.tenant.content_filter_level == "strict":
                 # Strict mode: check for any potentially sensitive topics
@@ -242,6 +245,7 @@ class TenantOutputGuard:
             modified_content = output_text
             has_pii = False
 
+            ctx.record_content_input(output_text)
             ctx.record_content_hash(output_text)
 
             for pii_type, pattern in self.pii_patterns.items():
@@ -295,13 +299,14 @@ class MultiTenantAIService:
     Creates properly instrumented chat spans following GenAI semantic conventions.
     """
 
-    MODEL_NAME = "gpt-4o"
-    PROVIDER_NAME = "openai"
-
     def __init__(self, tracer: GuardianTracer):
         self.tracer = tracer
         self._guards: Dict[str, tuple] = {}
         self._response_counter = 0
+        self._llm = DemoLLM()
+        self._model_name = self._llm.runtime.model_name
+        self._provider_name = self._llm.runtime.provider_name
+        self._server_address = self._llm.runtime.server_address
 
         # Check if content capture is enabled
         self._capture_content = os.environ.get(
@@ -346,16 +351,18 @@ class MultiTenantAIService:
 
         # Span name follows convention: "chat {model}"
         with tracer.start_as_current_span(
-            f"chat {self.MODEL_NAME}",
+            f"chat {self._model_name}",
             kind=SpanKind.CLIENT
         ) as chat_span:
             # === Required Attributes (gen-ai-spans.md) ===
             chat_span.set_attribute(GEN_AI_OPERATION_NAME, "chat")
-            chat_span.set_attribute(GEN_AI_PROVIDER_NAME, self.PROVIDER_NAME)
+            chat_span.set_attribute(GEN_AI_PROVIDER_NAME, self._provider_name)
 
             # === Conditionally Required ===
-            chat_span.set_attribute(GEN_AI_REQUEST_MODEL, self.MODEL_NAME)
+            chat_span.set_attribute(GEN_AI_REQUEST_MODEL, self._model_name)
             chat_span.set_attribute(GEN_AI_CONVERSATION_ID, conversation_id)
+            if self._server_address:
+                chat_span.set_attribute("server.address", self._server_address)
 
             # === Tenant-specific context ===
             chat_span.set_attribute("tenant.id", tenant_id)
@@ -363,6 +370,9 @@ class MultiTenantAIService:
 
             # === Opt-in: Capture input messages ===
             if self._capture_content:
+                system_prompt = self._system_prompt(tenant_config)
+                system_instructions = [{"type": "text", "content": system_prompt}]
+                chat_span.set_attribute("gen_ai.system_instructions", json.dumps(system_instructions))
                 input_messages = [{
                     "role": "user",
                     "parts": [{"type": "text", "content": user_input}]
@@ -390,12 +400,12 @@ class MultiTenantAIService:
                     "policy_id": input_result.policy_id,
                 }
 
-            # === LLM Call (simulated) ===
-            llm_response = self._call_llm(tenant_id, user_input)
+            # === LLM Call (real if configured; offline fallback otherwise) ===
+            llm_response = self._call_llm(tenant_config, user_input)
 
             # === Recommended Response Attributes ===
             self._response_counter += 1
-            chat_span.set_attribute(GEN_AI_RESPONSE_MODEL, self.MODEL_NAME)
+            chat_span.set_attribute(GEN_AI_RESPONSE_MODEL, self._model_name)
             chat_span.set_attribute(GEN_AI_RESPONSE_ID, f"chatcmpl-{tenant_id[:8]}-{self._response_counter}")
             chat_span.set_attribute(GEN_AI_RESPONSE_FINISH_REASONS, ["stop"])
             chat_span.set_attribute(GEN_AI_USAGE_INPUT_TOKENS, llm_response["input_tokens"])
@@ -437,19 +447,42 @@ class MultiTenantAIService:
                 }
             }
 
-    def _call_llm(self, tenant_id: str, user_input: str) -> Dict:
+    def _system_prompt(self, tenant_config: TenantConfig) -> str:
+        return (
+            "You are a helpful assistant for a multi-tenant SaaS platform.\n"
+            f"- Tenant: {tenant_config.tenant_name}\n"
+            "- Keep answers short (1-2 sentences).\n"
+            "- If asked for support contact email/phone, include: support@example.com and 555-123-4567.\n"
+            "- If asked about account manager/contact, include: Mr. John Smith and 555-987-6543.\n"
+            "- Do not invent real personal data; only use the placeholders above.\n"
+        )
+
+    def _call_llm(self, tenant_config: TenantConfig, user_input: str) -> Dict:
         """
-        Call the LLM (simulated) and return response with token counts.
+        Call the LLM (real if configured) and return response with token counts.
 
         Returns a dict with content, input_tokens, output_tokens.
-        In production, this would call the actual OpenAI/Azure API.
         """
-        # Generate response content
-        content = self._generate_response_content(tenant_id, user_input)
+        system_prompt = self._system_prompt(tenant_config)
+        messages = [
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": user_input},
+        ]
 
-        # Estimate token counts (rough approximation: ~1.3 tokens per word)
-        input_tokens = int(len(user_input.split()) * 1.3)
-        output_tokens = int(len(content.split()) * 1.3)
+        try:
+            content = self._llm.invoke(messages).strip()
+        except Exception:
+            content = self._generate_response_content(tenant_config.tenant_id, user_input)
+
+        # Ensure the demo reliably triggers the output guard for key scenarios.
+        lowered = user_input.lower()
+        if ("contact" in lowered or "email" in lowered) and "support@example.com" not in content:
+            content = "You can reach our support team at support@example.com or call 555-123-4567."
+        if "account" in lowered and "Mr." not in content:
+            content = "Your account manager is Mr. John Smith. His direct line is 555-987-6543."
+
+        input_tokens = estimate_message_tokens(messages)
+        output_tokens = estimate_tokens(content)
 
         return {
             "content": content,
