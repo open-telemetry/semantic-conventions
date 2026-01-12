@@ -359,6 +359,7 @@ groups:
     note: |
       The `gen_ai.operation.name` SHOULD be `invoke_agent`.
       **Span name** SHOULD be `invoke_workflow {gen_ai.workflow.name}`.
+    extends: attributes.gen_ai.common.client
     attributes:
       - ref: gen_ai.workflow.name
         requirement_level:
