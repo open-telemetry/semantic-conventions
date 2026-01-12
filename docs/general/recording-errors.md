@@ -84,7 +84,7 @@ include it if the operation succeeded.
 ## Recording exceptions
 
 When instrumented code throws an exception, instrumentation SHOULD
-record this exception as an [event](/docs/exceptions/exceptions-logs.md).
+record this exception as a [log record](/docs/exceptions/exceptions-logs.md).
 
 When the instrumented operation has not succeeded due to an exception,
 refer to the [recording errors on spans](#recording-errors-on-spans)
