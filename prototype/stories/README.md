@@ -61,16 +61,7 @@ python stories/story_runner.py --list
 python stories/story_runner.py --story 5 --exporters console
 python stories/story_runner.py --all --exporters appinsights
 ```
-
-For Traceloop, use the separate Traceloop venv (to avoid OTel version conflicts):
-
-```bash
-cd prototype
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements-traceloop.txt
-python stories/story_runner.py --story 10 --exporters traceloop
-```
+Other exporters may require additional dependencies; see `python stories/story_runner.py --help`.
 
 ## Trace Viewer
 
