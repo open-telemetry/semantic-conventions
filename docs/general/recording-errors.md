@@ -83,7 +83,7 @@ include it if the operation succeeded.
 
 ## Recording exceptions
 
-When an instrumented operation throws an exception, instrumentation SHOULD
+When instrumented code throws an exception, instrumentation SHOULD
 record this exception as an [event](/docs/exceptions/exceptions-logs.md).
 
 When the instrumented operation has not succeeded due to an exception,
