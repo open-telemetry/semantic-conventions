@@ -4,7 +4,8 @@ linkTitle: Spans
 
 # Semantic conventions for exceptions on spans
 
-**Status**: [Stable][DocumentStatus]
+**Status**: [Deprecated](https://img.shields.io/badge/-deprecated-red)<br>
+See [Recording exceptions](../general/recording-errors.md#recording-exceptions)
 
 This document defines semantic conventions for recording application
 exceptions associated with spans.
