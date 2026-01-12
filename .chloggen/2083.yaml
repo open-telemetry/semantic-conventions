@@ -1,0 +1,4 @@
+change_type: enhancement
+component: mcp
+note: Add MCP semantic conventions
+issues: [2043, 2083]
