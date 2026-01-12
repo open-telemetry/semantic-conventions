@@ -86,6 +86,6 @@ groups:
         type: string
         stability: development
         brief: >
-          A namespace for `service.peer.name`.
+          Logical namespace of the service on the other side of the connection.
           SHOULD be equal to the actual [`service.namespace`](/docs/resource/README.md#service) resource attribute of the remote service if any.
         examples: ["Shop"]
