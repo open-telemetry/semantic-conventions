@@ -127,9 +127,11 @@ public boolean createIfNotExists(String resourceId) throws IOException {
       .withException(e)
       .error()
 
+    String errorType = e.getClass().getCanonicalName();
+
+    span.setAttribute(AttributeKey.stringKey("error.type"), errorType)
     span.setStatus(StatusCode.ERROR, e.getMessage());
 
-    String errorType = e.getClass().getCanonicalName();
     recordMetric("acme.resource.create.duration", System.nanoTime() - startTime,
                  AttributeKey.stringKey("error.type"), errorType);
     throw e;
