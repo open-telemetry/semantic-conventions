@@ -50,7 +50,7 @@ Deprecate `process.open_file_descriptor.count`
 - `k8s`: Define missing roles for entity attributes ([#3135](https://github.com/open-telemetry/semantic-conventions/issues/3135))
 - `k8s`: Promote a selection of k8s and container attributes to alpha ([#3120](https://github.com/open-telemetry/semantic-conventions/issues/3120))
   The selected attributes being promoted are used by the Collector Contrib components
-  that are targeting stability: https://github.com/open-telemetry/opentelemetry-collector-contrib/issues/44130
+  that are targeting stability. See [opentelemetry-collector-contrib/#44130](https://github.com/open-telemetry/opentelemetry-collector-contrib/issues/44130)
   
 - `k8s`: Define roles for k8s entities' attributes ([#3017](https://github.com/open-telemetry/semantic-conventions/issues/3017))
 - `mcp`: Add MCP semantic conventions ([#2043](https://github.com/open-telemetry/semantic-conventions/issues/2043), [#2083](https://github.com/open-telemetry/semantic-conventions/issues/2083))
