@@ -71,7 +71,6 @@ Deprecate `process.open_file_descriptor.count`
 - `service`: `service.peer.name` and `service.peer.namespace` have been introduced as the replacement for `peer.service` to describe remote services that use both a name and a namespace. ([#2945](https://github.com/open-telemetry/semantic-conventions/issues/2945))
   The `peer.service` attribute could not fully represent the `service.{name|namespace}` resource attributes;
   `service.peer.name` and `service.peer.namespace` provide a more complete representation.
-  
 
 ### 🧰 Bug fixes 🧰
 
