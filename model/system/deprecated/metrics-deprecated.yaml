@@ -9,7 +9,7 @@ groups:
     deprecated:
       reason: renamed
       renamed_to: system.memory.linux.shared
-    brief: "Shared memory used (mostly by tmpfs)."
+    brief: "Deprecated, use `system.memory.linux.shared` instead."
     instrument: updowncounter
     unit: "By"
     entity_associations:
