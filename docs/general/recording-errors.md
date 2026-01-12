@@ -105,20 +105,31 @@ public boolean createIfNotExists(String resourceId) throws IOException {
   long startTime = System.nanoTime();
   try {
     create(resourceId);
+
     recordMetric("acme.resource.create.duration", System.nanoTime() - startTime);
+
     return true;
   } catch (ResourceAlreadyExistsException e) {
     // not setting span status to error - as the exception is not an error
     // but we still log and set attributes that capture additional details
-    logger.debug(e);
+    logger.withEventName("acme.resource.create.error")
+      .withAttribute("acme.resource.create.status", "already_exists")
+      .withException(e)
+      .debug()
+
     span.setAttribute(AttributeKey.stringKey("acme.resource.create.status"), "already_exists");
+
     recordMetric("acme.resource.create.duration", System.nanoTime() - startTime);
+
     return false;
   } catch (IOException e) {
-    logger.error(e);
-    String errorType = e.getClass().getCanonicalName();
-    span.setAttribute(AttributeKey.stringKey("error.type"), errorType);
+    logger.withEventName("acme.resource.create.error")
+      .withException(e)
+      .error()
+
     span.setStatus(StatusCode.ERROR, e.getMessage());
+
+    String errorType = e.getClass().getCanonicalName();
     recordMetric("acme.resource.create.duration", System.nanoTime() - startTime,
                  AttributeKey.stringKey("error.type"), errorType);
     throw e;
