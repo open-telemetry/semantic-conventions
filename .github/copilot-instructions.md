@@ -96,7 +96,7 @@ these requirements:
 
 - **Spans**: Set status to Error, populate `error.type`, set description when helpful
 - **Metrics**: Include `error.type` attribute for filtering and analysis
-- **Exceptions**: Record as event records
+- **Exceptions**: Record as log records
 - **Consistency**: Same `error.type` across spans and metrics for same operation
 
 ## Common Issues to Flag
