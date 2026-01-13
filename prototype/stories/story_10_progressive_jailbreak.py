@@ -9,26 +9,19 @@ Key Features:
 - gen_ai.conversation.id for cross-turn correlation
 - Escalating risk scores across conversation turns
 - State-aware security evaluation
-- One trace per turn (realistic)
+- One trace per conversation (turn spans under invoke_agent)
 
-Trace Structure (across multiple turns / traces):
-    story_10.conv_suspicious_123.turn_1
-    └── chat gpt-4o
-        └── apply_guardrail State-Aware Jailbreak Guard
-            ├── gen_ai.security.decision.type: allow
-            └── gen_ai.security.finding {risk_score: 0.3}
-
-    story_10.conv_suspicious_123.turn_2
-    └── chat gpt-4o
-        └── apply_guardrail State-Aware Jailbreak Guard
-            ├── gen_ai.security.decision.type: warn
-            └── gen_ai.security.finding {risk_score: 0.5}
-
-    story_10.conv_suspicious_123.turn_3
-    └── chat gpt-4o
-        └── apply_guardrail State-Aware Jailbreak Guard
-            ├── gen_ai.security.decision.type: deny
-            └── gen_ai.security.finding {risk_score: 0.95}
+Trace Structure (single trace per conversation):
+    story_10.conv_suspicious_123.invoke_agent Security Assistant
+    ├── turn_1
+    │   └── chat gpt-4o
+    │       └── apply_guardrail State-Aware Jailbreak Guard (allow)
+    ├── turn_2
+    │   └── chat gpt-4o
+    │       └── apply_guardrail State-Aware Jailbreak Guard (warn)
+    └── turn_3
+        └── chat gpt-4o
+            └── apply_guardrail State-Aware Jailbreak Guard (deny)
 
 Author: OpenTelemetry GenAI SIG
 """
@@ -338,8 +331,8 @@ class ConversationSimulator:
         """
         Run a multi-turn conversation through the jailbreak guard.
 
-        Each turn is emitted as its own trace, linked by `gen_ai.conversation.id`.
-        This is a realistic shape for chat systems that create one trace per request.
+        Emits one trace per conversation with an `invoke_agent` root span and
+        per-turn spans beneath it.
         """
         story_title = "Progressive Jailbreak Detection — Conversation-Level Security"
         otel_tracer = trace.get_tracer("conversation_simulator")
@@ -347,114 +340,128 @@ class ConversationSimulator:
         root_context = trace.set_span_in_context(trace.INVALID_SPAN)
         capture_content = os.environ.get("OTEL_DEMO_CAPTURE_GUARDIAN_CONTENT", "false").lower() == "true"
 
-        for i, message in enumerate(messages):
-            turn_number = i + 1
+        agent_id = "agent_security_assistant_v1"
+        agent_name = "Security Assistant"
+
+        with otel_tracer.start_as_current_span(
+            f"story_10.{conversation_id}.invoke_agent {agent_name}",
+            kind=SpanKind.CLIENT,
+            context=root_context,
+        ) as root_span:
+            root_span.set_attribute("story.id", 10)
+            root_span.set_attribute("story.title", story_title)
+            root_span.set_attribute("scenario.name", scenario_name)
+            root_span.set_attribute("gen_ai.conversation.id", conversation_id)
+            root_span.set_attribute("gen_ai.operation.name", "invoke_agent")
+            root_span.set_attribute("gen_ai.provider.name", self._provider_name)
+            root_span.set_attribute("gen_ai.agent.id", agent_id)
+            root_span.set_attribute("gen_ai.agent.name", agent_name)
+            root_span.set_attribute("gen_ai.request.model", self._model_name)
+            root_span.set_attribute("total_turns", len(messages))
+            if self._server_address:
+                root_span.set_attribute("server.address", self._server_address)
+
             should_break = False
+            for i, message in enumerate(messages):
+                turn_number = i + 1
 
-            # Root span for this turn (new trace) - detached from any runner parent span.
-            with otel_tracer.start_as_current_span(
-                f"story_10.{conversation_id}.turn_{turn_number}",
-                kind=SpanKind.INTERNAL,
-                context=root_context,
-            ) as root_span:
-                root_span.set_attribute("story.id", 10)
-                root_span.set_attribute("story.title", story_title)
-                root_span.set_attribute("scenario.name", scenario_name)
-                root_span.set_attribute("gen_ai.conversation.id", conversation_id)
-                root_span.set_attribute("turn.number", turn_number)
-                root_span.set_attribute("total_turns", len(messages))
-
-                # Chat span (parent for guardian)
-                # Span name follows convention: "chat {model}"
                 with otel_tracer.start_as_current_span(
-                    f"chat {self._model_name}",
-                    kind=SpanKind.CLIENT
-                ) as chat_span:
-                    # === Required Attributes (gen-ai-spans.md) ===
-                    chat_span.set_attribute("gen_ai.operation.name", "chat")
-                    chat_span.set_attribute("gen_ai.provider.name", self._provider_name)
+                    f"turn_{turn_number}",
+                    kind=SpanKind.INTERNAL,
+                ) as turn_span:
+                    turn_span.set_attribute("turn.number", turn_number)
+                    turn_span.set_attribute("gen_ai.conversation.id", conversation_id)
 
-                    # === Conditionally Required ===
-                    chat_span.set_attribute("gen_ai.request.model", self._model_name)
-                    chat_span.set_attribute("gen_ai.conversation.id", conversation_id)
-                    chat_span.set_attribute("turn.number", turn_number)
-                    if self._server_address:
-                        chat_span.set_attribute("server.address", self._server_address)
+                    # Chat span (parent for guardian)
+                    # Span name follows convention: "chat {model}"
+                    with otel_tracer.start_as_current_span(
+                        f"chat {self._model_name}",
+                        kind=SpanKind.CLIENT,
+                    ) as chat_span:
+                        # === Required Attributes (gen-ai-spans.md) ===
+                        chat_span.set_attribute("gen_ai.operation.name", "chat")
+                        chat_span.set_attribute("gen_ai.provider.name", self._provider_name)
 
-                    if capture_content:
-                        system_instructions = [{"type": "text", "content": self.SYSTEM_PROMPT}]
-                        chat_span.set_attribute("gen_ai.system_instructions", json.dumps(system_instructions))
-                        input_messages = [{
-                            "role": "user",
-                            "parts": [{"type": "text", "content": message}],
-                        }]
-                        chat_span.set_attribute("gen_ai.input.messages", json.dumps(input_messages))
+                        # === Conditionally Required ===
+                        chat_span.set_attribute("gen_ai.request.model", self._model_name)
+                        chat_span.set_attribute("gen_ai.conversation.id", conversation_id)
+                        chat_span.set_attribute("turn.number", turn_number)
+                        if self._server_address:
+                            chat_span.set_attribute("server.address", self._server_address)
 
-                    # Evaluate with guardian
-                    result = self.guard.evaluate(message, conversation_id)
-
-                    results.append({
-                        "turn": turn_number,
-                        "message": message[:50] + "..." if len(message) > 50 else message,
-                        "decision": result.decision_type,
-                        "reason": result.decision_reason,
-                        "risk_score": result.findings[0].risk_score if result.findings else 0.0,
-                        "cumulative_risk": get_conversation_state(conversation_id).cumulative_risk_score,
-                    })
-
-                    if result.decision_type == DecisionType.DENY:
-                        chat_span.set_attribute("blocked", True)
-                        # Set response attributes for blocked requests
-                        chat_span.set_attribute("gen_ai.response.model", self._model_name)
-                        chat_span.set_attribute("gen_ai.response.finish_reasons", ["content_filter"])
-                        chat_span.set_attribute("gen_ai.usage.input_tokens", estimate_tokens(message))
-                        chat_span.set_attribute("gen_ai.usage.output_tokens", 0)
                         if capture_content:
-                            output_messages = [{
-                                "role": "assistant",
-                                "parts": [{"type": "text", "content": "Request blocked by safety policy."}],
-                                "finish_reason": "content_filter",
+                            system_instructions = [{"type": "text", "content": self.SYSTEM_PROMPT}]
+                            chat_span.set_attribute("gen_ai.system_instructions", json.dumps(system_instructions))
+                            input_messages = [{
+                                "role": "user",
+                                "parts": [{"type": "text", "content": message}],
                             }]
-                            chat_span.set_attribute("gen_ai.output.messages", json.dumps(output_messages))
-                        chat_span.set_status(Status(StatusCode.OK))
-                        should_break = True
-                    else:
-                        should_break = False
-                        # === Recommended Response Attributes ===
-                        llm_messages = [
-                            {"role": "system", "content": self.SYSTEM_PROMPT},
-                            {"role": "user", "content": message},
-                        ]
-                        try:
-                            assistant_reply = self._llm.invoke(llm_messages).strip()
-                        except Exception:
-                            assistant_reply = (
-                                "I can help with general questions, but I can't assist with bypassing safety safeguards."
-                                if result.decision_type == DecisionType.WARN
-                                else "Sure — here's a brief, safe overview to help you get started."
-                            )
+                            chat_span.set_attribute("gen_ai.input.messages", json.dumps(input_messages))
 
-                        chat_span.set_attribute("gen_ai.response.model", self._model_name)
-                        chat_span.set_attribute("gen_ai.response.id", f"chatcmpl-{conversation_id}-{turn_number}")
-                        chat_span.set_attribute("gen_ai.response.finish_reasons", ["stop"])
-                        chat_span.set_attribute("gen_ai.usage.input_tokens", estimate_message_tokens(llm_messages))
-                        chat_span.set_attribute("gen_ai.usage.output_tokens", estimate_tokens(assistant_reply))
-                        if capture_content:
-                            output_messages = [{
-                                "role": "assistant",
-                                "parts": [{"type": "text", "content": assistant_reply}],
-                                "finish_reason": "stop",
-                            }]
-                            chat_span.set_attribute("gen_ai.output.messages", json.dumps(output_messages))
+                        # Evaluate with guardian
+                        result = self.guard.evaluate(message, conversation_id)
 
-                        chat_span.set_status(Status(StatusCode.OK))
+                        results.append({
+                            "turn": turn_number,
+                            "message": message[:50] + "..." if len(message) > 50 else message,
+                            "decision": result.decision_type,
+                            "reason": result.decision_reason,
+                            "risk_score": result.findings[0].risk_score if result.findings else 0.0,
+                            "cumulative_risk": get_conversation_state(conversation_id).cumulative_risk_score,
+                        })
 
-            # Break after exiting the span contexts if blocked
-            if should_break:
-                break
+                        if result.decision_type == DecisionType.DENY:
+                            chat_span.set_attribute("blocked", True)
+                            # Set response attributes for blocked requests
+                            chat_span.set_attribute("gen_ai.response.model", self._model_name)
+                            chat_span.set_attribute("gen_ai.response.finish_reasons", ["content_filter"])
+                            chat_span.set_attribute("gen_ai.usage.input_tokens", estimate_tokens(message))
+                            chat_span.set_attribute("gen_ai.usage.output_tokens", 0)
+                            if capture_content:
+                                output_messages = [{
+                                    "role": "assistant",
+                                    "parts": [{"type": "text", "content": "Request blocked by safety policy."}],
+                                    "finish_reason": "content_filter",
+                                }]
+                                chat_span.set_attribute("gen_ai.output.messages", json.dumps(output_messages))
+                            chat_span.set_status(Status(StatusCode.OK))
+                            should_break = True
+                        else:
+                            should_break = False
+                            # === Recommended Response Attributes ===
+                            llm_messages = [
+                                {"role": "system", "content": self.SYSTEM_PROMPT},
+                                {"role": "user", "content": message},
+                            ]
+                            try:
+                                assistant_reply = self._llm.invoke(llm_messages).strip()
+                            except Exception:
+                                assistant_reply = (
+                                    "I can help with general questions, but I can't assist with bypassing safety safeguards."
+                                    if result.decision_type == DecisionType.WARN
+                                    else "Sure — here's a brief, safe overview to help you get started."
+                                )
 
-            # Small delay between turns for realistic trace timing
-            time.sleep(0.1)
+                            chat_span.set_attribute("gen_ai.response.model", self._model_name)
+                            chat_span.set_attribute("gen_ai.response.id", f"chatcmpl-{conversation_id}-{turn_number}")
+                            chat_span.set_attribute("gen_ai.response.finish_reasons", ["stop"])
+                            chat_span.set_attribute("gen_ai.usage.input_tokens", estimate_message_tokens(llm_messages))
+                            chat_span.set_attribute("gen_ai.usage.output_tokens", estimate_tokens(assistant_reply))
+                            if capture_content:
+                                output_messages = [{
+                                    "role": "assistant",
+                                    "parts": [{"type": "text", "content": assistant_reply}],
+                                    "finish_reason": "stop",
+                                }]
+                                chat_span.set_attribute("gen_ai.output.messages", json.dumps(output_messages))
+
+                            chat_span.set_status(Status(StatusCode.OK))
+
+                if should_break:
+                    break
+
+                # Small delay between turns for realistic trace timing
+                time.sleep(0.1)
 
         state = get_conversation_state(conversation_id)
         return {
@@ -490,7 +497,7 @@ def run_progressive_jailbreak_scenario():
     ║  - gen_ai.conversation.id for cross-turn correlation                 ║
     ║  - Escalating risk scores (0.3 → 0.5 → 0.95)                        ║
     ║  - State-aware security evaluation                                   ║
-    ║  - One trace per turn (realistic request traces)                     ║
+    ║  - One trace per conversation (turn spans beneath invoke_agent)      ║
     ╚══════════════════════════════════════════════════════════════════════╝
     """)
 

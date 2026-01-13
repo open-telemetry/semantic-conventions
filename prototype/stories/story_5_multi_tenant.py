@@ -231,7 +231,7 @@ class TenantOutputGuard:
             self.pii_patterns.update({
                 "ssn": r"\b\d{3}[-]?\d{2}[-]?\d{4}\b",
                 "credit_card": r"\b\d{4}[-\s]?\d{4}[-\s]?\d{4}[-\s]?\d{4}\b",
-                "name_pattern": r"\b(Mr\.|Mrs\.|Ms\.|Dr\.)\s+[A-Z][a-z]+\s+[A-Z][a-z]+\b",
+                "name_pattern": r"(?<=Account manager: )[A-Z][a-z]+(?:\s+[A-Z][a-z]+)?",
             })
 
     def evaluate(self, output_text: str, conversation_id: str) -> GuardianResult:
@@ -453,7 +453,9 @@ class MultiTenantAIService:
             f"- Tenant: {tenant_config.tenant_name}\n"
             "- Keep answers short (1-2 sentences).\n"
             "- If asked for support contact email/phone, include: support@example.com and 555-123-4567.\n"
-            "- If asked about account manager/contact, include: Mr. John Smith and 555-987-6543.\n"
+            "- If asked about account manager/contact, include: Account manager: Alex. Direct line: 555-987-6543.\n"
+            "- Do not use pronouns when referring to the account manager.\n"
+            "- Do not mention the account manager unless asked.\n"
             "- Do not invent real personal data; only use the placeholders above.\n"
         )
 
@@ -478,8 +480,8 @@ class MultiTenantAIService:
         lowered = user_input.lower()
         if ("contact" in lowered or "email" in lowered) and "support@example.com" not in content:
             content = "You can reach our support team at support@example.com or call 555-123-4567."
-        if "account" in lowered and "Mr." not in content:
-            content = "Your account manager is Mr. John Smith. His direct line is 555-987-6543."
+        if "account" in lowered and "Account manager:" not in content:
+            content = "Account manager: Alex. Direct line: 555-987-6543."
 
         input_tokens = estimate_message_tokens(messages)
         output_tokens = estimate_tokens(content)
@@ -495,7 +497,7 @@ class MultiTenantAIService:
         if "contact" in user_input.lower() or "email" in user_input.lower():
             return "You can reach our support team at support@example.com or call 555-123-4567."
         elif "account" in user_input.lower():
-            return "Your account manager is Mr. John Smith. His direct line is 555-987-6543."
+            return "Account manager: Alex. Direct line: 555-987-6543."
         else:
             return f"Hello! I'm the {TENANT_CONFIGS[tenant_id].tenant_name} assistant. How can I help you today?"
 

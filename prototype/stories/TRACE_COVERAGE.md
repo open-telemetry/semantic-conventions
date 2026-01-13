@@ -132,6 +132,10 @@ In the local viewer (`prototype/stories/trace_viewer.py`):
 
 ### Story 7 — Multi-Agent Security Boundary (`prototype/stories/story_7_multi_agent.py`)
 
+When `--capture-content` is enabled, `invoke_agent` and `create_agent` spans also include opt-in fields:
+- `gen_ai.system_instructions`, `gen_ai.input.messages`, `gen_ai.output.messages`
+- `gen_ai.tool.definitions` (tool schema)
+
 - `story_7.create_agent.coordinator`
   - Tool validation: `target=tool_definition`, `decision=allow`
   - Viewer focus: show `gen_ai.agent.id` attribution + opt-in `content.input.value` containing the tool schema
@@ -162,9 +166,11 @@ In the local viewer (`prototype/stories/trace_viewer.py`):
 
 ### Story 10 — Progressive Jailbreak (`prototype/stories/story_10_progressive_jailbreak.py`)
 
-Each **turn** is a separate trace with root span name:
+Each **conversation** is a separate trace with an `invoke_agent` root span:
 
-- `story_10.<conversation_id>.turn_<n>`
+- `story_10.<conversation_id>.invoke_agent Security Assistant`
+
+Within the trace, each turn is a child span named `turn_<n>` under the `invoke_agent` root.
 
 Scenarios:
 
@@ -172,7 +178,7 @@ Scenarios:
   - Turn 1: `decision=allow`
   - Turn 2: `decision=warn`
   - Turn 3: `decision=deny` (+ findings for `jailbreak` and `prompt_injection`)
-  - Viewer focus: filter Story 10 → open turns 1→2→3 and show correlation via `gen_ai.conversation.id`
+  - Viewer focus: filter Story 10 → open the `invoke_agent` trace and expand `turn_1/2/3`
 - `scenario.name=slow_burn_jailbreak` (`conv_slowburn_002`)
   - Escalates gradually; later turns may reach `warn`/`deny` depending on cumulative score
   - Viewer focus: show how findings include `cumulative_risk:*` in `gen_ai.security.risk.metadata`
