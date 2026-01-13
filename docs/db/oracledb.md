@@ -110,7 +110,8 @@ distributed environment. Its value consists of one or more valid identifiers
 (alphanumeric ASCII characters) separated by periods.
 
 **[18] `oracle.db.instance.name`:** There can be multiple instances associated with a single database service. It indicates the
-unique instance name to which the connection is currently bound.
+unique instance name to which the connection is currently bound. For non-RAC databases, this value
+defaults to the `oracle.db.name`.
 
 **[19] `oracle.db.name`:** This attribute SHOULD be set to the value of the parameter `DB_NAME` exposed in `v$parameter`.
 
