@@ -605,8 +605,3 @@ groups:
         type: string
         brief: Human-readable name of the GenAI workflow provided by the application.
         examples: [ "multi_agent_rag", "customer_support_pipeline" ]
-      - id: gen_ai.framework
-        stability: development
-        type: string
-        brief: Framework implementing the workflow.
-        examples: [ "LangGraph", "CrewAI", "OpenAI agents" ]

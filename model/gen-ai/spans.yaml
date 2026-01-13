@@ -408,14 +408,11 @@ groups:
     brief: >
       Represents a workflow orchestrating multiple agents with predefined code paths.
     note: |
-      The `gen_ai.operation.name` SHOULD be `invoke_agent`.
+      The `gen_ai.operation.name` SHOULD be `invoke_workflow`.
       **Span name** SHOULD be `invoke_workflow {gen_ai.workflow.name}`.
     extends: attributes.gen_ai.common.client
     attributes:
       - ref: gen_ai.workflow.name
-        requirement_level:
-          conditionally_required: when available
-      - ref: gen_ai.framework
         requirement_level:
           conditionally_required: when available
       - ref: gen_ai.input.messages
