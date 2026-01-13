@@ -255,7 +255,8 @@ groups:
 
       The `gen_ai.operation.name` SHOULD be `retrieval`.
 
-      **Span name** SHOULD be `{gen_ai.operation.name}`.
+      **Span name** SHOULD be `{gen_ai.operation.name} `{gen_ai.data_source.id}`. Semantic conventions
+      for individual GenAI providers and retrievers MAY specify different span name format.
     extends: attributes.gen_ai.common.client
     attributes:
       - ref: gen_ai.operation.name
@@ -267,6 +268,9 @@ groups:
       - ref: gen_ai.retrieval.documents
         requirement_level: opt_in
       - ref: gen_ai.provider.name
+        requirement_level:
+          conditionally_required: when applicable
+      - ref: gen_ai.data_source.id
         requirement_level:
           conditionally_required: when applicable
       - ref: error.type

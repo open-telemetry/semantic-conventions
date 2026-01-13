@@ -133,8 +133,6 @@ format is not supported and SHOULD be recorded in structured form otherwise.
 Each document object SHOULD contain at least the following properties:
 `id` (string): A unique identifier for the document, `score` (double): The relevance score of the document
 
-Additional properties MAY be included (e.g., `content`, `metadata`, `title`, `uri`).
-
 > [!Warning]
 > This attribute may contain sensitive information.
 
