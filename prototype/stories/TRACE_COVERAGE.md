@@ -7,7 +7,7 @@ This document maps the **runnable story suite** under `prototype/stories/` to th
 Each runnable scenario creates **one trace per root span** whose name starts with `story_<id>...`, for example:
 
 - `story_5.acme_corp.pii_redaction_email_phone`
-- `story_10.conv_jailbreak_001.turn_3`
+- `story_10.conv_jailbreak_001.invoke_agent Security Assistant`
 
 Every trace root span includes:
 
@@ -47,7 +47,7 @@ In the local viewer (`prototype/stories/trace_viewer.py`):
 2. Use the “Story” filter (4/5/7/10/11) to focus the sidebar.
 3. Click a trace (subtitle = root span name, e.g. `story_5.acme_corp.pii_redaction_email_phone`).
 4. In the span tree:
-   - Click a `chat …` span → open “Sensitive content (opt-in)” to see:
+   - Click a `chat …` or `invoke_agent …` span → open “Sensitive content (opt-in)” to see:
      - `gen_ai.system_instructions`
      - `gen_ai.input.messages` / `gen_ai.output.messages`
    - Click an `apply_guardrail …` span → open “Sensitive content (opt-in)” to see:
