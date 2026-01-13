@@ -20,4 +20,4 @@ issues: [ ]
 # These lines will be padded with 2 spaces and then inserted directly into the document.
 # Use pipe (|) for multiline entries.
 subtext: |
-  The `service.instance.id` attribute is promoted from development to stable.
+  The `service.instance.id` attribute and entity are promoted from development to stable.

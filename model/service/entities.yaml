@@ -24,7 +24,7 @@ groups:
       A `service.instance` uniquely identifies an instance of a logical service. For example,
       a container that is part of a Kubernetes deployment
       that offers a service.
-    stability: development
+    stability: stable
     attributes:
       - ref: service.instance.id
         role: identifying
