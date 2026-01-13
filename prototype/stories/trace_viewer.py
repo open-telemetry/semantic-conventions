@@ -241,6 +241,24 @@ HTML_TEMPLATE = """
             align-items: center;
         }
 
+        .header-toggle {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            user-select: none;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .header-toggle input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+            accent-color: var(--accent-blue);
+        }
+
         .header-controls select,
         .header-controls button {
             background: var(--bg-tertiary);
@@ -742,6 +760,10 @@ HTML_TEMPLATE = """
                 <option value="10">Story 10: Jailbreak</option>
                 <option value="11">Story 11: Guardian Errors</option>
             </select>
+            <label class="header-toggle" title="Toggle display of apply_guardrail spans and security findings">
+                <input type="checkbox" id="toggle-security" checked>
+                Show security spans
+            </label>
             <button onclick="refreshTraces()">Refresh</button>
             <div class="status-indicator">
                 <div class="status-dot"></div>
@@ -772,11 +794,12 @@ HTML_TEMPLATE = """
         </main>
     </div>
 
-    <script>
-        // State
-        let traces = [];
-        let selectedTrace = null;
-        let pollInterval = null;
+	    <script>
+	        // State
+	        let traces = [];
+	        let selectedTrace = null;
+	        let pollInterval = null;
+	        let showSecuritySpans = true;
 
         // API Functions
         async function fetchTraces() {
@@ -943,35 +966,114 @@ HTML_TEMPLATE = """
             `;
         }
 
-        function renderSpanTree(spans) {
-            if (!spans || spans.length === 0) {
-                return '<div class="empty-state">No spans found</div>';
-            }
+	        function renderSpanTree(spans) {
+	            if (!spans || spans.length === 0) {
+	                return '<div class="empty-state">No spans found</div>';
+	            }
 
-            // Build parent-child relationships
-            const spanMap = new Map(spans.map(s => [s.span_id, s]));
-            const children = new Map();
+	            // Apply global span filters (e.g., hide security spans)
+	            const fullSpanMap = new Map(spans.map(s => [s.span_id, s]));
 
-            spans.forEach(span => {
-                if (span.parent_span_id) {
-                    if (!children.has(span.parent_span_id)) {
-                        children.set(span.parent_span_id, []);
-                    }
-                    children.get(span.parent_span_id).push(span);
-                }
-            });
+	            function isSecuritySpan(span) {
+	                return span?.name?.includes('apply_guardrail') || span?.operation_name === 'apply_guardrail';
+	            }
 
-            // Find root spans
-            const rootSpans = spans.filter(s => !s.parent_span_id || !spanMap.has(s.parent_span_id));
+	            function isSpanVisible(span) {
+	                return showSecuritySpans || !isSecuritySpan(span);
+	            }
 
-            function renderSpan(span, depth = 0) {
-                const isGuardian = span.name?.includes('apply_guardrail');
-                const isAgent = span.name?.includes('invoke_agent') || span.name?.includes('create_agent');
-                const isChat = span.name?.startsWith('chat ') || span.operation_name === 'chat';
-                const cardClass = isGuardian ? 'guardian' : (isAgent ? 'agent' : (isChat ? 'chat' : (depth === 0 ? 'root' : '')));
+	            const parentCache = new Map();
+	            function findVisibleParentId(span) {
+	                if (!span) return null;
+	                if (parentCache.has(span.span_id)) {
+	                    return parentCache.get(span.span_id);
+	                }
 
-                const indent = depth * 24;
-                const childSpans = children.get(span.span_id) || [];
+	                let parentId = span.parent_span_id;
+	                while (parentId) {
+	                    const parent = fullSpanMap.get(parentId);
+	                    if (!parent) {
+	                        parentCache.set(span.span_id, null);
+	                        return null;
+	                    }
+	                    if (isSpanVisible(parent)) {
+	                        parentCache.set(span.span_id, parentId);
+	                        return parentId;
+	                    }
+	                    parentId = parent.parent_span_id;
+	                }
+
+	                parentCache.set(span.span_id, null);
+	                return null;
+	            }
+
+	            function parseTurnIndex(spanName) {
+	                if (!spanName) return null;
+	                const match = /^turn_(\d+)$/.exec(spanName);
+	                if (!match) return null;
+	                const idx = Number(match[1]);
+	                return Number.isFinite(idx) ? idx : null;
+	            }
+
+	            function spanSortKey(span) {
+	                const turnIdx = parseTurnIndex(span?.name);
+	                const ts = Date.parse(span?.start_time || '');
+	                const timeKey = Number.isFinite(ts) ? ts : null;
+	                return { turnIdx, timeKey, name: span?.name || '' };
+	            }
+
+	            function compareSpans(a, b) {
+	                const aKey = spanSortKey(a);
+	                const bKey = spanSortKey(b);
+
+	                if (aKey.turnIdx !== null && bKey.turnIdx !== null) {
+	                    return aKey.turnIdx - bKey.turnIdx;
+	                }
+
+	                // Otherwise sort chronologically (oldest -> newest).
+	                if (aKey.timeKey !== null && bKey.timeKey !== null) {
+	                    if (aKey.timeKey !== bKey.timeKey) return aKey.timeKey - bKey.timeKey;
+	                } else if (aKey.timeKey !== null) {
+	                    return -1;
+	                } else if (bKey.timeKey !== null) {
+	                    return 1;
+	                }
+
+	                return aKey.name.localeCompare(bKey.name);
+	            }
+
+	            const visibleSpans = spans.filter(isSpanVisible).slice().sort(compareSpans);
+
+	            // Build parent-child relationships
+	            const spanMap = new Map(visibleSpans.map(s => [s.span_id, s]));
+	            const children = new Map();
+
+	            visibleSpans.forEach(span => {
+	                const visibleParentId = findVisibleParentId(span);
+	                if (!visibleParentId) return;
+	                if (!children.has(visibleParentId)) {
+	                    children.set(visibleParentId, []);
+	                }
+	                children.get(visibleParentId).push(span);
+	            });
+
+	            // Ensure stable, predictable ordering (turn_1, turn_2, ...).
+	            for (const [parentId, childList] of children.entries()) {
+	                childList.sort(compareSpans);
+	                children.set(parentId, childList);
+	            }
+
+	            // Find root spans
+	            const rootSpans = visibleSpans.filter(s => !findVisibleParentId(s)).sort(compareSpans);
+
+	            function renderSpan(span, depth = 0) {
+	                const isGuardian = span.name?.includes('apply_guardrail');
+	                const isAgent = span.name?.includes('invoke_agent') || span.name?.includes('create_agent');
+	                const isChat = span.name?.startsWith('chat ') || span.operation_name === 'chat';
+	                const cardClass = isGuardian ? 'guardian' : (isAgent ? 'agent' : (isChat ? 'chat' : (depth === 0 ? 'root' : '')));
+
+	                const indent = depth * 24;
+	                const childSpans = (children.get(span.span_id) || []).slice().sort(compareSpans);
 
                 // Check for token usage
                 const hasTokenUsage = span.input_tokens !== undefined || span.output_tokens !== undefined;
@@ -1175,8 +1277,8 @@ HTML_TEMPLATE = """
             `;
         }
 
-        function renderSensitiveContent(span) {
-            const attrs = span?.attributes || {};
+	        function renderSensitiveContent(span) {
+	            const attrs = span?.attributes || {};
 
             const systemInstructions = attrs['gen_ai.system_instructions'];
             const inputMessages = attrs['gen_ai.input.messages'];
@@ -1195,13 +1297,13 @@ HTML_TEMPLATE = """
             if (guardianInput) sections.push(renderTextSection('Guardian Input', guardianInput));
             if (guardianOutput) sections.push(renderTextSection('Guardian Output', guardianOutput));
 
-            return `
-                <details class="sensitive-content">
-                    <summary>Sensitive content (opt-in)</summary>
-                    ${sections.join('')}
-                </details>
-            `;
-        }
+	            return `
+	                <details class="sensitive-content" open>
+	                    <summary>Sensitive content (opt-in)</summary>
+	                    ${sections.join('')}
+	                </details>
+	            `;
+	        }
 
         // Tab switching
         function showTab(tabName) {
@@ -1268,9 +1370,23 @@ HTML_TEMPLATE = """
             fetchTraces();
         }
 
-        // Event listeners
-        document.getElementById('timespan-select').addEventListener('change', fetchTraces);
-        document.getElementById('story-filter').addEventListener('change', fetchTraces);
+	        // Event listeners
+	        document.getElementById('timespan-select').addEventListener('change', fetchTraces);
+	        document.getElementById('story-filter').addEventListener('change', fetchTraces);
+	        document.getElementById('toggle-security').addEventListener('change', (event) => {
+	            showSecuritySpans = Boolean(event.target.checked);
+	            try { localStorage.setItem('otel_demo_show_security_spans', String(showSecuritySpans)); } catch (e) {}
+	            renderTraceDetails();
+	        });
+
+	        // Restore persisted UI preferences.
+	        try {
+	            const saved = localStorage.getItem('otel_demo_show_security_spans');
+	            if (saved !== null) {
+	                showSecuritySpans = saved === 'true';
+	                document.getElementById('toggle-security').checked = showSecuritySpans;
+	            }
+	        } catch (e) {}
 
         // Start polling
         function startPolling() {

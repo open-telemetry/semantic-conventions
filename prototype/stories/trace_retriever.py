@@ -456,6 +456,9 @@ class AppInsightsTraceRetriever:
                 if trace.root_span is None or span.start_time < trace.root_span.start_time:
                     trace.root_span = span
 
+        # Sort spans chronologically for stable UI ordering (e.g., turn_1 → turn_2 → turn_3).
+        trace.spans.sort(key=lambda s: s.start_time or "")
+
         # Extract metadata from root span
         if trace.root_span:
             trace.metadata = {
