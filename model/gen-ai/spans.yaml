@@ -255,7 +255,7 @@ groups:
 
       The `gen_ai.operation.name` SHOULD be `retrieval`.
 
-      **Span name** SHOULD be `{gen_ai.operation.name} `{gen_ai.data_source.id}`. Semantic conventions
+      **Span name** SHOULD be `{gen_ai.operation.name} {gen_ai.data_source.id}`. Semantic conventions
       for individual GenAI providers and retrievers MAY specify different span name format.
     extends: attributes.gen_ai.common.client
     attributes:
