@@ -5,7 +5,7 @@ linkTitle: Spans
 # Semantic conventions for exceptions on spans
 
 **Status**: [Deprecated](https://img.shields.io/badge/-deprecated-red)<br>
-See [Recording exceptions](../general/recording-errors.md#recording-exceptions)
+Use [Semantic conventions for exceptions in logs](exceptions-logs.md) instead.
 
 This document defines semantic conventions for recording application
 exceptions associated with spans.
