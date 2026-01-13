@@ -450,18 +450,15 @@ groups:
               [
                 {
                   "id": "doc_123",
-                  "score": 0.95,
-                  "content": "Paris is the capital and most populous city of France."
+                  "score": 0.95
                 },
                 {
                   "id": "doc_456",
-                  "score": 0.87,
-                  "content": "The city of Paris is known for its iconic Eiffel Tower."
+                  "score": 0.87
                 },
                 {
                   "id": "doc_789",
-                  "score": 0.82,
-                  "content": "Paris has a population of over 2 million people."
+                  "score": 0.82
                 }
               ]
       - id: gen_ai.retrieval.query.text
