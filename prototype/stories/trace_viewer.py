@@ -259,6 +259,22 @@ HTML_TEMPLATE = """
             accent-color: var(--accent-blue);
         }
 
+        .loading-indicator {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            white-space: nowrap;
+        }
+
+        .spinner.spinner-small {
+            width: 14px;
+            height: 14px;
+            border-width: 2px;
+            margin: 0;
+        }
+
         .header-controls select,
         .header-controls button {
             background: var(--bg-tertiary);
@@ -764,7 +780,11 @@ HTML_TEMPLATE = """
                 <input type="checkbox" id="toggle-security" checked>
                 Show security spans
             </label>
-            <button onclick="refreshTraces()">Refresh</button>
+            <div class="loading-indicator" id="loading-indicator" style="display: none;" aria-live="polite">
+                <div class="spinner spinner-small"></div>
+                <span>Querying App Insights…</span>
+            </div>
+            <button onclick="refreshTraces()" id="refresh-button">Refresh</button>
             <div class="status-indicator">
                 <div class="status-dot"></div>
                 <span id="status-text">Connected</span>
@@ -796,20 +816,77 @@ HTML_TEMPLATE = """
 
 	    <script>
 	        // State
+	        const FETCH_ALL_TIMESPAN = 'P7D';
+	        const FETCH_ALL_LIMIT = 500;
+	        const TIMESPAN_MS = {
+	            'PT15M': 15 * 60 * 1000,
+	            'PT1H': 60 * 60 * 1000,
+	            'PT6H': 6 * 60 * 60 * 1000,
+	            'PT24H': 24 * 60 * 60 * 1000,
+	            'P7D': 7 * 24 * 60 * 60 * 1000,
+	        };
+
+	        let allTraces = [];
 	        let traces = [];
 	        let selectedTrace = null;
 	        let pollInterval = null;
 	        let showSecuritySpans = true;
+	        let isLoading = false;
+	        let fetchInFlight = false;
+
+	        function setLoading(loading) {
+	            isLoading = Boolean(loading);
+	            const indicator = document.getElementById('loading-indicator');
+	            if (indicator) {
+	                indicator.style.display = isLoading ? 'flex' : 'none';
+	            }
+
+	            const refreshButton = document.getElementById('refresh-button');
+	            if (refreshButton) {
+	                refreshButton.disabled = isLoading;
+	            }
+	        }
+
+	        function applyUiFilters() {
+	            const storyFilter = document.getElementById('story-filter').value;
+	            const timespanFilter = document.getElementById('timespan-select').value;
+	            const windowMs = TIMESPAN_MS[timespanFilter] ?? TIMESPAN_MS['PT1H'];
+	            const cutoff = Date.now() - windowMs;
+
+	            const filtered = (allTraces || []).filter(t => {
+	                const storyId = t?.metadata?.story_id;
+	                const matchesStory = !storyFilter || String(storyId) === String(parseInt(storyFilter, 10));
+
+	                const start = Date.parse(t?.metadata?.start_time || t?.root_span?.start_time || '');
+	                const matchesTime = !Number.isFinite(start) ? true : start >= cutoff;
+
+	                return matchesStory && matchesTime;
+	            });
+
+	            filtered.sort((a, b) => {
+	                const aTime = Date.parse(a?.metadata?.start_time || '') || 0;
+	                const bTime = Date.parse(b?.metadata?.start_time || '') || 0;
+	                return bTime - aTime; // newest first
+	            });
+
+	            traces = filtered;
+
+	            if (selectedTrace && !traces.some(t => t.trace_id === selectedTrace.trace_id)) {
+	                selectedTrace = null;
+	            }
+	        }
 
         // API Functions
         async function fetchTraces() {
-            const timespan = document.getElementById('timespan-select').value;
-            const storyFilter = document.getElementById('story-filter').value;
-
-            let url = `/api/traces?timespan=${timespan}&limit=50`;
-            if (storyFilter) {
-                url += `&story_id=${storyFilter}`;
+            if (fetchInFlight) {
+                return;
             }
+            fetchInFlight = true;
+            setLoading(true);
+            renderTraceList();
+
+            const selectedTraceId = selectedTrace?.trace_id || null;
+            const url = `/api/traces?timespan=${FETCH_ALL_TIMESPAN}&limit=${FETCH_ALL_LIMIT}`;
 
             try {
                 const response = await fetch(url);
@@ -825,12 +902,19 @@ HTML_TEMPLATE = """
                     throw new Error(data.error);
                 }
 
-                traces = data.traces || [];
+                allTraces = data.traces || [];
+                selectedTrace = selectedTraceId ? allTraces.find(t => t.trace_id === selectedTraceId) : null;
+
+                applyUiFilters();
                 renderTraceList();
+                renderTraceDetails();
                 updateStatus('Connected', true);
             } catch (error) {
                 console.error('Failed to fetch traces:', error);
                 updateStatus('Error: ' + error.message, false);
+            } finally {
+                fetchInFlight = false;
+                setLoading(false);
             }
         }
 
@@ -872,6 +956,16 @@ HTML_TEMPLATE = """
         // Render Functions
         function renderTraceList() {
             const container = document.getElementById('trace-list');
+
+            if (isLoading && (!allTraces || allTraces.length === 0)) {
+                container.innerHTML = `
+                    <div class="loading">
+                        <div class="spinner"></div>
+                        Loading traces...
+                    </div>
+                `;
+                return;
+            }
 
             if (traces.length === 0) {
                 container.innerHTML = `
@@ -1371,8 +1465,16 @@ HTML_TEMPLATE = """
         }
 
 	        // Event listeners
-	        document.getElementById('timespan-select').addEventListener('change', fetchTraces);
-	        document.getElementById('story-filter').addEventListener('change', fetchTraces);
+	        document.getElementById('timespan-select').addEventListener('change', () => {
+	            applyUiFilters();
+	            renderTraceList();
+	            renderTraceDetails();
+	        });
+	        document.getElementById('story-filter').addEventListener('change', () => {
+	            applyUiFilters();
+	            renderTraceList();
+	            renderTraceDetails();
+	        });
 	        document.getElementById('toggle-security').addEventListener('change', (event) => {
 	            showSecuritySpans = Boolean(event.target.checked);
 	            try { localStorage.setItem('otel_demo_show_security_spans', String(showSecuritySpans)); } catch (e) {}
