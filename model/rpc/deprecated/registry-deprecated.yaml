@@ -284,3 +284,39 @@ groups:
           reason: uncategorized
           note: 'Value should be included in `rpc.method` which is expected
             to be a fully-qualified name.'
+      - id: rpc.message.type
+        type:
+          members:
+            - id: sent
+              value: "SENT"
+              stability: development
+            - id: received
+              value: "RECEIVED"
+              stability: development
+        stability: development
+        brief: "Whether this is a received or sent message."
+        deprecated:
+          reason: obsoleted
+          note: Deprecated, no replacement at this time.
+      - id: rpc.message.id
+        type: int
+        stability: development
+        brief: "MUST be calculated as two different counters starting from `1` one for sent messages and one for received message."
+        note: "This way we guarantee that the values will be consistent between different implementations."
+        deprecated:
+          reason: obsoleted
+          note: Deprecated, no replacement at this time.
+      - id: rpc.message.compressed_size
+        type: int
+        stability: development
+        brief: "Compressed size of the message in bytes."
+        deprecated:
+          reason: obsoleted
+          note: Deprecated, no replacement at this time.
+      - id: rpc.message.uncompressed_size
+        type: int
+        stability: development
+        brief: "Uncompressed size of the message in bytes."
+        deprecated:
+          reason: obsoleted
+          note: Deprecated, no replacement at this time.
