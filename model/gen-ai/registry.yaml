@@ -233,7 +233,19 @@ groups:
         type: string
         brief: Name of the tool utilized by the agent.
         examples: ["Flights"]
+        +## Tool call responses
+        +
+        +When a message part has `type: "tool_call_response"`, the message `role` MUST be `"tool"`.
+        +
+        +This ensures that:
+        +- Tool outputs are clearly distinguished from model-generated content
+        +- SDKs and collectors can reliably parse tool execution boundaries
+        +- Redaction and telemetry pipelines correctly classify tool results
+        +
+        +The `tool_call_response` part represents the result of a tool execution initiated by the model.
+        +It is not user input and not model output — it is tool output.
 
+        
       - id: gen_ai.tool.call.id
         stability: development
         type: string
@@ -517,12 +529,18 @@ groups:
                   ]
                 },
                 {
-                  "role": "tool",
-                  "parts": [
-                    {
-                      "type": "tool_call_response",
-                      "id": " call_VSPygqKTWdrhaFErNvMV18Yl",
-                      "result": "rainy, 57°F"
+                   {
+                     -  "role": "assistant",
+                     +  "role": "tool",
+                     "  parts": [
+                         {
+                           "type": "tool_call_response",
+                           "id": "call_VSPygKTWdrhaFErNvMV18Y1",
+                            "response": "rainy, 57°F"
+                          }
+                        ]
+                    }
+
                     }
                   ]
                 }
