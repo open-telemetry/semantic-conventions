@@ -6,4 +6,3 @@ subtext: >
   Per-message events within RPC streaming calls are of limited utility in their
   current form. They are recorded as span events (also being deprecated).
   There is no direct replacement at this time.
-

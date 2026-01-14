@@ -14,31 +14,31 @@ groups:
               value: "RECEIVED"
               stability: development
         stability: development
-        brief: "Deprecated, use `rpc.message.type` instead."
+        brief: "Deprecated, no replacement at this time."
         deprecated:
-          reason: renamed
-          renamed_to: rpc.message.type
+          reason: obsoleted
+          note: Deprecated, no replacement at this time.
       - id: message.id
         type: int
         stability: development
-        brief: "Deprecated, use `rpc.message.id` instead."
+        brief: "Deprecated, no replacement at this time."
         deprecated:
-          reason: renamed
-          renamed_to: rpc.message.id
+          reason: obsoleted
+          note: Deprecated, no replacement at this time.
       - id: message.compressed_size
         type: int
         stability: development
-        brief: "Deprecated, use `rpc.message.compressed_size` instead."
+        brief: "Deprecated, no replacement at this time."
         deprecated:
-          reason: renamed
-          renamed_to: rpc.message.compressed_size
+          reason: obsoleted
+          note: Deprecated, no replacement at this time.
       - id: message.uncompressed_size
         type: int
         stability: development
-        brief: "Deprecated, use `rpc.message.uncompressed_size` instead."
+        brief: "Deprecated, no replacement at this time."
         deprecated:
-          reason: renamed
-          renamed_to: rpc.message.uncompressed_size
+          reason: obsoleted
+          note: Deprecated, no replacement at this time.
       - id: rpc.connect_rpc.request.metadata
         type: template[string[]]
         stability: development
