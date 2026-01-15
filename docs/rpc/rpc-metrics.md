@@ -65,7 +65,7 @@ Below is a list of RPC server metric instruments.
 
 #### Metric: `rpc.server.call.duration`
 
-This metric is [recommended][MetricRecommended].
+This metric is [required][MetricRequired].
 
 This metric SHOULD be specified with
 [`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.50.0/specification/metrics/api.md#instrument-advisory-parameters)
@@ -425,7 +425,7 @@ Below is a list of RPC client metric instruments.
 
 #### Metric: `rpc.client.call.duration`
 
-This metric is [recommended][MetricRecommended].
+This metric is [required][MetricRequired].
 
 This metric SHOULD be specified with
 [`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.50.0/specification/metrics/api.md#instrument-advisory-parameters)
@@ -811,3 +811,4 @@ Specifications defined by maintainers of RPC systems:
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
 [MetricRecommended]: /docs/general/metric-requirement-level.md#recommended
+[MetricRequired]: /docs/general/metric-requirement-level.md#required
