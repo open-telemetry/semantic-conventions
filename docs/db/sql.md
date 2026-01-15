@@ -149,6 +149,11 @@ that support query parsing SHOULD generate a summary following
 [Generating query summary](/docs/db/database-spans.md#generating-a-summary-of-the-query)
 section.
 
+For batch operations, if the individual operations are known to have the same query summary
+then that query summary SHOULD be used prepended by `BATCH `,
+otherwise `db.query.summary` SHOULD be `BATCH` or some other database
+system specific term if more applicable.
+
 **[13] `db.query.text`:** Non-parameterized query text SHOULD NOT be collected by default unless there is sanitization that excludes sensitive data, e.g. by redacting all literal values present in the query text. See [Sanitization of `db.query.text`](/docs/db/database-spans.md#sanitization-of-dbquerytext).
 Parameterized query text SHOULD be collected by default (the query parameter values themselves are opt-in, see [`db.query.parameter.<key>`](/docs/registry/attributes/db.md)).
 
