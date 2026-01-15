@@ -156,13 +156,17 @@ References:
 
 ### Deprecated metrics
 
-The following metrics have been deprecated ([#2846](https://github.com/open-telemetry/semantic-conventions/pull/2846)):
+The following metrics have been deprecated with no replacement:
 
 <!-- prettier-ignore-start -->
-| Deprecated Metric              |
-| ------------------------------ |
-| `rpc.server.requests_per_rpc`  |
-| `rpc.server.responses_per_rpc` |
-| `rpc.client.requests_per_rpc`  |
-| `rpc.client.responses_per_rpc` |
+| Deprecated Metric              | PR                                                                        |
+| ------------------------------ | ------------------------------------------------------------------------- |
+| `rpc.server.requests_per_rpc`  | [#2846](https://github.com/open-telemetry/semantic-conventions/pull/2846) |
+| `rpc.server.responses_per_rpc` | [#2846](https://github.com/open-telemetry/semantic-conventions/pull/2846) |
+| `rpc.client.requests_per_rpc`  | [#2846](https://github.com/open-telemetry/semantic-conventions/pull/2846) |
+| `rpc.client.responses_per_rpc` | [#2846](https://github.com/open-telemetry/semantic-conventions/pull/2846) |
+| `rpc.server.request.size`      | [#3267](https://github.com/open-telemetry/semantic-conventions/pull/3267) |
+| `rpc.server.response.size`     | [#3267](https://github.com/open-telemetry/semantic-conventions/pull/3267) |
+| `rpc.client.request.size`      | [#3267](https://github.com/open-telemetry/semantic-conventions/pull/3267) |
+| `rpc.client.response.size`     | [#3267](https://github.com/open-telemetry/semantic-conventions/pull/3267) |
 <!-- prettier-ignore-end -->
