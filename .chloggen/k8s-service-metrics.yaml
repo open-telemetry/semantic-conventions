@@ -14,7 +14,7 @@ note: Add k8s.service entity with endpoint and load balancer ingress metrics
 
 # Mandatory: One or more tracking issues related to the change. You can use the PR number here if no issue exists.
 # The values here must be integers.
-issues: []
+issues: [3294]
 
 # (Optional) One or more lines of additional information to render under the primary note.
 # These lines will be padded with 2 spaces and then inserted directly into the document.
