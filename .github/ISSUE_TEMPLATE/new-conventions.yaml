@@ -81,6 +81,7 @@ body:
         - area:openai
         - area:openshift
         - area:opentracing
+        - area:oracle-cloud
         - area:os
         - area:otel
         - area:pprof
