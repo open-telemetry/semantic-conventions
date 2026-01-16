@@ -108,27 +108,3 @@ groups:
               brief: '[JSON-RPC](https://www.jsonrpc.org/)'
               stability: development
         stability: development
-      - id: rpc.message.type
-        type:
-          members:
-            - id: sent
-              value: "SENT"
-              stability: development
-            - id: received
-              value: "RECEIVED"
-              stability: development
-        stability: development
-        brief: "Whether this is a received or sent message."
-      - id: rpc.message.id
-        type: int
-        stability: development
-        brief: "MUST be calculated as two different counters starting from `1` one for sent messages and one for received message."
-        note: "This way we guarantee that the values will be consistent between different implementations."
-      - id: rpc.message.compressed_size
-        type: int
-        stability: development
-        brief: "Compressed size of the message in bytes."
-      - id: rpc.message.uncompressed_size
-        type: int
-        stability: development
-        brief: "Uncompressed size of the message in bytes."
