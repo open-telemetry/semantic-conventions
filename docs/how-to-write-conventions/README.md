@@ -199,7 +199,8 @@ Define spans when:
 - The operation has duration.
 
 Don't define spans for point-in-time occurrences - use events instead.
-Don't define spans for local-only operations, such as serialization or deserialization.
+Don't define spans for short operations that don't involve out-of-process calls,
+such as serialization or deserialization.
 
 For example, define spans for operations that involve one or more network calls.
 
@@ -223,9 +224,9 @@ suppressed to reduce duplication.
 > the duration of the same operation. For example, the `http.client.request.duration`
 > metric is recorded alongside the corresponding HTTP client span.
 
-A span definition should describe the operation it represents, including span kind,
-naming pattern, considerations for setting span status, and the list of
-attributes refined for that span definition. Let's cover each aspect.
+A span definition should describe the [operation it represents](#what-operation-does-this-span-represent),
+[naming pattern](#naming-pattern), considerations for setting span [status](#status),
+[span kind](#kind), and the list of applicable [attributes](#attributes).
 
 ##### What operation does this span represent
 
@@ -242,7 +243,8 @@ Define the scope and boundaries of the operation:
 ##### Naming pattern
 
 - Span names must have low cardinality and should provide a reasonable grouping
-  for that operation. See [Span name guidelines](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.52.0/specification/trace/api.md#span) for details.
+  for that operation. See [Span name guidelines](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.53.0/specification/trace/api.md#span)
+  for details.
 
 - Span names usually follow the `{action} {target}` pattern. For example, `send orders_queue`.
 
@@ -273,7 +275,7 @@ to leverage context they might have to provide a more accurate status.
 
 ##### Kind
 
-All span definitions MUST include a specific [span kind](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.52.0/specification/trace/api.md#spankind). One span definition can
+All span definitions MUST include a specific [span kind](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.53.0/specification/trace/api.md#spankind). One span definition can
 only mention one span kind.
 
 ##### Attributes
