@@ -191,11 +191,11 @@ database.
 
 #### Defining spans
 
-Spans describe the individual execution of a certain operation.
+Spans describe the individual execution of a certain operation within a trace.
 
 Define spans when:
 
-- The corresponding operation is important for observability.
+- The corresponding operation is significant for your observability needs.
 - The operation has duration.
 
 Don't define spans for point-in-time occurrences - use events instead.
@@ -223,7 +223,7 @@ suppressed to reduce duplication.
 > the duration of the same operation. For example, the `http.client.request.duration`
 > metric is recorded alongside the corresponding HTTP client span.
 
-A span definition should describe the operation it represents, include span kind,
+A span definition should describe the operation it represents, including span kind,
 naming pattern, considerations for setting span status, and the list of
 attributes refined for that span definition. Let's cover each aspect.
 
@@ -273,7 +273,7 @@ to leverage context they might have to provide a more accurate status.
 
 ##### Kind
 
-All span definitions MUST include a specific span kind. One span definition can
+All span definitions MUST include a specific [span kind](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.52.0/specification/trace/api.md#spankind). One span definition can
 only mention one span kind.
 
 ##### Attributes
