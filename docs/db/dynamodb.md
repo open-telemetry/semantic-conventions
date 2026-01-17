@@ -1,6 +1,6 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
 linkTitle: DynamoDB
---->
+---
 
 # Semantic conventions for AWS DynamoDB client operations
 

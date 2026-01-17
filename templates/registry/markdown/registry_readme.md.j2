@@ -1,6 +1,6 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
 weight: -2
---->
+---
 
 # Registry
 
