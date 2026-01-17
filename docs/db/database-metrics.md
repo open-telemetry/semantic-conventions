@@ -155,6 +155,11 @@ that support query parsing SHOULD generate a summary following
 [Generating query summary](/docs/db/database-spans.md#generating-a-summary-of-the-query)
 section.
 
+For batch operations, if the individual operations are known to have the same query summary
+then that query summary SHOULD be used prepended by `BATCH `,
+otherwise `db.query.summary` SHOULD be `BATCH` or some other database
+system specific term if more applicable.
+
 **[14] `db.stored_procedure.name`:** If operation applies to a specific stored procedure.
 
 **[15] `db.stored_procedure.name`:** It is RECOMMENDED to capture the value as provided by the application
@@ -340,6 +345,11 @@ instrumentation hooks or other means. If it is not available, instrumentations
 that support query parsing SHOULD generate a summary following
 [Generating query summary](/docs/db/database-spans.md#generating-a-summary-of-the-query)
 section.
+
+For batch operations, if the individual operations are known to have the same query summary
+then that query summary SHOULD be used prepended by `BATCH `,
+otherwise `db.query.summary` SHOULD be `BATCH` or some other database
+system specific term if more applicable.
 
 **[14] `network.peer.address`:** Semantic conventions for individual database systems SHOULD document whether `network.peer.*` attributes are applicable. Network peer address and port are useful when the application interacts with individual database nodes directly.
 If a database operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
