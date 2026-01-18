@@ -161,27 +161,6 @@ groups:
     display_name: System PSI (Pressure Stall Information) Attributes
     brief: "Describes Linux Pressure Stall Information attributes"
     attributes:
-      - id: system.linux.psi.resource
-        type:
-          members:
-            - id: cpu
-              value: 'cpu'
-              stability: development
-              brief: "CPU resource pressure"
-            - id: memory
-              value: 'memory'
-              stability: development
-              brief: "Memory resource pressure"
-            - id: io
-              value: 'io'
-              stability: development
-              brief: "I/O resource pressure"
-        stability: development
-        brief: "The resource experiencing pressure"
-        examples: ["cpu", "memory", "io"]
-        note: >
-          Linux PSI (Pressure Stall Information) measures resource pressure for CPU, memory, and I/O.
-          See [Linux kernel PSI documentation](https://docs.kernel.org/accounting/psi.html).
       - id: system.pressure.stall_type
         type:
           members:
