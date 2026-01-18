@@ -182,7 +182,7 @@ groups:
         note: >
           Linux PSI (Pressure Stall Information) measures resource pressure for CPU, memory, and I/O.
           See [Linux kernel PSI documentation](https://docs.kernel.org/accounting/psi.html).
-      - id: system.linux.psi.stall_type
+      - id: system.pressure.stall_type
         type:
           members:
             - id: some
