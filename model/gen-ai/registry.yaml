@@ -186,13 +186,13 @@ groups:
           Instrumentations SHOULD normalize provider responses so that `input_tokens` always reflects the
           total effective input tokens the model processed.
         examples: [100]
-      - id: gen_ai.usage.cache_read_input_tokens
+      - id: gen_ai.usage.cache_read.input_tokens
         stability: development
         type: int
         brief: The number of input tokens served from a provider-managed cache.
-        note: Subset of `gen_ai.usage.input_tokens`.
+        note: Regardless of the GenAI provider API, instrumentations SHOULD include all types of input tokens into `gen_ai.usage.input_tokens`.
         examples: [50]
-      - id: gen_ai.usage.cache_creation_input_tokens
+      - id: gen_ai.usage.cache_creation.input_tokens
         stability: development
         type: int
         brief: The number of input tokens written to a provider-managed cache.
