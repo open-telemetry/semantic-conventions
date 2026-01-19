@@ -56,8 +56,8 @@ This document defines the attributes used to describe telemetry in the context o
 | <a id="gen-ai-tool-description" href="#gen-ai-tool-description">`gen_ai.tool.description`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The tool description. | `Multiply two numbers` |
 | <a id="gen-ai-tool-name" href="#gen-ai-tool-name">`gen_ai.tool.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Name of the tool utilized by the agent. | `Flights` |
 | <a id="gen-ai-tool-type" href="#gen-ai-tool-type">`gen_ai.tool.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Type of the tool utilized by the agent [15] | `function`; `extension`; `datastore` |
-| <a id="gen-ai-usage-cache-creation-input-tokens" href="#gen-ai-usage-cache-creation-input-tokens">`gen_ai.usage.cache_creation_input_tokens`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The number of input tokens written to a provider-managed cache. [16] | `25` |
-| <a id="gen-ai-usage-cache-read-input-tokens" href="#gen-ai-usage-cache-read-input-tokens">`gen_ai.usage.cache_read_input_tokens`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The number of input tokens served from a provider-managed cache. [17] | `50` |
+| <a id="gen-ai-usage-cache-creation-input-tokens" href="#gen-ai-usage-cache-creation-input-tokens">`gen_ai.usage.cache_creation.input_tokens`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The number of input tokens written to a provider-managed cache. [16] | `25` |
+| <a id="gen-ai-usage-cache-read-input-tokens" href="#gen-ai-usage-cache-read-input-tokens">`gen_ai.usage.cache_read.input_tokens`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The number of input tokens served from a provider-managed cache. [17] | `50` |
 | <a id="gen-ai-usage-input-tokens" href="#gen-ai-usage-input-tokens">`gen_ai.usage.input_tokens`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The number of tokens used in the GenAI input (prompt). [18] | `100` |
 | <a id="gen-ai-usage-output-tokens" href="#gen-ai-usage-output-tokens">`gen_ai.usage.output_tokens`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The number of tokens used in the GenAI response (completion). | `180` |
 
@@ -195,9 +195,9 @@ Function: A tool executed on the client-side, where the agent generates paramete
   Client-side operations are actions taken on the user's end or within the client application.
 Datastore: A tool used by the agent to access and query structured or unstructured external data for retrieval-augmented tasks or knowledge updates.
 
-**[16] `gen_ai.usage.cache_creation_input_tokens`:** Subset of `gen_ai.usage.input_tokens`.
+**[16] `gen_ai.usage.cache_creation.input_tokens`:** The value is typically included in `gen_ai.usage.input_tokens`. Semantic conventions for individual GenAI providers that do not include cache creation tokens in `gen_ai.usage.input_tokens` SHOULD document this.
 
-**[17] `gen_ai.usage.cache_read_input_tokens`:** Subset of `gen_ai.usage.input_tokens`.
+**[17] `gen_ai.usage.cache_read.input_tokens`:** The value is typically included in `gen_ai.usage.input_tokens`. Semantic conventions for individual GenAI providers that do not include cache read tokens in `gen_ai.usage.input_tokens` SHOULD document this.
 
 **[18] `gen_ai.usage.input_tokens`:** This value MUST include cached tokens (cache reads and cache writes) when the provider exposes them.
 Instrumentations SHOULD normalize provider responses so that `input_tokens` always reflects the

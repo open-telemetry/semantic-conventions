@@ -84,8 +84,8 @@ model name is available and `{gen_ai.operation.name}` otherwise.
 | [`gen_ai.response.finish_reasons`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string[] | Array of reasons the model stopped generating tokens, corresponding to each generation received. | `["stop"]`; `["stop", "length"]` |
 | [`gen_ai.response.id`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The unique identifier for the completion. | `chatcmpl-123` |
 | [`gen_ai.response.model`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the model that generated the response. [9] | `gpt-4-0613` |
-| [`gen_ai.usage.cache_creation_input_tokens`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | int | The number of input tokens written to a provider-managed cache. [10] | `25` |
-| [`gen_ai.usage.cache_read_input_tokens`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | int | The number of input tokens served from a provider-managed cache. [11] | `50` |
+| [`gen_ai.usage.cache_creation.input_tokens`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | int | The number of input tokens written to a provider-managed cache. [10] | `25` |
+| [`gen_ai.usage.cache_read.input_tokens`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | int | The number of input tokens served from a provider-managed cache. [11] | `50` |
 | [`gen_ai.usage.input_tokens`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | int | The number of prompt tokens as reported in the usage prompt_tokens property of the response. [12] | `100` |
 | [`gen_ai.usage.output_tokens`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | int | The number of completion tokens as reported in the usage completion_tokens property of the response. | `180` |
 | [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | GenAI server address. [13] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
@@ -137,18 +137,13 @@ Additional output format details may be recorded in the future in the
 
 **[9] `gen_ai.response.model`:** If available. The name of the GenAI model that provided the response. If the model is supplied by a vendor, then the value must be the exact name of the model actually used. If the model is a fine-tuned custom model, the value should have a more specific name than the base model that's been fine-tuned.
 
-**[10] `gen_ai.usage.cache_creation_input_tokens`:** Subset of `gen_ai.usage.input_tokens`.
+**[10] `gen_ai.usage.cache_creation.input_tokens`:** The value is typically included in `gen_ai.usage.input_tokens`. Semantic conventions for individual GenAI providers that do not include cache creation tokens in `gen_ai.usage.input_tokens` SHOULD document this.
 
-**[11] `gen_ai.usage.cache_read_input_tokens`:** Subset of `gen_ai.usage.input_tokens`.
+**[11] `gen_ai.usage.cache_read.input_tokens`:** The value is typically included in `gen_ai.usage.input_tokens`. Semantic conventions for individual GenAI providers that do not include cache read tokens in `gen_ai.usage.input_tokens` SHOULD document this.
 
-**[12] `gen_ai.usage.input_tokens`:** When normalizing provider responses:
-
-- **OpenAI & Vertex AI**: Their `input_tokens` fields already include cached tokens.
-  Set `gen_ai.usage.input_tokens` directly from the provider and populate
-  `gen_ai.usage.cache_read_input_tokens` from their respective cached-token fields.
-
-- **Anthropic**: Their `input_tokens` excludes cached tokens. Compute:
-  `gen_ai.usage.input_tokens = input_tokens + cache_read_input_tokens + cache_creation_input_tokens`
+**[12] `gen_ai.usage.input_tokens`:** This value MUST include cached tokens (cache reads and cache writes) when the provider exposes them.
+Instrumentations SHOULD normalize provider responses so that `input_tokens` always reflects the
+total effective input tokens the model processed.
 
 **[13] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 

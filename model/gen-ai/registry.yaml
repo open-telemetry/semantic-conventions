@@ -190,13 +190,19 @@ groups:
         stability: development
         type: int
         brief: The number of input tokens served from a provider-managed cache.
-        note: Regardless of the GenAI provider API, instrumentations SHOULD include all types of input tokens into `gen_ai.usage.input_tokens`.
+        note: >
+          The value is typically included in `gen_ai.usage.input_tokens`.
+          Semantic conventions for individual GenAI providers that do not include
+          cache read tokens in `gen_ai.usage.input_tokens` SHOULD document this.
         examples: [50]
       - id: gen_ai.usage.cache_creation.input_tokens
         stability: development
         type: int
         brief: The number of input tokens written to a provider-managed cache.
-        note: Subset of `gen_ai.usage.input_tokens`.
+        note: >
+          The value is typically included in `gen_ai.usage.input_tokens`.
+          Semantic conventions for individual GenAI providers that do not include
+          cache creation tokens in `gen_ai.usage.input_tokens` SHOULD document this.
         examples: [25]
       - id: gen_ai.usage.output_tokens
         stability: development
