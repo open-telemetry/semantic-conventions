@@ -74,5 +74,5 @@ groups:
         stability: development
         deprecated:
           reason: renamed
-          renamed_to: error.message
+          renamed_to: feature_flag.error.message
         examples: ["Flag `header-color` expected type `string` but found type `number`"]
