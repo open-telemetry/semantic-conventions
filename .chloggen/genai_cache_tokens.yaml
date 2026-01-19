@@ -1,9 +1,9 @@
 change_type: enhancement
 component: gen-ai
-note: Add cache token attributes and normalization guidance for GenAI usage metrics
+note: Add cache token attributes and provider-specific normalization guidance for GenAI usage metrics
 issues: [1959]
 subtext: |
-  - Add `gen_ai.usage.cache_read_input_tokens` attribute for tokens served from provider cache
-  - Add `gen_ai.usage.cache_creation_input_tokens` attribute for tokens written to provider cache
-  - Clarify that `gen_ai.usage.input_tokens` MUST include cached tokens when provider exposes them
-  - Add normalization rules for OpenAI, Vertex AI, and Anthropic providers
+  - Add `gen_ai.usage.cache_read.input_tokens` attribute for tokens served from provider cache
+  - Add `gen_ai.usage.cache_creation.input_tokens` attribute for tokens written to provider cache
+  - Add provider-specific token handling notes to OpenAI span
+  - Add Anthropic span with computation guidance for `gen_ai.usage.input_tokens`
