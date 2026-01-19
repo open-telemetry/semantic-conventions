@@ -1,0 +1,6 @@
+change_type: enhancement
+component: exception
+note: >
+  Improve exception (as log) definition: add guidance on when to use logs and
+  events, and how to set event name and severity.
+issues: [TODO]
