@@ -983,16 +983,20 @@ groups:
       - ref: db.namespace
         sampling_relevant: true
         brief: >
-          The database associated with the connection, qualified by the instance name,
-          database name and service name.
+          The unique identifier of the database associated with the connection.
         note: |
-          `db.namespace` SHOULD be set to the combination of instance name, database name and
-          service name following the `{service_name}|{database_name}|{instance_name}` pattern.
-          Any missing components (and their associated separators) SHOULD be omitted.
-
-          For CDB architecture, database name would be pdb name. For Non-CDB, it would be
-          `DB_NAME` parameter.
-        examples: ["ORCL1\\|PDB1\\|db_high.adb.oraclecloud.com", "ORCL1\\|DB1\\|db_low.adb.oraclecloud.com", "ORCL1\\|DB1\\|order-processing-service"]
+          Use the value of `DB_UNIQUE_NAME` parameter. This defines the database's globally unique identifier and must remain unique across the enterprise.
+        examples: ["ORCL1", "ORCL2", "ORCL3"]
+      - ref: oracle.db.service
+        sampling_relevant: true
+      - ref: oracle.db.instance.name
+        sampling_relevant: true
+      - ref: oracle.db.pdb
+        sampling_relevant: true
+      - ref: oracle.db.name
+        sampling_relevant: true
+      - ref: oracle.db.domain
+        sampling_relevant: true
       - ref: db.response.status_code
         brief: >
           [Oracle Database error number](https://docs.oracle.com/en/error-help/db/) recorded as a string.
