@@ -105,6 +105,7 @@
 /docs/gen-ai/                     @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-genai-approvers
 /model/gen-ai/                    @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-genai-approvers
 /model/openai/                    @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-genai-approvers
+/model/mcp/                       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-genai-approvers
 
 # Security semantic conventions
 /docs/dns/                        @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-security-approvers
@@ -176,3 +177,7 @@
 /docs/rpc                         @open-telemetry/semconv-rpc-approvers @open-telemetry/specs-semconv-approvers
 /model/rpc                        @open-telemetry/semconv-rpc-approvers @open-telemetry/specs-semconv-approvers
 /model/jsonrpc                    @open-telemetry/semconv-rpc-approvers @open-telemetry/specs-semconv-approvers
+
+# Oracle Cloud Infrastructure semantic conventions
+/docs/oracle-cloud                @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-oracle-cloud-approvers
+/model/oracle-cloud               @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-oracle-cloud-approvers

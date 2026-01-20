@@ -60,6 +60,7 @@ body:
         - area:k8s
         - area:log
         - area:mainframe
+        - area:mcp
         - area:messaging
         - area:network
         - area:nfs
@@ -69,10 +70,10 @@ body:
         - area:openai
         - area:openshift
         - area:opentracing
+        - area:oracle
         - area:oracle-cloud
         - area:os
         - area:otel
-        - area:peer
         - area:pprof
         - area:process
         - area:profile
