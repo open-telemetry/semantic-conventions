@@ -606,4 +606,4 @@ groups:
         brief: Human-readable name of the GenAI workflow provided by the application.
         examples: [ "multi_agent_rag", "customer_support_pipeline" ]
         note: |
-          Tbis attribute can be populated in different frameworks eg: name of the trace in OpenAI agents OR name of the first chain in LangChain OR name of the crew in CrewAI.
+          This attribute can be populated in different frameworks eg: name of the trace in OpenAI agents OR name of the first chain in LangChain OR name of the crew in CrewAI.
