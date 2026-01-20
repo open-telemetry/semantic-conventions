@@ -420,12 +420,8 @@ They are likely to be siblings if there is an encompassing span.
         "type": "tool_call",
         "id": "call_VSPygqKTWdrhaFErNvMV18Yl",
         "name": "get_weather",
-        "tool_call": {
-          "type": "function",
-          "name": "get_weather",
-          "arguments": {
-            "location": "Paris"
-          }
+        "arguments": {
+          "location": "Paris"
         }
       }
     ],
@@ -483,12 +479,8 @@ If tool call is [instrumented according to execute-tool span definition](/docs/g
         "type": "tool_call",
         "id": "call_VSPygqKTWdrhaFErNvMV18Yl",
         "name": "get_weather",
-        "tool_call": {
-          "type": "function",
-          "name": "get_weather",
-          "arguments": {
-            "location": "Paris"
-          }
+        "arguments": {
+          "location": "Paris"
         }
       }
     ]
@@ -498,11 +490,8 @@ If tool call is [instrumented according to execute-tool span definition](/docs/g
     "parts": [
       {
         "type": "tool_call_response",
-        "id": " call_VSPygqKTWdrhaFErNvMV18Yl",
-        "response": {
-          "type": "function",
-          "content": "rainy, 57°F"
-        }
+        "id": "call_VSPygqKTWdrhaFErNvMV18Yl",
+        "response": "rainy, 57°F"
       }
     ]
   }
