@@ -13,7 +13,7 @@ groups:
         examples: ['opentelemetry-autoconf']
       - id: container.id
         type: string
-        stability: development
+        stability: alpha
         brief: >
           Container ID. Usually a UUID, as for example used to
           [identify Docker containers](https://docs.docker.com/engine/containers/run/#container-identification).
@@ -41,13 +41,13 @@ groups:
         examples: ['docker://19.3.1 - CRI: 1.22.0']
       - id: container.image.name
         type: string
-        stability: development
+        stability: alpha
         brief: >
           Name of the image the container was built on.
         examples: ['gcr.io/opentelemetry/operator']
       - id: container.image.tags
         type: string[]
-        stability: development
+        stability: alpha
         brief: >
           Container image tags. An example can be found in
           [Docker Image Inspect](https://docs.docker.com/reference/api/engine/version/v1.52/#tag/Image/operation/ImageInspect).
@@ -74,7 +74,7 @@ groups:
         examples: ['sha256:19c92d0a00d1b66d897bceaa7319bee0dd38a10a851c60bcec9474aa3f01e50f']
       - id: container.image.repo_digests
         type: string[]
-        stability: development
+        stability: alpha
         brief: >
           Repo digests of the container image as provided by the container runtime.
         note: >
