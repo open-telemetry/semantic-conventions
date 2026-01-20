@@ -401,9 +401,9 @@ groups:
       - ref: aws.bedrock.knowledge_base.id
         requirement_level: recommended
 
-  - id: span.gen_ai.invoke_workflow.client
+  - id: span.gen_ai.invoke_workflow.internal
     type: span
-    span_kind: client
+    span_kind: internal
     stability: development
     brief: >
       Represents a workflow orchestrating multiple agents with predefined code paths.
