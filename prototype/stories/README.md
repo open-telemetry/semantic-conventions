@@ -3,7 +3,9 @@
 Runnable story scenarios that correspond to a subset of `prototype_story.plan.md`.
 Each scenario emits `apply_guardrail` spans + `gen_ai.security.finding` events and is designed to be easy to explore in trace backends.
 
-Currently implemented stories: 4, 5, 7, 10, 11.
+**Currently implemented stories:** 4, 5, 7, 10, 11.
+
+**Framework adapters:** LangChain, LangGraph, Agno, Google ADK, Semantic Kernel, MCP.
 
 ## Key files
 
@@ -12,6 +14,13 @@ Currently implemented stories: 4, 5, 7, 10, 11.
 - Trace viewer UI: [`prototype/stories/trace_viewer.py`](trace_viewer.py)
 - App Insights retriever: [`prototype/stories/trace_retriever.py`](trace_retriever.py)
 - Trace coverage map: [`prototype/stories/TRACE_COVERAGE.md`](TRACE_COVERAGE.md)
+- Framework adapters: [`prototype/frameworks/`](../frameworks/)
+  - LangChain: [`frameworks/langchain/guardian_adapter.py`](../frameworks/langchain/guardian_adapter.py)
+  - LangGraph: [`frameworks/langgraph/guardian_adapter.py`](../frameworks/langgraph/guardian_adapter.py)
+  - Agno: [`frameworks/agno/guardian_adapter.py`](../frameworks/agno/guardian_adapter.py)
+  - Google ADK: [`frameworks/adk/guardian_adapter.py`](../frameworks/adk/guardian_adapter.py)
+  - Semantic Kernel: [`frameworks/semantic_kernel/guardian_adapter.py`](../frameworks/semantic_kernel/guardian_adapter.py)
+  - MCP: [`frameworks/mcp/guardian_adapter.py`](../frameworks/mcp/guardian_adapter.py)
 - Stories:
   - [`prototype/stories/story_4_enterprise_rag_access_control.py`](story_4_enterprise_rag_access_control.py)
   - [`prototype/stories/story_5_multi_tenant.py`](story_5_multi_tenant.py)
@@ -580,4 +589,160 @@ SELECT gen_ai.agent.id,
 FROM spans
 WHERE gen_ai.security.target.type = 'tool_call'
   AND span.name LIKE '%Delegation%'
+```
+
+---
+
+## Framework Adapters
+
+The `prototype/frameworks/` directory provides guardian adapters for popular agent frameworks. Each adapter:
+
+1. Creates `apply_guardrail` spans as children of framework operation spans
+2. Records `GuardianResult` and `SecurityFinding` attributes/events
+3. Honors opt-in content capture via `OTEL_DEMO_CAPTURE_GUARDIAN_CONTENT`
+4. Maps framework-specific IDs to `gen_ai.agent.id` and `gen_ai.conversation.id`
+
+### Quick Reference
+
+| Framework | Context Class | Key Methods |
+|-----------|---------------|-------------|
+| **LangChain** | `LangChainContext` | `guard_llm_input()`, `guard_llm_output()`, `validate_tools()` |
+| **LangGraph** | `LangGraphContext` | `create_input_guard_node()`, `create_output_guard_node()`, `create_tool_guard_wrapper()` |
+| **Agno** | `AgnoContext` | `create_pre_model_hook()`, `create_post_model_hook()`, `create_tool_middleware()` |
+| **Google ADK** | `ADKContext` | `create_model_middleware()`, `guard_inter_agent_message()`, `handle_guardian_error()` |
+| **Semantic Kernel** | `SemanticKernelContext` | `create_function_filter()`, `create_prompt_render_filter()`, `guard_plugin_function()` |
+| **MCP** | `MCPContext` | `guard_tool_call_mcp()`, `guard_resource_read()`, `guard_sampling_request()` |
+
+### LangChain Integration
+
+```python
+from frameworks.langchain import LangChainGuardianAdapter, LangChainContext
+from langchain.callbacks.base import BaseCallbackHandler
+
+adapter = LangChainGuardianAdapter.create_default()
+
+class GuardianCallback(BaseCallbackHandler):
+    def on_llm_start(self, serialized, prompts, *, run_id, **kwargs):
+        ctx = LangChainContext(run_id=run_id, chain_id=serialized.get("id"))
+        for prompt in prompts:
+            result = adapter.guard_llm_input(prompt, ctx)
+            if result.decision_type == "deny":
+                raise ValueError(f"Blocked: {result.decision_reason}")
+
+    def on_tool_start(self, serialized, input_str, *, run_id, **kwargs):
+        ctx = LangChainContext(run_id=run_id)
+        tool_name = serialized.get("name", "unknown")
+        result = adapter.guard_tool_call(tool_name, {"input": input_str}, ctx)
+        if result.decision_type == "deny":
+            raise ValueError(f"Tool blocked: {result.decision_reason}")
+```
+
+### LangGraph Integration
+
+```python
+from langgraph.graph import StateGraph
+from frameworks.langgraph import LangGraphGuardianAdapter
+
+adapter = LangGraphGuardianAdapter.create_default()
+
+# Create guard nodes
+input_guard = adapter.create_input_guard_node(
+    message_key="messages",
+    thread_id_key="thread_id",
+    graph_id="my_agent"
+)
+output_guard = adapter.create_output_guard_node(
+    response_key="response",
+    thread_id_key="thread_id",
+    graph_id="my_agent"
+)
+
+# Build graph with guards
+graph = StateGraph(State)
+graph.add_node("input_guard", input_guard)
+graph.add_node("model", model_node)
+graph.add_node("output_guard", output_guard)
+graph.add_edge("input_guard", "model")
+graph.add_edge("model", "output_guard")
+```
+
+### MCP Server Integration
+
+```python
+from mcp import Server
+from frameworks.mcp import MCPGuardianAdapter, MCPContext
+
+adapter = MCPGuardianAdapter.create_default(server_name="my-server")
+server = Server("my-server")
+
+@server.call_tool()
+async def call_tool(name: str, arguments: dict):
+    ctx = MCPContext(
+        server_name="my-server",
+        session_id=get_session_id(),
+        request_id=get_request_id(),
+    )
+    result = adapter.guard_tool_call_mcp(name, arguments, ctx)
+    if result.decision_type == "deny":
+        return {"error": result.decision_reason}
+    # Execute tool...
+
+@server.read_resource()
+async def read_resource(uri: str):
+    ctx = MCPContext(server_name="my-server")
+    result = adapter.guard_resource_read(uri, ctx)
+    if result.decision_type == "deny":
+        return {"error": "Access denied"}
+    # Read resource...
+```
+
+### Semantic Kernel Integration
+
+```python
+from semantic_kernel import Kernel
+from semantic_kernel.filters import FilterTypes
+from frameworks.semantic_kernel import SemanticKernelGuardianAdapter, SemanticKernelContext
+
+adapter = SemanticKernelGuardianAdapter.create_default()
+kernel = Kernel()
+
+@kernel.filter(FilterTypes.FUNCTION_INVOCATION)
+async def guard_function(context, next):
+    sk_ctx = SemanticKernelContext(
+        chat_id=context.arguments.get("chat_id"),
+        plugin_name=context.function.plugin_name,
+        function_name=context.function.name,
+    )
+
+    # Guard input
+    result = adapter.guard_llm_input(str(context.arguments), sk_ctx)
+    if result.decision_type == "deny":
+        raise SecurityError(result.decision_reason)
+
+    await next(context)
+
+    # Guard output
+    result = adapter.guard_llm_output(str(context.result), sk_ctx)
+    if result.decision_type == "modify":
+        context.result = result.modified_content
+```
+
+### Testing Framework Adapters
+
+Each adapter includes a `__main__` block for standalone testing:
+
+```bash
+cd prototype
+
+# Test LangChain adapter
+python -m frameworks.langchain.guardian_adapter
+
+# Test LangGraph adapter
+python -m frameworks.langgraph.guardian_adapter
+
+# Test MCP adapter
+python -m frameworks.mcp.guardian_adapter
+
+# Test all adapters
+for f in frameworks/*/guardian_adapter.py; do python "$f"; done
 ```

@@ -194,3 +194,96 @@ Scenarios:
 - `story_11.fail_closed`
   - `apply_guardrail External Guardian Service` → `error.type=GuardianTimeoutError`, `decision=deny` (+ findings)
   - Viewer focus: compare fail-open vs fail-closed (same error, different downstream enforcement)
+
+---
+
+## Framework Adapters
+
+The `prototype/frameworks/` directory contains guardian adapters for popular agent frameworks. Each adapter maps framework-specific concepts to the GenAI Security semantic conventions.
+
+### Adapter Coverage Matrix
+
+| Framework | Location | Hook Points | Target Types Covered |
+|-----------|----------|-------------|---------------------|
+| **LangChain** | `frameworks/langchain/` | LLM callbacks, tool callbacks | `llm_input`, `llm_output`, `tool_call`, `tool_definition` |
+| **LangGraph** | `frameworks/langgraph/` | Guard nodes, tool wrappers, memory nodes | `llm_input`, `llm_output`, `tool_call`, `memory_store`, `memory_retrieve` |
+| **Agno** | `frameworks/agno/` | Pre/post model hooks, middleware | `llm_input`, `llm_output`, `tool_call`, `tool_definition`, `memory_store`, `memory_retrieve` |
+| **Google ADK** | `frameworks/adk/` | Model middleware, tool executor | `llm_input`, `llm_output`, `tool_call`, `tool_definition`, `message` |
+| **Semantic Kernel** | `frameworks/semantic_kernel/` | Function filters, plugin interception, memory connectors | `llm_input`, `llm_output`, `tool_call`, `tool_definition`, `memory_store`, `memory_retrieve` |
+| **MCP** | `frameworks/mcp/` | Tool/resource/prompt interception, sampling | `llm_input`, `llm_output`, `tool_call`, `tool_definition`, `knowledge_query`, `knowledge_result` |
+
+### Framework ID Mapping
+
+Each adapter maps framework-specific identifiers to semantic convention attributes:
+
+| Framework | Agent ID Source | Conversation ID Source |
+|-----------|-----------------|------------------------|
+| LangChain | `chain_id`, `agent_executor_id` | `run_id` |
+| LangGraph | `graph_id.node_id` | `thread_id` |
+| Agno | `agent_id` | `session_id`, `run_id` |
+| Google ADK | `agent_id` | `session_id` |
+| Semantic Kernel | `kernel_id` | `chat_id` |
+| MCP | `server_name` | `session_id` |
+
+### Using Framework Adapters
+
+```python
+# LangChain example
+from frameworks.langchain import LangChainGuardianAdapter, LangChainContext
+
+adapter = LangChainGuardianAdapter.create_default()
+ctx = LangChainContext(run_id="run_123", chain_id="my_chain")
+result = adapter.guard_llm_input("User message", ctx)
+
+# LangGraph example
+from frameworks.langgraph import LangGraphGuardianAdapter, LangGraphContext
+
+adapter = LangGraphGuardianAdapter.create_default()
+input_guard = adapter.create_input_guard_node(graph_id="my_graph")
+output_guard = adapter.create_output_guard_node(graph_id="my_graph")
+
+# MCP example
+from frameworks.mcp import MCPGuardianAdapter, MCPContext
+
+adapter = MCPGuardianAdapter.create_default(server_name="my-server")
+ctx = MCPContext(server_name="my-server", session_id="sess_123")
+result = adapter.guard_tool_call_mcp("calculator", {"expr": "2+2"}, ctx)
+```
+
+### Framework Adapter Architecture
+
+```
+┌─────────────────────────────────────────────────────────────────────┐
+│                        BaseGuardianAdapter                          │
+│  ─────────────────────────────────────────────────────────────────  │
+│  - guard_llm_input()       - guard_memory_store()                   │
+│  - guard_llm_output()      - guard_memory_retrieve()                │
+│  - guard_tool_call()       - guard_knowledge_query()                │
+│  - guard_tool_definition() - guard_knowledge_result()               │
+│  - guard_message()                                                  │
+└────────────────────────────┬────────────────────────────────────────┘
+                             │ extends
+        ┌────────────────────┼────────────────────┐
+        │                    │                    │
+        ▼                    ▼                    ▼
+┌───────────────┐  ┌───────────────┐  ┌───────────────┐
+│  LangChain    │  │  LangGraph    │  │  Semantic     │
+│  Adapter      │  │  Adapter      │  │  Kernel       │
+├───────────────┤  ├───────────────┤  │  Adapter      │
+│ - Callbacks   │  │ - Guard nodes │  ├───────────────┤
+│ - Run IDs     │  │ - Thread IDs  │  │ - Filters     │
+│ - Tool hooks  │  │ - Tool wrap   │  │ - Plugin IDs  │
+└───────────────┘  └───────────────┘  └───────────────┘
+        │                    │                    │
+        └────────────────────┼────────────────────┘
+                             │
+                             ▼
+              ┌──────────────────────────┐
+              │   otel_guardian_utils    │
+              │  ──────────────────────  │
+              │  - GuardianTracer        │
+              │  - GuardianConfig        │
+              │  - GuardianResult        │
+              │  - SecurityFinding       │
+              └──────────────────────────┘
+```
