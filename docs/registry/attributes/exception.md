@@ -29,7 +29,8 @@ remove sensitive information.
 
 > [!WARNING]
 >
-> This attribute contains sensitive (PII, secrets) information
+> This attribute may contain sensitive information like PII or
+> authentication secrets.
 
 ## Deprecated Exception Attributes
 

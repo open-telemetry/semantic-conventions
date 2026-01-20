@@ -32,7 +32,8 @@ groups:
 
           > [!WARNING]
           >
-          > This attribute contains sensitive (PII, secrets) information
+          > This attribute may contain sensitive information like PII or
+          > authentication secrets.
 
       - id: exception.stacktrace
         type: string
