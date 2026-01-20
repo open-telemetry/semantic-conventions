@@ -79,6 +79,7 @@ body:
         - area:openshift
         - area:opentracing
         - area:oracle
+        - area:oracle-cloud
         - area:os
         - area:otel
         - area:pprof

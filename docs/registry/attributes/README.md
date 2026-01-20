@@ -89,6 +89,7 @@ Currently, the following namespaces exist:
 - [OpenAI](openai.md)
 - [Openshift](openshift.md)
 - [OpenTracing](opentracing.md)
+- [Oracle Cloud](oracle-cloud.md)
 - [OracleDB](oracledb.md)
 - [OS](os.md)
 - [OTel](otel.md)
