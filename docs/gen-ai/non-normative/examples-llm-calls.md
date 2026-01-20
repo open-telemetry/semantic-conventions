@@ -679,13 +679,10 @@ Span:
 
 ## Tool calls (built-in)
 
-> [!NOTE]
->
-> The format of `gen_ai.output.messages` is not yet specified for built-in tool calls (check [#2585](https://github.com/open-telemetry/semantic-conventions/issues/2585)
-> for the details).
-
 This is an example of telemetry generated for a responses call with `code_interpreter` tool that results in
-a model provider executing a tool and returning response along with tool call details.
+a model provider executing a tool and returning response along with tool call details. Built-in tools use
+`server_tool_call` and `server_tool_call_response` part types with polymorphic content to separate them from
+client-side function tool calls.
 
 ```py
 response = client.responses.create(   
@@ -767,19 +764,19 @@ sequenceDiagram
     "role": "assistant",
     "parts": [
       {
-        "type": "tool_call",
+        "type": "server_tool_call",
         "id": "call_VSPygqKTWdrhaFErNvMV18Yl",
         "name": "code_interpreter",
-        "tool_call": {
+        "server_tool_call": {
           "type": "code_interpreter",
           "code": "import random\n\n# Generate a random number\nrandom_number = random.randint(1, 100)\n\n# Execute some operation with the random number (e.g., squaring it)\nresult = random_number ** 2\n\nrandom_number, result",
           "container_id": "cntr_690bdbfed8688190884efd4c7ae6435b0db1f006442e8941"
         }
       },
       {
-        "type": "tool_call_response",
+        "type": "server_tool_call_response",
         "id": "call_VSPygqKTWdrhaFErNvMV18Yl",
-        "response": {
+        "server_tool_call_response": {
           "type": "code_interpreter",
           "outputs": [
             {
@@ -795,7 +792,7 @@ sequenceDiagram
       }
     ],
     "finish_reason": "stop"
-  } 
+  }
 ]
 ```
 

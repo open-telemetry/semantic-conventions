@@ -49,39 +49,6 @@
             "title": "BlobPart",
             "type": "object"
         },
-        "CodeInterpreterToolCall": {
-            "additionalProperties": false,
-            "description": "Code interpreter tool call.",
-            "properties": {
-                "type": {
-                    "const": "code_interpreter",
-                    "description": "Type identifier for code interpreter calls.",
-                    "title": "Type",
-                    "type": "string"
-                },
-                "code": {
-                    "description": "The Python code to execute.",
-                    "title": "Code",
-                    "type": "string"
-                },
-                "container_id": {
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "default": null,
-                    "description": "Container identifier for code execution environment.",
-                    "title": "Container Id"
-                }
-            },
-            "required": ["type", "code"],
-            "title": "CodeInterpreterToolCall",
-            "type": "object"
-        },
         "FilePart": {
             "additionalProperties": true,
             "description": "Represents an external referenced file sent to the model by file id",
@@ -143,31 +110,6 @@
             "title": "FinishReason",
             "type": "string"
         },
-        "FunctionToolCall": {
-            "additionalProperties": false,
-            "description": "Function tool call.",
-            "properties": {
-                "type": {
-                    "const": "function",
-                    "description": "Type identifier for function calls.",
-                    "title": "Type",
-                    "type": "string"
-                },
-                "name": {
-                    "description": "Name of the function.",
-                    "title": "Name",
-                    "type": "string"
-                },
-                "arguments": {
-                    "default": null,
-                    "description": "Arguments for the function call.",
-                    "title": "Arguments"
-                }
-            },
-            "required": ["type", "name"],
-            "title": "FunctionToolCall",
-            "type": "object"
-        },
         "GenericPart": {
             "additionalProperties": true,
             "description": "Represents an arbitrary message part with any type and properties.\nThis allows for extensibility with custom message part types.",
@@ -182,6 +124,38 @@
                 "type"
             ],
             "title": "GenericPart",
+            "type": "object"
+        },
+        "GenericServerToolCall": {
+            "additionalProperties": true,
+            "description": "Represents an arbitrary server tool call with any type and properties.\nThis allows for extensibility with custom server tool types.",
+            "properties": {
+                "type": {
+                    "description": "Type identifier for the server tool call.",
+                    "title": "Type",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "type"
+            ],
+            "title": "GenericServerToolCall",
+            "type": "object"
+        },
+        "GenericServerToolCallResponse": {
+            "additionalProperties": true,
+            "description": "Represents an arbitrary server tool call response with any type and properties.\nThis allows for extensibility with custom server tool response types.",
+            "properties": {
+                "type": {
+                    "description": "Type identifier for the server tool call response.",
+                    "title": "Type",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "type"
+            ],
+            "title": "GenericServerToolCallResponse",
             "type": "object"
         },
         "Modality": {
@@ -221,6 +195,12 @@
                             },
                             {
                                 "$ref": "#/$defs/ToolCallResponsePart"
+                            },
+                            {
+                                "$ref": "#/$defs/ServerToolCallPart"
+                            },
+                            {
+                                "$ref": "#/$defs/ServerToolCallResponsePart"
                             },
                             {
                                 "$ref": "#/$defs/BlobPart"
@@ -360,23 +340,15 @@
                     "title": "Name",
                     "type": "string"
                 },
-                "tool_call": {
-                    "description": "Polymorphic tool call details with type discriminator.",
-                    "oneOf": [
-                        {
-                            "$ref": "#/$defs/FunctionToolCall"
-                        },
-                        {
-                            "$ref": "#/$defs/CodeInterpreterToolCall"
-                        }
-                    ],
-                    "title": "Tool Call"
+                "arguments": {
+                    "default": null,
+                    "description": "Arguments for the tool call.",
+                    "title": "Arguments"
                 }
             },
             "required": [
                 "type",
-                "name",
-                "tool_call"
+                "name"
             ],
             "title": "ToolCallRequestPart",
             "type": "object"
@@ -414,6 +386,92 @@
                 "response"
             ],
             "title": "ToolCallResponsePart",
+            "type": "object"
+        },
+        "ServerToolCallPart": {
+            "additionalProperties": true,
+            "description": "Represents a server-side tool call invocation. Server tool calls are executed by the model provider on the server side rather than by the client application. Provider-specific tools (e.g., code_interpreter, web_search) can have well-defined schemas defined by the respective providers.",
+            "properties": {
+                "type": {
+                    "const": "server_tool_call",
+                    "description": "The type of the content captured in this part.",
+                    "title": "Type",
+                    "type": "string"
+                },
+                "id": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "Unique identifier for the server tool call.",
+                    "title": "Id"
+                },
+                "name": {
+                    "description": "Name of the server tool.",
+                    "title": "Name",
+                    "type": "string"
+                },
+                "server_tool_call": {
+                    "description": "Polymorphic server tool call details with type discriminator. The structure varies based on the tool type.",
+                    "oneOf": [
+                        {
+                            "$ref": "#/$defs/GenericServerToolCall"
+                        }
+                    ],
+                    "title": "Server Tool Call"
+                }
+            },
+            "required": [
+                "type",
+                "name",
+                "server_tool_call"
+            ],
+            "title": "ServerToolCallPart",
+            "type": "object"
+        },
+        "ServerToolCallResponsePart": {
+            "additionalProperties": true,
+            "description": "Represents a server-side tool call response. Contains the outcome and details of a server tool execution. Provider-specific tools (e.g., code_interpreter, web_search) can have well-defined response schemas defined by the respective providers.",
+            "properties": {
+                "type": {
+                    "const": "server_tool_call_response",
+                    "description": "The type of the content captured in this part.",
+                    "title": "Type",
+                    "type": "string"
+                },
+                "id": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "Unique server tool call identifier matching the original call.",
+                    "title": "Id"
+                },
+                "server_tool_call_response": {
+                    "description": "Polymorphic server tool call response with type discriminator. The structure varies based on the tool type.",
+                    "oneOf": [
+                        {
+                            "$ref": "#/$defs/GenericServerToolCallResponse"
+                        }
+                    ],
+                    "title": "Server Tool Call Response"
+                }
+            },
+            "required": [
+                "type",
+                "server_tool_call_response"
+            ],
+            "title": "ServerToolCallResponsePart",
             "type": "object"
         },
         "UriPart": {
