@@ -139,7 +139,7 @@ no longer recommended, it SHOULD be deprecated.
   the following Unicode code points: Latin alphabet, Numeric, Underscore, Dot
   (as namespace delimiter).
 
-> Note:
+> [!Note]
 > Semantic Conventions tooling limits names to lowercase
 > Latin alphabet, Numeric, Underscore, Dot (as namespace delimiter).
 > Names must start with a letter, end with an alphanumeric character, and must not
@@ -426,7 +426,7 @@ attribute use the same system name (`azure.cosmosdb`).
 ### Known exceptions
 
 - Operational system and process-related attributes and metrics [follow a
-  pattern](/docs/system/system-metrics.md#systemos---os-specific-system-metrics)
+  pattern](/docs/system/system-metrics.md#systemmemoryos---os-specific-system-memory-metrics)
   of `system.{os}` and `process.{os}`. <!-- TODO: document why-->
 
 - [RPC](/docs/rpc/README.md) and [messaging](/docs/messaging/README.md) semantic

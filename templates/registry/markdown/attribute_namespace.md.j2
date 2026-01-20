@@ -40,9 +40,9 @@
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 {%- for attribute in group.attributes | sort(attribute="name") %}{% set attr_anchor = attribute.name | kebab_case %}
-| <a id="{{ attr_anchor }}" href="#{{ attr_anchor }}">`{{ attrs.name(attribute) }}`</a> | {{ stability.badge(attribute.stability, attribute.deprecated, attribute.brief) | trim }} | {{ attrs.type(attribute) }} | {{ attribute.brief | trim }}{{ notes.add({"note": attribute.note, "name": attrs.name(attribute)}) }} | {{ examples.format(attribute) | trim }} |
+| <a id="{{ attr_anchor }}" href="#{{ attr_anchor }}">`{{ attrs.name(attribute) }}`</a> | {{ stability.badge(attribute.stability, attribute.deprecated, attribute.brief) | trim }} | {{ attrs.type(attribute) }} | {{ attribute.brief | trim }}{{ notes.add({"note": attribute.note, "name": attrs.name(attribute)}) }} | {{ examples.format(attribute) }}|
 {%- endfor %}
 {{ notes.render() }}
 {%- for enum in group.attributes | sort(attribute="name") %}

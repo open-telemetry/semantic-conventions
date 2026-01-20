@@ -3,6 +3,9 @@
 
 # Service
 
+- [Service Attributes](#service-attributes)
+- [Service Attributes for Peer Services](#service-attributes-for-peer-services)
+
 ## Service Attributes
 
 A service instance.
@@ -10,11 +13,11 @@ A service instance.
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | <a id="service-instance-id" href="#service-instance-id">`service.instance.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The string ID of the service instance. [1] | `627cc493-f310-47de-96bd-71410b7dec09` |
 | <a id="service-name" href="#service-name">`service.name`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | Logical name of the service. [2] | `shoppingcart` |
 | <a id="service-namespace" href="#service-namespace">`service.namespace`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | A namespace for `service.name`. [3] | `Shop` |
-| <a id="service-version" href="#service-version">`service.version`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The version string of the service API or implementation. The format is not defined by these conventions. | `2.0.0`; `a01dbef8a` |
+| <a id="service-version" href="#service-version">`service.version`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The version string of the service component. The format is not defined by these conventions. | `2.0.0`; `a01dbef8a` |
 
 **[1] `service.instance.id`:** MUST be unique for each instance of the same `service.namespace,service.name` pair (in other words
 `service.namespace,service.name,service.instance.id` triplet MUST be globally unique). The ID helps to
@@ -46,3 +49,14 @@ port.
 **[2] `service.name`:** MUST be the same for all instances of horizontally scaled services. If the value was not specified, SDKs MUST fallback to `unknown_service:` concatenated with [`process.executable.name`](process.md), e.g. `unknown_service:bash`. If `process.executable.name` is not available, the value MUST be set to `unknown_service`.
 
 **[3] `service.namespace`:** A string value having a meaning that helps to distinguish a group of services, for example the team name that owns a group of services. `service.name` is expected to be unique within the same namespace. If `service.namespace` is not specified in the Resource then `service.name` is expected to be unique for all services that have no explicit namespace defined (so the empty/unspecified namespace is simply one more valid namespace). Zero-length namespace string is assumed equal to unspecified namespace.
+
+## Service Attributes for Peer Services
+
+How to describe the service on the other side of a request.
+
+**Attributes:**
+
+| Key | Stability | Value Type | Description | Example Values |
+| --- | --- | --- | --- | --- |
+| <a id="service-peer-name" href="#service-peer-name">`service.peer.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Logical name of the service on the other side of the connection. SHOULD be equal to the actual [`service.name`](/docs/resource/README.md#service) resource attribute of the remote service if any. | `shoppingcart` |
+| <a id="service-peer-namespace" href="#service-peer-namespace">`service.peer.namespace`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Logical namespace of the service on the other side of the connection. SHOULD be equal to the actual [`service.namespace`](/docs/resource/README.md#service) resource attribute of the remote service if any. | `Shop` |

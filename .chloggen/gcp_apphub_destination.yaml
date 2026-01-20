@@ -1,4 +1,0 @@
-change_type: enhancement
-component: gcp
-note: Document `gcp.apphub_destination.*` attributes
-issues: [2649]

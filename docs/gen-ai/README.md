@@ -6,7 +6,7 @@ linkTitle: Generative AI
 
 **Status**: [Development][DocumentStatus]
 
-> [!Warning]
+> [!IMPORTANT]
 >
 > Existing GenAI instrumentations that are using
 > [v1.36.0 of this document](https://github.com/open-telemetry/semantic-conventions/blob/v1.36.0/docs/gen-ai/README.md)
@@ -39,5 +39,9 @@ Technology specific semantic conventions are defined for the following GenAI sys
 * [Azure AI Inference](./azure-ai-inference.md): Semantic Conventions for Azure AI Inference.
 * [OpenAI](./openai.md): Semantic Conventions for OpenAI.
 * [AWS Bedrock](./aws-bedrock.md): Semantic Conventions for AWS Bedrock.
+
+See also:
+
+* [Model Context Protocol](./mcp.md): Semantic Conventions for [MCP](https://modelcontextprotocol.io)
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status

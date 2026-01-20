@@ -1,3 +1,7 @@
+<!--- Hugo front matter used to generate the website version of this page:
+aliases: [/docs/specs/semconv/non-normative/how-to-write-conventions/resource-and-entities]
+--->
+
 # Resource and Entities
 
 <!-- toc -->
@@ -46,7 +50,8 @@ descriptive. See
 [How to define identifying attributes?](#how-to-define-identifying-attributes)
 for details on what these mean.
 
-> Note: Declaring Entity relationships is not yet supported.
+> [!Note]
+> Declaring Entity relationships is not yet supported.
 
 ### Declaring associations between signals
 

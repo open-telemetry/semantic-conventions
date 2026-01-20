@@ -37,7 +37,7 @@ groups:
               stability: development
               deprecated:
                 reason: uncategorized
-                note: "Removed, report shared memory usage with `metric.system.memory.shared` metric"
+                note: "Removed, report shared memory usage with `metric.system.memory.linux.shared` metric"
             - id: buffers
               value: 'buffers'
               stability: development
@@ -47,6 +47,18 @@ groups:
         stability: development
         brief: "The memory state"
         examples: ["free", "cached"]
+      - id: system.memory.linux.slab.state
+        type:
+          members:
+            - id: reclaimable
+              value: 'reclaimable'
+              stability: development
+            - id: unreclaimable
+              value: 'unreclaimable'
+              stability: development
+        stability: development
+        brief: "The Linux Slab memory state"
+        examples: ["reclaimable", "unreclaimable"]
   # system.paging.* attribute group
   - id: registry.system.paging
     type: attribute_group

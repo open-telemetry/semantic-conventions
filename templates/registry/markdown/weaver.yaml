@@ -40,6 +40,7 @@ acronyms:
   - HTTP
   - iOS
   - JVM
+  - MCP
   - NFS
   - NodeJS
   - OCI
@@ -58,3 +59,4 @@ acronyms:
   - URL
   - VCS
   - zOS
+  - JSONRPC

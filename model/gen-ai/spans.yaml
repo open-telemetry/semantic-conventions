@@ -78,9 +78,8 @@ groups:
           Instrumentations SHOULD populate conversation id when they have it readily available
           for a given operation, for example:
 
-          -  when client framework being instrumented manages conversation history
+          - when client framework being instrumented manages conversation history
           (see [LlamaIndex chat store](https://docs.llamaindex.ai/en/stable/module_guides/storing/chat_stores/))
-
           - when instrumenting GenAI client libraries that maintain conversation on the backend side
           (see [AWS Bedrock agent sessions](https://docs.aws.amazon.com/bedrock/latest/userguide/agents-session-state.html),
           [OpenAI Assistant threads](https://platform.openai.com/docs/api-reference/threads))
@@ -110,7 +109,7 @@ groups:
       Semantic conventions for individual GenAI systems and frameworks MAY specify different span name format
       and MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.37.0/specification/trace/api.md#span).
 
-      **Span kind** SHOULD be `CLIENT`and MAY be set to `INTERNAL` on spans representing
+      **Span kind** SHOULD be `CLIENT` and MAY be set to `INTERNAL` on spans representing
       call to models running in the same process. It's RECOMMENDED to use `CLIENT` kind
       when the GenAI system being instrumented usually runs in a different process than its
       client or when the GenAI call happens over instrumented protocol such as HTTP.
@@ -119,6 +118,15 @@ groups:
       - ref: gen_ai.provider.name
         # TODO: Not adding to common attributes because of https://github.com/open-telemetry/weaver/issues/479
         requirement_level: required
+        sampling_relevant: true
+      - ref: gen_ai.operation.name
+        sampling_relevant: true
+      - ref: server.address
+        sampling_relevant: true
+      - ref: server.port
+        sampling_relevant: true
+      - ref: gen_ai.request.model
+        sampling_relevant: true
       - ref: gen_ai.request.top_k
         requirement_level: recommended
 
@@ -132,6 +140,7 @@ groups:
       - ref: gen_ai.output.type
         note: |
           This attribute SHOULD be set to the output type requested by the client:
+
           - `json` for structured outputs with defined or undefined schema
           - `image` for image output
           - `speech` for speech output
@@ -143,6 +152,14 @@ groups:
 
           Additional output format details may be recorded in the future in the
           `gen_ai.output.{type}.*` attributes.
+      - ref: server.address
+        sampling_relevant: true
+      - ref: server.port
+        sampling_relevant: true
+      - ref: gen_ai.request.model
+        sampling_relevant: true
+      - ref: gen_ai.operation.name
+        sampling_relevant: true
 
   - id: span.openai.inference.client
     extends: attributes.gen_ai.inference.openai_based
@@ -210,6 +227,17 @@ groups:
       **Span name** SHOULD be `{gen_ai.operation.name} {gen_ai.request.model}`.
     extends: attributes.gen_ai.common.client
     attributes:
+      - ref: gen_ai.provider.name
+        requirement_level: required
+        sampling_relevant: true
+      - ref: gen_ai.operation.name
+        sampling_relevant: true
+      - ref: server.address
+        sampling_relevant: true
+      - ref: server.port
+        sampling_relevant: true
+      - ref: gen_ai.request.model
+        sampling_relevant: true
       - ref: gen_ai.request.encoding_formats
         requirement_level: recommended
       - ref: gen_ai.usage.input_tokens
@@ -233,6 +261,15 @@ groups:
     attributes:
       - ref: gen_ai.provider.name
         requirement_level: required
+        sampling_relevant: true
+      - ref: gen_ai.operation.name
+        sampling_relevant: true
+      - ref: server.address
+        sampling_relevant: true
+      - ref: server.port
+        sampling_relevant: true
+      - ref: gen_ai.request.model
+        sampling_relevant: true
       - ref: gen_ai.agent.id
         requirement_level:
           conditionally_required: if applicable.
@@ -255,7 +292,8 @@ groups:
       Describes GenAI agent invocation.
     note: |
       The `gen_ai.operation.name` SHOULD be `invoke_agent`.
-      The **span name** SHOULD be `invoke_agent {gen_ai.agent.name}` if `gen_ai.agent.name` is readily available.
+
+      **Span name** SHOULD be `invoke_agent {gen_ai.agent.name}` if `gen_ai.agent.name` is readily available.
       When `gen_ai.agent.name` is not available, it SHOULD be `invoke_agent`.
       Semantic conventions for individual GenAI systems and frameworks MAY specify different span name format.
 
@@ -266,12 +304,18 @@ groups:
       instrumented protocol such as HTTP.
 
       Examples of span kinds for different agent scenarios:
+
       - `CLIENT`: Remote agent services (e.g., OpenAI Assistants API, AWS Bedrock Agents)
       - `INTERNAL`: In-process agents (e.g., LangChain agents, CrewAI agents)
     extends: attributes.gen_ai.inference.client
     attributes:
       - ref: gen_ai.provider.name
         requirement_level: required
+        sampling_relevant: true
+      - ref: gen_ai.operation.name
+        sampling_relevant: true
+      - ref: gen_ai.request.model
+        sampling_relevant: true
       - ref: gen_ai.agent.id
         requirement_level:
           conditionally_required: if applicable.
@@ -287,6 +331,9 @@ groups:
       - ref: server.address
         requirement_level:
           recommended: when span kind is `CLIENT`.
+        sampling_relevant: true
+      - ref: server.port
+        sampling_relevant: true
       - ref: gen_ai.system_instructions
         requirement_level: opt_in
       - ref: gen_ai.input.messages
@@ -305,13 +352,19 @@ groups:
 
       **Span name** SHOULD be `execute_tool {gen_ai.tool.name}`.
 
-      GenAI instrumentations that are able to instrument tool execution call SHOULD do so.
-      However, it's common for tools to be executed by the application code. It's recommended
-      for the application developers to follow this semantic convention for tools invoked
-      by the application code.
+      GenAI instrumentations that can instrument tool execution calls SHOULD do so,
+      unless another instrumentation can reliably cover all supported tool types.
+      MCP tool executions may also be traced by the
+      [corresponding MCP instrumentation](/docs/gen-ai/mcp.md#client).
+
+      Tools are often executed directly by application code. Application developers
+      are encouraged to follow this semantic convention for tools invoked by their
+      own code and to manually instrument any tool calls that automatic
+      instrumentations do not cover.
     attributes:
       - ref: gen_ai.operation.name
         requirement_level: required
+        sampling_relevant: true
       - ref: gen_ai.tool.name
         requirement_level: recommended
       - ref: gen_ai.tool.call.id

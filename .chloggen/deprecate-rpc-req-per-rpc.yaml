@@ -1,4 +1,0 @@
-change_type: deprecation
-component: rpc
-note: Deprecate rpc.*.requests_per_rpc and rpc.*.responses_per_rpc metrics.
-issues: [2784]
