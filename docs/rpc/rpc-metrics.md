@@ -326,5 +326,4 @@ Specifications defined by maintainers of RPC systems:
 * [gRPC](https://github.com/grpc/proposal/blob/master/A66-otel-stats.md): Semantic Conventions for *gRPC*.
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
-[MetricRecommended]: /docs/general/metric-requirement-level.md#recommended
 [MetricRequired]: /docs/general/metric-requirement-level.md#required
