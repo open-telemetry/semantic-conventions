@@ -370,6 +370,10 @@ groups:
               value: "embeddings"
               brief: 'Embeddings operation such as [OpenAI Create embeddings API](https://platform.openai.com/docs/api-reference/embeddings/create)'
               stability: development
+            - id: retrieval
+              value: "retrieval"
+              brief: 'Retrieval operation such as [OpenAI Search Vector Store API](https://platform.openai.com/docs/api-reference/vector-stores/search)'
+              stability: development
             - id: create_agent
               value: "create_agent"
               brief: 'Create GenAI agent'
@@ -426,6 +430,42 @@ groups:
         type: int
         brief: The number of dimensions the resulting output embeddings should have.
         examples: [512, 1024]
+      - id: gen_ai.retrieval.documents
+        stability: development
+        type: any
+        brief: The documents retrieved.
+        note: |
+          Instrumentations MUST follow [Retrieval documents JSON schema](/docs/gen-ai/gen-ai-retrieval-documents.json).
+          When the attribute is recorded on events, it MUST be recorded in structured
+          form. When recorded on spans, it MAY be recorded as a JSON string if structured
+          format is not supported and SHOULD be recorded in structured form otherwise.
+
+          Each document object SHOULD contain at least the following properties:
+          `id` (string): A unique identifier for the document, `score` (double): The relevance score of the document
+        examples:
+          - |
+              [
+                {
+                  "id": "doc_123",
+                  "score": 0.95
+                },
+                {
+                  "id": "doc_456",
+                  "score": 0.87
+                },
+                {
+                  "id": "doc_789",
+                  "score": 0.82
+                }
+              ]
+      - id: gen_ai.retrieval.query.text
+        stability: development
+        type: string
+        brief: The query text used for retrieval.
+        note: |
+          > [!Warning]
+          > This attribute may contain sensitive information.
+        examples: ["What is the capital of France?", "weather in Paris"]
       - id: gen_ai.system_instructions
         stability: development
         type: any

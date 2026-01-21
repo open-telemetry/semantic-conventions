@@ -279,3 +279,21 @@ areas:
     status:
       - accepting_contributions
       - active
+
+  - name: "Semantic Conventions: Core"
+    owner:
+      - name: "specs-semconv-approvers"
+        github: specs-semconv-approvers
+    project: "N/A"
+    board: "https://github.com/orgs/open-telemetry/projects/131"
+    labels:
+      - area:error
+      - area:exception
+      - area:otel
+      - area:server
+      - area:service
+      - area:telemetry
+      - area:url
+    status:
+      - accepting_contributions
+      - active
