@@ -6,11 +6,11 @@ groups:
       - ref: rpc.method
       - ref: server.address
         brief: >
-          RPC server [host name](https://grpc.github.io/grpc/core/md_doc_naming.html).
+          RPC server host name.
         note: >
           May contain server IP address, DNS name, or local socket name. When host component is an IP address,
           instrumentations SHOULD NOT do a reverse proxy lookup to obtain DNS name and SHOULD set
-          `server.address` to the IP address provided in the host component.
+          `server.address` to the provided IP address.
         requirement_level:
           conditionally_required: If available.
       - ref: server.port

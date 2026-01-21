@@ -176,7 +176,54 @@ groups:
         requirement_level: opt_in
       - ref: rpc.response.metadata
         requirement_level: opt_in
+      - ref: url.scheme
+        brief: >
+          The scheme portion of the RPC target URL used when creating the gRPC channel.
+        note: >
+          See the note for `server.address` for details on how to parse the port from the target URL.
+        examples: ["dns", "xds", "my-resolver"]
+        requirement_level:
+          conditionally_required: If and only if the target URL contains a scheme.
+      - ref: server.address
+        brief: >
+          The RPC server [host name](https://grpc.github.io/grpc/core/md_doc_naming.html) before name resolution,
+          as provided in the target URL during gRPC channel creation.
+        note: |
+          The address SHOULD be parsed from the target URL according to the
+          [gRPC Name Resolution specification](https://grpc.github.io/grpc/core/md_doc_naming.html) depending on the scheme used.
 
+          When the address is an IP address, instrumentations SHOULD NOT do a
+          reverse proxy lookup to obtain a DNS name and SHOULD set `server.address`
+          to the IP address provided.
+
+          If instrumentation cannot determine a single address from the target URL
+          (for example, when multiple IP addresses are provided),
+          it SHOULD NOT set this attribute.
+
+          Examples:
+
+          - given the target URL `grpc.io::50051`, the attributes would be:
+            - `server.address`: `grpc.io`
+            - `server.port`: `50051`
+            - `url.scheme`: not set
+          - given the target URL `xds:///wallet.grpcwallet.io`, the attributes would be:
+            - `server.address`: `wallet.grpcwallet.io`
+            - `server.port`: not set
+            - `url.scheme`: `xds`
+          - given the target URL `unix:///run/containerd/containerd.sock`, the attributes would be:
+            - `server.address`: `/run/containerd/containerd.sock`
+            - `server.port`: not set
+            - `url.scheme`: `unix`
+        requirement_level:
+          conditionally_required: If the instrumentation was able to parse a single address from the target URL.
+      - ref: server.port
+        brief: >
+          The RPC server port portion of the target URL used when creating the gRPC channel.
+        note: >
+          See the note for `server.address` for details on how to parse the port from the target URL.
+        requirement_level:
+          recommended: If and only if `server.address` is set and the target URL contains a port.
+        examples: [50051]
   - id: span.rpc.grpc.call.server
     type: span
     stability: development
