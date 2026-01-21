@@ -182,27 +182,24 @@ groups:
         type: int
         brief: The number of tokens used in the GenAI input (prompt).
         note: |
-          This value MUST include cached tokens (cache reads and cache writes) when the provider exposes them.
-          Instrumentations SHOULD normalize provider responses so that `input_tokens` always reflects the
-          total effective input tokens the model processed.
+          This value SHOULD include all types of input tokens, including cached tokens.
+          Instrumentations SHOULD make a best effort to populate this value, using a total
+          provided by the   provider when available or, depending on the provider API, 
+          by summing different token types parsed from the provider output.
         examples: [100]
       - id: gen_ai.usage.cache_read.input_tokens
         stability: development
         type: int
         brief: The number of input tokens served from a provider-managed cache.
         note: >
-          The value is typically included in `gen_ai.usage.input_tokens`.
-          Semantic conventions for individual GenAI providers that do not include
-          cache read tokens in `gen_ai.usage.input_tokens` SHOULD document this.
+          The value SHOULD be included in `gen_ai.usage.input_tokens`.
         examples: [50]
       - id: gen_ai.usage.cache_creation.input_tokens
         stability: development
         type: int
         brief: The number of input tokens written to a provider-managed cache.
         note: >
-          The value is typically included in `gen_ai.usage.input_tokens`.
-          Semantic conventions for individual GenAI providers that do not include
-          cache creation tokens in `gen_ai.usage.input_tokens` SHOULD document this.
+          The value SHOULD be included in `gen_ai.usage.input_tokens`.
         examples: [25]
       - id: gen_ai.usage.output_tokens
         stability: development
