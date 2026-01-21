@@ -46,8 +46,6 @@ for the details on which values classify as errors.
 | [`network.protocol.name`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | [OSI application layer](https://wikipedia.org/wiki/Application_layer) or non-OSI equivalent. [7] | `http` |
 | [`network.protocol.version`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The actual version of the protocol used for network communication. [8] | `1.1`; `2` |
 | [`network.transport`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [9] | `tcp`; `udp` |
-| [`rpc.request.metadata.<key>`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string[] | RPC request metadata, `<key>` being the normalized RPC metadata key (lowercase), the value being the metadata values. [10] | `["1.2.3.4", "1.2.3.5"]` |
-| [`rpc.response.metadata.<key>`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string[] | RPC response metadata, `<key>` being the normalized RPC metadata key (lowercase), the value being the metadata values. [11] | `["attribute_value"]` |
 
 **[1] `rpc.method`:** The method name MAY have unbounded cardinality in edge or error cases.
 
@@ -90,18 +88,15 @@ If the request has completed successfully, instrumentations SHOULD NOT set
 **[3] `rpc.response.status_code`:** Dubbo protocol uses numeric status codes.
 Any status code other than `20` (OK) SHOULD be considered an error.
 
-Common status codes include:
+Client-side status codes:
 
 - `20` - OK
 - `30` - CLIENT_TIMEOUT
-- `31` - SERVER_TIMEOUT
-- `40` - BAD_REQUEST
 - `50` - BAD_RESPONSE
-- `60` - SERVICE_NOT_FOUND
-- `70` - SERVICE_ERROR
-- `80` - SERVER_ERROR
 - `90` - CLIENT_ERROR
-- `100` - SERVER_THREADPOOL_EXHAUSTED_ERROR
+
+The client may also receive server-side status codes (31, 40, 60, 70, 80, 100)
+when the server encounters an error.
 
 **[4] `server.address`:** May contain server IP address, DNS name, or local socket name. When host component is an IP address, instrumentations SHOULD NOT do a reverse proxy lookup to obtain DNS name and SHOULD set `server.address` to the IP address provided in the host component.
 
@@ -118,18 +113,6 @@ Common status codes include:
 Consider always setting the transport when setting a port number, since
 a port number is ambiguous without knowing the transport. For example
 different processes could be listening on TCP port 12345 and UDP port 12345.
-
-**[10] `rpc.request.metadata.<key>`:** Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
-Including all request metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
-
-For example, a property `my-custom-key` with value `["1.2.3.4", "1.2.3.5"]` SHOULD be recorded as
-`rpc.request.metadata.my-custom-key` attribute with value `["1.2.3.4", "1.2.3.5"]`
-
-**[11] `rpc.response.metadata.<key>`:** Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
-Including all response metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
-
-For example, a property `my-custom-key` with value `["attribute_value"]` SHOULD be recorded as
-the `rpc.response.metadata.my-custom-key` attribute with value `["attribute_value"]`
 
 The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):
@@ -200,8 +183,6 @@ for the details on which values classify as errors.
 | [`network.protocol.name`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | [OSI application layer](https://wikipedia.org/wiki/Application_layer) or non-OSI equivalent. [9] | `http` |
 | [`network.protocol.version`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The actual version of the protocol used for network communication. [10] | `1.1`; `2` |
 | [`network.transport`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [11] | `tcp`; `udp` |
-| [`rpc.request.metadata.<key>`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string[] | RPC request metadata, `<key>` being the normalized RPC metadata key (lowercase), the value being the metadata values. [12] | `["1.2.3.4", "1.2.3.5"]` |
-| [`rpc.response.metadata.<key>`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string[] | RPC response metadata, `<key>` being the normalized RPC metadata key (lowercase), the value being the metadata values. [13] | `["attribute_value"]` |
 
 **[1] `error.type`:** If the RPC fails with an error before status code is returned,
 `error.type` SHOULD be set to the exception type (its fully-qualified class name, if applicable)
@@ -241,16 +222,13 @@ The `code.function.name` attribute may be used to record the fully-qualified
 method actually executing the call on the server side, or the
 RPC client stub method on the client side.
 
-**[3] `rpc.response.status_code`:** The following status codes SHOULD be considered errors:
+**[3] `rpc.response.status_code`:** Server-side status codes that SHOULD be considered errors:
 
-- `30` - CLIENT_TIMEOUT
 - `31` - SERVER_TIMEOUT
 - `40` - BAD_REQUEST
-- `50` - BAD_RESPONSE
 - `60` - SERVICE_NOT_FOUND
 - `70` - SERVICE_ERROR
 - `80` - SERVER_ERROR
-- `90` - CLIENT_ERROR
 - `100` - SERVER_THREADPOOL_EXHAUSTED_ERROR
 
 **[4] `server.address`:** May contain server IP address, DNS name, or local socket name. When host component is an IP address, instrumentations SHOULD NOT do a reverse proxy lookup to obtain DNS name and SHOULD set `server.address` to the IP address provided in the host component.
@@ -272,18 +250,6 @@ RPC client stub method on the client side.
 Consider always setting the transport when setting a port number, since
 a port number is ambiguous without knowing the transport. For example
 different processes could be listening on TCP port 12345 and UDP port 12345.
-
-**[12] `rpc.request.metadata.<key>`:** Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
-Including all request metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
-
-For example, a property `my-custom-key` with value `["1.2.3.4", "1.2.3.5"]` SHOULD be recorded as
-`rpc.request.metadata.my-custom-key` attribute with value `["1.2.3.4", "1.2.3.5"]`
-
-**[13] `rpc.response.metadata.<key>`:** Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
-Including all response metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
-
-For example, a property `my-custom-key` with value `["attribute_value"]` SHOULD be recorded as
-the `rpc.response.metadata.my-custom-key` attribute with value `["attribute_value"]`
 
 The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):

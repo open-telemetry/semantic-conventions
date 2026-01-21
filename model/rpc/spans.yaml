@@ -333,22 +333,15 @@ groups:
           Dubbo protocol uses numeric status codes.
           Any status code other than `20` (OK) SHOULD be considered an error.
 
-          Common status codes include:
+          Client-side status codes:
 
           - `20` - OK
           - `30` - CLIENT_TIMEOUT
-          - `31` - SERVER_TIMEOUT
-          - `40` - BAD_REQUEST
           - `50` - BAD_RESPONSE
-          - `60` - SERVICE_NOT_FOUND
-          - `70` - SERVICE_ERROR
-          - `80` - SERVER_ERROR
           - `90` - CLIENT_ERROR
-          - `100` - SERVER_THREADPOOL_EXHAUSTED_ERROR
-      - ref: rpc.request.metadata
-        requirement_level: opt_in
-      - ref: rpc.response.metadata
-        requirement_level: opt_in
+
+          The client may also receive server-side status codes (31, 40, 60, 70, 80, 100)
+          when the server encounters an error.
 
   - id: span.rpc.dubbo.call.server
     type: span
@@ -374,18 +367,11 @@ groups:
           The string representation of the [status code](https://dubbo.apache.org/en/overview/reference/protocols/tcp/)
           returned by the server.
         note: |
-          The following status codes SHOULD be considered errors:
+          Server-side status codes that SHOULD be considered errors:
 
-          - `30` - CLIENT_TIMEOUT
           - `31` - SERVER_TIMEOUT
           - `40` - BAD_REQUEST
-          - `50` - BAD_RESPONSE
           - `60` - SERVICE_NOT_FOUND
           - `70` - SERVICE_ERROR
           - `80` - SERVER_ERROR
-          - `90` - CLIENT_ERROR
           - `100` - SERVER_THREADPOOL_EXHAUSTED_ERROR
-      - ref: rpc.request.metadata
-        requirement_level: opt_in
-      - ref: rpc.response.metadata
-        requirement_level: opt_in
