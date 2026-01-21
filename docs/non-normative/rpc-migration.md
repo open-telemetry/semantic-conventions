@@ -100,6 +100,7 @@ Metric changes:
   `Measures the duration of inbound remote procedure calls (RPC).` ([#2961](https://github.com/open-telemetry/semantic-conventions/pull/2961))
 - **Histogram buckets**: boundaries updated to reflect change from milliseconds
   to seconds ([#2961](https://github.com/open-telemetry/semantic-conventions/pull/2961))
+- **Requirement level**: Made required ([#3284](https://github.com/open-telemetry/semantic-conventions/pull/3284))
 - **Attributes**: see table below
 
 <!-- prettier-ignore-start -->
@@ -132,6 +133,7 @@ Metric changes:
   `Measures the duration of outbound remote procedure calls (RPC).` ([#2961](https://github.com/open-telemetry/semantic-conventions/pull/2961))
 - **Histogram buckets**: boundaries updated to reflect change from milliseconds
   to seconds ([#2961](https://github.com/open-telemetry/semantic-conventions/pull/2961))
+- **Requirement level**: Made required ([#3284](https://github.com/open-telemetry/semantic-conventions/pull/3284))
 - **Attributes**: see table below
 
 <!-- prettier-ignore-start -->
@@ -153,6 +155,20 @@ References:
 
 - [Metric `rpc.client.duration` v1.37.0](https://github.com/open-telemetry/semantic-conventions/blob/v1.37.0/docs/rpc/rpc-metrics.md#metric-rpcclientduration)
 - [Metric `rpc.client.call.duration` (TODO)](https://github.com/open-telemetry/semantic-conventions/blob/main/docs/rpc/rpc-metrics.md#metric-rpcclientcallduration)
+
+### Deprecated events
+
+The `rpc.message` event and its associated attributes have been deprecated with no replacement:
+
+<!-- prettier-ignore-start -->
+| Deprecated Event/Attribute     | PR                                                                        |
+| ------------------------------ | ------------------------------------------------------------------------- |
+| `rpc.message` event            | [#3283](https://github.com/open-telemetry/semantic-conventions/pull/3283) |
+| `rpc.message.type`             | [#3283](https://github.com/open-telemetry/semantic-conventions/pull/3283) |
+| `rpc.message.id`               | [#3283](https://github.com/open-telemetry/semantic-conventions/pull/3283) |
+| `rpc.message.compressed_size`  | [#3283](https://github.com/open-telemetry/semantic-conventions/pull/3283) |
+| `rpc.message.uncompressed_size`| [#3283](https://github.com/open-telemetry/semantic-conventions/pull/3283) |
+<!-- prettier-ignore-end -->
 
 ### Deprecated metrics
 
