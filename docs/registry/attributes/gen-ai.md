@@ -195,13 +195,14 @@ Function: A tool executed on the client-side, where the agent generates paramete
   Client-side operations are actions taken on the user's end or within the client application.
 Datastore: A tool used by the agent to access and query structured or unstructured external data for retrieval-augmented tasks or knowledge updates.
 
-**[16] `gen_ai.usage.cache_creation.input_tokens`:** The value is typically included in `gen_ai.usage.input_tokens`. Semantic conventions for individual GenAI providers that do not include cache creation tokens in `gen_ai.usage.input_tokens` SHOULD document this.
+**[16] `gen_ai.usage.cache_creation.input_tokens`:** The value SHOULD be included in `gen_ai.usage.input_tokens`.
 
-**[17] `gen_ai.usage.cache_read.input_tokens`:** The value is typically included in `gen_ai.usage.input_tokens`. Semantic conventions for individual GenAI providers that do not include cache read tokens in `gen_ai.usage.input_tokens` SHOULD document this.
+**[17] `gen_ai.usage.cache_read.input_tokens`:** The value SHOULD be included in `gen_ai.usage.input_tokens`.
 
-**[18] `gen_ai.usage.input_tokens`:** This value MUST include cached tokens (cache reads and cache writes) when the provider exposes them.
-Instrumentations SHOULD normalize provider responses so that `input_tokens` always reflects the
-total effective input tokens the model processed.
+**[18] `gen_ai.usage.input_tokens`:** This value SHOULD include all types of input tokens, including cached tokens.
+Instrumentations SHOULD make a best effort to populate this value, using a total
+provided by the provider when available or, depending on the provider API,
+by summing different token types parsed from the provider output.
 
 ---
 

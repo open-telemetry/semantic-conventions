@@ -184,7 +184,7 @@ groups:
         note: |
           This value SHOULD include all types of input tokens, including cached tokens.
           Instrumentations SHOULD make a best effort to populate this value, using a total
-          provided by the   provider when available or, depending on the provider API, 
+          provided by the provider when available or, depending on the provider API,
           by summing different token types parsed from the provider output.
         examples: [100]
       - id: gen_ai.usage.cache_read.input_tokens

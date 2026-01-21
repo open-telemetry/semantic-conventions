@@ -294,13 +294,14 @@ Additional output format details may be recorded in the future in the `gen_ai.ou
 
 **[10] `gen_ai.response.model`:** If available. The name of the GenAI model that provided the response. If the model is supplied by a vendor, then the value must be the exact name of the model actually used. If the model is a fine-tuned custom model, the value should have a more specific name than the base model that's been fine-tuned.
 
-**[11] `gen_ai.usage.cache_creation.input_tokens`:** The value is typically included in `gen_ai.usage.input_tokens`. Semantic conventions for individual GenAI providers that do not include cache creation tokens in `gen_ai.usage.input_tokens` SHOULD document this.
+**[11] `gen_ai.usage.cache_creation.input_tokens`:** The value SHOULD be included in `gen_ai.usage.input_tokens`.
 
-**[12] `gen_ai.usage.cache_read.input_tokens`:** The value is typically included in `gen_ai.usage.input_tokens`. Semantic conventions for individual GenAI providers that do not include cache read tokens in `gen_ai.usage.input_tokens` SHOULD document this.
+**[12] `gen_ai.usage.cache_read.input_tokens`:** The value SHOULD be included in `gen_ai.usage.input_tokens`.
 
-**[13] `gen_ai.usage.input_tokens`:** This value MUST include cached tokens (cache reads and cache writes) when the provider exposes them.
-Instrumentations SHOULD normalize provider responses so that `input_tokens` always reflects the
-total effective input tokens the model processed.
+**[13] `gen_ai.usage.input_tokens`:** This value SHOULD include all types of input tokens, including cached tokens.
+Instrumentations SHOULD make a best effort to populate this value, using a total
+provided by the provider when available or, depending on the provider API,
+by summing different token types parsed from the provider output.
 
 **[14] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 

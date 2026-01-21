@@ -142,11 +142,11 @@ Additional output format details may be recorded in the future in the
 
 **[10] `gen_ai.response.model`:** If available. The name of the GenAI model that provided the response. If the model is supplied by a vendor, then the value must be the exact name of the model actually used. If the model is a fine-tuned custom model, the value should have a more specific name than the base model that's been fine-tuned.
 
-**[11] `gen_ai.usage.cache_creation.input_tokens`:** The value is typically included in `gen_ai.usage.input_tokens`. Semantic conventions for individual GenAI providers that do not include cache creation tokens in `gen_ai.usage.input_tokens` SHOULD document this.
+**[11] `gen_ai.usage.cache_creation.input_tokens`:** The value SHOULD be included in `gen_ai.usage.input_tokens`.
 
-**[12] `gen_ai.usage.cache_read.input_tokens`:** Subset of `gen_ai.usage.input_tokens`. Populate from OpenAI `cached_tokens` field.
+**[12] `gen_ai.usage.cache_read.input_tokens`:** Corresponds to `usage.input_tokens_details.cached_tokens` or a similar property in the model response.
 
-**[13] `gen_ai.usage.input_tokens`:** OpenAI `input_tokens` already includes cached tokens. Set `gen_ai.usage.input_tokens` directly from the provider response.
+**[13] `gen_ai.usage.input_tokens`:** The total input token count is returned by `usage.input_tokens` or a similar property in the model response.
 
 **[14] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
