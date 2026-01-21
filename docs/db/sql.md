@@ -101,7 +101,7 @@ codes with granularity higher than SQLSTATE (or don't report SQLSTATE
 at all):
 
 - [DB2 SQL codes](https://www.ibm.com/docs/db2-for-zos/12?topic=codes-sql).
-- [Maria DB error codes](https://mariadb.com/kb/en/mariadb-error-code-reference/)
+- [Maria DB error codes](https://mariadb.com/docs/server/reference/error-codes)
 - [Microsoft SQL Server errors](https://docs.microsoft.com/sql/relational-databases/errors-events/database-engine-events-and-errors)
 - [MySQL error codes](https://dev.mysql.com/doc/mysql-errors/9.0/en/error-reference-introduction.html)
 - [Oracle error codes](https://docs.oracle.com/cd/B28359_01/server.111/b28278/toc.htm)

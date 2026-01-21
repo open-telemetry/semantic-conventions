@@ -1,7 +1,0 @@
-change_type: breaking
-component: rpc
-note: |
-  Rename
-  - `rpc.grpc.request.metadata` and `rpc.connect_rpc.request.metadata` to `rpc.request.metadata`
-  - `rpc.grpc.response.metadata` and `rpc.connect_rpc.response.metadata` to `rpc.response.metadata`
-issues: [2869, 3169]
