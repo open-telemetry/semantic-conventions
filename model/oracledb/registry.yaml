@@ -1,0 +1,61 @@
+groups:
+  - id: registry.oracledb
+    type: attribute_group
+    display_name: Oracle Database Attributes
+    brief: >
+      This section defines attributes for Oracle Database.
+
+    attributes:
+      - id: oracle.db.name
+        type: string
+        stability: development
+        brief: >
+          The database name associated with the connection.
+        note: |
+          This attribute SHOULD be set to the value of the parameter `DB_NAME` exposed in `v$parameter`.
+        examples: ["ORCL1", "FREE"]
+      - id: oracle.db.domain
+        type: string
+        stability: development
+        brief: >
+         The database domain associated with the connection.
+        note: |
+          This attribute SHOULD be set to the value of the `DB_DOMAIN` initialization parameter,
+          as exposed in `v$parameter`. `DB_DOMAIN` defines the domain portion of the global
+          database name and SHOULD be configured when a database is, or may become, part of a
+          distributed environment. Its value consists of one or more valid identifiers
+          (alphanumeric ASCII characters) separated by periods.
+        examples: ["example.com", "corp.internal", "prod.db.local"]
+      - id: oracle.db.instance.name
+        type: string
+        stability: development
+        brief: >
+          The instance name associated with the connection in an Oracle Real Application Clusters environment.
+        note: |
+          There can be multiple instances associated with a single database service. It indicates the
+          unique instance name to which the connection is currently bound. For non-RAC databases, this value
+          defaults to the `oracle.db.name`.
+        examples: ["ORCL1", "ORCL2", "ORCL3"]
+      - id: oracle.db.pdb
+        type: string
+        stability: development
+        brief: >
+          The pluggable database (PDB) name associated with the connection.
+        note: |
+          This attribute SHOULD reflect the PDB that the session is currently connected to.
+          If instrumentation cannot reliably obtain the active PDB name for each operation
+          without issuing an additional query (such as `SELECT SYS_CONTEXT`), it is
+          RECOMMENDED to fall back to the PDB name specified at connection establishment.
+        examples: ["PDB1", "FREEPDB"]
+      - id: oracle.db.service
+        type: string
+        stability: development
+        brief: >
+          The service name currently associated with the database connection.
+        note: |
+          The effective service name for a connection can change during its lifetime,
+          for example after executing sql, `ALTER SESSION`. If an instrumentation cannot reliably
+          obtain the current service name for each operation without issuing an additional
+          query (such as `SELECT SYS_CONTEXT`), it is RECOMMENDED to fall back to the
+          service name originally provided at connection establishment.
+        examples: ["order-processing-service", "db_low.adb.oraclecloud.com", "db_high.adb.oraclecloud.com"]

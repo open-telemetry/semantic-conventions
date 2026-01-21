@@ -114,3 +114,72 @@ groups:
       reason: uncategorized
       note: Replaced by `rpc.client.call.duration` with unit `s`.
     brief: "Deprecated, use `rpc.client.call.duration` instead. Note: the unit also changed from `ms` to `s`."
+
+
+  - id: metric.rpc.server.request.size
+    type: metric
+    metric_name: rpc.server.request.size
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: Measures the size of RPC request messages (uncompressed).
+    instrument: histogram
+    unit: "By"
+    note: |
+      **Streaming**: Recorded per message in a streaming batch
+    extends: attributes.metrics.rpc.server
+    deprecated:
+      reason: obsoleted
+      note: Removed, no replacement at this time.
+
+  - id: metric.rpc.server.response.size
+    type: metric
+    metric_name: rpc.server.response.size
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: Measures the size of RPC response messages (uncompressed).
+    instrument: histogram
+    unit: "By"
+    note: |
+      **Streaming**: Recorded per response in a streaming batch
+    extends: attributes.metrics.rpc.server
+    deprecated:
+      reason: obsoleted
+      note: Removed, no replacement at this time.
+
+  - id: metric.rpc.client.request.size
+    type: metric
+    metric_name: rpc.client.request.size
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: Measures the size of RPC request messages (uncompressed).
+    instrument: histogram
+    unit: "By"
+    note: |
+      **Streaming**: Recorded per message in a streaming batch
+    extends: attributes.metrics.rpc.client
+    deprecated:
+      reason: obsoleted
+      note: Removed, no replacement at this time.
+
+  - id: metric.rpc.client.response.size
+    type: metric
+    metric_name: rpc.client.response.size
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: Measures the size of RPC response messages (uncompressed).
+    instrument: histogram
+    unit: "By"
+    note: |
+      **Streaming**: Recorded per response in a streaming batch
+    extends: attributes.metrics.rpc.client
+    deprecated:
+      reason: obsoleted
+      note: Removed, no replacement at this time.

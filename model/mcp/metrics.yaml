@@ -1,0 +1,90 @@
+groups:
+  - id: mcp.operation.metrics.attributes
+    type: attribute_group
+    brief: MCP request metrics attributes
+    extends: mcp.common.attributes
+    attributes:
+      - ref: mcp.resource.uri
+        requirement_level: opt_in
+
+  - id: mcp.session.metrics.attributes
+    type: attribute_group
+    brief: MCP session metrics attributes
+    attributes:
+      - ref: mcp.protocol.version
+      - ref: network.protocol.name
+        requirement_level:
+          recommended: When applicable.
+        examples:
+          - "http"
+          - "websocket"
+      - ref: network.protocol.version
+        note: ""  # overriding the default note
+        requirement_level:
+          recommended: When applicable.
+      - ref: jsonrpc.protocol.version
+        requirement_level:
+          recommended: when it's not `2.0`.
+      - ref: network.transport
+        brief: The transport protocol used for the MCP session.
+        note: |
+          This attribute SHOULD be set to `tcp` or `quic` if the transport protocol
+          is HTTP. It SHOULD be set to `pipe` if the transport is stdio.
+        examples: ["tcp", "quic", "pipe"]
+      - ref: error.type
+        requirement_level:
+          conditionally_required: If and only if session ends with an error.
+
+  - id: metric.mcp.client.operation.duration
+    type: metric
+    metric_name: mcp.client.operation.duration
+    brief: >
+      The duration of the MCP request or notification as observed on the sender
+      from the time it was sent until the response or ack is received.
+    unit: s
+    instrument: histogram
+    stability: development
+    extends: mcp.operation.metrics.attributes
+    attributes:
+      - ref: server.address
+        requirement_level:
+          recommended: If applicable
+      - ref: server.port
+        requirement_level:
+          recommended: When `server.address` is set
+
+  - id: metric.mcp.server.operation.duration
+    type: metric
+    metric_name: mcp.server.operation.duration
+    brief: >
+      MCP request or notification duration as observed on the receiver
+      from the time it was received until the result or ack is sent.
+    unit: s
+    instrument: histogram
+    stability: development
+    extends: mcp.operation.metrics.attributes
+
+  - id: metric.mcp.client.session.duration
+    type: metric
+    metric_name: mcp.client.session.duration
+    brief: The duration of the MCP session as observed on the MCP client.
+    unit: s
+    instrument: histogram
+    stability: development
+    extends: mcp.session.metrics.attributes
+    attributes:
+      - ref: server.address
+        requirement_level:
+          recommended: If applicable
+      - ref: server.port
+        requirement_level:
+          recommended: When `server.address` is set
+
+  - id: metric.mcp.server.session.duration
+    type: metric
+    metric_name: mcp.server.session.duration
+    brief: The duration of the MCP session as observed on the MCP server.
+    unit: s
+    instrument: histogram
+    stability: development
+    extends: mcp.session.metrics.attributes

@@ -1,6 +1,0 @@
-change_type: breaking
-component: rpc
-note: Merge `rpc.method` and `rpc.service` into fully-qualified `rpc.method`
-  attribute. Clarify how to handle possible high cardinality of `rpc.method`
-  in edge cases. Clarify `rpc.method` usage in span names.
-issues: [2863, 3196, 3223]

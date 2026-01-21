@@ -105,6 +105,7 @@
 /docs/gen-ai/                     @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-genai-approvers
 /model/gen-ai/                    @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-genai-approvers
 /model/openai/                    @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-genai-approvers
+/model/mcp/                       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-genai-approvers
 
 # Security semantic conventions
 /docs/dns/                        @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-security-approvers
