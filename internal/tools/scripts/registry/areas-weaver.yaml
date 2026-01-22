@@ -11,3 +11,4 @@ text_maps:
   areas:
     az: azure
     hw: hardware
+    oracle: oracledb

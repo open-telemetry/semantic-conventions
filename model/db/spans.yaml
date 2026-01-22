@@ -279,7 +279,7 @@ groups:
         examples: ["products", "customers"]
       - ref: db.response.status_code
         brief: >
-          [Maria DB error code](https://mariadb.com/kb/en/mariadb-error-code-reference/)
+          [Maria DB error code](https://mariadb.com/docs/server/reference/error-codes)
           represented as a string.
         note: >
           MariaDB uses vendor-specific error codes on all errors and reports
@@ -712,7 +712,7 @@ groups:
           at all):
 
           - [DB2 SQL codes](https://www.ibm.com/docs/db2-for-zos/12?topic=codes-sql).
-          - [Maria DB error codes](https://mariadb.com/kb/en/mariadb-error-code-reference/)
+          - [Maria DB error codes](https://mariadb.com/docs/server/reference/error-codes)
           - [Microsoft SQL Server errors](https://docs.microsoft.com/sql/relational-databases/errors-events/database-engine-events-and-errors)
           - [MySQL error codes](https://dev.mysql.com/doc/mysql-errors/9.0/en/error-reference-introduction.html)
           - [Oracle error codes](https://docs.oracle.com/cd/B28359_01/server.111/b28278/toc.htm)
@@ -983,16 +983,20 @@ groups:
       - ref: db.namespace
         sampling_relevant: true
         brief: >
-          The database associated with the connection, qualified by the instance name,
-          database name and service name.
+          The unique identifier of the database associated with the connection.
         note: |
-          `db.namespace` SHOULD be set to the combination of instance name, database name and
-          service name following the `{service_name}|{database_name}|{instance_name}` pattern.
-          Any missing components (and their associated separators) SHOULD be omitted.
-
-          For CDB architecture, database name would be pdb name. For Non-CDB, it would be
-          `DB_NAME` parameter.
-        examples: ["ORCL1\\|PDB1\\|db_high.adb.oraclecloud.com", "ORCL1\\|DB1\\|db_low.adb.oraclecloud.com", "ORCL1\\|DB1\\|order-processing-service"]
+          Use the value of `DB_UNIQUE_NAME` parameter. This defines the database's globally unique identifier and must remain unique across the enterprise.
+        examples: ["ORCL1", "ORCL2", "ORCL3"]
+      - ref: oracle.db.service
+        sampling_relevant: true
+      - ref: oracle.db.instance.name
+        sampling_relevant: true
+      - ref: oracle.db.pdb
+        sampling_relevant: true
+      - ref: oracle.db.name
+        sampling_relevant: true
+      - ref: oracle.db.domain
+        sampling_relevant: true
       - ref: db.response.status_code
         brief: >
           [Oracle Database error number](https://docs.oracle.com/en/error-help/db/) recorded as a string.
