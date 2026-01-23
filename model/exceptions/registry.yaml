@@ -21,19 +21,9 @@ groups:
         examples:
           ["Division by zero", "Can't convert 'int' object to str implicitly"]
         note: |
-          It is NOT RECOMMENDED to include sensitive information in exception messages.
-
-          In many cases, exceptions are thrown and recorded as telemetry by
-          different components. As a result, it may not be possible for
-          instrumentation to prevent sensitive information from being recorded.
-
-          Additional processing in the telemetry pipeline may be necessary to
-          remove sensitive information.
-
           > [!WARNING]
           >
           > This attribute contains sensitive (PII, secrets) information
-
       - id: exception.stacktrace
         type: string
         stability: stable

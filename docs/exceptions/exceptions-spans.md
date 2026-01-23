@@ -40,14 +40,7 @@ This event describes a single exception.
 
 **[1] `exception.message`:** Required if `exception.type` is not set, recommended otherwise.
 
-**[2] `exception.message`:** It is NOT RECOMMENDED to include sensitive information in exception messages.
-
-In many cases, exceptions are thrown and recorded as telemetry by
-different components. As a result, it may not be possible for
-instrumentation to prevent sensitive information from being recorded.
-
-Additional processing in the telemetry pipeline may be necessary to
-remove sensitive information.
+**[2] `exception.message`:**
 
 > [!WARNING]
 >
