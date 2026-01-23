@@ -44,7 +44,7 @@ This event describes a single exception.
 
 > [!WARNING]
 >
-> This attribute contains sensitive (PII, secrets) information
+> This attribute may contain sensitive information.
 
 **[3] `exception.type`:** Required if `exception.message` is not set, recommended otherwise.
 

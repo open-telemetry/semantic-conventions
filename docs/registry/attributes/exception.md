@@ -22,7 +22,7 @@ This document defines the shared attributes used to report a single exception as
 
 > [!WARNING]
 >
-> This attribute contains sensitive (PII, secrets) information
+> This attribute may contain sensitive information.
 
 ## Deprecated Exception Attributes
 

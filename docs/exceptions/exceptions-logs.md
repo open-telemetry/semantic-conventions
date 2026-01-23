@@ -54,7 +54,7 @@ The table below indicates which attributes should be added to the
 
 > [!WARNING]
 >
-> This attribute contains sensitive (PII, secrets) information
+> This attribute may contain sensitive information.
 
 **[3] `exception.type`:** Required if `exception.message` is not set, recommended otherwise.
 

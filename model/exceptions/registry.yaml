@@ -23,7 +23,7 @@ groups:
         note: |
           > [!WARNING]
           >
-          > This attribute contains sensitive (PII, secrets) information
+          > This attribute may contain sensitive information.
       - id: exception.stacktrace
         type: string
         stability: stable
