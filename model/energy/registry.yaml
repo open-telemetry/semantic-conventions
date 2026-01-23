@@ -1,0 +1,82 @@
+groups:
+  - id: registry.energy
+    type: attribute_group
+    display_name: Energy Gradient Attributes
+    brief: >
+      Attributes for energy-gradient signaling (EGS).
+      Enables autonomous systems to select executable capacity.
+    attributes:
+      - id: energy.actor_id
+        type: string
+        stability: development
+        brief: >
+          Unique identifier for the energy actor
+        examples: ['dc-west-07', 'grid-ercot-01']
+      - id: energy.actor_type
+        type:
+          members:
+            - id: enterprise
+              value: 'enterprise'
+              brief: 'Enterprise facility'
+              stability: development
+            - id: datacenter
+              value: 'datacenter'
+              brief: 'Data center'
+              stability: development
+            - id: grid
+              value: 'grid'
+              brief: 'Grid operator'
+              stability: development
+            - id: robot
+              value: 'robot'
+              brief: 'Robotic system'
+              stability: development
+            - id: asi
+              value: 'asi'
+              brief: 'ASI workload'
+              stability: development
+        stability: development
+        brief: >
+          Type of energy actor
+      - id: energy.region
+        type: string
+        stability: development
+        brief: >
+          Geographic region of the actor
+        examples: ['us-west-2', 'eu-central-1']
+      - id: energy.marginal_capacity_kw
+        type: double
+        stability: development
+        brief: >
+          Marginal executable capacity in kilowatts (ΔkW)
+        examples: [4200, 1500]
+      - id: energy.instantaneous_cost_index
+        type: double
+        stability: development
+        brief: >
+          Normalized instantaneous cost index [0,1]
+        examples: [0.38, 0.72]
+      - id: energy.thermodynamic_priority
+        type: double
+        stability: development
+        brief: >
+          Thermodynamic priority [0,1]
+        examples: [0.65, 0.88]
+      - id: energy.max_delta_kw
+        type: double
+        stability: development
+        brief: >
+          Maximum single allocation in kW
+        examples: [800, 200]
+      - id: energy.ramp_rate_kw_per_min
+        type: double
+        stability: development
+        brief: >
+          Ramp rate constraint in kW per minute
+        examples: [150, 50]
+      - id: energy.thermal_headroom_pct
+        type: double
+        stability: development
+        brief: >
+          Thermal headroom percentage [0,100]
+        examples: [18.5, 25.0]
