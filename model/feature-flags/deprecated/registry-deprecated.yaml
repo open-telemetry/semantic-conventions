@@ -70,7 +70,7 @@ groups:
         examples: ["red", "true", "on"]
       - id: feature_flag.evaluation.error.message
         type: string
-        brief: 'Deprecated, use `error.message` instead.'
+        brief: 'Deprecated, use `feature_flag.error.message` instead.'
         stability: development
         deprecated:
           reason: renamed

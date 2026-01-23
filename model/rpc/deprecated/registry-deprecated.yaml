@@ -218,11 +218,11 @@ groups:
       - id: rpc.jsonrpc.error_message
         type: string
         stability: development
-        brief: "Deprecated, use span status description or `error.message` attribute on other signals."
+        brief: "Deprecated, use the span status description when reporting JSON-RPC spans."
         examples: ['Parse error', 'User already exists']
         deprecated:
           reason: uncategorized
-          note: "Use the span status description or `error.message` attribute on other signals."
+          note: "Use the span status description when reporting JSON-RPC spans."
       - id: rpc.system
         brief: 'Deprecated, use `rpc.system.name` attribute instead.'
         deprecated:

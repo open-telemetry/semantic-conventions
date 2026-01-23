@@ -95,7 +95,7 @@ For example, the variant `red` maybe be used for the value `#c05543`.
 
 **[7] `feature_flag.error.message`:** If and only if an error occurred during flag evaluation and `error.type` does not sufficiently describe the error.
 
-**[8] `feature_flag.error.message`:** Should not simply duplicate the value of `error.type`, but should provide more context. For example, if `error.type` is `invalid_context` the `error.message` may enumerate which context keys are missing or invalid.
+**[8] `feature_flag.error.message`:** Should not simply duplicate the value of `error.type`, but should provide more context. For example, if `error.type` is `invalid_context` the `feature_flag.error.message` may enumerate which context keys are missing or invalid.
 
 ---
 
