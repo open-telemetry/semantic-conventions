@@ -86,7 +86,7 @@ The `code.function.name` attribute may be used to record the fully-qualified
 method actually executing the call on the server side, or the
 RPC client stub method on the client side.
 
-**[3] `rpc.response.status_code`:** All error codes except `OK` SHOULD be considered errors.
+**[3] `rpc.response.status_code`:** All status codes except `OK` SHOULD be considered errors.
 
 **[4] `server.address`:** May contain server IP address, DNS name, or local socket name. When host component is an IP address, instrumentations SHOULD NOT do a reverse proxy lookup to obtain DNS name and SHOULD set `server.address` to the IP address provided in the host component.
 
