@@ -1,7 +1,7 @@
 groups:
   - id: attributes.metrics.rpc.client
     type: attribute_group
-    brief: "Describes RPC metric attributes."
+    brief: "RPC client metric attributes."
     extends: common.rpc.attributes
     attributes:
       - ref: rpc.system.name
@@ -14,7 +14,7 @@ groups:
 
   - id: attributes.metrics.rpc.server
     type: attribute_group
-    brief: "Describes RPC metric attributes."
+    brief: "RPC server metric attributes."
     extends: attributes.metrics.rpc.client
     attributes:
       - ref: rpc.system.name
