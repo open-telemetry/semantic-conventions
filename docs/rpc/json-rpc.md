@@ -27,7 +27,7 @@ This span represents an outgoing Remote Procedure Call (RPC).
 
 **Span kind** MUST be `CLIENT`.
 
-**Span status** Refer to the [Recording Errors](/docs/general/recording-errors.md)
+**Span status**: refer to the [Recording Errors](/docs/general/recording-errors.md)
 document for details on how to record span status. Responses that include
 an [`error` object](https://www.jsonrpc.org/specification#error_object)
 are considered errors.
@@ -136,7 +136,7 @@ This span represents an incoming Remote Procedure Call (RPC).
 
 **Span kind** MUST be `SERVER`.
 
-**Span status** Refer to the [Recording Errors](/docs/general/recording-errors.md)
+**Span status**: refer to the [Recording Errors](/docs/general/recording-errors.md)
 document for details on how to record span status. Responses that include
 an [`error` object](https://www.jsonrpc.org/specification#error_object)
 are considered errors.
