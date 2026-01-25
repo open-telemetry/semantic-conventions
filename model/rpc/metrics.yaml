@@ -37,7 +37,7 @@ groups:
       code_generation:
         metric_value_type: double
     stability: development
-    brief: Measures the duration of inbound remote procedure calls (RPC).
+    brief: Measures the duration of an incoming Remote Procedure Call (RPC).
     instrument: histogram
     unit: "s"
     note: |
@@ -54,7 +54,7 @@ groups:
       code_generation:
         metric_value_type: double
     stability: development
-    brief: Measures the duration of outbound remote procedure calls (RPC).
+    brief: Measures the duration of an outgoing Remote Procedure Call (RPC).
     instrument: histogram
     unit: "s"
     note: |
