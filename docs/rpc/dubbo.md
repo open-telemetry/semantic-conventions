@@ -92,6 +92,7 @@ If the request has completed successfully, instrumentations SHOULD NOT set
 For Dubbo3 Triple protocol, all status codes except `OK` SHOULD be considered errors.
 
 Status codes reference:
+
 - Dubbo2: [Dubbo2 Protocol Status Codes](https://dubbo.apache.org/en/overview/reference/protocols/tcp/#protocol-specification)
 - Dubbo3: [Triple Protocol Error Codes](https://dubbo.apache.org/en/overview/reference/protocols/triple-spec/#311-request)
 
@@ -252,6 +253,7 @@ For Dubbo3 Triple protocol, the following status codes SHOULD be considered erro
 - `DATA_LOSS`
 
 Status codes reference:
+
 - Dubbo2: [Dubbo2 Protocol Status Codes](https://dubbo.apache.org/en/overview/reference/protocols/tcp/#protocol-specification)
 - Dubbo3: [Triple Protocol Error Codes](https://dubbo.apache.org/en/overview/reference/protocols/triple-spec/#311-request)
 
