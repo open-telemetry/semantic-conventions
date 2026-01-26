@@ -47,3 +47,29 @@ secrets.json
 credentials.json
 applicationinsights.json
 appsettings.*.json
+
+# ============================================================================
+# Archived/Legacy files (kept in filesystem, not in git)
+# ============================================================================
+# Original single-file prototype (superseded by stories/)
+genai_guardrail_instrumentation_prototype.py
+
+# Old demo helpers (stories use demo_llm.py instead)
+demo_chat.py
+demo_tools.py
+
+# Old framework folder locations (moved to frameworks/)
+langchain/
+langgraph/
+google_adk/
+openai_agents/
+semantic_kernel/
+
+# Reduced framework adapters (keeping only langchain + mcp)
+frameworks/langgraph/
+frameworks/agno/
+frameworks/adk/
+frameworks/semantic_kernel/
+
+# Local planning docs
+IMPROVEMENT_PLAN.md

@@ -36,7 +36,7 @@ from flask_cors import CORS
 # Add parent to path for imports
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from stories.trace_retriever import get_retriever, TraceTree, GuardianSpan, AppInsightsTraceRetriever
+from tools.trace_retriever import get_retriever, TraceTree, GuardianSpan, AppInsightsTraceRetriever
 
 # Create Flask app
 app = Flask(__name__)

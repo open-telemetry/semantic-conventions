@@ -155,7 +155,7 @@ def launch_viewer(port: int = 5050, background: bool = True):
     print("  Phase 3: Launching Trace Viewer")
     print("=" * 70)
 
-    from stories.trace_viewer import run_server
+    from tools.trace_viewer import run_server
 
     if background:
         # Run server in background thread
