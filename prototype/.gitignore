@@ -73,3 +73,6 @@ frameworks/semantic_kernel/
 
 # Local planning docs
 IMPROVEMENT_PLAN.md
+
+# Optional tools (trace viewer - kept locally, not in PR)
+tools/

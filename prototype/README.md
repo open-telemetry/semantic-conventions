@@ -100,7 +100,6 @@ invoke_agent Coordinator (CLIENT span)
 | `stories/story_runner.py` | CLI for running story scenarios |
 | `stories/story_*.py` | Individual story implementations |
 | `frameworks/` | Framework adapter examples (LangChain, MCP) |
-| `tools/` | Optional trace viewer utilities |
 
 ## Framework Adapters
 
@@ -113,18 +112,6 @@ Each adapter demonstrates how to:
 1. Create `apply_guardrail` spans as children of framework operations
 2. Record `GuardianResult` and `SecurityFinding` attributes/events
 3. Map framework-specific IDs to `gen_ai.agent.id` and `gen_ai.conversation.id`
-
-## Optional Tools
-
-The `tools/` directory contains utilities for trace visualization (requires Azure App Insights):
-
-```bash
-# Run stories and launch browser-based trace viewer
-python -m tools.run_and_view --story 4 5 7
-
-# Just launch the trace viewer (to view existing traces)
-python -m tools.run_and_view --viewer-only
-```
 
 ## Content Capture (Opt-in)
 
