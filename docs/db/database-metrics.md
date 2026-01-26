@@ -63,7 +63,7 @@ This metric is [required][MetricRequired].
 When this metric is reported alongside a database operation span, the metric value SHOULD be the same as the database operation span duration.
 
 This metric SHOULD be specified with
-[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.52.0/specification/metrics/api.md#instrument-advisory-parameters)
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.53.0/specification/metrics/api.md#instrument-advisory-parameters)
 of `[ 0.001, 0.005, 0.01, 0.05, 0.1, 0.5, 1, 5, 10 ]`.
 
 <!-- semconv metric.db.client.operation.duration -->
@@ -155,6 +155,11 @@ that support query parsing SHOULD generate a summary following
 [Generating query summary](/docs/db/database-spans.md#generating-a-summary-of-the-query)
 section.
 
+For batch operations, if the individual operations are known to have the same query summary
+then that query summary SHOULD be used prepended by `BATCH `,
+otherwise `db.query.summary` SHOULD be `BATCH` or some other database
+system specific term if more applicable.
+
 **[14] `db.stored_procedure.name`:** If operation applies to a specific stored procedure.
 
 **[15] `db.stored_procedure.name`:** It is RECOMMENDED to capture the value as provided by the application
@@ -245,7 +250,7 @@ The following metric instruments describe database query response.
 This metric is [recommended][MetricRecommended].
 
 This metric SHOULD be specified with
-[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.52.0/specification/metrics/api.md#instrument-advisory-parameters)
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.53.0/specification/metrics/api.md#instrument-advisory-parameters)
 of `[1, 2, 5, 10, 20, 50, 100, 200, 500, 1000, 2000, 5000, 10000]`.
 
 Explaining bucket configuration:
@@ -340,6 +345,11 @@ instrumentation hooks or other means. If it is not available, instrumentations
 that support query parsing SHOULD generate a summary following
 [Generating query summary](/docs/db/database-spans.md#generating-a-summary-of-the-query)
 section.
+
+For batch operations, if the individual operations are known to have the same query summary
+then that query summary SHOULD be used prepended by `BATCH `,
+otherwise `db.query.summary` SHOULD be `BATCH` or some other database
+system specific term if more applicable.
 
 **[14] `network.peer.address`:** Semantic conventions for individual database systems SHOULD document whether `network.peer.*` attributes are applicable. Network peer address and port are useful when the application interacts with individual database nodes directly.
 If a database operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.

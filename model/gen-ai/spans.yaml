@@ -118,6 +118,15 @@ groups:
       - ref: gen_ai.provider.name
         # TODO: Not adding to common attributes because of https://github.com/open-telemetry/weaver/issues/479
         requirement_level: required
+        sampling_relevant: true
+      - ref: gen_ai.operation.name
+        sampling_relevant: true
+      - ref: server.address
+        sampling_relevant: true
+      - ref: server.port
+        sampling_relevant: true
+      - ref: gen_ai.request.model
+        sampling_relevant: true
       - ref: gen_ai.request.top_k
         requirement_level: recommended
 
@@ -143,6 +152,14 @@ groups:
 
           Additional output format details may be recorded in the future in the
           `gen_ai.output.{type}.*` attributes.
+      - ref: server.address
+        sampling_relevant: true
+      - ref: server.port
+        sampling_relevant: true
+      - ref: gen_ai.request.model
+        sampling_relevant: true
+      - ref: gen_ai.operation.name
+        sampling_relevant: true
 
   - id: span.openai.inference.client
     extends: attributes.gen_ai.inference.openai_based
@@ -210,12 +227,55 @@ groups:
       **Span name** SHOULD be `{gen_ai.operation.name} {gen_ai.request.model}`.
     extends: attributes.gen_ai.common.client
     attributes:
+      - ref: gen_ai.provider.name
+        requirement_level: required
+        sampling_relevant: true
+      - ref: gen_ai.operation.name
+        sampling_relevant: true
+      - ref: server.address
+        sampling_relevant: true
+      - ref: server.port
+        sampling_relevant: true
+      - ref: gen_ai.request.model
+        sampling_relevant: true
       - ref: gen_ai.request.encoding_formats
         requirement_level: recommended
       - ref: gen_ai.usage.input_tokens
         requirement_level: recommended
       - ref: gen_ai.embeddings.dimension.count
         requirement_level: recommended
+
+  - id: span.gen_ai.retrieval.client
+    type: span
+    span_kind: client
+    stability: development
+    brief: >
+      Describes GenAI retrieval span - a request to a Generative AI service or framework
+      that retrieves relevant information or context from a vector database or search system.
+
+      The `gen_ai.operation.name` SHOULD be `retrieval`.
+
+      **Span name** SHOULD be `{gen_ai.operation.name} {gen_ai.data_source.id}`. Semantic conventions
+      for individual GenAI providers and retrievers MAY specify different span name format.
+    extends: attributes.gen_ai.common.client
+    attributes:
+      - ref: gen_ai.operation.name
+        requirement_level: required
+      - ref: gen_ai.retrieval.query.text
+        requirement_level: opt_in
+      - ref: gen_ai.request.top_k
+        requirement_level: recommended
+      - ref: gen_ai.retrieval.documents
+        requirement_level: opt_in
+      - ref: gen_ai.provider.name
+        requirement_level:
+          conditionally_required: when applicable
+      - ref: gen_ai.data_source.id
+        requirement_level:
+          conditionally_required: when applicable
+      - ref: error.type
+        requirement_level:
+          conditionally_required: "if the operation ended in an error"
 
   - id: span.gen_ai.create_agent.client
     type: span
@@ -233,6 +293,15 @@ groups:
     attributes:
       - ref: gen_ai.provider.name
         requirement_level: required
+        sampling_relevant: true
+      - ref: gen_ai.operation.name
+        sampling_relevant: true
+      - ref: server.address
+        sampling_relevant: true
+      - ref: server.port
+        sampling_relevant: true
+      - ref: gen_ai.request.model
+        sampling_relevant: true
       - ref: gen_ai.agent.id
         requirement_level:
           conditionally_required: if applicable.
@@ -274,6 +343,11 @@ groups:
     attributes:
       - ref: gen_ai.provider.name
         requirement_level: required
+        sampling_relevant: true
+      - ref: gen_ai.operation.name
+        sampling_relevant: true
+      - ref: gen_ai.request.model
+        sampling_relevant: true
       - ref: gen_ai.agent.id
         requirement_level:
           conditionally_required: if applicable.
@@ -289,6 +363,9 @@ groups:
       - ref: server.address
         requirement_level:
           recommended: when span kind is `CLIENT`.
+        sampling_relevant: true
+      - ref: server.port
+        sampling_relevant: true
       - ref: gen_ai.system_instructions
         requirement_level: opt_in
       - ref: gen_ai.input.messages
@@ -307,13 +384,19 @@ groups:
 
       **Span name** SHOULD be `execute_tool {gen_ai.tool.name}`.
 
-      GenAI instrumentations that are able to instrument tool execution call SHOULD do so.
-      However, it's common for tools to be executed by the application code. It's recommended
-      for the application developers to follow this semantic convention for tools invoked
-      by the application code.
+      GenAI instrumentations that can instrument tool execution calls SHOULD do so,
+      unless another instrumentation can reliably cover all supported tool types.
+      MCP tool executions may also be traced by the
+      [corresponding MCP instrumentation](/docs/gen-ai/mcp.md#client).
+
+      Tools are often executed directly by application code. Application developers
+      are encouraged to follow this semantic convention for tools invoked by their
+      own code and to manually instrument any tool calls that automatic
+      instrumentations do not cover.
     attributes:
       - ref: gen_ai.operation.name
         requirement_level: required
+        sampling_relevant: true
       - ref: gen_ai.tool.name
         requirement_level: recommended
       - ref: gen_ai.tool.call.id

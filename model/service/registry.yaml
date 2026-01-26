@@ -69,3 +69,63 @@ groups:
           for that telemetry. This is typically the case for scraping receivers, as they know the target address and
           port.
         examples: ["627cc493-f310-47de-96bd-71410b7dec09"]
+      - id: service.criticality
+        type:
+          members:
+            - id: critical
+              value: 'critical'
+              brief: >
+                Service is business-critical; downtime directly impacts revenue, user experience, or core functionality.
+              note: >
+                Examples include payment processing, authentication, and primary user-facing APIs.
+              stability: development
+            - id: high
+              value: 'high'
+              brief: >
+                Service is important but has degradation tolerance or fallback mechanisms.
+              note: >
+                Examples include shopping cart, search, and recommendation engines.
+              stability: development
+            - id: medium
+              value: 'medium'
+              brief: >
+                Service provides supplementary functionality; degradation has limited user impact.
+              note: >
+                Examples include analytics, reporting, and non-essential integrations.
+              stability: development
+            - id: low
+              value: 'low'
+              brief: >
+                Service is non-essential to core operations; used for background tasks or internal tools.
+              note: >
+                Examples include batch processors, cleanup jobs, and internal dashboards.
+              stability: development
+        stability: development
+        brief: >
+          The operational criticality of the service.
+        note: >
+          Application developers are encouraged to set `service.criticality` to
+          express the operational importance of their services. Telemetry
+          consumers MAY use this attribute to optimize telemetry collection
+          or improve user experience.
+        examples: ["critical", "high", "medium", "low"]
+  - id: registry.service.peer
+    type: attribute_group
+    display_name: Service Attributes for Peer Services
+    brief: >
+      How to describe the service on the other side of a request.
+    attributes:
+      - id: service.peer.name
+        type: string
+        stability: development
+        brief: >
+          Logical name of the service on the other side of the connection.
+          SHOULD be equal to the actual [`service.name`](/docs/resource/README.md#service) resource attribute of the remote service if any.
+        examples: ["shoppingcart"]
+      - id: service.peer.namespace
+        type: string
+        stability: development
+        brief: >
+          Logical namespace of the service on the other side of the connection.
+          SHOULD be equal to the actual [`service.namespace`](/docs/resource/README.md#service) resource attribute of the remote service if any.
+        examples: ["Shop"]
