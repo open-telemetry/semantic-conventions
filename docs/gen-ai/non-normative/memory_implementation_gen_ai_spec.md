@@ -601,3 +601,219 @@ flowchart LR
     MS2 --- T1
     MS3 --- T2
 ```
+
+## Rationale: Why Separate Memory Spans?
+
+This section addresses reviewer feedback about whether memory operations should be separate spans or an expansion of the agent span with `gen_ai.operation.name: memory`.
+
+### Recommendation: Keep Separate Spans
+
+Memory operations are modeled as **separate client spans** rather than expanding the agent span for the following reasons:
+
+#### 1. Follows Database Pattern
+
+OTel database conventions define separate client spans per operation with `db.operation.name` distinguishing them (e.g., `SELECT`, `INSERT`). Memory operations follow this same established pattern with `gen_ai.operation.name` values like `search_memory`, `update_memory`, etc.
+
+#### 2. Agent Span is Orchestration
+
+The agent span (`invoke_agent`) represents the **orchestration layer**. Memory operations are I/O operations that happen *within* an agent invocation, similar to how database calls happen within a service request.
+
+#### 3. Trace Hierarchy
+
+Separate spans enable clear trace hierarchy:
+
+```
+invoke_agent (agent span)
+├── search_memory (memory span - retrieves context)
+├── chat (inference span - LLM call)
+└── update_memory (memory span - stores result)
+```
+
+#### 4. Enables Correlation
+
+Separate spans allow:
+
+- Duration metrics per operation type
+- Error rates per operation
+- Performance analysis (which memory operation is slow?)
+
+### Contrast with "memory" as Operation Name
+
+If we used `gen_ai.operation.name: memory` on the agent span:
+
+- We would lose granularity (cannot distinguish search vs update vs delete)
+- We would need sub-attributes like `gen_ai.memory.operation` anyway
+- It would be inconsistent with database conventions
+
+## Rationale: Memory vs Database Conventions
+
+This section addresses why memory operations need dedicated `gen_ai.memory.*` attributes rather than reusing `db.*` conventions.
+
+### Comparison Table
+
+| Aspect | Database (`db.*`) | GenAI Memory (`gen_ai.memory.*`) | Unique to Memory? |
+|--------|-------------------|----------------------------------|-------------------|
+| **System** | `db.system.name` (postgresql) | `gen_ai.provider.name` (pinecone) | No |
+| **Operation** | `db.operation.name` (SELECT) | `gen_ai.operation.name` (search_memory) | No |
+| **Target** | `db.collection.name` (users) | `gen_ai.memory.store.name` | No |
+| **Query** | `db.query.text` | `gen_ai.memory.query` | No |
+| **Scope** | N/A | `gen_ai.memory.scope` (user, session, agent) | **YES** |
+| **Memory Type** | N/A | `gen_ai.memory.type` (short_term, long_term) | **YES** |
+| **Importance** | N/A | `gen_ai.memory.importance` | **YES** |
+| **Update Strategy** | N/A (UPSERT is operation) | `gen_ai.memory.update.strategy` (merge, append) | **YES** |
+| **Agent Context** | N/A | `gen_ai.agent.id`, `gen_ai.conversation.id` | **YES** |
+| **Similarity Search** | N/A | `gen_ai.memory.search.similarity.threshold` | **YES** |
+
+### Why Not Just Use `db.*` Attributes?
+
+1. **Semantic vs Physical Scope**: Memory uses semantic isolation (user, session, agent) vs database physical isolation (schema, namespace).
+
+2. **AI Context**: Memory carries `gen_ai.agent.id`, `gen_ai.conversation.id` - meaningless for databases.
+
+3. **Importance Scoring**: Memory items have `gen_ai.memory.importance` (0.0-1.0) affecting retrieval and retention.
+
+4. **Similarity-Based Retrieval**: `gen_ai.memory.search.similarity.threshold` is fundamental to vector-based memory retrieval.
+
+5. **Memory is an Abstraction**: Memory providers vary widely - some use vector databases (Pinecone, Chroma), others use in-memory stores, key-value caches, or custom backends. Not all memory providers use a database at all.
+
+### Example Contrast
+
+```
+# Database span (OTel db.* conventions)
+db.system.name: postgresql
+db.operation.name: SELECT
+db.collection.name: users
+db.query.text: SELECT * FROM users WHERE id = ?
+
+# Memory span (proposed gen_ai.memory.* conventions)
+gen_ai.operation.name: search_memory
+gen_ai.memory.scope: user
+gen_ai.memory.query: "user dietary preferences"
+gen_ai.memory.search.similarity.threshold: 0.7
+gen_ai.conversation.id: conv_12345
+gen_ai.agent.id: support_bot
+```
+
+### Hybrid Approach
+
+Instrumentations:
+
+1. **SHOULD** emit `gen_ai.memory.*` attributes for AI-specific observability
+2. **MAY** additionally emit `db.*` attributes when the underlying storage is a database, for infrastructure-level correlation
+3. Memory spans carry GenAI-specific semantic meaning that `db.*` alone cannot express
+
+## Rationale: Memory vs Retrieval Operations
+
+This section clarifies the distinction between `search_memory` and the existing `retrieval` operation in GenAI semantic conventions.
+
+### Comparison
+
+| Aspect | Retrieval (`gen_ai.retrieval.*`) | Memory (`gen_ai.memory.*`) |
+|--------|----------------------------------|----------------------------|
+| **Purpose** | Fetch grounding context from external sources | Manage persistent agent state |
+| **Data Source** | External documents, knowledge bases | Agent-owned context |
+| **Lifecycle** | Read-only (fetch) | Full CRUD (create, read, update, delete) |
+| **Scope** | Global knowledge | User/session/agent-specific |
+| **Persistence** | External system manages | Agent manages lifecycle |
+| **Example** | RAG from documentation | Remember user preferences |
+
+### Key Differences
+
+#### 1. Retrieval is Read-Only, Memory is CRUD
+
+```
+# Retrieval: Only fetches
+retrieval → documents
+
+# Memory: Full lifecycle
+create_memory_store → store created
+search_memory → results (like retrieval)
+update_memory → item stored
+delete_memory → item removed
+delete_memory_store → store removed
+```
+
+#### 2. Retrieval is External, Memory is Agent-Owned
+
+- **Retrieval**: "What does the documentation say about X?"
+  - Source: External knowledge base
+  - Agent does NOT modify the source
+
+- **Memory**: "What did this user tell me before?"
+  - Source: Agent-owned persistent state
+  - Agent creates, updates, and deletes
+
+#### 3. Retrieval is Stateless, Memory is Stateful
+
+- **Retrieval**: Same query → same results (assuming static docs)
+- **Memory**: Results change based on prior agent interactions
+
+### When to Use Which
+
+| Scenario | Operation |
+|----------|-----------|
+| Search product documentation | `retrieval` |
+| Query external API for facts | `retrieval` |
+| RAG from knowledge base | `retrieval` |
+| Find user past preferences | `search_memory` |
+| Recall conversation context | `search_memory` |
+| Multi-agent shared state | `search_memory` (team scope) |
+
+### Overlap: search_memory ≈ retrieval
+
+`search_memory` IS similar to `retrieval`:
+
+- Both query for relevant context
+- Both return results with scores
+- Both use similarity thresholds
+
+**BUT** `search_memory` operates on *agent-managed memory*, not external knowledge.
+
+## Rationale: Why GenAI-Specific Namespace?
+
+This section explains why memory operations belong in the `gen_ai.*` namespace rather than using generic `db.*` conventions.
+
+### 1. Memory is About AI Context, Not Data Storage
+
+| Database Operation | Memory Operation |
+|-------------------|------------------|
+| Store customer record | Remember user preference |
+| Query orders table | Recall relevant context |
+| Update inventory count | Learn from interaction |
+| Delete old logs | Forget outdated information |
+
+Memory operations have **semantic intent** (remember, recall, learn, forget) that databases do not capture.
+
+### 2. Memory Operations Are AI-Native
+
+Memory spans carry AI context (conversation, agent, similarity) that is meaningless for databases:
+
+- `gen_ai.agent.id` - Which agent accessed memory
+- `gen_ai.conversation.id` - Links to conversation flow
+- `gen_ai.memory.importance` - Semantic importance score
+- `gen_ai.memory.search.similarity.threshold` - Vector similarity cutoff
+
+### 3. Memory Crosses Multiple Storage Systems
+
+A single "memory" might involve:
+
+- Vector database (Pinecone) for semantic search
+- Key-value store (Redis) for session state
+- Document database (MongoDB) for user profiles
+
+Memory is an **abstraction** over storage, not a storage system itself.
+
+### 4. Memory Has Lifecycle Semantics
+
+- **Expiration**: Memory items expire based on semantic rules (24h session, 30d preference)
+- **Importance**: Items have importance scores affecting retention
+- **Scope propagation**: Deleting user scope cascades to all related items
+
+These are AI-specific lifecycle concerns not present in database conventions.
+
+### 5. Different Consumers
+
+- **Database metrics**: Infrastructure teams, DBAs
+- **Memory metrics**: AI engineers, ML ops
+
+AI engineers need memory-specific dashboards, not generic database monitoring. Memory operations must correlate with `gen_ai.*` spans (chat, invoke_agent), not with generic service requests.

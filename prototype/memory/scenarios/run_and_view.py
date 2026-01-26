@@ -173,7 +173,13 @@ def main() -> None:
     parser.add_argument("--no-viewer", action="store_true", help="Run stories without launching viewer")
     parser.add_argument("--port", "-p", type=int, default=5050, help="Port for trace viewer (default: 5050)")
     parser.add_argument("--wait", "-w", type=int, default=10, help="Seconds to wait for trace ingestion (default: 10)")
-    parser.add_argument("--capture-content", action="store_true", help="Opt-in to capturing sensitive content")
+    parser.add_argument(
+        "--capture-content",
+        action="store_true",
+        default=True,
+        help="Capture memory content (enabled by default for demos)",
+    )
+    parser.add_argument("--no-capture-content", action="store_true", help="Disable content capture")
     parser.add_argument("--stories-only", action="store_true", help="Do not run demos")
     parser.add_argument("--include-big-demo", action="store_true", help="Also run the comprehensive memory spans demo")
     parser.add_argument("--skip-checks", action="store_true", help="Skip credential checks")
@@ -192,7 +198,10 @@ def main() -> None:
     os.environ["GENAI_MEMORY_EXPORTERS"] = args.exporters
     os.environ["GENAI_MEMORY_USE_SIMPLE_PROCESSOR"] = "true"
 
-    if args.capture_content:
+    if args.no_capture_content:
+        os.environ["GENAI_MEMORY_CAPTURE_CONTENT"] = "false"
+        print("[INFO] Content capture disabled (GENAI_MEMORY_CAPTURE_CONTENT=false).")
+    elif args.capture_content:
         os.environ["GENAI_MEMORY_CAPTURE_CONTENT"] = "true"
         print("[WARN] Content capture enabled (GENAI_MEMORY_CAPTURE_CONTENT=true). Do not use secrets/PII.")
 

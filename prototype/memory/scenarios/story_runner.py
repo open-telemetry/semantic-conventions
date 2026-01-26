@@ -87,6 +87,8 @@ def main() -> None:
 
     scenarios_dir = os.path.dirname(os.path.abspath(__file__))
     env = os.environ.copy()
+    if not env.get("GENAI_MEMORY_CAPTURE_CONTENT"):
+        env["GENAI_MEMORY_CAPTURE_CONTENT"] = "true"
 
     results: Dict[str, bool] = {}
 
