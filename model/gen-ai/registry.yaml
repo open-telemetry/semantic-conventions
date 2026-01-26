@@ -343,27 +343,40 @@ groups:
       - id: gen_ai.guardian.id
         stability: development
         type: string
-        brief: The unique identifier of the security guardian or guardrail.
-        note: >
-          This is a vendor-neutral identifier for the security component that
-          evaluated content or an action. It may map to provider-specific IDs
-          such as `azure.ai.content_safety.blocklist.id`.
-        examples: ['guard_abc123', 'sgi5gkybzqak', 'content-filter-v2']
+        brief: The unique identifier of the security guardian (the evaluating service or component).
+        note: |
+          This identifies the service, component, or library performing the security
+          evaluation - NOT the policy or configuration being applied.
+
+          For provider-specific guardrail/policy configuration identifiers (e.g.,
+          AWS Bedrock guardrail ARN, Azure Content Safety blocklist ID), use
+          `gen_ai.security.policy.id` instead.
+
+          Example mapping:
+          - Guardian: The evaluation service (e.g., "bedrock_guardrail_service", "azure_content_safety")
+          - Policy: The specific configuration (e.g., "arn:aws:bedrock:us-east-1:123456789:guardrail/abc123")
+        examples: ['guard_abc123', 'content-filter-v2', 'custom-guardian-001']
       - id: gen_ai.guardian.name
         stability: development
         type: string
-        brief: Human-readable name of the guardian or guardrail.
-        examples: ['PII Protection', 'Prompt Injection Shield', 'Content Safety']
+        brief: Human-readable name of the guardian (the evaluating service or component).
+        note: >
+          This identifies the security evaluation service or component, not the
+          policy name. For policy names, use `gen_ai.security.policy.name`.
+        examples: ['Azure Content Safety', 'Bedrock Guardrails', 'Custom PII Filter']
       - id: gen_ai.guardian.version
         stability: development
         type: string
-        brief: Version of the guardian configuration or policy.
+        brief: Version of the guardian service or component.
+        note: >
+          This is the version of the evaluating service/component, not the policy
+          version. For policy versions, use `gen_ai.security.policy.version`.
         examples: ['1.0.0', '2024-05-01', 'v2']
       - id: gen_ai.guardian.provider.name
         stability: development
         type: string
         brief: The provider or vendor of the guardian service.
-        examples: ['azure.ai.content_safety', 'zenity', 'custom']
+        examples: ['azure.ai.content_safety', 'aws.bedrock', 'zenity', 'custom']
 
       - id: gen_ai.security.decision.type
         stability: development
@@ -596,6 +609,22 @@ groups:
         type: boolean
         brief: Whether the content was redacted or modified by the guardian.
         examples: [true, false]
+
+      - id: gen_ai.security.external_event_id
+        stability: development
+        type: string
+        brief: External correlation identifier for security events.
+        note: |
+          This attribute links the telemetry to an external security event record
+          in systems such as SIEM, incident management, or security dashboards.
+
+          The value typically comes from the response of an external security
+          inspection service or may be included in response headers when inspection
+          happens alongside the LLM call.
+
+          Use this when correlation with external security systems is required
+          beyond what `gen_ai.security.policy.id` provides.
+        examples: ['evt_abc123', 'incident-2024-001', 'sec-finding-xyz']
 
       - id: gen_ai.data_source.id
         stability: development

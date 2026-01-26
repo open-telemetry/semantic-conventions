@@ -466,6 +466,9 @@ groups:
         requirement_level: recommended
       - ref: gen_ai.security.policy.version
         requirement_level: recommended
+      - ref: gen_ai.security.external_event_id
+        requirement_level:
+          conditionally_required: if correlation with external security systems is needed
       - ref: gen_ai.security.content.input.value
         requirement_level: opt_in
       - ref: gen_ai.security.content.output.value
