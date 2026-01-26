@@ -50,3 +50,6 @@ prototype/.env.local
 
 # Brew package lock
 Brewfile.lock.json
+
+# Local planning documents
+advanced_agent_security_plan.md
