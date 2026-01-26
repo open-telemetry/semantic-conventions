@@ -405,6 +405,10 @@ groups:
               value: "execute_tool"
               brief: 'Execute a tool'
               stability: development
+            - id: responses
+              value: "responses"
+              brief: 'Responses API operation such as [OpenAI Responses API](https://platform.openai.com/docs/api-reference/responses)'
+              stability: development
         brief: The name of the operation being performed.
         note: >
           If one of the predefined values applies, but specific system uses a different name it's RECOMMENDED to document it in the semantic
