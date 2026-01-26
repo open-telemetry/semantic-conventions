@@ -72,6 +72,8 @@ groups:
   - id: metric.k8s.pod.cpu.usage
     type: metric
     metric_name: k8s.pod.cpu.usage
+    entity_associations:
+      - k8s.pod
     annotations:
       code_generation:
         metric_value_type: double
@@ -1625,6 +1627,8 @@ groups:
 
       The `k8s.storageclass.name` should be required when a resource quota is defined for a specific
       storage class.
+    entity_associations:
+      - k8s.resourcequota
     attributes:
       - ref: k8s.storageclass.name
         requirement_level:
@@ -1649,6 +1653,8 @@ groups:
 
       The `k8s.storageclass.name` should be required when a resource quota is defined for a specific
       storage class.
+    entity_associations:
+      - k8s.resourcequota
     attributes:
       - ref: k8s.storageclass.name
         requirement_level:

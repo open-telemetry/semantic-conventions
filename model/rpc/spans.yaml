@@ -5,8 +5,6 @@ groups:
     brief: 'This document defines semantic conventions for remote procedure calls.'
     extends: common.rpc.attributes
     attributes:
-      - ref: rpc.method
-        sampling_relevant: true
       - ref: server.address
         sampling_relevant: true
       - ref: server.port
@@ -16,6 +14,13 @@ groups:
       - ref: network.peer.port
         requirement_level:
           recommended: If `network.peer.address` is set.
+      - ref: rpc.method
+        requirement_level:
+          conditionally_required: if available.
+        sampling_relevant: true
+      - ref: rpc.method_original
+        requirement_level:
+          conditionally_required: If and only if it's different than `rpc.method`.
 
   - id: rpc.server
     type: attribute_group
@@ -26,19 +31,6 @@ groups:
         requirement_level: recommended
       - ref: client.port
         requirement_level: recommended
-
-  - id: rpc_service.server
-    type: attribute_group
-    brief: 'This document defines semantic conventions for remote procedure calls.'
-    extends: rpc
-    attributes:
-      - ref: client.address
-        requirement_level: recommended
-      - ref: client.port
-        requirement_level: recommended
-      - ref: rpc.service
-        requirement_level: recommended
-        sampling_relevant: true
 
   - id: span.rpc.call.client
     type: span
@@ -63,21 +55,17 @@ groups:
       document for details on how to record span status.
     extends: rpc
     span_kind: client
-    events: [rpc.message]
     attributes:
       - ref: rpc.system.name
         requirement_level: required
-        sampling_relevant: true
-      - ref: rpc.service
         sampling_relevant: true
 
   - id: span.rpc.call.server
     type: span
     stability: development
-    extends: rpc_service.server
+    extends: rpc.server
     span_kind: server
     brief: This span represents an incoming Remote Procedure Call (RPC).
-    events: [rpc.message]
     note: |
       RPC server spans SHOULD cover the entire server-side lifecycle of an RPC,
       starting when the request is received and ending when the response is sent
@@ -102,7 +90,7 @@ groups:
     stability: development
     brief: This span represents an outgoing Remote Procedure Call (RPC).
     note: |
-      `rpc.system.name` MUST be set to `"connect_rpc"` and SHOULD be provided **at span creation time.**
+      `rpc.system.name` MUST be set to `"connectrpc"` and SHOULD be provided **at span creation time.**
 
       **Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#span-name) section.
 
@@ -123,17 +111,15 @@ groups:
         requirement_level: opt_in
       - ref: rpc.response.metadata
         requirement_level: opt_in
-      - ref: rpc.service
-        sampling_relevant: true
 
   - id: span.rpc.connect_rpc.call.server
     type: span
     stability: development
-    extends: rpc_service.server
+    extends: rpc.server
     span_kind: server
     brief: This span represents an incoming Remote Procedure Call (RPC).
     note: |
-      `rpc.system.name` MUST be set to `"connect_rpc"` and SHOULD be provided **at span creation time.**
+      `rpc.system.name` MUST be set to `"connectrpc"` and SHOULD be provided **at span creation time.**
 
       **Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#span-name) section.
 
@@ -179,9 +165,6 @@ groups:
     attributes:
       - ref: rpc.method
         requirement_level: required
-      - ref: rpc.service
-        requirement_level: required
-        sampling_relevant: true
       - ref: rpc.response.status_code
         requirement_level: required
         brief: >
@@ -197,7 +180,7 @@ groups:
   - id: span.rpc.grpc.call.server
     type: span
     stability: development
-    extends: rpc_service.server
+    extends: rpc.server
     span_kind: server
     brief: This span represents an incoming Remote Procedure Call (RPC).
     note: |
@@ -249,13 +232,24 @@ groups:
     extends: rpc
     span_kind: client
     attributes:
-      - ref: rpc.method
-        requirement_level: required
       - ref: jsonrpc.protocol.version
         requirement_level:
           conditionally_required: If other than the default version (`1.0`)
       - ref: jsonrpc.request.id
         requirement_level: recommended
+      - ref: rpc.method
+        brief: JSON-RPC method name provided in the request.
+        note: >
+          JSON-RPC supports sending and receiving arbitrary method names without
+          prior registration or definition. As a result, the method name MAY have
+          unbounded cardinality in edge or error cases.
+
+          General-purpose JSON-RPC instrumentations therefore SHOULD NOT set this
+          attribute by default and SHOULD provide a way to configure the list of
+          recognized RPC methods.
+          When tracing instrumentation converts RPC method to `_OTHER`, it MUST
+          also set `rpc.method_original` span attribute to the original value.
+        requirement_level: opt_in
       - ref: rpc.response.status_code
         brief: >
           The [`error.code`](https://www.jsonrpc.org/specification#error_object)
@@ -283,13 +277,24 @@ groups:
       an [`error` object](https://www.jsonrpc.org/specification#error_object)
       are considered errors.
     attributes:
-      - ref: rpc.method
-        requirement_level: required
       - ref: jsonrpc.protocol.version
         requirement_level:
           conditionally_required: If other than the default version (`1.0`)
       - ref: jsonrpc.request.id
         requirement_level: recommended
+      - ref: rpc.method
+        brief: JSON-RPC method name provided in the request.
+        note: >
+          JSON-RPC supports sending and receiving arbitrary method names without
+          prior registration or definition. As a result, the method name MAY have
+          unbounded cardinality in edge or error cases.
+
+          General-purpose JSON-RPC instrumentations therefore SHOULD NOT set this
+          attribute by default and SHOULD provide a way to configure the list of
+          recognized RPC methods.
+          When tracing instrumentation converts RPC method to `_OTHER`, it MUST
+          also set `rpc.method_original` span attribute to the original value.
+        requirement_level: opt_in
       - ref: rpc.response.status_code
         brief: >
           The [`error.code`](https://www.jsonrpc.org/specification#error_object) property of
@@ -298,22 +303,3 @@ groups:
           All JSON RPC error codes SHOULD be considered errors.
         requirement_level:
           conditionally_required: when available
-
-  - id: event.rpc.message
-    type: event
-    stability: development
-    name: rpc.message
-    brief: Describes a message sent or received within the context of an RPC call.
-    note: >
-      In the lifetime of an RPC stream, an event for each message sent/received on
-      client and server spans SHOULD be created. In case of unary calls only one sent
-      and one received message will be recorded for both client and server spans.
-    attributes:
-      - ref: rpc.message.type
-        requirement_level: recommended
-      - ref: rpc.message.id
-        requirement_level: recommended
-      - ref: rpc.message.compressed_size
-        requirement_level: recommended
-      - ref: rpc.message.uncompressed_size
-        requirement_level: recommended
