@@ -82,13 +82,15 @@ Deletion Types:
     # Setup tracing
     use_otlp = os.getenv("GENAI_MEMORY_USE_OTLP", "false").lower() == "true"
     use_console = os.getenv("GENAI_MEMORY_USE_CONSOLE", "true").lower() == "true"
+    capture_content = os.getenv("GENAI_MEMORY_CAPTURE_CONTENT", "false").lower() == "true"
 
     tracer = setup_tracing(
         service_name="gdpr-lifecycle-demo",
         use_console=use_console,
         use_otlp=use_otlp,
+        capture_content=capture_content,
     )
-    span_builder = MemorySpanBuilder(tracer, capture_content=False)
+    span_builder = MemorySpanBuilder(tracer, capture_content=capture_content)
 
     # User parameters
     user_id = "user_alex_789"

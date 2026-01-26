@@ -15,6 +15,23 @@ Each story demonstrates specific memory operations and attributes, showcasing wh
 | [Story 5: Compliance Audit](./story5_compliance_audit/) | Observability | invoke_agent, chat, search, update, events | audit trail, debugging |
 | [Story 6: GDPR Lifecycle](./story6_gdpr_lifecycle/) | Privacy | delete, delete_store | cascading deletes |
 
+## LangChain Examples
+
+Stories 1-3 include `langchain.py` files that show how LangChain memory classes map to our semantic conventions:
+
+| Story | LangChain Class | Key Mapping |
+|-------|-----------------|-------------|
+| Story 1 | `ConversationBufferMemory` | scope: session, type: short_term |
+| Story 1 | `VectorStoreRetrieverMemory` | scope: user, type: long_term, similarity_threshold |
+| Story 2 | `EntityMemory` | scope: user, importance scoring |
+| Story 2 | `ConversationSummaryMemory` | strategy: merge |
+| Story 3 | Shared VectorStore | scope: team, agent attribution |
+
+Run a LangChain example:
+```bash
+python scenarios/story1_customer_support/python/langchain.py
+```
+
 ## Quick Start
 
 ```bash
