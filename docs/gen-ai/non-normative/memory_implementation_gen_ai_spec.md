@@ -1,0 +1,819 @@
+# Memory Operations for GenAI (Revised Implementation Proposal)
+
+Why Memory Matters for Observability:
+
+1. Debugging: Understanding what an agent "remembers" during failures is crucial for root cause analysis.
+2. Performance: Memory retrieval latency directly impacts agent response times.
+3. Privacy/Compliance: Tracking what’s stored helps with data retention compliance.
+4. Cost Optimization: Memory storage and retrieval operations have measurable costs.
+
+## 2. Proposed Semantic Conventions
+
+### 2.1 Revised Operation Names
+
+Add the following values to the `gen_ai.operation.name` enum:
+
+```yaml
+- id: search_memory
+  value: "search_memory"
+  brief: "Search/query memories"
+  stability: development
+
+- id: update_memory
+  value: "update_memory"
+  brief: "Create or update (upsert) memory items"
+  stability: development
+
+- id: delete_memory
+  value: "delete_memory"
+  brief: "Delete memory items (by id, or by scope+namespace)"
+  stability: development
+
+- id: create_memory_store
+  value: "create_memory_store"
+  brief: "Create/initialize a memory store"
+  stability: development
+
+- id: delete_memory_store
+  value: "delete_memory_store"
+  brief: "Delete/deprovision a memory store"
+  stability: development
+```
+
+Notes:
+
+- `store_memory` is removed; use `update_memory` for both create and update to avoid ambiguity.
+- `update_memory` is an **upsert**. If the underlying system distinguishes create vs update, instrumentations MAY add a system-specific attribute to capture that outcome, but SHOULD keep `gen_ai.operation.name` as `update_memory`.
+
+### 2.2 Revised Memory Attributes
+
+```yaml
+# Memory Store Identification
+- id: gen_ai.memory.store.id
+  stability: development
+  type: string
+  brief: The unique identifier of the memory store.
+  examples: ["ms_abc123", "user-preferences-store"]
+
+- id: gen_ai.memory.store.name
+  stability: development
+  type: string
+  brief: Human-readable name of the memory store.
+  examples: ["Customer Support Memory", "Shopping Preferences"]
+
+# Memory Item Identification
+- id: gen_ai.memory.id
+  stability: development
+  type: string
+  brief: The unique identifier of a memory item.
+  examples: ["mem_5j66UpCpwteGg4YSxUnt7lPY"]
+
+# Memory Type (keep as string; provide examples vs hard enum)
+- id: gen_ai.memory.type
+  stability: development
+  type: string
+  brief: The type/tier of memory being operated on.
+  note: >
+    This is intentionally modeled as a free-form string to accommodate framework differences.
+    Instrumentations SHOULD use low-cardinality values and document any custom values they emit.
+  examples: ["short_term", "long_term"]
+
+# Memory Scope (primarily defined at store creation time)
+- id: gen_ai.memory.scope
+  stability: development
+  type:
+    members:
+      - id: user
+        value: "user"
+        brief: "Scoped to a specific user"
+        stability: development
+      - id: session
+        value: "session"
+        brief: "Scoped to a session/thread"
+        stability: development
+      - id: agent
+        value: "agent"
+        brief: "Scoped to a specific agent"
+        stability: development
+      - id: team
+        value: "team"
+        brief: "Shared across a team of agents"
+        stability: development
+      - id: global
+        value: "global"
+        brief: "Globally accessible"
+        stability: development
+  brief: The scope of the memory store or memory operation.
+  examples: ["user", "session", "agent"]
+
+# Memory Content (Opt-In due to sensitivity)
+- id: gen_ai.memory.content
+  stability: development
+  type: any
+  brief: The content/value of the memory item.
+  note: |
+    > [!WARNING]
+    > This attribute may contain sensitive information including user/PII data.
+    >
+    > Instrumentations SHOULD NOT capture this by default.
+  examples:
+    - '{"preference": "dark_mode", "value": true}'
+
+# Memory Query (Opt-In due to sensitivity)
+- id: gen_ai.memory.query
+  stability: development
+  type: string
+  brief: The search query used to retrieve memories.
+  note: |
+    > [!WARNING]
+    > This attribute may contain sensitive information.
+  examples: ["user dietary preferences", "past flight bookings"]
+
+# Memory Namespace (for multi-tenant isolation)
+- id: gen_ai.memory.namespace
+  stability: development
+  type: string
+  brief: Namespace for memory isolation (e.g., user_id, tenant_id).
+  examples: ["user_12345", "org_acme"]
+
+# Search Results
+- id: gen_ai.memory.search.result.count
+  stability: development
+  type: int
+  brief: Number of memory items returned from a search operation.
+  examples: [3, 10]
+
+- id: gen_ai.memory.search.similarity.threshold
+  stability: development
+  type: double
+  brief: Minimum similarity score threshold used for memory search.
+  examples: [0.7, 0.85]
+
+# Memory Metadata
+- id: gen_ai.memory.expiration_date
+  stability: development
+  type: string
+  brief: Expiration date for the memory in ISO 8601 format.
+  examples: ["2025-12-31", "2026-01-15T00:00:00Z"]
+
+- id: gen_ai.memory.importance
+  stability: development
+  type: double
+  brief: Importance score of the memory (0.0 to 1.0).
+  examples: [0.8, 0.95]
+
+# Update Strategy
+- id: gen_ai.memory.update.strategy
+  stability: development
+  type:
+    members:
+      - id: overwrite
+        value: "overwrite"
+        brief: "Replace existing memory entirely"
+        stability: development
+      - id: merge
+        value: "merge"
+        brief: "Merge with existing memory"
+        stability: development
+      - id: append
+        value: "append"
+        brief: "Append to existing memory"
+        stability: development
+  brief: Strategy used when updating memory.
+  examples: ["overwrite", "merge"]
+```
+
+### 2.3 Memory Spans
+
+#### Create Memory Store Span
+
+```yaml
+- id: span.gen_ai.create_memory_store.client
+  type: span
+  stability: development
+  span_kind: client
+  brief: >
+    Describes creation/initialization of a memory store.
+  note: |
+    The `gen_ai.operation.name` SHOULD be `create_memory_store`.
+
+    **Span name** SHOULD be `create_memory_store {gen_ai.memory.store.name}`
+    or `create_memory_store` if store name is not available.
+  attributes:
+    - ref: gen_ai.operation.name
+      requirement_level: required
+    - ref: gen_ai.provider.name
+      requirement_level: required
+    - ref: gen_ai.memory.store.id
+      requirement_level:
+        conditionally_required: when returned by the operation
+    - ref: gen_ai.memory.store.name
+      requirement_level: recommended
+    - ref: gen_ai.memory.scope
+      requirement_level: required
+    - ref: gen_ai.memory.type
+      requirement_level:
+        conditionally_required: when store is dedicated to a memory type
+    - ref: gen_ai.memory.namespace
+      requirement_level:
+        conditionally_required: when store is namespaced
+    - ref: error.type
+      requirement_level:
+        conditionally_required: if the operation ended in an error
+```
+
+#### Search Memory Span
+
+```yaml
+- id: span.gen_ai.search_memory.client
+  type: span
+  stability: development
+  span_kind: client
+  brief: >
+    Describes a memory search/retrieval operation - querying a memory store
+    for relevant memories.
+  note: |
+    The `gen_ai.operation.name` SHOULD be `search_memory`.
+
+    **Span name** SHOULD be `search_memory {gen_ai.memory.store.name}`
+    or `search_memory` if store name is not available.
+  attributes:
+    - ref: gen_ai.operation.name
+      requirement_level: required
+    - ref: gen_ai.provider.name
+      requirement_level: required
+    - ref: gen_ai.memory.store.id
+      requirement_level:
+        conditionally_required: if applicable
+    - ref: gen_ai.memory.store.name
+      requirement_level: recommended
+    - ref: gen_ai.memory.query
+      requirement_level: opt_in
+    - ref: gen_ai.memory.type
+      requirement_level: recommended
+    - ref: gen_ai.memory.namespace
+      requirement_level:
+        conditionally_required: when memory is namespaced
+    - ref: gen_ai.memory.search.result.count
+      requirement_level: recommended
+    - ref: gen_ai.memory.search.similarity.threshold
+      requirement_level:
+        conditionally_required: when similarity filtering is used
+    - ref: gen_ai.agent.id
+      requirement_level:
+        conditionally_required: when searching agent-scoped memory
+    - ref: gen_ai.conversation.id
+      requirement_level:
+        conditionally_required: when searching session-scoped memory
+    - ref: error.type
+      requirement_level:
+        conditionally_required: if the operation ended in an error
+```
+
+#### Update Memory Span (Upsert)
+
+```yaml
+- id: span.gen_ai.update_memory.client
+  type: span
+  stability: development
+  span_kind: client
+  brief: >
+    Describes a memory update operation (upsert) - creating or modifying
+    memory items in a memory store.
+  note: |
+    The `gen_ai.operation.name` SHOULD be `update_memory`.
+
+    This operation is an upsert to avoid ambiguity between create vs update.
+
+    **Span name** SHOULD be `update_memory {gen_ai.memory.store.name}`
+    or `update_memory` if store name is not available.
+  attributes:
+    - ref: gen_ai.operation.name
+      requirement_level: required
+    - ref: gen_ai.provider.name
+      requirement_level: required
+    - ref: gen_ai.memory.store.id
+      requirement_level:
+        conditionally_required: if applicable
+    - ref: gen_ai.memory.store.name
+      requirement_level: recommended
+    - ref: gen_ai.memory.id
+      requirement_level:
+        conditionally_required: when available (provided or returned)
+    - ref: gen_ai.memory.update.strategy
+      requirement_level: recommended
+    - ref: gen_ai.memory.type
+      requirement_level: recommended
+    - ref: gen_ai.memory.namespace
+      requirement_level:
+        conditionally_required: when memory is namespaced
+    - ref: gen_ai.memory.content
+      requirement_level: opt_in
+    - ref: gen_ai.memory.expiration_date
+      requirement_level:
+        conditionally_required: if expiration is set
+    - ref: gen_ai.memory.importance
+      requirement_level: recommended
+    - ref: gen_ai.agent.id
+      requirement_level:
+        conditionally_required: when operating on agent-scoped memory
+    - ref: gen_ai.conversation.id
+      requirement_level:
+        conditionally_required: when operating on session-scoped memory
+    - ref: error.type
+      requirement_level:
+        conditionally_required: if the operation ended in an error
+```
+
+#### Delete Memory Span
+
+```yaml
+- id: span.gen_ai.delete_memory.client
+  type: span
+  stability: development
+  span_kind: client
+  brief: >
+    Describes a memory deletion operation - removing one or more memory items.
+  note: |
+    The `gen_ai.operation.name` SHOULD be `delete_memory`.
+
+    **Span name** SHOULD be `delete_memory {gen_ai.memory.store.name}`
+    or `delete_memory` if store name is not available.
+
+    Deletion semantics SHOULD be interpreted as follows:
+
+    - If `gen_ai.memory.id` is set, delete a specific memory item.
+    - If `gen_ai.memory.id` is not set, delete all memory items in the specified
+      `gen_ai.memory.scope` (and within `gen_ai.memory.namespace`, if applicable).
+  attributes:
+    - ref: gen_ai.operation.name
+      requirement_level: required
+    - ref: gen_ai.provider.name
+      requirement_level: required
+    - ref: gen_ai.memory.store.id
+      requirement_level:
+        conditionally_required: if applicable
+    - ref: gen_ai.memory.store.name
+      requirement_level: recommended
+    - ref: gen_ai.memory.scope
+      requirement_level: required
+    - ref: gen_ai.memory.id
+      requirement_level:
+        conditionally_required: when deleting a specific memory item
+    - ref: gen_ai.memory.type
+      requirement_level:
+        conditionally_required: when deleting by type
+    - ref: gen_ai.memory.namespace
+      requirement_level:
+        conditionally_required: when memory is namespaced
+    - ref: gen_ai.agent.id
+      requirement_level:
+        conditionally_required: when deleting agent-scoped memory
+    - ref: gen_ai.conversation.id
+      requirement_level:
+        conditionally_required: when deleting session-scoped memory
+    - ref: error.type
+      requirement_level:
+        conditionally_required: if the operation ended in an error
+```
+
+#### Delete Memory Store Span
+
+```yaml
+- id: span.gen_ai.delete_memory_store.client
+  type: span
+  stability: development
+  span_kind: client
+  brief: >
+    Describes deletion/deprovisioning of a memory store.
+  note: |
+    The `gen_ai.operation.name` SHOULD be `delete_memory_store`.
+
+    **Span name** SHOULD be `delete_memory_store {gen_ai.memory.store.name}`
+    or `delete_memory_store` if store name is not available.
+  attributes:
+    - ref: gen_ai.operation.name
+      requirement_level: required
+    - ref: gen_ai.provider.name
+      requirement_level: required
+    - ref: gen_ai.memory.store.id
+      requirement_level:
+        conditionally_required: if applicable
+    - ref: gen_ai.memory.store.name
+      requirement_level: recommended
+    - ref: gen_ai.memory.namespace
+      requirement_level:
+        conditionally_required: when store is namespaced
+    - ref: error.type
+      requirement_level:
+        conditionally_required: if the operation ended in an error
+```
+
+## Example Trace
+
+Here is an example trace for a personalized shopping agent that uses a user-scoped, long-term memory store.
+
+```
+invoke_agent "Shopping Assistant" (span_kind: CLIENT)
+  ├── gen_ai.agent.name: "Shopping Assistant"
+  ├── gen_ai.provider.name: "azure.ai.inference"
+  │
+  ├── search_memory "user-preferences" (span_kind: CLIENT)
+  │   ├── gen_ai.operation.name: "search_memory"
+  │   ├── gen_ai.memory.store.name: "user-preferences"
+  │   ├── gen_ai.memory.type: "long_term"
+  │   ├── gen_ai.memory.namespace: "user_12345"
+  │   ├── gen_ai.memory.search.result.count: 3
+  │   └── duration: 45ms
+  │
+  ├── chat gpt-4 (span_kind: CLIENT)
+  │   ├── gen_ai.operation.name: "chat"
+  │   ├── gen_ai.usage.input_tokens: 1500
+  │   ├── gen_ai.usage.output_tokens: 250
+  │   └── duration: 1200ms
+  │
+  └── update_memory "user-preferences" (span_kind: CLIENT)
+      ├── gen_ai.operation.name: "update_memory"
+      ├── gen_ai.memory.store.name: "user-preferences"
+      ├── gen_ai.memory.type: "long_term"
+      ├── gen_ai.memory.namespace: "user_12345"
+      ├── gen_ai.memory.id: "mem_xyz789"
+      └── duration: 30ms
+```
+
+## Diagrams
+
+```mermaid
+gantt
+    title GenAI Agent Trace with Memory Operations
+    dateFormat X
+    axisFormat %L ms
+
+    section Agent
+    invoke_agent "Shopping Assistant" :0, 1500
+
+    section Memory
+    search_memory "user-preferences" :0, 45
+    update_memory "user-preferences" :1470, 30
+
+    section LLM
+    chat gpt-4 :50, 1200
+```
+
+```mermaid
+flowchart TB
+    subgraph trace["Trace: Shopping Assistant"]
+        A["invoke_agent<br/>Shopping Assistant<br/>span_kind: CLIENT<br/>duration: 1500ms"]
+
+        A --> B["search_memory<br/>user-preferences<br/>type: long_term<br/>namespace: user_12345<br/>result_count: 3<br/>duration: 45ms"]
+
+        A --> C["chat<br/>gpt-4<br/>input_tokens: 1500<br/>output_tokens: 250<br/>duration: 1200ms"]
+
+        A --> D["update_memory<br/>user-preferences<br/>type: long_term<br/>memory_id: mem_xyz789<br/>duration: 30ms"]
+    end
+
+    B --> C
+    C --> D
+```
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant Client
+    participant Agent as Shopping Assistant (Agent)
+    participant Memory as Memory Store (user-preferences)
+    participant LLM as GPT-4 (LLM)
+
+    Client->>Agent: User Request
+    activate Agent
+
+    Note over Agent: invoke_agent starts
+
+    Agent->>Memory: search_memory
+    activate Memory
+    Note right of Memory: type: long_term<br/>namespace: user_12345<br/>similarity_threshold: 0.7
+    Memory-->>Agent: 3 memories found
+    deactivate Memory
+
+    Note over Agent: Inject memories into context
+
+    Agent->>LLM: chat (with memory context)
+    activate LLM
+    Note right of LLM: input_tokens: 1500<br/>output_tokens: 250
+    LLM-->>Agent: Response generated
+    deactivate LLM
+
+    Agent->>Memory: update_memory (upsert)
+    activate Memory
+    Note right of Memory: type: long_term<br/>namespace: user_12345<br/>id: mem_xyz789
+    Memory-->>Agent: Memory upserted
+    deactivate Memory
+
+    Agent-->>Client: Final Response
+    deactivate Agent
+```
+
+```mermaid
+stateDiagram-v2
+    [*] --> SearchMemory: Agent needs context
+
+    SearchMemory --> MemoryFound: Results > 0
+    SearchMemory --> NoMemory: Results = 0
+
+    MemoryFound --> InjectContext: Add to prompt
+    NoMemory --> InjectContext: Skip injection
+
+    InjectContext --> LLMCall: Send to model
+
+    LLMCall --> ExtractFacts: Response received
+
+    ExtractFacts --> UpdateMemory: Upsert new/updated facts
+    ExtractFacts --> DeleteMemory: Memory invalidated
+    ExtractFacts --> [*]: No memory changes
+
+    UpdateMemory --> [*]
+    DeleteMemory --> [*]
+
+    note right of SearchMemory
+        gen_ai.operation.name: search_memory
+        gen_ai.memory.type: long_term
+    end note
+
+    note right of DeleteMemory
+        gen_ai.operation.name: delete_memory
+        gen_ai.memory.scope: user
+        gen_ai.memory.namespace: user_12345
+    end note
+```
+
+```mermaid
+flowchart LR
+    subgraph Client["Client Application"]
+        U[User Request]
+    end
+
+    subgraph Agent["GenAI Agent"]
+        direction TB
+        A[Agent Orchestrator]
+
+        subgraph ops["Memory Operations"]
+            S[search_memory]
+            UP["update_memory (upsert)"]
+            D[delete_memory]
+        end
+
+        L[LLM Call]
+    end
+
+    subgraph MemoryLayer["Memory Layer"]
+        direction TB
+
+        subgraph stores["Memory Stores"]
+            MS1[(User Memory Store)]
+            MS2[(Session Memory Store)]
+            MS3[(Agent Memory Store)]
+        end
+
+        subgraph tiers["Memory Types (examples)"]
+            T1[short_term]
+            T2[long_term]
+        end
+    end
+
+    U --> A
+    A --> S
+    A --> L
+    L --> UP
+    L --> D
+
+    S -->|query| MS1
+    MS1 -->|results| S
+    S -->|query| MS2
+    MS2 -->|results| S
+    S -->|query| MS3
+    MS3 -->|results| S
+
+    UP --> MS1
+    UP --> MS2
+    UP --> MS3
+
+    MS1 --- T2
+    MS2 --- T1
+    MS3 --- T2
+```
+
+## Rationale: Why Separate Memory Spans?
+
+This section addresses reviewer feedback about whether memory operations should be separate spans or an expansion of the agent span with `gen_ai.operation.name: memory`.
+
+### Recommendation: Keep Separate Spans
+
+Memory operations are modeled as **separate client spans** rather than expanding the agent span for the following reasons:
+
+#### 1. Follows Database Pattern
+
+OTel database conventions define separate client spans per operation with `db.operation.name` distinguishing them (e.g., `SELECT`, `INSERT`). Memory operations follow this same established pattern with `gen_ai.operation.name` values like `search_memory`, `update_memory`, etc.
+
+#### 2. Agent Span is Orchestration
+
+The agent span (`invoke_agent`) represents the **orchestration layer**. Memory operations are I/O operations that happen *within* an agent invocation, similar to how database calls happen within a service request.
+
+#### 3. Trace Hierarchy
+
+Separate spans enable clear trace hierarchy:
+
+```
+invoke_agent (agent span)
+├── search_memory (memory span - retrieves context)
+├── chat (inference span - LLM call)
+└── update_memory (memory span - stores result)
+```
+
+#### 4. Enables Correlation
+
+Separate spans allow:
+
+- Duration metrics per operation type
+- Error rates per operation
+- Performance analysis (which memory operation is slow?)
+
+### Contrast with "memory" as Operation Name
+
+If we used `gen_ai.operation.name: memory` on the agent span:
+
+- We would lose granularity (cannot distinguish search vs update vs delete)
+- We would need sub-attributes like `gen_ai.memory.operation` anyway
+- It would be inconsistent with database conventions
+
+## Rationale: Memory vs Database Conventions
+
+This section addresses why memory operations need dedicated `gen_ai.memory.*` attributes rather than reusing `db.*` conventions.
+
+### Comparison Table
+
+| Aspect | Database (`db.*`) | GenAI Memory (`gen_ai.memory.*`) | Unique to Memory? |
+|--------|-------------------|----------------------------------|-------------------|
+| **System** | `db.system.name` (postgresql) | `gen_ai.provider.name` (pinecone) | No |
+| **Operation** | `db.operation.name` (SELECT) | `gen_ai.operation.name` (search_memory) | No |
+| **Target** | `db.collection.name` (users) | `gen_ai.memory.store.name` | No |
+| **Query** | `db.query.text` | `gen_ai.memory.query` | No |
+| **Scope** | N/A | `gen_ai.memory.scope` (user, session, agent) | **YES** |
+| **Memory Type** | N/A | `gen_ai.memory.type` (short_term, long_term) | **YES** |
+| **Importance** | N/A | `gen_ai.memory.importance` | **YES** |
+| **Update Strategy** | N/A (UPSERT is operation) | `gen_ai.memory.update.strategy` (merge, append) | **YES** |
+| **Agent Context** | N/A | `gen_ai.agent.id`, `gen_ai.conversation.id` | **YES** |
+| **Similarity Search** | N/A | `gen_ai.memory.search.similarity.threshold` | **YES** |
+
+### Why Not Just Use `db.*` Attributes?
+
+1. **Semantic vs Physical Scope**: Memory uses semantic isolation (user, session, agent) vs database physical isolation (schema, namespace).
+
+2. **AI Context**: Memory carries `gen_ai.agent.id`, `gen_ai.conversation.id` - meaningless for databases.
+
+3. **Importance Scoring**: Memory items have `gen_ai.memory.importance` (0.0-1.0) affecting retrieval and retention.
+
+4. **Similarity-Based Retrieval**: `gen_ai.memory.search.similarity.threshold` is fundamental to vector-based memory retrieval.
+
+5. **Memory is an Abstraction**: Memory providers vary widely - some use vector databases (Pinecone, Chroma), others use in-memory stores, key-value caches, or custom backends. Not all memory providers use a database at all.
+
+### Example Contrast
+
+```
+# Database span (OTel db.* conventions)
+db.system.name: postgresql
+db.operation.name: SELECT
+db.collection.name: users
+db.query.text: SELECT * FROM users WHERE id = ?
+
+# Memory span (proposed gen_ai.memory.* conventions)
+gen_ai.operation.name: search_memory
+gen_ai.memory.scope: user
+gen_ai.memory.query: "user dietary preferences"
+gen_ai.memory.search.similarity.threshold: 0.7
+gen_ai.conversation.id: conv_12345
+gen_ai.agent.id: support_bot
+```
+
+### Hybrid Approach
+
+Instrumentations:
+
+1. **SHOULD** emit `gen_ai.memory.*` attributes for AI-specific observability
+2. **MAY** additionally emit `db.*` attributes when the underlying storage is a database, for infrastructure-level correlation
+3. Memory spans carry GenAI-specific semantic meaning that `db.*` alone cannot express
+
+## Rationale: Memory vs Retrieval Operations
+
+This section clarifies the distinction between `search_memory` and the existing `retrieval` operation in GenAI semantic conventions.
+
+### Comparison
+
+| Aspect | Retrieval (`gen_ai.retrieval.*`) | Memory (`gen_ai.memory.*`) |
+|--------|----------------------------------|----------------------------|
+| **Purpose** | Fetch grounding context from external sources | Manage persistent agent state |
+| **Data Source** | External documents, knowledge bases | Agent-owned context |
+| **Lifecycle** | Read-only (fetch) | Full CRUD (create, read, update, delete) |
+| **Scope** | Global knowledge | User/session/agent-specific |
+| **Persistence** | External system manages | Agent manages lifecycle |
+| **Example** | RAG from documentation | Remember user preferences |
+
+### Key Differences
+
+#### 1. Retrieval is Read-Only, Memory is CRUD
+
+```
+# Retrieval: Only fetches
+retrieval → documents
+
+# Memory: Full lifecycle
+create_memory_store → store created
+search_memory → results (like retrieval)
+update_memory → item stored
+delete_memory → item removed
+delete_memory_store → store removed
+```
+
+#### 2. Retrieval is External, Memory is Agent-Owned
+
+- **Retrieval**: "What does the documentation say about X?"
+  - Source: External knowledge base
+  - Agent does NOT modify the source
+
+- **Memory**: "What did this user tell me before?"
+  - Source: Agent-owned persistent state
+  - Agent creates, updates, and deletes
+
+#### 3. Retrieval is Stateless, Memory is Stateful
+
+- **Retrieval**: Same query → same results (assuming static docs)
+- **Memory**: Results change based on prior agent interactions
+
+### When to Use Which
+
+| Scenario | Operation |
+|----------|-----------|
+| Search product documentation | `retrieval` |
+| Query external API for facts | `retrieval` |
+| RAG from knowledge base | `retrieval` |
+| Find user past preferences | `search_memory` |
+| Recall conversation context | `search_memory` |
+| Multi-agent shared state | `search_memory` (team scope) |
+
+### Overlap: search_memory ≈ retrieval
+
+`search_memory` IS similar to `retrieval`:
+
+- Both query for relevant context
+- Both return results with scores
+- Both use similarity thresholds
+
+**BUT** `search_memory` operates on *agent-managed memory*, not external knowledge.
+
+## Rationale: Why GenAI-Specific Namespace?
+
+This section explains why memory operations belong in the `gen_ai.*` namespace rather than using generic `db.*` conventions.
+
+### 1. Memory is About AI Context, Not Data Storage
+
+| Database Operation | Memory Operation |
+|-------------------|------------------|
+| Store customer record | Remember user preference |
+| Query orders table | Recall relevant context |
+| Update inventory count | Learn from interaction |
+| Delete old logs | Forget outdated information |
+
+Memory operations have **semantic intent** (remember, recall, learn, forget) that databases do not capture.
+
+### 2. Memory Operations Are AI-Native
+
+Memory spans carry AI context (conversation, agent, similarity) that is meaningless for databases:
+
+- `gen_ai.agent.id` - Which agent accessed memory
+- `gen_ai.conversation.id` - Links to conversation flow
+- `gen_ai.memory.importance` - Semantic importance score
+- `gen_ai.memory.search.similarity.threshold` - Vector similarity cutoff
+
+### 3. Memory Crosses Multiple Storage Systems
+
+A single "memory" might involve:
+
+- Vector database (Pinecone) for semantic search
+- Key-value store (Redis) for session state
+- Document database (MongoDB) for user profiles
+
+Memory is an **abstraction** over storage, not a storage system itself.
+
+### 4. Memory Has Lifecycle Semantics
+
+- **Expiration**: Memory items expire based on semantic rules (24h session, 30d preference)
+- **Importance**: Items have importance scores affecting retention
+- **Scope propagation**: Deleting user scope cascades to all related items
+
+These are AI-specific lifecycle concerns not present in database conventions.
+
+### 5. Different Consumers
+
+- **Database metrics**: Infrastructure teams, DBAs
+- **Memory metrics**: AI engineers, ML ops
+
+AI engineers need memory-specific dashboards, not generic database monitoring. Memory operations must correlate with `gen_ai.*` spans (chat, invoke_agent), not with generic service requests.
