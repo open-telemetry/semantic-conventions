@@ -1,22 +1,4 @@
 groups:
-  - id: span.tps.http.server
-    type: span
-    stability: development
-    brief: 'This document defines semantic conventions for a HTTP server spans of Transaction Processing Systems.'
-    extends: span.http.server
-    span_kind: server
-    attributes:
-      - ref: tps.system.name
-        requirement_level: required
-      - ref: tps.transaction.id
-        requirement_level: required
-      - ref: tps.transaction.owner.id
-      - ref: tps.task.id
-      - ref: tps.program.name
-      - ref: tps.unit_of_work.id
-      - ref: tps.connection.name
-      - ref: tps.facility.type
-
   - id: span.tps.server
     type: span
     stability: development
@@ -34,3 +16,22 @@ groups:
       - ref: tps.unit_of_work.id
       - ref: tps.connection.name
       - ref: tps.facility.type
+
+  - id: span.tps.http.server
+    type: span
+    stability: development
+    brief: 'This document defines semantic conventions for a HTTP server spans of Transaction Processing Systems.'
+    extends: span.http.server
+    span_kind: server
+    attributes:
+      - ref: tps.system.name
+        requirement_level: required
+      - ref: tps.transaction.id
+        requirement_level: required
+      - ref: tps.transaction.owner.id
+      - ref: tps.task.id
+      - ref: tps.program.name
+      - ref: tps.unit_of_work.id
+      - ref: tps.connection.name
+      - ref: tps.facility.type
+      
