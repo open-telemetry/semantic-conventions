@@ -4,21 +4,23 @@
 # your pull request title with [chore] or use the "Skip Changelog" label.
 
 # One of 'breaking', 'deprecation', 'new_component', 'enhancement', 'bug_fix'
-change_type: enhancement
+change_type: breaking
 
 # The name of the area of concern in the attributes-registry, (e.g. http, cloud, db)
-component: k8s
+component: system
 
 # A brief description of the change. Surround your text with quotes ("") if it needs to start with a backtick (`).
-note: Promote a selection of k8s and container attributes to alpha
+note: "Rename `system.memory.shared` to `system.memory.linux.shared`"
 
 # Mandatory: One or more tracking issues related to the change. You can use the PR number here if no issue exists.
 # The values here must be integers.
-issues: [3120]
+issues: [3260]
 
 # (Optional) One or more lines of additional information to render under the primary note.
 # These lines will be padded with 2 spaces and then inserted directly into the document.
 # Use pipe (|) for multiline entries.
-subtext: |
-  The selected attributes being promoted are used by the Collector Contrib components
-  that are targeting stability: https://github.com/open-telemetry/opentelemetry-collector-contrib/issues/44130
+subtext:
+  The `system.memory.shared` metric has been renamed to `system.memory.linux.shared` to
+  align with other Linux-specific memory metrics (`system.memory.linux.available` and
+  `system.memory.linux.slab.usage`). This metric reports shared memory used, primarily
+  by tmpfs, and is only available on Linux systems.

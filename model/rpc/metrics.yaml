@@ -6,12 +6,12 @@ groups:
     attributes:
       - ref: rpc.system.name
         requirement_level: required
-      - ref: rpc.service
       - ref: server.address
-        requirement_level: required
       - ref: server.port
+      - ref: rpc.method
         requirement_level:
-          conditionally_required: If applicable.
+          conditionally_required: if available.
+
   - id: attributes.metrics.rpc.server
     type: attribute_group
     brief: "Describes RPC metric attributes."
@@ -25,6 +25,10 @@ groups:
       - ref: server.port
         note: ""
         requirement_level: opt_in
+      - ref: rpc.method
+        requirement_level:
+          conditionally_required: if available.
+
   # RPC Server metrics
   - id: metric.rpc.server.call.duration
     type: metric
@@ -42,34 +46,6 @@ groups:
 
     extends: attributes.metrics.rpc.server
 
-  - id: metric.rpc.server.request.size
-    type: metric
-    metric_name: rpc.server.request.size
-    annotations:
-      code_generation:
-        metric_value_type: int
-    stability: development
-    brief: Measures the size of RPC request messages (uncompressed).
-    instrument: histogram
-    unit: "By"
-    note: |
-      **Streaming**: Recorded per message in a streaming batch
-    extends: attributes.metrics.rpc.server
-
-  - id: metric.rpc.server.response.size
-    type: metric
-    metric_name: rpc.server.response.size
-    annotations:
-      code_generation:
-        metric_value_type: int
-    stability: development
-    brief: Measures the size of RPC response messages (uncompressed).
-    instrument: histogram
-    unit: "By"
-    note: |
-      **Streaming**: Recorded per response in a streaming batch
-    extends: attributes.metrics.rpc.server
-
   # RPC Client metrics
   - id: metric.rpc.client.call.duration
     type: metric
@@ -84,32 +60,4 @@ groups:
     note: |
       When this metric is reported alongside an RPC client span, the metric value
       SHOULD be the same as the RPC client span duration.
-    extends: attributes.metrics.rpc.client
-
-  - id: metric.rpc.client.request.size
-    type: metric
-    metric_name: rpc.client.request.size
-    annotations:
-      code_generation:
-        metric_value_type: int
-    stability: development
-    brief: Measures the size of RPC request messages (uncompressed).
-    instrument: histogram
-    unit: "By"
-    note: |
-      **Streaming**: Recorded per message in a streaming batch
-    extends: attributes.metrics.rpc.client
-
-  - id: metric.rpc.client.response.size
-    type: metric
-    metric_name: rpc.client.response.size
-    annotations:
-      code_generation:
-        metric_value_type: int
-    stability: development
-    brief: Measures the size of RPC response messages (uncompressed).
-    instrument: histogram
-    unit: "By"
-    note: |
-      **Streaming**: Recorded per response in a streaming batch
     extends: attributes.metrics.rpc.client

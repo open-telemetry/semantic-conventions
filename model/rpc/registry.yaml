@@ -43,25 +43,45 @@ groups:
       - id: rpc.method
         type: string
         stability: development
-        brief: This is the logical name of the method from the RPC interface perspective.
-        examples: "exampleMethod"
-        note: >
-          This is the logical name of the method from the RPC interface perspective,
-          which can be different from the name of any implementing method/function.
+        brief: The fully-qualified logical name of the method from the RPC
+          interface perspective.
+        examples:
+          - "com.example.ExampleService/exampleMethod"
+          - "EchoService/Echo"
+          - "_OTHER"
+        note: |
+          The method name MAY have unbounded cardinality in edge or error cases.
+
+          Some RPC frameworks or libraries provide a fixed set of recognized methods
+          for client stubs and server implementations. Instrumentations for such
+          frameworks MUST set this attribute to the original method name only
+          when the method is recognized by the framework or library.
+
+          When the method is not recognized, for example, when the server receives
+          a request for a method that is not predefined on the server, or when
+          instrumentation is not able to reliably detect if the method is predefined,
+          the attribute MUST be set to `_OTHER`. In such cases, tracing
+          instrumentations MUST also set `rpc.method_original` attribute to
+          the original method value.
+
+          If the RPC instrumentation could end up converting valid RPC methods to
+          `_OTHER`, then it SHOULD provide a way to configure the list of recognized
+          RPC methods.
+
+          The `rpc.method` can be different from the name of any implementing
+          method/function.
           The `code.function.name` attribute may be used to record the fully-qualified
           method actually executing the call on the server side, or the
           RPC client stub method on the client side.
-      - id: rpc.service
+      - id: rpc.method_original
         type: string
         stability: development
-        brief: 'The full (logical) name of the service being called, including its package name, if applicable.'
-        examples: "myservice.EchoService"
-        note: >
-          This is the logical name of the service from the RPC interface perspective,
-          which can be different from the name of any implementing class.
-          The `code.function.name` attribute may be used to record the fully-qualified
-          method actually executing the call on the server side, or the
-          RPC client stub class on the client side.
+        brief: >
+          The original name of the method used by the client.
+        examples:
+          - "com.myservice.EchoService/catchAll"
+          - "com.myservice.EchoService/unknownMethod"
+          - "InvalidMethod"
       - id: rpc.system.name
         brief: 'The Remote Procedure Call (RPC) system.'
         note: >
@@ -88,27 +108,3 @@ groups:
               brief: '[JSON-RPC](https://www.jsonrpc.org/)'
               stability: development
         stability: development
-      - id: rpc.message.type
-        type:
-          members:
-            - id: sent
-              value: "SENT"
-              stability: development
-            - id: received
-              value: "RECEIVED"
-              stability: development
-        stability: development
-        brief: "Whether this is a received or sent message."
-      - id: rpc.message.id
-        type: int
-        stability: development
-        brief: "MUST be calculated as two different counters starting from `1` one for sent messages and one for received message."
-        note: "This way we guarantee that the values will be consistent between different implementations."
-      - id: rpc.message.compressed_size
-        type: int
-        stability: development
-        brief: "Compressed size of the message in bytes."
-      - id: rpc.message.uncompressed_size
-        type: int
-        stability: development
-        brief: "Uncompressed size of the message in bytes."

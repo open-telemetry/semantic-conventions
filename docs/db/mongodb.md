@@ -95,9 +95,6 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | `db.system.name`       | `"mongodb"`                |
 | `server.address`       | `"mongodb0.example.com"`   |
 | `server.port`          | `27017`                    |
-| `network.peer.address` | `"192.0.2.14"`             |
-| `network.peer.port`    | `27017`                    |
-| `network.transport`    | `"tcp"`                    |
 | `db.collection.name`   | `"products"`               |
 | `db.namespace`         | `"shopDb"`                 |
 | `db.query.text`        | not set                    |

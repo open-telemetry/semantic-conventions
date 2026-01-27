@@ -15,6 +15,9 @@ groups:
         role: identifying
       - ref: service.version
         role: descriptive
+      - ref: service.criticality
+        requirement_level: recommended
+        role: descriptive
   - id: entity.service.instance
     type: entity
     name: service.instance
