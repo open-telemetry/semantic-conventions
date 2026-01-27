@@ -93,9 +93,9 @@ on capturing exception details on these signals.
 It's NOT RECOMMENDED to record the same exception more than once.
 It's NOT RECOMMENDED to record exceptions that are handled by the instrumented library.
 
-For example, in this code-snippet, `ResourceAlreadyExistsException` is handled
-and the corresponding native instrumentation should not record it.
-Exceptions which are propagated to the caller should be recorded (or logged) at most once.
+For example, in this code-snippet, `ResourceAlreadyExistsException` is handled and the corresponding
+native instrumentation should not record it. Exceptions which are propagated
+to the caller should be recorded (or logged) once.
 
 ```java
 public boolean createIfNotExists(String resourceId) throws IOException {
