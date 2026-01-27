@@ -125,7 +125,7 @@ public boolean createIfNotExists(String resourceId) throws IOException {
   } catch (IOException e) {
     logger.withEventName("acme.resource.create.error")
       .withException(e)
-      .error()
+      .warn()  // this exception is expected to be handled by the caller and could be a transient error
 
     String errorType = e.getClass().getCanonicalName();
 
