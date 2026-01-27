@@ -438,10 +438,15 @@ groups:
     span_kind: internal
     stability: development
     brief: >
-      Represents a workflow orchestrating multiple agents with predefined code paths.
+      Represents a workflow orchestrating one or more agents.
     note: |
       The `gen_ai.operation.name` SHOULD be `invoke_workflow`.
       **Span name** SHOULD be `invoke_workflow {gen_ai.workflow.name}`.
+
+      This span SHOULD be reported by the instrumentations when they can
+      reliably determine that invocation is a workflow (i.e. groups several agent
+      invocations) and SHOULD NOT be reported by instrumentations that
+      can't distinguish it `invoke_workflow` from `invoke_agent`.
     extends: attributes.gen_ai.common.client
     attributes:
       - ref: gen_ai.workflow.name
