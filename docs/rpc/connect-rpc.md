@@ -27,7 +27,7 @@ This span represents an outgoing Remote Procedure Call (RPC).
 
 **Span kind** MUST be `CLIENT`.
 
-**Span status** Refer to the [Recording Errors](/docs/general/recording-errors.md)
+**Span status**: refer to the [Recording Errors](/docs/general/recording-errors.md)
 document for details on how to record span status.
 
 **Attributes:**
@@ -86,7 +86,7 @@ The `code.function.name` attribute may be used to record the fully-qualified
 method actually executing the call on the server side, or the
 RPC client stub method on the client side.
 
-**[3] `rpc.response.status_code`:** All error codes except `OK` SHOULD be considered errors.
+**[3] `rpc.response.status_code`:** All status codes except `OK` SHOULD be considered errors.
 
 **[4] `server.address`:** May contain server IP address, DNS name, or local socket name. When host component is an IP address, instrumentations SHOULD NOT do a reverse proxy lookup to obtain DNS name and SHOULD set `server.address` to the IP address provided in the host component.
 
@@ -164,7 +164,7 @@ This span represents an incoming Remote Procedure Call (RPC).
 
 **Span kind** MUST be `SERVER`.
 
-**Span status** Refer to the [Recording Errors](/docs/general/recording-errors.md)
+**Span status**: refer to the [Recording Errors](/docs/general/recording-errors.md)
 document for details on how to record span status.
 
 **Attributes:**
