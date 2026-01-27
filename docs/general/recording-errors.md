@@ -122,7 +122,8 @@ public boolean createIfNotExists(String resourceId) throws IOException {
 
     return false;
   } catch (IOException e) {
-    // this exception is expected to be handled by the caller and could be a transient error
+    // this exception is expected to be handled by the caller
+    // and could be a transient error
     logger.withEventName("acme.resource.create.error")
       .withException(e)
       .warn();
