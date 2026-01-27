@@ -24,6 +24,9 @@ These semantic conventions define:
 - A span that represents a single guardian evaluation.
 - An event that captures individual security findings emitted during that evaluation.
 
+For implementation guidance, examples, and design rationale, see the
+[non-normative implementation guide](non-normative/security_implementation_gen_ai_spec.md).
+
 ## Spans
 
 ### Apply guardrail
