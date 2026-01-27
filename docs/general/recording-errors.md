@@ -108,8 +108,8 @@ public boolean createIfNotExists(String resourceId) throws IOException {
 
     return true;
   } catch (ResourceAlreadyExistsException e) {
-    // not setting span status to error - as the exception is not an error,
-    // thus we do not set the "error.type" attribute,
+    // we do not set span status to error and the "error.type" attribute
+    // as the exception is not an error,
     // but we still log and set attributes that capture additional details
     logger.withEventName("acme.resource.create.error")
       .withAttribute("acme.resource.create.status", "already_exists")
