@@ -1,0 +1,4 @@
+change_type: enhancement
+component: event
+note: Update event body usage guidelines to allow representation of display messages
+issues: [3343]
