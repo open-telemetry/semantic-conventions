@@ -8,7 +8,7 @@ groups:
       - id: tps.system.name
         stability: development
         brief: "Type of Transaction Processing System"
-        type: string
+        type:
           members:
             - id: ibm.cics
               value: 'ibm.cics'
@@ -55,15 +55,17 @@ groups:
         examples: 'CIDE'
       - id: tps.facility.type
         stability: development
+        brief: "The type of facility that initiated this unit of work or operation"
         type:
-          - id: IPIC
-            value: 'IPIC'
-            brief: IP interconnectivity - IPIC provides access to CICS applications over the TCP/IP protocol
-            stability: development
-          - id: MRO
-            value: 'MRO'
-            brief: Multiregion Operations - MRO enables CICS regions that are running in the same system, or in the same sysplex, to communicate with each other.
-            stability: development
+          members:
+            - id: ibm.cics.ipic
+              value: 'IPIC'
+              brief: IP interconnectivity - IPIC provides access to CICS applications over the TCP/IP protocol
+              stability: development
+            - id: ibm.cics.mro
+              value: 'MRO'
+              brief: Multiregion Operations - MRO enables CICS regions that are running in the same system, or in the same sysplex, to communicate with each other.
+              stability: development
 
   - id: registry.ibm.cics
     type: attribute_group

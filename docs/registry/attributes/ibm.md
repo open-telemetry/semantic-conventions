@@ -13,7 +13,7 @@ This group defines attributes for the IBM CICS Transaction Server for z/OS
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | <a id="ibm-cics-transaction-group-id" href="#ibm-cics-transaction-group-id">`ibm.cics.transaction.group.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Describes the group ID assigned at transaction attach time and can be used to correlate the transactions that CICS runs for the same incoming work request. | `TRNGROUP` |
 
 ## IBM Information Management System (IMS) Attributes
@@ -23,14 +23,14 @@ This group defines attributes for IBM Information Management System (IMS) for z/
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | <a id="ibm-ims-commit-mode" href="#ibm-ims-commit-mode">`ibm.ims.commit_mode`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Determines the type of commit mode processing that IMS performs. | `0`; `1` |
 
 ---
 
 `ibm.ims.commit_mode` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `0` | IMS commits the IMS database changes and then sends the output to the client | ![Development](https://img.shields.io/badge/-development-blue) |
 | `1` | IMS sends the output to the client and then commits the IMS database changes | ![Development](https://img.shields.io/badge/-development-blue) |
