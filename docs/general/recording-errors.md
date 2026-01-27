@@ -87,8 +87,8 @@ When the instrumented operation failed due to an exception:
 
 - instrumentation SHOULD record this exception as a [log record](/docs/exceptions/exceptions-logs.md),
 - instrumentation SHOULD follow [recording errors on spans](#recording-errors-on-spans)
-and [recording errors on metrics](#recording-errors-on-metrics)
-on capturing exception details on these signals.
+  and [recording errors on metrics](#recording-errors-on-metrics)
+  on capturing exception details on these signals.
 
 It's NOT RECOMMENDED to record the same exception more than once.
 It's NOT RECOMMENDED to record exceptions that are handled by the instrumented library.
