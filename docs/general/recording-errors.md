@@ -20,8 +20,8 @@ Individual semantic conventions are encouraged to provide additional guidance.
 
 An operation SHOULD be considered as failed if any of the following is true:
 
-- an exception is thrown by the instrumented method (API, block of code, or another instrumented unit)
-- the instrumented method returns an error in another way, for example, via an error code
+- an exception is thrown by the instrumented operation (API, block of code, or another instrumented unit)
+- the instrumented operation returns an error in another way, for example, via an error code
 
   Semantic conventions that define domain-specific status codes SHOULD specify
   which status codes should be reported as errors by a general-purpose instrumentation.
@@ -83,7 +83,7 @@ include it if the operation succeeded.
 
 ## Recording exceptions
 
-When instrumented code throws an exception, instrumentation SHOULD
+When an instrumented operation throws an exception, instrumentation SHOULD
 record this exception as a [log record](/docs/exceptions/exceptions-logs.md).
 
 When the instrumented operation has not succeeded due to an exception,
