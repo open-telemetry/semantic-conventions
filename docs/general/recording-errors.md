@@ -113,7 +113,7 @@ public boolean createIfNotExists(String resourceId) throws IOException {
     logger.withEventName("acme.resource.create.error")
       .withAttribute("acme.resource.create.status", "already_exists")
       .withException(e)
-      .debug()
+      .debug();
 
     span.setAttribute(AttributeKey.stringKey("acme.resource.create.status"), "already_exists");
 
@@ -123,11 +123,11 @@ public boolean createIfNotExists(String resourceId) throws IOException {
   } catch (IOException e) {
     logger.withEventName("acme.resource.create.error")
       .withException(e)
-      .warn()  // this exception is expected to be handled by the caller and could be a transient error
+      .warn(); // this exception is expected to be handled by the caller and could be a transient error
 
     String errorType = e.getClass().getCanonicalName();
 
-    span.setAttribute(AttributeKey.stringKey("error.type"), errorType)
+    span.setAttribute(AttributeKey.stringKey("error.type"), errorType);
     span.setStatus(StatusCode.ERROR, e.getMessage());
 
     recordMetric("acme.resource.create.duration", System.nanoTime() - startTime,
