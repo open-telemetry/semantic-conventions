@@ -4,7 +4,7 @@ linkTitle: Spans
 
 # Semantic conventions for exceptions on spans
 
-**Status**: [Deprecated](https://img.shields.io/badge/-deprecated-red)<br>
+**Status**: [Deprecated][DocumentStatus]<br>
 Use [Semantic conventions for exceptions in logs](exceptions-logs.md) instead.
 
 This document defines semantic conventions for recording application
@@ -80,3 +80,4 @@ grained information from a stacktrace, if necessary.
 [telemetry-sdk-resource]: ../resource/README.md#telemetry-sdk
 [erlang-stacktrace]: https://www.erlang.org/doc/apps/stdlib/erl_error.html#format_exception/3
 [elixir-stacktrace]: https://hexdocs.pm/elixir/1.14.3/Exception.html#format/3
+[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
