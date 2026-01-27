@@ -8,6 +8,9 @@ groups:
       In the lifetime of an RPC stream, an event for each message sent/received on
       client and server spans SHOULD be created. In case of unary calls message
       events SHOULD NOT be recorded.
+    deprecated:
+      reason: obsoleted
+      note: Deprecated, no replacement at this time.
     attributes:
       - ref: rpc.message.type
         requirement_level: recommended

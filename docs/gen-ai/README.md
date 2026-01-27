@@ -40,4 +40,8 @@ Technology specific semantic conventions are defined for the following GenAI sys
 * [OpenAI](./openai.md): Semantic Conventions for OpenAI.
 * [AWS Bedrock](./aws-bedrock.md): Semantic Conventions for AWS Bedrock.
 
+See also:
+
+* [Model Context Protocol](./mcp.md): Semantic Conventions for [MCP](https://modelcontextprotocol.io)
+
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
