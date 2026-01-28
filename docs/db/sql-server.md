@@ -1,6 +1,6 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
 linkTitle: SQL Server
---->
+---
 
 # Semantic conventions for Microsoft SQL Server client operations
 
