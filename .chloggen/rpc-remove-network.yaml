@@ -1,0 +1,7 @@
+change_type: breaking
+component: rpc
+note: >
+  Remove `network.protocol.name`, `network.protocol.version`, and `network.transport`
+  attributes from RPC spans and metrics.
+
+issues: [TODO]
