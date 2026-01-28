@@ -3,5 +3,4 @@ component: rpc
 note: >
   Remove `network.protocol.name`, `network.protocol.version`, and `network.transport`
   attributes from RPC spans and metrics.
-
-issues: [TODO]
+issues: [3349, 3350]
