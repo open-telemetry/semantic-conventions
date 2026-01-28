@@ -63,8 +63,8 @@ between them. Additionally, there's a single database instance.
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- | --- |
 | Identity | [`service.name`](/docs/registry/attributes/service.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | Logical name of the service. [1] | `shoppingcart` |
-| Description | [`service.criticality`](/docs/registry/attributes/service.md) | ![Development](https://img.shields.io/badge/-development-blue) | `opt-in` | string | The operational criticality of the service. [2] | `critical`; `high`; `medium`; `low` |
 | Description | [`service.version`](/docs/registry/attributes/service.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The version string of the service component. The format is not defined by these conventions. | `2.0.0`; `a01dbef8a` |
+| Description | [`service.criticality`](/docs/registry/attributes/service.md) | ![Development](https://img.shields.io/badge/-development-blue) | `opt-in` | string | The operational criticality of the service. [2] | `critical`; `high`; `medium`; `low` |
 
 **[1] `service.name`:** MUST be the same for all instances of horizontally scaled services. If the value was not specified, SDKs MUST fallback to `unknown_service:` concatenated with [`process.executable.name`](process.md), e.g. `unknown_service:bash`. If `process.executable.name` is not available, the value MUST be set to `unknown_service`.
 
