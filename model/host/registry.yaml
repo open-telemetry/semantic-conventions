@@ -59,8 +59,8 @@ groups:
               brief: "IBM z/Architecture"
               stability: development
             - id: x64
-              value: 'x64'
-              brief: "64-bit x86"
+              value: 'arm64'
+              brief: "ARM64"
               stability: development
             - id: x86
               value: 'x86'
