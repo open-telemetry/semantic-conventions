@@ -1,16 +1,4 @@
 groups:
-  - id: span.ibm.cics.http.server
-    type: span
-    stability: development
-    brief: 'This group defines semantic conventions for a HTTP server spans of IBM CICS Transaction Server for z/OS.'
-    extends: span.tps.http.server
-    span_kind: server
-    attributes:
-      - ref: tps.system.name
-        requirement_level: required
-        examples: 'ibm.cics'
-      - ref: ibm.cics.transaction.group.id
-
   - id: span.ibm.cics.server
     type: span
     stability: development
