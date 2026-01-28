@@ -58,6 +58,10 @@ groups:
               value: 's390x'
               brief: "IBM z/Architecture"
               stability: development
+            - id: x64
+              value: 'x64'
+              brief: "64-bit x86"
+              stability: development
             - id: x86
               value: 'x86'
               brief: "32-bit x86"
