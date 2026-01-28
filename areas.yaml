@@ -191,7 +191,7 @@ areas:
       - name: "semconv-log-approvers"
         github: semconv-log-approvers
     project: "N/A"
-    board: "N/A"
+    board: "https://github.com/orgs/open-telemetry/projects/65"
     labels:
       - area:log
       - area:event
