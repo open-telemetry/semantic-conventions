@@ -16,5 +16,3 @@ groups:
       - ref: tps.unit_of_work.id
       - ref: tps.connection.name
       - ref: tps.facility.type
-
-      
