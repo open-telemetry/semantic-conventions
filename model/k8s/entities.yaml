@@ -250,8 +250,6 @@ groups:
         role: identifying
       - ref: k8s.service.name
         role: descriptive
-      - ref: k8s.namespace.name
-        role: descriptive
       - ref: k8s.service.type
         role: descriptive
       - ref: k8s.service.traffic_distribution

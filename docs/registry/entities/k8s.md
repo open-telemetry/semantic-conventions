@@ -395,7 +395,6 @@ in ISO 8601 (RFC 3339 compatible) format.
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- | --- |
 | Identity | [`k8s.service.uid`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The UID of the Service. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` |
-| Description | [`k8s.namespace.name`](/docs/registry/attributes/k8s.md) | ![Alpha](https://img.shields.io/badge/alpha-mediumpurple) | `Recommended` | string | The name of the namespace that the pod is running in. | `default` |
 | Description | [`k8s.service.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the Service. | `my-service` |
 | Description | [`k8s.service.type`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The type of the Kubernetes Service. [24] | `ClusterIP`; `NodePort`; `LoadBalancer` |
 | Description | [`k8s.service.annotation.<key>`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The annotation placed on the Service, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [25] | `true`; `` |
