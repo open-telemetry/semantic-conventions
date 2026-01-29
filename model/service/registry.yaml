@@ -117,14 +117,14 @@ groups:
     attributes:
       - id: service.peer.name
         type: string
-        stability: development
+        stability: stable
         brief: >
           Logical name of the service on the other side of the connection.
           SHOULD be equal to the actual [`service.name`](/docs/resource/README.md#service) resource attribute of the remote service if any.
         examples: ["shoppingcart"]
       - id: service.peer.namespace
         type: string
-        stability: development
+        stability: stable
         brief: >
           Logical namespace of the service on the other side of the connection.
           SHOULD be equal to the actual [`service.namespace`](/docs/resource/README.md#service) resource attribute of the remote service if any.
