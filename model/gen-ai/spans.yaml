@@ -456,5 +456,4 @@ groups:
         requirement_level: opt_in
       - ref: gen_ai.output.messages
         requirement_level: opt_in
-      - ref: gen_ai.system_instructions
-        requirement_level: opt_in
+
