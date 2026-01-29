@@ -1,0 +1,13 @@
+groups:
+- id: registry.grpc
+  type: attribute_group
+  display_name: gRPC Attributes
+  brief: 'gRPC-specific attributes'
+  attributes:
+    - id: grpc.target
+      type: string
+      stability: development
+      examples: ["dns:///grpc.io:50051", "unix:///run/containerd/containerd.sock", "ipv4:198.51.100.123:50051"]
+      brief: >
+        The [gRPC target string](https://grpc.io/docs/guides/custom-name-resolution/)
+        specified when creating the gRPC channel.

@@ -1,6 +1,6 @@
 change_type: enhancement
 component: rpc
 note: >
-  Clarify how to parse `server.address` and `server.port` from gRPC target URL.
-  Reference `url.scheme` on gRPC client span.
+  Clarify how to parse `server.address` and `server.port` from gRPC target string.
+  Add `grpc.target` attribute and use it on gRPC client span and metrics.
 issues: [3258, 3317]

@@ -176,57 +176,53 @@ groups:
         requirement_level: opt_in
       - ref: rpc.response.metadata
         requirement_level: opt_in
-      - ref: url.scheme
-        brief: >
-          The scheme of the gRPC server endpoint specified when creating the gRPC channel.
-        note: >
-          See the `server.address` for details on parsing the target string.
-        examples: ["dns", "xds", "my-resolver"]
+      - ref: grpc.target
         requirement_level:
           conditionally_required: >
-            If and only if the target string contains a scheme and it's available to the instrumentation.
+            If the channel was created with a target string and it contains
+            information that's not otherwise captured in `server.address` and `server.port`.
       - ref: server.address
-        note: >
+        note: |
           Instrumentations SHOULD populate `server.address` (along with `server.port`)
           based on the configuration used when creating the gRPC channel and
           SHOULD NOT use actual network-level connection information for this purpose
           to ensure low cardinality.
 
-          Instrumentations MAY parse address, port, and scheme from the target URL
+          Instrumentations MAY parse address and port from the target string
           according to the [gRPC Name Resolution specification](https://grpc.github.io/grpc/core/md_doc_naming.html),
           depending on the scheme used. Or, they MAY use gRPC client APIs that provide this information.
 
           For custom or undocumented schemes, instrumentations SHOULD extract the
-          address and port from the authority component of the target URL.
+          address and port from the authority component of the target string.
 
           When the address is an IP address, instrumentations SHOULD NOT do a
           reverse proxy lookup to obtain a DNS name and SHOULD set `server.address`
           to the IP address provided.
 
-          If the instrumentation cannot determine a single address from the target URL
+          If the instrumentation cannot determine a single address from the target string
           (for example, when multiple IP addresses are provided in the target string),
           the instrumentation SHOULD NOT set this attribute.
 
           Examples:
 
           - Given the target string `grpc.io::50051`, expected attributes:
-            - `server.address`: `grpc.io`
+            - `server.address`: `"grpc.io"`
             - `server.port`: `50051`
-            - `url.scheme`: not set
+            - `grpc.target`: not set
           - Given the target string `xds:///wallet.grpcwallet.io`, expected attributes:
-            - `server.address`: `wallet.grpcwallet.io`
+            - `server.address`: `"wallet.grpcwallet.io"`
             - `server.port`: not set
-            - `url.scheme`: `xds`
+            - `grpc.target`: `"xds:///wallet.grpcwallet.io"`
           - Given the target string `zk://zookeeper:2181`, expected attributes:
-            - `server.address`: `zookeeper`
+            - `server.address`: `"zookeeper"`
             - `server.port`: `2181`
-            - `url.scheme`: `zk`
+            - `grpc.target`: `"zk://zookeeper:2181"`
           - Given the target string `ipv4:198.51.100.123:50051,198.51.100.124:50051`, expected attributes:
             - `server.address`: not set
             - `server.port`: not set
-            - `url.scheme`: not set
+            - `grpc.target`: `"ipv4:198.51.100.123:50051,198.51.100.124:50051"`
         requirement_level:
-          conditionally_required: If the instrumentation was able to parse a single address from the target URL.
+          conditionally_required: If the instrumentation was able to parse a single address from the target string.
       - ref: server.port
         note: >
           See the `server.address` for details on parsing the target string.
