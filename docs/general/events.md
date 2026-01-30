@@ -35,6 +35,8 @@ Semantic conventions that define events MUST document the event name and its att
 * Events MAY use [body](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.53.0/specification/logs/data-model.md#field-body)
   to represent the display message of the event,
   which is RECOMMENDED to be of string type.
+  Some (e.g. HTTP) semantic conventions MAY
+  have their own specific rules on using body.
 
 ## External event compatibility
 
