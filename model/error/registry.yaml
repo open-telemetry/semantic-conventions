@@ -37,6 +37,26 @@ groups:
 
           - Use a domain-specific attribute
           - Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
+      - id: error.source
+        type: string
+        stability: development
+        brief: Describes the originating domain or subsystem responsible for the error.
+        note: |
+          `error.source` is intended to capture "where the error comes from" as a low-cardinality,
+          predictable classifier (for example, a category such as `validation`, `configuration`
+          or `authentication`).
+
+          It is complementary to `error.type`, which describes the class of error that occurred.
+          Use `error.source` when distinguishing the *origin/cause domain* improves querying,
+          grouping, and dashboards across different error types and exception classes.
+
+          Values are intentionally open; instrumentations SHOULD document the values they emit and
+          SHOULD keep the cardinality low.
+        examples:
+          - validation
+          - configuration
+          - authentication
+          - authorization
       - id: error.message
         type: string
         stability: development
