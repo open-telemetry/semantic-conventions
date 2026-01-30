@@ -16,7 +16,7 @@ groups:
       - ref: service.version
         role: descriptive
       - ref: service.criticality
-        requirement_level: recommended
+        requirement_level: opt_in
         role: descriptive
   - id: entity.service.instance
     type: entity
