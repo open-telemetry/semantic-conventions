@@ -155,3 +155,40 @@ groups:
         stability: development
         brief: "The filesystem mount path"
         examples: ["/mnt/data"]
+  # system.linux.psi.* attribute group
+  - id: registry.system.linux.psi
+    type: attribute_group
+    display_name: System PSI (Pressure Stall Information) Attributes
+    brief: "Describes Linux Pressure Stall Information attributes"
+    attributes:
+      - id: system.pressure.stall_type
+        type:
+          members:
+            - id: some
+              value: 'some'
+              stability: development
+              brief: "At least some tasks are stalled on the resource"
+              note: >
+                The "some" line indicates the share of time in which at least some
+                tasks are stalled on a given resource.
+            - id: full
+              value: 'full'
+              stability: development
+              brief: "All non-idle tasks are stalled on the resource simultaneously"
+              note: >
+                The "full" line indicates the share of time in which all non-idle
+                tasks are stalled on a given resource simultaneously. This represents
+                a state where actual CPU cycles are going to waste and the workload
+                is thrashing. CPU full is undefined at the system level and is set to
+                zero for backward compatibility (available since Linux 5.13).
+        stability: development
+        brief: "The PSI stall type"
+        examples: ["some", "full"]
+      - id: system.linux.psi.window
+        type: int
+        stability: development
+        brief: "The time window over which pressure is calculated in seconds."
+        examples: [10, 60, 300]
+        note: >
+          PSI tracks pressure as percentages over 10-second, 60-second, and 300-second windows.
+          This attribute identifies which time window the metric represents.
