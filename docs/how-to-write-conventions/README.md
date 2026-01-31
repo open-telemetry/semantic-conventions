@@ -259,7 +259,7 @@ Define the scope and boundaries of the operation:
 - Provide fallback values in case some of the attributes used in the span name are not
   available or could be problematic in edge cases (e.g., have high cardinality).
 
-- If a span name can become too long, recommend limits and truncation strategies
+- If a span name can become too long, define limits and truncation strategies
   (e.g., DB conventions define a 255-character limit).
 
 ##### Status
