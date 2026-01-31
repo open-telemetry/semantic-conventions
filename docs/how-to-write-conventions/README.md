@@ -191,16 +191,12 @@ database.
 
 #### Defining spans
 
-Spans describe the individual execution of a certain operation within a trace.
+Spans describe individual executions of specific operations within a trace.
 
-Define spans when:
+When to define spans:
 
 - The corresponding operation is significant for your observability needs.
 - The operation has duration.
-
-Don't define spans for point-in-time occurrences - use events instead.
-Don't define spans for short operations that don't involve out-of-process calls,
-such as serialization or deserialization.
 
 For example, define spans for operations that involve one or more network calls.
 
@@ -211,12 +207,15 @@ For example, define spans for operations that involve one or more network calls.
 > messages to ensure each message has a unique context and can be traced
 > individually end-to-end.
 
-Don't define spans if there is an existing span definition that captures a very
-similar operation.
+When not to define spans:
 
-For example, a DB client span represents DB query execution from ORM or DB
-driver perspectives. Both layers could be instrumented, but inner layers may be
-suppressed to reduce duplication.
+- For point-in-time occurrences - use events instead.
+- For short operations that don't involve out-of-process calls, such as serialization
+  or deserialization.
+- If there is an existing span definition that captures a very similar operation.
+  For example, a DB client span represents DB query execution from ORM or DB
+  driver perspectives. Both layers could be instrumented, but inner layers may be
+  suppressed to reduce duplication.
 
 > [!IMPORTANT]
 >
@@ -225,8 +224,8 @@ suppressed to reduce duplication.
 > metric is recorded alongside the corresponding HTTP client span.
 
 A span definition should describe the [operation it represents](#what-operation-does-this-span-represent),
-[naming pattern](#naming-pattern), considerations for setting span [status](#status),
-[span kind](#kind), and the list of applicable [attributes](#attributes).
+the [naming pattern](#naming-pattern), considerations for setting span [status](#status),
+the [span kind](#kind), and the list of applicable [attributes](#attributes).
 
 ##### What operation does this span represent
 
@@ -249,11 +248,11 @@ Define the scope and boundaries of the operation:
 - Span names usually follow the `{action} {target}` pattern. For example, `send orders_queue`.
 
 - Span names should only include information that's available as span attributes.
-  I.e., `{action}` and `{target}` are usually also available as attributes and
+  That is, `{action}` and `{target}` are usually also available as attributes and
   are used on metrics describing that operation.
 
-- Static text should not be included but can be used as a fallback.
-  E.g., we use `GET /orders/{id}` instead of `HTTP GET /orders/{id}` for HTTP
+- Static text should not be included in span names but can be used as a fallback.
+  For example, we use `GET /orders/{id}` instead of `HTTP GET /orders/{id}` for HTTP
   server span names.
 
 - Provide fallback values in case some of the attributes used in the span name are not
@@ -266,12 +265,12 @@ Define the scope and boundaries of the operation:
 
 Define what constitutes an error for that operation.
 
-If there are no special considerations, reference the [Recording errors](/docs/general//recording-errors.md)
+If there are no special considerations, reference the [Recording errors](/docs/general/recording-errors.md)
 document.
 
-Certain conditions can't be clearly classified as errors or not-errors (cancellations,
-HTTP 404 and many others). Avoid using strict requirements - allow instrumentations
-to leverage context they might have to provide a more accurate status.
+Certain conditions can't be clearly classified as errors or non-errors (such as cancellations,
+HTTP 404, and others). Avoid using strict requirements — allow instrumentations
+to leverage additional context to provide a more accurate status.
 
 ##### Kind
 
@@ -280,14 +279,15 @@ only mention one span kind.
 
 ##### Attributes
 
-Capture important details of the specific operation. Parent operations or sub-operations
+Capture only the important details of the specific operation. Parent operations or sub-operations
 will have their own spans.
 
 For example, when recording a call to upload a file to an object store,
-include the endpoint, operation name (upload file), collection, and object identifier. Don't include details of
-the underlying HTTP/gRPC requests unless there is a strong reason to do so.
+include the endpoint, operation name (such as upload file), collection, and object
+identifier. Don't include details of the underlying HTTP/gRPC requests unless
+there is a strong reason to do so.
 
-Only include attributes that bring clear value - this allows keeping telemetry
+Only include attributes that bring clear value — this keeps telemetry
 volume and performance overhead low. Don't try to capture all available details.
 When in doubt, don't reference additional attributes - they can be added incrementally
 based on feedback.
