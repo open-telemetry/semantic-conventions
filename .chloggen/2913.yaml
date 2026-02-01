@@ -1,8 +1,0 @@
-change_type: enhancement
-component: otel
-note: "Add `otel.event.name` attribute for use by non-OTLP exporters and logging libraries."
-issues: [2913]
-subtext: |
-  The `otel.event.name` attribute can be used by:
-  - Non-OTLP exporters to emit the `EventName`
-  - Applications using existing logging libraries to add event name information that can be used to set the `EventName` field by Collector or SDK components
