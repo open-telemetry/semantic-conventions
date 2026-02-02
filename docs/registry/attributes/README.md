@@ -110,7 +110,7 @@ Currently, the following namespaces exist:
 - [Test](test.md)
 - [Thread](thread.md)
 - [TLS](tls.md)
-- [Tps](tps.md)
+- [TPS](tps.md)
 - [URL](url.md)
 - [User](user.md)
 - [User Agent](user-agent.md)
