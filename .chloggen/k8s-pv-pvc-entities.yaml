@@ -1,0 +1,12 @@
+change_type: enhancement
+component: k8s
+note: Add PersistentVolume and PersistentVolumeClaim entities with phase and storage metrics.
+issues: [3375]
+subtext: |
+  Entities: 
+  - `k8s.persistentvolume`
+  - `k8s.persistentvolumeclaim`
+  Metrics: 
+  - `k8s.persistentvolume.status.phase`, `k8s.persistentvolume.storage.capacity`
+  - `k8s.persistentvolumeclaim.status.phase`, `k8s.persistentvolumeclaim.storage.request`,
+    `k8s.persistentvolumeclaim.storage.capacity`
