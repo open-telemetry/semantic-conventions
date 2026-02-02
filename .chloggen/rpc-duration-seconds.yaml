@@ -1,6 +1,0 @@
-change_type: breaking
-component: rpc
-note: Rename `rpc.client|server.duration` to `rpc.client|server.call.duration`,
-      change RPC duration metrics from milliseconds to seconds,
-      and clarify metric and span duration semantics for streaming.
-issues: [383, 2961]

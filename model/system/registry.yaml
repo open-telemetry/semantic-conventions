@@ -37,7 +37,7 @@ groups:
               stability: development
               deprecated:
                 reason: uncategorized
-                note: "Removed, report shared memory usage with `metric.system.memory.shared` metric"
+                note: "Removed, report shared memory usage with `metric.system.memory.linux.shared` metric"
             - id: buffers
               value: 'buffers'
               stability: development
