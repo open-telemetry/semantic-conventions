@@ -51,7 +51,7 @@ groups:
 
       **Span kind** MUST be `CLIENT`.
 
-      **Span status** Refer to the [Recording Errors](/docs/general/recording-errors.md)
+      **Span status**: refer to the [Recording Errors](/docs/general/recording-errors.md)
       document for details on how to record span status.
     extends: rpc
     span_kind: client
@@ -78,7 +78,7 @@ groups:
 
       **Span kind** MUST be `SERVER`.
 
-      **Span status** Refer to the [Recording Errors](/docs/general/recording-errors.md)
+      **Span status**: refer to the [Recording Errors](/docs/general/recording-errors.md)
       document for details on how to record span status.
     attributes:
       - ref: rpc.system.name
@@ -96,7 +96,7 @@ groups:
 
       **Span kind** MUST be `CLIENT`.
 
-      **Span status** Refer to the [Recording Errors](/docs/general/recording-errors.md)
+      **Span status**: refer to the [Recording Errors](/docs/general/recording-errors.md)
       document for details on how to record span status.
     extends: rpc
     span_kind: client
@@ -106,7 +106,7 @@ groups:
           conditionally_required: if available.
         brief: The [error code](https://connectrpc.com//docs/protocol/#error-codes) of the Connect response.
         note: |
-          All error codes except `OK` SHOULD be considered errors.
+          All status codes except `OK` SHOULD be considered errors.
       - ref: rpc.request.metadata
         requirement_level: opt_in
       - ref: rpc.response.metadata
@@ -125,7 +125,7 @@ groups:
 
       **Span kind** MUST be `SERVER`.
 
-      **Span status** Refer to the [Recording Errors](/docs/general/recording-errors.md)
+      **Span status**: refer to the [Recording Errors](/docs/general/recording-errors.md)
       document for details on how to record span status.
     attributes:
       - ref: rpc.response.status_code
@@ -157,7 +157,7 @@ groups:
 
       **Span kind** MUST be `CLIENT`.
 
-      **Span status** Refer to the [Recording Errors](/docs/general/recording-errors.md)
+      **Span status**: refer to the [Recording Errors](/docs/general/recording-errors.md)
       document for details on how to record span status. See also `rpc.response.status_code` attribute
       for the details on which values classify as errors.
     extends: rpc
@@ -190,7 +190,7 @@ groups:
 
       **Span kind** MUST be `SERVER`.
 
-      **Span status** Refer to the [Recording Errors](/docs/general/recording-errors.md)
+      **Span status**: refer to the [Recording Errors](/docs/general/recording-errors.md)
       document for details on how to record span status. See also `rpc.response.status_code` attribute
       for the details on which values classify as errors.
     attributes:
@@ -225,7 +225,7 @@ groups:
 
       **Span kind** MUST be `CLIENT`.
 
-      **Span status** Refer to the [Recording Errors](/docs/general/recording-errors.md)
+      **Span status**: refer to the [Recording Errors](/docs/general/recording-errors.md)
       document for details on how to record span status. Responses that include
       an [`error` object](https://www.jsonrpc.org/specification#error_object)
       are considered errors.
@@ -272,7 +272,7 @@ groups:
 
       **Span kind** MUST be `SERVER`.
 
-      **Span status** Refer to the [Recording Errors](/docs/general/recording-errors.md)
+      **Span status**: refer to the [Recording Errors](/docs/general/recording-errors.md)
       document for details on how to record span status. Responses that include
       an [`error` object](https://www.jsonrpc.org/specification#error_object)
       are considered errors.
