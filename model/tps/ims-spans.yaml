@@ -5,9 +5,9 @@ groups:
     brief: 'Defines server spans of IBM Information Management System (IMS) for z/OS.'
     note: |
       **Span name** SHOULD be `{tps.system.name} {tps.transaction.id}`.
-      
+
       **Span kind** SHOULD be `SERVER`.
-      
+
       **Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
     extends: span.tps.server
     span_kind: server
