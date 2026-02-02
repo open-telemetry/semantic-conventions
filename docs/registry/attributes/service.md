@@ -17,7 +17,7 @@ A service instance.
 | <a id="service-criticality" href="#service-criticality">`service.criticality`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The operational criticality of the service. [1] | `critical`; `high`; `medium`; `low` |
 | <a id="service-instance-id" href="#service-instance-id">`service.instance.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The string ID of the service instance. [2] | `627cc493-f310-47de-96bd-71410b7dec09` |
 | <a id="service-name" href="#service-name">`service.name`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | Logical name of the service. [3] | `shoppingcart` |
-| <a id="service-namespace" href="#service-namespace">`service.namespace`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | A namespace for `service.name`. [4] | `Shop` |
+| <a id="service-namespace" href="#service-namespace">`service.namespace`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | A namespace for `service.name`. [4] | `Shop` |
 | <a id="service-version" href="#service-version">`service.version`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The version string of the service component. The format is not defined by these conventions. | `2.0.0`; `a01dbef8a` |
 
 **[1] `service.criticality`:** Application developers are encouraged to set `service.criticality` to express the operational importance of their services. Telemetry consumers MAY use this attribute to optimize telemetry collection or improve user experience.
