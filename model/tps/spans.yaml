@@ -3,7 +3,12 @@ groups:
     type: span
     stability: development
     brief: 'This document defines semantic conventions for a server spans of Transaction Processing Systems'
-
+    note: |
+      **Span name** SHOULD be `{tps.system.name} {tps.transaction.id}`.
+      
+      **Span kind** SHOULD be `SERVER`.
+      
+      **Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
     span_kind: server
     attributes:
       - ref: tps.system.name

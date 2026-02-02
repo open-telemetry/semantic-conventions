@@ -11,7 +11,7 @@ This documents defines for spans of IBM Information Management System (IMS) for 
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-This group defines semantic conventions for server spans of IBM Information Management System (IMS) for z/OS
+Defines server spans of IBM Information Management System (IMS) for z/OS.
 
 **Span name** SHOULD be `{tps.system.name} {tps.transaction.id}`.
 
