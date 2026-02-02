@@ -1,3 +1,7 @@
+<!--- Hugo front matter used to generate the website version of this page:
+linkTitle: TPS
+--->
+
 # Semantic Conventions for Transaction Processing Systems
 
 This document defines semantic conventions for Transaction Processing Systems.
