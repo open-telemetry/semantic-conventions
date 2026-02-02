@@ -1,3 +1,7 @@
+<!--- Hugo front matter used to generate the website version of this page:
+linkTitle: IMS Spans
+--->
+
 # Semantic Conventions for IBM Information Management System (IMS) for z/OS
 
 This documents defines for spans of IBM Information Management System (IMS) for z/OS

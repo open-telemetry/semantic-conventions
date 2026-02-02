@@ -1,3 +1,7 @@
+<!--- Hugo front matter used to generate the website version of this page:
+linkTitle: TPS Spans
+--->
+
 # Semantic Conventions for Transaction Processing Systems (TPS) Spans
 
 This documents defines for server span of a Transaction Processing Systems.  Only a server spans is specified for Transaction Processing Systems, as it is assumed that clients interact with the Transaction Processing Systems via HTTP, RPC, or proprietary protocols. If applicable, the Transaction Processing Systems are expected to emit corresponding HTTP or RPC server spans, or add required corresponding attributes to the Transaction Processing System's server span.
