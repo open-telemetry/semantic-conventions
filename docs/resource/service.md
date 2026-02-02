@@ -77,7 +77,7 @@ between them. Additionally, there's a single database instance.
 <!-- see templates/registry/markdown/snippet.md.j2 -->
 <!-- prettier-ignore-start -->
 
-**Status:** ![Development](https://img.shields.io/badge/-development-blue)
+**Status:** ![Stable](https://img.shields.io/badge/-stable-lightgreen)
 
 **type:** `service.instance`
 
