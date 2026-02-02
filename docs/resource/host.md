@@ -104,9 +104,11 @@ privileged lookup of `host.id` is required, the value should be injected via the
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- | --- |
 | Other | [`host.cpu.cache.l2.size`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The amount of level 2 memory cache available to the processor (in Bytes). | `12288000` |
+| Other | [`host.cpu.core.id`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The core identifier within a single CPU socket. | `0`; `1`; `2`; `3` |
 | Other | [`host.cpu.family`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Family or generation of the CPU. | `6`; `PA-RISC 1.1e` |
 | Other | [`host.cpu.model.id`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Model identifier. It provides more granular information about the CPU, distinguishing it from other CPUs within the same family. | `6`; `9000/778/B180L` |
 | Other | [`host.cpu.model.name`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Model designation of the processor. | `11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz` |
+| Other | [`host.cpu.socket.id`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The CPU socket identifier. | `0`; `1` |
 | Other | [`host.cpu.stepping`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Stepping or core revisions. | `1`; `r1p1` |
 | Other | [`host.cpu.vendor.id`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Processor manufacturer identifier. A maximum 12-character string. [1] | `GenuineIntel` |
 
