@@ -69,6 +69,10 @@ groups:
         requirement_level: recommended
       - ref: gen_ai.usage.input_tokens
         requirement_level: recommended
+      - ref: gen_ai.usage.cache_read.input_tokens
+        requirement_level: recommended
+      - ref: gen_ai.usage.cache_creation.input_tokens
+        requirement_level: recommended
       - ref: gen_ai.usage.output_tokens
         requirement_level: recommended
       - ref: gen_ai.conversation.id
@@ -176,6 +180,12 @@ groups:
     attributes:
       - ref: gen_ai.request.model
         requirement_level: required
+      - ref: gen_ai.usage.input_tokens
+        note: >
+          The total input token count is returned by `usage.input_tokens` or a similar property in the model response.
+      - ref: gen_ai.usage.cache_read.input_tokens
+        note: >
+          Corresponds to `usage.input_tokens_details.cached_tokens` or a similar property in the model response.
       - ref: openai.request.service_tier
         requirement_level:
           conditionally_required: if the request includes a service_tier and the value is not 'auto'
@@ -643,3 +653,29 @@ groups:
         requirement_level: required
       - ref: aws.bedrock.knowledge_base.id
         requirement_level: recommended
+
+  - id: span.anthropic.inference.client
+    extends: attributes.gen_ai.inference.client
+    stability: development
+    span_kind: client
+    type: span
+    brief: >
+      Semantic Conventions for [Anthropic](https://www.anthropic.com/) client spans extend
+      and override the semantic conventions for [Gen AI Spans](gen-ai-spans.md).
+    note: |
+      `gen_ai.provider.name` MUST be set to `"anthropic"` and SHOULD be provided **at span creation time**.
+
+      **Span name** SHOULD be `{gen_ai.operation.name} {gen_ai.request.model}`.
+    attributes:
+      - ref: gen_ai.usage.input_tokens
+        note: >
+          Anthropic `input_tokens` excludes cached tokens. Compute:
+          `gen_ai.usage.input_tokens = input_tokens + cache_read_input_tokens + cache_creation_input_tokens`
+      - ref: gen_ai.usage.cache_read.input_tokens
+        note: >
+          Anthropic reports this separately from `input_tokens`.
+          This value MUST be added to the Anthropic `input_tokens` to compute `gen_ai.usage.input_tokens`.
+      - ref: gen_ai.usage.cache_creation.input_tokens
+        note: >
+          Anthropic reports this separately from `input_tokens`.
+          This value MUST be added to the Anthropic `input_tokens` to compute `gen_ai.usage.input_tokens`.
