@@ -148,11 +148,11 @@ groups:
         stability: experimental
         type: string
         brief: >
-          The CPU socket identifier (for multi-CPU machines).
+          The CPU socket identifier.
         examples: ['0', '1']
       - id: host.cpu.core.id
         stability: experimental
         type: string
         brief: >
-          The core identifier within a physical CPU.
+          The core identifier within a single CPU socket.
         examples: ['0', '1', '2', '3']
