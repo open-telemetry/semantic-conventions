@@ -1,3 +1,7 @@
+<!--- Hugo front matter used to generate the website version of this page:
+linkTitle: CICS Spans
+--->
+
 # Semantic Conventions for IBM CICS Transaction Server for z/OS Spans
 
 This documents defines for spans of IBM CICS Transaction Server for z/OS.
