@@ -13,6 +13,8 @@ This documents defines for spans of IBM CICS Transaction Server for z/OS.
 
 Defines server spans of IBM CICS Transaction Server for z/OS.
 
+**Span name** SHOULD be `{tps.system.name} {tps.transaction.id}`.
+
 **Span kind** SHOULD be `SERVER`.
 
 **Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.

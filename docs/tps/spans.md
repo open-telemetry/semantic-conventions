@@ -12,6 +12,8 @@ This documents defines for server span of a Transaction Processing Systems.  Onl
 
 This document defines semantic conventions for a server spans of Transaction Processing Systems
 
+**Span name** SHOULD be `{tps.system.name} {tps.transaction.id}`.
+
 **Span kind** SHOULD be `SERVER`.
 
 **Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.

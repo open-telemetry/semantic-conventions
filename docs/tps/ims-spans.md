@@ -13,6 +13,8 @@ This documents defines for spans of IBM Information Management System (IMS) for 
 
 This group defines semantic conventions for server spans of IBM Information Management System (IMS) for z/OS
 
+**Span name** SHOULD be `{tps.system.name} {tps.transaction.id}`.
+
 **Span kind** SHOULD be `SERVER`.
 
 **Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
