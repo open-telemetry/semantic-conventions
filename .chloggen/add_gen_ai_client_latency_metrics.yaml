@@ -1,0 +1,5 @@
+change_logs:
+  - description: |
+      Add `gen_ai.client.operation.time_to_first_chunk` and `gen_ai.client.operation.time_per_output_chunk` metrics.
+    issues: [3113]
+    link: https://github.com/open-telemetry/semantic-conventions/issues/3113
