@@ -369,6 +369,14 @@ groups:
           The `gen_ai.data_source.id` SHOULD match the identifier used by the GenAI system rather than a name specific to the external storage, such as a database or
           object store. Semantic conventions referencing `gen_ai.data_source.id` MAY also leverage additional attributes, such as `db.*`, to further identify and describe the data source.
         examples: ['H7STPQYOND']
+      - id: gen_ai.api.type
+        stability: development
+        type: string
+        brief: The API type or version used for the GenAI operation.
+        note: >
+          This attribute is used to distinguish between different API versions or types provided by the same provider
+          for similar operations. For example, OpenAI provides both "chat.completions" and "responses" APIs for chat operations.
+        examples: ['chat.completions', 'responses', 'completions']
       - id: gen_ai.operation.name
         stability: development
         type:
@@ -404,10 +412,6 @@ groups:
             - id: execute_tool
               value: "execute_tool"
               brief: 'Execute a tool'
-              stability: development
-            - id: responses
-              value: "responses"
-              brief: 'Responses API operation such as [OpenAI Responses API](https://platform.openai.com/docs/api-reference/responses)'
               stability: development
         brief: The name of the operation being performed.
         note: >
