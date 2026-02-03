@@ -55,7 +55,7 @@ When this metric is reported alongside a messaging span, the metric value SHOULD
 This metric is [required][MetricRequired].
 
 This metric SHOULD be specified with
-[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.51.0/specification/metrics/api.md#instrument-advisory-parameters)
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.53.0/specification/metrics/api.md#instrument-advisory-parameters)
 of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 ]`.
 
 <!-- semconv metric.messaging.client.operation.duration -->
@@ -101,7 +101,7 @@ additional filters are applied.
 
 If the operation has completed successfully, instrumentations SHOULD NOT set `error.type`.
 
-If a specific domain defines its own set of error identifiers (such as HTTP or gRPC status codes),
+If a specific domain defines its own set of error identifiers (such as HTTP or RPC status codes),
 it's RECOMMENDED to:
 
 - Use a domain-specific attribute
@@ -213,7 +213,7 @@ additional filters are applied.
 
 If the operation has completed successfully, instrumentations SHOULD NOT set `error.type`.
 
-If a specific domain defines its own set of error identifiers (such as HTTP or gRPC status codes),
+If a specific domain defines its own set of error identifiers (such as HTTP or RPC status codes),
 it's RECOMMENDED to:
 
 - Use a domain-specific attribute
@@ -310,7 +310,7 @@ additional filters are applied.
 
 If the operation has completed successfully, instrumentations SHOULD NOT set `error.type`.
 
-If a specific domain defines its own set of error identifiers (such as HTTP or gRPC status codes),
+If a specific domain defines its own set of error identifiers (such as HTTP or RPC status codes),
 it's RECOMMENDED to:
 
 - Use a domain-specific attribute
@@ -369,7 +369,7 @@ When this metric is reported alongside a messaging process span, the metric valu
 This metric is [required][MetricRequired] for push-based message delivery and is [recommended][MetricRecommended] for processing operations instrumented for pull-based scenarios.
 
 This metric SHOULD be specified with
-[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.51.0/specification/metrics/api.md#instrument-advisory-parameters)
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.53.0/specification/metrics/api.md#instrument-advisory-parameters)
 of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 ]`.
 
 <!-- semconv metric.messaging.process.duration -->
@@ -414,7 +414,7 @@ additional filters are applied.
 
 If the operation has completed successfully, instrumentations SHOULD NOT set `error.type`.
 
-If a specific domain defines its own set of error identifiers (such as HTTP or gRPC status codes),
+If a specific domain defines its own set of error identifiers (such as HTTP or RPC status codes),
 it's RECOMMENDED to:
 
 - Use a domain-specific attribute

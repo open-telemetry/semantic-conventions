@@ -6,7 +6,7 @@ linkTitle: Resource
 
 **Status**: [Mixed][DocumentStatus]
 
-This document defines standard attributes for resources. These attributes are typically used in the [Resource](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.51.0/specification/resource/sdk.md) and are also recommended to be used anywhere else where there is a need to describe a resource in a consistent manner. The majority of these attributes are inherited from
+This document defines standard attributes for resources. These attributes are typically used in the [Resource](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.53.0/specification/resource/sdk.md) and are also recommended to be used anywhere else where there is a need to describe a resource in a consistent manner. The majority of these attributes are inherited from
 [OpenCensus Resource standard](https://github.com/census-instrumentation/opencensus-specs/blob/master/resource/StandardResources.md).
 
 <!-- toc -->
@@ -53,14 +53,14 @@ Given their significance some resource attributes are treated specifically as de
 ### Semantic attributes with dedicated environment variable
 
 These are the attributes which MAY be configurable via a dedicated environment variable
-as specified in [OpenTelemetry Environment Variable Specification](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.51.0/specification/configuration/sdk-environment-variables.md):
+as specified in [OpenTelemetry Environment Variable Specification](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.53.0/specification/configuration/sdk-environment-variables.md):
 
 - [`service.name`](#service)
 
 ### Semantic attributes with SDK-provided default value
 
 These are the attributes which MUST be provided by the SDK
-as specified in the [Resource SDK specification](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.51.0/specification/resource/sdk.md#sdk-provided-resource-attributes):
+as specified in the [Resource SDK specification](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.53.0/specification/resource/sdk.md#sdk-provided-resource-attributes):
 
 - [`service.name`](#service)
 - [`telemetry.sdk` group](#telemetry-sdk)

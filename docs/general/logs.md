@@ -25,7 +25,7 @@ The following semantic conventions for logs are defined:
 * [Exceptions](/docs/exceptions/exceptions-logs.md): Semantic attributes that may be used in describing exceptions in logs.
 
 Apart from semantic conventions for logs, [events](events.md), [traces](trace.md), and [metrics](metrics.md),
-OpenTelemetry also defines the concept of overarching [Resources](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.51.0/specification/resource/sdk.md) with their own
+OpenTelemetry also defines the concept of overarching [Resources](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.53.0/specification/resource/sdk.md) with their own
 [Resource Semantic Conventions](/docs/resource/README.md).
 
 ## General log identification attributes
@@ -57,7 +57,7 @@ The id MAY be an [Universally Unique Lexicographically Sortable Identifier (ULID
 
 This section describes attributes for log media in OpenTelemetry. Log media are mechanisms by which logs are transmitted. Types of media include files, streams, network protocols, and os-specific logging services such as journald and Windows Event Log.
 
-**Note:** The OpenTelemetry specification defines a [Resource](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.51.0/specification/resource/sdk.md) as `an immutable representation of the entity producing telemetry`.
+**Note:** The OpenTelemetry specification defines a [Resource](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.53.0/specification/resource/sdk.md) as `an immutable representation of the entity producing telemetry`.
 The following attributes do not describe entities that produce telemetry. Rather, they describe mechanisms of log transmission.
 As such, these should be recorded as Log Record attributes when applicable. They should not be recorded as Resource attributes.
 

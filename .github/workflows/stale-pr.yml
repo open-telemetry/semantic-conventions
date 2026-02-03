@@ -14,12 +14,12 @@ jobs:
       pull-requests: write # required for closing stale PRs
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/stale@5f858e3efba33a5ca4407a664cc011ad407f2008 # v10.1.0
+      - uses: actions/stale@997185467fa4f803885201cee163a9f38240193d # v10.1.1
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           stale-pr-message: >
             This PR has been labeled as stale due to lack of activity.
-            It will be automatically closed if there is no further activity over the next 14 days.
+            It will be automatically closed if there is no further activity over the next 7 days.
           exempt-pr-labels: 'never stale'
           # opt out of defaults to avoid marking issues as stale
           days-before-stale: -1

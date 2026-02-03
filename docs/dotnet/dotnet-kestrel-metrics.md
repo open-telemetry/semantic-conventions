@@ -92,7 +92,7 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 ## Metric: `kestrel.connection.duration`
 
 this metric SHOULD be specified with
-[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.51.0/specification/metrics/api.md#instrument-advisory-parameters)
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.53.0/specification/metrics/api.md#instrument-advisory-parameters)
 of `[ 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10, 30, 60, 120, 300 ]`.
 
 <!-- semconv metric.kestrel.connection.duration -->
@@ -468,7 +468,7 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 ## Metric: `kestrel.tls_handshake.duration`
 
 this metric SHOULD be specified with
-[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.51.0/specification/metrics/api.md#instrument-advisory-parameters)
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.53.0/specification/metrics/api.md#instrument-advisory-parameters)
 of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 ]`.
 
 <!-- semconv metric.kestrel.tls_handshake.duration -->

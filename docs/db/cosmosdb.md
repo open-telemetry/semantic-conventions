@@ -335,7 +335,7 @@ This metric is [required][MetricRequired].
 It captures the Request Units consumed by each operation in Azure Cosmos DB. Since Request Units serve as a form of throughput control within the Azure Cosmos DB database, monitoring their usage is crucial to avoid throttling.
 
 this metric SHOULD be specified with
-[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.51.0/specification/metrics/api.md#instrument-advisory-parameters)
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.53.0/specification/metrics/api.md#instrument-advisory-parameters)
 of `[ 1, 5, 10, 25, 50, 100, 250, 500, 1000]`.
 
 Explaining bucket configuration:

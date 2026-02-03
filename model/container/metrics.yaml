@@ -7,6 +7,8 @@ groups:
       code_generation:
         metric_value_type: double
     stability: development
+    entity_associations:
+      - container
     brief: "The time the container has been running."
     note: |
       Instrumentations SHOULD use a gauge with type `double` and measure uptime in seconds as a floating point number with the highest precision available.
@@ -26,6 +28,8 @@ groups:
       Total CPU time consumed by the specific container on all available CPU cores
     instrument: counter
     unit: "s"
+    entity_associations:
+      - container
     attributes:
       - ref: cpu.mode
         brief: "The CPU mode for this data point. A container's CPU metric SHOULD be characterized _either_ by data points with no `mode` labels, _or only_ data points with `mode` labels."
@@ -45,6 +49,8 @@ groups:
       CPU usage of the specific container on all available CPU cores, averaged over the sample window
     instrument: gauge
     unit: "{cpu}"
+    entity_associations:
+      - container
     attributes:
       - ref: cpu.mode
         brief: "The CPU mode for this data point. A container's CPU metric SHOULD be characterized _either_ by data points with no `mode` labels, _or only_ data points with `mode` labels."
@@ -64,6 +70,8 @@ groups:
     note: >
       Memory usage of the container.
     instrument: counter
+    entity_associations:
+      - container
     unit: "By"
   - id: metric.container.memory.available
     type: metric
@@ -172,6 +180,8 @@ groups:
       successfully (aggregated from all disks).
     instrument: counter
     unit: "By"
+    entity_associations:
+      - container
     attributes:
       - ref: disk.io.direction
       - ref: system.device
@@ -191,6 +201,8 @@ groups:
       by the container.
     instrument: counter
     unit: "By"
+    entity_associations:
+      - container
     attributes:
       - ref: network.io.direction
       - ref: network.interface.name

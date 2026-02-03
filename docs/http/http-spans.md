@@ -62,7 +62,7 @@ and various HTTP versions like 1.1, 2 and SPDY.
 
 ## Name
 
-HTTP spans MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.51.0/specification/trace/api.md#span).
+HTTP spans MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.53.0/specification/trace/api.md#span).
 
 HTTP span names SHOULD be `{method} {target}` if there is a (low-cardinality) `target` available. If there is no (low-cardinality) `{target}` available, HTTP span names SHOULD be `{method}`.
 
@@ -81,7 +81,7 @@ Instrumentation MUST NOT default to using URI path as a `{target}`.
 
 ## Status
 
-[Span Status](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.51.0/specification/trace/api.md#set-status) MUST be left unset if HTTP status code was in the
+[Span Status](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.53.0/specification/trace/api.md#set-status) MUST be left unset if HTTP status code was in the
 1xx, 2xx or 3xx ranges, unless there was another error (e.g., network error receiving
 the response body; or 3xx codes with max redirects exceeded), in which case status
 MUST be set to `Error`.
@@ -826,4 +826,4 @@ Span name: `POST /uploads/:document_id`.
 | `error.type`                | `WebSocketDisconnect`     |
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
-[SpanProcessor]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.51.0/specification/trace/sdk.md#span-processor
+[SpanProcessor]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.53.0/specification/trace/sdk.md#span-processor

@@ -110,16 +110,29 @@ groups:
     entity_associations:
       - process
 
-  - id: metric.process.open_file_descriptor.count
+  - id: metric.process.unix.file_descriptor.count
     type: metric
-    metric_name: process.open_file_descriptor.count
+    metric_name: process.unix.file_descriptor.count
     annotations:
       code_generation:
         metric_value_type: int
     stability: development
-    brief: "Number of file descriptors in use by the process."
+    brief: "Number of unix file descriptors in use by the process."
     instrument: updowncounter
     unit: "{file_descriptor}"
+    entity_associations:
+      - process
+
+  - id: metric.process.windows.handle.count
+    type: metric
+    metric_name: process.windows.handle.count
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "Number of handles held by the process."
+    instrument: updowncounter
+    unit: "{handle}"
     entity_associations:
       - process
 

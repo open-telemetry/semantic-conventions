@@ -37,7 +37,7 @@ The following semantic conventions surrounding metrics are defined:
 * [OTel SDK Telemetry](/docs/otel/sdk-metrics.md): Metrics emitted by the OpenTelemetry SDK components.
 
 Apart from semantic conventions for metrics, [traces](trace.md), [logs](logs.md), and [events](events.md), OpenTelemetry also
-defines the concept of overarching [Resources](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.51.0/specification/resource/sdk.md) with
+defines the concept of overarching [Resources](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.53.0/specification/resource/sdk.md) with
 their own [Resource Semantic Conventions](/docs/resource/README.md).
 
 ## General guidelines
@@ -88,7 +88,7 @@ usable.
 
 When building components that interoperate between OpenTelemetry and a system
 using the OpenMetrics exposition format, use the
-[OpenMetrics Guidelines](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.51.0/specification/compatibility/prometheus_and_openmetrics.md).
+[OpenMetrics Guidelines](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.53.0/specification/compatibility/prometheus_and_openmetrics.md).
 
 ### Instrument units
 

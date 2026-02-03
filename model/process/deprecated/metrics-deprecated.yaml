@@ -1,0 +1,13 @@
+groups:
+  - id: metric.process.open_file_descriptor.count
+    type: metric
+    metric_name: process.open_file_descriptor.count
+    stability: development
+    deprecated:
+      reason: renamed
+      renamed_to: process.unix.file_descriptor.count
+    brief: "Deprecated, use `process.unix.file_descriptor.count` instead."
+    instrument: updowncounter
+    unit: "{file_descriptor}"
+    entity_associations:
+      - process

@@ -5,7 +5,7 @@
 # ./internal/tools/update-spec-repo-links.sh v1.41.0
 
 # this version should be kept up-to-date with the spec version that links use
-PREVIOUS_SPECIFICATION_VERSION=v1.51.0
+PREVIOUS_SPECIFICATION_VERSION=v1.53.0
 
 # Set this to the version number you want to KEEP in URLs in the repository.
 LATEST_SPECIFICATION_VERSION=$1
