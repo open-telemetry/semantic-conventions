@@ -170,8 +170,8 @@ form. When recorded on spans, it MAY be recorded as a JSON string if structured
 format is not supported and SHOULD be recorded in structured form otherwise.
 
 Since this attribute could be large, it's NOT RECOMMENDED to populate
-non-required properties by default. Instrumentations MAY allow to enable
-populating optional properties.
+non-required properties by default. Instrumentations MAY provide a way
+to enable populating optional properties.
 
 **[13] `gen_ai.tool.type`:** Extension: A tool executed on the agent-side to directly call external APIs, bridging the gap between the agent and real-world systems.
   Agent-side operations involve actions that are performed by the agent on the server or within the agent's controlled environment.
