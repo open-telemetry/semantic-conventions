@@ -43,21 +43,19 @@ OPA_CONTAINER=$(OPA_CONTAINER_REPOSITORY)/$(VERSIONED_OPA_CONTAINER_NO_REPO)
 
 # Determine if "docker" is actually podman
 DOCKER_VERSION_OUTPUT := $(shell docker --version 2>&1)
-DOCKER_INSTALLED := $(shell echo $(DOCKER_VERSION_OUTPUT) | grep -ic 'Docker version')
 DOCKER_IS_PODMAN := $(shell echo $(DOCKER_VERSION_OUTPUT) | grep -c podman)
 
-ifeq ($(DOCKER_INSTALLED),1)
+ifneq ($(strip $(DOCKER_VERSION_OUTPUT)),)
 ifeq ($(DOCKER_IS_PODMAN),0)
     DOCKER_COMMAND := docker
-else
-    DOCKER_COMMAND := podman
 endif
 endif
+
+DOCKER_COMMAND ?= podman
 
 # Debug printing
 ifdef DEBUG
 $(info Docker version output: $(DOCKER_VERSION_OUTPUT))
-$(info Is Docker installed?: $(DOCKER_INSTALLED))
 $(info Is Docker actually Podman? $(DOCKER_IS_PODMAN))
 $(info Using command: $(DOCKER_COMMAND))
 endif
