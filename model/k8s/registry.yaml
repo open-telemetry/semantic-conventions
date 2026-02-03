@@ -833,7 +833,7 @@ groups:
               stability: development
       - id: k8s.service.traffic_distribution
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The traffic distribution policy for the Service.
         note: |
@@ -888,7 +888,7 @@ groups:
         examples: ['true', '']
       - id: k8s.service.publish_not_ready_addresses
         type: boolean
-        stability: experimental
+        stability: development
         brief: >
           Whether the Service publishes not-ready endpoints.
         note: |
@@ -899,7 +899,7 @@ groups:
           [K8s ServiceSpec](https://kubernetes.io/docs/reference/kubernetes-api/service-resources/service-v1/#ServiceSpec).
         examples: [true, false]
       - id: k8s.service.endpoint.condition
-        stability: experimental
+        stability: development
         brief: >
           The condition of the service endpoint.
         note: |
@@ -911,32 +911,32 @@ groups:
             - id: ready
               value: 'ready'
               brief: 'The endpoint is ready to receive new connections.'
-              stability: experimental
+              stability: development
             - id: serving
               value: 'serving'
               brief: 'The endpoint is currently handling traffic.'
-              stability: experimental
+              stability: development
             - id: terminating
               value: 'terminating'
               brief: 'The endpoint is in the process of shutting down.'
-              stability: experimental
+              stability: development
         examples: ['ready', 'serving', 'terminating']
       - id: k8s.service.endpoint.address_type
-        stability: experimental
+        stability: development
         type:
           members:
             - id: ipv4
               value: 'IPv4'
               brief: 'IPv4 address type'
-              stability: experimental
+              stability: development
             - id: ipv6
               value: 'IPv6'
               brief: 'IPv6 address type'
-              stability: experimental
+              stability: development
             - id: fqdn
               value: 'FQDN'
               brief: 'FQDN address type'
-              stability: experimental
+              stability: development
         brief: >
           The address type of the service endpoint.
         note: |
@@ -948,7 +948,7 @@ groups:
         examples: ['IPv4', 'IPv6']
       - id: k8s.service.endpoint.zone
         type: string
-        stability: experimental
+        stability: development
         brief: >
           The zone of the service endpoint.
         note: |

@@ -1781,7 +1781,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
-    stability: experimental
+    stability: development
     brief: "Number of endpoints for a service by condition and address type."
     instrument: gauge
     unit: "{endpoint}"
@@ -1819,7 +1819,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
-    stability: experimental
+    stability: development
     brief: "Number of load balancer ingress points (external IPs/hostnames) assigned to the service."
     instrument: gauge
     unit: "{ingress}"
