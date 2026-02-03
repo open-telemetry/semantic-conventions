@@ -94,6 +94,7 @@ AWS Bedrock guardrail ARN, Azure Content Safety blocklist ID), use
 `gen_ai.security.policy.id` instead.
 
 Example mapping:
+
 - Guardian: The evaluation service (e.g., "bedrock_guardrail_service", "azure_content_safety")
 - Policy: The specific configuration (e.g., "arn:aws:bedrock:us-east-1:123456789:guardrail/abc123")
 
@@ -213,6 +214,7 @@ beyond what `gen_ai.security.policy.id` provides.
 organization-specific, or emerging risk categories.
 
 Suggested values aligned with OWASP LLM Top 10 2025 include:
+
 - `prompt_injection` (LLM01)
 - `sensitive_info_disclosure` (LLM02)
 - `supply_chain` (LLM03)
@@ -234,6 +236,7 @@ example: `jailbreak`, `toxicity`, `pii`, `custom:*`, `azure:*`.
 > high-risk data.
 
 Example values include:
+
 - Field identifiers: `field:bcc`, `parameter:query`
 - Pattern types: `pattern:ssn`, `pattern:credit_card`
 - Counts: `count:3`
@@ -241,7 +244,20 @@ Example values include:
 
 **[21] `gen_ai.security.target.id`:** For example, a tool call identifier, request identifier, or memory entry identifier, if applicable.
 
-**[22] `gen_ai.security.target.type`:** If one of the predefined values applies, the respective value MUST be used; otherwise, a custom value MAY be used.
+**[22] `gen_ai.security.target.type`:** This attribute is free-form to accommodate provider-specific,
+organization-specific, or emerging target types.
+
+Suggested values include:
+
+- `llm_input`: Prompt or messages being sent to the model.
+- `llm_output`: Response or messages returned from the model.
+- `tool_call`: Tool execution request (tool call invocation).
+- `tool_definition`: Tool definition or schema (tool declaration).
+- `memory_store`: Data being written to memory.
+- `memory_retrieve`: Data being read from memory.
+- `knowledge_query`: Knowledge/RAG query being sent.
+- `knowledge_result`: Knowledge/RAG results being returned.
+- `message`: Conversation message (user, assistant, tool).
 
 **[23] `gen_ai.system_instructions`:** This attribute SHOULD be used when the corresponding provider or API
 allows to provide system instructions or messages separately from the
@@ -385,22 +401,6 @@ by summing different token types parsed from the provider output.
 | `low` | Low severity risk. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `medium` | Medium severity risk. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `none` | No risk detected. | ![Development](https://img.shields.io/badge/-development-blue) |
-
----
-
-`gen_ai.security.target.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value | Description | Stability |
-| --- | --- | --- |
-| `knowledge_query` | Knowledge/RAG query being sent. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `knowledge_result` | Knowledge/RAG results being returned. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `llm_input` | Prompt or messages being sent to the model. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `llm_output` | Response or messages returned from the model. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `memory_retrieve` | Data being read from memory. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `memory_store` | Data being written to memory. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `message` | Conversation message (user, assistant, tool). | ![Development](https://img.shields.io/badge/-development-blue) |
-| `tool_call` | Tool execution request (tool call invocation). | ![Development](https://img.shields.io/badge/-development-blue) |
-| `tool_definition` | Tool definition or schema (tool declaration). | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 

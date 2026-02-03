@@ -86,7 +86,7 @@ class DecisionType:
 
 
 class TargetType:
-    """Target types that guardrails can be applied to."""
+    """Suggested target types that guardrails can be applied to."""
     LLM_INPUT = "llm_input"
     LLM_OUTPUT = "llm_output"
     TOOL_CALL = "tool_call"
@@ -478,6 +478,6 @@ if __name__ == "__main__":
     print("  - SecurityFinding: Individual security finding")
     print("\nAvailable enums:")
     print("  - DecisionType: allow, deny, modify, warn, audit")
-    print("  - TargetType: llm_input, llm_output, tool_call, etc.")
+    print("  - TargetType (suggested): llm_input, llm_output, tool_call, etc.")
     print("  - RiskSeverity: none, low, medium, high, critical")
     print("  - RiskCategory: OWASP LLM Top 10 categories")

@@ -13,7 +13,7 @@ Hook Points:
 - Elicitation request/response for `message` (user interaction during tool execution)
 
 Emission Details:
-- Use only standard `gen_ai.security.target.type` values
+- Prefer the suggested `gen_ai.security.target.type` values; use custom values when needed.
 - If the MCP server performs the guard evaluation, map its name to
   `gen_ai.guardian.name` and `gen_ai.guardian.provider.name`
 - Use MCP request ID for `gen_ai.security.target.id`

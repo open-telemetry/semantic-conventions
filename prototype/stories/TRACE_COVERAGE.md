@@ -56,7 +56,7 @@ In the local viewer (`prototype/stories/trace_viewer.py`):
 
 ## Coverage summary
 
-### `gen_ai.security.target.type`
+### `gen_ai.security.target.type` (suggested values)
 
 | Target type | Covered by |
 |---|---|

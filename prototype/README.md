@@ -37,7 +37,7 @@ python -m stories.story_runner --story 4 5 7 --exporters console
 
 | ID | Scenario | Key Conventions Demonstrated |
 |----|----------|------------------------------|
-| **4** | Enterprise RAG Access Control | `knowledge_query`, `knowledge_result`, `memory_store`, `memory_retrieve` target types |
+| **4** | Enterprise RAG Access Control | `knowledge_query`, `knowledge_result`, `memory_store`, `memory_retrieve` suggested target types |
 | **5** | Multi-Tenant SaaS | `llm_input`, `llm_output` targets; `modify` decision; `tenant.id` attribute |
 | **7** | Multi-Agent Orchestrator | `tool_definition`, `tool_call`, `message` targets; `gen_ai.agent.id` nesting |
 | **10** | Progressive Jailbreak | `gen_ai.conversation.id` correlation; cumulative risk scoring across turns |

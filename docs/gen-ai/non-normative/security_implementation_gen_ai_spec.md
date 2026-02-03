@@ -108,7 +108,10 @@ This model aligns with the [OWASP Agent Observability Standard](https://aos.owas
 
 ### 2.3 Target Types
 
-Guardians evaluate different types of content or actions:
+`gen_ai.security.target.type` is a free-form string to accommodate provider-specific,
+organization-specific, or emerging target types.
+
+Suggested values include:
 
 | Target Type | Description | When Used |
 |-------------|-------------|-----------|
