@@ -20,11 +20,12 @@ that describe common RPC operations attributes in addition to the Semantic Conve
 described on this page.
 
 > [!NOTE]
-> The gRPC project defines conventions for [OpenTelemetry Metrics](https://github.com/grpc/proposal/blob/master/A66-otel-stats.md)
-> and experimental conventions for [OpenTelemetry Tracing](https://github.com/grpc/proposal/blob/master/A72-open-telemetry-tracing.md).
+> The gRPC project defines its own conventions for [metrics](https://github.com/grpc/proposal/blob/master/A66-otel-stats.md)
+> and [spans](https://github.com/grpc/proposal/blob/master/A72-open-telemetry-tracing.md).
 >
-> The mapping between OpenTelemetry conventions defined here and gRPC conventions
-> is defined in [this document](/docs/non-normative/compatibility/grpc.md)
+> Details on how OpenTelemetry spans and metrics defined in this repository
+> relate to the native gRPC conventions are documented in the
+> [gRPC compatibility](/docs/non-normative/compatibility/grpc.md) document.
 
 ## Spans
 
