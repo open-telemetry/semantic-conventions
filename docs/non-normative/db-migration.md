@@ -43,24 +43,24 @@ to
 
 ### Database client span attributes
 
-<!-- prettier-ignore-start -->
+<!-- markdownlint-disable-file MD060 -->
 | Change                                              | Comments                                                                                                    |
 |-----------------------------------------------------|-------------------------------------------------------------------------------------------------------------|
 | `db.connection_string`                              | Removed                                                                                                     |
 | `db.user`                                           | Removed                                                                                                     |
 | `network.transport`                                 | Removed                                                                                                     |
 | `network.type`                                      | Removed                                                                                                     |
-| `db.name`                                           | Removed, integrated into the new `db.namespace`                                                             |
+| `db.name`                                           | Removed, integrated into the new `db.namespace`. Clarified, it is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization |
 | `db.redis.database_index`                           | Removed, integrated into the new `db.namespace`                                                             |
 | `db.mssql.instance_name`                            | Removed, integrated into the new `db.namespace`                                                             |
 | `db.instance.id`                                    | Removed, replaced by `server.address` or integrated into `db.namespace` as appropriate                      |
 | `db.system` &rarr; `db.system.name`                 |                                                                                                             |
 | `db.statement` &rarr; `db.query.text`               | Clarified, SHOULD be collected by default only if there is sanitization that excludes sensitive information |
-| `db.operation` &rarr; `db.operation.name`           |                                                                                                             |
-| `db.sql.table` &rarr; `db.collection.name`          | Should not be captured if extracting the value from `db.query.text` since there could be multiple           |
-| `db.cassandra.table` &rarr; `db.collection.name`    |                                                                                                             |
-| `db.mongodb.collection` &rarr; `db.collection.name` |                                                                                                             |
-| `db.cosmosdb.container` &rarr; `db.collection.name` |                                                                                                             |
+| `db.operation` &rarr; `db.operation.name`           | Clarified, it is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization |
+| `db.sql.table` &rarr; `db.collection.name`          | Should not be captured if extracting the value from `db.query.text` since there could be multiple. Clarified, it is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization |
+| `db.cassandra.table` &rarr; `db.collection.name`    | Clarified, it is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization |
+| `db.mongodb.collection` &rarr; `db.collection.name` | Clarified, it is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization |
+| `db.cosmosdb.container` &rarr; `db.collection.name` | Clarified, it is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization |
 | New: `db.query.summary`                             |                                                                                                             |
 | New: `db.operation.batch.size`                      |                                                                                                             |
 | New: `db.response.status_code`                      |                                                                                                             |
@@ -69,7 +69,6 @@ to
 | New: `db.operation.parameter.<key>`                 | _Not marked stable yet_                                                                                     |
 | New: `db.query.parameter.<key>`                     | _Not marked stable yet_                                                                                     |
 | New: `db.response.returned_rows`                    | _Not marked stable yet_                                                                                     |
-<!-- prettier-ignore-end -->
 
 References:
 
