@@ -177,6 +177,7 @@ groups:
       - ref: rpc.response.metadata
         requirement_level: opt_in
       - ref: grpc.target
+        sampling_relevant: true
         requirement_level:
           conditionally_required: >
             If the channel was created with a target string and it contains

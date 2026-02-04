@@ -251,6 +251,7 @@ areas:
     labels:
       - area:rpc
       - area:jsonrpc
+      - area:grpc
     status:
       - accepting_contributions
       - active

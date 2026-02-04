@@ -162,6 +162,7 @@ the `rpc.response.metadata.my-custom-key` attribute with value `["attribute_valu
 The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):
 
+* [`grpc.target`](/docs/registry/attributes/grpc.md)
 * [`rpc.method`](/docs/registry/attributes/rpc.md)
 * [`server.address`](/docs/registry/attributes/server.md)
 * [`server.port`](/docs/registry/attributes/server.md)
