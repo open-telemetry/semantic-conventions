@@ -50,8 +50,6 @@ metrics can be filtered for finer grain analysis.
 
 ## RPC server
 
-Below is a list of RPC server metric instruments.
-
 ### Metric: `rpc.server.call.duration`
 
 This metric is [required][MetricRequired].
@@ -150,8 +148,6 @@ Semantic conventions for individual RPC frameworks SHOULD document what `rpc.res
 <!-- endsemconv -->
 
 ## RPC client
-
-Below is a list of RPC client metric instruments.
 
 ### Metric: `rpc.client.call.duration`
 
