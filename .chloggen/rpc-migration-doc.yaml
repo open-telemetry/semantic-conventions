@@ -1,7 +1,0 @@
-change_type: enhancement
-
-component: rpc
-
-note: Add RPC migration guide documenting changes from v1.37.0 to latest version.
-
-issues: [ 3204 ]

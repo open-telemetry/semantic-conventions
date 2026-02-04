@@ -1,7 +1,7 @@
 groups:
   - id: attributes.metrics.rpc.client
     type: attribute_group
-    brief: "RPC client metric attributes."
+    brief: "Describes RPC metric attributes."
     extends: common.rpc.attributes
     attributes:
       - ref: rpc.system.name
@@ -14,7 +14,7 @@ groups:
 
   - id: attributes.metrics.rpc.server
     type: attribute_group
-    brief: "RPC server metric attributes."
+    brief: "Describes RPC metric attributes."
     extends: attributes.metrics.rpc.client
     attributes:
       - ref: rpc.system.name
@@ -37,7 +37,7 @@ groups:
       code_generation:
         metric_value_type: double
     stability: development
-    brief: Measures the duration of an incoming Remote Procedure Call (RPC).
+    brief: Measures the duration of inbound remote procedure calls (RPC).
     instrument: histogram
     unit: "s"
     note: |
@@ -54,7 +54,7 @@ groups:
       code_generation:
         metric_value_type: double
     stability: development
-    brief: Measures the duration of an outgoing Remote Procedure Call (RPC).
+    brief: Measures the duration of outbound remote procedure calls (RPC).
     instrument: histogram
     unit: "s"
     note: |

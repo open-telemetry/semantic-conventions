@@ -74,7 +74,7 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `rpc.server.call.duration` | Histogram | `s` | Measures the duration of an incoming Remote Procedure Call (RPC). [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
+| `rpc.server.call.duration` | Histogram | `s` | Measures the duration of inbound remote procedure calls (RPC). [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 **[1]:** When this metric is reported alongside an RPC server span, the metric value
 SHOULD be the same as the RPC server span duration.
@@ -175,7 +175,7 @@ of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `rpc.client.call.duration` | Histogram | `s` | Measures the duration of an outgoing Remote Procedure Call (RPC). [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
+| `rpc.client.call.duration` | Histogram | `s` | Measures the duration of outbound remote procedure calls (RPC). [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 **[1]:** When this metric is reported alongside an RPC client span, the metric value
 SHOULD be the same as the RPC client span duration.

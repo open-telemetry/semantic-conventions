@@ -1,4 +1,0 @@
-change_type: deprecation
-component: exceptions
-note: Update exception recording guidelines to not use span events.
-issues: [3256]

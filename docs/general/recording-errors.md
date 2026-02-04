@@ -20,8 +20,8 @@ Individual semantic conventions are encouraged to provide additional guidance.
 
 An operation SHOULD be considered as failed if any of the following is true:
 
-- an exception is thrown by the instrumented operation (API, block of code, or another instrumented unit)
-- the instrumented operation returns an error in another way, for example, via an error code
+- an exception is thrown by the instrumented method (API, block of code, or another instrumented unit)
+- the instrumented method returns an error in another way, for example, via an error code
 
   Semantic conventions that define domain-specific status codes SHOULD specify
   which status codes should be reported as errors by a general-purpose instrumentation.
@@ -83,12 +83,12 @@ include it if the operation succeeded.
 
 ## Recording exceptions
 
-When the instrumented operation failed due to an exception:
+When an instrumented operation fails with an exception, instrumentation SHOULD record
+this exception as a [span event](/docs/exceptions/exceptions-spans.md) or a [log record](/docs/exceptions/exceptions-logs.md).
 
-- instrumentation SHOULD record this exception as a [log record](/docs/exceptions/exceptions-logs.md),
-- instrumentation SHOULD follow [recording errors on spans](#recording-errors-on-spans)
-  and [recording errors on metrics](#recording-errors-on-metrics)
-  on capturing exception details on these signals.
+It's RECOMMENDED to use the `Span.recordException` API or logging library API that takes exception instance
+instead of providing individual attributes. This enables the OpenTelemetry SDK to
+control what information is recorded based on application configuration.
 
 It's NOT RECOMMENDED to record the same exception more than once.
 It's NOT RECOMMENDED to record exceptions that are handled by the instrumented library.
@@ -100,41 +100,22 @@ to the caller should be recorded (or logged) once.
 ```java
 public boolean createIfNotExists(String resourceId) throws IOException {
   Span span = startSpan();
-  long startTime = System.nanoTime();
   try {
     create(resourceId);
-
-    recordMetric("acme.resource.create.duration", System.nanoTime() - startTime);
-
     return true;
   } catch (ResourceAlreadyExistsException e) {
-    // we do not set span status to error and the "error.type" attribute
-    // as the exception is not an error,
-    // but we still log and set attributes that capture additional details
-    logger.withEventName("acme.resource.create.error")
-      .withAttribute("acme.resource.create.status", "already_exists")
-      .withException(e)
-      .debug();
-
+    // not recording exception and not setting span status to error - exception is handled
+    // but we can set attributes that capture additional details
     span.setAttribute(AttributeKey.stringKey("acme.resource.create.status"), "already_exists");
-
-    recordMetric("acme.resource.create.duration", System.nanoTime() - startTime);
-
     return false;
   } catch (IOException e) {
-    // this exception is expected to be handled by the caller
-    // and could be a transient error
-    logger.withEventName("acme.resource.create.error")
-      .withException(e)
-      .warn();
+    // recording exception here (assuming it was not recorded inside `create` method)
+    span.recordException(e);
+    // or
+    // logger.warn(e);
 
-    String errorType = e.getClass().getCanonicalName();
-
-    span.setAttribute(AttributeKey.stringKey("error.type"), errorType);
+    span.setAttribute(AttributeKey.stringKey("error.type"), e.getClass().getCanonicalName())
     span.setStatus(StatusCode.ERROR, e.getMessage());
-
-    recordMetric("acme.resource.create.duration", System.nanoTime() - startTime,
-                 AttributeKey.stringKey("error.type"), errorType);
     throw e;
   }
 }

@@ -4,8 +4,7 @@ linkTitle: Spans
 
 # Semantic conventions for exceptions on spans
 
-**Status**: [Deprecated][DocumentStatus]<br>
-Use [Semantic conventions for exceptions in logs](exceptions-logs.md) instead.
+**Status**: [Stable][DocumentStatus]
 
 This document defines semantic conventions for recording application
 exceptions associated with spans.

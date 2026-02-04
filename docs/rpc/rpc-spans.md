@@ -83,7 +83,7 @@ span SHOULD cover the duration of the logical call with all retries.
 
 **Span kind** MUST be `CLIENT`.
 
-**Span status**: refer to the [Recording Errors](/docs/general/recording-errors.md)
+**Span status** Refer to the [Recording Errors](/docs/general/recording-errors.md)
 document for details on how to record span status.
 
 **Attributes:**
@@ -202,7 +202,7 @@ and/or response streams until they are closed or terminated.
 
 **Span kind** MUST be `SERVER`.
 
-**Span status**: refer to the [Recording Errors](/docs/general/recording-errors.md)
+**Span status** Refer to the [Recording Errors](/docs/general/recording-errors.md)
 document for details on how to record span status.
 
 **Attributes:**
