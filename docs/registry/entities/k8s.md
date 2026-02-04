@@ -466,10 +466,10 @@ When not set, Kubernetes distributes traffic evenly across all endpoints cluster
 
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- | --- |
-| Identity | [`k8s.statefulset.uid`](/docs/registry/attributes/k8s.md) | ![Alpha](https://img.shields.io/badge/alpha-mediumpurple) | `Recommended` | string | The UID of the StatefulSet. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` |
-| Description | [`k8s.statefulset.name`](/docs/registry/attributes/k8s.md) | ![Alpha](https://img.shields.io/badge/alpha-mediumpurple) | `Recommended` | string | The name of the StatefulSet. | `opentelemetry` |
-| Description | [`k8s.statefulset.annotation.<key>`](/docs/registry/attributes/k8s.md) | ![Alpha](https://img.shields.io/badge/alpha-mediumpurple) | `Opt-In` | string | The annotation placed on the StatefulSet, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [30] | `1`; `` |
-| Description | [`k8s.statefulset.label.<key>`](/docs/registry/attributes/k8s.md) | ![Alpha](https://img.shields.io/badge/alpha-mediumpurple) | `Opt-In` | string | The label placed on the StatefulSet, the `<key>` being the label name, the value being the label value, even if the value is empty. [31] | `guestbook`; `` |
+| Identity | [`k8s.statefulset.uid`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Recommended` | string | The UID of the StatefulSet. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` |
+| Description | [`k8s.statefulset.name`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Recommended` | string | The name of the StatefulSet. | `opentelemetry` |
+| Description | [`k8s.statefulset.annotation.<key>`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Opt-In` | string | The annotation placed on the StatefulSet, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [30] | `1`; `` |
+| Description | [`k8s.statefulset.label.<key>`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Opt-In` | string | The label placed on the StatefulSet, the `<key>` being the label name, the value being the label value, even if the value is empty. [31] | `guestbook`; `` |
 
 **[30] `k8s.statefulset.annotation.<key>`:** Examples:
 
