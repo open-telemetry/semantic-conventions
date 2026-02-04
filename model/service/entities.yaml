@@ -15,6 +15,9 @@ groups:
         role: identifying
       - ref: service.version
         role: descriptive
+      - ref: service.criticality
+        requirement_level: recommended
+        role: descriptive
   - id: entity.service.instance
     type: entity
     name: service.instance
@@ -24,7 +27,7 @@ groups:
       A `service.instance` uniquely identifies an instance of a logical service. For example,
       a container that is part of a Kubernetes deployment
       that offers a service.
-    stability: development
+    stability: stable
     attributes:
       - ref: service.instance.id
         role: identifying
@@ -36,7 +39,7 @@ groups:
       Groups related services that compose a system or application under a common namespace.
     note: >
       A `service.namespace` can be used to logically organize and group related services under a common namespace.
-    stability: development
+    stability: stable
     attributes:
       - ref: service.namespace
         role: identifying
