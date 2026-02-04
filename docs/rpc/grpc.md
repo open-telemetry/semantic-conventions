@@ -109,7 +109,8 @@ to ensure low cardinality.
 
 Instrumentations MAY parse address and port from the target string
 according to the [gRPC Name Resolution specification](https://grpc.github.io/grpc/core/md_doc_naming.html),
-depending on the scheme used. Or, they MAY use gRPC client APIs that provide this information.
+depending on the scheme used. Or, they MAY use gRPC client APIs that
+provide this information.
 
 Instrumentations SHOULD NOT set `server.address` when it cannot reliably
 identify (a single) address of the server hosting the RPC endpoint or when
