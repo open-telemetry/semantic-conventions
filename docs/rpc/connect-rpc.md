@@ -15,9 +15,7 @@ linkTitle: Connect
 
 <!-- tocstop -->
 
-The Semantic Conventions for [Connect](https://connectrpc.com/) extend and override the [RPC spans](rpc-spans.md) and [RPC metrics](rpc-metrics.md) Semantic Conventions
-that describe common RPC operations attributes in addition to the Semantic Conventions
-described on this page.
+The Semantic Conventions for [Connect](https://connectrpc.com/) extend and override the [RPC Semantic Conventions](README.md).
 
 ## Spans
 
