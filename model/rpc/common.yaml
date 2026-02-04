@@ -38,8 +38,3 @@ groups:
 
           If the request has completed successfully, instrumentations SHOULD NOT set
           `error.type`.
-      - ref: network.protocol.name
-        examples: ["http"]
-      - ref: network.protocol.version
-      - ref: network.transport
-        requirement_level: recommended

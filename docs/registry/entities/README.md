@@ -57,6 +57,7 @@ Currently, the following namespaces exist:
 | | [gcp.apphub.workload](gcp.md#gcp-apphub-workload) | ![Development](https://img.shields.io/badge/-development-blue) |
 | | [gcp.cloud_run](gcp.md#gcp-cloud-run) | ![Development](https://img.shields.io/badge/-development-blue) |
 | | [gcp.gce](gcp.md#gcp-gce) | ![Development](https://img.shields.io/badge/-development-blue) |
+| | [gcp.gce.instance_group_manager](gcp.md#gcp-gce-instance-group-manager) | ![Development](https://img.shields.io/badge/-development-blue) |
 | Heroku | | |
 | | [heroku](heroku.md#heroku) | ![Development](https://img.shields.io/badge/-development-blue) |
 | Host | | |
@@ -88,8 +89,8 @@ Currently, the following namespaces exist:
 | | [process.runtime](process.md#process-runtime) | ![Development](https://img.shields.io/badge/-development-blue) |
 | Service | | |
 | | [service](service.md#service) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| | [service.instance](service.md#service-instance) | ![Development](https://img.shields.io/badge/-development-blue) |
-| | [service.namespace](service.md#service-namespace) | ![Development](https://img.shields.io/badge/-development-blue) |
+| | [service.instance](service.md#service-instance) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| | [service.namespace](service.md#service-namespace) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | Telemetry | | |
 | | [telemetry.distro](telemetry.md#telemetry-distro) | ![Development](https://img.shields.io/badge/-development-blue) |
 | | [telemetry.sdk](telemetry.md#telemetry-sdk) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
