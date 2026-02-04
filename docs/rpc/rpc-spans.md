@@ -11,7 +11,7 @@ This document defines how to describe remote procedure calls
 
 <!-- toc -->
 
-- [Name](#span-name)
+- [Name](#name)
 - [RPC client span](#rpc-client-span)
 - [RPC server span](#rpc-server-span)
 
