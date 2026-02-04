@@ -100,7 +100,7 @@ If the request has completed successfully, instrumentations SHOULD NOT set
 
 **[4] `grpc.target`:** If the channel was created with a target string and it contains information that's not otherwise captured in `server.address` and `server.port`.
 
-**[5] `server.address`:** If the instrumentation was able to parse a single address from the target string.
+**[5] `server.address`:** If the instrumentation was able to detect a single address in the target string.
 
 **[6] `server.address`:** Instrumentations SHOULD populate `server.address` (along with `server.port`)
 based on the configuration used when creating the gRPC channel and
@@ -111,30 +111,31 @@ Instrumentations MAY parse address and port from the target string
 according to the [gRPC Name Resolution specification](https://grpc.github.io/grpc/core/md_doc_naming.html),
 depending on the scheme used. Or, they MAY use gRPC client APIs that provide this information.
 
-For custom or undocumented schemes, instrumentations SHOULD extract the
-address and port from the authority component of the target string.
+Instrumentations SHOULD NOT set `server.address` when it cannot reliably
+identify (a single) address of the server hosting the RPC endpoint or when
+the scheme is unknown to the instrumentation.
 
 When the address is an IP address, instrumentations SHOULD NOT do a
 reverse proxy lookup to obtain a DNS name and SHOULD set `server.address`
 to the IP address provided.
 
-If the instrumentation cannot determine a single address from the target string
-(for example, when multiple IP addresses are provided in the target string),
-the instrumentation SHOULD NOT set this attribute.
-
 Examples:
 
-- Given the target string `grpc.io::50051`, expected attributes:
+- Given the target string `grpc.io:50051`, expected attributes:
   - `server.address`: `"grpc.io"`
   - `server.port`: `50051`
   - `grpc.target`: not set
-- Given the target string `xds:///wallet.grpcwallet.io`, expected attributes:
-  - `server.address`: `"wallet.grpcwallet.io"`
+- Given the target string `dns:///grpc.io:50051`, expected attributes:
+  - `server.address`: `"grpc.io"`
+  - `server.port`: `50051`
+  - `grpc.target`: `"dns:///grpc.io:50051"`
+- Given the target string `unix:///run/containerd/containerd.sock`, expected attributes:
+  - `server.address`: `"/run/containerd/containerd.sock"`
   - `server.port`: not set
-  - `grpc.target`: `"xds:///wallet.grpcwallet.io"`
+  - `grpc.target`: `"unix:///run/containerd/containerd.sock"`
 - Given the target string `zk://zookeeper:2181`, expected attributes:
-  - `server.address`: `"zookeeper"`
-  - `server.port`: `2181`
+  - `server.address`: not set
+  - `server.port`: not set
   - `grpc.target`: `"zk://zookeeper:2181"`
 - Given the target string `ipv4:198.51.100.123:50051,198.51.100.124:50051`, expected attributes:
   - `server.address`: not set
@@ -309,8 +310,8 @@ gRPC instrumentations SHOULD adhere to the general
 the following additional requirements:
 
 - The `rpc.system.name` attribute MUST be set to `"grpc"`.
-- The [`grpc.target`](/docs/registry/attributes/grpc.md#grpc-target) attribute SHOULD be included on
-  `rpc.client.operation.duration` metric when the gRPC channel is created with a
+- The [`grpc.target`](/docs/registry/attributes/grpc.md#grpc-target) attribute SHOULD be
+  included on `rpc.client.operation.duration` metric when the gRPC channel is created with a
   target string containing information that is not already represented in the
   `server.address` and `server.port` attributes.
 
