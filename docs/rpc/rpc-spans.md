@@ -76,7 +76,7 @@ response streams until they are closed or terminated.
 If a transient issue happened and was retried within this RPC, the corresponding
 span SHOULD cover the duration of the logical call with all retries.
 
-**Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#span-name) section.
+**Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#name) section.
 
 **Span kind** MUST be `CLIENT`.
 
@@ -195,7 +195,7 @@ or the RPC is terminated due to an error or cancellation.
 For streaming RPCs, the span SHOULD cover the full lifetime of the request
 and/or response streams until they are closed or terminated.
 
-**Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#span-name) section.
+**Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#name) section.
 
 **Span kind** MUST be `SERVER`.
 
