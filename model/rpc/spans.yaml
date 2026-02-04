@@ -230,7 +230,7 @@ groups:
         note: >
           See the `server.address` for details on parsing the target string.
         requirement_level:
-          recommended: If and only if the port is available and `server.address` is set.
+          conditionally_required: If and only if the port is available and `server.address` is set.
         examples: [50051]
   - id: span.rpc.grpc.call.server
     type: span
