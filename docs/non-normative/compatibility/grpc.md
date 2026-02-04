@@ -86,5 +86,5 @@ OpenTelemetry defines a few other (non-required) gRPC span attributes listed bel
 - `rpc.method_original`
 - (server spans only) `client.address` and `client.port`
 
-gRPC spans may contain additional events that can be recorded as-is when converting to
+gRPC spans may contain additional events that should be recorded as-is when converting to
 OpenTelemetry.
