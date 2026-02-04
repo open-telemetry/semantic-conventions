@@ -15,7 +15,7 @@
 
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- | --- |
-| Other | [`deployment.environment.name`](/docs/registry/attributes/deployment.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Name of the [deployment environment](https://wikipedia.org/wiki/Deployment_environment) (aka deployment tier). [1] | `staging`; `production` |
+| Descriptive | [`deployment.environment.name`](/docs/registry/attributes/deployment.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Name of the [deployment environment](https://wikipedia.org/wiki/Deployment_environment) (aka deployment tier). [1] | `staging`; `production` |
 
 **[1] `deployment.environment.name`:** `deployment.environment.name` does not affect the uniqueness constraints defined through
 the `service.namespace`, `service.name` and `service.instance.id` resource attributes.
