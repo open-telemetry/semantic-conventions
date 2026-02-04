@@ -43,20 +43,26 @@ OPA_CONTAINER=$(OPA_CONTAINER_REPOSITORY)/$(VERSIONED_OPA_CONTAINER_NO_REPO)
 
 # Determine if "docker" is actually podman
 DOCKER_VERSION_OUTPUT := $(shell docker --version 2>&1)
-DOCKER_IS_PODMAN := $(shell echo $(DOCKER_VERSION_OUTPUT) | grep -c podman)
+PODMAN_REFERENCES := $(shell echo $(DOCKER_VERSION_OUTPUT) | grep -ic podman)
 
 ifneq ($(strip $(DOCKER_VERSION_OUTPUT)),)
-ifeq ($(DOCKER_IS_PODMAN),0)
+ifeq ($(PODMAN_REFERENCES),0)
     DOCKER_COMMAND := docker
 endif
 endif
 
-DOCKER_COMMAND ?= podman
+ifndef DOCKER_COMMAND
+    ifneq ($(strip $(shell podman --version 2>&1)),)
+        DOCKER_COMMAND := podman
+    endif
+else
+    $(info Neither docker nor podman can be executed. Did you install and configure one of them to be used?)
+endif
 
 # Debug printing
 ifdef DEBUG
 $(info Docker version output: $(DOCKER_VERSION_OUTPUT))
-$(info Is Docker actually Podman? $(DOCKER_IS_PODMAN))
+$(info Podman references in docker version output: $(PODMAN_REFERENCES))
 $(info Using command: $(DOCKER_COMMAND))
 endif
 
