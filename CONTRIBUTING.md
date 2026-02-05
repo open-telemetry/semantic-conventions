@@ -115,12 +115,15 @@ environment configured:
   npm install
   ```
 
-- If on MacOs, ensure you have `gsed` (GNU Sed) installed. If you have [HomeBrew](https://brew.sh)
+- If on macOS, ensure you have `gsed` (GNU Sed) installed. If you have [HomeBrew](https://brew.sh)
   installed, then you can run the following command to install GSED.
 
   ```bash
   brew bundle
   ```
+
+- Lastly, ensure you have either [Docker](https://www.docker.com) or [Podman](https://podman.io) installed and
+  configured in such a way that the makefile can execute the `docker` command.
 
 ### 1. Modify the YAML model
 
