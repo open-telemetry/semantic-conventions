@@ -17,12 +17,12 @@
 
 **Attributes:**
 
-| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-| --- | --- | --- | --- | --- | --- | --- |
-| Other | [`device.manufacturer`](/docs/registry/attributes/device.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the device manufacturer [1] | `Apple`; `Samsung` |
-| Other | [`device.model.identifier`](/docs/registry/attributes/device.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The model identifier for the device [2] | `iPhone3,4`; `SM-G920F` |
-| Other | [`device.model.name`](/docs/registry/attributes/device.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The marketing name for the device model [3] | `iPhone 6s Plus`; `Samsung Galaxy S6` |
-| Other | [`device.id`](/docs/registry/attributes/device.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | A unique identifier representing the device [4] | `123456789012345`; `01:23:45:67:89:AB` |
+| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values | Configuration Requirement |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Other | [`device.manufacturer`](/docs/registry/attributes/device.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the device manufacturer [1] | `Apple`; `Samsung` | `Opt-In` |
+| Other | [`device.model.identifier`](/docs/registry/attributes/device.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The model identifier for the device [2] | `iPhone3,4`; `SM-G920F` | `Opt-In` |
+| Other | [`device.model.name`](/docs/registry/attributes/device.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The marketing name for the device model [3] | `iPhone 6s Plus`; `Samsung Galaxy S6` | `Opt-In` |
+| Other | [`device.id`](/docs/registry/attributes/device.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | A unique identifier representing the device [4] | `123456789012345`; `01:23:45:67:89:AB` | `Required` |
 
 **[1] `device.manufacturer`:** The Android OS provides this field via [Build](https://developer.android.com/reference/android/os/Build#MANUFACTURER). iOS apps SHOULD hardcode the value `Apple`.
 
@@ -46,6 +46,33 @@ More information about Android identifier best practices can be found in the [An
 > Any instrumentation providing this identifier MUST implement it as an opt-in feature.
 >
 > See [`app.installation.id`](/docs/registry/attributes/app.md#app-installation-id) for a more privacy-preserving alternative.
+
+**Configuration File Options:**
+
+| Setting | Requirement Level | Category | Value Type | Example Value | Attribute |
+| --- | --- | --- | --- | --- | --- |
+| `TBA` | `Required` | Attribute Opt-In | TBA | TBA | [`device.id`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `device.id` | [`device.id`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`device.id`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `123456789012345` | [`device.id`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `device.manufacturer` | [`device.manufacturer`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`device.manufacturer`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `Apple` | [`device.manufacturer`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `device.model.identifier` | [`device.model.identifier`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`device.model.identifier`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `iPhone3,4` | [`device.model.identifier`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `device.model.name` | [`device.model.name`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`device.model.name`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `iPhone 6s Plus` | [`device.model.name`](/docs/registry/attributes/.md) |
+
+**Environment Variable Options:**
+
+| Setting | Requirement Level | Category | Value Type | Example Value | Attribute |
+| --- | --- | --- | --- | --- | --- |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `device.id=123456789012345` | [`device.id`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `device.manufacturer=Apple` | [`device.manufacturer`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `device.model.identifier=iPhone3,4` | [`device.model.identifier`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `device.model.name=iPhone 6s Plus` | [`device.model.name`](/docs/registry/attributes/.md) |
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
 <!-- endsemconv -->

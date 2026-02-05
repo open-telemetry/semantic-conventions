@@ -30,11 +30,11 @@
 **Description:** {{ entity.brief | trim }}
 {%- endmacro %}
 {#- Render a single row on the entity table. -#}
-{% macro attribute_row(attribute, attribute_registry_base_url, lineage_attributes, notes, role) -%}
-| {{ role_tag(role) | trim }} | {{ attrs.name_with_link(attribute, attribute_registry_base_url, lineage_attributes) }} | {{ stability.badge(attribute.stability, attribute.deprecated, attribute.brief) | trim }} | {{ requirement.render({"level": attribute.requirement_level, "name": attrs.name(attribute)}, notes) | trim }} | {{ attrs.type(attribute) }} | {{ attribute.brief | trim }}{{ notes.add({"note": attribute.note, "name": attrs.name(attribute)}) }} | {{ examples.format(attribute) }}|
+{% macro attribute_row(e, attribute, attribute_registry_base_url, lineage_attributes, notes, role) -%}
+| {{ role_tag(role) | trim }} | {{ attrs.name_with_link(attribute, attribute_registry_base_url, lineage_attributes) }} | {{ stability.badge(attribute.stability, attribute.deprecated, attribute.brief) | trim }} | {{ requirement.render({"level": attribute.requirement_level, "name": attrs.name(attribute)}, notes) | trim }} | {{ attrs.type(attribute) }} | {{ attribute.brief | trim }}{{ notes.add({"note": attribute.note, "name": attrs.name(attribute)}) }} | {{ examples.format(attribute) }}| {% if (((e.stability == "stable") and (attribute.stability != "stable")) or (attribute.requirement_level == "opt_in")) %}`Required`{% else %}`Opt-In`{% endif %} |
 {%- endmacro %}
 {#- Render attribute tables for entities. -#}
-{% macro attribute_table(attributes, attribute_registry_base_url, lineage_attributes, notes, role) %}{% for attribute in attributes | attribute_sort %}{{ attribute_row(attribute, attribute_registry_base_url, lineage_attributes, notes, role) }}
+{% macro attribute_table(e, attributes, attribute_registry_base_url, lineage_attributes, notes, role) %}{% for attribute in attributes | attribute_sort %}{{ attribute_row(e, attribute, attribute_registry_base_url, lineage_attributes, notes, role) }}
 {% endfor %}
 {%- endmacro %}
 {% macro all_attribute_table(e) -%}
@@ -48,14 +48,47 @@
 > Stable Entities MUST NOT have attributes without a defined role.
 {% endif %}
 **Attributes:**
-
-| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-| --- | --- | --- | --- | --- | --- | --- |{%- if id_attrs | length > 0 %}
-{{ attribute_table(id_attrs, "/docs/registry/attributes", e.lineage.attributes, notes, "identity") | trim }}{% endif %}{%- if desc_attrs | length > 0 %}
-{{ attribute_table(desc_attrs, "/docs/registry/attributes", e.lineage.attributes, notes, "description") | trim }}{% endif %}{%- if misc_attrs | length > 0 %}
-{{ attribute_table(misc_attrs, "/docs/registry/attributes", e.lineage.attributes, notes, "other") | trim }}{% endif %}
+{% if ((e.stability == "stable") and (e.attributes | rejectattr("stability", "eq", "stable") | length > 0)) %}
+> [!NOTE]
+>
+> This entity contains experimental attributes and their inclusion must be explicitly enabled.
+{% endif %}
+| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values | Configuration Requirement |
+| --- | --- | --- | --- | --- | --- | --- | --- |{%- if id_attrs | length > 0 %}
+{{ attribute_table(e, id_attrs, "/docs/registry/attributes", e.lineage.attributes, notes, "identity") | trim }}{% endif %}{%- if desc_attrs | length > 0 %}
+{{ attribute_table(e, desc_attrs, "/docs/registry/attributes", e.lineage.attributes, notes, "description") | trim }}{% endif %}{%- if misc_attrs | length > 0 %}
+{{ attribute_table(e, misc_attrs, "/docs/registry/attributes", e.lineage.attributes, notes, "other") | trim }}{% endif %}
 
 {{ notes.render() | trim }}
 
 {{ enums.tables(e.attributes | selectattr("type", "mapping"), notes) | trim }}
 {%- endmacro %}
+
+{% macro configuration(e) -%}
+**Configuration File Options:**
+
+| Setting | Requirement Level | Category | Value Type | Example Value | Attribute |
+| --- | --- | --- | --- | --- | --- |
+{% for attribute in e.attributes | sort(attribute="name") %}{{ configFileLine(e, attribute, "/docs/registry/attributes") | trim}}
+{% endfor %}
+**Environment Variable Options:**
+
+| Setting | Requirement Level | Category | Value Type | Example Value | Attribute |
+| --- | --- | --- | --- | --- | --- |
+{% for attribute in e.attributes | sort(attribute="name") %}{{ configEnvLine(e, attribute, "/docs/registry/attributes") | trim}}
+{% endfor %}
+{%- endmacro %}
+
+{% macro configFileLine(e, attribute, attribute_registry_base_url) %}
+{% if ((e.stability == "stable") and (attribute.stability != "stable")) %}| `TBA` | `Required` | Experimental Opt-in | TBA | TBA | {{ attrs.name_with_link(attribute, attribute_registry_base_url, e.lineage_attributes) }} |{% endif %}
+{% if ((attribute.requirement_level == "opt_in")) %}| `TBA` | `Required` | Attribute Opt-In | TBA | TBA | {{ attrs.name_with_link(attribute, attribute_registry_base_url, e.lineage_attributes) }} |{% endif %}
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `{{attribute.name}}` | {{ attrs.name_with_link(attribute, attribute_registry_base_url, e.lineage_attributes) }} |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `{{ attrs.type(attribute) }}` | {{ attrs.name_with_link(attribute, "/docs/registry/attributes", e.lineage_attributes) }} |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | {{ attrs.type(attribute) }} |{% if attribute.examples %} `{{attribute.examples[0]}}`{% endif %} | {{ attrs.name_with_link(attribute, attribute_registry_base_url, e.lineage_attributes) }} |
+{% endmacro%}
+
+{% macro configEnvLine(e, attribute, attribute_registry_base_url) %}
+{% if ((e.stability == "stable") and (attribute.stability != "stable")) %}
+| `TBA` | Required | Experimental Opt-in | TBA | TBA | {{ attrs.name_with_link(attribute, attribute_registry_base_url, e.lineage_attributes) }} |{% endif %}
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `{{attribute.name}}={% if attribute.examples %}{{attribute.examples[0]}}{% endif %}` | {{ attrs.name_with_link(attribute, attribute_registry_base_url, e.lineage_attributes) }} |
+{% endmacro%}

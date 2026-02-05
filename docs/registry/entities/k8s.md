@@ -13,10 +13,10 @@
 
 **Attributes:**
 
-| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-| --- | --- | --- | --- | --- | --- | --- |
-| Identity | [`k8s.cluster.uid`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Recommended` | string | A pseudo-ID for the cluster, set to the UID of the `kube-system` namespace. [1] | `218fc5a9-a5f1-4b54-aa05-46717d0ab26d` |
-| Description | [`k8s.cluster.name`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Recommended` | string | The name of the cluster. | `opentelemetry-cluster` |
+| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values | Configuration Requirement |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Identity | [`k8s.cluster.uid`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Recommended` | string | A pseudo-ID for the cluster, set to the UID of the `kube-system` namespace. [1] | `218fc5a9-a5f1-4b54-aa05-46717d0ab26d` | `Opt-In` |
+| Description | [`k8s.cluster.name`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Recommended` | string | The name of the cluster. | `opentelemetry-cluster` | `Opt-In` |
 
 **[1] `k8s.cluster.uid`:** K8s doesn't have support for obtaining a cluster ID. If this is ever
 added, we will recommend collecting the `k8s.cluster.uid` through the
@@ -41,6 +41,24 @@ Which states:
 Therefore, UIDs between clusters should be extremely unlikely to
 conflict.
 
+**Configuration File Options:**
+
+| Setting | Requirement Level | Category | Value Type | Example Value | Attribute |
+| --- | --- | --- | --- | --- | --- |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `k8s.cluster.name` | [`k8s.cluster.name`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`k8s.cluster.name`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `opentelemetry-cluster` | [`k8s.cluster.name`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `k8s.cluster.uid` | [`k8s.cluster.uid`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`k8s.cluster.uid`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `218fc5a9-a5f1-4b54-aa05-46717d0ab26d` | [`k8s.cluster.uid`](/docs/registry/attributes/.md) |
+
+**Environment Variable Options:**
+
+| Setting | Requirement Level | Category | Value Type | Example Value | Attribute |
+| --- | --- | --- | --- | --- | --- |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `k8s.cluster.name=opentelemetry-cluster` | [`k8s.cluster.name`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `k8s.cluster.uid=218fc5a9-a5f1-4b54-aa05-46717d0ab26d` | [`k8s.cluster.uid`](/docs/registry/attributes/.md) |
+
 ## K8s Container
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
@@ -51,11 +69,33 @@ conflict.
 
 **Attributes:**
 
-| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-| --- | --- | --- | --- | --- | --- | --- |
-| Identity | [`k8s.container.name`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Recommended` | string | The name of the Container from Pod specification, must be unique within a Pod. Container runtime usually uses different globally unique name (`container.name`). | `redis` |
-| Description | [`k8s.container.restart_count`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Recommended` | int | Number of times the container was restarted. This attribute can be used to identify a particular container (running or stopped) within a container spec. | |
-| Description | [`k8s.container.status.last_terminated_reason`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Last terminated reason of the Container. | `Evicted`; `Error` |
+| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values | Configuration Requirement |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Identity | [`k8s.container.name`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Recommended` | string | The name of the Container from Pod specification, must be unique within a Pod. Container runtime usually uses different globally unique name (`container.name`). | `redis` | `Opt-In` |
+| Description | [`k8s.container.restart_count`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Recommended` | int | Number of times the container was restarted. This attribute can be used to identify a particular container (running or stopped) within a container spec. | | `Opt-In` |
+| Description | [`k8s.container.status.last_terminated_reason`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Last terminated reason of the Container. | `Evicted`; `Error` | `Opt-In` |
+
+**Configuration File Options:**
+
+| Setting | Requirement Level | Category | Value Type | Example Value | Attribute |
+| --- | --- | --- | --- | --- | --- |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `k8s.container.name` | [`k8s.container.name`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`k8s.container.name`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `redis` | [`k8s.container.name`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `k8s.container.restart_count` | [`k8s.container.restart_count`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `int` | [`k8s.container.restart_count`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | int | | [`k8s.container.restart_count`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `k8s.container.status.last_terminated_reason` | [`k8s.container.status.last_terminated_reason`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`k8s.container.status.last_terminated_reason`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `Evicted` | [`k8s.container.status.last_terminated_reason`](/docs/registry/attributes/.md) |
+
+**Environment Variable Options:**
+
+| Setting | Requirement Level | Category | Value Type | Example Value | Attribute |
+| --- | --- | --- | --- | --- | --- |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `k8s.container.name=redis` | [`k8s.container.name`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `k8s.container.restart_count=` | [`k8s.container.restart_count`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `k8s.container.status.last_terminated_reason=Evicted` | [`k8s.container.status.last_terminated_reason`](/docs/registry/attributes/.md) |
 
 ## K8s Cronjob
 
@@ -67,12 +107,12 @@ conflict.
 
 **Attributes:**
 
-| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-| --- | --- | --- | --- | --- | --- | --- |
-| Identity | [`k8s.cronjob.uid`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Recommended` | string | The UID of the CronJob. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` |
-| Description | [`k8s.cronjob.name`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Recommended` | string | The name of the CronJob. | `opentelemetry` |
-| Description | [`k8s.cronjob.annotation.<key>`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Opt-In` | string | The cronjob annotation placed on the CronJob, the `<key>` being the annotation name, the value being the annotation value. [2] | `4`; `` |
-| Description | [`k8s.cronjob.label.<key>`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Opt-In` | string | The label placed on the CronJob, the `<key>` being the label name, the value being the label value. [3] | `weekly`; `` |
+| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values | Configuration Requirement |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Identity | [`k8s.cronjob.uid`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Recommended` | string | The UID of the CronJob. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | `Opt-In` |
+| Description | [`k8s.cronjob.name`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Recommended` | string | The name of the CronJob. | `opentelemetry` | `Opt-In` |
+| Description | [`k8s.cronjob.annotation.<key>`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Opt-In` | string | The cronjob annotation placed on the CronJob, the `<key>` being the annotation name, the value being the annotation value. [2] | `4`; `` | `Required` |
+| Description | [`k8s.cronjob.label.<key>`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Opt-In` | string | The label placed on the CronJob, the `<key>` being the label name, the value being the label value. [3] | `weekly`; `` | `Required` |
 
 **[2] `k8s.cronjob.annotation.<key>`:** Examples:
 
@@ -88,6 +128,34 @@ conflict.
 - A label `automated` with empty string value SHOULD be recorded as
   the `k8s.cronjob.label.automated` attribute with value `""`.
 
+**Configuration File Options:**
+
+| Setting | Requirement Level | Category | Value Type | Example Value | Attribute |
+| --- | --- | --- | --- | --- | --- |
+| `TBA` | `Required` | Attribute Opt-In | TBA | TBA | [`k8s.cronjob.annotation.<key>`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `k8s.cronjob.annotation` | [`k8s.cronjob.annotation.<key>`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`k8s.cronjob.annotation.<key>`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `4` | [`k8s.cronjob.annotation.<key>`](/docs/registry/attributes/.md) |
+| `TBA` | `Required` | Attribute Opt-In | TBA | TBA | [`k8s.cronjob.label.<key>`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `k8s.cronjob.label` | [`k8s.cronjob.label.<key>`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`k8s.cronjob.label.<key>`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `weekly` | [`k8s.cronjob.label.<key>`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `k8s.cronjob.name` | [`k8s.cronjob.name`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`k8s.cronjob.name`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `opentelemetry` | [`k8s.cronjob.name`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `k8s.cronjob.uid` | [`k8s.cronjob.uid`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`k8s.cronjob.uid`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | [`k8s.cronjob.uid`](/docs/registry/attributes/.md) |
+
+**Environment Variable Options:**
+
+| Setting | Requirement Level | Category | Value Type | Example Value | Attribute |
+| --- | --- | --- | --- | --- | --- |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `k8s.cronjob.annotation=4` | [`k8s.cronjob.annotation.<key>`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `k8s.cronjob.label=weekly` | [`k8s.cronjob.label.<key>`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `k8s.cronjob.name=opentelemetry` | [`k8s.cronjob.name`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `k8s.cronjob.uid=275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | [`k8s.cronjob.uid`](/docs/registry/attributes/.md) |
+
 ## K8s Daemonset
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
@@ -98,12 +166,12 @@ conflict.
 
 **Attributes:**
 
-| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-| --- | --- | --- | --- | --- | --- | --- |
-| Identity | [`k8s.daemonset.uid`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Recommended` | string | The UID of the DaemonSet. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` |
-| Description | [`k8s.daemonset.name`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Recommended` | string | The name of the DaemonSet. | `opentelemetry` |
-| Description | [`k8s.daemonset.annotation.<key>`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Opt-In` | string | The annotation placed on the DaemonSet, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [4] | `1`; `` |
-| Description | [`k8s.daemonset.label.<key>`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Opt-In` | string | The label placed on the DaemonSet, the `<key>` being the label name, the value being the label value, even if the value is empty. [5] | `guestbook`; `` |
+| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values | Configuration Requirement |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Identity | [`k8s.daemonset.uid`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Recommended` | string | The UID of the DaemonSet. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | `Opt-In` |
+| Description | [`k8s.daemonset.name`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Recommended` | string | The name of the DaemonSet. | `opentelemetry` | `Opt-In` |
+| Description | [`k8s.daemonset.annotation.<key>`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Opt-In` | string | The annotation placed on the DaemonSet, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [4] | `1`; `` | `Required` |
+| Description | [`k8s.daemonset.label.<key>`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Opt-In` | string | The label placed on the DaemonSet, the `<key>` being the label name, the value being the label value, even if the value is empty. [5] | `guestbook`; `` | `Required` |
 
 **[4] `k8s.daemonset.annotation.<key>`:** Examples:
 
@@ -119,6 +187,34 @@ conflict.
 - A label `data` with empty string value SHOULD be recorded as
   the `k8s.daemonset.label.injected` attribute with value `""`.
 
+**Configuration File Options:**
+
+| Setting | Requirement Level | Category | Value Type | Example Value | Attribute |
+| --- | --- | --- | --- | --- | --- |
+| `TBA` | `Required` | Attribute Opt-In | TBA | TBA | [`k8s.daemonset.annotation.<key>`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `k8s.daemonset.annotation` | [`k8s.daemonset.annotation.<key>`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`k8s.daemonset.annotation.<key>`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `1` | [`k8s.daemonset.annotation.<key>`](/docs/registry/attributes/.md) |
+| `TBA` | `Required` | Attribute Opt-In | TBA | TBA | [`k8s.daemonset.label.<key>`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `k8s.daemonset.label` | [`k8s.daemonset.label.<key>`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`k8s.daemonset.label.<key>`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `guestbook` | [`k8s.daemonset.label.<key>`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `k8s.daemonset.name` | [`k8s.daemonset.name`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`k8s.daemonset.name`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `opentelemetry` | [`k8s.daemonset.name`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `k8s.daemonset.uid` | [`k8s.daemonset.uid`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`k8s.daemonset.uid`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | [`k8s.daemonset.uid`](/docs/registry/attributes/.md) |
+
+**Environment Variable Options:**
+
+| Setting | Requirement Level | Category | Value Type | Example Value | Attribute |
+| --- | --- | --- | --- | --- | --- |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `k8s.daemonset.annotation=1` | [`k8s.daemonset.annotation.<key>`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `k8s.daemonset.label=guestbook` | [`k8s.daemonset.label.<key>`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `k8s.daemonset.name=opentelemetry` | [`k8s.daemonset.name`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `k8s.daemonset.uid=275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | [`k8s.daemonset.uid`](/docs/registry/attributes/.md) |
+
 ## K8s Deployment
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
@@ -129,12 +225,12 @@ conflict.
 
 **Attributes:**
 
-| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-| --- | --- | --- | --- | --- | --- | --- |
-| Identity | [`k8s.deployment.uid`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Recommended` | string | The UID of the Deployment. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` |
-| Description | [`k8s.deployment.name`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Recommended` | string | The name of the Deployment. | `opentelemetry` |
-| Description | [`k8s.deployment.annotation.<key>`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Opt-In` | string | The annotation placed on the Deployment, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [6] | `1`; `` |
-| Description | [`k8s.deployment.label.<key>`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Opt-In` | string | The label placed on the Deployment, the `<key>` being the label name, the value being the label value, even if the value is empty. [7] | `guestbook`; `` |
+| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values | Configuration Requirement |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Identity | [`k8s.deployment.uid`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Recommended` | string | The UID of the Deployment. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | `Opt-In` |
+| Description | [`k8s.deployment.name`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Recommended` | string | The name of the Deployment. | `opentelemetry` | `Opt-In` |
+| Description | [`k8s.deployment.annotation.<key>`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Opt-In` | string | The annotation placed on the Deployment, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [6] | `1`; `` | `Required` |
+| Description | [`k8s.deployment.label.<key>`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Opt-In` | string | The label placed on the Deployment, the `<key>` being the label name, the value being the label value, even if the value is empty. [7] | `guestbook`; `` | `Required` |
 
 **[6] `k8s.deployment.annotation.<key>`:** Examples:
 
@@ -150,6 +246,34 @@ conflict.
 - A label `injected` with empty string value SHOULD be recorded as
   the `k8s.deployment.label.injected` attribute with value `""`.
 
+**Configuration File Options:**
+
+| Setting | Requirement Level | Category | Value Type | Example Value | Attribute |
+| --- | --- | --- | --- | --- | --- |
+| `TBA` | `Required` | Attribute Opt-In | TBA | TBA | [`k8s.deployment.annotation.<key>`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `k8s.deployment.annotation` | [`k8s.deployment.annotation.<key>`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`k8s.deployment.annotation.<key>`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `1` | [`k8s.deployment.annotation.<key>`](/docs/registry/attributes/.md) |
+| `TBA` | `Required` | Attribute Opt-In | TBA | TBA | [`k8s.deployment.label.<key>`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `k8s.deployment.label` | [`k8s.deployment.label.<key>`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`k8s.deployment.label.<key>`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `guestbook` | [`k8s.deployment.label.<key>`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `k8s.deployment.name` | [`k8s.deployment.name`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`k8s.deployment.name`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `opentelemetry` | [`k8s.deployment.name`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `k8s.deployment.uid` | [`k8s.deployment.uid`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`k8s.deployment.uid`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | [`k8s.deployment.uid`](/docs/registry/attributes/.md) |
+
+**Environment Variable Options:**
+
+| Setting | Requirement Level | Category | Value Type | Example Value | Attribute |
+| --- | --- | --- | --- | --- | --- |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `k8s.deployment.annotation=1` | [`k8s.deployment.annotation.<key>`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `k8s.deployment.label=guestbook` | [`k8s.deployment.label.<key>`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `k8s.deployment.name=opentelemetry` | [`k8s.deployment.name`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `k8s.deployment.uid=275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | [`k8s.deployment.uid`](/docs/registry/attributes/.md) |
+
 ## K8s Hpa
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
@@ -160,19 +284,49 @@ conflict.
 
 **Attributes:**
 
-| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-| --- | --- | --- | --- | --- | --- | --- |
-| Identity | [`k8s.hpa.uid`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The UID of the horizontal pod autoscaler. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` |
-| Description | [`k8s.hpa.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the horizontal pod autoscaler. | `opentelemetry` |
-| Description | [`k8s.hpa.scaletargetref.api_version`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The API version of the target resource to scale for the HorizontalPodAutoscaler. [8] | `apps/v1`; `autoscaling/v2` |
-| Description | [`k8s.hpa.scaletargetref.kind`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The kind of the target resource to scale for the HorizontalPodAutoscaler. [9] | `Deployment`; `StatefulSet` |
-| Description | [`k8s.hpa.scaletargetref.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the target resource to scale for the HorizontalPodAutoscaler. [10] | `my-deployment`; `my-statefulset` |
+| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values | Configuration Requirement |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Identity | [`k8s.hpa.uid`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The UID of the horizontal pod autoscaler. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | `Opt-In` |
+| Description | [`k8s.hpa.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the horizontal pod autoscaler. | `opentelemetry` | `Opt-In` |
+| Description | [`k8s.hpa.scaletargetref.api_version`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The API version of the target resource to scale for the HorizontalPodAutoscaler. [8] | `apps/v1`; `autoscaling/v2` | `Opt-In` |
+| Description | [`k8s.hpa.scaletargetref.kind`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The kind of the target resource to scale for the HorizontalPodAutoscaler. [9] | `Deployment`; `StatefulSet` | `Opt-In` |
+| Description | [`k8s.hpa.scaletargetref.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the target resource to scale for the HorizontalPodAutoscaler. [10] | `my-deployment`; `my-statefulset` | `Opt-In` |
 
 **[8] `k8s.hpa.scaletargetref.api_version`:** This maps to the `apiVersion` field in the `scaleTargetRef` of the HPA spec.
 
 **[9] `k8s.hpa.scaletargetref.kind`:** This maps to the `kind` field in the `scaleTargetRef` of the HPA spec.
 
 **[10] `k8s.hpa.scaletargetref.name`:** This maps to the `name` field in the `scaleTargetRef` of the HPA spec.
+
+**Configuration File Options:**
+
+| Setting | Requirement Level | Category | Value Type | Example Value | Attribute |
+| --- | --- | --- | --- | --- | --- |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `k8s.hpa.name` | [`k8s.hpa.name`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`k8s.hpa.name`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `opentelemetry` | [`k8s.hpa.name`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `k8s.hpa.scaletargetref.api_version` | [`k8s.hpa.scaletargetref.api_version`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`k8s.hpa.scaletargetref.api_version`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `apps/v1` | [`k8s.hpa.scaletargetref.api_version`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `k8s.hpa.scaletargetref.kind` | [`k8s.hpa.scaletargetref.kind`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`k8s.hpa.scaletargetref.kind`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `Deployment` | [`k8s.hpa.scaletargetref.kind`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `k8s.hpa.scaletargetref.name` | [`k8s.hpa.scaletargetref.name`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`k8s.hpa.scaletargetref.name`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `my-deployment` | [`k8s.hpa.scaletargetref.name`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `k8s.hpa.uid` | [`k8s.hpa.uid`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`k8s.hpa.uid`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | [`k8s.hpa.uid`](/docs/registry/attributes/.md) |
+
+**Environment Variable Options:**
+
+| Setting | Requirement Level | Category | Value Type | Example Value | Attribute |
+| --- | --- | --- | --- | --- | --- |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `k8s.hpa.name=opentelemetry` | [`k8s.hpa.name`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `k8s.hpa.scaletargetref.api_version=apps/v1` | [`k8s.hpa.scaletargetref.api_version`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `k8s.hpa.scaletargetref.kind=Deployment` | [`k8s.hpa.scaletargetref.kind`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `k8s.hpa.scaletargetref.name=my-deployment` | [`k8s.hpa.scaletargetref.name`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `k8s.hpa.uid=275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | [`k8s.hpa.uid`](/docs/registry/attributes/.md) |
 
 ## K8s Job
 
@@ -184,12 +338,12 @@ conflict.
 
 **Attributes:**
 
-| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-| --- | --- | --- | --- | --- | --- | --- |
-| Identity | [`k8s.job.uid`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Recommended` | string | The UID of the Job. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` |
-| Description | [`k8s.job.name`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Recommended` | string | The name of the Job. | `opentelemetry` |
-| Description | [`k8s.job.annotation.<key>`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Opt-In` | string | The annotation placed on the Job, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [11] | `1`; `` |
-| Description | [`k8s.job.label.<key>`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Opt-In` | string | The label placed on the Job, the `<key>` being the label name, the value being the label value, even if the value is empty. [12] | `ci`; `` |
+| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values | Configuration Requirement |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Identity | [`k8s.job.uid`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Recommended` | string | The UID of the Job. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | `Opt-In` |
+| Description | [`k8s.job.name`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Recommended` | string | The name of the Job. | `opentelemetry` | `Opt-In` |
+| Description | [`k8s.job.annotation.<key>`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Opt-In` | string | The annotation placed on the Job, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [11] | `1`; `` | `Required` |
+| Description | [`k8s.job.label.<key>`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Opt-In` | string | The label placed on the Job, the `<key>` being the label name, the value being the label value, even if the value is empty. [12] | `ci`; `` | `Required` |
 
 **[11] `k8s.job.annotation.<key>`:** Examples:
 
@@ -205,6 +359,34 @@ conflict.
 - A label `data` with empty string value SHOULD be recorded as
   the `k8s.job.label.automated` attribute with value `""`.
 
+**Configuration File Options:**
+
+| Setting | Requirement Level | Category | Value Type | Example Value | Attribute |
+| --- | --- | --- | --- | --- | --- |
+| `TBA` | `Required` | Attribute Opt-In | TBA | TBA | [`k8s.job.annotation.<key>`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `k8s.job.annotation` | [`k8s.job.annotation.<key>`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`k8s.job.annotation.<key>`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `1` | [`k8s.job.annotation.<key>`](/docs/registry/attributes/.md) |
+| `TBA` | `Required` | Attribute Opt-In | TBA | TBA | [`k8s.job.label.<key>`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `k8s.job.label` | [`k8s.job.label.<key>`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`k8s.job.label.<key>`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `ci` | [`k8s.job.label.<key>`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `k8s.job.name` | [`k8s.job.name`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`k8s.job.name`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `opentelemetry` | [`k8s.job.name`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `k8s.job.uid` | [`k8s.job.uid`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`k8s.job.uid`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | [`k8s.job.uid`](/docs/registry/attributes/.md) |
+
+**Environment Variable Options:**
+
+| Setting | Requirement Level | Category | Value Type | Example Value | Attribute |
+| --- | --- | --- | --- | --- | --- |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `k8s.job.annotation=1` | [`k8s.job.annotation.<key>`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `k8s.job.label=ci` | [`k8s.job.label.<key>`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `k8s.job.name=opentelemetry` | [`k8s.job.name`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `k8s.job.uid=275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | [`k8s.job.uid`](/docs/registry/attributes/.md) |
+
 ## K8s Namespace
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
@@ -215,11 +397,11 @@ conflict.
 
 **Attributes:**
 
-| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-| --- | --- | --- | --- | --- | --- | --- |
-| Identity | [`k8s.namespace.name`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Recommended` | string | The name of the namespace that the pod is running in. | `default` |
-| Description | [`k8s.namespace.annotation.<key>`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Opt-In` | string | The annotation placed on the Namespace, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [13] | `0`; `` |
-| Description | [`k8s.namespace.label.<key>`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Opt-In` | string | The label placed on the Namespace, the `<key>` being the label name, the value being the label value, even if the value is empty. [14] | `default`; `` |
+| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values | Configuration Requirement |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Identity | [`k8s.namespace.name`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Recommended` | string | The name of the namespace that the pod is running in. | `default` | `Opt-In` |
+| Description | [`k8s.namespace.annotation.<key>`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Opt-In` | string | The annotation placed on the Namespace, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [13] | `0`; `` | `Required` |
+| Description | [`k8s.namespace.label.<key>`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Opt-In` | string | The label placed on the Namespace, the `<key>` being the label name, the value being the label value, even if the value is empty. [14] | `default`; `` | `Required` |
 
 **[13] `k8s.namespace.annotation.<key>`:** Examples:
 
@@ -235,6 +417,30 @@ conflict.
 - A label `data` with empty string value SHOULD be recorded as
   the `k8s.namespace.label.data` attribute with value `""`.
 
+**Configuration File Options:**
+
+| Setting | Requirement Level | Category | Value Type | Example Value | Attribute |
+| --- | --- | --- | --- | --- | --- |
+| `TBA` | `Required` | Attribute Opt-In | TBA | TBA | [`k8s.namespace.annotation.<key>`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `k8s.namespace.annotation` | [`k8s.namespace.annotation.<key>`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`k8s.namespace.annotation.<key>`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `0` | [`k8s.namespace.annotation.<key>`](/docs/registry/attributes/.md) |
+| `TBA` | `Required` | Attribute Opt-In | TBA | TBA | [`k8s.namespace.label.<key>`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `k8s.namespace.label` | [`k8s.namespace.label.<key>`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`k8s.namespace.label.<key>`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `default` | [`k8s.namespace.label.<key>`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `k8s.namespace.name` | [`k8s.namespace.name`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`k8s.namespace.name`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `default` | [`k8s.namespace.name`](/docs/registry/attributes/.md) |
+
+**Environment Variable Options:**
+
+| Setting | Requirement Level | Category | Value Type | Example Value | Attribute |
+| --- | --- | --- | --- | --- | --- |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `k8s.namespace.annotation=0` | [`k8s.namespace.annotation.<key>`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `k8s.namespace.label=default` | [`k8s.namespace.label.<key>`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `k8s.namespace.name=default` | [`k8s.namespace.name`](/docs/registry/attributes/.md) |
+
 ## K8s Node
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
@@ -245,12 +451,12 @@ conflict.
 
 **Attributes:**
 
-| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-| --- | --- | --- | --- | --- | --- | --- |
-| Identity | [`k8s.node.uid`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Recommended` | string | The UID of the Node. | `1eb3a0c6-0477-4080-a9cb-0cb7db65c6a2` |
-| Description | [`k8s.node.name`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Recommended` | string | The name of the Node. | `node-1` |
-| Description | [`k8s.node.annotation.<key>`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Opt-In` | string | The annotation placed on the Node, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [15] | `0`; `` |
-| Description | [`k8s.node.label.<key>`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Opt-In` | string | The label placed on the Node, the `<key>` being the label name, the value being the label value, even if the value is empty. [16] | `arm64`; `` |
+| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values | Configuration Requirement |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Identity | [`k8s.node.uid`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Recommended` | string | The UID of the Node. | `1eb3a0c6-0477-4080-a9cb-0cb7db65c6a2` | `Opt-In` |
+| Description | [`k8s.node.name`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Recommended` | string | The name of the Node. | `node-1` | `Opt-In` |
+| Description | [`k8s.node.annotation.<key>`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Opt-In` | string | The annotation placed on the Node, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [15] | `0`; `` | `Required` |
+| Description | [`k8s.node.label.<key>`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Opt-In` | string | The label placed on the Node, the `<key>` being the label name, the value being the label value, even if the value is empty. [16] | `arm64`; `` | `Required` |
 
 **[15] `k8s.node.annotation.<key>`:** Examples:
 
@@ -266,6 +472,34 @@ conflict.
 - A label `data` with empty string value SHOULD be recorded as
   the `k8s.node.label.data` attribute with value `""`.
 
+**Configuration File Options:**
+
+| Setting | Requirement Level | Category | Value Type | Example Value | Attribute |
+| --- | --- | --- | --- | --- | --- |
+| `TBA` | `Required` | Attribute Opt-In | TBA | TBA | [`k8s.node.annotation.<key>`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `k8s.node.annotation` | [`k8s.node.annotation.<key>`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`k8s.node.annotation.<key>`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `0` | [`k8s.node.annotation.<key>`](/docs/registry/attributes/.md) |
+| `TBA` | `Required` | Attribute Opt-In | TBA | TBA | [`k8s.node.label.<key>`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `k8s.node.label` | [`k8s.node.label.<key>`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`k8s.node.label.<key>`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `arm64` | [`k8s.node.label.<key>`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `k8s.node.name` | [`k8s.node.name`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`k8s.node.name`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `node-1` | [`k8s.node.name`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `k8s.node.uid` | [`k8s.node.uid`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`k8s.node.uid`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `1eb3a0c6-0477-4080-a9cb-0cb7db65c6a2` | [`k8s.node.uid`](/docs/registry/attributes/.md) |
+
+**Environment Variable Options:**
+
+| Setting | Requirement Level | Category | Value Type | Example Value | Attribute |
+| --- | --- | --- | --- | --- | --- |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `k8s.node.annotation=0` | [`k8s.node.annotation.<key>`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `k8s.node.label=arm64` | [`k8s.node.label.<key>`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `k8s.node.name=node-1` | [`k8s.node.name`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `k8s.node.uid=1eb3a0c6-0477-4080-a9cb-0cb7db65c6a2` | [`k8s.node.uid`](/docs/registry/attributes/.md) |
+
 ## K8s Pod
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
@@ -276,15 +510,15 @@ conflict.
 
 **Attributes:**
 
-| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-| --- | --- | --- | --- | --- | --- | --- |
-| Identity | [`k8s.pod.uid`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Recommended` | string | The UID of the Pod. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` |
-| Description | [`k8s.pod.name`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Recommended` | string | The name of the Pod. | `opentelemetry-pod-autoconf` |
-| Description | [`k8s.pod.annotation.<key>`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Opt-In` | string | The annotation placed on the Pod, the `<key>` being the annotation name, the value being the annotation value. [17] | `true`; `x64`; `` |
-| Description | [`k8s.pod.hostname`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Opt-In` | string | Specifies the hostname of the Pod. [18] | `collector-gateway` |
-| Description | [`k8s.pod.ip`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Opt-In` | string | IP address allocated to the Pod. [19] | `172.18.0.2` |
-| Description | [`k8s.pod.label.<key>`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Opt-In` | string | The label placed on the Pod, the `<key>` being the label name, the value being the label value. [20] | `my-app`; `x64`; `` |
-| Description | [`k8s.pod.start_time`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Opt-In` | string | The start timestamp of the Pod. [21] | `2025-12-04T08:41:03Z` |
+| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values | Configuration Requirement |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Identity | [`k8s.pod.uid`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Recommended` | string | The UID of the Pod. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | `Opt-In` |
+| Description | [`k8s.pod.name`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Recommended` | string | The name of the Pod. | `opentelemetry-pod-autoconf` | `Opt-In` |
+| Description | [`k8s.pod.annotation.<key>`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Opt-In` | string | The annotation placed on the Pod, the `<key>` being the annotation name, the value being the annotation value. [17] | `true`; `x64`; `` | `Required` |
+| Description | [`k8s.pod.hostname`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Opt-In` | string | Specifies the hostname of the Pod. [18] | `collector-gateway` | `Required` |
+| Description | [`k8s.pod.ip`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Opt-In` | string | IP address allocated to the Pod. [19] | `172.18.0.2` | `Required` |
+| Description | [`k8s.pod.label.<key>`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Opt-In` | string | The label placed on the Pod, the `<key>` being the label name, the value being the label value. [20] | `my-app`; `x64`; `` | `Required` |
+| Description | [`k8s.pod.start_time`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Opt-In` | string | The start timestamp of the Pod. [21] | `2025-12-04T08:41:03Z` | `Required` |
 
 **[17] `k8s.pod.annotation.<key>`:** Examples:
 
@@ -321,6 +555,49 @@ This attribute aligns with the `startTime` field of the
 [K8s PodStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#podstatus-v1-core),
 in ISO 8601 (RFC 3339 compatible) format.
 
+**Configuration File Options:**
+
+| Setting | Requirement Level | Category | Value Type | Example Value | Attribute |
+| --- | --- | --- | --- | --- | --- |
+| `TBA` | `Required` | Attribute Opt-In | TBA | TBA | [`k8s.pod.annotation.<key>`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `k8s.pod.annotation` | [`k8s.pod.annotation.<key>`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`k8s.pod.annotation.<key>`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `true` | [`k8s.pod.annotation.<key>`](/docs/registry/attributes/.md) |
+| `TBA` | `Required` | Attribute Opt-In | TBA | TBA | [`k8s.pod.hostname`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `k8s.pod.hostname` | [`k8s.pod.hostname`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`k8s.pod.hostname`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `collector-gateway` | [`k8s.pod.hostname`](/docs/registry/attributes/.md) |
+| `TBA` | `Required` | Attribute Opt-In | TBA | TBA | [`k8s.pod.ip`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `k8s.pod.ip` | [`k8s.pod.ip`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`k8s.pod.ip`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `172.18.0.2` | [`k8s.pod.ip`](/docs/registry/attributes/.md) |
+| `TBA` | `Required` | Attribute Opt-In | TBA | TBA | [`k8s.pod.label.<key>`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `k8s.pod.label` | [`k8s.pod.label.<key>`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`k8s.pod.label.<key>`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `my-app` | [`k8s.pod.label.<key>`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `k8s.pod.name` | [`k8s.pod.name`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`k8s.pod.name`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `opentelemetry-pod-autoconf` | [`k8s.pod.name`](/docs/registry/attributes/.md) |
+| `TBA` | `Required` | Attribute Opt-In | TBA | TBA | [`k8s.pod.start_time`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `k8s.pod.start_time` | [`k8s.pod.start_time`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`k8s.pod.start_time`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `2025-12-04T08:41:03Z` | [`k8s.pod.start_time`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `k8s.pod.uid` | [`k8s.pod.uid`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`k8s.pod.uid`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | [`k8s.pod.uid`](/docs/registry/attributes/.md) |
+
+**Environment Variable Options:**
+
+| Setting | Requirement Level | Category | Value Type | Example Value | Attribute |
+| --- | --- | --- | --- | --- | --- |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `k8s.pod.annotation=true` | [`k8s.pod.annotation.<key>`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `k8s.pod.hostname=collector-gateway` | [`k8s.pod.hostname`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `k8s.pod.ip=172.18.0.2` | [`k8s.pod.ip`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `k8s.pod.label=my-app` | [`k8s.pod.label.<key>`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `k8s.pod.name=opentelemetry-pod-autoconf` | [`k8s.pod.name`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `k8s.pod.start_time=2025-12-04T08:41:03Z` | [`k8s.pod.start_time`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `k8s.pod.uid=275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | [`k8s.pod.uid`](/docs/registry/attributes/.md) |
+
 ## K8s Replicaset
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
@@ -331,12 +608,12 @@ in ISO 8601 (RFC 3339 compatible) format.
 
 **Attributes:**
 
-| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-| --- | --- | --- | --- | --- | --- | --- |
-| Identity | [`k8s.replicaset.uid`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Recommended` | string | The UID of the ReplicaSet. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` |
-| Description | [`k8s.replicaset.name`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Recommended` | string | The name of the ReplicaSet. | `opentelemetry` |
-| Description | [`k8s.replicaset.annotation.<key>`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Opt-In` | string | The annotation placed on the ReplicaSet, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [22] | `0`; `` |
-| Description | [`k8s.replicaset.label.<key>`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Opt-In` | string | The label placed on the ReplicaSet, the `<key>` being the label name, the value being the label value, even if the value is empty. [23] | `guestbook`; `` |
+| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values | Configuration Requirement |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Identity | [`k8s.replicaset.uid`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Recommended` | string | The UID of the ReplicaSet. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | `Opt-In` |
+| Description | [`k8s.replicaset.name`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Recommended` | string | The name of the ReplicaSet. | `opentelemetry` | `Opt-In` |
+| Description | [`k8s.replicaset.annotation.<key>`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Opt-In` | string | The annotation placed on the ReplicaSet, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [22] | `0`; `` | `Required` |
+| Description | [`k8s.replicaset.label.<key>`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Opt-In` | string | The label placed on the ReplicaSet, the `<key>` being the label name, the value being the label value, even if the value is empty. [23] | `guestbook`; `` | `Required` |
 
 **[22] `k8s.replicaset.annotation.<key>`:** Examples:
 
@@ -352,6 +629,34 @@ in ISO 8601 (RFC 3339 compatible) format.
 - A label `injected` with empty string value SHOULD be recorded as
   the `k8s.replicaset.label.injected` attribute with value `""`.
 
+**Configuration File Options:**
+
+| Setting | Requirement Level | Category | Value Type | Example Value | Attribute |
+| --- | --- | --- | --- | --- | --- |
+| `TBA` | `Required` | Attribute Opt-In | TBA | TBA | [`k8s.replicaset.annotation.<key>`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `k8s.replicaset.annotation` | [`k8s.replicaset.annotation.<key>`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`k8s.replicaset.annotation.<key>`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `0` | [`k8s.replicaset.annotation.<key>`](/docs/registry/attributes/.md) |
+| `TBA` | `Required` | Attribute Opt-In | TBA | TBA | [`k8s.replicaset.label.<key>`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `k8s.replicaset.label` | [`k8s.replicaset.label.<key>`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`k8s.replicaset.label.<key>`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `guestbook` | [`k8s.replicaset.label.<key>`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `k8s.replicaset.name` | [`k8s.replicaset.name`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`k8s.replicaset.name`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `opentelemetry` | [`k8s.replicaset.name`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `k8s.replicaset.uid` | [`k8s.replicaset.uid`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`k8s.replicaset.uid`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | [`k8s.replicaset.uid`](/docs/registry/attributes/.md) |
+
+**Environment Variable Options:**
+
+| Setting | Requirement Level | Category | Value Type | Example Value | Attribute |
+| --- | --- | --- | --- | --- | --- |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `k8s.replicaset.annotation=0` | [`k8s.replicaset.annotation.<key>`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `k8s.replicaset.label=guestbook` | [`k8s.replicaset.label.<key>`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `k8s.replicaset.name=opentelemetry` | [`k8s.replicaset.name`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `k8s.replicaset.uid=275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | [`k8s.replicaset.uid`](/docs/registry/attributes/.md) |
+
 ## K8s Replicationcontroller
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
@@ -362,10 +667,28 @@ in ISO 8601 (RFC 3339 compatible) format.
 
 **Attributes:**
 
-| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-| --- | --- | --- | --- | --- | --- | --- |
-| Identity | [`k8s.replicationcontroller.uid`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The UID of the replication controller. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` |
-| Description | [`k8s.replicationcontroller.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the replication controller. | `opentelemetry` |
+| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values | Configuration Requirement |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Identity | [`k8s.replicationcontroller.uid`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The UID of the replication controller. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | `Opt-In` |
+| Description | [`k8s.replicationcontroller.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the replication controller. | `opentelemetry` | `Opt-In` |
+
+**Configuration File Options:**
+
+| Setting | Requirement Level | Category | Value Type | Example Value | Attribute |
+| --- | --- | --- | --- | --- | --- |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `k8s.replicationcontroller.name` | [`k8s.replicationcontroller.name`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`k8s.replicationcontroller.name`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `opentelemetry` | [`k8s.replicationcontroller.name`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `k8s.replicationcontroller.uid` | [`k8s.replicationcontroller.uid`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`k8s.replicationcontroller.uid`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | [`k8s.replicationcontroller.uid`](/docs/registry/attributes/.md) |
+
+**Environment Variable Options:**
+
+| Setting | Requirement Level | Category | Value Type | Example Value | Attribute |
+| --- | --- | --- | --- | --- | --- |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `k8s.replicationcontroller.name=opentelemetry` | [`k8s.replicationcontroller.name`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `k8s.replicationcontroller.uid=275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | [`k8s.replicationcontroller.uid`](/docs/registry/attributes/.md) |
 
 ## K8s Resourcequota
 
@@ -377,10 +700,28 @@ in ISO 8601 (RFC 3339 compatible) format.
 
 **Attributes:**
 
-| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-| --- | --- | --- | --- | --- | --- | --- |
-| Identity | [`k8s.resourcequota.uid`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The UID of the resource quota. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` |
-| Description | [`k8s.resourcequota.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the resource quota. | `opentelemetry` |
+| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values | Configuration Requirement |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Identity | [`k8s.resourcequota.uid`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The UID of the resource quota. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | `Opt-In` |
+| Description | [`k8s.resourcequota.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the resource quota. | `opentelemetry` | `Opt-In` |
+
+**Configuration File Options:**
+
+| Setting | Requirement Level | Category | Value Type | Example Value | Attribute |
+| --- | --- | --- | --- | --- | --- |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `k8s.resourcequota.name` | [`k8s.resourcequota.name`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`k8s.resourcequota.name`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `opentelemetry` | [`k8s.resourcequota.name`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `k8s.resourcequota.uid` | [`k8s.resourcequota.uid`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`k8s.resourcequota.uid`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | [`k8s.resourcequota.uid`](/docs/registry/attributes/.md) |
+
+**Environment Variable Options:**
+
+| Setting | Requirement Level | Category | Value Type | Example Value | Attribute |
+| --- | --- | --- | --- | --- | --- |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `k8s.resourcequota.name=opentelemetry` | [`k8s.resourcequota.name`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `k8s.resourcequota.uid=275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | [`k8s.resourcequota.uid`](/docs/registry/attributes/.md) |
 
 ## K8s Statefulset
 
@@ -392,12 +733,12 @@ in ISO 8601 (RFC 3339 compatible) format.
 
 **Attributes:**
 
-| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-| --- | --- | --- | --- | --- | --- | --- |
-| Identity | [`k8s.statefulset.uid`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Recommended` | string | The UID of the StatefulSet. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` |
-| Description | [`k8s.statefulset.name`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Recommended` | string | The name of the StatefulSet. | `opentelemetry` |
-| Description | [`k8s.statefulset.annotation.<key>`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Opt-In` | string | The annotation placed on the StatefulSet, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [24] | `1`; `` |
-| Description | [`k8s.statefulset.label.<key>`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Opt-In` | string | The label placed on the StatefulSet, the `<key>` being the label name, the value being the label value, even if the value is empty. [25] | `guestbook`; `` |
+| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values | Configuration Requirement |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Identity | [`k8s.statefulset.uid`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Recommended` | string | The UID of the StatefulSet. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | `Opt-In` |
+| Description | [`k8s.statefulset.name`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Recommended` | string | The name of the StatefulSet. | `opentelemetry` | `Opt-In` |
+| Description | [`k8s.statefulset.annotation.<key>`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Opt-In` | string | The annotation placed on the StatefulSet, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [24] | `1`; `` | `Required` |
+| Description | [`k8s.statefulset.label.<key>`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Opt-In` | string | The label placed on the StatefulSet, the `<key>` being the label name, the value being the label value, even if the value is empty. [25] | `guestbook`; `` | `Required` |
 
 **[24] `k8s.statefulset.annotation.<key>`:** Examples:
 
@@ -412,3 +753,31 @@ in ISO 8601 (RFC 3339 compatible) format.
   as the `k8s.statefulset.label.app` attribute with value `"guestbook"`.
 - A label `injected` with empty string value SHOULD be recorded as
   the `k8s.statefulset.label.injected` attribute with value `""`.
+
+**Configuration File Options:**
+
+| Setting | Requirement Level | Category | Value Type | Example Value | Attribute |
+| --- | --- | --- | --- | --- | --- |
+| `TBA` | `Required` | Attribute Opt-In | TBA | TBA | [`k8s.statefulset.annotation.<key>`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `k8s.statefulset.annotation` | [`k8s.statefulset.annotation.<key>`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`k8s.statefulset.annotation.<key>`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `1` | [`k8s.statefulset.annotation.<key>`](/docs/registry/attributes/.md) |
+| `TBA` | `Required` | Attribute Opt-In | TBA | TBA | [`k8s.statefulset.label.<key>`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `k8s.statefulset.label` | [`k8s.statefulset.label.<key>`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`k8s.statefulset.label.<key>`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `guestbook` | [`k8s.statefulset.label.<key>`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `k8s.statefulset.name` | [`k8s.statefulset.name`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`k8s.statefulset.name`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `opentelemetry` | [`k8s.statefulset.name`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `k8s.statefulset.uid` | [`k8s.statefulset.uid`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`k8s.statefulset.uid`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | [`k8s.statefulset.uid`](/docs/registry/attributes/.md) |
+
+**Environment Variable Options:**
+
+| Setting | Requirement Level | Category | Value Type | Example Value | Attribute |
+| --- | --- | --- | --- | --- | --- |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `k8s.statefulset.annotation=1` | [`k8s.statefulset.annotation.<key>`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `k8s.statefulset.label=guestbook` | [`k8s.statefulset.label.<key>`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `k8s.statefulset.name=opentelemetry` | [`k8s.statefulset.name`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `k8s.statefulset.uid=275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | [`k8s.statefulset.uid`](/docs/registry/attributes/.md) |
