@@ -1,7 +1,7 @@
 groups:
   - id: entity.deployment
     type: entity
-    stability: stable
+    stability: development
     name: deployment
     brief: >
       The software deployment.
