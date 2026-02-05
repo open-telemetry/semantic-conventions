@@ -338,18 +338,6 @@ groups:
 
           - Dubbo2: [Dubbo2 Protocol Status Codes](https://dubbo.apache.org/en/overview/reference/protocols/tcp/#protocol-specification)
           - Dubbo3: [Triple Protocol Error Codes](https://dubbo.apache.org/en/overview/reference/protocols/triple-spec/#311-request)
-      - ref: network.protocol.name
-        requirement_level: recommended
-        examples: ['dubbo', 'http']
-        note: |
-          For Dubbo2, this value is typically `dubbo`.
-          For Dubbo3 Triple protocol, this value is `http` as Triple is built on HTTP/2.
-      - ref: network.protocol.version
-        requirement_level: recommended
-        examples: ['2']
-        note: |
-          For Dubbo2 using the dubbo protocol, this value is typically not set or set to `2`.
-          For Dubbo3 Triple protocol over HTTP/2, this value is `2`.
       - ref: server.address
         requirement_level:
           conditionally_required: If available.
@@ -428,18 +416,6 @@ groups:
 
           - Dubbo2: [Dubbo2 Protocol Status Codes](https://dubbo.apache.org/en/overview/reference/protocols/tcp/#protocol-specification)
           - Dubbo3: [Triple Protocol Error Codes](https://dubbo.apache.org/en/overview/reference/protocols/triple-spec/#311-request)
-      - ref: network.protocol.name
-        requirement_level: recommended
-        examples: ['dubbo', 'http']
-        note: |
-          For Dubbo2, this value is typically `dubbo`.
-          For Dubbo3 Triple protocol, this value is `http` as Triple is built on HTTP/2.
-      - ref: network.protocol.version
-        requirement_level: recommended
-        examples: ['2']
-        note: |
-          For Dubbo2 using the dubbo protocol, this value is typically not set or set to `2`.
-          For Dubbo3 Triple protocol over HTTP/2, this value is `2`.
       - ref: rpc.request.metadata
         requirement_level: opt_in
       - ref: rpc.response.metadata
