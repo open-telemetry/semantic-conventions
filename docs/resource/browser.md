@@ -17,13 +17,13 @@
 
 **Attributes:**
 
-| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-| --- | --- | --- | --- | --- | --- | --- |
-| Other | [`browser.brands`](/docs/registry/attributes/browser.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string[] | Array of brand name and version separated by a space [1] | `[" Not A;Brand 99", "Chromium 99", "Chrome 99"]` |
-| Other | [`browser.language`](/docs/registry/attributes/browser.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Preferred language of the user using the browser [2] | `en`; `en-US`; `fr`; `fr-FR` |
-| Other | [`browser.mobile`](/docs/registry/attributes/browser.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | boolean | A boolean that is true if the browser is running on a mobile device [3] | |
-| Other | [`browser.platform`](/docs/registry/attributes/browser.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The platform on which the browser is running [4] | `Windows`; `macOS`; `Android` |
-| Other | [`user_agent.original`](/docs/registry/attributes/user-agent.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Full user-agent string provided by the browser [5] | `Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.54 Safari/537.36` |
+| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values | Configuration Requirement |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Other | [`browser.brands`](/docs/registry/attributes/browser.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string[] | Array of brand name and version separated by a space [1] | `[" Not A;Brand 99", "Chromium 99", "Chrome 99"]` | `Opt-In` |
+| Other | [`browser.language`](/docs/registry/attributes/browser.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Preferred language of the user using the browser [2] | `en`; `en-US`; `fr`; `fr-FR` | `Opt-In` |
+| Other | [`browser.mobile`](/docs/registry/attributes/browser.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | boolean | A boolean that is true if the browser is running on a mobile device [3] | | `Opt-In` |
+| Other | [`browser.platform`](/docs/registry/attributes/browser.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The platform on which the browser is running [4] | `Windows`; `macOS`; `Android` | `Opt-In` |
+| Other | [`user_agent.original`](/docs/registry/attributes/user-agent.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Full user-agent string provided by the browser [5] | `Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.54 Safari/537.36` | `Opt-In` |
 
 **[1] `browser.brands`:** This value is intended to be taken from the [UA client hints API](https://wicg.github.io/ua-client-hints/#interface) (`navigator.userAgentData.brands`).
 
@@ -35,6 +35,36 @@
 The list of possible values is defined in the [W3C User-Agent Client Hints specification](https://wicg.github.io/ua-client-hints/#sec-ch-ua-platform). Note that some (but not all) of these values can overlap with values in the [`os.type` and `os.name` attributes](./os.md). However, for consistency, the values in the `browser.platform` attribute should capture the exact value that the user agent provides.
 
 **[5] `user_agent.original`:** The user-agent value SHOULD be provided only from browsers that do not have a mechanism to retrieve brands and platform individually from the User-Agent Client Hints API. To retrieve the value, the legacy `navigator.userAgent` API can be used.
+
+**Configuration File Options:**
+
+| Setting | Requirement Level | Category | Value Type | Example Value | Attribute |
+| --- | --- | --- | --- | --- | --- |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `browser.brands` | [`browser.brands`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string[]` | [`browser.brands`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string[] | `[" Not A;Brand 99", "Chromium 99", "Chrome 99"]` | [`browser.brands`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `browser.language` | [`browser.language`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`browser.language`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `en` | [`browser.language`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `browser.mobile` | [`browser.mobile`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `boolean` | [`browser.mobile`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | boolean | | [`browser.mobile`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `browser.platform` | [`browser.platform`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`browser.platform`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `Windows` | [`browser.platform`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `user_agent.original` | [`user_agent.original`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`user_agent.original`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.54 Safari/537.36` | [`user_agent.original`](/docs/registry/attributes/.md) |
+
+**Environment Variable Options:**
+
+| Setting | Requirement Level | Category | Value Type | Example Value | Attribute |
+| --- | --- | --- | --- | --- | --- |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `browser.brands=[" Not A;Brand 99", "Chromium 99", "Chrome 99"]` | [`browser.brands`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `browser.language=en` | [`browser.language`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `browser.mobile=` | [`browser.mobile`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `browser.platform=Windows` | [`browser.platform`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `user_agent.original=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.54 Safari/537.36` | [`user_agent.original`](/docs/registry/attributes/.md) |
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
 <!-- endsemconv -->

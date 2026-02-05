@@ -17,17 +17,17 @@
 
 **Attributes:**
 
-| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-| --- | --- | --- | --- | --- | --- | --- |
-| Other | [`host.arch`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The CPU architecture the host system is running on. | `amd64`; `arm32`; `arm64` |
-| Other | [`host.id`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Unique host ID. For Cloud, this must be the instance_id assigned by the cloud provider. For non-containerized systems, this should be the `machine-id`. See the table below for the sources to use to determine the `machine-id` based on operating system. [1] | `fdbf79e8af94cb7f9e8df36789187052` |
-| Other | [`host.image.id`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | VM image ID or host OS image ID. For Cloud, this value is from the provider. | `ami-07b06b442921831e5` |
-| Other | [`host.image.name`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Name of the VM image or OS install the host was instantiated from. | `infra-ami-eks-worker-node-7d4ec78312`; `CentOS-8-x86_64-1905` |
-| Other | [`host.image.version`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The version string of the VM image or host OS as defined in [Version Attributes](/docs/resource/README.md#version-attributes). | `0.1` |
-| Other | [`host.name`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Name of the host. On Unix systems, it may contain what the hostname command returns, or the fully qualified hostname, or another name specified by the user. | `opentelemetry-test` |
-| Other | [`host.type`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Type of host. For Cloud, this must be the machine type. | `n1-standard-1` |
-| Other | [`host.ip`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string[] | Available IP addresses of the host, excluding loopback interfaces. [2] | `["192.168.1.140", "fe80::abc2:4a28:737a:609e"]` |
-| Other | [`host.mac`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string[] | Available MAC addresses of the host, excluding loopback interfaces. [3] | `["AC-DE-48-23-45-67", "AC-DE-48-23-45-67-01-9F"]` |
+| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values | Configuration Requirement |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Other | [`host.arch`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The CPU architecture the host system is running on. | `amd64`; `arm32`; `arm64` | `Opt-In` |
+| Other | [`host.id`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Unique host ID. For Cloud, this must be the instance_id assigned by the cloud provider. For non-containerized systems, this should be the `machine-id`. See the table below for the sources to use to determine the `machine-id` based on operating system. [1] | `fdbf79e8af94cb7f9e8df36789187052` | `Opt-In` |
+| Other | [`host.image.id`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | VM image ID or host OS image ID. For Cloud, this value is from the provider. | `ami-07b06b442921831e5` | `Opt-In` |
+| Other | [`host.image.name`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Name of the VM image or OS install the host was instantiated from. | `infra-ami-eks-worker-node-7d4ec78312`; `CentOS-8-x86_64-1905` | `Opt-In` |
+| Other | [`host.image.version`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The version string of the VM image or host OS as defined in [Version Attributes](/docs/resource/README.md#version-attributes). | `0.1` | `Opt-In` |
+| Other | [`host.name`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Name of the host. On Unix systems, it may contain what the hostname command returns, or the fully qualified hostname, or another name specified by the user. | `opentelemetry-test` | `Opt-In` |
+| Other | [`host.type`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Type of host. For Cloud, this must be the machine type. | `n1-standard-1` | `Opt-In` |
+| Other | [`host.ip`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string[] | Available IP addresses of the host, excluding loopback interfaces. [2] | `["192.168.1.140", "fe80::abc2:4a28:737a:609e"]` | `Required` |
+| Other | [`host.mac`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string[] | Available MAC addresses of the host, excluding loopback interfaces. [3] | `["AC-DE-48-23-45-67", "AC-DE-48-23-45-67-01-9F"]` | `Required` |
 
 **[1] `host.id`:** Collecting `host.id` from non-containerized systems
 
@@ -74,6 +74,54 @@ privileged lookup of `host.id` is required, the value should be injected via the
 | `s390x` | IBM z/Architecture | ![Development](https://img.shields.io/badge/-development-blue) |
 | `x86` | 32-bit x86 | ![Development](https://img.shields.io/badge/-development-blue) |
 
+**Configuration File Options:**
+
+| Setting | Requirement Level | Category | Value Type | Example Value | Attribute |
+| --- | --- | --- | --- | --- | --- |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `host.arch` | [`host.arch`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`host.arch`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | | [`host.arch`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `host.id` | [`host.id`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`host.id`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `fdbf79e8af94cb7f9e8df36789187052` | [`host.id`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `host.image.id` | [`host.image.id`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`host.image.id`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `ami-07b06b442921831e5` | [`host.image.id`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `host.image.name` | [`host.image.name`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`host.image.name`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `infra-ami-eks-worker-node-7d4ec78312` | [`host.image.name`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `host.image.version` | [`host.image.version`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`host.image.version`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `0.1` | [`host.image.version`](/docs/registry/attributes/.md) |
+| `TBA` | `Required` | Attribute Opt-In | TBA | TBA | [`host.ip`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `host.ip` | [`host.ip`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string[]` | [`host.ip`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string[] | `["192.168.1.140", "fe80::abc2:4a28:737a:609e"]` | [`host.ip`](/docs/registry/attributes/.md) |
+| `TBA` | `Required` | Attribute Opt-In | TBA | TBA | [`host.mac`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `host.mac` | [`host.mac`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string[]` | [`host.mac`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string[] | `["AC-DE-48-23-45-67", "AC-DE-48-23-45-67-01-9F"]` | [`host.mac`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `host.name` | [`host.name`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`host.name`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `opentelemetry-test` | [`host.name`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `host.type` | [`host.type`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`host.type`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `n1-standard-1` | [`host.type`](/docs/registry/attributes/.md) |
+
+**Environment Variable Options:**
+
+| Setting | Requirement Level | Category | Value Type | Example Value | Attribute |
+| --- | --- | --- | --- | --- | --- |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `host.arch=` | [`host.arch`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `host.id=fdbf79e8af94cb7f9e8df36789187052` | [`host.id`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `host.image.id=ami-07b06b442921831e5` | [`host.image.id`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `host.image.name=infra-ami-eks-worker-node-7d4ec78312` | [`host.image.name`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `host.image.version=0.1` | [`host.image.version`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `host.ip=["192.168.1.140", "fe80::abc2:4a28:737a:609e"]` | [`host.ip`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `host.mac=["AC-DE-48-23-45-67", "AC-DE-48-23-45-67-01-9F"]` | [`host.mac`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `host.name=opentelemetry-test` | [`host.name`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `host.type=n1-standard-1` | [`host.type`](/docs/registry/attributes/.md) |
+
 ## Host CPU
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
@@ -88,13 +136,53 @@ privileged lookup of `host.id` is required, the value should be injected via the
 
 **Attributes:**
 
-| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-| --- | --- | --- | --- | --- | --- | --- |
-| Other | [`host.cpu.cache.l2.size`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The amount of level 2 memory cache available to the processor (in Bytes). | `12288000` |
-| Other | [`host.cpu.family`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Family or generation of the CPU. | `6`; `PA-RISC 1.1e` |
-| Other | [`host.cpu.model.id`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Model identifier. It provides more granular information about the CPU, distinguishing it from other CPUs within the same family. | `6`; `9000/778/B180L` |
-| Other | [`host.cpu.model.name`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Model designation of the processor. | `11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz` |
-| Other | [`host.cpu.stepping`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Stepping or core revisions. | `1`; `r1p1` |
-| Other | [`host.cpu.vendor.id`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Processor manufacturer identifier. A maximum 12-character string. [4] | `GenuineIntel` |
+| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values | Configuration Requirement |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Other | [`host.cpu.cache.l2.size`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The amount of level 2 memory cache available to the processor (in Bytes). | `12288000` | `Required` |
+| Other | [`host.cpu.family`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Family or generation of the CPU. | `6`; `PA-RISC 1.1e` | `Required` |
+| Other | [`host.cpu.model.id`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Model identifier. It provides more granular information about the CPU, distinguishing it from other CPUs within the same family. | `6`; `9000/778/B180L` | `Required` |
+| Other | [`host.cpu.model.name`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Model designation of the processor. | `11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz` | `Required` |
+| Other | [`host.cpu.stepping`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Stepping or core revisions. | `1`; `r1p1` | `Required` |
+| Other | [`host.cpu.vendor.id`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Processor manufacturer identifier. A maximum 12-character string. [4] | `GenuineIntel` | `Required` |
 
 **[4] `host.cpu.vendor.id`:** [CPUID](https://wiki.osdev.org/CPUID) command returns the vendor ID string in EBX, EDX and ECX registers. Writing these to memory in this order results in a 12-character string.
+
+**Configuration File Options:**
+
+| Setting | Requirement Level | Category | Value Type | Example Value | Attribute |
+| --- | --- | --- | --- | --- | --- |
+| `TBA` | `Required` | Attribute Opt-In | TBA | TBA | [`host.cpu.cache.l2.size`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `host.cpu.cache.l2.size` | [`host.cpu.cache.l2.size`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `int` | [`host.cpu.cache.l2.size`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | int | `12288000` | [`host.cpu.cache.l2.size`](/docs/registry/attributes/.md) |
+| `TBA` | `Required` | Attribute Opt-In | TBA | TBA | [`host.cpu.family`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `host.cpu.family` | [`host.cpu.family`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`host.cpu.family`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `6` | [`host.cpu.family`](/docs/registry/attributes/.md) |
+| `TBA` | `Required` | Attribute Opt-In | TBA | TBA | [`host.cpu.model.id`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `host.cpu.model.id` | [`host.cpu.model.id`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`host.cpu.model.id`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `6` | [`host.cpu.model.id`](/docs/registry/attributes/.md) |
+| `TBA` | `Required` | Attribute Opt-In | TBA | TBA | [`host.cpu.model.name`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `host.cpu.model.name` | [`host.cpu.model.name`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`host.cpu.model.name`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz` | [`host.cpu.model.name`](/docs/registry/attributes/.md) |
+| `TBA` | `Required` | Attribute Opt-In | TBA | TBA | [`host.cpu.stepping`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `host.cpu.stepping` | [`host.cpu.stepping`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`host.cpu.stepping`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `1` | [`host.cpu.stepping`](/docs/registry/attributes/.md) |
+| `TBA` | `Required` | Attribute Opt-In | TBA | TBA | [`host.cpu.vendor.id`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `host.cpu.vendor.id` | [`host.cpu.vendor.id`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`host.cpu.vendor.id`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `GenuineIntel` | [`host.cpu.vendor.id`](/docs/registry/attributes/.md) |
+
+**Environment Variable Options:**
+
+| Setting | Requirement Level | Category | Value Type | Example Value | Attribute |
+| --- | --- | --- | --- | --- | --- |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `host.cpu.cache.l2.size=12288000` | [`host.cpu.cache.l2.size`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `host.cpu.family=6` | [`host.cpu.family`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `host.cpu.model.id=6` | [`host.cpu.model.id`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `host.cpu.model.name=11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz` | [`host.cpu.model.name`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `host.cpu.stepping=1` | [`host.cpu.stepping`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `host.cpu.vendor.id=GenuineIntel` | [`host.cpu.vendor.id`](/docs/registry/attributes/.md) |

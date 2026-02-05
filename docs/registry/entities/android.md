@@ -17,6 +17,20 @@
 
 **Attributes:**
 
-| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-| --- | --- | --- | --- | --- | --- | --- |
-| Other | [`android.os.api_level`](/docs/registry/attributes/android.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Uniquely identifies the framework API revision offered by a version (`os.version`) of the android operating system. More information can be found in the [Android API levels documentation](https://developer.android.com/guide/topics/manifest/uses-sdk-element#ApiLevels). | `33`; `32` |
+| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values | Configuration Requirement |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Other | [`android.os.api_level`](/docs/registry/attributes/android.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Uniquely identifies the framework API revision offered by a version (`os.version`) of the android operating system. More information can be found in the [Android API levels documentation](https://developer.android.com/guide/topics/manifest/uses-sdk-element#ApiLevels). | `33`; `32` | `Opt-In` |
+
+**Configuration File Options:**
+
+| Setting | Requirement Level | Category | Value Type | Example Value | Attribute |
+| --- | --- | --- | --- | --- | --- |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `android.os.api_level` | [`android.os.api_level`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`android.os.api_level`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `33` | [`android.os.api_level`](/docs/registry/attributes/.md) |
+
+**Environment Variable Options:**
+
+| Setting | Requirement Level | Category | Value Type | Example Value | Attribute |
+| --- | --- | --- | --- | --- | --- |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `android.os.api_level=33` | [`android.os.api_level`](/docs/registry/attributes/.md) |

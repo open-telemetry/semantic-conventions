@@ -17,15 +17,15 @@
 
 **Attributes:**
 
-| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-| --- | --- | --- | --- | --- | --- | --- |
-| Other | [`container.id`](/docs/registry/attributes/container.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Recommended` | string | Container ID. Usually a UUID, as for example used to [identify Docker containers](https://docs.docker.com/engine/containers/run/#container-identification). The UUID might be abbreviated. | `a3bf90e006b2` |
-| Other | [`container.label.<key>`](/docs/registry/attributes/container.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Container labels, `<key>` being the label name, the value being the label value. [1] | `nginx` |
-| Other | [`container.name`](/docs/registry/attributes/container.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Container name used by container runtime. | `opentelemetry-autoconf` |
-| Other | [`oci.manifest.digest`](/docs/registry/attributes/oci.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The digest of the OCI image manifest. For container images specifically is the digest by which the container image is known. [2] | `sha256:e4ca62c0d62f3e886e684806dfe9d4e0cda60d54986898173c1083856cfda0f4` |
-| Other | [`container.command`](/docs/registry/attributes/container.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The command used to run the container (i.e. the command name). [3] | `otelcontribcol` |
-| Other | [`container.command_args`](/docs/registry/attributes/container.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string[] | All the command arguments (including the command/executable itself) run by the container. | `["otelcontribcol", "--config", "config.yaml"]` |
-| Other | [`container.command_line`](/docs/registry/attributes/container.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The full command run by the container as a single string representing the full command. | `otelcontribcol --config config.yaml` |
+| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values | Configuration Requirement |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Other | [`container.id`](/docs/registry/attributes/container.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Recommended` | string | Container ID. Usually a UUID, as for example used to [identify Docker containers](https://docs.docker.com/engine/containers/run/#container-identification). The UUID might be abbreviated. | `a3bf90e006b2` | `Opt-In` |
+| Other | [`container.label.<key>`](/docs/registry/attributes/container.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Container labels, `<key>` being the label name, the value being the label value. [1] | `nginx` | `Opt-In` |
+| Other | [`container.name`](/docs/registry/attributes/container.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Container name used by container runtime. | `opentelemetry-autoconf` | `Opt-In` |
+| Other | [`oci.manifest.digest`](/docs/registry/attributes/oci.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The digest of the OCI image manifest. For container images specifically is the digest by which the container image is known. [2] | `sha256:e4ca62c0d62f3e886e684806dfe9d4e0cda60d54986898173c1083856cfda0f4` | `Opt-In` |
+| Other | [`container.command`](/docs/registry/attributes/container.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The command used to run the container (i.e. the command name). [3] | `otelcontribcol` | `Required` |
+| Other | [`container.command_args`](/docs/registry/attributes/container.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string[] | All the command arguments (including the command/executable itself) run by the container. | `["otelcontribcol", "--config", "config.yaml"]` | `Required` |
+| Other | [`container.command_line`](/docs/registry/attributes/container.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The full command run by the container as a single string representing the full command. | `otelcontribcol --config config.yaml` | `Required` |
 
 **[1] `container.label.<key>`:** For example, a docker container label `app` with value `nginx` SHOULD be recorded as the `container.label.app` attribute with value `"nginx"`.
 
@@ -33,6 +33,47 @@
 An example can be found in [Example Image Manifest](https://github.com/opencontainers/image-spec/blob/main/manifest.md#example-image-manifest).
 
 **[3] `container.command`:** If using embedded credentials or sensitive data, it is recommended to remove them to prevent potential leakage.
+
+**Configuration File Options:**
+
+| Setting | Requirement Level | Category | Value Type | Example Value | Attribute |
+| --- | --- | --- | --- | --- | --- |
+| `TBA` | `Required` | Attribute Opt-In | TBA | TBA | [`container.command`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `container.command` | [`container.command`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`container.command`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `otelcontribcol` | [`container.command`](/docs/registry/attributes/.md) |
+| `TBA` | `Required` | Attribute Opt-In | TBA | TBA | [`container.command_args`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `container.command_args` | [`container.command_args`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string[]` | [`container.command_args`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string[] | `["otelcontribcol", "--config", "config.yaml"]` | [`container.command_args`](/docs/registry/attributes/.md) |
+| `TBA` | `Required` | Attribute Opt-In | TBA | TBA | [`container.command_line`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `container.command_line` | [`container.command_line`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`container.command_line`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `otelcontribcol --config config.yaml` | [`container.command_line`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `container.id` | [`container.id`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`container.id`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `a3bf90e006b2` | [`container.id`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `container.label` | [`container.label.<key>`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`container.label.<key>`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `nginx` | [`container.label.<key>`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `container.name` | [`container.name`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`container.name`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `opentelemetry-autoconf` | [`container.name`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `oci.manifest.digest` | [`oci.manifest.digest`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`oci.manifest.digest`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `sha256:e4ca62c0d62f3e886e684806dfe9d4e0cda60d54986898173c1083856cfda0f4` | [`oci.manifest.digest`](/docs/registry/attributes/.md) |
+
+**Environment Variable Options:**
+
+| Setting | Requirement Level | Category | Value Type | Example Value | Attribute |
+| --- | --- | --- | --- | --- | --- |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `container.command=otelcontribcol` | [`container.command`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `container.command_args=["otelcontribcol", "--config", "config.yaml"]` | [`container.command_args`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `container.command_line=otelcontribcol --config config.yaml` | [`container.command_line`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `container.id=a3bf90e006b2` | [`container.id`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `container.label=nginx` | [`container.label.<key>`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `container.name=opentelemetry-autoconf` | [`container.name`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `oci.manifest.digest=sha256:e4ca62c0d62f3e886e684806dfe9d4e0cda60d54986898173c1083856cfda0f4` | [`oci.manifest.digest`](/docs/registry/attributes/.md) |
 
 ## Container Image
 
@@ -48,18 +89,44 @@ An example can be found in [Example Image Manifest](https://github.com/openconta
 
 **Attributes:**
 
-| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-| --- | --- | --- | --- | --- | --- | --- |
-| Other | [`container.image.id`](/docs/registry/attributes/container.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Runtime specific image identifier. Usually a hash algorithm followed by a UUID. [4] | `sha256:19c92d0a00d1b66d897bceaa7319bee0dd38a10a851c60bcec9474aa3f01e50f` |
-| Other | [`container.image.name`](/docs/registry/attributes/container.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Recommended` | string | Name of the image the container was built on. | `gcr.io/opentelemetry/operator` |
-| Other | [`container.image.repo_digests`](/docs/registry/attributes/container.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Recommended` | string[] | Repo digests of the container image as provided by the container runtime. [5] | `["example@sha256:afcc7f1ac1b49db317a7196c902e61c6c3c4607d63599ee1a82d702d249a0ccb", "internal.registry.example.com:5000/example@sha256:b69959407d21e8a062e0416bf13405bb2b71ed7a84dde4158ebafacfa06f5578"]` |
-| Other | [`container.image.tags`](/docs/registry/attributes/container.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Recommended` | string[] | Container image tags. An example can be found in [Docker Image Inspect](https://docs.docker.com/reference/api/engine/version/v1.52/#tag/Image/operation/ImageInspect). Should be only the `<tag>` section of the full name for example from `registry.example.com/my-org/my-image:<tag>`. | `["v1.27.1", "3.5.7-0"]` |
+| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values | Configuration Requirement |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Other | [`container.image.id`](/docs/registry/attributes/container.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Runtime specific image identifier. Usually a hash algorithm followed by a UUID. [4] | `sha256:19c92d0a00d1b66d897bceaa7319bee0dd38a10a851c60bcec9474aa3f01e50f` | `Opt-In` |
+| Other | [`container.image.name`](/docs/registry/attributes/container.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Recommended` | string | Name of the image the container was built on. | `gcr.io/opentelemetry/operator` | `Opt-In` |
+| Other | [`container.image.repo_digests`](/docs/registry/attributes/container.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Recommended` | string[] | Repo digests of the container image as provided by the container runtime. [5] | `["example@sha256:afcc7f1ac1b49db317a7196c902e61c6c3c4607d63599ee1a82d702d249a0ccb", "internal.registry.example.com:5000/example@sha256:b69959407d21e8a062e0416bf13405bb2b71ed7a84dde4158ebafacfa06f5578"]` | `Opt-In` |
+| Other | [`container.image.tags`](/docs/registry/attributes/container.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Recommended` | string[] | Container image tags. An example can be found in [Docker Image Inspect](https://docs.docker.com/reference/api/engine/version/v1.52/#tag/Image/operation/ImageInspect). Should be only the `<tag>` section of the full name for example from `registry.example.com/my-org/my-image:<tag>`. | `["v1.27.1", "3.5.7-0"]` | `Opt-In` |
 
 **[4] `container.image.id`:** Docker defines a sha256 of the image id; `container.image.id` corresponds to the `Image` field from the Docker container inspect [API](https://docs.docker.com/reference/api/engine/version/v1.52/#tag/Container/operation/ContainerInspect) endpoint.
 K8s defines a link to the container registry repository with digest `"imageID": "registry.azurecr.io /namespace/service/dockerfile@sha256:bdeabd40c3a8a492eaf9e8e44d0ebbb84bac7ee25ac0cf8a7159d25f62555625"`.
 The ID is assigned by the container runtime and can vary in different environments. Consider using `oci.manifest.digest` if it is important to identify the same image in different environments/runtimes.
 
 **[5] `container.image.repo_digests`:** [Docker](https://docs.docker.com/reference/api/engine/version/v1.52/#tag/Image/operation/ImageInspect) and [CRI](https://github.com/kubernetes/cri-api/blob/c75ef5b473bbe2d0a4fc92f82235efd665ea8e9f/pkg/apis/runtime/v1/api.proto#L1237-L1238) report those under the `RepoDigests` field.
+
+**Configuration File Options:**
+
+| Setting | Requirement Level | Category | Value Type | Example Value | Attribute |
+| --- | --- | --- | --- | --- | --- |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `container.image.id` | [`container.image.id`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`container.image.id`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `sha256:19c92d0a00d1b66d897bceaa7319bee0dd38a10a851c60bcec9474aa3f01e50f` | [`container.image.id`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `container.image.name` | [`container.image.name`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`container.image.name`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `gcr.io/opentelemetry/operator` | [`container.image.name`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `container.image.repo_digests` | [`container.image.repo_digests`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string[]` | [`container.image.repo_digests`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string[] | `["example@sha256:afcc7f1ac1b49db317a7196c902e61c6c3c4607d63599ee1a82d702d249a0ccb", "internal.registry.example.com:5000/example@sha256:b69959407d21e8a062e0416bf13405bb2b71ed7a84dde4158ebafacfa06f5578"]` | [`container.image.repo_digests`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `container.image.tags` | [`container.image.tags`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string[]` | [`container.image.tags`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string[] | `["v1.27.1", "3.5.7-0"]` | [`container.image.tags`](/docs/registry/attributes/.md) |
+
+**Environment Variable Options:**
+
+| Setting | Requirement Level | Category | Value Type | Example Value | Attribute |
+| --- | --- | --- | --- | --- | --- |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `container.image.id=sha256:19c92d0a00d1b66d897bceaa7319bee0dd38a10a851c60bcec9474aa3f01e50f` | [`container.image.id`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `container.image.name=gcr.io/opentelemetry/operator` | [`container.image.name`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `container.image.repo_digests=["example@sha256:afcc7f1ac1b49db317a7196c902e61c6c3c4607d63599ee1a82d702d249a0ccb", "internal.registry.example.com:5000/example@sha256:b69959407d21e8a062e0416bf13405bb2b71ed7a84dde4158ebafacfa06f5578"]` | [`container.image.repo_digests`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `container.image.tags=["v1.27.1", "3.5.7-0"]` | [`container.image.tags`](/docs/registry/attributes/.md) |
 
 ## Container Runtime
 
@@ -71,8 +138,30 @@ The ID is assigned by the container runtime and can vary in different environmen
 
 **Attributes:**
 
-| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-| --- | --- | --- | --- | --- | --- | --- |
-| Identity | [`container.runtime.name`](/docs/registry/attributes/container.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The container runtime managing this container. | `docker`; `containerd`; `rkt` |
-| Identity | [`container.runtime.version`](/docs/registry/attributes/container.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The version of the runtime of this process, as returned by the runtime without modification. | `1.0.0` |
-| Description | [`container.runtime.description`](/docs/registry/attributes/container.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A description about the runtime which could include, for example details about the CRI/API version being used or other customisations. | `docker://19.3.1 - CRI: 1.22.0` |
+| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values | Configuration Requirement |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Identity | [`container.runtime.name`](/docs/registry/attributes/container.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The container runtime managing this container. | `docker`; `containerd`; `rkt` | `Opt-In` |
+| Identity | [`container.runtime.version`](/docs/registry/attributes/container.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The version of the runtime of this process, as returned by the runtime without modification. | `1.0.0` | `Opt-In` |
+| Description | [`container.runtime.description`](/docs/registry/attributes/container.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A description about the runtime which could include, for example details about the CRI/API version being used or other customisations. | `docker://19.3.1 - CRI: 1.22.0` | `Opt-In` |
+
+**Configuration File Options:**
+
+| Setting | Requirement Level | Category | Value Type | Example Value | Attribute |
+| --- | --- | --- | --- | --- | --- |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `container.runtime.description` | [`container.runtime.description`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`container.runtime.description`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `docker://19.3.1 - CRI: 1.22.0` | [`container.runtime.description`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `container.runtime.name` | [`container.runtime.name`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`container.runtime.name`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `docker` | [`container.runtime.name`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `container.runtime.version` | [`container.runtime.version`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`container.runtime.version`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `1` | [`container.runtime.version`](/docs/registry/attributes/.md) |
+
+**Environment Variable Options:**
+
+| Setting | Requirement Level | Category | Value Type | Example Value | Attribute |
+| --- | --- | --- | --- | --- | --- |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `container.runtime.description=docker://19.3.1 - CRI: 1.22.0` | [`container.runtime.description`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `container.runtime.name=docker` | [`container.runtime.name`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `container.runtime.version=1` | [`container.runtime.version`](/docs/registry/attributes/.md) |

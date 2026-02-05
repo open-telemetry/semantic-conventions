@@ -13,22 +13,22 @@
 
 **Attributes:**
 
-| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-| --- | --- | --- | --- | --- | --- | --- |
-| Identity | [`process.creation.time`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The date and time the process was created, in ISO 8601 format. | `2023-11-21T09:25:34.853Z` |
-| Identity | [`process.pid`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | int | Process identifier (PID). | `1234` |
-| Description | [`process.args_count`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [1] | int | Length of the process.command_args array [2] | `4` |
-| Description | [`process.command`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [3] | string | The command used to launch the process (i.e. the command name). On Linux based systems, can be set to the zeroth string in `proc/[pid]/cmdline`. On Windows, can be set to the first parameter extracted from `GetCommandLineW`. | `cmd/otelcol` |
-| Description | [`process.command_args`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [4] | string[] | All the command arguments (including the command/executable itself) as received by the process. On Linux-based systems (and some other Unixoid systems supporting procfs), can be set according to the list of null-delimited strings extracted from `proc/[pid]/cmdline`. For libc-based executables, this would be the full argv vector passed to `main`. SHOULD NOT be collected by default unless there is sanitization that excludes sensitive data. | `["cmd/otecol", "--config=config.yaml"]` |
-| Description | [`process.command_line`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [5] | string | The full command used to launch the process as a single string representing the full command. On Windows, can be set to the result of `GetCommandLineW`. Do not set this if you have to assemble it just for monitoring; use `process.command_args` instead. SHOULD NOT be collected by default unless there is sanitization that excludes sensitive data. | `C:\cmd\otecol --config="my directory\config.yaml"` |
-| Description | [`process.executable.name`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [6] | string | The name of the process executable. On Linux based systems, this SHOULD be set to the base name of the target of `/proc/[pid]/exe`. On Windows, this SHOULD be set to the base name of `GetProcessImageFileNameW`. | `otelcol` |
-| Description | [`process.executable.path`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [7] | string | The full path to the process executable. On Linux based systems, can be set to the target of `proc/[pid]/exe`. On Windows, can be set to the result of `GetProcessImageFileNameW`. | `/usr/bin/cmd/otelcol` |
-| Description | [`process.interactive`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | boolean | Whether the process is connected to an interactive shell. | |
-| Description | [`process.linux.cgroup`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The control group associated with the process. [8] | `1:name=systemd:/user.slice/user-1000.slice/session-3.scope`; `0::/user.slice/user-1000.slice/user@1000.service/tmux-spawn-0267755b-4639-4a27-90ed-f19f88e53748.scope` |
-| Description | [`process.owner`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The username of the user that owns the process. | `root` |
-| Description | [`process.parent_pid`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | int | Parent Process identifier (PPID). | `111` |
-| Description | [`process.title`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Process title (proctitle) [9] | `cat /etc/hostname`; `xfce4-session`; `bash` |
-| Description | [`process.working_directory`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The working directory of the process. | `/root` |
+| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values | Configuration Requirement |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Identity | [`process.creation.time`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The date and time the process was created, in ISO 8601 format. | `2023-11-21T09:25:34.853Z` | `Opt-In` |
+| Identity | [`process.pid`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | int | Process identifier (PID). | `1234` | `Opt-In` |
+| Description | [`process.args_count`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [1] | int | Length of the process.command_args array [2] | `4` | `Opt-In` |
+| Description | [`process.command`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [3] | string | The command used to launch the process (i.e. the command name). On Linux based systems, can be set to the zeroth string in `proc/[pid]/cmdline`. On Windows, can be set to the first parameter extracted from `GetCommandLineW`. | `cmd/otelcol` | `Opt-In` |
+| Description | [`process.command_args`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [4] | string[] | All the command arguments (including the command/executable itself) as received by the process. On Linux-based systems (and some other Unixoid systems supporting procfs), can be set according to the list of null-delimited strings extracted from `proc/[pid]/cmdline`. For libc-based executables, this would be the full argv vector passed to `main`. SHOULD NOT be collected by default unless there is sanitization that excludes sensitive data. | `["cmd/otecol", "--config=config.yaml"]` | `Opt-In` |
+| Description | [`process.command_line`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [5] | string | The full command used to launch the process as a single string representing the full command. On Windows, can be set to the result of `GetCommandLineW`. Do not set this if you have to assemble it just for monitoring; use `process.command_args` instead. SHOULD NOT be collected by default unless there is sanitization that excludes sensitive data. | `C:\cmd\otecol --config="my directory\config.yaml"` | `Opt-In` |
+| Description | [`process.executable.name`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [6] | string | The name of the process executable. On Linux based systems, this SHOULD be set to the base name of the target of `/proc/[pid]/exe`. On Windows, this SHOULD be set to the base name of `GetProcessImageFileNameW`. | `otelcol` | `Opt-In` |
+| Description | [`process.executable.path`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [7] | string | The full path to the process executable. On Linux based systems, can be set to the target of `proc/[pid]/exe`. On Windows, can be set to the result of `GetProcessImageFileNameW`. | `/usr/bin/cmd/otelcol` | `Opt-In` |
+| Description | [`process.interactive`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | boolean | Whether the process is connected to an interactive shell. | | `Opt-In` |
+| Description | [`process.linux.cgroup`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The control group associated with the process. [8] | `1:name=systemd:/user.slice/user-1000.slice/session-3.scope`; `0::/user.slice/user-1000.slice/user@1000.service/tmux-spawn-0267755b-4639-4a27-90ed-f19f88e53748.scope` | `Opt-In` |
+| Description | [`process.owner`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The username of the user that owns the process. | `root` | `Opt-In` |
+| Description | [`process.parent_pid`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | int | Parent Process identifier (PPID). | `111` | `Opt-In` |
+| Description | [`process.title`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Process title (proctitle) [9] | `cat /etc/hostname`; `xfce4-session`; `bash` | `Opt-In` |
+| Description | [`process.working_directory`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The working directory of the process. | `/root` | `Opt-In` |
 
 **[1] `process.args_count`:** See [Selecting process attributes](/docs/resource/process.md#selecting-process-attributes) for details.
 
@@ -48,6 +48,72 @@
 
 **[9] `process.title`:** In many Unix-like systems, process title (proctitle), is the string that represents the name or command line of a running process, displayed by system monitoring tools like ps, top, and htop.
 
+**Configuration File Options:**
+
+| Setting | Requirement Level | Category | Value Type | Example Value | Attribute |
+| --- | --- | --- | --- | --- | --- |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `process.args_count` | [`process.args_count`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `int` | [`process.args_count`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | int | `4` | [`process.args_count`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `process.command` | [`process.command`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`process.command`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `cmd/otelcol` | [`process.command`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `process.command_args` | [`process.command_args`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string[]` | [`process.command_args`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string[] | `["cmd/otecol", "--config=config.yaml"]` | [`process.command_args`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `process.command_line` | [`process.command_line`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`process.command_line`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `C:\cmd\otecol --config="my directory\config.yaml"` | [`process.command_line`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `process.creation.time` | [`process.creation.time`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`process.creation.time`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `2023-11-21T09:25:34.853Z` | [`process.creation.time`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `process.executable.name` | [`process.executable.name`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`process.executable.name`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `otelcol` | [`process.executable.name`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `process.executable.path` | [`process.executable.path`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`process.executable.path`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `/usr/bin/cmd/otelcol` | [`process.executable.path`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `process.interactive` | [`process.interactive`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `boolean` | [`process.interactive`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | boolean | | [`process.interactive`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `process.linux.cgroup` | [`process.linux.cgroup`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`process.linux.cgroup`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `1:name=systemd:/user.slice/user-1000.slice/session-3.scope` | [`process.linux.cgroup`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `process.owner` | [`process.owner`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`process.owner`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `root` | [`process.owner`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `process.parent_pid` | [`process.parent_pid`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `int` | [`process.parent_pid`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | int | `111` | [`process.parent_pid`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `process.pid` | [`process.pid`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `int` | [`process.pid`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | int | `1234` | [`process.pid`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `process.title` | [`process.title`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`process.title`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `cat /etc/hostname` | [`process.title`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `process.working_directory` | [`process.working_directory`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`process.working_directory`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `/root` | [`process.working_directory`](/docs/registry/attributes/.md) |
+
+**Environment Variable Options:**
+
+| Setting | Requirement Level | Category | Value Type | Example Value | Attribute |
+| --- | --- | --- | --- | --- | --- |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `process.args_count=4` | [`process.args_count`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `process.command=cmd/otelcol` | [`process.command`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `process.command_args=["cmd/otecol", "--config=config.yaml"]` | [`process.command_args`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `process.command_line=C:\cmd\otecol --config="my directory\config.yaml"` | [`process.command_line`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `process.creation.time=2023-11-21T09:25:34.853Z` | [`process.creation.time`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `process.executable.name=otelcol` | [`process.executable.name`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `process.executable.path=/usr/bin/cmd/otelcol` | [`process.executable.path`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `process.interactive=` | [`process.interactive`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `process.linux.cgroup=1:name=systemd:/user.slice/user-1000.slice/session-3.scope` | [`process.linux.cgroup`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `process.owner=root` | [`process.owner`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `process.parent_pid=111` | [`process.parent_pid`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `process.pid=1234` | [`process.pid`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `process.title=cat /etc/hostname` | [`process.title`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `process.working_directory=/root` | [`process.working_directory`](/docs/registry/attributes/.md) |
+
 ## Process Runtime
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
@@ -58,8 +124,30 @@
 
 **Attributes:**
 
-| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-| --- | --- | --- | --- | --- | --- | --- |
-| Identity | [`process.runtime.name`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the runtime of this process. | `OpenJDK Runtime Environment` |
-| Identity | [`process.runtime.version`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The version of the runtime of this process, as returned by the runtime without modification. | `14.0.2` |
-| Description | [`process.runtime.description`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | An additional description about the runtime of the process, for example a specific vendor customization of the runtime environment. | `Eclipse OpenJ9 Eclipse OpenJ9 VM openj9-0.21.0` |
+| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values | Configuration Requirement |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Identity | [`process.runtime.name`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the runtime of this process. | `OpenJDK Runtime Environment` | `Opt-In` |
+| Identity | [`process.runtime.version`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The version of the runtime of this process, as returned by the runtime without modification. | `14.0.2` | `Opt-In` |
+| Description | [`process.runtime.description`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | An additional description about the runtime of the process, for example a specific vendor customization of the runtime environment. | `Eclipse OpenJ9 Eclipse OpenJ9 VM openj9-0.21.0` | `Opt-In` |
+
+**Configuration File Options:**
+
+| Setting | Requirement Level | Category | Value Type | Example Value | Attribute |
+| --- | --- | --- | --- | --- | --- |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `process.runtime.description` | [`process.runtime.description`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`process.runtime.description`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `E` | [`process.runtime.description`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `process.runtime.name` | [`process.runtime.name`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`process.runtime.name`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `OpenJDK Runtime Environment` | [`process.runtime.name`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `process.runtime.version` | [`process.runtime.version`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`process.runtime.version`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `1` | [`process.runtime.version`](/docs/registry/attributes/.md) |
+
+**Environment Variable Options:**
+
+| Setting | Requirement Level | Category | Value Type | Example Value | Attribute |
+| --- | --- | --- | --- | --- | --- |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `process.runtime.description=E` | [`process.runtime.description`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `process.runtime.name=OpenJDK Runtime Environment` | [`process.runtime.name`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `process.runtime.version=1` | [`process.runtime.version`](/docs/registry/attributes/.md) |

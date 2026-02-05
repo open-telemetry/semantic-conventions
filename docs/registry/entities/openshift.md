@@ -13,7 +13,25 @@
 
 **Attributes:**
 
-| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-| --- | --- | --- | --- | --- | --- | --- |
-| Identity | [`openshift.clusterquota.uid`](/docs/registry/attributes/openshift.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The UID of the cluster quota. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` |
-| Description | [`openshift.clusterquota.name`](/docs/registry/attributes/openshift.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the cluster quota. | `opentelemetry` |
+| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values | Configuration Requirement |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Identity | [`openshift.clusterquota.uid`](/docs/registry/attributes/openshift.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The UID of the cluster quota. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | `Opt-In` |
+| Description | [`openshift.clusterquota.name`](/docs/registry/attributes/openshift.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the cluster quota. | `opentelemetry` | `Opt-In` |
+
+**Configuration File Options:**
+
+| Setting | Requirement Level | Category | Value Type | Example Value | Attribute |
+| --- | --- | --- | --- | --- | --- |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `openshift.clusterquota.name` | [`openshift.clusterquota.name`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`openshift.clusterquota.name`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `opentelemetry` | [`openshift.clusterquota.name`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `openshift.clusterquota.uid` | [`openshift.clusterquota.uid`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`openshift.clusterquota.uid`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | [`openshift.clusterquota.uid`](/docs/registry/attributes/.md) |
+
+**Environment Variable Options:**
+
+| Setting | Requirement Level | Category | Value Type | Example Value | Attribute |
+| --- | --- | --- | --- | --- | --- |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `openshift.clusterquota.name=opentelemetry` | [`openshift.clusterquota.name`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `openshift.clusterquota.uid=275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | [`openshift.clusterquota.uid`](/docs/registry/attributes/.md) |

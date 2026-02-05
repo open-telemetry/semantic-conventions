@@ -17,15 +17,15 @@
 
 **Attributes:**
 
-| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-| --- | --- | --- | --- | --- | --- | --- |
-| Other | [`container.id`](/docs/registry/attributes/container.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Recommended` | string | Container ID. Usually a UUID, as for example used to [identify Docker containers](https://docs.docker.com/engine/containers/run/#container-identification). The UUID might be abbreviated. | `a3bf90e006b2` |
-| Other | [`container.label.<key>`](/docs/registry/attributes/container.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Container labels, `<key>` being the label name, the value being the label value. [1] | `nginx` |
-| Other | [`container.name`](/docs/registry/attributes/container.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Container name used by container runtime. | `opentelemetry-autoconf` |
-| Other | [`oci.manifest.digest`](/docs/registry/attributes/oci.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The digest of the OCI image manifest. For container images specifically is the digest by which the container image is known. [2] | `sha256:e4ca62c0d62f3e886e684806dfe9d4e0cda60d54986898173c1083856cfda0f4` |
-| Other | [`container.command`](/docs/registry/attributes/container.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The command used to run the container (i.e. the command name). [3] | `otelcontribcol` |
-| Other | [`container.command_args`](/docs/registry/attributes/container.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string[] | All the command arguments (including the command/executable itself) run by the container. | `["otelcontribcol", "--config", "config.yaml"]` |
-| Other | [`container.command_line`](/docs/registry/attributes/container.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The full command run by the container as a single string representing the full command. | `otelcontribcol --config config.yaml` |
+| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values | Configuration Requirement |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Other | [`container.id`](/docs/registry/attributes/container.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Recommended` | string | Container ID. Usually a UUID, as for example used to [identify Docker containers](https://docs.docker.com/engine/containers/run/#container-identification). The UUID might be abbreviated. | `a3bf90e006b2` | `Opt-In` |
+| Other | [`container.label.<key>`](/docs/registry/attributes/container.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Container labels, `<key>` being the label name, the value being the label value. [1] | `nginx` | `Opt-In` |
+| Other | [`container.name`](/docs/registry/attributes/container.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Container name used by container runtime. | `opentelemetry-autoconf` | `Opt-In` |
+| Other | [`oci.manifest.digest`](/docs/registry/attributes/oci.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The digest of the OCI image manifest. For container images specifically is the digest by which the container image is known. [2] | `sha256:e4ca62c0d62f3e886e684806dfe9d4e0cda60d54986898173c1083856cfda0f4` | `Opt-In` |
+| Other | [`container.command`](/docs/registry/attributes/container.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The command used to run the container (i.e. the command name). [3] | `otelcontribcol` | `Required` |
+| Other | [`container.command_args`](/docs/registry/attributes/container.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string[] | All the command arguments (including the command/executable itself) run by the container. | `["otelcontribcol", "--config", "config.yaml"]` | `Required` |
+| Other | [`container.command_line`](/docs/registry/attributes/container.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The full command run by the container as a single string representing the full command. | `otelcontribcol --config config.yaml` | `Required` |
 
 **[1] `container.label.<key>`:** For example, a docker container label `app` with value `nginx` SHOULD be recorded as the `container.label.app` attribute with value `"nginx"`.
 
@@ -33,6 +33,47 @@
 An example can be found in [Example Image Manifest](https://github.com/opencontainers/image-spec/blob/main/manifest.md#example-image-manifest).
 
 **[3] `container.command`:** If using embedded credentials or sensitive data, it is recommended to remove them to prevent potential leakage.
+
+**Configuration File Options:**
+
+| Setting | Requirement Level | Category | Value Type | Example Value | Attribute |
+| --- | --- | --- | --- | --- | --- |
+| `TBA` | `Required` | Attribute Opt-In | TBA | TBA | [`container.command`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `container.command` | [`container.command`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`container.command`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `otelcontribcol` | [`container.command`](/docs/registry/attributes/.md) |
+| `TBA` | `Required` | Attribute Opt-In | TBA | TBA | [`container.command_args`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `container.command_args` | [`container.command_args`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string[]` | [`container.command_args`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string[] | `["otelcontribcol", "--config", "config.yaml"]` | [`container.command_args`](/docs/registry/attributes/.md) |
+| `TBA` | `Required` | Attribute Opt-In | TBA | TBA | [`container.command_line`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `container.command_line` | [`container.command_line`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`container.command_line`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `otelcontribcol --config config.yaml` | [`container.command_line`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `container.id` | [`container.id`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`container.id`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `a3bf90e006b2` | [`container.id`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `container.label` | [`container.label.<key>`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`container.label.<key>`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `nginx` | [`container.label.<key>`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `container.name` | [`container.name`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`container.name`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `opentelemetry-autoconf` | [`container.name`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `oci.manifest.digest` | [`oci.manifest.digest`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`oci.manifest.digest`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `sha256:e4ca62c0d62f3e886e684806dfe9d4e0cda60d54986898173c1083856cfda0f4` | [`oci.manifest.digest`](/docs/registry/attributes/.md) |
+
+**Environment Variable Options:**
+
+| Setting | Requirement Level | Category | Value Type | Example Value | Attribute |
+| --- | --- | --- | --- | --- | --- |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `container.command=otelcontribcol` | [`container.command`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `container.command_args=["otelcontribcol", "--config", "config.yaml"]` | [`container.command_args`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `container.command_line=otelcontribcol --config config.yaml` | [`container.command_line`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `container.id=a3bf90e006b2` | [`container.id`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `container.label=nginx` | [`container.label.<key>`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `container.name=opentelemetry-autoconf` | [`container.name`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `oci.manifest.digest=sha256:e4ca62c0d62f3e886e684806dfe9d4e0cda60d54986898173c1083856cfda0f4` | [`oci.manifest.digest`](/docs/registry/attributes/.md) |
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
 <!-- endsemconv -->

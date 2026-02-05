@@ -17,8 +17,33 @@
 
 **Attributes:**
 
-| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-| --- | --- | --- | --- | --- | --- | --- |
-| Other | [`heroku.app.id`](/docs/registry/attributes/heroku.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Unique identifier for the application | `2daa2797-e42b-4624-9322-ec3f968df4da` |
-| Other | [`heroku.release.commit`](/docs/registry/attributes/heroku.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Commit hash for the current release | `e6134959463efd8966b20e75b913cafe3f5ec` |
-| Other | [`heroku.release.creation_timestamp`](/docs/registry/attributes/heroku.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Time and date the release was created | `2022-10-23T18:00:42Z` |
+| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values | Configuration Requirement |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Other | [`heroku.app.id`](/docs/registry/attributes/heroku.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Unique identifier for the application | `2daa2797-e42b-4624-9322-ec3f968df4da` | `Required` |
+| Other | [`heroku.release.commit`](/docs/registry/attributes/heroku.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Commit hash for the current release | `e6134959463efd8966b20e75b913cafe3f5ec` | `Required` |
+| Other | [`heroku.release.creation_timestamp`](/docs/registry/attributes/heroku.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Time and date the release was created | `2022-10-23T18:00:42Z` | `Required` |
+
+**Configuration File Options:**
+
+| Setting | Requirement Level | Category | Value Type | Example Value | Attribute |
+| --- | --- | --- | --- | --- | --- |
+| `TBA` | `Required` | Attribute Opt-In | TBA | TBA | [`heroku.app.id`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `heroku.app.id` | [`heroku.app.id`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`heroku.app.id`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `2daa2797-e42b-4624-9322-ec3f968df4da` | [`heroku.app.id`](/docs/registry/attributes/.md) |
+| `TBA` | `Required` | Attribute Opt-In | TBA | TBA | [`heroku.release.commit`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `heroku.release.commit` | [`heroku.release.commit`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`heroku.release.commit`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `e6134959463efd8966b20e75b913cafe3f5ec` | [`heroku.release.commit`](/docs/registry/attributes/.md) |
+| `TBA` | `Required` | Attribute Opt-In | TBA | TBA | [`heroku.release.creation_timestamp`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `heroku.release.creation_timestamp` | [`heroku.release.creation_timestamp`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`heroku.release.creation_timestamp`](/docs/registry/attributes/.md) |
+| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `2022-10-23T18:00:42Z` | [`heroku.release.creation_timestamp`](/docs/registry/attributes/.md) |
+
+**Environment Variable Options:**
+
+| Setting | Requirement Level | Category | Value Type | Example Value | Attribute |
+| --- | --- | --- | --- | --- | --- |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `heroku.app.id=2daa2797-e42b-4624-9322-ec3f968df4da` | [`heroku.app.id`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `heroku.release.commit=e6134959463efd8966b20e75b913cafe3f5ec` | [`heroku.release.commit`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `heroku.release.creation_timestamp=2022-10-23T18:00:42Z` | [`heroku.release.creation_timestamp`](/docs/registry/attributes/.md) |
