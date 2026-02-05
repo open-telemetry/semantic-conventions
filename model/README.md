@@ -45,7 +45,7 @@ Or, for convenience, run
 make generate-all
 ```
 
-that executes both targets along with other markdown generation targets that
+which executes both targets along with other markdown generation targets that
 update [areas](/AREAS.md) and GitHub area labels.
 
 For more information, see [Weaver](https://github.com/open-telemetry/weaver)
