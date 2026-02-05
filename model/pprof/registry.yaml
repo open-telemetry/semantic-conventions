@@ -75,7 +75,7 @@ groups:
           Records the pprof's default_sample_type in the original profile. Not set
           if the default sample type was missing.
         note: >
-          This attribute SHOULD be set at the scope level
+          This attribute, if present, MUST be set at the scope level
           (resource_profiles[].scope_profiles[].scope.attributes[]).
         type: string
         examples:
