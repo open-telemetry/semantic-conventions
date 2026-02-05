@@ -1,0 +1,563 @@
+groups:
+  # Common DHCP Attributes
+  - id: registry.dhcp
+    type: attribute_group
+    display_name: DHCP Attributes
+    brief: >
+      This document defines attributes for DHCP (Dynamic Host Configuration Protocol)
+      instrumentation, covering both DHCPv4 (RFC 2131/2132) and DHCPv6 (RFC 8415).
+    attributes:
+      - id: dhcp.message.type
+        type:
+          members:
+            # DHCPv4 message types
+            - id: discover
+              value: "DISCOVER"
+              brief: Client broadcast to locate servers.
+              stability: development
+            - id: offer
+              value: "OFFER"
+              brief: Server response with configuration offer.
+              stability: development
+            - id: request
+              value: "REQUEST"
+              brief: Client requests offered configuration.
+              stability: development
+            - id: decline
+              value: "DECLINE"
+              brief: Client indicates address already in use.
+              stability: development
+            - id: ack
+              value: "ACK"
+              brief: Server acknowledges request.
+              stability: development
+            - id: nak
+              value: "NAK"
+              brief: Server negative acknowledgment.
+              stability: development
+            - id: release
+              value: "RELEASE"
+              brief: Client releases address.
+              stability: development
+            - id: inform
+              value: "INFORM"
+              brief: Client requests configuration only.
+              stability: development
+            - id: forcerenew
+              value: "FORCERENEW"
+              brief: Server forces client renewal.
+              stability: development
+            - id: leasequery
+              value: "LEASEQUERY"
+              brief: Lease query request.
+              stability: development
+            - id: leaseunassigned
+              value: "LEASEUNASSIGNED"
+              brief: "Lease query: unassigned."
+              stability: development
+            - id: leaseunknown
+              value: "LEASEUNKNOWN"
+              brief: "Lease query: unknown."
+              stability: development
+            - id: leaseactive
+              value: "LEASEACTIVE"
+              brief: "Lease query: active."
+              stability: development
+            - id: bulkleasequery
+              value: "BULKLEASEQUERY"
+              brief: Bulk lease query.
+              stability: development
+            - id: leasequerydone
+              value: "LEASEQUERYDONE"
+              brief: Lease query complete.
+              stability: development
+            # DHCPv6 message types
+            - id: solicit
+              value: "SOLICIT"
+              brief: Client locates servers.
+              stability: development
+            - id: advertise
+              value: "ADVERTISE"
+              brief: Server indicates availability.
+              stability: development
+            - id: confirm
+              value: "CONFIRM"
+              brief: Client verifies address.
+              stability: development
+            - id: renew
+              value: "RENEW"
+              brief: Client extends lease with original server.
+              stability: development
+            - id: rebind
+              value: "REBIND"
+              brief: Client seeks renewal from any server.
+              stability: development
+            - id: reply
+              value: "REPLY"
+              brief: Server response.
+              stability: development
+            - id: reconfigure
+              value: "RECONFIGURE"
+              brief: Server initiates reconfiguration.
+              stability: development
+            - id: information_request
+              value: "INFORMATION_REQUEST"
+              brief: Client requests config without lease.
+              stability: development
+            - id: relay_forw
+              value: "RELAY_FORW"
+              brief: Relay forwards to server.
+              stability: development
+            - id: relay_repl
+              value: "RELAY_REPL"
+              brief: Server replies via relay.
+              stability: development
+        stability: development
+        brief: The DHCP message type name.
+        examples: ["DISCOVER", "OFFER", "SOLICIT", "ADVERTISE"]
+
+      - id: dhcp.operation.name
+        type: string
+        stability: development
+        brief: The name of the operation being performed.
+        examples: ["lease_acquisition", "renewal", "release"]
+
+      - id: dhcp.request.id
+        type: string
+        stability: development
+        brief: Transaction ID (xid) for request-response correlation.
+        examples: ["0x3d1d2f8a"]
+
+      - id: dhcp.response.status_code
+        type:
+          members:
+            - id: success
+              value: "success"
+              brief: Operation successful.
+              stability: development
+            - id: unspec_fail
+              value: "unspec_fail"
+              brief: Unspecified failure.
+              stability: development
+            - id: no_addrs_avail
+              value: "no_addrs_avail"
+              brief: No addresses available.
+              stability: development
+            - id: no_binding
+              value: "no_binding"
+              brief: No binding exists.
+              stability: development
+            - id: not_on_link
+              value: "not_on_link"
+              brief: Address not appropriate for link.
+              stability: development
+            - id: use_multicast
+              value: "use_multicast"
+              brief: Server wants client to use multicast.
+              stability: development
+            - id: no_prefix_avail
+              value: "no_prefix_avail"
+              brief: No prefixes available.
+              stability: development
+            - id: nak
+              value: "nak"
+              brief: Server negative acknowledgment (DHCPv4).
+              stability: development
+        stability: development
+        brief: The status/result of the DHCP operation.
+        examples: ["success", "nak", "no_addrs_avail"]
+
+      - id: dhcp.client.identifier
+        type: string
+        stability: development
+        brief: Client identifier (option 61 for DHCPv4, DUID for DHCPv6).
+        examples: ["01:aa:bb:cc:dd:ee:ff"]
+
+      - id: dhcp.server.identifier
+        type: string
+        stability: development
+        brief: Server identifier (option 54 for DHCPv4, DUID for DHCPv6).
+        examples: ["192.168.1.1"]
+
+      - id: dhcp.lease.duration
+        type: int
+        stability: development
+        brief: Lease time in seconds.
+        examples: [86400, 3600]
+
+      - id: dhcp.server.pool.name
+        type: string
+        stability: development
+        brief: Pool identifier.
+        examples: ["lan-pool", "guest-pool"]
+
+      - id: dhcp.relay.direction
+        type:
+          members:
+            - id: client_to_server
+              value: "client_to_server"
+              brief: Message forwarded from client to server.
+              stability: development
+            - id: server_to_client
+              value: "server_to_client"
+              brief: Message forwarded from server to client.
+              stability: development
+        stability: development
+        brief: Direction of relay forwarding.
+        examples: ["client_to_server", "server_to_client"]
+
+  # DHCPv4 Attributes
+  - id: registry.dhcp.v4
+    type: attribute_group
+    display_name: DHCPv4 Attributes
+    brief: >
+      Attributes specific to DHCPv4 protocol fields.
+    attributes:
+      - id: dhcp.v4.op
+        type:
+          members:
+            - id: bootrequest
+              value: "BOOTREQUEST"
+              brief: Request from client to server.
+              stability: development
+            - id: bootreply
+              value: "BOOTREPLY"
+              brief: Reply from server to client.
+              stability: development
+        stability: development
+        brief: Message operation type.
+        examples: ["BOOTREQUEST", "BOOTREPLY"]
+
+      - id: dhcp.v4.htype
+        type: int
+        stability: development
+        brief: Hardware address type per RFC 1700. `1` for Ethernet.
+        examples: [1, 6]
+
+      - id: dhcp.v4.hops
+        type: int
+        stability: development
+        brief: Relay agent hop count.
+        examples: [0, 1, 2]
+
+      - id: dhcp.v4.secs
+        type: int
+        stability: development
+        brief: Seconds elapsed since client began acquisition.
+        examples: [0, 5, 30]
+
+      - id: dhcp.v4.flags.broadcast
+        type: boolean
+        stability: development
+        brief: Whether the broadcast flag is set.
+        examples: [true, false]
+
+      - id: dhcp.v4.ciaddr
+        type: string
+        stability: development
+        brief: Client IP address (set when client is bound/renewing).
+        examples: ["192.168.1.100"]
+
+      - id: dhcp.v4.yiaddr
+        type: string
+        stability: development
+        brief: '"Your" IP address (offered/assigned address).'
+        examples: ["192.168.1.100"]
+
+      - id: dhcp.v4.siaddr
+        type: string
+        stability: development
+        brief: Next server IP address (TFTP server).
+        examples: ["192.168.1.1"]
+
+      - id: dhcp.v4.giaddr
+        type: string
+        stability: development
+        brief: Relay agent IP address.
+        examples: ["192.168.1.254"]
+
+      - id: dhcp.v4.chaddr
+        type: string
+        stability: development
+        brief: Client hardware address (MAC address).
+        examples: ["aa:bb:cc:dd:ee:ff"]
+
+      - id: dhcp.v4.sname
+        type: string
+        stability: development
+        brief: Server hostname.
+        examples: ["dhcp-server-1"]
+
+      - id: dhcp.v4.file
+        type: string
+        stability: development
+        brief: Boot filename.
+        examples: ["pxelinux.0"]
+
+  # DHCPv4 Option Attributes
+  - id: registry.dhcp.v4.option
+    type: attribute_group
+    display_name: DHCPv4 Option Attributes
+    brief: >
+      Attributes for common DHCPv4 options.
+    attributes:
+      - id: dhcp.v4.option.subnet_mask
+        type: string
+        stability: development
+        brief: Subnet mask (option 1).
+        examples: ["255.255.255.0"]
+
+      - id: dhcp.v4.option.router
+        type: string[]
+        stability: development
+        brief: Default gateway address(es) (option 3).
+        examples: [["192.168.1.1"]]
+
+      - id: dhcp.v4.option.dns_server
+        type: string[]
+        stability: development
+        brief: DNS server address(es) (option 6).
+        examples: [["8.8.8.8", "8.8.4.4"]]
+
+      - id: dhcp.v4.option.hostname
+        type: string
+        stability: development
+        brief: Client hostname (option 12).
+        examples: ["workstation-01"]
+
+      - id: dhcp.v4.option.domain_name
+        type: string
+        stability: development
+        brief: DNS domain name (option 15).
+        examples: ["example.com"]
+
+      - id: dhcp.v4.option.broadcast_address
+        type: string
+        stability: development
+        brief: Broadcast address (option 28).
+        examples: ["192.168.1.255"]
+
+      - id: dhcp.v4.option.ntp_server
+        type: string[]
+        stability: development
+        brief: NTP server address(es) (option 42).
+        examples: [["time.example.com"]]
+
+      - id: dhcp.v4.option.requested_ip
+        type: string
+        stability: development
+        brief: Requested IP address (option 50).
+        examples: ["192.168.1.100"]
+
+      - id: dhcp.v4.option.lease_time
+        type: int
+        stability: development
+        brief: Lease duration in seconds (option 51).
+        examples: [86400]
+
+      - id: dhcp.v4.option.renewal_time
+        type: int
+        stability: development
+        brief: T1 renewal time in seconds (option 58).
+        examples: [43200]
+
+      - id: dhcp.v4.option.rebinding_time
+        type: int
+        stability: development
+        brief: T2 rebinding time in seconds (option 59).
+        examples: [75600]
+
+      - id: dhcp.v4.option.vendor_class
+        type: string
+        stability: development
+        brief: Vendor class identifier (option 60).
+        examples: ["MSFT 5.0"]
+
+      - id: dhcp.v4.option.tftp_server
+        type: string
+        stability: development
+        brief: TFTP server name (option 66).
+        examples: ["tftp.example.com"]
+
+      - id: dhcp.v4.option.bootfile
+        type: string
+        stability: development
+        brief: Boot filename (option 67).
+        examples: ["pxelinux.0"]
+
+      - id: dhcp.v4.option.domain_search
+        type: string[]
+        stability: development
+        brief: DNS search domain list (option 119).
+        examples: [["example.com", "corp.example.com"]]
+
+  # DHCPv4 Relay Attributes
+  - id: registry.dhcp.v4.relay
+    type: attribute_group
+    display_name: DHCPv4 Relay Attributes
+    brief: >
+      Attributes for DHCPv4 relay agent information (option 82).
+    attributes:
+      - id: dhcp.v4.relay.circuit_id
+        type: string
+        stability: development
+        brief: "Option 82 sub-option 1: Circuit identifier."
+        examples: ["ge-0/0/1.100"]
+
+      - id: dhcp.v4.relay.remote_id
+        type: string
+        stability: development
+        brief: "Option 82 sub-option 2: Remote identifier."
+        examples: ["00:11:22:33:44:55"]
+
+      - id: dhcp.v4.relay.subscriber_id
+        type: string
+        stability: development
+        brief: "Option 82 sub-option 6: Subscriber identifier."
+        examples: ["subscriber-001"]
+
+  # DHCPv6 Attributes
+  - id: registry.dhcp.v6
+    type: attribute_group
+    display_name: DHCPv6 Attributes
+    brief: >
+      Attributes specific to DHCPv6 protocol fields.
+    attributes:
+      - id: dhcp.v6.hop_count
+        type: int
+        stability: development
+        brief: Relay hop count.
+        examples: [0, 1]
+
+      - id: dhcp.v6.link_address
+        type: string
+        stability: development
+        brief: Relay link address.
+        examples: ["2001:db8::1"]
+
+      - id: dhcp.v6.peer_address
+        type: string
+        stability: development
+        brief: Relay peer address.
+        examples: ["fe80::1"]
+
+  # DHCPv6 Option Attributes
+  - id: registry.dhcp.v6.option
+    type: attribute_group
+    display_name: DHCPv6 Option Attributes
+    brief: >
+      Attributes for common DHCPv6 options.
+    attributes:
+      - id: dhcp.v6.option.ia_address
+        type: string
+        stability: development
+        brief: Identity Association address (option 5).
+        examples: ["2001:db8::100"]
+
+      - id: dhcp.v6.option.preference
+        type: int
+        stability: development
+        brief: Server preference value 0-255 (option 7).
+        examples: [255]
+
+      - id: dhcp.v6.option.elapsed_time
+        type: int
+        stability: development
+        brief: Elapsed time in centiseconds (option 8).
+        examples: [100]
+
+      - id: dhcp.v6.option.status_code
+        type: int
+        stability: development
+        brief: Status code (option 13).
+        examples: [0, 2]
+
+      - id: dhcp.v6.option.status_message
+        type: string
+        stability: development
+        brief: Status message (option 13).
+        examples: ["Success"]
+
+      - id: dhcp.v6.option.rapid_commit
+        type: boolean
+        stability: development
+        brief: Whether rapid commit is present (option 14).
+        examples: [true]
+
+      - id: dhcp.v6.option.dns_server
+        type: string[]
+        stability: development
+        brief: DNS recursive server address(es) (option 23).
+        examples: [["2001:4860:4860::8888"]]
+
+      - id: dhcp.v6.option.domain_search
+        type: string[]
+        stability: development
+        brief: Domain search list (option 24).
+        examples: [["example.com"]]
+
+      - id: dhcp.v6.option.ia_prefix
+        type: string
+        stability: development
+        brief: Identity Association prefix (option 26).
+        examples: ["2001:db8::/48"]
+
+      - id: dhcp.v6.option.fqdn
+        type: string
+        stability: development
+        brief: Client FQDN (option 39).
+        examples: ["host.example.com"]
+
+  # DHCPv6 DUID Attributes
+  - id: registry.dhcp.v6.duid
+    type: attribute_group
+    display_name: DHCPv6 DUID Attributes
+    brief: >
+      Attributes for DHCPv6 DHCP Unique Identifier (DUID).
+    attributes:
+      - id: dhcp.v6.duid.type
+        type:
+          members:
+            - id: llt
+              value: "LLT"
+              brief: Link-layer address plus time.
+              stability: development
+            - id: en
+              value: "EN"
+              brief: Enterprise number.
+              stability: development
+            - id: ll
+              value: "LL"
+              brief: Link-layer address.
+              stability: development
+            - id: uuid
+              value: "UUID"
+              brief: Universally Unique Identifier.
+              stability: development
+        stability: development
+        brief: DUID type.
+        examples: ["LLT", "EN", "LL", "UUID"]
+
+      - id: dhcp.v6.duid.hardware_type
+        type: int
+        stability: development
+        brief: Hardware type for LLT/LL DUIDs.
+        examples: [1]
+
+      - id: dhcp.v6.duid.time
+        type: int
+        stability: development
+        brief: Time value for LLT (seconds since 2000-01-01).
+        examples: [789012345]
+
+      - id: dhcp.v6.duid.enterprise_number
+        type: int
+        stability: development
+        brief: Enterprise number for EN DUIDs.
+        examples: [9]
+
+      - id: dhcp.v6.duid.link_layer_address
+        type: string
+        stability: development
+        brief: Link-layer address.
+        examples: ["aa:bb:cc:dd:ee:ff"]

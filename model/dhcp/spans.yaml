@@ -1,0 +1,181 @@
+groups:
+  # DHCP Client Spans
+  - id: dhcp.client
+    type: span
+    span_kind: client
+    stability: development
+    brief: >
+      Semantic conventions for DHCP client spans. Client instrumentations
+      SHOULD create a span for each DHCP message sent.
+    note: |
+      DHCP span names SHOULD follow the pattern: `DHCP {message_type}`
+
+      The `{message_type}` MUST be the value of `dhcp.message.type`.
+
+      **Examples:**
+      - `DHCP DISCOVER`
+      - `DHCP OFFER`
+      - `DHCP SOLICIT`
+      - `DHCP ADVERTISE`
+    attributes:
+      - ref: dhcp.message.type
+        requirement_level: required
+        brief: The DHCP message type.
+      - ref: dhcp.request.id
+        requirement_level: required
+        brief: Transaction ID for correlation.
+      - ref: network.protocol.name
+        requirement_level: required
+        brief: MUST be `dhcp`.
+        examples: ["dhcp"]
+      - ref: network.protocol.version
+        requirement_level: required
+        brief: "`4` or `6`."
+        examples: ["4", "6"]
+      - ref: dhcp.client.identifier
+        requirement_level: recommended
+        brief: Client identifier.
+      - ref: dhcp.v4.chaddr
+        requirement_level:
+          conditionally_required: Required for DHCPv4.
+        brief: Client hardware address.
+      - ref: dhcp.v4.option.requested_ip
+        requirement_level:
+          conditionally_required: Required in REQUEST when requesting specific IP.
+        brief: Requested IP address.
+      - ref: dhcp.server.identifier
+        requirement_level:
+          conditionally_required: Required in REQUEST, RELEASE, DECLINE.
+        brief: Server identifier.
+      - ref: network.interface.name
+        requirement_level: recommended
+        brief: Interface used.
+      - ref: server.address
+        requirement_level: recommended
+        brief: Target server address.
+      - ref: error.type
+        requirement_level:
+          conditionally_required: Required if operation fails.
+        brief: Error classification when operation fails.
+
+  # DHCP Server Spans
+  - id: dhcp.server
+    type: span
+    span_kind: server
+    stability: development
+    brief: >
+      Semantic conventions for DHCP server spans. Server instrumentations
+      SHOULD create a span for each DHCP message processed.
+    note: |
+      DHCP span names SHOULD follow the pattern: `DHCP {message_type}`
+
+      The `{message_type}` MUST be the value of `dhcp.message.type`.
+
+      Instrumentation SHOULD set span status as follows:
+
+      | Condition | Span Status |
+      |-----------|-------------|
+      | Successful response (ACK, REPLY with success) | Leave unset (defaults to `OK`) |
+      | NAK received/sent | `ERROR` |
+      | Timeout waiting for response | `ERROR` |
+      | Address declined (in use) | `ERROR` |
+      | Processing error | `ERROR` |
+
+      When status is `ERROR`, the `error.type` attribute SHOULD be populated.
+    attributes:
+      - ref: dhcp.message.type
+        requirement_level: required
+        brief: The DHCP message type of response.
+      - ref: dhcp.request.id
+        requirement_level: required
+        brief: Transaction ID.
+      - ref: network.protocol.name
+        requirement_level: required
+        brief: MUST be `dhcp`.
+        examples: ["dhcp"]
+      - ref: network.protocol.version
+        requirement_level: required
+        brief: "`4` or `6`."
+        examples: ["4", "6"]
+      - ref: dhcp.client.identifier
+        requirement_level: recommended
+        brief: Client identifier from request.
+      - ref: dhcp.server.identifier
+        requirement_level: required
+        brief: Server identifier.
+      - ref: dhcp.v4.yiaddr
+        requirement_level:
+          conditionally_required: Required in OFFER, ACK for DHCPv4.
+        brief: Offered/assigned IP address.
+      - ref: dhcp.v6.option.ia_address
+        requirement_level:
+          conditionally_required: Required in ADVERTISE, REPLY for DHCPv6.
+        brief: Identity Association address.
+      - ref: dhcp.lease.duration
+        requirement_level:
+          conditionally_required: Required in OFFER, ACK, ADVERTISE, REPLY.
+        brief: Lease time in seconds.
+      - ref: dhcp.response.status_code
+        requirement_level:
+          conditionally_required: Required for NAK or error responses.
+        brief: Status/result of the DHCP operation.
+      - ref: dhcp.v4.giaddr
+        requirement_level:
+          conditionally_required: Required if request came via relay.
+        brief: Relay agent IP address.
+      - ref: network.peer.address
+        requirement_level: recommended
+        brief: Client or relay address.
+      - ref: error.type
+        requirement_level:
+          conditionally_required: Required if processing fails.
+        brief: Error classification when processing fails.
+
+  # DHCP Span Events
+  - id: dhcp.message.sent
+    type: event
+    stability: development
+    brief: Event recorded when a DHCP message is transmitted.
+    attributes:
+      - ref: dhcp.message.type
+        requirement_level: required
+
+  - id: dhcp.message.received
+    type: event
+    stability: development
+    brief: Event recorded when a DHCP message is received.
+    attributes:
+      - ref: dhcp.message.type
+        requirement_level: required
+
+  - id: dhcp.address.allocated
+    type: event
+    stability: development
+    brief: Event recorded when an address is assigned to a client.
+    attributes:
+      - ref: dhcp.v4.yiaddr
+        requirement_level:
+          conditionally_required: Required for DHCPv4.
+      - ref: dhcp.v6.option.ia_address
+        requirement_level:
+          conditionally_required: Required for DHCPv6.
+
+  - id: dhcp.address.released
+    type: event
+    stability: development
+    brief: Event recorded when an address is released by a client.
+    attributes:
+      - ref: dhcp.v4.ciaddr
+        requirement_level:
+          conditionally_required: Required for DHCPv4.
+      - ref: dhcp.v6.option.ia_address
+        requirement_level:
+          conditionally_required: Required for DHCPv6.
+
+  - id: dhcp.lease.expired
+    type: event
+    stability: development
+    brief: Event recorded when a lease expiration is detected.
+    attributes:
+      - ref: dhcp.client.identifier
+        requirement_level: recommended

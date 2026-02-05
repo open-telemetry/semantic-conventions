@@ -1,0 +1,159 @@
+groups:
+  # Client Metrics
+  - id: metric.dhcp.client.request.duration
+    type: metric
+    metric_name: dhcp.client.request.duration
+    stability: development
+    brief: Duration of DHCP client request operations.
+    instrument: histogram
+    unit: "s"
+    attributes:
+      - ref: dhcp.message.type
+        requirement_level: required
+        brief: The request message type.
+      - ref: dhcp.response.status_code
+        requirement_level: recommended
+        brief: Result status.
+      - ref: network.protocol.version
+        requirement_level: required
+        brief: "`4` or `6`."
+        examples: ["4", "6"]
+      - ref: network.interface.name
+        requirement_level: recommended
+        brief: Interface name.
+      - ref: server.address
+        requirement_level: recommended
+        brief: Server that responded.
+      - ref: error.type
+        requirement_level:
+          conditionally_required: Required if request failed.
+        brief: Error classification when request fails.
+
+  - id: metric.dhcp.client.lease.duration
+    type: metric
+    metric_name: dhcp.client.lease.duration
+    stability: development
+    brief: Time remaining on current lease.
+    instrument: gauge
+    unit: "s"
+    attributes:
+      - ref: network.protocol.version
+        requirement_level: required
+        brief: "`4` or `6`."
+        examples: ["4", "6"]
+      - ref: network.interface.name
+        requirement_level: required
+        brief: Interface with lease.
+      - ref: dhcp.v4.yiaddr
+        requirement_level:
+          conditionally_required: Required for DHCPv4.
+        brief: Assigned IPv4 address.
+      - ref: dhcp.v6.option.ia_address
+        requirement_level:
+          conditionally_required: Required for DHCPv6.
+        brief: Assigned IPv6 address.
+
+  # Server Metrics
+  - id: metric.dhcp.server.request.duration
+    type: metric
+    metric_name: dhcp.server.request.duration
+    stability: development
+    brief: Duration of DHCP server request processing.
+    instrument: histogram
+    unit: "s"
+    attributes:
+      - ref: dhcp.message.type
+        requirement_level: required
+        brief: The response message type.
+      - ref: network.protocol.version
+        requirement_level: required
+        brief: "`4` or `6`."
+        examples: ["4", "6"]
+      - ref: error.type
+        requirement_level:
+          conditionally_required: Required if processing failed.
+        brief: Error classification when processing fails.
+
+  - id: metric.dhcp.server.pool.usage
+    type: metric
+    metric_name: dhcp.server.pool.usage
+    stability: development
+    brief: Number of addresses currently leased from pool.
+    instrument: gauge
+    unit: "{address}"
+    attributes:
+      - ref: dhcp.server.pool.name
+        requirement_level: required
+        brief: Pool identifier.
+      - ref: network.protocol.version
+        requirement_level: required
+        brief: "`4` or `6`."
+        examples: ["4", "6"]
+
+  - id: metric.dhcp.server.pool.limit
+    type: metric
+    metric_name: dhcp.server.pool.limit
+    stability: development
+    brief: Total addresses available in pool.
+    instrument: gauge
+    unit: "{address}"
+    attributes:
+      - ref: dhcp.server.pool.name
+        requirement_level: required
+        brief: Pool identifier.
+      - ref: network.protocol.version
+        requirement_level: required
+        brief: "`4` or `6`."
+        examples: ["4", "6"]
+
+  - id: metric.dhcp.server.pool.utilization
+    type: metric
+    metric_name: dhcp.server.pool.utilization
+    stability: development
+    brief: Ratio of used to total addresses (0.0-1.0).
+    instrument: gauge
+    unit: "1"
+    attributes:
+      - ref: dhcp.server.pool.name
+        requirement_level: required
+        brief: Pool identifier.
+      - ref: network.protocol.version
+        requirement_level: required
+        brief: "`4` or `6`."
+        examples: ["4", "6"]
+
+  - id: metric.dhcp.server.leases.active
+    type: metric
+    metric_name: dhcp.server.leases.active
+    stability: development
+    brief: Current count of active leases.
+    instrument: updowncounter
+    unit: "{lease}"
+    attributes:
+      - ref: dhcp.server.pool.name
+        requirement_level: recommended
+        brief: Pool name if applicable.
+      - ref: network.protocol.version
+        requirement_level: required
+        brief: "`4` or `6`."
+        examples: ["4", "6"]
+
+  # Relay Metrics
+  - id: metric.dhcp.relay.request.duration
+    type: metric
+    metric_name: dhcp.relay.request.duration
+    stability: development
+    brief: Duration of relay forwarding.
+    instrument: histogram
+    unit: "s"
+    attributes:
+      - ref: dhcp.message.type
+        requirement_level: required
+        brief: Message type forwarded.
+      - ref: network.protocol.version
+        requirement_level: required
+        brief: "`4` or `6`."
+        examples: ["4", "6"]
+      - ref: dhcp.relay.direction
+        requirement_level: required
+        brief: "`client_to_server` or `server_to_client`."

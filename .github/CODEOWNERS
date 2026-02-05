@@ -115,6 +115,8 @@
 # /model/process/                 is defined in system section
 /model/tls/                       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-security-approvers
 /model/user/                      @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-security-approvers
+/docs/dhcp/                       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-security-approvers
+/model/dhcp/                      @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-security-approvers
 
 # CICD semantic conventions
 /docs/cicd/                       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-cicd-approvers
