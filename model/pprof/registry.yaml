@@ -85,7 +85,7 @@ groups:
         brief: >
           Records the indexes of the sample types in the original profile.
         note: >
-          This attribute SHOULD be set at the scope level
+          This attribute, if present, MUST be set at the scope level
           (resource_profiles[].scope_profiles[].scope.attributes[]).
         type: int[]
         examples:
