@@ -6,6 +6,9 @@ groups:
     brief: >
       The software deployment.
     attributes:
+      - ref: deployment.name
+        role: identifying
+        requirement_level: required
       - ref: deployment.environment.name
         role: descriptive
         requirement_level: recommended
