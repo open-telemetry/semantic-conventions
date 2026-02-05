@@ -1,4 +1,38 @@
 groups:
+  - id: event.app.crash
+    stability: development
+    type: event
+    name: app.crash
+    brief: >
+      This event represents an unexpected termination of a user-facing application.
+    note: |
+      This event identifies an app crash, defined as an unexpected termination
+      of a user-facing application. It can be recorded synchronously with the crashing
+      of the app just prior to the termination of the application process or
+      asynchronously some time after.
+      How the instrumentation will determine whether an instance of a crash has
+      already been reported and how the necessary data will be retrieved is
+      left up to the instrumentation.
+      Attributes defined in this event denote the state of the app when the crash
+      happened, not when the event was created. Therefore, what are normally obtained
+      from Resource attributes like OS and service versions that are also specified in
+      the event MUST be retreived from the event itself. In other words, attributes in
+      the event override their equivalents in the Resource, and any related attributes
+      not specified MUST be assumed to be on the Resource (e.g. if service.version is
+      specified but service.name is not, it is assume it will be in the Resource).
+    attributes:
+      - ref: app.crash.id
+        requirement_level: required
+      - ref: os.name
+        requirement_level: recommended
+      - ref: os.version
+        requirement_level: recommended
+      - ref: service.name
+        requirement_level: recommended
+      - ref: service.version
+        requirement_level: recommended
+      - ref: session.id
+        requirement_level: recommended
   - id: event.app.screen.click
     stability: development
     type: event
