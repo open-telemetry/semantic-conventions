@@ -152,3 +152,23 @@
 | --- | --- | --- | --- | --- | --- | --- |
 | Other | [`gcp.gce.instance.hostname`](/docs/registry/attributes/gcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The hostname of a GCE instance. This is the full value of the default or [custom hostname](https://cloud.google.com/compute/docs/instances/custom-hostname-vm). | `my-host1234.example.com`; `sample-vm.us-west1-b.c.my-project.internal` |
 | Other | [`gcp.gce.instance.name`](/docs/registry/attributes/gcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The instance name of a GCE instance. This is the value provided by `host.name`, the visible name of the instance in the Cloud Console UI, and the prefix for the default hostname of the instance as defined by the [default internal DNS name](https://cloud.google.com/compute/docs/internal-dns#instance-fully-qualified-domain-names). | `instance-1`; `my-vm-name` |
+
+## GCP GCE Instance Group Manager
+
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
+
+**type:** `gcp.gce.instance_group_manager`
+
+**Description:** A GCE instance group manager.
+
+**Attributes:**
+
+| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
+| --- | --- | --- | --- | --- | --- | --- |
+| Identity | [`gcp.gce.instance_group_manager.name`](/docs/registry/attributes/gcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the Instance Group Manager (IGM) that manages this VM, if any. | `web-igm`; `my-managed-group` |
+| Identity | [`gcp.gce.instance_group_manager.region`](/docs/registry/attributes/gcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [5] | string | The region of a **regional** Instance Group Manager (e.g., `us-central1`). Set this **only** when the IGM is regional. | `us-central1`; `europe-west1` |
+| Identity | [`gcp.gce.instance_group_manager.zone`](/docs/registry/attributes/gcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [6] | string | The zone of a **zonal** Instance Group Manager (e.g., `us-central1-a`). Set this **only** when the IGM is zonal. | `us-central1-a`; `europe-west1-b` |
+
+**[5] `gcp.gce.instance_group_manager.region`:** When the instance group is regional, then region MUST be filled out.
+
+**[6] `gcp.gce.instance_group_manager.zone`:** When the instance group is zonal, then zone MUST be filled out.
