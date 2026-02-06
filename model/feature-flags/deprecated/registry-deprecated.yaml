@@ -70,9 +70,9 @@ groups:
         examples: ["red", "true", "on"]
       - id: feature_flag.evaluation.error.message
         type: string
-        brief: 'Deprecated, use `error.message` instead.'
+        brief: 'Deprecated, use `feature_flag.error.message` instead.'
         stability: development
         deprecated:
           reason: renamed
-          renamed_to: error.message
+          renamed_to: feature_flag.error.message
         examples: ["Flag `header-color` expected type `string` but found type `number`"]
