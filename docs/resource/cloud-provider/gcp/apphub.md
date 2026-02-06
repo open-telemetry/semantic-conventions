@@ -44,12 +44,13 @@ See [Supported Resources](https://cloud.google.com/app-hub/docs/supported-resour
 
 | Setting | Requirement Level | Category | Example Value | Attribute |
 | --- | --- | --- | --- | --- |
+| `resource.detection.detectors[]` | `Required` | Detector Inclusion | `gcp.apphub.application` | - |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `gcp.apphub.application.container` | [`gcp.apphub.application.container`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: gcp.apphub.application.container,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  projects/my-container-project | [`gcp.apphub.application.container`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: gcp.apphub.application.container,`<br>&nbsp;&nbsp;&nbsp;`value: projects/my-container-project` | [`gcp.apphub.application.container`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `gcp.apphub.application.id` | [`gcp.apphub.application.id`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: gcp.apphub.application.id,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  my-application | [`gcp.apphub.application.id`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: gcp.apphub.application.id,`<br>&nbsp;&nbsp;&nbsp;`value: my-application` | [`gcp.apphub.application.id`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `gcp.apphub.application.location` | [`gcp.apphub.application.location`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: gcp.apphub.application.location,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  us-central1 | [`gcp.apphub.application.location`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: gcp.apphub.application.location,`<br>&nbsp;&nbsp;&nbsp;`value: us-central1` | [`gcp.apphub.application.location`](/docs/registry/attributes/.md) |
 
 **Environment Variable Options:**
 
@@ -117,12 +118,13 @@ See [Supported Resources](https://cloud.google.com/app-hub/docs/supported-resour
 
 | Setting | Requirement Level | Category | Example Value | Attribute |
 | --- | --- | --- | --- | --- |
+| `resource.detection.detectors[]` | `Required` | Detector Inclusion | `gcp.apphub.service` | - |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `gcp.apphub.service.criticality_type` | [`gcp.apphub.service.criticality_type`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: gcp.apphub.service.criticality_type,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  | [`gcp.apphub.service.criticality_type`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: gcp.apphub.service.criticality_type,`<br>&nbsp;&nbsp;&nbsp;`type:string,`<br>&nbsp;&nbsp;&nbsp;`value: MISSION_CRITICAL` | [`gcp.apphub.service.criticality_type`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `gcp.apphub.service.environment_type` | [`gcp.apphub.service.environment_type`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: gcp.apphub.service.environment_type,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  | [`gcp.apphub.service.environment_type`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: gcp.apphub.service.environment_type,`<br>&nbsp;&nbsp;&nbsp;`type:string,`<br>&nbsp;&nbsp;&nbsp;`value: PRODUCTION` | [`gcp.apphub.service.environment_type`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `gcp.apphub.service.id` | [`gcp.apphub.service.id`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: gcp.apphub.service.id,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  my-service | [`gcp.apphub.service.id`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: gcp.apphub.service.id,`<br>&nbsp;&nbsp;&nbsp;`value: my-service` | [`gcp.apphub.service.id`](/docs/registry/attributes/.md) |
 
 **Environment Variable Options:**
 
@@ -190,12 +192,13 @@ See [Supported Resources](https://cloud.google.com/app-hub/docs/supported-resour
 
 | Setting | Requirement Level | Category | Example Value | Attribute |
 | --- | --- | --- | --- | --- |
+| `resource.detection.detectors[]` | `Required` | Detector Inclusion | `gcp.apphub.workload` | - |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `gcp.apphub.workload.criticality_type` | [`gcp.apphub.workload.criticality_type`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: gcp.apphub.workload.criticality_type,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  | [`gcp.apphub.workload.criticality_type`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: gcp.apphub.workload.criticality_type,`<br>&nbsp;&nbsp;&nbsp;`type:string,`<br>&nbsp;&nbsp;&nbsp;`value: MISSION_CRITICAL` | [`gcp.apphub.workload.criticality_type`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `gcp.apphub.workload.environment_type` | [`gcp.apphub.workload.environment_type`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: gcp.apphub.workload.environment_type,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  | [`gcp.apphub.workload.environment_type`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: gcp.apphub.workload.environment_type,`<br>&nbsp;&nbsp;&nbsp;`type:string,`<br>&nbsp;&nbsp;&nbsp;`value: PRODUCTION` | [`gcp.apphub.workload.environment_type`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `gcp.apphub.workload.id` | [`gcp.apphub.workload.id`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: gcp.apphub.workload.id,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  my-workload | [`gcp.apphub.workload.id`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: gcp.apphub.workload.id,`<br>&nbsp;&nbsp;&nbsp;`value: my-workload` | [`gcp.apphub.workload.id`](/docs/registry/attributes/.md) |
 
 **Environment Variable Options:**
 

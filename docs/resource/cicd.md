@@ -49,8 +49,9 @@ See also:
 
 | Setting | Requirement Level | Category | Example Value | Attribute |
 | --- | --- | --- | --- | --- |
+| `resource.detection.detectors[]` | `Required` | Detector Inclusion | `cicd.pipeline` | - |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `cicd.pipeline.name` | [`cicd.pipeline.name`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: cicd.pipeline.name,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  Build and Test | [`cicd.pipeline.name`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: cicd.pipeline.name,`<br>&nbsp;&nbsp;&nbsp;`value: Build and Test` | [`cicd.pipeline.name`](/docs/registry/attributes/.md) |
 
 **Environment Variable Options:**
 
@@ -95,10 +96,11 @@ Using the CICD pipeline run resource with metrics inherently causes high cardina
 
 | Setting | Requirement Level | Category | Example Value | Attribute |
 | --- | --- | --- | --- | --- |
+| `resource.detection.detectors[]` | `Required` | Detector Inclusion | `cicd.pipeline.run` | - |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `cicd.pipeline.run.id` | [`cicd.pipeline.run.id`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: cicd.pipeline.run.id,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  120912 | [`cicd.pipeline.run.id`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: cicd.pipeline.run.id,`<br>&nbsp;&nbsp;&nbsp;`value: 120912` | [`cicd.pipeline.run.id`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `cicd.pipeline.run.url.full` | [`cicd.pipeline.run.url.full`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: cicd.pipeline.run.url.full,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  https://github.com/open-telemetry/semantic-conventions/actions/runs/9753949763?pr=1075 | [`cicd.pipeline.run.url.full`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: cicd.pipeline.run.url.full,`<br>&nbsp;&nbsp;&nbsp;`value: https://github.com/open-telemetry/semantic-conventions/actions/runs/9753949763?pr=1075` | [`cicd.pipeline.run.url.full`](/docs/registry/attributes/.md) |
 
 **Environment Variable Options:**
 
@@ -141,12 +143,13 @@ For example, when a pipeline run involves several workers, its task run spans ma
 
 | Setting | Requirement Level | Category | Example Value | Attribute |
 | --- | --- | --- | --- | --- |
+| `resource.detection.detectors[]` | `Required` | Detector Inclusion | `cicd.worker` | - |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `cicd.worker.id` | [`cicd.worker.id`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: cicd.worker.id,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  abc123 | [`cicd.worker.id`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: cicd.worker.id,`<br>&nbsp;&nbsp;&nbsp;`value: abc123` | [`cicd.worker.id`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `cicd.worker.name` | [`cicd.worker.name`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: cicd.worker.name,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  agent-abc | [`cicd.worker.name`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: cicd.worker.name,`<br>&nbsp;&nbsp;&nbsp;`value: agent-abc` | [`cicd.worker.name`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `cicd.worker.url.full` | [`cicd.worker.url.full`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: cicd.worker.url.full,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  https://cicd.example.org/worker/abc123 | [`cicd.worker.url.full`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: cicd.worker.url.full,`<br>&nbsp;&nbsp;&nbsp;`value: https://cicd.example.org/worker/abc123` | [`cicd.worker.url.full`](/docs/registry/attributes/.md) |
 
 **Environment Variable Options:**
 
@@ -196,10 +199,11 @@ the `.git` extension.
 
 | Setting | Requirement Level | Category | Example Value | Attribute |
 | --- | --- | --- | --- | --- |
+| `resource.detection.detectors[]` | `Required` | Detector Inclusion | `vcs.repo` | - |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `vcs.repository.name` | [`vcs.repository.name`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: vcs.repository.name,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  semantic-conventions | [`vcs.repository.name`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: vcs.repository.name,`<br>&nbsp;&nbsp;&nbsp;`value: semantic-conventions` | [`vcs.repository.name`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `vcs.repository.url.full` | [`vcs.repository.url.full`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: vcs.repository.url.full,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  https://github.com/opentelemetry/open-telemetry-collector-contrib | [`vcs.repository.url.full`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: vcs.repository.url.full,`<br>&nbsp;&nbsp;&nbsp;`value: https://github.com/opentelemetry/open-telemetry-collector-contrib` | [`vcs.repository.url.full`](/docs/registry/attributes/.md) |
 
 **Environment Variable Options:**
 
@@ -264,12 +268,13 @@ revision based on the VCS system and situational context.
 
 | Setting | Requirement Level | Category | Example Value | Attribute |
 | --- | --- | --- | --- | --- |
+| `resource.detection.detectors[]` | `Required` | Detector Inclusion | `vcs.ref` | - |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `vcs.ref.head.name` | [`vcs.ref.head.name`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: vcs.ref.head.name,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  my-feature-branch | [`vcs.ref.head.name`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: vcs.ref.head.name,`<br>&nbsp;&nbsp;&nbsp;`value: my-feature-branch` | [`vcs.ref.head.name`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `vcs.ref.head.revision` | [`vcs.ref.head.revision`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: vcs.ref.head.revision,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  9d59409acf479dfa0df1aa568182e43e43df8bbe28d60fcf2bc52e30068802cc | [`vcs.ref.head.revision`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: vcs.ref.head.revision,`<br>&nbsp;&nbsp;&nbsp;`value: 9d59409acf479dfa0df1aa568182e43e43df8bbe28d60fcf2bc52e30068802cc` | [`vcs.ref.head.revision`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `vcs.ref.type` | [`vcs.ref.type`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: vcs.ref.type,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  branch | [`vcs.ref.type`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: vcs.ref.type,`<br>&nbsp;&nbsp;&nbsp;`type:string,`<br>&nbsp;&nbsp;&nbsp;`value: branch` | [`vcs.ref.type`](/docs/registry/attributes/.md) |
 
 **Environment Variable Options:**
 

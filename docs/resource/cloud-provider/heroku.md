@@ -27,12 +27,13 @@
 
 | Setting | Requirement Level | Category | Example Value | Attribute |
 | --- | --- | --- | --- | --- |
+| `resource.detection.detectors[]` | `Required` | Detector Inclusion | `heroku` | - |
 | `resource.experimentalresourcedetection.attributes.included[]` | `Conditionally Required` | Attribute Inclusion | `heroku.app.id` | [`heroku.app.id`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: heroku.app.id,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  2daa2797-e42b-4624-9322-ec3f968df4da | [`heroku.app.id`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: heroku.app.id,`<br>&nbsp;&nbsp;&nbsp;`value: 2daa2797-e42b-4624-9322-ec3f968df4da` | [`heroku.app.id`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.included[]` | `Conditionally Required` | Attribute Inclusion | `heroku.release.commit` | [`heroku.release.commit`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: heroku.release.commit,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  e6134959463efd8966b20e75b913cafe3f5ec | [`heroku.release.commit`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: heroku.release.commit,`<br>&nbsp;&nbsp;&nbsp;`value: e6134959463efd8966b20e75b913cafe3f5ec` | [`heroku.release.commit`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.included[]` | `Conditionally Required` | Attribute Inclusion | `heroku.release.creation_timestamp` | [`heroku.release.creation_timestamp`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: heroku.release.creation_timestamp,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  2022-10-23T18:00:42Z | [`heroku.release.creation_timestamp`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: heroku.release.creation_timestamp,`<br>&nbsp;&nbsp;&nbsp;`value: 2022-10-23T18:00:42Z` | [`heroku.release.creation_timestamp`](/docs/registry/attributes/.md) |
 
 **Environment Variable Options:**
 

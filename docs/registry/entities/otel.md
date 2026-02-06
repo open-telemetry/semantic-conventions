@@ -26,10 +26,11 @@
 
 | Setting | Requirement Level | Category | Example Value | Attribute |
 | --- | --- | --- | --- | --- |
+| `resource.detection.detectors[]` | `Required` | Detector Inclusion | `otel.scope` | - |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `otel.scope.name` | [`otel.scope.name`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: otel.scope.name,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  io.opentelemetry.contrib.mongodb | [`otel.scope.name`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: otel.scope.name,`<br>&nbsp;&nbsp;&nbsp;`value: io.opentelemetry.contrib.mongodb` | [`otel.scope.name`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `otel.scope.version` | [`otel.scope.version`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: otel.scope.version,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  1.0.0 | [`otel.scope.version`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: otel.scope.version,`<br>&nbsp;&nbsp;&nbsp;`value: 1.0.0` | [`otel.scope.version`](/docs/registry/attributes/.md) |
 
 **Environment Variable Options:**
 
