@@ -53,30 +53,25 @@
 
 **Configuration File Options:**
 
-| Setting | Requirement Level | Category | Value Type | Example Value | Attribute |
-| --- | --- | --- | --- | --- | --- |
-| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `os.build_id` | [`os.build_id`](/docs/registry/attributes/.md) |
-| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`os.build_id`](/docs/registry/attributes/.md) |
-| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `TQ3C.230805.001.B2` | [`os.build_id`](/docs/registry/attributes/.md) |
-| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `os.description` | [`os.description`](/docs/registry/attributes/.md) |
-| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`os.description`](/docs/registry/attributes/.md) |
-| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `Microsoft Windows [Version 10.0.18363.778]` | [`os.description`](/docs/registry/attributes/.md) |
-| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `os.name` | [`os.name`](/docs/registry/attributes/.md) |
-| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`os.name`](/docs/registry/attributes/.md) |
-| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `iOS` | [`os.name`](/docs/registry/attributes/.md) |
-| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `os.type` | [`os.type`](/docs/registry/attributes/.md) |
-| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`os.type`](/docs/registry/attributes/.md) |
-| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | | [`os.type`](/docs/registry/attributes/.md) |
-| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `os.version` | [`os.version`](/docs/registry/attributes/.md) |
-| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`os.version`](/docs/registry/attributes/.md) |
-| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `14.2.1` | [`os.version`](/docs/registry/attributes/.md) |
+| Setting | Requirement Level | Category | Example Value | Attribute |
+| --- | --- | --- | --- | --- |
+| `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `os.build_id` | [`os.build_id`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: os.build_id,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  TQ3C.230805.001.B2 | [`os.build_id`](/docs/registry/attributes/.md) |
+| `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `os.description` | [`os.description`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: os.description,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  Microsoft Windows [Version 10.0.18363.778] | [`os.description`](/docs/registry/attributes/.md) |
+| `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `os.name` | [`os.name`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: os.name,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  iOS | [`os.name`](/docs/registry/attributes/.md) |
+| `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `os.type` | [`os.type`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: os.type,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  | [`os.type`](/docs/registry/attributes/.md) |
+| `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `os.version` | [`os.version`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: os.version,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  14.2.1 | [`os.version`](/docs/registry/attributes/.md) |
 
 **Environment Variable Options:**
 
-| Setting | Requirement Level | Category | Value Type | Example Value | Attribute |
-| --- | --- | --- | --- | --- | --- |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `os.build_id=TQ3C.230805.001.B2` | [`os.build_id`](/docs/registry/attributes/.md) |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `os.description=Microsoft Windows [Version 10.0.18363.778]` | [`os.description`](/docs/registry/attributes/.md) |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `os.name=iOS` | [`os.name`](/docs/registry/attributes/.md) |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `os.type=` | [`os.type`](/docs/registry/attributes/.md) |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `os.version=14.2.1` | [`os.version`](/docs/registry/attributes/.md) |
+| Setting | Requirement Level | Category | Example Value | Attribute |
+| --- | --- | --- | --- | --- |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `os.build_id=TQ3C.230805.001.B2` | [`os.build_id`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `os.description=Microsoft Windows [Version 10.0.18363.778]` | [`os.description`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `os.name=iOS` | [`os.name`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `os.type=` | [`os.type`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `os.version=14.2.1` | [`os.version`](/docs/registry/attributes/.md) |

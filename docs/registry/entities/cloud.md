@@ -111,34 +111,28 @@ The following well-known definitions MUST be used if you set this attribute and 
 
 **Configuration File Options:**
 
-| Setting | Requirement Level | Category | Value Type | Example Value | Attribute |
-| --- | --- | --- | --- | --- | --- |
-| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `cloud.account.id` | [`cloud.account.id`](/docs/registry/attributes/.md) |
-| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`cloud.account.id`](/docs/registry/attributes/.md) |
-| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `111111111111` | [`cloud.account.id`](/docs/registry/attributes/.md) |
-| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `cloud.availability_zone` | [`cloud.availability_zone`](/docs/registry/attributes/.md) |
-| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`cloud.availability_zone`](/docs/registry/attributes/.md) |
-| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `us-east-1c` | [`cloud.availability_zone`](/docs/registry/attributes/.md) |
-| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `cloud.platform` | [`cloud.platform`](/docs/registry/attributes/.md) |
-| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`cloud.platform`](/docs/registry/attributes/.md) |
-| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | | [`cloud.platform`](/docs/registry/attributes/.md) |
-| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `cloud.provider` | [`cloud.provider`](/docs/registry/attributes/.md) |
-| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`cloud.provider`](/docs/registry/attributes/.md) |
-| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | | [`cloud.provider`](/docs/registry/attributes/.md) |
-| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `cloud.region` | [`cloud.region`](/docs/registry/attributes/.md) |
-| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`cloud.region`](/docs/registry/attributes/.md) |
-| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `us-central1` | [`cloud.region`](/docs/registry/attributes/.md) |
-| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `cloud.resource_id` | [`cloud.resource_id`](/docs/registry/attributes/.md) |
-| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`cloud.resource_id`](/docs/registry/attributes/.md) |
-| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `arn:aws:lambda:REGION:ACCOUNT_ID:function:my-function` | [`cloud.resource_id`](/docs/registry/attributes/.md) |
+| Setting | Requirement Level | Category | Example Value | Attribute |
+| --- | --- | --- | --- | --- |
+| `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `cloud.account.id` | [`cloud.account.id`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: cloud.account.id,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  111111111111 | [`cloud.account.id`](/docs/registry/attributes/.md) |
+| `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `cloud.availability_zone` | [`cloud.availability_zone`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: cloud.availability_zone,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  us-east-1c | [`cloud.availability_zone`](/docs/registry/attributes/.md) |
+| `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `cloud.platform` | [`cloud.platform`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: cloud.platform,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  | [`cloud.platform`](/docs/registry/attributes/.md) |
+| `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `cloud.provider` | [`cloud.provider`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: cloud.provider,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  | [`cloud.provider`](/docs/registry/attributes/.md) |
+| `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `cloud.region` | [`cloud.region`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: cloud.region,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  us-central1 | [`cloud.region`](/docs/registry/attributes/.md) |
+| `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `cloud.resource_id` | [`cloud.resource_id`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: cloud.resource_id,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  arn:aws:lambda:REGION:ACCOUNT_ID:function:my-function | [`cloud.resource_id`](/docs/registry/attributes/.md) |
 
 **Environment Variable Options:**
 
-| Setting | Requirement Level | Category | Value Type | Example Value | Attribute |
-| --- | --- | --- | --- | --- | --- |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `cloud.account.id=111111111111` | [`cloud.account.id`](/docs/registry/attributes/.md) |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `cloud.availability_zone=us-east-1c` | [`cloud.availability_zone`](/docs/registry/attributes/.md) |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `cloud.platform=` | [`cloud.platform`](/docs/registry/attributes/.md) |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `cloud.provider=` | [`cloud.provider`](/docs/registry/attributes/.md) |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `cloud.region=us-central1` | [`cloud.region`](/docs/registry/attributes/.md) |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `cloud.resource_id=arn:aws:lambda:REGION:ACCOUNT_ID:function:my-function` | [`cloud.resource_id`](/docs/registry/attributes/.md) |
+| Setting | Requirement Level | Category | Example Value | Attribute |
+| --- | --- | --- | --- | --- |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `cloud.account.id=111111111111` | [`cloud.account.id`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `cloud.availability_zone=us-east-1c` | [`cloud.availability_zone`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `cloud.platform=` | [`cloud.platform`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `cloud.provider=` | [`cloud.provider`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `cloud.region=us-central1` | [`cloud.region`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `cloud.resource_id=arn:aws:lambda:REGION:ACCOUNT_ID:function:my-function` | [`cloud.resource_id`](/docs/registry/attributes/.md) |

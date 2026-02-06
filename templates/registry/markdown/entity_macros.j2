@@ -67,28 +67,27 @@
 {% macro configuration(e) -%}
 **Configuration File Options:**
 
-| Setting | Requirement Level | Category | Value Type | Example Value | Attribute |
-| --- | --- | --- | --- | --- | --- |
+| Setting | Requirement Level | Category | Example Value | Attribute |
+| --- | --- | --- | --- | --- |
 {% for attribute in e.attributes | sort(attribute="name") %}{{ configFileLine(e, attribute, "/docs/registry/attributes") | trim}}
 {% endfor %}
 **Environment Variable Options:**
 
-| Setting | Requirement Level | Category | Value Type | Example Value | Attribute |
-| --- | --- | --- | --- | --- | --- |
+| Setting | Requirement Level | Category | Example Value | Attribute |
+| --- | --- | --- | --- | --- |
 {% for attribute in e.attributes | sort(attribute="name") %}{{ configEnvLine(e, attribute, "/docs/registry/attributes") | trim}}
 {% endfor %}
 {%- endmacro %}
 
 {% macro configFileLine(e, attribute, attribute_registry_base_url) %}
-{% if ((e.stability == "stable") and (attribute.stability != "stable")) %}| `TBA` | `Required` | Experimental Opt-in | TBA | TBA | {{ attrs.name_with_link(attribute, attribute_registry_base_url, e.lineage_attributes) }} |{% endif %}
-{% if ((attribute.requirement_level == "opt_in")) %}| `TBA` | `Required` | Attribute Opt-In | TBA | TBA | {{ attrs.name_with_link(attribute, attribute_registry_base_url, e.lineage_attributes) }} |{% endif %}
-| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `{{attribute.name}}` | {{ attrs.name_with_link(attribute, attribute_registry_base_url, e.lineage_attributes) }} |
-| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `{{ attrs.type(attribute) }}` | {{ attrs.name_with_link(attribute, "/docs/registry/attributes", e.lineage_attributes) }} |
-| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | {{ attrs.type(attribute) }} |{% if attribute.examples %} `{{attribute.examples[0]}}`{% endif %} | {{ attrs.name_with_link(attribute, attribute_registry_base_url, e.lineage_attributes) }} |
+{% if ((e.stability == "stable") and (attribute.stability != "stable")) %}| `TBA` | `Required` | Experimental Opt-in | TBA | {{ attrs.name_with_link(attribute, attribute_registry_base_url, e.lineage_attributes) }} |{% endif %}{% if ((attribute.requirement_level == "opt_in")) %}
+| `resource.experimentalresourcedetection.attributes.included[]` | `Conditionally Required` | Attribute Inclusion | `{{attribute.name}}` | {{ attrs.name_with_link(attribute, attribute_registry_base_url, e.lineage_attributes) }} |{% endif %}{% if ((attribute.requirement_level != "opt_in")) %}
+| `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `{{attribute.name}}` | {{ attrs.name_with_link(attribute, attribute_registry_base_url, e.lineage_attributes) }} |{% endif %}
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: {{attribute.name}},<br>&nbsp;&nbsp;&nbsp;type:{{ attrs.type(attribute) }},<br>&nbsp;&nbsp;&nbsp;value: {% if attribute.examples %} {{attribute.examples[0]}}{% endif %} | {{ attrs.name_with_link(attribute, attribute_registry_base_url, e.lineage_attributes) }} |
 {% endmacro%}
 
 {% macro configEnvLine(e, attribute, attribute_registry_base_url) %}
 {% if ((e.stability == "stable") and (attribute.stability != "stable")) %}
 | `TBA` | Required | Experimental Opt-in | TBA | TBA | {{ attrs.name_with_link(attribute, attribute_registry_base_url, e.lineage_attributes) }} |{% endif %}
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `{{attribute.name}}={% if attribute.examples %}{{attribute.examples[0]}}{% endif %}` | {{ attrs.name_with_link(attribute, attribute_registry_base_url, e.lineage_attributes) }} |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `{{attribute.name}}={% if attribute.examples %}{{attribute.examples[0]}}{% endif %}` | {{ attrs.name_with_link(attribute, attribute_registry_base_url, e.lineage_attributes) }} |
 {% endmacro%}

@@ -25,22 +25,19 @@
 
 **Configuration File Options:**
 
-| Setting | Requirement Level | Category | Value Type | Example Value | Attribute |
-| --- | --- | --- | --- | --- | --- |
-| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `mainframe.lpar.name` | [`mainframe.lpar.name`](/docs/registry/attributes/.md) |
-| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`mainframe.lpar.name`](/docs/registry/attributes/.md) |
-| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `LPAR01` | [`mainframe.lpar.name`](/docs/registry/attributes/.md) |
-| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `zos.smf.id` | [`zos.smf.id`](/docs/registry/attributes/.md) |
-| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`zos.smf.id`](/docs/registry/attributes/.md) |
-| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `SYS1` | [`zos.smf.id`](/docs/registry/attributes/.md) |
-| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `zos.sysplex.name` | [`zos.sysplex.name`](/docs/registry/attributes/.md) |
-| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`zos.sysplex.name`](/docs/registry/attributes/.md) |
-| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `SYSPLEX1` | [`zos.sysplex.name`](/docs/registry/attributes/.md) |
+| Setting | Requirement Level | Category | Example Value | Attribute |
+| --- | --- | --- | --- | --- |
+| `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `mainframe.lpar.name` | [`mainframe.lpar.name`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: mainframe.lpar.name,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  LPAR01 | [`mainframe.lpar.name`](/docs/registry/attributes/.md) |
+| `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `zos.smf.id` | [`zos.smf.id`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: zos.smf.id,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  SYS1 | [`zos.smf.id`](/docs/registry/attributes/.md) |
+| `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `zos.sysplex.name` | [`zos.sysplex.name`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: zos.sysplex.name,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  SYSPLEX1 | [`zos.sysplex.name`](/docs/registry/attributes/.md) |
 
 **Environment Variable Options:**
 
-| Setting | Requirement Level | Category | Value Type | Example Value | Attribute |
-| --- | --- | --- | --- | --- | --- |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `mainframe.lpar.name=LPAR01` | [`mainframe.lpar.name`](/docs/registry/attributes/.md) |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `zos.smf.id=SYS1` | [`zos.smf.id`](/docs/registry/attributes/.md) |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `zos.sysplex.name=SYSPLEX1` | [`zos.sysplex.name`](/docs/registry/attributes/.md) |
+| Setting | Requirement Level | Category | Example Value | Attribute |
+| --- | --- | --- | --- | --- |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `mainframe.lpar.name=LPAR01` | [`mainframe.lpar.name`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `zos.smf.id=SYS1` | [`zos.smf.id`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `zos.sysplex.name=SYSPLEX1` | [`zos.sysplex.name`](/docs/registry/attributes/.md) |

@@ -49,27 +49,22 @@ More information about Android identifier best practices can be found in the [An
 
 **Configuration File Options:**
 
-| Setting | Requirement Level | Category | Value Type | Example Value | Attribute |
-| --- | --- | --- | --- | --- | --- |
-| `TBA` | `Required` | Attribute Opt-In | TBA | TBA | [`device.id`](/docs/registry/attributes/.md) |
-| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `device.id` | [`device.id`](/docs/registry/attributes/.md) |
-| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`device.id`](/docs/registry/attributes/.md) |
-| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `123456789012345` | [`device.id`](/docs/registry/attributes/.md) |
-| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `device.manufacturer` | [`device.manufacturer`](/docs/registry/attributes/.md) |
-| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`device.manufacturer`](/docs/registry/attributes/.md) |
-| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `Apple` | [`device.manufacturer`](/docs/registry/attributes/.md) |
-| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `device.model.identifier` | [`device.model.identifier`](/docs/registry/attributes/.md) |
-| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`device.model.identifier`](/docs/registry/attributes/.md) |
-| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `iPhone3,4` | [`device.model.identifier`](/docs/registry/attributes/.md) |
-| `resource.attributes.[].name` | `Conditionally Required` | User Defined Resource | string | `device.model.name` | [`device.model.name`](/docs/registry/attributes/.md) |
-| `resource.attributes.[].type` | `Conditionally Recommended` | User Defined Resource | string | `string` | [`device.model.name`](/docs/registry/attributes/.md) |
-| `resource.attributes.[].value` | `Conditionally Required` | User Defined Resource | string | `iPhone 6s Plus` | [`device.model.name`](/docs/registry/attributes/.md) |
+| Setting | Requirement Level | Category | Example Value | Attribute |
+| --- | --- | --- | --- | --- |
+| `resource.experimentalresourcedetection.attributes.included[]` | `Conditionally Required` | Attribute Inclusion | `device.id` | [`device.id`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: device.id,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  123456789012345 | [`device.id`](/docs/registry/attributes/.md) |
+| `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `device.manufacturer` | [`device.manufacturer`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: device.manufacturer,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  Apple | [`device.manufacturer`](/docs/registry/attributes/.md) |
+| `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `device.model.identifier` | [`device.model.identifier`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: device.model.identifier,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  iPhone3,4 | [`device.model.identifier`](/docs/registry/attributes/.md) |
+| `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `device.model.name` | [`device.model.name`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: device.model.name,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  iPhone 6s Plus | [`device.model.name`](/docs/registry/attributes/.md) |
 
 **Environment Variable Options:**
 
-| Setting | Requirement Level | Category | Value Type | Example Value | Attribute |
-| --- | --- | --- | --- | --- | --- |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `device.id=123456789012345` | [`device.id`](/docs/registry/attributes/.md) |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `device.manufacturer=Apple` | [`device.manufacturer`](/docs/registry/attributes/.md) |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `device.model.identifier=iPhone3,4` | [`device.model.identifier`](/docs/registry/attributes/.md) |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | string | `device.model.name=iPhone 6s Plus` | [`device.model.name`](/docs/registry/attributes/.md) |
+| Setting | Requirement Level | Category | Example Value | Attribute |
+| --- | --- | --- | --- | --- |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `device.id=123456789012345` | [`device.id`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `device.manufacturer=Apple` | [`device.manufacturer`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `device.model.identifier=iPhone3,4` | [`device.model.identifier`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `device.model.name=iPhone 6s Plus` | [`device.model.name`](/docs/registry/attributes/.md) |
