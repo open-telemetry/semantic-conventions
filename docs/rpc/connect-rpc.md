@@ -34,7 +34,7 @@ This span represents an outgoing Remote Procedure Call (RPC).
 
 `rpc.system.name` MUST be set to `"connectrpc"` and SHOULD be provided **at span creation time.**
 
-**Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#span-name) section.
+**Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#name) section.
 
 **Span kind** MUST be `CLIENT`.
 
@@ -146,7 +146,7 @@ This span represents an incoming Remote Procedure Call (RPC).
 
 `rpc.system.name` MUST be set to `"connectrpc"` and SHOULD be provided **at span creation time.**
 
-**Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#span-name) section.
+**Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#name) section.
 
 **Span kind** MUST be `SERVER`.
 
