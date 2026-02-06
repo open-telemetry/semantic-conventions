@@ -105,3 +105,57 @@ groups:
     unit: "s"
     stability: development
     extends: metric_attributes.gen_ai
+
+  # Memory Operation Metrics
+  - id: metric_attributes.gen_ai.memory
+    type: attribute_group
+    brief: 'This group describes GenAI memory metrics attributes'
+    attributes:
+      - ref: gen_ai.operation.name
+        requirement_level: required
+        note: >
+          One of: `search_memory`, `update_memory`, `delete_memory`,
+          `create_memory_store`, `delete_memory_store`.
+      - ref: gen_ai.provider.name
+        requirement_level: required
+      - ref: gen_ai.memory.store.name
+        requirement_level: recommended
+      - ref: error.type
+        requirement_level:
+          conditionally_required: "if the operation ended in an error"
+        note: |
+          The `error.type` SHOULD match the error code returned by the memory provider,
+          the canonical name of exception that occurred, or another low-cardinality error identifier.
+          Instrumentations SHOULD document the list of errors they report.
+
+  - id: metric.gen_ai.client.memory.operation.duration
+    type: metric
+    metric_name: gen_ai.client.memory.operation.duration
+    annotations:
+      code_generation:
+        metric_value_type: double
+    brief: 'Duration of GenAI memory operations.'
+    instrument: histogram
+    unit: "s"
+    stability: development
+    extends: metric_attributes.gen_ai.memory
+
+  - id: metric.gen_ai.client.memory.search.result.count
+    type: metric
+    metric_name: gen_ai.client.memory.search.result.count
+    annotations:
+      code_generation:
+        metric_value_type: int
+    brief: 'Number of memory items returned from search operations.'
+    instrument: histogram
+    unit: "{item}"
+    stability: development
+    note: >
+      This metric is only applicable to `search_memory` operations.
+    attributes:
+      - ref: gen_ai.operation.name
+        requirement_level: required
+      - ref: gen_ai.provider.name
+        requirement_level: required
+      - ref: gen_ai.memory.store.name
+        requirement_level: recommended
