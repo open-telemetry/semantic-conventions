@@ -238,3 +238,50 @@ groups:
         role: identifying
       - ref: k8s.resourcequota.name
         role: descriptive
+
+  - id: entity.k8s.persistentvolume
+    type: entity
+    stability: development
+    name: k8s.persistentvolume
+    brief: >
+      A Kubernetes [PersistentVolume](https://kubernetes.io/docs/concepts/storage/persistent-volumes/) object.
+    attributes:
+      - ref: k8s.persistentvolume.uid
+        role: identifying
+      - ref: k8s.persistentvolume.name
+        role: descriptive
+      - ref: k8s.storageclass.name
+        role: descriptive
+        requirement_level: recommended
+      - ref: k8s.persistentvolume.reclaim_policy
+        role: descriptive
+        requirement_level: opt_in
+      - ref: k8s.persistentvolume.label
+        role: descriptive
+        requirement_level: opt_in
+      - ref: k8s.persistentvolume.annotation
+        role: descriptive
+        requirement_level: opt_in
+
+  - id: entity.k8s.persistentvolumeclaim
+    type: entity
+    stability: development
+    name: k8s.persistentvolumeclaim
+    brief: >
+      A Kubernetes [PersistentVolumeClaim](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistentvolumeclaims) object.
+    attributes:
+      - ref: k8s.persistentvolumeclaim.uid
+        role: identifying
+      - ref: k8s.persistentvolumeclaim.name
+        role: descriptive
+      - ref: k8s.namespace.name
+        role: descriptive
+      - ref: k8s.storageclass.name
+        role: descriptive
+        requirement_level: recommended
+      - ref: k8s.persistentvolumeclaim.label
+        role: descriptive
+        requirement_level: opt_in
+      - ref: k8s.persistentvolumeclaim.annotation
+        role: descriptive
+        requirement_level: opt_in

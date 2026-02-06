@@ -793,3 +793,157 @@ groups:
           The phase for the pod. Corresponds to the `phase` field of the:
           [K8s PodStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#podstatus-v1-core)
         examples: [ 'Pending', 'Running' ]
+
+      # PersistentVolume attributes
+      - id: k8s.persistentvolume.uid
+        type: string
+        stability: development
+        brief: >
+          The UID of the PersistentVolume.
+        examples: ['275ecb36-5aa8-4c2a-9c47-d8bb681b9aff']
+      - id: k8s.persistentvolume.name
+        type: string
+        stability: development
+        brief: >
+          The name of the PersistentVolume.
+        examples: ['pv-data-01']
+      - id: k8s.persistentvolume.label
+        type: template[string]
+        stability: development
+        brief: >
+          The label placed on the PersistentVolume, the `<key>` being the label name, the value being the label value, even if the value is empty.
+        note: |
+          Examples:
+
+          - A label `type` with value `ssd` SHOULD be recorded as
+            the `k8s.persistentvolume.label.type` attribute with value `"ssd"`.
+          - A label `data` with empty string value SHOULD be recorded as
+            the `k8s.persistentvolume.label.data` attribute with value `""`.
+        examples: ['ssd', '']
+      - id: k8s.persistentvolume.annotation
+        type: template[string]
+        stability: development
+        brief: >
+          The annotation placed on the PersistentVolume, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
+        note: |
+          Examples:
+
+          - An annotation `pv.kubernetes.io/provisioned-by` with value `kubernetes.io/aws-ebs` SHOULD be recorded as
+            the `k8s.persistentvolume.annotation.pv.kubernetes.io/provisioned-by` attribute with value `"kubernetes.io/aws-ebs"`.
+          - An annotation `data` with empty string value SHOULD be recorded as
+            the `k8s.persistentvolume.annotation.data` attribute with value `""`.
+        examples: ['kubernetes.io/aws-ebs', '']
+      - id: k8s.persistentvolume.reclaim_policy
+        stability: development
+        brief: >
+          The reclaim policy of the PersistentVolume.
+        note: |
+          This attribute aligns with the `persistentVolumeReclaimPolicy` field of the
+          [K8s PersistentVolumeSpec](https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/persistent-volume-v1/#PersistentVolumeSpec).
+        examples: ['Delete', 'Retain', 'Recycle']
+        type:
+          members:
+            - id: delete
+              value: 'Delete'
+              brief: 'The volume will be deleted when released from its claim.'
+              stability: development
+            - id: recycle
+              value: 'Recycle'
+              brief: 'The volume will be recycled (basic scrub) when released from its claim.'
+              stability: development
+            - id: retain
+              value: 'Retain'
+              brief: 'The volume will be retained when released from its claim.'
+              stability: development
+      - id: k8s.persistentvolume.status.phase
+        stability: development
+        brief: >
+          The phase of the PersistentVolume.
+        note: |
+          This attribute aligns with the `phase` field of the
+          [K8s PersistentVolumeStatus](https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/persistent-volume-v1/#PersistentVolumeStatus).
+        examples: ['Pending', 'Available', 'Bound', 'Released', 'Failed']
+        type:
+          members:
+            - id: available
+              value: 'Available'
+              brief: 'The volume is available and not yet bound to a claim.'
+              stability: development
+            - id: bound
+              value: 'Bound'
+              brief: 'The volume is bound to a claim.'
+              stability: development
+            - id: failed
+              value: 'Failed'
+              brief: 'The volume has failed its automatic reclamation.'
+              stability: development
+            - id: pending
+              value: 'Pending'
+              brief: 'The volume is being provisioned.'
+              stability: development
+            - id: released
+              value: 'Released'
+              brief: 'The claim has been deleted but the volume is not yet available.'
+              stability: development
+
+      # PersistentVolumeClaim attributes
+      - id: k8s.persistentvolumeclaim.uid
+        type: string
+        stability: development
+        brief: >
+          The UID of the PersistentVolumeClaim.
+        examples: ['275ecb36-5aa8-4c2a-9c47-d8bb681b9aff']
+      - id: k8s.persistentvolumeclaim.name
+        type: string
+        stability: development
+        brief: >
+          The name of the PersistentVolumeClaim.
+        examples: ['pvc-data-01']
+      - id: k8s.persistentvolumeclaim.label
+        type: template[string]
+        stability: development
+        brief: >
+          The label placed on the PersistentVolumeClaim, the `<key>` being the label name, the value being the label value, even if the value is empty.
+        note: |
+          Examples:
+
+          - A label `app` with value `my-app` SHOULD be recorded as
+            the `k8s.persistentvolumeclaim.label.app` attribute with value `"my-app"`.
+          - A label `data` with empty string value SHOULD be recorded as
+            the `k8s.persistentvolumeclaim.label.data` attribute with value `""`.
+        examples: ['my-app', '']
+      - id: k8s.persistentvolumeclaim.annotation
+        type: template[string]
+        stability: development
+        brief: >
+          The annotation placed on the PersistentVolumeClaim, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
+        note: |
+          Examples:
+
+          - An annotation `volume.beta.kubernetes.io/storage-provisioner` with value `kubernetes.io/aws-ebs` SHOULD be recorded as
+            the `k8s.persistentvolumeclaim.annotation.volume.beta.kubernetes.io/storage-provisioner` attribute with value `"kubernetes.io/aws-ebs"`.
+          - An annotation `data` with empty string value SHOULD be recorded as
+            the `k8s.persistentvolumeclaim.annotation.data` attribute with value `""`.
+        examples: ['kubernetes.io/aws-ebs', '']
+      - id: k8s.persistentvolumeclaim.status.phase
+        stability: development
+        brief: >
+          The phase of the PersistentVolumeClaim.
+        note: |
+          This attribute aligns with the `phase` field of the
+          [K8s PersistentVolumeClaimStatus](https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/persistent-volume-claim-v1/#PersistentVolumeClaimStatus).
+        examples: ['Pending', 'Bound', 'Lost']
+        type:
+          members:
+            - id: bound
+              value: 'Bound'
+              brief: 'The claim is bound to a volume.'
+              stability: development
+            - id: lost
+              value: 'Lost'
+              brief: 'The claim has lost its underlying volume (the volume does not exist anymore).'
+              stability: development
+            - id: pending
+              value: 'Pending'
+              brief: 'The claim has not yet been bound to a volume.'
+              stability: development

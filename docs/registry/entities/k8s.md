@@ -266,6 +266,85 @@ conflict.
 - A label `data` with empty string value SHOULD be recorded as
   the `k8s.node.label.data` attribute with value `""`.
 
+## K8s Persistentvolume
+
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
+
+**type:** `k8s.persistentvolume`
+
+**Description:** A Kubernetes [PersistentVolume](https://kubernetes.io/docs/concepts/storage/persistent-volumes/) object.
+
+**Attributes:**
+
+| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
+| --- | --- | --- | --- | --- | --- | --- |
+| Identity | [`k8s.persistentvolume.uid`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The UID of the PersistentVolume. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` |
+| Description | [`k8s.persistentvolume.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the PersistentVolume. | `pv-data-01` |
+| Description | [`k8s.storageclass.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of K8s [StorageClass](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#storageclass-v1-storage-k8s-io) object. | `gold.storageclass.storage.k8s.io` |
+| Description | [`k8s.persistentvolume.annotation.<key>`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The annotation placed on the PersistentVolume, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [17] | `kubernetes.io/aws-ebs`; `` |
+| Description | [`k8s.persistentvolume.label.<key>`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The label placed on the PersistentVolume, the `<key>` being the label name, the value being the label value, even if the value is empty. [18] | `ssd`; `` |
+| Description | [`k8s.persistentvolume.reclaim_policy`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The reclaim policy of the PersistentVolume. [19] | `Delete`; `Retain`; `Recycle` |
+
+**[17] `k8s.persistentvolume.annotation.<key>`:** Examples:
+
+- An annotation `pv.kubernetes.io/provisioned-by` with value `kubernetes.io/aws-ebs` SHOULD be recorded as
+  the `k8s.persistentvolume.annotation.pv.kubernetes.io/provisioned-by` attribute with value `"kubernetes.io/aws-ebs"`.
+- An annotation `data` with empty string value SHOULD be recorded as
+  the `k8s.persistentvolume.annotation.data` attribute with value `""`.
+
+**[18] `k8s.persistentvolume.label.<key>`:** Examples:
+
+- A label `type` with value `ssd` SHOULD be recorded as
+  the `k8s.persistentvolume.label.type` attribute with value `"ssd"`.
+- A label `data` with empty string value SHOULD be recorded as
+  the `k8s.persistentvolume.label.data` attribute with value `""`.
+
+**[19] `k8s.persistentvolume.reclaim_policy`:** This attribute aligns with the `persistentVolumeReclaimPolicy` field of the
+[K8s PersistentVolumeSpec](https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/persistent-volume-v1/#PersistentVolumeSpec).
+
+---
+
+`k8s.persistentvolume.reclaim_policy` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value | Description | Stability |
+| --- | --- | --- |
+| `Delete` | The volume will be deleted when released from its claim. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `Recycle` | The volume will be recycled (basic scrub) when released from its claim. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `Retain` | The volume will be retained when released from its claim. | ![Development](https://img.shields.io/badge/-development-blue) |
+
+## K8s Persistentvolumeclaim
+
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
+
+**type:** `k8s.persistentvolumeclaim`
+
+**Description:** A Kubernetes [PersistentVolumeClaim](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistentvolumeclaims) object.
+
+**Attributes:**
+
+| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
+| --- | --- | --- | --- | --- | --- | --- |
+| Identity | [`k8s.persistentvolumeclaim.uid`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The UID of the PersistentVolumeClaim. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` |
+| Description | [`k8s.namespace.name`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Recommended` | string | The name of the namespace that the pod is running in. | `default` |
+| Description | [`k8s.persistentvolumeclaim.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the PersistentVolumeClaim. | `pvc-data-01` |
+| Description | [`k8s.storageclass.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of K8s [StorageClass](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#storageclass-v1-storage-k8s-io) object. | `gold.storageclass.storage.k8s.io` |
+| Description | [`k8s.persistentvolumeclaim.annotation.<key>`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The annotation placed on the PersistentVolumeClaim, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [20] | `kubernetes.io/aws-ebs`; `` |
+| Description | [`k8s.persistentvolumeclaim.label.<key>`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The label placed on the PersistentVolumeClaim, the `<key>` being the label name, the value being the label value, even if the value is empty. [21] | `my-app`; `` |
+
+**[20] `k8s.persistentvolumeclaim.annotation.<key>`:** Examples:
+
+- An annotation `volume.beta.kubernetes.io/storage-provisioner` with value `kubernetes.io/aws-ebs` SHOULD be recorded as
+  the `k8s.persistentvolumeclaim.annotation.volume.beta.kubernetes.io/storage-provisioner` attribute with value `"kubernetes.io/aws-ebs"`.
+- An annotation `data` with empty string value SHOULD be recorded as
+  the `k8s.persistentvolumeclaim.annotation.data` attribute with value `""`.
+
+**[21] `k8s.persistentvolumeclaim.label.<key>`:** Examples:
+
+- A label `app` with value `my-app` SHOULD be recorded as
+  the `k8s.persistentvolumeclaim.label.app` attribute with value `"my-app"`.
+- A label `data` with empty string value SHOULD be recorded as
+  the `k8s.persistentvolumeclaim.label.data` attribute with value `""`.
+
 ## K8s Pod
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
@@ -280,13 +359,13 @@ conflict.
 | --- | --- | --- | --- | --- | --- | --- |
 | Identity | [`k8s.pod.uid`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Recommended` | string | The UID of the Pod. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` |
 | Description | [`k8s.pod.name`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Recommended` | string | The name of the Pod. | `opentelemetry-pod-autoconf` |
-| Description | [`k8s.pod.annotation.<key>`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Opt-In` | string | The annotation placed on the Pod, the `<key>` being the annotation name, the value being the annotation value. [17] | `true`; `x64`; `` |
-| Description | [`k8s.pod.hostname`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Opt-In` | string | Specifies the hostname of the Pod. [18] | `collector-gateway` |
-| Description | [`k8s.pod.ip`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Opt-In` | string | IP address allocated to the Pod. [19] | `172.18.0.2` |
-| Description | [`k8s.pod.label.<key>`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Opt-In` | string | The label placed on the Pod, the `<key>` being the label name, the value being the label value. [20] | `my-app`; `x64`; `` |
-| Description | [`k8s.pod.start_time`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Opt-In` | string | The start timestamp of the Pod. [21] | `2025-12-04T08:41:03Z` |
+| Description | [`k8s.pod.annotation.<key>`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Opt-In` | string | The annotation placed on the Pod, the `<key>` being the annotation name, the value being the annotation value. [22] | `true`; `x64`; `` |
+| Description | [`k8s.pod.hostname`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Opt-In` | string | Specifies the hostname of the Pod. [23] | `collector-gateway` |
+| Description | [`k8s.pod.ip`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Opt-In` | string | IP address allocated to the Pod. [24] | `172.18.0.2` |
+| Description | [`k8s.pod.label.<key>`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Opt-In` | string | The label placed on the Pod, the `<key>` being the label name, the value being the label value. [25] | `my-app`; `x64`; `` |
+| Description | [`k8s.pod.start_time`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Opt-In` | string | The start timestamp of the Pod. [26] | `2025-12-04T08:41:03Z` |
 
-**[17] `k8s.pod.annotation.<key>`:** Examples:
+**[22] `k8s.pod.annotation.<key>`:** Examples:
 
 - An annotation `kubernetes.io/enforce-mountable-secrets` with value `true` SHOULD be recorded as
   the `k8s.pod.annotation.kubernetes.io/enforce-mountable-secrets` attribute with value `"true"`.
@@ -295,17 +374,17 @@ conflict.
 - An annotation `data` with empty string value SHOULD be recorded as
   the `k8s.pod.annotation.data` attribute with value `""`.
 
-**[18] `k8s.pod.hostname`:** The K8s Pod spec has an optional hostname field, which can be used to specify a hostname.
+**[23] `k8s.pod.hostname`:** The K8s Pod spec has an optional hostname field, which can be used to specify a hostname.
 Refer to [K8s docs](https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/#pod-hostname-and-subdomain-field)
 for more information about this field.
 
 This attribute aligns with the `hostname` field of the
 [K8s PodSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#podspec-v1-core).
 
-**[19] `k8s.pod.ip`:** This attribute aligns with the `podIP` field of the
+**[24] `k8s.pod.ip`:** This attribute aligns with the `podIP` field of the
 [K8s PodStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#podstatus-v1-core).
 
-**[20] `k8s.pod.label.<key>`:** Examples:
+**[25] `k8s.pod.label.<key>`:** Examples:
 
 - A label `app` with value `my-app` SHOULD be recorded as
   the `k8s.pod.label.app` attribute with value `"my-app"`.
@@ -314,7 +393,7 @@ This attribute aligns with the `hostname` field of the
 - A label `data` with empty string value SHOULD be recorded as
   the `k8s.pod.label.data` attribute with value `""`.
 
-**[21] `k8s.pod.start_time`:** Date and time at which the object was acknowledged by the Kubelet.
+**[26] `k8s.pod.start_time`:** Date and time at which the object was acknowledged by the Kubelet.
 This is before the Kubelet pulled the container image(s) for the pod.
 
 This attribute aligns with the `startTime` field of the
@@ -335,17 +414,17 @@ in ISO 8601 (RFC 3339 compatible) format.
 | --- | --- | --- | --- | --- | --- | --- |
 | Identity | [`k8s.replicaset.uid`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Recommended` | string | The UID of the ReplicaSet. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` |
 | Description | [`k8s.replicaset.name`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Recommended` | string | The name of the ReplicaSet. | `opentelemetry` |
-| Description | [`k8s.replicaset.annotation.<key>`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Opt-In` | string | The annotation placed on the ReplicaSet, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [22] | `0`; `` |
-| Description | [`k8s.replicaset.label.<key>`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Opt-In` | string | The label placed on the ReplicaSet, the `<key>` being the label name, the value being the label value, even if the value is empty. [23] | `guestbook`; `` |
+| Description | [`k8s.replicaset.annotation.<key>`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Opt-In` | string | The annotation placed on the ReplicaSet, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [27] | `0`; `` |
+| Description | [`k8s.replicaset.label.<key>`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Opt-In` | string | The label placed on the ReplicaSet, the `<key>` being the label name, the value being the label value, even if the value is empty. [28] | `guestbook`; `` |
 
-**[22] `k8s.replicaset.annotation.<key>`:** Examples:
+**[27] `k8s.replicaset.annotation.<key>`:** Examples:
 
 - A label `replicas` with value `0` SHOULD be recorded
   as the `k8s.replicaset.annotation.replicas` attribute with value `"0"`.
 - A label `data` with empty string value SHOULD be recorded as
   the `k8s.replicaset.annotation.data` attribute with value `""`.
 
-**[23] `k8s.replicaset.label.<key>`:** Examples:
+**[28] `k8s.replicaset.label.<key>`:** Examples:
 
 - A label `app` with value `guestbook` SHOULD be recorded
   as the `k8s.replicaset.label.app` attribute with value `"guestbook"`.
@@ -396,17 +475,17 @@ in ISO 8601 (RFC 3339 compatible) format.
 | --- | --- | --- | --- | --- | --- | --- |
 | Identity | [`k8s.statefulset.uid`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Recommended` | string | The UID of the StatefulSet. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` |
 | Description | [`k8s.statefulset.name`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Recommended` | string | The name of the StatefulSet. | `opentelemetry` |
-| Description | [`k8s.statefulset.annotation.<key>`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Opt-In` | string | The annotation placed on the StatefulSet, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [24] | `1`; `` |
-| Description | [`k8s.statefulset.label.<key>`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Opt-In` | string | The label placed on the StatefulSet, the `<key>` being the label name, the value being the label value, even if the value is empty. [25] | `guestbook`; `` |
+| Description | [`k8s.statefulset.annotation.<key>`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Opt-In` | string | The annotation placed on the StatefulSet, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [29] | `1`; `` |
+| Description | [`k8s.statefulset.label.<key>`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Opt-In` | string | The label placed on the StatefulSet, the `<key>` being the label name, the value being the label value, even if the value is empty. [30] | `guestbook`; `` |
 
-**[24] `k8s.statefulset.annotation.<key>`:** Examples:
+**[29] `k8s.statefulset.annotation.<key>`:** Examples:
 
 - A label `replicas` with value `1` SHOULD be recorded
   as the `k8s.statefulset.annotation.replicas` attribute with value `"1"`.
 - A label `data` with empty string value SHOULD be recorded as
   the `k8s.statefulset.annotation.data` attribute with value `""`.
 
-**[25] `k8s.statefulset.label.<key>`:** Examples:
+**[30] `k8s.statefulset.label.<key>`:** Examples:
 
 - A label `replicas` with value `0` SHOULD be recorded
   as the `k8s.statefulset.label.app` attribute with value `"guestbook"`.
