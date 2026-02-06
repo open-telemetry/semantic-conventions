@@ -2234,7 +2234,7 @@ This metric is derived from the `.status.phase` field of the
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`k8s.persistentvolume.status.phase`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The phase of the PersistentVolume. [1] | `Pending`; `Available`; `Bound`; `Released`; `Failed` |
-| [`k8s.namespace.name`](/docs/registry/attributes/k8s.md) | ![Alpha](https://img.shields.io/badge/alpha-mediumpurple) | `Conditionally Required` When the PV is in the `Bound` phase. | string | The namespace of the bound PersistentVolumeClaim. | `default` |
+| [`k8s.namespace.name`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Conditionally Required` When the PV is in the `Bound` phase. | string | The namespace of the bound PersistentVolumeClaim. | `default` |
 | [`k8s.persistentvolumeclaim.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` When the PV is in the `Bound` phase. | string | The name of the PersistentVolumeClaim. | `pvc-data-01` |
 
 **[1] `k8s.persistentvolume.status.phase`:** This attribute aligns with the `phase` field of the
