@@ -30,10 +30,11 @@ These conventions are recommended for resources running on Cloud Run.
 
 | Setting | Requirement Level | Category | Example Value | Attribute |
 | --- | --- | --- | --- | --- |
+| `resource.detection.detectors[]` | `Required` | Detector Inclusion | `gcp.cloud_run` | - |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `gcp.cloud_run.job.execution` | [`gcp.cloud_run.job.execution`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: gcp.cloud_run.job.execution,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  job-name-xxxx | [`gcp.cloud_run.job.execution`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: gcp.cloud_run.job.execution,`<br>&nbsp;&nbsp;&nbsp;`value: job-name-xxxx` | [`gcp.cloud_run.job.execution`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `gcp.cloud_run.job.task_index` | [`gcp.cloud_run.job.task_index`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: gcp.cloud_run.job.task_index,<br>&nbsp;&nbsp;&nbsp;type:int,<br>&nbsp;&nbsp;&nbsp;value:  0 | [`gcp.cloud_run.job.task_index`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: gcp.cloud_run.job.task_index,`<br>&nbsp;&nbsp;&nbsp;`type:int,`<br>&nbsp;&nbsp;&nbsp;`value: 0` | [`gcp.cloud_run.job.task_index`](/docs/registry/attributes/.md) |
 
 **Environment Variable Options:**
 

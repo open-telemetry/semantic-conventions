@@ -26,10 +26,11 @@
 
 | Setting | Requirement Level | Category | Example Value | Attribute |
 | --- | --- | --- | --- | --- |
+| `resource.detection.detectors[]` | `Required` | Detector Inclusion | `openshift.clusterquota` | - |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `openshift.clusterquota.name` | [`openshift.clusterquota.name`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: openshift.clusterquota.name,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  opentelemetry | [`openshift.clusterquota.name`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: openshift.clusterquota.name,`<br>&nbsp;&nbsp;&nbsp;`value: opentelemetry` | [`openshift.clusterquota.name`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `openshift.clusterquota.uid` | [`openshift.clusterquota.uid`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: openshift.clusterquota.uid,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  275ecb36-5aa8-4c2a-9c47-d8bb681b9aff | [`openshift.clusterquota.uid`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: openshift.clusterquota.uid,`<br>&nbsp;&nbsp;&nbsp;`value: 275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | [`openshift.clusterquota.uid`](/docs/registry/attributes/.md) |
 
 **Environment Variable Options:**
 

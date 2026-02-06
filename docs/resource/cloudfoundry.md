@@ -56,10 +56,11 @@ reported by `cf orgs`.
 
 | Setting | Requirement Level | Category | Example Value | Attribute |
 | --- | --- | --- | --- | --- |
+| `resource.detection.detectors[]` | `Required` | Detector Inclusion | `cloudfoundry.org` | - |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `cloudfoundry.org.id` | [`cloudfoundry.org.id`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: cloudfoundry.org.id,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  218fc5a9-a5f1-4b54-aa05-46717d0ab26d | [`cloudfoundry.org.id`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: cloudfoundry.org.id,`<br>&nbsp;&nbsp;&nbsp;`value: 218fc5a9-a5f1-4b54-aa05-46717d0ab26d` | [`cloudfoundry.org.id`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `cloudfoundry.org.name` | [`cloudfoundry.org.name`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: cloudfoundry.org.name,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  my-org-name | [`cloudfoundry.org.name`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: cloudfoundry.org.name,`<br>&nbsp;&nbsp;&nbsp;`value: my-org-name` | [`cloudfoundry.org.name`](/docs/registry/attributes/.md) |
 
 **Environment Variable Options:**
 
@@ -107,10 +108,11 @@ reported by `cf spaces`.
 
 | Setting | Requirement Level | Category | Example Value | Attribute |
 | --- | --- | --- | --- | --- |
+| `resource.detection.detectors[]` | `Required` | Detector Inclusion | `cloudfoundry.space` | - |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `cloudfoundry.space.id` | [`cloudfoundry.space.id`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: cloudfoundry.space.id,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  218fc5a9-a5f1-4b54-aa05-46717d0ab26d | [`cloudfoundry.space.id`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: cloudfoundry.space.id,`<br>&nbsp;&nbsp;&nbsp;`value: 218fc5a9-a5f1-4b54-aa05-46717d0ab26d` | [`cloudfoundry.space.id`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `cloudfoundry.space.name` | [`cloudfoundry.space.name`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: cloudfoundry.space.name,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  my-space-name | [`cloudfoundry.space.name`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: cloudfoundry.space.name,`<br>&nbsp;&nbsp;&nbsp;`value: my-space-name` | [`cloudfoundry.space.name`](/docs/registry/attributes/.md) |
 
 **Environment Variable Options:**
 
@@ -158,10 +160,11 @@ as reported by `cf apps`.
 
 | Setting | Requirement Level | Category | Example Value | Attribute |
 | --- | --- | --- | --- | --- |
+| `resource.detection.detectors[]` | `Required` | Detector Inclusion | `cloudfoundry.app` | - |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `cloudfoundry.app.id` | [`cloudfoundry.app.id`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: cloudfoundry.app.id,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  218fc5a9-a5f1-4b54-aa05-46717d0ab26d | [`cloudfoundry.app.id`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: cloudfoundry.app.id,`<br>&nbsp;&nbsp;&nbsp;`value: 218fc5a9-a5f1-4b54-aa05-46717d0ab26d` | [`cloudfoundry.app.id`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `cloudfoundry.app.name` | [`cloudfoundry.app.name`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: cloudfoundry.app.name,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  my-app-name | [`cloudfoundry.app.name`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: cloudfoundry.app.name,`<br>&nbsp;&nbsp;&nbsp;`value: my-app-name` | [`cloudfoundry.app.name`](/docs/registry/attributes/.md) |
 
 **Environment Variable Options:**
 
@@ -210,10 +213,11 @@ tasks or side-cars with different process types.
 
 | Setting | Requirement Level | Category | Example Value | Attribute |
 | --- | --- | --- | --- | --- |
+| `resource.detection.detectors[]` | `Required` | Detector Inclusion | `cloudfoundry.process` | - |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `cloudfoundry.process.id` | [`cloudfoundry.process.id`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: cloudfoundry.process.id,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  218fc5a9-a5f1-4b54-aa05-46717d0ab26d | [`cloudfoundry.process.id`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: cloudfoundry.process.id,`<br>&nbsp;&nbsp;&nbsp;`value: 218fc5a9-a5f1-4b54-aa05-46717d0ab26d` | [`cloudfoundry.process.id`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `cloudfoundry.process.type` | [`cloudfoundry.process.type`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: cloudfoundry.process.type,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  web | [`cloudfoundry.process.type`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: cloudfoundry.process.type,`<br>&nbsp;&nbsp;&nbsp;`value: web` | [`cloudfoundry.process.type`](/docs/registry/attributes/.md) |
 
 **Environment Variable Options:**
 
@@ -271,10 +275,11 @@ should be used. The `system.instance.id` should be set to `spec.id`.
 
 | Setting | Requirement Level | Category | Example Value | Attribute |
 | --- | --- | --- | --- | --- |
+| `resource.detection.detectors[]` | `Required` | Detector Inclusion | `cloudfoundry.system` | - |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `cloudfoundry.system.id` | [`cloudfoundry.system.id`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: cloudfoundry.system.id,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  cf/gorouter | [`cloudfoundry.system.id`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: cloudfoundry.system.id,`<br>&nbsp;&nbsp;&nbsp;`value: cf/gorouter` | [`cloudfoundry.system.id`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `cloudfoundry.system.instance.id` | [`cloudfoundry.system.instance.id`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: cloudfoundry.system.instance.id,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  218fc5a9-a5f1-4b54-aa05-46717d0ab26d | [`cloudfoundry.system.instance.id`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: cloudfoundry.system.instance.id,`<br>&nbsp;&nbsp;&nbsp;`value: 218fc5a9-a5f1-4b54-aa05-46717d0ab26d` | [`cloudfoundry.system.instance.id`](/docs/registry/attributes/.md) |
 
 **Environment Variable Options:**
 

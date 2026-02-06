@@ -33,8 +33,9 @@ considered to be identifying the same service:
 
 | Setting | Requirement Level | Category | Example Value | Attribute |
 | --- | --- | --- | --- | --- |
+| `resource.detection.detectors[]` | `Required` | Detector Inclusion | `deployment` | - |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `deployment.environment.name` | [`deployment.environment.name`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: deployment.environment.name,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  staging | [`deployment.environment.name`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: deployment.environment.name,`<br>&nbsp;&nbsp;&nbsp;`value: staging` | [`deployment.environment.name`](/docs/registry/attributes/.md) |
 
 **Environment Variable Options:**
 

@@ -29,8 +29,9 @@ linkTitle: EKS
 
 | Setting | Requirement Level | Category | Example Value | Attribute |
 | --- | --- | --- | --- | --- |
+| `resource.detection.detectors[]` | `Required` | Detector Inclusion | `aws.eks` | - |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `aws.eks.cluster.arn` | [`aws.eks.cluster.arn`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: aws.eks.cluster.arn,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  arn:aws:ecs:us-west-2:123456789123:cluster/my-cluster | [`aws.eks.cluster.arn`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: aws.eks.cluster.arn,`<br>&nbsp;&nbsp;&nbsp;`value: arn:aws:ecs:us-west-2:123456789123:cluster/my-cluster` | [`aws.eks.cluster.arn`](/docs/registry/attributes/.md) |
 
 **Environment Variable Options:**
 

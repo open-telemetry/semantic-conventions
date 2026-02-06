@@ -62,10 +62,11 @@ conflict.
 
 | Setting | Requirement Level | Category | Example Value | Attribute |
 | --- | --- | --- | --- | --- |
+| `resource.detection.detectors[]` | `Required` | Detector Inclusion | `k8s.cluster` | - |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `k8s.cluster.name` | [`k8s.cluster.name`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: k8s.cluster.name,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  opentelemetry-cluster | [`k8s.cluster.name`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: k8s.cluster.name,`<br>&nbsp;&nbsp;&nbsp;`value: opentelemetry-cluster` | [`k8s.cluster.name`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `k8s.cluster.uid` | [`k8s.cluster.uid`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: k8s.cluster.uid,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  218fc5a9-a5f1-4b54-aa05-46717d0ab26d | [`k8s.cluster.uid`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: k8s.cluster.uid,`<br>&nbsp;&nbsp;&nbsp;`value: 218fc5a9-a5f1-4b54-aa05-46717d0ab26d` | [`k8s.cluster.uid`](/docs/registry/attributes/.md) |
 
 **Environment Variable Options:**
 
@@ -117,14 +118,15 @@ conflict.
 
 | Setting | Requirement Level | Category | Example Value | Attribute |
 | --- | --- | --- | --- | --- |
+| `resource.detection.detectors[]` | `Required` | Detector Inclusion | `k8s.node` | - |
 | `resource.experimentalresourcedetection.attributes.included[]` | `Conditionally Required` | Attribute Inclusion | `k8s.node.annotation` | [`k8s.node.annotation.<key>`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: k8s.node.annotation,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  0 | [`k8s.node.annotation.<key>`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: k8s.node.annotation,`<br>&nbsp;&nbsp;&nbsp;`type:string,`<br>&nbsp;&nbsp;&nbsp;`value: 0` | [`k8s.node.annotation.<key>`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.included[]` | `Conditionally Required` | Attribute Inclusion | `k8s.node.label` | [`k8s.node.label.<key>`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: k8s.node.label,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  arm64 | [`k8s.node.label.<key>`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: k8s.node.label,`<br>&nbsp;&nbsp;&nbsp;`type:string,`<br>&nbsp;&nbsp;&nbsp;`value: arm64` | [`k8s.node.label.<key>`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `k8s.node.name` | [`k8s.node.name`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: k8s.node.name,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  node-1 | [`k8s.node.name`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: k8s.node.name,`<br>&nbsp;&nbsp;&nbsp;`value: node-1` | [`k8s.node.name`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `k8s.node.uid` | [`k8s.node.uid`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: k8s.node.uid,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  1eb3a0c6-0477-4080-a9cb-0cb7db65c6a2 | [`k8s.node.uid`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: k8s.node.uid,`<br>&nbsp;&nbsp;&nbsp;`value: 1eb3a0c6-0477-4080-a9cb-0cb7db65c6a2` | [`k8s.node.uid`](/docs/registry/attributes/.md) |
 
 **Environment Variable Options:**
 
@@ -180,12 +182,13 @@ a namespace, but not across namespaces.
 
 | Setting | Requirement Level | Category | Example Value | Attribute |
 | --- | --- | --- | --- | --- |
+| `resource.detection.detectors[]` | `Required` | Detector Inclusion | `k8s.namespace` | - |
 | `resource.experimentalresourcedetection.attributes.included[]` | `Conditionally Required` | Attribute Inclusion | `k8s.namespace.annotation` | [`k8s.namespace.annotation.<key>`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: k8s.namespace.annotation,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  0 | [`k8s.namespace.annotation.<key>`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: k8s.namespace.annotation,`<br>&nbsp;&nbsp;&nbsp;`type:string,`<br>&nbsp;&nbsp;&nbsp;`value: 0` | [`k8s.namespace.annotation.<key>`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.included[]` | `Conditionally Required` | Attribute Inclusion | `k8s.namespace.label` | [`k8s.namespace.label.<key>`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: k8s.namespace.label,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  default | [`k8s.namespace.label.<key>`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: k8s.namespace.label,`<br>&nbsp;&nbsp;&nbsp;`type:string,`<br>&nbsp;&nbsp;&nbsp;`value: default` | [`k8s.namespace.label.<key>`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `k8s.namespace.name` | [`k8s.namespace.name`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: k8s.namespace.name,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  default | [`k8s.namespace.name`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: k8s.namespace.name,`<br>&nbsp;&nbsp;&nbsp;`value: default` | [`k8s.namespace.name`](/docs/registry/attributes/.md) |
 
 **Environment Variable Options:**
 
@@ -265,20 +268,21 @@ in ISO 8601 (RFC 3339 compatible) format.
 
 | Setting | Requirement Level | Category | Example Value | Attribute |
 | --- | --- | --- | --- | --- |
+| `resource.detection.detectors[]` | `Required` | Detector Inclusion | `k8s.pod` | - |
 | `resource.experimentalresourcedetection.attributes.included[]` | `Conditionally Required` | Attribute Inclusion | `k8s.pod.annotation` | [`k8s.pod.annotation.<key>`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: k8s.pod.annotation,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  true | [`k8s.pod.annotation.<key>`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: k8s.pod.annotation,`<br>&nbsp;&nbsp;&nbsp;`type:string,`<br>&nbsp;&nbsp;&nbsp;`value: true` | [`k8s.pod.annotation.<key>`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.included[]` | `Conditionally Required` | Attribute Inclusion | `k8s.pod.hostname` | [`k8s.pod.hostname`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: k8s.pod.hostname,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  collector-gateway | [`k8s.pod.hostname`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: k8s.pod.hostname,`<br>&nbsp;&nbsp;&nbsp;`value: collector-gateway` | [`k8s.pod.hostname`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.included[]` | `Conditionally Required` | Attribute Inclusion | `k8s.pod.ip` | [`k8s.pod.ip`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: k8s.pod.ip,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  172.18.0.2 | [`k8s.pod.ip`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: k8s.pod.ip,`<br>&nbsp;&nbsp;&nbsp;`value: 172.18.0.2` | [`k8s.pod.ip`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.included[]` | `Conditionally Required` | Attribute Inclusion | `k8s.pod.label` | [`k8s.pod.label.<key>`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: k8s.pod.label,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  my-app | [`k8s.pod.label.<key>`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: k8s.pod.label,`<br>&nbsp;&nbsp;&nbsp;`type:string,`<br>&nbsp;&nbsp;&nbsp;`value: my-app` | [`k8s.pod.label.<key>`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `k8s.pod.name` | [`k8s.pod.name`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: k8s.pod.name,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  opentelemetry-pod-autoconf | [`k8s.pod.name`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: k8s.pod.name,`<br>&nbsp;&nbsp;&nbsp;`value: opentelemetry-pod-autoconf` | [`k8s.pod.name`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.included[]` | `Conditionally Required` | Attribute Inclusion | `k8s.pod.start_time` | [`k8s.pod.start_time`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: k8s.pod.start_time,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  2025-12-04T08:41:03Z | [`k8s.pod.start_time`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: k8s.pod.start_time,`<br>&nbsp;&nbsp;&nbsp;`value: 2025-12-04T08:41:03Z` | [`k8s.pod.start_time`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `k8s.pod.uid` | [`k8s.pod.uid`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: k8s.pod.uid,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  275ecb36-5aa8-4c2a-9c47-d8bb681b9aff | [`k8s.pod.uid`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: k8s.pod.uid,`<br>&nbsp;&nbsp;&nbsp;`value: 275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | [`k8s.pod.uid`](/docs/registry/attributes/.md) |
 
 **Environment Variable Options:**
 
@@ -327,12 +331,13 @@ to a running container.
 
 | Setting | Requirement Level | Category | Example Value | Attribute |
 | --- | --- | --- | --- | --- |
+| `resource.detection.detectors[]` | `Required` | Detector Inclusion | `k8s.container` | - |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `k8s.container.name` | [`k8s.container.name`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: k8s.container.name,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  redis | [`k8s.container.name`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: k8s.container.name,`<br>&nbsp;&nbsp;&nbsp;`value: redis` | [`k8s.container.name`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `k8s.container.restart_count` | [`k8s.container.restart_count`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: k8s.container.restart_count,<br>&nbsp;&nbsp;&nbsp;type:int,<br>&nbsp;&nbsp;&nbsp;value:  | [`k8s.container.restart_count`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: k8s.container.restart_count,`<br>&nbsp;&nbsp;&nbsp;`type:int,`<br>&nbsp;&nbsp;&nbsp;`value: 1` | [`k8s.container.restart_count`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `k8s.container.status.last_terminated_reason` | [`k8s.container.status.last_terminated_reason`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: k8s.container.status.last_terminated_reason,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  Evicted | [`k8s.container.status.last_terminated_reason`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: k8s.container.status.last_terminated_reason,`<br>&nbsp;&nbsp;&nbsp;`value: Evicted` | [`k8s.container.status.last_terminated_reason`](/docs/registry/attributes/.md) |
 
 **Environment Variable Options:**
 
@@ -385,14 +390,15 @@ to a running container.
 
 | Setting | Requirement Level | Category | Example Value | Attribute |
 | --- | --- | --- | --- | --- |
+| `resource.detection.detectors[]` | `Required` | Detector Inclusion | `k8s.replicaset` | - |
 | `resource.experimentalresourcedetection.attributes.included[]` | `Conditionally Required` | Attribute Inclusion | `k8s.replicaset.annotation` | [`k8s.replicaset.annotation.<key>`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: k8s.replicaset.annotation,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  0 | [`k8s.replicaset.annotation.<key>`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: k8s.replicaset.annotation,`<br>&nbsp;&nbsp;&nbsp;`type:string,`<br>&nbsp;&nbsp;&nbsp;`value: 0` | [`k8s.replicaset.annotation.<key>`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.included[]` | `Conditionally Required` | Attribute Inclusion | `k8s.replicaset.label` | [`k8s.replicaset.label.<key>`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: k8s.replicaset.label,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  guestbook | [`k8s.replicaset.label.<key>`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: k8s.replicaset.label,`<br>&nbsp;&nbsp;&nbsp;`type:string,`<br>&nbsp;&nbsp;&nbsp;`value: guestbook` | [`k8s.replicaset.label.<key>`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `k8s.replicaset.name` | [`k8s.replicaset.name`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: k8s.replicaset.name,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  opentelemetry | [`k8s.replicaset.name`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: k8s.replicaset.name,`<br>&nbsp;&nbsp;&nbsp;`value: opentelemetry` | [`k8s.replicaset.name`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `k8s.replicaset.uid` | [`k8s.replicaset.uid`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: k8s.replicaset.uid,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  275ecb36-5aa8-4c2a-9c47-d8bb681b9aff | [`k8s.replicaset.uid`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: k8s.replicaset.uid,`<br>&nbsp;&nbsp;&nbsp;`value: 275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | [`k8s.replicaset.uid`](/docs/registry/attributes/.md) |
 
 **Environment Variable Options:**
 
@@ -450,14 +456,15 @@ distributed among the nodes of a cluster.
 
 | Setting | Requirement Level | Category | Example Value | Attribute |
 | --- | --- | --- | --- | --- |
+| `resource.detection.detectors[]` | `Required` | Detector Inclusion | `k8s.deployment` | - |
 | `resource.experimentalresourcedetection.attributes.included[]` | `Conditionally Required` | Attribute Inclusion | `k8s.deployment.annotation` | [`k8s.deployment.annotation.<key>`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: k8s.deployment.annotation,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  1 | [`k8s.deployment.annotation.<key>`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: k8s.deployment.annotation,`<br>&nbsp;&nbsp;&nbsp;`type:string,`<br>&nbsp;&nbsp;&nbsp;`value: 1` | [`k8s.deployment.annotation.<key>`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.included[]` | `Conditionally Required` | Attribute Inclusion | `k8s.deployment.label` | [`k8s.deployment.label.<key>`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: k8s.deployment.label,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  guestbook | [`k8s.deployment.label.<key>`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: k8s.deployment.label,`<br>&nbsp;&nbsp;&nbsp;`type:string,`<br>&nbsp;&nbsp;&nbsp;`value: guestbook` | [`k8s.deployment.label.<key>`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `k8s.deployment.name` | [`k8s.deployment.name`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: k8s.deployment.name,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  opentelemetry | [`k8s.deployment.name`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: k8s.deployment.name,`<br>&nbsp;&nbsp;&nbsp;`value: opentelemetry` | [`k8s.deployment.name`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `k8s.deployment.uid` | [`k8s.deployment.uid`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: k8s.deployment.uid,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  275ecb36-5aa8-4c2a-9c47-d8bb681b9aff | [`k8s.deployment.uid`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: k8s.deployment.uid,`<br>&nbsp;&nbsp;&nbsp;`value: 275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | [`k8s.deployment.uid`](/docs/registry/attributes/.md) |
 
 **Environment Variable Options:**
 
@@ -514,14 +521,15 @@ about the ordering and uniqueness of these Pods.
 
 | Setting | Requirement Level | Category | Example Value | Attribute |
 | --- | --- | --- | --- | --- |
+| `resource.detection.detectors[]` | `Required` | Detector Inclusion | `k8s.statefulset` | - |
 | `resource.experimentalresourcedetection.attributes.included[]` | `Conditionally Required` | Attribute Inclusion | `k8s.statefulset.annotation` | [`k8s.statefulset.annotation.<key>`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: k8s.statefulset.annotation,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  1 | [`k8s.statefulset.annotation.<key>`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: k8s.statefulset.annotation,`<br>&nbsp;&nbsp;&nbsp;`type:string,`<br>&nbsp;&nbsp;&nbsp;`value: 1` | [`k8s.statefulset.annotation.<key>`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.included[]` | `Conditionally Required` | Attribute Inclusion | `k8s.statefulset.label` | [`k8s.statefulset.label.<key>`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: k8s.statefulset.label,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  guestbook | [`k8s.statefulset.label.<key>`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: k8s.statefulset.label,`<br>&nbsp;&nbsp;&nbsp;`type:string,`<br>&nbsp;&nbsp;&nbsp;`value: guestbook` | [`k8s.statefulset.label.<key>`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `k8s.statefulset.name` | [`k8s.statefulset.name`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: k8s.statefulset.name,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  opentelemetry | [`k8s.statefulset.name`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: k8s.statefulset.name,`<br>&nbsp;&nbsp;&nbsp;`value: opentelemetry` | [`k8s.statefulset.name`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `k8s.statefulset.uid` | [`k8s.statefulset.uid`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: k8s.statefulset.uid,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  275ecb36-5aa8-4c2a-9c47-d8bb681b9aff | [`k8s.statefulset.uid`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: k8s.statefulset.uid,`<br>&nbsp;&nbsp;&nbsp;`value: 275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | [`k8s.statefulset.uid`](/docs/registry/attributes/.md) |
 
 **Environment Variable Options:**
 
@@ -577,14 +585,15 @@ A DaemonSet ensures that all (or some) Nodes run a copy of a Pod.
 
 | Setting | Requirement Level | Category | Example Value | Attribute |
 | --- | --- | --- | --- | --- |
+| `resource.detection.detectors[]` | `Required` | Detector Inclusion | `k8s.daemonset` | - |
 | `resource.experimentalresourcedetection.attributes.included[]` | `Conditionally Required` | Attribute Inclusion | `k8s.daemonset.annotation` | [`k8s.daemonset.annotation.<key>`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: k8s.daemonset.annotation,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  1 | [`k8s.daemonset.annotation.<key>`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: k8s.daemonset.annotation,`<br>&nbsp;&nbsp;&nbsp;`type:string,`<br>&nbsp;&nbsp;&nbsp;`value: 1` | [`k8s.daemonset.annotation.<key>`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.included[]` | `Conditionally Required` | Attribute Inclusion | `k8s.daemonset.label` | [`k8s.daemonset.label.<key>`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: k8s.daemonset.label,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  guestbook | [`k8s.daemonset.label.<key>`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: k8s.daemonset.label,`<br>&nbsp;&nbsp;&nbsp;`type:string,`<br>&nbsp;&nbsp;&nbsp;`value: guestbook` | [`k8s.daemonset.label.<key>`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `k8s.daemonset.name` | [`k8s.daemonset.name`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: k8s.daemonset.name,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  opentelemetry | [`k8s.daemonset.name`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: k8s.daemonset.name,`<br>&nbsp;&nbsp;&nbsp;`value: opentelemetry` | [`k8s.daemonset.name`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `k8s.daemonset.uid` | [`k8s.daemonset.uid`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: k8s.daemonset.uid,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  275ecb36-5aa8-4c2a-9c47-d8bb681b9aff | [`k8s.daemonset.uid`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: k8s.daemonset.uid,`<br>&nbsp;&nbsp;&nbsp;`value: 275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | [`k8s.daemonset.uid`](/docs/registry/attributes/.md) |
 
 **Environment Variable Options:**
 
@@ -641,14 +650,15 @@ successfully terminate.
 
 | Setting | Requirement Level | Category | Example Value | Attribute |
 | --- | --- | --- | --- | --- |
+| `resource.detection.detectors[]` | `Required` | Detector Inclusion | `k8s.job` | - |
 | `resource.experimentalresourcedetection.attributes.included[]` | `Conditionally Required` | Attribute Inclusion | `k8s.job.annotation` | [`k8s.job.annotation.<key>`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: k8s.job.annotation,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  1 | [`k8s.job.annotation.<key>`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: k8s.job.annotation,`<br>&nbsp;&nbsp;&nbsp;`type:string,`<br>&nbsp;&nbsp;&nbsp;`value: 1` | [`k8s.job.annotation.<key>`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.included[]` | `Conditionally Required` | Attribute Inclusion | `k8s.job.label` | [`k8s.job.label.<key>`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: k8s.job.label,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  ci | [`k8s.job.label.<key>`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: k8s.job.label,`<br>&nbsp;&nbsp;&nbsp;`type:string,`<br>&nbsp;&nbsp;&nbsp;`value: ci` | [`k8s.job.label.<key>`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `k8s.job.name` | [`k8s.job.name`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: k8s.job.name,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  opentelemetry | [`k8s.job.name`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: k8s.job.name,`<br>&nbsp;&nbsp;&nbsp;`value: opentelemetry` | [`k8s.job.name`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `k8s.job.uid` | [`k8s.job.uid`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: k8s.job.uid,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  275ecb36-5aa8-4c2a-9c47-d8bb681b9aff | [`k8s.job.uid`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: k8s.job.uid,`<br>&nbsp;&nbsp;&nbsp;`value: 275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | [`k8s.job.uid`](/docs/registry/attributes/.md) |
 
 **Environment Variable Options:**
 
@@ -704,14 +714,15 @@ A CronJob creates Jobs on a repeating schedule.
 
 | Setting | Requirement Level | Category | Example Value | Attribute |
 | --- | --- | --- | --- | --- |
+| `resource.detection.detectors[]` | `Required` | Detector Inclusion | `k8s.cronjob` | - |
 | `resource.experimentalresourcedetection.attributes.included[]` | `Conditionally Required` | Attribute Inclusion | `k8s.cronjob.annotation` | [`k8s.cronjob.annotation.<key>`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: k8s.cronjob.annotation,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  4 | [`k8s.cronjob.annotation.<key>`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: k8s.cronjob.annotation,`<br>&nbsp;&nbsp;&nbsp;`type:string,`<br>&nbsp;&nbsp;&nbsp;`value: 4` | [`k8s.cronjob.annotation.<key>`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.included[]` | `Conditionally Required` | Attribute Inclusion | `k8s.cronjob.label` | [`k8s.cronjob.label.<key>`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: k8s.cronjob.label,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  weekly | [`k8s.cronjob.label.<key>`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: k8s.cronjob.label,`<br>&nbsp;&nbsp;&nbsp;`type:string,`<br>&nbsp;&nbsp;&nbsp;`value: weekly` | [`k8s.cronjob.label.<key>`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `k8s.cronjob.name` | [`k8s.cronjob.name`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: k8s.cronjob.name,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  opentelemetry | [`k8s.cronjob.name`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: k8s.cronjob.name,`<br>&nbsp;&nbsp;&nbsp;`value: opentelemetry` | [`k8s.cronjob.name`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `k8s.cronjob.uid` | [`k8s.cronjob.uid`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: k8s.cronjob.uid,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  275ecb36-5aa8-4c2a-9c47-d8bb681b9aff | [`k8s.cronjob.uid`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: k8s.cronjob.uid,`<br>&nbsp;&nbsp;&nbsp;`value: 275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | [`k8s.cronjob.uid`](/docs/registry/attributes/.md) |
 
 **Environment Variable Options:**
 
@@ -751,10 +762,11 @@ A ReplicationController ensures that a specified number of pod replicas are runn
 
 | Setting | Requirement Level | Category | Example Value | Attribute |
 | --- | --- | --- | --- | --- |
+| `resource.detection.detectors[]` | `Required` | Detector Inclusion | `k8s.replicationcontroller` | - |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `k8s.replicationcontroller.name` | [`k8s.replicationcontroller.name`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: k8s.replicationcontroller.name,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  opentelemetry | [`k8s.replicationcontroller.name`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: k8s.replicationcontroller.name,`<br>&nbsp;&nbsp;&nbsp;`value: opentelemetry` | [`k8s.replicationcontroller.name`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `k8s.replicationcontroller.uid` | [`k8s.replicationcontroller.uid`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: k8s.replicationcontroller.uid,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  275ecb36-5aa8-4c2a-9c47-d8bb681b9aff | [`k8s.replicationcontroller.uid`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: k8s.replicationcontroller.uid,`<br>&nbsp;&nbsp;&nbsp;`value: 275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | [`k8s.replicationcontroller.uid`](/docs/registry/attributes/.md) |
 
 **Environment Variable Options:**
 
@@ -802,16 +814,17 @@ A HorizontalPodAutoscaler (HPA for short) automatically updates a workload resou
 
 | Setting | Requirement Level | Category | Example Value | Attribute |
 | --- | --- | --- | --- | --- |
+| `resource.detection.detectors[]` | `Required` | Detector Inclusion | `k8s.hpa` | - |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `k8s.hpa.name` | [`k8s.hpa.name`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: k8s.hpa.name,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  opentelemetry | [`k8s.hpa.name`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: k8s.hpa.name,`<br>&nbsp;&nbsp;&nbsp;`value: opentelemetry` | [`k8s.hpa.name`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `k8s.hpa.scaletargetref.api_version` | [`k8s.hpa.scaletargetref.api_version`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: k8s.hpa.scaletargetref.api_version,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  apps/v1 | [`k8s.hpa.scaletargetref.api_version`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: k8s.hpa.scaletargetref.api_version,`<br>&nbsp;&nbsp;&nbsp;`value: apps/v1` | [`k8s.hpa.scaletargetref.api_version`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `k8s.hpa.scaletargetref.kind` | [`k8s.hpa.scaletargetref.kind`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: k8s.hpa.scaletargetref.kind,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  Deployment | [`k8s.hpa.scaletargetref.kind`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: k8s.hpa.scaletargetref.kind,`<br>&nbsp;&nbsp;&nbsp;`value: Deployment` | [`k8s.hpa.scaletargetref.kind`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `k8s.hpa.scaletargetref.name` | [`k8s.hpa.scaletargetref.name`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: k8s.hpa.scaletargetref.name,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  my-deployment | [`k8s.hpa.scaletargetref.name`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: k8s.hpa.scaletargetref.name,`<br>&nbsp;&nbsp;&nbsp;`value: my-deployment` | [`k8s.hpa.scaletargetref.name`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `k8s.hpa.uid` | [`k8s.hpa.uid`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: k8s.hpa.uid,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  275ecb36-5aa8-4c2a-9c47-d8bb681b9aff | [`k8s.hpa.uid`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: k8s.hpa.uid,`<br>&nbsp;&nbsp;&nbsp;`value: 275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | [`k8s.hpa.uid`](/docs/registry/attributes/.md) |
 
 **Environment Variable Options:**
 
@@ -852,10 +865,11 @@ A ResourceQuota provides constraints that limit aggregate resource consumption p
 
 | Setting | Requirement Level | Category | Example Value | Attribute |
 | --- | --- | --- | --- | --- |
+| `resource.detection.detectors[]` | `Required` | Detector Inclusion | `k8s.resourcequota` | - |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `k8s.resourcequota.name` | [`k8s.resourcequota.name`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: k8s.resourcequota.name,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  opentelemetry | [`k8s.resourcequota.name`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: k8s.resourcequota.name,`<br>&nbsp;&nbsp;&nbsp;`value: opentelemetry` | [`k8s.resourcequota.name`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `k8s.resourcequota.uid` | [`k8s.resourcequota.uid`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: k8s.resourcequota.uid,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  275ecb36-5aa8-4c2a-9c47-d8bb681b9aff | [`k8s.resourcequota.uid`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: k8s.resourcequota.uid,`<br>&nbsp;&nbsp;&nbsp;`value: 275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` | [`k8s.resourcequota.uid`](/docs/registry/attributes/.md) |
 
 **Environment Variable Options:**
 

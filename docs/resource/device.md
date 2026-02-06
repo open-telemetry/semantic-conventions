@@ -51,14 +51,15 @@ More information about Android identifier best practices can be found in the [An
 
 | Setting | Requirement Level | Category | Example Value | Attribute |
 | --- | --- | --- | --- | --- |
+| `resource.detection.detectors[]` | `Required` | Detector Inclusion | `device` | - |
 | `resource.experimentalresourcedetection.attributes.included[]` | `Conditionally Required` | Attribute Inclusion | `device.id` | [`device.id`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: device.id,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  123456789012345 | [`device.id`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: device.id,`<br>&nbsp;&nbsp;&nbsp;`value: 123456789012345` | [`device.id`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `device.manufacturer` | [`device.manufacturer`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: device.manufacturer,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  Apple | [`device.manufacturer`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: device.manufacturer,`<br>&nbsp;&nbsp;&nbsp;`value: Apple` | [`device.manufacturer`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `device.model.identifier` | [`device.model.identifier`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: device.model.identifier,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  iPhone3,4 | [`device.model.identifier`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: device.model.identifier,`<br>&nbsp;&nbsp;&nbsp;`value: iPhone3,4` | [`device.model.identifier`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `device.model.name` | [`device.model.name`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: device.model.name,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  iPhone 6s Plus | [`device.model.name`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: device.model.name,`<br>&nbsp;&nbsp;&nbsp;`value: iPhone 6s Plus` | [`device.model.name`](/docs/registry/attributes/.md) |
 
 **Environment Variable Options:**
 

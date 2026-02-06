@@ -26,10 +26,11 @@
 
 | Setting | Requirement Level | Category | Example Value | Attribute |
 | --- | --- | --- | --- | --- |
+| `resource.detection.detectors[]` | `Required` | Detector Inclusion | `gcp.gce` | - |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `gcp.gce.instance.hostname` | [`gcp.gce.instance.hostname`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: gcp.gce.instance.hostname,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  my-host1234.example.com | [`gcp.gce.instance.hostname`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: gcp.gce.instance.hostname,`<br>&nbsp;&nbsp;&nbsp;`value: my-host1234.example.com` | [`gcp.gce.instance.hostname`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `gcp.gce.instance.name` | [`gcp.gce.instance.name`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | - name: gcp.gce.instance.name,<br>&nbsp;&nbsp;&nbsp;type:string,<br>&nbsp;&nbsp;&nbsp;value:  instance-1 | [`gcp.gce.instance.name`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: gcp.gce.instance.name,`<br>&nbsp;&nbsp;&nbsp;`value: instance-1` | [`gcp.gce.instance.name`](/docs/registry/attributes/.md) |
 
 **Environment Variable Options:**
 
