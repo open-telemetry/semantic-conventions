@@ -17,11 +17,31 @@
 
 **Attributes:**
 
-| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-| --- | --- | --- | --- | --- | --- | --- |
-| Other | [`gcp.apphub.application.container`](/docs/registry/attributes/gcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The container within GCP where the AppHub application is defined. | `projects/my-container-project` |
-| Other | [`gcp.apphub.application.id`](/docs/registry/attributes/gcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the application as configured in AppHub. | `my-application` |
-| Other | [`gcp.apphub.application.location`](/docs/registry/attributes/gcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The GCP zone or region where the application is defined. | `us-central1` |
+| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values | Configuration Requirement |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Other | [`gcp.apphub.application.container`](/docs/registry/attributes/gcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The container within GCP where the AppHub application is defined. | `projects/my-container-project` | `Opt-In` |
+| Other | [`gcp.apphub.application.id`](/docs/registry/attributes/gcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the application as configured in AppHub. | `my-application` | `Opt-In` |
+| Other | [`gcp.apphub.application.location`](/docs/registry/attributes/gcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The GCP zone or region where the application is defined. | `us-central1` | `Opt-In` |
+
+**Configuration File Options:**
+
+| Setting | Requirement Level | Category | Example Value | Attribute |
+| --- | --- | --- | --- | --- |
+| `resource.detection.detectors[]` | `Required` | Detector Inclusion | `gcp.apphub.application` | - |
+| `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `gcp.apphub.application.container` | [`gcp.apphub.application.container`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: gcp.apphub.application.container,`<br>&nbsp;&nbsp;&nbsp;`value: projects/my-container-project` | [`gcp.apphub.application.container`](/docs/registry/attributes/.md) |
+| `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `gcp.apphub.application.id` | [`gcp.apphub.application.id`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: gcp.apphub.application.id,`<br>&nbsp;&nbsp;&nbsp;`value: my-application` | [`gcp.apphub.application.id`](/docs/registry/attributes/.md) |
+| `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `gcp.apphub.application.location` | [`gcp.apphub.application.location`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: gcp.apphub.application.location,`<br>&nbsp;&nbsp;&nbsp;`value: us-central1` | [`gcp.apphub.application.location`](/docs/registry/attributes/.md) |
+
+**Environment Variable Options:**
+
+| Setting | Requirement Level | Category | Example Value | Attribute |
+| --- | --- | --- | --- | --- |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `gcp.apphub.application.container=projects/my-container-project` | [`gcp.apphub.application.container`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `gcp.apphub.application.id=my-application` | [`gcp.apphub.application.id`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `gcp.apphub.application.location=us-central1` | [`gcp.apphub.application.location`](/docs/registry/attributes/.md) |
 
 ## GCP Apphub Service
 
@@ -37,11 +57,11 @@
 
 **Attributes:**
 
-| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-| --- | --- | --- | --- | --- | --- | --- |
-| Other | [`gcp.apphub.service.criticality_type`](/docs/registry/attributes/gcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Criticality of a service indicates its importance to the business. [1] | `MISSION_CRITICAL`; `HIGH`; `MEDIUM` |
-| Other | [`gcp.apphub.service.environment_type`](/docs/registry/attributes/gcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Environment of a service is the stage of a software lifecycle. [2] | `PRODUCTION`; `STAGING`; `TEST` |
-| Other | [`gcp.apphub.service.id`](/docs/registry/attributes/gcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the service as configured in AppHub. | `my-service` |
+| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values | Configuration Requirement |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Other | [`gcp.apphub.service.criticality_type`](/docs/registry/attributes/gcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Criticality of a service indicates its importance to the business. [1] | `MISSION_CRITICAL`; `HIGH`; `MEDIUM` | `Opt-In` |
+| Other | [`gcp.apphub.service.environment_type`](/docs/registry/attributes/gcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Environment of a service is the stage of a software lifecycle. [2] | `PRODUCTION`; `STAGING`; `TEST` | `Opt-In` |
+| Other | [`gcp.apphub.service.id`](/docs/registry/attributes/gcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the service as configured in AppHub. | `my-service` | `Opt-In` |
 
 **[1] `gcp.apphub.service.criticality_type`:** [See AppHub type enum](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type)
 
@@ -69,6 +89,26 @@
 | `STAGING` | Staging environment. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `TEST` | Test environment. | ![Development](https://img.shields.io/badge/-development-blue) |
 
+**Configuration File Options:**
+
+| Setting | Requirement Level | Category | Example Value | Attribute |
+| --- | --- | --- | --- | --- |
+| `resource.detection.detectors[]` | `Required` | Detector Inclusion | `gcp.apphub.service` | - |
+| `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `gcp.apphub.service.criticality_type` | [`gcp.apphub.service.criticality_type`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: gcp.apphub.service.criticality_type,`<br>&nbsp;&nbsp;&nbsp;`type:string,`<br>&nbsp;&nbsp;&nbsp;`value: MISSION_CRITICAL` | [`gcp.apphub.service.criticality_type`](/docs/registry/attributes/.md) |
+| `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `gcp.apphub.service.environment_type` | [`gcp.apphub.service.environment_type`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: gcp.apphub.service.environment_type,`<br>&nbsp;&nbsp;&nbsp;`type:string,`<br>&nbsp;&nbsp;&nbsp;`value: PRODUCTION` | [`gcp.apphub.service.environment_type`](/docs/registry/attributes/.md) |
+| `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `gcp.apphub.service.id` | [`gcp.apphub.service.id`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: gcp.apphub.service.id,`<br>&nbsp;&nbsp;&nbsp;`value: my-service` | [`gcp.apphub.service.id`](/docs/registry/attributes/.md) |
+
+**Environment Variable Options:**
+
+| Setting | Requirement Level | Category | Example Value | Attribute |
+| --- | --- | --- | --- | --- |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `gcp.apphub.service.criticality_type=` | [`gcp.apphub.service.criticality_type`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `gcp.apphub.service.environment_type=` | [`gcp.apphub.service.environment_type`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `gcp.apphub.service.id=my-service` | [`gcp.apphub.service.id`](/docs/registry/attributes/.md) |
+
 ## GCP Apphub Workload
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
@@ -83,11 +123,11 @@
 
 **Attributes:**
 
-| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-| --- | --- | --- | --- | --- | --- | --- |
-| Other | [`gcp.apphub.workload.criticality_type`](/docs/registry/attributes/gcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Criticality of a workload indicates its importance to the business. [3] | `MISSION_CRITICAL`; `HIGH`; `MEDIUM` |
-| Other | [`gcp.apphub.workload.environment_type`](/docs/registry/attributes/gcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Environment of a workload is the stage of a software lifecycle. [4] | `PRODUCTION`; `STAGING`; `TEST` |
-| Other | [`gcp.apphub.workload.id`](/docs/registry/attributes/gcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the workload as configured in AppHub. | `my-workload` |
+| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values | Configuration Requirement |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Other | [`gcp.apphub.workload.criticality_type`](/docs/registry/attributes/gcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Criticality of a workload indicates its importance to the business. [3] | `MISSION_CRITICAL`; `HIGH`; `MEDIUM` | `Opt-In` |
+| Other | [`gcp.apphub.workload.environment_type`](/docs/registry/attributes/gcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Environment of a workload is the stage of a software lifecycle. [4] | `PRODUCTION`; `STAGING`; `TEST` | `Opt-In` |
+| Other | [`gcp.apphub.workload.id`](/docs/registry/attributes/gcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the workload as configured in AppHub. | `my-workload` | `Opt-In` |
 
 **[3] `gcp.apphub.workload.criticality_type`:** [See AppHub type enum](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type)
 
@@ -115,6 +155,26 @@
 | `STAGING` | Staging environment. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `TEST` | Test environment. | ![Development](https://img.shields.io/badge/-development-blue) |
 
+**Configuration File Options:**
+
+| Setting | Requirement Level | Category | Example Value | Attribute |
+| --- | --- | --- | --- | --- |
+| `resource.detection.detectors[]` | `Required` | Detector Inclusion | `gcp.apphub.workload` | - |
+| `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `gcp.apphub.workload.criticality_type` | [`gcp.apphub.workload.criticality_type`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: gcp.apphub.workload.criticality_type,`<br>&nbsp;&nbsp;&nbsp;`type:string,`<br>&nbsp;&nbsp;&nbsp;`value: MISSION_CRITICAL` | [`gcp.apphub.workload.criticality_type`](/docs/registry/attributes/.md) |
+| `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `gcp.apphub.workload.environment_type` | [`gcp.apphub.workload.environment_type`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: gcp.apphub.workload.environment_type,`<br>&nbsp;&nbsp;&nbsp;`type:string,`<br>&nbsp;&nbsp;&nbsp;`value: PRODUCTION` | [`gcp.apphub.workload.environment_type`](/docs/registry/attributes/.md) |
+| `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `gcp.apphub.workload.id` | [`gcp.apphub.workload.id`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: gcp.apphub.workload.id,`<br>&nbsp;&nbsp;&nbsp;`value: my-workload` | [`gcp.apphub.workload.id`](/docs/registry/attributes/.md) |
+
+**Environment Variable Options:**
+
+| Setting | Requirement Level | Category | Example Value | Attribute |
+| --- | --- | --- | --- | --- |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `gcp.apphub.workload.criticality_type=` | [`gcp.apphub.workload.criticality_type`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `gcp.apphub.workload.environment_type=` | [`gcp.apphub.workload.environment_type`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `gcp.apphub.workload.id=my-workload` | [`gcp.apphub.workload.id`](/docs/registry/attributes/.md) |
+
 ## GCP Cloud Run
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
@@ -129,10 +189,27 @@
 
 **Attributes:**
 
-| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-| --- | --- | --- | --- | --- | --- | --- |
-| Other | [`gcp.cloud_run.job.execution`](/docs/registry/attributes/gcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the Cloud Run [execution](https://cloud.google.com/run/docs/managing/job-executions) being run for the Job, as set by the [`CLOUD_RUN_EXECUTION`](https://cloud.google.com/run/docs/container-contract#jobs-env-vars) environment variable. | `job-name-xxxx`; `sample-job-mdw84` |
-| Other | [`gcp.cloud_run.job.task_index`](/docs/registry/attributes/gcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | int | The index for a task within an execution as provided by the [`CLOUD_RUN_TASK_INDEX`](https://cloud.google.com/run/docs/container-contract#jobs-env-vars) environment variable. | `0`; `1` |
+| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values | Configuration Requirement |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Other | [`gcp.cloud_run.job.execution`](/docs/registry/attributes/gcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the Cloud Run [execution](https://cloud.google.com/run/docs/managing/job-executions) being run for the Job, as set by the [`CLOUD_RUN_EXECUTION`](https://cloud.google.com/run/docs/container-contract#jobs-env-vars) environment variable. | `job-name-xxxx`; `sample-job-mdw84` | `Opt-In` |
+| Other | [`gcp.cloud_run.job.task_index`](/docs/registry/attributes/gcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | int | The index for a task within an execution as provided by the [`CLOUD_RUN_TASK_INDEX`](https://cloud.google.com/run/docs/container-contract#jobs-env-vars) environment variable. | `0`; `1` | `Opt-In` |
+
+**Configuration File Options:**
+
+| Setting | Requirement Level | Category | Example Value | Attribute |
+| --- | --- | --- | --- | --- |
+| `resource.detection.detectors[]` | `Required` | Detector Inclusion | `gcp.cloud_run` | - |
+| `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `gcp.cloud_run.job.execution` | [`gcp.cloud_run.job.execution`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: gcp.cloud_run.job.execution,`<br>&nbsp;&nbsp;&nbsp;`value: job-name-xxxx` | [`gcp.cloud_run.job.execution`](/docs/registry/attributes/.md) |
+| `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `gcp.cloud_run.job.task_index` | [`gcp.cloud_run.job.task_index`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: gcp.cloud_run.job.task_index,`<br>&nbsp;&nbsp;&nbsp;`type:int,`<br>&nbsp;&nbsp;&nbsp;`value: 0` | [`gcp.cloud_run.job.task_index`](/docs/registry/attributes/.md) |
+
+**Environment Variable Options:**
+
+| Setting | Requirement Level | Category | Example Value | Attribute |
+| --- | --- | --- | --- | --- |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `gcp.cloud_run.job.execution=job-name-xxxx` | [`gcp.cloud_run.job.execution`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `gcp.cloud_run.job.task_index=0` | [`gcp.cloud_run.job.task_index`](/docs/registry/attributes/.md) |
 
 ## GCP GCE
 
@@ -148,10 +225,27 @@
 
 **Attributes:**
 
-| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-| --- | --- | --- | --- | --- | --- | --- |
-| Other | [`gcp.gce.instance.hostname`](/docs/registry/attributes/gcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The hostname of a GCE instance. This is the full value of the default or [custom hostname](https://cloud.google.com/compute/docs/instances/custom-hostname-vm). | `my-host1234.example.com`; `sample-vm.us-west1-b.c.my-project.internal` |
-| Other | [`gcp.gce.instance.name`](/docs/registry/attributes/gcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The instance name of a GCE instance. This is the value provided by `host.name`, the visible name of the instance in the Cloud Console UI, and the prefix for the default hostname of the instance as defined by the [default internal DNS name](https://cloud.google.com/compute/docs/internal-dns#instance-fully-qualified-domain-names). | `instance-1`; `my-vm-name` |
+| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values | Configuration Requirement |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Other | [`gcp.gce.instance.hostname`](/docs/registry/attributes/gcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The hostname of a GCE instance. This is the full value of the default or [custom hostname](https://cloud.google.com/compute/docs/instances/custom-hostname-vm). | `my-host1234.example.com`; `sample-vm.us-west1-b.c.my-project.internal` | `Opt-In` |
+| Other | [`gcp.gce.instance.name`](/docs/registry/attributes/gcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The instance name of a GCE instance. This is the value provided by `host.name`, the visible name of the instance in the Cloud Console UI, and the prefix for the default hostname of the instance as defined by the [default internal DNS name](https://cloud.google.com/compute/docs/internal-dns#instance-fully-qualified-domain-names). | `instance-1`; `my-vm-name` | `Opt-In` |
+
+**Configuration File Options:**
+
+| Setting | Requirement Level | Category | Example Value | Attribute |
+| --- | --- | --- | --- | --- |
+| `resource.detection.detectors[]` | `Required` | Detector Inclusion | `gcp.gce` | - |
+| `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `gcp.gce.instance.hostname` | [`gcp.gce.instance.hostname`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: gcp.gce.instance.hostname,`<br>&nbsp;&nbsp;&nbsp;`value: my-host1234.example.com` | [`gcp.gce.instance.hostname`](/docs/registry/attributes/.md) |
+| `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `gcp.gce.instance.name` | [`gcp.gce.instance.name`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: gcp.gce.instance.name,`<br>&nbsp;&nbsp;&nbsp;`value: instance-1` | [`gcp.gce.instance.name`](/docs/registry/attributes/.md) |
+
+**Environment Variable Options:**
+
+| Setting | Requirement Level | Category | Example Value | Attribute |
+| --- | --- | --- | --- | --- |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `gcp.gce.instance.hostname=my-host1234.example.com` | [`gcp.gce.instance.hostname`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `gcp.gce.instance.name=instance-1` | [`gcp.gce.instance.name`](/docs/registry/attributes/.md) |
 
 ## GCP GCE Instance Group Manager
 
@@ -163,12 +257,32 @@
 
 **Attributes:**
 
-| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-| --- | --- | --- | --- | --- | --- | --- |
-| Identity | [`gcp.gce.instance_group_manager.name`](/docs/registry/attributes/gcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the Instance Group Manager (IGM) that manages this VM, if any. | `web-igm`; `my-managed-group` |
-| Identity | [`gcp.gce.instance_group_manager.region`](/docs/registry/attributes/gcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [5] | string | The region of a **regional** Instance Group Manager (e.g., `us-central1`). Set this **only** when the IGM is regional. | `us-central1`; `europe-west1` |
-| Identity | [`gcp.gce.instance_group_manager.zone`](/docs/registry/attributes/gcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [6] | string | The zone of a **zonal** Instance Group Manager (e.g., `us-central1-a`). Set this **only** when the IGM is zonal. | `us-central1-a`; `europe-west1-b` |
+| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values | Configuration Requirement |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Identity | [`gcp.gce.instance_group_manager.name`](/docs/registry/attributes/gcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the Instance Group Manager (IGM) that manages this VM, if any. | `web-igm`; `my-managed-group` | `Opt-In` |
+| Identity | [`gcp.gce.instance_group_manager.region`](/docs/registry/attributes/gcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [5] | string | The region of a **regional** Instance Group Manager (e.g., `us-central1`). Set this **only** when the IGM is regional. | `us-central1`; `europe-west1` | `Opt-In` |
+| Identity | [`gcp.gce.instance_group_manager.zone`](/docs/registry/attributes/gcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [6] | string | The zone of a **zonal** Instance Group Manager (e.g., `us-central1-a`). Set this **only** when the IGM is zonal. | `us-central1-a`; `europe-west1-b` | `Opt-In` |
 
 **[5] `gcp.gce.instance_group_manager.region`:** When the instance group is regional, then region MUST be filled out.
 
 **[6] `gcp.gce.instance_group_manager.zone`:** When the instance group is zonal, then zone MUST be filled out.
+
+**Configuration File Options:**
+
+| Setting | Requirement Level | Category | Example Value | Attribute |
+| --- | --- | --- | --- | --- |
+| `resource.detection.detectors[]` | `Required` | Detector Inclusion | `gcp.gce.instance_group_manager` | - |
+| `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `gcp.gce.instance_group_manager.name` | [`gcp.gce.instance_group_manager.name`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: gcp.gce.instance_group_manager.name,`<br>&nbsp;&nbsp;&nbsp;`value: web-igm` | [`gcp.gce.instance_group_manager.name`](/docs/registry/attributes/.md) |
+| `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `gcp.gce.instance_group_manager.region` | [`gcp.gce.instance_group_manager.region`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: gcp.gce.instance_group_manager.region,`<br>&nbsp;&nbsp;&nbsp;`value: us-central1` | [`gcp.gce.instance_group_manager.region`](/docs/registry/attributes/.md) |
+| `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `gcp.gce.instance_group_manager.zone` | [`gcp.gce.instance_group_manager.zone`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: gcp.gce.instance_group_manager.zone,`<br>&nbsp;&nbsp;&nbsp;`value: us-central1-a` | [`gcp.gce.instance_group_manager.zone`](/docs/registry/attributes/.md) |
+
+**Environment Variable Options:**
+
+| Setting | Requirement Level | Category | Example Value | Attribute |
+| --- | --- | --- | --- | --- |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `gcp.gce.instance_group_manager.name=web-igm` | [`gcp.gce.instance_group_manager.name`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `gcp.gce.instance_group_manager.region=us-central1` | [`gcp.gce.instance_group_manager.region`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `gcp.gce.instance_group_manager.zone=us-central1-a` | [`gcp.gce.instance_group_manager.zone`](/docs/registry/attributes/.md) |

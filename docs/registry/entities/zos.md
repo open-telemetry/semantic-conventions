@@ -17,8 +17,28 @@
 
 **Attributes:**
 
-| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-| --- | --- | --- | --- | --- | --- | --- |
-| Other | [`zos.smf.id`](/docs/registry/attributes/zos.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The System Management Facility (SMF) Identifier uniquely identified a z/OS system within a SYSPLEX or mainframe environment and is used for system and performance analysis. | `SYS1` |
-| Other | [`zos.sysplex.name`](/docs/registry/attributes/zos.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the SYSPLEX to which the z/OS system belongs too. | `SYSPLEX1` |
-| Other | [`mainframe.lpar.name`](/docs/registry/attributes/mainframe.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Name of the logical partition that hosts a systems with a mainframe operating system. | `LPAR01` |
+| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values | Configuration Requirement |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Other | [`zos.smf.id`](/docs/registry/attributes/zos.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The System Management Facility (SMF) Identifier uniquely identified a z/OS system within a SYSPLEX or mainframe environment and is used for system and performance analysis. | `SYS1` | `Opt-In` |
+| Other | [`zos.sysplex.name`](/docs/registry/attributes/zos.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the SYSPLEX to which the z/OS system belongs too. | `SYSPLEX1` | `Opt-In` |
+| Other | [`mainframe.lpar.name`](/docs/registry/attributes/mainframe.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Name of the logical partition that hosts a systems with a mainframe operating system. | `LPAR01` | `Opt-In` |
+
+**Configuration File Options:**
+
+| Setting | Requirement Level | Category | Example Value | Attribute |
+| --- | --- | --- | --- | --- |
+| `resource.detection.detectors[]` | `Required` | Detector Inclusion | `zos.software` | - |
+| `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `mainframe.lpar.name` | [`mainframe.lpar.name`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: mainframe.lpar.name,`<br>&nbsp;&nbsp;&nbsp;`value: LPAR01` | [`mainframe.lpar.name`](/docs/registry/attributes/.md) |
+| `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `zos.smf.id` | [`zos.smf.id`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: zos.smf.id,`<br>&nbsp;&nbsp;&nbsp;`value: SYS1` | [`zos.smf.id`](/docs/registry/attributes/.md) |
+| `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `zos.sysplex.name` | [`zos.sysplex.name`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: zos.sysplex.name,`<br>&nbsp;&nbsp;&nbsp;`value: SYSPLEX1` | [`zos.sysplex.name`](/docs/registry/attributes/.md) |
+
+**Environment Variable Options:**
+
+| Setting | Requirement Level | Category | Example Value | Attribute |
+| --- | --- | --- | --- | --- |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `mainframe.lpar.name=LPAR01` | [`mainframe.lpar.name`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `zos.smf.id=SYS1` | [`zos.smf.id`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `zos.sysplex.name=SYSPLEX1` | [`zos.sysplex.name`](/docs/registry/attributes/.md) |

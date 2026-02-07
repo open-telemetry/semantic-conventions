@@ -36,3 +36,19 @@
 {%- elif item.type == "enum" -%}
 {%- for e in item.members if e.deprecated is not defined or e.deprecated is none %}{% if loop.index0 < 3 %}{% if loop.first == false %}; {% endif %}`{{ e.value | trim }}`{% endif %}{%- endfor %}
 {%- endif %}{% endmacro %}
+
+{% macro first(attribute) %}
+{% if attribute.examples and attribute.examples is sequence %}
+{{attribute.examples[0]}}
+{% elif attribute.examples %}
+{{attribute.examples}}
+{% elif attribute.type == "boolean" %}
+true
+{% elif attribute.type == "int" %}
+1
+{% elif attribute.type == "enum" or attribute.type is mapping %}
+{{attribute.type.members[0].value}}
+{% else %}
+{{attribute}}
+{% endif %}
+{% endmacro %}
