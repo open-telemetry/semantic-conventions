@@ -89,7 +89,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
-    brief: 'Time per output chunk generated after the first chunk.'
+    brief: > 
+      Time per output chunk, recorded for each chunk received after the first one, measured as the time elapsed from the end of the previous chunk to the end of the current chunk.
+    note: >
+      This metrics SHOULD be reported for streaming calls and SHOULD NOT be reported otherwise.
     instrument: histogram
     unit: "s"
     stability: development
