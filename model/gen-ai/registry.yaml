@@ -206,6 +206,13 @@ groups:
         type: int
         brief: The number of tokens used in the GenAI response (completion).
         examples: [180]
+      - id: gen_ai.usage.reasoning.output_tokens
+        stability: development
+        type: int
+        brief: The number of output tokens used for reasoning (e.g. chain-of-thought, extended thinking).
+        note: >
+          The value SHOULD be included in `gen_ai.usage.output_tokens`.
+        examples: [50]
       - id: gen_ai.token.type
         stability: development
         type:

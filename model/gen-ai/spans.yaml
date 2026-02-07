@@ -164,6 +164,8 @@ groups:
         sampling_relevant: true
       - ref: gen_ai.operation.name
         sampling_relevant: true
+      - ref: gen_ai.usage.reasoning.output_tokens
+        requirement_level: recommended
 
   - id: span.openai.inference.client
     extends: attributes.gen_ai.inference.openai_based
