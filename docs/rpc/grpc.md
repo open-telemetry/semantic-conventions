@@ -17,6 +17,14 @@ linkTitle: gRPC
 
 The Semantic Conventions for [gRPC](https://grpc.io/) extend and override the [RPC Semantic Conventions](README.md).
 
+> [!NOTE]
+> The gRPC project defines its own conventions for [metrics](https://github.com/grpc/proposal/blob/master/A66-otel-stats.md)
+> and [spans](https://github.com/grpc/proposal/blob/master/A72-open-telemetry-tracing.md).
+>
+> Details on how OpenTelemetry spans and metrics defined in this repository
+> relate to the native gRPC conventions are documented in the
+> [gRPC compatibility](/docs/non-normative/compatibility/grpc.md) document.
+
 ## Spans
 
 ### Client
