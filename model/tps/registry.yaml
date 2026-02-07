@@ -1,0 +1,98 @@
+groups:
+  - id: registry.tps
+    type: attribute_group
+    display_name: Transaction Processing System Attributes
+    brief: >
+      This group defines generic attributes for Transaction Processing Systems (TPS).
+    attributes:
+      - id: tps.system.name
+        stability: development
+        brief: "Type of Transaction Processing System"
+        type:
+          members:
+            - id: ibm.cics
+              value: 'ibm.cics'
+              brief: IBM CICS Transaction Server
+              stability: development
+            - id: ibm.ims
+              value: 'ibm.ims'
+              brief: IBM Information Management System
+              stability: development
+      - id: tps.transaction.id
+        type: string
+        stability: development
+        brief: "Identifier of the transaction initiated by a user or system request"
+        examples: 'TRX1'
+      - id: tps.transaction.owner.id
+        type: string
+        stability: development
+        brief: "Identifier of the user owning the transaction"
+        examples: 'USER'
+      - id: tps.region.id
+        type: string
+        stability: development
+        brief: "On z/OS, identifies the entity acting as runtime environment to execute tasks of transactions within the Transaction Processing System"
+        examples: 'PRD1'
+      - id: tps.task.id
+        type: string
+        stability: development
+        brief: "Identifier of the task created to run the transaction"
+        examples: '1554'
+      - id: tps.program.name
+        type: string
+        stability: development
+        brief: "Program name executed by the task"
+        examples: 'PROG123'
+      - id: tps.unit_of_work.id
+        type: string
+        stability: development
+        brief: "Unit of work executed by the program"
+        examples: 'DF308CBF385A3C05'
+      - id: tps.connection.name
+        type: string
+        stability: development
+        brief: "Connection name identifies the other system that a system communicates with"
+        examples: 'CIDE'
+      - id: tps.facility.type
+        stability: development
+        brief: "The type of facility that initiated this unit of work or operation"
+        type:
+          members:
+            - id: ibm.cics.ipic
+              value: 'IPIC'
+              brief: IP interconnectivity - IPIC provides access to CICS applications over the TCP/IP protocol
+              stability: development
+            - id: ibm.cics.mro
+              value: 'MRO'
+              brief: Multiregion Operations - MRO enables CICS regions that are running in the same system, or in the same sysplex, to communicate with each other.
+              stability: development
+
+  - id: registry.ibm.cics
+    type: attribute_group
+    display_name: IBM Customer Information Control System (CICS)
+    brief: This group defines attributes for the IBM CICS Transaction Server for z/OS
+    attributes:
+      - id: ibm.cics.transaction.group.id
+        type: string
+        stability: development
+        brief: Describes the group ID assigned at transaction attach time and can be used to correlate the transactions that CICS runs for the same incoming work request.
+        examples: ['TRNGROUP']
+
+  - id: registry.ibm.ims
+    type: attribute_group
+    display_name: IBM Information Management System (IMS) Attributes
+    brief: This group defines attributes for IBM Information Management System (IMS) for z/OS
+    attributes:
+      - id: ibm.ims.commit_mode
+        stability: development
+        brief: Determines the type of commit mode processing that IMS performs.
+        type:
+          members:
+            - id: commit_then_send
+              value: '0'
+              brief: IMS commits the IMS database changes and then sends the output to the client
+              stability: development
+            - id: send_then_commit
+              value: '1'
+              brief: IMS sends the output to the client and then commits the IMS database changes
+              stability: development
