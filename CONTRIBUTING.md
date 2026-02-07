@@ -199,9 +199,9 @@ At the top of all Markdown files under the `docs/` directory, you will see
 headers like the following:
 
 ```md
-<!--- Hugo front matter used to generate the website version of this page:
+---
 linkTitle: HTTP
---->
+---
 ```
 
 When creating new markdown files, you should provide the `linkTitle` attribute.

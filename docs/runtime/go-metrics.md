@@ -1,6 +1,6 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
 linkTitle: Go
---->
+---
 
 # Semantic conventions for Go runtime metrics
 
