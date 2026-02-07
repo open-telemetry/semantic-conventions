@@ -75,8 +75,6 @@ groups:
         requirement_level: recommended
       - ref: gen_ai.usage.output_tokens
         requirement_level: recommended
-      - ref: gen_ai.usage.reasoning.output_tokens
-        requirement_level: recommended
       - ref: gen_ai.conversation.id
         requirement_level:
           conditionally_required: when available
@@ -166,6 +164,8 @@ groups:
         sampling_relevant: true
       - ref: gen_ai.operation.name
         sampling_relevant: true
+      - ref: gen_ai.usage.reasoning.output_tokens
+        requirement_level: recommended
 
   - id: span.openai.inference.client
     extends: attributes.gen_ai.inference.openai_based
@@ -222,8 +222,6 @@ groups:
       - ref: gen_ai.usage.output_tokens
         brief: >
           The number of completion tokens as reported in the usage completion_tokens property of the response.
-      - ref: gen_ai.usage.reasoning.output_tokens
-        requirement_level: recommended
       - ref: server.port
         requirement_level:
           conditionally_required: If not default (443).
