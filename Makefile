@@ -351,3 +351,7 @@ areas-table-generation:
 .PHONY: areas-table-check
 areas-table-check:
 	docker run --rm -v ${PWD}:/repo -w /repo python:3-alpine python internal/tools/scripts/update-areas-table.py --install --check;
+
+.PHONY: generate-all
+generate-all: table-generation registry-generation areas-table-generation generate-gh-issue-templates
+

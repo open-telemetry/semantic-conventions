@@ -175,7 +175,7 @@ the respective markdown files.
 If you want to update existing tables, just run the following commands:
 
 ```bash
-make table-generation registry-generation
+make generate-all
 ```
 
 When defining new telemetry signals (spans, metrics, events, resources) in YAML,
@@ -190,7 +190,7 @@ code-snippet into the markdown file:
 Then run markdown generation commands:
 
 ```bash
-make table-generation registry-generation
+make generate-all
 ```
 
 #### Hugo frontmatter
