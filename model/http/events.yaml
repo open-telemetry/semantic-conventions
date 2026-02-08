@@ -1,0 +1,38 @@
+groups:
+  - id: event.http.client.exception
+    name: http.client.exception
+    stability: development
+    type: event
+    brief: >
+      This event represents an exception that occurred during an HTTP client request.
+    note: >
+      This event SHOULD be recorded when an exception occurs during HTTP client operations,
+      such as network failures, timeouts, or other errors that prevent the request
+      from completing successfully.
+    attributes:
+      - ref: exception.type
+        requirement_level:
+          conditionally_required: Required if `exception.message` is not set, recommended otherwise.
+      - ref: exception.message
+        requirement_level:
+          conditionally_required: Required if `exception.type` is not set, recommended otherwise.
+      - ref: exception.stacktrace
+
+  - id: event.http.server.exception
+    name: http.server.exception
+    stability: development
+    type: event
+    brief: >
+      This event represents an exception that occurred during HTTP server request processing.
+    note: >
+      This event SHOULD be recorded when an exception occurs during HTTP server request
+      processing, such as application errors, internal failures, or other exceptions
+      that prevent the server from successfully handling the request.
+    attributes:
+      - ref: exception.type
+        requirement_level:
+          conditionally_required: Required if `exception.message` is not set, recommended otherwise.
+      - ref: exception.message
+        requirement_level:
+          conditionally_required: Required if `exception.type` is not set, recommended otherwise.
+      - ref: exception.stacktrace
