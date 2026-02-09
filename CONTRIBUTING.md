@@ -115,12 +115,15 @@ environment configured:
   npm install
   ```
 
-- If on MacOs, ensure you have `gsed` (GNU Sed) installed. If you have [HomeBrew](https://brew.sh)
+- If on macOS, ensure you have `gsed` (GNU Sed) installed. If you have [HomeBrew](https://brew.sh)
   installed, then you can run the following command to install GSED.
 
   ```bash
   brew bundle
   ```
+
+- Lastly, ensure you have either [Docker](https://www.docker.com) or [Podman](https://podman.io) installed and
+  configured in such a way that the makefile can execute the `docker` command.
 
 ### 1. Modify the YAML model
 
@@ -172,7 +175,7 @@ the respective markdown files.
 If you want to update existing tables, just run the following commands:
 
 ```bash
-make table-generation registry-generation
+make generate-all
 ```
 
 When defining new telemetry signals (spans, metrics, events, resources) in YAML,
@@ -187,7 +190,7 @@ code-snippet into the markdown file:
 Then run markdown generation commands:
 
 ```bash
-make table-generation registry-generation
+make generate-all
 ```
 
 #### Hugo frontmatter
@@ -240,6 +243,7 @@ Keep in mind the following types of users (not limited to):
 1. Those who are consuming the data following these conventions (e.g., in alerts, dashboards, queries)
 2. Those who are using the conventions in instrumentations (e.g., library authors)
 3. Those who are using the conventions to derive heuristics, predictions and automatic analyses (e.g., observability products/back-ends)
+4. Those who define their own conventions (e.g., vendor-specific conventions, private registries)
 
 If a changelog entry is not required (e.g. editorial or trivial changes),
 a maintainer or approver will add the `Skip Changelog` label to the pull request.

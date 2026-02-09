@@ -11,7 +11,7 @@
   "devDependencies": {
     "markdown-toc": "1.2.0",
     "markdownlint-cli": "0.47.0",
-    "prettier": "3.8.0"
+    "prettier": "3.8.1"
   },
   "prettier": {
     "proseWrap": "preserve",

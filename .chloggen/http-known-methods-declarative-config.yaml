@@ -1,0 +1,4 @@
+change_type: enhancement
+component: http
+note: Defined declarative configuration for overriding known HTTP methods.
+issues: [3394]
