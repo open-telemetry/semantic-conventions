@@ -5,6 +5,22 @@ groups:
     brief: >
       This document defines log attributes
     attributes:
+      - id: log.type
+        stability: development
+        brief: >
+          The type or category of the log record. See below for a list of well-known values.
+        type:
+          members:
+            - id: audit
+              value: 'audit'
+              brief: >
+                Audit log recording security-relevant activities for compliance and forensics. When log.type='audit', the log record MUST not get lost and body not changed.
+              stability: development
+            - id: application
+              value: 'app'
+              brief: 'Default regular application log - everything which is NOT audit relevant'
+              stability: development
+
       - id: log.iostream
         stability: development
         brief: >
