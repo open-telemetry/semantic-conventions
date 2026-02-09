@@ -1,0 +1,4 @@
+change_type: enhancement
+component: openai
+note: Add `openai.api.type` attribute to distinguish between different OpenAI API types for similar operations.
+issues: [3337]
