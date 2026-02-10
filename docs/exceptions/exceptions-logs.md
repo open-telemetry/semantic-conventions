@@ -50,10 +50,13 @@ attributes that provide the context in which the exception has happened.
 Events contain a unique [name](/docs/general/events.md) that describes
 that specific class of events.
 
-It's RECOMMENDED to use a specific name identifying the error category and NOT
-RECOMMENDED to use a generic name like `exception`.
-For example, when recording a socket connection exception generalized across languages, use something like `socket.connection.error` instead of `exception`
-or `error`.
+It is RECOMMENDED to use a specific event name that identifies the error category,
+and NOT RECOMMENDED to use a generic name such as `exception`.
+
+For example, when recording an exception that occurs during an HTTP client request
+and prevents the request from completing successfully, use the `http.client.exception`
+event name instead of a generic exception or error, or leaving the event name
+unspecified.
 
 ### Severity considerations
 
