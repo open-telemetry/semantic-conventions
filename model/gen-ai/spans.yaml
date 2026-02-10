@@ -468,7 +468,7 @@ groups:
         note: >
           Anthropic reports this separately from `input_tokens`.
           This value MUST be added to the Anthropic `input_tokens` to compute `gen_ai.usage.input_tokens`.
-          
+
   - id: span.gen_ai.invoke_workflow.internal
     type: span
     span_kind: internal
