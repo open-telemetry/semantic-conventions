@@ -1,6 +1,6 @@
 groups:
-  - id: event.http.client.exception
-    name: http.client.exception
+  - id: event.http.client.request.exception
+    name: http.client.request.exception
     stability: development
     type: event
     brief: >
@@ -18,8 +18,8 @@ groups:
           conditionally_required: Required if `exception.type` is not set, recommended otherwise.
       - ref: exception.stacktrace
 
-  - id: event.http.server.exception
-    name: http.server.exception
+  - id: event.http.server.request.exception
+    name: http.server.request.exception
     stability: development
     type: event
     brief: >
