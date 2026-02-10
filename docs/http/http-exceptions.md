@@ -29,6 +29,8 @@ The event name MUST be `http.client.request.exception`.
 This event represents an exception that occurred during an HTTP client request, such as network failures, timeouts, or other errors that prevent the request from completing successfully.
 
 This event SHOULD be recorded when an exception occurs during HTTP client operations.
+Instrumentations SHOULD set the severity to ERROR (severity number 17) when recording this event.
+Some HTTP client frameworks generate artificial exceptions for non-successful HTTP status codes (e.g., 404 Not Found). When possible, instrumentations SHOULD NOT record these artificial exceptions, or SHOULD set the severity to DEBUG (severity number 5).
 
 **Attributes:**
 
@@ -66,6 +68,8 @@ The event name MUST be `http.server.request.exception`.
 This event represents an exception that occurred during HTTP server request processing, such as application errors, internal failures, or other exceptions that prevent the server from successfully handling the request.
 
 This event SHOULD be recorded when an exception occurs during HTTP server request processing.
+Instrumentations SHOULD set the severity to ERROR (severity number 17) when recording this event.
+Some HTTP server frameworks generate artificial exceptions for certain HTTP status codes (e.g., 404 Not Found). When possible, instrumentations SHOULD NOT record these artificial exceptions, or SHOULD set the severity to DEBUG (severity number 5).
 
 **Attributes:**
 
