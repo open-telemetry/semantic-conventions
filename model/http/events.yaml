@@ -10,7 +10,7 @@ groups:
     note: >
       This event SHOULD be recorded when an exception occurs during HTTP client operations.
 
-      Instrumentations SHOULD set the severity to ERROR (severity number 17) when recording this event.
+      Instrumentations SHOULD set the severity to WARN (severity number 13) when recording this event.
 
       Some HTTP client frameworks generate artificial exceptions for non-successful HTTP status codes
       (e.g., 404 Not Found). When possible, instrumentations SHOULD NOT record these artificial
