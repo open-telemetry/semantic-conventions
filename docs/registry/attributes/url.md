@@ -51,9 +51,9 @@ value `REDACTED`:
 This list is subject to change over time.
 
 ![Development](https://img.shields.io/badge/-development-blue)
-HTTP instrumentation MAY provide a way to override this list via declarative configuration.
+Instrumentation MAY provide a way to override this list via declarative configuration.
 If so, it SHOULD use the `sensitive_query_parameters` property
-(an array of strings with minimum items 0) under `.instrumentation/development.general.http`.
+(an array of strings with minimum items 0) under `.instrumentation/development.general.sanitization.url`.
 This list is a full override of the default sensitive query parameter keys,
 it is not a list of keys in addition to the defaults.
 
@@ -77,9 +77,9 @@ Query string values for the following keys SHOULD be redacted by default and rep
 
 This list is subject to change over time.
 
-HTTP instrumentation MAY provide a way to override this list via declarative configuration.
+Instrumentation MAY provide a way to override this list via declarative configuration.
 If so, it SHOULD use the `sensitive_query_parameters` property
-(an array of strings with minimum items 0) under `.instrumentation/development.general.http`.
+(an array of strings with minimum items 0) under `.instrumentation/development.general.sanitization.url`.
 This list is a full override of the default sensitive query parameter keys,
 it is not a list of keys in addition to the defaults.
 
