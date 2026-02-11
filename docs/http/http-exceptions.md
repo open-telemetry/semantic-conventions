@@ -70,7 +70,6 @@ This event represents an exception that occurred during HTTP server request proc
 
 This event SHOULD be recorded when an exception occurs during HTTP server request processing.
 Instrumentations SHOULD set the severity to ERROR (severity number 17) when recording this event.
-Some HTTP server frameworks generate artificial exceptions for certain HTTP status codes (e.g., 404 Not Found). When possible, instrumentations SHOULD NOT record these artificial exceptions, or SHOULD set the severity to DEBUG (severity number 5).
 Instrumentations MAY provide a configuration option to populate exception events with the attributes captured on the corresponding HTTP server span.
 
 **Attributes:**
