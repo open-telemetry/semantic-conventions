@@ -17,7 +17,7 @@ groups:
       exceptions, or SHOULD set the severity to DEBUG (severity number 5).
 
       Instrumentations MAY provide a configuration option to populate exception events
-      with the attributes captured on the corresponding http client span.
+      with the attributes captured on the corresponding HTTP client span.
     attributes:
       - ref: exception.type
         requirement_level:
@@ -45,7 +45,7 @@ groups:
       exceptions, or SHOULD set the severity to DEBUG (severity number 5).
 
       Instrumentations MAY provide a configuration option to populate exception events
-      with the attributes captured on the corresponding http server span.
+      with the attributes captured on the corresponding HTTP server span.
     attributes:
       - ref: exception.type
         requirement_level:
