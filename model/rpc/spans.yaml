@@ -186,12 +186,6 @@ groups:
         requirement_level: opt_in
       - ref: rpc.response.metadata
         requirement_level: opt_in
-      - ref: grpc.target
-        sampling_relevant: true
-        requirement_level:
-          conditionally_required: >
-            If the channel was created with a target string and it contains
-            information that's not otherwise captured in `server.address` and `server.port`.
       - ref: server.address
         note: |
           Instrumentations SHOULD populate `server.address` (along with `server.port`)
@@ -199,7 +193,7 @@ groups:
           SHOULD NOT use actual network-level connection information for this purpose
           to ensure low cardinality.
 
-          Instrumentations MAY parse address and port from the target string
+          Instrumentations MAY parse address and port from the gRPC target string
           according to the [gRPC Name Resolution specification](https://grpc.github.io/grpc/core/md_doc_naming.html),
           depending on the scheme used. Or, they MAY use gRPC client APIs that
           provide this information.
@@ -218,23 +212,18 @@ groups:
           - Given the target string `grpc.io:50051`, expected attributes:
             - `server.address`: `"grpc.io"`
             - `server.port`: `50051`
-            - `grpc.target`: not set
           - Given the target string `dns://1.2.3.4/grpc.io:50051`, expected attributes:
             - `server.address`: `"grpc.io"`
             - `server.port`: `50051`
-            - `grpc.target`: `"dns://1.2.3.4/grpc.io:50051"`
           - Given the target string `unix:///run/containerd/containerd.sock`, expected attributes:
             - `server.address`: `"/run/containerd/containerd.sock"`
             - `server.port`: not set
-            - `grpc.target`: `"unix:///run/containerd/containerd.sock"`
           - Given the target string `zk://zookeeper:2181/my-server`, expected attributes:
             - `server.address`: "zk://zookeeper:2181/my-server"
             - `server.port`: not set
-            - `grpc.target`: not set
           - Given the target string `ipv4:198.51.100.123:50051,198.51.100.124:50051`, expected attributes:
             - `server.address`: "ipv4:198.51.100.123:50051,198.51.100.124:50051"
             - `server.port`: not set
-            - `grpc.target`: not set
         requirement_level: required
       - ref: server.port
         note: >

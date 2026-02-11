@@ -50,7 +50,6 @@ body:
         - area:geo
         - area:go
         - area:graphql
-        - area:grpc
         - area:hardware
         - area:heroku
         - area:host

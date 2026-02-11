@@ -68,7 +68,6 @@ Currently, the following namespaces exist:
 - [Geo](geo.md)
 - [Go](go.md)
 - [GraphQL](graphql.md)
-- [gRPC](grpc.md)
 - [Hardware](hardware.md)
 - [Heroku](heroku.md)
 - [Host](host.md)
