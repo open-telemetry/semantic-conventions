@@ -11,6 +11,9 @@ groups:
         sampling_relevant: true
       - ref: network.peer.address
         requirement_level: recommended
+        note: >
+          If a RPC involved multiple network calls (for example retries), the
+          last contacted address SHOULD be used.
       - ref: network.peer.port
         requirement_level:
           recommended: If `network.peer.address` is set.
