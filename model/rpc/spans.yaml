@@ -111,6 +111,16 @@ groups:
         requirement_level: opt_in
       - ref: rpc.response.metadata
         requirement_level: opt_in
+      - ref: server.address
+        brief: The domain name or address of the Connect RPC server.
+        requirement_level: required
+        note: >
+          When an IP address is provided instead of a domain name,
+          instrumentations SHOULD NOT do a reverse proxy lookup to obtain DNS
+          name and SHOULD set `server.address` to the provided IP address.
+      - ref: server.port
+        requirement_level:
+          conditionally_required: if available.
 
   - id: span.rpc.connect_rpc.call.server
     type: span
@@ -194,9 +204,10 @@ groups:
           depending on the scheme used. Or, they MAY use gRPC client APIs that
           provide this information.
 
-          Instrumentations SHOULD NOT set `server.address` when it cannot reliably
-          identify (a single) address of the server hosting the RPC endpoint or when
-          the scheme is unknown to the instrumentation.
+          If the instrumentation cannot determine a server domain name or another
+          suitable low-cardinality identifier for a group of service instances
+          from the target string, it SHOULD set `server.address` to the entire
+          target string and SHOULD NOT set `server.port`.
 
           When the address is an IP address, instrumentations SHOULD NOT do a
           reverse proxy lookup to obtain a DNS name and SHOULD set `server.address`
@@ -208,24 +219,23 @@ groups:
             - `server.address`: `"grpc.io"`
             - `server.port`: `50051`
             - `grpc.target`: not set
-          - Given the target string `dns:///grpc.io:50051`, expected attributes:
+          - Given the target string `dns://1.2.3.4/grpc.io:50051`, expected attributes:
             - `server.address`: `"grpc.io"`
             - `server.port`: `50051`
-            - `grpc.target`: `"dns:///grpc.io:50051"`
+            - `grpc.target`: `"dns://1.2.3.4/grpc.io:50051"`
           - Given the target string `unix:///run/containerd/containerd.sock`, expected attributes:
             - `server.address`: `"/run/containerd/containerd.sock"`
             - `server.port`: not set
             - `grpc.target`: `"unix:///run/containerd/containerd.sock"`
-          - Given the target string `zk://zookeeper:2181`, expected attributes:
-            - `server.address`: not set
+          - Given the target string `zk://zookeeper:2181/my-server`, expected attributes:
+            - `server.address`: "zk://zookeeper:2181/my-server"
             - `server.port`: not set
-            - `grpc.target`: `"zk://zookeeper:2181"`
+            - `grpc.target`: not set
           - Given the target string `ipv4:198.51.100.123:50051,198.51.100.124:50051`, expected attributes:
-            - `server.address`: not set
+            - `server.address`: "ipv4:198.51.100.123:50051,198.51.100.124:50051"
             - `server.port`: not set
-            - `grpc.target`: `"ipv4:198.51.100.123:50051,198.51.100.124:50051"`
-        requirement_level:
-          conditionally_required: If the instrumentation was able to detect a single address in the target string.
+            - `grpc.target`: not set
+        requirement_level: required
       - ref: server.port
         note: >
           See the `server.address` for details on parsing the target string.
@@ -313,6 +323,13 @@ groups:
           All JSON RPC error codes SHOULD be considered errors.
         requirement_level:
           conditionally_required: when available
+      - ref: server.address
+        requirement_level:
+          recommended: >
+            Instrumentations that have access to the transport-level information
+            and can reliably extract domain name or another low-cardinality server
+            address from it SHOULD set this attribute.
+        note: ""
 
   - id: span.rpc.jsonrpc.call.server
     type: span
