@@ -70,3 +70,24 @@ groups:
         examples:
           - "http://pprof.example.com/cpu-profile.html"
         stability: development
+      - id: pprof.scope.default_sample_type
+        brief: >
+          Records the pprof's default_sample_type in the original profile. Not set
+          if the default sample type was missing.
+        note: >
+          This attribute, if present, MUST be set at the scope level
+          (resource_profiles[].scope_profiles[].scope.attributes[]).
+        type: string
+        examples:
+          - "cpu"
+        stability: development
+      - id: pprof.scope.sample_type_order
+        brief: >
+          Records the indexes of the sample types in the original profile.
+        note: >
+          This attribute, if present, MUST be set at the scope level
+          (resource_profiles[].scope_profiles[].scope.attributes[]).
+        type: int[]
+        examples:
+          - [3, 0, 1, 2]
+        stability: development
