@@ -972,7 +972,7 @@ groups:
         requirement_level: opt_in
   - id: span.db.oracledb.client
     type: span
-    stability: development
+    stability: release_candidate
     extends: span.db.sql.client
     span_kind: client
     brief: >
