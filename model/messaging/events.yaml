@@ -1,0 +1,48 @@
+groups:
+  - id: event.messaging.client.operation.exception
+    name: messaging.client.operation.exception
+    stability: development
+    type: event
+    brief: >
+      This event represents an exception that occurred during a messaging client operation,
+      such as connection failures, timeouts, serialization errors, or other errors that
+      prevent the operation from completing successfully.
+    note: >
+      This event SHOULD be recorded when an exception occurs during messaging client operations.
+
+      Instrumentations SHOULD set the severity to WARN (severity number 13) when recording this event.
+
+      Instrumentations MAY provide a configuration option to populate exception events
+      with the attributes captured on the corresponding messaging client span.
+    attributes:
+      - ref: exception.type
+        requirement_level:
+          conditionally_required: Required if `exception.message` is not set, recommended otherwise.
+      - ref: exception.message
+        requirement_level:
+          conditionally_required: Required if `exception.type` is not set, recommended otherwise.
+      - ref: exception.stacktrace
+
+  - id: event.messaging.process.exception
+    name: messaging.process.exception
+    stability: development
+    type: event
+    brief: >
+      This event represents an exception that occurred during messaging process operations,
+      such as application errors, deserialization failures, or other exceptions that prevent
+      the consumer from successfully processing the message.
+    note: >
+      This event SHOULD be recorded when an exception occurs during messaging process operations.
+
+      Instrumentations SHOULD set the severity to ERROR (severity number 17) when recording this event.
+
+      Instrumentations MAY provide a configuration option to populate exception events
+      with the attributes captured on the corresponding messaging process span.
+    attributes:
+      - ref: exception.type
+        requirement_level:
+          conditionally_required: Required if `exception.message` is not set, recommended otherwise.
+      - ref: exception.message
+        requirement_level:
+          conditionally_required: Required if `exception.type` is not set, recommended otherwise.
+      - ref: exception.stacktrace

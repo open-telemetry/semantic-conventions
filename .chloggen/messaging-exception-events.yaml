@@ -1,0 +1,9 @@
+change_type: enhancement
+component: messaging
+note: Define domain-specific exception events for messaging
+issues: [3435]
+subtext: |
+  These domain-specific exception events provide a structured way to record
+  exceptions that occur during messaging operations:
+  - `messaging.client.operation.exception` for messaging client operations
+  - `messaging.process.exception` for messaging process operations
