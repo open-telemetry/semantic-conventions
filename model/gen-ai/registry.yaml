@@ -410,6 +410,26 @@ groups:
               value: "execute_tool"
               brief: 'Execute a tool'
               stability: development
+            - id: search_memory
+              value: "search_memory"
+              brief: 'Search/query memories from a memory store'
+              stability: development
+            - id: update_memory
+              value: "update_memory"
+              brief: 'Create or update (upsert) memory items'
+              stability: development
+            - id: delete_memory
+              value: "delete_memory"
+              brief: 'Delete memory items (by id, or by scope+namespace)'
+              stability: development
+            - id: create_memory_store
+              value: "create_memory_store"
+              brief: 'Create/initialize a memory store'
+              stability: development
+            - id: delete_memory_store
+              value: "delete_memory_store"
+              brief: 'Delete/deprovision a memory store'
+              stability: development
         brief: The name of the operation being performed.
         note: >
           If one of the predefined values applies, but specific system uses a different name it's RECOMMENDED to document it in the semantic
@@ -660,3 +680,140 @@ groups:
         brief: The name of the prompt that uniquely identifies it.
         stability: development
         examples: ["analyze-code"]
+
+      # Memory Store Identification
+      - id: gen_ai.memory.store.id
+        stability: development
+        type: string
+        brief: The unique identifier of the memory store.
+        examples: ["ms_abc123", "user-preferences-store"]
+
+      - id: gen_ai.memory.store.name
+        stability: development
+        type: string
+        brief: Human-readable name of the memory store.
+        examples: ["Customer Support Memory", "Shopping Preferences"]
+
+      # Memory Item Identification
+      - id: gen_ai.memory.id
+        stability: development
+        type: string
+        brief: The unique identifier of a memory item.
+        examples: ["mem_5j66UpCpwteGg4YSxUnt7lPY"]
+
+      # Memory Type (free-form string to accommodate framework differences)
+      - id: gen_ai.memory.type
+        stability: development
+        type: string
+        brief: The type/tier of memory being operated on.
+        note: >
+          This is intentionally modeled as a free-form string to accommodate framework differences.
+          Instrumentations SHOULD use low-cardinality values and document any custom values they emit.
+        examples: ["short_term", "long_term"]
+
+      # Memory Scope (enum - primarily defined at store creation time)
+      - id: gen_ai.memory.scope
+        stability: development
+        type:
+          members:
+            - id: user
+              value: "user"
+              brief: "Scoped to a specific user. Persists across all conversations with a user."
+              stability: development
+            - id: session
+              value: "session"
+              brief: "Scoped to a session/thread. Context within a single conversation."
+              stability: development
+            - id: agent
+              value: "agent"
+              brief: "Scoped to a specific agent. Agent-specific knowledge."
+              stability: development
+            - id: team
+              value: "team"
+              brief: "Shared across a team of agents. Multi-agent collaboration."
+              stability: development
+            - id: global
+              value: "global"
+              brief: "Globally accessible. Shared knowledge bases."
+              stability: development
+        brief: The scope of the memory store or memory operation.
+        note: >
+          Memory scope defines the isolation and sharing boundaries.
+          Scopes determine who can access the memory.
+        examples: ["user", "session", "agent"]
+
+      # Memory Content (Opt-In due to sensitivity)
+      - id: gen_ai.memory.content
+        stability: development
+        type: any
+        brief: The content/value of the memory item.
+        note: |
+          > [!WARNING]
+          > This attribute may contain sensitive information including user/PII data.
+
+          Instrumentations SHOULD NOT capture this by default.
+        examples:
+          - '{"preference": "dark_mode", "value": true}'
+
+      # Memory Query (Opt-In due to sensitivity)
+      - id: gen_ai.memory.query
+        stability: development
+        type: string
+        brief: The search query used to retrieve memories.
+        note: |
+          > [!WARNING]
+          > This attribute may contain sensitive information.
+        examples: ["user dietary preferences", "past flight bookings"]
+
+      # Memory Namespace (for multi-tenant isolation)
+      - id: gen_ai.memory.namespace
+        stability: development
+        type: string
+        brief: Namespace for memory isolation (e.g., user_id, tenant_id).
+        examples: ["user_12345", "org_acme"]
+
+      # Search Results
+      - id: gen_ai.memory.search.result.count
+        stability: development
+        type: int
+        brief: Number of memory items returned from a search operation.
+        examples: [3, 10]
+
+      - id: gen_ai.memory.search.similarity.threshold
+        stability: development
+        type: double
+        brief: Minimum similarity score threshold used for memory search.
+        examples: [0.7, 0.85]
+
+      # Memory Metadata
+      - id: gen_ai.memory.expiration_date
+        stability: development
+        type: string
+        brief: Expiration date for the memory in ISO 8601 format.
+        examples: ["2025-12-31", "2026-01-15T00:00:00Z"]
+
+      - id: gen_ai.memory.importance
+        stability: development
+        type: double
+        brief: Importance score of the memory (0.0 to 1.0).
+        examples: [0.8, 0.95]
+
+      # Update Strategy
+      - id: gen_ai.memory.update.strategy
+        stability: development
+        type:
+          members:
+            - id: overwrite
+              value: "overwrite"
+              brief: "Replace existing memory entirely"
+              stability: development
+            - id: merge
+              value: "merge"
+              brief: "Merge with existing memory"
+              stability: development
+            - id: append
+              value: "append"
+              brief: "Append to existing memory"
+              stability: development
+        brief: Strategy used when updating memory.
+        examples: ["overwrite", "merge"]
