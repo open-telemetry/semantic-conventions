@@ -1,0 +1,9 @@
+change_type: enhancement
+component: gen-ai
+note: Define `gen_ai.client.operation.exception` and `gen_ai.server.operation.exception` events for recording exceptions during Generative AI operations
+issues: [3436]
+subtext: |
+  These domain-specific exception events provide a structured way to record
+  exceptions that occur during Generative AI client operations (API errors,
+  rate limiting, timeouts) and server-side processing (model inference failures,
+  internal errors).
