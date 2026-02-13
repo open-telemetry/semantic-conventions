@@ -4,7 +4,7 @@ linkTitle: Oracle Database
 
 # Semantic conventions for Oracle Database
 
-**Status**: [Development][DocumentStatus]
+**Status**: [Mixed][DocumentStatus]
 
 <!-- toc -->
 
@@ -24,7 +24,7 @@ The Semantic Conventions for *Oracle Database* extend and override the [Database
 <!-- see templates/registry/markdown/snippet.md.j2 -->
 <!-- prettier-ignore-start -->
 
-**Status:** ![Development](https://img.shields.io/badge/-development-blue)
+**Status:** ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid)
 
 Spans representing calls to a Oracle SQL Database adhere to the general [Semantic Conventions for Database Client Spans](database-spans.md).
 
