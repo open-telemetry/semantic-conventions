@@ -99,3 +99,9 @@ groups:
 
           It may be desirable to redact or otherwise limit the size and scope of `feature_flag.result.value` if possible.
           Because the evaluated flag value is unstructured and may be any type, it is left to the instrumentation author to determine how best to achieve this.
+      - id: feature_flag.error.message
+        type: string
+        stability: release_candidate
+        brief: >
+          A message providing more detail about an error that occurred during feature flag evaluation in human-readable form.
+        examples: ["Unexpected input type: string", "The user has exceeded their storage quota"]

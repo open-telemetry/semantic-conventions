@@ -1,0 +1,5 @@
+change_type: breaking
+component: error, feature-flags
+note: >
+  Deprecate `error.message` in favor of using domain-specific codes such as `feature_flag.error.message`.
+issues: [3307, 3308]
