@@ -1773,3 +1773,106 @@ groups:
     attributes:
       - ref: k8s.resourcequota.resource_name
         requirement_level: required
+
+  # k8s.persistentvolume.* metrics
+  - id: metric.k8s.persistentvolume.status.phase
+    type: metric
+    metric_name: k8s.persistentvolume.status.phase
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "Number of PersistentVolumes in a given phase."
+    instrument: updowncounter
+    unit: "{persistentvolume}"
+    entity_associations:
+      - k8s.persistentvolume
+    attributes:
+      - ref: k8s.persistentvolume.status.phase
+        requirement_level: required
+      - ref: k8s.persistentvolumeclaim.name
+        requirement_level:
+          conditionally_required: When the PV is in the `Bound` phase.
+      - ref: k8s.namespace.name
+        requirement_level:
+          conditionally_required: When the PV is in the `Bound` phase.
+        brief: The namespace of the bound PersistentVolumeClaim.
+    note: |
+      All possible phases should be reported at each interval to avoid gaps in the time series.
+      When the phase is `Bound`, the bound PVC name and namespace SHOULD be included as attributes.
+      This metric is derived from the `.status.phase` field of the
+      [K8s PersistentVolumeStatus](https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/persistent-volume-v1/#PersistentVolumeStatus).
+
+  # k8s.persistentvolumeclaim.* metrics
+  - id: metric.k8s.persistentvolumeclaim.status.phase
+    type: metric
+    metric_name: k8s.persistentvolumeclaim.status.phase
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "Number of PersistentVolumeClaims in a given phase."
+    instrument: updowncounter
+    unit: "{persistentvolumeclaim}"
+    entity_associations:
+      - k8s.persistentvolumeclaim
+    attributes:
+      - ref: k8s.persistentvolumeclaim.status.phase
+        requirement_level: required
+      - ref: k8s.persistentvolume.name
+        requirement_level:
+          conditionally_required: When the PVC is in the `Bound` phase.
+    note: |
+      All possible phases should be reported at each interval to avoid gaps in the time series.
+      When the phase is `Bound`, the bound PV name SHOULD be included as an attribute.
+      This metric is derived from the `.status.phase` field of the
+      [K8s PersistentVolumeClaimStatus](https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/persistent-volume-claim-v1/#PersistentVolumeClaimStatus).
+
+  - id: metric.k8s.persistentvolume.storage.capacity
+    type: metric
+    metric_name: k8s.persistentvolume.storage.capacity
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "The storage capacity of the PersistentVolume."
+    instrument: gauge
+    unit: "By"
+    entity_associations:
+      - k8s.persistentvolume
+    note: >
+      This metric is derived from the `.spec.capacity.storage` field of the
+      [K8s PersistentVolumeSpec](https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/persistent-volume-v1/#PersistentVolumeSpec).
+
+  - id: metric.k8s.persistentvolumeclaim.storage.request
+    type: metric
+    metric_name: k8s.persistentvolumeclaim.storage.request
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "The storage requested by the PersistentVolumeClaim."
+    instrument: gauge
+    unit: "By"
+    entity_associations:
+      - k8s.persistentvolumeclaim
+    note: >
+      This metric is derived from the `.spec.resources.requests.storage` field of the
+      [K8s PersistentVolumeClaimSpec](https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/persistent-volume-claim-v1/#PersistentVolumeClaimSpec).
+
+  - id: metric.k8s.persistentvolumeclaim.storage.capacity
+    type: metric
+    metric_name: k8s.persistentvolumeclaim.storage.capacity
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "The actual storage capacity provisioned for the PersistentVolumeClaim."
+    instrument: gauge
+    unit: "By"
+    entity_associations:
+      - k8s.persistentvolumeclaim
+    note: |
+      Only available when the PVC is bound. May differ from the requested capacity due to provisioner rounding.
+      This metric is derived from the `.status.capacity.storage` field of the
+      [K8s PersistentVolumeClaimStatus](https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/persistent-volume-claim-v1/#PersistentVolumeClaimStatus).
