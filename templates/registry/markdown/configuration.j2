@@ -1,0 +1,30 @@
+{% import 'attribute_macros.j2' as attrs %}
+
+{% macro configuration(e, domain, attribute_registry_base_url) -%}
+{% if e.annotations and e.annotations.version %}**Configuration File Options:**
+
+| Setting | Requirement Level | Category | Example Value | Attribute |
+| --- | --- | --- | --- | --- |
+{{ configFileSignal(e, domain, attribute_registry_base_url) | trim }}
+
+**Environment Variable Options:**
+
+| Setting | Requirement Level | Category | Example Value | Attribute |
+| --- | --- | --- | --- | --- |
+{{ configEnvSignal(e, domain, attribute_registry_base_url) | trim }}
+
+{% endif %}
+{%- endmacro %}
+
+{% macro configFileSignal(e, domain, attribute_registry_base_url) %}
+| `instrumentation/development.general.{{domain}}.semconv.version` | `Conditionally-Required` | Version Selector | `{{e.annotations.version}}` | - |{% if e.attributes | rejectattr("stability", "equalto", "stable") | length > 0 %}
+| `instrumentation/development.general.{{domain}}.semconv.experimental` | `Required` | Experimental Opt-in | `true` | {% for attribute in e.attributes | rejectattr("stability", "equalto", "stable") | rejectattr("deprecated", "defined") %}{{attrs.name_with_link(attribute, attribute_registry_base_url, e.lineage.attributes)}} {% endfor %}|{%endif %}{% if e.attributes | selectattr("deprecated", "defined") | length > 0 %}
+| `instrumentation/development.general.{{domain}}.semconv.dup` | `Required` | Deprecated Opt-in | `true` | {% for attribute in e.attributes if attribute.deprecated %}{{attrs.name_with_link(attribute, attribute_registry_base_url, e.lineage.attributes)}} {% endfor %}|
+{%endif %}{%- endmacro %}
+
+{% macro configEnvSignal(e, domain, attribute_registry_base_url) %}
+{% if e.attributes | rejectattr("stability", "equalto", "stable") | rejectattr("deprecated", "defined") | length > 0 %}
+| `OTEL_SEMCONV_STABILITY_OPT_IN` | Conditionally Required | Experimental Opt-in | `{{domain}}` | {% for attribute in e.attributes | rejectattr("stability", "equalto", "stable") | rejectattr("deprecated", "defined") %}{{attrs.name_with_link(attribute, attribute_registry_base_url, e.lineage.attributes)}} {% endfor %}|{%endif %}{% if e.attributes | selectattr("deprecated", "defined") | length > 0 %}
+| `OTEL_SEMCONV_STABILITY_OPT_IN` | Conditionally Required | Deprecated Opt-in | `{{domain}}/dup` | {% for attribute in e.attributes | rejectattr("stability", "equalto", "stable") %}{{attrs.name_with_link(attribute, attribute_registry_base_url, e.lineage.attributes)}} {% endfor %}|
+{%endif %}
+{% endmacro%}
