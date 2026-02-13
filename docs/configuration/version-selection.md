@@ -43,7 +43,7 @@ The following properties SHOULD be supported:
 | -------------- | ------- | -------- | ------- |
 | `version`      | integer | Yes      | (none)  |
 | `experimental` | boolean | No       | `false` |
-| `dup`          | boolean | No       | `false` |
+| `dual_emit`    | boolean | No       | `false` |
 
 **`version`**
 
@@ -55,14 +55,14 @@ When `true`, include development-stage conventions for the selected
 `version`, regardless of whether that version is pre-stable or already
 stable.
 
-**`dup`**
+**`dual_emit`**
 
 When `true`, also emit the previous stable major version alongside the
-target version (e.g., `version=2, dup=true` emits both v2 and v1).
+target version (e.g., `version=2, dual_emit=true` emits both v2 and v1).
 Enables dual-emit for phased migration between major versions.
 
 The `experimental` flag only applies to the selected version, not to the
-previous version emitted via `dup`.
+previous version emitted via `dual_emit`.
 
 ### Unsupported configuration
 
@@ -70,14 +70,14 @@ A single configuration block is often shared across multiple
 instrumentations with differing stability levels. Instrumentations
 SHOULD NOT emit warnings for unsupported configuration and SHOULD
 fall back gracefully by applying the following rules to the requested
-(`version`, `experimental`, `dup`) triplet, in order:
+(`version`, `experimental`, `dual_emit`) triplet, in order:
 
 1. **`version`**: If the requested version is not supported, fall back
    to the nearest prior supported version. When `experimental` is
    `false`, only versions with stable support are candidates.
 2. **`experimental`**: If `true` is requested but only stable
    conventions exist for the resolved version, treat as `false`.
-3. **`dup`**: If `true` is requested but dual-emit is not supported
+3. **`dual_emit`**: If `true` is requested but dual-emit is not supported
    for the resolved version, treat as `false`.
 
 If no supported version matches after applying these rules, use the
