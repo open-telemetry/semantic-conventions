@@ -10,7 +10,7 @@ change_type: enhancement
 component: db
 
 # A brief description of the change. Surround your text with quotes ("") if it needs to start with a backtick (`).
-note: Mark the Oracle Database semantic conventions document status as Mixed, since some conventions are still in Development. The span status is marked as Release Candidate.
+note: Mark the Oracle Database client span as Release Candidate.
 
 # Mandatory: One or more tracking issues related to the change. You can use the PR number here if no issue exists.
 # The values here must be integers.
