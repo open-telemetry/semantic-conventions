@@ -467,6 +467,10 @@ This span SHOULD be reported by the instrumentations when they can
 reliably determine that invocation is a workflow (i.e. groups several agent
 invocations) and SHOULD NOT be reported by instrumentations that
 can't distinguish it `invoke_workflow` from `invoke_agent`.
+eg: Some frameworks like ADK have workflow agents that orchestrate other agents
+and report `invoke_agent` spans, so `invoke_workflow` SHOULD NOT be reported by such instrumentations.
+Conversely, frameworks like CrewAI have a distinct concept of crew (similar to workflow)
+that is separate from individual agents, so they SHOULD report `invoke_workflow` spans.
 
 **Span kind** SHOULD be `INTERNAL`.
 
