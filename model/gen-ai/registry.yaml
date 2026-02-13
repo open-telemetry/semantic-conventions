@@ -364,6 +364,270 @@ groups:
                 }
               ]
 
+      - id: gen_ai.guardian.id
+        stability: development
+        type: string
+        brief: The unique identifier of the security guardian (the evaluating service or component).
+        note: |
+          This identifies the service, component, or library performing the security
+          evaluation - NOT the policy or configuration being applied.
+
+          For provider-specific guardrail/policy configuration identifiers (e.g.,
+          AWS Bedrock guardrail ARN, Azure Content Safety blocklist ID), use
+          `gen_ai.security.policy.id` instead.
+
+          Example mapping:
+
+          - Guardian: The evaluation service (e.g., "bedrock_guardrail_service", "azure_content_safety")
+          - Policy: The specific configuration (e.g., "arn:aws:bedrock:us-east-1:123456789:guardrail/abc123")
+        examples: ['guard_abc123', 'content-filter-v2', 'custom-guardian-001']
+      - id: gen_ai.guardian.name
+        stability: development
+        type: string
+        brief: Human-readable name of the guardian (the evaluating service or component).
+        note: >
+          This identifies the security evaluation service or component, not the
+          policy name. For policy names, use `gen_ai.security.policy.name`.
+        examples: ['Azure Content Safety', 'Bedrock Guardrails', 'Custom PII Filter']
+      - id: gen_ai.guardian.version
+        stability: development
+        type: string
+        brief: Version of the guardian service or component.
+        note: >
+          This is the version of the evaluating service/component, not the policy
+          version. For policy versions, use `gen_ai.security.policy.version`.
+        examples: ['1.0.0', '2024-05-01', 'v2']
+      - id: gen_ai.guardian.provider.name
+        stability: development
+        type: string
+        brief: The provider or vendor of the guardian service.
+        examples: ['azure.ai.content_safety', 'aws.bedrock', 'zenity', 'custom']
+
+      - id: gen_ai.security.decision.type
+        stability: development
+        type:
+          members:
+            - id: allow
+              value: "allow"
+              brief: Request permitted to proceed without modification.
+              stability: development
+            - id: deny
+              value: "deny"
+              brief: Request denied and operation halted.
+              stability: development
+            - id: modify
+              value: "modify"
+              brief: Request permitted with modifications (redaction, sanitization).
+              stability: development
+            - id: warn
+              value: "warn"
+              brief: Request permitted but flagged for review.
+              stability: development
+            - id: audit
+              value: "audit"
+              brief: Request logged for audit purposes only, no enforcement.
+              stability: development
+        brief: The decision made by the security guardian.
+        examples: ['allow', 'deny', 'modify']
+      - id: gen_ai.security.decision.reason
+        stability: development
+        type: string
+        brief: Human-readable explanation for the security decision.
+        note: >
+          The value SHOULD be low-cardinality and MUST NOT contain sensitive user
+          content or other high-risk data.
+        examples:
+          - 'PII detected in output, masked before delivery'
+          - 'Prompt injection attempt denied'
+          - 'Action exceeds agent permission scope'
+      - id: gen_ai.security.decision.code
+        stability: development
+        type: int
+        brief: Numeric code for the security decision (provider-specific).
+        examples: [112, 403, 5001]
+
+      - id: gen_ai.security.target.type
+        stability: development
+        type: string
+        brief: The type of content or action the guardrail is applied to.
+        note: |
+          This attribute is free-form to accommodate provider-specific,
+          organization-specific, or emerging target types.
+
+          Suggested values include:
+
+          - `llm_input`: Prompt or messages being sent to the model.
+          - `llm_output`: Response or messages returned from the model.
+          - `tool_call`: Tool execution request (tool call invocation).
+          - `tool_definition`: Tool definition or schema (tool declaration).
+          - `memory_store`: Data being written to memory.
+          - `memory_retrieve`: Data being read from memory.
+          - `knowledge_query`: Knowledge/RAG query being sent.
+          - `knowledge_result`: Knowledge/RAG results being returned.
+          - `message`: Conversation message (user, assistant, tool).
+        examples: ['tool_call', 'llm_input', 'llm_output', 'tool_definition']
+      - id: gen_ai.security.target.id
+        stability: development
+        type: string
+        brief: Identifier of the specific target the guardrail is applied to.
+        note: >
+          For example, a tool call identifier, request identifier, or memory
+          entry identifier, if applicable.
+        examples: ['call_xyz789', 'tool-123', 'mem_abc456']
+
+      - id: gen_ai.security.risk.category
+        stability: development
+        type: string
+        brief: The category of security risk detected.
+        note: |
+          This attribute is free-form to accommodate provider-specific,
+          organization-specific, or emerging risk categories.
+
+          Suggested values aligned with OWASP LLM Top 10 2025 include:
+
+          - `prompt_injection` (LLM01)
+          - `sensitive_info_disclosure` (LLM02)
+          - `supply_chain` (LLM03)
+          - `data_and_model_poisoning` (LLM04)
+          - `improper_output_handling` (LLM05)
+          - `excessive_agency` (LLM06)
+          - `system_prompt_leakage` (LLM07)
+          - `vector_and_embedding_weaknesses` (LLM08)
+          - `misinformation` (LLM09)
+          - `unbounded_consumption` (LLM10)
+
+          Instrumentations MAY use additional values when appropriate, for
+          example: `jailbreak`, `toxicity`, `pii`, `custom:*`, `azure:*`.
+        examples:
+          - 'prompt_injection'
+          - 'sensitive_info_disclosure'
+          - 'jailbreak'
+          - 'custom:financial_advice_violation'
+          - 'azure:hate_speech'
+      - id: gen_ai.security.risk.severity
+        stability: development
+        type:
+          members:
+            - id: none
+              value: "none"
+              brief: No risk detected.
+              stability: development
+            - id: low
+              value: "low"
+              brief: Low severity risk.
+              stability: development
+            - id: medium
+              value: "medium"
+              brief: Medium severity risk.
+              stability: development
+            - id: high
+              value: "high"
+              brief: High severity risk.
+              stability: development
+            - id: critical
+              value: "critical"
+              brief: Critical severity risk requiring immediate action.
+              stability: development
+        brief: The severity level of the detected risk.
+        examples: ['low', 'medium', 'high', 'critical']
+      - id: gen_ai.security.risk.score
+        stability: development
+        type: double
+        brief: Numeric risk/confidence score (0.0 to 1.0).
+        examples: [0.85, 0.95, 0.42]
+      - id: gen_ai.security.risk.metadata
+        stability: development
+        type: string[]
+        brief: Non-content metadata about the detected risk.
+        note: |
+          > [!WARNING]
+          > This attribute MUST NOT contain sensitive user content, PII, or other
+          > high-risk data.
+
+          Example values include:
+
+          - Field identifiers: `field:bcc`, `parameter:query`
+          - Pattern types: `pattern:ssn`, `pattern:credit_card`
+          - Counts: `count:3`
+          - Positions: `position:input[0].content`
+        examples:
+          - ['field:bcc', 'pattern:email']
+          - ['count:2', 'position:output.content']
+
+      - id: gen_ai.security.policy.id
+        stability: development
+        type: string
+        brief: Identifier of the policy that triggered the decision.
+        examples: ['policy_pii_v2', 'deny-topic-financial-advice', 'org-compliance-001']
+      - id: gen_ai.security.policy.name
+        stability: development
+        type: string
+        brief: Human-readable name of the triggered policy.
+        examples: ['PII Protection Policy', 'Financial Advice Restriction']
+      - id: gen_ai.security.policy.version
+        stability: development
+        type: string
+        brief: Version of the policy that triggered the decision.
+        examples: ['1.0', '2024-05-01']
+
+      - id: gen_ai.security.content.input.value
+        stability: development
+        type: any
+        brief: The input content that was evaluated by the guardian.
+        note: |
+          > [!WARNING]
+          > This attribute may contain sensitive information including user/PII
+          > data. Instrumentations SHOULD NOT capture this by default. Enable via
+          > opt-in configuration only.
+
+          This attribute MAY be truncated. For correlation without full content,
+          consider `gen_ai.security.content.input.hash`.
+        examples:
+          - 'Send an email to customer@example.com'
+      - id: gen_ai.security.content.output.value
+        stability: development
+        type: any
+        brief: The output content after guardian processing (if modified).
+        note: |
+          > [!WARNING]
+          > This attribute may contain sensitive information. Instrumentations
+          > SHOULD NOT capture this by default. Enable via opt-in configuration
+          > only.
+
+          For `modify` decisions, this MAY contain the sanitized/redacted result.
+        examples:
+          - 'Send an email to [REDACTED]'
+      - id: gen_ai.security.content.input.hash
+        stability: development
+        type: string
+        brief: Hash of the input content for forensic correlation.
+        note: >
+          Use when full content capture is not desired but correlation is needed.
+          Instrumentations SHOULD document the algorithm and any salting/HMAC
+          approach used.
+        examples: ['sha256:a3f2b8c9...']
+      - id: gen_ai.security.content.redacted
+        stability: development
+        type: boolean
+        brief: Whether the content was redacted or modified by the guardian.
+        examples: [true, false]
+
+      - id: gen_ai.security.external_event_id
+        stability: development
+        type: string
+        brief: External correlation identifier for security events.
+        note: |
+          This attribute links the telemetry to an external security event record
+          in systems such as SIEM, incident management, or security dashboards.
+
+          The value typically comes from the response of an external security
+          inspection service or may be included in response headers when inspection
+          happens alongside the LLM call.
+
+          Use this when correlation with external security systems is required
+          beyond what `gen_ai.security.policy.id` provides.
+        examples: ['evt_abc123', 'incident-2024-001', 'sec-finding-xyz']
+
       - id: gen_ai.data_source.id
         stability: development
         type: string
@@ -409,6 +673,10 @@ groups:
             - id: execute_tool
               value: "execute_tool"
               brief: 'Execute a tool'
+              stability: development
+            - id: apply_guardrail
+              value: "apply_guardrail"
+              brief: 'Apply a security guardrail to content or an action'
               stability: development
         brief: The name of the operation being performed.
         note: >
