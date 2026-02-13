@@ -474,3 +474,31 @@ groups:
         note: >
           Anthropic reports this separately from `input_tokens`.
           This value MUST be added to the Anthropic `input_tokens` to compute `gen_ai.usage.input_tokens`.
+
+  - id: span.gen_ai.invoke_workflow.internal
+    type: span
+    span_kind: internal
+    stability: development
+    brief: >
+      Represents a workflow orchestrating one or more agents.
+    note: |
+      The `gen_ai.operation.name` SHOULD be `invoke_workflow`.
+      **Span name** SHOULD be `invoke_workflow {gen_ai.workflow.name}`.
+
+      This span SHOULD be reported by the instrumentations when they can
+      reliably determine that invocation is a workflow (i.e. groups several agent
+      invocations) and SHOULD NOT be reported by instrumentations that
+      can't distinguish it `invoke_workflow` from `invoke_agent`.
+      eg: Some frameworks like ADK have workflow agents that orchestrate other agents
+      and report `invoke_agent` spans, so `invoke_workflow` SHOULD NOT be reported by such instrumentations.
+      Conversely, frameworks like CrewAI have a distinct concept of crew (similar to workflow)
+      that is separate from individual agents, so they SHOULD report `invoke_workflow` spans.
+    extends: attributes.gen_ai.common.client
+    attributes:
+      - ref: gen_ai.workflow.name
+        requirement_level:
+          conditionally_required: when available
+      - ref: gen_ai.input.messages
+        requirement_level: opt_in
+      - ref: gen_ai.output.messages
+        requirement_level: opt_in

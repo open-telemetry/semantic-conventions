@@ -410,6 +410,10 @@ groups:
               value: "execute_tool"
               brief: 'Execute a tool'
               stability: development
+            - id: invoke_workflow
+              value: "invoke_workflow"
+              brief: 'Invoke GenAI workflow'
+              stability: development
         brief: The name of the operation being performed.
         note: >
           If one of the predefined values applies, but specific system uses a different name it's RECOMMENDED to document it in the semantic
@@ -660,3 +664,10 @@ groups:
         brief: The name of the prompt that uniquely identifies it.
         stability: development
         examples: ["analyze-code"]
+      - id: gen_ai.workflow.name
+        stability: development
+        type: string
+        brief: Human-readable name of the GenAI workflow provided by the application.
+        examples: [ "multi_agent_rag", "customer_support_pipeline" ]
+        note: |
+          This attribute can be populated in different frameworks eg: name of the trace in OpenAI agents OR name of the first chain in LangChain OR name of the crew in CrewAI.
