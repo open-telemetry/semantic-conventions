@@ -39,6 +39,7 @@ Semantic conventions for RPC are defined for the following signals:
 
 * [RPC Spans](rpc-spans.md): Semantic Conventions for RPC client and server *spans*.
 * [RPC Metrics](rpc-metrics.md): Semantic Conventions for RPC *metrics*.
+* [RPC Exceptions](rpc-exceptions.md): Semantic Conventions for RPC client and server *exceptions*.
 
 Technology specific semantic conventions are defined for the following RPC systems:
 
@@ -49,5 +50,7 @@ Technology specific semantic conventions are defined for the following RPC syste
 Specifications defined by maintainers of RPC systems:
 
 * [gRPC](https://github.com/grpc/proposal/blob/master/A66-otel-stats.md): Semantic Conventions for *gRPC*.
+
+For help migrating from non-stable to stable conventions, see [the migration guide](../non-normative/rpc-migration.md).
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status

@@ -5,7 +5,8 @@ title: Semantic conventions for exceptions on spans
 
 # Semantic conventions for exceptions on spans
 
-**Status**: [Stable][DocumentStatus]
+**Status**: [Deprecated][DocumentStatus]<br>
+Use [Semantic conventions for exceptions in logs](exceptions-logs.md) instead.
 
 This document defines semantic conventions for recording application
 exceptions associated with spans.
@@ -16,6 +17,24 @@ exceptions associated with spans.
   - [Stacktrace representation](#stacktrace-representation)
 
 <!-- tocstop -->
+
+> [!IMPORTANT]
+>
+> Existing instrumentations that record exceptions as span events:
+>
+> * SHOULD introduce an environment variable `OTEL_SEMCONV_EXCEPTION_SIGNAL_OPT_IN`
+>   supporting the following values:
+>   * `logs` - emit exceptions as logs only.
+>   * `logs/dup` - emit both span events and logs, allowing for a phased rollout.
+>   * The default behavior (in the absence of one of these values) is to continue
+>     emitting exceptions as span events (existing behavior).
+> * SHOULD maintain (security patching at a minimum) their existing major version
+>   for at least six months after it starts emitting both sets of conventions.
+> * MAY drop the environment variable in their next major version and emit exceptions
+>   as logs only.
+>
+> Even after instrumentations start emitting exceptions only as logs, users will
+> still have the option to route those to span events at the SDK layer.
 
 ## Exception event
 

@@ -1,0 +1,6 @@
+change_type: enhancement
+component: rpc
+note: >
+  Clarify that `network.peer.address` should indicate the last contacted address
+  in case of retries.
+issues: [3392, 3427]

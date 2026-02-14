@@ -48,7 +48,7 @@ title: Service
 
 ## Service Instance
 
-**Status:** ![Development](https://img.shields.io/badge/-development-blue)
+**Status:** ![Stable](https://img.shields.io/badge/-stable-lightgreen)
 
 **type:** `service.instance`
 
@@ -58,7 +58,7 @@ title: Service
 
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- | --- |
-| Identity | [`service.instance.id`](/docs/registry/attributes/service.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The string ID of the service instance. [7] | `627cc493-f310-47de-96bd-71410b7dec09` |
+| Identity | [`service.instance.id`](/docs/registry/attributes/service.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | The string ID of the service instance. [7] | `627cc493-f310-47de-96bd-71410b7dec09` |
 
 **[7] `service.instance.id`:** MUST be unique for each instance of the same `service.namespace,service.name` pair (in other words
 `service.namespace,service.name,service.instance.id` triplet MUST be globally unique). The ID helps to
@@ -89,7 +89,7 @@ port.
 
 ## Service Namespace
 
-**Status:** ![Development](https://img.shields.io/badge/-development-blue)
+**Status:** ![Stable](https://img.shields.io/badge/-stable-lightgreen)
 
 **type:** `service.namespace`
 
@@ -99,6 +99,6 @@ port.
 
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- | --- |
-| Identity | [`service.namespace`](/docs/registry/attributes/service.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | A namespace for `service.name`. [8] | `Shop` |
+| Identity | [`service.namespace`](/docs/registry/attributes/service.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | A namespace for `service.name`. [8] | `Shop` |
 
 **[8] `service.namespace`:** A string value having a meaning that helps to distinguish a group of services, for example the team name that owns a group of services. `service.name` is expected to be unique within the same namespace. If `service.namespace` is not specified in the Resource then `service.name` is expected to be unique for all services that have no explicit namespace defined (so the empty/unspecified namespace is simply one more valid namespace). Zero-length namespace string is assumed equal to unspecified namespace.

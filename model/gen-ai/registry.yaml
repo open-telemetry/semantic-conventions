@@ -181,7 +181,26 @@ groups:
         stability: development
         type: int
         brief: The number of tokens used in the GenAI input (prompt).
+        note: |
+          This value SHOULD include all types of input tokens, including cached tokens.
+          Instrumentations SHOULD make a best effort to populate this value, using a total
+          provided by the provider when available or, depending on the provider API,
+          by summing different token types parsed from the provider output.
         examples: [100]
+      - id: gen_ai.usage.cache_read.input_tokens
+        stability: development
+        type: int
+        brief: The number of input tokens served from a provider-managed cache.
+        note: >
+          The value SHOULD be included in `gen_ai.usage.input_tokens`.
+        examples: [50]
+      - id: gen_ai.usage.cache_creation.input_tokens
+        stability: development
+        type: int
+        brief: The number of input tokens written to a provider-managed cache.
+        note: >
+          The value SHOULD be included in `gen_ai.usage.input_tokens`.
+        examples: [25]
       - id: gen_ai.usage.output_tokens
         stability: development
         type: int
@@ -228,6 +247,11 @@ groups:
         type: string
         brief: Free-form description of the GenAI agent provided by the application.
         examples: ["Helps with math problems", "Generates fiction stories"]
+      - id: gen_ai.agent.version
+        stability: development
+        type: string
+        brief: The version of the GenAI agent.
+        examples: ["1.0.0", "2025-05-01"]
       - id: gen_ai.tool.name
         stability: development
         type: string

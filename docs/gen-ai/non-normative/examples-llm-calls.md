@@ -494,7 +494,7 @@ If tool call is [instrumented according to execute-tool span definition](/docs/g
     "parts": [
       {
         "type": "tool_call_response",
-        "id": " call_VSPygqKTWdrhaFErNvMV18Yl",
+        "id": "call_VSPygqKTWdrhaFErNvMV18Yl",
         "response": "rainy, 57°F"
       }
     ]
@@ -672,13 +672,20 @@ Span:
 
 ## Tool calls (built-in)
 
-> [!NOTE]
->
-> The format of `gen_ai.output.messages` is not yet specified for built-in tool calls (check [#2585](https://github.com/open-telemetry/semantic-conventions/issues/2585)
-> for the details).
+This is an example of telemetry generated for OpenAI Reponses API call with `code_interpreter` tool that results in
+a model provider executing a tool and returning response along with tool call details. Built-in tools use
+`server_tool_call` and `server_tool_call_response` part types with polymorphic content to separate them from
+client-side function tool calls.
 
-This is an example of telemetry generated for a chat completion call with `code_interpreter` tool that results in
-a model provider executing a tool and returning response along with tool call details.
+```py
+response = client.responses.create(   
+  model="gpt-4",
+  input="Write Python code that generates a random number, executes it, and returns the result.",
+  tools=[{"type": "code_interpreter"}],
+  include=['code_interpreter_call.outputs'],
+  tool_choice="required",
+)
+```
 
 ```mermaid
 %%{init:
@@ -692,11 +699,11 @@ sequenceDiagram
   participant I as Instrumented Client
   participant M as Model
 
-  A ->>+ I:
+  A ->>+ I: #U+200D
   I ->> M: input = [system: You are a helpful bot, user: Write Python code that generates a random number, executes it, and returns the result.]
   Note left of I: GenAI Client span
   I --> M: tool:code='import random ....'<br>assistant: The generated random number is 95.
-  I -->>- A:
+  I -->>- A: #U+200D
 ```
 
 **GenAI client span:**
@@ -719,11 +726,68 @@ sequenceDiagram
 
 <span id="gen-ai-input-messages-built-in-tools">`gen_ai.input.messages` value</span>
 
-TODO
+```json
+[
+  {
+    "role": "system",
+    "parts": [
+      {
+        "type": "text",
+        "content": "You are a helpful bot"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "parts": [
+      {
+        "type": "text",
+        "content": "Write Python code that generates a random number, executes it, and returns the result."
+      }
+    ]
+  }
+]
+```
 
 <span id="gen-ai-output-messages-built-in-tools">`gen_ai.output.messages` value</span>
 
-TODO
+```json
+[
+  {
+    "role": "assistant",
+    "parts": [
+      {
+        "type": "server_tool_call",
+        "id": "call_VSPygqKTWdrhaFErNvMV18Yl",
+        "name": "code_interpreter",
+        "server_tool_call": {
+          "type": "code_interpreter",
+          "code": "import random\n\n# Generate a random number\nrandom_number = random.randint(1, 100)\n\n# Execute some operation with the random number (e.g., squaring it)\nresult = random_number ** 2\n\nrandom_number, result",
+          "container_id": "cntr_690bdbfed8688190884efd4c7ae6435b0db1f006442e8941"
+        }
+      },
+      {
+        "type": "server_tool_call_response",
+        "id": "call_VSPygqKTWdrhaFErNvMV18Yl",
+        "server_tool_call_response": {
+          "type": "code_interpreter",
+          "outputs": [
+            {
+              "type": "logs",
+              "logs": "(10, 20)"
+            }
+          ]
+        }
+      },
+      {
+        "type": "text",
+        "content": "The generated random number is **89**, and the result of squaring it is **7921**"
+      }
+    ],
+    "finish_reason": "stop"
+  }
+]
+```
 
 ## Chat completion with multiple choices
 

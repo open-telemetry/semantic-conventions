@@ -9,6 +9,6 @@
     "yaml": "^2.8.1"
   },
   "devDependencies": {
-    "@types/node": "24.10.9"
+    "@types/node": "24.10.12"
   }
 }

@@ -1,0 +1,4 @@
+change_type: enhancement
+component: gen-ai
+note: Add `gen_ai.agent.version` attribute to capture the version of an agent.
+issues: [3428]
