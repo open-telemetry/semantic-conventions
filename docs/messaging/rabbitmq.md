@@ -1,5 +1,6 @@
 ---
 linkTitle: RabbitMQ
+title: Semantic conventions for RabbitMQ
 ---
 
 # Semantic conventions for RabbitMQ

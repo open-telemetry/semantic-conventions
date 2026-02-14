@@ -1,5 +1,6 @@
 ---
 linkTitle: NFS
+title: Semantic conventions for NFS
 ---
 
 # Semantic conventions for NFS

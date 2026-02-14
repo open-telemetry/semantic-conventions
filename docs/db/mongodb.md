@@ -1,5 +1,6 @@
 ---
 linkTitle: MongoDB
+title: Semantic conventions for MongoDB client operations
 ---
 
 # Semantic conventions for MongoDB client operations

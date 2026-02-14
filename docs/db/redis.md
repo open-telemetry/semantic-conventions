@@ -1,5 +1,6 @@
 ---
 linkTitle: Redis
+title: Semantic conventions for Redis client operations
 ---
 
 # Semantic conventions for Redis client operations

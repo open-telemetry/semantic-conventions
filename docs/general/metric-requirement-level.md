@@ -1,3 +1,7 @@
+---
+title: Metric requirement levels
+---
+
 # Metric requirement levels
 
 **Status**: [Stable][DocumentStatus]

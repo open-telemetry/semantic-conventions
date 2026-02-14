@@ -1,5 +1,6 @@
 ---
 linkTitle: Status Metrics
+title: State Metrics
 ---
 
 # State Metrics

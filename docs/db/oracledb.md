@@ -1,5 +1,6 @@
 ---
 linkTitle: Oracle Database
+title: Semantic conventions for Oracle Database
 ---
 
 # Semantic conventions for Oracle Database

@@ -1,5 +1,6 @@
 ---
 linkTitle: Enclosure
+title: Semantic conventions for enclosure metrics
 ---
 
 # Semantic conventions for enclosure metrics

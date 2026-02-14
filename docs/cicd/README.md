@@ -1,5 +1,6 @@
 ---
 linkTitle: CICD
+title: Semantic conventions for CICD
 ---
 
 # Semantic conventions for CICD

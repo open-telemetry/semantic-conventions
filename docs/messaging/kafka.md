@@ -1,5 +1,6 @@
 ---
 linkTitle: Kafka
+title: Semantic conventions for Kafka
 ---
 
 # Semantic conventions for Kafka

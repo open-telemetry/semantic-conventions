@@ -1,5 +1,6 @@
 ---
 linkTitle: Events
+title: Semantic conventions for mobile events
 ---
 
 # Semantic conventions for mobile events

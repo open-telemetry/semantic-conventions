@@ -1,5 +1,6 @@
 ---
 linkTitle: Events
+title: App Events
 ---
 
 # App Events

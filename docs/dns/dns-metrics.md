@@ -1,5 +1,6 @@
 ---
 linkTitle: Metrics
+title: Semantic conventions for DNS queries
 ---
 
 # Semantic conventions for DNS queries

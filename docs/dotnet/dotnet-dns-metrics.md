@@ -1,5 +1,6 @@
 ---
 linkTitle: DNS
+title: Semantic conventions for DNS metrics emitted by .NET
 ---
 
 # Semantic conventions for DNS metrics emitted by .NET

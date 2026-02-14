@@ -1,5 +1,6 @@
 ---
 linkTitle: ASP.NET Core
+title: Semantic conventions for ASP.NET Core metrics
 ---
 
 # Semantic conventions for ASP.NET Core metrics

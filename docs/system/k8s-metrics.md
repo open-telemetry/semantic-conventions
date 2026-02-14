@@ -1,5 +1,6 @@
 ---
 linkTitle: Kubernetes
+title: Semantic conventions for Kubernetes metrics
 ---
 
 # Semantic conventions for Kubernetes metrics

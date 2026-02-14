@@ -1,5 +1,6 @@
 ---
 linkTitle: OpenAI
+title: Semantic conventions for OpenAI client operations
 ---
 
 # Semantic conventions for OpenAI client operations

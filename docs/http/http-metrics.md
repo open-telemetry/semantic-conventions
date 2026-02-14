@@ -1,5 +1,6 @@
 ---
 linkTitle: Metrics
+title: Semantic conventions for HTTP metrics
 ---
 
 # Semantic conventions for HTTP metrics

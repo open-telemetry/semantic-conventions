@@ -1,5 +1,6 @@
 ---
 linkTitle: Metrics
+title: Semantic conventions for messaging client metrics
 ---
 
 # Semantic conventions for messaging client metrics

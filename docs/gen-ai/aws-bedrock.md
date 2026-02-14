@@ -1,5 +1,6 @@
 ---
 linkTitle: AWS Bedrock
+title: Semantic conventions for AWS Bedrock operations
 ---
 
 # Semantic conventions for AWS Bedrock operations

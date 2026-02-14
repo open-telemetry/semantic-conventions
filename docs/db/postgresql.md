@@ -1,5 +1,6 @@
 ---
 linkTitle: PostgreSQL
+title: Semantic conventions for PostgreSQL client operations
 ---
 
 # Semantic conventions for PostgreSQL client operations

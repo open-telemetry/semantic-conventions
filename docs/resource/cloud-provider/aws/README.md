@@ -1,5 +1,6 @@
 ---
 linkTitle: AWS
+title: AWS semantic conventions
 ---
 
 # AWS semantic conventions

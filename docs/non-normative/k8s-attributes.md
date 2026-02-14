@@ -1,5 +1,6 @@
 ---
 linkTitle: K8s attributes
+title: Specify resource attributes using Kubernetes annotations
 ---
 
 # Specify resource attributes using Kubernetes annotations

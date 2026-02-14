@@ -1,3 +1,7 @@
+---
+title: LLM call examples
+---
+
 # LLM call examples
 
 <!-- toc -->

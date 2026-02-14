@@ -2,6 +2,7 @@
 linkTitle: General
 weight: -1
 auto_gen: below
+title: General semantic conventions
 ---
 
 # General semantic conventions

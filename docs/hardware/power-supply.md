@@ -1,5 +1,6 @@
 ---
 linkTitle: Power Supply
+title: Semantic conventions for power supply metrics
 ---
 
 # Semantic conventions for power supply metrics

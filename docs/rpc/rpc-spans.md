@@ -1,5 +1,6 @@
 ---
 linkTitle: Spans
+title: Semantic conventions for RPC spans
 ---
 
 # Semantic conventions for RPC spans

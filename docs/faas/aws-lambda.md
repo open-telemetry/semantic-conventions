@@ -1,5 +1,6 @@
 ---
 linkTitle: AWS Lambda
+title: Instrumenting AWS Lambda
 ---
 
 # Instrumenting AWS Lambda

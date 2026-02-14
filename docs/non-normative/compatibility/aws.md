@@ -1,5 +1,6 @@
 ---
 linkTitle: AWS
+title: Compatibility considerations for AWS
 ---
 
 # Compatibility considerations for AWS

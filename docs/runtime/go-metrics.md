@@ -1,5 +1,6 @@
 ---
 linkTitle: Go
+title: Semantic conventions for Go runtime metrics
 ---
 
 # Semantic conventions for Go runtime metrics

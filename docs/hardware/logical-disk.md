@@ -1,5 +1,6 @@
 ---
 linkTitle: Logical Disk
+title: Semantic conventions for logical disk metrics
 ---
 
 # Semantic conventions for logical disk metrics

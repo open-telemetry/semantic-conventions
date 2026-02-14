@@ -1,5 +1,6 @@
 ---
 linkTitle: Events
+title: Semantic conventions for Generative AI events
 ---
 
 # Semantic conventions for Generative AI events

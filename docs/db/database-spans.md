@@ -1,5 +1,6 @@
 ---
 linkTitle: Spans
+title: Semantic conventions for database client spans
 ---
 
 # Semantic conventions for database client spans
