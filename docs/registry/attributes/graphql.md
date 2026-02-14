@@ -15,7 +15,7 @@ This document defines attributes for GraphQL.
 | <a id="graphql-operation-name" href="#graphql-operation-name">`graphql.operation.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the operation being executed. | `findBookById` |
 | <a id="graphql-operation-type" href="#graphql-operation-type">`graphql.operation.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The type of the operation being executed. | `query`; `mutation`; `subscription` |
 
-**[1] `graphql.document`:** The value may be sanitized to exclude sensitive information.
+**[1] `graphql.document`:** The value SHOULD be sanitized to exclude sensitive information.
 
 ---
 
