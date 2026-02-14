@@ -1,7 +1,6 @@
 ---
 linkTitle: Metrics
-aliases:
-  - metrics-general
+aliases: [metrics-general]
 ---
 
 # Metrics semantic conventions

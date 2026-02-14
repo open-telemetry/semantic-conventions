@@ -1,7 +1,6 @@
 ---
 linkTitle: How to write conventions
-aliases:
-  - /docs/specs/semconv/general/how-to-define-semantic-conventions
+aliases: [/docs/specs/semconv/general/how-to-define-semantic-conventions]
 ---
 
 # How to write semantic conventions
