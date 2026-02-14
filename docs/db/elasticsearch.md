@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
 linkTitle: Elasticsearch
---->
+title: Semantic conventions for Elasticsearch client operations
+---
 
 # Semantic conventions for Elasticsearch client operations
 

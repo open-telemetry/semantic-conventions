@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
 linkTitle: Messaging
---->
+title: Semantic conventions for messaging systems
+---
 
 # Semantic conventions for messaging systems
 

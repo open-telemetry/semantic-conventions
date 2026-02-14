@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
 linkTitle: Naming known exceptions
---->
+title: Kubernetes naming exceptions
+---
 
 # Kubernetes naming exceptions
 

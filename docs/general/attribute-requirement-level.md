@@ -1,3 +1,7 @@
+---
+title: Attribute requirement levels
+---
+
 # Attribute requirement levels
 
 **Status**: [Stable][DocumentStatus]

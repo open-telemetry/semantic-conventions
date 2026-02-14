@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
 linkTitle: CPython
---->
+title: Semantic conventions for CPython runtime metrics
+---
 
 # Semantic conventions for CPython runtime metrics
 

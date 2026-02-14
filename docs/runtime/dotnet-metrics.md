@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
 linkTitle: .NET
---->
+title: Semantic conventions for .NET Common Language Runtime (CLR) metrics
+---
 
 # Semantic conventions for .NET Common Language Runtime (CLR) metrics
 

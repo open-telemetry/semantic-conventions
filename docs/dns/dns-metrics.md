@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
 linkTitle: Metrics
---->
+title: Semantic conventions for DNS queries
+---
 
 # Semantic conventions for DNS queries
 

@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
 linkTitle: Kafka
---->
+title: Semantic conventions for Kafka
+---
 
 # Semantic conventions for Kafka
 

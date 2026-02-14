@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
 linkTitle: Container
---->
+title: Semantic conventions for container metrics
+---
 
 # Semantic conventions for container metrics
 

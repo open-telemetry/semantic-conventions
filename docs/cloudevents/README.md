@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
 linkTitle: CloudEvents
---->
+title: Semantic conventions for CloudEvents
+---
 
 # Semantic conventions for CloudEvents
 

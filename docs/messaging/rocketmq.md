@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
 linkTitle: RocketMQ
---->
+title: Semantic conventions for RocketMQ
+---
 
 # Semantic conventions for RocketMQ
 

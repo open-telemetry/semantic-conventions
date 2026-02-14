@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
 linkTitle: OS process
---->
+title: Semantic conventions for OS process metrics
+---
 
 # Semantic conventions for OS process metrics
 

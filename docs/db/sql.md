@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
 linkTitle: SQL
---->
+title: Semantic conventions for SQL databases client operations
+---
 
 # Semantic conventions for SQL databases client operations
 

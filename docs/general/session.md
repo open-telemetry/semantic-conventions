@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
 linkTitle: Session
---->
+title: Semantic conventions for session
+---
 
 # Semantic conventions for session
 

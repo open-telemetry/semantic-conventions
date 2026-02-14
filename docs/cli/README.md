@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
 linkTitle: CLI programs
---->
+title: Semantic conventions for CLI programs
+---
 
 # Semantic conventions for CLI programs
 

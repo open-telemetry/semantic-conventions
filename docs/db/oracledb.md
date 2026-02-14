@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
 linkTitle: Oracle Database
---->
+title: Semantic conventions for Oracle Database
+---
 
 # Semantic conventions for Oracle Database
 

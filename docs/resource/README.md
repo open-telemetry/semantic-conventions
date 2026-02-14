@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
 linkTitle: Resource
---->
+title: Resource semantic conventions
+---
 
 # Resource semantic conventions
 

@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
 linkTitle: Power Supply
---->
+title: Semantic conventions for power supply metrics
+---
 
 # Semantic conventions for power supply metrics
 

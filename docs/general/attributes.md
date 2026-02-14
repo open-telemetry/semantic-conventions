@@ -1,7 +1,8 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
 linkTitle: Attributes
 aliases: [general-attributes]
---->
+title: General attributes
+---
 
 # General attributes
 

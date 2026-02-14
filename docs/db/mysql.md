@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
 linkTitle: MySQL
---->
+title: Semantic conventions for MySQL client operations
+---
 
 # Semantic conventions for MySQL client operations
 

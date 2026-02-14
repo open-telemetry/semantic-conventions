@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
 linkTitle: Feature flags
---->
+title: Semantic conventions for feature flags
+---
 
 # Semantic conventions for feature flags
 

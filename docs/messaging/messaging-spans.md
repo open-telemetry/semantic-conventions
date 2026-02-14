@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
 linkTitle: Spans
---->
+title: Semantic conventions for messaging spans
+---
 
 # Semantic conventions for messaging spans
 

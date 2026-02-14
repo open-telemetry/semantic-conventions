@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
 linkTitle: Physical Disk
---->
+title: Semantic conventions for physical disk metrics
+---
 
 # Semantic conventions for physical disk metrics
 

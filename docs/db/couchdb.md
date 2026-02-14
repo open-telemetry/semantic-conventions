@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
 linkTitle: CouchDB
---->
+title: Semantic conventions for CouchDB client operations
+---
 
 # Semantic conventions for CouchDB client operations
 

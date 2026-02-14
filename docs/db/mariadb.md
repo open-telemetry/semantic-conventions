@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
 linkTitle: MariaDB
---->
+title: Semantic conventions for MariaDB client operations
+---
 
 # Semantic conventions for MariaDB client operations
 

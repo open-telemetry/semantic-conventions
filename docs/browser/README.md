@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
 linkTitle: Browser
---->
+title: Semantic conventions for Browser
+---
 
 # Semantic conventions for Browser
 

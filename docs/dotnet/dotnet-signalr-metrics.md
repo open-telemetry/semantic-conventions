@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
 linkTitle: SignalR
---->
+title: Semantic conventions for SignalR server metrics
+---
 
 # Semantic conventions for SignalR server metrics
 

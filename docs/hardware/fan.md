@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
 linkTitle: Fan
---->
+title: Semantic conventions for fan metrics
+---
 
 # Semantic conventions for fan metrics
 

@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
 linkTitle: Object stores
---->
+title: Semantic conventions for object stores
+---
 
 # Semantic conventions for object stores
 

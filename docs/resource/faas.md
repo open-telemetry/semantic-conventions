@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
 linkTitle: FaaS
---->
+title: Function as a Service
+---
 
 # Function as a Service
 

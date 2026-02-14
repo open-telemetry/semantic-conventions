@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
 linkTitle: Azure
---->
+title: Semantic conventions for Azure resource logs
+---
 
 # Semantic conventions for Azure resource logs
 

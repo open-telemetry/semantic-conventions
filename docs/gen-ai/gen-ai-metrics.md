@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
 linkTitle: Metrics
---->
+title: Semantic conventions for generative AI metrics
+---
 
 # Semantic conventions for generative AI metrics
 

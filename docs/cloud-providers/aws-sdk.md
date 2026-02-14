@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
 linkTitle: AWS SDK
---->
+title: Semantic conventions for AWS SDK client spans
+---
 
 # Semantic conventions for AWS SDK client spans
 

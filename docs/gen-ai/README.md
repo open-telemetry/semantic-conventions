@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
 linkTitle: Generative AI
---->
+title: Semantic conventions for generative AI systems
+---
 
 # Semantic conventions for generative AI systems
 

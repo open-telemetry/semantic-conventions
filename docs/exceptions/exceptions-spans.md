@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
 linkTitle: Spans
---->
+title: Semantic conventions for exceptions on spans
+---
 
 # Semantic conventions for exceptions on spans
 

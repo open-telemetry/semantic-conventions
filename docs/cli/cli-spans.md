@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
 linkTitle: Spans
---->
+title: Semantic conventions for CLI (command line interface) programs
+---
 
 # Semantic conventions for CLI (command line interface) programs
 

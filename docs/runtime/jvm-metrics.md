@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
 linkTitle: JVM
---->
+title: Semantic conventions for JVM metrics
+---
 
 # Semantic conventions for JVM metrics
 

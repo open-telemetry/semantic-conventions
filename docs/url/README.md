@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
 linkTitle: URL
---->
+title: Semantic conventions for URL
+---
 
 # Semantic conventions for URL
 

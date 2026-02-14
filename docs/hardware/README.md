@@ -1,7 +1,8 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
 linkTitle: Hardware
 aliases: [/docs/specs/semconv/system/hardware-metrics]
---->
+title: Semantic conventions for hardware
+---
 
 # Semantic conventions for hardware
 

@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
 linkTitle: CPU
---->
+title: Semantic conventions for CPU metrics
+---
 
 # Semantic conventions for CPU metrics
 

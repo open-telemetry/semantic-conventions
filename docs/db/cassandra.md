@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
 linkTitle: Cassandra
---->
+title: Semantic conventions for Cassandra client operations
+---
 
 # Semantic conventions for Cassandra client operations
 

@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
 linkTitle: Disk Controller
---->
+title: Semantic conventions for disk controller metrics
+---
 
 # Semantic conventions for disk controller metrics
 

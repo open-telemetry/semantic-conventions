@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
 linkTitle: Battery
---->
+title: Semantic conventions for battery metrics
+---
 
 # Semantic conventions for battery metrics
 

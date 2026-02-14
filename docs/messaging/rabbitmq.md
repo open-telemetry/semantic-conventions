@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
 linkTitle: RabbitMQ
---->
+title: Semantic conventions for RabbitMQ
+---
 
 # Semantic conventions for RabbitMQ
 

@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
 linkTitle: K8s attributes
---->
+title: Specify resource attributes using Kubernetes annotations
+---
 
 # Specify resource attributes using Kubernetes annotations
 

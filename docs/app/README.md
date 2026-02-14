@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
 linkTitle: App
---->
+title: Semantic conventions for Apps
+---
 
 # Semantic conventions for Apps
 

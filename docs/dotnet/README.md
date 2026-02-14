@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
 linkTitle: .NET
---->
+title: Semantic conventions for .NET
+---
 
 # Semantic conventions for .NET
 

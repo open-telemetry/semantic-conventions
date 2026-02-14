@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
 linkTitle: Mobile
---->
+title: Semantic conventions for mobile platform
+---
 
 # Semantic conventions for mobile platform
 

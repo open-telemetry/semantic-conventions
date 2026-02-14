@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
 linkTitle: Azure AI Inference
---->
+title: Semantic conventions for Azure AI Inference client operations
+---
 
 # Semantic conventions for Azure AI Inference client operations
 

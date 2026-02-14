@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
 linkTitle: NFS
---->
+title: Semantic conventions for NFS
+---
 
 # Semantic conventions for NFS
 

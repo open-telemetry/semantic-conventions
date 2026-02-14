@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
 linkTitle: HBase
---->
+title: Semantic conventions for HBase client operations
+---
 
 # Semantic conventions for HBase client operations
 

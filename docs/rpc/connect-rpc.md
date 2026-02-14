@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
 linkTitle: Connect
---->
+title: Semantic conventions for Connect RPC
+---
 
 # Semantic conventions for Connect RPC
 

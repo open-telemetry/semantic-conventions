@@ -1,7 +1,8 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
 linkTitle: HTTP migration
 aliases: [../http/migration-guide]
---->
+title: HTTP semantic convention stability migration
+---
 
 # HTTP semantic convention stability migration
 

@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
 linkTitle: Logs
---->
+title: Semantic conventions for exceptions in logs
+---
 
 # Semantic conventions for exceptions in logs
 

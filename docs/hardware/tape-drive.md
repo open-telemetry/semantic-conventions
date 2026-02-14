@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
 linkTitle: Tape Drive
---->
+title: Semantic conventions for tape drive metrics
+---
 
 # Semantic conventions for tape drive metrics
 

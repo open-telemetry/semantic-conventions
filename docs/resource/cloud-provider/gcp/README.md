@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
 linkTitle: GCP
---->
+title: GCP semantic conventions
+---
 
 # GCP semantic conventions
 

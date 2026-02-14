@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
 linkTitle: AWS Bedrock
---->
+title: Semantic conventions for AWS Bedrock operations
+---
 
 # Semantic conventions for AWS Bedrock operations
 

@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
 linkTitle: gRPC
---->
+title: Semantic conventions for gRPC
+---
 
 # Semantic conventions for gRPC
 

@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
 linkTitle: Database migration
---->
+title: Database semantic convention stability migration guide
+---
 
 # Database semantic convention stability migration guide
 
