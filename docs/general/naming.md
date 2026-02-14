@@ -1,6 +1,5 @@
 ---
-aliases:
-  - attribute-naming
+aliases: [attribute-naming]
 ---
 
 # Naming

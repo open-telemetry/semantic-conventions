@@ -1,7 +1,6 @@
 ---
 linkTitle: Events
-aliases:
-  - feature-flags-logs
+aliases: [feature-flags-logs]
 ---
 
 # Semantic conventions for feature flags in events
