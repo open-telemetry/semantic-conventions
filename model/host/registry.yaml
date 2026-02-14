@@ -144,3 +144,15 @@ groups:
         brief: >
           The amount of level 2 memory cache available to the processor (in Bytes).
         examples: [ 12288000 ]
+      - id: host.cpu.socket.id
+        stability: experimental
+        type: string
+        brief: >
+          The CPU socket identifier.
+        examples: ['0', '1']
+      - id: host.cpu.core.id
+        stability: experimental
+        type: string
+        brief: >
+          The core identifier within a single CPU socket.
+        examples: ['0', '1', '2', '3']

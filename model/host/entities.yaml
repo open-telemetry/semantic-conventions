@@ -63,3 +63,7 @@ groups:
         requirement_level: opt_in
       - ref: host.cpu.cache.l2.size
         requirement_level: opt_in
+      - ref: host.cpu.core.id
+        requirement_level: opt_in
+      - ref: host.cpu.socket.id
+        requirement_level: opt_in
