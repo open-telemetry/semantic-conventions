@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
 linkTitle: Exceptions
---->
+title: Semantic conventions for HTTP exceptions
+---
 
 # Semantic conventions for HTTP exceptions
 

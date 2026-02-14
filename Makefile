@@ -147,10 +147,6 @@ markdown-toc:
 		if grep -q '<!-- tocstop -->' "$$f"; then \
 			echo markdown-toc: processing "$$f"; \
 			npx --no -- markdown-toc --bullets "-" --no-first-h1 --no-stripHeadingTags -i "$$f" || exit 1; \
-			awk '{print} /---/{getline l; if(l~/^#/) print ""; print l}' "$$f" > tmp.txt && mv tmp.txt "$$f"; \
-			if [ -z "$$(tail -n 1 "$$f" | tr -d '[:space:]')" ]; then \
-				sed -i '$$d' "$$f"; \
-			fi; \
 		elif grep -q '<!-- toc -->' "$$f"; then \
 			echo markdown-toc: ERROR: '<!-- tocstop -->' missing from "$$f"; exit 1; \
 		else \
