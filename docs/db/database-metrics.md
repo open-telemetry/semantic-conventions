@@ -1,5 +1,6 @@
 ---
 linkTitle: Metrics
+title: Semantic conventions for database client metrics
 ---
 
 # Semantic conventions for database client metrics

@@ -1,5 +1,6 @@
 ---
 linkTitle: Container
+title: Semantic conventions for container metrics
 ---
 
 # Semantic conventions for container metrics

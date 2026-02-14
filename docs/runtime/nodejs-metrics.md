@@ -1,5 +1,6 @@
 ---
 linkTitle: Node.js
+title: Semantic conventions for Node.js runtime metrics
 ---
 
 # Semantic conventions for Node.js runtime metrics

@@ -1,5 +1,6 @@
 ---
 linkTitle: Metrics
+title: Semantic conventions for FaaS metrics
 ---
 
 # Semantic conventions for FaaS metrics

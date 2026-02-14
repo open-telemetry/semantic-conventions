@@ -1,5 +1,6 @@
 ---
 linkTitle: JSON-RPC
+title: Semantic conventions for JSON-RPC
 ---
 
 # Semantic conventions for JSON-RPC

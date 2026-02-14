@@ -1,5 +1,6 @@
 ---
 linkTitle: Agent spans
+title: Semantic Conventions for GenAI agent and framework spans
 ---
 
 # Semantic Conventions for GenAI agent and framework spans

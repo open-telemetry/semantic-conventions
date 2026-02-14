@@ -1,5 +1,6 @@
 ---
 linkTitle: AWS SQS
+title: Semantic conventions for AWS SQS
 ---
 
 # Semantic conventions for AWS SQS

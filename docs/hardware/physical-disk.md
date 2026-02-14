@@ -1,5 +1,6 @@
 ---
 linkTitle: Physical Disk
+title: Semantic conventions for physical disk metrics
 ---
 
 # Semantic conventions for physical disk metrics

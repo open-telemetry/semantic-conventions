@@ -1,5 +1,6 @@
 ---
 linkTitle: HBase
+title: Semantic conventions for HBase client operations
 ---
 
 # Semantic conventions for HBase client operations

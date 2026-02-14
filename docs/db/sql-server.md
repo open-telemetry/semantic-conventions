@@ -1,5 +1,6 @@
 ---
 linkTitle: SQL Server
+title: Semantic conventions for Microsoft SQL Server client operations
 ---
 
 # Semantic conventions for Microsoft SQL Server client operations

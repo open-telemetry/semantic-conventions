@@ -1,5 +1,6 @@
 ---
 linkTitle: Logs
+title: AWS logs
 ---
 
 # AWS logs

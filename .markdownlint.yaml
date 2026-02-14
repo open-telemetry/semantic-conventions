@@ -15,3 +15,5 @@ fenced-code-language: false
 no-space-in-code: false
 no-duplicate-heading:
   siblings_only: true
+single-title:
+  front_matter_title: ""

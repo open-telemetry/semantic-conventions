@@ -1,5 +1,6 @@
 ---
 linkTitle: Session
+title: Semantic conventions for session
 ---
 
 # Semantic conventions for session

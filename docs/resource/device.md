@@ -1,3 +1,7 @@
+---
+title: Device
+---
+
 # Device
 
 <!-- semconv entity.device -->

@@ -1,5 +1,6 @@
 ---
 linkTitle: Messaging
+title: Semantic conventions for messaging systems
 ---
 
 # Semantic conventions for messaging systems

@@ -1,5 +1,6 @@
 ---
 linkTitle: Spans
+title: Semantic conventions for exceptions on spans
 ---
 
 # Semantic conventions for exceptions on spans

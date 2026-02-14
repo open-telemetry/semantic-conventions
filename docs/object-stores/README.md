@@ -1,5 +1,6 @@
 ---
 linkTitle: Object stores
+title: Semantic conventions for object stores
 ---
 
 # Semantic conventions for object stores

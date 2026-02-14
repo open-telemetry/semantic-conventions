@@ -1,5 +1,6 @@
 ---
 linkTitle: Database migration
+title: Database semantic convention stability migration guide
 ---
 
 # Database semantic convention stability migration guide

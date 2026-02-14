@@ -1,5 +1,6 @@
 ---
 linkTitle: URL
+title: Semantic conventions for URL
 ---
 
 # Semantic conventions for URL

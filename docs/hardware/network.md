@@ -1,5 +1,6 @@
 ---
 linkTitle: Network
+title: Semantic conventions for network metrics
 ---
 
 # Semantic conventions for network metrics

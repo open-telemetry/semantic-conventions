@@ -1,5 +1,6 @@
 ---
 linkTitle: Azure
+title: Semantic conventions for Azure messaging systems
 ---
 
 # Semantic conventions for Azure messaging systems

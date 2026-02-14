@@ -1,5 +1,6 @@
 ---
 linkTitle: FaaS
+title: Semantic conventions for Function-as-a-Service
 ---
 
 # Semantic conventions for Function-as-a-Service

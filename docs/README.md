@@ -12,6 +12,7 @@ redirects:
 cSpell:ignore: semconv CICD
 auto_gen: below
 linkTitle: Semantic conventions
+title: OpenTelemetry semantic conventions
 ---
 
 # OpenTelemetry semantic conventions

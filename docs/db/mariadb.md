@@ -1,5 +1,6 @@
 ---
 linkTitle: MariaDB
+title: Semantic conventions for MariaDB client operations
 ---
 
 # Semantic conventions for MariaDB client operations

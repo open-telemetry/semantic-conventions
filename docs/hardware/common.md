@@ -1,5 +1,6 @@
 ---
 linkTitle: Metrics
+title: Semantic conventions for common hardware metrics
 ---
 
 # Semantic conventions for common hardware metrics

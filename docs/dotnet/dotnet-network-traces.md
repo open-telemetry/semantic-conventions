@@ -1,5 +1,6 @@
 ---
 linkTitle: HTTP request and connection spans
+title: Semantic Conventions for network spans emitted by .NET
 ---
 
 # Semantic Conventions for network spans emitted by .NET

@@ -1,5 +1,6 @@
 ---
 linkTitle: Spans
+title: Semantic conventions for generative client AI spans
 ---
 
 # Semantic conventions for generative client AI spans

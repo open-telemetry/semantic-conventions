@@ -1,5 +1,6 @@
 ---
 linkTitle: CouchDB
+title: Semantic conventions for CouchDB client operations
 ---
 
 # Semantic conventions for CouchDB client operations

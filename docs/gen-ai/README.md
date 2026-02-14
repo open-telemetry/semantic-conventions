@@ -1,5 +1,6 @@
 ---
 linkTitle: Generative AI
+title: Semantic conventions for generative AI systems
 ---
 
 # Semantic conventions for generative AI systems

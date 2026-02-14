@@ -1,5 +1,6 @@
 ---
 linkTitle: SignalR
+title: Semantic conventions for SignalR server metrics
 ---
 
 # Semantic conventions for SignalR server metrics

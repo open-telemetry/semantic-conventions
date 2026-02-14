@@ -1,5 +1,6 @@
 ---
 linkTitle: AWS SDK
+title: Semantic conventions for AWS SDK client spans
 ---
 
 # Semantic conventions for AWS SDK client spans

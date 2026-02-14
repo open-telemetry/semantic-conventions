@@ -1,6 +1,7 @@
 ---
 linkTitle: Metrics
 aliases: [metrics-general]
+title: Metrics semantic conventions
 ---
 
 # Metrics semantic conventions

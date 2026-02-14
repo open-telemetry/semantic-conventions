@@ -1,5 +1,6 @@
 ---
 linkTitle: Profiles
+title: Profiles attributes
 ---
 
 # Profiles attributes

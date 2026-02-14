@@ -1,5 +1,6 @@
 ---
 linkTitle: Connect
+title: Semantic conventions for Connect RPC
 ---
 
 # Semantic conventions for Connect RPC
