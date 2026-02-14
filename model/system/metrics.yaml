@@ -563,3 +563,181 @@ groups:
       - ref: system.memory.linux.slab.state
     entity_associations:
       - host
+
+  # system.linux.psi.* metrics
+  - id: metric.system.cpu.linux.pressure.average
+    type: metric
+    metric_name: system.cpu.linux.pressure.average
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: "Linux Pressure Stall Information (PSI) metric measuring resource contention as percentage of time."
+    note: |
+      PSI (Pressure Stall Information) identifies and quantifies resource contention.
+      The metric represents the percentage of time that tasks were stalled on a given resource
+      over the specified time window.
+
+      PSI is available on Linux systems with kernel 4.20 or later and requires CONFIG_PSI=y.
+      CPU "full" stall is reported as zero at the system level for backward compatibility (available since 5.13).
+
+      The ratios are tracked over 10-second, 60-second and 300-second windows.
+
+      See [Linux kernel PSI documentation](https://docs.kernel.org/accounting/psi.html)
+    instrument: gauge
+    unit: "1"
+    attributes:
+      - ref: system.pressure.stall_type
+        requirement_level: required
+      - ref: system.linux.psi.window
+        requirement_level: required
+    entity_associations:
+      - host
+
+  - id: metric.system.memory.linux.pressure.average
+    type: metric
+    metric_name: system.memory.linux.pressure.average
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: "Linux Pressure Stall Information (PSI) metric measuring resource contention as percentage of time."
+    note: |
+      PSI (Pressure Stall Information) identifies and quantifies resource contention.
+      The metric represents the percentage of time that tasks were stalled on a given resource
+      over the specified time window.
+
+      PSI is available on Linux systems with kernel 4.20 or later and requires CONFIG_PSI=y.
+
+      The ratios are tracked over 10-second, 60-second and 300-second windows.
+
+      See [Linux kernel PSI documentation](https://docs.kernel.org/accounting/psi.html)
+    instrument: gauge
+    unit: "1"
+    attributes:
+      - ref: system.pressure.stall_type
+        requirement_level: required
+      - ref: system.linux.psi.window
+        requirement_level: required
+    entity_associations:
+      - host
+
+  - id: metric.system.io.linux.pressure.average
+    type: metric
+    metric_name: system.io.linux.pressure.average
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: "Linux Pressure Stall Information (PSI) metric measuring resource contention as percentage of time."
+    note: |
+      PSI (Pressure Stall Information) identifies and quantifies resource contention.
+      The metric represents the percentage of time that tasks were stalled on a given resource
+      over the specified time window.
+
+      PSI is available on Linux systems with kernel 4.20 or later and requires CONFIG_PSI=y.
+
+      The ratios are tracked over 10-second, 60-second and 300-second windows.
+
+      See [Linux kernel PSI documentation](https://docs.kernel.org/accounting/psi.html)
+    instrument: gauge
+    unit: "1"
+    attributes:
+      - ref: system.pressure.stall_type
+        requirement_level: required
+      - ref: system.linux.psi.window
+        requirement_level: required
+    entity_associations:
+      - host
+
+  - id: metric.system.cpu.linux.pressure.total
+    type: metric
+    metric_name: system.cpu.linux.pressure.total
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: "Linux Pressure Stall Information (PSI) total cumulative stall time."
+    note: |
+      This metric tracks the total absolute stall time since system boot.
+      Unlike the percentage-based `system.cpu.linux.pressure.average` metric, this allows detection
+      of latency spikes that wouldn't necessarily make a noticeable impact on time averages.
+      It also enables calculating average trends over custom time frames.
+
+      PSI is available on Linux systems with kernel 4.20 or later and requires CONFIG_PSI=y.
+      CPU "full" stall is reported as zero at the system level for backward compatibility (available since 5.13).
+
+      This is a monotonically increasing counter that resets on system reboot.
+
+      Linux exposes this metric in microseconds. Following OpenTelemetry guidelines for measuring durations,
+      this metric uses seconds.
+
+      See [Linux kernel PSI documentation](https://docs.kernel.org/accounting/psi.html)
+    instrument: counter
+    unit: "s"
+    attributes:
+      - ref: system.pressure.stall_type
+        requirement_level: required
+    entity_associations:
+      - host
+
+  - id: metric.system.memory.linux.pressure.total
+    type: metric
+    metric_name: system.memory.linux.pressure.total
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: "Linux Pressure Stall Information (PSI) total cumulative stall time."
+    note: |
+      This metric tracks the total absolute stall time since system boot.
+      Unlike the percentage-based `system.memory.linux.pressure.average` metric, this allows detection
+      of latency spikes that wouldn't necessarily make a noticeable impact on time averages.
+      It also enables calculating average trends over custom time frames.
+
+      PSI is available on Linux systems with kernel 4.20 or later and requires CONFIG_PSI=y.
+      CPU "full" stall is reported as zero at the system level for backward compatibility (available since 5.13).
+
+      This is a monotonically increasing counter that resets on system reboot.
+
+      Linux exposes this metric in microseconds. Following OpenTelemetry guidelines for measuring durations,
+      this metric uses seconds.
+
+      See [Linux kernel PSI documentation](https://docs.kernel.org/accounting/psi.html)
+    instrument: counter
+    unit: "s"
+    attributes:
+      - ref: system.pressure.stall_type
+        requirement_level: required
+    entity_associations:
+      - host
+
+  - id: metric.system.io.linux.pressure.total
+    type: metric
+    metric_name: system.io.linux.pressure.total
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: "Linux Pressure Stall Information (PSI) total cumulative stall time."
+    note: |
+      This metric tracks the total absolute stall time since system boot.
+      Unlike the percentage-based `system.io.linux.pressure.average` metric, this allows detection
+      of latency spikes that wouldn't necessarily make a noticeable impact on time averages.
+      It also enables calculating average trends over custom time frames.
+
+      PSI is available on Linux systems with kernel 4.20 or later and requires CONFIG_PSI=y.
+
+      This is a monotonically increasing counter that resets on system reboot.
+
+      Linux exposes this metric in microseconds. Following OpenTelemetry guidelines for measuring durations,
+      this metric uses seconds.
+
+      See [Linux kernel PSI documentation](https://docs.kernel.org/accounting/psi.html)
+    instrument: counter
+    unit: "s"
+    attributes:
+      - ref: system.pressure.stall_type
+        requirement_level: required
+    entity_associations:
+      - host

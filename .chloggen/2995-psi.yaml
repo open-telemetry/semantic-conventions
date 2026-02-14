@@ -1,0 +1,11 @@
+change_type: enhancement
+
+component: system
+
+note: "Add Linux PSI (Pressure Stall Information) metrics `system.linux.psi.pressure` and `system.linux.psi.total_time` for measuring resource contention."
+
+issues: [2995]
+
+subtext: |
+  PSI metrics track CPU, memory, and I/O resource pressure by measuring the percentage of time tasks are stalled.
+  These metrics help with workload sizing, detecting productivity losses, and dynamic system management.
