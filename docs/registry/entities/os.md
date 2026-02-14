@@ -17,13 +17,13 @@
 
 **Attributes:**
 
-| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-| --- | --- | --- | --- | --- | --- | --- |
-| Other | [`os.type`](/docs/registry/attributes/os.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The operating system type. | `windows`; `linux`; `darwin` |
-| Other | [`os.build_id`](/docs/registry/attributes/os.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Unique identifier for a particular build or compilation of the operating system. [1] | `TQ3C.230805.001.B2`; `20E247`; `22621` |
-| Other | [`os.description`](/docs/registry/attributes/os.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Human readable (not intended to be parsed) OS version information, like e.g. reported by `ver` or `lsb_release -a` commands. | `Microsoft Windows [Version 10.0.18363.778]`; `Ubuntu 18.04.1 LTS` |
-| Other | [`os.name`](/docs/registry/attributes/os.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Human readable operating system name. | `iOS`; `Android`; `Ubuntu` |
-| Other | [`os.version`](/docs/registry/attributes/os.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The version string of the operating system as defined in [Version Attributes](/docs/resource/README.md#version-attributes). | `14.2.1`; `18.04.1` |
+| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values | Configuration Requirement |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Other | [`os.type`](/docs/registry/attributes/os.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The operating system type. | `windows`; `linux`; `darwin` | `Opt-In` |
+| Other | [`os.build_id`](/docs/registry/attributes/os.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Unique identifier for a particular build or compilation of the operating system. [1] | `TQ3C.230805.001.B2`; `20E247`; `22621` | `Opt-In` |
+| Other | [`os.description`](/docs/registry/attributes/os.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Human readable (not intended to be parsed) OS version information, like e.g. reported by `ver` or `lsb_release -a` commands. | `Microsoft Windows [Version 10.0.18363.778]`; `Ubuntu 18.04.1 LTS` | `Opt-In` |
+| Other | [`os.name`](/docs/registry/attributes/os.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Human readable operating system name. | `iOS`; `Android`; `Ubuntu` | `Opt-In` |
+| Other | [`os.version`](/docs/registry/attributes/os.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The version string of the operating system as defined in [Version Attributes](/docs/resource/README.md#version-attributes). | `14.2.1`; `18.04.1` | `Opt-In` |
 
 **[1] `os.build_id`:** `build_id` values SHOULD be obtained from the following sources:
 
@@ -50,3 +50,29 @@
 | `solaris` | SunOS, Oracle Solaris | ![Development](https://img.shields.io/badge/-development-blue) |
 | `windows` | Microsoft Windows | ![Development](https://img.shields.io/badge/-development-blue) |
 | `zos` | IBM z/OS | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**Configuration File Options:**
+
+| Setting | Requirement Level | Category | Example Value | Attribute |
+| --- | --- | --- | --- | --- |
+| `resource.detection.detectors[]` | `Required` | Detector Inclusion | `os` | - |
+| `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `os.build_id` | [`os.build_id`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: os.build_id,`<br>&nbsp;&nbsp;&nbsp;`value: TQ3C.230805.001.B2` | [`os.build_id`](/docs/registry/attributes/.md) |
+| `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `os.description` | [`os.description`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: os.description,`<br>&nbsp;&nbsp;&nbsp;`value: Microsoft Windows [Version 10.0.18363.778]` | [`os.description`](/docs/registry/attributes/.md) |
+| `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `os.name` | [`os.name`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: os.name,`<br>&nbsp;&nbsp;&nbsp;`value: iOS` | [`os.name`](/docs/registry/attributes/.md) |
+| `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `os.type` | [`os.type`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: os.type,`<br>&nbsp;&nbsp;&nbsp;`type:string,`<br>&nbsp;&nbsp;&nbsp;`value: windows` | [`os.type`](/docs/registry/attributes/.md) |
+| `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `os.version` | [`os.version`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: os.version,`<br>&nbsp;&nbsp;&nbsp;`value: 14.2.1` | [`os.version`](/docs/registry/attributes/.md) |
+
+**Environment Variable Options:**
+
+| Setting | Requirement Level | Category | Example Value | Attribute |
+| --- | --- | --- | --- | --- |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `os.build_id=TQ3C.230805.001.B2` | [`os.build_id`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `os.description=Microsoft Windows [Version 10.0.18363.778]` | [`os.description`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `os.name=iOS` | [`os.name`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `os.type=` | [`os.type`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `os.version=14.2.1` | [`os.version`](/docs/registry/attributes/.md) |

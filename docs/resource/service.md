@@ -60,11 +60,15 @@ between them. Additionally, there's a single database instance.
 
 **Attributes:**
 
-| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-| --- | --- | --- | --- | --- | --- | --- |
-| Identity | [`service.name`](/docs/registry/attributes/service.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | Logical name of the service. [1] | `shoppingcart` |
-| Description | [`service.criticality`](/docs/registry/attributes/service.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The operational criticality of the service. [2] | `critical`; `high`; `medium`; `low` |
-| Description | [`service.version`](/docs/registry/attributes/service.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The version string of the service component. The format is not defined by these conventions. | `2.0.0`; `a01dbef8a` |
+> [!NOTE]
+>
+> This entity contains experimental attributes and their inclusion must be explicitly enabled.
+
+| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values | Configuration Requirement |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Identity | [`service.name`](/docs/registry/attributes/service.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | Logical name of the service. [1] | `shoppingcart` | `Opt-In` |
+| Description | [`service.criticality`](/docs/registry/attributes/service.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The operational criticality of the service. [2] | `critical`; `high`; `medium`; `low` | `Required` |
+| Description | [`service.version`](/docs/registry/attributes/service.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The version string of the service component. The format is not defined by these conventions. | `2.0.0`; `a01dbef8a` | `Opt-In` |
 
 **[1] `service.name`:** MUST be the same for all instances of horizontally scaled services. If the value was not specified, SDKs MUST fallback to `unknown_service:` concatenated with [`process.executable.name`](process.md), e.g. `unknown_service:bash`. If `process.executable.name` is not available, the value MUST be set to `unknown_service`.
 
@@ -88,6 +92,28 @@ between them. Additionally, there's a single database instance.
 **[5]:** Examples include batch processors, cleanup jobs, and internal dashboards.
 
 **[6]:** Examples include analytics, reporting, and non-essential integrations.
+
+**Configuration File Options:**
+
+| Setting | Requirement Level | Category | Example Value | Attribute |
+| --- | --- | --- | --- | --- |
+| `resource.detection.detectors[]` | `Required` | Detector Inclusion | `service` | - |
+| `TBA` | `Required` | Experimental Opt-in | TBA | [`service.criticality`](/docs/registry/attributes/.md) |
+| `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `service.criticality` | [`service.criticality`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: service.criticality,`<br>&nbsp;&nbsp;&nbsp;`type:string,`<br>&nbsp;&nbsp;&nbsp;`value: critical` | [`service.criticality`](/docs/registry/attributes/.md) |
+| `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `service.name` | [`service.name`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: service.name,`<br>&nbsp;&nbsp;&nbsp;`value: shoppingcart` | [`service.name`](/docs/registry/attributes/.md) |
+| `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `service.version` | [`service.version`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: service.version,`<br>&nbsp;&nbsp;&nbsp;`value: 2.0.0` | [`service.version`](/docs/registry/attributes/.md) |
+
+**Environment Variable Options:**
+
+| Setting | Requirement Level | Category | Example Value | Attribute |
+| --- | --- | --- | --- | --- |
+| `TBA` | Required | Experimental Opt-in | TBA | [`service.criticality`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `service.criticality=critical` | [`service.criticality`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `service.name=shoppingcart` | [`service.name`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `service.version=2.0.0` | [`service.version`](/docs/registry/attributes/.md) |
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
 <!-- endsemconv -->
@@ -107,9 +133,9 @@ between them. Additionally, there's a single database instance.
 
 **Attributes:**
 
-| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-| --- | --- | --- | --- | --- | --- | --- |
-| Identity | [`service.instance.id`](/docs/registry/attributes/service.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | The string ID of the service instance. [1] | `627cc493-f310-47de-96bd-71410b7dec09` |
+| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values | Configuration Requirement |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Identity | [`service.instance.id`](/docs/registry/attributes/service.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | The string ID of the service instance. [1] | `627cc493-f310-47de-96bd-71410b7dec09` | `Opt-In` |
 
 **[1] `service.instance.id`:** MUST be unique for each instance of the same `service.namespace,service.name` pair (in other words
 `service.namespace,service.name,service.instance.id` triplet MUST be globally unique). The ID helps to
@@ -137,6 +163,20 @@ likely be wrong, as the Collector might not know from which container within tha
 However, Collectors can set the `service.instance.id` if they can unambiguously determine the service instance
 for that telemetry. This is typically the case for scraping receivers, as they know the target address and
 port.
+
+**Configuration File Options:**
+
+| Setting | Requirement Level | Category | Example Value | Attribute |
+| --- | --- | --- | --- | --- |
+| `resource.detection.detectors[]` | `Required` | Detector Inclusion | `service.instance` | - |
+| `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `service.instance.id` | [`service.instance.id`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: service.instance.id,`<br>&nbsp;&nbsp;&nbsp;`value: 627cc493-f310-47de-96bd-71410b7dec09` | [`service.instance.id`](/docs/registry/attributes/.md) |
+
+**Environment Variable Options:**
+
+| Setting | Requirement Level | Category | Example Value | Attribute |
+| --- | --- | --- | --- | --- |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `service.instance.id=627cc493-f310-47de-96bd-71410b7dec09` | [`service.instance.id`](/docs/registry/attributes/.md) |
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
 <!-- endsemconv -->
@@ -156,11 +196,25 @@ port.
 
 **Attributes:**
 
-| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-| --- | --- | --- | --- | --- | --- | --- |
-| Identity | [`service.namespace`](/docs/registry/attributes/service.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | A namespace for `service.name`. [1] | `Shop` |
+| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values | Configuration Requirement |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Identity | [`service.namespace`](/docs/registry/attributes/service.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | A namespace for `service.name`. [1] | `Shop` | `Opt-In` |
 
 **[1] `service.namespace`:** A string value having a meaning that helps to distinguish a group of services, for example the team name that owns a group of services. `service.name` is expected to be unique within the same namespace. If `service.namespace` is not specified in the Resource then `service.name` is expected to be unique for all services that have no explicit namespace defined (so the empty/unspecified namespace is simply one more valid namespace). Zero-length namespace string is assumed equal to unspecified namespace.
+
+**Configuration File Options:**
+
+| Setting | Requirement Level | Category | Example Value | Attribute |
+| --- | --- | --- | --- | --- |
+| `resource.detection.detectors[]` | `Required` | Detector Inclusion | `service.namespace` | - |
+| `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `service.namespace` | [`service.namespace`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: service.namespace,`<br>&nbsp;&nbsp;&nbsp;`value: Shop` | [`service.namespace`](/docs/registry/attributes/.md) |
+
+**Environment Variable Options:**
+
+| Setting | Requirement Level | Category | Example Value | Attribute |
+| --- | --- | --- | --- | --- |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `service.namespace=Shop` | [`service.namespace`](/docs/registry/attributes/.md) |
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
 <!-- endsemconv -->

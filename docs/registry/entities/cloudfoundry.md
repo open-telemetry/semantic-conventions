@@ -17,10 +17,10 @@
 
 **Attributes:**
 
-| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-| --- | --- | --- | --- | --- | --- | --- |
-| Other | [`cloudfoundry.app.id`](/docs/registry/attributes/cloudfoundry.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The guid of the application. [1] | `218fc5a9-a5f1-4b54-aa05-46717d0ab26d` |
-| Other | [`cloudfoundry.app.name`](/docs/registry/attributes/cloudfoundry.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the application. [2] | `my-app-name` |
+| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values | Configuration Requirement |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Other | [`cloudfoundry.app.id`](/docs/registry/attributes/cloudfoundry.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The guid of the application. [1] | `218fc5a9-a5f1-4b54-aa05-46717d0ab26d` | `Opt-In` |
+| Other | [`cloudfoundry.app.name`](/docs/registry/attributes/cloudfoundry.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the application. [2] | `my-app-name` | `Opt-In` |
 
 **[1] `cloudfoundry.app.id`:** Application instrumentation should use the value from environment
 variable `VCAP_APPLICATION.application_id`. This is the same value as
@@ -29,6 +29,23 @@ reported by `cf app <app-name> --guid`.
 **[2] `cloudfoundry.app.name`:** Application instrumentation should use the value from environment
 variable `VCAP_APPLICATION.application_name`. This is the same value
 as reported by `cf apps`.
+
+**Configuration File Options:**
+
+| Setting | Requirement Level | Category | Example Value | Attribute |
+| --- | --- | --- | --- | --- |
+| `resource.detection.detectors[]` | `Required` | Detector Inclusion | `cloudfoundry.app` | - |
+| `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `cloudfoundry.app.id` | [`cloudfoundry.app.id`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: cloudfoundry.app.id,`<br>&nbsp;&nbsp;&nbsp;`value: 218fc5a9-a5f1-4b54-aa05-46717d0ab26d` | [`cloudfoundry.app.id`](/docs/registry/attributes/.md) |
+| `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `cloudfoundry.app.name` | [`cloudfoundry.app.name`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: cloudfoundry.app.name,`<br>&nbsp;&nbsp;&nbsp;`value: my-app-name` | [`cloudfoundry.app.name`](/docs/registry/attributes/.md) |
+
+**Environment Variable Options:**
+
+| Setting | Requirement Level | Category | Example Value | Attribute |
+| --- | --- | --- | --- | --- |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `cloudfoundry.app.id=218fc5a9-a5f1-4b54-aa05-46717d0ab26d` | [`cloudfoundry.app.id`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `cloudfoundry.app.name=my-app-name` | [`cloudfoundry.app.name`](/docs/registry/attributes/.md) |
 
 ## CloudFoundry Org
 
@@ -44,10 +61,10 @@ as reported by `cf apps`.
 
 **Attributes:**
 
-| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-| --- | --- | --- | --- | --- | --- | --- |
-| Other | [`cloudfoundry.org.id`](/docs/registry/attributes/cloudfoundry.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The guid of the CloudFoundry org the application is running in. [3] | `218fc5a9-a5f1-4b54-aa05-46717d0ab26d` |
-| Other | [`cloudfoundry.org.name`](/docs/registry/attributes/cloudfoundry.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the CloudFoundry organization the app is running in. [4] | `my-org-name` |
+| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values | Configuration Requirement |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Other | [`cloudfoundry.org.id`](/docs/registry/attributes/cloudfoundry.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The guid of the CloudFoundry org the application is running in. [3] | `218fc5a9-a5f1-4b54-aa05-46717d0ab26d` | `Opt-In` |
+| Other | [`cloudfoundry.org.name`](/docs/registry/attributes/cloudfoundry.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the CloudFoundry organization the app is running in. [4] | `my-org-name` | `Opt-In` |
 
 **[3] `cloudfoundry.org.id`:** Application instrumentation should use the value from environment
 variable `VCAP_APPLICATION.org_id`. This is the same value as
@@ -56,6 +73,23 @@ reported by `cf org <org-name> --guid`.
 **[4] `cloudfoundry.org.name`:** Application instrumentation should use the value from environment
 variable `VCAP_APPLICATION.org_name`. This is the same value as
 reported by `cf orgs`.
+
+**Configuration File Options:**
+
+| Setting | Requirement Level | Category | Example Value | Attribute |
+| --- | --- | --- | --- | --- |
+| `resource.detection.detectors[]` | `Required` | Detector Inclusion | `cloudfoundry.org` | - |
+| `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `cloudfoundry.org.id` | [`cloudfoundry.org.id`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: cloudfoundry.org.id,`<br>&nbsp;&nbsp;&nbsp;`value: 218fc5a9-a5f1-4b54-aa05-46717d0ab26d` | [`cloudfoundry.org.id`](/docs/registry/attributes/.md) |
+| `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `cloudfoundry.org.name` | [`cloudfoundry.org.name`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: cloudfoundry.org.name,`<br>&nbsp;&nbsp;&nbsp;`value: my-org-name` | [`cloudfoundry.org.name`](/docs/registry/attributes/.md) |
+
+**Environment Variable Options:**
+
+| Setting | Requirement Level | Category | Example Value | Attribute |
+| --- | --- | --- | --- | --- |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `cloudfoundry.org.id=218fc5a9-a5f1-4b54-aa05-46717d0ab26d` | [`cloudfoundry.org.id`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `cloudfoundry.org.name=my-org-name` | [`cloudfoundry.org.name`](/docs/registry/attributes/.md) |
 
 ## CloudFoundry Process
 
@@ -71,10 +105,10 @@ reported by `cf orgs`.
 
 **Attributes:**
 
-| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-| --- | --- | --- | --- | --- | --- | --- |
-| Other | [`cloudfoundry.process.id`](/docs/registry/attributes/cloudfoundry.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The UID identifying the process. [5] | `218fc5a9-a5f1-4b54-aa05-46717d0ab26d` |
-| Other | [`cloudfoundry.process.type`](/docs/registry/attributes/cloudfoundry.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The type of process. [6] | `web` |
+| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values | Configuration Requirement |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Other | [`cloudfoundry.process.id`](/docs/registry/attributes/cloudfoundry.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The UID identifying the process. [5] | `218fc5a9-a5f1-4b54-aa05-46717d0ab26d` | `Opt-In` |
+| Other | [`cloudfoundry.process.type`](/docs/registry/attributes/cloudfoundry.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The type of process. [6] | `web` | `Opt-In` |
 
 **[5] `cloudfoundry.process.id`:** Application instrumentation should use the value from environment
 variable `VCAP_APPLICATION.process_id`. It is supposed to be equal to
@@ -84,6 +118,23 @@ For system components, this could be the actual PID.
 **[6] `cloudfoundry.process.type`:** CloudFoundry applications can consist of multiple jobs. Usually the
 main process will be of type `web`. There can be additional background
 tasks or side-cars with different process types.
+
+**Configuration File Options:**
+
+| Setting | Requirement Level | Category | Example Value | Attribute |
+| --- | --- | --- | --- | --- |
+| `resource.detection.detectors[]` | `Required` | Detector Inclusion | `cloudfoundry.process` | - |
+| `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `cloudfoundry.process.id` | [`cloudfoundry.process.id`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: cloudfoundry.process.id,`<br>&nbsp;&nbsp;&nbsp;`value: 218fc5a9-a5f1-4b54-aa05-46717d0ab26d` | [`cloudfoundry.process.id`](/docs/registry/attributes/.md) |
+| `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `cloudfoundry.process.type` | [`cloudfoundry.process.type`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: cloudfoundry.process.type,`<br>&nbsp;&nbsp;&nbsp;`value: web` | [`cloudfoundry.process.type`](/docs/registry/attributes/.md) |
+
+**Environment Variable Options:**
+
+| Setting | Requirement Level | Category | Example Value | Attribute |
+| --- | --- | --- | --- | --- |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `cloudfoundry.process.id=218fc5a9-a5f1-4b54-aa05-46717d0ab26d` | [`cloudfoundry.process.id`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `cloudfoundry.process.type=web` | [`cloudfoundry.process.type`](/docs/registry/attributes/.md) |
 
 ## CloudFoundry Space
 
@@ -99,10 +150,10 @@ tasks or side-cars with different process types.
 
 **Attributes:**
 
-| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-| --- | --- | --- | --- | --- | --- | --- |
-| Other | [`cloudfoundry.space.id`](/docs/registry/attributes/cloudfoundry.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The guid of the CloudFoundry space the application is running in. [7] | `218fc5a9-a5f1-4b54-aa05-46717d0ab26d` |
-| Other | [`cloudfoundry.space.name`](/docs/registry/attributes/cloudfoundry.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the CloudFoundry space the application is running in. [8] | `my-space-name` |
+| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values | Configuration Requirement |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Other | [`cloudfoundry.space.id`](/docs/registry/attributes/cloudfoundry.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The guid of the CloudFoundry space the application is running in. [7] | `218fc5a9-a5f1-4b54-aa05-46717d0ab26d` | `Opt-In` |
+| Other | [`cloudfoundry.space.name`](/docs/registry/attributes/cloudfoundry.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the CloudFoundry space the application is running in. [8] | `my-space-name` | `Opt-In` |
 
 **[7] `cloudfoundry.space.id`:** Application instrumentation should use the value from environment
 variable `VCAP_APPLICATION.space_id`. This is the same value as
@@ -111,6 +162,23 @@ reported by `cf space <space-name> --guid`.
 **[8] `cloudfoundry.space.name`:** Application instrumentation should use the value from environment
 variable `VCAP_APPLICATION.space_name`. This is the same value as
 reported by `cf spaces`.
+
+**Configuration File Options:**
+
+| Setting | Requirement Level | Category | Example Value | Attribute |
+| --- | --- | --- | --- | --- |
+| `resource.detection.detectors[]` | `Required` | Detector Inclusion | `cloudfoundry.space` | - |
+| `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `cloudfoundry.space.id` | [`cloudfoundry.space.id`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: cloudfoundry.space.id,`<br>&nbsp;&nbsp;&nbsp;`value: 218fc5a9-a5f1-4b54-aa05-46717d0ab26d` | [`cloudfoundry.space.id`](/docs/registry/attributes/.md) |
+| `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `cloudfoundry.space.name` | [`cloudfoundry.space.name`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: cloudfoundry.space.name,`<br>&nbsp;&nbsp;&nbsp;`value: my-space-name` | [`cloudfoundry.space.name`](/docs/registry/attributes/.md) |
+
+**Environment Variable Options:**
+
+| Setting | Requirement Level | Category | Example Value | Attribute |
+| --- | --- | --- | --- | --- |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `cloudfoundry.space.id=218fc5a9-a5f1-4b54-aa05-46717d0ab26d` | [`cloudfoundry.space.id`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `cloudfoundry.space.name=my-space-name` | [`cloudfoundry.space.name`](/docs/registry/attributes/.md) |
 
 ## CloudFoundry System
 
@@ -126,10 +194,10 @@ reported by `cf spaces`.
 
 **Attributes:**
 
-| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-| --- | --- | --- | --- | --- | --- | --- |
-| Other | [`cloudfoundry.system.id`](/docs/registry/attributes/cloudfoundry.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A guid or another name describing the event source. [9] | `cf/gorouter` |
-| Other | [`cloudfoundry.system.instance.id`](/docs/registry/attributes/cloudfoundry.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A guid describing the concrete instance of the event source. [10] | `218fc5a9-a5f1-4b54-aa05-46717d0ab26d` |
+| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values | Configuration Requirement |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Other | [`cloudfoundry.system.id`](/docs/registry/attributes/cloudfoundry.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A guid or another name describing the event source. [9] | `cf/gorouter` | `Opt-In` |
+| Other | [`cloudfoundry.system.instance.id`](/docs/registry/attributes/cloudfoundry.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A guid describing the concrete instance of the event source. [10] | `218fc5a9-a5f1-4b54-aa05-46717d0ab26d` | `Opt-In` |
 
 **[9] `cloudfoundry.system.id`:** CloudFoundry defines the `source_id` in the [Loggregator v2 envelope](https://github.com/cloudfoundry/loggregator-api#v2-envelope).
 It is used for logs and metrics emitted by CloudFoundry. It is
@@ -148,3 +216,20 @@ supposed to contain the vm id for CloudFoundry components.
 When system components are instrumented, values from the
 [Bosh spec](https://bosh.io/docs/jobs/#properties-spec)
 should be used. The `system.instance.id` should be set to `spec.id`.
+
+**Configuration File Options:**
+
+| Setting | Requirement Level | Category | Example Value | Attribute |
+| --- | --- | --- | --- | --- |
+| `resource.detection.detectors[]` | `Required` | Detector Inclusion | `cloudfoundry.system` | - |
+| `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `cloudfoundry.system.id` | [`cloudfoundry.system.id`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: cloudfoundry.system.id,`<br>&nbsp;&nbsp;&nbsp;`value: cf/gorouter` | [`cloudfoundry.system.id`](/docs/registry/attributes/.md) |
+| `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `cloudfoundry.system.instance.id` | [`cloudfoundry.system.instance.id`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: cloudfoundry.system.instance.id,`<br>&nbsp;&nbsp;&nbsp;`value: 218fc5a9-a5f1-4b54-aa05-46717d0ab26d` | [`cloudfoundry.system.instance.id`](/docs/registry/attributes/.md) |
+
+**Environment Variable Options:**
+
+| Setting | Requirement Level | Category | Example Value | Attribute |
+| --- | --- | --- | --- | --- |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `cloudfoundry.system.id=cf/gorouter` | [`cloudfoundry.system.id`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `cloudfoundry.system.instance.id=218fc5a9-a5f1-4b54-aa05-46717d0ab26d` | [`cloudfoundry.system.instance.id`](/docs/registry/attributes/.md) |

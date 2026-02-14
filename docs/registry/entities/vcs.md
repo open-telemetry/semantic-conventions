@@ -17,11 +17,11 @@
 
 **Attributes:**
 
-| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-| --- | --- | --- | --- | --- | --- | --- |
-| Other | [`vcs.ref.head.name`](/docs/registry/attributes/vcs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. [1] | `my-feature-branch`; `tag-1-test` |
-| Other | [`vcs.ref.head.revision`](/docs/registry/attributes/vcs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The revision, literally [revised version](https://www.merriam-webster.com/dictionary/revision), The revision most often refers to a commit object in Git, or a revision number in SVN. [2] | `9d59409acf479dfa0df1aa568182e43e43df8bbe28d60fcf2bc52e30068802cc`; `main`; `123`; `HEAD` |
-| Other | [`vcs.ref.type`](/docs/registry/attributes/vcs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository. | `branch`; `tag` |
+| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values | Configuration Requirement |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Other | [`vcs.ref.head.name`](/docs/registry/attributes/vcs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. [1] | `my-feature-branch`; `tag-1-test` | `Opt-In` |
+| Other | [`vcs.ref.head.revision`](/docs/registry/attributes/vcs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The revision, literally [revised version](https://www.merriam-webster.com/dictionary/revision), The revision most often refers to a commit object in Git, or a revision number in SVN. [2] | `9d59409acf479dfa0df1aa568182e43e43df8bbe28d60fcf2bc52e30068802cc`; `main`; `123`; `HEAD` | `Opt-In` |
+| Other | [`vcs.ref.type`](/docs/registry/attributes/vcs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository. | `branch`; `tag` | `Opt-In` |
 
 **[1] `vcs.ref.head.name`:** `head` refers to where you are right now; the current reference at a
 given time.
@@ -47,6 +47,26 @@ revision based on the VCS system and situational context.
 | `branch` | [branch](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddefbranchabranch) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `tag` | [tag](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddeftagatag) | ![Development](https://img.shields.io/badge/-development-blue) |
 
+**Configuration File Options:**
+
+| Setting | Requirement Level | Category | Example Value | Attribute |
+| --- | --- | --- | --- | --- |
+| `resource.detection.detectors[]` | `Required` | Detector Inclusion | `vcs.ref` | - |
+| `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `vcs.ref.head.name` | [`vcs.ref.head.name`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: vcs.ref.head.name,`<br>&nbsp;&nbsp;&nbsp;`value: my-feature-branch` | [`vcs.ref.head.name`](/docs/registry/attributes/.md) |
+| `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `vcs.ref.head.revision` | [`vcs.ref.head.revision`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: vcs.ref.head.revision,`<br>&nbsp;&nbsp;&nbsp;`value: 9d59409acf479dfa0df1aa568182e43e43df8bbe28d60fcf2bc52e30068802cc` | [`vcs.ref.head.revision`](/docs/registry/attributes/.md) |
+| `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `vcs.ref.type` | [`vcs.ref.type`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: vcs.ref.type,`<br>&nbsp;&nbsp;&nbsp;`type:string,`<br>&nbsp;&nbsp;&nbsp;`value: branch` | [`vcs.ref.type`](/docs/registry/attributes/.md) |
+
+**Environment Variable Options:**
+
+| Setting | Requirement Level | Category | Example Value | Attribute |
+| --- | --- | --- | --- | --- |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `vcs.ref.head.name=my-feature-branch` | [`vcs.ref.head.name`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `vcs.ref.head.revision=9d59409acf479dfa0df1aa568182e43e43df8bbe28d60fcf2bc52e30068802cc` | [`vcs.ref.head.revision`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `vcs.ref.type=branch` | [`vcs.ref.type`](/docs/registry/attributes/.md) |
+
 ## VCS Repo
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
@@ -61,10 +81,10 @@ revision based on the VCS system and situational context.
 
 **Attributes:**
 
-| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-| --- | --- | --- | --- | --- | --- | --- |
-| Other | [`vcs.repository.name`](/docs/registry/attributes/vcs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The human readable name of the repository. It SHOULD NOT include any additional identifier like Group/SubGroup in GitLab or organization in GitHub. [3] | `semantic-conventions`; `my-cool-repo` |
-| Other | [`vcs.repository.url.full`](/docs/registry/attributes/vcs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The [canonical URL](https://support.google.com/webmasters/answer/10347851) of the repository providing the complete HTTP(S) address in order to locate and identify the repository through a browser. [4] | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` |
+| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values | Configuration Requirement |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Other | [`vcs.repository.name`](/docs/registry/attributes/vcs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The human readable name of the repository. It SHOULD NOT include any additional identifier like Group/SubGroup in GitLab or organization in GitHub. [3] | `semantic-conventions`; `my-cool-repo` | `Opt-In` |
+| Other | [`vcs.repository.url.full`](/docs/registry/attributes/vcs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The [canonical URL](https://support.google.com/webmasters/answer/10347851) of the repository providing the complete HTTP(S) address in order to locate and identify the repository through a browser. [4] | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` | `Opt-In` |
 
 **[3] `vcs.repository.name`:** Due to it only being the name, it can clash with forks of the same
 repository if collecting telemetry across multiple orgs or groups in
@@ -72,3 +92,20 @@ the same backends.
 
 **[4] `vcs.repository.url.full`:** In Git Version Control Systems, the canonical URL SHOULD NOT include
 the `.git` extension.
+
+**Configuration File Options:**
+
+| Setting | Requirement Level | Category | Example Value | Attribute |
+| --- | --- | --- | --- | --- |
+| `resource.detection.detectors[]` | `Required` | Detector Inclusion | `vcs.repo` | - |
+| `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `vcs.repository.name` | [`vcs.repository.name`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: vcs.repository.name,`<br>&nbsp;&nbsp;&nbsp;`value: semantic-conventions` | [`vcs.repository.name`](/docs/registry/attributes/.md) |
+| `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `vcs.repository.url.full` | [`vcs.repository.url.full`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: vcs.repository.url.full,`<br>&nbsp;&nbsp;&nbsp;`value: https://github.com/opentelemetry/open-telemetry-collector-contrib` | [`vcs.repository.url.full`](/docs/registry/attributes/.md) |
+
+**Environment Variable Options:**
+
+| Setting | Requirement Level | Category | Example Value | Attribute |
+| --- | --- | --- | --- | --- |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `vcs.repository.name=semantic-conventions` | [`vcs.repository.name`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `vcs.repository.url.full=https://github.com/opentelemetry/open-telemetry-collector-contrib` | [`vcs.repository.url.full`](/docs/registry/attributes/.md) |

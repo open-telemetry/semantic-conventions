@@ -17,8 +17,28 @@
 
 **Attributes:**
 
-| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-| --- | --- | --- | --- | --- | --- | --- |
-| Other | [`webengine.name`](/docs/registry/attributes/webengine.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the web engine. | `WildFly` |
-| Other | [`webengine.description`](/docs/registry/attributes/webengine.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Additional description of the web engine (e.g. detailed version and edition information). | `WildFly Full 21.0.0.Final (WildFly Core 13.0.1.Final) - 2.2.2.Final` |
-| Other | [`webengine.version`](/docs/registry/attributes/webengine.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The version of the web engine. | `21.0.0` |
+| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values | Configuration Requirement |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Other | [`webengine.name`](/docs/registry/attributes/webengine.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the web engine. | `WildFly` | `Opt-In` |
+| Other | [`webengine.description`](/docs/registry/attributes/webengine.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Additional description of the web engine (e.g. detailed version and edition information). | `WildFly Full 21.0.0.Final (WildFly Core 13.0.1.Final) - 2.2.2.Final` | `Opt-In` |
+| Other | [`webengine.version`](/docs/registry/attributes/webengine.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The version of the web engine. | `21.0.0` | `Opt-In` |
+
+**Configuration File Options:**
+
+| Setting | Requirement Level | Category | Example Value | Attribute |
+| --- | --- | --- | --- | --- |
+| `resource.detection.detectors[]` | `Required` | Detector Inclusion | `webengine` | - |
+| `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `webengine.description` | [`webengine.description`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: webengine.description,`<br>&nbsp;&nbsp;&nbsp;`value: WildFly Full 21.0.0.Final (WildFly Core 13.0.1.Final) - 2.2.2.Final` | [`webengine.description`](/docs/registry/attributes/.md) |
+| `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `webengine.name` | [`webengine.name`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: webengine.name,`<br>&nbsp;&nbsp;&nbsp;`value: WildFly` | [`webengine.name`](/docs/registry/attributes/.md) |
+| `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `webengine.version` | [`webengine.version`](/docs/registry/attributes/.md) |
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: webengine.version,`<br>&nbsp;&nbsp;&nbsp;`value: 21.0.0` | [`webengine.version`](/docs/registry/attributes/.md) |
+
+**Environment Variable Options:**
+
+| Setting | Requirement Level | Category | Example Value | Attribute |
+| --- | --- | --- | --- | --- |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `webengine.description=WildFly Full 21.0.0.Final (WildFly Core 13.0.1.Final) - 2.2.2.Final` | [`webengine.description`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `webengine.name=WildFly` | [`webengine.name`](/docs/registry/attributes/.md) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `webengine.version=21.0.0` | [`webengine.version`](/docs/registry/attributes/.md) |
