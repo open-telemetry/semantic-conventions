@@ -19,6 +19,19 @@ groups:
               stability: development
         brief: The service tier requested. May be a specific tier, default, or auto.
         examples: ['auto', 'default']
+      - id: openai.api.type
+        stability: development
+        type:
+          members:
+            - id: chat_completions
+              value: "chat_completions"
+              brief: The OpenAI [Chat Completions API](https://developers.openai.com/api/reference/chat-completions/overview).
+              stability: development
+            - id: responses
+              value: "responses"
+              brief: The OpenAI [Responses API](https://developers.openai.com/api/reference/responses/overview).
+              stability: development
+        brief: The type of OpenAI API being used.
       - id: openai.response.service_tier
         stability: development
         type: string
