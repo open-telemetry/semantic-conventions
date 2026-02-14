@@ -1,0 +1,11 @@
+groups:
+  - id: entity.tps
+    type: entity
+    stability: development
+    name: tps
+    brief: A transaction processing system that handles high-volume, concurrent
+      transactions with low latency, ensuring reliable and consistent
+      processing of individual units of work.
+    attributes:
+      - ref: tps.region.id
+        role: identifying
