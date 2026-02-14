@@ -655,6 +655,36 @@ groups:
         type: string
         brief: A free-form explanation for the assigned score provided by the evaluator.
         examples: ["The response is factually accurate but lacks sufficient detail to fully address the question."]
+      - id: gen_ai.evaluation.judgment.phase
+        stability: experimental
+        type: string
+        brief: Phase at which a judgment boundary evaluation occurred.
+        note: >
+          Indicates when the system evaluated alternative decision paths,
+          such as before or after execution.
+        examples: ["pre_execution", "post_execution"]
+      - id: gen_ai.evaluation.judgment.selected_path
+        stability: experimental
+        type: string
+        brief: The decision path selected after evaluating alternatives.
+        note: >
+          Records the outcome chosen by the system after explicitly
+          evaluating multiple possible paths.
+        examples: ["allow", "block", "escalate"]
+      - id: gen_ai.evaluation.judgment.alternatives_evaluated
+        stability: experimental
+        type: boolean
+        brief: Whether multiple alternative decision paths were evaluated.
+        note: >
+          Indicates that the system explicitly considered more than one
+          possible outcome before selecting a path.
+      - id: gen_ai.evaluation.judgment.human_in_loop
+        stability: experimental
+        type: boolean
+        brief: Whether a human participated in the final decision.
+        note: >
+          Indicates that a human made or confirmed the final decision
+          at the judgment boundary.
       - id: gen_ai.prompt.name
         type: string
         brief: The name of the prompt that uniquely identifies it.
