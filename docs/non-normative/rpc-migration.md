@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
 linkTitle: RPC migration
---->
+title: RPC semantic convention stability migration guide
+---
 
 # RPC semantic convention stability migration guide
 
