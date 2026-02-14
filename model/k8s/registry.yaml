@@ -793,3 +793,171 @@ groups:
           The phase for the pod. Corresponds to the `phase` field of the:
           [K8s PodStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#podstatus-v1-core)
         examples: [ 'Pending', 'Running' ]
+      - id: k8s.service.uid
+        type: string
+        stability: development
+        brief: >
+          The UID of the Service.
+        examples: ['275ecb36-5aa8-4c2a-9c47-d8bb681b9aff']
+      - id: k8s.service.name
+        type: string
+        stability: development
+        brief: >
+          The name of the Service.
+        examples: ['my-service']
+      - id: k8s.service.type
+        stability: development
+        brief: >
+          The type of the Kubernetes Service.
+        note: |
+          This attribute aligns with the `type` field of the
+          [K8s ServiceSpec](https://kubernetes.io/docs/reference/kubernetes-api/service-resources/service-v1/#ServiceSpec).
+        examples: [ 'ClusterIP', 'NodePort', 'LoadBalancer' ]
+        type:
+          members:
+            - id: cluster_ip
+              value: 'ClusterIP'
+              brief: 'ClusterIP service type'
+              stability: development
+            - id: node_port
+              value: 'NodePort'
+              brief: 'NodePort service type'
+              stability: development
+            - id: load_balancer
+              value: 'LoadBalancer'
+              brief: 'LoadBalancer service type'
+              stability: development
+            - id: external_name
+              value: 'ExternalName'
+              brief: 'ExternalName service type'
+              stability: development
+      - id: k8s.service.traffic_distribution
+        type: string
+        stability: development
+        brief: >
+          The traffic distribution policy for the Service.
+        note: |
+          Specifies how traffic is distributed to endpoints for this Service.
+          This attribute aligns with the `trafficDistribution` field of the
+          [K8s ServiceSpec](https://kubernetes.io/docs/reference/networking/virtual-ips/#traffic-distribution).
+          Known values include `PreferSameZone` (prefer endpoints in the same zone as the client) and
+          `PreferSameNode` (prefer endpoints on the same node, fallback to same zone, then cluster-wide).
+          If this field is not set on the Service, the attribute SHOULD NOT be emitted.
+          When not set, Kubernetes distributes traffic evenly across all endpoints cluster-wide.
+        examples: ['PreferSameZone', 'PreferSameNode']
+      - id: k8s.service.selector
+        type: template[string]
+        stability: development
+        brief: >
+          The selector key-value pair placed on the Service, the `<key>` being the selector key, the value being the selector value.
+        note: |
+          These selectors are used to correlate with pod labels. Each selector key-value pair becomes a separate attribute.
+
+          Examples:
+
+          - A selector `app=my-app` SHOULD be recorded as
+            the `k8s.service.selector.app` attribute with value `"my-app"`.
+          - A selector `version=v1` SHOULD be recorded as
+            the `k8s.service.selector.version` attribute with value `"v1"`.
+        examples: ['my-app', 'v1']
+      - id: k8s.service.label
+        type: template[string]
+        stability: development
+        brief: >
+          The label placed on the Service, the `<key>` being the label name, the value being the label value, even if the value is empty.
+        note: |
+          Examples:
+
+          - A label `app` with value `my-service` SHOULD be recorded as
+            the `k8s.service.label.app` attribute with value `"my-service"`.
+          - A label `data` with empty string value SHOULD be recorded as
+            the `k8s.service.label.data` attribute with value `""`.
+        examples: ['my-service', '']
+      - id: k8s.service.annotation
+        type: template[string]
+        stability: development
+        brief: >
+          The annotation placed on the Service, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
+        note: |
+          Examples:
+
+          - An annotation `prometheus.io/scrape` with value `true` SHOULD be recorded as
+            the `k8s.service.annotation.prometheus.io/scrape` attribute with value `"true"`.
+          - An annotation `data` with empty string value SHOULD be recorded as
+            the `k8s.service.annotation.data` attribute with value `""`.
+        examples: ['true', '']
+      - id: k8s.service.publish_not_ready_addresses
+        type: boolean
+        stability: development
+        brief: >
+          Whether the Service publishes not-ready endpoints.
+        note: |
+          Whether the Service is configured to publish endpoints before the pods are ready.
+          This attribute is typically used to indicate that a Service (such as a headless
+          Service for a StatefulSet) allows peer discovery before pods pass their readiness probes.
+          It aligns with the `publishNotReadyAddresses` field of the
+          [K8s ServiceSpec](https://kubernetes.io/docs/reference/kubernetes-api/service-resources/service-v1/#ServiceSpec).
+        examples: [true, false]
+      - id: k8s.service.endpoint.condition
+        stability: development
+        brief: >
+          The condition of the service endpoint.
+        note: |
+          The current operational condition of the service endpoint.
+          An endpoint can have multiple conditions set at once (e.g., both `serving` and `terminating` during rollout).
+          This attribute aligns with the condition fields in the [K8s EndpointSlice](https://kubernetes.io/docs/reference/kubernetes-api/service-resources/endpoint-slice-v1/).
+        type:
+          members:
+            - id: ready
+              value: 'ready'
+              brief: 'The endpoint is ready to receive new connections.'
+              stability: development
+            - id: serving
+              value: 'serving'
+              brief: 'The endpoint is currently handling traffic.'
+              stability: development
+            - id: terminating
+              value: 'terminating'
+              brief: 'The endpoint is in the process of shutting down.'
+              stability: development
+        examples: ['ready', 'serving', 'terminating']
+      - id: k8s.service.endpoint.address_type
+        stability: development
+        type:
+          members:
+            - id: ipv4
+              value: 'IPv4'
+              brief: 'IPv4 address type'
+              stability: development
+            - id: ipv6
+              value: 'IPv6'
+              brief: 'IPv6 address type'
+              stability: development
+            - id: fqdn
+              value: 'FQDN'
+              brief: 'FQDN address type'
+              stability: development
+        brief: >
+          The address type of the service endpoint.
+        note: |
+          The network address family or type of the endpoint.
+          This attribute aligns with the `addressType` field of the
+          [K8s EndpointSlice](https://kubernetes.io/docs/reference/kubernetes-api/service-resources/endpoint-slice-v1/).
+          It is used to differentiate metrics when a Service is backed by multiple address types
+          (e.g., in dual-stack clusters).
+        examples: ['IPv4', 'IPv6']
+      - id: k8s.service.endpoint.zone
+        type: string
+        stability: development
+        brief: >
+          The zone of the service endpoint.
+        note: |
+          The zone where the endpoint is located, typically corresponding to a failure domain.
+          This attribute aligns with the `zone` field of endpoints in the
+          [K8s EndpointSlice](https://kubernetes.io/docs/reference/kubernetes-api/service-resources/endpoint-slice-v1/).
+          It enables zone-aware monitoring of service endpoint distribution and supports
+          features like [Topology Aware Routing](https://kubernetes.io/docs/concepts/services-networking/topology-aware-routing/).
+
+          If the zone is not populated (e.g., nodes without the `topology.kubernetes.io/zone` label),
+          the attribute value will be an empty string.
+        examples: ['us-east-1a', 'us-west-2b', 'zone-a', '']

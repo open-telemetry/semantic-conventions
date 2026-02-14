@@ -238,3 +238,32 @@ groups:
         role: identifying
       - ref: k8s.resourcequota.name
         role: descriptive
+
+  - id: entity.k8s.service
+    type: entity
+    stability: development
+    name: k8s.service
+    brief: >
+      A Kubernetes Service object.
+    attributes:
+      - ref: k8s.service.uid
+        role: identifying
+      - ref: k8s.service.name
+        role: descriptive
+      - ref: k8s.service.type
+        role: descriptive
+      - ref: k8s.service.traffic_distribution
+        role: descriptive
+        requirement_level: opt_in
+      - ref: k8s.service.publish_not_ready_addresses
+        role: descriptive
+        requirement_level: opt_in
+      - ref: k8s.service.selector
+        role: descriptive
+        requirement_level: opt_in
+      - ref: k8s.service.label
+        role: descriptive
+        requirement_level: opt_in
+      - ref: k8s.service.annotation
+        role: descriptive
+        requirement_level: opt_in
