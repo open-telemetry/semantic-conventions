@@ -58,7 +58,10 @@ groups:
       document for details on how to record span status.
     extends: rpc
     span_kind: client
+    annotations:
+      version: 1
     attributes:
+      - ref: rpc.system
       - ref: rpc.system.name
         requirement_level: required
         sampling_relevant: true
@@ -83,6 +86,8 @@ groups:
 
       **Span status**: refer to the [Recording Errors](/docs/general/recording-errors.md)
       document for details on how to record span status.
+    annotations:
+      version: 1
     attributes:
       - ref: rpc.system.name
         requirement_level: required
