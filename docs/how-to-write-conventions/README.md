@@ -219,9 +219,15 @@ When not to define spans:
 
 > [!IMPORTANT]
 >
-> It's a common practice to accompany a span definition with a metric that measures
-> the duration of the same operation. For example, the `http.client.request.duration`
-> metric is recorded alongside the corresponding HTTP client span.
+> It's a common practice to accompany a span definition with:
+>
+> - A metric that measures the duration of the same operation.
+> - An event that records exceptions that prevent this operation from completing
+>   successfully.
+>
+> For example, the `http.client.request.duration` metric and
+> `http.client.request.exception` event are recorded alongside the corresponding
+> HTTP client span.
 
 A span definition should describe the [operation it represents](#what-operation-does-this-span-represent),
 the [naming pattern](#naming-pattern), considerations for setting span [status](#status),
