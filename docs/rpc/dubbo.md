@@ -79,9 +79,7 @@ The `code.function.name` attribute may be used to record the fully-qualified
 method actually executing the call on the server side, or the
 RPC client stub method on the client side.
 
-**[2] `rpc.response.status_code`:** For Dubbo2, any status code other than `OK` SHOULD be considered an error.
-
-For Dubbo3 Triple protocol, all status codes except `OK` SHOULD be considered errors.
+**[2] `rpc.response.status_code`:** All status codes except `OK` SHOULD be considered errors.
 
 Status codes reference:
 
@@ -201,19 +199,19 @@ for the details on which values classify as errors.
 
 **[1] `rpc.response.status_code`:** For Dubbo2, the following status codes SHOULD be considered errors:
 
-- `SERVER_TIMEOUT`
-- `SERVICE_ERROR`
 - `SERVER_ERROR`
 - `SERVER_THREADPOOL_EXHAUSTED_ERROR`
+- `SERVER_TIMEOUT`
+- `SERVICE_ERROR`
 
 For Dubbo3 Triple protocol, the following status codes SHOULD be considered errors:
 
-- `UNKNOWN`
+- `DATA_LOSS`
 - `DEADLINE_EXCEEDED`
-- `UNIMPLEMENTED`
 - `INTERNAL`
 - `UNAVAILABLE`
-- `DATA_LOSS`
+- `UNIMPLEMENTED`
+- `UNKNOWN`
 
 Status codes reference:
 
