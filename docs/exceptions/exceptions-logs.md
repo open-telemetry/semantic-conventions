@@ -55,7 +55,7 @@ SHOULD record exceptions as events.
 implementations support passing exception instances to the
 [Emit a LogRecord](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.54.0/specification/logs/api.md#emit-a-logrecord)
 API, instrumentations SHOULD provide the exception instance rather than
-manually extracting and setting exception attributes.
+manually setting individual exception attributes.
 
 ### Event name
 
@@ -74,11 +74,11 @@ represents exceptions that occur during an HTTP client request.
 
 **Status**: [Development][DocumentStatus]
 
-[Severity Number](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.54.0/specification/logs/data-model.md#field-severitynumber)
-SHOULD be provided on all exception logs and SHOULD be set based on the context
-in which the exception occurs.
-
 The severity reflects the expected impact of the exception, not just its presence.
+
+[Severity Number](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.54.0/specification/logs/data-model.md#field-severitynumber)
+SHOULD be provided on all exception events and SHOULD be set based on the context
+in which the exception occurs.
 
 #### FATAL severity
 
@@ -95,7 +95,7 @@ Examples:
 Exceptions that are unhandled by application code and don't result in application
 shutdown SHOULD be recorded with severity `ERROR` (severity number 17).
 
-Semantic conventions that define SERVER or CONSUMER spans SHOULD also define
+Semantic conventions that define `SERVER` or `CONSUMER` spans SHOULD also define
 a corresponding exception event and recommend using `ERROR` severity.
 
 Examples:
