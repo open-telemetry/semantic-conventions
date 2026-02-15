@@ -402,10 +402,10 @@ groups:
         note: |
           For Dubbo2, the following status codes SHOULD be considered errors:
 
-          - `SERVER_TIMEOUT`
-          - `SERVICE_ERROR`
           - `SERVER_ERROR`
           - `SERVER_THREADPOOL_EXHAUSTED_ERROR`
+          - `SERVER_TIMEOUT`
+          - `SERVICE_ERROR`
 
           For Dubbo3 Triple protocol, the following status codes SHOULD be considered errors:
 
