@@ -409,12 +409,12 @@ groups:
 
           For Dubbo3 Triple protocol, the following status codes SHOULD be considered errors:
 
-          - `UNKNOWN`
+          - `DATA_LOSS`
           - `DEADLINE_EXCEEDED`
-          - `UNIMPLEMENTED`
           - `INTERNAL`
           - `UNAVAILABLE`
-          - `DATA_LOSS`
+          - `UNIMPLEMENTED`
+          - `UNKNOWN`
 
           Status codes reference:
 
