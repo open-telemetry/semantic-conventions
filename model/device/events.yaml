@@ -23,3 +23,28 @@ groups:
       - ref: android.app.state
         requirement_level:
           conditionally_required: if and only if `os.name` is `android`
+
+  - id: event.device.crash
+    stability: development
+    type: event
+    name: device.crash
+    brief: >
+      This event represents a crash of a mobile application.
+    note: >
+      A crash is defined as an unhandled error or exception that causes the
+      application to terminate unexpectedly. This event SHOULD be recorded
+      when the application detects a fatal condition that will result in
+      the application being terminated.
+    attributes:
+      - ref: exception.type
+        requirement_level: recommended
+        note: >
+          The type of the exception that caused the crash.
+      - ref: exception.message
+        requirement_level: recommended
+        note: >
+          The exception message associated with the crash.
+      - ref: exception.stacktrace
+        requirement_level: recommended
+        note: >
+          The stacktrace of the exception that caused the crash.
