@@ -35,3 +35,23 @@ groups:
           at com.example.GenerateTrace.methodB(GenerateTrace.java:13)\n
           at com.example.GenerateTrace.methodA(GenerateTrace.java:9)\n
           at com.example.GenerateTrace.main(GenerateTrace.java:5)
+      - id: exception.group_id
+        type: string
+        stability: development
+        brief: >
+          An identifier for the exception group, used to correlate exceptions
+          that are considered structurally equivalent.
+        note: |
+          Instrumentations SHOULD produce the same `exception.group_id` for
+          exceptions that share the same type and stacktrace structure,
+          ignoring high-cardinality parts such as the exception message.
+          The exact algorithm for computing the value is left to the
+          instrumentation, but it MUST ensure that structurally equivalent
+          exceptions produce the same value.
+
+          For Java, the `exception.group_id` SHOULD be derived from the
+          exception's fully-qualified class name (`exception.type`) and the
+          structural elements of the stacktrace (e.g. class names and method
+          names of each frame), excluding the exception
+          message.
+        examples: ["518d34582b6189db69b36414336c47ec6e4144f8"]
