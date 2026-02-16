@@ -1,0 +1,12 @@
+change_type: new_component
+component: storage
+note: "Add storage semantic conventions for storage systems and components"
+issues: []
+subtext: |
+  Introduces comprehensive semantic conventions for storage systems including:
+  - Storage system, cluster, and node entities
+  - Storage pools, arrays, disks, and enclosures
+  - Storage volumes, snapshots, and volume groups
+  - Storage filesystems
+  - Storage network ports (IP and Fibre Channel)
+  - Storage hosts and tape library components

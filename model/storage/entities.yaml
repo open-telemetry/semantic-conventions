@@ -1,0 +1,389 @@
+groups:
+  - id: entity.storage.system
+    type: entity
+    stability: development
+    name: storage.system
+    brief: >
+      A storage system is a hardware or software platform that provides data storage capabilities.
+      Examples include block storage systems, file storage systems, object storage systems, software-defined storage platforms etc.
+    attributes:
+      - ref: storage.system.vendor
+        role: descriptive
+      - ref: storage.system.model
+        role: descriptive
+      - ref: storage.system.type
+        role: descriptive
+      - ref: storage.system.serial_number
+        role: identifying
+      - ref: storage.system.name
+        role: descriptive
+      - ref: storage.system.version
+        role: descriptive
+      - ref: storage.system.status
+        role: descriptive
+      - ref: storage.system.protocol
+        role: descriptive
+      - ref: storage.system.location
+        role: descriptive
+      - ref: storage.system.timezone
+        role: descriptive
+      - ref: storage.system.ip_address
+        role: descriptive
+        requirement_level: opt_in
+      - ref: storage.system.ip_address_6
+        role: descriptive
+        requirement_level: opt_in
+      - ref: storage.system.url
+        role: descriptive
+        requirement_level: opt_in
+      - ref: storage.system.compressed
+        role: descriptive
+
+  - id: entity.storage.cluster
+    type: entity
+    stability: development
+    name: storage.cluster
+    brief: >
+      A storage cluster is a group of storage nodes that work together to provide unified storage services
+      with high availability and scalability.
+    attributes:
+      - ref: storage.cluster.name
+        role: descriptive
+      - ref: storage.cluster.id
+        role: identifying
+      - ref: storage.cluster.domain
+        role: descriptive
+
+  - id: entity.storage.node
+    type: entity
+    stability: development
+    name: storage.node
+    brief: >
+      A storage node is an individual controller or server within a storage system or cluster that
+      manages storage resources and handles I/O operations.
+    attributes:
+      - ref: storage.node.name
+        role: descriptive
+      - ref: storage.node.id
+        role: identifying
+      - ref: storage.node.status
+        role: descriptive
+      - ref: storage.node.ip_address
+        role: descriptive
+        requirement_level: opt_in
+      - ref: storage.node.ip_address_6
+        role: descriptive
+        requirement_level: opt_in
+      - ref: storage.node.version
+        role: descriptive
+      - ref: storage.node.partner
+        role: descriptive
+      - ref: storage.node.protocols
+        role: descriptive
+      - ref: storage.node.cluster
+        role: descriptive
+
+  - id: entity.storage.pool
+    type: entity
+    stability: development
+    name: storage.pool
+    brief: >
+      A storage pool is a logical aggregation of storage resources (such as disks or arrays) that provides
+      a unified capacity for volume or filesystem allocation.
+    attributes:
+      - ref: storage.pool.id
+        role: identifying
+      - ref: storage.pool.name
+        role: descriptive
+      - ref: storage.pool.status
+        role: descriptive
+      - ref: storage.pool.type
+        role: descriptive
+      - ref: storage.node.id
+        role: descriptive
+      - ref: storage.filesystem.id
+        role: descriptive
+
+  - id: entity.storage.array
+    type: entity
+    stability: development
+    name: storage.array
+    brief: >
+      A storage array is a collection of disk drives configured with RAID or other data protection
+      mechanisms to provide reliable storage capacity.
+    attributes:
+      - ref: storage.array.id
+        role: identifying
+      - ref: storage.array.name
+        role: descriptive
+      - ref: storage.array.status
+        role: descriptive
+      - ref: storage.pool.id
+        role: descriptive
+      - ref: storage.array.raid_level
+        role: descriptive
+      - ref: storage.array.compressed
+        role: descriptive
+      - ref: storage.array.encryption
+        role: descriptive
+
+  - id: entity.storage.disk
+    type: entity
+    stability: development
+    name: storage.disk
+    brief: >
+      A storage disk (or drive) is a physical storage device such as HDD, SSD, or NVMe drive that
+      provides persistent data storage capacity.
+    attributes:
+      - ref: storage.disk.id
+        role: identifying
+      - ref: storage.disk.name
+        role: descriptive
+      - ref: storage.array.id
+        role: descriptive
+      - ref: storage.disk.rpm
+        role: descriptive
+      - ref: storage.disk.vendor
+        role: descriptive
+      - ref: storage.disk.model
+        role: descriptive
+      - ref: storage.disk.serial_number
+        role: identifying
+      - ref: storage.disk.location
+        role: descriptive
+      - ref: storage.disk.status
+        role: descriptive
+      - ref: storage.enclosure.id
+        role: descriptive
+      - ref: storage.disk.compressed
+        role: descriptive
+      - ref: storage.disk.encryption
+        role: descriptive
+
+  - id: entity.storage.enclosure
+    type: entity
+    stability: development
+    name: storage.enclosure
+    brief: >
+      A storage enclosure is a physical chassis that houses disk drives and provides power,
+      cooling, and connectivity for the drives.
+    attributes:
+      - ref: storage.enclosure.id
+        role: identifying
+      - ref: storage.enclosure.name
+        role: descriptive
+      - ref: storage.enclosure.status
+        role: descriptive
+      - ref: storage.enclosure.serialnumber
+        role: identifying
+      - ref: storage.node.id
+        role: descriptive
+      - ref: storage.enclosure.version
+        role: descriptive
+      - ref: storage.enclosure.type
+        role: descriptive
+      - ref: storage.enclosure.partnumber
+        role: descriptive
+
+  - id: entity.storage.volume
+    type: entity
+    stability: development
+    name: storage.volume
+    brief: >
+      A storage volume is a logical unit of storage that is presented to hosts or applications
+      for data storage. Volumes can be thin or thick provisioned.
+    attributes:
+      - ref: storage.volume.id
+        role: identifying
+      - ref: storage.volume.name
+        role: descriptive
+      - ref: storage.pool.id
+        role: descriptive
+      - ref: storage.volume.type
+        role: descriptive
+      - ref: storage.node.id
+        role: descriptive
+      - ref: storage.volume.status
+        role: descriptive
+      - ref: storage.volume.snapshot_count
+        role: descriptive
+      - ref: storage.volume.compressed
+        role: descriptive
+      - ref: storage.volume.encryption
+        role: descriptive
+
+  - id: entity.storage.snapshot
+    type: entity
+    stability: development
+    name: storage.snapshot
+    brief: >
+      A storage snapshot is a point-in-time copy of a volume or filesystem that captures the
+      state of data at a specific moment.
+    attributes:
+      - ref: storage.snapshot.id
+        role: identifying
+      - ref: storage.snapshot.name
+        role: descriptive
+      - ref: storage.volume.id
+        role: descriptive
+      - ref: storage.snapshot.state
+        role: descriptive
+      - ref: storage.snapshot.creation_time
+        role: descriptive
+      - ref: storage.snapshot.expire_time
+        role: descriptive
+
+  - id: entity.storage.volumegroup
+    type: entity
+    stability: development
+    name: storage.volumegroup
+    brief: >
+      A storage volume group is a logical collection of volumes that are managed together
+      for operations such as snapshots or replication.
+    attributes:
+      - ref: storage.volumegroup.id
+        role: identifying
+      - ref: storage.volumegroup.name
+        role: descriptive
+      - ref: storage.volumegroup.status
+        role: descriptive
+
+  - id: entity.storage.filesystem
+    type: entity
+    stability: development
+    name: storage.filesystem
+    brief: >
+      A storage filesystem is a logical data structure that organizes and manages files on storage devices,
+      providing a hierarchical structure for data access.
+    attributes:
+      - ref: storage.filesystem.name
+        role: descriptive
+      - ref: storage.filesystem.id
+        role: identifying
+      - ref: storage.filesystem.type
+        role: descriptive
+      - ref: storage.pool.id
+        role: descriptive
+      - ref: storage.node.id
+        role: descriptive
+      - ref: storage.filesystem.path
+        role: descriptive
+      - ref: storage.filesystem.status
+        role: descriptive
+      - ref: storage.cluster.id
+        role: descriptive
+      - ref: storage.system.name
+        role: descriptive
+
+  - id: entity.storage.ip_port
+    type: entity
+    stability: development
+    name: storage.ip_port
+    brief: >
+      A storage IP port is a network interface on a storage system or node that provides
+      IP-based connectivity for protocols such as NFS, SMB, or iSCSI.
+    attributes:
+      - ref: storage.ip_port.id
+        role: identifying
+      - ref: storage.ip_port.name
+        role: descriptive
+      - ref: storage.ip_port.role
+        role: descriptive
+      - ref: storage.ip_port.status
+        role: descriptive
+      - ref: storage.ip_port.mac_address
+        role: descriptive
+      - ref: storage.ip_port.ip_address
+        role: descriptive
+        requirement_level: opt_in
+      - ref: storage.ip_port.ip_address_6
+        role: descriptive
+        requirement_level: opt_in
+      - ref: storage.ip_port.subnet
+        role: descriptive
+      - ref: storage.ip_port.gateway
+        role: descriptive
+      - ref: storage.ip_port.iqn
+        role: descriptive
+      - ref: storage.node.id
+        role: descriptive
+
+  - id: entity.storage.fc_port
+    type: entity
+    stability: development
+    name: storage.fc_port
+    brief: >
+      A storage Fibre Channel (FC) port is a physical interface on a storage system that
+      provides high-speed connectivity using the Fibre Channel protocol.
+    attributes:
+      - ref: storage.fc_port.id
+        role: identifying
+      - ref: storage.fc_port.name
+        role: descriptive
+      - ref: storage.fc_port.status
+        role: descriptive
+      - ref: storage.fc_port.wwpn
+        role: identifying
+      - ref: storage.node.id
+        role: descriptive
+
+  - id: entity.storage.host
+    type: entity
+    stability: development
+    name: storage.host
+    brief: >
+      A storage host represents a server or system that is configured to access storage
+      resources from a storage system.
+    attributes:
+      - ref: storage.host.id
+        role: identifying
+      - ref: storage.host.name
+        role: descriptive
+      - ref: storage.host.status
+        role: descriptive
+      - ref: storage.host.type
+        role: descriptive
+      - ref: storage.host.fc_port.id
+        role: descriptive
+      - ref: storage.host.fc_port.wwpn
+        role: descriptive
+
+  - id: entity.storage.tapelibrary
+    type: entity
+    stability: development
+    name: storage.tapelibrary
+    brief: >
+      A tape library is an automated storage system that contains tape drives and tape
+      cartridges for long-term data archival and backup.
+    attributes:
+      - ref: storage.tapelibrary.vendor
+        role: descriptive
+      - ref: storage.tapelibrary.model
+        role: descriptive
+      - ref: storage.tapelibrary.serial_number
+        role: identifying
+      - ref: storage.tapelibrary.version
+        role: descriptive
+      - ref: storage.tapelibrary.location
+        role: descriptive
+      - ref: storage.tapelibrary.logical_name
+        role: descriptive
+
+  - id: entity.storage.tapedrive
+    type: entity
+    stability: development
+    name: storage.tapedrive
+    brief: >
+      A tape drive is a device within a tape library that reads from and writes to
+      tape cartridges for data storage and retrieval.
+    attributes:
+      - ref: storage.tapedrive.id
+        role: identifying
+      - ref: storage.tapedrive.vendor
+        role: descriptive
+      - ref: storage.tapedrive.model
+        role: descriptive
+      - ref: storage.tapedrive.version
+        role: descriptive
+      - ref: storage.tapedrive.status
+        role: descriptive

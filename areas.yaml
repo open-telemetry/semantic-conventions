@@ -297,3 +297,16 @@ areas:
     status:
       - accepting_contributions
       - active
+
+  - name: "Semantic Conventions: Storage"
+    owner:
+      - name: "semconv-storage-approvers"
+        github: semconv-storage-approvers
+    project: "N/A"
+    board: "N/A"
+    labels:
+      - area:storage
+    status:
+      - accepting_contributions
+      - active
+    notes: "The SIG is looking for contributions!"
