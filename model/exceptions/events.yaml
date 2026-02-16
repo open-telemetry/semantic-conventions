@@ -14,3 +14,5 @@ groups:
           conditionally_required: Required if `exception.type` is not set, recommended otherwise.
       - ref: exception.stacktrace
       - ref: exception.escaped
+      - ref: exception.group_id
+        requirement_level: opt_in
