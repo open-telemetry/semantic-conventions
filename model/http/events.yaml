@@ -1,0 +1,52 @@
+groups:
+  - id: event.http.client.request.exception
+    name: http.client.request.exception
+    stability: development
+    type: event
+    brief: >
+      This event represents an exception that occurred during an HTTP client request,
+      such as network failures, timeouts, or other errors that prevent the request
+      from completing successfully.
+    note: >
+      This event SHOULD be recorded when an exception occurs during HTTP client operations.
+
+      Instrumentations SHOULD set the severity to WARN (severity number 13) when recording this event.
+
+      Some HTTP client frameworks generate artificial exceptions for non-successful HTTP status codes
+      (e.g., 404 Not Found). When possible, instrumentations SHOULD NOT record these artificial
+      exceptions, or SHOULD set the severity to DEBUG (severity number 5).
+
+      Instrumentations MAY provide a configuration option to populate exception events
+      with the attributes captured on the corresponding HTTP client span.
+    attributes:
+      - ref: exception.type
+        requirement_level:
+          conditionally_required: Required if `exception.message` is not set, recommended otherwise.
+      - ref: exception.message
+        requirement_level:
+          conditionally_required: Required if `exception.type` is not set, recommended otherwise.
+      - ref: exception.stacktrace
+
+  - id: event.http.server.request.exception
+    name: http.server.request.exception
+    stability: development
+    type: event
+    brief: >
+      This event represents an exception that occurred during HTTP server request processing,
+      such as application errors, internal failures, or other exceptions that prevent
+      the server from successfully handling the request.
+    note: >
+      This event SHOULD be recorded when an exception occurs during HTTP server request processing.
+
+      Instrumentations SHOULD set the severity to ERROR (severity number 17) when recording this event.
+
+      Instrumentations MAY provide a configuration option to populate exception events
+      with the attributes captured on the corresponding HTTP server span.
+    attributes:
+      - ref: exception.type
+        requirement_level:
+          conditionally_required: Required if `exception.message` is not set, recommended otherwise.
+      - ref: exception.message
+        requirement_level:
+          conditionally_required: Required if `exception.type` is not set, recommended otherwise.
+      - ref: exception.stacktrace

@@ -321,6 +321,9 @@ groups:
       - ref: gen_ai.agent.description
         requirement_level:
           conditionally_required: If provided by the application.
+      - ref: gen_ai.agent.version
+        requirement_level:
+          conditionally_required: If provided by the application.
       - ref: gen_ai.system_instructions
         requirement_level: opt_in
         note: ""  # note is not needed here
@@ -365,6 +368,9 @@ groups:
         requirement_level:
           conditionally_required: when available
       - ref: gen_ai.agent.description
+        requirement_level:
+          conditionally_required: when available
+      - ref: gen_ai.agent.version
         requirement_level:
           conditionally_required: when available
       - ref: gen_ai.data_source.id

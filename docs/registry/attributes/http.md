@@ -57,7 +57,7 @@ OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS and support a comma-separated list of ca
 
 ![Development](https://img.shields.io/badge/-development-blue)
 If this override is done via declarative configuration, then the list MUST be configurable via the `known_methods` property
-(an array of strings with minimum items 0) under `.instrumentation/development.general.http.client` and/or
+(an array of case-sensitive strings with minimum items 0) under `.instrumentation/development.general.http.client` and/or
 `.instrumentation/development.general.http.server`.
 
 In either case, this list MUST be a full override of the default known methods,

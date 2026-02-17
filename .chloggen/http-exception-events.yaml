@@ -1,0 +1,8 @@
+change_type: enhancement
+component: http
+note: Define `http.client.request.exception` and `http.server.request.exception` events for recording exceptions during HTTP operations
+issues: [3414]
+subtext: |
+  These domain-specific exception events provide a structured way to record
+  exceptions that occur during HTTP client requests (network failures, timeouts)
+  and HTTP server request processing (application errors, internal failures).

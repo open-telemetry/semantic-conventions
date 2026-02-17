@@ -1,0 +1,5 @@
+change_type: 'enhancement'
+component: pprof
+note: add `pprof.scope.default_sample_type` and `pprof.scope.sample_type_order` attributes to support lossless conversion of pprof profiles.
+issues: [3078]
+subtext:
