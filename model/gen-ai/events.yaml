@@ -68,27 +68,3 @@ groups:
         requirement_level:
           conditionally_required: Required if `exception.type` is not set, recommended otherwise.
       - ref: exception.stacktrace
-
-  - id: event.gen_ai.server.operation.exception
-    name: gen_ai.server.operation.exception
-    stability: development
-    type: event
-    brief: >
-      This event represents an exception that occurred during Generative AI server-side
-      processing, such as model inference failures, internal errors, or other exceptions
-      that prevent the server from successfully handling the request.
-    note: >
-      This event SHOULD be recorded when an exception occurs during Generative AI server-side processing.
-
-      Instrumentations SHOULD set the severity to ERROR (severity number 17) when recording this event.
-
-      Instrumentations MAY provide a configuration option to populate exception events
-      with the attributes captured on the corresponding Generative AI server span.
-    attributes:
-      - ref: exception.type
-        requirement_level:
-          conditionally_required: Required if `exception.message` is not set, recommended otherwise.
-      - ref: exception.message
-        requirement_level:
-          conditionally_required: Required if `exception.type` is not set, recommended otherwise.
-      - ref: exception.stacktrace
