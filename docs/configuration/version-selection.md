@@ -99,9 +99,9 @@ When adding support for a new stable semantic convention version
 support the new conventions under `experimental: true` (even though the
 convention itself is stable) until the implementation is complete and
 validated. Once confident that the new version is fully supported, it
-SHOULD then begin supporting the stable flag (`experimental: false`) for
-that version. This ensures users are not exposed to incomplete or
-changing telemetry under the stable flag.
+SHOULD then begin supporting `experimental: false` for that version. This
+ensures users are not exposed to incomplete or changing telemetry when
+using the stable configuration (`experimental: false`).
 
 ## Relationship with `OTEL_SEMCONV_STABILITY_OPT_IN`
 
