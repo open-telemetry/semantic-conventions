@@ -62,7 +62,7 @@ and various HTTP versions like 1.1, 2 and SPDY.
 
 ## Name
 
-HTTP spans MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.53.0/specification/trace/api.md#span).
+HTTP spans MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.54.0/specification/trace/api.md#span).
 
 HTTP span names SHOULD be `{method} {target}` if there is a (low-cardinality) `target` available. If there is no (low-cardinality) `{target}` available, HTTP span names SHOULD be `{method}`.
 
@@ -81,7 +81,7 @@ Instrumentation MUST NOT default to using URI path as a `{target}`.
 
 ## Status
 
-[Span Status](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.53.0/specification/trace/api.md#set-status) MUST be left unset if HTTP status code was in the
+[Span Status](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.54.0/specification/trace/api.md#set-status) MUST be left unset if HTTP status code was in the
 1xx, 2xx or 3xx ranges, unless there was another error (e.g., network error receiving
 the response body; or 3xx codes with max redirects exceeded), in which case status
 MUST be set to `Error`.
@@ -183,7 +183,7 @@ OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS and support a comma-separated list of ca
 
 ![Development](https://img.shields.io/badge/-development-blue)
 If this override is done via declarative configuration, then the list MUST be configurable via the `known_methods` property
-(an array of strings with minimum items 0) under `.instrumentation/development.general.http.client` and/or
+(an array of case-sensitive strings with minimum items 0) under `.instrumentation/development.general.http.client` and/or
 `.instrumentation/development.general.http.server`.
 
 In either case, this list MUST be a full override of the default known methods,
@@ -227,6 +227,16 @@ value `REDACTED`:
 * [`X-Goog-Signature`](https://cloud.google.com/storage/docs/access-control/signed-urls)
 
 This list is subject to change over time.
+
+Matching of query parameter keys against the sensitive list SHOULD be case-sensitive.
+
+![Development](https://img.shields.io/badge/-development-blue)
+Instrumentation MAY provide a way to override this list via declarative configuration.
+If so, it SHOULD use the `sensitive_query_parameters` property
+(an array of case-sensitive strings with minimum items 0) under
+`.instrumentation/development.general.sanitization.url`.
+This list is a full override of the default sensitive query parameter keys,
+it is not a list of keys in addition to the defaults.
 
 When a query string value is redacted, the query string key SHOULD still be preserved, e.g.
 `https://www.example.com/path?color=blue&sig=REDACTED`.
@@ -493,7 +503,7 @@ OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS and support a comma-separated list of ca
 
 ![Development](https://img.shields.io/badge/-development-blue)
 If this override is done via declarative configuration, then the list MUST be configurable via the `known_methods` property
-(an array of strings with minimum items 0) under `.instrumentation/development.general.http.client` and/or
+(an array of case-sensitive strings with minimum items 0) under `.instrumentation/development.general.http.client` and/or
 `.instrumentation/development.general.http.server`.
 
 In either case, this list MUST be a full override of the default known methods,
@@ -554,6 +564,15 @@ Query string values for the following keys SHOULD be redacted by default and rep
 * [`X-Goog-Signature`](https://cloud.google.com/storage/docs/access-control/signed-urls)
 
 This list is subject to change over time.
+
+Matching of query parameter keys against the sensitive list SHOULD be case-sensitive.
+
+Instrumentation MAY provide a way to override this list via declarative configuration.
+If so, it SHOULD use the `sensitive_query_parameters` property
+(an array of case-sensitive strings with minimum items 0) under
+`.instrumentation/development.general.sanitization.url`.
+This list is a full override of the default sensitive query parameter keys,
+it is not a list of keys in addition to the defaults.
 
 When a query string value is redacted, the query string key SHOULD still be preserved, e.g.
 `q=OpenTelemetry&sig=REDACTED`.
@@ -840,4 +859,4 @@ Span name: `POST /uploads/:document_id`.
 | `error.type`                | `WebSocketDisconnect`     |
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
-[SpanProcessor]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.53.0/specification/trace/sdk.md#span-processor
+[SpanProcessor]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.54.0/specification/trace/sdk.md#span-processor
