@@ -8,7 +8,9 @@ groups:
       such as connection failures, timeouts, serialization errors, or other errors that
       prevent the operation from completing successfully.
     note: >
-      This event SHOULD be recorded when an exception occurs during messaging client operations.
+      This event SHOULD be recorded when an exception occurs during messaging client operations
+      including both producer operations (e.g., `send`, `schedule`) and consumer operations
+      (e.g., `receive`, `peek`).
 
       Instrumentations SHOULD set the severity to WARN (severity number 13) when recording this event.
 
@@ -30,7 +32,7 @@ groups:
     brief: >
       This event represents an exception that occurred during messaging process operations,
       such as application errors, deserialization failures, or other exceptions that prevent
-      the consumer from successfully processing the message.
+      the message from being successfully processed.
     note: >
       This event SHOULD be recorded when an exception occurs during messaging process operations.
 

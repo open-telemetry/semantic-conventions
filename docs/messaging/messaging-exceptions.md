@@ -28,7 +28,7 @@ The event name MUST be `messaging.client.operation.exception`.
 
 This event represents an exception that occurred during a messaging client operation, such as connection failures, timeouts, serialization errors, or other errors that prevent the operation from completing successfully.
 
-This event SHOULD be recorded when an exception occurs during messaging client operations.
+This event SHOULD be recorded when an exception occurs during messaging client operations including both producer operations (e.g., `send`, `schedule`) and consumer operations (e.g., `receive`, `peek`).
 Instrumentations SHOULD set the severity to WARN (severity number 13) when recording this event.
 Instrumentations MAY provide a configuration option to populate exception events with the attributes captured on the corresponding messaging client span.
 
@@ -65,7 +65,7 @@ Instrumentations MAY provide a configuration option to populate exception events
 
 The event name MUST be `messaging.process.exception`.
 
-This event represents an exception that occurred during messaging process operations, such as application errors, deserialization failures, or other exceptions that prevent the consumer from successfully processing the message.
+This event represents an exception that occurred during messaging process operations, such as application errors, deserialization failures, or other exceptions that prevent the message from being successfully processed.
 
 This event SHOULD be recorded when an exception occurs during messaging process operations.
 Instrumentations SHOULD set the severity to ERROR (severity number 17) when recording this event.
