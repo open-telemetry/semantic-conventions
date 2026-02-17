@@ -61,7 +61,11 @@ When `true`, also emit the previous stable major version alongside the
 target version (e.g., `version=2, dual_emit=true` emits both v2 and v1).
 Enables dual-emit for phased migration between major versions.
 
-The `experimental` flag only applies to the selected version, not to the
+When conflicts arise between versions, the target (new) version SHOULD be
+prioritized. Non-overlapping attributes from both versions SHOULD be merged,
+so consumers can access attributes from both the previous and target versions.
+
+Note: the `experimental` flag only applies to the selected version, not to the
 previous version emitted via `dual_emit`.
 
 ### Unsupported configuration
