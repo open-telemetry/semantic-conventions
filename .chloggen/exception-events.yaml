@@ -1,0 +1,9 @@
+change_type: enhancement
+component: db, rpc
+note: Define domain-specific exception events for database and RPC
+issues: [3426]
+subtext: |
+  These domain-specific exception events provide a structured way to record
+  exceptions that occur during operations in each area:
+  - `db.client.operation.exception` for database client operations
+  - `rpc.client.call.exception` and `rpc.server.call.exception` for RPC
