@@ -32,9 +32,8 @@ Semantic conventions that define events MUST document the event name and its att
 
 * Events SHOULD specify a [severity number](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.54.0/specification/logs/data-model.md#field-severitynumber).
 
-* Events MAY use [body](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.54.0/specification/logs/data-model.md#field-body)
-  to represent the display message of the event,
-  which is RECOMMENDED to be of string type.
+* Events SHOULD NOT use [body](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.54.0/specification/logs/data-model.md#field-body)
+  except of a string display message of the event.
 
 ## External event compatibility
 
