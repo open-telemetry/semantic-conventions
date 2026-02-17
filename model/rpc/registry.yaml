@@ -107,4 +107,8 @@ groups:
               value: 'jsonrpc'
               brief: '[JSON-RPC](https://www.jsonrpc.org/)'
               stability: development
+            - id: netframework_remoting
+              value: 'netframework_remoting'
+              brief: '[.NET Remoting](https://docs.microsoft.com/previous-versions/dotnet/netframework-3.0/72x4h507(v=vs.85))'
+              stability: development
         stability: development

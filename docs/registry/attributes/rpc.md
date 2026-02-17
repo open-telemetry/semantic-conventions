@@ -72,6 +72,7 @@ Semantic conventions for individual RPC frameworks SHOULD document what `rpc.res
 | `dubbo` | [Apache Dubbo](https://dubbo.apache.org/) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `grpc` | [gRPC](https://grpc.io/) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `jsonrpc` | [JSON-RPC](https://www.jsonrpc.org/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `netframework_remoting` | [.NET Remoting](https://docs.microsoft.com/previous-versions/dotnet/netframework-3.0/72x4h507(v=vs.85)) | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ## Deprecated RPC Attributes
 

@@ -303,3 +303,57 @@ groups:
           All JSON RPC error codes SHOULD be considered errors.
         requirement_level:
           conditionally_required: when available
+
+  - id: span.rpc.netframework_remoting.call.client
+    type: span
+    stability: development
+    brief: This span represents an outgoing Remote Procedure Call (RPC).
+    note: |
+      `rpc.system.name` MUST be set to `"netframework_remoting"` and SHOULD be provided **at span creation time.**
+
+      **Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#name) section.
+
+      **Span kind** MUST be `CLIENT`.
+
+      **Span status**: refer to the [Recording Errors](/docs/general/recording-errors.md)
+      document for details on how to record span status.
+    extends: rpc
+    span_kind: client
+    attributes:
+      - ref: rpc.response.status_code
+        requirement_level:
+          conditionally_required: if available.
+        brief: The fully-qualified .NET exception type that was thrown by the .NET Remoting call, used as the status code.
+        note: |
+          All non-empty status codes SHOULD be considered errors.
+      - ref: rpc.request.metadata
+        requirement_level: opt_in
+      - ref: rpc.response.metadata
+        requirement_level: opt_in
+
+  - id: span.rpc.netframework_remoting.call.server
+    type: span
+    stability: development
+    extends: rpc.server
+    span_kind: server
+    brief: This span represents an incoming Remote Procedure Call (RPC).
+    note: |
+      `rpc.system.name` MUST be set to `"netframework_remoting"` and SHOULD be provided **at span creation time.**
+
+      **Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#name) section.
+
+      **Span kind** MUST be `SERVER`.
+
+      **Span status**: refer to the [Recording Errors](/docs/general/recording-errors.md)
+      document for details on how to record span status.
+    attributes:
+      - ref: rpc.response.status_code
+        requirement_level:
+          conditionally_required: if available.
+        brief: The fully-qualified .NET exception type that was thrown by the .NET Remoting call, used as the status code.
+        note: |
+          All non-empty status codes SHOULD be considered errors.
+      - ref: rpc.request.metadata
+        requirement_level: opt_in
+      - ref: rpc.response.metadata
+        requirement_level: opt_in
