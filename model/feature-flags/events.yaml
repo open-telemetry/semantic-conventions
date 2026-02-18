@@ -33,27 +33,13 @@ groups:
         requirement_level: recommended
       - ref: feature_flag.result.reason
         requirement_level: recommended
-      - ref: error.type
+      - ref: feature_flag.error.type
         examples: ["provider_not_ready", "targeting_key_missing", "provider_fatal", "general"]
         requirement_level:
           conditionally_required: If and only if an error occurred during flag evaluation.
-        # TODO: move note to yaml once https://github.com/open-telemetry/weaver/issues/479 is supported
-        note: |
-          If one of these values applies, then it MUST be used; otherwise, a custom value MAY be used.
-
-          | Value | Description | Stability |
-          | --- | --- | --- |
-          | `flag_not_found` | The flag could not be found. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-          | `invalid_context` | The evaluation context does not meet provider requirements. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-          | `parse_error` | An error was encountered parsing data, such as a flag configuration. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-          | `provider_fatal` | The provider has entered an irrecoverable error state. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-          | `provider_not_ready` | The value was resolved before the provider was initialized. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-          | `targeting_key_missing` | The provider requires a targeting key and one was not provided in the evaluation context. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-          | `type_mismatch` | The type of the flag value does not match the expected type. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-          | `general` | The error was for a reason not enumerated above. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
       - ref: feature_flag.error.message
         requirement_level:
-          recommended: If and only if an error occurred during flag evaluation and `error.type` does not sufficiently describe the error.
+          recommended: If and only if an error occurred during flag evaluation and `feature_flag.error.type` does not sufficiently describe the error.
         note: >
-          Should not simply duplicate the value of `error.type`, but should provide more context.
-          For example, if `error.type` is `invalid_context` the `feature_flag.error.message` may enumerate which context keys are missing or invalid.
+          Should not simply duplicate the value of `feature_flag.error.type`, but should provide more context.
+          For example, if `feature_flag.error.type` is `invalid_context` the `feature_flag.error.message` may enumerate which context keys are missing or invalid.

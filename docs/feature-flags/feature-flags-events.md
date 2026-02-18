@@ -53,57 +53,51 @@ A `feature_flag.evaluation` event SHOULD be emitted whenever a feature flag valu
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`feature_flag.key`](/docs/registry/attributes/feature-flag.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | string | The lookup key of the feature flag. | `logo-color` |
-| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [1] | string | Describes a class of error the operation ended with. [2] | `provider_not_ready`; `targeting_key_missing`; `provider_fatal`; `general` |
-| [`feature_flag.result.value`](/docs/registry/attributes/feature-flag.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Conditionally Required` [3] | any | The evaluated value of the feature flag. [4] | `#ff0000`; `true`; `3` |
-| [`feature_flag.result.variant`](/docs/registry/attributes/feature-flag.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Conditionally Required` [5] | string | A semantic identifier for an evaluated flag value. [6] | `red`; `true`; `on` |
+| [`feature_flag.error.type`](/docs/registry/attributes/feature-flag.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Conditionally Required` [1] | string | Describes a class of error encountered during feature flag evaluation. | `provider_not_ready`; `targeting_key_missing`; `provider_fatal`; `general` |
+| [`feature_flag.result.value`](/docs/registry/attributes/feature-flag.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Conditionally Required` [2] | any | The evaluated value of the feature flag. [3] | `#ff0000`; `true`; `3` |
+| [`feature_flag.result.variant`](/docs/registry/attributes/feature-flag.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Conditionally Required` [4] | string | A semantic identifier for an evaluated flag value. [5] | `red`; `true`; `on` |
 | [`feature_flag.context.id`](/docs/registry/attributes/feature-flag.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The unique identifier for the flag evaluation context. For example, the targeting key. | `5157782b-2203-4c80-a857-dbbd5e7761db` |
-| [`feature_flag.error.message`](/docs/registry/attributes/feature-flag.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` [7] | string | A message providing more detail about an error that occurred during feature flag evaluation in human-readable form. [8] | `Unexpected input type: string`; `The user has exceeded their storage quota` |
+| [`feature_flag.error.message`](/docs/registry/attributes/feature-flag.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` [6] | string | A message providing more detail about an error that occurred during feature flag evaluation in human-readable form. [7] | `Unexpected input type: string`; `The user has exceeded their storage quota` |
 | [`feature_flag.provider.name`](/docs/registry/attributes/feature-flag.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | Identifies the feature flag provider. | `Flag Manager` |
 | [`feature_flag.result.reason`](/docs/registry/attributes/feature-flag.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The reason code which shows how a feature flag value was determined. | `static`; `targeting_match`; `error`; `default` |
 | [`feature_flag.set.id`](/docs/registry/attributes/feature-flag.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The identifier of the [flag set](https://openfeature.dev/specification/glossary/#flag-set) to which the feature flag belongs. | `proj-1`; `ab98sgs`; `service1/dev` |
 | [`feature_flag.version`](/docs/registry/attributes/feature-flag.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The version of the ruleset used during the evaluation. This may be any stable value which uniquely identifies the ruleset. | `1`; `01ABCDEF` |
 
-**[1] `error.type`:** If and only if an error occurred during flag evaluation.
+**[1] `feature_flag.error.type`:** If and only if an error occurred during flag evaluation.
 
-**[2] `error.type`:** If one of these values applies, then it MUST be used; otherwise, a custom value MAY be used.
+**[2] `feature_flag.result.value`:** If and only if feature flag provider does not supply variant or equivalent concept. Otherwise, `feature_flag.result.value` should be treated as opt-in.
+
+**[3] `feature_flag.result.value`:** With some feature flag providers, feature flag results can be quite large or contain private or sensitive details.
+Because of this, `feature_flag.result.variant` is often the preferred attribute if it is available.
+
+It may be desirable to redact or otherwise limit the size and scope of `feature_flag.result.value` if possible.
+Because the evaluated flag value is unstructured and may be any type, it is left to the instrumentation author to determine how best to achieve this.
+
+**[4] `feature_flag.result.variant`:** If feature flag provider supplies a variant or equivalent concept.
+
+**[5] `feature_flag.result.variant`:** A semantic identifier, commonly referred to as a variant, provides a means
+for referring to a value without including the value itself. This can
+provide additional context for understanding the meaning behind a value.
+For example, the variant `red` maybe be used for the value `#c05543`.
+
+**[6] `feature_flag.error.message`:** If and only if an error occurred during flag evaluation and `feature_flag.error.type` does not sufficiently describe the error.
+
+**[7] `feature_flag.error.message`:** Should not simply duplicate the value of `feature_flag.error.type`, but should provide more context. For example, if `feature_flag.error.type` is `invalid_context` the `feature_flag.error.message` may enumerate which context keys are missing or invalid.
+
+---
+
+`feature_flag.error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |
 | --- | --- | --- |
 | `flag_not_found` | The flag could not be found. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `general` | The error was for a reason not otherwise enumerated. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | `invalid_context` | The evaluation context does not meet provider requirements. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | `parse_error` | An error was encountered parsing data, such as a flag configuration. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | `provider_fatal` | The provider has entered an irrecoverable error state. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | `provider_not_ready` | The value was resolved before the provider was initialized. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | `targeting_key_missing` | The provider requires a targeting key and one was not provided in the evaluation context. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | `type_mismatch` | The type of the flag value does not match the expected type. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| `general` | The error was for a reason not enumerated above. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-
-**[3] `feature_flag.result.value`:** If and only if feature flag provider does not supply variant or equivalent concept. Otherwise, `feature_flag.result.value` should be treated as opt-in.
-
-**[4] `feature_flag.result.value`:** With some feature flag providers, feature flag results can be quite large or contain private or sensitive details.
-Because of this, `feature_flag.result.variant` is often the preferred attribute if it is available.
-
-It may be desirable to redact or otherwise limit the size and scope of `feature_flag.result.value` if possible.
-Because the evaluated flag value is unstructured and may be any type, it is left to the instrumentation author to determine how best to achieve this.
-
-**[5] `feature_flag.result.variant`:** If feature flag provider supplies a variant or equivalent concept.
-
-**[6] `feature_flag.result.variant`:** A semantic identifier, commonly referred to as a variant, provides a means
-for referring to a value without including the value itself. This can
-provide additional context for understanding the meaning behind a value.
-For example, the variant `red` maybe be used for the value `#c05543`.
-
-**[7] `feature_flag.error.message`:** If and only if an error occurred during flag evaluation and `error.type` does not sufficiently describe the error.
-
-**[8] `feature_flag.error.message`:** Should not simply duplicate the value of `error.type`, but should provide more context. For example, if `error.type` is `invalid_context` the `feature_flag.error.message` may enumerate which context keys are missing or invalid.
-
----
-
-`error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value | Description | Stability |
-| --- | --- | --- |
-| `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ---
 

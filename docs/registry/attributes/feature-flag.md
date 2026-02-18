@@ -16,6 +16,7 @@ This document defines attributes for Feature Flags.
 | --- | --- | --- | --- | --- |
 | <a id="feature-flag-context-id" href="#feature-flag-context-id">`feature_flag.context.id`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The unique identifier for the flag evaluation context. For example, the targeting key. | `5157782b-2203-4c80-a857-dbbd5e7761db` |
 | <a id="feature-flag-error-message" href="#feature-flag-error-message">`feature_flag.error.message`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | A message providing more detail about an error that occurred during feature flag evaluation in human-readable form. | `Unexpected input type: string`; `The user has exceeded their storage quota` |
+| <a id="feature-flag-error-type" href="#feature-flag-error-type">`feature_flag.error.type`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | Describes a class of error encountered during feature flag evaluation. | `provider_not_ready`; `targeting_key_missing`; `provider_fatal`; `general` |
 | <a id="feature-flag-key" href="#feature-flag-key">`feature_flag.key`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The lookup key of the feature flag. | `logo-color` |
 | <a id="feature-flag-provider-name" href="#feature-flag-provider-name">`feature_flag.provider.name`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | Identifies the feature flag provider. | `Flag Manager` |
 | <a id="feature-flag-result-reason" href="#feature-flag-result-reason">`feature_flag.result.reason`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The reason code which shows how a feature flag value was determined. | `static`; `targeting_match`; `error`; `default` |
@@ -34,6 +35,21 @@ Because the evaluated flag value is unstructured and may be any type, it is left
 for referring to a value without including the value itself. This can
 provide additional context for understanding the meaning behind a value.
 For example, the variant `red` maybe be used for the value `#c05543`.
+
+---
+
+`feature_flag.error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value | Description | Stability |
+| --- | --- | --- |
+| `flag_not_found` | The flag could not be found. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `general` | The error was for a reason not otherwise enumerated. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `invalid_context` | The evaluation context does not meet provider requirements. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `parse_error` | An error was encountered parsing data, such as a flag configuration. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `provider_fatal` | The provider has entered an irrecoverable error state. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `provider_not_ready` | The value was resolved before the provider was initialized. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `targeting_key_missing` | The provider requires a targeting key and one was not provided in the evaluation context. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `type_mismatch` | The type of the flag value does not match the expected type. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 ---
 
