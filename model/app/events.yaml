@@ -23,7 +23,7 @@ groups:
       by those attributes caused the crash. When used, these attributes SHOULD be
       usable for debugging without additional data not specified in the event
       (e.g. stacktrace already deobfuscated). If that is not the case, additional
-      information like `app.build.id` SHOULD be provided to make the data useful for
+      information like `app.build_id` SHOULD be provided to make the data useful for
       debugging, either as an attribute in this event or derived from the Resource if
       `app.sync` is not true.
     attributes:
@@ -33,7 +33,7 @@ groups:
         requirement_level:
           conditionally_required: Recommended if `app.async` is set, opt_in otherwise.
       - ref: app.crash.id
-        requirement_level: required
+        requirement_level: opt_in
       - ref: exception.type
         requirement_level: opt_in
       - ref: exception.message
