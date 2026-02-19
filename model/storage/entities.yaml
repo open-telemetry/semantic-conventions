@@ -101,8 +101,6 @@ groups:
         role: descriptive
       - ref: storage.node.id
         role: descriptive
-      - ref: storage.filesystem.id
-        role: descriptive
 
   - id: entity.storage.array
     type: entity
@@ -127,37 +125,37 @@ groups:
       - ref: storage.array.encryption
         role: descriptive
 
-  - id: entity.storage.disk
+  - id: entity.storage.drive
     type: entity
     stability: development
-    name: storage.disk
+    name: storage.drive
     brief: >
-      A storage disk (or drive) is a physical storage device such as HDD, SSD, or NVMe drive that
+      A storage drive is a physical storage device such as HDD, SSD, or NVMe drive that
       provides persistent data storage capacity.
     attributes:
-      - ref: storage.disk.id
+      - ref: storage.drive.id
         role: identifying
-      - ref: storage.disk.name
+      - ref: storage.drive.name
         role: descriptive
       - ref: storage.array.id
         role: descriptive
-      - ref: storage.disk.rpm
+      - ref: storage.drive.rpm
         role: descriptive
-      - ref: storage.disk.vendor
+      - ref: storage.drive.vendor
         role: descriptive
-      - ref: storage.disk.model
+      - ref: storage.drive.model
         role: descriptive
-      - ref: storage.disk.serial_number
+      - ref: storage.drive.serial_number
         role: identifying
-      - ref: storage.disk.location
+      - ref: storage.drive.location
         role: descriptive
-      - ref: storage.disk.status
+      - ref: storage.drive.status
         role: descriptive
       - ref: storage.enclosure.id
         role: descriptive
-      - ref: storage.disk.compressed
+      - ref: storage.drive.compressed
         role: descriptive
-      - ref: storage.disk.encryption
+      - ref: storage.drive.encryption
         role: descriptive
 
   - id: entity.storage.enclosure
@@ -174,7 +172,7 @@ groups:
         role: descriptive
       - ref: storage.enclosure.status
         role: descriptive
-      - ref: storage.enclosure.serialnumber
+      - ref: storage.enclosure.serial_number
         role: identifying
       - ref: storage.node.id
         role: descriptive
@@ -205,7 +203,7 @@ groups:
         role: descriptive
       - ref: storage.volume.status
         role: descriptive
-      - ref: storage.volume.snapshot_count
+      - ref: storage.volume.role
         role: descriptive
       - ref: storage.volume.compressed
         role: descriptive
@@ -269,10 +267,6 @@ groups:
       - ref: storage.filesystem.path
         role: descriptive
       - ref: storage.filesystem.status
-        role: descriptive
-      - ref: storage.cluster.id
-        role: descriptive
-      - ref: storage.system.name
         role: descriptive
 
   - id: entity.storage.ip_port
@@ -369,21 +363,3 @@ groups:
       - ref: storage.tapelibrary.logical_name
         role: descriptive
 
-  - id: entity.storage.tapedrive
-    type: entity
-    stability: development
-    name: storage.tapedrive
-    brief: >
-      A tape drive is a device within a tape library that reads from and writes to
-      tape cartridges for data storage and retrieval.
-    attributes:
-      - ref: storage.tapedrive.id
-        role: identifying
-      - ref: storage.tapedrive.vendor
-        role: descriptive
-      - ref: storage.tapedrive.model
-        role: descriptive
-      - ref: storage.tapedrive.version
-        role: descriptive
-      - ref: storage.tapedrive.status
-        role: descriptive

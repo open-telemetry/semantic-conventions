@@ -39,29 +39,29 @@
 | Description | [`storage.cluster.domain`](/docs/registry/attributes/storage.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Indicates the configured domain of the storage cluster. | `gpfs-cluster.example.com`; `scale.datacenter.ibm.com`; `ess.storage.local` |
 | Description | [`storage.cluster.name`](/docs/registry/attributes/storage.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Indicates the name of the storage cluster. | `gpfs-cluster.example.com`; `scale-prod-cluster`; `ess-cluster-dc1` |
 
-## Storage Disk
+## Storage Drive
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-**type:** `storage.disk`
+**type:** `storage.drive`
 
-**Description:** A storage disk (or drive) is a physical storage device such as HDD, SSD, or NVMe drive that provides persistent data storage capacity.
+**Description:** A storage drive is a physical storage device such as HDD, SSD, or NVMe drive that provides persistent data storage capacity.
 
 **Attributes:**
 
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- | --- |
-| Identity | [`storage.disk.id`](/docs/registry/attributes/storage.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Indicates the unique identifier of the disk drive. | `0`; `1` |
-| Identity | [`storage.disk.serial_number`](/docs/registry/attributes/storage.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Indicates the serial number of the disk. | `SX31700361-23` |
+| Identity | [`storage.drive.id`](/docs/registry/attributes/storage.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Indicates the unique identifier of the drive. | `0`; `1` |
+| Identity | [`storage.drive.serial_number`](/docs/registry/attributes/storage.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Indicates the serial number of the drive. | `SX31700361-23` |
 | Description | [`storage.array.id`](/docs/registry/attributes/storage.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Indicates the array number of the specific array in the cluster. | `p30da_d`; `1` |
-| Description | [`storage.disk.compressed`](/docs/registry/attributes/storage.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | boolean | Specifies whether the disk is compressed. | `true`; `false` |
-| Description | [`storage.disk.encryption`](/docs/registry/attributes/storage.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | boolean | Specifies whether the disk is encrypted. | `true`; `false` |
-| Description | [`storage.disk.location`](/docs/registry/attributes/storage.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Indicates the physical location such as enclosure and slot number of the disk. | `enclosure:1:slot:3`; `drawer:2:slot:12` |
-| Description | [`storage.disk.model`](/docs/registry/attributes/storage.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Indicates the model or product ID of the disk. | `IBM-ESXS ST9300605SS B559 6XP5GQMP0000M338BUSD` |
-| Description | [`storage.disk.name`](/docs/registry/attributes/storage.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the disk drive within the storage system. | `hdisk0`; `da0`; `e2s23`; `disk_0_1` |
-| Description | [`storage.disk.rpm`](/docs/registry/attributes/storage.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Indicates the specified RPM (revolutions per minute) of the disk. | `10000`; `7200`; `15000` |
-| Description | [`storage.disk.status`](/docs/registry/attributes/storage.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Indicates the status of the disk drive. | `online`; `offline`; `failed` |
-| Description | [`storage.disk.vendor`](/docs/registry/attributes/storage.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Indicates the manufacturer name of the disk. | `IBM`; `Seagate`; `Western Digital`; `Samsung` |
+| Description | [`storage.drive.compressed`](/docs/registry/attributes/storage.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | boolean | Specifies whether the drive is compressed. | `true`; `false` |
+| Description | [`storage.drive.encryption`](/docs/registry/attributes/storage.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | boolean | Specifies whether the drive is encrypted. | `true`; `false` |
+| Description | [`storage.drive.location`](/docs/registry/attributes/storage.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Indicates the physical location such as enclosure and slot number of the drive. | `enclosure:1:slot:3`; `drawer:2:slot:12` |
+| Description | [`storage.drive.model`](/docs/registry/attributes/storage.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Indicates the model or product ID of the drive. | `IBM-ESXS ST9300605SS B559 6XP5GQMP0000M338BUSD` |
+| Description | [`storage.drive.name`](/docs/registry/attributes/storage.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the drive within the storage system. | `hdisk0`; `da0`; `e2s23`; `disk_0_1` |
+| Description | [`storage.drive.rpm`](/docs/registry/attributes/storage.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Indicates the specified RPM (revolutions per minute) of the drive. | `10000`; `7200`; `15000` |
+| Description | [`storage.drive.status`](/docs/registry/attributes/storage.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Indicates the status of the drive. | `online`; `offline`; `failed` |
+| Description | [`storage.drive.vendor`](/docs/registry/attributes/storage.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Indicates the manufacturer name of the drive. | `IBM`; `Seagate`; `Western Digital`; `Samsung` |
 | Description | [`storage.enclosure.id`](/docs/registry/attributes/storage.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Indicates the unique identifier of the storage enclosure. | `1`; `2` |
 
 ## Storage Enclosure
@@ -77,7 +77,7 @@
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- | --- |
 | Identity | [`storage.enclosure.id`](/docs/registry/attributes/storage.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Indicates the unique identifier of the storage enclosure. | `1`; `2` |
-| Identity | [`storage.enclosure.serialnumber`](/docs/registry/attributes/storage.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Indicates the serial number of the enclosure. | `SV12345001`; `78A0W0A`; `YL10WT123` |
+| Identity | [`storage.enclosure.serial_number`](/docs/registry/attributes/storage.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Indicates the serial number of the enclosure. | `SV12345001`; `78A0W0A`; `YL10WT123` |
 | Description | [`storage.enclosure.name`](/docs/registry/attributes/storage.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the storage enclosure within the storage system. | `1818-80E-SV12345001`; `2076-524-SN78A0W0A`; `EXP24S-SN123456` |
 | Description | [`storage.enclosure.partnumber`](/docs/registry/attributes/storage.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Indicates the FRU part number of the enclosure. | `1818-80E`; `2076-524` |
 | Description | [`storage.enclosure.status`](/docs/registry/attributes/storage.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Indicates the status of the storage enclosure. | `online`; `offline`; `degraded` |
@@ -116,14 +116,12 @@
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- | --- |
 | Identity | [`storage.filesystem.id`](/docs/registry/attributes/storage.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Indicates the unique identifier of the filesystem. | `0`; `1` |
-| Description | [`storage.cluster.id`](/docs/registry/attributes/storage.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Indicates the unique identifier of the storage cluster. | `000002042000B966` |
 | Description | [`storage.filesystem.name`](/docs/registry/attributes/storage.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the filesystem within the storage system. | `fs0`; `prod-fs` |
 | Description | [`storage.filesystem.path`](/docs/registry/attributes/storage.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Indicates the mount path of the filesystem. | `/gpfs/fs0`; `/mnt/data` |
 | Description | [`storage.filesystem.status`](/docs/registry/attributes/storage.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Indicates the status of the filesystem. | `online`; `offline`; `mounted`; `unmounted` |
 | Description | [`storage.filesystem.type`](/docs/registry/attributes/storage.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Indicates the filesystem type. | `GPFS`; `ext4`; `NTFS` |
 | Description | [`storage.node.id`](/docs/registry/attributes/storage.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Indicates the unique identifier of the node in the cluster. | `1`; `2`; `node-0A1B2C3D` |
 | Description | [`storage.pool.id`](/docs/registry/attributes/storage.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Indicates the pool number of specific pool in the cluster. | `0`; `1` |
-| Description | [`storage.system.name`](/docs/registry/attributes/storage.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Indicates the name of the storage system. | `FS9100-5` |
 
 ## Storage Host
 
@@ -211,7 +209,6 @@
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- | --- |
 | Identity | [`storage.pool.id`](/docs/registry/attributes/storage.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Indicates the pool number of specific pool in the cluster. | `0`; `1` |
-| Description | [`storage.filesystem.id`](/docs/registry/attributes/storage.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Indicates the unique identifier of the filesystem. | `0`; `1` |
 | Description | [`storage.node.id`](/docs/registry/attributes/storage.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Indicates the unique identifier of the node in the cluster. | `1`; `2`; `node-0A1B2C3D` |
 | Description | [`storage.pool.name`](/docs/registry/attributes/storage.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the storage pool within the storage system. | `system`; `data`; `ssd_pool`; `capacity_pool` |
 | Description | [`storage.pool.status`](/docs/registry/attributes/storage.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Indicates the status of the storage pool. | `online`; `offline`; `degraded` |
@@ -267,24 +264,6 @@
 
 **[6] `storage.system.ip_address_6`:** IPv6 addresses MUST be specified in the RFC 5952 format.
 
-## Storage Tapedrive
-
-**Status:** ![Development](https://img.shields.io/badge/-development-blue)
-
-**type:** `storage.tapedrive`
-
-**Description:** A tape drive is a device within a tape library that reads from and writes to tape cartridges for data storage and retrieval.
-
-**Attributes:**
-
-| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-| --- | --- | --- | --- | --- | --- | --- |
-| Identity | [`storage.tapedrive.id`](/docs/registry/attributes/storage.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Indicates the unique identifier of the tape drive. | `DRIVE03`; `drive-uuid-abc` |
-| Description | [`storage.tapedrive.model`](/docs/registry/attributes/storage.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Indicates the model of the tape drive. | `LTO-9`; `LTO-8`; `T10000D` |
-| Description | [`storage.tapedrive.status`](/docs/registry/attributes/storage.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Indicates the health status of the tape drive. | `healthy`; `warning`; `critical`; `failed` |
-| Description | [`storage.tapedrive.vendor`](/docs/registry/attributes/storage.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Indicates the vendor name of the tape drive. | `IBM`; `HP`; `Quantum` |
-| Description | [`storage.tapedrive.version`](/docs/registry/attributes/storage.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Indicates the firmware version of the tape drive. | `J9F2`; `A.01`; `1.2.3` |
-
 ## Storage Tapelibrary
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
@@ -322,9 +301,20 @@
 | Description | [`storage.volume.compressed`](/docs/registry/attributes/storage.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | boolean | Specifies whether the volume is compressed. | `true`; `false` |
 | Description | [`storage.volume.encryption`](/docs/registry/attributes/storage.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | boolean | Specifies whether the volume is encrypted. | `true`; `false` |
 | Description | [`storage.volume.name`](/docs/registry/attributes/storage.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Indicates the name of the volume. | `vol_prod_01`; `data_volume`; `backup_lun` |
-| Description | [`storage.volume.snapshot_count`](/docs/registry/attributes/storage.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | int | Indicates the count of point-in-time copies for the specific volume. | `5` |
+| Description | [`storage.volume.role`](/docs/registry/attributes/storage.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Indicates whether the volume is a primary volume or a copy/replica. | `primary`; `copy` |
 | Description | [`storage.volume.status`](/docs/registry/attributes/storage.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Indicates the status of the volume. | `online`; `offline`; `degraded`; `deleting` |
 | Description | [`storage.volume.type`](/docs/registry/attributes/storage.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Indicates the type of the volume. | `striped`; `seq`; `image`; `thin`; `thick` |
+
+
+
+---
+
+`storage.volume.role` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value | Description | Stability |
+| --- | --- | --- |
+| `copy` | The volume is a copy or replica of another volume. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `primary` | The volume is a primary volume that serves as the main data source. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ## Storage Volumegroup
 

@@ -239,66 +239,66 @@ groups:
           Specifies whether the array is encrypted.
         examples: [true, false]
 
-      # Storage Disk/Drive Attributes
-      - id: storage.disk.id
+      # Storage Drive Attributes
+      - id: storage.drive.id
         type: string
         stability: development
         brief: >
-          Indicates the unique identifier of the disk drive.
+          Indicates the unique identifier of the drive.
         examples: ['0', '1']
-      - id: storage.disk.name
+      - id: storage.drive.name
         type: string
         stability: development
         brief: >
-          The name of the disk drive within the storage system.
+          The name of the drive within the storage system.
         examples: ['hdisk0', 'da0', 'e2s23', 'disk_0_1']
-      - id: storage.disk.rpm
+      - id: storage.drive.rpm
         type: string
         stability: development
         brief: >
-          Indicates the specified RPM (revolutions per minute) of the disk.
+          Indicates the specified RPM (revolutions per minute) of the drive.
         examples: ['10000', '7200', '15000']
-      - id: storage.disk.vendor
+      - id: storage.drive.vendor
         type: string
         stability: development
         brief: >
-          Indicates the manufacturer name of the disk.
+          Indicates the manufacturer name of the drive.
         examples: ['IBM', 'Seagate', 'Western Digital', 'Samsung']
-      - id: storage.disk.model
+      - id: storage.drive.model
         type: string
         stability: development
         brief: >
-          Indicates the model or product ID of the disk.
+          Indicates the model or product ID of the drive.
         examples: ['IBM-ESXS ST9300605SS B559 6XP5GQMP0000M338BUSD']
-      - id: storage.disk.serial_number
+      - id: storage.drive.serial_number
         type: string
         stability: development
         brief: >
-          Indicates the serial number of the disk.
+          Indicates the serial number of the drive.
         examples: ['SX31700361-23']
-      - id: storage.disk.location
+      - id: storage.drive.location
         type: string
         stability: development
         brief: >
-          Indicates the physical location such as enclosure and slot number of the disk.
+          Indicates the physical location such as enclosure and slot number of the drive.
         examples: ['enclosure:1:slot:3', 'drawer:2:slot:12']
-      - id: storage.disk.status
+      - id: storage.drive.status
         type: string
         stability: development
         brief: >
-          Indicates the status of the disk drive.
+          Indicates the status of the drive.
         examples: ['online', 'offline', 'failed']
-      - id: storage.disk.compressed
+      - id: storage.drive.compressed
         type: boolean
         stability: development
         brief: >
-          Specifies whether the disk is compressed.
+          Specifies whether the drive is compressed.
         examples: [true, false]
-      - id: storage.disk.encryption
+      - id: storage.drive.encryption
         type: boolean
         stability: development
         brief: >
-          Specifies whether the disk is encrypted.
+          Specifies whether the drive is encrypted.
         examples: [true, false]
 
       # Storage Enclosure Attributes
@@ -320,7 +320,7 @@ groups:
         brief: >
           Indicates the status of the storage enclosure.
         examples: ['online', 'offline', 'degraded']
-      - id: storage.enclosure.serialnumber
+      - id: storage.enclosure.serial_number
         type: string
         stability: development
         brief: >
@@ -370,12 +370,21 @@ groups:
         brief: >
           Indicates the status of the volume.
         examples: ['online', 'offline', 'degraded', 'deleting']
-      - id: storage.volume.snapshot_count
-        type: int
+      - id: storage.volume.role
+        type:
+          members:
+            - id: primary
+              value: 'primary'
+              brief: 'The volume is a primary volume that serves as the main data source.'
+              stability: development
+            - id: copy
+              value: 'copy'
+              brief: 'The volume is a copy or replica of another volume.'
+              stability: development
         stability: development
         brief: >
-          Indicates the count of point-in-time copies for the specific volume.
-        examples: [5]
+          Indicates whether the volume is a primary volume or a copy/replica.
+        examples: ['primary', 'copy']
       - id: storage.volume.compressed
         type: boolean
         stability: development
@@ -640,36 +649,4 @@ groups:
         brief: >
           Indicates the logical name given to the tape library.
         examples: ['LIB001', 'backup-library-prod']
-
-      # Tape Drive Attributes
-      - id: storage.tapedrive.id
-        type: string
-        stability: development
-        brief: >
-          Indicates the unique identifier of the tape drive.
-        examples: ['DRIVE03', 'drive-uuid-abc']
-      - id: storage.tapedrive.vendor
-        type: string
-        stability: development
-        brief: >
-          Indicates the vendor name of the tape drive.
-        examples: ['IBM', 'HP', 'Quantum']
-      - id: storage.tapedrive.model
-        type: string
-        stability: development
-        brief: >
-          Indicates the model of the tape drive.
-        examples: ['LTO-9', 'LTO-8', 'T10000D']
-      - id: storage.tapedrive.version
-        type: string
-        stability: development
-        brief: >
-          Indicates the firmware version of the tape drive.
-        examples: ['J9F2', 'A.01', '1.2.3']
-      - id: storage.tapedrive.status
-        type: string
-        stability: development
-        brief: >
-          Indicates the health status of the tape drive.
-        examples: ['healthy', 'warning', 'critical', 'failed']
 

@@ -95,7 +95,7 @@ Currently, the following namespaces exist:
 | Storage | | |
 | | [storage.array](storage.md#storage-array) | ![Development](https://img.shields.io/badge/-development-blue) |
 | | [storage.cluster](storage.md#storage-cluster) | ![Development](https://img.shields.io/badge/-development-blue) |
-| | [storage.disk](storage.md#storage-disk) | ![Development](https://img.shields.io/badge/-development-blue) |
+| | [storage.drive](storage.md#storage-drive) | ![Development](https://img.shields.io/badge/-development-blue) |
 | | [storage.enclosure](storage.md#storage-enclosure) | ![Development](https://img.shields.io/badge/-development-blue) |
 | | [storage.fc_port](storage.md#storage-fc-port) | ![Development](https://img.shields.io/badge/-development-blue) |
 | | [storage.filesystem](storage.md#storage-filesystem) | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -105,7 +105,6 @@ Currently, the following namespaces exist:
 | | [storage.pool](storage.md#storage-pool) | ![Development](https://img.shields.io/badge/-development-blue) |
 | | [storage.snapshot](storage.md#storage-snapshot) | ![Development](https://img.shields.io/badge/-development-blue) |
 | | [storage.system](storage.md#storage-system) | ![Development](https://img.shields.io/badge/-development-blue) |
-| | [storage.tapedrive](storage.md#storage-tapedrive) | ![Development](https://img.shields.io/badge/-development-blue) |
 | | [storage.tapelibrary](storage.md#storage-tapelibrary) | ![Development](https://img.shields.io/badge/-development-blue) |
 | | [storage.volume](storage.md#storage-volume) | ![Development](https://img.shields.io/badge/-development-blue) |
 | | [storage.volumegroup](storage.md#storage-volumegroup) | ![Development](https://img.shields.io/badge/-development-blue) |

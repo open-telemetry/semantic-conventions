@@ -29,7 +29,6 @@ a unified capacity for volume or filesystem allocation.
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- | --- |
 | Identity | [`storage.pool.id`](/docs/registry/attributes/storage.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Indicates the pool number of specific pool in the cluster. | `0`; `1` |
-| Description | [`storage.filesystem.id`](/docs/registry/attributes/storage.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Indicates the unique identifier of the filesystem. | `0`; `1` |
 | Description | [`storage.node.id`](/docs/registry/attributes/storage.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Indicates the unique identifier of the node in the cluster. | `1`; `2`; `node-0A1B2C3D` |
 | Description | [`storage.pool.name`](/docs/registry/attributes/storage.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the storage pool within the storage system. | `system`; `data`; `ssd_pool`; `capacity_pool` |
 | Description | [`storage.pool.status`](/docs/registry/attributes/storage.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Indicates the status of the storage pool. | `online`; `offline`; `degraded` |
