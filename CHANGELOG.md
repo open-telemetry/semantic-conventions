@@ -11,7 +11,7 @@
 
 ### 🛑 Breaking changes 🛑
 
-- `db`: Updated the `db.namespace` attribute definition to represent only the database’s
+- `db`: Oracle's `db.namespace` updated to represent only the database’s
 unique identifier. Information previously bundled into `db.namespace` —including
 PDB name, instance name, and service name — has been moved to dedicated attributes:
   `oracle.db.pdb`, `oracle.db.instance.name`, and `oracle.db.service`.
