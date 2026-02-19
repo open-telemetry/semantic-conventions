@@ -28,7 +28,7 @@ conventions hosted in this repository and the native gRPC conventions.
 See the [gRPC conventions](https://github.com/grpc/proposal/blob/master/A66-otel-stats.md)
 and the [OpenTelemetry conventions](/docs/rpc/rpc-metrics.md) for details.
 
-Metric mapping:
+### Metric mapping
 
 | gRPC metric                                              | OpenTelemetry metric       | Conversion comments                                           |
 | :------------------------------------------------------- | :------------------------- | :------------------------------------------------------------ |
@@ -65,7 +65,7 @@ of the client call. OpenTelemetry does not define a per-attempt span.
 In the case of **server** spans, both the gRPC and OpenTelemetry conventions define one
 per-call server span.
 
-Mapping:
+### Mapping
 
 | Property                | gRPC                                                             | OpenTelemetry                                                                | Conversion comments                                      |
 | :---------------------- | :--------------------------------------------------------------- | :--------------------------------------------------------------------------- | :-------------------------------------------------------- |
@@ -75,6 +75,8 @@ Mapping:
 | Attributes              |                                                                  | `rpc.system.name`                                                            | gRPC -> OTel: set to `grpc`<br>OTel -> gRPC: drop |
 |                         |                                                                  | `rpc.method`                                                                 | gRPC -> OTel: parse from the span name<br>OTel -> gRPC: drop |
 |                         |                                                                  | `rpc.response.status_code`                                                   | gRPC -> OTel: parse from the status description<br>OTel -> gRPC: drop |
+
+### Additional attributes
 
 OpenTelemetry defines a few other (non-required) gRPC span attributes listed below. When converting from gRPC spans to OpenTelemetry spans, these attributes should not be set. When converting from
 OpenTelemetry to gRPC, they should be preserved.
@@ -86,6 +88,8 @@ OpenTelemetry to gRPC, they should be preserved.
 - `rpc.request.metadata.<key>` and `rpc.response.metadata.<key>`
 - `rpc.method_original`
 - (server spans only) `client.address` and `client.port`
+
+### Events
 
 gRPC spans may contain additional events that should be recorded as-is when converting to
 OpenTelemetry.
