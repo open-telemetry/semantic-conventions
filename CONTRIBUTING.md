@@ -97,7 +97,7 @@ Examples of conventions that should not be hosted in this repository:
 Want to define your own conventions outside this repo while building on OTel’s?
 Come help us [decentralize semantic conventions](https://github.com/open-telemetry/weaver/issues/215).
 
-<!-- TODO add link to decentralized conventions docs and examples -->
+<!-- TODO add link to decentralized conventions docs and examples - https://github.com/open-telemetry/semantic-conventions/issues/3456 -->
 
 ### Suggesting conventions for a new area
 
