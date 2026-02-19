@@ -1,0 +1,4 @@
+change_type: enhancement
+component: rpc
+note: Mark core RPC (plus gRPC and Apache Dubbo) semantic conventions as release candidate.
+issues: [3446]
