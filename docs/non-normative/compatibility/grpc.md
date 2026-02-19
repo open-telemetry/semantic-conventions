@@ -10,7 +10,12 @@ linkTitle: gRPC
 <!-- toc -->
 
 - [Metrics](#metrics)
+  - [Metric mapping](#metric-mapping)
+  - [Attribute mapping](#attribute-mapping)
 - [Spans](#spans)
+  - [Mapping](#mapping)
+  - [Additional attributes](#additional-attributes)
+  - [Events](#events)
 
 <!-- tocstop -->
 
@@ -42,7 +47,7 @@ and the [OpenTelemetry conventions](/docs/rpc/rpc-metrics.md) for details.
 | `grpc.server.call.sent_total_compressed_message_size`    | no equivalent              |                                                               |
 | `grpc.server.call.rcvd_total_compressed_message_size`    | no equivalent              |                                                               |
 
-Attribute mapping:
+### Attribute mapping
 
 | gRPC attribute     | OpenTelemetry attribute(s)         | Conversion comments  |
 | :----------------- | :--------------------------------- | :------------------- |
