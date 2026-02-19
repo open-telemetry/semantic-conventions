@@ -1,4 +1,0 @@
-change_type: enhancement
-component: exception
-note: Indicate that `exception.message` attribute may contain sensitive information.
-issues: [2967, 3310]

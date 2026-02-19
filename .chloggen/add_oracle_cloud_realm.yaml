@@ -1,6 +1,0 @@
-change_type: enhancement
-component: cloud
-note: Add `oracle_cloud.realm` vendor-specific attribute for Oracle Cloud Infrastructure (OCI) realm identifier.
-issues: [3121]
-subtext:
-  An Oracle Cloud realm is a logical collection of cloud regions that are isolated from each other, used for compliance and data residency requirements.
