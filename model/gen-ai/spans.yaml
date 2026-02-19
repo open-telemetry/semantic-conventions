@@ -194,6 +194,8 @@ groups:
           conditionally_required: if the response was received and includes a service_tier
       - ref: openai.response.system_fingerprint
         requirement_level: recommended
+      - ref: openai.api.type
+        requirement_level: recommended
 
   - id: span.azure.ai.inference.client
     extends: attributes.gen_ai.inference.openai_based
