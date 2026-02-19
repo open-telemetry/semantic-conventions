@@ -32,7 +32,6 @@ PDB name, instance name, and service name — has been moved to dedicated attrib
  ([#3267](https://github.com/open-telemetry/semantic-conventions/issues/3267))
 - `rpc`: Deprecate the `rpc.message` event and its attributes ([#3266](https://github.com/open-telemetry/semantic-conventions/issues/3266), [#3283](https://github.com/open-telemetry/semantic-conventions/issues/3283))
   Per-message events within RPC streaming calls are of limited utility in their current form. They are recorded as span events (also being deprecated). There is no direct replacement at this time.
-  
 
 ### 💡 Enhancements 💡
 
@@ -102,7 +101,6 @@ PDB name, instance name, and service name — has been moved to dedicated attrib
   
 - `service`: Stabilize `service.namespace` attribute. ([#3254](https://github.com/open-telemetry/semantic-conventions/issues/3254))
   The `service.namespace` attribute is promoted from development to stable.
-  
 
 ## v1.39.0
 
