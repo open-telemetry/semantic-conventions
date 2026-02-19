@@ -4,7 +4,7 @@ linkTitle: Metrics
 
 # Semantic conventions for RPC metrics
 
-**Status**: [Development][DocumentStatus]
+**Status**: [Release Candidate][DocumentStatus], unless otherwise specified
 
 The conventions described in this section are RPC specific. When RPC operations
 occur, measurements about those operations are recorded to instruments. The

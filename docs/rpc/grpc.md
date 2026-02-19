@@ -4,7 +4,7 @@ linkTitle: gRPC
 
 # Semantic conventions for gRPC
 
-**Status**: [Development][DocumentStatus]
+**Status**: [Release Candidate][DocumentStatus], unless otherwise specified
 
 <!-- toc -->
 

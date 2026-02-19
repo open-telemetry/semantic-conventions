@@ -4,7 +4,7 @@ linkTitle: Dubbo
 
 # Semantic conventions for Apache Dubbo
 
-**Status**: [Development][DocumentStatus]
+**Status**: [Release Candidate][DocumentStatus], unless otherwise specified
 
 <!-- toc -->
 
