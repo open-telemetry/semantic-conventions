@@ -15,8 +15,7 @@
 unique identifier. Information previously bundled into `db.namespace` —including
 PDB name, instance name, and service name — has been moved to dedicated attributes:
   `oracle.db.pdb`, `oracle.db.instance.name`, and `oracle.db.service`.
-
-Introduced a new `oracle.db.domain` attribute to capture the database domain
+  Introduced a new `oracle.db.domain` attribute to capture the database domain
 (DB_DOMAIN).
  ([#2147](https://github.com/open-telemetry/semantic-conventions/issues/2147))
 - `error, feature-flags`: Deprecate `error.message` in favor of using domain-specific codes such as `feature_flag.error.message`.
