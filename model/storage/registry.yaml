@@ -344,6 +344,12 @@ groups:
         brief: >
           Indicates the FRU part number of the enclosure.
         examples: ['1818-80E', '2076-524']
+      - id: storage.enclosure.power_status
+        type: string
+        stability: development
+        brief: >
+          Indicates the status of the power and cooling unit in the enclosure.
+        examples: ['online', 'offline', 'degraded']
 
       # Storage Volume Attributes
       - id: storage.volume.id
@@ -611,42 +617,4 @@ groups:
         brief: >
           Indicates the worldwide port name (WWPN) of the host's Fibre Channel port.
         examples: ['10:00:00:00:C9:12:34:56', '20:00:00:25:B5:AB:CD:EF']
-
-      # Tape Library Attributes
-      - id: storage.tapelibrary.vendor
-        type: string
-        stability: development
-        brief: >
-          Indicates the vendor name of the tape library.
-        examples: ['IBM', 'Quantum', 'Oracle']
-      - id: storage.tapelibrary.model
-        type: string
-        stability: development
-        brief: >
-          Indicates the model number of the tape library.
-        examples: ['TS4500', 'Scalar i6', 'StorageTek SL8500']
-      - id: storage.tapelibrary.serial_number
-        type: string
-        stability: development
-        brief: >
-          Indicates the serial number of the tape library.
-        examples: ['78A2345XYZ', 'TL-SN-123456']
-      - id: storage.tapelibrary.version
-        type: string
-        stability: development
-        brief: >
-          Indicates the firmware version of the tape library.
-        examples: ['3.7.0', '8.2.1']
-      - id: storage.tapelibrary.location
-        type: string
-        stability: development
-        brief: >
-          The geographical location or building where the tape library is located.
-        examples: ['Bangalore-DC1', 'Tape-Vault-A']
-      - id: storage.tapelibrary.logical_name
-        type: string
-        stability: development
-        brief: >
-          Indicates the logical name given to the tape library.
-        examples: ['LIB001', 'backup-library-prod']
 

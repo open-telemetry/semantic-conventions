@@ -80,6 +80,7 @@
 | Identity | [`storage.enclosure.serial_number`](/docs/registry/attributes/storage.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Indicates the serial number of the enclosure. | `SV12345001`; `78A0W0A`; `YL10WT123` |
 | Description | [`storage.enclosure.name`](/docs/registry/attributes/storage.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the storage enclosure within the storage system. | `1818-80E-SV12345001`; `2076-524-SN78A0W0A`; `EXP24S-SN123456` |
 | Description | [`storage.enclosure.partnumber`](/docs/registry/attributes/storage.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Indicates the FRU part number of the enclosure. | `1818-80E`; `2076-524` |
+| Description | [`storage.enclosure.power_status`](/docs/registry/attributes/storage.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Indicates the status of the power and cooling unit in the enclosure. | `online`; `offline`; `degraded` |
 | Description | [`storage.enclosure.status`](/docs/registry/attributes/storage.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Indicates the status of the storage enclosure. | `online`; `offline`; `degraded` |
 | Description | [`storage.enclosure.type`](/docs/registry/attributes/storage.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Indicates the type of enclosure. | `Control`; `Expansion`; `JBOD` |
 | Description | [`storage.enclosure.version`](/docs/registry/attributes/storage.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Indicates the firmware version of the enclosure. | `01.50.00.00`; `02.10.05.00`; `1.2.3.4` |
@@ -263,25 +264,6 @@
 **[5] `storage.system.ip_address`:** IPv4 addresses MUST be specified in dotted-quad notation.
 
 **[6] `storage.system.ip_address_6`:** IPv6 addresses MUST be specified in the RFC 5952 format.
-
-## Storage Tapelibrary
-
-**Status:** ![Development](https://img.shields.io/badge/-development-blue)
-
-**type:** `storage.tapelibrary`
-
-**Description:** A tape library is an automated storage system that contains tape drives and tape cartridges for long-term data archival and backup.
-
-**Attributes:**
-
-| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-| --- | --- | --- | --- | --- | --- | --- |
-| Identity | [`storage.tapelibrary.serial_number`](/docs/registry/attributes/storage.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Indicates the serial number of the tape library. | `78A2345XYZ`; `TL-SN-123456` |
-| Description | [`storage.tapelibrary.location`](/docs/registry/attributes/storage.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The geographical location or building where the tape library is located. | `Bangalore-DC1`; `Tape-Vault-A` |
-| Description | [`storage.tapelibrary.logical_name`](/docs/registry/attributes/storage.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Indicates the logical name given to the tape library. | `LIB001`; `backup-library-prod` |
-| Description | [`storage.tapelibrary.model`](/docs/registry/attributes/storage.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Indicates the model number of the tape library. | `TS4500`; `Scalar i6`; `StorageTek SL8500` |
-| Description | [`storage.tapelibrary.vendor`](/docs/registry/attributes/storage.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Indicates the vendor name of the tape library. | `IBM`; `Quantum`; `Oracle` |
-| Description | [`storage.tapelibrary.version`](/docs/registry/attributes/storage.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Indicates the firmware version of the tape library. | `3.7.0`; `8.2.1` |
 
 ## Storage Volume
 

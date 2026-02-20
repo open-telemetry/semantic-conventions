@@ -182,6 +182,8 @@ groups:
         role: descriptive
       - ref: storage.enclosure.partnumber
         role: descriptive
+      - ref: storage.enclosure.power_status
+        role: descriptive
 
   - id: entity.storage.volume
     type: entity
@@ -340,26 +342,5 @@ groups:
       - ref: storage.host.fc_port.id
         role: descriptive
       - ref: storage.host.fc_port.wwpn
-        role: descriptive
-
-  - id: entity.storage.tapelibrary
-    type: entity
-    stability: development
-    name: storage.tapelibrary
-    brief: >
-      A tape library is an automated storage system that contains tape drives and tape
-      cartridges for long-term data archival and backup.
-    attributes:
-      - ref: storage.tapelibrary.vendor
-        role: descriptive
-      - ref: storage.tapelibrary.model
-        role: descriptive
-      - ref: storage.tapelibrary.serial_number
-        role: identifying
-      - ref: storage.tapelibrary.version
-        role: descriptive
-      - ref: storage.tapelibrary.location
-        role: descriptive
-      - ref: storage.tapelibrary.logical_name
         role: descriptive
 

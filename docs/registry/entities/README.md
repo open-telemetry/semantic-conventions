@@ -105,7 +105,6 @@ Currently, the following namespaces exist:
 | | [storage.pool](storage.md#storage-pool) | ![Development](https://img.shields.io/badge/-development-blue) |
 | | [storage.snapshot](storage.md#storage-snapshot) | ![Development](https://img.shields.io/badge/-development-blue) |
 | | [storage.system](storage.md#storage-system) | ![Development](https://img.shields.io/badge/-development-blue) |
-| | [storage.tapelibrary](storage.md#storage-tapelibrary) | ![Development](https://img.shields.io/badge/-development-blue) |
 | | [storage.volume](storage.md#storage-volume) | ![Development](https://img.shields.io/badge/-development-blue) |
 | | [storage.volumegroup](storage.md#storage-volumegroup) | ![Development](https://img.shields.io/badge/-development-blue) |
 | Telemetry | | |
