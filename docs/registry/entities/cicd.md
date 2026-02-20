@@ -27,13 +27,6 @@
 | --- | --- | --- | --- | --- |
 | `resource.detection.detectors[]` | `Required` | Detector Inclusion | `cicd.pipeline` | - |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `cicd.pipeline.name` | [`cicd.pipeline.name`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: cicd.pipeline.name,`<br>&nbsp;&nbsp;&nbsp;`value: Build and Test` | [`cicd.pipeline.name`](/docs/registry/attributes/.md) |
-
-**Environment Variable Options:**
-
-| Setting | Requirement Level | Category | Example Value | Attribute |
-| --- | --- | --- | --- | --- |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `cicd.pipeline.name=Build and Test` | [`cicd.pipeline.name`](/docs/registry/attributes/.md) |
 
 ## CICD Pipeline Run
 
@@ -60,16 +53,7 @@
 | --- | --- | --- | --- | --- |
 | `resource.detection.detectors[]` | `Required` | Detector Inclusion | `cicd.pipeline.run` | - |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `cicd.pipeline.run.id` | [`cicd.pipeline.run.id`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: cicd.pipeline.run.id,`<br>&nbsp;&nbsp;&nbsp;`value: 120912` | [`cicd.pipeline.run.id`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `cicd.pipeline.run.url.full` | [`cicd.pipeline.run.url.full`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: cicd.pipeline.run.url.full,`<br>&nbsp;&nbsp;&nbsp;`value: https://github.com/open-telemetry/semantic-conventions/actions/runs/9753949763?pr=1075` | [`cicd.pipeline.run.url.full`](/docs/registry/attributes/.md) |
-
-**Environment Variable Options:**
-
-| Setting | Requirement Level | Category | Example Value | Attribute |
-| --- | --- | --- | --- | --- |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `cicd.pipeline.run.id=120912` | [`cicd.pipeline.run.id`](/docs/registry/attributes/.md) |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `cicd.pipeline.run.url.full=https://github.com/open-telemetry/semantic-conventions/actions/runs/9753949763?pr=1075` | [`cicd.pipeline.run.url.full`](/docs/registry/attributes/.md) |
 
 ## CICD Worker
 
@@ -99,16 +83,5 @@ For example, when a pipeline run involves several workers, its task run spans ma
 | --- | --- | --- | --- | --- |
 | `resource.detection.detectors[]` | `Required` | Detector Inclusion | `cicd.worker` | - |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `cicd.worker.id` | [`cicd.worker.id`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: cicd.worker.id,`<br>&nbsp;&nbsp;&nbsp;`value: abc123` | [`cicd.worker.id`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `cicd.worker.name` | [`cicd.worker.name`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: cicd.worker.name,`<br>&nbsp;&nbsp;&nbsp;`value: agent-abc` | [`cicd.worker.name`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `cicd.worker.url.full` | [`cicd.worker.url.full`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: cicd.worker.url.full,`<br>&nbsp;&nbsp;&nbsp;`value: https://cicd.example.org/worker/abc123` | [`cicd.worker.url.full`](/docs/registry/attributes/.md) |
-
-**Environment Variable Options:**
-
-| Setting | Requirement Level | Category | Example Value | Attribute |
-| --- | --- | --- | --- | --- |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `cicd.worker.id=abc123` | [`cicd.worker.id`](/docs/registry/attributes/.md) |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `cicd.worker.name=agent-abc` | [`cicd.worker.name`](/docs/registry/attributes/.md) |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `cicd.worker.url.full=https://cicd.example.org/worker/abc123` | [`cicd.worker.url.full`](/docs/registry/attributes/.md) |

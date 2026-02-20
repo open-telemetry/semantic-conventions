@@ -54,52 +54,17 @@
 | --- | --- | --- | --- | --- |
 | `resource.detection.detectors[]` | `Required` | Detector Inclusion | `process` | - |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `process.args_count` | [`process.args_count`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: process.args_count,`<br>&nbsp;&nbsp;&nbsp;`type:int,`<br>&nbsp;&nbsp;&nbsp;`value: 4` | [`process.args_count`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `process.command` | [`process.command`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: process.command,`<br>&nbsp;&nbsp;&nbsp;`value: cmd/otelcol` | [`process.command`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `process.command_args` | [`process.command_args`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: process.command_args,`<br>&nbsp;&nbsp;&nbsp;`type:string[],`<br>&nbsp;&nbsp;&nbsp;`value: ["cmd/otecol", "--config=config.yaml"]` | [`process.command_args`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `process.command_line` | [`process.command_line`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: process.command_line,`<br>&nbsp;&nbsp;&nbsp;`value: C:\cmd\otecol --config="my directory\config.yaml"` | [`process.command_line`](/docs/registry/attributes/.md) |
-| `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `process.creation.time` | [`process.creation.time`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: process.creation.time,`<br>&nbsp;&nbsp;&nbsp;`value: 2023-11-21T09:25:34.853Z` | [`process.creation.time`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `process.executable.name` | [`process.executable.name`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: process.executable.name,`<br>&nbsp;&nbsp;&nbsp;`value: otelcol` | [`process.executable.name`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `process.executable.path` | [`process.executable.path`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: process.executable.path,`<br>&nbsp;&nbsp;&nbsp;`value: /usr/bin/cmd/otelcol` | [`process.executable.path`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `process.interactive` | [`process.interactive`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: process.interactive,`<br>&nbsp;&nbsp;&nbsp;`type:boolean,`<br>&nbsp;&nbsp;&nbsp;`value: true` | [`process.interactive`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `process.linux.cgroup` | [`process.linux.cgroup`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: process.linux.cgroup,`<br>&nbsp;&nbsp;&nbsp;`value: 1:name=systemd:/user.slice/user-1000.slice/session-3.scope` | [`process.linux.cgroup`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `process.owner` | [`process.owner`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: process.owner,`<br>&nbsp;&nbsp;&nbsp;`value: root` | [`process.owner`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `process.parent_pid` | [`process.parent_pid`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: process.parent_pid,`<br>&nbsp;&nbsp;&nbsp;`type:int,`<br>&nbsp;&nbsp;&nbsp;`value: 111` | [`process.parent_pid`](/docs/registry/attributes/.md) |
-| `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `process.pid` | [`process.pid`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: process.pid,`<br>&nbsp;&nbsp;&nbsp;`type:int,`<br>&nbsp;&nbsp;&nbsp;`value: 1234` | [`process.pid`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `process.title` | [`process.title`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: process.title,`<br>&nbsp;&nbsp;&nbsp;`value: cat /etc/hostname` | [`process.title`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `process.working_directory` | [`process.working_directory`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: process.working_directory,`<br>&nbsp;&nbsp;&nbsp;`value: /root` | [`process.working_directory`](/docs/registry/attributes/.md) |
-
-**Environment Variable Options:**
-
-| Setting | Requirement Level | Category | Example Value | Attribute |
-| --- | --- | --- | --- | --- |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `process.args_count=4` | [`process.args_count`](/docs/registry/attributes/.md) |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `process.command=cmd/otelcol` | [`process.command`](/docs/registry/attributes/.md) |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `process.command_args=["cmd/otecol", "--config=config.yaml"]` | [`process.command_args`](/docs/registry/attributes/.md) |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `process.command_line=C:\cmd\otecol --config="my directory\config.yaml"` | [`process.command_line`](/docs/registry/attributes/.md) |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `process.creation.time=2023-11-21T09:25:34.853Z` | [`process.creation.time`](/docs/registry/attributes/.md) |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `process.executable.name=otelcol` | [`process.executable.name`](/docs/registry/attributes/.md) |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `process.executable.path=/usr/bin/cmd/otelcol` | [`process.executable.path`](/docs/registry/attributes/.md) |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `process.interactive=` | [`process.interactive`](/docs/registry/attributes/.md) |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `process.linux.cgroup=1:name=systemd:/user.slice/user-1000.slice/session-3.scope` | [`process.linux.cgroup`](/docs/registry/attributes/.md) |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `process.owner=root` | [`process.owner`](/docs/registry/attributes/.md) |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `process.parent_pid=111` | [`process.parent_pid`](/docs/registry/attributes/.md) |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `process.pid=1234` | [`process.pid`](/docs/registry/attributes/.md) |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `process.title=cat /etc/hostname` | [`process.title`](/docs/registry/attributes/.md) |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `process.working_directory=/root` | [`process.working_directory`](/docs/registry/attributes/.md) |
 
 ## Process Runtime
 
@@ -123,16 +88,3 @@
 | --- | --- | --- | --- | --- |
 | `resource.detection.detectors[]` | `Required` | Detector Inclusion | `process.runtime` | - |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `process.runtime.description` | [`process.runtime.description`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: process.runtime.description,`<br>&nbsp;&nbsp;&nbsp;`value: Eclipse OpenJ9 Eclipse OpenJ9 VM openj9-0.21.0` | [`process.runtime.description`](/docs/registry/attributes/.md) |
-| `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `process.runtime.name` | [`process.runtime.name`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: process.runtime.name,`<br>&nbsp;&nbsp;&nbsp;`value: OpenJDK Runtime Environment` | [`process.runtime.name`](/docs/registry/attributes/.md) |
-| `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `process.runtime.version` | [`process.runtime.version`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: process.runtime.version,`<br>&nbsp;&nbsp;&nbsp;`value: 14.0.2` | [`process.runtime.version`](/docs/registry/attributes/.md) |
-
-**Environment Variable Options:**
-
-| Setting | Requirement Level | Category | Example Value | Attribute |
-| --- | --- | --- | --- | --- |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `process.runtime.description=E` | [`process.runtime.description`](/docs/registry/attributes/.md) |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `process.runtime.name=OpenJDK Runtime Environment` | [`process.runtime.name`](/docs/registry/attributes/.md) |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `process.runtime.version=1` | [`process.runtime.version`](/docs/registry/attributes/.md) |

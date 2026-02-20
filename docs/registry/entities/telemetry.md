@@ -31,16 +31,7 @@ a string starting with `opentelemetry-`, e.g. `opentelemetry-java-instrumentatio
 | --- | --- | --- | --- | --- |
 | `resource.detection.detectors[]` | `Required` | Detector Inclusion | `telemetry.distro` | - |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `telemetry.distro.name` | [`telemetry.distro.name`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: telemetry.distro.name,`<br>&nbsp;&nbsp;&nbsp;`value: parts-unlimited-java` | [`telemetry.distro.name`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `telemetry.distro.version` | [`telemetry.distro.version`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: telemetry.distro.version,`<br>&nbsp;&nbsp;&nbsp;`value: 1.2.3` | [`telemetry.distro.version`](/docs/registry/attributes/.md) |
-
-**Environment Variable Options:**
-
-| Setting | Requirement Level | Category | Example Value | Attribute |
-| --- | --- | --- | --- | --- |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `telemetry.distro.name=parts-unlimited-java` | [`telemetry.distro.name`](/docs/registry/attributes/.md) |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `telemetry.distro.version=1.2.3` | [`telemetry.distro.version`](/docs/registry/attributes/.md) |
 
 ## Telemetry Sdk
 
@@ -89,17 +80,4 @@ All custom identifiers SHOULD be stable across different versions of an implemen
 | Setting | Requirement Level | Category | Example Value | Attribute |
 | --- | --- | --- | --- | --- |
 | `resource.detection.detectors[]` | `Required` | Detector Inclusion | `telemetry.sdk` | - |
-| `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `telemetry.sdk.language` | [`telemetry.sdk.language`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: telemetry.sdk.language,`<br>&nbsp;&nbsp;&nbsp;`type:string,`<br>&nbsp;&nbsp;&nbsp;`value: cpp` | [`telemetry.sdk.language`](/docs/registry/attributes/.md) |
-| `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `telemetry.sdk.name` | [`telemetry.sdk.name`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: telemetry.sdk.name,`<br>&nbsp;&nbsp;&nbsp;`value: opentelemetry` | [`telemetry.sdk.name`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `telemetry.sdk.version` | [`telemetry.sdk.version`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: telemetry.sdk.version,`<br>&nbsp;&nbsp;&nbsp;`value: 1.2.3` | [`telemetry.sdk.version`](/docs/registry/attributes/.md) |
-
-**Environment Variable Options:**
-
-| Setting | Requirement Level | Category | Example Value | Attribute |
-| --- | --- | --- | --- | --- |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `telemetry.sdk.language=` | [`telemetry.sdk.language`](/docs/registry/attributes/.md) |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `telemetry.sdk.name=opentelemetry` | [`telemetry.sdk.name`](/docs/registry/attributes/.md) |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `telemetry.sdk.version=1.2.3` | [`telemetry.sdk.version`](/docs/registry/attributes/.md) |

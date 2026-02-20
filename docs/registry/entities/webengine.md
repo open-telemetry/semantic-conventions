@@ -29,16 +29,5 @@
 | --- | --- | --- | --- | --- |
 | `resource.detection.detectors[]` | `Required` | Detector Inclusion | `webengine` | - |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `webengine.description` | [`webengine.description`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: webengine.description,`<br>&nbsp;&nbsp;&nbsp;`value: WildFly Full 21.0.0.Final (WildFly Core 13.0.1.Final) - 2.2.2.Final` | [`webengine.description`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `webengine.name` | [`webengine.name`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: webengine.name,`<br>&nbsp;&nbsp;&nbsp;`value: WildFly` | [`webengine.name`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `webengine.version` | [`webengine.version`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: webengine.version,`<br>&nbsp;&nbsp;&nbsp;`value: 21.0.0` | [`webengine.version`](/docs/registry/attributes/.md) |
-
-**Environment Variable Options:**
-
-| Setting | Requirement Level | Category | Example Value | Attribute |
-| --- | --- | --- | --- | --- |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `webengine.description=WildFly Full 21.0.0.Final (WildFly Core 13.0.1.Final) - 2.2.2.Final` | [`webengine.description`](/docs/registry/attributes/.md) |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `webengine.name=WildFly` | [`webengine.name`](/docs/registry/attributes/.md) |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `webengine.version=21.0.0` | [`webengine.version`](/docs/registry/attributes/.md) |

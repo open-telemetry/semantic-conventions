@@ -65,19 +65,18 @@
 {%- endmacro %}
 
 {% macro configuration(e) -%}
+{{ configFile(e) | trim}}
+
+{{configEnv(e) | trim}}
+{%- endmacro %}
+
+{% macro configFile(e) %}
 **Configuration File Options:**
 
 | Setting | Requirement Level | Category | Example Value | Attribute |
 | --- | --- | --- | --- | --- |
-{{ configFileSignal(e) | trim }}
-{% for attribute in e.attributes | sort(attribute="name") %}{{ configFileLine(e, attribute, "/docs/registry/attributes") | trim}}
-{% endfor %}
-**Environment Variable Options:**
-
-| Setting | Requirement Level | Category | Example Value | Attribute |
-| --- | --- | --- | --- | --- |
-{% for attribute in e.attributes | sort(attribute="name") %}{{ configEnvLine(e, attribute, "/docs/registry/attributes") | trim}}
-{% endfor %}
+{{ configFileSignal(e) | trim }}{% for attribute in e.attributes | sort(attribute="name") %}{% if attribute.requirement_level == "opt_in" or ((e.stability == "stable") and (attribute.stability != "stable")) or ((attribute.requirement_level != "opt_in" and attribute.role != "identifying")) or (attribute.annotations and attribute.annotations.code_generation and attribute.annotations.code_generation.user_settable == true) %}
+{{ configFileLine(e, attribute, "/docs/registry/attributes") | trim}}{% endif %}{% endfor %}
 {%- endmacro %}
 
 {% macro configFileSignal(e) %}
@@ -86,13 +85,26 @@
 
 {% macro configFileLine(e, attribute, attribute_registry_base_url) %}
 {% if ((e.stability == "stable") and (attribute.stability != "stable")) %}| `TBA` | `Required` | Experimental Opt-in | TBA | {{ attrs.name_with_link(attribute, attribute_registry_base_url, e.lineage_attributes) }} |{% endif %}{% if ((attribute.requirement_level == "opt_in")) %}
-| `resource.experimentalresourcedetection.attributes.included[]` | `Conditionally Required` | Attribute Inclusion | `{{attribute.name}}` | {{ attrs.name_with_link(attribute, attribute_registry_base_url, e.lineage_attributes) }} |{% endif %}{% if ((attribute.requirement_level != "opt_in")) %}
-| `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `{{attribute.name}}` | {{ attrs.name_with_link(attribute, attribute_registry_base_url, e.lineage_attributes) }} |{% endif %}
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: {{attribute.name}},`{% if attribute.type != "string" %}<br>&nbsp;&nbsp;&nbsp;`type:{{ attrs.type(attribute) }},`{%endif%}<br>&nbsp;&nbsp;&nbsp;`value: {{examples.first(attribute) | trim }}` | {{ attrs.name_with_link(attribute, attribute_registry_base_url, e.lineage_attributes) }} |
-{% endmacro%}
+| `resource.experimentalresourcedetection.attributes.included[]` | `Conditionally Required` | Attribute Inclusion | `{{attribute.name}}` | {{ attrs.name_with_link(attribute, attribute_registry_base_url, e.lineage_attributes) }} |{% endif %}{% if ((attribute.requirement_level != "opt_in" and attribute.role != "identifying")) %}
+| `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `{{attribute.name}}` | {{ attrs.name_with_link(attribute, attribute_registry_base_url, e.lineage_attributes) }} |{% endif %}{% if (attribute.annotations and attribute.annotations.code_generation and attribute.annotations.code_generation.user_settable == true) %}
+| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: {{attribute.name}},`{% if attrs.type(attribute) != "string" %}<br>&nbsp;&nbsp;&nbsp;`type:{{ attrs.type(attribute) }},`{%endif%}<br>&nbsp;&nbsp;&nbsp;`value: {{examples.first(attribute) | trim }}` | {{ attrs.name_with_link(attribute, attribute_registry_base_url, e.lineage_attributes) }} |{% endif %}{% endmacro %}
+
+{% macro configEnv(e) %}
+{% set content = configEnvContent(e) | trim %}
+
+{% if content != "" %}
+**Environment Variable Options:**
+
+| Setting | Requirement Level | Category | Example Value | Attribute |
+| --- | --- | --- | --- | --- |
+{{ content }}{% endif %}{% endmacro %}
+
+{% macro configEnvContent(e) %}{% for attribute in e.attributes | sort(attribute="name") %}{% if ((e.stability == "stable") and (attribute.stability != "stable")) or (attribute.annotations and attribute.annotations.code_generation and attribute.annotations.code_generation.user_settable == true) %}
+{{ configEnvLine(e, attribute, "/docs/registry/attributes") | trim}}{% endif %}{% endfor %}
+{%- endmacro %}
 
 {% macro configEnvLine(e, attribute, attribute_registry_base_url) %}
 {% if ((e.stability == "stable") and (attribute.stability != "stable")) %}
-| `TBA` | Required | Experimental Opt-in | TBA | {{ attrs.name_with_link(attribute, attribute_registry_base_url, e.lineage_attributes) }} |{% endif %}
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `{{attribute.name}}={% if attribute.examples %}{{attribute.examples[0]}}{% endif %}` | {{ attrs.name_with_link(attribute, attribute_registry_base_url, e.lineage_attributes) }} |
-{% endmacro%}
+| `TBA` | Required | Experimental Opt-in | TBA | {{ attrs.name_with_link(attribute, attribute_registry_base_url, e.lineage_attributes) }} |{% endif %}{% if (attribute.annotations and attribute.annotations.code_generation and attribute.annotations.code_generation.user_settable == true) %}
+| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `{{attribute.name}}={% if attribute.examples %}{{attribute.examples[0]}}{% endif %}` | {{ attrs.name_with_link(attribute, attribute_registry_base_url, e.lineage_attributes) }} |{% endif %}
+{% endmacro %}

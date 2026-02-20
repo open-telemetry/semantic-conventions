@@ -29,19 +29,8 @@
 | --- | --- | --- | --- | --- |
 | `resource.detection.detectors[]` | `Required` | Detector Inclusion | `gcp.apphub.application` | - |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `gcp.apphub.application.container` | [`gcp.apphub.application.container`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: gcp.apphub.application.container,`<br>&nbsp;&nbsp;&nbsp;`value: projects/my-container-project` | [`gcp.apphub.application.container`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `gcp.apphub.application.id` | [`gcp.apphub.application.id`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: gcp.apphub.application.id,`<br>&nbsp;&nbsp;&nbsp;`value: my-application` | [`gcp.apphub.application.id`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `gcp.apphub.application.location` | [`gcp.apphub.application.location`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: gcp.apphub.application.location,`<br>&nbsp;&nbsp;&nbsp;`value: us-central1` | [`gcp.apphub.application.location`](/docs/registry/attributes/.md) |
-
-**Environment Variable Options:**
-
-| Setting | Requirement Level | Category | Example Value | Attribute |
-| --- | --- | --- | --- | --- |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `gcp.apphub.application.container=projects/my-container-project` | [`gcp.apphub.application.container`](/docs/registry/attributes/.md) |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `gcp.apphub.application.id=my-application` | [`gcp.apphub.application.id`](/docs/registry/attributes/.md) |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `gcp.apphub.application.location=us-central1` | [`gcp.apphub.application.location`](/docs/registry/attributes/.md) |
 
 ## GCP Apphub Service
 
@@ -95,19 +84,8 @@
 | --- | --- | --- | --- | --- |
 | `resource.detection.detectors[]` | `Required` | Detector Inclusion | `gcp.apphub.service` | - |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `gcp.apphub.service.criticality_type` | [`gcp.apphub.service.criticality_type`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: gcp.apphub.service.criticality_type,`<br>&nbsp;&nbsp;&nbsp;`type:string,`<br>&nbsp;&nbsp;&nbsp;`value: MISSION_CRITICAL` | [`gcp.apphub.service.criticality_type`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `gcp.apphub.service.environment_type` | [`gcp.apphub.service.environment_type`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: gcp.apphub.service.environment_type,`<br>&nbsp;&nbsp;&nbsp;`type:string,`<br>&nbsp;&nbsp;&nbsp;`value: PRODUCTION` | [`gcp.apphub.service.environment_type`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `gcp.apphub.service.id` | [`gcp.apphub.service.id`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: gcp.apphub.service.id,`<br>&nbsp;&nbsp;&nbsp;`value: my-service` | [`gcp.apphub.service.id`](/docs/registry/attributes/.md) |
-
-**Environment Variable Options:**
-
-| Setting | Requirement Level | Category | Example Value | Attribute |
-| --- | --- | --- | --- | --- |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `gcp.apphub.service.criticality_type=` | [`gcp.apphub.service.criticality_type`](/docs/registry/attributes/.md) |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `gcp.apphub.service.environment_type=` | [`gcp.apphub.service.environment_type`](/docs/registry/attributes/.md) |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `gcp.apphub.service.id=my-service` | [`gcp.apphub.service.id`](/docs/registry/attributes/.md) |
 
 ## GCP Apphub Workload
 
@@ -161,19 +139,8 @@
 | --- | --- | --- | --- | --- |
 | `resource.detection.detectors[]` | `Required` | Detector Inclusion | `gcp.apphub.workload` | - |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `gcp.apphub.workload.criticality_type` | [`gcp.apphub.workload.criticality_type`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: gcp.apphub.workload.criticality_type,`<br>&nbsp;&nbsp;&nbsp;`type:string,`<br>&nbsp;&nbsp;&nbsp;`value: MISSION_CRITICAL` | [`gcp.apphub.workload.criticality_type`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `gcp.apphub.workload.environment_type` | [`gcp.apphub.workload.environment_type`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: gcp.apphub.workload.environment_type,`<br>&nbsp;&nbsp;&nbsp;`type:string,`<br>&nbsp;&nbsp;&nbsp;`value: PRODUCTION` | [`gcp.apphub.workload.environment_type`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `gcp.apphub.workload.id` | [`gcp.apphub.workload.id`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: gcp.apphub.workload.id,`<br>&nbsp;&nbsp;&nbsp;`value: my-workload` | [`gcp.apphub.workload.id`](/docs/registry/attributes/.md) |
-
-**Environment Variable Options:**
-
-| Setting | Requirement Level | Category | Example Value | Attribute |
-| --- | --- | --- | --- | --- |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `gcp.apphub.workload.criticality_type=` | [`gcp.apphub.workload.criticality_type`](/docs/registry/attributes/.md) |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `gcp.apphub.workload.environment_type=` | [`gcp.apphub.workload.environment_type`](/docs/registry/attributes/.md) |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `gcp.apphub.workload.id=my-workload` | [`gcp.apphub.workload.id`](/docs/registry/attributes/.md) |
 
 ## GCP Cloud Run
 
@@ -200,16 +167,7 @@
 | --- | --- | --- | --- | --- |
 | `resource.detection.detectors[]` | `Required` | Detector Inclusion | `gcp.cloud_run` | - |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `gcp.cloud_run.job.execution` | [`gcp.cloud_run.job.execution`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: gcp.cloud_run.job.execution,`<br>&nbsp;&nbsp;&nbsp;`value: job-name-xxxx` | [`gcp.cloud_run.job.execution`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `gcp.cloud_run.job.task_index` | [`gcp.cloud_run.job.task_index`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: gcp.cloud_run.job.task_index,`<br>&nbsp;&nbsp;&nbsp;`type:int,`<br>&nbsp;&nbsp;&nbsp;`value: 0` | [`gcp.cloud_run.job.task_index`](/docs/registry/attributes/.md) |
-
-**Environment Variable Options:**
-
-| Setting | Requirement Level | Category | Example Value | Attribute |
-| --- | --- | --- | --- | --- |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `gcp.cloud_run.job.execution=job-name-xxxx` | [`gcp.cloud_run.job.execution`](/docs/registry/attributes/.md) |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `gcp.cloud_run.job.task_index=0` | [`gcp.cloud_run.job.task_index`](/docs/registry/attributes/.md) |
 
 ## GCP GCE
 
@@ -236,16 +194,7 @@
 | --- | --- | --- | --- | --- |
 | `resource.detection.detectors[]` | `Required` | Detector Inclusion | `gcp.gce` | - |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `gcp.gce.instance.hostname` | [`gcp.gce.instance.hostname`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: gcp.gce.instance.hostname,`<br>&nbsp;&nbsp;&nbsp;`value: my-host1234.example.com` | [`gcp.gce.instance.hostname`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `gcp.gce.instance.name` | [`gcp.gce.instance.name`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: gcp.gce.instance.name,`<br>&nbsp;&nbsp;&nbsp;`value: instance-1` | [`gcp.gce.instance.name`](/docs/registry/attributes/.md) |
-
-**Environment Variable Options:**
-
-| Setting | Requirement Level | Category | Example Value | Attribute |
-| --- | --- | --- | --- | --- |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `gcp.gce.instance.hostname=my-host1234.example.com` | [`gcp.gce.instance.hostname`](/docs/registry/attributes/.md) |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `gcp.gce.instance.name=instance-1` | [`gcp.gce.instance.name`](/docs/registry/attributes/.md) |
 
 ## GCP GCE Instance Group Manager
 
@@ -272,17 +221,3 @@
 | Setting | Requirement Level | Category | Example Value | Attribute |
 | --- | --- | --- | --- | --- |
 | `resource.detection.detectors[]` | `Required` | Detector Inclusion | `gcp.gce.instance_group_manager` | - |
-| `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `gcp.gce.instance_group_manager.name` | [`gcp.gce.instance_group_manager.name`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: gcp.gce.instance_group_manager.name,`<br>&nbsp;&nbsp;&nbsp;`value: web-igm` | [`gcp.gce.instance_group_manager.name`](/docs/registry/attributes/.md) |
-| `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `gcp.gce.instance_group_manager.region` | [`gcp.gce.instance_group_manager.region`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: gcp.gce.instance_group_manager.region,`<br>&nbsp;&nbsp;&nbsp;`value: us-central1` | [`gcp.gce.instance_group_manager.region`](/docs/registry/attributes/.md) |
-| `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `gcp.gce.instance_group_manager.zone` | [`gcp.gce.instance_group_manager.zone`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: gcp.gce.instance_group_manager.zone,`<br>&nbsp;&nbsp;&nbsp;`value: us-central1-a` | [`gcp.gce.instance_group_manager.zone`](/docs/registry/attributes/.md) |
-
-**Environment Variable Options:**
-
-| Setting | Requirement Level | Category | Example Value | Attribute |
-| --- | --- | --- | --- | --- |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `gcp.gce.instance_group_manager.name=web-igm` | [`gcp.gce.instance_group_manager.name`](/docs/registry/attributes/.md) |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `gcp.gce.instance_group_manager.region=us-central1` | [`gcp.gce.instance_group_manager.region`](/docs/registry/attributes/.md) |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `gcp.gce.instance_group_manager.zone=us-central1-a` | [`gcp.gce.instance_group_manager.zone`](/docs/registry/attributes/.md) |

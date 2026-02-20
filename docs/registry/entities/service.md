@@ -53,20 +53,13 @@
 | `resource.detection.detectors[]` | `Required` | Detector Inclusion | `service` | - |
 | `TBA` | `Required` | Experimental Opt-in | TBA | [`service.criticality`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `service.criticality` | [`service.criticality`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: service.criticality,`<br>&nbsp;&nbsp;&nbsp;`type:string,`<br>&nbsp;&nbsp;&nbsp;`value: critical` | [`service.criticality`](/docs/registry/attributes/.md) |
-| `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `service.name` | [`service.name`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: service.name,`<br>&nbsp;&nbsp;&nbsp;`value: shoppingcart` | [`service.name`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `service.version` | [`service.version`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: service.version,`<br>&nbsp;&nbsp;&nbsp;`value: 2.0.0` | [`service.version`](/docs/registry/attributes/.md) |
 
 **Environment Variable Options:**
 
 | Setting | Requirement Level | Category | Example Value | Attribute |
 | --- | --- | --- | --- | --- |
 | `TBA` | Required | Experimental Opt-in | TBA | [`service.criticality`](/docs/registry/attributes/.md) |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `service.criticality=critical` | [`service.criticality`](/docs/registry/attributes/.md) |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `service.name=shoppingcart` | [`service.name`](/docs/registry/attributes/.md) |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `service.version=2.0.0` | [`service.version`](/docs/registry/attributes/.md) |
 
 ## Service Instance
 
@@ -114,14 +107,6 @@ port.
 | Setting | Requirement Level | Category | Example Value | Attribute |
 | --- | --- | --- | --- | --- |
 | `resource.detection.detectors[]` | `Required` | Detector Inclusion | `service.instance` | - |
-| `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `service.instance.id` | [`service.instance.id`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: service.instance.id,`<br>&nbsp;&nbsp;&nbsp;`value: 627cc493-f310-47de-96bd-71410b7dec09` | [`service.instance.id`](/docs/registry/attributes/.md) |
-
-**Environment Variable Options:**
-
-| Setting | Requirement Level | Category | Example Value | Attribute |
-| --- | --- | --- | --- | --- |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `service.instance.id=627cc493-f310-47de-96bd-71410b7dec09` | [`service.instance.id`](/docs/registry/attributes/.md) |
 
 ## Service Namespace
 
@@ -144,11 +129,3 @@ port.
 | Setting | Requirement Level | Category | Example Value | Attribute |
 | --- | --- | --- | --- | --- |
 | `resource.detection.detectors[]` | `Required` | Detector Inclusion | `service.namespace` | - |
-| `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `service.namespace` | [`service.namespace`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: service.namespace,`<br>&nbsp;&nbsp;&nbsp;`value: Shop` | [`service.namespace`](/docs/registry/attributes/.md) |
-
-**Environment Variable Options:**
-
-| Setting | Requirement Level | Category | Example Value | Attribute |
-| --- | --- | --- | --- | --- |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `service.namespace=Shop` | [`service.namespace`](/docs/registry/attributes/.md) |

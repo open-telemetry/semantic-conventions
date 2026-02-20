@@ -80,22 +80,7 @@ The following well-known definitions MUST be used if you set this attribute and 
 | --- | --- | --- | --- | --- |
 | `resource.detection.detectors[]` | `Required` | Detector Inclusion | `faas` | - |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `cloud.resource_id` | [`cloud.resource_id`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: cloud.resource_id,`<br>&nbsp;&nbsp;&nbsp;`value: arn:aws:lambda:REGION:ACCOUNT_ID:function:my-function` | [`cloud.resource_id`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `faas.instance` | [`faas.instance`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: faas.instance,`<br>&nbsp;&nbsp;&nbsp;`value: 2021/06/28/[$LATEST]2f399eb14537447da05ab2a2e39309de` | [`faas.instance`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `faas.max_memory` | [`faas.max_memory`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: faas.max_memory,`<br>&nbsp;&nbsp;&nbsp;`type:int,`<br>&nbsp;&nbsp;&nbsp;`value: 134217728` | [`faas.max_memory`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `faas.name` | [`faas.name`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: faas.name,`<br>&nbsp;&nbsp;&nbsp;`value: my-function` | [`faas.name`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `faas.version` | [`faas.version`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: faas.version,`<br>&nbsp;&nbsp;&nbsp;`value: 26` | [`faas.version`](/docs/registry/attributes/.md) |
-
-**Environment Variable Options:**
-
-| Setting | Requirement Level | Category | Example Value | Attribute |
-| --- | --- | --- | --- | --- |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `cloud.resource_id=arn:aws:lambda:REGION:ACCOUNT_ID:function:my-function` | [`cloud.resource_id`](/docs/registry/attributes/.md) |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `faas.instance=2021/06/28/[$LATEST]2f399eb14537447da05ab2a2e39309de` | [`faas.instance`](/docs/registry/attributes/.md) |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `faas.max_memory=` | [`faas.max_memory`](/docs/registry/attributes/.md) |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `faas.name=my-function` | [`faas.name`](/docs/registry/attributes/.md) |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `faas.version=26` | [`faas.version`](/docs/registry/attributes/.md) |

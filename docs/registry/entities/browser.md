@@ -42,22 +42,7 @@ The list of possible values is defined in the [W3C User-Agent Client Hints speci
 | --- | --- | --- | --- | --- |
 | `resource.detection.detectors[]` | `Required` | Detector Inclusion | `browser` | - |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `browser.brands` | [`browser.brands`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: browser.brands,`<br>&nbsp;&nbsp;&nbsp;`type:string[],`<br>&nbsp;&nbsp;&nbsp;`value: [" Not A;Brand 99", "Chromium 99", "Chrome 99"]` | [`browser.brands`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `browser.language` | [`browser.language`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: browser.language,`<br>&nbsp;&nbsp;&nbsp;`value: en` | [`browser.language`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `browser.mobile` | [`browser.mobile`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: browser.mobile,`<br>&nbsp;&nbsp;&nbsp;`type:boolean,`<br>&nbsp;&nbsp;&nbsp;`value: true` | [`browser.mobile`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `browser.platform` | [`browser.platform`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: browser.platform,`<br>&nbsp;&nbsp;&nbsp;`value: Windows` | [`browser.platform`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `user_agent.original` | [`user_agent.original`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: user_agent.original,`<br>&nbsp;&nbsp;&nbsp;`value: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.54 Safari/537.36` | [`user_agent.original`](/docs/registry/attributes/.md) |
-
-**Environment Variable Options:**
-
-| Setting | Requirement Level | Category | Example Value | Attribute |
-| --- | --- | --- | --- | --- |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `browser.brands=[" Not A;Brand 99", "Chromium 99", "Chrome 99"]` | [`browser.brands`](/docs/registry/attributes/.md) |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `browser.language=en` | [`browser.language`](/docs/registry/attributes/.md) |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `browser.mobile=` | [`browser.mobile`](/docs/registry/attributes/.md) |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `browser.platform=Windows` | [`browser.platform`](/docs/registry/attributes/.md) |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `user_agent.original=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.54 Safari/537.36` | [`user_agent.original`](/docs/registry/attributes/.md) |

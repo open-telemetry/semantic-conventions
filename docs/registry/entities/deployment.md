@@ -35,10 +35,3 @@ considered to be identifying the same service:
 | --- | --- | --- | --- | --- |
 | `resource.detection.detectors[]` | `Required` | Detector Inclusion | `deployment` | - |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `deployment.environment.name` | [`deployment.environment.name`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: deployment.environment.name,`<br>&nbsp;&nbsp;&nbsp;`value: staging` | [`deployment.environment.name`](/docs/registry/attributes/.md) |
-
-**Environment Variable Options:**
-
-| Setting | Requirement Level | Category | Example Value | Attribute |
-| --- | --- | --- | --- | --- |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `deployment.environment.name=staging` | [`deployment.environment.name`](/docs/registry/attributes/.md) |

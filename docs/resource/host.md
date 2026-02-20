@@ -84,37 +84,14 @@ privileged lookup of `host.id` is required, the value should be injected via the
 | --- | --- | --- | --- | --- |
 | `resource.detection.detectors[]` | `Required` | Detector Inclusion | `host` | - |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `host.arch` | [`host.arch`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: host.arch,`<br>&nbsp;&nbsp;&nbsp;`type:string,`<br>&nbsp;&nbsp;&nbsp;`value: amd64` | [`host.arch`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `host.id` | [`host.id`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: host.id,`<br>&nbsp;&nbsp;&nbsp;`value: fdbf79e8af94cb7f9e8df36789187052` | [`host.id`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `host.image.id` | [`host.image.id`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: host.image.id,`<br>&nbsp;&nbsp;&nbsp;`value: ami-07b06b442921831e5` | [`host.image.id`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `host.image.name` | [`host.image.name`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: host.image.name,`<br>&nbsp;&nbsp;&nbsp;`value: infra-ami-eks-worker-node-7d4ec78312` | [`host.image.name`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `host.image.version` | [`host.image.version`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: host.image.version,`<br>&nbsp;&nbsp;&nbsp;`value: 0.1` | [`host.image.version`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.included[]` | `Conditionally Required` | Attribute Inclusion | `host.ip` | [`host.ip`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: host.ip,`<br>&nbsp;&nbsp;&nbsp;`type:string[],`<br>&nbsp;&nbsp;&nbsp;`value: ["192.168.1.140", "fe80::abc2:4a28:737a:609e"]` | [`host.ip`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.included[]` | `Conditionally Required` | Attribute Inclusion | `host.mac` | [`host.mac`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: host.mac,`<br>&nbsp;&nbsp;&nbsp;`type:string[],`<br>&nbsp;&nbsp;&nbsp;`value: ["AC-DE-48-23-45-67", "AC-DE-48-23-45-67-01-9F"]` | [`host.mac`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `host.name` | [`host.name`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: host.name,`<br>&nbsp;&nbsp;&nbsp;`value: opentelemetry-test` | [`host.name`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `host.type` | [`host.type`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: host.type,`<br>&nbsp;&nbsp;&nbsp;`value: n1-standard-1` | [`host.type`](/docs/registry/attributes/.md) |
-
-**Environment Variable Options:**
-
-| Setting | Requirement Level | Category | Example Value | Attribute |
-| --- | --- | --- | --- | --- |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `host.arch=` | [`host.arch`](/docs/registry/attributes/.md) |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `host.id=fdbf79e8af94cb7f9e8df36789187052` | [`host.id`](/docs/registry/attributes/.md) |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `host.image.id=ami-07b06b442921831e5` | [`host.image.id`](/docs/registry/attributes/.md) |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `host.image.name=infra-ami-eks-worker-node-7d4ec78312` | [`host.image.name`](/docs/registry/attributes/.md) |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `host.image.version=0.1` | [`host.image.version`](/docs/registry/attributes/.md) |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `host.ip=["192.168.1.140", "fe80::abc2:4a28:737a:609e"]` | [`host.ip`](/docs/registry/attributes/.md) |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `host.mac=["AC-DE-48-23-45-67", "AC-DE-48-23-45-67-01-9F"]` | [`host.mac`](/docs/registry/attributes/.md) |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `host.name=opentelemetry-test` | [`host.name`](/docs/registry/attributes/.md) |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `host.type=n1-standard-1` | [`host.type`](/docs/registry/attributes/.md) |
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
 <!-- endsemconv -->
@@ -156,28 +133,11 @@ privileged lookup of `host.id` is required, the value should be injected via the
 | --- | --- | --- | --- | --- |
 | `resource.detection.detectors[]` | `Required` | Detector Inclusion | `host.cpu` | - |
 | `resource.experimentalresourcedetection.attributes.included[]` | `Conditionally Required` | Attribute Inclusion | `host.cpu.cache.l2.size` | [`host.cpu.cache.l2.size`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: host.cpu.cache.l2.size,`<br>&nbsp;&nbsp;&nbsp;`type:int,`<br>&nbsp;&nbsp;&nbsp;`value: 12288000` | [`host.cpu.cache.l2.size`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.included[]` | `Conditionally Required` | Attribute Inclusion | `host.cpu.family` | [`host.cpu.family`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: host.cpu.family,`<br>&nbsp;&nbsp;&nbsp;`value: 6` | [`host.cpu.family`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.included[]` | `Conditionally Required` | Attribute Inclusion | `host.cpu.model.id` | [`host.cpu.model.id`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: host.cpu.model.id,`<br>&nbsp;&nbsp;&nbsp;`value: 6` | [`host.cpu.model.id`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.included[]` | `Conditionally Required` | Attribute Inclusion | `host.cpu.model.name` | [`host.cpu.model.name`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: host.cpu.model.name,`<br>&nbsp;&nbsp;&nbsp;`value: 11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz` | [`host.cpu.model.name`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.included[]` | `Conditionally Required` | Attribute Inclusion | `host.cpu.stepping` | [`host.cpu.stepping`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: host.cpu.stepping,`<br>&nbsp;&nbsp;&nbsp;`value: 1` | [`host.cpu.stepping`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.included[]` | `Conditionally Required` | Attribute Inclusion | `host.cpu.vendor.id` | [`host.cpu.vendor.id`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: host.cpu.vendor.id,`<br>&nbsp;&nbsp;&nbsp;`value: GenuineIntel` | [`host.cpu.vendor.id`](/docs/registry/attributes/.md) |
-
-**Environment Variable Options:**
-
-| Setting | Requirement Level | Category | Example Value | Attribute |
-| --- | --- | --- | --- | --- |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `host.cpu.cache.l2.size=12288000` | [`host.cpu.cache.l2.size`](/docs/registry/attributes/.md) |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `host.cpu.family=6` | [`host.cpu.family`](/docs/registry/attributes/.md) |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `host.cpu.model.id=6` | [`host.cpu.model.id`](/docs/registry/attributes/.md) |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `host.cpu.model.name=11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz` | [`host.cpu.model.name`](/docs/registry/attributes/.md) |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `host.cpu.stepping=1` | [`host.cpu.stepping`](/docs/registry/attributes/.md) |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `host.cpu.vendor.id=GenuineIntel` | [`host.cpu.vendor.id`](/docs/registry/attributes/.md) |
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
 <!-- endsemconv -->

@@ -44,31 +44,12 @@
 | --- | --- | --- | --- | --- |
 | `resource.detection.detectors[]` | `Required` | Detector Inclusion | `aws.ecs` | - |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `aws.ecs.cluster.arn` | [`aws.ecs.cluster.arn`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: aws.ecs.cluster.arn,`<br>&nbsp;&nbsp;&nbsp;`value: arn:aws:ecs:us-west-2:123456789123:cluster/my-cluster` | [`aws.ecs.cluster.arn`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `aws.ecs.container.arn` | [`aws.ecs.container.arn`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: aws.ecs.container.arn,`<br>&nbsp;&nbsp;&nbsp;`value: arn:aws:ecs:us-west-1:123456789123:container/32624152-9086-4f0e-acae-1a75b14fe4d9` | [`aws.ecs.container.arn`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `aws.ecs.launchtype` | [`aws.ecs.launchtype`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: aws.ecs.launchtype,`<br>&nbsp;&nbsp;&nbsp;`type:string,`<br>&nbsp;&nbsp;&nbsp;`value: ec2` | [`aws.ecs.launchtype`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `aws.ecs.task.arn` | [`aws.ecs.task.arn`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: aws.ecs.task.arn,`<br>&nbsp;&nbsp;&nbsp;`value: arn:aws:ecs:us-west-1:123456789123:task/10838bed-421f-43ef-870a-f43feacbbb5b` | [`aws.ecs.task.arn`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `aws.ecs.task.family` | [`aws.ecs.task.family`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: aws.ecs.task.family,`<br>&nbsp;&nbsp;&nbsp;`value: opentelemetry-family` | [`aws.ecs.task.family`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `aws.ecs.task.id` | [`aws.ecs.task.id`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: aws.ecs.task.id,`<br>&nbsp;&nbsp;&nbsp;`value: 10838bed-421f-43ef-870a-f43feacbbb5b` | [`aws.ecs.task.id`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `aws.ecs.task.revision` | [`aws.ecs.task.revision`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: aws.ecs.task.revision,`<br>&nbsp;&nbsp;&nbsp;`value: 8` | [`aws.ecs.task.revision`](/docs/registry/attributes/.md) |
-
-**Environment Variable Options:**
-
-| Setting | Requirement Level | Category | Example Value | Attribute |
-| --- | --- | --- | --- | --- |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `aws.ecs.cluster.arn=arn:aws:ecs:us-west-2:123456789123:cluster/my-cluster` | [`aws.ecs.cluster.arn`](/docs/registry/attributes/.md) |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `aws.ecs.container.arn=arn:aws:ecs:us-west-1:123456789123:container/32624152-9086-4f0e-acae-1a75b14fe4d9` | [`aws.ecs.container.arn`](/docs/registry/attributes/.md) |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `aws.ecs.launchtype=` | [`aws.ecs.launchtype`](/docs/registry/attributes/.md) |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `aws.ecs.task.arn=arn:aws:ecs:us-west-1:123456789123:task/10838bed-421f-43ef-870a-f43feacbbb5b` | [`aws.ecs.task.arn`](/docs/registry/attributes/.md) |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `aws.ecs.task.family=opentelemetry-family` | [`aws.ecs.task.family`](/docs/registry/attributes/.md) |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `aws.ecs.task.id=10838bed-421f-43ef-870a-f43feacbbb5b` | [`aws.ecs.task.id`](/docs/registry/attributes/.md) |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `aws.ecs.task.revision=8` | [`aws.ecs.task.revision`](/docs/registry/attributes/.md) |
 
 ## AWS EKS
 
@@ -94,13 +75,6 @@
 | --- | --- | --- | --- | --- |
 | `resource.detection.detectors[]` | `Required` | Detector Inclusion | `aws.eks` | - |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `aws.eks.cluster.arn` | [`aws.eks.cluster.arn`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: aws.eks.cluster.arn,`<br>&nbsp;&nbsp;&nbsp;`value: arn:aws:ecs:us-west-2:123456789123:cluster/my-cluster` | [`aws.eks.cluster.arn`](/docs/registry/attributes/.md) |
-
-**Environment Variable Options:**
-
-| Setting | Requirement Level | Category | Example Value | Attribute |
-| --- | --- | --- | --- | --- |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `aws.eks.cluster.arn=arn:aws:ecs:us-west-2:123456789123:cluster/my-cluster` | [`aws.eks.cluster.arn`](/docs/registry/attributes/.md) |
 
 ## AWS Log
 
@@ -135,19 +109,6 @@
 | --- | --- | --- | --- | --- |
 | `resource.detection.detectors[]` | `Required` | Detector Inclusion | `aws.log` | - |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `aws.log.group.arns` | [`aws.log.group.arns`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: aws.log.group.arns,`<br>&nbsp;&nbsp;&nbsp;`type:string[],`<br>&nbsp;&nbsp;&nbsp;`value: ["arn:aws:logs:us-west-1:123456789012:log-group:/aws/my/group:*"]` | [`aws.log.group.arns`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `aws.log.group.names` | [`aws.log.group.names`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: aws.log.group.names,`<br>&nbsp;&nbsp;&nbsp;`type:string[],`<br>&nbsp;&nbsp;&nbsp;`value: ["/aws/lambda/my-function", "opentelemetry-service"]` | [`aws.log.group.names`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `aws.log.stream.arns` | [`aws.log.stream.arns`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: aws.log.stream.arns,`<br>&nbsp;&nbsp;&nbsp;`type:string[],`<br>&nbsp;&nbsp;&nbsp;`value: ["arn:aws:logs:us-west-1:123456789012:log-group:/aws/my/group:log-stream:logs/main/10838bed-421f-43ef-870a-f43feacbbb5b"]` | [`aws.log.stream.arns`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `aws.log.stream.names` | [`aws.log.stream.names`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: aws.log.stream.names,`<br>&nbsp;&nbsp;&nbsp;`type:string[],`<br>&nbsp;&nbsp;&nbsp;`value: ["logs/main/10838bed-421f-43ef-870a-f43feacbbb5b"]` | [`aws.log.stream.names`](/docs/registry/attributes/.md) |
-
-**Environment Variable Options:**
-
-| Setting | Requirement Level | Category | Example Value | Attribute |
-| --- | --- | --- | --- | --- |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `aws.log.group.arns=["arn:aws:logs:us-west-1:123456789012:log-group:/aws/my/group:*"]` | [`aws.log.group.arns`](/docs/registry/attributes/.md) |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `aws.log.group.names=["/aws/lambda/my-function", "opentelemetry-service"]` | [`aws.log.group.names`](/docs/registry/attributes/.md) |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `aws.log.stream.arns=["arn:aws:logs:us-west-1:123456789012:log-group:/aws/my/group:log-stream:logs/main/10838bed-421f-43ef-870a-f43feacbbb5b"]` | [`aws.log.stream.arns`](/docs/registry/attributes/.md) |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `aws.log.stream.names=["logs/main/10838bed-421f-43ef-870a-f43feacbbb5b"]` | [`aws.log.stream.names`](/docs/registry/attributes/.md) |

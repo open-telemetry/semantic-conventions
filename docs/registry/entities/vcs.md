@@ -53,19 +53,8 @@ revision based on the VCS system and situational context.
 | --- | --- | --- | --- | --- |
 | `resource.detection.detectors[]` | `Required` | Detector Inclusion | `vcs.ref` | - |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `vcs.ref.head.name` | [`vcs.ref.head.name`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: vcs.ref.head.name,`<br>&nbsp;&nbsp;&nbsp;`value: my-feature-branch` | [`vcs.ref.head.name`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `vcs.ref.head.revision` | [`vcs.ref.head.revision`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: vcs.ref.head.revision,`<br>&nbsp;&nbsp;&nbsp;`value: 9d59409acf479dfa0df1aa568182e43e43df8bbe28d60fcf2bc52e30068802cc` | [`vcs.ref.head.revision`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `vcs.ref.type` | [`vcs.ref.type`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: vcs.ref.type,`<br>&nbsp;&nbsp;&nbsp;`type:string,`<br>&nbsp;&nbsp;&nbsp;`value: branch` | [`vcs.ref.type`](/docs/registry/attributes/.md) |
-
-**Environment Variable Options:**
-
-| Setting | Requirement Level | Category | Example Value | Attribute |
-| --- | --- | --- | --- | --- |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `vcs.ref.head.name=my-feature-branch` | [`vcs.ref.head.name`](/docs/registry/attributes/.md) |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `vcs.ref.head.revision=9d59409acf479dfa0df1aa568182e43e43df8bbe28d60fcf2bc52e30068802cc` | [`vcs.ref.head.revision`](/docs/registry/attributes/.md) |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `vcs.ref.type=branch` | [`vcs.ref.type`](/docs/registry/attributes/.md) |
 
 ## VCS Repo
 
@@ -99,13 +88,4 @@ the `.git` extension.
 | --- | --- | --- | --- | --- |
 | `resource.detection.detectors[]` | `Required` | Detector Inclusion | `vcs.repo` | - |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `vcs.repository.name` | [`vcs.repository.name`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: vcs.repository.name,`<br>&nbsp;&nbsp;&nbsp;`value: semantic-conventions` | [`vcs.repository.name`](/docs/registry/attributes/.md) |
 | `resource.experimentalresourcedetection.attributes.excluded[]` | `Conditionally Required` | Attribute Exclusion | `vcs.repository.url.full` | [`vcs.repository.url.full`](/docs/registry/attributes/.md) |
-| `resource.attributes[]` | `Opt-In` | User Defined Resource | `- name: vcs.repository.url.full,`<br>&nbsp;&nbsp;&nbsp;`value: https://github.com/opentelemetry/open-telemetry-collector-contrib` | [`vcs.repository.url.full`](/docs/registry/attributes/.md) |
-
-**Environment Variable Options:**
-
-| Setting | Requirement Level | Category | Example Value | Attribute |
-| --- | --- | --- | --- | --- |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `vcs.repository.name=semantic-conventions` | [`vcs.repository.name`](/docs/registry/attributes/.md) |
-| `OTEL_RESOURCE_ATTRIBUTES` | Conditionally Required | User Defined Resource | `vcs.repository.url.full=https://github.com/opentelemetry/open-telemetry-collector-contrib` | [`vcs.repository.url.full`](/docs/registry/attributes/.md) |
