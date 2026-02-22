@@ -47,6 +47,8 @@ TODO (latest).
 
 ### RPC span attributes
 
+<!-- disable mdlint requirement for tables to be aligned -->
+<!-- markdownlint-disable-file MD060 -->
 <!-- prettier-ignore-start -->
 | Change                                                         | PR                                                                                                                                                   | Comments                                                                                                                          |
 | -------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
@@ -61,8 +63,8 @@ TODO (latest).
 | `rpc.grpc.response.metadata.<key>`                             | [#3169](https://github.com/open-telemetry/semantic-conventions/pull/3169)                                                                            | Replaced by `rpc.response.metadata.<key>`                                                                                         |
 | `rpc.connect_rpc.request.metadata.<key>`                       | [#3169](https://github.com/open-telemetry/semantic-conventions/pull/3169)                                                                            | Replaced by `rpc.request.metadata.<key>`                                                                                          |
 | `rpc.connect_rpc.response.metadata.<key>`                      | [#3169](https://github.com/open-telemetry/semantic-conventions/pull/3169)                                                                            | Replaced by `rpc.response.metadata.<key>`                                                                                         |
-| `server.address`                                               | [#3203](https://github.com/open-telemetry/semantic-conventions/pull/3203)                                                                            | Now marked as sampling-relevant                                                                                                   |
-| `server.port`                                                  | [#3203](https://github.com/open-telemetry/semantic-conventions/pull/3203)                                                                            | Now marked as sampling-relevant                                                                                                   |
+| `server.address`                                               | [#3203](https://github.com/open-telemetry/semantic-conventions/pull/3203), [#3317](https://github.com/open-telemetry/semantic-conventions/pull/3317) | Now marked as sampling-relevant;<br>Now it’s taken from static configuration and can be any string identifying a group of server instances.  |
+| `server.port`                                                  | [#3203](https://github.com/open-telemetry/semantic-conventions/pull/3203), [#3317](https://github.com/open-telemetry/semantic-conventions/pull/3317) | Now marked as sampling-relevant;<br>>Now it’s taken from static configuration.  |
 | New: `error.type`                                              | [#2852](https://github.com/open-telemetry/semantic-conventions/pull/2852)                                                                            |                                                                                                                                   |
 | New: `rpc.method_original`                                     | [#3223](https://github.com/open-telemetry/semantic-conventions/pull/3223)                                                                            | Original method name when `rpc.method` is set to `_OTHER`                                                                         |
 <!-- prettier-ignore-end -->
@@ -152,6 +154,11 @@ References:
 
 - [Metric `rpc.client.duration` v1.37.0](https://github.com/open-telemetry/semantic-conventions/blob/v1.37.0/docs/rpc/rpc-metrics.md#metric-rpcclientduration)
 - [Metric `rpc.client.call.duration` (TODO)](https://github.com/open-telemetry/semantic-conventions/blob/main/docs/rpc/rpc-metrics.md#metric-rpcclientcallduration)
+
+### RPC exception events
+
+Exceptions that prevent the call from completing successfully are recorded as
+[`rpc.client.call.exception` and `rpc.server.call.exception` log-based events](/docs/rpc/rpc-exceptions.md) ([#3426](https://github.com/open-telemetry/semantic-conventions/pull/3426)).
 
 ### Deprecated events
 

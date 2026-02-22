@@ -77,6 +77,7 @@ Currently, the following namespaces exist:
 | | [k8s.replicaset](k8s.md#k8s-replicaset) | ![Development](https://img.shields.io/badge/-development-blue) |
 | | [k8s.replicationcontroller](k8s.md#k8s-replicationcontroller) | ![Development](https://img.shields.io/badge/-development-blue) |
 | | [k8s.resourcequota](k8s.md#k8s-resourcequota) | ![Development](https://img.shields.io/badge/-development-blue) |
+| | [k8s.service](k8s.md#k8s-service) | ![Development](https://img.shields.io/badge/-development-blue) |
 | | [k8s.statefulset](k8s.md#k8s-statefulset) | ![Development](https://img.shields.io/badge/-development-blue) |
 | Openshift | | |
 | | [openshift.clusterquota](openshift.md#openshift-clusterquota) | ![Development](https://img.shields.io/badge/-development-blue) |

@@ -37,7 +37,7 @@ groups:
 
   - id: span.rpc.call.client
     type: span
-    stability: development
+    stability: release_candidate
     brief: This span represents an outgoing Remote Procedure Call (RPC).
     note: |
       RPC client spans SHOULD cover the entire client-side lifecycle of an RPC,
@@ -65,7 +65,7 @@ groups:
 
   - id: span.rpc.call.server
     type: span
-    stability: development
+    stability: release_candidate
     extends: rpc.server
     span_kind: server
     brief: This span represents an incoming Remote Procedure Call (RPC).
@@ -114,6 +114,16 @@ groups:
         requirement_level: opt_in
       - ref: rpc.response.metadata
         requirement_level: opt_in
+      - ref: server.address
+        brief: The domain name or address of the Connect RPC server.
+        requirement_level: required
+        note: >
+          When an IP address is provided instead of a domain name,
+          instrumentations SHOULD NOT do a reverse proxy lookup to obtain DNS
+          name and SHOULD set `server.address` to the provided IP address.
+      - ref: server.port
+        requirement_level:
+          conditionally_required: if available.
 
   - id: span.rpc.connect_rpc.call.server
     type: span
@@ -151,7 +161,7 @@ groups:
 
   - id: span.rpc.grpc.call.client
     type: span
-    stability: development
+    stability: release_candidate
     brief: This span represents an outgoing Remote Procedure Call (RPC).
     note: |
       `rpc.system.name` MUST be set to `"grpc"` and SHOULD be provided **at span creation time.**
@@ -179,10 +189,54 @@ groups:
         requirement_level: opt_in
       - ref: rpc.response.metadata
         requirement_level: opt_in
+      - ref: server.address
+        note: |
+          Instrumentations SHOULD populate `server.address` (along with `server.port`)
+          based on the configuration used when creating the gRPC channel and
+          SHOULD NOT use actual network-level connection information for this purpose
+          to ensure low cardinality.
 
+          Instrumentations MAY parse address and port from the gRPC target string
+          according to the [gRPC Name Resolution specification](https://grpc.github.io/grpc/core/md_doc_naming.html),
+          depending on the scheme used. Or, they MAY use gRPC client APIs that
+          provide this information.
+
+          If the instrumentation cannot determine a server domain name or another
+          suitable low-cardinality identifier for a group of server instances
+          from the target string, it SHOULD set `server.address` to the entire
+          target string and SHOULD NOT set `server.port`.
+
+          When the address is an IP address, instrumentations SHOULD NOT do a
+          reverse proxy lookup to obtain a DNS name and SHOULD set `server.address`
+          to the IP address provided.
+
+          Examples:
+
+          - Given the target string `grpc.io:50051`, expected attributes:
+            - `server.address`: `"grpc.io"`
+            - `server.port`: `50051`
+          - Given the target string `dns://1.2.3.4/grpc.io:50051`, expected attributes:
+            - `server.address`: `"grpc.io"`
+            - `server.port`: `50051`
+          - Given the target string `unix:///run/containerd/containerd.sock`, expected attributes:
+            - `server.address`: `"/run/containerd/containerd.sock"`
+            - `server.port`: not set
+          - Given the target string `zk://zookeeper:2181/my-server`, expected attributes:
+            - `server.address`: `"zk://zookeeper:2181/my-server"`
+            - `server.port`: not set
+          - Given the target string `ipv4:198.51.100.123:50051,198.51.100.124:50051`, expected attributes:
+            - `server.address`: `"ipv4:198.51.100.123:50051,198.51.100.124:50051"`
+            - `server.port`: not set
+        requirement_level: required
+      - ref: server.port
+        note: >
+          See the `server.address` for details on parsing the target string.
+        requirement_level:
+          conditionally_required: If and only if the port is available and `server.address` is set.
+        examples: [50051]
   - id: span.rpc.grpc.call.server
     type: span
-    stability: development
+    stability: release_candidate
     extends: rpc.server
     span_kind: server
     brief: This span represents an incoming Remote Procedure Call (RPC).
@@ -261,6 +315,13 @@ groups:
           All JSON RPC error codes SHOULD be considered errors.
         requirement_level:
           conditionally_required: when available
+      - ref: server.address
+        requirement_level:
+          recommended: >
+            Instrumentations that have access to the transport-level information
+            and can reliably extract domain name or another low-cardinality server
+            address from it SHOULD set this attribute.
+        note: ""
 
   - id: span.rpc.jsonrpc.call.server
     type: span
@@ -306,3 +367,122 @@ groups:
           All JSON RPC error codes SHOULD be considered errors.
         requirement_level:
           conditionally_required: when available
+
+  - id: span.rpc.dubbo.call.client
+    type: span
+    stability: release_candidate
+    brief: This span represents an outgoing Remote Procedure Call (RPC).
+    note: |
+      `rpc.system.name` MUST be set to `"dubbo"` and SHOULD be provided **at span creation time.**
+
+      **Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#name) section.
+
+      **Span kind** MUST be `CLIENT`.
+
+      **Span status** Refer to the [Recording Errors](/docs/general/recording-errors.md)
+      document for details on how to record span status. See also `rpc.response.status_code` attribute
+      for the details on which values classify as errors.
+    extends: rpc
+    span_kind: client
+    attributes:
+      - ref: rpc.method
+        requirement_level: required
+      - ref: rpc.response.status_code
+        requirement_level: required
+        brief: >
+          The string representation of the Dubbo response status code returned by the server or generated by the client.
+        examples: ['OK', 'DEADLINE_EXCEEDED', 'SERVER_ERROR']
+        note: |
+          All status codes except `OK` SHOULD be considered errors.
+
+          Status codes reference:
+
+          - Dubbo2: [Dubbo2 Protocol Status Codes](https://dubbo.apache.org/en/overview/reference/protocols/tcp/#protocol-specification)
+          - Dubbo3 Triple protocol: [Triple Protocol Error Codes](https://dubbo.apache.org/en/overview/reference/protocols/triple-spec/#311-request)
+      - ref: server.address
+        requirement_level:
+          conditionally_required: If available.
+        examples: ['192.168.1.100', 'api.example.com']
+        note: |
+          Instrumentations SHOULD populate `server.address` (along with `server.port`)
+          based on the configuration used when creating the Dubbo client and
+          SHOULD NOT use actual network-level connection information for this purpose
+          to ensure low cardinality.
+
+          The Dubbo registry address SHOULD NOT be used as `server.address`. Instead, use
+          the address of the actual server being called.
+
+          - Given the target URL `dubbo://192.168.1.100:20880/com.example.DemoService`, expected attributes:
+            - `server.address`: `"192.168.1.100"`
+            - `server.port`: `20880`
+          - Given the target URL `tri://api.example.com:50051/com.example.GreeterService`, expected attributes:
+            - `server.address`: `"api.example.com"`
+            - `server.port`: `50051`
+          - Given the target URL `tri://api.example.com/com.example.GreeterService` (port not specified), expected attributes:
+            - `server.address`: `"api.example.com"`
+            - `server.port`: not set
+
+          When the address is an IP address, instrumentations SHOULD NOT do a
+          reverse proxy lookup to obtain a DNS name and SHOULD set `server.address`
+          to the IP address provided.
+      - ref: server.port
+        requirement_level:
+          conditionally_required: if `server.address` is set and if the port is supported by the network transport used for communication.
+        examples: [20880, 50051]
+        note: >
+          See the `server.address` for details on parsing the target string.
+      - ref: rpc.request.metadata
+        requirement_level: opt_in
+      - ref: rpc.response.metadata
+        requirement_level: opt_in
+
+  - id: span.rpc.dubbo.call.server
+    type: span
+    stability: release_candidate
+    extends: rpc.server
+    span_kind: server
+    brief: This span represents an incoming Remote Procedure Call (RPC).
+    note: |
+      `rpc.system.name` MUST be set to `"dubbo"` and SHOULD be provided **at span creation time.**
+
+      **Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#name) section.
+
+      **Span kind** MUST be `SERVER`.
+
+      **Span status** Refer to the [Recording Errors](/docs/general/recording-errors.md)
+      document for details on how to record span status. See also `rpc.response.status_code` attribute
+      for the details on which values classify as errors.
+    attributes:
+      - ref: rpc.response.status_code
+        requirement_level: required
+        brief: >
+          The string representation of the Dubbo response status code returned by the server.
+        examples: ['OK', 'SERVER_ERROR', 'SERVER_THREADPOOL_EXHAUSTED_ERROR']
+        note: |
+          For Dubbo2, the following status codes SHOULD be considered errors:
+
+          - `SERVER_ERROR`
+          - `SERVER_THREADPOOL_EXHAUSTED_ERROR`
+          - `SERVER_TIMEOUT`
+          - `SERVICE_ERROR`
+
+          For Dubbo3 Triple protocol, the following status codes SHOULD be considered errors:
+
+          - `DATA_LOSS`
+          - `DEADLINE_EXCEEDED`
+          - `INTERNAL`
+          - `UNAVAILABLE`
+          - `UNIMPLEMENTED`
+          - `UNKNOWN`
+
+          Status codes reference:
+
+          - Dubbo2: [Dubbo2 Protocol Status Codes](https://dubbo.apache.org/en/overview/reference/protocols/tcp/#protocol-specification)
+          - Dubbo3 Triple protocol: [Triple Protocol Error Codes](https://dubbo.apache.org/en/overview/reference/protocols/triple-spec/#311-request)
+      - ref: server.port
+        requirement_level:
+          conditionally_required: if `server.address` is set and if the port is supported by the network transport used for communication.
+      - ref: rpc.request.metadata
+        requirement_level: opt_in
+      - ref: rpc.response.metadata
+        requirement_level: opt_in

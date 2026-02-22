@@ -6,17 +6,22 @@ groups:
       - ref: rpc.method
       - ref: server.address
         brief: >
-          RPC server [host name](https://grpc.github.io/grpc/core/md_doc_naming.html).
+          A string identifying a group of RPC server instances request is sent to.
         note: >
-          May contain server IP address, DNS name, or local socket name. When host component is an IP address,
-          instrumentations SHOULD NOT do a reverse proxy lookup to obtain DNS name and SHOULD set
-          `server.address` to the IP address provided in the host component.
+          May contain a DNS name, an endpoint and path in the service registry,
+          local socket name or an IP address.
+
+          Semantic conventions for individual RPC systems SHOULD document how to
+          populate this attribute.
+
+          When address is an IP address, instrumentations SHOULD NOT do a reverse
+          DNS lookup to obtain a DNS name and SHOULD set `server.address` to the
+          provided IP address.
         requirement_level:
           conditionally_required: If available.
       - ref: server.port
         requirement_level:
-          conditionally_required: if `server.address` is set and if the port is
-            supported by the network transport used for communication.
+          conditionally_required: if applicable and if `server.address` is set.
       - ref: rpc.response.status_code
         requirement_level:
           conditionally_required: if available.

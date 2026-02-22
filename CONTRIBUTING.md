@@ -67,22 +67,37 @@ Please make sure all Pull Requests are compliant with these rules!
 
 ### Which semantic conventions belong in this repo
 
-This repo contains semantic conventions supported by the OpenTelemetry ecosystem
-including, but not limited to, components hosted in OpenTelemetry.
+This repo contains semantic conventions supported by multiple components in the
+OpenTelemetry ecosystem including, but not limited to, components hosted in
+OpenTelemetry.
 
-Instrumentations hosted in OpenTelemetry SHOULD contribute their semantic
-conventions to this repo with the following exceptions:
+Instrumentations hosted in OpenTelemetry SHOULD contribute their semantic conventions
+to this repository when the corresponding conventions are applicable across multiple
+runtimes, across different types of libraries, or across multiple infrastructure
+components.
 
-- Instrumentations that follow external schema not fully compatible with OpenTelemetry such as
-  [Kafka client JMX metrics](https://github.com/open-telemetry/opentelemetry-java-instrumentation/blob/v2.10.0/instrumentation/kafka/kafka-clients/kafka-clients-2.6/library/README.md)
-  or [RabbitMQ Collector Receiver](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/v0.116.0/receiver/rabbitmqreceiver)
-  SHOULD document such conventions in their own repository.
+Conventions that are specific to a single runtime, library, or narrowly scoped
+implementation SHOULD be defined in the corresponding repository.
 
-Having all OTel conventions in this repo allows to reuse common attributes, enforce naming and compatibility policies,
-and helps to keep conventions consistent and backward compatible.
+> [!NOTE]
+> This guidance affects all new contributions to OpenTelemetry semantic conventions.
+> Existing conventions for specific areas MAY be moved outside of this repository.
+
+Examples of new convention areas that may be considered for this repository,
+given their general applicability:
+
+- database, messaging, or GenAI server conventions
+- websockets conventions
+
+Examples of conventions that should not be hosted in this repository:
+
+- [Kafka client JMX metrics](https://github.com/open-telemetry/opentelemetry-java-instrumentation/blob/v2.25.0/instrumentation/kafka/kafka-clients/kafka-clients-2.6/library/README.md)
+- [RabbitMQ Collector Receiver](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/v0.145.0/receiver/rabbitmqreceiver)
 
 Want to define your own conventions outside this repo while building on OTel’s?
 Come help us [decentralize semantic conventions](https://github.com/open-telemetry/weaver/issues/215).
+
+<!-- TODO add link to decentralized conventions docs and examples - https://github.com/open-telemetry/semantic-conventions/issues/3456 -->
 
 ### Suggesting conventions for a new area
 

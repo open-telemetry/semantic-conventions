@@ -1,4 +1,0 @@
-change_type: enhancement
-component: db
-note: Clarified `db.query.summary` behavior for batch operations.
-issues: [ 3287 ]
