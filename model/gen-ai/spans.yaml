@@ -487,8 +487,17 @@ groups:
       and report `invoke_agent` spans, so `invoke_workflow` SHOULD NOT be reported by such instrumentations.
       Conversely, frameworks like CrewAI have a distinct concept of crew (similar to workflow)
       that is separate from individual agents, so they SHOULD report `invoke_workflow` spans.
-    extends: attributes.gen_ai.common.client
     attributes:
+      - ref: gen_ai.operation.name
+        requirement_level: required
+        sampling_relevant: true
+      - ref: error.type
+        requirement_level:
+          conditionally_required: "if the operation ended in an error"
+        note: |
+          The `error.type` SHOULD match the error code returned by the Generative AI provider or the client library,
+          the canonical name of exception that occurred, or another low-cardinality error identifier.
+          Instrumentations SHOULD document the list of errors they report.
       - ref: gen_ai.workflow.name
         requirement_level:
           conditionally_required: when available
