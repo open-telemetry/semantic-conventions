@@ -72,8 +72,19 @@ Kubernetes resource attributes.
 | <a id="k8s-resourcequota-name" href="#k8s-resourcequota-name">`k8s.resourcequota.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the resource quota. | `opentelemetry` |
 | <a id="k8s-resourcequota-resource-name" href="#k8s-resourcequota-resource-name">`k8s.resourcequota.resource_name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the K8s resource a resource quota defines. [28] | `count/replicationcontrollers` |
 | <a id="k8s-resourcequota-uid" href="#k8s-resourcequota-uid">`k8s.resourcequota.uid`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The UID of the resource quota. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` |
-| <a id="k8s-statefulset-annotation" href="#k8s-statefulset-annotation">`k8s.statefulset.annotation.<key>`</a> | ![Beta](https://img.shields.io/badge/beta-lightpink) | string | The annotation placed on the StatefulSet, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [29] | `1`; `` |
-| <a id="k8s-statefulset-label" href="#k8s-statefulset-label">`k8s.statefulset.label.<key>`</a> | ![Beta](https://img.shields.io/badge/beta-lightpink) | string | The label placed on the StatefulSet, the `<key>` being the label name, the value being the label value, even if the value is empty. [30] | `guestbook`; `` |
+| <a id="k8s-service-annotation" href="#k8s-service-annotation">`k8s.service.annotation.<key>`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The annotation placed on the Service, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [29] | `true`; `` |
+| <a id="k8s-service-endpoint-address-type" href="#k8s-service-endpoint-address-type">`k8s.service.endpoint.address_type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The address type of the service endpoint. [30] | `IPv4`; `IPv6` |
+| <a id="k8s-service-endpoint-condition" href="#k8s-service-endpoint-condition">`k8s.service.endpoint.condition`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The condition of the service endpoint. [31] | `ready`; `serving`; `terminating` |
+| <a id="k8s-service-endpoint-zone" href="#k8s-service-endpoint-zone">`k8s.service.endpoint.zone`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The zone of the service endpoint. [32] | `us-east-1a`; `us-west-2b`; `zone-a`; `` |
+| <a id="k8s-service-label" href="#k8s-service-label">`k8s.service.label.<key>`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The label placed on the Service, the `<key>` being the label name, the value being the label value, even if the value is empty. [33] | `my-service`; `` |
+| <a id="k8s-service-name" href="#k8s-service-name">`k8s.service.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the Service. | `my-service` |
+| <a id="k8s-service-publish-not-ready-addresses" href="#k8s-service-publish-not-ready-addresses">`k8s.service.publish_not_ready_addresses`</a> | ![Development](https://img.shields.io/badge/-development-blue) | boolean | Whether the Service publishes not-ready endpoints. [34] | `true`; `false` |
+| <a id="k8s-service-selector" href="#k8s-service-selector">`k8s.service.selector.<key>`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The selector key-value pair placed on the Service, the `<key>` being the selector key, the value being the selector value. [35] | `my-app`; `v1` |
+| <a id="k8s-service-traffic-distribution" href="#k8s-service-traffic-distribution">`k8s.service.traffic_distribution`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The traffic distribution policy for the Service. [36] | `PreferSameZone`; `PreferSameNode` |
+| <a id="k8s-service-type" href="#k8s-service-type">`k8s.service.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The type of the Kubernetes Service. [37] | `ClusterIP`; `NodePort`; `LoadBalancer` |
+| <a id="k8s-service-uid" href="#k8s-service-uid">`k8s.service.uid`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The UID of the Service. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` |
+| <a id="k8s-statefulset-annotation" href="#k8s-statefulset-annotation">`k8s.statefulset.annotation.<key>`</a> | ![Beta](https://img.shields.io/badge/beta-lightpink) | string | The annotation placed on the StatefulSet, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [38] | `1`; `` |
+| <a id="k8s-statefulset-label" href="#k8s-statefulset-label">`k8s.statefulset.label.<key>`</a> | ![Beta](https://img.shields.io/badge/beta-lightpink) | string | The label placed on the StatefulSet, the `<key>` being the label name, the value being the label value, even if the value is empty. [39] | `guestbook`; `` |
 | <a id="k8s-statefulset-name" href="#k8s-statefulset-name">`k8s.statefulset.name`</a> | ![Beta](https://img.shields.io/badge/beta-lightpink) | string | The name of the StatefulSet. | `opentelemetry` |
 | <a id="k8s-statefulset-uid" href="#k8s-statefulset-uid">`k8s.statefulset.uid`</a> | ![Beta](https://img.shields.io/badge/beta-lightpink) | string | The UID of the StatefulSet. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` |
 | <a id="k8s-storageclass-name" href="#k8s-storageclass-name">`k8s.storageclass.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of K8s [StorageClass](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#storageclass-v1-storage-k8s-io) object. | `gold.storageclass.storage.k8s.io` |
@@ -262,14 +273,73 @@ in ISO 8601 (RFC 3339 compatible) format.
 
 **[28] `k8s.resourcequota.resource_name`:** The value for this attribute can be either the full `count/<resource>[.<group>]` string (e.g., count/deployments.apps, count/pods), or, for certain core Kubernetes resources, just the resource name (e.g., pods, services, configmaps). Both forms are supported by Kubernetes for object count quotas. See [Kubernetes Resource Quotas documentation](https://kubernetes.io/docs/concepts/policy/resource-quotas/#quota-on-object-count) for more details.
 
-**[29] `k8s.statefulset.annotation.<key>`:** Examples:
+**[29] `k8s.service.annotation.<key>`:** Examples:
+
+- An annotation `prometheus.io/scrape` with value `true` SHOULD be recorded as
+  the `k8s.service.annotation.prometheus.io/scrape` attribute with value `"true"`.
+- An annotation `data` with empty string value SHOULD be recorded as
+  the `k8s.service.annotation.data` attribute with value `""`.
+
+**[30] `k8s.service.endpoint.address_type`:** The network address family or type of the endpoint.
+This attribute aligns with the `addressType` field of the
+[K8s EndpointSlice](https://kubernetes.io/docs/reference/kubernetes-api/service-resources/endpoint-slice-v1/).
+It is used to differentiate metrics when a Service is backed by multiple address types
+(e.g., in dual-stack clusters).
+
+**[31] `k8s.service.endpoint.condition`:** The current operational condition of the service endpoint.
+An endpoint can have multiple conditions set at once (e.g., both `serving` and `terminating` during rollout).
+This attribute aligns with the condition fields in the [K8s EndpointSlice](https://kubernetes.io/docs/reference/kubernetes-api/service-resources/endpoint-slice-v1/).
+
+**[32] `k8s.service.endpoint.zone`:** The zone where the endpoint is located, typically corresponding to a failure domain.
+This attribute aligns with the `zone` field of endpoints in the
+[K8s EndpointSlice](https://kubernetes.io/docs/reference/kubernetes-api/service-resources/endpoint-slice-v1/).
+It enables zone-aware monitoring of service endpoint distribution and supports
+features like [Topology Aware Routing](https://kubernetes.io/docs/concepts/services-networking/topology-aware-routing/).
+
+If the zone is not populated (e.g., nodes without the `topology.kubernetes.io/zone` label),
+the attribute value will be an empty string.
+
+**[33] `k8s.service.label.<key>`:** Examples:
+
+- A label `app` with value `my-service` SHOULD be recorded as
+  the `k8s.service.label.app` attribute with value `"my-service"`.
+- A label `data` with empty string value SHOULD be recorded as
+  the `k8s.service.label.data` attribute with value `""`.
+
+**[34] `k8s.service.publish_not_ready_addresses`:** Whether the Service is configured to publish endpoints before the pods are ready.
+This attribute is typically used to indicate that a Service (such as a headless
+Service for a StatefulSet) allows peer discovery before pods pass their readiness probes.
+It aligns with the `publishNotReadyAddresses` field of the
+[K8s ServiceSpec](https://kubernetes.io/docs/reference/kubernetes-api/service-resources/service-v1/#ServiceSpec).
+
+**[35] `k8s.service.selector.<key>`:** These selectors are used to correlate with pod labels. Each selector key-value pair becomes a separate attribute.
+
+Examples:
+
+- A selector `app=my-app` SHOULD be recorded as
+  the `k8s.service.selector.app` attribute with value `"my-app"`.
+- A selector `version=v1` SHOULD be recorded as
+  the `k8s.service.selector.version` attribute with value `"v1"`.
+
+**[36] `k8s.service.traffic_distribution`:** Specifies how traffic is distributed to endpoints for this Service.
+This attribute aligns with the `trafficDistribution` field of the
+[K8s ServiceSpec](https://kubernetes.io/docs/reference/networking/virtual-ips/#traffic-distribution).
+Known values include `PreferSameZone` (prefer endpoints in the same zone as the client) and
+`PreferSameNode` (prefer endpoints on the same node, fallback to same zone, then cluster-wide).
+If this field is not set on the Service, the attribute SHOULD NOT be emitted.
+When not set, Kubernetes distributes traffic evenly across all endpoints cluster-wide.
+
+**[37] `k8s.service.type`:** This attribute aligns with the `type` field of the
+[K8s ServiceSpec](https://kubernetes.io/docs/reference/kubernetes-api/service-resources/service-v1/#ServiceSpec).
+
+**[38] `k8s.statefulset.annotation.<key>`:** Examples:
 
 - A label `replicas` with value `1` SHOULD be recorded
   as the `k8s.statefulset.annotation.replicas` attribute with value `"1"`.
 - A label `data` with empty string value SHOULD be recorded as
   the `k8s.statefulset.annotation.data` attribute with value `""`.
 
-**[30] `k8s.statefulset.label.<key>`:** Examples:
+**[39] `k8s.statefulset.label.<key>`:** Examples:
 
 - A label `replicas` with value `0` SHOULD be recorded
   as the `k8s.statefulset.label.app` attribute with value `"guestbook"`.
@@ -356,6 +426,37 @@ in ISO 8601 (RFC 3339 compatible) format.
 | `NodeLost` | The reason on a pod when its state cannot be confirmed as kubelet is unresponsive on the node it is (was) running. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `Shutdown` | The node is shutdown | ![Development](https://img.shields.io/badge/-development-blue) |
 | `UnexpectedAdmissionError` | The pod was rejected admission to the node because of an error during admission that could not be categorized. | ![Development](https://img.shields.io/badge/-development-blue) |
+
+---
+
+`k8s.service.endpoint.address_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value | Description | Stability |
+| --- | --- | --- |
+| `FQDN` | FQDN address type | ![Development](https://img.shields.io/badge/-development-blue) |
+| `IPv4` | IPv4 address type | ![Development](https://img.shields.io/badge/-development-blue) |
+| `IPv6` | IPv6 address type | ![Development](https://img.shields.io/badge/-development-blue) |
+
+---
+
+`k8s.service.endpoint.condition` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value | Description | Stability |
+| --- | --- | --- |
+| `ready` | The endpoint is ready to receive new connections. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `serving` | The endpoint is currently handling traffic. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `terminating` | The endpoint is in the process of shutting down. | ![Development](https://img.shields.io/badge/-development-blue) |
+
+---
+
+`k8s.service.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value | Description | Stability |
+| --- | --- | --- |
+| `ClusterIP` | ClusterIP service type | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ExternalName` | ExternalName service type | ![Development](https://img.shields.io/badge/-development-blue) |
+| `LoadBalancer` | LoadBalancer service type | ![Development](https://img.shields.io/badge/-development-blue) |
+| `NodePort` | NodePort service type | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 

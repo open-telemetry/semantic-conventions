@@ -179,6 +179,9 @@
 /model/jsonrpc                    @open-telemetry/semconv-rpc-approvers @open-telemetry/specs-semconv-approvers
 /docs/non-normative/rpc-migration.md         @open-telemetry/semconv-rpc-approvers @open-telemetry/specs-semconv-approvers
 
+# Configuration for semantic conventions
+/docs/configuration/              @open-telemetry/specs-semconv-approvers @open-telemetry/configuration-approvers
+
 # Oracle Cloud Infrastructure semantic conventions
 /docs/oracle-cloud                @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-oracle-cloud-approvers
 /model/oracle-cloud               @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-oracle-cloud-approvers
