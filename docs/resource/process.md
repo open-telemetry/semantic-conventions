@@ -9,7 +9,7 @@ linkTitle: Process
 <!-- toc -->
 
 - [Process](#process)
-  - [Selecting process attributes](#selecting-process-attributes)
+  - [Selecting process command attributes](#selecting-process-command-attributes)
 - [Process runtimes](#process-runtimes)
   - [Erlang runtimes](#erlang-runtimes)
   - [Go runtimes](#go-runtimes)
