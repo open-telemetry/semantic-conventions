@@ -215,6 +215,7 @@ headers like the following:
 
 ```md
 ---
+title: HTTP
 linkTitle: HTTP
 ---
 ```

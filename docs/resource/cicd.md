@@ -1,6 +1,6 @@
 ---
-linkTitle: CICD
 title: CICD
+linkTitle: CICD
 ---
 
 # CICD

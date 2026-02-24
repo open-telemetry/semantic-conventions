@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
+title: Compatibility between OpenTelemetry and gRPC semantic conventions
 linkTitle: gRPC
---->
+---
 
 <!-- disable mdlint requirement for tables to be aligned -->
 <!-- markdownlint-disable-file MD060 -->

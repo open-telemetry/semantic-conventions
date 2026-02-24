@@ -1,6 +1,6 @@
 ---
-linkTitle: Logs
 title: Semantic conventions for exceptions in logs
+linkTitle: Logs
 ---
 
 # Semantic conventions for exceptions in logs

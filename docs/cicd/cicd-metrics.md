@@ -1,6 +1,6 @@
 ---
-linkTitle: Metrics
 title: Semantic conventions for CICD metrics
+linkTitle: Metrics
 ---
 
 # Semantic conventions for CICD metrics

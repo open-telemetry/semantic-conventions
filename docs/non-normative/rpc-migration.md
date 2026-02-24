@@ -1,6 +1,6 @@
 ---
-linkTitle: RPC migration
 title: RPC semantic convention stability migration guide
+linkTitle: RPC migration
 ---
 
 # RPC semantic convention stability migration guide

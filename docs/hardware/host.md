@@ -1,6 +1,6 @@
 ---
-linkTitle: Physical host
 title: Semantic conventions for physical host metrics
+linkTitle: Physical host
 ---
 
 # Semantic conventions for physical host metrics

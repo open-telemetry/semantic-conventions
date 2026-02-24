@@ -1,6 +1,6 @@
 ---
-linkTitle: HTTP
 title: Semantic conventions for HTTP
+linkTitle: HTTP
 ---
 
 # Semantic conventions for HTTP

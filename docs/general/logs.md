@@ -1,7 +1,7 @@
 ---
+title: General logs attributes
 linkTitle: Logs
 aliases: [logs-general]
-title: General logs attributes
 ---
 
 # General logs attributes

@@ -1,6 +1,6 @@
 ---
-linkTitle: Anthropic
 title: Semantic conventions for Anthropic client operations
+linkTitle: Anthropic
 ---
 
 # Semantic conventions for Anthropic client operations

@@ -1,6 +1,6 @@
 ---
-linkTitle: CloudEvents
 title: Semantic conventions for CloudEvents
+linkTitle: CloudEvents
 ---
 
 # Semantic conventions for CloudEvents

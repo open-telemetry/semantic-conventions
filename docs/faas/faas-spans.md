@@ -1,6 +1,6 @@
 ---
-linkTitle: Spans
 title: Semantic conventions for FaaS spans
+linkTitle: Spans
 ---
 
 # Semantic conventions for FaaS spans

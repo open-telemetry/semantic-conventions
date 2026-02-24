@@ -1,6 +1,6 @@
 ---
-linkTitle: Exceptions
 title: Semantic conventions for RPC exceptions
+linkTitle: Exceptions
 ---
 
 # Semantic conventions for RPC exceptions

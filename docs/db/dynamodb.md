@@ -1,6 +1,6 @@
 ---
-linkTitle: DynamoDB
 title: Semantic conventions for AWS DynamoDB client operations
+linkTitle: DynamoDB
 ---
 
 # Semantic conventions for AWS DynamoDB client operations

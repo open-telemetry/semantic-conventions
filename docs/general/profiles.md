@@ -1,6 +1,6 @@
 ---
-linkTitle: Profiles
 title: Profiles attributes
+linkTitle: Profiles
 ---
 
 # Profiles attributes

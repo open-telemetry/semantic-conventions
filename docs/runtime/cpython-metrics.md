@@ -1,6 +1,6 @@
 ---
-linkTitle: CPython
 title: Semantic conventions for CPython runtime metrics
+linkTitle: CPython
 ---
 
 # Semantic conventions for CPython runtime metrics

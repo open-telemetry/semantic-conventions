@@ -1,6 +1,6 @@
 ---
-linkTitle: GPU
 title: Semantic conventions for GPU metrics
+linkTitle: GPU
 ---
 
 # Semantic conventions for GPU metrics

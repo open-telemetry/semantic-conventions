@@ -1,6 +1,6 @@
 ---
-linkTitle: Disk Controller
 title: Semantic conventions for disk controller metrics
+linkTitle: Disk Controller
 ---
 
 # Semantic conventions for disk controller metrics

@@ -1,6 +1,6 @@
 ---
-linkTitle: Battery
 title: Semantic conventions for battery metrics
+linkTitle: Battery
 ---
 
 # Semantic conventions for battery metrics

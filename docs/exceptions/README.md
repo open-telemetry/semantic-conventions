@@ -1,6 +1,6 @@
 ---
-linkTitle: Exceptions
 title: Semantic conventions for exceptions
+linkTitle: Exceptions
 ---
 
 # Semantic conventions for exceptions

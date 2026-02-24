@@ -1,7 +1,7 @@
 ---
+title: Trace semantic conventions
 linkTitle: Trace
 aliases: [trace-general]
-title: Trace semantic conventions
 ---
 
 # Trace semantic conventions

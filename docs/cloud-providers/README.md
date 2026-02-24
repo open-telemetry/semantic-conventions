@@ -1,6 +1,6 @@
 ---
-linkTitle: Cloud providers
 title: Semantic conventions for cloud providers
+linkTitle: Cloud providers
 ---
 
 # Semantic conventions for cloud providers

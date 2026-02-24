@@ -1,6 +1,6 @@
 ---
-linkTitle: Browser
 title: Semantic conventions for Browser
+linkTitle: Browser
 ---
 
 # Semantic conventions for Browser

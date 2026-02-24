@@ -1,6 +1,6 @@
 ---
-linkTitle: SDK Metrics
 title: Semantic conventions for OpenTelemetry SDK metrics
+linkTitle: SDK Metrics
 ---
 
 # Semantic conventions for OpenTelemetry SDK metrics

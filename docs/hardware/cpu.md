@@ -1,6 +1,6 @@
 ---
-linkTitle: CPU
 title: Semantic conventions for CPU metrics
+linkTitle: CPU
 ---
 
 # Semantic conventions for CPU metrics

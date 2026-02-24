@@ -1,6 +1,6 @@
 ---
-linkTitle: Spans
 title: Semantic conventions for CloudEvents spans
+linkTitle: Spans
 ---
 
 # Semantic conventions for CloudEvents spans

@@ -1,6 +1,6 @@
 ---
-linkTitle: Fan
 title: Semantic conventions for fan metrics
+linkTitle: Fan
 ---
 
 # Semantic conventions for fan metrics

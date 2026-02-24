@@ -1,6 +1,6 @@
 ---
-linkTitle: DNS
 title: Semantic conventions for DNS
+linkTitle: DNS
 ---
 
 # Semantic conventions for DNS

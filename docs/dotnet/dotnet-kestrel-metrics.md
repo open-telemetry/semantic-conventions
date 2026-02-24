@@ -1,6 +1,6 @@
 ---
-linkTitle: Kestrel
 title: Semantic conventions for Kestrel web server metrics
+linkTitle: Kestrel
 ---
 
 # Semantic conventions for Kestrel web server metrics

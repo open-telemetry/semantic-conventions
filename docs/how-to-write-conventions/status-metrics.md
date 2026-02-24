@@ -1,6 +1,6 @@
 ---
-linkTitle: Status Metrics
 title: State Metrics
+linkTitle: Status Metrics
 ---
 
 # State Metrics

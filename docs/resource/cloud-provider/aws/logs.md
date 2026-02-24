@@ -1,6 +1,6 @@
 ---
-linkTitle: Logs
 title: AWS logs
+linkTitle: Logs
 ---
 
 # AWS logs

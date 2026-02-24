@@ -1,6 +1,6 @@
 ---
-linkTitle: EKS
 title: AWS EKS
+linkTitle: EKS
 ---
 
 # AWS EKS

@@ -1,6 +1,6 @@
 ---
-linkTitle: CLI programs
 title: Semantic conventions for CLI programs
+linkTitle: CLI programs
 ---
 
 # Semantic conventions for CLI programs

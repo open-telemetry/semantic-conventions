@@ -1,6 +1,6 @@
 ---
-linkTitle: Database
 title: Semantic conventions for database calls and systems
+linkTitle: Database
 ---
 
 # Semantic conventions for database calls and systems

@@ -1,6 +1,6 @@
 ---
-linkTitle: FaaS
 title: Function as a Service
+linkTitle: FaaS
 ---
 
 # Function as a Service

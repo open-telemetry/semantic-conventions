@@ -1,6 +1,6 @@
 ---
-linkTitle: HTTP
 title: Semantic conventions for HTTP client and server metrics emitted by .NET
+linkTitle: HTTP
 ---
 
 # Semantic conventions for HTTP client and server metrics emitted by .NET

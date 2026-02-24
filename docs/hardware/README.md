@@ -1,7 +1,7 @@
 ---
+title: Semantic conventions for hardware
 linkTitle: Hardware
 aliases: [/docs/specs/semconv/system/hardware-metrics]
-title: Semantic conventions for hardware
 ---
 
 # Semantic conventions for hardware

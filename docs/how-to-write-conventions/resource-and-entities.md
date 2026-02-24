@@ -1,6 +1,6 @@
 ---
-aliases: [/docs/specs/semconv/non-normative/how-to-write-conventions/resource-and-entities]
 title: Resource and Entities
+aliases: [/docs/specs/semconv/non-normative/how-to-write-conventions/resource-and-entities]
 ---
 
 # Resource and Entities

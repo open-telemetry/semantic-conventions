@@ -1,6 +1,6 @@
 ---
-linkTitle: MySQL
 title: Semantic conventions for MySQL client operations
+linkTitle: MySQL
 ---
 
 # Semantic conventions for MySQL client operations

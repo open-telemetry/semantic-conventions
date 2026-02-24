@@ -1,6 +1,6 @@
 ---
-linkTitle: Service
 title: Service semantic conventions
+linkTitle: Service
 ---
 
 # Service semantic conventions

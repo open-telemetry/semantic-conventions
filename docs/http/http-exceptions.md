@@ -1,6 +1,6 @@
 ---
-linkTitle: Exceptions
 title: Semantic conventions for HTTP exceptions
+linkTitle: Exceptions
 ---
 
 # Semantic conventions for HTTP exceptions

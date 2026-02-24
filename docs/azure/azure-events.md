@@ -1,6 +1,6 @@
 ---
-linkTitle: Events
 title: Semantic conventions for Azure resource log events
+linkTitle: Events
 ---
 
 # Semantic conventions for Azure resource log events

@@ -1,6 +1,6 @@
 ---
-linkTitle: Mobile
 title: Semantic conventions for mobile platform
+linkTitle: Mobile
 ---
 
 # Semantic conventions for mobile platform

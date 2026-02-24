@@ -1,6 +1,6 @@
 ---
-linkTitle: GraphQL
 title: Semantic conventions for GraphQL
+linkTitle: GraphQL
 ---
 
 # Semantic conventions for GraphQL

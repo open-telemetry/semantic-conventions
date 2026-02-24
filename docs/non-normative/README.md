@@ -1,6 +1,6 @@
 ---
-linkTitle: Non-normative
 title: Non-normative supplementary information
+linkTitle: Non-normative
 ---
 
 # Non-normative supplementary information

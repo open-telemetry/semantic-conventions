@@ -1,7 +1,7 @@
 ---
+title: HTTP semantic convention stability migration
 linkTitle: HTTP migration
 aliases: [../http/migration-guide]
-title: HTTP semantic convention stability migration
 ---
 
 # HTTP semantic convention stability migration

@@ -1,6 +1,6 @@
 ---
-linkTitle: Logs
 title: Semantic conventions for CICD logs
+linkTitle: Logs
 ---
 
 # Semantic conventions for CICD logs

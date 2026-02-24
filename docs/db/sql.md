@@ -1,6 +1,6 @@
 ---
-linkTitle: SQL
 title: Semantic conventions for SQL databases client operations
+linkTitle: SQL
 ---
 
 # Semantic conventions for SQL databases client operations

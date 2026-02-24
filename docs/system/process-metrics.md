@@ -1,6 +1,6 @@
 ---
-linkTitle: OS process
 title: Semantic conventions for OS process metrics
+linkTitle: OS process
 ---
 
 # Semantic conventions for OS process metrics

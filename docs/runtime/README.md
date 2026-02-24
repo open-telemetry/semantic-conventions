@@ -1,6 +1,6 @@
 ---
-linkTitle: Runtime environment
 title: Semantic conventions for runtime environment
+linkTitle: Runtime environment
 ---
 
 # Semantic conventions for runtime environment

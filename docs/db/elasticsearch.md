@@ -1,6 +1,6 @@
 ---
-linkTitle: Elasticsearch
 title: Semantic conventions for Elasticsearch client operations
+linkTitle: Elasticsearch
 ---
 
 # Semantic conventions for Elasticsearch client operations

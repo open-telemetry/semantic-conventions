@@ -1,6 +1,6 @@
 ---
-linkTitle: URL
 title: Semantic conventions for URL
+linkTitle: URL
 ---
 
 # Semantic conventions for URL

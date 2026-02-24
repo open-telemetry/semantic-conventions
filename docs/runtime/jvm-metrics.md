@@ -1,6 +1,6 @@
 ---
-linkTitle: JVM
 title: Semantic conventions for JVM metrics
+linkTitle: JVM
 ---
 
 # Semantic conventions for JVM metrics

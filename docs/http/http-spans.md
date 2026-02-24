@@ -1,6 +1,6 @@
 ---
-linkTitle: Spans
 title: Semantic conventions for HTTP spans
+linkTitle: Spans
 ---
 
 # Semantic conventions for HTTP spans

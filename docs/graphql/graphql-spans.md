@@ -1,6 +1,6 @@
 ---
-linkTitle: GraphQL server
 title: Semantic conventions for GraphQL server spans
+linkTitle: GraphQL server
 ---
 
 # Semantic conventions for GraphQL server spans

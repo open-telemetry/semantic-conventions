@@ -1,6 +1,6 @@
 ---
-linkTitle: Voltage
 title: Semantic conventions for voltage metrics
+linkTitle: Voltage
 ---
 
 # Semantic conventions for voltage metrics

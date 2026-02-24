@@ -1,6 +1,6 @@
 ---
-linkTitle: Model Context Protocol
 title: Semantic conventions for Model Context Protocol (MCP)
+linkTitle: Model Context Protocol
 ---
 
 # Semantic conventions for Model Context Protocol (MCP)

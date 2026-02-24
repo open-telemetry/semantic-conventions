@@ -1,6 +1,6 @@
 ---
-linkTitle: System use cases
 title: "System semantic conventions: general use cases"
+linkTitle: System use cases
 ---
 
 # System semantic conventions: general use cases

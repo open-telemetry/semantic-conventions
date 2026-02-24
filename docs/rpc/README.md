@@ -1,6 +1,6 @@
 ---
-linkTitle: RPC
 title: Semantic conventions for RPC
+linkTitle: RPC
 ---
 
 # Semantic conventions for RPC

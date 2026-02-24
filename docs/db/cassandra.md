@@ -1,6 +1,6 @@
 ---
-linkTitle: Cassandra
 title: Semantic conventions for Cassandra client operations
+linkTitle: Cassandra
 ---
 
 # Semantic conventions for Cassandra client operations

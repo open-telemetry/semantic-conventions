@@ -1,6 +1,6 @@
 ---
-linkTitle: App
 title: Semantic conventions for Apps
+linkTitle: App
 ---
 
 # Semantic conventions for Apps

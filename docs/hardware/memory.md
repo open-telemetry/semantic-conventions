@@ -1,6 +1,6 @@
 ---
-linkTitle: Memory
 title: Semantic conventions for memory metrics
+linkTitle: Memory
 ---
 
 # Semantic conventions for memory metrics

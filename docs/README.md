@@ -1,5 +1,6 @@
 ---
 # Hugo front matter used to generate the website version of this page:
+title: OpenTelemetry semantic conventions
 cascade:
   body_class: otel-docs-spec
   github_repo: &repo https://github.com/open-telemetry/semantic-conventions
@@ -12,7 +13,6 @@ redirects:
 cSpell:ignore: semconv CICD
 auto_gen: below
 linkTitle: Semantic conventions
-title: OpenTelemetry semantic conventions
 ---
 
 # OpenTelemetry semantic conventions

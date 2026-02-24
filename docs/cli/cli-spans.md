@@ -1,6 +1,6 @@
 ---
-linkTitle: Spans
 title: Semantic conventions for CLI (command line interface) programs
+linkTitle: Spans
 ---
 
 # Semantic conventions for CLI (command line interface) programs

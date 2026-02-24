@@ -1,6 +1,6 @@
 ---
-linkTitle: Events
 title: Semantic conventions for browser events
+linkTitle: Events
 ---
 
 # Semantic conventions for browser events

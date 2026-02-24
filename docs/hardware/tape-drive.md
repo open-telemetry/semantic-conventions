@@ -1,6 +1,6 @@
 ---
-linkTitle: Tape Drive
 title: Semantic conventions for tape drive metrics
+linkTitle: Tape Drive
 ---
 
 # Semantic conventions for tape drive metrics

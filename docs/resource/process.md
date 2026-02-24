@@ -1,6 +1,6 @@
 ---
-linkTitle: Process
 title: Process and process runtime resources
+linkTitle: Process
 ---
 
 # Process and process runtime resources

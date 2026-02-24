@@ -1,6 +1,6 @@
 ---
-linkTitle: Tracing compatibility
 title: Semantic conventions for tracing compatibility components
+linkTitle: Tracing compatibility
 ---
 
 # Semantic conventions for tracing compatibility components

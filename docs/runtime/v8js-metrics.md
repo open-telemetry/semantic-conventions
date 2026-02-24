@@ -1,6 +1,6 @@
 ---
-linkTitle: V8 JS engine
 title: Semantic conventions for V8 JS engine runtime metrics
+linkTitle: V8 JS engine
 ---
 
 # Semantic conventions for V8 JS engine runtime metrics

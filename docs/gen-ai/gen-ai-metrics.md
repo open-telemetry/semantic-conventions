@@ -1,6 +1,6 @@
 ---
-linkTitle: Metrics
 title: Semantic conventions for generative AI metrics
+linkTitle: Metrics
 ---
 
 # Semantic conventions for generative AI metrics

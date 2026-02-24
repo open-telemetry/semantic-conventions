@@ -1,6 +1,6 @@
 ---
-linkTitle: Cosmos DB
 title: Semantic conventions for Microsoft Azure Cosmos DB client operations
+linkTitle: Cosmos DB
 ---
 
 # Semantic conventions for Microsoft Azure Cosmos DB client operations

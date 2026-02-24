@@ -1,6 +1,6 @@
 ---
-linkTitle: RocketMQ
 title: Semantic conventions for RocketMQ
+linkTitle: RocketMQ
 ---
 
 # Semantic conventions for RocketMQ

@@ -1,6 +1,6 @@
 ---
-linkTitle: OpenShift
 title: Semantic conventions for OpenShift metrics
+linkTitle: OpenShift
 ---
 
 # Semantic conventions for OpenShift metrics

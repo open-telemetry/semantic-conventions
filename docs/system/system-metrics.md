@@ -1,6 +1,6 @@
 ---
-linkTitle: System
 title: Semantic conventions for system metrics
+linkTitle: System
 ---
 
 # Semantic conventions for system metrics

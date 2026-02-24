@@ -1,7 +1,7 @@
 ---
+title: Semantic conventions for events
 linkTitle: Events
 aliases: [events-general]
-title: Semantic conventions for events
 ---
 
 # Semantic conventions for events

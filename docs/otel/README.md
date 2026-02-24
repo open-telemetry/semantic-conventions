@@ -1,6 +1,6 @@
 ---
-linkTitle: OpenTelemetry SDK
 title: Semantic conventions for OpenTelemetry SDK
+linkTitle: OpenTelemetry SDK
 ---
 
 # Semantic conventions for OpenTelemetry SDK

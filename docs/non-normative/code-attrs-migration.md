@@ -1,6 +1,6 @@
 ---
-linkTitle: Code attributes migration
 title: Code attributes semantic convention stability migration guide
+linkTitle: Code attributes migration
 ---
 
 # Code attributes semantic convention stability migration guide

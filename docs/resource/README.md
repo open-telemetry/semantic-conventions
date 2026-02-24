@@ -1,6 +1,6 @@
 ---
-linkTitle: Resource
 title: Resource semantic conventions
+linkTitle: Resource
 ---
 
 # Resource semantic conventions

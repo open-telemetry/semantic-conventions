@@ -1,6 +1,6 @@
 ---
-weight: -2
 title: Registry
+weight: -2
 ---
 
 # Registry

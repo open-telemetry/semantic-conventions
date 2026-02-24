@@ -1,6 +1,6 @@
 ---
-linkTitle: K8s migration
 title: K8s semantic convention stability migration
+linkTitle: K8s migration
 ---
 
 # K8s semantic convention stability migration

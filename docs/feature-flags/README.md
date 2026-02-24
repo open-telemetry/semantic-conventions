@@ -1,6 +1,6 @@
 ---
-linkTitle: Feature flags
 title: Semantic conventions for feature flags
+linkTitle: Feature flags
 ---
 
 # Semantic conventions for feature flags

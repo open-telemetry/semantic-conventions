@@ -1,6 +1,6 @@
 ---
-linkTitle: gRPC
 title: Semantic conventions for gRPC
+linkTitle: gRPC
 ---
 
 # Semantic conventions for gRPC

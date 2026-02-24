@@ -1,6 +1,6 @@
 ---
-linkTitle: Naming known exceptions
 title: Kubernetes naming exceptions
+linkTitle: Naming known exceptions
 ---
 
 # Kubernetes naming exceptions

@@ -1,6 +1,6 @@
 ---
-linkTitle: AWS SNS
 title: Semantic conventions for AWS SNS
+linkTitle: AWS SNS
 ---
 
 # Semantic conventions for AWS SNS

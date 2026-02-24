@@ -1,6 +1,6 @@
 ---
-linkTitle: .NET
 title: Semantic conventions for .NET Common Language Runtime (CLR) metrics
+linkTitle: .NET
 ---
 
 # Semantic conventions for .NET Common Language Runtime (CLR) metrics

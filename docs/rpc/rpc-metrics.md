@@ -1,6 +1,6 @@
 ---
-linkTitle: Metrics
 title: Semantic conventions for RPC metrics
+linkTitle: Metrics
 ---
 
 # Semantic conventions for RPC metrics

@@ -1,6 +1,6 @@
 ---
-linkTitle: Spans
 title: Semantic conventions for messaging spans
+linkTitle: Spans
 ---
 
 # Semantic conventions for messaging spans

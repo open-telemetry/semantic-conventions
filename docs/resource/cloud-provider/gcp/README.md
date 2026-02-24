@@ -1,6 +1,6 @@
 ---
-linkTitle: GCP
 title: GCP semantic conventions
+linkTitle: GCP
 ---
 
 # GCP semantic conventions

@@ -1,6 +1,6 @@
 ---
-linkTitle: System
 title: System semantic conventions
+linkTitle: System
 ---
 
 # System semantic conventions

@@ -1,6 +1,6 @@
 ---
-linkTitle: NFS
 title: Semantic conventions for NFS metrics
+linkTitle: NFS
 ---
 
 # Semantic conventions for NFS metrics

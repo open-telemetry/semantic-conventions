@@ -1,6 +1,6 @@
 ---
-linkTitle: Google Cloud Pub/Sub
 title: Semantic conventions for Google Cloud Pub/Sub
+linkTitle: Google Cloud Pub/Sub
 ---
 
 # Semantic conventions for Google Cloud Pub/Sub

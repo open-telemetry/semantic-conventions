@@ -1,6 +1,6 @@
 ---
-linkTitle: Temperature
 title: Semantic conventions for temperature metrics
+linkTitle: Temperature
 ---
 
 # Semantic conventions for temperature metrics

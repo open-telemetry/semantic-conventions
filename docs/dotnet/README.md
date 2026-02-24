@@ -1,6 +1,6 @@
 ---
-linkTitle: .NET
 title: Semantic conventions for .NET
+linkTitle: .NET
 ---
 
 # Semantic conventions for .NET

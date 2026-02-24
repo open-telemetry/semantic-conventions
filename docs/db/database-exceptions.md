@@ -1,6 +1,6 @@
 ---
-linkTitle: Exceptions
 title: Semantic conventions for database exceptions
+linkTitle: Exceptions
 ---
 
 # Semantic conventions for database exceptions
