@@ -62,6 +62,10 @@ groups:
         note: "Following states SHOULD be used: `user`, `system`, `nice`, `idle`, `iowait`, `interrupt`, `steal`"
       - ref: cpu.logical_number
         requirement_level: opt_in
+      - ref: cpu.socket
+        requirement_level: recommended
+      - ref: cpu.core
+        requirement_level: recommended
     entity_associations:
       - host
 
@@ -80,6 +84,10 @@ groups:
         note: "Following modes SHOULD be used: `user`, `system`, `nice`, `idle`, `iowait`, `interrupt`, `steal`"
       - ref: cpu.logical_number
         requirement_level: opt_in
+      - ref: cpu.socket
+        requirement_level: recommended
+      - ref: cpu.core
+        requirement_level: recommended
     entity_associations:
       - host
 
@@ -95,6 +103,10 @@ groups:
     unit: "Hz"
     attributes:
       - ref: cpu.logical_number
+      - ref: cpu.socket
+        requirement_level: recommended
+      - ref: cpu.core
+        requirement_level: recommended
     entity_associations:
       - host
 

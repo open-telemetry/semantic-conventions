@@ -4,6 +4,11 @@ groups:
     brief: Attributes specific to a cpu instance.
     display_name: CPU Attributes
     attributes:
+      - id: cpu.core
+        type: string
+        stability: development
+        brief: "Core number of the CPU."
+        examples: ["0", "1"]
       - id: cpu.mode
         brief: "The mode of the CPU"
         type:
@@ -48,3 +53,8 @@ groups:
         stability: development
         brief: "The logical CPU number [0..n-1]"
         examples: [1]
+      - id: cpu.socket
+        type: string
+        stability: development
+        brief: "Socket number of the CPU."
+        examples: ["0", "1"]
