@@ -11,6 +11,7 @@ groups:
         requirement_level: required
       - ref: process.parent_pid
         role: descriptive
+        requirement_level: opt_in
       - ref: process.executable.name
         role: descriptive
         requirement_level: opt_in
@@ -34,15 +35,19 @@ groups:
         requirement_level: required
       - ref: process.interactive
         role: descriptive
+        requirement_level: opt_in
       - ref: process.title
         role: descriptive
+        requirement_level: opt_in
       - ref: process.working_directory
         role: descriptive
+        requirement_level: opt_in
       - ref: process.owner
         role: descriptive
         requirement_level: recommended
       - ref: process.linux.cgroup
         role: descriptive
+        requirement_level: opt_in
 
   - id: entity.process.runtime
     type: entity
