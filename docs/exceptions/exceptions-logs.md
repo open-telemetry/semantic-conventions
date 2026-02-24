@@ -18,7 +18,8 @@ emitted through the [Logger API](https://github.com/open-telemetry/opentelemetry
     - [FATAL severity](#fatal-severity)
     - [ERROR severity](#error-severity)
     - [WARN severity](#warn-severity)
-    - [INFO and below severity](#info-and-below-severity)
+    - [DEBUG severity](#debug-severity)
+    - [TRACE severity](#trace-severity)
   - [Attributes](#attributes)
   - [Stacktrace representation](#stacktrace-representation)
 
@@ -61,9 +62,8 @@ manually setting individual exception attributes.
 
 **Status**: [Development][DocumentStatus]
 
-It is RECOMMENDED to provide an
-[event name](/docs/general/events.md) that describes the instrumented operation
-with a `.exception` suffix.
+It is RECOMMENDED to provide an [event name](/docs/general/events.md) that
+describes the instrumented operation with a `.exception` suffix.
 
 It is NOT RECOMMENDED to use a generic name such as `exception`.
 
@@ -79,7 +79,7 @@ The severity reflects the expected impact of the exception, not just its presenc
 [Severity Number](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.54.0/specification/logs/data-model.md#field-severitynumber)
 SHOULD be provided on all exception events and SHOULD be set based on the context
 in which the exception occurs, following the guidance below.
-The lowest applicable severity number MUST be used.
+The lowest applicable severity number SHOULD be used.
 
 #### FATAL severity
 
@@ -110,35 +110,34 @@ Examples:
 Exceptions that are expected to be handled by application code SHOULD be
 reported with severity `WARN` (severity number 13).
 
-Semantic conventions that define `CLIENT`, `PRODUCER`, or `INTERNAL` spans SHOULD
-also define a corresponding exception event and recommend using `WARN` severity.
+Semantic conventions that define `CLIENT` or `PRODUCER` spans SHOULD also define
+a corresponding exception event and recommend using `WARN` severity.
 
 Examples:
 
 - A connection attempt to a remote service times out.
-- Writing data to a file results in an IO exception.
+- Writing data to a file results in an I/O exception.
 - A remote service returns a 503 "Service Unavailable" response for 5 consecutive
   attempts; retry attempts are exhausted and the operation fails.
 
-#### INFO and below severity
+#### DEBUG severity
 
 Exceptions that don't indicate an actual issue SHOULD be recorded with severity
-`INFO` (severity number 9) or below.
+`DEBUG` (severity number 9).
 
-Examples:
+For example, an exception indicating that a request was cancelled on the client
+side is thrown on the server and detected by the server instrumentation.
 
-- An exception indicating that a request was cancelled on the client side is thrown on the
-  server and detected by the server instrumentation.
-- An error is returned when checking whether an optional dependency or resource exists.
+#### TRACE severity
 
 Some libraries and frameworks generate artificial exceptions for operations that
 end with an unsuccessful error code. When possible, instrumentations SHOULD NOT
-record these artificial exceptions, or if recorded, SHOULD set the severity to `DEBUG`
-(severity number 5).
+record these artificial exceptions, or if recorded, SHOULD set the severity to
+`TRACE` (severity number 1).
 
-For example, FastAPI in Python [recommends using `HTTPException`](https://fastapi.tiangolo.com/tutorial/handling-errors/#use-httpexception) and Spring in Java provides [`ResponseStatusException`](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/server/ResponseStatusException.html)
-that users can throw instead of returning a response with an unsuccessful status
-code.
+For example, FastAPI in Python recommends raising [`HTTPException`](https://fastapi.tiangolo.com/tutorial/handling-errors/#use-httpexception)
+instead of returning a response with an unsuccessful status
+code. Similarly Spring in Java provides [`ResponseStatusException`](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/server/ResponseStatusException.html).
 
 ### Attributes
 
