@@ -392,6 +392,67 @@ groups:
         requirement_level: opt_in
 
 
+  - id: span.gen_ai.invoke_agent.server
+    type: span
+    stability: development
+    span_kind: server
+    brief: >
+      Describes the processing of a GenAI agent invocation request on the server side.
+    note: |
+      The `gen_ai.operation.name` SHOULD be `invoke_agent`.
+
+      **Span name** SHOULD be `invoke_agent {gen_ai.agent.name}` if `gen_ai.agent.name` is readily available.
+      When `gen_ai.agent.name` is not available, it SHOULD be `invoke_agent`.
+      Semantic conventions for individual GenAI systems and frameworks MAY specify different span name format.
+
+      **Span kind** MUST be `SERVER`.
+
+      This span is the server counterpart of the [invoke agent client span](/docs/gen-ai/gen-ai-agent-spans.md#invoke-agent-client-span).
+      It's reported by the GenAI agent server when it receives and processes
+      an agent invocation request from a client.
+    extends: attributes.gen_ai.inference.client
+    attributes:
+      - ref: gen_ai.provider.name
+        requirement_level: required
+        sampling_relevant: true
+      - ref: gen_ai.operation.name
+        sampling_relevant: true
+      - ref: gen_ai.request.model
+        sampling_relevant: true
+      - ref: gen_ai.agent.id
+        requirement_level:
+          conditionally_required: if applicable.
+      - ref: gen_ai.agent.name
+        requirement_level:
+          conditionally_required: when available
+      - ref: gen_ai.agent.description
+        requirement_level:
+          conditionally_required: when available
+      - ref: gen_ai.data_source.id
+        requirement_level:
+          conditionally_required: if applicable.
+      - ref: client.address
+        brief: Client address - domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name.
+        requirement_level:
+          recommended: If applicable
+      - ref: client.port
+        brief: Client port number.
+        requirement_level:
+          recommended: When `client.address` is set.
+      - ref: server.address
+        requirement_level:
+          recommended
+        sampling_relevant: true
+      - ref: server.port
+        sampling_relevant: true
+      - ref: gen_ai.system_instructions
+        requirement_level: opt_in
+      - ref: gen_ai.input.messages
+        requirement_level: opt_in
+      - ref: gen_ai.output.messages
+        requirement_level: opt_in
+
+
   - id: span.gen_ai.execute_tool.internal
     type: span
     stability: development
