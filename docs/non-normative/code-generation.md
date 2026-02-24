@@ -1,7 +1,6 @@
 # Generating semantic convention libraries
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<!-- START doctoc -->
 
 - [Stability and versioning](#stability-and-versioning)
   - [Deprecated conventions](#deprecated-conventions)
@@ -11,7 +10,7 @@
     - [Weaver config](#weaver-config)
     - [Jinja templates](#jinja-templates)
 
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<!-- END doctoc -->
 
 The code for OpenTelemetry Semantic Conventions defined in this repository can be auto-generated.
 

@@ -9,13 +9,12 @@ linkTitle: Runtime environment
 This document defines semantic conventions for
 runtime environment spans, metrics and logs.
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<!-- START doctoc -->
 
 - [Metrics](#metrics)
   - [Attributes](#attributes)
 
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<!-- END doctoc -->
 
 ## Metrics
 

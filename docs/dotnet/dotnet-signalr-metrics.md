@@ -8,13 +8,12 @@ linkTitle: SignalR
 
 This article defines semantic conventions for SignalR metrics emitted by .NET components and runtime.
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<!-- START doctoc -->
 
 - [Metric: `signalr.server.connection.duration`](#metric-signalrserverconnectionduration)
 - [Metric: `signalr.server.active_connections`](#metric-signalrserveractive_connections)
 
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<!-- END doctoc -->
 
 ## Metric: `signalr.server.connection.duration`
 

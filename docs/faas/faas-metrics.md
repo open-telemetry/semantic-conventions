@@ -13,8 +13,7 @@ The conventions described in this section are FaaS (function as a service) speci
 metric events about those operations will be generated and reported to provide insights into the
 operations. By adding FaaS attributes to metric events it allows for finely tuned filtering.
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<!-- START doctoc -->
 
 - [Metric instruments](#metric-instruments)
   - [FaaS instance](#faas-instance)
@@ -30,7 +29,7 @@ operations. By adding FaaS attributes to metric events it allows for finely tune
 - [References](#references)
   - [Metric references](#metric-references)
 
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<!-- END doctoc -->
 
 ## Metric instruments
 

@@ -4,8 +4,7 @@ linkTitle: CICD
 
 # CICD
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<!-- START doctoc -->
 
 - [Continuous Integration and Continuous Deployment (CICD)](#continuous-integration-and-continuous-deployment-cicd)
   - [CICD pipeline](#cicd-pipeline)
@@ -15,7 +14,7 @@ linkTitle: CICD
   - [VCS repository](#vcs-repository)
   - [VCS reference](#vcs-reference)
 
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<!-- END doctoc -->
 
 See also:
 

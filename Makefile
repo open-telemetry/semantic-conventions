@@ -132,13 +132,18 @@ markdown-link-check-local-only: normalized-link-check
 #   <!-- END doctoc -->
 .PHONY: markdown-toc
 markdown-toc:
-	@if ! npm ls doctoc; then npm ci --ignore-scripts; fi
-	npx --no -- doctoc . --update-only --dryrun || exit 1;
-
-.PHONY: markdown-toc-correction
-markdown-toc-correction:
+	perl internal/tools/scripts/doctoc_pre.pl .
 	@if ! npm ls doctoc; then npm ci --ignore-scripts; fi
 	npx --no -- doctoc . --update-only || exit 1;
+	perl internal/tools/scripts/doctoc_post.pl .
+
+.PHONY: markdown-toc-check
+markdown-toc-check: markdown-toc
+	git diff --exit-code ':*.md' || (echo 'Generated markdown Table of Contents is out of date, please run "make markdown-toc" and commit the changes in this PR.' && exit 1)
+# The above line needs to be replaced with the below once doctoc supports controlling the header and footer content.
+# markdown-toc-check:
+#	@if ! npm ls doctoc; then npm ci --ignore-scripts; fi
+#	npx --no -- doctoc . --update-only --dryrun || exit 1;
 
 .PHONY: markdownlint
 markdownlint:
@@ -213,12 +218,12 @@ schema-check:
 # Run all checks in order of speed / likely failure.
 # As a last thing, run attribute registry generation and git-diff for differences.
 .PHONY: check
-check: misspell markdownlint markdown-toc markdown-link-check check-policies registry-generation
+check: misspell markdownlint markdown-toc-check markdown-link-check check-policies registry-generation
 	@echo "All checks complete"
 
 # Attempt to fix issues / regenerate tables.
 .PHONY: fix
-fix: table-generation registry-generation misspell-correction markdown-toc-correction
+fix: table-generation registry-generation misspell-correction markdown-toc
 	@echo "All autofixes complete"
 
 .PHONY: install-tools

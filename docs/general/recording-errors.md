@@ -2,15 +2,14 @@
 
 **Status**: [Development][DocumentStatus].
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<!-- START doctoc -->
 
 - [What constitutes an error](#what-constitutes-an-error)
 - [Recording errors on spans](#recording-errors-on-spans)
 - [Recording errors on metrics](#recording-errors-on-metrics)
 - [Recording exceptions](#recording-exceptions)
 
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<!-- END doctoc -->
 
 This document provides recommendations to semantic convention and instrumentation authors
 on how to record errors on spans and metrics.

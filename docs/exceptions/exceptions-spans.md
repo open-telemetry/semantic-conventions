@@ -10,13 +10,12 @@ Use [Semantic conventions for exceptions in logs](exceptions-logs.md) instead.
 This document defines semantic conventions for recording application
 exceptions associated with spans.
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<!-- START doctoc -->
 
 - [Exception event](#exception-event)
   - [Stacktrace representation](#stacktrace-representation)
 
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<!-- END doctoc -->
 
 > [!IMPORTANT]
 >

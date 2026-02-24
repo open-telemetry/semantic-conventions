@@ -10,8 +10,7 @@ This document defines semantic conventions for recording exceptions on
 [logs](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.55.0/specification/logs/api.md#emit-a-logrecord)
 emitted through the [Logger API](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.55.0/specification/logs/api.md#logger).
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<!-- START doctoc -->
 
 - [Recording an exception](#recording-an-exception)
   - [When not to record exceptions](#when-not-to-record-exceptions)
@@ -26,7 +25,7 @@ emitted through the [Logger API](https://github.com/open-telemetry/opentelemetry
   - [Attributes](#attributes)
   - [Stacktrace representation](#stacktrace-representation)
 
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<!-- END doctoc -->
 
 > [!IMPORTANT]
 >

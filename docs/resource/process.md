@@ -6,8 +6,7 @@ linkTitle: Process
 
 **Status**: [Development][DocumentStatus]
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<!-- START doctoc -->
 
 - [Process](#process)
   - [Selecting process command attributes](#selecting-process-command-attributes)
@@ -20,7 +19,7 @@ linkTitle: Process
   - [Python runtimes](#python-runtimes)
   - [Ruby runtimes](#ruby-runtimes)
 
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<!-- END doctoc -->
 
 ## Process
 

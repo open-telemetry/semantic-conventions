@@ -6,14 +6,13 @@ linkTitle: Kafka
 
 **Status**: [Development][DocumentStatus]
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<!-- START doctoc -->
 
 - [Span attributes](#span-attributes)
 - [Examples](#examples)
   - [Apache Kafka with Quarkus or Spring Boot example](#apache-kafka-with-quarkus-or-spring-boot-example)
 
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<!-- END doctoc -->
 
 The Semantic Conventions for [Apache Kafka](https://kafka.apache.org/) extend and override the [Messaging Semantic Conventions](README.md).
 

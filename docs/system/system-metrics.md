@@ -17,8 +17,7 @@ Metrics collected from technology-specific, well-defined APIs (e.g. Kubelet's AP
 should be reported under their respective namespace (e.g. `k8s.*`, `container.*`).
 Resource attributes related to a host, SHOULD be reported under the `host.*` namespace.
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<!-- START doctoc -->
 
 - [General metrics](#general-metrics)
   - [Metric: `system.uptime`](#metric-systemuptime)
@@ -62,7 +61,7 @@ Resource attributes related to a host, SHOULD be reported under the `host.*` nam
   - [Metric: `system.memory.linux.shared`](#metric-systemmemorylinuxshared)
   - [Metric: `system.memory.linux.slab.usage`](#metric-systemmemorylinuxslabusage)
 
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<!-- END doctoc -->
 
 > [!IMPORTANT]
 > Existing instrumentations and collector that are using

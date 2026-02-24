@@ -6,15 +6,14 @@ linkTitle: Tape Drive
 
 **Status**: [Development][DocumentStatus]
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<!-- START doctoc -->
 
 - [Tape drive metrics `hw.tape_drive.*`](#tape-drive-metrics-hwtape_drive)
   - [Metric: `hw.errors` (Tape Drive)](#metric-hwerrors-tape-drive)
   - [Metric: `hw.tape_drive.operations`](#metric-hwtape_driveoperations)
   - [Metric: `hw.status` (Tape Drive)](#metric-hwstatus-tape-drive)
 
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<!-- END doctoc -->
 
 ## Tape drive metrics `hw.tape_drive.*`
 

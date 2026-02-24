@@ -12,8 +12,7 @@ operations. By adding HTTP attributes to metric events it allows for finely tune
 
 **Disclaimer:** These are initial HTTP metric instruments and attributes but more may be added in the future.
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<!-- START doctoc -->
 
 - [HTTP server](#http-server)
   - [Metric: `http.server.request.duration`](#metric-httpserverrequestduration)
@@ -28,7 +27,7 @@ operations. By adding HTTP attributes to metric events it allows for finely tune
   - [Metric: `http.client.connection.duration`](#metric-httpclientconnectionduration)
   - [Metric: `http.client.active_requests`](#metric-httpclientactive_requests)
 
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<!-- END doctoc -->
 
 > [!IMPORTANT]
 > Existing HTTP instrumentations that are using

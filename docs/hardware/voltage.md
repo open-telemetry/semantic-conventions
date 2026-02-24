@@ -6,8 +6,7 @@ linkTitle: Voltage
 
 **Status**: [Development][DocumentStatus]
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<!-- START doctoc -->
 
 - [Voltage metrics `hw.voltage.*`](#voltage-metrics-hwvoltage)
   - [Metric: `hw.voltage`](#metric-hwvoltage)
@@ -15,7 +14,7 @@ linkTitle: Voltage
   - [Metric: `hw.voltage.nominal`](#metric-hwvoltagenominal)
   - [Metric: `hw.status` (Voltage)](#metric-hwstatus-voltage)
 
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<!-- END doctoc -->
 
 ## Voltage metrics `hw.voltage.*`
 

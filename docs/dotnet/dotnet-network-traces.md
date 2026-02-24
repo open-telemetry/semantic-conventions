@@ -8,8 +8,7 @@ linkTitle: HTTP request and connection spans
 
 This article defines semantic conventions for HTTP client, DNS and TLS spans emitted by .NET.
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<!-- START doctoc -->
 
 - [HTTP client request](#http-client-request)
 - [HTTP client request: wait for connection](#http-client-request-wait-for-connection)
@@ -23,7 +22,7 @@ This article defines semantic conventions for HTTP client, DNS and TLS spans emi
   - [HTTP request has to wait for connection setup and other requests on that connection to complete](#http-request-has-to-wait-for-connection-setup-and-other-requests-on-that-connection-to-complete)
   - [HTTP request fails because connection cannot be established](#http-request-fails-because-connection-cannot-be-established)
 
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<!-- END doctoc -->
 
 .NET `HttpClient` reports HTTP client request spans according to [HTTP Semantic Conventions](/docs/http/http-spans.md#http-client-span).
 
