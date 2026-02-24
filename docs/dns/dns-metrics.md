@@ -8,13 +8,12 @@ linkTitle: Metrics
 
 This document defines semantic conventions to apply when instrumenting DNS queries.
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<!-- START doctoc -->
 
 - [Metrics](#metrics)
   - [Metric: `dns.lookup.duration`](#metric-dnslookupduration)
 
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<!-- END doctoc -->
 
 ## Metrics
 

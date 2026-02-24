@@ -8,8 +8,7 @@ linkTitle: ASP.NET Core
 
 This article defines semantic conventions for ASP.NET Core metrics.
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<!-- START doctoc -->
 
 - [Server](#server)
 - [Routing](#routing)
@@ -49,7 +48,7 @@ This article defines semantic conventions for ASP.NET Core metrics.
   - [Metric: `aspnetcore.identity.sign_in.two_factor_clients_remembered`](#metric-aspnetcoreidentitysign_intwo_factor_clients_remembered)
   - [Metric: `aspnetcore.identity.sign_in.two_factor_clients_forgotten`](#metric-aspnetcoreidentitysign_intwo_factor_clients_forgotten)
 
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<!-- END doctoc -->
 
 ## Server
 

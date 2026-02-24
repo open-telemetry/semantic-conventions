@@ -11,8 +11,7 @@ The attributes described in this section are not specific to a particular operat
 They may be used in any Span they apply to.
 Particular operations may refer to or require some of these attributes.
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<!-- START doctoc -->
 
 - [Server, client and shared network attributes](#server-client-and-shared-network-attributes)
   - [Address and port attributes](#address-and-port-attributes)
@@ -34,7 +33,7 @@ Particular operations may refer to or require some of these attributes.
 - [General thread attributes](#general-thread-attributes)
 - [Source code attributes](#source-code-attributes)
 
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<!-- END doctoc -->
 
 <!-- Keep old anchor IDs -->
 <a id="server-and-client-attributes"></a>

@@ -42,8 +42,7 @@ and one for disabling the old schema called `semconv.k8s.disableLegacy`. Then:
 - It is an error to disable both schemas
 - Both schemas can be enabled with `--feature-gates=-semconv.k8s.disableLegacy,+semconv.k8s.enableStable`.
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<!-- START doctoc -->
 
 - [Summary of changes](#summary-of-changes)
   - [K8s network metrics](#k8s-network-metrics)
@@ -71,7 +70,7 @@ and one for disabling the old schema called `semconv.k8s.disableLegacy`. Then:
   - [Container Runtime](#container-runtime)
   - [K8s Pod Status Phase and Reason](#k8s-pod-status-phase-and-reason)
 
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<!-- END doctoc -->
 
 ## Summary of changes
 

@@ -8,8 +8,7 @@ linkTitle: Kestrel
 
 This article defines semantic conventions for Kestrel web server.
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<!-- START doctoc -->
 
 - [Kestrel endpoint](#kestrel-endpoint)
 - [Metric: `kestrel.active_connections`](#metric-kestrelactive_connections)
@@ -21,7 +20,7 @@ This article defines semantic conventions for Kestrel web server.
 - [Metric: `kestrel.tls_handshake.duration`](#metric-kestreltls_handshakeduration)
 - [Metric: `kestrel.active_tls_handshakes`](#metric-kestrelactive_tls_handshakes)
 
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<!-- END doctoc -->
 
 ## Kestrel endpoint
 

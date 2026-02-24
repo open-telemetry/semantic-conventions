@@ -6,8 +6,7 @@ linkTitle: Power Supply
 
 **Status**: [Development][DocumentStatus]
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<!-- START doctoc -->
 
 - [Power supply metrics `hw.power_supply.*`](#power-supply-metrics-hwpower_supply)
   - [Metric: `hw.power_supply.limit`](#metric-hwpower_supplylimit)
@@ -15,7 +14,7 @@ linkTitle: Power Supply
   - [Metric: `hw.power_supply.usage`](#metric-hwpower_supplyusage)
   - [Metric: `hw.status` (Power Supply)](#metric-hwstatus-power-supply)
 
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<!-- END doctoc -->
 
 ## Power supply metrics `hw.power_supply.*`
 

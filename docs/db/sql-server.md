@@ -6,15 +6,14 @@ linkTitle: SQL Server
 
 **Status**: [Stable][DocumentStatus], Unless otherwise specified.
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<!-- START doctoc -->
 
 - [Spans](#spans)
 - [Context propagation](#context-propagation)
   - [SET CONTEXT_INFO](#set-context_info)
 - [Metrics](#metrics)
 
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<!-- END doctoc -->
 
 The Semantic Conventions for *Microsoft SQL Server* extend and override the [Database Semantic Conventions](README.md).
 

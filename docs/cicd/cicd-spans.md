@@ -6,14 +6,13 @@ linkTitle: Spans
 
 **Status**: [Development][DocumentStatus]
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<!-- START doctoc -->
 
 - [CICD Spans](#cicd-spans)
   - [Pipeline run](#pipeline-run)
   - [Pipeline task run](#pipeline-task-run)
 
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<!-- END doctoc -->
 
 ## CICD Spans
 

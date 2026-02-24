@@ -6,8 +6,7 @@ linkTitle: Fan
 
 **Status**: [Development][DocumentStatus]
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<!-- START doctoc -->
 
 - [Fan metrics `hw.fan.*`](#fan-metrics-hwfan)
   - [Metric: `hw.fan.speed`](#metric-hwfanspeed)
@@ -15,7 +14,7 @@ linkTitle: Fan
   - [Metric: `hw.fan.speed_ratio`](#metric-hwfanspeed_ratio)
   - [Metric: `hw.status` (Fan)](#metric-hwstatus-fan)
 
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<!-- END doctoc -->
 
 ## Fan metrics `hw.fan.*`
 

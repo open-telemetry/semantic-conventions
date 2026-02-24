@@ -10,13 +10,12 @@ This document defines semantic conventions for instrumentations that emit
 events on mobile platforms. All mobile events MUST use a namespace of
 `device` in the EventName LogRecord property.
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<!-- START doctoc -->
 
 - [Lifecycle instrumentation](#lifecycle-instrumentation)
   - [Event: `device.app.lifecycle`](#event-deviceapplifecycle)
 
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<!-- END doctoc -->
 
 ## Lifecycle instrumentation
 

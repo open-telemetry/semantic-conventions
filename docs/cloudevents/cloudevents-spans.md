@@ -8,14 +8,13 @@ linkTitle: Spans
 
 <!-- prettier-ignore-start -->
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<!-- START doctoc -->
 
 - [Definitions](#definitions)
 - [Conventions](#conventions)
 - [Span attributes](#span-attributes)
 
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<!-- END doctoc -->
 
 <!-- prettier-ignore-end -->
 

@@ -6,8 +6,7 @@ linkTitle: Physical host
 
 **Status**: [Development][DocumentStatus]
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<!-- START doctoc -->
 
 - [Physical host metrics `hw.host.*`](#physical-host-metrics-hwhost)
   - [Metric: `hw.host.ambient_temperature`](#metric-hwhostambient_temperature)
@@ -15,7 +14,7 @@ linkTitle: Physical host
   - [Metric: `hw.host.heating_margin`](#metric-hwhostheating_margin)
   - [Metric: `hw.host.power`](#metric-hwhostpower)
 
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<!-- END doctoc -->
 
 ## Physical host metrics `hw.host.*`
 

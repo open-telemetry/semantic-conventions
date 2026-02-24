@@ -6,8 +6,7 @@ linkTitle: Battery
 
 **Status**: [Development][DocumentStatus]
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<!-- START doctoc -->
 
 - [Battery metrics `hw.battery.*`](#battery-metrics-hwbattery)
   - [Metric: `hw.battery.charge`](#metric-hwbatterycharge)
@@ -15,7 +14,7 @@ linkTitle: Battery
   - [Metric: `hw.battery.time_left`](#metric-hwbatterytime_left)
   - [Metric: `hw.status` (Battery)](#metric-hwstatus-battery)
 
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<!-- END doctoc -->
 
 ## Battery metrics `hw.battery.*`
 
