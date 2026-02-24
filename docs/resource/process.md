@@ -68,7 +68,6 @@ The following attributes are **optional**, this is due to the potential changing
 
 * [`process.executable.name`](../registry/attributes/process.md)
 * [`process.executable.path`](../registry/attributes/process.md)
-* [`process.command`](../registry/attributes/process.md)
 * [`process.command_line`](../registry/attributes/process.md)
 * [`process.command_args`](../registry/attributes/process.md)
 
