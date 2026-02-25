@@ -2926,7 +2926,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.persistentvolume.storage.capacity` | Gauge | `By` | The storage capacity of the PersistentVolume. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.persistentvolume`](/docs/registry/entities/k8s.md#k8s-persistentvolume) |
+| `k8s.persistentvolume.storage.capacity` | UpDownCounter | `By` | The storage capacity of the PersistentVolume. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.persistentvolume`](/docs/registry/entities/k8s.md#k8s-persistentvolume) |
 
 **[1]:** This metric is derived from the `.spec.capacity.storage` field of the [K8s PersistentVolumeSpec](https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/persistent-volume-v1/#PersistentVolumeSpec).
 
@@ -2989,7 +2989,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.persistentvolumeclaim.storage.request` | Gauge | `By` | The storage requested by the PersistentVolumeClaim. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.persistentvolumeclaim`](/docs/registry/entities/k8s.md#k8s-persistentvolumeclaim) |
+| `k8s.persistentvolumeclaim.storage.request` | UpDownCounter | `By` | The storage requested by the PersistentVolumeClaim. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.persistentvolumeclaim`](/docs/registry/entities/k8s.md#k8s-persistentvolumeclaim) |
 
 **[1]:** This metric is derived from the `.spec.resources.requests.storage` field of the [K8s PersistentVolumeClaimSpec](https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/persistent-volume-claim-v1/#PersistentVolumeClaimSpec).
 
@@ -3008,7 +3008,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.persistentvolumeclaim.storage.capacity` | Gauge | `By` | The actual storage capacity provisioned for the PersistentVolumeClaim. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.persistentvolumeclaim`](/docs/registry/entities/k8s.md#k8s-persistentvolumeclaim) |
+| `k8s.persistentvolumeclaim.storage.capacity` | UpDownCounter | `By` | The actual storage capacity provisioned for the PersistentVolumeClaim. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.persistentvolumeclaim`](/docs/registry/entities/k8s.md#k8s-persistentvolumeclaim) |
 
 **[1]:** Only available when the PVC is bound. May differ from the requested capacity due to provisioner rounding.
 This metric is derived from the `.status.capacity.storage` field of the

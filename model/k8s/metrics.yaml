@@ -1901,7 +1901,7 @@ groups:
         metric_value_type: int
     stability: development
     brief: "The storage capacity of the PersistentVolume."
-    instrument: gauge
+    instrument: updowncounter
     unit: "By"
     entity_associations:
       - k8s.persistentvolume
@@ -1917,7 +1917,7 @@ groups:
         metric_value_type: int
     stability: development
     brief: "The storage requested by the PersistentVolumeClaim."
-    instrument: gauge
+    instrument: updowncounter
     unit: "By"
     entity_associations:
       - k8s.persistentvolumeclaim
@@ -1933,7 +1933,7 @@ groups:
         metric_value_type: int
     stability: development
     brief: "The actual storage capacity provisioned for the PersistentVolumeClaim."
-    instrument: gauge
+    instrument: updowncounter
     unit: "By"
     entity_associations:
       - k8s.persistentvolumeclaim
