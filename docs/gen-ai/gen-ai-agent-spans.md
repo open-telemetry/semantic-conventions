@@ -458,7 +458,7 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-Represents a workflow orchestrating one or more agents.
+Represents a workflow that orchestrates one or more agents. Also a workflow can be predetermined static sequence of operations eg: LLM calls, tool calls, and retrievals without a specific agent orchestrating them. A workflow groups multiple operations together, accepting an input and producing a final output.
 
 The `gen_ai.operation.name` SHOULD be `invoke_workflow`.
 **Span name** SHOULD be `invoke_workflow {gen_ai.workflow.name}`.
@@ -492,7 +492,7 @@ that is separate from individual agents, so they SHOULD report `invoke_workflow`
 the canonical name of exception that occurred, or another low-cardinality error identifier.
 Instrumentations SHOULD document the list of errors they report.
 
-**[3] `gen_ai.workflow.name`:** This attribute can be populated in different frameworks eg: name of the trace in OpenAI agents OR name of the first chain in LangChain OR name of the crew in CrewAI.
+**[3] `gen_ai.workflow.name`:** This attribute can be populated in different frameworks eg: name of the first chain in LangChain OR name of the crew in CrewAI.
 
 **[4] `gen_ai.input.messages`:** Instrumentations MUST follow [Input messages JSON schema](/docs/gen-ai/gen-ai-input-messages.json).
 When the attribute is recorded on events, it MUST be recorded in structured
@@ -528,6 +528,11 @@ output messages.
 
 See [Recording content on attributes](/docs/gen-ai/gen-ai-spans.md#recording-content-on-attributes)
 section for more details.
+
+The following attributes can be important for making sampling decisions
+and SHOULD be provided **at span creation time** (if provided at all):
+
+* [`gen_ai.operation.name`](/docs/registry/attributes/gen-ai.md)
 
 ---
 
