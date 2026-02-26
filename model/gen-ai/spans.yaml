@@ -428,15 +428,16 @@ groups:
       - ref: gen_ai.agent.description
         requirement_level:
           conditionally_required: when available
+      - ref: gen_ai.agent.version
+        requirement_level:
+          conditionally_required: when available
       - ref: gen_ai.data_source.id
         requirement_level:
           conditionally_required: if applicable.
       - ref: client.address
-        brief: Client address - domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name.
         requirement_level:
           recommended: If applicable
       - ref: client.port
-        brief: Client port number.
         requirement_level:
           recommended: When `client.address` is set.
       - ref: server.address
@@ -445,12 +446,6 @@ groups:
         sampling_relevant: true
       - ref: server.port
         sampling_relevant: true
-      - ref: gen_ai.system_instructions
-        requirement_level: opt_in
-      - ref: gen_ai.input.messages
-        requirement_level: opt_in
-      - ref: gen_ai.output.messages
-        requirement_level: opt_in
 
 
   - id: span.gen_ai.execute_tool.internal
