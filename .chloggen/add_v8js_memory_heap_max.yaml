@@ -1,0 +1,4 @@
+change_type: enhancement
+component: v8js
+note: Add `v8js.memory.heap.max` gauge for the absolute maximum heap size from `v8.getHeapStatistics()`.
+issues: [3476]

@@ -80,3 +80,19 @@ groups:
         requirement_level: required
     note: >
       Value can be retrieved from value `physical_space_size` of [`v8.getHeapSpaceStatistics()`](https://nodejs.org/api/v8.html#v8getheapspacestatistics)
+
+  - id: metric.v8js.memory.heap.max
+    type: metric
+    metric_name: v8js.memory.heap.max
+    annotations:
+      code_generation:
+        metric_value_type: int
+    brief: "Maximum heap size allowed by the V8 engine."
+    instrument: gauge
+    unit: "By"
+    stability: development
+    note: >
+      The value can be retrieved from value `heap_size_limit` of
+      [`v8.getHeapStatistics()`](https://nodejs.org/api/v8.html#v8getheapstatistics).
+      This represents the absolute ceiling the heap can grow to, controlled by
+      `--max-old-space-size` or V8 defaults.
