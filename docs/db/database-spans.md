@@ -11,6 +11,7 @@ linkTitle: Spans
 - [Name](#name)
 - [Span definition](#span-definition)
   - [Notes and well-known identifiers for `db.system.name`](#notes-and-well-known-identifiers-for-dbsystemname)
+- [Database client span duration](#database-client-span-duration)
 - [Sanitization of `db.query.text`](#sanitization-of-dbquerytext)
 - [Generating a summary of the query](#generating-a-summary-of-the-query)
 - [Context propagation](#context-propagation)
@@ -85,10 +86,8 @@ For example, for an operation describing SQL query on an anonymous table like `S
 
 This span describes database client call.
 
-Instrumentations SHOULD, when possible, record database spans that cover the duration of
-the corresponding API call as if it was observed by the caller (such as client application).
-For example, if a transient issue happened and was retried within this database call, the corresponding
-span should cover the duration of the logical operation with all retries.
+Instrumentations SHOULD, when possible, record database spans that represent the logical database
+operation as observed by the caller (such as client application).
 
 When a database client provides higher-level convenience APIs for specific operations
 (e.g., calling a stored procedure), which internally generate and execute a generic query,
@@ -97,6 +96,8 @@ These often allow setting `db.operation.*` attributes, which usually are not
 readily available at the generic query level.
 
 **Span name** is covered in the [Name](/docs/db/database-spans.md#name) section.
+
+**Span duration** is covered in the [Database client span duration](/docs/db/database-spans.md#database-client-span-duration) section.
 
 **Span kind** SHOULD be `CLIENT`. It MAY be set to `INTERNAL` on spans representing
 in-memory database calls.
@@ -324,6 +325,20 @@ If the concrete DBMS is known to the instrumentation, its specific identifier MU
 Back ends could, for example, use the provided identifier to determine the appropriate SQL dialect for parsing the `db.query.text`.
 
 When additional attributes are added that only apply to a specific DBMS, its identifier SHOULD be used as a namespace in the attribute key as for the attributes in the sections below.
+
+## Database client span duration
+
+Database client spans SHOULD, when possible, cover the duration of the
+corresponding API call as observed by the caller (such as the client application).
+For example, if a transient issue happened and was retried within this database call, the corresponding
+span should cover the duration of the logical operation with all retries.
+
+If there is any possibility for application code to not fully consume the database response
+(and for the database client library to then have to clean up the database response asynchronously),
+the database client span SHOULD NOT be ended in this cleanup phase,
+and instead SHOULD end at some point after the initial call returns to the caller.
+This avoids the span being ended asynchronously later on at a time
+which is no longer directly associated with the application code which made the database request.
 
 ## Sanitization of `db.query.text`
 
