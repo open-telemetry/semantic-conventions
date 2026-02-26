@@ -441,8 +441,7 @@ groups:
         requirement_level:
           recommended: When `client.address` is set.
       - ref: server.address
-        requirement_level:
-          recommended
+        requirement_level: recommended
         sampling_relevant: true
       - ref: server.port
         sampling_relevant: true
