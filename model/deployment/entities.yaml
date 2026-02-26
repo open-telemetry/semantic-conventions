@@ -1,14 +1,11 @@
 groups:
-  - id: entity.deployment
+  - id: entity.deployment.environment
     type: entity
     stability: development
-    name: deployment
+    name: deployment.environment
     brief: >
-      The software deployment.
+      The deployment environment.
     attributes:
-      - ref: deployment.name
+      - ref: deployment.environment.name
         role: identifying
         requirement_level: required
-      - ref: deployment.environment.name
-        role: descriptive
-        requirement_level: recommended

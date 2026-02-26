@@ -3,20 +3,19 @@
 
 # Deployment
 
-## Deployment
+## Deployment Environment
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-**type:** `deployment`
+**type:** `deployment.environment`
 
-**Description:** The software deployment.
+**Description:** The deployment environment.
 
 **Attributes:**
 
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- | --- |
-| Identity | [`deployment.name`](/docs/registry/attributes/deployment.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the deployment. | `deploy my app`; `deploy-frontend` |
-| Description | [`deployment.environment.name`](/docs/registry/attributes/deployment.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Name of the [deployment environment](https://wikipedia.org/wiki/Deployment_environment) (aka deployment tier). [1] | `staging`; `production` |
+| Identity | [`deployment.environment.name`](/docs/registry/attributes/deployment.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | Name of the [deployment environment](https://wikipedia.org/wiki/Deployment_environment) (aka deployment tier). [1] | `staging`; `production` |
 
 **[1] `deployment.environment.name`:** `deployment.environment.name` does not affect the uniqueness constraints defined through
 the `service.namespace`, `service.name` and `service.instance.id` resource attributes.
@@ -32,7 +31,7 @@ considered to be identifying the same service:
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `production` | production | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `sandbox` | sandbox | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `staging` | staging | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `testing` | testing | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `Development` | Development environment | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `Production` | Production environment | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `Staging` | Staging environment | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `Test` | Testing environment | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
