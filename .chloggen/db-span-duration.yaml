@@ -1,4 +1,4 @@
 change_type: enhancement
 component: db
 note: Clarify database client span duration.
-issues: []
+issues: [3479]
