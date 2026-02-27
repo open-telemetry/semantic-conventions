@@ -118,6 +118,9 @@ groups:
       - id: service.peer.name
         type: string
         stability: development
+        deprecated:
+          reason: uncategorized
+          note: Use `server.service.name` or `client.service.name` instead.
         brief: >
           Logical name of the service on the other side of the connection.
           SHOULD be equal to the actual [`service.name`](/docs/resource/README.md#service) resource attribute of the remote service if any.
@@ -125,6 +128,9 @@ groups:
       - id: service.peer.namespace
         type: string
         stability: development
+        deprecated:
+          reason: uncategorized
+          note: Use `server.service.namespace` or `client.service.namespace` instead.
         brief: >
           Logical namespace of the service on the other side of the connection.
           SHOULD be equal to the actual [`service.namespace`](/docs/resource/README.md#service) resource attribute of the remote service if any.

@@ -1,0 +1,7 @@
+change_type: breaking
+component: server, client, service
+note: "`service.peer.name` and `service.peer.namespace` are deprecated in favor of `server.service.name`/`.namespace` and `client.service.name`/`.namespace`."
+issues: [3472]
+subtext: |
+  The new `server.service.*` and `client.service.*` attributes enable observing both the upstream
+  client service and the downstream server service on the same signal.

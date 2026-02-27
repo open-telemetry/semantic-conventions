@@ -26,3 +26,17 @@ groups:
           When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent
           the server port behind any intermediaries, for example proxies, if it's available.
         examples: [80, 8080, 443]
+      - id: server.service.name
+        type: string
+        stability: development
+        brief: >
+          Logical name of the server service in a connection-based network interaction.
+          SHOULD be equal to the actual [`service.name`](/docs/resource/README.md#service) resource attribute of the server service if any.
+        examples: ["shoppingcart"]
+      - id: server.service.namespace
+        type: string
+        stability: development
+        brief: >
+          Logical namespace of the server service in a connection-based network interaction.
+          SHOULD be equal to the actual [`service.namespace`](/docs/resource/README.md#service) resource attribute of the server service if any.
+        examples: ["Shop"]

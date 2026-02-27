@@ -12,8 +12,8 @@ groups:
         type: string
         stability: development
         deprecated:
-          reason: renamed
-          renamed_to: service.peer.name
+          reason: uncategorized
+          note: Use `server.service.name` or `client.service.name` instead.
         brief: >
           The [`service.name`](/docs/resource/README.md#service)
           of the remote service. SHOULD be equal to the actual `service.name`
