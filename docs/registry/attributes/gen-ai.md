@@ -206,7 +206,7 @@ Instrumentations SHOULD make a best effort to populate this value, using a total
 provided by the provider when available or, depending on the provider API,
 by summing different token types parsed from the provider output.
 
-**[19] `gen_ai.workflow.name`:** This attribute can be populated in different frameworks eg: name of the trace in OpenAI agents OR name of the first chain in LangChain OR name of the crew in CrewAI.
+**[19] `gen_ai.workflow.name`:** This attribute can be populated in different frameworks eg: name of the first chain in LangChain OR name of the crew in CrewAI.
 
 ---
 
