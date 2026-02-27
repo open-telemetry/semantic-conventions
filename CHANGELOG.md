@@ -7,6 +7,101 @@
 
 <!-- next version -->
 
+## v1.40.0
+
+### 🛑 Breaking changes 🛑
+
+- `db`: Oracle's `db.namespace` updated to represent only the database’s
+unique identifier. Information previously bundled into `db.namespace` —including
+PDB name, instance name, and service name — has been moved to dedicated attributes:
+  `oracle.db.pdb`, `oracle.db.instance.name`, and `oracle.db.service`.
+  Introduced a new `oracle.db.domain` attribute to capture the database domain
+(DB_DOMAIN).
+ ([#2147](https://github.com/open-telemetry/semantic-conventions/issues/2147))
+- `error, feature-flags`: Deprecate `error.message` in favor of using domain-specific codes such as `feature_flag.error.message`.
+ ([#3307](https://github.com/open-telemetry/semantic-conventions/issues/3307), [#3308](https://github.com/open-telemetry/semantic-conventions/issues/3308))
+- `rpc`: Remove `network.protocol.name`, `network.protocol.version`, and `network.transport` attributes from RPC spans and metrics.
+ ([#3349](https://github.com/open-telemetry/semantic-conventions/issues/3349), [#3350](https://github.com/open-telemetry/semantic-conventions/issues/3350))
+- `system`: Rename `system.memory.shared` to `system.memory.linux.shared` ([#3260](https://github.com/open-telemetry/semantic-conventions/issues/3260))
+  The `system.memory.shared` metric has been renamed to `system.memory.linux.shared` to align with other Linux-specific memory metrics (`system.memory.linux.available` and `system.memory.linux.slab.usage`). This metric reports shared memory used, primarily by tmpfs, and is only available on Linux systems.
+
+### 🚩 Deprecations 🚩
+
+- `exceptions`: Update exception recording guidelines to not use span events. ([#3256](https://github.com/open-telemetry/semantic-conventions/issues/3256))
+- `rpc`: Deprecate experimental `rpc.server.request.size`, `rpc.server.response.size`, `rpc.client.request.size`, and `rpc.client.response.size` metrics due to ambiguous definitions and inconsistent implementation.
+ ([#3267](https://github.com/open-telemetry/semantic-conventions/issues/3267))
+- `rpc`: Deprecate the `rpc.message` event and its attributes ([#3266](https://github.com/open-telemetry/semantic-conventions/issues/3266), [#3283](https://github.com/open-telemetry/semantic-conventions/issues/3283))
+  Per-message events within RPC streaming calls are of limited utility in their current form. They are recorded as span events (also being deprecated). There is no direct replacement at this time.
+
+### 💡 Enhancements 💡
+
+- `cloud`: Add `oracle_cloud.realm` vendor-specific attribute for Oracle Cloud Infrastructure (OCI) realm identifier. ([#3121](https://github.com/open-telemetry/semantic-conventions/issues/3121))
+  An Oracle Cloud realm is a logical collection of cloud regions that are isolated from each other, used for compliance and data residency requirements.
+- `db`: Mark the Oracle Database client span as Release Candidate. ([#2989](https://github.com/open-telemetry/semantic-conventions/issues/2989))
+- `db`: Modify area to oracledb from oracle ([#3316](https://github.com/open-telemetry/semantic-conventions/issues/3316))
+- `db`: Clarified `db.query.summary` behavior for batch operations. ([#3287](https://github.com/open-telemetry/semantic-conventions/issues/3287))
+- `db, rpc`: Define domain-specific exception events for database and RPC ([#3426](https://github.com/open-telemetry/semantic-conventions/issues/3426))
+  These domain-specific exception events provide a structured way to record
+  exceptions that occur during operations in each area:
+  - `db.client.operation.exception` for database client operations
+  - `rpc.client.call.exception` and `rpc.server.call.exception` for RPC
+  
+- `docs`: Add how-to guide for defining spans ([#3240](https://github.com/open-telemetry/semantic-conventions/issues/3240))
+- `event`: Allow event body to represent a display message. ([#3343](https://github.com/open-telemetry/semantic-conventions/issues/3343))
+- `exception`: Indicate that `exception.message` attribute may contain sensitive information. ([#2967](https://github.com/open-telemetry/semantic-conventions/issues/2967), [#3310](https://github.com/open-telemetry/semantic-conventions/issues/3310))
+- `exceptions`: Introduce `OTEL_SEMCONV_EXCEPTION_SIGNAL_OPT_IN` environment variable for transitioning exception recording from span events to logs. ([#3363](https://github.com/open-telemetry/semantic-conventions/issues/3363))
+- `gcp`: Add GCP GCE Instance Group Manager attributes ([#905](https://github.com/open-telemetry/semantic-conventions/issues/905))
+- `gen-ai`: Add retrieval span support to the gen-ai semantic conventions. ([#2907](https://github.com/open-telemetry/semantic-conventions/issues/2907))
+- `gen-ai`: Enhance how tool calls are captured to extend support for server side tools.
+ ([#2585](https://github.com/open-telemetry/semantic-conventions/issues/2585))
+- `gen-ai`: Add `gen_ai.agent.version` attribute to capture the version of an agent. ([#3428](https://github.com/open-telemetry/semantic-conventions/issues/3428))
+- `gen-ai`: Add cache token attributes and provider-specific normalization guidance for GenAI usage metrics ([#1959](https://github.com/open-telemetry/semantic-conventions/issues/1959))
+  - Add `gen_ai.usage.cache_read.input_tokens` attribute for tokens served from provider cache
+  - Add `gen_ai.usage.cache_creation.input_tokens` attribute for tokens written to provider cache
+  - Add provider-specific token handling notes to OpenAI span
+  - Add Anthropic span with computation guidance for `gen_ai.usage.input_tokens`
+  
+- `gen_ai`: Added `sampling-relevant` flag to relevant GenAI span attributes to indicate their importance for sampling decisions. ([#2994](https://github.com/open-telemetry/semantic-conventions/issues/2994))
+- `http`: Defined declarative configuration for overriding known HTTP methods. ([#3394](https://github.com/open-telemetry/semantic-conventions/issues/3394))
+- `http`: Define declarative configuration for sensitive query parameters. ([#3403](https://github.com/open-telemetry/semantic-conventions/issues/3403))
+- `http`: Define `http.client.request.exception` and `http.server.request.exception` events for recording exceptions during HTTP operations ([#3414](https://github.com/open-telemetry/semantic-conventions/issues/3414))
+  These domain-specific exception events provide a structured way to record
+  exceptions that occur during HTTP client requests (network failures, timeouts)
+  and HTTP server request processing (application errors, internal failures).
+  
+- `jvm`: Add `jvm.file_descriptor.limit` as an in-development metric to track the maximum number of open file descriptors as reported by the JVM. ([#3430](https://github.com/open-telemetry/semantic-conventions/issues/3430))
+- `k8s`: Promote a selection of k8s and container attributes to beta ([#3120](https://github.com/open-telemetry/semantic-conventions/issues/3120))
+- `k8s`: Add k8s.service entity with endpoint and load balancer ingress metrics ([#3294](https://github.com/open-telemetry/semantic-conventions/issues/3294))
+  New metrics:
+  - `k8s.service.endpoint.count`: Number of endpoints by condition, address type, and zone
+  - `k8s.service.load_balancer.ingress.count`: Number of load balancer ingress points
+  New attributes:
+  - `k8s.service.endpoint.condition`, `k8s.service.endpoint.address_type`, `k8s.service.endpoint.zone`
+  - `k8s.service.traffic_distribution`, `k8s.service.publish_not_ready_addresses`
+  New entity:
+  - `entity.k8s.service`: k8s service entity with identifying and descriptive attributes
+  
+- `openai`: Add `openai.api.type` attribute to distinguish between different OpenAI API types for similar operations. ([#3337](https://github.com/open-telemetry/semantic-conventions/issues/3337))
+- `pprof`: add `pprof.scope.default_sample_type` and `pprof.scope.sample_type_order` attributes to support lossless conversion of pprof profiles. ([#3078](https://github.com/open-telemetry/semantic-conventions/issues/3078))
+- `rpc`: Mark core RPC (plus gRPC and Apache Dubbo) semantic conventions as release candidate. ([#3446](https://github.com/open-telemetry/semantic-conventions/issues/3446))
+- `rpc`: Add Metrics sections to JSON-RPC, gRPC, and Connect RPC system-specific conventions ([#3319](https://github.com/open-telemetry/semantic-conventions/issues/3319), [#3320](https://github.com/open-telemetry/semantic-conventions/issues/3320))
+- `rpc`: Change `rpc.server.call.duration` and `rpc.client.call.duration` metrics from recommended to required ([#3284](https://github.com/open-telemetry/semantic-conventions/issues/3284))
+- `rpc`: Add RPC migration guide documenting changes from v1.37.0 to latest version. ([#3204](https://github.com/open-telemetry/semantic-conventions/issues/3204))
+- `rpc`: Clarify that `network.peer.address` should indicate the last contacted address in case of retries.
+ ([#3392](https://github.com/open-telemetry/semantic-conventions/issues/3392), [#3427](https://github.com/open-telemetry/semantic-conventions/issues/3427))
+- `rpc`: Add semantic conventions for Apache Dubbo RPC system. ([#3291](https://github.com/open-telemetry/semantic-conventions/issues/3291))
+- `rpc`: Clarify how to populate `server.address` and `server.port` when using client-side load balancing or service discovery.
+ ([#3258](https://github.com/open-telemetry/semantic-conventions/issues/3258), [#3317](https://github.com/open-telemetry/semantic-conventions/issues/3317))
+- `service`: Add `service.criticality` attribute to classify services based on operational importance ([#2986](https://github.com/open-telemetry/semantic-conventions/issues/2986))
+  This attribute enables observability platforms to implement criticality-aware tracing, monitoring,
+  and sampling strategies. Supports four levels: critical, high, medium, and low.
+  
+- `service`: Stabilize `service.instance.id` attribute. ([#1519](https://github.com/open-telemetry/semantic-conventions/issues/1519))
+  The `service.instance.id` attribute and entity are promoted from development to stable.
+  
+- `service`: Stabilize `service.namespace` attribute. ([#3254](https://github.com/open-telemetry/semantic-conventions/issues/3254))
+  The `service.namespace` attribute is promoted from development to stable.
+
 ## v1.39.0
 
 ### 🛑 Breaking changes 🛑

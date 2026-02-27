@@ -247,6 +247,11 @@ groups:
         type: string
         brief: Free-form description of the GenAI agent provided by the application.
         examples: ["Helps with math problems", "Generates fiction stories"]
+      - id: gen_ai.agent.version
+        stability: development
+        type: string
+        brief: The version of the GenAI agent.
+        examples: ["1.0.0", "2025-05-01"]
       - id: gen_ai.tool.name
         stability: development
         type: string
