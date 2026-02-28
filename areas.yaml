@@ -1,4 +1,4 @@
-areas:
+areareas:
   - name: "Semantic Conventions: System"
     owner:
       - name: "semconv-system-approvers"
@@ -43,6 +43,7 @@ areas:
       - area:gen-ai
       - area:openai
       - area:mcp
+      - area:gcp
     status:
       - accepting_contributions
       - active
