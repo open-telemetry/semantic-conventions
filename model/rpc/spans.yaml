@@ -37,7 +37,7 @@ groups:
 
   - id: span.rpc.call.client
     type: span
-    stability: development
+    stability: release_candidate
     brief: This span represents an outgoing Remote Procedure Call (RPC).
     note: |
       RPC client spans SHOULD cover the entire client-side lifecycle of an RPC,
@@ -65,7 +65,7 @@ groups:
 
   - id: span.rpc.call.server
     type: span
-    stability: development
+    stability: release_candidate
     extends: rpc.server
     span_kind: server
     brief: This span represents an incoming Remote Procedure Call (RPC).
@@ -161,7 +161,7 @@ groups:
 
   - id: span.rpc.grpc.call.client
     type: span
-    stability: development
+    stability: release_candidate
     brief: This span represents an outgoing Remote Procedure Call (RPC).
     note: |
       `rpc.system.name` MUST be set to `"grpc"` and SHOULD be provided **at span creation time.**
@@ -236,7 +236,7 @@ groups:
         examples: [50051]
   - id: span.rpc.grpc.call.server
     type: span
-    stability: development
+    stability: release_candidate
     extends: rpc.server
     span_kind: server
     brief: This span represents an incoming Remote Procedure Call (RPC).
@@ -370,7 +370,7 @@ groups:
 
   - id: span.rpc.dubbo.call.client
     type: span
-    stability: development
+    stability: release_candidate
     brief: This span represents an outgoing Remote Procedure Call (RPC).
     note: |
       `rpc.system.name` MUST be set to `"dubbo"` and SHOULD be provided **at span creation time.**
@@ -438,7 +438,7 @@ groups:
 
   - id: span.rpc.dubbo.call.server
     type: span
-    stability: development
+    stability: release_candidate
     extends: rpc.server
     span_kind: server
     brief: This span represents an incoming Remote Procedure Call (RPC).

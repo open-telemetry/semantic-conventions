@@ -72,6 +72,33 @@ groups:
           The `error.type` SHOULD match the error code returned by the Generative AI provider or the client library,
           the canonical name of exception that occurred, or another low-cardinality error identifier.
           Instrumentations SHOULD document the list of errors they report.
+  - id: metric.gen_ai.client.operation.time_to_first_chunk
+    type: metric
+    metric_name: gen_ai.client.operation.time_to_first_chunk
+    annotations:
+      code_generation:
+        metric_value_type: double
+    brief: 'Time to receive the first chunk, measured from when the client issues the generation request to when the first chunk is received in the response stream.'
+    note: >
+      This metrics SHOULD be reported for streaming calls and SHOULD NOT be reported otherwise.
+    instrument: histogram
+    unit: "s"
+    stability: development
+    extends: metric_attributes.gen_ai
+  - id: metric.gen_ai.client.operation.time_per_output_chunk
+    type: metric
+    metric_name: gen_ai.client.operation.time_per_output_chunk
+    annotations:
+      code_generation:
+        metric_value_type: double
+    brief: >
+      Time per output chunk, recorded for each chunk received after the first one, measured as the time elapsed from the end of the previous chunk to the end of the current chunk.
+    note: >
+      This metrics SHOULD be reported for streaming calls and SHOULD NOT be reported otherwise.
+    instrument: histogram
+    unit: "s"
+    stability: development
+    extends: metric_attributes.gen_ai
   - id: metric.gen_ai.server.request.duration
     type: metric
     metric_name: gen_ai.server.request.duration
