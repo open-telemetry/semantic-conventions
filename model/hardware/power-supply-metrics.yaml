@@ -1,0 +1,54 @@
+groups:
+  # POWER SUPPLY METRICS
+  - id: metric_attributes.hw.power_supply
+    type: attribute_group
+    brief: >
+      Common attributes for power supply metrics
+    extends: hardware.attributes.common
+    attributes:
+      - ref: hw.model
+        requirement_level: recommended
+      - ref: hw.serial_number
+        requirement_level: recommended
+      - ref: hw.vendor
+        requirement_level: recommended
+
+  - id: metric.hw.power_supply.limit
+    type: metric
+    metric_name: hw.power_supply.limit
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "Maximum power output of the power supply."
+    instrument: updowncounter
+    unit: "W"
+    extends: metric_attributes.hw.power_supply
+    attributes:
+      - ref: hw.limit_type
+        examples: ["max", "critical", "throttled"]
+        requirement_level: recommended
+
+  - id: metric.hw.power_supply.utilization
+    type: metric
+    metric_name: hw.power_supply.utilization
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: "Utilization of the power supply as a fraction of its maximum output."
+    instrument: gauge
+    unit: "1"
+    extends: metric_attributes.hw.power_supply
+
+  - id: metric.hw.power_supply.usage
+    type: metric
+    metric_name: hw.power_supply.usage
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: "Current power output of the power supply."
+    instrument: updowncounter
+    unit: "W"
+    extends: metric_attributes.hw.power_supply

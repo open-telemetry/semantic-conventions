@@ -31,7 +31,7 @@ Possible solutions include:
 - Follow language-specific conventions to annotate unstable parts. For example, Semantic Conventions in Python puts unstable attributes in `opentelemetry.semconv._incubating` import path which is considered (following Python underscore convention) to be internal and subject to change.
 - Ship two different artifacts: one that contains stable Semantic Conventions and another one with all available conventions. For example, [semantic-conventions in Java](https://github.com/open-telemetry/semantic-conventions-java) are shipped in two artifacts: `opentelemetry-semconv` and `opentelemetry-semconv-incubating`.
 
-> Note:
+> [!Note]
 > Shipping two versions of the same artifact (stable and preview) could be problematic due to diamond-dependency problems.
 > For example, if user application depends on the `semconv v1.0.0-preview` and some library brings transitive dependency on `semconv v1.1.0` that does not contain
 > experimental conventions, the latter would be resolved leading to compilation or runtime issues in the application.
@@ -81,9 +81,7 @@ This section contains suggestions on how to structure semantic convention artifa
 This section describes how to do code-generation with weaver.
 
 > [!IMPORTANT]
-> We're transitioning away from [build-tools](https://github.com/open-telemetry/build-tools/blob/main/semantic-conventions/README.md#code-generator)
-> to [opentelemetry-weaver](https://github.com/open-telemetry/weaver/blob/main/crates/weaver_forge/README.md) to generate code for semantic conventions.
-> All new code-generation should be done using weaver, build-tools may become incompatible with future version of semantic conventions.
+> All code-generation should be done using [weaver](https://github.com/open-telemetry/weaver/blob/main/crates/weaver_forge/README.md),
 > Weaver supports Semantic Conventions version starting from [1.26.0](https://github.com/open-telemetry/semantic-conventions/tree/v1.26.0).
 
 Code-generation is based on YAML definitions in the specific version of semantic conventions.
@@ -105,7 +103,8 @@ Check out [weaver code-generation documentation for more details](https://github
 
 ### Migrating from build-tools
 
-Migration from build-tools involves changing Jinja templates and adding a [weaver config file](https://github.com/open-telemetry/weaver/blob/main/crates/weaver_forge/README.md#configuration-file---weaveryaml).
+Migration from [build-tools](https://github.com/open-telemetry/build-tools/blob/v0.25.0/semantic-conventions/README.md)
+involves changing Jinja templates and adding a [weaver config file](https://github.com/open-telemetry/weaver/blob/main/crates/weaver_forge/README.md#configuration-file---weaveryaml).
 
 #### Weaver config
 

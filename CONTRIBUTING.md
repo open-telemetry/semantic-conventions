@@ -18,7 +18,6 @@ requirements and recommendations.
   - [Prerequisites](#prerequisites)
   - [1. Modify the YAML model](#1-modify-the-yaml-model)
     - [Code structure](#code-structure)
-    - [Schema files](#schema-files)
   - [2. Update the markdown files](#2-update-the-markdown-files)
     - [Hugo frontmatter](#hugo-frontmatter)
   - [3. Check new convention](#3-check-new-convention)
@@ -28,6 +27,7 @@ requirements and recommendations.
       - [Examples](#examples)
     - [Adding a changelog entry](#adding-a-changelog-entry)
   - [5. Getting your PR merged](#5-getting-your-pr-merged)
+- [Reviewer guidelines](#reviewer-guidelines)
 - [Automation](#automation)
   - [Consistency checks](#consistency-checks)
   - [Auto formatting](#auto-formatting)
@@ -36,6 +36,7 @@ requirements and recommendations.
   - [Update the tables of content](#update-the-tables-of-content)
   - [Markdown link check](#markdown-link-check)
   - [Yamllint check](#yamllint-check)
+- [Schema files](#schema-files)
 - [Merging existing ECS conventions](#merging-existing-ecs-conventions)
 
 <!-- tocstop -->
@@ -52,13 +53,13 @@ Agreement](https://identity.linuxfoundation.org/projects/cncf).
 When contributing to semantic conventions, it's important to understand a few
 key, but non-obvious, aspects:
 
+- In the PR description, include links to the relevant instrumentation and any applicable prototypes. Non-trivial changes to semantic conventions should be prototyped in the corresponding instrumentation(s).
 - All attributes, metrics, etc. are formally defined in YAML files under
   the `model/` directory.
 - All descriptions, normative language are defined in the `docs/` directory.
 - All changes to existing attributes, metrics, etc. MUST be allowed as
   per our [stability guarantees][stability guarantees] and
-  defined in a schema file. As part of any contribution, you should
-  include attribute changes defined in the `schema-next.yaml` file.
+  defined in a schema file.
 - Links to the specification repository MUST point to a tag and **not** to the `main` branch.
   The tag version MUST match with the one defined in [README](README.md).
 
@@ -66,22 +67,37 @@ Please make sure all Pull Requests are compliant with these rules!
 
 ### Which semantic conventions belong in this repo
 
-This repo contains semantic conventions supported by the OpenTelemetry ecosystem
-including, but not limited to, components hosted in OpenTelemetry.
+This repo contains semantic conventions supported by multiple components in the
+OpenTelemetry ecosystem including, but not limited to, components hosted in
+OpenTelemetry.
 
-Instrumentations hosted in OpenTelemetry SHOULD contribute their semantic
-conventions to this repo with the following exceptions:
+Instrumentations hosted in OpenTelemetry SHOULD contribute their semantic conventions
+to this repository when the corresponding conventions are applicable across multiple
+runtimes, across different types of libraries, or across multiple infrastructure
+components.
 
-- Instrumentations that follow external schema not fully compatible with OpenTelemetry such as
-  [Kafka client JMX metrics](https://github.com/open-telemetry/opentelemetry-java-instrumentation/blob/v2.10.0/instrumentation/kafka/kafka-clients/kafka-clients-2.6/library/README.md)
-  or [RabbitMQ Collector Receiver](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/v0.116.0/receiver/rabbitmqreceiver)
-  SHOULD document such conventions in their own repository.
+Conventions that are specific to a single runtime, library, or narrowly scoped
+implementation SHOULD be defined in the corresponding repository.
 
-Having all OTel conventions in this repo allows to reuse common attributes, enforce naming and compatibility policies,
-and helps to keep conventions consistent and backward compatible.
+> [!NOTE]
+> This guidance affects all new contributions to OpenTelemetry semantic conventions.
+> Existing conventions for specific areas MAY be moved outside of this repository.
+
+Examples of new convention areas that may be considered for this repository,
+given their general applicability:
+
+- database, messaging, or GenAI server conventions
+- websockets conventions
+
+Examples of conventions that should not be hosted in this repository:
+
+- [Kafka client JMX metrics](https://github.com/open-telemetry/opentelemetry-java-instrumentation/blob/v2.25.0/instrumentation/kafka/kafka-clients/kafka-clients-2.6/library/README.md)
+- [RabbitMQ Collector Receiver](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/v0.145.0/receiver/rabbitmqreceiver)
 
 Want to define your own conventions outside this repo while building on OTel’s?
 Come help us [decentralize semantic conventions](https://github.com/open-telemetry/weaver/issues/215).
+
+<!-- TODO add link to decentralized conventions docs and examples - https://github.com/open-telemetry/semantic-conventions/issues/3456 -->
 
 ### Suggesting conventions for a new area
 
@@ -92,7 +108,7 @@ pull requests, issues, and questions in this area.
 Check out [project management](https://github.com/open-telemetry/community/blob/main/project-management.md)
 for the details on how to start.
 
-Refer to the [How to define new conventions](/docs/general/how-to-define-semantic-conventions.md)
+Refer to the [How to define new conventions](/docs/how-to-write-conventions/README.md)
 document for guidance.
 
 ### Prerequisites
@@ -114,12 +130,15 @@ environment configured:
   npm install
   ```
 
-- If on MacOs, ensure you have `gsed` (GNU Sed) installed. If you have [HomeBrew](https://brew.sh)
+- If on macOS, ensure you have `gsed` (GNU Sed) installed. If you have [HomeBrew](https://brew.sh)
   installed, then you can run the following command to install GSED.
 
   ```bash
   brew bundle
   ```
+
+- Lastly, ensure you have either [Docker](https://www.docker.com) or [Podman](https://podman.io) installed and
+  configured in such a way that the makefile can execute the `docker` command.
 
 ### 1. Modify the YAML model
 
@@ -164,21 +183,6 @@ are defined in `/model/aws/lambda-spans.yaml` and `/model/aws/sdk-spans.yaml` fi
 Deprecated conventions should be placed under `/model/{root-namespace}/deprecated`
 folder.
 
-#### Schema files
-
-When making changes to existing semantic conventions (attributes, metrics, etc)
-you MUST also update the `schema-next.yaml` file with the changes.
-
-For details, please read
-[the schema specification](https://opentelemetry.io/docs/specs/otel/schemas/).
-
-You can also take examples from past changes inside the `schemas` folder.
-
-> [!WARNING]
->
-> DO NOT add your changes to files inside the `schemas` folder. Always add your
-> changes to the `schema-next.yaml` file.
-
 ### 2. Update the markdown files
 
 After updating the YAML file(s), you need to update
@@ -186,7 +190,7 @@ the respective markdown files.
 If you want to update existing tables, just run the following commands:
 
 ```bash
-make table-generation attribute-registry-generation
+make generate-all
 ```
 
 When defining new telemetry signals (spans, metrics, events, resources) in YAML,
@@ -201,7 +205,7 @@ code-snippet into the markdown file:
 Then run markdown generation commands:
 
 ```bash
-make table-generation attribute-registry-generation
+make generate-all
 ```
 
 #### Hugo frontmatter
@@ -212,9 +216,6 @@ headers like the following:
 ```md
 <!--- Hugo front matter used to generate the website version of this page:
 linkTitle: HTTP
-path_base_for_github_subdir:
-  from: content/en/docs/specs/semconv/http/_index.md
-  to: http/README.md
 --->
 ```
 
@@ -257,6 +258,7 @@ Keep in mind the following types of users (not limited to):
 1. Those who are consuming the data following these conventions (e.g., in alerts, dashboards, queries)
 2. Those who are using the conventions in instrumentations (e.g., library authors)
 3. Those who are using the conventions to derive heuristics, predictions and automatic analyses (e.g., observability products/back-ends)
+4. Those who define their own conventions (e.g., vendor-specific conventions, private registries)
 
 If a changelog entry is not required (e.g. editorial or trivial changes),
 a maintainer or approver will add the `Skip Changelog` label to the pull request.
@@ -302,10 +304,9 @@ Alternately, copy `./.chloggen/TEMPLATE.yaml`, or just create your file from scr
 
 A PR (pull request) is considered to be **ready to merge** when:
 
-- It has received at least two approvals from the [code
-  owners](./.github/CODEOWNERS) (if approvals are from only one company, they
-  won't count)
-- There is no `request changes` from the [code owners](./.github/CODEOWNERS)
+- It has received at least two approvals from the [code owners](./.github/CODEOWNERS)
+- There is no `request changes` from the [code owners](./.github/CODEOWNERS) for
+  affected area(s)
 - There is no open discussions
 - It has been at least two working days since the last modification (except for
   the trivial updates, such like typo, cosmetic, rebase, etc.). This gives
@@ -315,6 +316,35 @@ A PR (pull request) is considered to be **ready to merge** when:
 
 Any [maintainer](./README.md#contributing) can merge the PR once it is **ready
 to merge**.
+
+## Reviewer guidelines
+
+Semantic conventions consist of multiple [areas](./AREAS.md) with ownership
+defined in the [CODEOWNERS](./.github/CODEOWNERS) file.
+
+When a PR is raised against specific area(s), it is recommended to allow the corresponding
+area(s) owners to review and iterate on it first before approving or rejecting the PR.
+
+A review from [@specs-semconv-approvers](https://github.com/orgs/open-telemetry/teams/specs-semconv-approvers)
+is required on every PR and, in most cases, follows after area(s) owners approval.
+
+Before merging a PR, [@specs-semconv-maintainers](https://github.com/orgs/open-telemetry/teams/specs-semconv-maintainers)
+MUST verify that the PR has been approved by the corresponding area owner(s). For
+non-trivial changes, maintainers SHOULD NOT merge PRs without other code owner approvals.
+
+Reviews from non-code owners are encouraged, with the following assumptions:
+
+- There is a reasonable intersection between the change and the reviewer's area of expertise or interest
+- Area owners have autonomy to accept or dismiss feedback from non-codeowners and
+  SHOULD consult with [@specs-semconv-maintainers](https://github.com/orgs/open-telemetry/teams/specs-semconv-maintainers)
+  in case of conflicts
+
+When reviewing changes, reviewers SHOULD include relevant context such as:
+
+- Links to documentation related to the technology in question
+- Links to applicable semantic conventions or OpenTelemetry guidelines
+- Links to relevant PRs, issues, or discussions
+- Reasons for suggesting the change
 
 ## Automation
 
@@ -331,7 +361,8 @@ You can perform all checks locally using this command:
 make check
 ```
 
-> Note: `make check` can take a long time as it checks all links.
+> [!Note]
+> `make check` can take a long time as it checks all links.
 > You should use this prior to submitting a PR to ensure validity.
 > However, you can run individual checks directly.
 
@@ -395,7 +426,8 @@ To check for typos, run the following command:
 make misspell
 ```
 
-> **NOTE**: The `misspell` make target will also fetch and build the tool if
+> [!Note]
+> The `misspell` make target will also fetch and build the tool if
 > necessary. You'll need [Go](https://go.dev) to build the spellchecker.
 
 To quickly fix typos, use
@@ -433,6 +465,23 @@ If it is the first time to run this command, install `yamllint` first:
 ```bash
 make install-yamllint
 ```
+
+## Schema files
+
+> [!WARNING]
+>
+> DO NOT add your changes to files inside the `schemas` folder. These files are
+> generated automatically by the release scripts and can't be updated after
+> the corresponding version is released.
+
+Release script uses the following command to generate new schema file:
+
+```bash
+make generate-schema-next NEXT_SEMCONV_VERSION={next version}
+```
+
+For details, please read
+[the schema specification](https://opentelemetry.io/docs/specs/otel/schemas/).
 
 ## Merging existing ECS conventions
 

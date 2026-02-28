@@ -27,7 +27,7 @@ All semantic convention groups have the following common properties:
 - `stability` describes the maturity level of the convention
 - `deprecated` property marks convention as deprecated and provides information about
   replacement or other details.
-- `attributes` lists references to applicable attributes in the [registry](../attributes-registry/README.md)
+- `attributes` lists references to applicable attributes in the [registry](../registry/attributes/README.md)
 
 In addition to common properties, semantic convention groups have type-specific properties, see
 [Schema documentation](https://github.com/open-telemetry/weaver/blob/main/schemas/semconv-syntax.md)
@@ -86,5 +86,5 @@ users to opt into it.
 <!-- https://github.com/open-telemetry/semantic-conventions/issues/1511 -->
 
 [Stability]: https://opentelemetry.io/docs/specs/otel/versioning-and-stability/#semantic-conventions-stability
-[MaturityLevel]: https://github.com/open-telemetry/opentelemetry-specification/tree/v1.44.0/oteps/0232-maturity-of-otel.md
+[MaturityLevel]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.54.0/oteps/0232-maturity-of-otel.md
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status

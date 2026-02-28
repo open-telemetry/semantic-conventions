@@ -172,6 +172,132 @@ groups:
           Criticality of a workload indicates its importance to the business.
         note: >
           [See AppHub type enum](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type)
+  - id: registry.gcp.apphub_destination
+    type: attribute_group
+    display_name: GCP - AppHub Destination Attributes
+    brief: >
+      This document defines attributes AppHub will apply to destination resources in GCP.
+      See [AppHub overview](https://cloud.google.com/app-hub/docs/overview).
+    attributes:
+      - id: gcp.apphub_destination.application.container
+        type: string
+        stability: development
+        brief: >
+          The container within GCP where the AppHub destination application is defined.
+        examples: ['projects/my-container-project']
+      - id: gcp.apphub_destination.application.location
+        type: string
+        stability: development
+        brief: >
+          The GCP zone or region where the destination application is defined.
+        examples: ['us-central1']
+      - id: gcp.apphub_destination.application.id
+        type: string
+        stability: development
+        brief: >
+          The name of the destination application as configured in AppHub.
+        examples: ['my-application']
+      - id: gcp.apphub_destination.service.id
+        type: string
+        stability: development
+        brief: >
+          The name of the destination service as configured in AppHub.
+        examples: ['my-service']
+      - id: gcp.apphub_destination.service.environment_type
+        type:
+          members:
+            - id: production
+              value: "PRODUCTION"
+              brief: Production environment.
+              stability: development
+            - id: staging
+              value: "STAGING"
+              brief: Staging environment.
+              stability: development
+            - id: test
+              value: "TEST"
+              brief: Test environment.
+              stability: development
+            - id: development
+              value: "DEVELOPMENT"
+              brief: Development environment.
+              stability: development
+        stability: development
+        brief: >
+          Software lifecycle stage of a destination service as defined [AppHub environment type](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type_1)
+      - id: gcp.apphub_destination.service.criticality_type
+        type:
+          members:
+            - id: mission_critical
+              value: "MISSION_CRITICAL"
+              brief: Mission critical service.
+              stability: development
+            - id: high
+              value: "HIGH"
+              brief: High impact.
+              stability: development
+            - id: medium
+              value: "MEDIUM"
+              brief: Medium impact.
+              stability: development
+            - id: low
+              value: "LOW"
+              brief: Low impact.
+              stability: development
+        stability: development
+        brief: >
+          Criticality of a destination workload indicates its importance to the business as specified in [AppHub type enum](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type)
+      - id: gcp.apphub_destination.workload.id
+        type: string
+        stability: development
+        brief: >
+          The name of the destination workload as configured in AppHub.
+        examples: ['my-workload']
+      - id: gcp.apphub_destination.workload.environment_type
+        type:
+          members:
+            - id: production
+              value: "PRODUCTION"
+              brief: Production environment.
+              stability: development
+            - id: staging
+              value: "STAGING"
+              brief: Staging environment.
+              stability: development
+            - id: test
+              value: "TEST"
+              brief: Test environment.
+              stability: development
+            - id: development
+              value: "DEVELOPMENT"
+              brief: Development environment.
+              stability: development
+        stability: development
+        brief: >
+          Environment of a destination workload is the stage of a software lifecycle as provided in the
+          [AppHub environment type](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type_1)
+      - id: gcp.apphub_destination.workload.criticality_type
+        type:
+          members:
+            - id: mission_critical
+              value: "MISSION_CRITICAL"
+              brief: Mission critical service.
+              stability: development
+            - id: high
+              value: "HIGH"
+              brief: High impact.
+              stability: development
+            - id: medium
+              value: "MEDIUM"
+              brief: Medium impact.
+              stability: development
+            - id: low
+              value: "LOW"
+              brief: Low impact.
+              stability: development
+        stability: development
+        brief: >
+          Criticality of a destination workload indicates its importance to the business as specified in [AppHub type enum](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type)
   - id: registry.gcp.gce
     type: attribute_group
     display_name: GCP - Google Compute Engine (GCE) Attributes
@@ -195,6 +321,26 @@ groups:
         brief: >
           The hostname of a GCE instance. This is the full value of the default or [custom hostname](https://cloud.google.com/compute/docs/instances/custom-hostname-vm).
         examples: ['my-host1234.example.com', 'sample-vm.us-west1-b.c.my-project.internal']
+      - id: gcp.gce.instance_group_manager.name
+        type: string
+        stability: development
+        brief: >
+          The name of the Instance Group Manager (IGM) that manages this VM, if any.
+        examples: ['web-igm', 'my-managed-group']
+      - id: gcp.gce.instance_group_manager.zone
+        type: string
+        stability: development
+        brief: >
+          The zone of a **zonal** Instance Group Manager (e.g., `us-central1-a`).
+          Set this **only** when the IGM is zonal.
+        examples: ['us-central1-a', 'europe-west1-b']
+      - id: gcp.gce.instance_group_manager.region
+        type: string
+        stability: development
+        brief: >
+          The region of a **regional** Instance Group Manager (e.g., `us-central1`).
+          Set this **only** when the IGM is regional.
+        examples: ['us-central1', 'europe-west1']
 
   - id: registry.gcp.gen_ai
     type: attribute_group

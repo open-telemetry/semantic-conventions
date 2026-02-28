@@ -10,7 +10,7 @@ This document defines semantic conventions for HTTP spans, metrics and logs.
 They can be used for http and https schemes
 and various HTTP versions like 1.1, 2 and SPDY.
 
-> **Warning**
+> [!IMPORTANT]
 > Existing HTTP instrumentations that are using
 > [v1.20.0 of this document](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.20.0/specification/trace/semantic_conventions/http.md)
 > (or prior):
@@ -40,6 +40,7 @@ Semantic conventions for HTTP are defined for the following signals:
 
 * [HTTP Spans](http-spans.md): Semantic Conventions for HTTP client and server *spans*.
 * [HTTP Metrics](http-metrics.md): Semantic Conventions for HTTP client and server *metrics*.
+* [HTTP Exceptions](http-exceptions.md): Semantic Conventions for HTTP client and server *exceptions*.
 
 For help migrating from non-stable to stable conventions, see [the migration guide](../non-normative/http-migration.md).
 

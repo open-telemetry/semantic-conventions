@@ -4,327 +4,306 @@ linkTitle: Spans
 
 # Semantic conventions for RPC spans
 
-**Status**: [Development][DocumentStatus]
+**Status**: [Release Candidate][DocumentStatus], unless otherwise specified
 
 This document defines how to describe remote procedure calls
 (also called "remote method invocations" / "RMI") with spans.
 
 <!-- toc -->
 
-- [Common remote procedure call conventions](#common-remote-procedure-call-conventions)
-  - [Span name](#span-name)
-  - [Service name](#service-name)
-  - [RPC client span](#rpc-client-span)
-  - [RPC server span](#rpc-server-span)
-  - [Events](#events)
-    - [Message event](#message-event)
-  - [Distinction from HTTP spans](#distinction-from-http-spans)
-- [Semantic conventions for specific RPC technologies](#semantic-conventions-for-specific-rpc-technologies)
+- [Name](#name)
+- [RPC client span](#rpc-client-span)
+- [RPC server span](#rpc-server-span)
 
 <!-- tocstop -->
 
-> **Warning**
+> [!IMPORTANT]
 > Existing RPC instrumentations that are using
-> [v1.20.0 of this document](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.20.0/specification/trace/semantic_conventions/rpc.md)
+> [v1.37.0 of this document](https://github.com/open-telemetry/semantic-conventions/blob/v1.37.0/docs/rpc/rpc-spans.md)
 > (or prior):
 >
-> * SHOULD NOT change the version of the networking conventions that they emit by default
->   until the HTTP semantic conventions are marked stable (HTTP stabilization will
->   include stabilization of a core set of networking conventions which are also used
->   in RPC instrumentations). Conventions include, but are not limited to, attributes,
->   metric and span names, and unit of measure.
+> * SHOULD NOT change the version of the RPC conventions that they emit by
+>   default in their existing major version. Conventions include (but are not
+>   limited to) attributes, metric and span names, and unit of measure.
 > * SHOULD introduce an environment variable `OTEL_SEMCONV_STABILITY_OPT_IN`
->   in the existing major version as a comma-separated list of category-specific values
->   (e.g., http, databases, messaging). The list of values includes:
->   * `http` - emit the new, stable networking conventions,
->     and stop emitting the old experimental networking conventions
->     that the instrumentation emitted previously.
->   * `http/dup` - emit both the old and the stable networking conventions,
->     allowing for a seamless transition.
+>   in their existing major version as a comma-separated list of category-specific values
+>   (e.g., http, databases, rpc). The list of values includes:
+>   * `rpc` - emit the stable RPC conventions, and stop emitting
+>     the experimental RPC conventions that the instrumentation emitted
+>     previously.
+>   * `rpc/dup` - emit both the experimental and stable RPC conventions,
+>     allowing for a phased rollout of the stable semantic conventions.
 >   * The default behavior (in the absence of one of these values) is to continue
->     emitting whatever version of the old experimental networking conventions
+>     emitting whatever version of the old experimental RPC conventions
 >     the instrumentation was emitting previously.
->   * Note: `http/dup` has higher precedence than `http` in case both values are present
-> * SHOULD maintain (security patching at a minimum) the existing major version
+>   * Note: `rpc/dup` has higher precedence than `rpc` in case both values are present
+> * SHOULD maintain (security patching at a minimum) their existing major version
 >   for at least six months after it starts emitting both sets of conventions.
-> * SHOULD drop the environment variable in the next major version.
+> * MAY drop the environment variable in their next major version and emit only
+>   the stable RPC conventions.
 
-## Common remote procedure call conventions
+## Name
 
-### Span name
+RPC spans MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.54.0/specification/trace/api.md#span).
 
-The *span name* MUST be the full RPC method name formatted as:
+The *span name* SHOULD be `{rpc.method}` if it is available and not set to
+`_OTHER`.
 
-```
-$package.$service/$method
-```
+If `rpc.method` is unavailable or set to `_OTHER`, the span name SHOULD be
+`{rpc.system.name}`.
 
-(where $service MUST NOT contain dots and $method MUST NOT contain slashes)
+Semantic conventions for individual RPC systems MAY specify different span name
+format.
 
-If there is no package name or if it is unknown, the `$package.` part (including the period) is omitted.
+## RPC client span
 
-Examples of span names:
-
-- `grpc.test.EchoService/Echo`
-- `com.example.ExampleRmiService/exampleMethod`
-- `MyCalcService.Calculator/Add` reported by the server and
-  `MyServiceReference.ICalculator/Add` reported by the client for .NET WCF calls
-- `MyServiceWithNoPackage/theMethod`
-
-### Service name
-
-On the server process receiving and handling the remote procedure call, the service name provided in `rpc.service` does not necessarily have to match the [`service.name`][] resource attribute.
-One process can expose multiple RPC endpoints and thus have multiple RPC service names. From a deployment perspective, as expressed by the `service.*` resource attributes, it will be treated as one deployed service with one `service.name`.
-Likewise, on clients sending RPC requests to a server, the service name provided in `rpc.service` does not have to match the [`peer.service`][] span attribute.
-
-As an example, given a process deployed as `QuoteService`, this would be the name that goes into the `service.name` resource attribute which applies to the entire process.
-This process could expose two RPC endpoints, one called `CurrencyQuotes` (= `rpc.service`) with a method called `getMeanRate` (= `rpc.method`) and the other endpoint called `StockQuotes`  (= `rpc.service`) with two methods `getCurrentBid` and `getLastClose` (= `rpc.method`).
-In this example, spans representing client request should have their `peer.service` attribute set to `QuoteService` as well to match the server's `service.name` resource attribute.
-Generally, a user SHOULD NOT set `peer.service` to a fully qualified RPC service name.
-
-[`service.name`]: /docs/resource/README.md#service
-[`peer.service`]: /docs/general/attributes.md#general-remote-service-attributes
-
-### RPC client span
-
-<!-- semconv span.rpc.client -->
+<!-- semconv span.rpc.call.client -->
 <!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
 <!-- see templates/registry/markdown/snippet.md.j2 -->
 <!-- prettier-ignore-start -->
-<!-- markdownlint-capture -->
-<!-- markdownlint-disable -->
 
-**Status:** ![Development](https://img.shields.io/badge/-development-blue)
+**Status:** ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid)
 
 This span represents an outgoing Remote Procedure Call (RPC).
 
-Remote procedure calls can only be represented with these semantic conventions
-when the names of the called service and method are known and available.
+RPC client spans SHOULD cover the entire client-side lifecycle of an RPC,
+starting when the RPC is initiated and ending when the response is received
+or the RPC is terminated due to an error or cancellation.
 
-**Span name:** refer to the [Span Name](#span-name) section.
+For streaming RPCs, the span covers the full lifetime of the request and/or
+response streams until they are closed or terminated.
+
+If a transient issue happened and was retried within this RPC, the corresponding
+span SHOULD cover the duration of the logical call with all retries.
+
+**Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#name) section.
 
 **Span kind** MUST be `CLIENT`.
 
-**Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
+**Span status**: refer to the [Recording Errors](/docs/general/recording-errors.md)
+document for details on how to record span status.
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`rpc.system`](/docs/attributes-registry/rpc.md) | string | A string identifying the remoting system. See below for a list of well-known identifiers. | `grpc`; `java_rmi`; `dotnet_wcf` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`server.address`](/docs/attributes-registry/server.md) | string | RPC server [host name](https://grpc.github.io/grpc/core/md_doc_naming.html). [1] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [2] | `80`; `8080`; `443` | `Conditionally Required` [3] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.peer.address`](/docs/attributes-registry/network.md) | string | Peer address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.peer.port`](/docs/attributes-registry/network.md) | int | Peer port number of the network connection. | `65123` | `Recommended` If `network.peer.address` is set. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.transport`](/docs/attributes-registry/network.md) | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [4] | `tcp`; `udp` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.type`](/docs/attributes-registry/network.md) | string | [OSI network layer](https://wikipedia.org/wiki/Network_layer) or non-OSI equivalent. [5] | `ipv4`; `ipv6` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`rpc.method`](/docs/attributes-registry/rpc.md) | string | The name of the (logical) method being called, must be equal to the $method part in the span name. [6] | `exampleMethod` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`rpc.service`](/docs/attributes-registry/rpc.md) | string | The full (logical) name of the service being called, including its package name, if applicable. [7] | `myservice.EchoService` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+**Attributes:**
 
-**[1] `server.address`:** May contain server IP address, DNS name, or local socket name. When host component is an IP address, instrumentations SHOULD NOT do a reverse proxy lookup to obtain DNS name and SHOULD set `server.address` to the IP address provided in the host component.
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
+| --- | --- | --- | --- | --- | --- |
+| [`rpc.system.name`](/docs/registry/attributes/rpc.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | string | The Remote Procedure Call (RPC) system. [1] | `grpc`; `dubbo`; `connectrpc` |
+| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the operation failed. | string | Describes a class of error the operation ended with. [2] | `DEADLINE_EXCEEDED`; `java.net.UnknownHostException`; `-32602` |
+| [`rpc.method`](/docs/registry/attributes/rpc.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Conditionally Required` if available. | string | The fully-qualified logical name of the method from the RPC interface perspective. [3] | `com.example.ExampleService/exampleMethod`; `EchoService/Echo`; `_OTHER` |
+| [`rpc.method_original`](/docs/registry/attributes/rpc.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Conditionally Required` If and only if it's different than `rpc.method`. | string | The original name of the method used by the client. | `com.myservice.EchoService/catchAll`; `com.myservice.EchoService/unknownMethod`; `InvalidMethod` |
+| [`rpc.response.status_code`](/docs/registry/attributes/rpc.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Conditionally Required` if available. | string | Status code of the RPC returned by the RPC server or generated by the client [4] | `OK`; `DEADLINE_EXCEEDED`; `-32602` |
+| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If available. | string | A string identifying a group of RPC server instances request is sent to. [5] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
+| [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if applicable and if `server.address` is set. | int | Server port number. [6] | `80`; `8080`; `443` |
+| [`network.peer.address`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Peer address of the network connection - IP address or Unix domain socket name. [7] | `10.1.2.80`; `/tmp/my.sock` |
+| [`network.peer.port`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` If `network.peer.address` is set. | int | Peer port number of the network connection. | `65123` |
 
-**[2] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[1] `rpc.system.name`:** The client and server RPC systems may differ for the same RPC interaction. For example, a client may use Apache Dubbo or Connect RPC to communicate with a server that uses gRPC since both protocols provide compatibility with gRPC.
 
-**[3] `server.port`:** if the port is supported by the network transport used for communication.
+**[2] `error.type`:** If the RPC fails with an error before status code is returned,
+`error.type` SHOULD be set to the exception type (its fully-qualified class name, if applicable)
+or a component-specific, low cardinality error identifier.
 
-**[4] `network.transport`:** The value SHOULD be normalized to lowercase.
+If a response status code is returned and status indicates an error,
+`error.type` SHOULD be set to that status code. Check system-specific conventions
+for the details on which values of `rpc.response.status_code` are considered errors.
 
-Consider always setting the transport when setting a port number, since
-a port number is ambiguous without knowing the transport. For example
-different processes could be listening on TCP port 12345 and UDP port 12345.
+The `error.type` value SHOULD be predictable and SHOULD have low cardinality.
+Instrumentations SHOULD document the list of errors they report.
 
-**[5] `network.type`:** The value SHOULD be normalized to lowercase.
+If the request has completed successfully, instrumentations SHOULD NOT set
+`error.type`.
 
-**[6] `rpc.method`:** This is the logical name of the method from the RPC interface perspective, which can be different from the name of any implementing method/function. The `code.function.name` attribute may be used to store the latter (e.g., method actually executing the call on the server side, RPC client stub method on the client side).
+**[3] `rpc.method`:** The method name MAY have unbounded cardinality in edge or error cases.
 
-**[7] `rpc.service`:** This is the logical name of the service from the RPC interface perspective, which can be different from the name of any implementing class. The `code.namespace` attribute may be used to store the latter (despite the attribute name, it may include a class name; e.g., class with method actually executing the call on the server side, RPC client stub class on the client side).
+Some RPC frameworks or libraries provide a fixed set of recognized methods
+for client stubs and server implementations. Instrumentations for such
+frameworks MUST set this attribute to the original method name only
+when the method is recognized by the framework or library.
+
+When the method is not recognized, for example, when the server receives
+a request for a method that is not predefined on the server, or when
+instrumentation is not able to reliably detect if the method is predefined,
+the attribute MUST be set to `_OTHER`. In such cases, tracing
+instrumentations MUST also set `rpc.method_original` attribute to
+the original method value.
+
+If the RPC instrumentation could end up converting valid RPC methods to
+`_OTHER`, then it SHOULD provide a way to configure the list of recognized
+RPC methods.
+
+The `rpc.method` can be different from the name of any implementing
+method/function.
+The `code.function.name` attribute may be used to record the fully-qualified
+method actually executing the call on the server side, or the
+RPC client stub method on the client side.
+
+**[4] `rpc.response.status_code`:** Usually it represents an error code, but may also represent partial success, warning, or differentiate between various types of successful outcomes.
+Semantic conventions for individual RPC frameworks SHOULD document what `rpc.response.status_code` means in the context of that system and which values are considered to represent errors.
+
+**[5] `server.address`:** May contain a DNS name, an endpoint and path in the service registry, local socket name or an IP address.
+Semantic conventions for individual RPC systems SHOULD document how to populate this attribute.
+When address is an IP address, instrumentations SHOULD NOT do a reverse DNS lookup to obtain a DNS name and SHOULD set `server.address` to the provided IP address.
+
+**[6] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+
+**[7] `network.peer.address`:** If a RPC involved multiple network calls (for example retries), the last contacted address SHOULD be used.
+
+The following attributes can be important for making sampling decisions
+and SHOULD be provided **at span creation time** (if provided at all):
+
+* [`rpc.method`](/docs/registry/attributes/rpc.md)
+* [`rpc.system.name`](/docs/registry/attributes/rpc.md)
+* [`server.address`](/docs/registry/attributes/server.md)
+* [`server.port`](/docs/registry/attributes/server.md)
 
 ---
 
-`network.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
-| `pipe` | Named or anonymous pipe. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `quic` | QUIC | ![Development](https://img.shields.io/badge/-development-blue) |
-| `tcp` | TCP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `udp` | UDP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `unix` | Unix domain socket | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| Value | Description | Stability |
+| --- | --- | --- |
+| `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ---
 
-`network.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`rpc.system.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
-| `ipv4` | IPv4 | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `ipv6` | IPv6 | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| Value | Description | Stability |
+| --- | --- | --- |
+| `connectrpc` | [Connect RPC](https://connectrpc.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `dubbo` | [Apache Dubbo](https://dubbo.apache.org/) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `grpc` | [gRPC](https://grpc.io/) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `jsonrpc` | [JSON-RPC](https://www.jsonrpc.org/) | ![Development](https://img.shields.io/badge/-development-blue) |
 
----
-
-`rpc.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `apache_dubbo` | Apache Dubbo | ![Development](https://img.shields.io/badge/-development-blue) |
-| `connect_rpc` | Connect RPC | ![Development](https://img.shields.io/badge/-development-blue) |
-| `dotnet_wcf` | .NET WCF | ![Development](https://img.shields.io/badge/-development-blue) |
-| `grpc` | gRPC | ![Development](https://img.shields.io/badge/-development-blue) |
-| `java_rmi` | Java RMI | ![Development](https://img.shields.io/badge/-development-blue) |
-
-<!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
 <!-- endsemconv -->
 
-### RPC server span
+## RPC server span
 
-<!-- semconv span.rpc.server -->
+<!-- semconv span.rpc.call.server -->
 <!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
 <!-- see templates/registry/markdown/snippet.md.j2 -->
 <!-- prettier-ignore-start -->
-<!-- markdownlint-capture -->
-<!-- markdownlint-disable -->
 
-**Status:** ![Development](https://img.shields.io/badge/-development-blue)
+**Status:** ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid)
 
 This span represents an incoming Remote Procedure Call (RPC).
 
-Remote procedure calls can only be represented with these semantic conventions
-when the names of the called service and method are known and available.
+RPC server spans SHOULD cover the entire server-side lifecycle of an RPC,
+starting when the request is received and ending when the response is sent
+or the RPC is terminated due to an error or cancellation.
 
-**Span name:** refer to the [Span Name](#span-name) section.
+For streaming RPCs, the span SHOULD cover the full lifetime of the request
+and/or response streams until they are closed or terminated.
+
+**Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#name) section.
 
 **Span kind** MUST be `SERVER`.
 
-**Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
+**Span status**: refer to the [Recording Errors](/docs/general/recording-errors.md)
+document for details on how to record span status.
 
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`rpc.system`](/docs/attributes-registry/rpc.md) | string | A string identifying the remoting system. See below for a list of well-known identifiers. | `grpc`; `java_rmi`; `dotnet_wcf` | `Required` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`server.address`](/docs/attributes-registry/server.md) | string | RPC server [host name](https://grpc.github.io/grpc/core/md_doc_naming.html). [1] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | `Required` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`server.port`](/docs/attributes-registry/server.md) | int | Server port number. [2] | `80`; `8080`; `443` | `Conditionally Required` [3] | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`client.address`](/docs/attributes-registry/client.md) | string | Client address - domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [4] | `client.example.com`; `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`client.port`](/docs/attributes-registry/client.md) | int | Client port number. [5] | `65123` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.peer.address`](/docs/attributes-registry/network.md) | string | Peer address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.peer.port`](/docs/attributes-registry/network.md) | int | Peer port number of the network connection. | `65123` | `Recommended` If `network.peer.address` is set. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.transport`](/docs/attributes-registry/network.md) | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [6] | `tcp`; `udp` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`network.type`](/docs/attributes-registry/network.md) | string | [OSI network layer](https://wikipedia.org/wiki/Network_layer) or non-OSI equivalent. [7] | `ipv4`; `ipv6` | `Recommended` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| [`rpc.method`](/docs/attributes-registry/rpc.md) | string | The name of the (logical) method being called, must be equal to the $method part in the span name. [8] | `exampleMethod` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`rpc.service`](/docs/attributes-registry/rpc.md) | string | The full (logical) name of the service being called, including its package name, if applicable. [9] | `myservice.EchoService` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
+**Attributes:**
 
-**[1] `server.address`:** May contain server IP address, DNS name, or local socket name. When host component is an IP address, instrumentations SHOULD NOT do a reverse proxy lookup to obtain DNS name and SHOULD set `server.address` to the IP address provided in the host component.
+| Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
+| --- | --- | --- | --- | --- | --- |
+| [`rpc.system.name`](/docs/registry/attributes/rpc.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | string | The Remote Procedure Call (RPC) system. [1] | `grpc`; `dubbo`; `connectrpc` |
+| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the operation failed. | string | Describes a class of error the operation ended with. [2] | `DEADLINE_EXCEEDED`; `java.net.UnknownHostException`; `-32602` |
+| [`rpc.method`](/docs/registry/attributes/rpc.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Conditionally Required` if available. | string | The fully-qualified logical name of the method from the RPC interface perspective. [3] | `com.example.ExampleService/exampleMethod`; `EchoService/Echo`; `_OTHER` |
+| [`rpc.method_original`](/docs/registry/attributes/rpc.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Conditionally Required` If and only if it's different than `rpc.method`. | string | The original name of the method used by the client. | `com.myservice.EchoService/catchAll`; `com.myservice.EchoService/unknownMethod`; `InvalidMethod` |
+| [`rpc.response.status_code`](/docs/registry/attributes/rpc.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Conditionally Required` if available. | string | Status code of the RPC returned by the RPC server or generated by the client [4] | `OK`; `DEADLINE_EXCEEDED`; `-32602` |
+| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If available. | string | A string identifying a group of RPC server instances request is sent to. [5] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
+| [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if applicable and if `server.address` is set. | int | Server port number. [6] | `80`; `8080`; `443` |
+| [`client.address`](/docs/registry/attributes/client.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Client address - domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [7] | `client.example.com`; `10.1.2.80`; `/tmp/my.sock` |
+| [`client.port`](/docs/registry/attributes/client.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | Client port number. [8] | `65123` |
+| [`network.peer.address`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Peer address of the network connection - IP address or Unix domain socket name. [9] | `10.1.2.80`; `/tmp/my.sock` |
+| [`network.peer.port`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` If `network.peer.address` is set. | int | Peer port number of the network connection. | `65123` |
 
-**[2] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[1] `rpc.system.name`:** The client and server RPC systems may differ for the same RPC interaction. For example, a client may use Apache Dubbo or Connect RPC to communicate with a server that uses gRPC since both protocols provide compatibility with gRPC.
 
-**[3] `server.port`:** if the port is supported by the network transport used for communication.
+**[2] `error.type`:** If the RPC fails with an error before status code is returned,
+`error.type` SHOULD be set to the exception type (its fully-qualified class name, if applicable)
+or a component-specific, low cardinality error identifier.
 
-**[4] `client.address`:** When observed from the server side, and when communicating through an intermediary, `client.address` SHOULD represent the client address behind any intermediaries,  for example proxies, if it's available.
+If a response status code is returned and status indicates an error,
+`error.type` SHOULD be set to that status code. Check system-specific conventions
+for the details on which values of `rpc.response.status_code` are considered errors.
 
-**[5] `client.port`:** When observed from the server side, and when communicating through an intermediary, `client.port` SHOULD represent the client port behind any intermediaries,  for example proxies, if it's available.
+The `error.type` value SHOULD be predictable and SHOULD have low cardinality.
+Instrumentations SHOULD document the list of errors they report.
 
-**[6] `network.transport`:** The value SHOULD be normalized to lowercase.
+If the request has completed successfully, instrumentations SHOULD NOT set
+`error.type`.
 
-Consider always setting the transport when setting a port number, since
-a port number is ambiguous without knowing the transport. For example
-different processes could be listening on TCP port 12345 and UDP port 12345.
+**[3] `rpc.method`:** The method name MAY have unbounded cardinality in edge or error cases.
 
-**[7] `network.type`:** The value SHOULD be normalized to lowercase.
+Some RPC frameworks or libraries provide a fixed set of recognized methods
+for client stubs and server implementations. Instrumentations for such
+frameworks MUST set this attribute to the original method name only
+when the method is recognized by the framework or library.
 
-**[8] `rpc.method`:** This is the logical name of the method from the RPC interface perspective, which can be different from the name of any implementing method/function. The `code.function.name` attribute may be used to store the latter (e.g., method actually executing the call on the server side, RPC client stub method on the client side).
+When the method is not recognized, for example, when the server receives
+a request for a method that is not predefined on the server, or when
+instrumentation is not able to reliably detect if the method is predefined,
+the attribute MUST be set to `_OTHER`. In such cases, tracing
+instrumentations MUST also set `rpc.method_original` attribute to
+the original method value.
 
-**[9] `rpc.service`:** This is the logical name of the service from the RPC interface perspective, which can be different from the name of any implementing class. The `code.namespace` attribute may be used to store the latter (despite the attribute name, it may include a class name; e.g., class with method actually executing the call on the server side, RPC client stub class on the client side).
+If the RPC instrumentation could end up converting valid RPC methods to
+`_OTHER`, then it SHOULD provide a way to configure the list of recognized
+RPC methods.
+
+The `rpc.method` can be different from the name of any implementing
+method/function.
+The `code.function.name` attribute may be used to record the fully-qualified
+method actually executing the call on the server side, or the
+RPC client stub method on the client side.
+
+**[4] `rpc.response.status_code`:** Usually it represents an error code, but may also represent partial success, warning, or differentiate between various types of successful outcomes.
+Semantic conventions for individual RPC frameworks SHOULD document what `rpc.response.status_code` means in the context of that system and which values are considered to represent errors.
+
+**[5] `server.address`:** May contain a DNS name, an endpoint and path in the service registry, local socket name or an IP address.
+Semantic conventions for individual RPC systems SHOULD document how to populate this attribute.
+When address is an IP address, instrumentations SHOULD NOT do a reverse DNS lookup to obtain a DNS name and SHOULD set `server.address` to the provided IP address.
+
+**[6] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+
+**[7] `client.address`:** When observed from the server side, and when communicating through an intermediary, `client.address` SHOULD represent the client address behind any intermediaries,  for example proxies, if it's available.
+
+**[8] `client.port`:** When observed from the server side, and when communicating through an intermediary, `client.port` SHOULD represent the client port behind any intermediaries,  for example proxies, if it's available.
+
+**[9] `network.peer.address`:** If a RPC involved multiple network calls (for example retries), the last contacted address SHOULD be used.
+
+The following attributes can be important for making sampling decisions
+and SHOULD be provided **at span creation time** (if provided at all):
+
+* [`rpc.method`](/docs/registry/attributes/rpc.md)
+* [`rpc.system.name`](/docs/registry/attributes/rpc.md)
+* [`server.address`](/docs/registry/attributes/server.md)
+* [`server.port`](/docs/registry/attributes/server.md)
 
 ---
 
-`network.transport` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
-| `pipe` | Named or anonymous pipe. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `quic` | QUIC | ![Development](https://img.shields.io/badge/-development-blue) |
-| `tcp` | TCP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `udp` | UDP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `unix` | Unix domain socket | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| Value | Description | Stability |
+| --- | --- | --- |
+| `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ---
 
-`network.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`rpc.system.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
-| `ipv4` | IPv4 | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `ipv6` | IPv6 | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| Value | Description | Stability |
+| --- | --- | --- |
+| `connectrpc` | [Connect RPC](https://connectrpc.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `dubbo` | [Apache Dubbo](https://dubbo.apache.org/) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `grpc` | [gRPC](https://grpc.io/) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `jsonrpc` | [JSON-RPC](https://www.jsonrpc.org/) | ![Development](https://img.shields.io/badge/-development-blue) |
 
----
-
-`rpc.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `apache_dubbo` | Apache Dubbo | ![Development](https://img.shields.io/badge/-development-blue) |
-| `connect_rpc` | Connect RPC | ![Development](https://img.shields.io/badge/-development-blue) |
-| `dotnet_wcf` | .NET WCF | ![Development](https://img.shields.io/badge/-development-blue) |
-| `grpc` | gRPC | ![Development](https://img.shields.io/badge/-development-blue) |
-| `java_rmi` | Java RMI | ![Development](https://img.shields.io/badge/-development-blue) |
-
-<!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
 <!-- endsemconv -->
-
-### Events
-
-#### Message event
-
-<!-- semconv event.rpc.message -->
-<!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
-<!-- see templates/registry/markdown/snippet.md.j2 -->
-<!-- prettier-ignore-start -->
-<!-- markdownlint-capture -->
-<!-- markdownlint-disable -->
-
-**Status:** ![Development](https://img.shields.io/badge/-development-blue)
-
-The event name MUST be `rpc.message`.
-
-Describes a message sent or received within the context of an RPC call.
-
-In the lifetime of an RPC stream, an event for each message sent/received on client and server spans SHOULD be created. In case of unary calls only one sent and one received message will be recorded for both client and server spans.
-
-| Attribute  | Type | Description  | Examples  | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Stability |
-|---|---|---|---|---|---|
-| [`rpc.message.compressed_size`](/docs/attributes-registry/rpc.md) | int | Compressed size of the message in bytes. |  | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`rpc.message.id`](/docs/attributes-registry/rpc.md) | int | MUST be calculated as two different counters starting from `1` one for sent messages and one for received message. [1] |  | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`rpc.message.type`](/docs/attributes-registry/rpc.md) | string | Whether this is a received or sent message. | `SENT`; `RECEIVED` | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-| [`rpc.message.uncompressed_size`](/docs/attributes-registry/rpc.md) | int | Uncompressed size of the message in bytes. |  | `Recommended` | ![Development](https://img.shields.io/badge/-development-blue) |
-
-**[1] `rpc.message.id`:** This way we guarantee that the values will be consistent between different implementations.
-
----
-
-`rpc.message.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value  | Description | Stability |
-|---|---|---|
-| `RECEIVED` | received | ![Development](https://img.shields.io/badge/-development-blue) |
-| `SENT` | sent | ![Development](https://img.shields.io/badge/-development-blue) |
-
-<!-- markdownlint-restore -->
-<!-- prettier-ignore-end -->
-<!-- END AUTOGENERATED TEXT -->
-<!-- endsemconv -->
-
-### Distinction from HTTP spans
-
-HTTP calls can generally be represented using just [HTTP spans](/docs/http/http-spans.md).
-If they address a particular remote service and method known to the caller, i.e., when it is a remote procedure call transported over HTTP, the `rpc.*` attributes might be added additionally on that span, or in a separate RPC span that is a parent of the transporting HTTP call.
-Note that *method* in this context is about the called remote procedure and *not* the HTTP verb (GET, POST, etc.).
-
-## Semantic conventions for specific RPC technologies
-
-More specific Semantic Conventions are defined for the following RPC technologies:
-
-* [Connect](connect-rpc.md): Semantic Conventions for *Connect RPC*.
-* [gRPC](grpc.md): Semantic Conventions for *gRPC*.
-* [JSON-RPC](json-rpc.md): Semantic Conventions for *JSON-RPC*.
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status

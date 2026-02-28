@@ -1,0 +1,95 @@
+groups:
+  - id: trace.mcp.common.attributes
+    type: attribute_group
+    extends: mcp.common.attributes
+    brief: MCP common span attributes
+    attributes:
+      - ref: mcp.session.id
+        requirement_level:
+          recommended: When the MCP request or notification is part of a session.
+      - ref: mcp.resource.uri
+        requirement_level:
+          conditionally_required: When the client executes a request type that includes a resource URI parameter.
+      - ref: jsonrpc.request.id
+        requirement_level:
+          conditionally_required: When the client executes a request.
+
+  - id: span.mcp.client
+    type: span
+    span_kind: client
+    brief: This span describes the MCP call from the client side.
+    note: |
+      It's reported by the MCP client when it initiates the request
+      or notification or by the MCP server when server initiates the operation.
+      It covers the time to receive the response or ack from the peer.
+
+      **Span name** SHOULD follow the format `{mcp.method.name} {target}`
+      where target SHOULD match `{gen_ai.tool.name}` or `{gen_ai.prompt.name}` when
+      applicable.
+      If there is no low-cardinality `target` available, the Span name SHOULD be `{mcp.method.name}`.
+
+      Instrumentation MAY allow users to opt into including `{mcp.resource.uri}`
+      as `target` in the span name when it is available but SHOULD NOT include it by default
+      to avoid high cardinality span names.
+
+      **Span status** SHOULD be set to `ERROR` when `error.type` attribute is present.
+      The status description SHOULD match the `JSONRPCError.message` if the message is available.
+
+      Refer to the [Recording Errors](/docs/general/recording-errors.md) document
+      for more details.
+
+      MCP tool call execution spans are compatible with GenAI [execute_tool spans](/docs/gen-ai/gen-ai-spans.md#execute-tool-span).
+
+      If the MCP instrumentation can reliably detect that outer GenAI instrumentation
+      is already tracing the tool execution, it SHOULD NOT create a separate span.
+      Instead, it SHOULD add MCP-specific attributes to the existing tool execution span.
+
+      Instrumentations that support this behavior MAY provide a configuration
+      option to enable it.
+    stability: development
+    extends: trace.mcp.common.attributes
+    attributes:
+      - ref: server.address
+        requirement_level:
+          recommended: If applicable
+      - ref: server.port
+        requirement_level:
+          recommended: When `server.address` is set
+      - ref: gen_ai.tool.call.arguments
+        requirement_level: opt_in
+      - ref: gen_ai.tool.call.result
+        requirement_level: opt_in
+
+  - id: span.mcp.server
+    type: span
+    span_kind: server
+    brief: This span describes the processing of the MCP request or notification
+      initiated by the peer.
+    note: |
+      It's reported by the MCP server when client initiates the request
+      (or notification) or by the MCP client when server initiates the operation.
+
+      **Span name** SHOULD follow the format `{mcp.method.name} {target}`
+      where target SHOULD match `{gen_ai.tool.name}` or `{gen_ai.prompt.name}` when
+      applicable.
+      If there is no low-cardinality `target` available, the Span name SHOULD be `{mcp.method.name}`.
+
+      Instrumentation MAY allow users to opt into including `{mcp.resource.uri}`
+      as `target` in the span name when it is available but SHOULD NOT include it by default
+      to avoid high cardinality span names.
+
+      **Span status** SHOULD be set to `ERROR` when `error.type` attribute is present.
+      The status description SHOULD match the `JSONRPCError.message` if the message is available.
+
+      Refer to the [Recording Errors](/docs/general/recording-errors.md) document
+      for more details.
+    stability: development
+    extends: trace.mcp.common.attributes
+    attributes:
+      - ref: client.address
+        requirement_level:
+          recommended: If applicable
+
+      - ref: client.port
+        requirement_level:
+          recommended: When `client.address` is set

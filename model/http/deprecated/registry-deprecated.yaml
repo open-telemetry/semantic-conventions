@@ -58,7 +58,7 @@ groups:
         stability: development
         deprecated:
           reason: uncategorized
-          note: hp.response.header.content-length
+          note: Replaced by `http.response.header.content-length`.
         examples: 3495
       - id: http.client_ip
         type: string
@@ -128,10 +128,10 @@ groups:
               value: 'QUIC'
               brief: 'QUIC protocol.'
               stability: development
-        brief: 'Deprecated, use `network.protocol.name` instead.'
+        brief: 'Deprecated, use `network.protocol.name` and `network.protocol.version` instead.'
         deprecated:
-          reason: renamed
-          renamed_to: network.protocol.name
+          reason: uncategorized
+          note: "Split into `network.protocol.name` and `network.protocol.version`"
         stability: development
       - id: http.user_agent
         type: string

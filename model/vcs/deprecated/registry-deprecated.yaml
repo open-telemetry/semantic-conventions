@@ -2,7 +2,7 @@ groups:
   - id: registry.vcs.deprecated
     type: attribute_group
     brief: >
-      "Describes deprecated vcs attributes."
+      Describes deprecated vcs attributes.
     attributes:
       - id: vcs.repository.ref.name
         type: string

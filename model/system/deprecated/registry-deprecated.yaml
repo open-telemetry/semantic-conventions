@@ -19,10 +19,10 @@ groups:
             - id: defunct
               value: 'defunct'
               stability: development
-        brief: "Deprecated, use `system.process.status` instead."
+        brief: "Deprecated, use `process.state` instead."
         deprecated:
           reason: renamed
-          renamed_to: system.process.status
+          renamed_to: process.state
         stability: development
         examples: ["running"]
       - id: system.cpu.state
@@ -104,4 +104,43 @@ groups:
         type: int
         stability: development
         brief: "Deprecated, use `cpu.logical_number` instead."
+        deprecated:
+          reason: renamed
+          renamed_to: cpu.logical_number
         examples: [1]
+      - id: system.paging.type
+        type:
+          members:
+            - id: major
+              value: 'major'
+              stability: development
+            - id: minor
+              value: 'minor'
+              stability: development
+        stability: development
+        deprecated:
+          reason: renamed
+          renamed_to: system.paging.fault.type
+        brief: "Deprecated, use `system.paging.fault.type` instead."
+        examples: [ "minor" ]
+      - id: system.process.status
+        type:
+          members:
+            - id: running
+              value: 'running'
+              stability: development
+            - id: sleeping
+              value: 'sleeping'
+              stability: development
+            - id: stopped
+              value: 'stopped'
+              stability: development
+            - id: defunct
+              value: 'defunct'
+              stability: development
+        stability: development
+        deprecated:
+          reason: renamed
+          renamed_to: process.state
+        brief: "Deprecated, use `process.state` instead."
+        examples: [ "running" ]

@@ -7,10 +7,11 @@ groups:
     attributes:
       - id: ios.state
         stability: development
+        brief: >
+          Deprecated. Use the `ios.app.state` attribute.
         deprecated:
-          reason: uncategorized
-          note:
-            Replaced by the `ios.app.state` event body field.
+          reason: renamed
+          renamed_to: ios.app.state
         note: >
           The iOS lifecycle states are defined in the [UIApplicationDelegate documentation](https://developer.apple.com/documentation/uikit/uiapplicationdelegate),
           and from which the `OS terminology` column values are derived.

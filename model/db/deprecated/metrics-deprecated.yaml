@@ -1,0 +1,214 @@
+groups:
+  - id: metric.db.client.connections.usage
+    type: metric
+    metric_name: db.client.connections.usage
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    deprecated:
+      reason: renamed
+      renamed_to: db.client.connection.count
+    brief: "Deprecated, use `db.client.connection.count` instead."
+    instrument: updowncounter
+    unit: "{connection}"
+    attributes:
+      - ref: db.client.connections.state
+        requirement_level: required
+      - ref: db.client.connections.pool.name
+        requirement_level: required
+
+  - id: metric.db.client.connections.idle.max
+    type: metric
+    metric_name: db.client.connections.idle.max
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    deprecated:
+      reason: renamed
+      renamed_to: db.client.connection.idle.max
+    brief: "Deprecated, use `db.client.connection.idle.max` instead."
+    instrument: updowncounter
+    unit: "{connection}"
+    attributes:
+      - ref: db.client.connections.pool.name
+        requirement_level: required
+
+  - id: metric.db.client.connections.idle.min
+    type: metric
+    metric_name: db.client.connections.idle.min
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    deprecated:
+      reason: renamed
+      renamed_to: db.client.connection.idle.min
+    brief: "Deprecated, use `db.client.connection.idle.min` instead."
+    instrument: updowncounter
+    unit: "{connection}"
+    attributes:
+      - ref: db.client.connections.pool.name
+        requirement_level: required
+
+  - id: metric.db.client.connections.max
+    type: metric
+    metric_name: db.client.connections.max
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    deprecated:
+      reason: renamed
+      renamed_to: db.client.connection.max
+    brief: "Deprecated, use `db.client.connection.max` instead."
+    instrument: updowncounter
+    unit: "{connection}"
+    attributes:
+      - ref: db.client.connections.pool.name
+        requirement_level: required
+
+  - id: metric.db.client.connections.pending_requests
+    type: metric
+    metric_name: db.client.connections.pending_requests
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    deprecated:
+      reason: renamed
+      renamed_to: db.client.connection.pending_requests
+    brief: "Deprecated, use `db.client.connection.pending_requests` instead."
+    instrument: updowncounter
+    unit: "{request}"
+    attributes:
+      - ref: db.client.connections.pool.name
+        requirement_level: required
+
+  - id: metric.db.client.connections.timeouts
+    type: metric
+    metric_name: db.client.connections.timeouts
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    deprecated:
+      reason: renamed
+      renamed_to: db.client.connection.timeouts
+    brief: "Deprecated, use `db.client.connection.timeouts` instead."
+    instrument: counter
+    unit: "{timeout}"
+    attributes:
+      - ref: db.client.connections.pool.name
+        requirement_level: required
+
+  - id: metric.db.client.connections.create_time
+    type: metric
+    metric_name: db.client.connections.create_time
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    deprecated:
+      reason: uncategorized
+      note: Replaced by `db.client.connection.create_time` with unit `s`.
+    brief: "Deprecated, use `db.client.connection.create_time` instead. Note: the unit also changed from `ms` to `s`."
+    instrument: histogram
+    unit: "ms"
+    attributes:
+      - ref: db.client.connections.pool.name
+        requirement_level: required
+
+  - id: metric.db.client.connections.wait_time
+    type: metric
+    metric_name: db.client.connections.wait_time
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    deprecated:
+      reason: uncategorized
+      note: Replaced by `db.client.connection.wait_time` with unit `s`.
+    brief: "Deprecated, use `db.client.connection.wait_time` instead. Note: the unit also changed from `ms` to `s`."
+    instrument: histogram
+    unit: "ms"
+    attributes:
+      - ref: db.client.connections.pool.name
+        requirement_level: required
+
+  - id: metric.db.client.connections.use_time
+    type: metric
+    metric_name: db.client.connections.use_time
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    deprecated:
+      reason: uncategorized
+      note: Replaced by `db.client.connection.use_time` with unit `s`.
+    brief: "Deprecated, use `db.client.connection.use_time` instead. Note: the unit also changed from `ms` to `s`."
+    instrument: histogram
+    unit: "ms"
+    attributes:
+      - ref: db.client.connections.pool.name
+        requirement_level: required
+
+  - id: metric.db.client.cosmosdb.operation.request_charge
+    type: metric
+    metric_name: db.client.cosmosdb.operation.request_charge
+    annotations:
+      code_generation:
+        metric_value_type: double
+    brief: "Deprecated, use `azure.cosmosdb.client.operation.request_charge` instead."
+    deprecated:
+      reason: renamed
+      renamed_to: azure.cosmosdb.client.operation.request_charge
+    instrument: histogram
+    unit: "{request_unit}"
+    stability: development
+    attributes:
+      - ref: db.operation.name
+        requirement_level:
+          conditionally_required: >
+            If readily available and if there is a single operation name that describes the
+            database call. The operation name MAY be parsed from the query text,
+            in which case it SHOULD be the single operation name found in the query.
+      - ref: db.collection.name
+        brief: Cosmos DB container name.
+        requirement_level:
+          conditionally_required: If available.
+      - ref: db.namespace
+        requirement_level:
+          conditionally_required: If available.
+        note: ""
+      - ref: db.cosmosdb.sub_status_code
+        requirement_level:
+          conditionally_required: when response was received and contained sub-code.
+      - ref: db.cosmosdb.consistency_level
+        requirement_level:
+          conditionally_required: If available.
+      - ref: db.cosmosdb.regions_contacted
+        requirement_level:
+          recommended: If available
+
+  - id: metric.db.client.cosmosdb.active_instance.count
+    type: metric
+    metric_name: db.client.cosmosdb.active_instance.count
+    annotations:
+      code_generation:
+        metric_value_type: int
+    brief: "Deprecated, use `azure.cosmosdb.client.active_instance.count` instead."
+    deprecated:
+      reason: renamed
+      renamed_to: azure.cosmosdb.client.active_instance.count
+    instrument: updowncounter
+    unit: "{instance}"
+    stability: development
+    attributes:
+      - ref: server.address
+        brief: >
+          Name of the database host.
+      - ref: server.port
+        requirement_level:
+          conditionally_required: If using a port other than the default port for this DBMS and if `server.address` is set.

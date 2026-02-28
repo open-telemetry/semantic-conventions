@@ -1,11 +1,11 @@
-package before_resolution
+package after_resolution
 import rego.v1
 
 # checks attribute name format
 deny contains yaml_schema_violation(description, group.id, name) if {
     group := input.groups[_]
     attr := group.attributes[_]
-    name := attr.id
+    name := attr.name
 
     not regex.match(name_regex, name)
 
@@ -16,7 +16,7 @@ deny contains yaml_schema_violation(description, group.id, name) if {
 deny contains yaml_schema_violation(description, group.id, name) if {
     group := input.groups[_]
     attr := group.attributes[_]
-    name := attr.id
+    name := attr.name
 
     # some deprecated attributes have no namespace and need to be ignored
     not attr.deprecated
@@ -125,7 +125,7 @@ deny contains yaml_schema_violation(description, group.id, name) if {
 deny contains yaml_schema_violation(description, group.id, attr_name) if {
     group := input.groups[_]
     attr := group.attributes[_]
-    attr_name := attr.id
+    attr_name := attr.name
     name := attr.type.members[_].id
 
     not regex.match(name_regex, name)
@@ -168,6 +168,24 @@ deny contains yaml_schema_violation(description, group.id, "") if {
     description := sprintf("Group id '%s' is invalid. Span group 'id' must follow 'span.*.%s' pattern", [group.id, kind])
 }
 
+# brief is required on attributes
+deny contains yaml_schema_violation(description, group.id, attr.name) if {
+    group := input.groups[_]
+    attr := group.attributes[_]
+    is_empty_or_null(attr, "brief")
+
+    description := sprintf("Attribute id '%s' in group '%s' is invalid. Attributes must have a brief.", [attr.name, group.id])
+}
+
+# brief is required on groups (except attribute groups)
+deny contains yaml_schema_violation(description, group.id, "") if {
+    group := input.groups[_]
+    group.type != "attribute_group"
+    is_empty_or_null(group, "brief")
+
+    description := sprintf("Group id '%s' is invalid. Groups must have a brief.", [group.id])
+}
+
 yaml_schema_violation(description, group, attr) = violation if {
     violation := {
         "id": description,
@@ -185,3 +203,8 @@ name_regex := "^[a-z][a-z0-9]*([._][a-z0-9]+)*$"
 has_namespace_regex := "^[a-z0-9_]+\\.([a-z0-9._]+)+$"
 
 invalid_name_helper := "must consist of lowercase alphanumeric characters separated by '_' and '.'"
+
+is_empty_or_null(obj, property) if {
+    prop := object.get(obj, property, null)
+    {prop == null, prop == ""}[_]
+}

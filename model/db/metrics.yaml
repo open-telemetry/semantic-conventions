@@ -1,0 +1,199 @@
+groups:
+  - id: metric.db.client.operation.duration
+    type: metric
+    metric_name: db.client.operation.duration
+    annotations:
+      code_generation:
+        metric_value_type: double
+    brief: "Duration of database client operations."
+    note: >
+      Batch operations SHOULD be recorded as a single operation.
+    instrument: histogram
+    unit: "s"
+    stability: stable
+    extends: attributes.db.client.with_query_and_collection
+    attributes:
+      - ref: db.system.name
+        # TODO: Not adding to the minimal because of https://github.com/open-telemetry/weaver/issues/479
+        requirement_level: required
+      - ref: db.stored_procedure.name
+        requirement_level:
+          recommended: If operation applies to a specific stored procedure.
+      - ref: network.peer.address
+        brief: Peer address of the database node where the operation was performed.
+        requirement_level:
+          recommended: If applicable for this database system.
+        note: >
+          Semantic conventions for individual database systems SHOULD document whether `network.peer.*` attributes are applicable.
+          Network peer address and port are useful when the application interacts with individual database nodes directly.
+
+          If a database operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
+      - ref: network.peer.port
+        requirement_level:
+          recommended: If and only if `network.peer.address` is set.
+      - ref: db.namespace
+        requirement_level:
+          conditionally_required: If available.
+      - ref: db.query.text
+        requirement_level: opt_in
+
+  - id: metric.db.client.connection.count
+    type: metric
+    metric_name: db.client.connection.count
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "The number of connections that are currently in state described by the `state` attribute."
+    instrument: updowncounter
+    unit: "{connection}"
+    attributes:
+      - ref: db.client.connection.state
+        requirement_level: required
+      - ref: db.client.connection.pool.name
+        requirement_level: required
+
+  - id: metric.db.client.connection.idle.max
+    type: metric
+    metric_name: db.client.connection.idle.max
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "The maximum number of idle open connections allowed."
+    instrument: updowncounter
+    unit: "{connection}"
+    attributes:
+      - ref: db.client.connection.pool.name
+        requirement_level: required
+
+  - id: metric.db.client.connection.idle.min
+    type: metric
+    metric_name: db.client.connection.idle.min
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "The minimum number of idle open connections allowed."
+    instrument: updowncounter
+    unit: "{connection}"
+    attributes:
+      - ref: db.client.connection.pool.name
+        requirement_level: required
+
+  - id: metric.db.client.connection.max
+    type: metric
+    metric_name: db.client.connection.max
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "The maximum number of open connections allowed."
+    instrument: updowncounter
+    unit: "{connection}"
+    attributes:
+      - ref: db.client.connection.pool.name
+        requirement_level: required
+
+  - id: metric.db.client.connection.pending_requests
+    type: metric
+    metric_name: db.client.connection.pending_requests
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "The number of current pending requests for an open connection."
+    instrument: updowncounter
+    unit: "{request}"
+    attributes:
+      - ref: db.client.connection.pool.name
+        requirement_level: required
+
+  - id: metric.db.client.connection.timeouts
+    type: metric
+    metric_name: db.client.connection.timeouts
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "The number of connection timeouts that have occurred trying to obtain a connection from the pool."
+    instrument: counter
+    unit: "{timeout}"
+    attributes:
+      - ref: db.client.connection.pool.name
+        requirement_level: required
+
+  - id: metric.db.client.connection.create_time
+    type: metric
+    metric_name: db.client.connection.create_time
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: "The time it took to create a new connection."
+    instrument: histogram
+    unit: "s"
+    attributes:
+      - ref: db.client.connection.pool.name
+        requirement_level: required
+
+  - id: metric.db.client.connection.wait_time
+    type: metric
+    metric_name: db.client.connection.wait_time
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: "The time it took to obtain an open connection from the pool."
+    instrument: histogram
+    unit: "s"
+    attributes:
+      - ref: db.client.connection.pool.name
+        requirement_level: required
+
+  - id: metric.db.client.connection.use_time
+    type: metric
+    metric_name: db.client.connection.use_time
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: "The time between borrowing a connection and returning it to the pool."
+    instrument: histogram
+    unit: "s"
+    attributes:
+      - ref: db.client.connection.pool.name
+        requirement_level: required
+
+  - id: metric.db.client.response.returned_rows
+    type: metric
+    metric_name: db.client.response.returned_rows
+    annotations:
+      code_generation:
+        metric_value_type: int
+    brief: "The actual number of records returned by the database operation."
+    instrument: histogram
+    unit: "{row}"
+    stability: development
+    extends: attributes.db.client.with_query_and_collection
+    attributes:
+      - ref: db.system.name
+        # TODO: Not adding to the minimal because of https://github.com/open-telemetry/weaver/issues/479
+        requirement_level: required
+      - ref: network.peer.address
+        brief: Peer address of the database node where the operation was performed.
+        requirement_level:
+          recommended: If applicable for this database system.
+        note: >
+          Semantic conventions for individual database systems SHOULD document whether `network.peer.*` attributes are applicable.
+          Network peer address and port are useful when the application interacts with individual database nodes directly.
+
+          If a database operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
+      - ref: network.peer.port
+        requirement_level:
+          recommended: If and only if `network.peer.address` is set.
+      - ref: db.namespace
+        requirement_level:
+          conditionally_required: If available.
+      - ref: db.query.text
+        requirement_level: opt_in

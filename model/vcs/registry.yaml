@@ -10,9 +10,8 @@ groups:
         type: string
         stability: development
         brief: >
-          The [canonical URL](https://support.google.com/webmasters/answer/10347851?hl=en#:~:text=A%20canonical%20URL%20is%20the,Google%20chooses%20one%20as%20canonical.)
-          of the repository providing the complete HTTP(S) address in order to
-          locate and identify the repository through a browser.
+          The [canonical URL](https://support.google.com/webmasters/answer/10347851)
+          of the repository providing the complete HTTP(S) address in order to locate and identify the repository through a browser.
         note: |
           In Git Version Control Systems, the canonical URL SHOULD NOT include
           the `.git` extension.
@@ -264,7 +263,9 @@ groups:
             - id: gittea
               value: gittea
               brief: "Deprecated, use `gitea` instead."
-              deprecated: "Replaced by `gitea`."
+              deprecated:
+                reason: renamed
+                renamed_to: "gitea"
               stability: development
             - id: gitea
               value: gitea

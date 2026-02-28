@@ -1,0 +1,21 @@
+groups:
+  - id: registry.linux.deprecated
+    type: attribute_group
+    display_name: Deprecated Linux Attributes
+    brief: "Deprecated Linux attributes."
+    attributes:
+      - id: linux.memory.slab.state
+        type:
+          members:
+            - id: reclaimable
+              value: 'reclaimable'
+              stability: development
+            - id: unreclaimable
+              value: 'unreclaimable'
+              stability: development
+        stability: development
+        brief: "The Linux Slab memory state"
+        examples: ["reclaimable", "unreclaimable"]
+        deprecated:
+          reason: renamed
+          renamed_to: system.memory.linux.slab.state
