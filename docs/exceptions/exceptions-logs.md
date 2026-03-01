@@ -100,7 +100,7 @@ Examples:
 
 > [!NOTE]
 > Instrumentation SHOULD do the best effort to record such errors, but
-> OpenTelemetry SDK and exporters might not have a chance to actually export it
+> OpenTelemetry SDK and exporters might not have a chance to actually export it.
 
 #### ERROR severity
 
