@@ -8,6 +8,7 @@
 - [GCP Client Attributes](#gcp-client-attributes)
 - [GCP - Google Cloud Run Attributes](#gcp---google-cloud-run-attributes)
 - [GCP - Google Compute Engine (GCE) Attributes](#gcp---google-compute-engine-gce-attributes)
+- [Generative AI Attributes](#generative-ai-attributes)
 
 ## GCP - AppHub Attributes
 
@@ -177,3 +178,18 @@ This document defines attributes for Google Compute Engine (GCE).
 | <a id="gcp-gce-instance-group-manager-name" href="#gcp-gce-instance-group-manager-name">`gcp.gce.instance_group_manager.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the Instance Group Manager (IGM) that manages this VM, if any. | `web-igm`; `my-managed-group` |
 | <a id="gcp-gce-instance-group-manager-region" href="#gcp-gce-instance-group-manager-region">`gcp.gce.instance_group_manager.region`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The region of a **regional** Instance Group Manager (e.g., `us-central1`). Set this **only** when the IGM is regional. | `us-central1`; `europe-west1` |
 | <a id="gcp-gce-instance-group-manager-zone" href="#gcp-gce-instance-group-manager-zone">`gcp.gce.instance_group_manager.zone`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The zone of a **zonal** Instance Group Manager (e.g., `us-central1-a`). Set this **only** when the IGM is zonal. | `us-central1-a`; `europe-west1-b` |
+
+## Generative AI Attributes
+
+This documents defines attributes for Google generative AI systems.
+
+**Attributes:**
+
+| Key | Stability | Value Type | Description | Example Values |
+| --- | --- | --- | --- | --- |
+| <a id="gcp-gen-ai-operation-config" href="#gcp-gen-ai-operation-config">`gcp.gen_ai.operation.config`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Operation-specific request configuration options for Google generative AI operations recorded as a JSON string. [6] | `{"audioTimestamp":true}`; `{"safetySettings":[{"threshold":"OFF"}]}`; `{"thinkingConfig":{"includeThoughts":true},"routingConfig":{"autoMode":{"modelRoutingPreference":"BALANCED"}}}` |
+
+**[6] `gcp.gen_ai.operation.config`:** The data structure is dependent on the value of "gen_ai.operation.name" and should correspond with the "*Config" data structure in the Google Gen AI SDK. The Google Gen AI SDK provides these "*Config" data structures in multiple languages, generated from a common source of truth. See "google.genai.types.*" in <https://github.com/googleapis/python-genai> and `com.google.genai.types.*` in <https://github.com/googleapis/java-genai> for examples.
+The JSON dictionary SHOULD include only an allowlisted subset of the request configuration. The contents also SHOULD NOT overlap with configuration that has already been captured elsewhere through standard Semantic Conventions.
+The names SHOULD align with the expectations of proto3 JSON encoding <https://protobuf.dev/programming-guides/proto3/#json>; for example, fields that represent a timestamp in the local language should get mapped to the proto3 JSON encoding of "google.protobuf.Timestamp" (i.e. RFC 3339 date format) per the specification given in <https://protobuf.dev/reference/protobuf/google.protobuf/#timestamp>.
+Instrumentations SHOULD NOT populate this attribute by default. Rather, instrumentations SHOULD provide an opt-in mechanism through which the config information can be dumped into this field as a tool for debugging and as an escape hatch for the subset of configuration that is not yet representable using standardized conventions.
