@@ -361,7 +361,7 @@ groups:
           The data structure is dependent on the value of "gen_ai.operation.name" and should correspond
           with the "*Config" data structure in the Google Gen AI SDK. The Google Gen AI SDK provides
           these "*Config" data structures in multiple languages, generated from a common source of truth.
-          See "google.genai.types.*" in <https://github.com/googleapis/python-genai> and
+          See `google.genai.types.*` in <https://github.com/googleapis/python-genai> and
           `com.google.genai.types.*` in <https://github.com/googleapis/java-genai> for examples.
 
           The JSON dictionary SHOULD include only an allowlisted subset of the request configuration. The
