@@ -45,6 +45,13 @@ emitted through the [Logger API](https://github.com/open-telemetry/opentelemetry
 
 ## Recording an exception
 
+> [!NOTE]
+> This document provides guidance to OpenTelemetry instrumentations that record
+> exceptions and semantic conventions authors that define exception events.
+> It does not apply to logging bridges.
+> It prescribes how exception events should be recorded but does not prescribe
+> when or if to record them.
+
 Exceptions SHOULD be recorded as attributes on the
 [LogRecord](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.54.0/specification/logs/data-model.md#log-and-event-record-definition) passed to the [Logger](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.54.0/specification/logs/api.md#logger) emit
 operations.
@@ -91,6 +98,10 @@ Examples:
 - The application detects an invalid configuration at startup and shuts down.
 - The application encounters an out-of-memory condition.
 
+> [!NOTE]
+> Instrumentation SHOULD do the best effort to record such errors, but
+> OpenTelemetry SDK and exporters might not have a chance to actually export it
+
 #### ERROR severity
 
 Exceptions that are unhandled by application code and don't result in application
@@ -117,8 +128,10 @@ Examples:
 
 - A connection attempt to a remote service times out.
 - Writing data to a file results in an I/O exception.
-- A remote service returns a 503 "Service Unavailable" response for 5 consecutive
-  attempts; retry attempts are exhausted and the operation fails.
+- A client library call fails after exhausting retries because the underlying
+  service is unavailable. The client library instrumentation records a single
+  WARN log; logging of individual retry attempts is left to the lower-level
+  instrumentation.
 
 #### DEBUG severity
 
