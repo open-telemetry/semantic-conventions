@@ -1,0 +1,4 @@
+change_type: enhancement
+component: db
+note: Clarify `db.response.returned_rows` when captured on spans.
+issues: [3480]

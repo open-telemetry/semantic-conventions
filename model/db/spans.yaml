@@ -30,6 +30,9 @@ groups:
         sampling_relevant: true
       - ref: db.operation.batch.size
       - ref: db.response.returned_rows
+        note: |
+          The number of rows returned by the database operation as observed
+          by the instrumentation at the time the span ends.
       - ref: db.query.text
         sampling_relevant: true
         requirement_level:
@@ -61,6 +64,9 @@ groups:
       - ref: server.port
         sampling_relevant: true
       - ref: db.response.returned_rows
+        note: |
+          The number of rows returned by the database operation as observed
+          by the instrumentation at the time the span ends.
       - ref: db.query.text
         sampling_relevant: true
         requirement_level:
@@ -140,6 +146,9 @@ groups:
       # TODO (trask) make this recommended once it is stable
       - ref: db.response.returned_rows
         requirement_level: opt_in
+        note: |
+          The number of rows returned by the database operation as observed
+          by the instrumentation at the time the span ends.
 
   - id: span.db.sql_server.client
     type: span
