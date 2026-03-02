@@ -128,22 +128,6 @@ groups:
     entity_associations:
       - host
 
-  - id: metric.system.memory.shared
-    type: metric
-    metric_name: system.memory.shared
-    annotations:
-      code_generation:
-        metric_value_type: int
-    stability: development
-    brief: "Shared memory used (mostly by tmpfs)."
-    note: |
-      Equivalent of `shared` from [`free` command](https://man7.org/linux/man-pages/man1/free.1.html) or
-      `Shmem` from [`/proc/meminfo`](https://man7.org/linux/man-pages/man5/proc.5.html)"
-    instrument: updowncounter
-    unit: "By"
-    entity_associations:
-      - host
-
   - id: metric.system.memory.utilization
     type: metric
     metric_name: system.memory.utilization
@@ -542,6 +526,22 @@ groups:
     instrument: updowncounter
     unit: "By"
     attributes: []
+    entity_associations:
+      - host
+
+  - id: metric.system.memory.linux.shared
+    type: metric
+    metric_name: system.memory.linux.shared
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "Shared memory used (mostly by tmpfs)."
+    note: |
+      Equivalent of `shared` from [`free` command](https://man7.org/linux/man-pages/man1/free.1.html) or
+      `Shmem` from [`/proc/meminfo`](https://man7.org/linux/man-pages/man5/proc.5.html)"
+    instrument: updowncounter
+    unit: "By"
     entity_associations:
       - host
 
