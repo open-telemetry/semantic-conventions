@@ -19,7 +19,6 @@ emitted through the [Logger API](https://github.com/open-telemetry/opentelemetry
     - [ERROR severity](#error-severity)
     - [WARN severity](#warn-severity)
     - [DEBUG severity](#debug-severity)
-    - [TRACE severity](#trace-severity)
   - [Attributes](#attributes)
   - [Stacktrace representation](#stacktrace-representation)
 
@@ -49,8 +48,8 @@ emitted through the [Logger API](https://github.com/open-telemetry/opentelemetry
 > This document provides guidance to OpenTelemetry instrumentations that record
 > exceptions and semantic conventions authors that define exception events.
 > It does not apply to logging bridges.
-> It prescribes how exception events should be recorded but does not prescribe
-> when or if to record them.
+>
+> It describes how exception events should be recorded and when to avoid recording them. Guidance on when to record exceptions is left to specific semantic conventions.
 
 Exceptions SHOULD be recorded as attributes on the
 [LogRecord](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.54.0/specification/logs/data-model.md#log-and-event-record-definition) passed to the [Logger](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.54.0/specification/logs/api.md#logger) emit
@@ -64,6 +63,18 @@ implementations support passing exception instances to the
 [Emit a LogRecord](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.54.0/specification/logs/api.md#emit-a-logrecord)
 API, instrumentations SHOULD provide the exception instance rather than
 manually setting individual exception attributes.
+
+### When not to record exceptions
+
+**Status**: [Development][DocumentStatus]
+
+Some libraries, frameworks, or runtimes generate artificial exceptions for
+operations that end with an unsuccessful error code. When possible,
+instrumentations SHOULD NOT record these artificial exceptions.
+
+For example, FastAPI in Python recommends raising [`HTTPException`](https://fastapi.tiangolo.com/tutorial/handling-errors/#use-httpexception)
+instead of returning a response with an unsuccessful status
+code. Similarly, Spring in Java provides [`ResponseStatusException`](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/server/ResponseStatusException.html).
 
 ### Event name
 
@@ -112,7 +123,7 @@ a corresponding exception event and recommend using `ERROR` severity.
 
 Examples:
 
-- A background job terminates with an exception.
+- A messaging consumer terminates message processing with an exception.
 - An HTTP server framework error handler catches an exception not handled by the
   application code.
 
@@ -140,17 +151,6 @@ Exceptions that don't indicate an actual issue SHOULD be recorded with severity
 
 For example, an exception indicating that a request was cancelled on the client
 side is thrown on the server and detected by the server instrumentation.
-
-#### TRACE severity
-
-Some libraries and frameworks generate artificial exceptions for operations that
-end with an unsuccessful error code. When possible, instrumentations SHOULD NOT
-record these artificial exceptions, or if recorded, SHOULD set the severity to
-`TRACE` (severity number 1).
-
-For example, FastAPI in Python recommends raising [`HTTPException`](https://fastapi.tiangolo.com/tutorial/handling-errors/#use-httpexception)
-instead of returning a response with an unsuccessful status
-code. Similarly Spring in Java provides [`ResponseStatusException`](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/server/ResponseStatusException.html).
 
 ### Attributes
 
