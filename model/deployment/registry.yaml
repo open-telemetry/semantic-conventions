@@ -50,7 +50,7 @@ groups:
               value: "Development"
               brief: Development environment
               stability: stable
-        stability: development
+        stability: stable
         brief: >
           Name of the [deployment environment](https://wikipedia.org/wiki/Deployment_environment)
           (aka deployment tier).
