@@ -106,11 +106,16 @@ failed to interpret, span status SHOULD be set to `Error`.
 
 Don't set the span status description if the reason can be inferred from `http.response.status_code`.
 
-HTTP request may fail if it was cancelled or an error occurred preventing
+HTTP request may fail if an error occurred preventing
 the client or server from sending/receiving the request/response fully.
 
 When instrumentation detects such errors it SHOULD set span status to `Error`
 and SHOULD set the `error.type` attribute.
+
+If the HTTP client instrumentation can detect that the request was cancelled
+intentionally by the caller (e.g., via context cancellation or an abort signal),
+the cancellation SHOULD NOT be treated as an error: the span status SHOULD be
+left unset and `error.type` SHOULD NOT be set.
 
 **Status**: [Development][DocumentStatus] - Refer to the [Recording Errors](/docs/general/recording-errors.md) document for
 general considerations on how to record span status.
