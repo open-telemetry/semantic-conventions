@@ -24,7 +24,7 @@ jobs:
       run: make check-file-and-folder-names-in-docs
 
     - name: run markdownlint
-      uses: DavidAnson/markdownlint-cli2-action@v21
+      uses: DavidAnson/markdownlint-cli2-action@30a0e04f1870d58f8d717450cc6134995f993c63 # v21
       with:
         globs: '**/*.md'
 
