@@ -57,9 +57,16 @@ stable.
 
 **`dual_emit`**
 
-When `true`, also emit the previous stable major version alongside the
-target version (e.g., `version=2, dual_emit=true` emits both v2 and v1).
-Enables dual-emit for phased migration between major versions.
+When `true`, also emit the previous major version alongside the
+target version. Enables dual-emit for phased migration between major versions.
+
+For example, `version=1, dual_emit=true` emits both v1 and v0, while
+`version=2, dual_emit=true` emits both v2 and v1.
+
+v0 refers to the de facto stable conventions that an individual
+instrumentation emitted before the first stable semantic convention version
+was defined. These conventions vary by instrumentation and are not formally
+specified, but are treated as the baseline for migration purposes.
 
 When conflicts arise between versions, the target (new) version SHOULD be
 prioritized. Non-overlapping attributes from both versions SHOULD be merged,
