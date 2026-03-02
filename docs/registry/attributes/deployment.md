@@ -29,6 +29,17 @@ considered to be identifying the same service:
 
 ---
 
+`deployment.environment.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value | Description | Stability |
+| --- | --- | --- |
+| `Development` | Development environment | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `Production` | Production environment | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `Staging` | Staging environment | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `Test` | Testing environment | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+
+---
+
 `deployment.status` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |

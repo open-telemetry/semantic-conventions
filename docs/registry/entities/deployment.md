@@ -28,3 +28,14 @@ considered to be identifying the same service:
 
 - `service.name=frontend`, `deployment.environment.name=production`
 - `service.name=frontend`, `deployment.environment.name=staging`.
+
+---
+
+`deployment.environment.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value | Description | Stability |
+| --- | --- | --- |
+| `Development` | Development environment | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `Production` | Production environment | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `Staging` | Staging environment | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `Test` | Testing environment | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
