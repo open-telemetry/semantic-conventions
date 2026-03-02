@@ -11,7 +11,7 @@ These attribute may be used for any operation that accesses some remote service.
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="peer-service" href="#peer-service">`peer.service`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The [`service.name`](/docs/resource/README.md#service) of the remote service. SHOULD be equal to the actual `service.name` resource attribute of the remote service if any. [1] | `AuthTokenCache` |
+| <a id="peer-service" href="#peer-service">`peer.service`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `service.peer.name`. | string | The [`service.name`](/docs/resource/README.md#service) of the remote service. SHOULD be equal to the actual `service.name` resource attribute of the remote service if any. [1] | `AuthTokenCache` |
 
 **[1] `peer.service`:** Examples of `peer.service` that users may specify:
 

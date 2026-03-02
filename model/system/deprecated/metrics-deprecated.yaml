@@ -1,4 +1,20 @@
 groups:
+  - id: metric.system.memory.shared
+    type: metric
+    metric_name: system.memory.shared
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    deprecated:
+      reason: renamed
+      renamed_to: system.memory.linux.shared
+    brief: "Deprecated, use `system.memory.linux.shared` instead."
+    instrument: updowncounter
+    unit: "By"
+    entity_associations:
+      - host
+
   - id: metric.system.network.connections
     type: metric
     metric_name: system.network.connections

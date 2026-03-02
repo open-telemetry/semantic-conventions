@@ -42,6 +42,7 @@ areas:
     labels:
       - area:gen-ai
       - area:openai
+      - area:mcp
     status:
       - accepting_contributions
       - active
@@ -190,7 +191,7 @@ areas:
       - name: "semconv-log-approvers"
         github: semconv-log-approvers
     project: "N/A"
-    board: "N/A"
+    board: "https://github.com/orgs/open-telemetry/projects/65"
     labels:
       - area:log
       - area:event
@@ -275,6 +276,24 @@ areas:
     board: "https://github.com/orgs/open-telemetry/projects/184"
     labels:
       - area:oracle-cloud
+    status:
+      - accepting_contributions
+      - active
+
+  - name: "Semantic Conventions: Core"
+    owner:
+      - name: "specs-semconv-approvers"
+        github: specs-semconv-approvers
+    project: "N/A"
+    board: "https://github.com/orgs/open-telemetry/projects/131"
+    labels:
+      - area:error
+      - area:exception
+      - area:otel
+      - area:server
+      - area:service
+      - area:telemetry
+      - area:url
     status:
       - accepting_contributions
       - active

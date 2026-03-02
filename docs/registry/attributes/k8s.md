@@ -14,25 +14,25 @@ Kubernetes resource attributes.
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="k8s-cluster-name" href="#k8s-cluster-name">`k8s.cluster.name`</a> | ![Alpha](https://img.shields.io/badge/alpha-mediumpurple) | string | The name of the cluster. | `opentelemetry-cluster` |
-| <a id="k8s-cluster-uid" href="#k8s-cluster-uid">`k8s.cluster.uid`</a> | ![Alpha](https://img.shields.io/badge/alpha-mediumpurple) | string | A pseudo-ID for the cluster, set to the UID of the `kube-system` namespace. [1] | `218fc5a9-a5f1-4b54-aa05-46717d0ab26d` |
-| <a id="k8s-container-name" href="#k8s-container-name">`k8s.container.name`</a> | ![Alpha](https://img.shields.io/badge/alpha-mediumpurple) | string | The name of the Container from Pod specification, must be unique within a Pod. Container runtime usually uses different globally unique name (`container.name`). | `redis` |
-| <a id="k8s-container-restart-count" href="#k8s-container-restart-count">`k8s.container.restart_count`</a> | ![Alpha](https://img.shields.io/badge/alpha-mediumpurple) | int | Number of times the container was restarted. This attribute can be used to identify a particular container (running or stopped) within a container spec. | |
+| <a id="k8s-cluster-name" href="#k8s-cluster-name">`k8s.cluster.name`</a> | ![Beta](https://img.shields.io/badge/beta-lightpink) | string | The name of the cluster. | `opentelemetry-cluster` |
+| <a id="k8s-cluster-uid" href="#k8s-cluster-uid">`k8s.cluster.uid`</a> | ![Beta](https://img.shields.io/badge/beta-lightpink) | string | A pseudo-ID for the cluster, set to the UID of the `kube-system` namespace. [1] | `218fc5a9-a5f1-4b54-aa05-46717d0ab26d` |
+| <a id="k8s-container-name" href="#k8s-container-name">`k8s.container.name`</a> | ![Beta](https://img.shields.io/badge/beta-lightpink) | string | The name of the Container from Pod specification, must be unique within a Pod. Container runtime usually uses different globally unique name (`container.name`). | `redis` |
+| <a id="k8s-container-restart-count" href="#k8s-container-restart-count">`k8s.container.restart_count`</a> | ![Beta](https://img.shields.io/badge/beta-lightpink) | int | Number of times the container was restarted. This attribute can be used to identify a particular container (running or stopped) within a container spec. | |
 | <a id="k8s-container-status-last-terminated-reason" href="#k8s-container-status-last-terminated-reason">`k8s.container.status.last_terminated_reason`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Last terminated reason of the Container. | `Evicted`; `Error` |
 | <a id="k8s-container-status-reason" href="#k8s-container-status-reason">`k8s.container.status.reason`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The reason for the container state. Corresponds to the `reason` field of the: [K8s ContainerStateWaiting](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#containerstatewaiting-v1-core) or [K8s ContainerStateTerminated](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#containerstateterminated-v1-core) | `ContainerCreating`; `CrashLoopBackOff`; `CreateContainerConfigError`; `ErrImagePull`; `ImagePullBackOff`; `OOMKilled`; `Completed`; `Error`; `ContainerCannotRun` |
 | <a id="k8s-container-status-state" href="#k8s-container-status-state">`k8s.container.status.state`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The state of the container. [K8s ContainerState](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#containerstate-v1-core) | `terminated`; `running`; `waiting` |
-| <a id="k8s-cronjob-annotation" href="#k8s-cronjob-annotation">`k8s.cronjob.annotation.<key>`</a> | ![Alpha](https://img.shields.io/badge/alpha-mediumpurple) | string | The cronjob annotation placed on the CronJob, the `<key>` being the annotation name, the value being the annotation value. [2] | `4`; `` |
-| <a id="k8s-cronjob-label" href="#k8s-cronjob-label">`k8s.cronjob.label.<key>`</a> | ![Alpha](https://img.shields.io/badge/alpha-mediumpurple) | string | The label placed on the CronJob, the `<key>` being the label name, the value being the label value. [3] | `weekly`; `` |
-| <a id="k8s-cronjob-name" href="#k8s-cronjob-name">`k8s.cronjob.name`</a> | ![Alpha](https://img.shields.io/badge/alpha-mediumpurple) | string | The name of the CronJob. | `opentelemetry` |
-| <a id="k8s-cronjob-uid" href="#k8s-cronjob-uid">`k8s.cronjob.uid`</a> | ![Alpha](https://img.shields.io/badge/alpha-mediumpurple) | string | The UID of the CronJob. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` |
-| <a id="k8s-daemonset-annotation" href="#k8s-daemonset-annotation">`k8s.daemonset.annotation.<key>`</a> | ![Alpha](https://img.shields.io/badge/alpha-mediumpurple) | string | The annotation placed on the DaemonSet, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [4] | `1`; `` |
-| <a id="k8s-daemonset-label" href="#k8s-daemonset-label">`k8s.daemonset.label.<key>`</a> | ![Alpha](https://img.shields.io/badge/alpha-mediumpurple) | string | The label placed on the DaemonSet, the `<key>` being the label name, the value being the label value, even if the value is empty. [5] | `guestbook`; `` |
-| <a id="k8s-daemonset-name" href="#k8s-daemonset-name">`k8s.daemonset.name`</a> | ![Alpha](https://img.shields.io/badge/alpha-mediumpurple) | string | The name of the DaemonSet. | `opentelemetry` |
-| <a id="k8s-daemonset-uid" href="#k8s-daemonset-uid">`k8s.daemonset.uid`</a> | ![Alpha](https://img.shields.io/badge/alpha-mediumpurple) | string | The UID of the DaemonSet. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` |
-| <a id="k8s-deployment-annotation" href="#k8s-deployment-annotation">`k8s.deployment.annotation.<key>`</a> | ![Alpha](https://img.shields.io/badge/alpha-mediumpurple) | string | The annotation placed on the Deployment, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [6] | `1`; `` |
-| <a id="k8s-deployment-label" href="#k8s-deployment-label">`k8s.deployment.label.<key>`</a> | ![Alpha](https://img.shields.io/badge/alpha-mediumpurple) | string | The label placed on the Deployment, the `<key>` being the label name, the value being the label value, even if the value is empty. [7] | `guestbook`; `` |
-| <a id="k8s-deployment-name" href="#k8s-deployment-name">`k8s.deployment.name`</a> | ![Alpha](https://img.shields.io/badge/alpha-mediumpurple) | string | The name of the Deployment. | `opentelemetry` |
-| <a id="k8s-deployment-uid" href="#k8s-deployment-uid">`k8s.deployment.uid`</a> | ![Alpha](https://img.shields.io/badge/alpha-mediumpurple) | string | The UID of the Deployment. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` |
+| <a id="k8s-cronjob-annotation" href="#k8s-cronjob-annotation">`k8s.cronjob.annotation.<key>`</a> | ![Beta](https://img.shields.io/badge/beta-lightpink) | string | The cronjob annotation placed on the CronJob, the `<key>` being the annotation name, the value being the annotation value. [2] | `4`; `` |
+| <a id="k8s-cronjob-label" href="#k8s-cronjob-label">`k8s.cronjob.label.<key>`</a> | ![Beta](https://img.shields.io/badge/beta-lightpink) | string | The label placed on the CronJob, the `<key>` being the label name, the value being the label value. [3] | `weekly`; `` |
+| <a id="k8s-cronjob-name" href="#k8s-cronjob-name">`k8s.cronjob.name`</a> | ![Beta](https://img.shields.io/badge/beta-lightpink) | string | The name of the CronJob. | `opentelemetry` |
+| <a id="k8s-cronjob-uid" href="#k8s-cronjob-uid">`k8s.cronjob.uid`</a> | ![Beta](https://img.shields.io/badge/beta-lightpink) | string | The UID of the CronJob. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` |
+| <a id="k8s-daemonset-annotation" href="#k8s-daemonset-annotation">`k8s.daemonset.annotation.<key>`</a> | ![Beta](https://img.shields.io/badge/beta-lightpink) | string | The annotation placed on the DaemonSet, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [4] | `1`; `` |
+| <a id="k8s-daemonset-label" href="#k8s-daemonset-label">`k8s.daemonset.label.<key>`</a> | ![Beta](https://img.shields.io/badge/beta-lightpink) | string | The label placed on the DaemonSet, the `<key>` being the label name, the value being the label value, even if the value is empty. [5] | `guestbook`; `` |
+| <a id="k8s-daemonset-name" href="#k8s-daemonset-name">`k8s.daemonset.name`</a> | ![Beta](https://img.shields.io/badge/beta-lightpink) | string | The name of the DaemonSet. | `opentelemetry` |
+| <a id="k8s-daemonset-uid" href="#k8s-daemonset-uid">`k8s.daemonset.uid`</a> | ![Beta](https://img.shields.io/badge/beta-lightpink) | string | The UID of the DaemonSet. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` |
+| <a id="k8s-deployment-annotation" href="#k8s-deployment-annotation">`k8s.deployment.annotation.<key>`</a> | ![Beta](https://img.shields.io/badge/beta-lightpink) | string | The annotation placed on the Deployment, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [6] | `1`; `` |
+| <a id="k8s-deployment-label" href="#k8s-deployment-label">`k8s.deployment.label.<key>`</a> | ![Beta](https://img.shields.io/badge/beta-lightpink) | string | The label placed on the Deployment, the `<key>` being the label name, the value being the label value, even if the value is empty. [7] | `guestbook`; `` |
+| <a id="k8s-deployment-name" href="#k8s-deployment-name">`k8s.deployment.name`</a> | ![Beta](https://img.shields.io/badge/beta-lightpink) | string | The name of the Deployment. | `opentelemetry` |
+| <a id="k8s-deployment-uid" href="#k8s-deployment-uid">`k8s.deployment.uid`</a> | ![Beta](https://img.shields.io/badge/beta-lightpink) | string | The UID of the Deployment. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` |
 | <a id="k8s-hpa-metric-type" href="#k8s-hpa-metric-type">`k8s.hpa.metric.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The type of metric source for the horizontal pod autoscaler. [8] | `Resource`; `ContainerResource` |
 | <a id="k8s-hpa-name" href="#k8s-hpa-name">`k8s.hpa.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the horizontal pod autoscaler. | `opentelemetry` |
 | <a id="k8s-hpa-scaletargetref-api-version" href="#k8s-hpa-scaletargetref-api-version">`k8s.hpa.scaletargetref.api_version`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The API version of the target resource to scale for the HorizontalPodAutoscaler. [9] | `apps/v1`; `autoscaling/v2` |
@@ -40,42 +40,53 @@ Kubernetes resource attributes.
 | <a id="k8s-hpa-scaletargetref-name" href="#k8s-hpa-scaletargetref-name">`k8s.hpa.scaletargetref.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the target resource to scale for the HorizontalPodAutoscaler. [11] | `my-deployment`; `my-statefulset` |
 | <a id="k8s-hpa-uid" href="#k8s-hpa-uid">`k8s.hpa.uid`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The UID of the horizontal pod autoscaler. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` |
 | <a id="k8s-hugepage-size" href="#k8s-hugepage-size">`k8s.hugepage.size`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The size (identifier) of the K8s huge page. | `2Mi` |
-| <a id="k8s-job-annotation" href="#k8s-job-annotation">`k8s.job.annotation.<key>`</a> | ![Alpha](https://img.shields.io/badge/alpha-mediumpurple) | string | The annotation placed on the Job, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [12] | `1`; `` |
-| <a id="k8s-job-label" href="#k8s-job-label">`k8s.job.label.<key>`</a> | ![Alpha](https://img.shields.io/badge/alpha-mediumpurple) | string | The label placed on the Job, the `<key>` being the label name, the value being the label value, even if the value is empty. [13] | `ci`; `` |
-| <a id="k8s-job-name" href="#k8s-job-name">`k8s.job.name`</a> | ![Alpha](https://img.shields.io/badge/alpha-mediumpurple) | string | The name of the Job. | `opentelemetry` |
-| <a id="k8s-job-uid" href="#k8s-job-uid">`k8s.job.uid`</a> | ![Alpha](https://img.shields.io/badge/alpha-mediumpurple) | string | The UID of the Job. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` |
-| <a id="k8s-namespace-annotation" href="#k8s-namespace-annotation">`k8s.namespace.annotation.<key>`</a> | ![Alpha](https://img.shields.io/badge/alpha-mediumpurple) | string | The annotation placed on the Namespace, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [14] | `0`; `` |
-| <a id="k8s-namespace-label" href="#k8s-namespace-label">`k8s.namespace.label.<key>`</a> | ![Alpha](https://img.shields.io/badge/alpha-mediumpurple) | string | The label placed on the Namespace, the `<key>` being the label name, the value being the label value, even if the value is empty. [15] | `default`; `` |
-| <a id="k8s-namespace-name" href="#k8s-namespace-name">`k8s.namespace.name`</a> | ![Alpha](https://img.shields.io/badge/alpha-mediumpurple) | string | The name of the namespace that the pod is running in. | `default` |
+| <a id="k8s-job-annotation" href="#k8s-job-annotation">`k8s.job.annotation.<key>`</a> | ![Beta](https://img.shields.io/badge/beta-lightpink) | string | The annotation placed on the Job, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [12] | `1`; `` |
+| <a id="k8s-job-label" href="#k8s-job-label">`k8s.job.label.<key>`</a> | ![Beta](https://img.shields.io/badge/beta-lightpink) | string | The label placed on the Job, the `<key>` being the label name, the value being the label value, even if the value is empty. [13] | `ci`; `` |
+| <a id="k8s-job-name" href="#k8s-job-name">`k8s.job.name`</a> | ![Beta](https://img.shields.io/badge/beta-lightpink) | string | The name of the Job. | `opentelemetry` |
+| <a id="k8s-job-uid" href="#k8s-job-uid">`k8s.job.uid`</a> | ![Beta](https://img.shields.io/badge/beta-lightpink) | string | The UID of the Job. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` |
+| <a id="k8s-namespace-annotation" href="#k8s-namespace-annotation">`k8s.namespace.annotation.<key>`</a> | ![Beta](https://img.shields.io/badge/beta-lightpink) | string | The annotation placed on the Namespace, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [14] | `0`; `` |
+| <a id="k8s-namespace-label" href="#k8s-namespace-label">`k8s.namespace.label.<key>`</a> | ![Beta](https://img.shields.io/badge/beta-lightpink) | string | The label placed on the Namespace, the `<key>` being the label name, the value being the label value, even if the value is empty. [15] | `default`; `` |
+| <a id="k8s-namespace-name" href="#k8s-namespace-name">`k8s.namespace.name`</a> | ![Beta](https://img.shields.io/badge/beta-lightpink) | string | The name of the namespace that the pod is running in. | `default` |
 | <a id="k8s-namespace-phase" href="#k8s-namespace-phase">`k8s.namespace.phase`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The phase of the K8s namespace. [16] | `active`; `terminating` |
-| <a id="k8s-node-annotation" href="#k8s-node-annotation">`k8s.node.annotation.<key>`</a> | ![Alpha](https://img.shields.io/badge/alpha-mediumpurple) | string | The annotation placed on the Node, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [17] | `0`; `` |
+| <a id="k8s-node-annotation" href="#k8s-node-annotation">`k8s.node.annotation.<key>`</a> | ![Beta](https://img.shields.io/badge/beta-lightpink) | string | The annotation placed on the Node, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [17] | `0`; `` |
 | <a id="k8s-node-condition-status" href="#k8s-node-condition-status">`k8s.node.condition.status`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The status of the condition, one of True, False, Unknown. [18] | `true`; `false`; `unknown` |
 | <a id="k8s-node-condition-type" href="#k8s-node-condition-type">`k8s.node.condition.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The condition type of a K8s Node. [19] | `Ready`; `DiskPressure` |
-| <a id="k8s-node-label" href="#k8s-node-label">`k8s.node.label.<key>`</a> | ![Alpha](https://img.shields.io/badge/alpha-mediumpurple) | string | The label placed on the Node, the `<key>` being the label name, the value being the label value, even if the value is empty. [20] | `arm64`; `` |
-| <a id="k8s-node-name" href="#k8s-node-name">`k8s.node.name`</a> | ![Alpha](https://img.shields.io/badge/alpha-mediumpurple) | string | The name of the Node. | `node-1` |
-| <a id="k8s-node-uid" href="#k8s-node-uid">`k8s.node.uid`</a> | ![Alpha](https://img.shields.io/badge/alpha-mediumpurple) | string | The UID of the Node. | `1eb3a0c6-0477-4080-a9cb-0cb7db65c6a2` |
-| <a id="k8s-pod-annotation" href="#k8s-pod-annotation">`k8s.pod.annotation.<key>`</a> | ![Alpha](https://img.shields.io/badge/alpha-mediumpurple) | string | The annotation placed on the Pod, the `<key>` being the annotation name, the value being the annotation value. [21] | `true`; `x64`; `` |
-| <a id="k8s-pod-hostname" href="#k8s-pod-hostname">`k8s.pod.hostname`</a> | ![Alpha](https://img.shields.io/badge/alpha-mediumpurple) | string | Specifies the hostname of the Pod. [22] | `collector-gateway` |
-| <a id="k8s-pod-ip" href="#k8s-pod-ip">`k8s.pod.ip`</a> | ![Alpha](https://img.shields.io/badge/alpha-mediumpurple) | string | IP address allocated to the Pod. [23] | `172.18.0.2` |
-| <a id="k8s-pod-label" href="#k8s-pod-label">`k8s.pod.label.<key>`</a> | ![Alpha](https://img.shields.io/badge/alpha-mediumpurple) | string | The label placed on the Pod, the `<key>` being the label name, the value being the label value. [24] | `my-app`; `x64`; `` |
-| <a id="k8s-pod-name" href="#k8s-pod-name">`k8s.pod.name`</a> | ![Alpha](https://img.shields.io/badge/alpha-mediumpurple) | string | The name of the Pod. | `opentelemetry-pod-autoconf` |
-| <a id="k8s-pod-start-time" href="#k8s-pod-start-time">`k8s.pod.start_time`</a> | ![Alpha](https://img.shields.io/badge/alpha-mediumpurple) | string | The start timestamp of the Pod. [25] | `2025-12-04T08:41:03Z` |
+| <a id="k8s-node-label" href="#k8s-node-label">`k8s.node.label.<key>`</a> | ![Beta](https://img.shields.io/badge/beta-lightpink) | string | The label placed on the Node, the `<key>` being the label name, the value being the label value, even if the value is empty. [20] | `arm64`; `` |
+| <a id="k8s-node-name" href="#k8s-node-name">`k8s.node.name`</a> | ![Beta](https://img.shields.io/badge/beta-lightpink) | string | The name of the Node. | `node-1` |
+| <a id="k8s-node-uid" href="#k8s-node-uid">`k8s.node.uid`</a> | ![Beta](https://img.shields.io/badge/beta-lightpink) | string | The UID of the Node. | `1eb3a0c6-0477-4080-a9cb-0cb7db65c6a2` |
+| <a id="k8s-pod-annotation" href="#k8s-pod-annotation">`k8s.pod.annotation.<key>`</a> | ![Beta](https://img.shields.io/badge/beta-lightpink) | string | The annotation placed on the Pod, the `<key>` being the annotation name, the value being the annotation value. [21] | `true`; `x64`; `` |
+| <a id="k8s-pod-hostname" href="#k8s-pod-hostname">`k8s.pod.hostname`</a> | ![Beta](https://img.shields.io/badge/beta-lightpink) | string | Specifies the hostname of the Pod. [22] | `collector-gateway` |
+| <a id="k8s-pod-ip" href="#k8s-pod-ip">`k8s.pod.ip`</a> | ![Beta](https://img.shields.io/badge/beta-lightpink) | string | IP address allocated to the Pod. [23] | `172.18.0.2` |
+| <a id="k8s-pod-label" href="#k8s-pod-label">`k8s.pod.label.<key>`</a> | ![Beta](https://img.shields.io/badge/beta-lightpink) | string | The label placed on the Pod, the `<key>` being the label name, the value being the label value. [24] | `my-app`; `x64`; `` |
+| <a id="k8s-pod-name" href="#k8s-pod-name">`k8s.pod.name`</a> | ![Beta](https://img.shields.io/badge/beta-lightpink) | string | The name of the Pod. | `opentelemetry-pod-autoconf` |
+| <a id="k8s-pod-start-time" href="#k8s-pod-start-time">`k8s.pod.start_time`</a> | ![Beta](https://img.shields.io/badge/beta-lightpink) | string | The start timestamp of the Pod. [25] | `2025-12-04T08:41:03Z` |
 | <a id="k8s-pod-status-phase" href="#k8s-pod-status-phase">`k8s.pod.status.phase`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The phase for the pod. Corresponds to the `phase` field of the: [K8s PodStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#podstatus-v1-core) | `Pending`; `Running` |
 | <a id="k8s-pod-status-reason" href="#k8s-pod-status-reason">`k8s.pod.status.reason`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The reason for the pod state. Corresponds to the `reason` field of the: [K8s PodStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#podstatus-v1-core) | `Evicted`; `NodeAffinity` |
-| <a id="k8s-pod-uid" href="#k8s-pod-uid">`k8s.pod.uid`</a> | ![Alpha](https://img.shields.io/badge/alpha-mediumpurple) | string | The UID of the Pod. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` |
-| <a id="k8s-replicaset-annotation" href="#k8s-replicaset-annotation">`k8s.replicaset.annotation.<key>`</a> | ![Alpha](https://img.shields.io/badge/alpha-mediumpurple) | string | The annotation placed on the ReplicaSet, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [26] | `0`; `` |
-| <a id="k8s-replicaset-label" href="#k8s-replicaset-label">`k8s.replicaset.label.<key>`</a> | ![Alpha](https://img.shields.io/badge/alpha-mediumpurple) | string | The label placed on the ReplicaSet, the `<key>` being the label name, the value being the label value, even if the value is empty. [27] | `guestbook`; `` |
-| <a id="k8s-replicaset-name" href="#k8s-replicaset-name">`k8s.replicaset.name`</a> | ![Alpha](https://img.shields.io/badge/alpha-mediumpurple) | string | The name of the ReplicaSet. | `opentelemetry` |
-| <a id="k8s-replicaset-uid" href="#k8s-replicaset-uid">`k8s.replicaset.uid`</a> | ![Alpha](https://img.shields.io/badge/alpha-mediumpurple) | string | The UID of the ReplicaSet. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` |
+| <a id="k8s-pod-uid" href="#k8s-pod-uid">`k8s.pod.uid`</a> | ![Beta](https://img.shields.io/badge/beta-lightpink) | string | The UID of the Pod. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` |
+| <a id="k8s-replicaset-annotation" href="#k8s-replicaset-annotation">`k8s.replicaset.annotation.<key>`</a> | ![Beta](https://img.shields.io/badge/beta-lightpink) | string | The annotation placed on the ReplicaSet, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [26] | `0`; `` |
+| <a id="k8s-replicaset-label" href="#k8s-replicaset-label">`k8s.replicaset.label.<key>`</a> | ![Beta](https://img.shields.io/badge/beta-lightpink) | string | The label placed on the ReplicaSet, the `<key>` being the label name, the value being the label value, even if the value is empty. [27] | `guestbook`; `` |
+| <a id="k8s-replicaset-name" href="#k8s-replicaset-name">`k8s.replicaset.name`</a> | ![Beta](https://img.shields.io/badge/beta-lightpink) | string | The name of the ReplicaSet. | `opentelemetry` |
+| <a id="k8s-replicaset-uid" href="#k8s-replicaset-uid">`k8s.replicaset.uid`</a> | ![Beta](https://img.shields.io/badge/beta-lightpink) | string | The UID of the ReplicaSet. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` |
 | <a id="k8s-replicationcontroller-name" href="#k8s-replicationcontroller-name">`k8s.replicationcontroller.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the replication controller. | `opentelemetry` |
 | <a id="k8s-replicationcontroller-uid" href="#k8s-replicationcontroller-uid">`k8s.replicationcontroller.uid`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The UID of the replication controller. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` |
 | <a id="k8s-resourcequota-name" href="#k8s-resourcequota-name">`k8s.resourcequota.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the resource quota. | `opentelemetry` |
 | <a id="k8s-resourcequota-resource-name" href="#k8s-resourcequota-resource-name">`k8s.resourcequota.resource_name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the K8s resource a resource quota defines. [28] | `count/replicationcontrollers` |
 | <a id="k8s-resourcequota-uid" href="#k8s-resourcequota-uid">`k8s.resourcequota.uid`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The UID of the resource quota. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` |
-| <a id="k8s-statefulset-annotation" href="#k8s-statefulset-annotation">`k8s.statefulset.annotation.<key>`</a> | ![Alpha](https://img.shields.io/badge/alpha-mediumpurple) | string | The annotation placed on the StatefulSet, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [29] | `1`; `` |
-| <a id="k8s-statefulset-label" href="#k8s-statefulset-label">`k8s.statefulset.label.<key>`</a> | ![Alpha](https://img.shields.io/badge/alpha-mediumpurple) | string | The label placed on the StatefulSet, the `<key>` being the label name, the value being the label value, even if the value is empty. [30] | `guestbook`; `` |
-| <a id="k8s-statefulset-name" href="#k8s-statefulset-name">`k8s.statefulset.name`</a> | ![Alpha](https://img.shields.io/badge/alpha-mediumpurple) | string | The name of the StatefulSet. | `opentelemetry` |
-| <a id="k8s-statefulset-uid" href="#k8s-statefulset-uid">`k8s.statefulset.uid`</a> | ![Alpha](https://img.shields.io/badge/alpha-mediumpurple) | string | The UID of the StatefulSet. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` |
+| <a id="k8s-service-annotation" href="#k8s-service-annotation">`k8s.service.annotation.<key>`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The annotation placed on the Service, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [29] | `true`; `` |
+| <a id="k8s-service-endpoint-address-type" href="#k8s-service-endpoint-address-type">`k8s.service.endpoint.address_type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The address type of the service endpoint. [30] | `IPv4`; `IPv6` |
+| <a id="k8s-service-endpoint-condition" href="#k8s-service-endpoint-condition">`k8s.service.endpoint.condition`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The condition of the service endpoint. [31] | `ready`; `serving`; `terminating` |
+| <a id="k8s-service-endpoint-zone" href="#k8s-service-endpoint-zone">`k8s.service.endpoint.zone`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The zone of the service endpoint. [32] | `us-east-1a`; `us-west-2b`; `zone-a`; `` |
+| <a id="k8s-service-label" href="#k8s-service-label">`k8s.service.label.<key>`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The label placed on the Service, the `<key>` being the label name, the value being the label value, even if the value is empty. [33] | `my-service`; `` |
+| <a id="k8s-service-name" href="#k8s-service-name">`k8s.service.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the Service. | `my-service` |
+| <a id="k8s-service-publish-not-ready-addresses" href="#k8s-service-publish-not-ready-addresses">`k8s.service.publish_not_ready_addresses`</a> | ![Development](https://img.shields.io/badge/-development-blue) | boolean | Whether the Service publishes not-ready endpoints. [34] | `true`; `false` |
+| <a id="k8s-service-selector" href="#k8s-service-selector">`k8s.service.selector.<key>`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The selector key-value pair placed on the Service, the `<key>` being the selector key, the value being the selector value. [35] | `my-app`; `v1` |
+| <a id="k8s-service-traffic-distribution" href="#k8s-service-traffic-distribution">`k8s.service.traffic_distribution`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The traffic distribution policy for the Service. [36] | `PreferSameZone`; `PreferSameNode` |
+| <a id="k8s-service-type" href="#k8s-service-type">`k8s.service.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The type of the Kubernetes Service. [37] | `ClusterIP`; `NodePort`; `LoadBalancer` |
+| <a id="k8s-service-uid" href="#k8s-service-uid">`k8s.service.uid`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The UID of the Service. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` |
+| <a id="k8s-statefulset-annotation" href="#k8s-statefulset-annotation">`k8s.statefulset.annotation.<key>`</a> | ![Beta](https://img.shields.io/badge/beta-lightpink) | string | The annotation placed on the StatefulSet, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty. [38] | `1`; `` |
+| <a id="k8s-statefulset-label" href="#k8s-statefulset-label">`k8s.statefulset.label.<key>`</a> | ![Beta](https://img.shields.io/badge/beta-lightpink) | string | The label placed on the StatefulSet, the `<key>` being the label name, the value being the label value, even if the value is empty. [39] | `guestbook`; `` |
+| <a id="k8s-statefulset-name" href="#k8s-statefulset-name">`k8s.statefulset.name`</a> | ![Beta](https://img.shields.io/badge/beta-lightpink) | string | The name of the StatefulSet. | `opentelemetry` |
+| <a id="k8s-statefulset-uid" href="#k8s-statefulset-uid">`k8s.statefulset.uid`</a> | ![Beta](https://img.shields.io/badge/beta-lightpink) | string | The UID of the StatefulSet. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` |
 | <a id="k8s-storageclass-name" href="#k8s-storageclass-name">`k8s.storageclass.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of K8s [StorageClass](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#storageclass-v1-storage-k8s-io) object. | `gold.storageclass.storage.k8s.io` |
 | <a id="k8s-volume-name" href="#k8s-volume-name">`k8s.volume.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the K8s volume. | `volume0` |
 | <a id="k8s-volume-type" href="#k8s-volume-type">`k8s.volume.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The type of the K8s volume. | `emptyDir`; `persistentVolumeClaim` |
@@ -262,14 +273,73 @@ in ISO 8601 (RFC 3339 compatible) format.
 
 **[28] `k8s.resourcequota.resource_name`:** The value for this attribute can be either the full `count/<resource>[.<group>]` string (e.g., count/deployments.apps, count/pods), or, for certain core Kubernetes resources, just the resource name (e.g., pods, services, configmaps). Both forms are supported by Kubernetes for object count quotas. See [Kubernetes Resource Quotas documentation](https://kubernetes.io/docs/concepts/policy/resource-quotas/#quota-on-object-count) for more details.
 
-**[29] `k8s.statefulset.annotation.<key>`:** Examples:
+**[29] `k8s.service.annotation.<key>`:** Examples:
+
+- An annotation `prometheus.io/scrape` with value `true` SHOULD be recorded as
+  the `k8s.service.annotation.prometheus.io/scrape` attribute with value `"true"`.
+- An annotation `data` with empty string value SHOULD be recorded as
+  the `k8s.service.annotation.data` attribute with value `""`.
+
+**[30] `k8s.service.endpoint.address_type`:** The network address family or type of the endpoint.
+This attribute aligns with the `addressType` field of the
+[K8s EndpointSlice](https://kubernetes.io/docs/reference/kubernetes-api/service-resources/endpoint-slice-v1/).
+It is used to differentiate metrics when a Service is backed by multiple address types
+(e.g., in dual-stack clusters).
+
+**[31] `k8s.service.endpoint.condition`:** The current operational condition of the service endpoint.
+An endpoint can have multiple conditions set at once (e.g., both `serving` and `terminating` during rollout).
+This attribute aligns with the condition fields in the [K8s EndpointSlice](https://kubernetes.io/docs/reference/kubernetes-api/service-resources/endpoint-slice-v1/).
+
+**[32] `k8s.service.endpoint.zone`:** The zone where the endpoint is located, typically corresponding to a failure domain.
+This attribute aligns with the `zone` field of endpoints in the
+[K8s EndpointSlice](https://kubernetes.io/docs/reference/kubernetes-api/service-resources/endpoint-slice-v1/).
+It enables zone-aware monitoring of service endpoint distribution and supports
+features like [Topology Aware Routing](https://kubernetes.io/docs/concepts/services-networking/topology-aware-routing/).
+
+If the zone is not populated (e.g., nodes without the `topology.kubernetes.io/zone` label),
+the attribute value will be an empty string.
+
+**[33] `k8s.service.label.<key>`:** Examples:
+
+- A label `app` with value `my-service` SHOULD be recorded as
+  the `k8s.service.label.app` attribute with value `"my-service"`.
+- A label `data` with empty string value SHOULD be recorded as
+  the `k8s.service.label.data` attribute with value `""`.
+
+**[34] `k8s.service.publish_not_ready_addresses`:** Whether the Service is configured to publish endpoints before the pods are ready.
+This attribute is typically used to indicate that a Service (such as a headless
+Service for a StatefulSet) allows peer discovery before pods pass their readiness probes.
+It aligns with the `publishNotReadyAddresses` field of the
+[K8s ServiceSpec](https://kubernetes.io/docs/reference/kubernetes-api/service-resources/service-v1/#ServiceSpec).
+
+**[35] `k8s.service.selector.<key>`:** These selectors are used to correlate with pod labels. Each selector key-value pair becomes a separate attribute.
+
+Examples:
+
+- A selector `app=my-app` SHOULD be recorded as
+  the `k8s.service.selector.app` attribute with value `"my-app"`.
+- A selector `version=v1` SHOULD be recorded as
+  the `k8s.service.selector.version` attribute with value `"v1"`.
+
+**[36] `k8s.service.traffic_distribution`:** Specifies how traffic is distributed to endpoints for this Service.
+This attribute aligns with the `trafficDistribution` field of the
+[K8s ServiceSpec](https://kubernetes.io/docs/reference/networking/virtual-ips/#traffic-distribution).
+Known values include `PreferSameZone` (prefer endpoints in the same zone as the client) and
+`PreferSameNode` (prefer endpoints on the same node, fallback to same zone, then cluster-wide).
+If this field is not set on the Service, the attribute SHOULD NOT be emitted.
+When not set, Kubernetes distributes traffic evenly across all endpoints cluster-wide.
+
+**[37] `k8s.service.type`:** This attribute aligns with the `type` field of the
+[K8s ServiceSpec](https://kubernetes.io/docs/reference/kubernetes-api/service-resources/service-v1/#ServiceSpec).
+
+**[38] `k8s.statefulset.annotation.<key>`:** Examples:
 
 - A label `replicas` with value `1` SHOULD be recorded
   as the `k8s.statefulset.annotation.replicas` attribute with value `"1"`.
 - A label `data` with empty string value SHOULD be recorded as
   the `k8s.statefulset.annotation.data` attribute with value `""`.
 
-**[30] `k8s.statefulset.label.<key>`:** Examples:
+**[39] `k8s.statefulset.label.<key>`:** Examples:
 
 - A label `replicas` with value `0` SHOULD be recorded
   as the `k8s.statefulset.label.app` attribute with value `"guestbook"`.
@@ -356,6 +426,37 @@ in ISO 8601 (RFC 3339 compatible) format.
 | `NodeLost` | The reason on a pod when its state cannot be confirmed as kubelet is unresponsive on the node it is (was) running. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `Shutdown` | The node is shutdown | ![Development](https://img.shields.io/badge/-development-blue) |
 | `UnexpectedAdmissionError` | The pod was rejected admission to the node because of an error during admission that could not be categorized. | ![Development](https://img.shields.io/badge/-development-blue) |
+
+---
+
+`k8s.service.endpoint.address_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value | Description | Stability |
+| --- | --- | --- |
+| `FQDN` | FQDN address type | ![Development](https://img.shields.io/badge/-development-blue) |
+| `IPv4` | IPv4 address type | ![Development](https://img.shields.io/badge/-development-blue) |
+| `IPv6` | IPv6 address type | ![Development](https://img.shields.io/badge/-development-blue) |
+
+---
+
+`k8s.service.endpoint.condition` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value | Description | Stability |
+| --- | --- | --- |
+| `ready` | The endpoint is ready to receive new connections. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `serving` | The endpoint is currently handling traffic. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `terminating` | The endpoint is in the process of shutting down. | ![Development](https://img.shields.io/badge/-development-blue) |
+
+---
+
+`k8s.service.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value | Description | Stability |
+| --- | --- | --- |
+| `ClusterIP` | ClusterIP service type | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ExternalName` | ExternalName service type | ![Development](https://img.shields.io/badge/-development-blue) |
+| `LoadBalancer` | LoadBalancer service type | ![Development](https://img.shields.io/badge/-development-blue) |
+| `NodePort` | NodePort service type | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 

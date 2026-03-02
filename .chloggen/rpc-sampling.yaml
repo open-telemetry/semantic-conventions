@@ -1,6 +1,0 @@
-change_type: enhancement
-component: rpc
-note: >
-  Mark `rpc.system.name`, `rpc.method`, `rpc.service`, `server.address`, and `server.port` as
-  sampling relevant attributes in RPC spans.
-issues: [3202]
