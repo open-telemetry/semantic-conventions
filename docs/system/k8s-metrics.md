@@ -2884,7 +2884,6 @@ This metric is [recommended][MetricRecommended].
 | `k8s.persistentvolume.status.phase` | UpDownCounter | `{persistentvolume}` | Number of PersistentVolumes in a given phase. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.persistentvolume`](/docs/registry/entities/k8s.md#k8s-persistentvolume) |
 
 **[1]:** All possible phases should be reported at each interval to avoid gaps in the time series.
-When the phase is `Bound`, the bound PVC name and namespace SHOULD be included as attributes.
 This metric is derived from the `.status.phase` field of the
 [K8s PersistentVolumeStatus](https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/persistent-volume-v1/#PersistentVolumeStatus).
 
@@ -2893,8 +2892,6 @@ This metric is derived from the `.status.phase` field of the
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`k8s.persistentvolume.status.phase`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The phase of the PersistentVolume. [1] | `Pending`; `Available`; `Bound`; `Released`; `Failed` |
-| [`k8s.namespace.name`](/docs/registry/attributes/k8s.md) | ![Beta](https://img.shields.io/badge/beta-lightpink) | `Recommended` When the PV is in the `Bound` phase. | string | The namespace of the bound PersistentVolumeClaim. | `default` |
-| [`k8s.persistentvolumeclaim.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` When the PV is in the `Bound` phase. | string | The name of the PersistentVolumeClaim. | `pvc-data-01` |
 
 **[1] `k8s.persistentvolume.status.phase`:** This attribute aligns with the `phase` field of the
 [K8s PersistentVolumeStatus](https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/persistent-volume-v1/#PersistentVolumeStatus).
@@ -2950,7 +2947,6 @@ This metric is [recommended][MetricRecommended].
 | `k8s.persistentvolumeclaim.status.phase` | UpDownCounter | `{persistentvolumeclaim}` | Number of PersistentVolumeClaims in a given phase. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.persistentvolumeclaim`](/docs/registry/entities/k8s.md#k8s-persistentvolumeclaim) |
 
 **[1]:** All possible phases should be reported at each interval to avoid gaps in the time series.
-When the phase is `Bound`, the bound PV name SHOULD be included as an attribute.
 This metric is derived from the `.status.phase` field of the
 [K8s PersistentVolumeClaimStatus](https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/persistent-volume-claim-v1/#PersistentVolumeClaimStatus).
 
@@ -2959,7 +2955,6 @@ This metric is derived from the `.status.phase` field of the
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`k8s.persistentvolumeclaim.status.phase`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The phase of the PersistentVolumeClaim. [1] | `Pending`; `Bound`; `Lost` |
-| [`k8s.persistentvolume.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` When the PVC is in the `Bound` phase. | string | The name of the PersistentVolume. | `pv-data-01` |
 
 **[1] `k8s.persistentvolumeclaim.status.phase`:** This attribute aligns with the `phase` field of the
 [K8s PersistentVolumeClaimStatus](https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/persistent-volume-claim-v1/#PersistentVolumeClaimStatus).

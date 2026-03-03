@@ -1855,16 +1855,8 @@ groups:
     attributes:
       - ref: k8s.persistentvolume.status.phase
         requirement_level: required
-      - ref: k8s.persistentvolumeclaim.name
-        requirement_level:
-          recommended: When the PV is in the `Bound` phase.
-      - ref: k8s.namespace.name
-        requirement_level:
-          recommended: When the PV is in the `Bound` phase.
-        brief: The namespace of the bound PersistentVolumeClaim.
     note: |
       All possible phases should be reported at each interval to avoid gaps in the time series.
-      When the phase is `Bound`, the bound PVC name and namespace SHOULD be included as attributes.
       This metric is derived from the `.status.phase` field of the
       [K8s PersistentVolumeStatus](https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/persistent-volume-v1/#PersistentVolumeStatus).
 
@@ -1884,12 +1876,8 @@ groups:
     attributes:
       - ref: k8s.persistentvolumeclaim.status.phase
         requirement_level: required
-      - ref: k8s.persistentvolume.name
-        requirement_level:
-          recommended: When the PVC is in the `Bound` phase.
     note: |
       All possible phases should be reported at each interval to avoid gaps in the time series.
-      When the phase is `Bound`, the bound PV name SHOULD be included as an attribute.
       This metric is derived from the `.status.phase` field of the
       [K8s PersistentVolumeClaimStatus](https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/persistent-volume-claim-v1/#PersistentVolumeClaimStatus).
 
