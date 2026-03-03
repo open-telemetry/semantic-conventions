@@ -109,6 +109,16 @@ groups:
           consumers MAY use this attribute to optimize telemetry collection
           or improve user experience.
         examples: ["critical", "high", "medium", "low"]
+      - id: service.cost_center.id
+        type: string
+        stability: development
+        brief: >
+          Identifier of the cost center associated with the service.
+        note: >
+          The cost center identifier enables tracking and attribution of service resource costs to
+          organizational units or teams. This standardization ensures consistent cost allocation
+          across cloud providers, Kubernetes clusters, and observability platforms.
+        examples: ["94002", "engineering-platform", "marketing-campaigns-2026"]
   - id: registry.service.peer
     type: attribute_group
     display_name: Service Attributes for Peer Services

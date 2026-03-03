@@ -18,6 +18,9 @@ groups:
       - ref: service.criticality
         requirement_level: recommended
         role: descriptive
+      - ref: service.cost_center.id
+        requirement_level: recommended
+        role: descriptive
   - id: entity.service.instance
     type: entity
     name: service.instance
