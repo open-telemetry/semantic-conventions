@@ -256,6 +256,7 @@ groups:
         requirement_level: recommended
       - ref: gen_ai.embeddings.dimension.count
         requirement_level: recommended
+      - ref: gen_ai.response.model
 
   - id: span.gen_ai.retrieval.client
     type: span
