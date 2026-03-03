@@ -34,7 +34,7 @@ This document defines log attributes
 | Value | Description | Stability |
 | --- | --- | --- |
 | `app` | Default regular application log - everything which is NOT audit relevant | ![Development](https://img.shields.io/badge/-development-blue) |
-| `audit` | Audit log recording security-relevant activities for compliance and forensics. When log.type='audit', the log record MUST not get lost and body not changed. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `audit` | Audit log recording security-relevant activities for compliance and forensics. When log.type='audit', the log record SHOULD not get lost and body not changed. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ## Log File Attributes
 
