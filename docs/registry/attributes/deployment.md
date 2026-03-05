@@ -33,10 +33,10 @@ considered to be identifying the same service:
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `Development` | Development environment | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `Production` | Production environment | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `Staging` | Staging environment | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `Test` | Testing environment | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `development` | Development environment | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `production` | Production environment | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `staging` | Staging environment | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `test` | Testing environment | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ---
 

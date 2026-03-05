@@ -35,19 +35,19 @@ groups:
         type:
           members:
             - id: production
-              value: "Production"
+              value: "production"
               brief: Production environment
               stability: stable
             - id: staging
-              value: "Staging"
+              value: "staging"
               brief: Staging environment
               stability: stable
             - id: test
-              value: "Test"
+              value: "test"
               brief: Testing environment
               stability: stable
             - id: development
-              value: "Development"
+              value: "development"
               brief: Development environment
               stability: stable
         stability: development
