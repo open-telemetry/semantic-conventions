@@ -258,7 +258,6 @@ groups:
         requirement_level: recommended
       - ref: gen_ai.response.model
         requirement_level: recommended 
-      
 
   - id: span.gen_ai.retrieval.client
     type: span
