@@ -193,6 +193,9 @@ groups:
       - ref: gen_ai.usage.cache_read.input_tokens
         note: >
           Corresponds to `usage.input_tokens_details.cached_tokens` or a similar property in the model response.
+      - ref: gen_ai.usage.reasoning.output_tokens
+        note: >
+          Corresponds to `usage.output_tokens_details.reasoning_tokens` in the model response.
       - ref: openai.request.service_tier
         requirement_level:
           conditionally_required: if the request includes a service_tier and the value is not 'auto'
@@ -476,7 +479,6 @@ groups:
       - ref: gen_ai.usage.reasoning.output_tokens
         note: >
           Corresponds to `usageMetadata.thoughtsTokenCount` in the model response.
-          The value SHOULD be included in `gen_ai.usage.output_tokens`.
 
   - id: span.anthropic.inference.client
     extends: attributes.gen_ai.inference.client

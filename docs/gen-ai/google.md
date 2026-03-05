@@ -132,7 +132,7 @@ Instrumentations SHOULD make a best effort to populate this value, using a total
 provided by the provider when available or, depending on the provider API,
 by summing different token types parsed from the provider output.
 
-**[12] `gen_ai.usage.reasoning.output_tokens`:** Corresponds to `usageMetadata.thoughtsTokenCount` in the model response. The value SHOULD be included in `gen_ai.usage.output_tokens`.
+**[12] `gen_ai.usage.reasoning.output_tokens`:** Corresponds to `usageMetadata.thoughtsTokenCount` in the model response.
 
 **[13] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
