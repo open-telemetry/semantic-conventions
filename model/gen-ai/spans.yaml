@@ -133,6 +133,11 @@ groups:
         sampling_relevant: true
       - ref: gen_ai.request.top_k
         requirement_level: recommended
+      - ref: gen_ai.usage.reasoning.output_tokens
+        requirement_level:
+          conditionally_required: when applicable
+        note: >
+          The value SHOULD be included in `gen_ai.usage.output_tokens`.
 
   - id: attributes.gen_ai.inference.openai_based
     extends: attributes.gen_ai.inference.client
@@ -454,6 +459,24 @@ groups:
         requirement_level: required
       - ref: aws.bedrock.knowledge_base.id
         requirement_level: recommended
+
+  - id: span.gcp.gemini.inference.client
+    extends: attributes.gen_ai.inference.client
+    stability: development
+    span_kind: client
+    type: span
+    brief: >
+      Semantic Conventions for [Gemini](https://cloud.google.com/products/gemini) client spans extend
+      and override the semantic conventions for [Gen AI Spans](gen-ai-spans.md).
+    note: |
+      `gen_ai.provider.name` MUST be set to `"gcp.gemini"` and SHOULD be provided **at span creation time**.
+
+      **Span name** SHOULD be `{gen_ai.operation.name} {gen_ai.request.model}`.
+    attributes:
+      - ref: gen_ai.usage.reasoning.output_tokens
+        note: >
+          Corresponds to `usageMetadata.thoughtsTokenCount` in the model response.
+          The value SHOULD be included in `gen_ai.usage.output_tokens`.
 
   - id: span.anthropic.inference.client
     extends: attributes.gen_ai.inference.client
