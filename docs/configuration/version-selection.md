@@ -102,9 +102,9 @@ under the stable flag (`experimental: false`). See
 definition of stability guarantees and breaking changes.
 
 When adding support for a new stable semantic convention version
-(e.g., v1), a stable instrumentation SHOULD NOT expose it under
-`experimental: false` until it is ready to commit to the stability
-guarantees defined in [Semantic Conventions Stability][SemConvStability].
+(e.g., v1), a stable instrumentation SHOULD NOT expose that version under
+`experimental: false` until the instrumentation is ready to commit to the
+stability guarantees defined in [Semantic Conventions Stability][SemConvStability].
 
 How an instrumentation offers early access to an unstable implementation
 of the stable semantic conventions is left to the individual instrumentation.
