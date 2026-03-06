@@ -102,17 +102,12 @@ under the stable flag (`experimental: false`). See
 definition of stability guarantees and breaking changes.
 
 When adding support for a new stable semantic convention version
-(e.g., v1) to a stable instrumentation, the instrumentation SHOULD NOT
-expose the new version under `experimental: false` until the
-implementation is complete and validated. This ensures users are not
-exposed to incomplete or changing telemetry when using the stable
-configuration (`experimental: false`).
+(e.g., v1), a stable instrumentation SHOULD NOT expose it under
+`experimental: false` until it is ready to commit to the stability
+guarantees defined in [Semantic Conventions Stability][SemConvStability].
 
-How an instrumentation gates access to an in-progress implementation
-(e.g., instrumentation-specific configuration, feature flags) is left
-to the individual instrumentation. The `experimental` flag SHOULD NOT
-be used for this purpose, as it controls whether development-stage
-conventions are included, not whether an implementation is complete.
+How an instrumentation offers early access to an unstable implementation
+of the stable semantic conventions is left to the individual instrumentation.
 
 ## Relationship with `OTEL_SEMCONV_STABILITY_OPT_IN`
 
