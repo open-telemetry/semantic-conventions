@@ -25,6 +25,12 @@
         'before 8am on Tuesday',
       ],
     },
+    {
+      matchPackageNames: [
+        'otel/**',
+      ],
+      schedule: ['at any time'],
+    },
   ],
   "lockFileMaintenance": {
     "enabled": true,
