@@ -30,6 +30,9 @@ groups:
         sampling_relevant: true
       - ref: db.operation.batch.size
       - ref: db.response.returned_rows
+        note: |
+          The number of rows returned by the database operation as observed
+          by the instrumentation at the time the span ends.
       - ref: db.query.text
         sampling_relevant: true
         requirement_level:
@@ -61,6 +64,9 @@ groups:
       - ref: server.port
         sampling_relevant: true
       - ref: db.response.returned_rows
+        note: |
+          The number of rows returned by the database operation as observed
+          by the instrumentation at the time the span ends.
       - ref: db.query.text
         sampling_relevant: true
         requirement_level:
@@ -111,10 +117,8 @@ groups:
     stability: stable
     brief: This span describes database client call.
     note: |
-      Instrumentations SHOULD, when possible, record database spans that cover the duration of
-      the corresponding API call as if it was observed by the caller (such as client application).
-      For example, if a transient issue happened and was retried within this database call, the corresponding
-      span should cover the duration of the logical operation with all retries.
+      Instrumentations SHOULD, when possible, record database spans that represent the logical database
+      operation as observed by the caller (such as client application).
 
       When a database client provides higher-level convenience APIs for specific operations
       (e.g., calling a stored procedure), which internally generate and execute a generic query,
@@ -123,6 +127,8 @@ groups:
       readily available at the generic query level.
 
       **Span name** is covered in the [Name](/docs/db/database-spans.md#name) section.
+
+      **Span duration** is covered in the [Database client span duration](/docs/db/database-spans.md#database-client-span-duration) section.
 
       **Span kind** SHOULD be `CLIENT`. It MAY be set to `INTERNAL` on spans representing
       in-memory database calls.
@@ -140,6 +146,9 @@ groups:
       # TODO (trask) make this recommended once it is stable
       - ref: db.response.returned_rows
         requirement_level: opt_in
+        note: |
+          The number of rows returned by the database operation as observed
+          by the instrumentation at the time the span ends.
 
   - id: span.db.sql_server.client
     type: span

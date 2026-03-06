@@ -1,8 +1,0 @@
-change_type: deprecation
-component: rpc
-note: Deprecate the `rpc.message` event and its attributes
-issues: [3266, 3283]
-subtext: >
-  Per-message events within RPC streaming calls are of limited utility in their
-  current form. They are recorded as span events (also being deprecated).
-  There is no direct replacement at this time.

@@ -1,7 +1,0 @@
-change_type: enhancement
-component: rpc
-note: >
-  Clarify how to populate `server.address` and `server.port` when using
-  client-side load balancing or service discovery.
-
-issues: [3258, 3317]

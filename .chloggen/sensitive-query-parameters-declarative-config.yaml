@@ -1,4 +1,0 @@
-change_type: enhancement
-component: http
-note: Define declarative configuration for sensitive query parameters.
-issues: [3403]

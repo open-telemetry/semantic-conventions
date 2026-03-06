@@ -1,4 +1,0 @@
-change_type: enhancement
-component: event
-note: Allow event body to represent a display message.
-issues: [3343]
