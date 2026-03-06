@@ -14,7 +14,7 @@
         'github-actions',
       ],
       schedule: [
-        'before 8am on the first Tuesday of the month',
+        '* * 2 * *', // monthly, on the 2nd
       ],
     },
     {
@@ -22,7 +22,7 @@
         '!github-actions',
       ],
       schedule: [
-        'before 8am on Tuesday',
+        '* * * * 2', // weekly, on Tuesday
       ],
     },
     {
