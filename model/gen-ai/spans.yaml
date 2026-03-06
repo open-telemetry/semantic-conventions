@@ -331,6 +331,79 @@ groups:
         note: ""  # note is not needed here
 
 
+  - id: attributes.gen_ai.invoke_agent.client
+    type: attribute_group
+    stability: development
+    brief: >
+      Describes GenAI invoke_agent attributes.
+    extends: attributes.gen_ai.common.client
+    attributes:
+      - ref: gen_ai.request.max_tokens
+        requirement_level: recommended
+      - ref: gen_ai.request.choice.count
+        requirement_level:
+          conditionally_required: if available, in the request, and !=1
+      - ref: gen_ai.request.temperature
+        requirement_level: recommended
+      - ref: gen_ai.request.top_p
+        requirement_level: recommended
+      - ref: gen_ai.request.stop_sequences
+        requirement_level: recommended
+      - ref: gen_ai.request.frequency_penalty
+        requirement_level: recommended
+      - ref: gen_ai.request.presence_penalty
+        requirement_level: recommended
+      - ref: gen_ai.request.seed
+        requirement_level:
+          conditionally_required: if applicable and if the request includes a seed
+      - ref: gen_ai.output.type
+        requirement_level:
+          conditionally_required: when applicable and if the request includes an output format.
+      - ref: gen_ai.usage.input_tokens
+        requirement_level: recommended
+        note: >
+          When the agent performs multiple GenAI requests internally, this value
+          SHOULD be the sum of all input tokens used across those requests.
+      - ref: gen_ai.usage.output_tokens
+        requirement_level: recommended
+        note: >
+          When the agent performs multiple GenAI requests internally, this value
+          SHOULD be the sum of all output tokens used across those requests.
+      - ref: gen_ai.usage.cache_read.input_tokens
+        requirement_level: recommended
+        note: >
+          When the agent performs multiple GenAI requests internally, this value
+          SHOULD be the sum of all cache read input tokens across those requests.
+      - ref: gen_ai.usage.cache_creation.input_tokens
+        requirement_level: recommended
+        note: >
+          When the agent performs multiple GenAI requests internally, this value
+          SHOULD be the sum of all cache creation input tokens across those requests.
+      - ref: gen_ai.conversation.id
+        requirement_level:
+          conditionally_required: when available
+        note: |
+          Instrumentations SHOULD populate conversation id when they have it readily available
+          for a given operation, for example:
+
+          - when client framework being instrumented manages conversation history
+          (see [LlamaIndex chat store](https://docs.llamaindex.ai/en/stable/module_guides/storing/chat_stores/))
+          - when instrumenting GenAI client libraries that maintain conversation on the backend side
+          (see [AWS Bedrock agent sessions](https://docs.aws.amazon.com/bedrock/latest/userguide/agents-session-state.html),
+          [OpenAI Assistant threads](https://platform.openai.com/docs/api-reference/threads))
+
+          Application developers that manage conversation history MAY add conversation id to GenAI and other
+          spans or logs using custom span or log record processors or hooks provided by instrumentation
+          libraries.
+      - ref: gen_ai.system_instructions
+        requirement_level: opt_in
+      - ref: gen_ai.input.messages
+        requirement_level: opt_in
+      - ref: gen_ai.output.messages
+        requirement_level: opt_in
+      - ref: gen_ai.tool.definitions
+        requirement_level: opt_in
+
   - id: span.gen_ai.invoke_agent.client
     type: span
     stability: development
@@ -354,7 +427,7 @@ groups:
 
       - `CLIENT`: Remote agent services (e.g., OpenAI Assistants API, AWS Bedrock Agents)
       - `INTERNAL`: In-process agents (e.g., LangChain agents, CrewAI agents)
-    extends: attributes.gen_ai.inference.client
+    extends: attributes.gen_ai.invoke_agent.client
     attributes:
       - ref: gen_ai.provider.name
         requirement_level: required
@@ -384,12 +457,6 @@ groups:
         sampling_relevant: true
       - ref: server.port
         sampling_relevant: true
-      - ref: gen_ai.system_instructions
-        requirement_level: opt_in
-      - ref: gen_ai.input.messages
-        requirement_level: opt_in
-      - ref: gen_ai.output.messages
-        requirement_level: opt_in
 
 
   - id: span.gen_ai.execute_tool.internal
