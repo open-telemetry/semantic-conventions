@@ -451,7 +451,7 @@ groups:
           Instrumentations SHOULD document the list of errors they report.
 
   - id: span.aws.bedrock.client
-    extends: span.gen_ai.inference.client
+    extends: attributes.gen_ai.inference.client
     stability: development
     span_kind: client
     type: span
