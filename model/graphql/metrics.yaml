@@ -1,0 +1,345 @@
+groups:
+  - id: metric_attributes.graphql.server.base
+    type: attribute_group
+    brief: "Base attributes shared across all GraphQL server metrics."
+    attributes:
+      - ref: graphql.operation.type
+        requirement_level:
+          conditionally_required: If available.
+      - ref: graphql.operation.name
+        requirement_level: opt_in
+        note: |
+          The `graphql.operation.name` is provided by the client and can have
+          unbounded cardinality. It MUST only be enabled when the operation
+          namespace has bounded cardinality, such as when using persisted
+          operations or trusted documents.
+
+          When `graphql.operation.name` is not enabled, `graphql.document.hash`
+          or `graphql.document.id` MAY be used as lower-cardinality alternatives.
+
+  - id: metric_attributes.graphql.server
+    type: attribute_group
+    brief: "Common attributes for GraphQL server request-level metrics."
+    extends: metric_attributes.graphql.server.base
+    attributes:
+      - ref: graphql.document.id
+        requirement_level: opt_in
+        note: |
+          The `graphql.document.id` MUST only be enabled when the set of
+          document identifiers has bounded cardinality, such as when using
+          trusted documents or persisted operations.
+      - ref: error.type
+        requirement_level:
+          conditionally_required: If the GraphQL request ended with an error.
+        note: |
+          For GraphQL, `error.type` captures the category of error that caused
+          the request to fail. Since GraphQL can return partial data with errors
+          in a 200 OK response, this attribute SHOULD be set when the response
+          contains errors that the instrumentation considers a failure.
+
+          The `error.type` value SHOULD be predictable and SHOULD have low
+          cardinality. Instrumentations SHOULD document the list of errors
+          they report.
+
+  - id: metric_attributes.graphql.server.phase
+    type: attribute_group
+    brief: "Common attributes for GraphQL server phase duration metrics."
+    extends: metric_attributes.graphql.server.base
+    attributes:
+      - ref: error.type
+        requirement_level:
+          conditionally_required: If the processing phase ended with an error.
+        note: |
+          For phase-level metrics, `error.type` captures the category of error
+          that caused the phase to fail. This allows monitoring error rates
+          per phase independently of the overall request outcome.
+
+  - id: metric.graphql.server.request.duration
+    type: metric
+    metric_name: graphql.server.request.duration
+    annotations:
+      code_generation:
+        metric_value_type: double
+    brief: "Duration of GraphQL server requests."
+    instrument: histogram
+    unit: "s"
+    stability: development
+    note: |
+      This metric measures the end-to-end duration of processing a GraphQL
+      request on the server. It starts when the server begins processing
+      the GraphQL operation and ends when the response is complete.
+
+      When this metric is reported alongside a GraphQL server span, the
+      metric value SHOULD be the same as the GraphQL server span duration.
+
+      This metric is complementary to `http.server.request.duration` which
+      measures the transport-level duration. The GraphQL metric captures
+      application-level processing time.
+
+      Histogram bucket boundaries SHOULD be chosen to capture expected
+      request durations.
+    extends: metric_attributes.graphql.server
+
+  - id: metric.graphql.server.active_requests
+    type: metric
+    metric_name: graphql.server.active_requests
+    annotations:
+      code_generation:
+        metric_value_type: int
+    brief: "Number of active GraphQL server requests."
+    instrument: updowncounter
+    unit: "{request}"
+    stability: development
+    note: |
+      This metric tracks the number of GraphQL requests currently being
+      processed by the server. It is incremented when processing begins
+      and decremented when processing is complete.
+
+      Since `graphql.operation.type` is not available before parsing,
+      instrumentations SHOULD delay the increment until after parsing completes
+      and the operation type is known. This means requests that fail during
+      parsing will not be reflected in this metric, but it ensures consistent
+      attribute sets on increment and decrement.
+    attributes:
+      - ref: graphql.operation.type
+        requirement_level:
+          conditionally_required: If available.
+
+  - id: metric.graphql.server.request.parse.duration
+    type: metric
+    metric_name: graphql.server.request.parse.duration
+    annotations:
+      code_generation:
+        metric_value_type: double
+    brief: "Duration of GraphQL document parsing."
+    instrument: histogram
+    unit: "s"
+    stability: development
+    note: |
+      This metric measures the time spent parsing the GraphQL document
+      string into an AST. When reported alongside a parse span, the
+      metric value SHOULD match the span duration.
+
+      Histogram bucket boundaries SHOULD be chosen to capture typical
+      parsing/validation times.
+    extends: metric_attributes.graphql.server.phase
+
+  - id: metric.graphql.server.request.validate.duration
+    type: metric
+    metric_name: graphql.server.request.validate.duration
+    annotations:
+      code_generation:
+        metric_value_type: double
+    brief: "Duration of GraphQL document validation."
+    instrument: histogram
+    unit: "s"
+    stability: development
+    note: |
+      This metric measures the time spent validating the GraphQL document
+      AST against the schema. When reported alongside a validation span,
+      the metric value SHOULD match the span duration.
+
+      Histogram bucket boundaries SHOULD be chosen to capture typical
+      parsing/validation times.
+    extends: metric_attributes.graphql.server.phase
+
+  - id: metric.graphql.server.request.execute.duration
+    type: metric
+    metric_name: graphql.server.request.execute.duration
+    annotations:
+      code_generation:
+        metric_value_type: double
+    brief: "Duration of GraphQL operation execution."
+    instrument: histogram
+    unit: "s"
+    stability: development
+    note: |
+      This metric measures the time spent executing the GraphQL operation,
+      including field resolution and result formatting. When reported
+      alongside an execution span, the metric value SHOULD match the span
+      duration.
+
+      Histogram bucket boundaries SHOULD be chosen to capture expected
+      execution durations.
+    extends: metric_attributes.graphql.server.phase
+
+  - id: metric.graphql.server.request.plan.duration
+    type: metric
+    metric_name: graphql.server.request.plan.duration
+    annotations:
+      code_generation:
+        metric_value_type: double
+    brief: "Duration of GraphQL operation planning."
+    instrument: histogram
+    unit: "s"
+    stability: development
+    note: |
+      This metric measures the time spent planning the execution of a
+      GraphQL operation. This is relevant for federated GraphQL systems
+      and advanced servers that perform query optimization.
+
+      This metric is OPTIONAL - it only applies to servers that have
+      a distinct planning phase.
+
+      Histogram bucket boundaries SHOULD be chosen to capture typical
+      planning times.
+    extends: metric_attributes.graphql.server.phase
+
+  - id: metric.graphql.server.response.error_count
+    type: metric
+    metric_name: graphql.server.response.error_count
+    annotations:
+      code_generation:
+        metric_value_type: int
+    brief: "Number of errors in a GraphQL response."
+    instrument: histogram
+    unit: "{error}"
+    stability: development
+    note: |
+      This metric records the number of errors included in the GraphQL
+      response `errors` array. A value of 0 indicates a successful
+      response with no errors.
+
+      This is a histogram (not a counter) because it records the error
+      count per response, enabling analysis of error distribution across
+      requests.
+
+      Histogram bucket boundaries for error counts.
+    attributes:
+      - ref: graphql.operation.type
+        requirement_level:
+          conditionally_required: If available.
+      - ref: graphql.operation.name
+        requirement_level: opt_in
+
+  - id: metric.graphql.server.subscription.active
+    type: metric
+    metric_name: graphql.server.subscription.active
+    annotations:
+      code_generation:
+        metric_value_type: int
+    brief: "Number of active GraphQL subscriptions."
+    instrument: updowncounter
+    unit: "{subscription}"
+    stability: development
+    note: |
+      This metric tracks the number of GraphQL subscriptions currently active
+      on the server. It is incremented when a subscription is created and
+      decremented when a subscription is terminated (either by client
+      disconnect or server-side cancellation).
+
+      This is distinct from `graphql.server.active_requests`, which tracks
+      short-lived request processing (parse → execute → respond). For
+      subscriptions, `active_requests` only covers the initial setup request,
+      while this metric tracks the long-lived subscription connection that
+      may remain open for hours or days delivering events.
+    attributes:
+      - ref: graphql.document.id
+        requirement_level: opt_in
+        note: |
+          The `graphql.document.id` MUST only be enabled when the set of
+          document identifiers has bounded cardinality, such as when using
+          trusted documents or persisted operations.
+      - ref: graphql.document.hash
+        requirement_level: opt_in
+        note: |
+          The `graphql.document.hash` MUST only be enabled when the set of
+          document hashes has bounded cardinality, such as when using
+          persisted operations or trusted documents.
+      - ref: graphql.operation.name
+        requirement_level: opt_in
+        note: |
+          The `graphql.operation.name` is provided by the client and can have
+          unbounded cardinality. It MUST only be enabled when the operation
+          namespace has bounded cardinality, such as when using persisted
+          operations or trusted documents.
+
+  - id: metric.graphql.server.subscription.event.duration
+    type: metric
+    metric_name: graphql.server.subscription.event.duration
+    annotations:
+      code_generation:
+        metric_value_type: double
+    brief: "Duration of processing a single subscription event."
+    instrument: histogram
+    unit: "s"
+    stability: development
+    note: |
+      This metric measures the time spent processing an individual subscription
+      event, from when the event is received from the source to when the
+      response is sent to the subscriber.
+
+      Histogram bucket boundaries SHOULD be chosen to capture expected
+      subscription event processing times.
+    attributes:
+      - ref: graphql.document.id
+        requirement_level: opt_in
+        note: |
+          The `graphql.document.id` MUST only be enabled when the set of
+          document identifiers has bounded cardinality, such as when using
+          trusted documents or persisted operations.
+      - ref: graphql.document.hash
+        requirement_level: opt_in
+        note: |
+          The `graphql.document.hash` MUST only be enabled when the set of
+          document hashes has bounded cardinality, such as when using
+          persisted operations or trusted documents.
+      - ref: graphql.operation.name
+        requirement_level: opt_in
+        note: |
+          The `graphql.operation.name` is provided by the client and can have
+          unbounded cardinality. It MUST only be enabled when the operation
+          namespace has bounded cardinality, such as when using persisted
+          operations or trusted documents.
+      - ref: error.type
+        requirement_level:
+          conditionally_required: If the subscription event processing ended with an error.
+
+  - id: metric_attributes.graphql.client
+    type: attribute_group
+    brief: "Common attributes for GraphQL client metrics."
+    attributes:
+      - ref: graphql.operation.type
+        requirement_level:
+          conditionally_required: If available.
+      - ref: graphql.operation.name
+        requirement_level: opt_in
+        note: |
+          The `graphql.operation.name` can have unbounded cardinality.
+          It MUST only be enabled when the operation namespace has bounded
+          cardinality, such as when using persisted operations or trusted documents.
+      - ref: server.address
+        requirement_level: recommended
+      - ref: server.port
+        requirement_level:
+          conditionally_required: If not the default port for the scheme.
+      - ref: error.type
+        requirement_level:
+          conditionally_required: If the GraphQL request ended with an error.
+      - ref: graphql.document.id
+        requirement_level: opt_in
+        note: |
+          The `graphql.document.id` MUST only be enabled when the set of
+          document identifiers has bounded cardinality, such as when using
+          trusted documents or persisted operations.
+
+  - id: metric.graphql.client.request.duration
+    type: metric
+    metric_name: graphql.client.request.duration
+    annotations:
+      code_generation:
+        metric_value_type: double
+    brief: "Duration of GraphQL client requests."
+    instrument: histogram
+    unit: "s"
+    stability: development
+    note: |
+      This metric measures the duration of outgoing GraphQL client requests,
+      from when the request is initiated to when the response is fully received.
+
+      This metric is complementary to `http.client.request.duration` which
+      measures the transport-level duration.
+
+      Histogram bucket boundaries SHOULD be chosen to capture expected
+      request durations. 
+    extends: metric_attributes.graphql.client
