@@ -8,11 +8,12 @@ linkTitle: Google GenAI
 
 <!-- toc -->
 
-- [Spans](#spans)
-  - [Inference](#inference)
-  - [Embeddings](#embeddings)
-- [Events](#events)
-- [Metrics](#metrics)
+- [Semantic conventions for Google Generative AI operations](#semantic-conventions-for-google-generative-ai-operations)
+  - [Spans](#spans)
+    - [Inference](#inference)
+    - [Embeddings](#embeddings)
+  - [Events](#events)
+  - [Metrics](#metrics)
 
 <!-- tocstop -->
 
@@ -241,7 +242,7 @@ populating this attribute.
 
 ### Embeddings
 
-Google generative AI embeddings follow the generic [Generative AI spans Embeddings](./gen-ai-spans.md#embeddings).
+Google generative AI embeddings follow the generic [Generative AI spans embeddings](./gen-ai-spans.md#embeddings).
 
 ## Events
 
