@@ -92,7 +92,6 @@ OpenTelemetry to gRPC, they should be preserved.
 - `server.port`
 - `rpc.request.metadata.<key>` and `rpc.response.metadata.<key>`
 - `rpc.method_original`
-- (server spans only) `client.address` and `client.port`
 
 ### Events
 
