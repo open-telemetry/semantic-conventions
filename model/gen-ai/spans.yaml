@@ -227,13 +227,15 @@ groups:
           conditionally_required: If not default (443).
 
   - id: span.gen_ai.gcp.client
+    type: span
     extends: attributes.gen_ai.inference.client
     stability: development
+    brief: Semantic Conventions for model inference spans when calling Google systems.
     span_kind: client
-    type: span
-    brief: >
-      Semantic Conventions for model inference spans when calling Google
-      systems.
+    note: |
+      `gen_ai.system` MUST be set to `"gcp.gen_ai"`, `"gcp.vertex_ai"`, or `"gcp.gemini"`.
+
+      **Span name** SHOULD be `{gen_ai.operation.name} {gen_ai.request.model}`.
 
   - id: span.gen_ai.embeddings.client
     type: span
