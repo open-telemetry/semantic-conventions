@@ -8,10 +8,9 @@ linkTitle: Google GenAI
 
 <!-- toc -->
 
-- [Semantic conventions for Google Generative AI operations](#semantic-conventions-for-google-generative-ai-operations)
-  - [Spans](#spans)
-  - [Events](#events)
-  - [Metrics](#metrics)
+- [Spans](#spans)
+- [Events](#events)
+- [Metrics](#metrics)
 
 <!-- tocstop -->
 
