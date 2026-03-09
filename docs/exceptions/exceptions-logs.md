@@ -103,7 +103,6 @@ The severity reflects the expected impact of the exception, not just its presenc
 [Severity Number](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.54.0/specification/logs/data-model.md#field-severitynumber)
 SHOULD be provided on all exception events and SHOULD be set based on the context
 in which the exception occurs, following the guidance below.
-The lowest applicable severity number SHOULD be used.
 
 #### FATAL severity
 
