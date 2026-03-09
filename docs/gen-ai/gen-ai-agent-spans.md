@@ -460,7 +460,7 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-Represents a workflow that orchestrates one or more agents. Also a workflow can be predetermined static sequence of operations eg: LLM calls, tool calls, and retrievals without a specific agent orchestrating them. A workflow groups multiple operations together, accepting an input and producing a final output.
+Represents an operation that executes a coordinated process composed of multiple agents or other operations involving generative AI.
 
 The `gen_ai.operation.name` SHOULD be `invoke_workflow`.
 **Span name** SHOULD be `invoke_workflow {gen_ai.workflow.name}`.

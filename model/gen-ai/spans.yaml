@@ -482,10 +482,8 @@ groups:
     span_kind: internal
     stability: development
     brief: >
-      Represents a workflow that orchestrates one or more agents.
-      Also a workflow can be predetermined static sequence of operations eg: LLM calls, tool calls, and retrievals
-      without a specific agent orchestrating them.
-      A workflow groups multiple operations together, accepting an input and producing a final output.
+      Represents an operation that executes a coordinated process composed of multiple agents
+      or other operations involving generative AI.
     note: |
       The `gen_ai.operation.name` SHOULD be `invoke_workflow`.
       **Span name** SHOULD be `invoke_workflow {gen_ai.workflow.name}`.
