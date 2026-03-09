@@ -169,7 +169,7 @@ The changes in their metric names and types are the following:
 
 <!-- prettier-ignore-end -->
 
-### K8s StatefulsSet metrics
+### K8s StatefulSet metrics
 
 The K8s StatefulSet metrics implemented by the Collector and specifically the
 [k8scluster](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/v0.115.0/receiver/k8sclusterreceiver/documentation.md)
