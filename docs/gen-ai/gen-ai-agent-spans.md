@@ -468,9 +468,7 @@ Semantic conventions for individual GenAI systems and frameworks MAY specify dif
 
 **Span kind** MUST be `SERVER`.
 
-This span is the server counterpart of the [invoke agent client span](/docs/gen-ai/gen-ai-agent-spans.md#invoke-agent-client-span).
-It's reported by the GenAI agent server when it receives and processes
-an agent invocation request from a client.
+It represents processing of agent invocation requested by a client.
 
 **Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
 
