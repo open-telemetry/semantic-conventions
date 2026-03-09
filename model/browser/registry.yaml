@@ -50,3 +50,9 @@ groups:
           This value is intended to be taken from the Navigator API
           `navigator.language`.
         examples: ["en", "en-US", "fr", "fr-FR"]
+      - id: browser.url.full
+        type: string
+        stability: development
+        brief: >
+          Absolute URL of the document or page loaded in the browser according to [RFC3986](https://www.rfc-editor.org/rfc/rfc3986).
+        examples: ["https://www.example.com/search?q=OpenTelemetry#SemConv"]
