@@ -13,12 +13,15 @@ emitted through the [Logger API](https://github.com/open-telemetry/opentelemetry
 <!-- toc -->
 
 - [Recording an exception](#recording-an-exception)
+  - [When not to record exceptions](#when-not-to-record-exceptions)
   - [Event name](#event-name)
   - [Severity](#severity)
     - [FATAL severity](#fatal-severity)
     - [ERROR severity](#error-severity)
     - [WARN severity](#warn-severity)
+    - [INFO severity](#info-severity)
     - [DEBUG severity](#debug-severity)
+    - [TRACE severity](#trace-severity)
   - [Attributes](#attributes)
   - [Stacktrace representation](#stacktrace-representation)
 
@@ -45,24 +48,26 @@ emitted through the [Logger API](https://github.com/open-telemetry/opentelemetry
 ## Recording an exception
 
 > [!NOTE]
-> This document provides guidance to OpenTelemetry instrumentations that record
-> exceptions and semantic conventions authors that define exception events.
-> It does not apply to logging bridges.
->
-> It describes how exception events should be recorded and when to avoid recording them. Guidance on when to record exceptions is left to specific semantic conventions.
+> This document describes how exception events should be recorded and when to avoid
+> recording them. Guidance on when to record exceptions is left to specific
+> semantic conventions authors.
+
+OpenTelemetry Semantic Conventions authors SHOULD define exception events according
+to this document.
+This guidance is also recommended for application developers and instrumentations
+not hosted in OpenTelemetry.
+This document does not apply to logging bridges.
 
 Exceptions SHOULD be recorded as attributes on the
 [LogRecord](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.55.0/specification/logs/data-model.md#log-and-event-record-definition) passed to the [Logger](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.55.0/specification/logs/api.md#logger) emit
 operations.
 
+When language implementations support passing exception instances to the
+[Emit a LogRecord](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.55.0/specification/logs/api.md#emit-a-logrecord) API, instrumentations SHOULD provide the exception instance
+rather than manually setting individual exception attributes.
+
 ![Development](https://img.shields.io/badge/-development-blue) Instrumentations
 SHOULD record exceptions as events.
-
-![Development](https://img.shields.io/badge/-development-blue) When language
-implementations support passing exception instances to the
-[Emit a LogRecord](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.54.0/specification/logs/api.md#emit-a-logrecord)
-API, instrumentations SHOULD provide the exception instance rather than
-manually setting individual exception attributes.
 
 ### When not to record exceptions
 
@@ -83,10 +88,11 @@ code. Similarly, Spring in Java provides [`ResponseStatusException`](https://doc
 It is RECOMMENDED to provide an [event name](/docs/general/events.md) that
 describes the instrumented operation with a `.exception` suffix.
 
-It is NOT RECOMMENDED to use a generic name such as `exception`.
-
 For example, [`http.client.request.exception`](/docs/http/http-exceptions.md#http-client-request-exception)
 represents exceptions that occur during an HTTP client request.
+
+Instrumentations that are not specific to a particular operation or domain, such as
+a global unhandled exception handler, SHOULD use the `exception` event name.
 
 ### Severity
 
@@ -144,28 +150,34 @@ Examples:
   WARN log; logging of individual retry attempts is left to the lower-level
   instrumentation.
 
+#### INFO severity
+
+Application developers may use `INFO` severity (number 9) to record exceptions.
+
 #### DEBUG severity
 
 Exceptions that don't indicate an actual issue SHOULD be recorded with severity
-`DEBUG` (severity number 9).
+`DEBUG` (severity number 5).
 
 For example, an exception indicating that a request was cancelled on the client
 side is thrown on the server and detected by the server instrumentation.
 
+#### TRACE severity
+
+Application developers may use `TRACE` severity (number 1) to record exceptions.
+Semantic conventions authors SHOULD NOT define exception events with `TRACE`
+severity.
+
 ### Attributes
 
 The table below indicates which attributes should be added to the
-<<<<<<< HEAD
-[LogRecord](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.54.0/specification/logs/data-model.md#log-and-event-record-definition).
+[LogRecord](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.55.0/specification/logs/data-model.md#log-and-event-record-definition).
 
 ![Development](https://img.shields.io/badge/-development-blue) Instrumentations MAY
 provide additional attributes to describe the context in which the exception occurred.
 Instrumentations that also record spans for the same operation MAY provide a
 configuration option to populate exception events with attributes captured on
 the corresponding span.
-=======
-[LogRecord](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.55.0/specification/logs/data-model.md#log-and-event-record-definition) and their types.
->>>>>>> main
 
 <!-- semconv log-exception -->
 <!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
