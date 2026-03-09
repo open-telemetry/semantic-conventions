@@ -55,7 +55,7 @@ Spans representing calls to a Oracle SQL Database adhere to the general [Semanti
 | [`oracle.db.service`](/docs/registry/attributes/oracledb.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The service name currently associated with the database connection. [21] | `order-processing-service`; `db_low.adb.oraclecloud.com`; `db_high.adb.oraclecloud.com` |
 | [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Name of the database host. [22] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 | [`db.query.parameter.<key>`](/docs/registry/attributes/db.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | A database query parameter, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value. [23] | `someval`; `55` |
-| [`db.response.returned_rows`](/docs/registry/attributes/db.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | Number of rows returned by the operation. | `10`; `30`; `1000` |
+| [`db.response.returned_rows`](/docs/registry/attributes/db.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | Number of rows returned by the operation. [24] | `10`; `30`; `1000` |
 
 **[1] `db.namespace`:** Use the value of `DB_UNIQUE_NAME` parameter. This defines the database's globally unique identifier and must remain unique across the enterprise.
 
@@ -151,6 +151,9 @@ Examples:
 
 - For a query `"SELECT * FROM users WHERE username = %(userName)s;` with parameter
   `userName = "jdoe"`, the attribute `db.query.parameter.userName` SHOULD be set to `"jdoe"`.
+
+**[24] `db.response.returned_rows`:** The number of rows returned by the database operation as observed
+by the instrumentation at the time the span ends.
 
 The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):
