@@ -10,7 +10,7 @@ change_type: enhancement
 component: gen-ai
 
 # A brief description of the change. Surround your text with quotes ("") if it needs to start with a backtick (`).
-note: Split `invoke_agent` span attributes from inference attribute hierarchy.
+note: Split `invoke_agent` into separate client and internal spans, and split attributes from inference hierarchy.
 
 # Mandatory: One or more tracking issues related to the change. You can use the PR number here if no issue exists.
 # The values here must be integers.
@@ -20,8 +20,9 @@ issues: [2632]
 # These lines will be padded with 2 spaces and then inserted directly into the document.
 # Use pipe (|) for multiline entries.
 subtext: |
-  The `invoke_agent` span now extends a dedicated `attributes.gen_ai.invoke_agent.client`
+  The `invoke_agent` client span now extends a dedicated `attributes.gen_ai.invoke_agent.client`
   attribute group instead of `attributes.gen_ai.inference.client`. This removes
   `gen_ai.response.id`, `gen_ai.response.model`, and `gen_ai.response.finish_reasons`
-  from `invoke_agent` spans and adds notes clarifying that usage token attributes
-  represent aggregated totals when the agent performs multiple GenAI requests internally.
+  and adds `gen_ai.agent.version`.
+  A new `invoke_agent` internal span is added for in-process agents (e.g., LangChain, CrewAI),
+  which does not include `server.address`, `server.port`, or token usage attributes.
