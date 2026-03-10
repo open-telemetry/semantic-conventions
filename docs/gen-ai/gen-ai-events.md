@@ -10,6 +10,8 @@ linkTitle: Events
 
 - [Event: `gen_ai.client.inference.operation.details`](#event-gen_aiclientinferenceoperationdetails)
 - [Event: `gen_ai.evaluation.result`](#event-gen_aievaluationresult)
+  - [Evaluation Outcome Attributes](#evaluation-outcome-attributes)
+    - [Example](#example)
 
 <!-- tocstop -->
 
@@ -254,6 +256,8 @@ This event captures the result of evaluating GenAI output for quality, accuracy,
 | [`gen_ai.evaluation.score.label`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` if applicable | string | Human readable label for evaluation. [2] | `relevant`; `not_relevant`; `correct`; `incorrect`; `pass`; `fail` |
 | [`gen_ai.evaluation.score.value`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` if applicable | double | The evaluation score returned by the evaluator. | `4.0` |
 | [`gen_ai.evaluation.explanation`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A free-form explanation for the assigned score provided by the evaluator. | `The response is factually accurate but lacks sufficient detail to fully address the question.` |
+| [`gen_ai.evaluation.multiple_outcomes`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | boolean | Indicates whether the evaluation process assessed multiple outcome categories or labels. | `true` |
+| [`gen_ai.evaluation.outcome`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The evaluation outcome label assigned by the evaluator. | `pass`; `fail`; `allow`; `block` |
 | [`gen_ai.response.id`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` when available | string | The unique identifier for the completion. [3] | `chatcmpl-123` |
 
 **[1] `error.type`:** The `error.type` SHOULD match the error code returned by the Generative AI Evaluation provider or the client library,
