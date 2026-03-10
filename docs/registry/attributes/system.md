@@ -5,6 +5,7 @@
 
 - [General System Attributes](#general-system-attributes)
 - [Filesystem Attributes](#filesystem-attributes)
+- [System Linux Pressure Attributes](#system-linux-pressure-attributes)
 - [System Memory Attributes](#system-memory-attributes)
 - [System Paging Attributes](#system-paging-attributes)
 - [Deprecated System Attributes](#deprecated-system-attributes)
@@ -54,6 +55,25 @@ Describes Filesystem attributes
 | `hfsplus` | hfsplus | ![Development](https://img.shields.io/badge/-development-blue) |
 | `ntfs` | ntfs | ![Development](https://img.shields.io/badge/-development-blue) |
 | `refs` | refs | ![Development](https://img.shields.io/badge/-development-blue) |
+
+## System Linux Pressure Attributes
+
+Describes System Linux Pressure attributes
+
+**Attributes:**
+
+| Key | Stability | Value Type | Description | Example Values |
+| --- | --- | --- | --- | --- |
+| <a id="system-linux-pressure-stall-type" href="#system-linux-pressure-stall-type">`system.linux.pressure.stall_type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Tasks that were delayed due to lack of resources. | `some`; `full` |
+
+---
+
+`system.linux.pressure.stall_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value | Description | Stability |
+| --- | --- | --- |
+| `full` | All non-idle tasks were stalled on a resource simultaneously. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `some` | At least some tasks were stalled on a resource. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ## System Memory Attributes
 

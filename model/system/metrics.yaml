@@ -563,3 +563,311 @@ groups:
       - ref: system.memory.linux.slab.state
     entity_associations:
       - host
+
+  # system.cpu.linux.pressure.* metrics
+  - id: metric.system.cpu.linux.pressure.10s
+    type: metric
+    metric_name: system.cpu.linux.pressure.10s
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: "Average system CPU pressure over the last 10 seconds."
+    note: |
+      CPU pressure from Linux [Pressure Stall Information](https://docs.kernel.org/accounting/psi.html)
+      indicating the share of time in which tasks were delayed due to a lack of CPU resources.
+      Read from `/proc/pressure/cpu`.
+    instrument: gauge
+    unit: "1"
+    attributes:
+      - ref: system.linux.pressure.stall_type
+    entity_associations:
+      - host
+
+  - id: metric.system.cpu.linux.pressure.1m
+    type: metric
+    metric_name: system.cpu.linux.pressure.1m
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: "Average system CPU pressure over the last 1 minute."
+    note: |
+      CPU pressure from Linux [Pressure Stall Information](https://docs.kernel.org/accounting/psi.html)
+      indicating the share of time in which tasks were delayed due to a lack of CPU resources.
+      Read from `/proc/pressure/cpu`.
+    instrument: gauge
+    unit: "1"
+    attributes:
+      - ref: system.linux.pressure.stall_type
+    entity_associations:
+      - host
+
+  - id: metric.system.cpu.linux.pressure.5m
+    type: metric
+    metric_name: system.cpu.linux.pressure.5m
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: "Average system CPU pressure over the last 5 minutes."
+    note: |
+      CPU pressure from Linux [Pressure Stall Information](https://docs.kernel.org/accounting/psi.html)
+      indicating the share of time in which tasks were delayed due to a lack of CPU resources.
+      Read from `/proc/pressure/cpu`.
+    instrument: gauge
+    unit: "1"
+    attributes:
+      - ref: system.linux.pressure.stall_type
+    entity_associations:
+      - host
+
+  - id: metric.system.cpu.linux.pressure.total
+    type: metric
+    metric_name: system.cpu.linux.pressure.total
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "Total cumulative system CPU pressure."
+    note: |
+      Total CPU pressure from Linux [Pressure Stall Information](https://docs.kernel.org/accounting/psi.html)
+      tracking the cumulative time in which tasks were delayed due to a lack of CPU resources.
+      Read from `/proc/pressure/cpu`.
+    instrument: counter
+    unit: "s"
+    attributes:
+      - ref: system.linux.pressure.stall_type
+    entity_associations:
+      - host
+
+  # system.memory.linux.pressure.* metrics
+  - id: metric.system.memory.linux.pressure.10s
+    type: metric
+    metric_name: system.memory.linux.pressure.10s
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: "Average system memory pressure over the last 10 seconds."
+    note: |
+      Memory pressure from Linux [Pressure Stall Information](https://docs.kernel.org/accounting/psi.html)
+      indicating the share of time in which tasks were delayed due to a lack of memory resources.
+      Read from `/proc/pressure/memory`.
+    instrument: gauge
+    unit: "1"
+    attributes:
+      - ref: system.linux.pressure.stall_type
+    entity_associations:
+      - host
+
+  - id: metric.system.memory.linux.pressure.1m
+    type: metric
+    metric_name: system.memory.linux.pressure.1m
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: "Average system memory pressure over the last 1 minute."
+    note: |
+      Memory pressure from Linux [Pressure Stall Information](https://docs.kernel.org/accounting/psi.html)
+      indicating the share of time in which tasks were delayed due to a lack of memory resources.
+      Read from `/proc/pressure/memory`.
+    instrument: gauge
+    unit: "1"
+    attributes:
+      - ref: system.linux.pressure.stall_type
+    entity_associations:
+      - host
+
+  - id: metric.system.memory.linux.pressure.5m
+    type: metric
+    metric_name: system.memory.linux.pressure.5m
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: "Average system memory pressure over the last 5 minutes."
+    note: |
+      Memory pressure from Linux [Pressure Stall Information](https://docs.kernel.org/accounting/psi.html)
+      indicating the share of time in which tasks were delayed due to a lack of memory resources.
+      Read from `/proc/pressure/memory`.
+    instrument: gauge
+    unit: "1"
+    attributes:
+      - ref: system.linux.pressure.stall_type
+    entity_associations:
+      - host
+
+  - id: metric.system.memory.linux.pressure.total
+    type: metric
+    metric_name: system.memory.linux.pressure.total
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "Total cumulative system memory pressure."
+    note: |
+      Total memory pressure from Linux [Pressure Stall Information](https://docs.kernel.org/accounting/psi.html)
+      tracking the cumulative time in which tasks were delayed due to a lack of memory resources.
+      Read from `/proc/pressure/memory`.
+    instrument: counter
+    unit: "s"
+    attributes:
+      - ref: system.linux.pressure.stall_type
+    entity_associations:
+      - host
+
+  # system.io.linux.pressure.* metrics
+  - id: metric.system.io.linux.pressure.10s
+    type: metric
+    metric_name: system.io.linux.pressure.10s
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: "Average system IO pressure over the last 10 seconds."
+    note: |
+      IO pressure from Linux [Pressure Stall Information](https://docs.kernel.org/accounting/psi.html)
+      indicating the share of time in which tasks were delayed due to a lack of IO resources.
+      Read from `/proc/pressure/io`.
+    instrument: gauge
+    unit: "1"
+    attributes:
+      - ref: system.linux.pressure.stall_type
+    entity_associations:
+      - host
+
+  - id: metric.system.io.linux.pressure.1m
+    type: metric
+    metric_name: system.io.linux.pressure.1m
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: "Average system IO pressure over the last 1 minute."
+    note: |
+      IO pressure from Linux [Pressure Stall Information](https://docs.kernel.org/accounting/psi.html)
+      indicating the share of time in which tasks were delayed due to a lack of IO resources.
+      Read from `/proc/pressure/io`.
+    instrument: gauge
+    unit: "1"
+    attributes:
+      - ref: system.linux.pressure.stall_type
+    entity_associations:
+      - host
+
+  - id: metric.system.io.linux.pressure.5m
+    type: metric
+    metric_name: system.io.linux.pressure.5m
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: "Average system IO pressure over the last 5 minutes."
+    note: |
+      IO pressure from Linux [Pressure Stall Information](https://docs.kernel.org/accounting/psi.html)
+      indicating the share of time in which tasks were delayed due to a lack of IO resources.
+      Read from `/proc/pressure/io`.
+    instrument: gauge
+    unit: "1"
+    attributes:
+      - ref: system.linux.pressure.stall_type
+    entity_associations:
+      - host
+
+  - id: metric.system.io.linux.pressure.total
+    type: metric
+    metric_name: system.io.linux.pressure.total
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "Total cumulative system IO pressure."
+    note: |
+      Total IO pressure from Linux [Pressure Stall Information](https://docs.kernel.org/accounting/psi.html)
+      tracking the cumulative time in which tasks were delayed due to a lack of IO resources.
+      Read from `/proc/pressure/io`.
+    instrument: counter
+    unit: "s"
+    attributes:
+      - ref: system.linux.pressure.stall_type
+    entity_associations:
+      - host
+
+  # system.irq.linux.pressure.* metrics
+  - id: metric.system.irq.linux.pressure.10s
+    type: metric
+    metric_name: system.irq.linux.pressure.10s
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: "Average system IRQ pressure over the last 10 seconds."
+    note: |
+      IRQ pressure from Linux [Pressure Stall Information](https://docs.kernel.org/accounting/psi.html)
+      indicating the share of time in which tasks were delayed due to a lack of IRQ resources.
+      Read from `/proc/pressure/irq`.
+    instrument: gauge
+    unit: "1"
+    attributes:
+      - ref: system.linux.pressure.stall_type
+    entity_associations:
+      - host
+
+  - id: metric.system.irq.linux.pressure.1m
+    type: metric
+    metric_name: system.irq.linux.pressure.1m
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: "Average system IRQ pressure over the last 1 minute."
+    note: |
+      IRQ pressure from Linux [Pressure Stall Information](https://docs.kernel.org/accounting/psi.html)
+      indicating the share of time in which tasks were delayed due to a lack of IRQ resources.
+      Read from `/proc/pressure/irq`.
+    instrument: gauge
+    unit: "1"
+    attributes:
+      - ref: system.linux.pressure.stall_type
+    entity_associations:
+      - host
+
+  - id: metric.system.irq.linux.pressure.5m
+    type: metric
+    metric_name: system.irq.linux.pressure.5m
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: "Average system IRQ pressure over the last 5 minutes."
+    note: |
+      IRQ pressure from Linux [Pressure Stall Information](https://docs.kernel.org/accounting/psi.html)
+      indicating the share of time in which tasks were delayed due to a lack of IRQ resources.
+      Read from `/proc/pressure/irq`.
+    instrument: gauge
+    unit: "1"
+    attributes:
+      - ref: system.linux.pressure.stall_type
+    entity_associations:
+      - host
+
+  - id: metric.system.irq.linux.pressure.total
+    type: metric
+    metric_name: system.irq.linux.pressure.total
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "Total cumulative system IRQ pressure."
+    note: |
+      Total IRQ pressure from Linux [Pressure Stall Information](https://docs.kernel.org/accounting/psi.html)
+      tracking the cumulative time in which tasks were delayed due to a lack of IRQ resources.
+      Read from `/proc/pressure/irq`.
+    instrument: counter
+    unit: "s"
+    attributes:
+      - ref: system.linux.pressure.stall_type
+    entity_associations:
+      - host

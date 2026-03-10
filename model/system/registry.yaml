@@ -59,6 +59,26 @@ groups:
         stability: development
         brief: "The Linux Slab memory state"
         examples: ["reclaimable", "unreclaimable"]
+  # system.linux.pressure.* attribute group
+  - id: registry.system.linux.pressure
+    type: attribute_group
+    display_name: System Linux Pressure Attributes
+    brief: "Describes System Linux Pressure attributes"
+    attributes:
+      - id: system.linux.pressure.stall_type
+        type:
+          members:
+            - id: some
+              value: 'some'
+              stability: development
+              brief: At least some tasks were stalled on a resource.
+            - id: full
+              value: 'full'
+              stability: development
+              brief: All non-idle tasks were stalled on a resource simultaneously.
+        stability: development
+        brief: "Tasks that were delayed due to lack of resources."
+        examples: ["some", "full"]
   # system.paging.* attribute group
   - id: registry.system.paging
     type: attribute_group
