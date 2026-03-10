@@ -672,7 +672,7 @@ groups:
               {
                 "event.name": "gen_ai.evaluation.result",
                 "gen_ai.evaluation.judgment.phase": "post_generation",
-                "gen_ai.evaluation.judgment.selected_path": "blocked",
+                "gen_ai.evaluation.judgment.selected_path": "block",
                 "gen_ai.evaluation.judgment.alternatives_evaluated": 2,
                 "gen_ai.evaluation.judgment.human_in_loop": false
               }
@@ -703,7 +703,7 @@ groups:
           before selecting the final outcome. A value of 1 indicates
           a single path was assessed; higher values indicate broader
           multi-path evaluation.
-        examples: [1, 2, 3]
+        examples: [2]
       - id: gen_ai.evaluation.judgment.human_in_loop
         stability: experimental
         type: boolean
