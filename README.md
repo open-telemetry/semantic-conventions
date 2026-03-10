@@ -5,17 +5,6 @@
 [![Specification Version](https://img.shields.io/badge/OTel_specification_version-v1.55.0-blue?logo=opentelemetry&color=f5a800)](https://github.com/open-telemetry/opentelemetry-specification/releases/tag/v1.55.0)
 [![Slack](https://img.shields.io/badge/Slack-%23otel--semantic--conventions-purple)](https://cloud-native.slack.com/archives/C041APFBYQP)
 
-## Position
-
-This repository is part of the **Judgment Boundary** work:
-a set of experiments and specifications focused on
-*when AI systems must stop or not execute*.
-
-See the overarching map:
-→ https://github.com/Nick-heo-eg/stop-first-rag/blob/main/JUDGMENT_BOUNDARY_MANIFEST.md
-
----
-
 Semantic Conventions define a common set of (semantic) attributes which
 provide meaning to data when collecting, producing and consuming it.
 
