@@ -408,7 +408,7 @@ groups:
       **Span kind** MUST be `SERVER`.
 
       It represents processing of agent invocation requested by a client.
-    extends: attributes.gen_ai.inference.client
+    extends: attributes.gen_ai.common.client
     attributes:
       - ref: gen_ai.provider.name
         requirement_level: required
