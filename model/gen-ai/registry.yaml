@@ -660,12 +660,12 @@ groups:
         brief: A free-form explanation for the assigned score provided by the evaluator.
         examples: ["The response is factually accurate but lacks sufficient detail to fully address the question."]
       - id: gen_ai.evaluation.multiple_outcomes
-        stability: experimental
+        stability: development
         type: boolean
         brief: Indicates whether the evaluation process assessed multiple outcome categories or labels.
         examples: [true]
       - id: gen_ai.evaluation.outcome
-        stability: experimental
+        stability: development
         type: string
         brief: The evaluation outcome label assigned by the evaluator.
         examples: ["pass", "fail", "allow", "block"]

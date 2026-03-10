@@ -45,7 +45,9 @@ groups:
           the canonical name of exception that occurred, or another low-cardinality error identifier.
           Instrumentations SHOULD document the list of errors they report.
       - ref: gen_ai.evaluation.multiple_outcomes
+        requirement_level: recommended
       - ref: gen_ai.evaluation.outcome
+        requirement_level: recommended
 
   - id: event.gen_ai.client.operation.exception
     name: gen_ai.client.operation.exception
