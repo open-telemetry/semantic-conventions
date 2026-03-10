@@ -95,7 +95,7 @@ For example, [`http.client.request.exception`](/docs/http/http-exceptions.md#htt
 represents exceptions that occur during an HTTP client request.
 
 Instrumentations that are not specific to a particular operation or domain, such as
-a global unhandled exception handler, SHOULD use the `exception` event name.
+global unhandled exception handlers, SHOULD use the `exception` event name.
 
 ### Severity
 
@@ -119,7 +119,7 @@ Examples:
 
 > [!NOTE]
 > Instrumentation SHOULD do the best effort to record such errors, but
-> OpenTelemetry SDK and exporters might not have a chance to actually export it.
+> OpenTelemetry SDK and exporters might not have a chance to actually export them.
 
 #### ERROR severity
 
