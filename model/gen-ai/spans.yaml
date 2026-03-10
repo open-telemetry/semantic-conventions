@@ -1,5 +1,5 @@
 groups:
-  - id: attributes.gen_ai.common.client
+  - id: attributes.gen_ai.common
     type: attribute_group
     stability: development
     brief: >
@@ -14,13 +14,6 @@ groups:
             custom model, the value should have a more specific name than the base model that's been fine-tuned.
       - ref: gen_ai.operation.name
         requirement_level: required
-      - ref: server.address
-        brief: GenAI server address.
-        requirement_level: recommended
-      - ref: server.port
-        brief: GenAI server port.
-        requirement_level:
-          conditionally_required: If `server.address` is set.
       - ref: error.type
         requirement_level:
           conditionally_required: "if the operation ended in an error"
@@ -28,6 +21,21 @@ groups:
           The `error.type` SHOULD match the error code returned by the Generative AI provider or the client library,
           the canonical name of exception that occurred, or another low-cardinality error identifier.
           Instrumentations SHOULD document the list of errors they report.
+
+  - id: attributes.gen_ai.common.client
+    type: attribute_group
+    stability: development
+    brief: >
+      Common attributes for GenAI client spans.
+    extends: attributes.gen_ai.common
+    attributes:
+      - ref: server.address
+        brief: GenAI server address.
+        requirement_level: recommended
+      - ref: server.port
+        brief: GenAI server port.
+        requirement_level:
+          conditionally_required: If `server.address` is set.
 
   - id: attributes.gen_ai.inference.client
     type: attribute_group
@@ -331,12 +339,12 @@ groups:
         note: ""  # note is not needed here
 
 
-  - id: attributes.gen_ai.invoke_agent.client
+  - id: attributes.gen_ai.invoke_agent.common
     type: attribute_group
     stability: development
     brief: >
-      Describes GenAI invoke_agent attributes.
-    extends: attributes.gen_ai.common.client
+      Common attributes for GenAI invoke_agent spans.
+    extends: attributes.gen_ai.common
     attributes:
       - ref: gen_ai.request.max_tokens
         requirement_level: recommended
@@ -359,26 +367,6 @@ groups:
       - ref: gen_ai.output.type
         requirement_level:
           conditionally_required: when applicable and if the request includes an output format.
-      - ref: gen_ai.usage.input_tokens
-        requirement_level: recommended
-        note: >
-          When the agent performs multiple GenAI requests internally, this value
-          SHOULD be the sum of all input tokens used across those requests.
-      - ref: gen_ai.usage.output_tokens
-        requirement_level: recommended
-        note: >
-          When the agent performs multiple GenAI requests internally, this value
-          SHOULD be the sum of all output tokens used across those requests.
-      - ref: gen_ai.usage.cache_read.input_tokens
-        requirement_level: recommended
-        note: >
-          When the agent performs multiple GenAI requests internally, this value
-          SHOULD be the sum of all cache read input tokens across those requests.
-      - ref: gen_ai.usage.cache_creation.input_tokens
-        requirement_level: recommended
-        note: >
-          When the agent performs multiple GenAI requests internally, this value
-          SHOULD be the sum of all cache creation input tokens across those requests.
       - ref: gen_ai.conversation.id
         requirement_level:
           conditionally_required: when available
@@ -404,12 +392,42 @@ groups:
       - ref: gen_ai.tool.definitions
         requirement_level: opt_in
 
+  - id: attributes.gen_ai.invoke_agent.client
+    type: attribute_group
+    stability: development
+    brief: >
+      Describes GenAI invoke_agent client attributes.
+    extends: attributes.gen_ai.invoke_agent.common
+    attributes:
+      - ref: server.address
+        brief: GenAI server address.
+        requirement_level: recommended
+      - ref: server.port
+        brief: GenAI server port.
+        requirement_level:
+          conditionally_required: If `server.address` is set.
+      - ref: gen_ai.usage.input_tokens
+        requirement_level: recommended
+      - ref: gen_ai.usage.output_tokens
+        requirement_level: recommended
+      - ref: gen_ai.usage.cache_read.input_tokens
+        requirement_level: recommended
+      - ref: gen_ai.usage.cache_creation.input_tokens
+        requirement_level: recommended
+
+  - id: attributes.gen_ai.invoke_agent.internal
+    type: attribute_group
+    stability: development
+    brief: >
+      Describes GenAI invoke_agent internal attributes.
+    extends: attributes.gen_ai.invoke_agent.common
+
   - id: span.gen_ai.invoke_agent.client
     type: span
     stability: development
     span_kind: client
     brief: >
-      Describes GenAI agent invocation.
+      Describes GenAI agent invocation over a remote service.
     note: |
       The `gen_ai.operation.name` SHOULD be `invoke_agent`.
 
@@ -417,16 +435,7 @@ groups:
       When `gen_ai.agent.name` is not available, it SHOULD be `invoke_agent`.
       Semantic conventions for individual GenAI systems and frameworks MAY specify different span name format.
 
-      **Span kind** SHOULD be `CLIENT` and MAY be set to `INTERNAL` on spans representing
-      invocation of agents running in the same process.
-      It's RECOMMENDED to use `CLIENT` kind when the agent being instrumented usually runs
-      in a different process than its caller or when the agent invocation happens over
-      instrumented protocol such as HTTP.
-
-      Examples of span kinds for different agent scenarios:
-
-      - `CLIENT`: Remote agent services (e.g., OpenAI Assistants API, AWS Bedrock Agents)
-      - `INTERNAL`: In-process agents (e.g., LangChain agents, CrewAI agents)
+      Examples: OpenAI Assistants API, AWS Bedrock Agents.
     extends: attributes.gen_ai.invoke_agent.client
     attributes:
       - ref: gen_ai.provider.name
@@ -452,11 +461,48 @@ groups:
         requirement_level:
           conditionally_required: if applicable.
       - ref: server.address
-        requirement_level:
-          recommended: when span kind is `CLIENT`.
         sampling_relevant: true
       - ref: server.port
         sampling_relevant: true
+
+  - id: span.gen_ai.invoke_agent.internal
+    type: span
+    stability: development
+    span_kind: internal
+    brief: >
+      Describes GenAI agent invocation within the same process.
+    note: |
+      The `gen_ai.operation.name` SHOULD be `invoke_agent`.
+
+      **Span name** SHOULD be `invoke_agent {gen_ai.agent.name}` if `gen_ai.agent.name` is readily available.
+      When `gen_ai.agent.name` is not available, it SHOULD be `invoke_agent`.
+      Semantic conventions for individual GenAI systems and frameworks MAY specify different span name format.
+
+      Examples: LangChain agents, CrewAI agents.
+    extends: attributes.gen_ai.invoke_agent.internal
+    attributes:
+      - ref: gen_ai.provider.name
+        requirement_level: required
+        sampling_relevant: true
+      - ref: gen_ai.operation.name
+        sampling_relevant: true
+      - ref: gen_ai.request.model
+        sampling_relevant: true
+      - ref: gen_ai.agent.id
+        requirement_level:
+          conditionally_required: if applicable.
+      - ref: gen_ai.agent.name
+        requirement_level:
+          conditionally_required: when available
+      - ref: gen_ai.agent.description
+        requirement_level:
+          conditionally_required: when available
+      - ref: gen_ai.agent.version
+        requirement_level:
+          conditionally_required: when available
+      - ref: gen_ai.data_source.id
+        requirement_level:
+          conditionally_required: if applicable.
 
 
   - id: span.gen_ai.execute_tool.internal
