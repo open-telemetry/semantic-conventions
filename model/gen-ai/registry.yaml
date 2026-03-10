@@ -696,11 +696,14 @@ groups:
         examples: ["allow", "block", "escalate"]
       - id: gen_ai.evaluation.judgment.alternatives_evaluated
         stability: experimental
-        type: boolean
-        brief: Whether multiple alternative decision paths were evaluated.
+        type: int
+        brief: Number of alternative decision paths evaluated during the judgment boundary evaluation.
         note: >
-          Indicates that the system explicitly considered more than one
-          possible outcome before selecting a path.
+          Records how many distinct paths the system explicitly considered
+          before selecting the final outcome. A value of 1 indicates
+          a single path was assessed; higher values indicate broader
+          multi-path evaluation.
+        examples: [1, 2, 3]
       - id: gen_ai.evaluation.judgment.human_in_loop
         stability: experimental
         type: boolean
