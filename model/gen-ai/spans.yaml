@@ -391,6 +391,21 @@ groups:
         requirement_level: opt_in
       - ref: gen_ai.tool.definitions
         requirement_level: opt_in
+      - ref: gen_ai.agent.id
+        requirement_level:
+          conditionally_required: if applicable.
+      - ref: gen_ai.agent.name
+        requirement_level:
+          conditionally_required: when available
+      - ref: gen_ai.agent.description
+        requirement_level:
+          conditionally_required: when available
+      - ref: gen_ai.agent.version
+        requirement_level:
+          conditionally_required: when available
+      - ref: gen_ai.data_source.id
+        requirement_level:
+          conditionally_required: if applicable.
 
   - id: attributes.gen_ai.invoke_agent.client
     type: attribute_group
@@ -445,21 +460,6 @@ groups:
         sampling_relevant: true
       - ref: gen_ai.request.model
         sampling_relevant: true
-      - ref: gen_ai.agent.id
-        requirement_level:
-          conditionally_required: if applicable.
-      - ref: gen_ai.agent.name
-        requirement_level:
-          conditionally_required: when available
-      - ref: gen_ai.agent.description
-        requirement_level:
-          conditionally_required: when available
-      - ref: gen_ai.agent.version
-        requirement_level:
-          conditionally_required: when available
-      - ref: gen_ai.data_source.id
-        requirement_level:
-          conditionally_required: if applicable.
       - ref: server.address
         sampling_relevant: true
       - ref: server.port
@@ -488,22 +488,6 @@ groups:
         sampling_relevant: true
       - ref: gen_ai.request.model
         sampling_relevant: true
-      - ref: gen_ai.agent.id
-        requirement_level:
-          conditionally_required: if applicable.
-      - ref: gen_ai.agent.name
-        requirement_level:
-          conditionally_required: when available
-      - ref: gen_ai.agent.description
-        requirement_level:
-          conditionally_required: when available
-      - ref: gen_ai.agent.version
-        requirement_level:
-          conditionally_required: when available
-      - ref: gen_ai.data_source.id
-        requirement_level:
-          conditionally_required: if applicable.
-
 
   - id: span.gen_ai.execute_tool.internal
     type: span
