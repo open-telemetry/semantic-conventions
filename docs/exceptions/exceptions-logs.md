@@ -62,6 +62,9 @@ Exceptions SHOULD be recorded as attributes on the
 [LogRecord](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.55.0/specification/logs/data-model.md#log-and-event-record-definition) passed to the [Logger](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.55.0/specification/logs/api.md#logger) emit
 operations.
 
+Exception events emitted by instrumentations that also record spans for the same
+operation MUST be associated with the corresponding span context.
+
 When language implementations support passing exception instances to the
 [Emit a LogRecord](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.55.0/specification/logs/api.md#emit-a-logrecord) API, instrumentations SHOULD provide the exception instance
 rather than manually setting individual exception attributes.
