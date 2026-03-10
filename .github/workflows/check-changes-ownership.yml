@@ -31,6 +31,7 @@ jobs:
           dir_names: "true"
           files: model/**
           separator: ","
+          base_sha: ${{ github.event.pull_request.base.sha }}
 
   validate-area-ownership:
     runs-on: ubuntu-latest
