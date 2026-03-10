@@ -663,9 +663,28 @@ groups:
         stability: experimental
         type: string
         brief: Phase at which a judgment boundary evaluation occurred.
-        note: >
+        note: |
           Indicates when the system evaluated alternative decision paths,
           such as before or after execution.
+
+          Example OTLP event payload:
+
+              {
+                "event.name": "gen_ai.evaluation.result",
+                "gen_ai.evaluation.judgment.phase": "post_generation",
+                "gen_ai.evaluation.judgment.selected_path": "blocked",
+                "gen_ai.evaluation.judgment.alternatives_evaluated": 2,
+                "gen_ai.evaluation.judgment.human_in_loop": false
+              }
+
+          This enables queries such as:
+
+          - rate of blocked vs allowed decisions
+          - count of evaluations where alternatives were assessed
+          - distinction between execution failure and intentional halt
+
+          These attributes do not expose internal policy logic.
+          They only signal that an evaluation occurred and what path was selected.
         examples: ["pre_execution", "post_execution"]
       - id: gen_ai.evaluation.judgment.selected_path
         stability: experimental
