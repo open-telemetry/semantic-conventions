@@ -28,6 +28,7 @@
     {
       matchPackageNames: [
         'otel/**',
+        'open-telemetry/opentelemetry-specification',
       ],
       schedule: ['at any time'],
     },
