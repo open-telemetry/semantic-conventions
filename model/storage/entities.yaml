@@ -226,7 +226,7 @@ groups:
         role: descriptive
       - ref: storage.volume.id
         role: descriptive
-      - ref: storage.snapshot.state
+      - ref: storage.snapshot.status
         role: descriptive
       - ref: storage.snapshot.creation_time
         role: descriptive

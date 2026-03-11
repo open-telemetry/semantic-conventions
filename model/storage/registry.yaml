@@ -417,11 +417,11 @@ groups:
         brief: >
           Indicates the name of the snapshot.
         examples: ['Prod_snap1', 'backup-2024-01-15']
-      - id: storage.snapshot.state
+      - id: storage.snapshot.status
         type: string
         stability: development
         brief: >
-          Indicates the state of the snapshot.
+          Indicates the status of the snapshot.
         examples: ['active', 'inactive']
       - id: storage.snapshot.creation_time
         type: string
