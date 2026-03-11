@@ -62,7 +62,7 @@ groups:
     stability: development
     name: process.executable
     brief: >
-      The executable of a process
+      The executable of a process.
     attributes:
       - ref: process.executable.name
         role: identifying

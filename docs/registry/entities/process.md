@@ -40,7 +40,7 @@
 
 **type:** `process.executable`
 
-**Description:** The executable of a process
+**Description:** The executable of a process.
 
 **Attributes:**
 
