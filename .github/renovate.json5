@@ -42,7 +42,7 @@
         "README.md",
       ],
       matchStrings: [
-        "https://github.com/open-telemetry/opentelemetry-specification/blob/(?<depVersion>v[0-9.]+?)/",
+        "https://github.com/open-telemetry/opentelemetry-specification/blob/(?<depVersion>v[0-9.]+?)/(?!.*/semantic_conventions/)",
         "https://img.shields.io/badge/OTel_specification_version-(?<depVersion>v[0-9.]+?)-",
         "https://github.com/open-telemetry/opentelemetry-specification/releases/tag/(?<depVersion>v[0-9.]+?)\\)",
       ],
