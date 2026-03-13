@@ -26,6 +26,9 @@ exclude = [
 # better to be safe and avoid failures
 max_retries = 6
 
+# wait between retries to avoid 429 rate limiting from GitHub
+retry_wait_time = 5
+
 # better to be safe and avoid failures
 timeout = 60
 
