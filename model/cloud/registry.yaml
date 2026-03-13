@@ -301,6 +301,10 @@ groups:
               value: 'ibm_cloud_openshift'
               brief: Red Hat OpenShift on IBM Cloud
               stability: development
+            - id: ibm_cloud.vpc
+              value: 'ibm_cloud.vpc'
+              brief: IBM Cloud Virtual Private Cloud (VPC)
+              stability: development
             - id: oracle_cloud_compute
               value: 'oracle_cloud_compute'
               brief: Compute on Oracle Cloud Infrastructure (OCI)
