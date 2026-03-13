@@ -208,7 +208,7 @@ groups:
         type: any
         brief: >
           The content of the uncompressed HTTP request body, captured as a string when the request content is textual or as binary otherwise.
-
+        note: |
           Captured value MUST be limited in size and thus value is expected to be truncated in many cases.
           Instrumentations MUST provide configuration options to control the maximum captured body size.
 
@@ -218,14 +218,13 @@ groups:
 
           Textual content is typically detected based on the [Content-Type](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-type) header using heuristics
           such as checking if the media type starts with `text/` or ends with `/json`, `+json`, `/xml`, `+xml`, `/yaml` or `+yaml` or if the media type contains an explicit charset with `;charset=`.
-
         examples: ['Hello world!', '{"foo: "bar"}', 'aGVsbG8=']
         stability: development
       - id: http.response.body.content
         type: any
         brief: >
           The content of the uncompressed HTTP response body, captured as a string when the response content is textual or as binary otherwise.
-
+        note: |
           Captured value MUST be limited in size and thus value is expected to be truncated in many cases.
           Instrumentations MUST provide configuration options to control the maximum captured body size.
 
@@ -235,6 +234,5 @@ groups:
 
           Textual content is typically detected based on the [Content-Type](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-type) header using heuristics
           such as checking if the media type starts with `text/` or ends with `/json`, `+json`, `/xml`, `+xml`, `/yaml` or `+yaml` or if the media type contains an explicit charset with `;charset=`.
-
         examples: ['Hello world!', '{"foo: "bar"}', 'aGVsbG8=']
         stability: development
