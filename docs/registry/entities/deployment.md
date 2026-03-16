@@ -35,7 +35,7 @@ considered to be identifying the same service:
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `development` | Development environment | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `production` | Production environment | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `staging` | Staging environment | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `test` | Testing environment | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `development` | Development environment | ![Development](https://img.shields.io/badge/-development-blue) |
+| `production` | Production environment | ![Development](https://img.shields.io/badge/-development-blue) |
+| `staging` | Staging environment | ![Development](https://img.shields.io/badge/-development-blue) |
+| `test` | Testing environment | ![Development](https://img.shields.io/badge/-development-blue) |
