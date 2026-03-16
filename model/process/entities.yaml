@@ -64,9 +64,9 @@ groups:
     brief: >
       The executable of a process.
     attributes:
-      - ref: process.executable.name
-        role: identifying
-        requirement_level: required
       - ref: process.executable.path
         role: identifying
         requirement_level: required
+      - ref: process.executable.name
+        role: descriptive
+        requirement_level: opt_in
