@@ -237,10 +237,6 @@ groups:
     attributes:
       - ref: gcp.gen_ai.operation.config
         requirement_level: opt_in
-      - ref: gcp.client.service
-        requirement_level:
-          note: Expected to be "aiplatform" (Vertex AI) or "generativelanguage" (Gemini).
-          conditionally_required: If available
 
   - id: span.gen_ai.embeddings.client
     type: span
