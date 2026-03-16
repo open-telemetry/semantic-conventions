@@ -56,7 +56,6 @@ and [Vertex AI](https://cloud.google.com/vertex-ai) extend and override the
 Semantic Conventions for model inference spans when calling Google systems.
 
 `gen_ai.system` MUST be set to `"gcp.gen_ai"`, `"gcp.vertex_ai"`, or `"gcp.gemini"`.
-
 **Span name** SHOULD be `{gen_ai.operation.name} {gen_ai.request.model}`.
 
 **Span kind** SHOULD be `CLIENT`.
