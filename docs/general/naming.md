@@ -315,13 +315,11 @@ be confusing in delta backends.
   defined as the difference in `system.cpu.time` measurements divided by the
   elapsed time and number of CPUs.
 
-- **duration** - an instrument that measures elapsed time for individual occurrences 
-  of an event should be called `entity.duration`.
+- **duration** - a histogram that measures operation duration
+  of an event should be called `{operation name}.duration`.
   For example, `http.server.request.duration` for the time taken to process each HTTP request.
-  These instruments are typically histograms, allowing measurement of both the rate of events
-  and the distribution of their durations.
   The difference with `time` is that `time` is used to measure monotonically increasing total time,
-  whereas `duration` captures the time of each discrete occurrence.
+  whereas `duration` captures the aggregated elapsed time.
 
 - **io** - an instrument that measures bidirectional data flow should be
   called `entity.io` and have attributes for direction. For example,
