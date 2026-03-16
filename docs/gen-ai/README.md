@@ -39,7 +39,7 @@ Technology specific semantic conventions are defined for the following GenAI sys
 * [Anthropic](./anthropic.md): Semantic Conventions for Anthropic.
 * [Azure AI Inference](./azure-ai-inference.md): Semantic Conventions for Azure AI Inference.
 * [AWS Bedrock](./aws-bedrock.md): Semantic Conventions for AWS Bedrock.
-* [Google Generative AI](./gcp.md): Semantic Conventions for Gemini and Vertex AI.
+* [Google GenAI](./gcp.md): Semantic Conventions for Gemini and Vertex AI.
 * [OpenAI](./openai.md): Semantic Conventions for OpenAI.
 
 See also:
