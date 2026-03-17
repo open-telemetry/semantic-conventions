@@ -1,0 +1,48 @@
+groups:
+  - id: event.rpc.client.call.exception
+    name: rpc.client.call.exception
+    stability: development
+    type: event
+    brief: >
+      This event represents an exception that occurred during an outgoing RPC call,
+      such as network failures, timeouts, serialization errors, or other errors that
+      prevent the call from completing successfully.
+    note: >
+      This event SHOULD be recorded when an exception occurs during RPC client call operations.
+
+      Instrumentations SHOULD set the severity to WARN (severity number 13) when recording this event.
+
+      Instrumentations MAY provide a configuration option to populate exception events
+      with the attributes captured on the corresponding RPC client span.
+    attributes:
+      - ref: exception.type
+        requirement_level:
+          conditionally_required: Required if `exception.message` is not set, recommended otherwise.
+      - ref: exception.message
+        requirement_level:
+          conditionally_required: Required if `exception.type` is not set, recommended otherwise.
+      - ref: exception.stacktrace
+
+  - id: event.rpc.server.call.exception
+    name: rpc.server.call.exception
+    stability: development
+    type: event
+    brief: >
+      This event represents an exception that occurred during incoming RPC call processing,
+      such as application errors, internal failures, or other exceptions that prevent
+      the server from successfully handling the call.
+    note: >
+      This event SHOULD be recorded when an exception occurs during RPC server call processing.
+
+      Instrumentations SHOULD set the severity to ERROR (severity number 17) when recording this event.
+
+      Instrumentations MAY provide a configuration option to populate exception events
+      with the attributes captured on the corresponding RPC server span.
+    attributes:
+      - ref: exception.type
+        requirement_level:
+          conditionally_required: Required if `exception.message` is not set, recommended otherwise.
+      - ref: exception.message
+        requirement_level:
+          conditionally_required: Required if `exception.type` is not set, recommended otherwise.
+      - ref: exception.stacktrace

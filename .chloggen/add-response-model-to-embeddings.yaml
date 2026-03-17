@@ -1,0 +1,4 @@
+change_type: enhancement
+component: gen-ai
+note: "Added `gen_ai.response.model` attribute to embeddings spans."
+issues: [3499]
