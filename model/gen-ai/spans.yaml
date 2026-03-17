@@ -496,7 +496,7 @@ groups:
       - ref: gen_ai.security.content.input.hash
         requirement_level:
           conditionally_required: if correlation is needed and available
-      - ref: gen_ai.security.content.redacted
+      - ref: gen_ai.security.content.modified
         requirement_level:
           conditionally_required: if `gen_ai.security.decision.type` is `modify`
       - ref: gen_ai.agent.id

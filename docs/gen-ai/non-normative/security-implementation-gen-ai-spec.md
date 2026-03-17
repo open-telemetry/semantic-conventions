@@ -268,11 +268,11 @@ Instrumentations MAY use additional values: `jailbreak`, `toxicity`, `pii`, `cus
 | `gen_ai.security.content.input.value` | Raw input evaluated | Opt-In | `Send email to john@example.com` |
 | `gen_ai.security.content.output.value` | Modified output | Opt-In | `Send email to [REDACTED]` |
 | `gen_ai.security.content.input.hash` | Content hash for correlation | Conditionally Required (if correlation needed and available) | `sha256:a3f2b8c9...` |
-| `gen_ai.security.content.redacted` | Whether content was modified | Conditionally Required (if decision is `modify`) | `true` |
+| `gen_ai.security.content.modified` | Whether content was modified | Conditionally Required (if decision is `modify`) | `true` |
 
 > **WARNING**: `content.input.value` and `content.output.value` may contain sensitive information. Instrumentations SHOULD NOT capture these by default. Enable only via explicit opt-in configuration.
 
-**Note**: `content.redacted` and `content.input.hash` are NOT opt-in—they are conditionally required per the spec when applicable (modify decisions and correlation scenarios, respectively). `content.input.hash` is only required when correlation is needed **and** the guardian can provide the input content to hash.
+**Note**: `content.modified` and `content.input.hash` are NOT opt-in—they are conditionally required per the spec when applicable (modify decisions and correlation scenarios, respectively). `content.input.hash` is only required when correlation is needed **and** the guardian can provide the input content to hash.
 
 ## 5. Real-World Scenarios
 
@@ -299,7 +299,7 @@ chat gpt-4 (CLIENT span)
     ├── gen_ai.operation.name: apply_guardrail
     ├── gen_ai.security.target.type: llm_output
     ├── gen_ai.security.decision.type: modify
-    ├── gen_ai.security.content.redacted: true
+    ├── gen_ai.security.content.modified: true
     └── Events:
         └── gen_ai.security.finding
             ├── gen_ai.security.risk.category: pii

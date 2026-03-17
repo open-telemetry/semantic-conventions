@@ -606,10 +606,10 @@ groups:
           Instrumentations SHOULD document the algorithm and any salting/HMAC
           approach used.
         examples: ['sha256:a3f2b8c9...']
-      - id: gen_ai.security.content.redacted
+      - id: gen_ai.security.content.modified
         stability: development
         type: boolean
-        brief: Whether the content was redacted or modified by the guardian.
+        brief: Whether the content was modified by the guardrail (e.g., redacted, sanitized, rewritten).
         examples: [true, false]
 
       - id: gen_ai.security.external_event_id
