@@ -83,7 +83,7 @@ groups:
     attributes:
       - id: otel.event.name
         type: string
-        stability: development
+        stability: stable
         brief: >
           Identifies the class / type of event.
         note: >
