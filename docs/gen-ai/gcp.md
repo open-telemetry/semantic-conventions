@@ -88,7 +88,7 @@ Semantic Conventions for model inference spans when calling Google systems.
 | [`gen_ai.usage.input_tokens`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | int | The number of tokens used in the GenAI input (prompt). [11] | `100` |
 | [`gen_ai.usage.output_tokens`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | int | The number of tokens used in the GenAI response (completion). | `180` |
 | [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | GenAI server address. [12] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
-| [`gcp.gen_ai.operation.config.<key>`](/docs/registry/attributes/gcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Operation-specific request configuration options for Google generative AI operations, the `<key>` being the configuration name, the value being the string representation of the configuration value. [13] | `A config `autioTimestamp` with value `true` SHOULD be recorded as the `gcp.gen_ai.operation.config.audioTimestamp` attribute with value `"true"`.`; `A config `safetySettings` with value '[{"threshold":"OFF"}]' SHOULD be recorded as the `gcp.gen_ai.operation.config.safetySettings` attribute with value `"[{"threshold":"OFF"}]"`.`; `A config `thinkingConfig` with value `{"includeThoughts":true}` SHOULD be recorded as the `gcp.gen_ai.operation.config.thinkingConfig` attribute with value `{"includeThoughts":"true"}`` |
+| [`gcp.gen_ai.operation.config.<key>`](/docs/registry/attributes/gcp.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | template[any] | Operation-specific request configuration options for Google generative AI operations, the `<key>` being the configuration name, the value being the corresponding configuration value. [13] | A config `audioTimestamp` with value `true` SHOULD be recorded as the<br>`gcp.gen_ai.operation.config.audioTimestamp` attribute with value `true`.; A config `safetySettings` with value `[{"threshold":"OFF"}]` SHOULD be recorded as the<br>`gcp.gen_ai.operation.config.safetySettings` attribute with value:`[{"threshold":"OFF"}]`; A config `thinkingConfig` with value `{"includeThoughts":true}` SHOULD be recorded as the<br>`gcp.gen_ai.operation.config.thinkingConfig` attribute with value:`{"includeThoughts":"true"}` |
 | [`gen_ai.input.messages`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | any | The chat history provided to the model as an input. [14] | [<br>&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;"role": "user",<br>&nbsp;&nbsp;&nbsp;&nbsp;"parts": [<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"type": "text",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"content": "Weather in Paris?"<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;]<br>&nbsp;&nbsp;},<br>&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;"role": "assistant",<br>&nbsp;&nbsp;&nbsp;&nbsp;"parts": [<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"type": "tool_call",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"id": "call_VSPygqKTWdrhaFErNvMV18Yl",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"name": "get_weather",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"arguments": {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"location": "Paris"<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;]<br>&nbsp;&nbsp;},<br>&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;"role": "tool",<br>&nbsp;&nbsp;&nbsp;&nbsp;"parts": [<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"type": "tool_call_response",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"id": " call_VSPygqKTWdrhaFErNvMV18Yl",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"result": "rainy, 57°F"<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;]<br>&nbsp;&nbsp;}<br>] |
 | [`gen_ai.output.messages`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | any | Messages returned by the model where each message represents a specific model response (choice, candidate). [15] | [<br>&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;"role": "assistant",<br>&nbsp;&nbsp;&nbsp;&nbsp;"parts": [<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"type": "text",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"content": "The weather in Paris is currently rainy with a temperature of 57°F."<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;],<br>&nbsp;&nbsp;&nbsp;&nbsp;"finish_reason": "stop"<br>&nbsp;&nbsp;}<br>] |
 | [`gen_ai.system_instructions`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | any | The system message or instructions provided to the GenAI model separately from the chat history. [16] | [<br>&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;"type": "text",<br>&nbsp;&nbsp;&nbsp;&nbsp;"content": "You are an Agent that greet users, always use greetings tool to respond"<br>&nbsp;&nbsp;}<br>]; [<br>&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;"type": "text",<br>&nbsp;&nbsp;&nbsp;&nbsp;"content": "You are a language translator."<br>&nbsp;&nbsp;},<br>&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;"type": "text",<br>&nbsp;&nbsp;&nbsp;&nbsp;"content": "Your mission is to translate text in English to French."<br>&nbsp;&nbsp;}<br>] |
@@ -136,10 +136,38 @@ by summing different token types parsed from the provider output.
 
 **[12] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
-**[13] `gcp.gen_ai.operation.config.<key>`:** The available `<key>` values are dependent on `gen_ai.operation.name` and SHOULD correspond to fields on the operation-specific `*Config` data structure in the Google Gen AI SDK. The Google Gen AI SDK provides these `*Config` data structures in multiple languages, generated from a common source of truth. See `google.genai.types.*` in <https://github.com/googleapis/python-genai> and `com.google.genai.types.*` in <https://github.com/googleapis/java-genai> for examples.
-Instrumentations SHOULD record only an allowlisted subset of request configuration. Each allowlisted field SHOULD be recorded as a separate `gcp.gen_ai.operation.config.<key>` attribute, and the attribute value SHOULD be the string representation of the corresponding config value. Structured values such as objects and arrays SHOULD be recorded using a JSON representation. The recorded fields also SHOULD NOT overlap with configuration that has already been captured elsewhere through standard Semantic Conventions.
-The `<key>` names and any JSON representation SHOULD align with the expectations of proto3 JSON encoding <https://protobuf.dev/programming-guides/proto3/#json>; for example, fields that represent a timestamp in the local language should get mapped to the proto3 JSON encoding of `google.protobuf.Timestamp` (i.e. RFC 3339 date format) per the specification given in <https://protobuf.dev/reference/protobuf/google.protobuf/#timestamp>.
-Instrumentations SHOULD NOT populate this attribute by default. Rather, instrumentations SHOULD provide an opt-in mechanism through which the config information can be dumped into this field as a tool for debugging and as an escape hatch for the subset of configuration that is not yet representable using standardized conventions.
+**[13] `gcp.gen_ai.operation.config.<key>`:** The available `<key>` values are dependent on `gen_ai.operation.name` and SHOULD
+correspond to fields on the operation-specific `*Config` data structure in the
+Google Gen AI SDK. The Google Gen AI SDK provides these `*Config` data structures
+in multiple languages, generated from a common source of truth. See
+`google.genai.types.*` in <https://github.com/googleapis/python-genai> and
+`com.google.genai.types.*` in <https://github.com/googleapis/java-genai> for examples.
+
+Instrumentations SHOULD record only an allowlisted subset of request configuration.
+Each allowlisted field SHOULD be recorded as a separate
+`gcp.gen_ai.operation.config.<key>` attribute where `<key>` is the configuration
+name and the attribute value is the corresponding config value.
+
+Scalar values SHOULD be recorded using the corresponding scalar type.
+Structured values such as objects and arrays SHOULD be recorded in structured
+form when supported. When recorded on spans, structured values MAY be recorded as
+JSON strings if structured format is not supported and SHOULD be recorded in
+structured form otherwise. The recorded fields also SHOULD NOT overlap with
+configuration that has already been captured elsewhere through standard Semantic
+Conventions.
+
+The `<key>` names and any JSON encoding SHOULD align with the expectations of
+proto3 JSON encoding <https://protobuf.dev/programming-guides/proto3/#json>; for
+example, fields that represent a timestamp in the local language should be mapped
+to the proto3 JSON encoding of `google.protobuf.Timestamp` (i.e. RFC 3339 date
+format) per the specification given in
+<https://protobuf.dev/reference/protobuf/google.protobuf/#timestamp>.
+
+Instrumentations SHOULD NOT populate this attribute by default. Rather,
+instrumentations SHOULD provide an opt-in mechanism through which the config
+information can be dumped into this field as a tool for debugging and as an escape
+hatch for the subset of configuration that is not yet representable using
+standardized conventions.
 
 **[14] `gen_ai.input.messages`:** Instrumentations MUST follow [Input messages JSON schema](/docs/gen-ai/gen-ai-input-messages.json).
 When the attribute is recorded on events, it MUST be recorded in structured
