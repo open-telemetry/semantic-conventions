@@ -1,0 +1,4 @@
+change_type: enhancement
+component: k8s
+note: "Add `k8s.node.system_container.*` metrics to capture node-level system daemon metrics."
+issues: [3531]
