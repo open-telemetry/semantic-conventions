@@ -368,15 +368,20 @@ groups:
       - ref: gen_ai.agent.id
         requirement_level:
           conditionally_required: if applicable.
+        sampling_relevant: true
       - ref: gen_ai.agent.name
         requirement_level:
           conditionally_required: when available
+        sampling_relevant: true
       - ref: gen_ai.agent.description
         requirement_level:
           conditionally_required: when available
       - ref: gen_ai.agent.version
         requirement_level:
           conditionally_required: when available
+        sampling_relevant: true
+      - ref: gen_ai.conversation.id
+        sampling_relevant: true
       - ref: gen_ai.data_source.id
         requirement_level:
           conditionally_required: if applicable.
