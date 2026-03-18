@@ -8,12 +8,12 @@ linkTitle: Exceptions
 
 This document defines semantic conventions for recording exceptions on RPC operations.
 
-<!-- toc -->
+<!-- START doctoc -->
 
 - [RPC client call exception](#rpc-client-call-exception)
 - [RPC server call exception](#rpc-server-call-exception)
 
-<!-- tocstop -->
+<!-- END doctoc -->
 
 ## RPC client call exception
 

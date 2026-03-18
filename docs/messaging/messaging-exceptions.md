@@ -8,7 +8,7 @@ linkTitle: Exceptions
 
 This document defines semantic conventions for recording exceptions on messaging operations.
 
-<!-- toc -->
+<!-- START doctoc -->
 
 - [Messaging create exception](#messaging-create-exception)
 - [Messaging send exception](#messaging-send-exception)
@@ -16,7 +16,7 @@ This document defines semantic conventions for recording exceptions on messaging
 - [Messaging settle exception](#messaging-settle-exception)
 - [Messaging process exception](#messaging-process-exception)
 
-<!-- tocstop -->
+<!-- END doctoc -->
 
 ## Messaging create exception
 
