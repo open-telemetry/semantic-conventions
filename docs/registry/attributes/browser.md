@@ -45,24 +45,21 @@ Attributes for browser resource timing events
 | <a id="browser-resource-timing-response-end" href="#browser-resource-timing-response-end">`browser.resource_timing.response_end`</a> | ![Development](https://img.shields.io/badge/-development-blue) | double | Time immediately after the browser receives the last byte of the resource [11] | `220.3`; `350.5` |
 | <a id="browser-resource-timing-response-start" href="#browser-resource-timing-response-start">`browser.resource_timing.response_start`</a> | ![Development](https://img.shields.io/badge/-development-blue) | double | Time immediately after the browser receives the first byte of the response from the server [12] | `180.5`; `310.8` |
 | <a id="browser-resource-timing-secure-connection-start" href="#browser-resource-timing-secure-connection-start">`browser.resource_timing.secure_connection_start`</a> | ![Development](https://img.shields.io/badge/-development-blue) | double | Time immediately before the browser starts the handshake process to secure the connection [13] | `132.5`; `262.8` |
-| <a id="browser-resource-timing-url" href="#browser-resource-timing-url">`browser.resource_timing.url`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Absolute URL describing a network resource according to [RFC3986](https://www.rfc-editor.org/rfc/rfc3986) [14] | `https://www.example.com/path`; `https://cdn.example.com/styles/main.css` |
 
-**[5] `browser.resource_timing.connect_end`:** Measured in milliseconds as a DOMHighResTimeStamp relative to the time origin. See the [Performance Resource Timing API](https://www.w3.org/TR/resource-timing-2/#dom-performanceresourcetiming-connectend).
+**[5] `browser.resource_timing.connect_end`:** Measured in milliseconds as a DOMHighResTimeStamp relative to the time origin. See the [Performance Resource Timing API](https://www.w3.org/TR/resource-timing/#dom-performanceresourcetiming-connectend).
 
-**[6] `browser.resource_timing.connect_start`:** Measured in milliseconds as a DOMHighResTimeStamp relative to the time origin. See the [Performance Resource Timing API](https://www.w3.org/TR/resource-timing-2/#dom-performanceresourcetiming-connectstart).
+**[6] `browser.resource_timing.connect_start`:** Measured in milliseconds as a DOMHighResTimeStamp relative to the time origin. See the [Performance Resource Timing API](https://www.w3.org/TR/resource-timing/#dom-performanceresourcetiming-connectstart).
 
-**[7] `browser.resource_timing.domain_lookup_end`:** Measured in milliseconds as a DOMHighResTimeStamp relative to the time origin. See the [Performance Resource Timing API](https://www.w3.org/TR/resource-timing-2/#dom-performanceresourcetiming-domainlookupend).
+**[7] `browser.resource_timing.domain_lookup_end`:** Measured in milliseconds as a DOMHighResTimeStamp relative to the time origin. See the [Performance Resource Timing API](https://www.w3.org/TR/resource-timing/#dom-performanceresourcetiming-domainlookupend).
 
-**[8] `browser.resource_timing.domain_lookup_start`:** Measured in milliseconds as a DOMHighResTimeStamp relative to the time origin. See the [Performance Resource Timing API](https://www.w3.org/TR/resource-timing-2/#dom-performanceresourcetiming-domainlookupstart).
+**[8] `browser.resource_timing.domain_lookup_start`:** Measured in milliseconds as a DOMHighResTimeStamp relative to the time origin. See the [Performance Resource Timing API](https://www.w3.org/TR/resource-timing/#dom-performanceresourcetiming-domainlookupstart).
 
-**[9] `browser.resource_timing.fetch_start`:** Measured in milliseconds as a DOMHighResTimeStamp relative to the time origin. See the [Performance Resource Timing API](https://www.w3.org/TR/resource-timing-2/#dom-performanceresourcetiming-fetchstart).
+**[9] `browser.resource_timing.fetch_start`:** Measured in milliseconds as a DOMHighResTimeStamp relative to the time origin. See the [Performance Resource Timing API](https://www.w3.org/TR/resource-timing/#dom-performanceresourcetiming-fetchstart).
 
-**[10] `browser.resource_timing.request_start`:** Measured in milliseconds as a DOMHighResTimeStamp relative to the time origin. See the [Performance Resource Timing API](https://www.w3.org/TR/resource-timing-2/#dom-performanceresourcetiming-requeststart).
+**[10] `browser.resource_timing.request_start`:** Measured in milliseconds as a DOMHighResTimeStamp relative to the time origin. See the [Performance Resource Timing API](https://www.w3.org/TR/resource-timing/#dom-performanceresourcetiming-requeststart).
 
-**[11] `browser.resource_timing.response_end`:** Measured in milliseconds as a DOMHighResTimeStamp relative to the time origin. See the [Performance Resource Timing API](https://www.w3.org/TR/resource-timing-2/#dom-performanceresourcetiming-responseend).
+**[11] `browser.resource_timing.response_end`:** Measured in milliseconds as a DOMHighResTimeStamp relative to the time origin. See the [Performance Resource Timing API](https://www.w3.org/TR/resource-timing/#dom-performanceresourcetiming-responseend).
 
-**[12] `browser.resource_timing.response_start`:** Measured in milliseconds as a DOMHighResTimeStamp relative to the time origin. See the [Performance Resource Timing API](https://www.w3.org/TR/resource-timing-2/#dom-performanceresourcetiming-responsestart).
+**[12] `browser.resource_timing.response_start`:** Measured in milliseconds as a DOMHighResTimeStamp relative to the time origin. See the [Performance Resource Timing API](https://www.w3.org/TR/resource-timing/#dom-performanceresourcetiming-responsestart).
 
-**[13] `browser.resource_timing.secure_connection_start`:** Measured in milliseconds as a DOMHighResTimeStamp relative to the time origin. If the scheme is not HTTPS, this value is 0. See the [Performance Resource Timing API](https://www.w3.org/TR/resource-timing-2/#dom-performanceresourcetiming-secureconnectionstart).
-
-**[14] `browser.resource_timing.url`:** Generally the url doesn't include any query strings or any leading credentials, and it's formatted as scheme://full domain/path only, for example `https://www.example.com/path?a=b&c=d` would be sent as `https://www.example.com/path` by both removing any potential PII and reducing the cardinality of the name.
+**[13] `browser.resource_timing.secure_connection_start`:** Measured in milliseconds as a DOMHighResTimeStamp relative to the time origin. If the scheme is not HTTPS, this attribute SHOULD NOT be set. See the [Performance Resource Timing API](https://www.w3.org/TR/resource-timing/#dom-performanceresourcetiming-secureconnectionstart).
