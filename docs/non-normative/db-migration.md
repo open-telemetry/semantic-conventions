@@ -86,6 +86,58 @@ References:
 - [Database client span names v1.24.0](https://github.com/open-telemetry/semantic-conventions/blob/v1.24.0/docs/database/database-spans.md)
 - [Database client span names v1.33.0](https://github.com/open-telemetry/semantic-conventions/blob/v1.33.0/docs/database/database-spans.md#name)
 
+### Database system name
+
+The attribute `db.system` has been renamed to `db.system.name`. Along with the rename, many
+enum values were updated — most notably to follow a `<vendor>.<product>` naming pattern that
+makes vendor affiliation explicit.
+
+The table below lists only the `db.system` values that were renamed or removed in
+`db.system.name`, along with the stability of the new value. Unchanged values are not listed.
+
+> [!NOTE]
+> The `db.system.name` attribute itself is `stable`. Individual enum members have their
+> own stability level as shown below (`stable` or `development`).
+
+<!-- prettier-ignore-start -->
+| Description                        | Old `db.system` value | New `db.system.name` value | Notes                                            | Stability                                                      |
+|------------------------------------|-----------------------|----------------------------|--------------------------------------------------|----------------------------------------------------------------|
+| Adabas (Adaptable Database System) | `adabas`              | `softwareag.adabas`        | Vendor prefix added                              | ![Development](https://img.shields.io/badge/-development-blue) |
+| InterSystems Caché (old alias)     | `cache`               | _(removed)_                | Was already deprecated; use `intersystems.cache` | —                                                              |
+| InterSystems Caché                 | `intersystems_cache`  | `intersystems.cache`       | Renamed to dot notation                          | ![Development](https://img.shields.io/badge/-development-blue) |
+| Cloudscape                         | `cloudscape`          | _(removed)_                | Was already deprecated in favor of `other_sql`   | —                                                              |
+| ColdFusion                         | `coldfusion`          | _(removed)_                | Obsoleted, no replacement                        | —                                                              |
+| Azure Cosmos DB                    | `cosmosdb`            | `azure.cosmosdb`           | Cloud provider prefix added                      | ![Development](https://img.shields.io/badge/-development-blue) |
+| IBM Db2                            | `db2`                 | `ibm.db2`                  | Vendor prefix added                              | ![Development](https://img.shields.io/badge/-development-blue) |
+| Amazon DynamoDB                    | `dynamodb`            | `aws.dynamodb`             | Cloud provider prefix added                      | ![Development](https://img.shields.io/badge/-development-blue) |
+| EnterpriseDB                       | `edb`                 | _(removed)_                | No direct equivalent; use `postgresql`           | —                                                              |
+| FileMaker                          | `filemaker`           | _(removed)_                | No equivalent in new registry                    | —                                                              |
+| Firebird                           | `firebird`            | `firebirdsql`              | Renamed                                          | ![Development](https://img.shields.io/badge/-development-blue) |
+| FirstSQL                           | `firstsql`            | _(removed)_                | Was already deprecated in favor of `other_sql`   | —                                                              |
+| H2 Database                        | `h2`                  | `h2database`               | Renamed                                          | ![Development](https://img.shields.io/badge/-development-blue) |
+| SAP HANA                           | `hanadb`              | `sap.hana`                 | Vendor prefix added                              | ![Development](https://img.shields.io/badge/-development-blue) |
+| IBM Informix                       | `informix`            | `ibm.informix`             | Vendor prefix added                              | ![Development](https://img.shields.io/badge/-development-blue) |
+| Actian Ingres                      | `ingres`              | `actian.ingres`            | Vendor prefix added                              | ![Development](https://img.shields.io/badge/-development-blue) |
+| InterBase                          | `interbase`           | _(removed)_                | No equivalent in new registry                    | —                                                              |
+| SAP MaxDB                          | `maxdb`               | `sap.maxdb`                | Vendor prefix added                              | ![Development](https://img.shields.io/badge/-development-blue) |
+| Microsoft SQL Server               | `mssql`               | `microsoft.sql_server`     | Vendor prefix added                              | ![Stable](https://img.shields.io/badge/-stable-lightgreen)     |
+| Microsoft SQL Server Compact       | `mssqlcompact`        | _(removed)_                | Product discontinued                             | —                                                              |
+| IBM Netezza                        | `netezza`             | `ibm.netezza`              | Vendor prefix added                              | ![Development](https://img.shields.io/badge/-development-blue) |
+| Oracle Database                    | `oracle`              | `oracle.db`                | Renamed                                          | ![Development](https://img.shields.io/badge/-development-blue) |
+| Pervasive PSQL                     | `pervasive`           | _(removed)_                | No equivalent in new registry                    | —                                                              |
+| PointBase                          | `pointbase`           | _(removed)_                | No equivalent in new registry                    | —                                                              |
+| Progress Database                  | `progress`            | _(removed)_                | No equivalent in new registry                    | —                                                              |
+| Amazon Redshift                    | `redshift`            | `aws.redshift`             | Cloud provider prefix added                      | ![Development](https://img.shields.io/badge/-development-blue) |
+| Google Cloud Spanner               | `spanner`             | `gcp.spanner`              | Cloud provider prefix added                      | ![Development](https://img.shields.io/badge/-development-blue) |
+| Sybase                             | `sybase`              | _(removed)_                | No equivalent in new registry                    | —                                                              |
+| Vertica                            | `vertica`             | _(removed)_                | No equivalent in new registry                    | —                                                              |
+<!-- prettier-ignore-end -->
+
+References:
+
+- [`db.system` enum values v1.24.0](https://github.com/open-telemetry/semantic-conventions/blob/v1.24.0/docs/database/database-spans.md#notes-and-well-known-identifiers-for-dbsystem)
+- [`db.system.name` enum values v1.33.0](https://github.com/open-telemetry/semantic-conventions/blob/v1.33.0/docs/database/database-spans.md#notes-and-well-known-identifiers-for-dbsystemname)
+
 ### Database client operation duration metric
 
 This is a required metric. There was no similar metric previously.
