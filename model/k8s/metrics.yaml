@@ -571,11 +571,8 @@ groups:
     brief: "Node's system container CPU usage, measured in cpus."
     instrument: gauge
     entity_associations:
-      - k8s.node
+      - k8s.node.system_container
     unit: "{cpu}"
-    attributes:
-      - ref: k8s.node.system_container.name
-        requirement_level: required
   - id: metric.k8s.node.system_container.cpu.time
     type: metric
     metric_name: k8s.node.system_container.cpu.time
@@ -586,11 +583,20 @@ groups:
     brief: "Node's system container CPU time."
     instrument: counter
     entity_associations:
-      - k8s.node
+      - k8s.node.system_container
     unit: "s"
-    attributes:
-      - ref: k8s.node.system_container.name
-        requirement_level: required
+  - id: metric.k8s.node.system_container.memory.usage
+    type: metric
+    metric_name: k8s.node.system_container.memory.usage
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "Node's system container memory usage."
+    instrument: gauge
+    entity_associations:
+      - k8s.node.system_container
+    unit: "By"
   - id: metric.k8s.node.system_container.memory.working_set
     type: metric
     metric_name: k8s.node.system_container.memory.working_set
@@ -601,11 +607,8 @@ groups:
     brief: "The amount of working set memory."
     instrument: gauge
     entity_associations:
-      - k8s.node
+      - k8s.node.system_container
     unit: "By"
-    attributes:
-      - ref: k8s.node.system_container.name
-        requirement_level: required
 
   # k8s.node.filesystem.* metrics
   - id: metric.k8s.node.filesystem.available

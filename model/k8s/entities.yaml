@@ -29,6 +29,18 @@ groups:
         role: descriptive
         requirement_level: opt_in
 
+  - id: entity.k8s.node.system_container
+    type: entity
+    stability: development
+    name: k8s.node.system_container
+    brief: >
+      A Kubernetes Node System Container.
+    attributes:
+      - ref: k8s.node.system_container.name
+        role: identifying
+      - ref: k8s.node.system_container.node_name
+        role: descriptive
+
   - id: entity.k8s.namespace
     type: entity
     stability: development
