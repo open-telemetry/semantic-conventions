@@ -8,11 +8,11 @@ linkTitle: Exceptions
 
 This document defines semantic conventions for recording exceptions on database client operations.
 
-<!-- toc -->
+<!-- START doctoc -->
 
 - [Database client operation exception](#database-client-operation-exception)
 
-<!-- tocstop -->
+<!-- END doctoc -->
 
 ## Database client operation exception
 

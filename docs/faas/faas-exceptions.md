@@ -8,11 +8,11 @@ linkTitle: Exceptions
 
 This document defines semantic conventions for recording exceptions on FaaS invocations.
 
-<!-- toc -->
+<!-- START doctoc -->
 
 - [FaaS invocation exception](#faas-invocation-exception)
 
-<!-- tocstop -->
+<!-- END doctoc -->
 
 ## FaaS invocation exception
 
