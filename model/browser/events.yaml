@@ -57,16 +57,15 @@ groups:
     type: event
     name: browser.resource_timing
     brief: >
-      This event describes the timing metrics as provided by PerformanceResourceTiming Performance API.
+      This event describes the timing metrics provided by the PerformanceResourceTiming interface of the Resource Timing API.
       These metrics are related to fetching a resource, such as
-      XMLHttpRequest, Fetch, sendBeacon APIs, SVG, image or script.
+      XMLHttpRequest, Fetch, and sendBeacon, as well as SVG, image, and script elements.
     note: >
       This event captures data from the [ResourceTiming](https://www.w3.org/TR/resource-timing/).
-      It is recommended to be captured by using the PerformanceResourceTiming API.
-      If the page starts unloading before the page loads,
-      then the partial data can be captured by calling the [performance.getEntriesByType](https://developer.mozilla.org/en-US/docs/Web/API/Performance/getEntriesByType) method.
+      Resources not fully loaded at collection time will have incomplete timing data.
+      Use PerformanceObserver or [performance.getEntriesByType](https://developer.mozilla.org/en-US/docs/Web/API/Performance/getEntriesByType) to collect entries before page unload.
     attributes:
-      - ref: browser.resource_timing.url
+      - ref: url.full
         requirement_level: required
       - ref: browser.resource_timing.fetch_start
         requirement_level: recommended
