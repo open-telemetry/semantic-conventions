@@ -110,7 +110,7 @@ When defining a new attribute:
     This is useful for capturing user-defined key-value pairs, such as HTTP headers.
   - Represent complex values as a set of flat attributes whenever possible.
     - Complex or structured attributes (not listed in the
-      [set of standard attributes](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.54.0/specification/common/README.md#attribute))
+      [set of standard attributes](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.55.0/specification/common/README.md#attribute))
       could be referenced on events and spans (![Development](https://img.shields.io/badge/-development-blue)) only.
 
       Semantic convention authors should assume that backends do not index individual properties of complex attributes,
@@ -219,9 +219,15 @@ When not to define spans:
 
 > [!IMPORTANT]
 >
-> It's a common practice to accompany a span definition with a metric that measures
-> the duration of the same operation. For example, the `http.client.request.duration`
-> metric is recorded alongside the corresponding HTTP client span.
+> It's a common practice to accompany a span definition with:
+>
+> - A metric that measures the duration of the same operation.
+> - An event that records exceptions that prevent this operation from completing
+>   successfully.
+>
+> For example, the `http.client.request.duration` metric and
+> `http.client.request.exception` event are recorded alongside the corresponding
+> HTTP client span.
 
 A span definition should describe the [operation it represents](#what-operation-does-this-span-represent),
 the [naming pattern](#naming-pattern), considerations for setting span [status](#status),
@@ -242,7 +248,7 @@ Define the scope and boundaries of the operation:
 ##### Naming pattern
 
 - Span names must have low cardinality and should provide a reasonable grouping
-  for that operation. See [Span name guidelines](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.54.0/specification/trace/api.md#span)
+  for that operation. See [Span name guidelines](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.55.0/specification/trace/api.md#span)
   for details.
 
 - Span names usually follow the `{action} {target}` pattern. For example, `send orders_queue`.
@@ -274,7 +280,7 @@ to leverage additional context to provide a more accurate status.
 
 ##### Kind
 
-All span definitions MUST include a specific [span kind](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.54.0/specification/trace/api.md#spankind). One span definition can
+All span definitions MUST include a specific [span kind](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.55.0/specification/trace/api.md#spankind). One span definition can
 only mention one span kind.
 
 ##### Attributes

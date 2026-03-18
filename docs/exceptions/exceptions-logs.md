@@ -4,16 +4,25 @@ linkTitle: Logs
 
 # Semantic conventions for exceptions in logs
 
-**Status**: [Stable][DocumentStatus]
+**Status**: [Stable, except where otherwise specified][DocumentStatus]
 
 This document defines semantic conventions for recording exceptions on
-[logs](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.54.0/specification/logs/api.md#emit-a-logrecord)
-emitted through the [Logger API](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.54.0/specification/logs/api.md#logger).
+[logs](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.55.0/specification/logs/api.md#emit-a-logrecord)
+emitted through the [Logger API](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.55.0/specification/logs/api.md#logger).
 
 <!-- toc -->
 
 - [Recording an exception](#recording-an-exception)
-- [Attributes](#attributes)
+  - [When not to record exceptions](#when-not-to-record-exceptions)
+  - [Event name](#event-name)
+  - [Severity](#severity)
+    - [FATAL severity](#fatal-severity)
+    - [ERROR severity](#error-severity)
+    - [WARN severity](#warn-severity)
+    - [INFO severity](#info-severity)
+    - [DEBUG severity](#debug-severity)
+    - [TRACE severity](#trace-severity)
+  - [Attributes](#attributes)
   - [Stacktrace representation](#stacktrace-representation)
 
 <!-- tocstop -->
@@ -38,20 +47,139 @@ emitted through the [Logger API](https://github.com/open-telemetry/opentelemetry
 
 ## Recording an exception
 
+> [!NOTE]
+> This document describes how exception events should be recorded and when to avoid
+> recording them. Guidance on when to record exceptions is left to specific
+> semantic conventions authors.
+
+OpenTelemetry Semantic Conventions authors SHOULD define exception events according
+to this document.
+This guidance is also recommended for application developers and instrumentations
+not hosted in OpenTelemetry.
+This document does not apply to logging bridges.
+
 Exceptions SHOULD be recorded as attributes on the
-[LogRecord](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.54.0/specification/logs/data-model.md#log-and-event-record-definition) passed to the [Logger](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.54.0/specification/logs/api.md#logger) emit
-operations. Exceptions MAY be recorded on "logs" or "events" depending on the
-context.
+[LogRecord](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.55.0/specification/logs/data-model.md#log-and-event-record-definition) passed to the [Logger](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.55.0/specification/logs/api.md#logger) emit
+operations.
 
-To encapsulate proper handling of exceptions API authors MAY provide a
-constructor, `RecordException` method/extension, or similar helper mechanism on
-the `LogRecord` class/structure or wherever it makes the most sense depending on
-the language runtime.
+Exception events emitted by instrumentations that also record spans for the same
+operation MUST be associated with the corresponding span context.
 
-## Attributes
+When language implementations support passing exception instances to the
+[Emit a LogRecord](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.55.0/specification/logs/api.md#emit-a-logrecord) API, instrumentations SHOULD provide the exception instance
+rather than manually setting individual exception attributes.
+
+![Development](https://img.shields.io/badge/-development-blue) Instrumentations
+SHOULD record exceptions as events.
+
+### When not to record exceptions
+
+**Status**: [Development][DocumentStatus]
+
+Some libraries, frameworks, or runtimes generate artificial exceptions for
+operations that end with an unsuccessful error code. When possible,
+instrumentations SHOULD NOT record these artificial exceptions.
+
+For example, FastAPI in Python recommends raising [`HTTPException`](https://fastapi.tiangolo.com/tutorial/handling-errors/#use-httpexception)
+instead of returning a response with an unsuccessful status
+code. Similarly, Spring in Java provides [`ResponseStatusException`](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/server/ResponseStatusException.html).
+
+### Event name
+
+**Status**: [Development][DocumentStatus]
+
+It is RECOMMENDED to provide an [event name](/docs/general/events.md) that
+describes the instrumented operation with a `.exception` suffix.
+
+For example, [`http.client.request.exception`](/docs/http/http-exceptions.md#http-client-request-exception)
+represents exceptions that occur during an HTTP client request.
+
+Instrumentations that are not specific to a particular operation or domain, such as
+global unhandled exception handlers, SHOULD use the `exception` event name.
+
+### Severity
+
+**Status**: [Development][DocumentStatus]
+
+The severity reflects the expected impact of the exception, not just its presence.
+
+[Severity Number](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.55.0/specification/logs/data-model.md#field-severitynumber)
+SHOULD be provided on all exception events and SHOULD be set based on the context
+in which the exception occurs, following the guidance below.
+
+#### FATAL severity
+
+Exceptions that usually result in application shutdown SHOULD be recorded with
+severity `FATAL` (severity number 21).
+
+Examples:
+
+- The application detects an invalid configuration at startup and shuts down.
+- The application encounters an out-of-memory condition.
+
+> [!NOTE]
+> Instrumentation SHOULD do the best effort to record such errors, but
+> OpenTelemetry SDK and exporters might not have a chance to actually export them.
+
+#### ERROR severity
+
+Exceptions that are unhandled by application code and don't result in application
+shutdown SHOULD be recorded with severity `ERROR` (severity number 17).
+
+Semantic conventions that define `SERVER` or `CONSUMER` spans SHOULD also define
+a corresponding exception event and recommend using `ERROR` severity.
+
+Examples:
+
+- A messaging consumer terminates message processing with an exception.
+- An HTTP server framework error handler catches an exception not handled by the
+  application code.
+
+#### WARN severity
+
+Exceptions that are expected to be handled by application code SHOULD be
+reported with severity `WARN` (severity number 13).
+
+Semantic conventions that define `CLIENT` or `PRODUCER` spans SHOULD also define
+a corresponding exception event and recommend using `WARN` severity.
+
+Examples:
+
+- A connection attempt to a remote service times out.
+- Writing data to a file results in an I/O exception.
+- A client library call fails after exhausting retries because the underlying
+  service is unavailable. The client library instrumentation records a single
+  WARN log; logging of individual retry attempts is left to the lower-level
+  instrumentation.
+
+#### INFO severity
+
+Application developers may use `INFO` severity (number 9) to record exceptions.
+
+#### DEBUG severity
+
+Exceptions that don't indicate an actual issue SHOULD be recorded with severity
+`DEBUG` (severity number 5).
+
+For example, an exception indicating that a request was cancelled on the client
+side is thrown on the server and detected by the server instrumentation.
+
+#### TRACE severity
+
+Application developers may use `TRACE` severity (number 1) to record exceptions.
+Semantic conventions authors SHOULD NOT define exception events with `TRACE`
+severity.
+
+### Attributes
 
 The table below indicates which attributes should be added to the
-[LogRecord](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.54.0/specification/logs/data-model.md#log-and-event-record-definition) and their types.
+[LogRecord](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.55.0/specification/logs/data-model.md#log-and-event-record-definition).
+
+![Development](https://img.shields.io/badge/-development-blue) Instrumentations MAY
+provide additional attributes to describe the context in which the exception occurred.
+Instrumentations that also record spans for the same operation MAY provide a
+configuration option to populate exception events with attributes captured on
+the corresponding span.
 
 <!-- semconv log-exception -->
 <!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->

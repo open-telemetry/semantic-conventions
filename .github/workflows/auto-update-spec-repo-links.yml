@@ -13,7 +13,6 @@ jobs:
     runs-on: ubuntu-latest
     if: github.repository_owner == 'open-telemetry'
     outputs:
-      current-version: ${{ steps.check-versions.outputs.current-version }}
       latest-version: ${{ steps.check-versions.outputs.latest-version }}
       already-opened: ${{ steps.check-versions.outputs.already-opened }}
     steps:
@@ -24,9 +23,6 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          current_version=$(grep "PREVIOUS_SPECIFICATION_VERSION=v.*" \
-                                 .github/scripts/update-spec-repo-links.sh \
-                            | sed "s/PREVIOUS_SPECIFICATION_VERSION=//")
           latest_version=$(gh release view \
                                --repo open-telemetry/opentelemetry-specification \
                                --json tagName \
@@ -41,7 +37,6 @@ jobs:
             already_opened=true
           fi
 
-          echo "current-version=$current_version" >> $GITHUB_OUTPUT
           echo "latest-version=$latest_version" >> $GITHUB_OUTPUT
           echo "already-opened=$already_opened" >> $GITHUB_OUTPUT
 
@@ -50,7 +45,6 @@ jobs:
       contents: write # required for pushing changes
     runs-on: ubuntu-latest
     if: |
-      needs.check-versions.outputs.current-version != needs.check-versions.outputs.latest-version &&
       needs.check-versions.outputs.already-opened != 'true'
     needs:
       - check-versions
@@ -63,9 +57,7 @@ jobs:
       - name: Update version
         env:
           VERSION: ${{ needs.check-versions.outputs.latest-version }}
-        run: |
-          .github/scripts/update-spec-repo-links.sh $VERSION
-          sed -i "s/^PREVIOUS_SPECIFICATION_VERSION=.*/PREVIOUS_SPECIFICATION_VERSION=$VERSION/" .github/scripts/update-spec-repo-links.sh
+        run: .github/scripts/update-spec-repo-links.sh $VERSION
 
       - uses: actions/create-github-app-token@29824e69f54612133e76f7eaac726eef6c875baf # v2.2.1
         id: otelbot-token

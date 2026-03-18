@@ -62,7 +62,7 @@ and various HTTP versions like 1.1, 2 and SPDY.
 
 ## Name
 
-HTTP spans MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.54.0/specification/trace/api.md#span).
+HTTP spans MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.55.0/specification/trace/api.md#span).
 
 HTTP span names SHOULD be `{method} {target}` if there is a (low-cardinality) `target` available. If there is no (low-cardinality) `{target}` available, HTTP span names SHOULD be `{method}`.
 
@@ -81,7 +81,7 @@ Instrumentation MUST NOT default to using URI path as a `{target}`.
 
 ## Status
 
-[Span Status](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.54.0/specification/trace/api.md#set-status) MUST be left unset if HTTP status code was in the
+[Span Status](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.55.0/specification/trace/api.md#set-status) MUST be left unset if HTTP status code was in the
 1xx, 2xx or 3xx ranges, unless there was another error (e.g., network error receiving
 the response body; or 3xx codes with max redirects exceeded), in which case status
 MUST be set to `Error`.
@@ -106,11 +106,16 @@ failed to interpret, span status SHOULD be set to `Error`.
 
 Don't set the span status description if the reason can be inferred from `http.response.status_code`.
 
-HTTP request may fail if it was cancelled or an error occurred preventing
+HTTP request may fail if an error occurred preventing
 the client or server from sending/receiving the request/response fully.
 
 When instrumentation detects such errors it SHOULD set span status to `Error`
 and SHOULD set the `error.type` attribute.
+
+If the HTTP client instrumentation can detect that the request was cancelled
+intentionally by the caller (e.g., via context cancellation or an abort signal),
+the cancellation SHOULD NOT be treated as an error: the span status SHOULD be
+left unset and `error.type` SHOULD NOT be set.
 
 **Status**: [Development][DocumentStatus] - Refer to the [Recording Errors](/docs/general/recording-errors.md) document for
 general considerations on how to record span status.
@@ -859,4 +864,4 @@ Span name: `POST /uploads/:document_id`.
 | `error.type`                | `WebSocketDisconnect`     |
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
-[SpanProcessor]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.54.0/specification/trace/sdk.md#span-processor
+[SpanProcessor]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.55.0/specification/trace/sdk.md#span-processor
