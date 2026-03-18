@@ -35,7 +35,7 @@ Attributes for browser resource timing events
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | <a id="browser-resource-timing-connect-end" href="#browser-resource-timing-connect-end">`browser.resource_timing.connect_end`</a> | ![Development](https://img.shields.io/badge/-development-blue) | double | Time immediately after the browser completes establishing the connection to the server [5] | `145.7`; `275.2` |
 | <a id="browser-resource-timing-connect-start" href="#browser-resource-timing-connect-start">`browser.resource_timing.connect_start`</a> | ![Development](https://img.shields.io/badge/-development-blue) | double | Time immediately before the browser starts to establish the connection to the server [6] | `131.0`; `261.3` |
 | <a id="browser-resource-timing-domain-lookup-end" href="#browser-resource-timing-domain-lookup-end">`browser.resource_timing.domain_lookup_end`</a> | ![Development](https://img.shields.io/badge/-development-blue) | double | Time immediately after the browser completes the domain name lookup for the resource [7] | `130.2`; `260.5` |
