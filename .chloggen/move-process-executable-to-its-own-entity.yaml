@@ -21,6 +21,12 @@ issues: [3535]
 # Use pipe (|) for multiline entries.
 subtext: |
   - Move process.executable to its own entity
-  - Identifying attributes:
+  - Identifying attribute:
     - process.executable.name
+  - Descriptive attributes:
+    - process.executable.build_id.go
+    - process.executable.build_id.gnu
     - process.executable.path
+  - process.executable.build_id.htlhash
+    - Added for now with default roles and requirement level
+      - We need to update its description in another PR.
