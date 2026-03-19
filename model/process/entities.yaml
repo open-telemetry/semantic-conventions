@@ -63,6 +63,9 @@ groups:
     name: process.executable
     brief: >
       The executable of a process.
+    note: >
+      Represents the executable file associated with a process.
+      A single executable may be run my multiple process instances.
     attributes:
       - ref: process.executable.path
         role: identifying
