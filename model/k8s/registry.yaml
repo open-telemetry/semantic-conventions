@@ -85,12 +85,6 @@ groups:
         brief: >
           The name of the system container running on the K8s Node.
         examples: ['kubelet', 'runtime', 'pods', 'misc']
-      - id: k8s.node.system_container.node_name
-        type: string
-        stability: development
-        brief: >
-          The name of the Node the system container is running on.
-        examples: ['node-1']
       - id: k8s.namespace.name
         type: string
         stability: release_candidate

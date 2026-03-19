@@ -38,8 +38,6 @@ groups:
     attributes:
       - ref: k8s.node.system_container.name
         role: identifying
-      - ref: k8s.node.system_container.node_name
-        role: descriptive
 
   - id: entity.k8s.namespace
     type: entity

@@ -569,6 +569,12 @@ groups:
         metric_value_type: double
     stability: development
     brief: "Node's system container CPU usage, measured in cpus."
+    note: >
+      This metric is derived from the
+      [CPUStats.UsageNanoCores](https://github.com/kubernetes/kubelet/blob/v0.35.2/pkg/apis/stats/v1alpha1/types.go#L233)
+      field of the [ContainerStats](https://github.com/kubernetes/kubelet/blob/v0.35.2/pkg/apis/stats/v1alpha1/types.go#L157C6-L157C20)
+      of [Node.SystemContainers](https://github.com/kubernetes/kubelet/blob/v0.35.2/pkg/apis/stats/v1alpha1/types.go#L40)
+      of the Kubelet's stats API.
     instrument: gauge
     entity_associations:
       - k8s.node.system_container
@@ -581,6 +587,12 @@ groups:
         metric_value_type: double
     stability: development
     brief: "Node's system container CPU time."
+    note: >
+      This metric is derived from the
+      [CPUStats.UsageCoreNanoSeconds](https://github.com/kubernetes/kubelet/blob/v0.35.2/pkg/apis/stats/v1alpha1/types.go#L236)
+      field of the [ContainerStats](https://github.com/kubernetes/kubelet/blob/v0.35.2/pkg/apis/stats/v1alpha1/types.go#L157C6-L157C20)
+      of [Node.SystemContainers](https://github.com/kubernetes/kubelet/blob/v0.35.2/pkg/apis/stats/v1alpha1/types.go#L40)
+      of the Kubelet's stats API.
     instrument: counter
     entity_associations:
       - k8s.node.system_container
@@ -593,6 +605,12 @@ groups:
         metric_value_type: int
     stability: development
     brief: "Node's system container memory usage."
+    note: >
+      This metric is derived from the
+      [MemoryStats.UsageBytes](https://github.com/kubernetes/kubelet/blob/v0.35.2/pkg/apis/stats/v1alpha1/types.go#L252)
+      field of the [ContainerStats](https://github.com/kubernetes/kubelet/blob/v0.35.2/pkg/apis/stats/v1alpha1/types.go#L157C6-L157C20)
+      of [Node.SystemContainers](https://github.com/kubernetes/kubelet/blob/v0.35.2/pkg/apis/stats/v1alpha1/types.go#L40)
+      of the Kubelet's stats API.
     instrument: gauge
     entity_associations:
       - k8s.node.system_container
@@ -605,6 +623,12 @@ groups:
         metric_value_type: int
     stability: development
     brief: "The amount of working set memory."
+    note: >
+      This metric is derived from the
+      [MemoryStats.WorkingSetBytes](https://github.com/kubernetes/kubelet/blob/v0.35.2/pkg/apis/stats/v1alpha1/types.go#L256)
+      field of the [ContainerStats](https://github.com/kubernetes/kubelet/blob/v0.35.2/pkg/apis/stats/v1alpha1/types.go#L157C6-L157C20)
+      of [Node.SystemContainers](https://github.com/kubernetes/kubelet/blob/v0.35.2/pkg/apis/stats/v1alpha1/types.go#L40)
+      of the Kubelet's stats API.
     instrument: gauge
     entity_associations:
       - k8s.node.system_container

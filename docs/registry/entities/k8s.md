@@ -279,7 +279,6 @@ conflict.
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- | --- |
 | Identity | [`k8s.node.system_container.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the system container running on the K8s Node. | `kubelet`; `runtime`; `pods`; `misc` |
-| Description | [`k8s.node.system_container.node_name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the Node the system container is running on. | `node-1` |
 
 ## K8s Pod
 
