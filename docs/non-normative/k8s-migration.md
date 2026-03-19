@@ -59,7 +59,6 @@ and one for disabling the old schema called `semconv.k8s.disableLegacy`. Then:
   - [K8s ResourceQuota resource](#k8s-resourcequota-resource)
   - [K8s ReplicationController resource](#k8s-replicationcontroller-resource)
   - [K8s Container metrics](#k8s-container-metrics)
-    - [Resize CPU and Memory Resources assigned to Containers](#resize-cpu-and-memory-resources-assigned-to-containers)
   - [K8s ResourceQuota metrics](#k8s-resourcequota-metrics)
   - [OpenShift ClusterResourceQuota metrics](#openshift-clusterresourcequota-metrics)
   - [K8s Node condition metrics](#k8s-node-condition-metrics)
@@ -316,9 +315,6 @@ The changes are the following:
 
 ### K8s Container metrics
 
-**Note:** The details below still remain mostly correct. However, due to the introduction of resize for container
-cpu and memory resources, new changes are introduced. Check sub-section [Resize CPU and Memory Resources assigned to Containers](#resize-cpu-and-memory-resources-assigned-to-containers) for more details.
-
 The K8s Container metrics implemented by the Collector and specifically the
 [k8scluster](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/v0.115.0/receiver/k8sclusterreceiver/documentation.md)
 receiver were introduced as semantic conventions in:
@@ -327,45 +323,31 @@ receiver were introduced as semantic conventions in:
 available)
 - [#2074](https://github.com/open-telemetry/semantic-conventions/issues/2074)
 - [#2197](https://github.com/open-telemetry/semantic-conventions/issues/2197)
+- [#3558](https://github.com/open-telemetry/semantic-conventions/issues/3558) (CPU resize: desired/actual split)
+- [#3559](https://github.com/open-telemetry/semantic-conventions/pull/3559)
 
 The changes in their metrics are the following:
 
 <!-- prettier-ignore-start -->
 
-| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                               |
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New (SemConv) |
 | ---------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
-| `k8s.container.cpu_limit`              (type: `gauge`)                             | `k8s.container.cpu.limit` (type: `updowncounter`)                 |
-| `k8s.container.cpu_request`             (type: `gauge`)                            | `k8s.container.cpu.request` (type: `updowncounter`)               |
-| `k8s.container.memory_limit`            (type: `gauge`)                            | `k8s.container.memory.limit`     (type: `updowncounter`)          |
-| `k8s.container.memory_request`           (type: `gauge`)                           | `k8s.container.memory.request`    (type: `updowncounter`)         |
-| `k8s.container.storage_limit`             (type: `gauge`)                          | `k8s.container.storage.limit`     (type: `updowncounter`)         |
-| `k8s.container.storage_request`           (type: `gauge`)                          | `k8s.container.storage.request`    (type: `updowncounter`)        |
-| `k8s.container.ephemeralstorage_limit`      (type: `gauge`)                        | `k8s.container.ephemeral_storage.limit`  (type: `updowncounter`)  |
-| `k8s.container.ephemeralstorage_request`     (type: `gauge`)                       | `k8s.container.ephemeral_storage.request` (type: `updowncounter`) |
-| `k8s.container.restarts`                  (type: `gauge`)                          | `k8s.container.restart.count` (type: `updowncounter`)             |
-| `k8s.container.ready`                  (type: `gauge`)                             | `k8s.container.ready` (type: `updowncounter`)                     |
-| `k8s.container.cpu_limit_utilization` (type: `gauge`)                              | `k8s.container.cpu.limit_utilization` (type: `gauge`)             |
-| `k8s.container.cpu_request_utilization` (type: `gauge`)                            | `k8s.container.cpu.request_utilization` (type: `gauge`)           |
+| `k8s.container.cpu_limit` (type: `gauge`) | `k8s.container.cpu.limit.desired`, `k8s.container.cpu.limit.actual` (type: `updowncounter`) |
+| `k8s.container.cpu_request` (type: `gauge`) | `k8s.container.cpu.request.desired`, `k8s.container.cpu.request.actual` (type: `updowncounter`) |
+| `k8s.container.memory_limit` (type: `gauge`) | `k8s.container.memory.limit` (type: `updowncounter`) |
+| `k8s.container.memory_request` (type: `gauge`) | `k8s.container.memory.request` (type: `updowncounter`) |
+| `k8s.container.storage_limit` (type: `gauge`) | `k8s.container.storage.limit` (type: `updowncounter`) |
+| `k8s.container.storage_request` (type: `gauge`) | `k8s.container.storage.request` (type: `updowncounter`) |
+| `k8s.container.ephemeralstorage_limit` (type: `gauge`) | `k8s.container.ephemeral_storage.limit` (type: `updowncounter`) |
+| `k8s.container.ephemeralstorage_request` (type: `gauge`) | `k8s.container.ephemeral_storage.request` (type: `updowncounter`) |
+| `k8s.container.restarts` (type: `gauge`) | `k8s.container.restart.count` (type: `updowncounter`) |
+| `k8s.container.ready` (type: `gauge`) | `k8s.container.ready` (type: `updowncounter`) |
+| `k8s.container.cpu_limit_utilization` (type: `gauge`) | `k8s.container.cpu.limit.utilization` (type: `gauge`) |
+| `k8s.container.cpu_request_utilization` (type: `gauge`) | `k8s.container.cpu.request.utilization` (type: `gauge`) |
 
 <!-- prettier-ignore-end -->
 
-#### Resize CPU and Memory Resources assigned to Containers
-
-With the resize of cpu and memory resources being possible, limit and resources now have a desired state and the actual state.
-If k8s is not able to immediately honor the desired state, then actual and desired values might be different.
-
-Issue [#3558](https://github.com/open-telemetry/semantic-conventions/issues/3558) and PRs [] introduce the following metric changes:
-
-<!-- prettier-ignore-start -->
-
-| Old (SemConv) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New |
-| --------------------------------------------------------------------------------- | --- |
-| `k8s.container.cpu.limit` (type: `updowncounter`) | `k8s.container.cpu.limit.desired`, `k8s.container.cpu.limit.actual` (type: `updowncounter`) |
-| `k8s.container.cpu.request` (type: `updowncounter`) | `k8s.container.cpu.request.desired`, `k8s.container.cpu.request.actual` (type: `updowncounter`) |
-| `k8s.container.cpu.limit_utilization` (type: `gauge`) | `k8s.container.cpu.limit.utilization` (type: `gauge`) |
-| `k8s.container.cpu.request_utilization` (type: `gauge`) | `k8s.container.cpu.request.utilization` (type: `gauge`) |
-
-<!-- prettier-ignore-end -->
+**Note:** For CPU limit and request, SemConv splits each into `desired` (from spec) and `actual` (from container status) to support [K8s container resource resize](https://kubernetes.io/docs/tasks/configure-pod-container/resize-container-resources/).
 
 ### K8s ResourceQuota metrics
 

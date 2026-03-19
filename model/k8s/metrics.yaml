@@ -1209,8 +1209,11 @@ groups:
     entity_associations:
       - k8s.container
     note: |
-      This metric is derived from spec.containers[*].resources and shows the configured CPU limit on the container spec.
-      See `Desired Resources` definition in <https://kubernetes.io/docs/tasks/configure-pod-container/resize-container-resources/> for more details.
+      This metric aligns with the limit in the
+      [`resources`](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#resourcerequirements-v1-core) field of
+      [K8s Container](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#container-v1-core)
+      (spec.containers[*].resources). Also see `Desired Resources` in
+      <https://kubernetes.io/docs/tasks/configure-pod-container/resize-container-resources/> for more details.
     instrument: updowncounter
     unit: "{cpu}"
   - id: metric.k8s.container.cpu.limit.actual
@@ -1224,8 +1227,11 @@ groups:
     entity_associations:
       - k8s.container
     note: |
-      This metric is derived from status.containerStatuses[*].resources and shows the actual CPU limit for a running container.
-      See `Actual Resources` definition in <https://kubernetes.io/docs/tasks/configure-pod-container/resize-container-resources/> for more details.
+      This metric aligns with the limit in the
+      [`resources`](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#resourcerequirements-v1-core) field of
+      [K8s ContainerStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#containerstatus-v1-core)
+      (status.containerStatuses[*].resources). Also see `Actual Resources` in
+      <https://kubernetes.io/docs/tasks/configure-pod-container/resize-container-resources/> for more details.
     instrument: updowncounter
     unit: "{cpu}"
   - id: metric.k8s.container.cpu.limit.utilization
@@ -1235,7 +1241,7 @@ groups:
       code_generation:
         metric_value_type: double
     stability: development
-    brief: "The ratio of container CPU usage to its CPU limit as defined by k8s.container.cpu.limit.actual."
+    brief: "The ratio of container CPU usage to its CPU current limit as defined by <https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#containerstatus-v1-core>."
     entity_associations:
       - k8s.container
     note: |
@@ -1254,8 +1260,11 @@ groups:
     entity_associations:
       - k8s.container
     note: |
-      This metric is derived from spec.containers[*].resources and shows the configured CPU request on the container spec.
-      See `Desired Resources` definition in <https://kubernetes.io/docs/tasks/configure-pod-container/resize-container-resources/> for more details.
+      This metric aligns with the request in the
+      [`resources`](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#resourcerequirements-v1-core) field of
+      [K8s Container](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#container-v1-core)
+      (spec.containers[*].resources). Also see `Desired Resources` in
+      <https://kubernetes.io/docs/tasks/configure-pod-container/resize-container-resources/> for more details.
     instrument: updowncounter
     unit: "{cpu}"
   - id: metric.k8s.container.cpu.request.actual
@@ -1269,8 +1278,11 @@ groups:
     entity_associations:
       - k8s.container
     note: |
-      This metric is derived from status.containerStatuses[*].resources and shows the actual CPU request for a running container.
-      See `Actual Resources` definition in <https://kubernetes.io/docs/tasks/configure-pod-container/resize-container-resources/> for more details.
+      This metric aligns with the request in the
+      [`resources`](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#resourcerequirements-v1-core) field of
+      [K8s ContainerStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#containerstatus-v1-core)
+      (status.containerStatuses[*].resources). Also see `Actual Resources` in
+      <https://kubernetes.io/docs/tasks/configure-pod-container/resize-container-resources/> for more details.
     instrument: updowncounter
     unit: "{cpu}"
   - id: metric.k8s.container.cpu.request.utilization
@@ -1280,7 +1292,7 @@ groups:
       code_generation:
         metric_value_type: double
     stability: development
-    brief: "The ratio of container CPU usage to its CPU current request as defined by https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#containerstatus-v1-core"
+    brief: "The ratio of container CPU usage to its CPU current request as defined by <https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#containerstatus-v1-core>."
     entity_associations:
       - k8s.container
     note: |
