@@ -132,3 +132,22 @@ groups:
     unit: "s"
     stability: development
     extends: metric_attributes.gen_ai
+  - id: metric.gen_ai.workflow.duration
+    type: metric
+    metric_name: gen_ai.workflow.duration
+    annotations:
+      code_generation:
+        metric_value_type: double
+    brief: 'GenAI workflow duration.'
+    instrument: histogram
+    unit: "s"
+    stability: development
+    extends: metric_attributes.gen_ai
+    attributes:
+      - ref: error.type
+        requirement_level:
+          conditionally_required: "if the workflow ended in an error"
+        note: |
+          The `error.type` SHOULD match the error code returned by the Generative AI provider or the client library,
+          the canonical name of exception that occurred, or another low-cardinality error identifier.
+          Instrumentations SHOULD document the list of errors they report.
