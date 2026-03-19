@@ -67,6 +67,13 @@ groups:
       - ref: process.executable.path
         role: identifying
         requirement_level: required
-      - ref: process.executable.name
+      - ref: process.executable.build_id.htlhash
+      - ref: process.executable.build_id.go
         role: descriptive
         requirement_level: opt_in
+      - ref: process.executable.build_id.gnu
+        role: descriptive
+        requirement_level: opt_in
+      - ref: process.executable.name
+        role: descriptive
+        requirement_level: recommended
