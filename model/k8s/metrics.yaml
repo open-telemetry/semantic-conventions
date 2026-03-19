@@ -1280,7 +1280,7 @@ groups:
       code_generation:
         metric_value_type: double
     stability: development
-    brief: "The ratio of container CPU usage to its CPU request as defined by k8s.container.cpu.request.actual."
+    brief: "The ratio of container CPU usage to its CPU current request as defined by https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#containerstatus-v1-core"
     entity_associations:
       - k8s.container
     note: |
