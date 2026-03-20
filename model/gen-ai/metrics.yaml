@@ -142,7 +142,6 @@ groups:
     instrument: histogram
     unit: "s"
     stability: development
-    extends: metric_attributes.gen_ai
     attributes:
       - ref: error.type
         requirement_level:
