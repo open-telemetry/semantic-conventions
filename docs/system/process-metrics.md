@@ -57,15 +57,15 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `process.cpu.time` | Counter | `s` | Total CPU seconds broken down by different states. | ![Development](https://img.shields.io/badge/-development-blue) | [`process`](/docs/registry/entities/process.md#process) |
+| `process.cpu.time` | Counter | `s` | Total CPU seconds broken down by different CPU modes. | ![Development](https://img.shields.io/badge/-development-blue) | [`process`](/docs/registry/entities/process.md#process) |
 
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`cpu.mode`](/docs/registry/attributes/cpu.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A process SHOULD be characterized _either_ by data points with no `mode` labels, _or only_ data points with `mode` labels. [1] | `user`; `system` |
+| [`cpu.mode`](/docs/registry/attributes/cpu.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The CPU mode for this data point. [1] | `user`; `system` |
 
-**[1] `cpu.mode`:** Following states SHOULD be used: `user`, `system`, `wait`
+**[1] `cpu.mode`:** The following values for `cpu.mode` SHOULD be used: `user`, `system`, `wait` Other modes SHOULD NOT be used unless a particular platform mandates a unique set of modes.
 
 ---
 
@@ -103,9 +103,9 @@ This metric is [opt-in][MetricOptIn].
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`cpu.mode`](/docs/registry/attributes/cpu.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A process SHOULD be characterized _either_ by data points with no `mode` labels, _or only_ data points with `mode` labels. [1] | `user`; `system` |
+| [`cpu.mode`](/docs/registry/attributes/cpu.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The CPU mode for this data point. [1] | `user`; `system` |
 
-**[1] `cpu.mode`:** Following states SHOULD be used: `user`, `system`, `wait`
+**[1] `cpu.mode`:** The following values for `cpu.mode` SHOULD be used: `user`, `system`, `wait` Other modes SHOULD NOT be used unless a particular platform mandates a unique set of modes.
 
 ---
 
@@ -177,7 +177,7 @@ This metric is [recommended][MetricRecommended].
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`disk.io.direction`](/docs/registry/attributes/disk.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The disk IO operation direction. | `read` |
+| [`disk.io.direction`](/docs/registry/attributes/disk.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The disk IO operation direction. | `read` |
 
 ---
 
@@ -209,7 +209,7 @@ This metric is [recommended][MetricRecommended].
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`network.io.direction`](/docs/registry/attributes/network.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The network IO operation direction. | `transmit` |
+| [`network.io.direction`](/docs/registry/attributes/network.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The network IO operation direction. | `transmit` |
 
 ---
 
@@ -292,7 +292,7 @@ This metric is [recommended][MetricRecommended].
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`process.context_switch.type`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Specifies whether the context switches for this data point were voluntary or involuntary. | `voluntary`; `involuntary` |
+| [`process.context_switch.type`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Specifies whether the context switches for this data point were voluntary or involuntary. | `voluntary`; `involuntary` |
 
 ---
 
@@ -324,7 +324,7 @@ This metric is [recommended][MetricRecommended].
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`system.paging.fault.type`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The paging fault type | `minor` |
+| [`system.paging.fault.type`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The type of paging fault. Value MUST be either `major` or `minor`. If the metric is reported without this attribute, it should be the sum of major and minor page faults. | `minor` |
 
 ---
 
