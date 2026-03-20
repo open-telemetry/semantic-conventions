@@ -43,7 +43,6 @@ areas:
       - area:gen-ai
       - area:openai
       - area:mcp
-      - area:gcp
     status:
       - accepting_contributions
       - active
