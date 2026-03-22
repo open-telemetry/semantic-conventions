@@ -1,4 +1,0 @@
-change_type: enhancement
-component: db
-note: Modify area to oracledb from oracle
-issues: [3316]

@@ -247,6 +247,11 @@ groups:
         type: string
         brief: Free-form description of the GenAI agent provided by the application.
         examples: ["Helps with math problems", "Generates fiction stories"]
+      - id: gen_ai.agent.version
+        stability: development
+        type: string
+        brief: The version of the GenAI agent.
+        examples: ["1.0.0", "2025-05-01"]
       - id: gen_ai.tool.name
         stability: development
         type: string
@@ -406,6 +411,10 @@ groups:
             - id: execute_tool
               value: "execute_tool"
               brief: 'Execute a tool'
+              stability: development
+            - id: invoke_workflow
+              value: "invoke_workflow"
+              brief: 'Invoke GenAI workflow'
               stability: development
         brief: The name of the operation being performed.
         note: >
@@ -657,3 +666,10 @@ groups:
         brief: The name of the prompt that uniquely identifies it.
         stability: development
         examples: ["analyze-code"]
+      - id: gen_ai.workflow.name
+        stability: development
+        type: string
+        brief: Human-readable name of the GenAI workflow provided by the application.
+        examples: [ "multi_agent_rag", "customer_support_pipeline" ]
+        note: |
+          This attribute can be populated in different frameworks eg: name of the first chain in LangChain OR name of the crew in CrewAI.

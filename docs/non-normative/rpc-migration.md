@@ -47,12 +47,15 @@ TODO (latest).
 
 ### RPC span attributes
 
+<!-- disable mdlint requirement for tables to be aligned -->
+<!-- markdownlint-disable-file MD060 -->
 <!-- prettier-ignore-start -->
 | Change                                                         | PR                                                                                                                                                   | Comments                                                                                                                          |
 | -------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
 | `rpc.system` &rarr; `rpc.system.name`                          | [#3176](https://github.com/open-telemetry/semantic-conventions/pull/3176), [#3203](https://github.com/open-telemetry/semantic-conventions/pull/3203) | See [below](#rpcsystemname-values) for changes to the values, also now marked as sampling-relevant                                |
 | `rpc.method`                                                   | [#3223](https://github.com/open-telemetry/semantic-conventions/pull/3223), [#3203](https://github.com/open-telemetry/semantic-conventions/pull/3203) | Now contains fully-qualified method name (e.g., `com.example.ExampleService/exampleMethod`), also now marked as sampling-relevant |
 | `rpc.service`                                                  | [#3223](https://github.com/open-telemetry/semantic-conventions/pull/3223)                                                                            | Removed, integrated into `rpc.method`                                                                                             |
+| `network.transport`                                            | [#3350](https://github.com/open-telemetry/semantic-conventions/pull/3350)                                                                            | Removed                                                                                                                           |
 | `network.type`                                                 | [#2857](https://github.com/open-telemetry/semantic-conventions/pull/2857)                                                                            | Removed                                                                                                                           |
 | `rpc.grpc.status_code` &rarr; `rpc.response.status_code`       | [#2920](https://github.com/open-telemetry/semantic-conventions/pull/2920)                                                                            | Changed from int to string (e.g., `0` &rarr; `"OK"`)                                                                              |
 | `rpc.connect_rpc.error_code` &rarr; `rpc.response.status_code` | [#2920](https://github.com/open-telemetry/semantic-conventions/pull/2920)                                                                            |                                                                                                                                   |
@@ -60,12 +63,13 @@ TODO (latest).
 | `rpc.grpc.response.metadata.<key>`                             | [#3169](https://github.com/open-telemetry/semantic-conventions/pull/3169)                                                                            | Replaced by `rpc.response.metadata.<key>`                                                                                         |
 | `rpc.connect_rpc.request.metadata.<key>`                       | [#3169](https://github.com/open-telemetry/semantic-conventions/pull/3169)                                                                            | Replaced by `rpc.request.metadata.<key>`                                                                                          |
 | `rpc.connect_rpc.response.metadata.<key>`                      | [#3169](https://github.com/open-telemetry/semantic-conventions/pull/3169)                                                                            | Replaced by `rpc.response.metadata.<key>`                                                                                         |
-| `server.address`                                               | [#3203](https://github.com/open-telemetry/semantic-conventions/pull/3203)                                                                            | Now marked as sampling-relevant                                                                                                   |
-| `server.port`                                                  | [#3203](https://github.com/open-telemetry/semantic-conventions/pull/3203)                                                                            | Now marked as sampling-relevant                                                                                                   |
+| `server.address`                                               | [#3203](https://github.com/open-telemetry/semantic-conventions/pull/3203), [#3317](https://github.com/open-telemetry/semantic-conventions/pull/3317) | Now marked as sampling-relevant;<br>Now it’s taken from static configuration and can be any string identifying a group of server instances.  |
+| `server.port`                                                  | [#3203](https://github.com/open-telemetry/semantic-conventions/pull/3203), [#3317](https://github.com/open-telemetry/semantic-conventions/pull/3317) | Now marked as sampling-relevant;<br>Now it’s taken from static configuration.  |
 | New: `error.type`                                              | [#2852](https://github.com/open-telemetry/semantic-conventions/pull/2852)                                                                            |                                                                                                                                   |
-| New: `network.protocol.name`                                   | [#2767](https://github.com/open-telemetry/semantic-conventions/pull/2767)                                                                            |                                                                                                                                   |
-| New: `network.protocol.version`                                | [#2767](https://github.com/open-telemetry/semantic-conventions/pull/2767)                                                                            |                                                                                                                                   |
 | New: `rpc.method_original`                                     | [#3223](https://github.com/open-telemetry/semantic-conventions/pull/3223)                                                                            | Original method name when `rpc.method` is set to `_OTHER`                                                                         |
+| `client.address`                                               | [#3488](https://github.com/open-telemetry/semantic-conventions/pull/3488)                                                                            | Removed                                                                                                                           |
+| `client.port`                                                  | [#3488](https://github.com/open-telemetry/semantic-conventions/pull/3488)                                                                            | Removed                                                                                                                           |
+
 <!-- prettier-ignore-end -->
 
 References:
@@ -109,13 +113,12 @@ Metric changes:
 | `rpc.system` &rarr; `rpc.system.name` | [#3176](https://github.com/open-telemetry/semantic-conventions/pull/3176) | See [above](#rpcsystemname-values) for changes to the values                                |
 | `rpc.method`                          | [#3223](https://github.com/open-telemetry/semantic-conventions/pull/3223) | Now contains fully-qualified method name (e.g., `com.example.ExampleService/exampleMethod`) |
 | `rpc.service`                         | [#3223](https://github.com/open-telemetry/semantic-conventions/pull/3223) | Removed, integrated into `rpc.method`                                                       |
+| `network.transport`                   | [#3350](https://github.com/open-telemetry/semantic-conventions/pull/3350) | Removed                                                                                     |
 | `network.type`                        | [#2857](https://github.com/open-telemetry/semantic-conventions/pull/2857) | Removed                                                                                     |
 | `server.address`                      | [#3197](https://github.com/open-telemetry/semantic-conventions/pull/3197) | Changed from Recommended to Opt-In                                                          |
 | `server.port`                         | [#3197](https://github.com/open-telemetry/semantic-conventions/pull/3197) | Changed from Recommended to Opt-In                                                          |
 | New: `rpc.response.status_code`       | [#2920](https://github.com/open-telemetry/semantic-conventions/pull/2920) |                                                                                             |
 | New: `error.type`                     | [#2852](https://github.com/open-telemetry/semantic-conventions/pull/2852) |                                                                                             |
-| New: `network.protocol.name`          | [#2767](https://github.com/open-telemetry/semantic-conventions/pull/2767) |                                                                                             |
-| New: `network.protocol.version`       | [#2767](https://github.com/open-telemetry/semantic-conventions/pull/2767) |                                                                                             |
 <!-- prettier-ignore-end -->
 
 References:
@@ -142,19 +145,23 @@ Metric changes:
 | `rpc.system` &rarr; `rpc.system.name` | [#3176](https://github.com/open-telemetry/semantic-conventions/pull/3176) | See [above](#rpcsystemname-values) for changes to the values                                |
 | `rpc.method`                          | [#3223](https://github.com/open-telemetry/semantic-conventions/pull/3223) | Now contains fully-qualified method name (e.g., `com.example.ExampleService/exampleMethod`) |
 | `rpc.service`                         | [#3223](https://github.com/open-telemetry/semantic-conventions/pull/3223) | Removed, integrated into `rpc.method`                                                       |
+| `network.transport`                   | [#3350](https://github.com/open-telemetry/semantic-conventions/pull/3350) | Removed                                                                                     |
 | `network.type`                        | [#2857](https://github.com/open-telemetry/semantic-conventions/pull/2857) | Removed                                                                                     |
 | `server.address`                      | [#3197](https://github.com/open-telemetry/semantic-conventions/pull/3197) | Changed from Recommended to Required                                                        |
 | `server.port`                         | [#3197](https://github.com/open-telemetry/semantic-conventions/pull/3197) | Changed from Recommended to Conditionally Required                                          |
 | New: `rpc.response.status_code`       | [#2920](https://github.com/open-telemetry/semantic-conventions/pull/2920) |                                                                                             |
 | New: `error.type`                     | [#2852](https://github.com/open-telemetry/semantic-conventions/pull/2852) |                                                                                             |
-| New: `network.protocol.name`          | [#2767](https://github.com/open-telemetry/semantic-conventions/pull/2767) |                                                                                             |
-| New: `network.protocol.version`       | [#2767](https://github.com/open-telemetry/semantic-conventions/pull/2767) |                                                                                             |
 <!-- prettier-ignore-end -->
 
 References:
 
 - [Metric `rpc.client.duration` v1.37.0](https://github.com/open-telemetry/semantic-conventions/blob/v1.37.0/docs/rpc/rpc-metrics.md#metric-rpcclientduration)
 - [Metric `rpc.client.call.duration` (TODO)](https://github.com/open-telemetry/semantic-conventions/blob/main/docs/rpc/rpc-metrics.md#metric-rpcclientcallduration)
+
+### RPC exception events
+
+Exceptions that prevent the call from completing successfully are recorded as
+[`rpc.client.call.exception` and `rpc.server.call.exception` log-based events](/docs/rpc/rpc-exceptions.md) ([#3426](https://github.com/open-telemetry/semantic-conventions/pull/3426)).
 
 ### Deprecated events
 

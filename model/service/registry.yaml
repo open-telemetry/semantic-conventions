@@ -38,7 +38,7 @@ groups:
         examples: ["Shop"]
       - id: service.instance.id
         type: string
-        stability: development
+        stability: stable
         brief: >
           The string ID of the service instance.
         note: |

@@ -23,3 +23,7 @@ groups:
         requirement_level: recommended
       - ref: pprof.profile.doc_url
         requirement_level: recommended
+      - ref: pprof.scope.default_sample_type
+        requirement_level: recommended
+      - ref: pprof.scope.sample_type_order
+        requirement_level: recommended
