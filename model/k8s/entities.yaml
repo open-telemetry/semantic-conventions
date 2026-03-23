@@ -286,14 +286,6 @@ groups:
       - ref: k8s.persistentvolume.reclaim_policy
         role: descriptive
         requirement_level: opt_in
-      - ref: k8s.persistentvolumeclaim.name
-        role: descriptive
-        requirement_level: recommended
-        brief: The name of the bound PersistentVolumeClaim. Only available when the PV is in the `Bound` phase.
-      - ref: k8s.namespace.name
-        role: descriptive
-        requirement_level: recommended
-        brief: The namespace of the bound PersistentVolumeClaim. Only available when the PV is in the `Bound` phase.
       - ref: k8s.persistentvolume.label
         role: descriptive
         requirement_level: opt_in
@@ -316,10 +308,6 @@ groups:
       - ref: k8s.storageclass.name
         role: descriptive
         requirement_level: recommended
-      - ref: k8s.persistentvolume.name
-        role: descriptive
-        requirement_level: recommended
-        brief: The name of the bound PersistentVolume. Only available when the PVC is in the `Bound` phase.
       - ref: k8s.persistentvolumeclaim.label
         role: descriptive
         requirement_level: opt_in
