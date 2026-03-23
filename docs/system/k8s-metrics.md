@@ -1354,7 +1354,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.node.system_container.memory.working_set` | Gauge | `By` | The amount of working set memory. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.node.system_container`](/docs/registry/entities/k8s.md#k8s-node-system-container) |
+| `k8s.node.system_container.memory.working_set` | UpDownCounter | `By` | The amount of working set memory. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.node.system_container`](/docs/registry/entities/k8s.md#k8s-node-system-container) |
 
 **[1]:** This metric is derived from the [MemoryStats.WorkingSetBytes](https://github.com/kubernetes/kubelet/blob/v0.35.2/pkg/apis/stats/v1alpha1/types.go#L256) field of the [ContainerStats](https://github.com/kubernetes/kubelet/blob/v0.35.2/pkg/apis/stats/v1alpha1/types.go#L157C6-L157C20) of [Node.SystemContainers](https://github.com/kubernetes/kubelet/blob/v0.35.2/pkg/apis/stats/v1alpha1/types.go#L40) of the Kubelet's stats API.
 
@@ -1383,7 +1383,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.node.system_container.memory.usage` | Gauge | `By` | Node's system container memory usage. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.node.system_container`](/docs/registry/entities/k8s.md#k8s-node-system-container) |
+| `k8s.node.system_container.memory.usage` | UpDownCounter | `By` | Node's system container memory usage. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.node.system_container`](/docs/registry/entities/k8s.md#k8s-node-system-container) |
 
 **[1]:** This metric is derived from the [MemoryStats.UsageBytes](https://github.com/kubernetes/kubelet/blob/v0.35.2/pkg/apis/stats/v1alpha1/types.go#L252) field of the [ContainerStats](https://github.com/kubernetes/kubelet/blob/v0.35.2/pkg/apis/stats/v1alpha1/types.go#L157C6-L157C20) of [Node.SystemContainers](https://github.com/kubernetes/kubelet/blob/v0.35.2/pkg/apis/stats/v1alpha1/types.go#L40) of the Kubelet's stats API.
 

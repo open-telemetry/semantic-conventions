@@ -611,7 +611,7 @@ groups:
       field of the [ContainerStats](https://github.com/kubernetes/kubelet/blob/v0.35.2/pkg/apis/stats/v1alpha1/types.go#L157C6-L157C20)
       of [Node.SystemContainers](https://github.com/kubernetes/kubelet/blob/v0.35.2/pkg/apis/stats/v1alpha1/types.go#L40)
       of the Kubelet's stats API.
-    instrument: gauge
+    instrument: updowncounter
     entity_associations:
       - k8s.node.system_container
     unit: "By"
@@ -629,7 +629,7 @@ groups:
       field of the [ContainerStats](https://github.com/kubernetes/kubelet/blob/v0.35.2/pkg/apis/stats/v1alpha1/types.go#L157C6-L157C20)
       of [Node.SystemContainers](https://github.com/kubernetes/kubelet/blob/v0.35.2/pkg/apis/stats/v1alpha1/types.go#L40)
       of the Kubelet's stats API.
-    instrument: gauge
+    instrument: updowncounter
     entity_associations:
       - k8s.node.system_container
     unit: "By"
