@@ -174,7 +174,7 @@ closely matches our vision for our general use cases, and we want to ensure that
 users who are not specialists and just want the most important basic information
 can acquire it as easily as possible using out-of-the-box semconv
 instrumentation. This means we are more likely within General Class
-instrumentation to make judgment's about exactly what the value should be, and
+instrumentation to make judgments about exactly what the value should be, and
 whether the value should be reshaped by instrumentation in any case when pulling
 the values from sources if it serves general purpose use cases.
 
