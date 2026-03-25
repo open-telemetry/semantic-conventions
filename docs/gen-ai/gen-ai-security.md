@@ -42,7 +42,7 @@ Describes a security guardian evaluation.
 
 `gen_ai.operation.name` SHOULD be `apply_guardrail`.
 
-**Span name** SHOULD be `apply_guardrail {gen_ai.guardian.name}`.
+**Span name** SHOULD be `apply_guardrail {gen_ai.guardian.name} {gen_ai.security.target.type}`.
 When `gen_ai.guardian.name` is not available, it SHOULD be `apply_guardrail {gen_ai.security.target.type}`.
 
 Guardian spans SHOULD be children of the operation span they are protecting (for example,
@@ -72,13 +72,13 @@ Multiple guardian spans MAY exist under a single operation span if multiple guar
 | [`gen_ai.security.policy.id`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` if a policy triggered the decision | string | Identifier of the policy that triggered the decision. | `policy_pii_v2`; `deny-topic-financial-advice`; `org-compliance-001` |
 | [`gen_ai.security.target.id`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` if available | string | Identifier of the specific target the guardrail is applied to. [10] | `call_xyz789`; `tool-123`; `mem_abc456` |
 | [`gen_ai.guardian.name`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Human-readable name of the guardian (the evaluating service or component). [11] | `Azure Content Safety`; `Bedrock Guardrails`; `Custom PII Filter` |
-| [`gen_ai.guardian.provider.name`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The provider or vendor of the guardian service. | `azure.ai.content_safety`; `aws.bedrock`; `zenity`; `custom` |
-| [`gen_ai.guardian.version`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Version of the guardian service or component. [12] | `1.0.0`; `2024-05-01`; `v2` |
+| [`gen_ai.guardian.provider.name`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The provider or vendor of the guardian service. [12] | `azure.ai.content_safety`; `aws.bedrock`; `gcp.model_armor` |
+| [`gen_ai.guardian.version`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Version of the guardian service or component. [13] | `1.0.0`; `2024-05-01`; `v2` |
 | [`gen_ai.security.decision.code`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | int | Numeric code for the security decision (provider-specific). | `112`; `403`; `5001` |
 | [`gen_ai.security.policy.name`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Human-readable name of the triggered policy. | `PII Protection Policy`; `Financial Advice Restriction` |
 | [`gen_ai.security.policy.version`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Version of the policy that triggered the decision. | `1.0`; `2024-05-01` |
-| [`gen_ai.security.content.input.value`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | any | The input content that was evaluated by the guardian. [13] | `Send an email to customer@example.com` |
-| [`gen_ai.security.content.output.value`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | any | The output content after guardian processing (if modified). [14] | `Send an email to [REDACTED]` |
+| [`gen_ai.security.content.input.value`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | any | The input content that was evaluated by the guardian. [14] | `Send an email to customer@example.com` |
+| [`gen_ai.security.content.output.value`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | any | The output content after guardian processing (if modified). [15] | `Send an email to [REDACTED]` |
 
 **[1] `gen_ai.operation.name`:** If one of the predefined values applies, but specific system uses a different name it's RECOMMENDED to document it in the semantic conventions for specific GenAI system and use system-specific name in the instrumentation. If a different name is not documented, instrumentation libraries SHOULD use applicable predefined value.
 
@@ -135,9 +135,11 @@ beyond what `gen_ai.security.policy.id` provides.
 
 **[11] `gen_ai.guardian.name`:** This identifies the security evaluation service or component, not the policy name. For policy names, use `gen_ai.security.policy.name`.
 
-**[12] `gen_ai.guardian.version`:** This is the version of the evaluating service/component, not the policy version. For policy versions, use `gen_ai.security.policy.version`.
+**[12] `gen_ai.guardian.provider.name`:** This identifies the guardrail provider, which may differ from the inference provider (`gen_ai.provider.name`). For example, an agent may use OpenAI for inference and Azure AI Content Safety for content filtering in the same trace.
 
-**[13] `gen_ai.security.content.input.value`:**
+**[13] `gen_ai.guardian.version`:** This is the version of the evaluating service/component, not the policy version. For policy versions, use `gen_ai.security.policy.version`.
+
+**[14] `gen_ai.security.content.input.value`:**
 
 > [!WARNING]
 > This attribute may contain sensitive information including user/PII
@@ -147,7 +149,7 @@ beyond what `gen_ai.security.policy.id` provides.
 This attribute MAY be truncated. For correlation without full content,
 consider `gen_ai.security.content.input.hash`.
 
-**[14] `gen_ai.security.content.output.value`:**
+**[15] `gen_ai.security.content.output.value`:**
 
 > [!WARNING]
 > This attribute may contain sensitive information. Instrumentations
@@ -163,6 +165,16 @@ For `modify` decisions, this MAY contain the sanitized/redacted result.
 | Value | Description | Stability |
 | --- | --- | --- |
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+
+---
+
+`gen_ai.guardian.provider.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value | Description | Stability |
+| --- | --- | --- |
+| `aws.bedrock` | [AWS Bedrock Guardrails](https://aws.amazon.com/bedrock/guardrails/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `azure.ai.content_safety` | [Azure AI Content Safety](https://azure.microsoft.com/products/ai-services/ai-content-safety/) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gcp.model_armor` | [GCP Model Armor](https://cloud.google.com/security/products/model-armor) | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 

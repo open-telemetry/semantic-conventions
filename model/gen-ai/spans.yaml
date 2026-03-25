@@ -448,7 +448,7 @@ groups:
     note: |
       `gen_ai.operation.name` SHOULD be `apply_guardrail`.
 
-      **Span name** SHOULD be `apply_guardrail {gen_ai.guardian.name}`.
+      **Span name** SHOULD be `apply_guardrail {gen_ai.guardian.name} {gen_ai.security.target.type}`.
       When `gen_ai.guardian.name` is not available, it SHOULD be `apply_guardrail {gen_ai.security.target.type}`.
 
       Guardian spans SHOULD be children of the operation span they are protecting (for example,

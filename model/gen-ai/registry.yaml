@@ -399,9 +399,26 @@ groups:
         examples: ['1.0.0', '2024-05-01', 'v2']
       - id: gen_ai.guardian.provider.name
         stability: development
-        type: string
+        type:
+          members:
+            - id: azure.ai.content_safety
+              value: "azure.ai.content_safety"
+              brief: '[Azure AI Content Safety](https://azure.microsoft.com/products/ai-services/ai-content-safety/)'
+              stability: development
+            - id: aws.bedrock
+              value: "aws.bedrock"
+              brief: '[AWS Bedrock Guardrails](https://aws.amazon.com/bedrock/guardrails/)'
+              stability: development
+            - id: gcp.model_armor
+              value: "gcp.model_armor"
+              brief: '[GCP Model Armor](https://cloud.google.com/security/products/model-armor)'
+              stability: development
         brief: The provider or vendor of the guardian service.
-        examples: ['azure.ai.content_safety', 'aws.bedrock', 'zenity', 'custom']
+        note: >
+          This identifies the guardrail provider, which may differ from the inference
+          provider (`gen_ai.provider.name`). For example, an agent may use OpenAI for
+          inference and Azure AI Content Safety for content filtering in the same trace.
+        examples: ['azure.ai.content_safety', 'aws.bedrock', 'gcp.model_armor']
 
       - id: gen_ai.security.decision.type
         stability: development
