@@ -323,7 +323,7 @@ receiver were introduced as semantic conventions in:
 available)
 - [#2074](https://github.com/open-telemetry/semantic-conventions/issues/2074)
 - [#2197](https://github.com/open-telemetry/semantic-conventions/issues/2197)
-- [#3558](https://github.com/open-telemetry/semantic-conventions/issues/3558) (CPU resize: desired/actual split)
+- [#3558](https://github.com/open-telemetry/semantic-conventions/issues/3558) (CPU resize: desired/current split)
 - [#3559](https://github.com/open-telemetry/semantic-conventions/pull/3559)
 
 The changes in their metrics are the following:
@@ -332,8 +332,8 @@ The changes in their metrics are the following:
 
 | Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New (SemConv) |
 | ---------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
-| `k8s.container.cpu_limit` (type: `gauge`) | `k8s.container.cpu.limit.desired`, `k8s.container.cpu.limit.actual` (type: `updowncounter`) |
-| `k8s.container.cpu_request` (type: `gauge`) | `k8s.container.cpu.request.desired`, `k8s.container.cpu.request.actual` (type: `updowncounter`) |
+| `k8s.container.cpu_limit` (type: `gauge`) | `k8s.container.cpu.limit.desired`, `k8s.container.cpu.limit.current` (type: `updowncounter`) |
+| `k8s.container.cpu_request` (type: `gauge`) | `k8s.container.cpu.request.desired`, `k8s.container.cpu.request.current` (type: `updowncounter`) |
 | `k8s.container.memory_limit` (type: `gauge`) | `k8s.container.memory.limit` (type: `updowncounter`) |
 | `k8s.container.memory_request` (type: `gauge`) | `k8s.container.memory.request` (type: `updowncounter`) |
 | `k8s.container.storage_limit` (type: `gauge`) | `k8s.container.storage.limit` (type: `updowncounter`) |

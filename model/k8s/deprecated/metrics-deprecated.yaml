@@ -521,7 +521,7 @@ groups:
     deprecated:
       reason: renamed
       renamed_to: k8s.container.cpu.limit.desired
-    brief: "Deprecated, use `k8s.container.cpu.limit.desired` and `k8s.container.cpu.limit.actual` instead."
+    brief: "Deprecated, use `k8s.container.cpu.limit.desired` and `k8s.container.cpu.limit.current` instead."
     entity_associations:
       - k8s.container
     instrument: updowncounter
@@ -551,7 +551,7 @@ groups:
     deprecated:
       reason: renamed
       renamed_to: k8s.container.cpu.request.desired
-    brief: "Deprecated, use `k8s.container.cpu.request.desired` and `k8s.container.cpu.request.actual` instead."
+    brief: "Deprecated, use `k8s.container.cpu.request.desired` and `k8s.container.cpu.request.current` instead."
     entity_associations:
       - k8s.container
     instrument: updowncounter

@@ -1216,9 +1216,9 @@ groups:
       <https://kubernetes.io/docs/tasks/configure-pod-container/resize-container-resources/> for more details.
     instrument: updowncounter
     unit: "{cpu}"
-  - id: metric.k8s.container.cpu.limit.actual
+  - id: metric.k8s.container.cpu.limit.current
     type: metric
-    metric_name: k8s.container.cpu.limit.actual
+    metric_name: k8s.container.cpu.limit.current
     annotations:
       code_generation:
         metric_value_type: double
@@ -1267,9 +1267,9 @@ groups:
       <https://kubernetes.io/docs/tasks/configure-pod-container/resize-container-resources/> for more details.
     instrument: updowncounter
     unit: "{cpu}"
-  - id: metric.k8s.container.cpu.request.actual
+  - id: metric.k8s.container.cpu.request.current
     type: metric
-    metric_name: k8s.container.cpu.request.actual
+    metric_name: k8s.container.cpu.request.current
     annotations:
       code_generation:
         metric_value_type: double
