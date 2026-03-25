@@ -567,7 +567,7 @@ groups:
         metric_value_type: int
     stability: development
     brief: "System hugepage size in bytes."
-    instrument: gauge
+    instrument: updowncounter
     unit: "By"
     attributes: []
     entity_associations:
@@ -585,7 +585,7 @@ groups:
       Hugepages for which a commitment to allocate has been made, but no allocation has yet been made.
       This is reported as a separate metric rather than a `usage` state because reserved pages are already counted in `free` pages.
       They represent a subset of free pages that cannot be used for non-reserved allocations.
-    instrument: gauge
+    instrument: updowncounter
     unit: "{page}"
     attributes: []
     entity_associations:
@@ -603,7 +603,7 @@ groups:
       Overcommitted hugepages beyond the persistent pool.
       This is reported as a separate metric rather than a `usage` state because surplus pages can be in either `used` or `free` state.
       Including them in `usage` would break the convention that `usage` states sum to the `limit`.
-    instrument: gauge
+    instrument: updowncounter
     unit: "{page}"
     attributes: []
     entity_associations:
