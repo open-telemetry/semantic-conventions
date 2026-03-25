@@ -47,7 +47,7 @@ TODO (latest).
 
 ### RPC span attributes
 
-<!-- disable mdlint requirement for tables to be aligned -->
+<!-- disable markdownlint requirement for tables to be aligned -->
 <!-- markdownlint-disable-file MD060 -->
 <!-- prettier-ignore-start -->
 | Change                                                         | PR                                                                                                                                                   | Comments                                                                                                                          |

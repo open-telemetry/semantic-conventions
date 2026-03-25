@@ -558,7 +558,7 @@ groups:
         type: string
         stability: development
         brief: >
-          The ARN of the Secret stored in the Secrets Mangger
+          The ARN of the Secret stored in the Secrets Manager
         examples: ["arn:aws:secretsmanager:us-east-1:123456789012:secret:SecretName-6RandomCharacters"]
   - id: registry.aws.bedrock
     type: attribute_group
