@@ -632,7 +632,7 @@ groups:
         metric_value_type: double
     stability: development
     brief: "Percentage of hugepages in use by state."
-    instrument: updowncounter
+    instrument: gauge
     unit: "1"
     attributes:
       - ref: system.memory.linux.hugepages.state

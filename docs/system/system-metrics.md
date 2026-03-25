@@ -1256,7 +1256,7 @@ Including them in `usage` would break the convention that `usage` states sum to 
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.memory.linux.hugepages.utilization` | UpDownCounter | `1` | Percentage of hugepages in use by state. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
+| `system.memory.linux.hugepages.utilization` | Gauge | `1` | Percentage of hugepages in use by state. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
 
 **Attributes:**
 
