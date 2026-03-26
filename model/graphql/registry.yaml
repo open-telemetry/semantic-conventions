@@ -43,6 +43,10 @@ groups:
         stability: development
         type:
           members:
+            - id: request
+              value: "request"
+              brief: "Processing the entire GraphQL request."
+              stability: development
             - id: parse
               value: "parse"
               brief: "Parsing the GraphQL document into an AST."
@@ -335,33 +339,6 @@ groups:
         note: >
           The operation name of the query or mutation that the gateway sends to
           the source system.
-      - id: graphql.source.operation.type
-        brief: "The type of GraphQL operation to be executed on the source."
-        stability: development
-        type:
-          members:
-            - id: query
-              value: "query"
-              brief: "GraphQL query operation"
-              stability: development
-            - id: mutation
-              value: "mutation"
-              brief: "GraphQL mutation operation"
-              stability: development
-            - id: subscription
-              value: "subscription"
-              brief: "GraphQL subscription operation"
-              stability: development
-            - id: _OTHER
-              value: "_OTHER"
-              brief:
-                "A fallback for operation types not covered by specific values
-                in this enum."
-              stability: development
-        examples: ["query", "mutation", "subscription"]
-        note: >
-          The type of operation that the gateway sends to the source system.
-          This enum matches `graphql.operation.type` for consistency.
       - id: graphql.source.operation.hash
         brief: "A hash of the GraphQL operation to be executed on the source."
         type: string

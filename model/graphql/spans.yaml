@@ -4,7 +4,7 @@
 # The following diagram shows the normative parent-child relationships
 # between GraphQL spans. Spans marked [optional] are not required.
 #
-#   graphql.server (SERVER)
+#   graphql.server (INTERNAL)
 #   ├── graphql.document.parsing (INTERNAL)
 #   ├── graphql.document.validation (INTERNAL)
 #   ├── graphql.document.variable_coercion (INTERNAL)
@@ -23,7 +23,7 @@ groups:
   - id: span.graphql.server
     type: span
     stability: development
-    span_kind: server
+    span_kind: internal
     brief: >
       This span represents an incoming GraphQL request on a server
       implementation.
@@ -100,6 +100,9 @@ groups:
       Each operation span SHOULD have its own `graphql.operation.type` and
       `graphql.operation.name` attributes.
     attributes:
+      - ref: graphql.processing.type
+        requirement_level: required
+        brief: MUST be `request`.
       - ref: error.type
         requirement_level:
           conditionally_required: If the GraphQL operation ended with an error.
@@ -433,8 +436,6 @@ groups:
       - ref: graphql.source.name
         requirement_level: opt_in
       - ref: graphql.source.operation.name
-        requirement_level: opt_in
-      - ref: graphql.source.operation.type
         requirement_level: opt_in
       - ref: graphql.source.operation.hash
         requirement_level: opt_in

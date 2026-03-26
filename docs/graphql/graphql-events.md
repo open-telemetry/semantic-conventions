@@ -33,7 +33,6 @@ Instrumentations SHOULD set the severity based on the impact of the error. When 
 When a GraphQL error is NOT caused by an exception (e.g., validation errors, authorization errors returned by the GraphQL layer), only the `graphql.error.*` attributes are needed.
 Instrumentations SHOULD cap the number of error events per span to a configurable maximum (default: 10) to prevent excessive telemetry. When capped, the total error count SHOULD still be recorded via `graphql.error.count` on the parent span.
 **Relationship to span status and `error.type`:** GraphQL error events provide detailed per-error information from the response `errors` array. They are complementary to span-level error signals:
-
 - `error.type` on the parent span provides a low-cardinality error classification
   for the overall operation outcome. It SHOULD be set based on the `graphql.error.code`
   of the first error or a general error category.

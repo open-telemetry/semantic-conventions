@@ -105,85 +105,34 @@ groups:
         requirement_level:
           conditionally_required: If available.
 
-  - id: metric.graphql.server.request.parse.duration
+  - id: metric.graphql.server.processing.duration
     type: metric
-    metric_name: graphql.server.request.parse.duration
+    metric_name: graphql.server.processing.duration
     annotations:
       code_generation:
         metric_value_type: double
-    brief: "Duration of GraphQL document parsing."
+    brief: "Duration of a GraphQL server processing phase."
     instrument: histogram
     unit: "s"
     stability: development
     note: |
-      This metric measures the time spent parsing the GraphQL document
-      string into an AST. When reported alongside a parse span, the
-      metric value SHOULD match the span duration.
+      This metric measures the duration of individual processing phases
+      within a GraphQL server request. The `graphql.processing.type`
+      attribute identifies which phase is being measured (e.g., parse,
+      validate, execute, plan).
 
-      Histogram bucket boundaries SHOULD be chosen to capture typical
-      parsing/validation times.
-    extends: metric_attributes.graphql.server.phase
-
-  - id: metric.graphql.server.request.validate.duration
-    type: metric
-    metric_name: graphql.server.request.validate.duration
-    annotations:
-      code_generation:
-        metric_value_type: double
-    brief: "Duration of GraphQL document validation."
-    instrument: histogram
-    unit: "s"
-    stability: development
-    note: |
-      This metric measures the time spent validating the GraphQL document
-      AST against the schema. When reported alongside a validation span,
-      the metric value SHOULD match the span duration.
-
-      Histogram bucket boundaries SHOULD be chosen to capture typical
-      parsing/validation times.
-    extends: metric_attributes.graphql.server.phase
-
-  - id: metric.graphql.server.request.execute.duration
-    type: metric
-    metric_name: graphql.server.request.execute.duration
-    annotations:
-      code_generation:
-        metric_value_type: double
-    brief: "Duration of GraphQL operation execution."
-    instrument: histogram
-    unit: "s"
-    stability: development
-    note: |
-      This metric measures the time spent executing the GraphQL operation,
-      including field resolution and result formatting. When reported
-      alongside an execution span, the metric value SHOULD match the span
-      duration.
+      When reported alongside a corresponding span, the metric value
+      SHOULD match the span duration.
 
       Histogram bucket boundaries SHOULD be chosen to capture expected
-      execution durations.
+      durations for the respective processing phases.
     extends: metric_attributes.graphql.server.phase
-
-  - id: metric.graphql.server.request.plan.duration
-    type: metric
-    metric_name: graphql.server.request.plan.duration
-    annotations:
-      code_generation:
-        metric_value_type: double
-    brief: "Duration of GraphQL operation planning."
-    instrument: histogram
-    unit: "s"
-    stability: development
-    note: |
-      This metric measures the time spent planning the execution of a
-      GraphQL operation. This is relevant for federated GraphQL systems
-      and advanced servers that perform query optimization.
-
-      This metric is OPTIONAL - it only applies to servers that have
-      a distinct planning phase.
-
-      Histogram bucket boundaries SHOULD be chosen to capture typical
-      planning times.
-    extends: metric_attributes.graphql.server.phase
+    attributes:
+      - ref: graphql.processing.type
+        requirement_level: required
+        note: |
+          Identifies the processing phase being measured. Common values
+          include `parse`, `validate`, `execute`, and `plan`.
 
   - id: metric.graphql.server.response.error_count
     type: metric
