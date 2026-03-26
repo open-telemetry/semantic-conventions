@@ -102,6 +102,21 @@ misspell:	$(MISSPELL)
 misspell-correction:	$(MISSPELL)
 	find . -type f -name '*.md' -not -path './.github/*' -not -path './node_modules/*' -not -path './.git/*' -exec $(MISSPELL) -w {} +
 
+.PHONY: textlint
+textlint:
+	@if ! npm ls textlint; then npm install; fi
+
+	@if [ "$(format)" = "github" ]; then \
+		npx textlint --format github .; \
+	else \
+		npx textlint .; \
+	fi
+
+.PHONY: textlint-correction
+textlint-correction:
+	@if ! npm ls textlint; then npm install; fi
+	npx textlint --fix .
+
 .PHONY: normalized-link-check
 # NOTE: Search "model/*/**" rather than "model" to skip `model/README.md`, which
 # contains valid occurrences of `../docs/`.
