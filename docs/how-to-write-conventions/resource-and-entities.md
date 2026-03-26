@@ -114,7 +114,7 @@ There are two scenarios where entities should be defined:
 - When you are generating a new signal (log, metric, span, etc.)
   and no existing entity makes sense as the "source".
 - (future) When you need to describe an entity hierarchy from
-  some system of record (e.g. resources in kubernetes, assets
+  some system of record (e.g. resources in Kubernetes, assets
   in a cloud).
 
 For example, if a new clustering solution (e.g. Hashicorp's Nomad) is
@@ -127,13 +127,13 @@ OpenTelemetry, as an open ecosystem, cannot understand and model all
 possible entities that exist in the world. Instead, we are allowing
 overlapping definitions across domains. For example, the `container` and
 `k8s.container` entities exist, and generally every `k8s.container` is
-a `container`, but not every `container` runs in kubernetes.
+a `container`, but not every `container` runs in Kubernetes.
 
 An "is-a" relationship denotes that one entity is describing the exact
 same system component as another entity, but from a different domain. In
-the above example, `k8s.container` models containers from the kubernetes
+the above example, `k8s.container` models containers from the Kubernetes
 domain, while `container` is a general model for containers, regardless
-of how they are run (e.g. podman, docker, kubernetes, FAAS, etc.)
+of how they are run (e.g. podman, Docker, Kubernetes, FAAS, etc.)
 
 "is-a" relationships denote this relationship in entities allowing
 OpenTelemetry to fully model a subset of entities (e.g. all known
@@ -164,11 +164,11 @@ This avoids the complexities of subtyping and ambiguous attribute usage.
 
 The identifying attributes should be minimally sufficient to
 identify an entity within the context of how that entity is
-discovered. For example, when discovering kubernetes entities
+discovered. For example, when discovering Kubernetes entities
 like `k8s.pod`, `k8s.deployment`, the identifying attributes
 should be sufficient to identify these entities within the
-scope of a kubernetes cluster (or more specifically, the
-kubernetes API server where the entities are discovered).
+scope of a Kubernetes cluster (or more specifically, the
+Kubernetes API server where the entities are discovered).
 
 Commonly, a number of attributes of an entity are readily
 available for the telemetry producer to compose an identity. Of
@@ -206,25 +206,25 @@ to avoid this problem where possible.
 The choice of `service.instance.id` should be an exception, not the rule, for
 most Entities being modelled. Service instancing is a fundamental feature of
 OpenTelemetry, and we think it is a critical "fall back" identity. It works
-best when there is *one* generator of the id shared across all observers.
+best when there is *one* generator of the ID shared across all observers.
 However, in practice, this is difficult or "non standard" in the following
 scenarios:
 
 - Prometheus pull metrics that want the `instance` label to match
   `service.instance.id` on push based OTLP data.
 - Reading container logs from a `k8s.node`, where we know the container name
-  and deployment, but can't see into the SDK to understand a chosen instance id.
+  and deployment, but can't see into the SDK to understand a chosen instance ID.
 
-The OpenTelemetry Operator, and onboarding guides for kubernetes, e.g. leverage
+The OpenTelemetry Operator, and onboarding guides for Kubernetes, e.g. leverage
 mechanisms to ensure a `service.instance.id` can be pushed down to SDKs and
-external observers, alleviating this friction for kubernetes.
+external observers, alleviating this friction for Kubernetes.
 
 ### How to namespace entities?
 
 Entities (both types and and attributes) should be namespaced around
 the primary mechanism used to identify the Entity. For Example,
-kubernetes entities use the `k8s` namespace, and are primarily
-discovered using the kubernetes API or working within kubernetes.
+Kubernetes entities use the `k8s` namespace, and are primarily
+discovered using the Kubernetes API or working within Kubernetes.
 
 See [General Naming Guidance](/docs/general/naming.md) for overall
 semantic convention namespacing rules.
@@ -262,9 +262,9 @@ several key differences between the two:
   *descriptive* attributes.
   - Identifying attributes can be used to identify the entity
     within some system (See
-    [minimally sufficient id](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.55.0/specification/entities/data-model.md#minimally-sufficient-identity)).
+    [minimally sufficient ID](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.55.0/specification/entities/data-model.md#minimally-sufficient-identity)).
     For Example, the `k8s.pod.uid` would be considered an
-    identifying attribute for a pod within kubernetes.
+    identifying attribute for a pod within Kubernetes.
   - *Descriptive* attributes can be used to provide additional labels for
     entities, but are not necessary to uniquely identify the Entity.
 - A Resource is composed of *multiple* Entities.
@@ -275,7 +275,7 @@ several key differences between the two:
 - An Entity may be conceptually similar to another (which we
   call an "is-a" relationship).
   - For example, the `k8s.cluster` entity generically
-    represents kubernetes clusters, while the `aws.eks.cluster`
+    represents Kubernetes clusters, while the `aws.eks.cluster`
     entity would represent the AWS specific concept of an
     Elastic Kubernetes cluster.
   - In this case, a Resource from EKS could contain both the
@@ -305,9 +305,9 @@ When defining a new set of entities within OpenTelemetry Semantic
 Conventions, they should be namespaced, as per the
 [Semantic Convention naming policy](/docs/general/naming.md#general-naming-considerations).
 This gives clear indication which concepts are clearly related with each
-other. For example, the k8s namespace would define kubernetes related
+other. For example, the K8s namespace would define Kubernetes related
 entities and their relationships. Users would know to create a new
-namespace when modelling concepts on top of k8s.
+namespace when modelling concepts on top of K8s.
 
 Expansion to existing concepts is done through "is-a" relationships.
 These are relationships where one entity is known to represent the same

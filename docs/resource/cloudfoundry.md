@@ -11,7 +11,7 @@ Useful resources to understand CloudFoundry metadata:
 
 CloudFoundry organizes application deployments (apps) by spaces contained in
 organizations (orgs). Names are unique only in their respective enclosing
-entity. Ids are unique in the entire CloudFoundry installation. Different
+entity. IDs are unique in the entire CloudFoundry installation. Different
 instances of the same application are separated by an integer index. Apps can
 consist of a main job and multiple tasks and side-cars, which can be
 distinguished by different process attributes.

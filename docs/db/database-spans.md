@@ -325,7 +325,7 @@ This allows multiple instrumentations for the same database to be aligned and ea
 The value `other_sql` is intended as a fallback and MUST only be used if the DBMS is known to be SQL-compliant but the concrete product is not known to the instrumentation.
 If the concrete DBMS is known to the instrumentation, its specific identifier MUST be used.
 
-Back ends could, for example, use the provided identifier to determine the appropriate SQL dialect for parsing the `db.query.text`.
+Backends could, for example, use the provided identifier to determine the appropriate SQL dialect for parsing the `db.query.text`.
 
 When additional attributes are added that only apply to a specific DBMS, its identifier SHOULD be used as a namespace in the attribute key as for the attributes in the sections below.
 

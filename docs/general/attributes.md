@@ -47,7 +47,7 @@ connection (an exception is made for peer-to-peer communication over TCP where t
 protocol / API does not expose a clear notion of client and server).
 This also covers UDP network interactions where one side initiates the interaction, e.g. QUIC (HTTP/3) and DNS.
 
-In an ideal situation, not accounting for proxies, multiple IP addresses or host names,
+In an ideal situation, not accounting for proxies, multiple IP addresses or hostname,
 the `server.*` attributes are the same on the client and server.
 
 ### Address and port attributes
@@ -89,11 +89,11 @@ specify what these attributes mean in their context.
 
 #### `server.address`
 
-For IP-based communication, the name should be a DNS host name of the service. On client side it matches remote service name, on server side, it represents local service name as seen externally on clients.
+For IP-based communication, the name should be a DNS hostname of the service. On client-side it matches remote service name, on server-side, it represents local service name as seen externally on clients.
 
-When connecting to an URL `https://example.com/foo`, `server.address` matches `"example.com"` on both client and server side.
+When connecting to a URL `https://example.com/foo`, `server.address` matches `"example.com"` on both client and server-side.
 
-On client side, it's usually passed in form of URL, connection string, host name, etc. Sometimes host name is only available to instrumentation as a string which may contain DNS name or IP address. `server.address` SHOULD be set to the available known hostname (e.g., `"127.0.0.1"` if connecting to an URL `https://127.0.0.1/foo`).
+On client-side, it's usually passed in form of URL, connection string, hostname, etc. Sometimes hostname is only available to instrumentation as a string which may contain DNS name or IP address. `server.address` SHOULD be set to the available known hostname (e.g., `"127.0.0.1"` if connecting to an URL `https://127.0.0.1/foo`).
 
 If only IP address is available, it should be populated on `server.address`. Reverse DNS lookup SHOULD NOT be used to obtain DNS name.
 
@@ -101,7 +101,7 @@ If `network.transport` is `"pipe"`, the absolute path to the file representing i
 If there is no such file (e.g., anonymous pipe),
 the name should explicitly be set to the empty string to distinguish it from the case where the name is just unknown or not covered by the instrumentation.
 
-For Unix domain socket, `server.address` attribute represents remote endpoint address on the client side and local endpoint address on the server side.
+For UNIX domain socket, `server.address` attribute represents remote endpoint address on the client-side and local endpoint address on the server-side.
 
 ### Client attributes
 
@@ -249,7 +249,7 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 These attributes identify network peers that are directly connected to each other.
 
-`network.peer.address` and `network.local.address` should be IP addresses, Unix domain socket names, or other addresses specific to network type.
+`network.peer.address` and `network.local.address` should be IP addresses, UNIX domain socket names, or other addresses specific to network type.
 
 _Note: Specific structures and methods to obtain socket-level attributes are mentioned here only as examples. Instrumentations would usually use Socket API provided by their environment or sockets implementations._
 

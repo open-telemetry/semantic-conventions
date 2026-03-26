@@ -103,7 +103,7 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 ## Example
 
-In this example, Redis is connected using a unix domain socket and therefore the connection string is left out.
+In this example, Redis is connected using a UNIX domain socket and therefore the connection string is left out.
 
 | Key                    | Value                                         |
 | :--------------------- | :-------------------------------------------- |

@@ -136,7 +136,7 @@ Examples for some Go compilers/runtimes:
 | `process.runtime.name` | Description |
 | --- | --- |
 | `go` | Official Go compiler. Also known as `cmd/compile`. |
-| `gccgo` | [gccgo](https://go.dev/doc/install/gccgo) is a Go [front end for GCC](https://gcc.gnu.org/frontends.html). |
+| `gccgo` | [gccgo](https://go.dev/doc/install/gccgo) is a Go [frontend for GCC](https://gcc.gnu.org/frontends.html). |
 | `tinygo` | [TinyGo](https://tinygo.org/) compiler. |
 
 ### Java runtimes
@@ -176,8 +176,8 @@ Examples for some JavaScript runtimes
 
 | Name | `process.runtime.name` | `process.runtime.version` |
 | --- | --- | --- |
-| Node.js | nodejs | 14.15.4 |
-| Web Browser | browser | Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36 |
+| Node.js | Node.js | 14.15.4 |
+| Web Browser | browser | Mozilla/5.0 (Macintosh; Intel Mac macOS 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36 |
 
 ### .NET runtimes
 
@@ -253,7 +253,7 @@ Examples for some Ruby runtimes
 
 | Name | `process.runtime.name` | `process.runtime.version` | `process.runtime.description` |
 | --- | --- | --- | --- |
-| MRI | ruby | 2.7.1 | ruby 2.7.1p83 (2020-03-31 revision a0c7c23c9c) [x86_64-darwin19] |
-| TruffleRuby | truffleruby | 2.6.2 | truffleruby (Shopify) 20.0.0-dev-92ed3059, like ruby 2.6.2, GraalVM CE Native [x86_64-darwin] |
+| MRI | Ruby | 2.7.1 | Ruby 2.7.1p83 (2020-03-31 revision a0c7c23c9c) [x86_64-darwin19] |
+| TruffleRuby | truffleruby | 2.6.2 | truffleruby (Shopify) 20.0.0-dev-92ed3059, like Ruby 2.6.2, GraalVM CE Native [x86_64-darwin] |
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status

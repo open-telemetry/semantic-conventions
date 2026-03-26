@@ -1109,7 +1109,7 @@ OSes may vary despite being under similar load:
 
 ([source of
 quote](https://github.com/torvalds/linux/blob/e4cbce4d131753eca271d9d67f58c6377f27ad21/kernel/sched/loadavg.c#L11-L18),
-[linux source
+[Linux source
 code](https://github.com/torvalds/linux/blob/e4cbce4d131753eca271d9d67f58c6377f27ad21/kernel/sched/loadavg.c#L11-L18))
 
 An instrument for load average over 1 minute on Linux could be named

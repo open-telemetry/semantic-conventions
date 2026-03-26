@@ -74,11 +74,11 @@ linkTitle: Spans
 Although messaging systems are not as standardized as, e.g., HTTP, it is assumed that the following definitions are applicable to most of them that have similar concepts at all (names borrowed mostly from JMS):
 
 A *message* is an envelope with a potentially empty body.
-This envelope may offer the possibility to convey additional metadata, often in key/value form.
+This envelope may offer the possibility to convey additional metadata, often in key-value form.
 
 A message is sent by a message *producer* to:
 
-* Physically: some message *broker* (which can be e.g., a single server, or a cluster, or a local process reached via IPC). The broker handles the actual delivery, re-delivery, persistence, etc. In some messaging systems the broker may be identical or co-located with (some) message consumers.
+* Physically: some message *broker* (which can be e.g., a single server, or a cluster, or a local process reached via IPC). The broker handles the actual delivery, re-delivery, persistence, etc. In some messaging systems the broker may be identical or colocateed with (some) message consumers.
 With Apache Kafka, the physical broker a message is written to depends on the number of partitions, and which broker is the *leader* of the partition the record is written to.
 * Logically: some particular message *destination*.
 
@@ -113,7 +113,7 @@ messages are sent to and consumed from.
 
 A destination is usually uniquely identified by its name within
 the messaging system instance.
-Examples of a destination name would be an URL or a simple one-word identifier.
+Examples of a destination name would be a URL or a simple one-word identifier.
 
 Typical examples of destinations include Kafka topics, RabbitMQ queues and topics.
 
@@ -297,7 +297,7 @@ scenarios for operations of processing messages. Such spans could be created by
 application code, or by abstraction layers built on top of messaging SDKs.
 
 "Receive" or "Process" spans MUST NOT be created for messages that are
-pre-fetched or cached by messaging libraries or SDKs until they are forwarded
+prefetched or cached by messaging libraries or SDKs until they are forwarded
 to the caller.
 
 A single "Process" or "Receive" span can account for a single message, for a

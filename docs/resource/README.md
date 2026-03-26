@@ -33,13 +33,13 @@ This document defines standard attributes for resources. These attributes are ty
 * Add Web Browser.
 * Decide if lower case strings only.
 * Consider to add optional/required for each attribute and combination of attributes
-  (e.g when supplying a k8s resource all k8s may be required).
+  (e.g when supplying a K8s resource all K8s may be required).
 
 ## Document conventions
 
 **Status**: [Stable][DocumentStatus]
 
-Attributes are grouped logically by the type of the concept that they described. Attributes in the same group have a common prefix that ends with a dot. For example all attributes that describe Kubernetes properties start with "k8s."
+Attributes are grouped logically by the type of the concept that they described. Attributes in the same group have a common prefix that ends with a dot. For example all attributes that describe Kubernetes properties start with "K8s."
 
 See [Attribute Requirement Levels](../general/attribute-requirement-level.md) for details on when attributes
 should be included.
@@ -192,7 +192,7 @@ Attributes defining a running environment (e.g. Operating System, Cloud, Data Ce
 **Status**: [Stable][DocumentStatus]
 
 Version attributes, such as `service.version`, are values of type `string`. They are
-the exact version used to identify an artifact. This may be a semantic version, e.g., `1.2.3`, git hash, e.g.,
+the exact version used to identify an artifact. This may be a semantic version, e.g., `1.2.3`, Git hash, e.g.,
 `8ae73a`, or an arbitrary version string, e.g., `0.1.2.20210101`, whatever was used when building the artifact.
 
 ## Cloud-Provider-specific attributes
