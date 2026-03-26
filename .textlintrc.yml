@@ -20,7 +20,6 @@ filters:
       - /src=".*?"/
       # Other:
       - /(<|\()https?:\/\/.*?(>|\))/ # Raw URLs
-      - /\[.+\/\w+\]/ # Paths in square brackets to look like URLs
       - /`.*`/ # Raw code in backticks
       - /attributes-registry, \(e.g. http, cloud, db\)/ # Example of Component names in changelog files
       - /\(e.g., http, databases/ # Example of domains names in migration notes

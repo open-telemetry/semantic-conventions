@@ -120,6 +120,7 @@ groups:
           members:
             - id: wifi
               value: "wifi"
+              brief: 'Wi-Fi'
               stability: development
             - id: wired
               value: "wired"

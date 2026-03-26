@@ -101,7 +101,7 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 | `cell` | cell | ![Development](https://img.shields.io/badge/-development-blue) |
 | `unavailable` | unavailable | ![Development](https://img.shields.io/badge/-development-blue) |
 | `unknown` | unknown | ![Development](https://img.shields.io/badge/-development-blue) |
-| `wifi` | wifi | ![Development](https://img.shields.io/badge/-development-blue) |
+| `wifi` | Wi-Fi | ![Development](https://img.shields.io/badge/-development-blue) |
 | `wired` | wired | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---

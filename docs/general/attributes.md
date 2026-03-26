@@ -339,7 +339,7 @@ Note that `network.local.*` attributes are not included in these examples since 
 | `cell` | cell | ![Development](https://img.shields.io/badge/-development-blue) |
 | `unavailable` | unavailable | ![Development](https://img.shields.io/badge/-development-blue) |
 | `unknown` | unknown | ![Development](https://img.shields.io/badge/-development-blue) |
-| `wifi` | wifi | ![Development](https://img.shields.io/badge/-development-blue) |
+| `wifi` | Wi-Fi | ![Development](https://img.shields.io/badge/-development-blue) |
 | `wired` | wired | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- prettier-ignore-end -->
