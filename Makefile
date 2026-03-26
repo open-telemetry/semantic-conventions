@@ -238,7 +238,7 @@ check: misspell markdownlint markdown-toc markdown-link-check check-policies reg
 
 # Attempt to fix issues / regenerate tables.
 .PHONY: fix
-fix: table-generation registry-generation misspell-correction markdown-toc
+fix: table-generation registry-generation textlint-correction markdown-toc
 	@echo "All autofixes complete"
 
 .PHONY: install-tools
