@@ -100,6 +100,21 @@ misspell:
 	@if ! npm ls cspell; then npm ci --ignore-scripts; fi
 	npx --no -- cspell . --no-progress
 
+.PHONY: textlint
+textlint:
+	@if ! npm ls textlint; then npm install; fi
+
+	@if [ "$(format)" = "github" ]; then \
+		npx textlint --format github .; \
+	else \
+		npx textlint .; \
+	fi
+
+.PHONY: textlint-correction
+textlint-correction:
+	@if ! npm ls textlint; then npm install; fi
+	npx textlint --fix .
+
 .PHONY: normalized-link-check
 # NOTE: Search "model/*/**" rather than "model" to skip `model/README.md`, which
 # contains valid occurrences of `../docs/`.
