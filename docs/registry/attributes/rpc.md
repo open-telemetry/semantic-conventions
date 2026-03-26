@@ -42,8 +42,8 @@ RPC methods.
 The `rpc.method` can be different from the name of any implementing
 method/function.
 The `code.function.name` attribute may be used to record the fully-qualified
-method actually executing the call on the server side, or the
-RPC client stub method on the client side.
+method actually executing the call on the server-side, or the
+RPC client stub method on the client-side.
 
 **[2] `rpc.request.metadata.<key>`:** Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
 Including all request metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.

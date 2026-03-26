@@ -13,9 +13,9 @@ groups:
       - id: server.address
         stability: stable
         type: string
-        brief: "Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name."
+        brief: "Server domain name if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name."
         note: >
-          When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent
+          When observed from the client-side, and when communicating through an intermediary, `server.address` SHOULD represent
           the server address behind any intermediaries, for example proxies, if it's available.
         examples: ['example.com', '10.1.2.80', '/tmp/my.sock']
       - id: server.port
@@ -23,6 +23,6 @@ groups:
         type: int
         brief: Server port number.
         note: >
-          When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent
+          When observed from the client-side, and when communicating through an intermediary, `server.port` SHOULD represent
           the server port behind any intermediaries, for example proxies, if it's available.
         examples: [80, 8080, 443]

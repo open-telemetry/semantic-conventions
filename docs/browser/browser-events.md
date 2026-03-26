@@ -20,7 +20,7 @@ that emit events.
 
 The event name MUST be `browser.web_vital`.
 
-This event describes the website performance metrics introduced by Google, See [web vitals](https://web.dev/vitals).
+This event describes the site performance metrics introduced by Google, See [web vitals](https://web.dev/vitals).
 
 **Body fields:**
 

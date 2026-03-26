@@ -758,7 +758,7 @@ All ASP.NET Core Identity metrics are reported by the `Microsoft.AspNetCore.Iden
 | `set_phone_number` | Identity user phone number set. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `set_two_factor_enabled` | Identity user two-factor authentication enabled or disabled. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `update` | Identity user updated. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `user_name` | Identity user name updated. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `user_name` | Identity username updated. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 

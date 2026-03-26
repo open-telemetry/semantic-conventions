@@ -28,7 +28,7 @@ To report host metrics, the `system.*` namespace SHOULD be used.
 | Other | [`host.image.id`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | VM image ID or host OS image ID. For Cloud, this value is from the provider. | `ami-07b06b442921831e5` |
 | Other | [`host.image.name`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Name of the VM image or OS install the host was instantiated from. | `infra-ami-eks-worker-node-7d4ec78312`; `CentOS-8-x86_64-1905` |
 | Other | [`host.image.version`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The version string of the VM image or host OS as defined in [Version Attributes](/docs/resource/README.md#version-attributes). | `0.1` |
-| Other | [`host.name`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Name of the host. On Unix systems, it may contain what the hostname command returns, or the fully qualified hostname, or another name specified by the user. | `opentelemetry-test` |
+| Other | [`host.name`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Name of the host. On UNIX systems, it may contain what the hostname command returns, or the fully qualified hostname, or another name specified by the user. | `opentelemetry-test` |
 | Other | [`host.type`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Type of host. For Cloud, this must be the machine type. | `n1-standard-1` |
 | Other | [`host.ip`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string[] | Available IP addresses of the host, excluding loopback interfaces. [2] | `["192.168.1.140", "fe80::abc2:4a28:737a:609e"]` |
 | Other | [`host.mac`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string[] | Available MAC addresses of the host, excluding loopback interfaces. [3] | `["AC-DE-48-23-45-67", "AC-DE-48-23-45-67-01-9F"]` |
@@ -38,14 +38,14 @@ To report host metrics, the `system.*` namespace SHOULD be used.
 **Non-privileged Machine ID Lookup**
 
 When collecting `host.id` for non-containerized systems non-privileged lookups
-of the machine id are preferred. SDK detector implementations MUST use the
-sources listed below to obtain the machine id.
+of the machine ID are preferred. SDK detector implementations MUST use the
+sources listed below to obtain the machine ID.
 
 | OS | Primary | Fallback |
 | --- | --- | --- |
 | Linux | contents of `/etc/machine-id` | contents of `/var/lib/dbus/machine-id` |
 | BSD | contents of `/etc/hostid` | output of `kenv -q smbios.system.uuid` |
-| MacOS | `IOPlatformUUID` line from the output of `ioreg -rd1 -c "IOPlatformExpertDevice"` | - |
+| macOS | `IOPlatformUUID` line from the output of `ioreg -rd1 -c "IOPlatformExpertDevice"` | - |
 | Windows | `MachineGuid` from registry `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Cryptography` | - |
 
 **Privileged Machine ID Lookup**

@@ -78,7 +78,7 @@ groups:
       code_generation:
         metric_value_type: double
     stability: development
-    brief: "Pod's CPU usage, measured in cpus. Range from 0 to the number of allocatable CPUs."
+    brief: "Pod's CPU usage, measured in CPUs. Range from 0 to the number of allocatable CPUs."
     note: >
       CPU usage of the specific Pod on all available CPU cores, averaged over the sample window
     instrument: gauge
@@ -468,7 +468,7 @@ groups:
       code_generation:
         metric_value_type: double
     stability: development
-    brief: "Amount of cpu allocatable on the node."
+    brief: "Amount of CPU allocatable on the node."
     entity_associations:
       - k8s.node
     instrument: updowncounter
@@ -552,7 +552,7 @@ groups:
       code_generation:
         metric_value_type: double
     stability: development
-    brief: "Node's CPU usage, measured in cpus. Range from 0 to the number of allocatable CPUs."
+    brief: "Node's CPU usage, measured in CPUs. Range from 0 to the number of allocatable CPUs."
     note: >
       CPU usage of the specific Node on all available CPU cores, averaged over the sample window
     instrument: gauge

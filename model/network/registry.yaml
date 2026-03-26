@@ -113,7 +113,7 @@ groups:
               value: "lte_ca"
               stability: development
         stability: development
-        brief: 'This describes more details regarding the connection.type. It may be the type of cell technology connection, but it could be used for describing details about a wifi connection.'
+        brief: 'This describes more details regarding the connection.type. It may be the type of cell technology connection, but it could be used for describing details about a Wi-Fi connection.'
         examples: 'LTE'
       - id: network.connection.type
         type:
@@ -139,7 +139,7 @@ groups:
       - id: network.local.address
         stability: stable
         type: string
-        brief: Local address of the network connection - IP address or Unix domain socket name.
+        brief: Local address of the network connection - IP address or UNIX domain socket name.
         examples: ['10.1.2.80', '/tmp/my.sock']
       - id: network.local.port
         stability: stable
@@ -149,7 +149,7 @@ groups:
       - id: network.peer.address
         stability: stable
         type: string
-        brief: Peer address of the network connection - IP address or Unix domain socket name.
+        brief: Peer address of the network connection - IP address or UNIX domain socket name.
         examples: ['10.1.2.80', '/tmp/my.sock']
       - id: network.peer.port
         stability: stable
@@ -189,7 +189,7 @@ groups:
               stability: stable
             - id: unix
               value: 'unix'
-              brief: "Unix domain socket"
+              brief: "UNIX domain socket"
               stability: stable
             - id: quic
               value: 'quic'

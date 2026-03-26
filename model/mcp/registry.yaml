@@ -142,7 +142,7 @@ groups:
         examples: ["191c4850af6c49e08843a3f6c80e5046"]
       - id: mcp.resource.uri
         type: string
-        brief: The value of the resource uri.
+        brief: The value of the resource URI.
         note: >
           This is a URI of the resource provided in the following requests or notifications:
           `resources/read`, `resources/subscribe`, `resources/unsubscribe`, or `notifications/resources/updated`.

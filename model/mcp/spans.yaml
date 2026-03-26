@@ -17,7 +17,7 @@ groups:
   - id: span.mcp.client
     type: span
     span_kind: client
-    brief: This span describes the MCP call from the client side.
+    brief: This span describes the MCP call from the client-side.
     note: |
       It's reported by the MCP client when it initiates the request
       or notification or by the MCP server when server initiates the operation.

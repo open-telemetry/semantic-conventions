@@ -44,7 +44,7 @@ groups:
       code_generation:
         metric_value_type: double
     stability: development
-    brief: "Container's CPU usage, measured in cpus. Range from 0 to the number of allocatable CPUs."
+    brief: "Container's CPU usage, measured in CPUs. Range from 0 to the number of allocatable CPUs."
     note: >
       CPU usage of the specific container on all available CPU cores, averaged over the sample window
     instrument: gauge
