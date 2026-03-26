@@ -2,8 +2,4 @@ change_type: enhancement
 component: db
 note: Add context propagation for PostgreSQL via `SET application_name`.
 issues: [2162]
-subtext: |
-  Instrumentations MAY propagate trace context to PostgreSQL by setting
-  `application_name` to the W3C traceparent value before executing a query.
-  This complements SQL Commenter and works with prepared statements and
-  stored procedures.
+subtext:
