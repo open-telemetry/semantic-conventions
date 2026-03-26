@@ -100,10 +100,6 @@ misspell:
 	@if ! npm ls cspell; then npm install; fi
 	npx cspell . --no-progress
 
-.PHONY: misspell-correction
-misspell-correction:	$(MISSPELL)
-	find . -type f -name '*.md' -not -path './.github/*' -not -path './node_modules/*' -not -path './.git/*' -exec $(MISSPELL) -w {} +
-
 .PHONY: normalized-link-check
 # NOTE: Search "model/*/**" rather than "model" to skip `model/README.md`, which
 # contains valid occurrences of `../docs/`.
@@ -220,7 +216,7 @@ check: misspell markdownlint markdown-toc-check markdown-link-check check-polici
 
 # Attempt to fix issues / regenerate tables.
 .PHONY: fix
-fix: table-generation registry-generation misspell-correction markdown-toc
+fix: table-generation registry-generation markdown-toc
 	@echo "All autofixes complete"
 
 .PHONY: install-tools
