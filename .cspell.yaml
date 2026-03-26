@@ -1,0 +1,182 @@
+# For settings, see
+# https://www.streetsidesoftware.com/vscode-spell-checker/docs/configuration/
+version: '0.2'
+language: en-US
+caseSensitive: true
+allowCompoundWords: true
+useGitignore: true
+import:
+  - https://cdn.jsdelivr.net/npm/@cspell/dict-people-names/cspell-ext.json
+ignorePaths:
+  - '**/*.svg'
+  - 'schemas/*'
+  - 'internal/*'
+  - '**.j2'
+  - '**.rego'
+patterns:
+  - name: CodeBlock
+    pattern: |
+      /
+          ^(\s*[~`]{3,})   # Matches 3 or more backticks or tildes to start a code block.
+          .*               # all languages and options, e.g. shell {hl_lines=[12]}
+          [\s\S]*?         # content
+          \1               # Matches the same symbol which started the match.
+      /igmx
+  - name: CodeName
+    pattern: |
+      /
+          ([~`])          # Matches a single backtick or tilde to start a code block.
+          [^~`]*?         # Matches any characters except backticks or tildes, non-greedy.
+          \1              # Matches the same symbol which started the match.
+      /x
+  - name: Links
+    pattern: |
+      /
+          \[[^\]]+\]      # Matches the link text inside square brackets [ ... ].
+          \(              # Match the opening parentheses for the URL.
+          [^)]+           # Matches any URL/path until the closing ) — works for both relative and absolute.
+          \)              # Match the closing parentheses for the URL.
+      /x
+  - name: Href
+    pattern: "href=\".+\""        # Matches any href attribute in HTML tags.
+  - name: Redirect
+    pattern: |
+      /
+        redirect:.+$     # Matches any front-matter redirect line.
+      /mx
+  - name: "Semconv marker"
+    pattern: "<!-- semconv.* -->"     # Matches any semconv marker line.
+  - name: "GitHub Handle"
+    pattern: "@[a-zA-Z0-9-_]+\\b"
+languageSettings:
+  - languageId: markdown
+    ignoreRegExpList:
+      - CodeBlock
+      - CodeName
+      - Links
+      - Href
+      - Redirect
+      - GitHub Handle
+      - Semconv marker
+  - languageId: dockerfile, dockercompose, properties, yaml, makefile
+    includeRegExpList:
+      - "/#.*/g"
+    ignoreRegExpList:
+      - Links
+      - Href
+      - GitHub Handle
+dictionaries:
+  # Local word lists
+  - en-words
+  - en-us
+  # Programming languages and software terms
+  - cpp
+  - csharp
+  - dart
+  - django
+  - docker
+  - dotnet
+  - elixir
+  - flutter
+  - fsharp
+  - golang
+  - haskell
+  - html
+  - java
+  - javascript
+  - julia
+  - k8s
+  - kotlin
+  - markdown
+  - node
+  - npm
+  - php
+  - python
+  - python-common
+  - ruby
+  - rust
+  - scala
+  - softwareTerms
+  - software-tools
+  - swift
+  - typescript
+  # Other
+  - companies
+  - aws
+  - google
+  - people-names
+words:
+  - jank
+  - cicd
+  - tmpfs
+  - exfat
+  - gogc
+  - uncollectable
+  - unreclaimable
+  - SYSPLEX
+  - SMFID
+  - erts
+  - ERTS
+  - cassandra
+  - cosmosdb
+  - gorouter
+  - rocketmq
+  - heroku
+  - erlang
+  - sysplex
+  - IMEI
+  - webjs
+  - wifi
+  - CDMA
+  - XRTT
+  - EHRPD
+  - EVDO
+  - GPRS
+  - HSDPA
+  - HSPA
+  - HSPAP
+  - HSUPA
+  - IWLAN
+  - NRNSA
+  - SCDMA
+  - SPDY
+  - WWNN
+  - couchdb
+  - hbase
+  - mariadb
+  - postgresql
+  - faas
+  - aiplatform
+  - WWPN
+  - covid
+  - Vertica
+  - Teradata
+  - Netezza
+  - Caché
+  - jdbc
+  - Informix
+  - Groq
+  - Watsonx
+  - KHTML
+  - Dalvik
+  - chloggen
+  - gsed
+  - Kains
+  - htlhash
+  - openj
+  - Azul
+  - Hashicorp
+  - OTEP
+  - Contentful
+  - Depluralize
+  - Undeprecate
+ignoreWords:
+  - gitea
+  - rego
+  - Pygq
+  - Wdrha
+  - celsius
+  - fahrenheit
+  - yamlize
+  - Yamlify
+  - crun
