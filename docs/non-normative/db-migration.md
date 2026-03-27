@@ -100,37 +100,37 @@ The table below lists only the `db.system` values that were renamed or removed i
 > own stability level as shown below (`stable` or `development`).
 
 <!-- prettier-ignore-start -->
-| Description                        | Old `db.system` value | New `db.system.name` value | Notes                                            | Stability                                                      |
-|------------------------------------|-----------------------|----------------------------|--------------------------------------------------|----------------------------------------------------------------|
-| Adabas (Adaptable Database System) | `adabas`              | `softwareag.adabas`        | Vendor prefix added                              | ![Development](https://img.shields.io/badge/-development-blue) |
-| InterSystems Caché (old alias)     | `cache`               | Removed                    | Was already deprecated; use `intersystems.cache` | —                                                              |
-| InterSystems Caché                 | `intersystems_cache`  | `intersystems.cache`       | Renamed to dot notation                          | ![Development](https://img.shields.io/badge/-development-blue) |
-| Cloudscape                         | `cloudscape`          | Removed                    | Was already deprecated in favor of `other_sql`   | —                                                              |
-| ColdFusion                         | `coldfusion`          | Removed                    | Obsoleted, no replacement                        | —                                                              |
-| Azure Cosmos DB                    | `cosmosdb`            | `azure.cosmosdb`           | Cloud provider prefix added                      | ![Development](https://img.shields.io/badge/-development-blue) |
-| IBM Db2                            | `db2`                 | `ibm.db2`                  | Vendor prefix added                              | ![Development](https://img.shields.io/badge/-development-blue) |
-| Amazon DynamoDB                    | `dynamodb`            | `aws.dynamodb`             | Cloud provider prefix added                      | ![Development](https://img.shields.io/badge/-development-blue) |
-| EnterpriseDB                       | `edb`                 | Removed                    | No direct equivalent; use `postgresql`           | —                                                              |
-| FileMaker                          | `filemaker`           | Removed                    | No equivalent in new registry                    | —                                                              |
-| Firebird                           | `firebird`            | `firebirdsql`              | Renamed                                          | ![Development](https://img.shields.io/badge/-development-blue) |
-| FirstSQL                           | `firstsql`            | Removed                    | Was already deprecated in favor of `other_sql`   | —                                                              |
-| H2 Database                        | `h2`                  | `h2database`               | Renamed                                          | ![Development](https://img.shields.io/badge/-development-blue) |
-| SAP HANA                           | `hanadb`              | `sap.hana`                 | Vendor prefix added                              | ![Development](https://img.shields.io/badge/-development-blue) |
-| IBM Informix                       | `informix`            | `ibm.informix`             | Vendor prefix added                              | ![Development](https://img.shields.io/badge/-development-blue) |
-| Actian Ingres                      | `ingres`              | `actian.ingres`            | Vendor prefix added                              | ![Development](https://img.shields.io/badge/-development-blue) |
-| InterBase                          | `interbase`           | Removed                    | No equivalent in new registry                    | —                                                              |
-| SAP MaxDB                          | `maxdb`               | `sap.maxdb`                | Vendor prefix added                              | ![Development](https://img.shields.io/badge/-development-blue) |
-| Microsoft SQL Server               | `mssql`               | `microsoft.sql_server`     | Vendor prefix added                              | ![Stable](https://img.shields.io/badge/-stable-lightgreen)     |
-| Microsoft SQL Server Compact       | `mssqlcompact`        | Removed                    | Product discontinued                             | —                                                              |
-| IBM Netezza                        | `netezza`             | `ibm.netezza`              | Vendor prefix added                              | ![Development](https://img.shields.io/badge/-development-blue) |
-| Oracle Database                    | `oracle`              | `oracle.db`                | Renamed                                          | ![Development](https://img.shields.io/badge/-development-blue) |
-| Pervasive PSQL                     | `pervasive`           | Removed                    | No equivalent in new registry                    | —                                                              |
-| PointBase                          | `pointbase`           | Removed                    | No equivalent in new registry                    | —                                                              |
-| Progress Database                  | `progress`            | Removed                    | No equivalent in new registry                    | —                                                              |
-| Amazon Redshift                    | `redshift`            | `aws.redshift`             | Cloud provider prefix added                      | ![Development](https://img.shields.io/badge/-development-blue) |
-| Google Cloud Spanner               | `spanner`             | `gcp.spanner`              | Cloud provider prefix added                      | ![Development](https://img.shields.io/badge/-development-blue) |
-| Sybase                             | `sybase`              | Removed                    | No equivalent in new registry                    | —                                                              |
-| Vertica                            | `vertica`             | Removed                    | No equivalent in new registry                    | —                                                              |
+| Description                        | Old `db.system` value | New `db.system.name` value |
+|------------------------------------|-----------------------|----------------------------|
+| Adabas (Adaptable Database System) | `adabas`              | `softwareag.adabas`        |
+| InterSystems Caché (old alias)     | `cache`               | Removed                    |
+| InterSystems Caché                 | `intersystems_cache`  | `intersystems.cache`       |
+| Cloudscape                         | `cloudscape`          | Removed                    |
+| ColdFusion                         | `coldfusion`          | Removed                    |
+| Azure Cosmos DB                    | `cosmosdb`            | `azure.cosmosdb`           |
+| IBM Db2                            | `db2`                 | `ibm.db2`                  |
+| Amazon DynamoDB                    | `dynamodb`            | `aws.dynamodb`             |
+| EnterpriseDB                       | `edb`                 | Removed                    |
+| FileMaker                          | `filemaker`           | Removed                    |
+| Firebird                           | `firebird`            | `firebirdsql`              |
+| FirstSQL                           | `firstsql`            | Removed                    |
+| H2 Database                        | `h2`                  | `h2database`               |
+| SAP HANA                           | `hanadb`              | `sap.hana`                 |
+| IBM Informix                       | `informix`            | `ibm.informix`             |
+| Actian Ingres                      | `ingres`              | `actian.ingres`            |
+| InterBase                          | `interbase`           | Removed                    |
+| SAP MaxDB                          | `maxdb`               | `sap.maxdb`                |
+| Microsoft SQL Server               | `mssql`               | `microsoft.sql_server`     |
+| Microsoft SQL Server Compact       | `mssqlcompact`        | Removed                    |
+| IBM Netezza                        | `netezza`             | `ibm.netezza`              |
+| Oracle Database                    | `oracle`              | `oracle.db`                |
+| Pervasive PSQL                     | `pervasive`           | Removed                    |
+| PointBase                          | `pointbase`           | Removed                    |
+| Progress Database                  | `progress`            | Removed                    |
+| Amazon Redshift                    | `redshift`            | `aws.redshift`             |
+| Google Cloud Spanner               | `spanner`             | `gcp.spanner`              |
+| Sybase                             | `sybase`              | Removed                    |
+| Vertica                            | `vertica`             | Removed                    |
 <!-- prettier-ignore-end -->
 
 References:
