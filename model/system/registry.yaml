@@ -59,6 +59,18 @@ groups:
         stability: development
         brief: "The Linux Slab memory state"
         examples: ["reclaimable", "unreclaimable"]
+      - id: system.memory.linux.hugepages.state
+        type:
+          members:
+            - id: free
+              value: 'free'
+              stability: development
+            - id: used
+              value: 'used'
+              stability: development
+        stability: development
+        brief: "The Linux HugePages memory state"
+        examples: ["free", "used"]
   # system.paging.* attribute group
   - id: registry.system.paging
     type: attribute_group
