@@ -1,0 +1,3 @@
+change_type: enhancement
+component: deployment
+note: "Stabilize deployment.environment.name attribute"
