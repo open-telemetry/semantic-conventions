@@ -223,7 +223,7 @@ groups:
       - id: http.response.body.content
         type: any
         brief: >
-          The content of the uncompressed HTTP response body, captured as a string when the response content is textual or as binary otherwise.
+          The content of the uncompressed HTTP response body, captured as a string when the response content is textual or as byte array otherwise.
         note: |
           Captured value MUST be limited in size and thus value is expected to be truncated in many cases.
           Instrumentations MUST provide configuration options to control the maximum captured body size.
