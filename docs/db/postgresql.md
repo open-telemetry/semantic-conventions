@@ -10,7 +10,7 @@ linkTitle: PostgreSQL
 
 - [Spans](#spans)
 - [Context propagation](#context-propagation)
-  - [SET application\_name](#set-application_name)
+  - [SET application_name](#set-application_name)
 - [Metrics](#metrics)
 
 <!-- tocstop -->
