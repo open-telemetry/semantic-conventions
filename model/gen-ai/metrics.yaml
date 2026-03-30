@@ -139,6 +139,9 @@ groups:
       code_generation:
         metric_value_type: double
     brief: 'GenAI workflow duration.'
+    note: >
+      This metric instruments describe an operation that executes a coordinated process
+      composed of multiple agents or other operations involving generative AI.
     instrument: histogram
     unit: "s"
     stability: development
@@ -153,3 +156,6 @@ groups:
       - ref: gen_ai.workflow.name
         requirement_level:
           conditionally_required: If available.
+        note: |
+          This attribute can be populated in different frameworks eg: name of the first chain in LangChain OR name of the crew in CrewAI.
+          Workflow name should be unique within the application.
