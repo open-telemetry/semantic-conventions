@@ -175,7 +175,7 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 Instrumentations MAY propagate context using [`SET application_name`](https://www.postgresql.org/docs/current/runtime-config-logging.html#GUC-APPLICATION-NAME) by injecting fixed-length part of span context (trace-id, span-id, trace-flags, protocol version) before executing a query. For example, when using W3C Trace Context, only a string representation of [`traceparent`](https://www.w3.org/TR/trace-context/#traceparent-header) SHOULD be injected. Context injection SHOULD NOT be enabled by default, but instrumentation MAY allow users to opt into it.
 
-Variable context parts (`tracestate`, `baggage`) SHOULD NOT be injected since `application_name` value length is limited to less than [`NAMEDATALEN`](https://www.postgresql.org/docs/current/runtime-config-preset.html#GUC-MAX-IDENTIFIER-LENGTH) characters (63 characters in a standard build).
+Variable context parts (`tracestate`, `baggage`) SHOULD NOT be injected since `application_name` value length (63 characters in a standard build) is limited to less than [`NAMEDATALEN`](https://www.postgresql.org/docs/current/runtime-config-preset.html#GUC-MAX-IDENTIFIER-LENGTH) characters .
 
 Instrumentations that propagate context MUST execute `SET application_name` on the same physical connection as the SQL statement.
 
