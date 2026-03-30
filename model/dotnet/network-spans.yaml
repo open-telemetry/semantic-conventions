@@ -143,8 +143,8 @@ groups:
       Corresponding `Activity.OperationName` is `Experimental.System.Net.NameResolution.DnsLookup`, `ActivitySource` name - `Experimental.System.Net.NameResolution`.
       Added in .NET 9.
 
-      **Span name** SHOULD be `DNS lookup {dns.question.name}` for DNS lookup (IP addresses from host name)
-      and `DNS reverse lookup {dns.question.name}` for reverse lookup (host names from IP address).
+      **Span name** SHOULD be `DNS lookup {dns.question.name}` for DNS lookup (IP addresses from hostname)
+      and `DNS reverse lookup {dns.question.name}` for reverse lookup (hostnames from IP address).
     attributes:
       - ref: dns.question.name
         brief: The domain name or an IP address being queried.

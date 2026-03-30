@@ -27,8 +27,8 @@ groups:
         brief: >
           The file extension extracted from the `url.full`, excluding the leading dot.
         note: >
-          The file extension is only set if it exists, as not every url has a file extension.
-          When the file name has multiple extensions `example.tar.gz`, only the last one should be captured `gz`, not `tar.gz`.
+          The file extension is only set if it exists, as not every URL has a file extension.
+          When the filename has multiple extensions `example.tar.gz`, only the last one should be captured `gz`, not `tar.gz`.
         examples: ["png", "gz"]
       - id: url.fragment
         stability: stable
@@ -140,7 +140,7 @@ groups:
         type: string
         stability: development
         brief: >
-          The highest registered url domain, stripped of the subdomain.
+          The highest registered URL domain, stripped of the subdomain.
         examples: ["example.com", "foo.co.uk"]
         note: >
           This value can be determined precisely with the [public suffix list](https://publicsuffix.org/).
@@ -156,7 +156,7 @@ groups:
         type: string
         stability: development
         brief: >
-          The subdomain portion of a fully qualified domain name includes all of the names except the host name
+          The subdomain portion of a fully qualified domain name includes all of the names except the hostname
           under the registered_domain. In a partially qualified domain, or if the qualification level of the
           full name cannot be determined, subdomain contains all of the names below the registered domain.
         examples: ["east", "sub2.sub1"]

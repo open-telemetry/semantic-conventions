@@ -125,7 +125,7 @@ Instrumentations SHOULD document how `error.type` is populated.
 
 **[4] `server.port`:** If using a port other than the default port for this DBMS and if `server.address` is set.
 
-**[5] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[5] `server.port`:** When observed from the client-side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
 **[6] `db.collection.name`:** If the operation is executed via a higher-level API that does not support multiple collection names.
 
@@ -169,7 +169,7 @@ without attempting to do any case normalization.
 For batch operations, if the individual operations are known to have the same
 stored procedure name then that stored procedure name SHOULD be used.
 
-**[17] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
+**[17] `server.address`:** When observed from the client-side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
 **[18] `db.query.parameter.<key>`:** If a query parameter has no name and instead is referenced only by index,
 then `<key>` SHOULD be the 0-based index.

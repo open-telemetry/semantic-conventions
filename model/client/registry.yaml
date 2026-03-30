@@ -13,9 +13,9 @@ groups:
       - id: client.address
         stability: stable
         type: string
-        brief: "Client address - domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name."
+        brief: "Client address - domain name if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name."
         note: >
-          When observed from the server side, and when communicating through an intermediary, `client.address` SHOULD represent
+          When observed from the server-side, and when communicating through an intermediary, `client.address` SHOULD represent
           the client address behind any intermediaries,  for example proxies, if it's available.
         examples: ['client.example.com', '10.1.2.80', '/tmp/my.sock']
       - id: client.port
@@ -24,5 +24,5 @@ groups:
         brief: Client port number.
         examples: [65123]
         note: >
-          When observed from the server side, and when communicating through an intermediary, `client.port` SHOULD represent
+          When observed from the server-side, and when communicating through an intermediary, `client.port` SHOULD represent
           the client port behind any intermediaries,  for example proxies, if it's available.

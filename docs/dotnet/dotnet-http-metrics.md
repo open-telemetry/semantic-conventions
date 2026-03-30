@@ -24,7 +24,7 @@ This article defines semantic conventions for HTTP metrics emitted by .NET compo
 
 ## HTTP client
 
-All Http client metrics are reported by the `System.Net.Http` meter.
+All HTTP client metrics are reported by the `System.Net.Http` meter.
 
 ### Metric: `http.client.request.duration`
 
@@ -63,7 +63,7 @@ Notes:
 
 **[2]:** If an HTTP client request is explicitly made to an IP address, e.g. `http://x.x.x.x:8080`, then `server.address` SHOULD be the IP address `x.x.x.x`. A DNS lookup SHOULD NOT be used.
 
-**[3]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[3]:** When observed from the client-side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
 **[4]:** If not the default (`80` for `http` scheme, `443` for `https`).
 
@@ -97,7 +97,7 @@ This metric SHOULD be specified with [`ExplicitBucketBoundaries` advisory parame
 
 **[2]:** If an HTTP client request is explicitly made to an IP address, e.g. `http://x.x.x.x:8080`, then `server.address` SHOULD be the IP address `x.x.x.x`. A DNS lookup SHOULD NOT be used.
 
-**[3]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[3]:** When observed from the client-side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
 **[4]:** If not the default (`80` for `http` scheme, `443` for `https`).
 
@@ -127,7 +127,7 @@ If the HTTP request method isn't known, it sets the `http.request.method` attrib
 
 **[3]:** If an HTTP client request is explicitly made to an IP address, e.g. `http://x.x.x.x:8080`, then `server.address` SHOULD be the IP address `x.x.x.x`. A DNS lookup SHOULD NOT be used.
 
-**[4]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[4]:** When observed from the client-side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
 **[5]:** If not the default (`80` for `http` scheme, `443` for `https`).
 
@@ -167,7 +167,7 @@ If the HTTP request method isn't known, it sets the `http.request.method` attrib
 
 **[2]:** If an HTTP client request is explicitly made to an IP address, e.g. `http://x.x.x.x:8080`, then `server.address` SHOULD be the IP address `x.x.x.x`. A DNS lookup SHOULD NOT be used.
 
-**[3]:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[3]:** When observed from the client-side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
 **[4]:** If not the default (`80` for `http` scheme, `443` for `https`).
 

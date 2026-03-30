@@ -26,7 +26,7 @@ Describes file attributes.
 | <a id="file-name" href="#file-name">`file.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Name of the file including the extension, without the directory. | `example.png` |
 | <a id="file-owner-id" href="#file-owner-id">`file.owner.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The user ID (UID) or security identifier (SID) of the file owner. | `1000` |
 | <a id="file-owner-name" href="#file-owner-name">`file.owner.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Username of the file owner. | `root` |
-| <a id="file-path" href="#file-path">`file.path`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Full path to the file, including the file name. It should include the drive letter, when appropriate. | `/home/alice/example.png`; `C:\Program Files\MyApp\myapp.exe` |
+| <a id="file-path" href="#file-path">`file.path`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Full path to the file, including the filename. It should include the drive letter, when appropriate. | `/home/alice/example.png`; `C:\Program Files\MyApp\myapp.exe` |
 | <a id="file-size" href="#file-size">`file.size`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | File size in bytes. | |
 | <a id="file-symbolic-link-target-path" href="#file-symbolic-link-target-path">`file.symbolic_link.target_path`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Path to the target of a symbolic link. [7] | `/usr/bin/python3` |
 
@@ -38,9 +38,9 @@ Describes file attributes.
 
 **[4] `file.created`:** This attribute might not be supported by some file systems — NFS, FAT32, in embedded OS, etc.
 
-**[5] `file.extension`:** When the file name has multiple extensions (example.tar.gz), only the last one should be captured ("gz", not "tar.gz").
+**[5] `file.extension`:** When the filename has multiple extensions (example.tar.gz), only the last one should be captured ("gz", not "tar.gz").
 
 **[6] `file.fork_name`:** On Linux, a resource fork is used to store additional data with a filesystem object. A file always has at least one fork for the data portion, and additional forks may exist.
-On NTFS, this is analogous to an Alternate Data Stream (ADS), and the default data stream for a file is just called $DATA. Zone.Identifier is commonly used by Windows to track contents downloaded from the Internet. An ADS is typically of the form: C:\path\to\filename.extension:some_fork_name, and some_fork_name is the value that should populate `fork_name`. `filename.extension` should populate `file.name`, and `extension` should populate `file.extension`. The full path, `file.path`, will include the fork name.
+On NTFS, this is analogous to an Alternate Data Stream (ADS), and the default data stream for a file is just called $DATA. Zone.Identifier is commonly used by Windows to track contents downloaded from the internet. An ADS is typically of the form: C:\path\to\filename.extension:some_fork_name, and some_fork_name is the value that should populate `fork_name`. `filename.extension` should populate `file.name`, and `extension` should populate `file.extension`. The full path, `file.path`, will include the fork name.
 
 **[7] `file.symbolic_link.target_path`:** This attribute is only applicable to symbolic links.

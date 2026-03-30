@@ -7,7 +7,7 @@ generation of semantics-related code.
 > [!NOTE]
 >
 > If you want to read the semantic conventions and not edit them, please see
-> the generated markdown output in the [docs](../docs/README.md) folder.
+> the generated Markdown output in the [docs](../docs/README.md) folder.
 
 ## Writing semantic conventions
 
@@ -19,7 +19,7 @@ and [metric requirement level](../docs/general/metric-requirement-level.md) conv
 Refer to the [syntax](https://github.com/open-telemetry/weaver/blob/main/schemas/semconv-syntax.md)
 for how to write the YAML files for semantic conventions and what the YAML properties mean.
 
-A schema file for VS code is configured in the `/.vscode/settings.json` of this
+A schema file for Visual Studio Code is configured in the `/.vscode/settings.json` of this
 repository, enabling auto-completion and additional checks. Refer to
 [the generator README](https://github.com/open-telemetry/weaver/blob/main/schemas/semconv-syntax.md) for what extension you need.
 
@@ -30,7 +30,7 @@ When defining semantic conventions, follow the [contributing guide](/CONTRIBUTIN
 - Define new spans, metrics, events, resources, and other conventions using the appropriate group type. See
   [semantic convention groups](/docs/general/semantic-convention-groups.md) for more details.
 
-## Generating markdown
+## Generating Markdown
 
 These YAML files are used by the make targets `registry-generation` and `table-generation` to generate consistently
 formatted Markdown tables for all semantic conventions in the specification. Run it from the root of this repository using the command
@@ -45,7 +45,7 @@ Or, for convenience, run
 make generate-all
 ```
 
-which executes both targets along with other markdown generation targets that
+which executes both targets along with other Markdown generation targets that
 update [areas](/AREAS.md) and GitHub area labels.
 
 For more information, see [Weaver](https://github.com/open-telemetry/weaver)

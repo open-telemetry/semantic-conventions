@@ -111,9 +111,9 @@ should have the `gen_ai.provider.name` set to `aws.bedrock` and include
 applicable `aws.bedrock.*` attributes and are not expected to include
 `openai.*` attributes.
 
-**[3] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[3] `server.port`:** When observed from the client-side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
-**[4] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
+**[4] `server.address`:** When observed from the client-side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
 ---
 
@@ -224,9 +224,9 @@ applicable `aws.bedrock.*` attributes and are not expected to include
 the canonical name of exception that occurred, or another low-cardinality error identifier.
 Instrumentations SHOULD document the list of errors they report.
 
-**[4] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[4] `server.port`:** When observed from the client-side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
-**[5] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
+**[5] `server.address`:** When observed from the client-side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
 ---
 
@@ -333,9 +333,9 @@ should have the `gen_ai.provider.name` set to `aws.bedrock` and include
 applicable `aws.bedrock.*` attributes and are not expected to include
 `openai.*` attributes.
 
-**[3] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[3] `server.port`:** When observed from the client-side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
-**[4] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
+**[4] `server.address`:** When observed from the client-side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
 ---
 
@@ -434,9 +434,9 @@ should have the `gen_ai.provider.name` set to `aws.bedrock` and include
 applicable `aws.bedrock.*` attributes and are not expected to include
 `openai.*` attributes.
 
-**[3] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[3] `server.port`:** When observed from the client-side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
-**[4] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
+**[4] `server.address`:** When observed from the client-side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
 ---
 
@@ -545,9 +545,9 @@ applicable `aws.bedrock.*` attributes and are not expected to include
 the canonical name of exception that occurred, or another low-cardinality error identifier.
 Instrumentations SHOULD document the list of errors they report.
 
-**[4] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[4] `server.port`:** When observed from the client-side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
-**[5] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
+**[5] `server.address`:** When observed from the client-side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
 ---
 
@@ -659,9 +659,9 @@ should have the `gen_ai.provider.name` set to `aws.bedrock` and include
 applicable `aws.bedrock.*` attributes and are not expected to include
 `openai.*` attributes.
 
-**[3] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[3] `server.port`:** When observed from the client-side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
-**[4] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
+**[4] `server.address`:** When observed from the client-side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
 ---
 
@@ -764,9 +764,9 @@ should have the `gen_ai.provider.name` set to `aws.bedrock` and include
 applicable `aws.bedrock.*` attributes and are not expected to include
 `openai.*` attributes.
 
-**[3] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[3] `server.port`:** When observed from the client-side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
-**[4] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
+**[4] `server.address`:** When observed from the client-side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
 ---
 

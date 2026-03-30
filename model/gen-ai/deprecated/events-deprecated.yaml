@@ -120,7 +120,7 @@ groups:
               type: string
               stability: development
               brief: >
-                The id of the tool call.
+                The ID of the tool call.
               examples: ["call_mszuSIzqtI65i1wAUOE8w5H4"]
               requirement_level: required
             - id: type
@@ -200,7 +200,7 @@ groups:
           type: string
           stability: development
           brief: >
-            Tool call id that this message is responding to.
+            Tool call ID that this message is responding to.
           examples: ["call_mszuSIzqtI65i1wAUOE8w5H4"]
           requirement_level: required
 
@@ -297,7 +297,7 @@ groups:
               type: string
               stability: development
               brief: >
-                The id of the tool call.
+                The ID of the tool call.
               examples: ["call_mszuSIzqtI65i1wAUOE8w5H4"]
               requirement_level: required
             - id: type

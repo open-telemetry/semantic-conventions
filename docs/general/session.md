@@ -30,7 +30,7 @@ backends can link the two sessions (see [Session Start Event](#event-sessionstar
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`session.id`](/docs/registry/attributes/session.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | A unique id to identify a session. | `00112233-4455-6677-8899-aabbccddeeff` |
+| [`session.id`](/docs/registry/attributes/session.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | A unique ID to identify a session. | `00112233-4455-6677-8899-aabbccddeeff` |
 | [`session.previous_id`](/docs/registry/attributes/session.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The previous `session.id` for this user, when known. | `00112233-4455-6677-8899-aabbccddeeff` |
 
 <!-- prettier-ignore-end -->

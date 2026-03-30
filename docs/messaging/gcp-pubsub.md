@@ -57,10 +57,10 @@ For Google Cloud Pub/Sub, the following additional attributes are defined:
 | [`messaging.destination.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [5] | string | The message destination name [6] | `MyQueue`; `MyTopic` |
 | [`messaging.gcp_pubsub.message.ordering_key`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If the message type has an ordering key set. | string | The ordering key for a given message. If the attribute is not present, the message does not have an ordering key. | `ordering_key` |
 | [`messaging.operation.type`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If applicable. | string | A string identifying the type of the messaging operation. [7] | `create`; `send`; `receive` |
-| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If available. | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [8] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
+| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If available. | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name. [8] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 | [`messaging.destination.subscription.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Google Pub/Sub [subscription name](https://cloud.google.com/pubsub/docs/subscription-overview). | `subscription-a` |
 | [`messaging.gcp_pubsub.message.ack_deadline`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | int | The ack deadline in seconds set for the modify ack deadline request. | `10` |
-| [`messaging.gcp_pubsub.message.ack_id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The ack id for a given message. | `ack_id` |
+| [`messaging.gcp_pubsub.message.ack_id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The ack ID for a given message. | `ack_id` |
 | [`messaging.gcp_pubsub.message.delivery_attempt`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | int | The delivery attempt for a given message. | `2` |
 | [`messaging.message.id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` If span describes operation on a single message. | string | A value used by the messaging system as an identifier for the message, represented as a string. | `452a7c7c7c7048c2f887f61572b18fc2` |
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | Server port number. [9] | `80`; `8080`; `443` |
@@ -105,9 +105,9 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 
 **[7] `messaging.operation.type`:** If a custom value is used, it MUST be of low cardinality.
 
-**[8] `server.address`:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name.
+**[8] `server.address`:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name.
 
-**[9] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[9] `server.port`:** When observed from the client-side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
 The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):

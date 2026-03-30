@@ -85,13 +85,13 @@ to adopt them if they see fit.
 | Erlang     | the return value of [`erl_error:format`][erlang-stacktrace]        |
 | Go         | the return value of [runtime.Stack][go-stacktrace]                 |
 | Java       | the contents of [Throwable.printStackTrace()][java-stacktrace]     |
-| Javascript | the return value of [error.stack][js-stacktrace] as returned by V8 |
+| JavaScript | the return value of [error.stack][js-stacktrace] as returned by V8 |
 | Python     | the return value of [traceback.format_exc()][python-stacktrace]    |
 | Ruby       | the return value of [Exception.full_message][ruby-full-message]    |
 
 Backends can use the language specified methodology for generating a stacktrace
 combined with platform information from the
-[telemetry sdk resource][telemetry-sdk-resource] in order to extract more fine
+[telemetry SDK resource][telemetry-sdk-resource] in order to extract more fine
 grained information from a stacktrace, if necessary.
 
 [gcp-error-reporting]: https://cloud.google.com/error-reporting/reference/rest/v1beta1/projects.events/report

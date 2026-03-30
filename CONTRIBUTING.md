@@ -13,12 +13,12 @@ requirements and recommendations.
 
 - [Sign the CLA](#sign-the-cla)
 - [How to contribute](#how-to-contribute)
-  - [Which semantic conventions belong in this repo](#which-semantic-conventions-belong-in-this-repo)
+  - [Which semantic conventions belong in this repository](#which-semantic-conventions-belong-in-this-repository)
   - [Suggesting conventions for a new area](#suggesting-conventions-for-a-new-area)
   - [Prerequisites](#prerequisites)
   - [1. Modify the YAML model](#1-modify-the-yaml-model)
     - [Code structure](#code-structure)
-  - [2. Update the markdown files](#2-update-the-markdown-files)
+  - [2. Update the Markdown files](#2-update-the-markdown-files)
     - [Hugo frontmatter](#hugo-frontmatter)
   - [3. Check new convention](#3-check-new-convention)
   - [4. Verify the changes before committing](#4-verify-the-changes-before-committing)
@@ -30,7 +30,7 @@ requirements and recommendations.
 - [Reviewer guidelines](#reviewer-guidelines)
 - [Automation](#automation)
   - [Consistency checks](#consistency-checks)
-  - [Auto formatting](#auto-formatting)
+  - [Autoformatting](#autoformatting)
   - [Markdown style](#markdown-style)
   - [Misspell check](#misspell-check)
   - [Update the tables of content](#update-the-tables-of-content)
@@ -65,9 +65,9 @@ key, but non-obvious, aspects:
 
 Please make sure all Pull Requests are compliant with these rules!
 
-### Which semantic conventions belong in this repo
+### Which semantic conventions belong in this repository
 
-This repo contains semantic conventions supported by multiple components in the
+This repository contains semantic conventions supported by multiple components in the
 OpenTelemetry ecosystem including, but not limited to, components hosted in
 OpenTelemetry.
 
@@ -94,7 +94,7 @@ Examples of conventions that should not be hosted in this repository:
 - [Kafka client JMX metrics](https://github.com/open-telemetry/opentelemetry-java-instrumentation/blob/v2.25.0/instrumentation/kafka/kafka-clients/kafka-clients-2.6/library/README.md)
 - [RabbitMQ Collector Receiver](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/v0.145.0/receiver/rabbitmqreceiver)
 
-Want to define your own conventions outside this repo while building on OTel’s?
+Want to define your own conventions outside this repository while building on OTel’s?
 Come help us [decentralize semantic conventions](https://github.com/open-telemetry/weaver/issues/215).
 
 <!-- TODO add link to decentralized conventions docs and examples - https://github.com/open-telemetry/semantic-conventions/issues/3456 -->
@@ -130,7 +130,7 @@ environment configured:
   npm install
   ```
 
-- If on macOS, ensure you have `gsed` (GNU Sed) installed. If you have [HomeBrew](https://brew.sh)
+- If on macOS, ensure you have `gsed` (GNU Sed) installed. If you have [Homebrew](https://brew.sh)
   installed, then you can run the following command to install GSED.
 
   ```bash
@@ -138,7 +138,7 @@ environment configured:
   ```
 
 - Lastly, ensure you have either [Docker](https://www.docker.com) or [Podman](https://podman.io) installed and
-  configured in such a way that the makefile can execute the `docker` command.
+  configured in such a way that the Makefile can execute the `docker` command.
 
 ### 1. Modify the YAML model
 
@@ -170,7 +170,7 @@ The YAML (model definition) and Markdown (documentation) files are organized in 
 All attributes must be defined in the folder matching their root namespace under
 `/model/{root-namespace}/registry.yaml` file.
 
-Corresponding markdown files are auto-generated (see [Update the markdown files](#2-update-the-markdown-files))
+Corresponding Markdown files are auto-generated (see [Update the Markdown files](#2-update-the-markdown-files))
 in `/docs/attribute_registry` folder.
 
 All semantic conventions definitions for telemetry signals should be placed under
@@ -183,10 +183,10 @@ are defined in `/model/aws/lambda-spans.yaml` and `/model/aws/sdk-spans.yaml` fi
 Deprecated conventions should be placed under `/model/{root-namespace}/deprecated`
 folder.
 
-### 2. Update the markdown files
+### 2. Update the Markdown files
 
 After updating the YAML file(s), you need to update
-the respective markdown files.
+the respective Markdown files.
 If you want to update existing tables, just run the following commands:
 
 ```bash
@@ -194,15 +194,15 @@ make generate-all
 ```
 
 When defining new telemetry signals (spans, metrics, events, resources) in YAML,
-make sure to add a new markdown section describing them. Add the following
-code-snippet into the markdown file:
+make sure to add a new Markdown section describing them. Add the following
+code-snippet into the Markdown file:
 
 ```
 <!-- semconv new-group-id -->
 <!-- endsemconv -->
 ```
 
-Then run markdown generation commands:
+Then run Markdown generation commands:
 
 ```bash
 make generate-all
@@ -219,8 +219,8 @@ linkTitle: HTTP
 --->
 ```
 
-When creating new markdown files, you should provide the `linkTitle` attribute.
-This is used to generate the navigation bar on the website,
+When creating new Markdown files, you should provide the `linkTitle` attribute.
+This is used to generate the navigation bar on the site,
 and will be listed relative to the "parent" document.
 
 ### 3. Check new convention
@@ -231,7 +231,7 @@ Here's [the full list of compatibility checks](./policies/compatibility.rego).
 Removing attributes, metrics, or enum members is not allowed, they should be deprecated instead.
 It applies to stable and unstable conventions and prevents semantic conventions auto-generated libraries from introducing breaking changes.
 
-You can run backward compatibility check (along with other policies) in all yaml files with the following command:
+You can run backward compatibility check (along with other policies) in all YAML files with the following command:
 
 ```bash
 make check-policies
@@ -257,7 +257,7 @@ Keep in mind the following types of users (not limited to):
 
 1. Those who are consuming the data following these conventions (e.g., in alerts, dashboards, queries)
 2. Those who are using the conventions in instrumentations (e.g., library authors)
-3. Those who are using the conventions to derive heuristics, predictions and automatic analyses (e.g., observability products/back-ends)
+3. Those who are using the conventions to derive heuristics, predictions and automatic analyses (e.g., observability products/backends)
 4. Those who define their own conventions (e.g., vendor-specific conventions, private registries)
 
 If a changelog entry is not required (e.g. editorial or trivial changes),
@@ -280,7 +280,7 @@ No changelog entry:
 
 #### Adding a changelog entry
 
-The [CHANGELOG.md](./CHANGELOG.md) files in this repo is autogenerated
+The [CHANGELOG.md](./CHANGELOG.md) files in this repository is autogenerated
 from `.yaml` files in the [/.chloggen](/.chloggen) directory.
 
 Your pull request should add a new `.yaml` file to this directory.
@@ -374,7 +374,7 @@ For more information on each check, see:
 - [Yamllint check](#yamllint-check)
 - Prettier formatting
 
-### Auto formatting
+### Autoformatting
 
 Semantic conventions have some autogenerated components and additionally can do
 automatic style/spell correction. You can run all of this via:
@@ -389,7 +389,7 @@ See:
 
 - [Misspell Correction](#misspell-check)
 - [Update the tables of content](#update-the-tables-of-content)
-- [Update the markdown files](#2-update-the-markdown-files)
+- [Update the Markdown files](#2-update-the-markdown-files)
 
 ### Markdown style
 
@@ -399,7 +399,7 @@ In this repository we follow the
 with some customizations. See [markdownlint](.markdownlint.yaml) or
 [settings](.vscode/settings.json) for details.
 
-We highly encourage to use line breaks in markdown files at `80` characters
+We highly encourage to use line breaks in Markdown files at `80` characters
 wide. There are tools that can do it for you effectively. Please submit proposal
 to include your editor settings required to enable this behavior so the out of
 the box settings for this repository will be consistent.
@@ -414,7 +414,7 @@ To fix style violations, follow the
 [instruction](https://github.com/DavidAnson/markdownlint#optionsresultversion)
 with the Node version of markdownlint. If you are using Visual Studio Code,
 you can also use the `fixAll` command of the
-[vscode markdownlint extension](https://github.com/DavidAnson/vscode-markdownlint).
+[Visual Studio Code markdownlint extension](https://github.com/DavidAnson/vscode-markdownlint).
 
 ### Misspell check
 
@@ -428,7 +428,7 @@ make misspell
 
 > [!Note]
 > The `misspell` make target will also fetch and build the tool if
-> necessary. You'll need [Go](https://go.dev) to build the spellchecker.
+> necessary. You'll need [Go](https://go.dev) to build the spell checker.
 
 To quickly fix typos, use
 
@@ -446,7 +446,7 @@ make markdown-toc
 
 ### Markdown link check
 
-To check the validity of links in all markdown files, run the following command:
+To check the validity of links in all Markdown files, run the following command:
 
 ```bash
 make markdown-link-check
@@ -454,7 +454,7 @@ make markdown-link-check
 
 ### Yamllint check
 
-To check the validity of all yaml files, run the following command:
+To check the validity of all YAML files, run the following command:
 
 ```bash
 make yamllint

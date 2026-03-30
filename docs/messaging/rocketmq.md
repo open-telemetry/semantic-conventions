@@ -61,11 +61,11 @@ Specific attributes for Apache RocketMQ are defined below.
 | [`messaging.rocketmq.message.delay_time_level`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [7] | int | The delay time level for delay message, which determines the message delay time. | `3` |
 | [`messaging.rocketmq.message.delivery_timestamp`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [8] | int | The timestamp in milliseconds that the delay message is expected to be delivered to consumer. | `1665987217045` |
 | [`messaging.rocketmq.message.group`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If the message type is FIFO. | string | It is essential for FIFO message. Messages that belong to the same message group are always processed one by one within the same consumer group. | `myMessageGroup` |
-| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If available. | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [9] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
+| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If available. | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name. [9] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 | [`messaging.client.id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A unique identifier for the client that consumes or produces a message. | `client-5`; `myhost@8742@s8083jm` |
 | [`messaging.message.id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` If span describes operation on a single message. | string | A value used by the messaging system as an identifier for the message, represented as a string. | `452a7c7c7c7048c2f887f61572b18fc2` |
 | [`messaging.rocketmq.consumption_model`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Model of message consumption. This only applies to consumer spans. | `clustering`; `broadcasting` |
-| [`messaging.rocketmq.message.keys`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string[] | Key(s) of message, another way to mark message besides message id. | `["keyA", "keyB"]` |
+| [`messaging.rocketmq.message.keys`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string[] | Key(s) of message, another way to mark message besides message ID. | `["keyA", "keyB"]` |
 | [`messaging.rocketmq.message.tag`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The secondary classifier of message besides topic. | `tagA` |
 | [`messaging.rocketmq.message.type`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Type of message. | `normal`; `fifo`; `delay` |
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | Server port number. [10] | `80`; `8080`; `443` |
@@ -106,9 +106,9 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 
 **[8] `messaging.rocketmq.message.delivery_timestamp`:** If the message type is delay and delay time level is not specified.
 
-**[9] `server.address`:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name.
+**[9] `server.address`:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name.
 
-**[10] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[10] `server.port`:** When observed from the client-side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
 **[11] `messaging.message.body.size`:** This can refer to both the compressed or uncompressed body size. If both sizes are known, the uncompressed
 body size should be used.

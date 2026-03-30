@@ -59,7 +59,7 @@ It is strongly recommended to prototype proposed conventions in one or more inst
 
 - provide actionable guidance to instrumentation authors on when and how to collect attributes and record telemetry,
 
-- evaluate how the new or updated telemetry integrates with other instrumentation layers, identifying gaps, duplication, or opportunities to improve the end-user experience.
+- evaluate how the new or updated telemetry integrates with other instrumentation layers, identifying gaps, duplication, or opportunities to improve the end user experience.
 
 #### Defining attributes
 
@@ -144,7 +144,7 @@ Consider the scope of the attribute and how it may evolve in the future:
 > Start with experimental conventions, document how they apply to a diverse range
 > of providers, systems, or libraries, and prototype instrumentations.
 >
-> The end-user experience should serve as the primary guiding principle:
+> The end user experience should serve as the primary guiding principle:
 >
 > - If the attribute is expected to be used in general-purpose metrics for the area,
 >   consider introducing a common attribute.

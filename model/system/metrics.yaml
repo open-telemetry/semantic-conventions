@@ -151,7 +151,7 @@ groups:
       code_generation:
         metric_value_type: int
     stability: development
-    brief: "Unix swap or windows pagefile usage."
+    brief: "UNIX swap or windows pagefile usage."
     instrument: updowncounter
     unit: "By"
     attributes:
@@ -169,7 +169,7 @@ groups:
       code_generation:
         metric_value_type: double
     stability: development
-    brief: Swap (unix) or pagefile (windows) utilization.
+    brief: Swap (UNIX) or pagefile (windows) utilization.
     instrument: gauge
     unit: "1"
     attributes:

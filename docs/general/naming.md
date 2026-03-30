@@ -72,7 +72,7 @@ Names SHOULD follow these rules:
 
 - For each multi-word dot-delimited component of the name separate the
   words by underscores (i.e. use snake_case). For example
-  `http.response.status_code` denotes the status code in the http namespace.
+  `http.response.status_code` denotes the status code in the HTTP namespace.
 
   Known exceptions include
   [K8s API names](../non-normative/naming-known-exceptions.md) where a single

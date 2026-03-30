@@ -32,7 +32,7 @@ groups:
     span_kind: server
     stability: development
     brief: >
-      This span represents server side if the FaaS invocations triggered in response
+      This span represents server-side if the FaaS invocations triggered in response
       response to some data source operation such as a database or filesystem read/write.
     attributes:
       - ref: faas.document.collection
@@ -47,7 +47,7 @@ groups:
     span_kind: server
     stability: development
     brief: >
-      This span represents server side if the FaaS invocations triggered by a timer.
+      This span represents server-side if the FaaS invocations triggered by a timer.
     attributes:
       - ref: faas.time
       - ref: faas.cron

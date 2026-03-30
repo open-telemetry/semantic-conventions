@@ -46,7 +46,7 @@ The event name MUST be `feature_flag.evaluation`.
 
 Defines feature flag evaluation as an event.
 
-A `feature_flag.evaluation` event SHOULD be emitted whenever a feature flag value is evaluated, which may happen many times over the course of an application lifecycle. For example, a website A/B testing different animations may evaluate a flag each time a button is clicked. A `feature_flag.evaluation` event is emitted on each evaluation even if the result is the same.
+A `feature_flag.evaluation` event SHOULD be emitted whenever a feature flag value is evaluated, which may happen many times over the course of an application lifecycle. For example, a site A/B testing different animations may evaluate a flag each time a button is clicked. A `feature_flag.evaluation` event is emitted on each evaluation even if the result is the same.
 
 **Attributes:**
 

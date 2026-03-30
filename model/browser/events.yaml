@@ -4,7 +4,7 @@ groups:
     type: event
     name: browser.web_vital
     brief: >
-      This event describes the website performance metrics introduced by Google, See [web vitals](https://web.dev/vitals).
+      This event describes the site performance metrics introduced by Google, See [web vitals](https://web.dev/vitals).
     body:
       id: browser.web_vital
       requirement_level: required
