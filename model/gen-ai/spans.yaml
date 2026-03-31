@@ -483,6 +483,10 @@ groups:
       - ref: gen_ai.memory.store.id
         requirement_level:
           conditionally_required: when returned by the operation
+      - ref: gen_ai.memory.store.name
+        requirement_level: opt_in
+      - ref: gen_ai.memory.scope
+        requirement_level: recommended
 
   - id: span.gen_ai.search_memory.client
     type: span
@@ -505,10 +509,21 @@ groups:
       - ref: gen_ai.memory.store.id
         requirement_level:
           conditionally_required: if applicable
+      - ref: gen_ai.memory.store.name
+        requirement_level: opt_in
       - ref: gen_ai.memory.query.text
         requirement_level: opt_in
       - ref: gen_ai.memory.search.result.count
         requirement_level: opt_in
+      - ref: gen_ai.memory.search.similarity.threshold
+        requirement_level:
+          conditionally_required: when similarity filtering is used
+      - ref: gen_ai.agent.id
+        requirement_level:
+          conditionally_required: when searching agent-scoped memory
+      - ref: gen_ai.conversation.id
+        requirement_level:
+          conditionally_required: when searching conversation-scoped memory
 
   - id: span.gen_ai.update_memory.client
     type: span
@@ -533,11 +548,22 @@ groups:
       - ref: gen_ai.memory.store.id
         requirement_level:
           conditionally_required: if applicable
+      - ref: gen_ai.memory.store.name
+        requirement_level: opt_in
       - ref: gen_ai.memory.record.id
         requirement_level:
           conditionally_required: when available (provided or returned)
       - ref: gen_ai.memory.record.content
         requirement_level: opt_in
+      - ref: gen_ai.memory.expiration_date
+        requirement_level:
+          conditionally_required: if expiration is set
+      - ref: gen_ai.agent.id
+        requirement_level:
+          conditionally_required: when operating on agent-scoped memory
+      - ref: gen_ai.conversation.id
+        requirement_level:
+          conditionally_required: when operating on conversation-scoped memory
 
   - id: span.gen_ai.delete_memory.client
     type: span
@@ -564,9 +590,20 @@ groups:
       - ref: gen_ai.memory.store.id
         requirement_level:
           conditionally_required: if applicable
+      - ref: gen_ai.memory.store.name
+        requirement_level: opt_in
+      - ref: gen_ai.memory.scope
+        requirement_level:
+          conditionally_required: when performing scope-based deletion
       - ref: gen_ai.memory.record.id
         requirement_level:
           conditionally_required: when deleting a specific memory record
+      - ref: gen_ai.agent.id
+        requirement_level:
+          conditionally_required: when deleting agent-scoped memory
+      - ref: gen_ai.conversation.id
+        requirement_level:
+          conditionally_required: when deleting conversation-scoped memory
 
   - id: span.gen_ai.delete_memory_store.client
     type: span
@@ -588,6 +625,8 @@ groups:
       - ref: gen_ai.memory.store.id
         requirement_level:
           conditionally_required: if applicable
+      - ref: gen_ai.memory.store.name
+        requirement_level: opt_in
 
   - id: span.aws.bedrock.client
     extends: span.gen_ai.inference.client

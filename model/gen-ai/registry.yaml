@@ -701,6 +701,53 @@ groups:
         brief: The unique identifier of a memory record.
         examples: ["mem_5j66UpCpwteGg4YSxUnt7lPY"]
 
+      - id: gen_ai.memory.store.name
+        stability: development
+        type: string
+        brief: Human-readable name of the memory store.
+        note: >
+          Use this when the store has a separate human-readable name distinct
+          from its machine-generated ID. For frameworks where the name IS the
+          identifier (e.g., Azure AI Foundry), use `gen_ai.memory.store.id` instead.
+        examples: ["Customer Support Memory", "Shopping Preferences"]
+
+      - id: gen_ai.memory.scope
+        stability: development
+        type:
+          members:
+            - id: user
+              value: "user"
+              brief: "Scoped to a specific user. Persists across all conversations with a user."
+              stability: development
+            - id: conversation
+              value: "conversation"
+              brief: "Scoped to a conversation/thread. Context within a single conversation."
+              stability: development
+            - id: agent
+              value: "agent"
+              brief: "Scoped to a specific agent. Agent-specific knowledge."
+              stability: development
+            - id: team
+              value: "team"
+              brief: "Shared across a team of agents. Multi-agent collaboration."
+              stability: development
+        brief: The scope of the memory store or memory operation.
+        note: >
+          Memory scope defines the isolation and sharing boundaries.
+          Scopes determine who can access the memory.
+        examples: ["user", "conversation", "agent"]
+
+      - id: gen_ai.memory.search.similarity.threshold
+        stability: development
+        type: double
+        brief: Minimum similarity score threshold used for memory search.
+        examples: [0.7, 0.85]
+
+      - id: gen_ai.memory.expiration_date
+        stability: development
+        type: string
+        brief: Expiration date for the memory in ISO 8601 format.
+        examples: ["2025-12-31", "2026-01-15T00:00:00Z"]
 
       - id: gen_ai.memory.record.content
         stability: development
