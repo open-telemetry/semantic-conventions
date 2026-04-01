@@ -316,7 +316,7 @@ be confusing in delta backends.
   elapsed time and number of CPUs.
 
 - **duration** - a histogram that measures operation duration
-  should be called `{operation name}.duration`.
+  of an event should be called `{operation name}.duration`.
   For example, `http.server.request.duration` for the time taken to process each HTTP request.
   The difference with `time` is that `time` is used to measure monotonically increasing total time,
   whereas `duration` captures the aggregated elapsed time.
