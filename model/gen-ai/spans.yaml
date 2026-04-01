@@ -369,6 +369,16 @@ groups:
       - ref: gen_ai.output.type
         requirement_level:
           conditionally_required: when applicable and if the request includes an output format.
+      - ref: gen_ai.response.finish_reasons
+        requirement_level: recommended
+      - ref: gen_ai.usage.input_tokens
+        requirement_level: recommended
+      - ref: gen_ai.usage.output_tokens
+        requirement_level: recommended
+      - ref: gen_ai.usage.cache_read.input_tokens
+        requirement_level: recommended
+      - ref: gen_ai.usage.cache_creation.input_tokens
+        requirement_level: recommended
       - ref: gen_ai.conversation.id
         requirement_level:
           conditionally_required: when available
@@ -423,14 +433,6 @@ groups:
         brief: GenAI server port.
         requirement_level:
           conditionally_required: If `server.address` is set.
-      - ref: gen_ai.usage.input_tokens
-        requirement_level: recommended
-      - ref: gen_ai.usage.output_tokens
-        requirement_level: recommended
-      - ref: gen_ai.usage.cache_read.input_tokens
-        requirement_level: recommended
-      - ref: gen_ai.usage.cache_creation.input_tokens
-        requirement_level: recommended
 
   - id: attributes.gen_ai.invoke_agent.internal
     type: attribute_group
