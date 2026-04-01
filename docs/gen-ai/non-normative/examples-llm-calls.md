@@ -449,8 +449,8 @@ They are likely to be siblings if there is an encompassing span.
 [
   {
     "type": "function",
-    "name": "get_weather",
-    "description": "Get the weather in a given location",
+    "name": "get_current_weather",
+    "description": "Get the current weather in a given location",
     "parameters": {
       "type": "object",
       "properties": {
@@ -458,10 +458,18 @@ They are likely to be siblings if there is an encompassing span.
           "type": "string",
           "description": "The city and state, e.g. San Francisco, CA"
         },
-        "required": [
-          "location"
-        ]
-      }
+        "unit": {
+          "type": "string",
+          "enum": [
+            "celsius",
+            "fahrenheit"
+          ]
+        }
+      },
+      "required": [
+        "location",
+        "unit"
+      ]
     }
   }
 ]
