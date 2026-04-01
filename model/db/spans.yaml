@@ -143,7 +143,7 @@ groups:
     extends: trace.db.common.full
     attributes:
       # experimental attributes must be opt-in stable spans
-      # TODO (trask) make this recommended once it is stable
+      # TODO (@trask) make this recommended once it is stable
       - ref: db.response.returned_rows
         requirement_level: opt_in
         note: |
@@ -760,7 +760,7 @@ groups:
           The collection name SHOULD NOT be extracted from `db.query.text`.
       - ref: db.response.returned_rows
         # experimental attributes must be opt-in stable spans
-        # TODO (trask) make this recommended once it is stable
+        # TODO (@trask) make this recommended once it is stable
         requirement_level: opt_in
 
   - id: span.azure.cosmosdb.client

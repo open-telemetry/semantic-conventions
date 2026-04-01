@@ -86,6 +86,58 @@ References:
 - [Database client span names v1.24.0](https://github.com/open-telemetry/semantic-conventions/blob/v1.24.0/docs/database/database-spans.md)
 - [Database client span names v1.33.0](https://github.com/open-telemetry/semantic-conventions/blob/v1.33.0/docs/database/database-spans.md#name)
 
+### Database system name
+
+The attribute `db.system` has been renamed to `db.system.name`. Along with the rename, many
+enum values were updated — most notably to follow a `<vendor>.<product>` naming pattern that
+makes vendor affiliation explicit.
+
+The table below lists only the `db.system` values that were renamed or removed in
+`db.system.name`, along with the stability of the new value. Unchanged values are not listed.
+
+> [!NOTE]
+> The `db.system.name` attribute itself is `stable`. Individual enum members have their
+> own stability level as shown below (`stable` or `development`).
+
+<!-- prettier-ignore-start -->
+| Description                        | Old `db.system` value | New `db.system.name` value |
+|------------------------------------|-----------------------|----------------------------|
+| Adabas (Adaptable Database System) | `adabas`              | `softwareag.adabas`        |
+| InterSystems Caché (old alias)     | `cache`               | Removed                    |
+| InterSystems Caché                 | `intersystems_cache`  | `intersystems.cache`       |
+| Cloudscape                         | `cloudscape`          | Removed                    |
+| ColdFusion                         | `coldfusion`          | Removed                    |
+| Azure Cosmos DB                    | `cosmosdb`            | `azure.cosmosdb`           |
+| IBM Db2                            | `db2`                 | `ibm.db2`                  |
+| Amazon DynamoDB                    | `dynamodb`            | `aws.dynamodb`             |
+| EnterpriseDB                       | `edb`                 | Removed                    |
+| FileMaker                          | `filemaker`           | Removed                    |
+| Firebird                           | `firebird`            | `firebirdsql`              |
+| FirstSQL                           | `firstsql`            | Removed                    |
+| H2 Database                        | `h2`                  | `h2database`               |
+| SAP HANA                           | `hanadb`              | `sap.hana`                 |
+| IBM Informix                       | `informix`            | `ibm.informix`             |
+| Actian Ingres                      | `ingres`              | `actian.ingres`            |
+| InterBase                          | `interbase`           | Removed                    |
+| SAP MaxDB                          | `maxdb`               | `sap.maxdb`                |
+| Microsoft SQL Server               | `mssql`               | `microsoft.sql_server`     |
+| Microsoft SQL Server Compact       | `mssqlcompact`        | Removed                    |
+| IBM Netezza                        | `netezza`             | `ibm.netezza`              |
+| Oracle Database                    | `oracle`              | `oracle.db`                |
+| Pervasive PSQL                     | `pervasive`           | Removed                    |
+| PointBase                          | `pointbase`           | Removed                    |
+| Progress Database                  | `progress`            | Removed                    |
+| Amazon Redshift                    | `redshift`            | `aws.redshift`             |
+| Google Cloud Spanner               | `spanner`             | `gcp.spanner`              |
+| Sybase                             | `sybase`              | Removed                    |
+| Vertica                            | `vertica`             | Removed                    |
+<!-- prettier-ignore-end -->
+
+References:
+
+- [`db.system` enum values v1.24.0](https://github.com/open-telemetry/semantic-conventions/blob/v1.24.0/docs/database/database-spans.md#notes-and-well-known-identifiers-for-dbsystem)
+- [`db.system.name` enum values v1.33.0](https://github.com/open-telemetry/semantic-conventions/blob/v1.33.0/docs/database/database-spans.md#notes-and-well-known-identifiers-for-dbsystemname)
+
 ### Database client operation duration metric
 
 This is a required metric. There was no similar metric previously.
