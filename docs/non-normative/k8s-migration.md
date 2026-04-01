@@ -347,7 +347,7 @@ The changes in their metrics are the following:
 
 <!-- prettier-ignore-end -->
 
-**Note:** For CPU limit and request, SemConv splits each into `desired` (from spec) and `actual` (from container status) to support [K8s container resource resize](https://kubernetes.io/docs/tasks/configure-pod-container/resize-container-resources/).
+**Note:** For CPU limit and request, SemConv splits each into `desired` (from spec) and `current` (from container status) to support [K8s container resource resize](https://kubernetes.io/docs/tasks/configure-pod-container/resize-container-resources/).
 
 ### K8s ResourceQuota metrics
 
