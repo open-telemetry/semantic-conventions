@@ -1,0 +1,7 @@
+change_type: enhancement
+component: gen_ai
+note: "Add `plan` operation for GenAI agent planning/task decomposition spans"
+issues: [2664]
+subtext: |
+  Adds `plan` as a new `gen_ai.operation.name` value and a corresponding
+  INTERNAL span definition for agent planning or task decomposition.
