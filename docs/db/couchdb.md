@@ -6,12 +6,12 @@ linkTitle: CouchDB
 
 **Status**: [Development][DocumentStatus]
 
-<!-- toc -->
+<!-- START doctoc -->
 
 - [Spans](#spans)
 - [Metrics](#metrics)
 
-<!-- tocstop -->
+<!-- END doctoc -->
 
 The Semantic Conventions for [CouchDB](https://couchdb.apache.org/) extend and override the [Database Semantic Conventions](README.md).
 

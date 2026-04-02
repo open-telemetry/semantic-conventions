@@ -6,7 +6,7 @@ linkTitle: Spans
 
 **Status**: [Development][DocumentStatus]
 
-<!-- toc -->
+<!-- START doctoc -->
 
 - [Spans](#spans)
   - [Inference](#inference)
@@ -19,7 +19,7 @@ linkTitle: Spans
     - [Uploading content to external storage](#uploading-content-to-external-storage)
   - [Streaming chunks](#streaming-chunks)
 
-<!-- tocstop -->
+<!-- END doctoc -->
 
 > [!IMPORTANT]
 >

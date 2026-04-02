@@ -4,7 +4,7 @@ aliases: [/docs/specs/semconv/non-normative/how-to-write-conventions/resource-an
 
 # Resource and Entities
 
-<!-- toc -->
+<!-- START doctoc -->
 
 - [Modelling Guide](#modelling-guide)
   - [Declaring associations between signals](#declaring-associations-between-signals)
@@ -20,7 +20,7 @@ aliases: [/docs/specs/semconv/non-normative/how-to-write-conventions/resource-an
   - [Open Expansion](#open-expansion)
   - [Telescoping Identity](#telescoping-identity)
 
-<!-- tocstop -->
+<!-- END doctoc -->
 
 ## Modelling Guide
 

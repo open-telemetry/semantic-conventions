@@ -8,7 +8,7 @@ linkTitle: JVM
 
 This document describes semantic conventions for JVM metrics in OpenTelemetry.
 
-<!-- toc -->
+<!-- START doctoc -->
 
 - [JVM memory](#jvm-memory)
   - [Metric: `jvm.memory.used`](#metric-jvmmemoryused)
@@ -37,7 +37,7 @@ This document describes semantic conventions for JVM metrics in OpenTelemetry.
   - [Metric: `jvm.file_descriptor.count`](#metric-jvmfile_descriptorcount)
   - [Metric: `jvm.file_descriptor.limit`](#metric-jvmfile_descriptorlimit)
 
-<!-- tocstop -->
+<!-- END doctoc -->
 
 ## JVM memory
 

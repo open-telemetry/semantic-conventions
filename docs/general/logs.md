@@ -10,14 +10,14 @@ aliases: [logs-general]
 The attributes described in this section are rather generic.
 They may be used in any Log Record they apply to.
 
-<!-- toc -->
+<!-- START doctoc -->
 
 - [General log identification attributes](#general-log-identification-attributes)
 - [Log media](#log-media)
   - [Log file](#log-file)
   - [I/O Stream](#io-stream)
 
-<!-- tocstop -->
+<!-- END doctoc -->
 
 The following semantic conventions for logs are defined:
 

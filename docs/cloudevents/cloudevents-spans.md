@@ -8,13 +8,13 @@ linkTitle: Spans
 
 <!-- prettier-ignore-start -->
 
-<!-- toc -->
+<!-- START doctoc -->
 
 - [Definitions](#definitions)
 - [Conventions](#conventions)
 - [Span attributes](#span-attributes)
 
-<!-- tocstop -->
+<!-- END doctoc -->
 
 <!-- prettier-ignore-end -->
 

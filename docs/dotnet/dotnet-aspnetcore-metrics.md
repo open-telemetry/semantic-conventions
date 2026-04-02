@@ -8,7 +8,7 @@ linkTitle: ASP.NET Core
 
 This article defines semantic conventions for ASP.NET Core metrics.
 
-<!-- toc -->
+<!-- START doctoc -->
 
 - [Server](#server)
 - [Routing](#routing)
@@ -48,7 +48,7 @@ This article defines semantic conventions for ASP.NET Core metrics.
   - [Metric: `aspnetcore.identity.sign_in.two_factor_clients_remembered`](#metric-aspnetcoreidentitysign_intwo_factor_clients_remembered)
   - [Metric: `aspnetcore.identity.sign_in.two_factor_clients_forgotten`](#metric-aspnetcoreidentitysign_intwo_factor_clients_forgotten)
 
-<!-- tocstop -->
+<!-- END doctoc -->
 
 ## Server
 

@@ -8,7 +8,7 @@ linkTitle: V8 JS engine
 
 This document describes semantic conventions for V8 JS Engine Runtime metrics in OpenTelemetry. This engine is used in some javascript runtime such as Node.js and Deno.
 
-<!-- toc -->
+<!-- START doctoc -->
 
 - [Metric: `v8js.gc.duration`](#metric-v8jsgcduration)
 - [Metric: `v8js.memory.heap.limit`](#metric-v8jsmemoryheaplimit)
@@ -16,7 +16,7 @@ This document describes semantic conventions for V8 JS Engine Runtime metrics in
 - [Metric: `v8js.memory.heap.space.available_size`](#metric-v8jsmemoryheapspaceavailable_size)
 - [Metric: `v8js.memory.heap.space.physical_size`](#metric-v8jsmemoryheapspacephysical_size)
 
-<!-- tocstop -->
+<!-- END doctoc -->
 
 **Description:** In-development V8 JS Engine Runtime metrics captured under `v8js`.
 

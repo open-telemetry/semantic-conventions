@@ -8,11 +8,11 @@ linkTitle: Exceptions
 
 This document defines semantic conventions for recording exceptions on Generative AI operations.
 
-<!-- toc -->
+<!-- START doctoc -->
 
 - [Generative AI client operation exception](#generative-ai-client-operation-exception)
 
-<!-- tocstop -->
+<!-- END doctoc -->
 
 ## Generative AI client operation exception
 

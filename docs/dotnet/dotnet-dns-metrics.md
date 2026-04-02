@@ -8,12 +8,12 @@ linkTitle: DNS
 
 This article defines semantic conventions for DNS metrics emitted by .NET.
 
-<!-- toc -->
+<!-- START doctoc -->
 
 - [DNS metrics](#dns-metrics)
   - [Metric: `dns.lookup.duration`](#metric-dnslookupduration)
 
-<!-- tocstop -->
+<!-- END doctoc -->
 
 ## DNS metrics
 

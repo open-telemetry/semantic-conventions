@@ -6,7 +6,7 @@ linkTitle: Metrics
 
 **Status**: [Development][DocumentStatus]
 
-<!-- toc -->
+<!-- START doctoc -->
 
 - [Common metrics](#common-metrics)
   - [Metric: `messaging.client.operation.duration`](#metric-messagingclientoperationduration)
@@ -16,7 +16,7 @@ linkTitle: Metrics
   - [Metric: `messaging.client.consumed.messages`](#metric-messagingclientconsumedmessages)
   - [Metric: `messaging.process.duration`](#metric-messagingprocessduration)
 
-<!-- tocstop -->
+<!-- END doctoc -->
 
 > [!IMPORTANT]
 >

@@ -10,7 +10,7 @@ This document defines semantic conventions for HTTP client and server Spans.
 They can be used for http and https schemes
 and various HTTP versions like 1.1, 2 and SPDY.
 
-<!-- toc -->
+<!-- START doctoc -->
 
 - [Name](#name)
 - [Status](#status)
@@ -32,7 +32,7 @@ and various HTTP versions like 1.1, 2 and SPDY.
   - [HTTP client call: Internal Server Error](#http-client-call-internal-server-error)
   - [HTTP server call: connection dropped before response body was sent](#http-server-call-connection-dropped-before-response-body-was-sent)
 
-<!-- tocstop -->
+<!-- END doctoc -->
 
 > [!IMPORTANT]
 > Existing HTTP instrumentations that are using

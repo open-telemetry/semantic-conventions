@@ -6,7 +6,7 @@ linkTitle: Cosmos DB
 
 **Status**: [Development][DocumentStatus]
 
-<!-- toc -->
+<!-- START doctoc -->
 
 - [Spans](#spans)
   - [Example](#example)
@@ -16,7 +16,7 @@ linkTitle: Cosmos DB
   - [Metric: `azure.cosmosdb.client.operation.request_charge`](#metric-azurecosmosdbclientoperationrequest_charge)
   - [Metric: `azure.cosmosdb.client.active_instance.count`](#metric-azurecosmosdbclientactive_instancecount)
 
-<!-- tocstop -->
+<!-- END doctoc -->
 
 The Semantic Conventions for [Microsoft Cosmos DB](https://azure.microsoft.com/products/cosmos-db/)
 extend and override the [Database Semantic Conventions](README.md).

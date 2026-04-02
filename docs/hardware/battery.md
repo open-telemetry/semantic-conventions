@@ -6,7 +6,7 @@ linkTitle: Battery
 
 **Status**: [Development][DocumentStatus]
 
-<!-- toc -->
+<!-- START doctoc -->
 
 - [Battery metrics `hw.battery.*`](#battery-metrics-hwbattery)
   - [Metric: `hw.battery.charge`](#metric-hwbatterycharge)
@@ -14,7 +14,7 @@ linkTitle: Battery
   - [Metric: `hw.battery.time_left`](#metric-hwbatterytime_left)
   - [Metric: `hw.status` (Battery)](#metric-hwstatus-battery)
 
-<!-- tocstop -->
+<!-- END doctoc -->
 
 ## Battery metrics `hw.battery.*`
 

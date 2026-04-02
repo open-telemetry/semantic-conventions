@@ -9,7 +9,7 @@ linkTitle: Go
 This document describes semantic conventions for Go runtime metrics in OpenTelemetry.
 These metrics are obtained from Go's [`runtime/metrics`][RuntimeMetrics] package.
 
-<!-- toc -->
+<!-- START doctoc -->
 
 - [Go memory](#go-memory)
   - [Metric: `go.memory.used`](#metric-gomemoryused)
@@ -27,7 +27,7 @@ These metrics are obtained from Go's [`runtime/metrics`][RuntimeMetrics] package
 - [Go runtime configuration](#go-runtime-configuration)
   - [Metric: `go.config.gogc`](#metric-goconfiggogc)
 
-<!-- tocstop -->
+<!-- END doctoc -->
 
 ## Go memory
 

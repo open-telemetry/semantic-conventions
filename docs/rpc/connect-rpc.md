@@ -6,14 +6,14 @@ linkTitle: Connect
 
 **Status**: [Development][DocumentStatus]
 
-<!-- toc -->
+<!-- START doctoc -->
 
 - [Spans](#spans)
   - [Client](#client)
   - [Server](#server)
 - [Metrics](#metrics)
 
-<!-- tocstop -->
+<!-- END doctoc -->
 
 The Semantic Conventions for [Connect](https://connectrpc.com/) extend and override the [RPC Semantic Conventions](README.md).
 

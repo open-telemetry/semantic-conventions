@@ -13,7 +13,7 @@ applicable when handlers are for HTTP requests.
 There are a variety of triggers for Lambda functions, and this document will grow over time to cover all the
 use cases.
 
-<!-- toc -->
+<!-- START doctoc -->
 
 - [All triggers](#all-triggers)
   - [AWS X-Ray active tracing considerations](#aws-x-ray-active-tracing-considerations)
@@ -30,7 +30,7 @@ use cases.
   - [SQS (Lambda tracing active)](#sqs-lambda-tracing-active)
 - [Resource Detector](#resource-detector)
 
-<!-- tocstop -->
+<!-- END doctoc -->
 
 ## All triggers
 

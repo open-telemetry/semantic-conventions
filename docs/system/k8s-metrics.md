@@ -15,7 +15,7 @@ well-defined APIs (e.g. Kubelet's API).
 Metrics in `k8s.` instruments SHOULD be attached to a [K8s Resource](/docs/resource/k8s/README.md)
 and therefore inherit its attributes, like `k8s.pod.name` and `k8s.pod.uid`.
 
-<!-- toc -->
+<!-- START doctoc -->
 
 - [Pod metrics](#pod-metrics)
   - [Metric: `k8s.pod.uptime`](#metric-k8spoduptime)
@@ -136,7 +136,7 @@ and therefore inherit its attributes, like `k8s.pod.name` and `k8s.pod.uid`.
   - [Metric: `k8s.service.endpoint.count`](#metric-k8sserviceendpointcount)
   - [Metric: `k8s.service.load_balancer.ingress.count`](#metric-k8sserviceload_balanceringresscount)
 
-<!-- tocstop -->
+<!-- END doctoc -->
 
 ## Pod metrics
 

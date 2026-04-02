@@ -6,7 +6,7 @@ linkTitle: CPU
 
 **Status**: [Development][DocumentStatus]
 
-<!-- toc -->
+<!-- START doctoc -->
 
 - [CPU metrics `hw.cpu.*`](#cpu-metrics-hwcpu)
   - [Metric: `hw.errors` (CPU)](#metric-hwerrors-cpu)
@@ -14,7 +14,7 @@ linkTitle: CPU
   - [Metric: `hw.cpu.speed.limit`](#metric-hwcpuspeedlimit)
   - [Metric: `hw.status` (CPU)](#metric-hwstatus-cpu)
 
-<!-- tocstop -->
+<!-- END doctoc -->
 
 ## CPU metrics `hw.cpu.*`
 

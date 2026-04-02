@@ -8,14 +8,14 @@ linkTitle: CPython
 
 This document describes semantic conventions for CPython Runtime metrics in OpenTelemetry.
 
-<!-- toc -->
+<!-- START doctoc -->
 
 - [CPython garbage collection](#cpython-garbage-collection)
   - [Metric: `cpython.gc.collections`](#metric-cpythongccollections)
   - [Metric: `cpython.gc.collected_objects`](#metric-cpythongccollected_objects)
   - [Metric: `cpython.gc.uncollectable_objects`](#metric-cpythongcuncollectable_objects)
 
-<!-- tocstop -->
+<!-- END doctoc -->
 
 ## CPython garbage collection
 

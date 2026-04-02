@@ -6,7 +6,7 @@ linkTitle: Spans
 
 **Status**: [Development][DocumentStatus]
 
-<!-- toc -->
+<!-- START doctoc -->
 
 - [Definitions](#definitions)
   - [Message](#message)
@@ -37,7 +37,7 @@ linkTitle: Spans
   - [Batch publishing with "Create" spans](#batch-publishing-with-create-spans)
   - [Batch publishing without "Create" spans](#batch-publishing-without-create-spans)
 
-<!-- tocstop -->
+<!-- END doctoc -->
 
 > [!IMPORTANT]
 >

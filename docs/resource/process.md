@@ -6,7 +6,7 @@ linkTitle: Process
 
 **Status**: [Development][DocumentStatus]
 
-<!-- toc -->
+<!-- START doctoc -->
 
 - [Process](#process)
   - [Selecting process command attributes](#selecting-process-command-attributes)
@@ -19,7 +19,7 @@ linkTitle: Process
   - [Python runtimes](#python-runtimes)
   - [Ruby runtimes](#ruby-runtimes)
 
-<!-- tocstop -->
+<!-- END doctoc -->
 
 ## Process
 

@@ -12,14 +12,14 @@ measurements are aggregated and exported as metrics, which provide insight into
 those operations. By including RPC properties as attributes on measurements, the
 metrics can be filtered for finer grain analysis.
 
-<!-- toc -->
+<!-- START doctoc -->
 
 - [RPC server](#rpc-server)
   - [Metric: `rpc.server.call.duration`](#metric-rpcservercallduration)
 - [RPC client](#rpc-client)
   - [Metric: `rpc.client.call.duration`](#metric-rpcclientcallduration)
 
-<!-- tocstop -->
+<!-- END doctoc -->
 
 > [!IMPORTANT]
 > Existing RPC instrumentations that are using

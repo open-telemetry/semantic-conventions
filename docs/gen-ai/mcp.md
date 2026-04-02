@@ -6,7 +6,7 @@ linkTitle: Model Context Protocol
 
 **Status**: [Development][DocumentStatus]
 
-<!-- toc -->
+<!-- START doctoc -->
 
 - [Spans](#spans)
   - [Context propagation](#context-propagation)
@@ -26,7 +26,7 @@ linkTitle: Model Context Protocol
     - [Initialize](#initialize-1)
     - [Tool call](#tool-call-1)
 
-<!-- tocstop -->
+<!-- END doctoc -->
 
 [Model Context Protocol](https://github.com/modelcontextprotocol/modelcontextprotocol) (MCP) is based on JSON RPC.
 

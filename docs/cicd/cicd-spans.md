@@ -6,13 +6,13 @@ linkTitle: Spans
 
 **Status**: [Development][DocumentStatus]
 
-<!-- toc -->
+<!-- START doctoc -->
 
 - [CICD Spans](#cicd-spans)
   - [Pipeline run](#pipeline-run)
   - [Pipeline task run](#pipeline-task-run)
 
-<!-- tocstop -->
+<!-- END doctoc -->
 
 ## CICD Spans
 

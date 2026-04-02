@@ -7,7 +7,7 @@ aliases: [metrics-general]
 
 **Status**: [Mixed][DocumentStatus]
 
-<!-- toc -->
+<!-- START doctoc -->
 
 - [General guidelines](#general-guidelines)
   - [Units](#units)
@@ -15,7 +15,7 @@ aliases: [metrics-general]
   - [Instrument types](#instrument-types)
   - [Consistent UpDownCounter timeseries](#consistent-updowncounter-timeseries)
 
-<!-- tocstop -->
+<!-- END doctoc -->
 
 The following semantic conventions surrounding metrics are defined:
 

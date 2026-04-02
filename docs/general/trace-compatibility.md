@@ -9,11 +9,11 @@ linkTitle: Tracing compatibility
 This document defines trace semantic conventions used by the
 compatibility components, e.g. OpenTracing Shim layer.
 
-<!-- toc -->
+<!-- START doctoc -->
 
 - [OpenTracing](#opentracing)
 
-<!-- tocstop -->
+<!-- END doctoc -->
 
 ## OpenTracing
 

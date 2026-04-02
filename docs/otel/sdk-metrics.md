@@ -8,9 +8,7 @@ linkTitle: SDK Metrics
 
 This document describes metrics emitted by the OpenTelemetry SDK components themselves about their internal state.
 
-<!-- Re-generate TOC with `make markdown-toc` -->
-
-<!-- toc -->
+<!-- START doctoc -->
 
 - [Span metrics](#span-metrics)
   - [Metric: `otel.sdk.span.live`](#metric-otelsdkspanlive)
@@ -34,7 +32,7 @@ This document describes metrics emitted by the OpenTelemetry SDK components them
   - [Metric: `otel.sdk.metric_reader.collection.duration`](#metric-otelsdkmetric_readercollectionduration)
   - [Metric: `otel.sdk.exporter.operation.duration`](#metric-otelsdkexporteroperationduration)
 
-<!-- tocstop -->
+<!-- END doctoc -->
 
 ## Span metrics
 

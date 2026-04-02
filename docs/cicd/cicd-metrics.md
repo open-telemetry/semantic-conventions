@@ -6,7 +6,7 @@ linkTitle: Metrics
 
 **Status**: [Development][DocumentStatus]
 
-<!-- toc -->
+<!-- START doctoc -->
 
 - [CICD Metrics](#cicd-metrics)
   - [Guidance on per pipeline run metrics](#guidance-on-per-pipeline-run-metrics)
@@ -27,7 +27,7 @@ linkTitle: Metrics
   - [Metric: `vcs.ref.time`](#metric-vcsreftime)
   - [Metric: `vcs.contributor.count`](#metric-vcscontributorcount)
 
-<!-- tocstop -->
+<!-- END doctoc -->
 
 ## CICD Metrics
 

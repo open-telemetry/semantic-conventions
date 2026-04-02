@@ -6,12 +6,12 @@ linkTitle: Enclosure
 
 **Status**: [Development][DocumentStatus]
 
-<!-- toc -->
+<!-- START doctoc -->
 
 - [Enclosure metrics `hw.enclosure.*`](#enclosure-metrics-hwenclosure)
   - [Metric: `hw.status` (Enclosure)](#metric-hwstatus-enclosure)
 
-<!-- tocstop -->
+<!-- END doctoc -->
 
 ## Enclosure metrics `hw.enclosure.*`
 
