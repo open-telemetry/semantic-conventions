@@ -228,7 +228,7 @@ groups:
         type: string
         stability: development
         brief: >
-          Design capacity in Watts-hours or Amper-hours
+          Design capacity in Watts-hours or Ampere-hours
         examples: ['9.3Ah', '50Wh']
 
       # ENCLOSURE ATTRIBUTES
