@@ -1294,10 +1294,12 @@ groups:
       code_generation:
         metric_value_type: double
     stability: development
-    brief: "The ratio of container CPU usage to its CPU current request as defined by <https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#containerstatus-v1-core>."
+    brief: "The ratio of container CPU usage to its current CPU request."
     entity_associations:
       - k8s.container
     note: |
+      The current CPU request reflects the request applied to the running container, as reported by
+      [ContainerStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#containerstatus-v1-core).
       The value range is [0.0,1.0]. A value of 1.0 means the container is using 100% of its actual CPU request.
       If the CPU request is not set, this metric SHOULD NOT be emitted for that container.
     instrument: gauge
