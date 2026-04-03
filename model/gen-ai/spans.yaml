@@ -418,7 +418,7 @@ groups:
         requirement_level: required
         sampling_relevant: true
       - ref: gen_ai.tool.name
-        requirement_level: recommended
+        requirement_level: required
       - ref: gen_ai.tool.call.id
         requirement_level:
           recommended: if available
