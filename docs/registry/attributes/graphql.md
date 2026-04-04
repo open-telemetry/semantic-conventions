@@ -3,19 +3,36 @@
 
 # GraphQL
 
+- [GraphQL Attributes](#graphql-attributes)
+- [GraphQL DataLoader Attributes](#graphql-dataloader-attributes)
+- [GraphQL Error Attributes](#graphql-error-attributes)
+- [GraphQL Operation Attributes](#graphql-operation-attributes)
+- [GraphQL Selection Attributes](#graphql-selection-attributes)
+- [GraphQL Source Attributes](#graphql-source-attributes)
+- [GraphQL Subscription Attributes](#graphql-subscription-attributes)
+
 ## GraphQL Attributes
 
-This document defines attributes for GraphQL.
+This document defines attributes for GraphQL operations and resolvers.
 
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="graphql-document" href="#graphql-document">`graphql.document`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The GraphQL document being executed. [1] | `query findBookById { bookById(id: ?) { name } }` |
-| <a id="graphql-operation-name" href="#graphql-operation-name">`graphql.operation.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the operation being executed. | `findBookById` |
+| <a id="graphql-document-hash" href="#graphql-document-hash">`graphql.document.hash`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The hash of the operation document. [1] | `sha256:400483f38c08e8a3d3b972409c9dfb8e4a326e1b1940864932acd9f873d8664c` |
+| <a id="graphql-document-id" href="#graphql-document-id">`graphql.document.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The document identifier for trusted documents. [2] | `aa3e37c1bf54708e93f12c137afba004` |
+| <a id="graphql-operation-name" href="#graphql-operation-name">`graphql.operation.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the operation being executed. [3] | `FindBookById`; `GetUserProfile` |
 | <a id="graphql-operation-type" href="#graphql-operation-type">`graphql.operation.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The type of the operation being executed. | `query`; `mutation`; `subscription` |
+| <a id="graphql-processing-type" href="#graphql-processing-type">`graphql.processing.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The type of processing represented by this span. [4] | `parse`; `validate`; `execute`; `resolve` |
 
-**[1] `graphql.document`:** The value may be sanitized to exclude sensitive information.
+**[1] `graphql.document.hash`:** The hash algorithm used SHOULD be specified as part of the value (e.g., "sha256:..."). Instrumentations SHOULD use SHA-256 as the default hash algorithm unless there is a specific reason to use a different one. This can be used for monitoring operation distribution and caching strategies.
+When both `graphql.document.hash` and `graphql.document.id` are available, they SHOULD be preferred over transmitting the raw GraphQL document text for telemetry purposes. This reduces payload size and avoids exposing potentially sensitive operation details.
+
+**[2] `graphql.document.id`:** This is a hash or identifier of the document provided by the user to identify trusted documents.
+
+**[3] `graphql.operation.name`:** This represents the operation name as specified in the GraphQL operation document. When the operation name is not provided, this attribute SHOULD be omitted.
+
+**[4] `graphql.processing.type`:** This attribute allows telemetry consumers to programmatically identify what kind of processing a span represents without relying on span names.
 
 ---
 
@@ -23,6 +40,163 @@ This document defines attributes for GraphQL.
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `mutation` | GraphQL mutation | ![Development](https://img.shields.io/badge/-development-blue) |
-| `query` | GraphQL query | ![Development](https://img.shields.io/badge/-development-blue) |
-| `subscription` | GraphQL subscription | ![Development](https://img.shields.io/badge/-development-blue) |
+| `_OTHER` | A fallback for operation types not covered by specific values in this enum. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `mutation` | GraphQL mutation operation | ![Development](https://img.shields.io/badge/-development-blue) |
+| `query` | GraphQL query operation | ![Development](https://img.shields.io/badge/-development-blue) |
+| `subscription` | GraphQL subscription operation | ![Development](https://img.shields.io/badge/-development-blue) |
+
+---
+
+`graphql.processing.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value | Description | Stability |
+| --- | --- | --- |
+| `_OTHER` | A fallback for processing types not covered by specific values in this enum. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `dataloader_batch` | Executing a DataLoader batch operation. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `dataloader_dispatch` | Dispatching grouped DataLoader batch operations. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `execute` | Executing a GraphQL operation. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `parse` | Parsing the GraphQL document into an AST. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `plan` | Planning the execution of a GraphQL operation. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `resolve` | Resolving an individual field. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `step_execute` | Executing an individual step within an execution plan. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `validate` | Validating the GraphQL document against the schema. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `variable_coercion` | Coercing and validating input variables. | ![Development](https://img.shields.io/badge/-development-blue) |
+
+## GraphQL DataLoader Attributes
+
+This document defines attributes for GraphQL DataLoader operations.
+
+**Attributes:**
+
+| Key | Stability | Value Type | Description | Example Values |
+| --- | --- | --- | --- | --- |
+| <a id="graphql-dataloader-batch-keys" href="#graphql-dataloader-batch-keys">`graphql.dataloader.batch.keys`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string[] | A subset of the keys requested in the DataLoader batch. [5] | `["user:1", "user:2", "user:3"]`; `["post:42", "post:99"]` |
+| <a id="graphql-dataloader-batch-size" href="#graphql-dataloader-batch-size">`graphql.dataloader.batch.size`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The number of individual requests in the DataLoader batch. [6] | `5`; `12`; `25` |
+| <a id="graphql-dataloader-cache-hit-count" href="#graphql-dataloader-cache-hit-count">`graphql.dataloader.cache.hit_count`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The number of requests in the batch that were served from the DataLoader cache. [7] | `0`; `3`; `10` |
+| <a id="graphql-dataloader-cache-miss-count" href="#graphql-dataloader-cache-miss-count">`graphql.dataloader.cache.miss_count`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The number of requests in the batch that required fetching. [8] | `2`; `5`; `12` |
+| <a id="graphql-dataloader-name" href="#graphql-dataloader-name">`graphql.dataloader.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the DataLoader instance. [9] | `UserLoader`; `ProductByIdLoader`; `CommentsByPostIdLoader` |
+
+**[5] `graphql.dataloader.batch.keys`:** This attribute is opt-in and SHOULD NOT be enabled by default, as keys may contain sensitive or high-cardinality data. When enabled, implementations MAY truncate the list to a configurable maximum number of keys. The string representation of each key depends on the DataLoader implementation.
+
+**[6] `graphql.dataloader.batch.size`:** This represents the total number of individual load requests that were batched together in a single batch operation. This includes both cache hits and cache misses.
+
+**[7] `graphql.dataloader.cache.hit_count`:** This represents the number of individual load requests that were resolved from the DataLoader's cache without requiring a fetch.
+
+**[8] `graphql.dataloader.cache.miss_count`:** This represents the number of individual load requests that were not found in the DataLoader's cache and required a fetch operation.
+
+**[9] `graphql.dataloader.name`:** This represents the name or identifier of the DataLoader instance. When the DataLoader implementation supports naming, this SHOULD be set. This helps in identifying specific DataLoader instances in observability.
+
+## GraphQL Error Attributes
+
+This document defines the shared attributes used to report GraphQL errors associated with a span or event.
+
+**Attributes:**
+
+| Key | Stability | Value Type | Description | Example Values |
+| --- | --- | --- | --- | --- |
+| <a id="graphql-error-code" href="#graphql-error-code">`graphql.error.code`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | An optional error code from the extensions field. [10] | `GRAPHQL_VALIDATION_FAILED`; `UNAUTHENTICATED`; `HC00116` |
+| <a id="graphql-error-locations" href="#graphql-error-locations">`graphql.error.locations`</a> | ![Development](https://img.shields.io/badge/-development-blue) | any | The locations in the GraphQL document associated with the error. [11] | `[{ "line": 3, "column": 7 }, { "line": 5, "column": 4 }]` |
+| <a id="graphql-error-message" href="#graphql-error-message">`graphql.error.message`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The error message intended for the developer as a guide to understand and correct the error. [12] | `Cannot query field 'nonExistentField' on type 'User'`; `Variable '$id' of required type 'ID!' was not provided.` |
+| <a id="graphql-error-path" href="#graphql-error-path">`graphql.error.path`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The path of the response field which experienced the error. [13] | `user.friends[0].name`; `findBookById` |
+| <a id="graphql-error-schema-coordinate" href="#graphql-error-schema-coordinate">`graphql.error.schema_coordinate`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The coordinate of the field in the schema which experienced the error. [14] | `User.friends`; `Query.me` |
+
+**[10] `graphql.error.code`:** This is an optional field that can be used to categorize errors. The error extension code is a recommended way to categorize errors for easier filtering and monitoring.
+
+**[11] `graphql.error.locations`:** If an error can be associated to a particular point in the requested GraphQL document, it should contain an array of location objects. Each location is a JSON object with the keys `line` and `column`, both positive integers starting from 1, which describe the beginning of an associated syntax element.
+The value MUST be an array of objects, where each object has the following properties: - `line` (integer, required): The line number in the GraphQL document. - `column` (integer, required): The column number in the GraphQL document.
+
+**[12] `graphql.error.message`:** Every error must contain an entry with the key message with a string description of the error intended for the developer as a guide to understand and correct the error.
+> **Warning** > This attribute has unbounded cardinality and MUST NOT be used as a metric > dimension. It is intended for span events and log records only.
+
+**[13] `graphql.error.path`:** If an error can be associated to a particular field in the GraphQL result, it must contain an entry with the key path that details the path of the response field which experienced the error.
+This allows clients to identify whether a null result is intentional or caused by a runtime error.
+The path starts from the root of the response. Field names are separated by dots and list indices are represented using bracket notation. If the error happens in an aliased field, the path should use the aliased name, since it represents a path in the response, not in the request.
+
+**[14] `graphql.error.schema_coordinate`:** If an error can be associated to a particular field in the GraphQL schema, it must contain a schema coordinate in the form of `typeName.fieldName` identifying the field which experienced the error.
+
+## GraphQL Operation Attributes
+
+This document defines attributes for GraphQL operation execution steps and planning.
+
+**Attributes:**
+
+| Key | Stability | Value Type | Description | Example Values |
+| --- | --- | --- | --- | --- |
+| <a id="graphql-operation-step-id" href="#graphql-operation-step-id">`graphql.operation.step.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The id of the step in the execution plan. [15] | `0`; `1`; `2` |
+| <a id="graphql-operation-step-kind" href="#graphql-operation-step-kind">`graphql.operation.step.kind`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The kind of step in the execution plan. [16] | `node`; `operation`; `fetch`; `batch` |
+| <a id="graphql-operation-step-plan-id" href="#graphql-operation-step-plan-id">`graphql.operation.step.plan.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The id of the execution plan this step belongs to. [17] | `plan-1`; `abc-123` |
+
+**[15] `graphql.operation.step.id`:** The step identifier is implementation-specific and may be numeric, UUID, or any other format used by the GraphQL execution engine.
+
+**[16] `graphql.operation.step.kind`:** The step kind describes the type of work performed in this execution step. Values are implementation-specific but common examples include node resolution, fetch operations, and batch processing.
+
+**[17] `graphql.operation.step.plan.id`:** The plan identifier links this step to a specific execution plan, enabling correlation of all steps within the same plan. This is particularly useful in federated GraphQL systems where plans may be cached and reused.
+
+## GraphQL Selection Attributes
+
+Attributes for GraphQL field selections and resolver execution.
+
+**Attributes:**
+
+| Key | Stability | Value Type | Description | Example Values |
+| --- | --- | --- | --- | --- |
+| <a id="graphql-selection-field-coordinate" href="#graphql-selection-field-coordinate">`graphql.selection.field.coordinate`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The coordinate of the field that is being resolved. [18] | `Person.address`; `Query.findBookById` |
+| <a id="graphql-selection-field-name" href="#graphql-selection-field-name">`graphql.selection.field.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the field that is being resolved. [19] | `address`; `name`; `id` |
+| <a id="graphql-selection-field-parent-type" href="#graphql-selection-field-parent-type">`graphql.selection.field.parent_type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The type that declares the field that is being resolved. [20] | `Person`; `Query`; `Mutation` |
+| <a id="graphql-selection-name" href="#graphql-selection-name">`graphql.selection.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the selection that is being resolved. Either the field name or an alias. [21] | `newAddress`; `bookTitle` |
+| <a id="graphql-selection-path" href="#graphql-selection-path">`graphql.selection.path`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The path of the selection that is being resolved. [22] | `person[0].address` |
+
+**[18] `graphql.selection.field.coordinate`:** The coordinate follows the format "{ParentType}.{fieldName}" and uniquely identifies the field within the GraphQL schema.
+
+**[19] `graphql.selection.field.name`:** This is always the actual field name as defined in the schema, not an alias.
+
+**[20] `graphql.selection.field.parent_type`:** This is the GraphQL type name that contains the field definition.
+
+**[21] `graphql.selection.name`:** If the field has an alias, this SHOULD be the alias name. Otherwise, it SHOULD be the field name.
+
+**[22] `graphql.selection.path`:** The path represents the location of the field being resolved within the result structure. Therefore, if a field is aliased, the path will use the alias name instead of the actual field name.
+
+## GraphQL Source Attributes
+
+This document defines attributes for GraphQL source systems in distributed GraphQL architectures.
+
+**Attributes:**
+
+| Key | Stability | Value Type | Description | Example Values |
+| --- | --- | --- | --- | --- |
+| <a id="graphql-source-name" href="#graphql-source-name">`graphql.source.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the source system. [23] | `accounts`; `products`; `reviews` |
+| <a id="graphql-source-operation-hash" href="#graphql-source-operation-hash">`graphql.source.operation.hash`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | A hash of the GraphQL operation to be executed on the source. [24] | `sha256:abc123`; `md5:def456` |
+| <a id="graphql-source-operation-name" href="#graphql-source-operation-name">`graphql.source.operation.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the GraphQL operation to be executed on the source. [25] | `GetUser`; `FetchProducts`; `ResolveReviews` |
+| <a id="graphql-source-operation-type" href="#graphql-source-operation-type">`graphql.source.operation.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The type of GraphQL operation to be executed on the source. [26] | `query`; `mutation`; `subscription` |
+
+**[23] `graphql.source.name`:** The human-readable name of the downstream source that a distributed GraphQL gateway dispatches to. For example, this could be a subgraph name in a federated system or a stitched schema name.
+
+**[24] `graphql.source.operation.hash`:** A hash of the operation document that the gateway sends to the source system. Useful for identifying operations without transmitting the full document.
+The hash algorithm used SHOULD be specified as part of the value (e.g., "sha256:..."), consistent with `graphql.document.hash`.
+
+**[25] `graphql.source.operation.name`:** The operation name of the query or mutation that the gateway sends to the source system.
+
+**[26] `graphql.source.operation.type`:** The type of operation that the gateway sends to the source system. This enum matches `graphql.operation.type` for consistency.
+
+---
+
+`graphql.source.operation.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value | Description | Stability |
+| --- | --- | --- |
+| `_OTHER` | A fallback for operation types not covered by specific values in this enum. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `mutation` | GraphQL mutation operation | ![Development](https://img.shields.io/badge/-development-blue) |
+| `query` | GraphQL query operation | ![Development](https://img.shields.io/badge/-development-blue) |
+| `subscription` | GraphQL subscription operation | ![Development](https://img.shields.io/badge/-development-blue) |
+
+## GraphQL Subscription Attributes
+
+Attributes for GraphQL subscription operations.
+
+**Attributes:**
+
+| Key | Stability | Value Type | Description | Example Values |
+| --- | --- | --- | --- | --- |
+| <a id="graphql-subscription-id" href="#graphql-subscription-id">`graphql.subscription.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | A unique identifier for the subscription instance. [27] | `sub-abc123`; `ws-conn-42-sub-1` |
+
+**[27] `graphql.subscription.id`:** This identifier tracks a specific subscription instance throughout its lifecycle. It SHOULD be unique within the scope of the server and can be used to correlate subscription creation, events, and termination.

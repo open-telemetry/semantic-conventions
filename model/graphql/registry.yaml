@@ -1,14 +1,19 @@
 groups:
   - id: registry.graphql
     type: attribute_group
+    stability: development
     display_name: GraphQL Attributes
-    brief: 'This document defines attributes for GraphQL.'
+    brief: "This document defines attributes for GraphQL operations and resolvers."
     attributes:
       - id: graphql.operation.name
         brief: "The name of the operation being executed."
         type: string
         stability: development
-        examples: 'findBookById'
+        examples: ["FindBookById", "GetUserProfile"]
+        note: >
+          This represents the operation name as specified in the GraphQL
+          operation document. When the operation name is not provided, this
+          attribute SHOULD be omitted.
       - id: graphql.operation.type
         brief: "The type of the operation being executed."
         stability: development
@@ -16,20 +21,405 @@ groups:
           members:
             - id: query
               value: "query"
-              brief: "GraphQL query"
+              brief: "GraphQL query operation"
               stability: development
             - id: mutation
               value: "mutation"
-              brief: "GraphQL mutation"
+              brief: "GraphQL mutation operation"
               stability: development
             - id: subscription
               value: "subscription"
-              brief: "GraphQL subscription"
+              brief: "GraphQL subscription operation"
               stability: development
-        examples: ['query', 'mutation', 'subscription']
-      - id: graphql.document
-        brief: "The GraphQL document being executed."
+            - id: _OTHER
+              value: "_OTHER"
+              brief:
+                "A fallback for operation types not covered by specific values
+                in this enum."
+              stability: development
+        examples: ["query", "mutation", "subscription"]
+      - id: graphql.processing.type
+        brief: "The type of processing represented by this span."
+        stability: development
+        type:
+          members:
+            - id: request
+              value: "request"
+              brief: "Processing the entire GraphQL request."
+              stability: development
+            - id: parse
+              value: "parse"
+              brief: "Parsing the GraphQL document into an AST."
+              stability: development
+            - id: validate
+              value: "validate"
+              brief: "Validating the GraphQL document against the schema."
+              stability: development
+            - id: variable_coercion
+              value: "variable_coercion"
+              brief: "Coercing and validating input variables."
+              stability: development
+            - id: plan
+              value: "plan"
+              brief: "Planning the execution of a GraphQL operation."
+              stability: development
+            - id: execute
+              value: "execute"
+              brief: "Executing a GraphQL operation."
+              stability: development
+            - id: step_execute
+              value: "step_execute"
+              brief: "Executing an individual step within an execution plan."
+              stability: development
+            - id: resolve
+              value: "resolve"
+              brief: "Resolving an individual field."
+              stability: development
+            - id: dataloader_dispatch
+              value: "dataloader_dispatch"
+              brief: "Dispatching grouped DataLoader batch operations."
+              stability: development
+            - id: dataloader_batch
+              value: "dataloader_batch"
+              brief: "Executing a DataLoader batch operation."
+              stability: development
+            - id: _OTHER
+              value: "_OTHER"
+              brief:
+                "A fallback for processing types not covered by specific values
+                in this enum."
+              stability: development
+        examples: ["parse", "validate", "execute", "resolve"]
+        note: >
+          This attribute allows telemetry consumers to programmatically identify
+          what kind of processing a span represents without relying on span
+          names.
+      - id: graphql.document.hash
+        brief: "The hash of the operation document."
         type: string
         stability: development
-        note: The value may be sanitized to exclude sensitive information.
-        examples: 'query findBookById { bookById(id: ?) { name } }'
+        examples:
+          [
+            "sha256:400483f38c08e8a3d3b972409c9dfb8e4a326e1b1940864932acd9f873d8664c",
+          ]
+        note: >
+          The hash algorithm used SHOULD be specified as part of the value
+          (e.g., "sha256:..."). Instrumentations SHOULD use SHA-256 as the
+          default hash algorithm unless there is a specific reason to use a
+          different one. This can be used for monitoring operation distribution
+          and caching strategies.
+
+          When both `graphql.document.hash` and `graphql.document.id` are
+          available, they SHOULD be preferred over transmitting the raw GraphQL
+          document text for telemetry purposes. This reduces payload size and
+          avoids exposing potentially sensitive operation details.
+      - id: graphql.document.id
+        brief: >
+          The document identifier for trusted documents.
+        type: string
+        stability: development
+        examples: ["aa3e37c1bf54708e93f12c137afba004"]
+        note: >
+          This is a hash or identifier of the document provided by the user to
+          identify trusted documents.
+
+  - id: registry.graphql.selection
+    type: attribute_group
+    stability: development
+    display_name: GraphQL Selection Attributes
+    brief: >
+      Attributes for GraphQL field selections and resolver execution.
+    attributes:
+      - id: graphql.selection.name
+        brief:
+          "The name of the selection that is being resolved. Either the field
+          name or an alias."
+        type: string
+        stability: development
+        examples: ["newAddress", "bookTitle"]
+        note: >
+          If the field has an alias, this SHOULD be the alias name. Otherwise,
+          it SHOULD be the field name.
+      - id: graphql.selection.path
+        brief: "The path of the selection that is being resolved."
+        type: string
+        stability: development
+        examples: ["person[0].address"]
+        note: >
+          The path represents the location of the field being resolved within
+          the result structure. Therefore, if a field is aliased, the path will
+          use the alias name instead of the actual field name.
+      - id: graphql.selection.field.name
+        brief: "The name of the field that is being resolved."
+        type: string
+        stability: development
+        examples: ["address", "name", "id"]
+        note: >
+          This is always the actual field name as defined in the schema, not an
+          alias.
+      - id: graphql.selection.field.parent_type
+        brief: "The type that declares the field that is being resolved."
+        type: string
+        stability: development
+        examples: ["Person", "Query", "Mutation"]
+        note: >
+          This is the GraphQL type name that contains the field definition.
+      - id: graphql.selection.field.coordinate
+        brief: "The coordinate of the field that is being resolved."
+        type: string
+        stability: development
+        examples: ["Person.address", "Query.findBookById"]
+        note: >
+          The coordinate follows the format "{ParentType}.{fieldName}" and
+          uniquely identifies the field within the GraphQL schema.
+
+  - id: registry.graphql.error
+    type: attribute_group
+    stability: development
+    display_name: GraphQL Error Attributes
+    brief: >
+      This document defines the shared attributes used to report GraphQL errors
+      associated with a span or event.
+    note: >
+      The `graphql.error.*` attributes capture structured details from the
+      GraphQL response `errors` array. These are complementary to the standard
+      `error.type` attribute:
+
+      - `error.type` provides a low-cardinality error classification used for
+      span status
+        and metric dimensions (e.g., `GRAPHQL_VALIDATION_FAILED`).
+      - `graphql.error.*` attributes provide the full structured error details
+      from the
+        GraphQL response (message, path, locations, code, etc.).
+
+      When `graphql.error.code` is available, it SHOULD be used as the
+      `error.type` value. See span definitions for detailed `error.type`
+      guidance per span kind.
+    attributes:
+      - id: graphql.error.message
+        type: string
+        stability: development
+        brief: >
+          The error message intended for the developer as a guide to understand
+          and correct the error.
+        examples:
+          [
+            "Cannot query field 'nonExistentField' on type 'User'",
+            "Variable '$id' of required type 'ID!' was not provided.",
+          ]
+        note: >
+          Every error must contain an entry with the key message with a string
+          description of the error intended for the developer as a guide to
+          understand and correct the error.
+
+          > **Warning** > This attribute has unbounded cardinality and MUST NOT
+          be used as a metric > dimension. It is intended for span events and
+          log records only.
+
+      - id: graphql.error.locations
+        type: any
+        stability: development
+        brief: >
+          The locations in the GraphQL document associated with the error.
+        examples:
+          - '[{ "line": 3, "column": 7 }, { "line": 5, "column": 4 }]'
+        note: >
+          If an error can be associated to a particular point in the requested
+          GraphQL document, it should contain an array of location objects. Each
+          location is a JSON object with the keys `line` and `column`, both
+          positive integers starting from 1, which describe the beginning of an
+          associated syntax element.
+
+          The value MUST be an array of objects, where each object has the following properties:
+          - `line` (integer, required): The line number in the GraphQL document.
+          - `column` (integer, required): The column number in the GraphQL document.
+
+      - id: graphql.error.path
+        type: string
+        stability: development
+        brief: >
+          The path of the response field which experienced the error.
+        examples: ["user.friends[0].name", "findBookById"]
+        note: >
+          If an error can be associated to a particular field in the GraphQL
+          result, it must contain an entry with the key path that details the
+          path of the response field which experienced the error.
+
+          This allows clients to identify whether a null result is intentional
+          or caused by a runtime error.
+
+          The path starts from the root of the response. Field names are
+          separated by dots and list indices are represented using bracket
+          notation. If the error happens in an aliased field, the path should
+          use the aliased name, since it represents a path in the response, not
+          in the request.
+
+      - id: graphql.error.code
+        type: string
+        stability: development
+        brief: >
+          An optional error code from the extensions field.
+        examples: ["GRAPHQL_VALIDATION_FAILED", "UNAUTHENTICATED", "HC00116"]
+        note: >
+          This is an optional field that can be used to categorize errors. The
+          error extension code is a recommended way to categorize errors for
+          easier filtering and monitoring.
+
+      - id: graphql.error.schema_coordinate
+        type: string
+        stability: development
+        brief: >
+          The coordinate of the field in the schema which experienced the error.
+        examples: ["User.friends", "Query.me"]
+        note: >
+          If an error can be associated to a particular field in the GraphQL
+          schema, it must contain a schema coordinate in the form of
+          `typeName.fieldName` identifying the field which experienced the
+          error.
+
+  - id: registry.graphql.operation
+    type: attribute_group
+    stability: development
+    display_name: GraphQL Operation Attributes
+    brief: >
+      This document defines attributes for GraphQL operation execution steps and
+      planning.
+    attributes:
+      - id: graphql.operation.step.id
+        brief: "The id of the step in the execution plan."
+        type: string
+        stability: development
+        examples: ["0", "1", "2"]
+        note: >
+          The step identifier is implementation-specific and may be numeric,
+          UUID, or any other format used by the GraphQL execution engine.
+
+      - id: graphql.operation.step.kind
+        brief: "The kind of step in the execution plan."
+        type: string
+        stability: development
+        examples: ["node", "operation", "fetch", "batch"]
+        note: >
+          The step kind describes the type of work performed in this execution
+          step. Values are implementation-specific but common examples include
+          node resolution, fetch operations, and batch processing.
+      - id: graphql.operation.step.plan.id
+        brief: "The id of the execution plan this step belongs to."
+        type: string
+        stability: development
+        examples: ["plan-1", "abc-123"]
+        note: >
+          The plan identifier links this step to a specific execution plan,
+          enabling correlation of all steps within the same plan. This is
+          particularly useful in federated GraphQL systems where plans may be
+          cached and reused.
+
+  - id: registry.graphql.source
+    type: attribute_group
+    stability: development
+    display_name: GraphQL Source Attributes
+    brief: >
+      This document defines attributes for GraphQL source systems in distributed
+      GraphQL architectures.
+    attributes:
+      - id: graphql.source.name
+        brief: "The name of the source system."
+        type: string
+        stability: development
+        examples: ["accounts", "products", "reviews"]
+        note: >
+          The human-readable name of the downstream source that a distributed
+          GraphQL gateway dispatches to. For example, this could be a subgraph
+          name in a federated system or a stitched schema name.
+      - id: graphql.source.operation.name
+        brief: "The name of the GraphQL operation to be executed on the source."
+        type: string
+        stability: development
+        examples: ["GetUser", "FetchProducts", "ResolveReviews"]
+        note: >
+          The operation name of the query or mutation that the gateway sends to
+          the source system.
+      - id: graphql.source.operation.hash
+        brief: "A hash of the GraphQL operation to be executed on the source."
+        type: string
+        stability: development
+        examples: ["sha256:abc123", "md5:def456"]
+        note: >
+          A hash of the operation document that the gateway sends to the source
+          system. Useful for identifying operations without transmitting the
+          full document.
+
+          The hash algorithm used SHOULD be specified as part of the value
+          (e.g., "sha256:..."), consistent with `graphql.document.hash`.
+
+  - id: registry.graphql.dataloader
+    type: attribute_group
+    stability: development
+    display_name: GraphQL DataLoader Attributes
+    brief: >
+      This document defines attributes for GraphQL DataLoader operations.
+    attributes:
+      - id: graphql.dataloader.name
+        brief: "The name of the DataLoader instance."
+        type: string
+        stability: development
+        examples: ["UserLoader", "ProductByIdLoader", "CommentsByPostIdLoader"]
+        note: >
+          This represents the name or identifier of the DataLoader instance.
+          When the DataLoader implementation supports naming, this SHOULD be
+          set. This helps in identifying specific DataLoader instances in
+          observability.
+      - id: graphql.dataloader.batch.size
+        brief: "The number of individual requests in the DataLoader batch."
+        type: int
+        stability: development
+        examples: [5, 12, 25]
+        note: >
+          This represents the total number of individual load requests that were
+          batched together in a single batch operation. This includes both cache
+          hits and cache misses.
+      - id: graphql.dataloader.batch.keys
+        brief: "A subset of the keys requested in the DataLoader batch."
+        type: string[]
+        stability: development
+        examples: [["user:1", "user:2", "user:3"], ["post:42", "post:99"]]
+        note: >
+          This attribute is opt-in and SHOULD NOT be enabled by default, as keys
+          may contain sensitive or high-cardinality data. When enabled,
+          implementations MAY truncate the list to a configurable maximum number
+          of keys. The string representation of each key depends on the
+          DataLoader implementation.
+      - id: graphql.dataloader.cache.hit_count
+        brief: "The number of requests in the batch that were served from the
+          DataLoader cache."
+        type: int
+        stability: development
+        examples: [0, 3, 10]
+        note: >
+          This represents the number of individual load requests that were
+          resolved from the DataLoader's cache without requiring a fetch.
+      - id: graphql.dataloader.cache.miss_count
+        brief: "The number of requests in the batch that required fetching."
+        type: int
+        stability: development
+        examples: [2, 5, 12]
+        note: >
+          This represents the number of individual load requests that were not
+          found in the DataLoader's cache and required a fetch operation.
+
+  - id: registry.graphql.subscription
+    type: attribute_group
+    stability: development
+    display_name: GraphQL Subscription Attributes
+    brief: >
+      Attributes for GraphQL subscription operations.
+    attributes:
+      - id: graphql.subscription.id
+        brief: "A unique identifier for the subscription instance."
+        type: string
+        stability: development
+        examples: ["sub-abc123", "ws-conn-42-sub-1"]
+        note: >
+          This identifier tracks a specific subscription instance throughout its
+          lifecycle. It SHOULD be unique within the scope of the server and can
+          be used to correlate subscription creation, events, and termination.

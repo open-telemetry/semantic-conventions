@@ -6,10 +6,12 @@ linkTitle: GraphQL
 
 **Status**: [Development][DocumentStatus]
 
-This document defines semantic conventions for GraphQL.
+This document defines semantic conventions for GraphQL spans, metrics, and events.
 
-Semantic conventions are defined for the following signals:
+Semantic conventions for GraphQL are defined for the following signals:
 
-* [Spans](graphql-spans.md)
+* [GraphQL Spans](graphql-spans.md): Semantic Conventions for GraphQL client and server *spans*.
+* [GraphQL Metrics](graphql-metrics.md): Semantic Conventions for GraphQL client and server *metrics*.
+* [GraphQL Events](graphql-events.md): Semantic Conventions for GraphQL error *events*.
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status

@@ -1,0 +1,660 @@
+# GraphQL Span Hierarchy
+# ======================
+#
+# The following diagram shows the normative parent-child relationships
+# between GraphQL spans. Spans marked [optional] are not required.
+#
+#   graphql.server (INTERNAL)
+#   ├── graphql.document.parsing (INTERNAL)
+#   ├── graphql.document.validation (INTERNAL)
+#   ├── graphql.document.variable_coercion (INTERNAL)
+#   ├── graphql.operation.planning (INTERNAL) [optional]
+#   ├── graphql.operation.execution (INTERNAL)
+#   │   ├── graphql.step.execution (INTERNAL) [optional, repeating]
+#   │   └── graphql.field.execution (INTERNAL) [optional, repeating]
+#   ├── graphql.dataloader.dispatch (INTERNAL) [optional]
+#   │   └── graphql.dataloader.batch (INTERNAL) [repeating]
+#   └── graphql.subscription.event (INTERNAL) [subscription only]
+#
+#   graphql.client (CLIENT)
+#   └── (HTTP client span)
+#
+groups:
+  - id: span.graphql.server
+    type: span
+    stability: development
+    span_kind: internal
+    brief: >
+      This span represents an incoming GraphQL request on a server
+      implementation.
+    note: |
+      **Span name** SHOULD be of the format `{graphql.operation.type}` provided
+      `graphql.operation.type` is available. If `graphql.operation.type` is not available,
+      the span SHOULD be named `GraphQL Operation`.
+
+      For operation domains with bounded cardinality (e.g. trusted documents), instrumentations MAY provide
+      a configuration option to enable a more descriptive span name following
+      the `{graphql.operation.type} {graphql.operation.name}` format when
+      `graphql.operation.name` is available and the operation is successfully identified
+      in the document.
+
+      > **Warning**
+      > The `graphql.operation.name` value is provided by the client and can have high
+      > cardinality. Using it in the GraphQL server span name is NOT RECOMMENDED for
+      > ad-hoc operations without careful consideration of cardinality implications.
+      > For trusted documents, the cardinality is bounded and using the operation
+      > name in the span name is more acceptable.
+      >
+      > Implementations MUST NOT include the operation name in the span name when
+      > the operation was not found or could not be identified in the document.
+      > This prevents potential security issues and ensures span names remain meaningful.
+
+      For subscription operations, the server span represents the initial subscription
+      request and setup. Individual subscription events are represented by separate
+      `graphql.subscription.event` spans. Long-lived subscriptions MAY end the server
+      span after successful setup, with subsequent events creating their own spans.
+
+      **Span status** guidance:
+
+      Span status SHOULD be set to `Error` when the response contains errors.
+      This includes parse errors, validation errors, variable coercion errors,
+      request errors, total execution failure (where `data` is `null` and `errors`
+      is non-empty), and partial success (where both `data` and `errors` are present).
+      Individual GraphQL errors SHOULD still be recorded as events.
+
+      > **Note**
+      > Instrumentations that have additional context about specific errors MAY
+      > use this context to set the span status more precisely. For example, if
+      > an instrumentation knows that the errors only affect optional,
+      > non-critical fields, it MAY choose not to set `Error` status.
+
+      **Span status description** guidance:
+
+      Span status descriptions are optional and SHOULD only be set when they provide
+      additional context not already captured by `error.type` or error events.
+      Recommended cases for setting a description:
+
+      - When the error is ambiguous without additional context
+      - To distinguish between complete failure and partial success when both set
+        `Error` status (e.g., "Partial success: 2 of 5 fields had errors")
+      - When transport-level context is needed (e.g., "WebSocket connection closed unexpectedly")
+
+      Do NOT repeat `error.type` or `graphql.error.message` in the status description.
+
+      **Incremental delivery (`@defer`/`@stream`):**
+
+      When a GraphQL operation uses `@defer` or `@stream` directives, the response
+      is delivered incrementally. The server span SHOULD encompass the entire response
+      delivery, including all deferred and streamed payloads. If the instrumentation
+      cannot keep the span open for the full incremental delivery, it SHOULD:
+
+      - End the span after the initial payload and document this behavior
+      - Record deferred/streamed errors as separate events if the span
+        has already ended
+
+      **Batched operations:**
+
+      When multiple GraphQL operations are batched in a single HTTP request,
+      instrumentations SHOULD create one server span per operation in the batch.
+      The HTTP server span serves as the parent of all GraphQL operation spans.
+      Each operation span SHOULD have its own `graphql.operation.type` and
+      `graphql.operation.name` attributes.
+    attributes:
+      - ref: graphql.processing.type
+        requirement_level: required
+        brief: MUST be `request`.
+      - ref: error.type
+        requirement_level:
+          conditionally_required: If the GraphQL operation ended with an error.
+        examples:
+          [
+            "GRAPHQL_PARSE_FAILED",
+            "GRAPHQL_VALIDATION_FAILED",
+            "HC0016",
+            "java.lang.RuntimeException",
+          ]
+        note: |
+          GraphQL errors can occur during various phases of request processing.
+
+          If the request fails before execution begins (e.g., parsing, validation, or
+          variable coercion fails), `error.type` SHOULD be set to a low-cardinality
+          error identifier. When `graphql.error.code` is available from the error's
+          extensions, it SHOULD be used as the `error.type` value.
+
+          If the request completes execution but the response contains errors,
+          `error.type` SHOULD be set to the `graphql.error.code` from the first
+          error's extensions if available, or to a low-cardinality error identifier
+          describing the class of error (e.g., the exception type).
+
+          If the request completes execution with partial data (both `data` and
+          `errors` are present), `error.type` SHOULD still be set.
+
+          If the request completes successfully with no errors, instrumentations
+          SHOULD NOT set `error.type`.
+
+          The `error.type` value SHOULD be predictable and SHOULD have low
+          cardinality. Instrumentations SHOULD document the list of errors they
+          report.
+      - ref: graphql.operation.type
+        sampling_relevant: true
+        requirement_level:
+          conditionally_required: If parsing succeeded
+      - ref: graphql.operation.name
+        requirement_level:
+          conditionally_required: If available and not empty.
+      - ref: graphql.document.hash
+        requirement_level: recommended
+      - ref: graphql.document.id
+        requirement_level:
+          conditionally_required: If using trusted documents.
+      - ref: server.address
+        requirement_level: recommended
+        brief: >
+          The logical server hostname or IP address serving the GraphQL
+          endpoint.
+        note: >
+          This SHOULD be the logical server address, not a proxy or load
+          balancer address.
+      - ref: server.port
+        requirement_level:
+          conditionally_required: If not the default port for the scheme (e.g., not 443 for HTTPS).
+
+  - id: span.graphql.client
+    type: span
+    stability: development
+    span_kind: client
+    brief: >
+      This span represents an outgoing GraphQL request to a remote server.
+    note: |
+      **Span name** SHOULD be of the format `{graphql.operation.type}` provided
+      `graphql.operation.type` is available. If `graphql.operation.type` is not available,
+      the span SHOULD be named `GraphQL Operation`.
+
+      When `graphql.operation.name` is available, instrumentations MAY provide
+      a configuration option to enable a more descriptive span name following
+      the `{graphql.operation.type} {graphql.operation.name}` format.
+
+      **Span kind** MUST be `CLIENT`.
+
+      The GraphQL client span SHOULD be the parent of any HTTP client span
+      created for the underlying transport. This allows the GraphQL-level
+      operation to be correlated with its transport-level details.
+
+      When the GraphQL client library handles transport internally (i.e., no
+      separate HTTP client instrumentation exists), the GraphQL client span
+      may be the only span representing the outbound call.
+
+      **Span status** SHOULD be set to `Error` when the response indicates
+      a failure (e.g., transport error, complete GraphQL failure, or GraphQL
+      errors in the response).
+    attributes:
+      - ref: error.type
+        requirement_level:
+          conditionally_required: If the GraphQL operation ended with an error.
+        note: |
+          If the GraphQL client request fails (e.g., network error, server error,
+          or GraphQL errors in the response), `error.type` SHOULD be set to a
+          low-cardinality error identifier.
+
+          When `graphql.error.code` is available from the response errors,
+          it SHOULD be used as the `error.type` value.
+
+          If the request completes successfully with no errors, instrumentations
+          SHOULD NOT set `error.type`.
+      - ref: server.address
+        sampling_relevant: true
+        requirement_level: recommended
+        brief: >
+          The domain name or IP address of the GraphQL server being called.
+        note: >
+          This SHOULD be the logical server address, not a proxy address. For
+          federated GraphQL, this is the address of the subgraph service.
+      - ref: server.port
+        sampling_relevant: true
+        requirement_level:
+          conditionally_required: If not the default port for the scheme (e.g., not 443 for HTTPS).
+      - ref: graphql.operation.type
+        requirement_level:
+          conditionally_required: If available.
+      - ref: graphql.operation.name
+        requirement_level:
+          conditionally_required: If available and not empty.
+      - ref: graphql.document.hash
+        requirement_level: recommended
+      - ref: graphql.document.id
+        requirement_level:
+          conditionally_required: If using trusted documents.
+
+  - id: span.graphql.document.parsing.internal
+    type: span
+    stability: development
+    span_kind: internal
+    brief: >
+      This span represents the time spent parsing a GraphQL document.
+    note: |
+      **Span name** SHOULD be `GraphQL Document Parsing`.
+
+      This span covers the parsing phase of GraphQL request processing,
+      where the document string is parsed into an abstract syntax tree (AST).
+
+      **Span status** SHOULD be set to `Error` when the processing phase fails.
+    attributes:
+      - ref: error.type
+        requirement_level:
+          conditionally_required: If the processing phase ended with an error.
+        note: |
+          If the processing phase fails, `error.type` SHOULD be set to the
+          `graphql.error.code` from the error's extensions if available, or to
+          a low-cardinality error identifier such as the exception type.
+
+          If the processing phase completes successfully, instrumentations
+          SHOULD NOT set `error.type`.
+      - ref: graphql.processing.type
+        requirement_level: required
+        brief: MUST be `parse`.
+      - ref: graphql.document.hash
+        requirement_level: recommended
+      - ref: graphql.document.id
+        requirement_level:
+          conditionally_required: If using trusted documents.
+
+  - id: span.graphql.document.validation.internal
+    type: span
+    stability: development
+    span_kind: internal
+    brief: >
+      This span represents the time spent validating a GraphQL document.
+    note: |
+      **Span name** SHOULD be `GraphQL Document Validation`.
+
+      This span covers the validation phase of GraphQL request processing,
+      where the document AST is validated against the GraphQL schema.
+
+      **Span status** SHOULD be set to `Error` when the processing phase fails.
+    attributes:
+      - ref: error.type
+        requirement_level:
+          conditionally_required: If the processing phase ended with an error.
+        note: |
+          If the processing phase fails, `error.type` SHOULD be set to the
+          `graphql.error.code` from the error's extensions if available, or to
+          a low-cardinality error identifier such as the exception type.
+
+          If the processing phase completes successfully, instrumentations
+          SHOULD NOT set `error.type`.
+      - ref: graphql.processing.type
+        requirement_level: required
+        brief: MUST be `validate`.
+      - ref: graphql.document.hash
+        requirement_level: recommended
+      - ref: graphql.document.id
+        requirement_level:
+          conditionally_required: If using trusted documents.
+
+  - id: span.graphql.document.variable_coercion.internal
+    type: span
+    stability: development
+    span_kind: internal
+    brief: >
+      This span represents the time spent coercing variables for a GraphQL
+      request.
+    note: |
+      **Span name** SHOULD be `GraphQL Variable Coercion`.
+
+      This span covers the variable coercion phase of GraphQL request processing,
+      where input variables are coerced and validated according to their types.
+
+      **Span status** SHOULD be set to `Error` when the processing phase fails.
+    attributes:
+      - ref: error.type
+        requirement_level:
+          conditionally_required: If the processing phase ended with an error.
+        note: |
+          If the processing phase fails, `error.type` SHOULD be set to the
+          `graphql.error.code` from the error's extensions if available, or to
+          a low-cardinality error identifier such as the exception type.
+
+          If the processing phase completes successfully, instrumentations
+          SHOULD NOT set `error.type`.
+      - ref: graphql.processing.type
+        requirement_level: required
+        brief: MUST be `variable_coercion`.
+      - ref: graphql.operation.type
+        requirement_level: required
+      - ref: graphql.operation.name
+        requirement_level: recommended
+      - ref: graphql.document.hash
+        requirement_level: recommended
+      - ref: graphql.document.id
+        requirement_level:
+          conditionally_required: If using trusted documents.
+
+  - id: span.graphql.operation.planning.internal
+    type: span
+    stability: development
+    span_kind: internal
+    brief: >
+      This span represents the time spent planning the execution of a GraphQL
+      operation.
+    note: |
+      **Span name** SHOULD be `GraphQL Operation Planning`.
+
+      This span covers the operation planning phase of GraphQL request processing,
+      where the server analyzes the validated query and creates an execution plan.
+      This phase is common in federated GraphQL systems where queries need to be
+      planned across multiple sources, and in advanced GraphQL servers that
+      perform query optimization and planning.
+
+      Planning typically involves determining execution order, identifying required
+      data sources, optimizing data fetching strategies, and preparing the execution
+      context.
+
+      **Span status** SHOULD be set to `Error` when the processing phase fails.
+    attributes:
+      - ref: graphql.processing.type
+        requirement_level: required
+        brief: MUST be `plan`.
+      - ref: error.type
+        requirement_level:
+          conditionally_required: If the planning phase ended with an error.
+        note: |
+          If the planning phase fails, `error.type` SHOULD be set to the
+          `graphql.error.code` from the error's extensions if available, or to
+          a low-cardinality error identifier such as the exception type.
+
+          If the planning phase completes successfully, instrumentations
+          SHOULD NOT set `error.type`.
+      - ref: graphql.operation.type
+        requirement_level: required
+      - ref: graphql.operation.name
+        requirement_level: recommended
+      - ref: graphql.document.hash
+        requirement_level: recommended
+
+  - id: span.graphql.step.execution.internal
+    type: span
+    stability: development
+    span_kind: internal
+    brief: >
+      This span represents the execution of an individual step within a GraphQL
+      operation execution plan.
+    note: |
+      **Span name** SHOULD be `GraphQL Step Execution`.
+
+      This span covers the execution of a single step in the GraphQL execution plan,
+      where each step typically represents the resolution of one or more fields
+      that can be executed together.
+
+      Each step execution may involve field resolution, data fetching from external
+      services, data transformation, and result aggregation. Multiple step execution
+      spans may run concurrently or sequentially depending on the execution strategy
+      and field dependencies.
+
+      The `graphql.step.execution` span SHOULD be a descendant of the
+      `graphql.operation.execution` span.
+
+      Some GraphQL implementations (e.g., plan-based engines like Grafast,
+      or distributed systems like federation and stitching) replace the classic
+      resolver-based execution with a plan-based approach where the operation
+      is broken into steps. In this model, the `graphql.operation.execution`
+      span still represents the overall execution phase, while `graphql.step.execution`
+      spans represent individual units of work within that execution - such as
+      data fetching, transformations, or requests to source systems.
+
+      The `graphql.operation.planning` span, when present, MAY also be
+      a descendant of `graphql.operation.execution`, depending on whether
+      the implementation treats planning as part of the execution phase or as a
+      separate preceding phase.
+
+      **Span status** SHOULD be set to `Error` when the processing phase fails.
+    attributes:
+      - ref: graphql.processing.type
+        requirement_level: required
+        brief: MUST be `step_execute`.
+      - ref: error.type
+        requirement_level:
+          conditionally_required: If the step execution ended with an error.
+        note: |
+          If the step execution fails, `error.type` SHOULD be set to the
+          `graphql.error.code` from the error's extensions if available, or to
+          a low-cardinality error identifier such as the exception type.
+
+          If the step execution completes successfully, instrumentations
+          SHOULD NOT set `error.type`.
+      - ref: graphql.operation.type
+        requirement_level: recommended
+      - ref: graphql.operation.name
+        requirement_level: recommended
+      - ref: graphql.document.hash
+        requirement_level: recommended
+      - ref: graphql.operation.step.id
+        requirement_level: required
+      - ref: graphql.operation.step.kind
+        requirement_level: recommended
+      - ref: graphql.operation.step.plan.id
+        requirement_level: recommended
+      - ref: graphql.source.name
+        requirement_level: opt_in
+      - ref: graphql.source.operation.name
+        requirement_level: opt_in
+      - ref: graphql.source.operation.hash
+        requirement_level: opt_in
+
+  - id: span.graphql.operation.execution.internal
+    type: span
+    stability: development
+    span_kind: internal
+    brief: >
+      This span represents the execution phase of a GraphQL operation.
+    note: |
+      **Span name** SHOULD be `GraphQL Operation Execution`.
+
+      This span covers the whole execution part of a GraphQL request,
+      including field resolution and result formatting.
+
+      **Span status** SHOULD be set to `Error` when the processing phase fails.
+    attributes:
+      - ref: error.type
+        requirement_level:
+          conditionally_required: If the processing phase ended with an error.
+        note: |
+          If the processing phase fails, `error.type` SHOULD be set to the
+          `graphql.error.code` from the error's extensions if available, or to
+          a low-cardinality error identifier such as the exception type.
+
+          If the processing phase completes successfully, instrumentations
+          SHOULD NOT set `error.type`.
+      - ref: graphql.processing.type
+        requirement_level: required
+        brief: MUST be `execute`.
+      - ref: graphql.operation.type
+        requirement_level: required
+      - ref: graphql.operation.name
+        requirement_level: recommended
+      - ref: graphql.document.hash
+        requirement_level: recommended
+      - ref: graphql.document.id
+        requirement_level:
+          conditionally_required: If using trusted documents.
+
+  - id: span.graphql.field.execution.internal
+    type: span
+    stability: development
+    span_kind: internal
+    brief: >
+      This span represents the execution of a GraphQL field.
+    note: |
+      **Span name** SHOULD be `{graphql.selection.field.coordinate}`.
+
+      This span covers the execution of an individual field, including both
+      synchronous and asynchronous resolvers. The span ends when the resolver
+      result is available.
+
+      > **Warning**
+      > Creating spans for every resolver execution can result in traces with
+      > hundreds or thousands of spans, severely impacting performance and
+      > trace readability. Instrumentations MUST NOT create resolver execution
+      > spans by default for all resolvers.
+
+      Instrumentations SHOULD provide configuration options to control which
+      resolvers generate spans. Recommended strategies include:
+
+      - **Manual selection**: Allow developers to explicitly mark specific
+        resolvers for tracing (e.g., via annotations, decorators, or configuration)
+      - **Asynchronous resolvers only**: Only trace resolvers that return
+        promises or other asynchronous constructs
+      - **Depth-based filtering**: Only trace resolvers at the top N levels
+        of the query (e.g., top 2 levels)
+      - **Performance-based filtering**: Only trace resolvers that exceed
+        a certain execution time threshold
+
+      The selection criteria SHOULD be documented clearly for users to
+      understand which resolvers will generate spans.
+
+      **Span status** SHOULD be set to `Error` when the resolver throws an
+      exception or the field resolution results in a GraphQL error.
+    attributes:
+      - ref: error.type
+        requirement_level:
+          conditionally_required: If the field resolution ended with an error.
+        note: |
+          If the resolver throws an exception or results in a GraphQL field error,
+          `error.type` SHOULD be set to the exception type (its fully-qualified
+          class name, if applicable) or the `graphql.error.code` if available.
+      - ref: graphql.processing.type
+        requirement_level: required
+        brief: MUST be `resolve`.
+      - ref: graphql.selection.name
+        requirement_level: recommended
+      - ref: graphql.selection.path
+        requirement_level: recommended
+      - ref: graphql.selection.field.name
+        requirement_level: required
+      - ref: graphql.selection.field.parent_type
+        requirement_level: required
+      - ref: graphql.selection.field.coordinate
+        requirement_level: required
+
+  - id: span.graphql.dataloader.dispatch.internal
+    type: span
+    stability: development
+    span_kind: internal
+    brief: >
+      This optional span groups all DataLoader batch operations for a given
+      request.
+    note: |
+      **Span name** SHOULD be `GraphQL DataLoader Dispatch`.
+
+      This span is OPTIONAL. When present, it acts as a grouping span for all
+      DataLoader batch spans within a single GraphQL request. It represents
+      the overall dispatch of DataLoader batch operations.
+
+      The span SHOULD be a child of the `graphql.server` span.
+
+      Instrumentations that do not produce this span SHOULD attach DataLoader
+      batch spans directly to the `graphql.server` span or to the
+      resolver execution span that triggered the batch dispatch.
+    attributes:
+      - ref: graphql.processing.type
+        requirement_level: required
+        brief: MUST be `dataloader_dispatch`.
+
+  - id: span.graphql.dataloader.batch.internal
+    type: span
+    stability: development
+    span_kind: internal
+    brief: >
+      This span represents the execution of a DataLoader batch operation.
+    note: |
+      **Span name** SHOULD be `GraphQL DataLoader Batch {graphql.dataloader.name}` when
+      the DataLoader has a name, otherwise `GraphQL DataLoader Batch`.
+
+      This span covers the batched execution of multiple individual DataLoader
+      requests. It represents the time from when the batch is scheduled to
+      when all results are available. This span is created when a DataLoader
+      batches multiple individual load requests into a single batch operation
+      to optimize data access patterns.
+
+      The parent of this span depends on what the instrumentation supports:
+      - If the `graphql.dataloader.dispatch` span is present,
+        this span SHOULD be a child of it.
+      - Otherwise, this span SHOULD be a child of the `graphql.server`
+        span, or of the resolver execution span that triggered the batch dispatch.
+
+      The span SHOULD have links to all `graphql.field.execution` spans
+      whose resolvers contributed load requests to this batch, so that
+      the causal relationship between resolvers and the batch is preserved.
+
+      Each link SHOULD include the following attributes:
+      - `graphql.selection.field.coordinate`: The coordinate of the field
+        that triggered the load request (e.g., `User.avatar`).
+
+      When the number of contributing resolvers exceeds a practical limit,
+      instrumentations MAY cap the number of links to a configurable
+      maximum. The `graphql.dataloader.batch.size` attribute still
+      reflects the true batch size regardless of link count.
+    attributes:
+      - ref: graphql.processing.type
+        requirement_level: required
+        brief: MUST be `dataloader_batch`.
+      - ref: graphql.dataloader.name
+        requirement_level: recommended
+      - ref: graphql.dataloader.batch.size
+        requirement_level: required
+      - ref: graphql.dataloader.batch.keys
+        requirement_level: opt_in
+      - ref: graphql.dataloader.cache.hit_count
+        requirement_level: opt_in
+      - ref: graphql.dataloader.cache.miss_count
+        requirement_level: opt_in
+
+  - id: span.graphql.subscription.event.internal
+    type: span
+    stability: development
+    span_kind: internal
+    brief: >
+      This span represents the processing of a single subscription event.
+    note: |
+      **Span name** SHOULD be `GraphQL Subscription Event`.
+
+      This span covers the processing of an individual event delivered to a
+      GraphQL subscription. Each time the subscription source emits an event,
+      a new span SHOULD be created to track the execution of the subscription
+      field selection set against that event.
+
+      The span SHOULD be a child of the `graphql.server` span that initiated
+      the subscription, if that span is still available. When the originating
+      server span has ended (as is common with long-lived subscriptions),
+      instrumentations SHOULD create a new root span or link to the original
+      subscription span.
+
+      Context propagation for subscriptions:
+      - The initial subscription request carries context from the client
+      - Each subscription event SHOULD propagate context from the originating
+        subscription where possible
+      - Instrumentations MAY create links to the original subscription span
+
+      **Span status** SHOULD be set to `Error` when the subscription event
+      processing fails.
+    attributes:
+      - ref: error.type
+        requirement_level:
+          conditionally_required: If the subscription event processing ended with an error.
+        note: |
+          If the subscription event processing fails, `error.type` SHOULD be set to
+          the `graphql.error.code` from the error's extensions if available, or to
+          a low-cardinality error identifier such as the exception type.
+
+          If the subscription event completes successfully, instrumentations
+          SHOULD NOT set `error.type`.
+      - ref: graphql.processing.type
+        requirement_level: required
+        brief: MUST be `execute`.
+      - ref: graphql.operation.type
+        requirement_level: required
+        brief: MUST be `subscription`.
+      - ref: graphql.operation.name
+        requirement_level:
+          conditionally_required: If available and not empty.
+      - ref: graphql.subscription.id
+        requirement_level: recommended
