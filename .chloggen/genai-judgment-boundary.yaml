@@ -1,4 +1,4 @@
 change_type: enhancement
 component: gen_ai
-note: Add `gen_ai.evaluation.outcome` attribute to record categorical evaluation results when no numeric score is produced.
+note: Extend `gen_ai.evaluation.score.label` to support non-numeric categorical evaluation results when no numeric score is produced.
 issues: [3336]
