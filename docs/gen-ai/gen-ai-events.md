@@ -261,7 +261,7 @@ This event captures the result of evaluating GenAI output for quality, accuracy,
 the canonical name of exception that occurred, or another low-cardinality error identifier.
 Instrumentations SHOULD document the list of errors they report.
 
-**[2] `gen_ai.evaluation.score.label`:** This attribute provides a human-readable label for the evaluation result. It MAY be used alongside `score.value` to interpret a numeric score, or independently to capture non-numeric categorical results when no score is produced. In practice, some evaluators may return categorical results (e.g. pass/fail, safe/unsafe) even when no numeric score is produced. The label SHOULD have low cardinality. Possible values depend on the evaluation metric and evaluator used; implementations SHOULD document the possible values.
+**[2] `gen_ai.evaluation.score.label`:** This attribute captures the categorical result of an evaluation. It MAY be used alongside `score.value`, or independently when no numeric score is produced. In practice, some evaluators may return categorical results (e.g. pass/fail, safe/unsafe) even when no numeric score is produced. The label SHOULD have low cardinality. Possible values depend on the evaluation metric and evaluator used; implementations SHOULD document the possible values.
 
 **[3] `gen_ai.response.id`:** The unique identifier assigned to the specific
 completion being evaluated. This attribute helps correlate the evaluation

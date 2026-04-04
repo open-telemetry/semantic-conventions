@@ -650,9 +650,8 @@ groups:
         brief: Human readable label for evaluation.
         examples: ["relevant", "not_relevant", "correct", "incorrect", "pass", "fail"]
         note: >
-          This attribute provides a human-readable label for the evaluation result.
-          It MAY be used alongside `score.value` to interpret a numeric score, or independently
-          to capture non-numeric categorical results when no score is produced.
+          This attribute captures the categorical result of an evaluation.
+          It MAY be used alongside `score.value`, or independently when no numeric score is produced.
           In practice, some evaluators may return categorical results (e.g. pass/fail, safe/unsafe)
           even when no numeric score is produced.
           The label SHOULD have low cardinality.
