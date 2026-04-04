@@ -16,6 +16,7 @@ This document defines log attributes
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
 | <a id="log-iostream" href="#log-iostream">`log.iostream`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The stream associated with the log. See below for a list of well-known values. | `stdout`; `stderr` |
+| <a id="log-type" href="#log-type">`log.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The type or category of the log record. See below for a list of well-known values. | `audit`; `app` |
 
 ---
 
@@ -25,6 +26,15 @@ This document defines log attributes
 | --- | --- | --- |
 | `stderr` | Events from stderr stream | ![Development](https://img.shields.io/badge/-development-blue) |
 | `stdout` | Logs from stdout stream | ![Development](https://img.shields.io/badge/-development-blue) |
+
+---
+
+`log.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value | Description | Stability |
+| --- | --- | --- |
+| `app` | Default regular application log - everything which is NOT audit relevant | ![Development](https://img.shields.io/badge/-development-blue) |
+| `audit` | Audit log recording security-relevant activities for compliance and forensics. When log.type='audit', the log record SHOULD not get lost and body not changed. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ## Log File Attributes
 
