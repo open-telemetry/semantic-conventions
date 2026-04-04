@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
+title: Semantic conventions for JSON-RPC
 linkTitle: JSON-RPC
---->
+---
 
 # Semantic conventions for JSON-RPC
 

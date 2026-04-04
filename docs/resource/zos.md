@@ -1,3 +1,7 @@
+---
+title: z/OS software
+---
+
 # z/OS software
 
 This document defines z/OS software entity and documents how to populate other entities, such as `host` in the context of mainframes.

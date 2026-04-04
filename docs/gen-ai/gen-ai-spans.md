@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
+title: Semantic conventions for generative client AI spans
 linkTitle: Spans
---->
+---
 
 # Semantic conventions for generative client AI spans
 

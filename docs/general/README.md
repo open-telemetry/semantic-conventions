@@ -1,8 +1,9 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
+title: General semantic conventions
 linkTitle: General
 weight: -1
 auto_gen: below
---->
+---
 
 # General semantic conventions
 

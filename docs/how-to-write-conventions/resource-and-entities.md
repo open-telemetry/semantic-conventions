@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
+title: Resource and Entities
 aliases: [/docs/specs/semconv/non-normative/how-to-write-conventions/resource-and-entities]
---->
+---
 
 # Resource and Entities
 

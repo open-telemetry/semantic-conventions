@@ -1,3 +1,7 @@
+---
+title: Recording errors
+---
+
 # Recording errors
 
 **Status**: [Development][DocumentStatus].

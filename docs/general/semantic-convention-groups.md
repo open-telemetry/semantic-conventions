@@ -1,7 +1,8 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
+title: Semantic convention groups
 linkTitle: Semantic convention groups
 aliases: [group-stability]
---->
+---
 
 # Semantic convention groups
 

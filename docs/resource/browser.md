@@ -1,3 +1,7 @@
+---
+title: Browser
+---
+
 # Browser
 
 <!-- semconv entity.browser -->

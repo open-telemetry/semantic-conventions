@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
+title: Semantic conventions for Function-as-a-Service
 linkTitle: FaaS
---->
+---
 
 # Semantic conventions for Function-as-a-Service
 

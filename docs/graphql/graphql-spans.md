@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
+title: Semantic conventions for GraphQL server spans
 linkTitle: GraphQL server
---->
+---
 
 # Semantic conventions for GraphQL server spans
 

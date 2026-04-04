@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
+title: Semantic conventions for memory metrics
 linkTitle: Memory
---->
+---
 
 # Semantic conventions for memory metrics
 

@@ -1,3 +1,7 @@
+---
+title: T-shaped Signals
+---
+
 # T-shaped Signals
 
 Semantic Conventions approaches observability with a T-shaped mindset. This

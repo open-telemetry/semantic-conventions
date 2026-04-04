@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
+title: Semantic conventions for Model Context Protocol (MCP)
 linkTitle: Model Context Protocol
---->
+---
 
 # Semantic conventions for Model Context Protocol (MCP)
 

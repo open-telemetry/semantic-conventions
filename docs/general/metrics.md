@@ -1,7 +1,8 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
+title: Metrics semantic conventions
 linkTitle: Metrics
 aliases: [metrics-general]
---->
+---
 
 # Metrics semantic conventions
 

@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
+title: Semantic conventions for Anthropic client operations
 linkTitle: Anthropic
---->
+---
 
 # Semantic conventions for Anthropic client operations
 

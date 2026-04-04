@@ -1,3 +1,7 @@
+---
+title: Generating semantic convention libraries
+---
+
 # Generating semantic convention libraries
 
 <!-- toc -->
