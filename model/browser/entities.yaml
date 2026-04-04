@@ -12,6 +12,7 @@ groups:
       - ref: browser.platform
       - ref: browser.mobile
       - ref: browser.language
+      - ref: browser.page.url.full
       - ref: user_agent.original
         brief: 'Full user-agent string provided by the browser'
         note: >
