@@ -414,6 +414,10 @@ groups:
               value: "invoke_workflow"
               brief: 'Invoke GenAI workflow'
               stability: development
+            - id: plan
+              value: "plan"
+              brief: 'Agent planning or task decomposition phase'
+              stability: development
         brief: The name of the operation being performed.
         note: >
           If one of the predefined values applies, but specific system uses a different name it's RECOMMENDED to document it in the semantic
