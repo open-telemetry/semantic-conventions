@@ -75,6 +75,10 @@ groups:
         stability: development
         brief: >
           The unique identifier of a task run within a pipeline.
+        note: >
+          For a given pipeline run and task the `cicd.pipeline.task.run.id` MUST be unique.
+          For different pipeline runs of the same pipeline the task run id MAY remain the same and thus MAY allow correlating the `cicd.pipeline.task.run.result`
+          of tasks across pipeline runs.
         examples: ["12097"]
       - id: cicd.pipeline.task.run.url.full
         type: string
