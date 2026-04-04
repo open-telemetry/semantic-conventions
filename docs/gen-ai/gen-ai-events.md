@@ -10,7 +10,6 @@ linkTitle: Events
 
 - [Event: `gen_ai.client.inference.operation.details`](#event-gen_aiclientinferenceoperationdetails)
 - [Event: `gen_ai.evaluation.result`](#event-gen_aievaluationresult)
-  - [Example](#example)
 
 <!-- tocstop -->
 
