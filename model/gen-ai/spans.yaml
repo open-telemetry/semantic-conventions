@@ -539,6 +539,194 @@ groups:
           the canonical name of exception that occurred, or another low-cardinality error identifier.
           Instrumentations SHOULD document the list of errors they report.
 
+  - id: attributes.gen_ai.memory.client
+    type: attribute_group
+    stability: development
+    brief: >
+      Common attributes for GenAI memory operation spans.
+    attributes:
+      - ref: gen_ai.operation.name
+        requirement_level: required
+      - ref: server.address
+        brief: GenAI server address.
+        requirement_level: recommended
+      - ref: server.port
+        brief: GenAI server port.
+        requirement_level:
+          conditionally_required: If `server.address` is set.
+      - ref: error.type
+        requirement_level:
+          conditionally_required: "if the operation ended in an error"
+        note: |
+          The `error.type` SHOULD match the error code returned by the memory provider,
+          the canonical name of exception that occurred, or another low-cardinality error identifier.
+          Instrumentations SHOULD document the list of errors they report.
+
+  - id: span.gen_ai.create_memory_store.client
+    type: span
+    stability: development
+    span_kind: client
+    extends: attributes.gen_ai.memory.client
+    brief: >
+      Describes creation/initialization of a memory store.
+    note: |
+      The `gen_ai.operation.name` SHOULD be `create_memory_store`.
+
+      **Span name** SHOULD be `create_memory_store {gen_ai.memory.store.id}`
+      or `create_memory_store` if store id is not available.
+    attributes:
+      - ref: gen_ai.operation.name
+        requirement_level: required
+      - ref: gen_ai.provider.name
+        requirement_level: required
+      - ref: gen_ai.memory.store.id
+        requirement_level:
+          conditionally_required: when returned by the operation
+      - ref: gen_ai.memory.store.name
+        requirement_level: opt_in
+      - ref: gen_ai.memory.scope
+        requirement_level: recommended
+
+  - id: span.gen_ai.search_memory.client
+    type: span
+    stability: development
+    span_kind: client
+    extends: attributes.gen_ai.memory.client
+    brief: >
+      Describes a memory search/retrieval operation - querying a memory store
+      for relevant memories.
+    note: |
+      The `gen_ai.operation.name` SHOULD be `search_memory`.
+
+      **Span name** SHOULD be `search_memory {gen_ai.memory.store.id}`
+      or `search_memory` if store id is not available.
+    attributes:
+      - ref: gen_ai.operation.name
+        requirement_level: required
+      - ref: gen_ai.provider.name
+        requirement_level: required
+      - ref: gen_ai.memory.store.id
+        requirement_level:
+          conditionally_required: if applicable
+      - ref: gen_ai.memory.store.name
+        requirement_level: opt_in
+      - ref: gen_ai.memory.query.text
+        requirement_level: opt_in
+      - ref: gen_ai.memory.search.result.count
+        requirement_level: opt_in
+      - ref: gen_ai.memory.search.similarity.threshold
+        requirement_level:
+          conditionally_required: when similarity filtering is used
+      - ref: gen_ai.agent.id
+        requirement_level:
+          conditionally_required: when searching agent-scoped memory
+      - ref: gen_ai.conversation.id
+        requirement_level:
+          conditionally_required: when searching conversation-scoped memory
+
+  - id: span.gen_ai.update_memory.client
+    type: span
+    stability: development
+    span_kind: client
+    extends: attributes.gen_ai.memory.client
+    brief: >
+      Describes a memory update operation - creating new or modifying
+      existing memory records in a memory store.
+    note: |
+      The `gen_ai.operation.name` SHOULD be `update_memory`.
+
+      This operation covers both creating new and updating existing memory records.
+
+      **Span name** SHOULD be `update_memory {gen_ai.memory.store.id}`
+      or `update_memory` if store id is not available.
+    attributes:
+      - ref: gen_ai.operation.name
+        requirement_level: required
+      - ref: gen_ai.provider.name
+        requirement_level: required
+      - ref: gen_ai.memory.store.id
+        requirement_level:
+          conditionally_required: if applicable
+      - ref: gen_ai.memory.store.name
+        requirement_level: opt_in
+      - ref: gen_ai.memory.record.id
+        requirement_level:
+          conditionally_required: when available (provided or returned)
+      - ref: gen_ai.memory.record.content
+        requirement_level: opt_in
+      - ref: gen_ai.memory.expiration_date
+        requirement_level:
+          conditionally_required: if expiration is set
+      - ref: gen_ai.agent.id
+        requirement_level:
+          conditionally_required: when operating on agent-scoped memory
+      - ref: gen_ai.conversation.id
+        requirement_level:
+          conditionally_required: when operating on conversation-scoped memory
+
+  - id: span.gen_ai.delete_memory.client
+    type: span
+    stability: development
+    span_kind: client
+    extends: attributes.gen_ai.memory.client
+    brief: >
+      Describes a memory deletion operation - removing one or more memory records.
+    note: |
+      The `gen_ai.operation.name` SHOULD be `delete_memory`.
+
+      **Span name** SHOULD be `delete_memory {gen_ai.memory.store.id}`
+      or `delete_memory` if store id is not available.
+
+      Deletion semantics SHOULD be interpreted as follows:
+
+      - If `gen_ai.memory.record.id` is set, the request is to delete a specific memory record.
+      - If `gen_ai.memory.record.id` is not set, the request is to delete all memory records in the specified store.
+    attributes:
+      - ref: gen_ai.operation.name
+        requirement_level: required
+      - ref: gen_ai.provider.name
+        requirement_level: required
+      - ref: gen_ai.memory.store.id
+        requirement_level:
+          conditionally_required: if applicable
+      - ref: gen_ai.memory.store.name
+        requirement_level: opt_in
+      - ref: gen_ai.memory.scope
+        requirement_level:
+          conditionally_required: when performing scope-based deletion
+      - ref: gen_ai.memory.record.id
+        requirement_level:
+          conditionally_required: when deleting a specific memory record
+      - ref: gen_ai.agent.id
+        requirement_level:
+          conditionally_required: when deleting agent-scoped memory
+      - ref: gen_ai.conversation.id
+        requirement_level:
+          conditionally_required: when deleting conversation-scoped memory
+
+  - id: span.gen_ai.delete_memory_store.client
+    type: span
+    stability: development
+    span_kind: client
+    extends: attributes.gen_ai.memory.client
+    brief: >
+      Describes deletion/deprovisioning of a memory store.
+    note: |
+      The `gen_ai.operation.name` SHOULD be `delete_memory_store`.
+
+      **Span name** SHOULD be `delete_memory_store {gen_ai.memory.store.id}`
+      or `delete_memory_store` if store id is not available.
+    attributes:
+      - ref: gen_ai.operation.name
+        requirement_level: required
+      - ref: gen_ai.provider.name
+        requirement_level: required
+      - ref: gen_ai.memory.store.id
+        requirement_level:
+          conditionally_required: if applicable
+      - ref: gen_ai.memory.store.name
+        requirement_level: opt_in
+
   - id: span.aws.bedrock.client
     extends: span.gen_ai.inference.client
     stability: development
