@@ -410,9 +410,25 @@ groups:
               value: "execute_tool"
               brief: 'Execute a tool'
               stability: development
-            - id: invoke_workflow
-              value: "invoke_workflow"
-              brief: 'Invoke GenAI workflow'
+            - id: search_memory
+              value: "search_memory"
+              brief: 'Search/query memories from a memory store'
+              stability: development
+            - id: update_memory
+              value: "update_memory"
+              brief: 'Create or update (upsert) memory records'
+              stability: development
+            - id: delete_memory
+              value: "delete_memory"
+              brief: 'Delete memory records'
+              stability: development
+            - id: create_memory_store
+              value: "create_memory_store"
+              brief: 'Create/initialize a memory store'
+              stability: development
+            - id: delete_memory_store
+              value: "delete_memory_store"
+              brief: 'Delete/deprovision a memory store'
               stability: development
         brief: The name of the operation being performed.
         note: >
@@ -671,3 +687,42 @@ groups:
         examples: [ "multi_agent_rag", "customer_support_pipeline" ]
         note: |
           This attribute can be populated in different frameworks eg: name of the first chain in LangChain OR name of the crew in CrewAI.
+
+      - id: gen_ai.memory.store.id
+        stability: development
+        type: string
+        brief: The unique identifier of the memory store.
+        examples: ["ms_abc123", "user-preferences-store"]
+
+      - id: gen_ai.memory.record.id
+        stability: development
+        type: string
+        brief: The unique identifier of the memory record.
+        examples: ["mem_5j66UpCpwteGg4YSxUnt7lPY"]
+
+      - id: gen_ai.memory.record.content
+        stability: development
+        type: any
+        brief: The content/value of the memory record.
+        note: |
+          > [!WARNING]
+          > This attribute may contain sensitive information including user/PII data.
+
+          Instrumentations SHOULD NOT capture this by default.
+        examples:
+          - '{"preference": "dark_mode", "value": true}'
+
+      - id: gen_ai.memory.query.text
+        stability: development
+        type: string
+        brief: The search query used to retrieve memories.
+        note: |
+          > [!WARNING]
+          > This attribute may contain sensitive information.
+        examples: ["user dietary preferences", "past flight bookings"]
+
+      - id: gen_ai.memory.returned_records
+        stability: development
+        type: int
+        brief: Number of memory records returned from a search operation.
+        examples: [3, 10]
