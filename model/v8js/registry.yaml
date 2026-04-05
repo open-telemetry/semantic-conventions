@@ -52,3 +52,28 @@ groups:
               value: 'large_object_space'
               brief: 'Large object memory space.'
               stability: development
+      - id: v8js.resource.type
+        stability: development
+        brief: The type of resource keeping the event loop active.
+        type:
+          members:
+            - id: immediate
+              value: 'Immediate'
+              brief: 'Active `setImmediate` callbacks.'
+              stability: development
+            - id: tcpserverwrap
+              value: 'TCPServerWrap'
+              brief: 'Active TCP Servers.'
+              stability: development
+            - id: tcpwrap
+              value: 'TCPWrap'
+              brief: 'Active TCP connections.'
+              stability: development
+            - id: timeout
+              value: 'Timeout'
+              brief: 'Active `setTimeout` or `setInterval` timers.'
+              stability: development
+            - id: ttywrap
+              value: 'TTYWrap'
+              brief: 'Active Terminal I/O (stdin/stdout).'
+              stability: development
