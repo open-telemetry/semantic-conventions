@@ -10,9 +10,6 @@ endif
 
 TOOLS_DIR := $(PWD)/internal/tools
 
-MISSPELL_BINARY=bin/misspell
-MISSPELL = $(TOOLS_DIR)/$(MISSPELL_BINARY)
-
 CHLOGGEN_BINARY=bin/chloggen
 CHLOGGEN = $(TOOLS_DIR)/$(CHLOGGEN_BINARY)
 CHLOGGEN_CONFIG  := .chloggen/config.yaml
@@ -91,16 +88,10 @@ check-file-and-folder-names-in-docs:
 		exit 1; \
 	fi
 
-$(MISSPELL):
-	cd $(TOOLS_DIR) && go build -o $(MISSPELL_BINARY) github.com/client9/misspell/cmd/misspell
-
 .PHONY: misspell
-misspell:	$(MISSPELL)
-	find . -type f -name '*.md' -not -path './.github/*' -not -path './node_modules/*' -not -path './.git/*' -exec $(MISSPELL) -error {} +
-
-.PHONY: misspell-correction
-misspell-correction:	$(MISSPELL)
-	find . -type f -name '*.md' -not -path './.github/*' -not -path './node_modules/*' -not -path './.git/*' -exec $(MISSPELL) -w {} +
+misspell:
+	@if ! npm ls cspell; then npm install; fi
+	npx cspell . --no-progress
 
 .PHONY: normalized-link-check
 # NOTE: Search "model/*/**" rather than "model" to skip `model/README.md`, which
@@ -223,7 +214,7 @@ check: misspell markdownlint markdown-toc markdown-link-check check-policies reg
 
 # Attempt to fix issues / regenerate tables.
 .PHONY: fix
-fix: table-generation registry-generation misspell-correction markdown-toc
+fix: table-generation registry-generation markdown-toc
 	@echo "All autofixes complete"
 
 .PHONY: install-tools
