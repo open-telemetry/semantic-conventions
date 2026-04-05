@@ -73,6 +73,7 @@ Currently, the following namespaces exist:
 | | [k8s.job](k8s.md#k8s-job) | ![Development](https://img.shields.io/badge/-development-blue) |
 | | [k8s.namespace](k8s.md#k8s-namespace) | ![Development](https://img.shields.io/badge/-development-blue) |
 | | [k8s.node](k8s.md#k8s-node) | ![Development](https://img.shields.io/badge/-development-blue) |
+| | [k8s.node.system_container](k8s.md#k8s-node-system-container) | ![Development](https://img.shields.io/badge/-development-blue) |
 | | [k8s.pod](k8s.md#k8s-pod) | ![Development](https://img.shields.io/badge/-development-blue) |
 | | [k8s.replicaset](k8s.md#k8s-replicaset) | ![Development](https://img.shields.io/badge/-development-blue) |
 | | [k8s.replicationcontroller](k8s.md#k8s-replicationcontroller) | ![Development](https://img.shields.io/badge/-development-blue) |

@@ -560,6 +560,80 @@ groups:
       - k8s.node
     unit: "{cpu}"
 
+  # k8s.node.system_container.* metrics
+  - id: metric.k8s.node.system_container.cpu.usage
+    type: metric
+    metric_name: k8s.node.system_container.cpu.usage
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: "Node's system container CPU usage, measured in cpus."
+    note: >
+      This metric is derived from the
+      [CPUStats.UsageNanoCores](https://github.com/kubernetes/kubelet/blob/v0.35.2/pkg/apis/stats/v1alpha1/types.go#L233)
+      field of the [ContainerStats](https://github.com/kubernetes/kubelet/blob/v0.35.2/pkg/apis/stats/v1alpha1/types.go#L157C6-L157C20)
+      of [Node.SystemContainers](https://github.com/kubernetes/kubelet/blob/v0.35.2/pkg/apis/stats/v1alpha1/types.go#L40)
+      of the Kubelet's stats API.
+    instrument: gauge
+    entity_associations:
+      - k8s.node.system_container
+    unit: "{cpu}"
+  - id: metric.k8s.node.system_container.cpu.time
+    type: metric
+    metric_name: k8s.node.system_container.cpu.time
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: "Node's system container CPU time."
+    note: >
+      This metric is derived from the
+      [CPUStats.UsageCoreNanoSeconds](https://github.com/kubernetes/kubelet/blob/v0.35.2/pkg/apis/stats/v1alpha1/types.go#L236)
+      field of the [ContainerStats](https://github.com/kubernetes/kubelet/blob/v0.35.2/pkg/apis/stats/v1alpha1/types.go#L157C6-L157C20)
+      of [Node.SystemContainers](https://github.com/kubernetes/kubelet/blob/v0.35.2/pkg/apis/stats/v1alpha1/types.go#L40)
+      of the Kubelet's stats API.
+    instrument: counter
+    entity_associations:
+      - k8s.node.system_container
+    unit: "s"
+  - id: metric.k8s.node.system_container.memory.usage
+    type: metric
+    metric_name: k8s.node.system_container.memory.usage
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "Node's system container memory usage."
+    note: >
+      This metric is derived from the
+      [MemoryStats.UsageBytes](https://github.com/kubernetes/kubelet/blob/v0.35.2/pkg/apis/stats/v1alpha1/types.go#L252)
+      field of the [ContainerStats](https://github.com/kubernetes/kubelet/blob/v0.35.2/pkg/apis/stats/v1alpha1/types.go#L157C6-L157C20)
+      of [Node.SystemContainers](https://github.com/kubernetes/kubelet/blob/v0.35.2/pkg/apis/stats/v1alpha1/types.go#L40)
+      of the Kubelet's stats API.
+    instrument: updowncounter
+    entity_associations:
+      - k8s.node.system_container
+    unit: "By"
+  - id: metric.k8s.node.system_container.memory.working_set
+    type: metric
+    metric_name: k8s.node.system_container.memory.working_set
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "The amount of working set memory."
+    note: >
+      This metric is derived from the
+      [MemoryStats.WorkingSetBytes](https://github.com/kubernetes/kubelet/blob/v0.35.2/pkg/apis/stats/v1alpha1/types.go#L256)
+      field of the [ContainerStats](https://github.com/kubernetes/kubelet/blob/v0.35.2/pkg/apis/stats/v1alpha1/types.go#L157C6-L157C20)
+      of [Node.SystemContainers](https://github.com/kubernetes/kubelet/blob/v0.35.2/pkg/apis/stats/v1alpha1/types.go#L40)
+      of the Kubelet's stats API.
+    instrument: updowncounter
+    entity_associations:
+      - k8s.node.system_container
+    unit: "By"
+
   # k8s.node.filesystem.* metrics
   - id: metric.k8s.node.filesystem.available
     type: metric

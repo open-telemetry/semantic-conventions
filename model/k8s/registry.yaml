@@ -79,6 +79,12 @@ groups:
           - An annotation `data` with empty string value SHOULD be recorded as
             the `k8s.node.annotation.data` attribute with value `""`.
         examples: [ '0', '' ]
+      - id: k8s.node.system_container.name
+        type: string
+        stability: development
+        brief: >
+          The name of the system container running on the K8s Node.
+        examples: ['kubelet', 'runtime', 'pods', 'misc']
       - id: k8s.namespace.name
         type: string
         stability: release_candidate
