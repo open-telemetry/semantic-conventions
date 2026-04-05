@@ -1,0 +1,4 @@
+change_type: enhancement
+component: gen-ai
+note: Define common span attributes for Google generative AI
+issues: [2053]

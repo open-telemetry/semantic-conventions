@@ -1,0 +1,5 @@
+change_type: enhancement
+component: gen-ai
+note: Define attribute for Google generative AI operation request configuration.
+issues: [2053]
+subtext: Defines `gcp.gen_ai.operation.config` as a templated string for recording a subset of operation configuration options.
