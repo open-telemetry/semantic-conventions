@@ -1,0 +1,23 @@
+groups:
+  - id: span.tps.server
+    type: span
+    stability: development
+    brief: 'This document defines semantic conventions for a server spans of Transaction Processing Systems'
+    note: |
+      **Span name** SHOULD be `{tps.system.name} {tps.transaction.id}`.
+
+      **Span kind** SHOULD be `SERVER`.
+
+      **Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
+    span_kind: server
+    attributes:
+      - ref: tps.system.name
+        requirement_level: required
+      - ref: tps.transaction.id
+        requirement_level: required
+      - ref: tps.transaction.owner.id
+      - ref: tps.task.id
+      - ref: tps.program.name
+      - ref: tps.unit_of_work.id
+      - ref: tps.connection.name
+      - ref: tps.facility.type

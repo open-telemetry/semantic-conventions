@@ -1,0 +1,20 @@
+groups:
+  - id: span.ibm.cics.server
+    type: span
+    stability: development
+    brief: 'Defines server spans of IBM CICS Transaction Server for z/OS.'
+    note: |
+      **Span name** SHOULD be `{tps.system.name} {tps.transaction.id}`.
+
+      **Span kind** SHOULD be `SERVER`.
+
+      **Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
+    extends: span.tps.server
+    span_kind: server
+    attributes:
+      - ref: tps.system.name
+        requirement_level: required
+        examples: 'ibm.cics'
+      - ref: tps.facility.type
+        examples: ['IPIC', 'MRO']
+      - ref: ibm.cics.transaction.group.id
