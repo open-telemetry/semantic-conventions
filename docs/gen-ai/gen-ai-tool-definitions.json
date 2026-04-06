@@ -25,7 +25,7 @@
                         }
                     ],
                     "default": null,
-                    "description": "The description of the tool.Since this attribute could be large, it's NOT RECOMMENDED to be populated by default.Instrumentations MAY provide a way to enable populating this property.",
+                    "description": "The description of the tool. Since this attribute could be large, it's NOT RECOMMENDED to be populated by default. Instrumentations MAY provide a way to enable populating this property.",
                     "title": "Description"
                 },
                 "parameters": {

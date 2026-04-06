@@ -323,10 +323,8 @@ groups:
       - id: gen_ai.tool.definitions
         stability: development
         type: any
-        brief: The list of source system tool definitions available to the GenAI agent or model.
+        brief: The list of tool definitions available to the GenAI agent or model.
         note: |
-          The value of this attribute matches source system tool definition format.
-
           Instrumentations MUST follow [Tool Definitions JSON Schema](/docs/gen-ai/gen-ai-tool-definitions.json).
 
           When the attribute is recorded on events, it MUST be recorded in structured
