@@ -139,18 +139,13 @@ markdown-link-check-local-only: normalized-link-check
 #   <!-- END doctoc -->
 .PHONY: markdown-toc
 markdown-toc:
-	perl internal/tools/scripts/doctoc_pre.pl .
 	@if ! npm ls doctoc; then npm ci --ignore-scripts; fi
-	npx --no -- doctoc . --update-only || exit 1;
-	perl internal/tools/scripts/doctoc_post.pl .
+	npx --no -- doctoc . --update-only --mintocitems 1 --toc-pragma-style compact --notitle || exit 1;
 
 .PHONY: markdown-toc-check
-markdown-toc-check: markdown-toc
-	git diff --exit-code ':*.md' || (echo 'Generated markdown Table of Contents is out of date, please run "make markdown-toc" and commit the changes in this PR.' && exit 1)
-# The above line needs to be replaced with the below once doctoc supports controlling the header and footer content.
-# markdown-toc-check:
-#	@if ! npm ls doctoc; then npm ci --ignore-scripts; fi
-#	npx --no -- doctoc . --update-only --dryrun || exit 1;
+markdown-toc-check:
+	@if ! npm ls doctoc; then npm ci --ignore-scripts; fi
+	npx --no -- doctoc . --update-only --mintocitems 1 --toc-pragma-style compact --notitle --dryrun || exit 1;
 
 .PHONY: markdownlint
 markdownlint:
