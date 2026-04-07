@@ -39,6 +39,7 @@ Semantic conventions for database operations are defined for the following signa
 
 * [DB Spans](database-spans.md): Semantic Conventions for database client *spans*.
 * [DB Metrics](database-metrics.md): Semantic Conventions for database operation *metrics*.
+* [DB Exceptions](database-exceptions.md): Semantic Conventions for database client *exceptions*.
 
 Technology specific semantic conventions are defined for the following databases:
 

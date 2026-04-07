@@ -11,7 +11,7 @@ Attributes for hardware.
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="hw-battery-capacity" href="#hw-battery-capacity">`hw.battery.capacity`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Design capacity in Watts-hours or Amper-hours | `9.3Ah`; `50Wh` |
+| <a id="hw-battery-capacity" href="#hw-battery-capacity">`hw.battery.capacity`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Design capacity in Watts-hours or Ampere-hours | `9.3Ah`; `50Wh` |
 | <a id="hw-battery-chemistry" href="#hw-battery-chemistry">`hw.battery.chemistry`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Battery [chemistry](https://schemas.dmtf.org/wbem/cim-html/2.31.0/CIM_Battery.html), e.g. Lithium-Ion, Nickel-Cadmium, etc. | `Li-ion`; `NiMH` |
 | <a id="hw-battery-state" href="#hw-battery-state">`hw.battery.state`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The current state of the battery | `charging`; `discharging` |
 | <a id="hw-bios-version" href="#hw-bios-version">`hw.bios_version`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | BIOS version of the hardware component | `1.2.3` |

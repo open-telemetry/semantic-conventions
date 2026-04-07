@@ -46,6 +46,10 @@ Semantic Conventions by signals:
 * [Resource](resource/README.md): Semantic Conventions for resources.
 * [Trace](general/trace.md): Semantic Conventions for traces and spans.
 
+Configuration:
+
+* [Configuration](configuration/README.md): Semantic convention related configuration options.
+
 Also see:
 
 * [How to write semantic conventions](how-to-write-conventions/README.md)

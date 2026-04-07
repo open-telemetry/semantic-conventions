@@ -1,0 +1,9 @@
+groups:
+  - id: service.peer
+    type: attribute_group
+    brief: "Operations that access some remote service MAY fill out these attributes to describe that remote service."
+    attributes:
+      - ref: service.peer.name
+        requirement_level: opt_in
+      - ref: service.peer.namespace
+        requirement_level: opt_in

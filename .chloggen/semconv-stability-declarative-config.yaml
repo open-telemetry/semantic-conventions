@@ -1,0 +1,4 @@
+change_type: enhancement
+component: configuration
+note: Defined declarative configuration for semantic convention version selection.
+issues: [3424]

@@ -66,8 +66,15 @@ If the HTTP request method is not known to instrumentation, it MUST set the `htt
 
 If the HTTP instrumentation could end up converting valid HTTP request methods to `_OTHER`, then it MUST provide a way to override
 the list of known HTTP methods. If this override is done via environment variable, then the environment variable MUST be named
-OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS and support a comma-separated list of case-sensitive known HTTP methods
-(this list MUST be a full override of the default known method, it is not a list of known methods in addition to the defaults).
+OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS and support a comma-separated list of case-sensitive known HTTP methods.
+
+![Development](https://img.shields.io/badge/-development-blue)
+If this override is done via declarative configuration, then the list MUST be configurable via the `known_methods` property
+(an array of case-sensitive strings with minimum items 0) under `.instrumentation/development.general.http.client` and/or
+`.instrumentation/development.general.http.server`.
+
+In either case, this list MUST be a full override of the default known methods,
+it is not a list of known methods in addition to the defaults.
 
 HTTP method names are case-sensitive and `http.request.method` attribute value MUST match a known HTTP method name exactly.
 Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, SHOULD populate a canonical equivalent.
@@ -93,6 +100,16 @@ value `REDACTED`:
 * [`X-Goog-Signature`](https://cloud.google.com/storage/docs/access-control/signed-urls)
 
 This list is subject to change over time.
+
+Matching of query parameter keys against the sensitive list SHOULD be case-sensitive.
+
+![Development](https://img.shields.io/badge/-development-blue)
+Instrumentation MAY provide a way to override this list via declarative configuration.
+If so, it SHOULD use the `sensitive_query_parameters` property
+(an array of case-sensitive strings with minimum items 0) under
+`.instrumentation/development.general.sanitization.url`.
+This list is a full override of the default sensitive query parameter keys,
+it is not a list of keys in addition to the defaults.
 
 When a query string value is redacted, the query string key SHOULD still be preserved, e.g.
 `https://www.example.com/path?color=blue&sig=REDACTED`.

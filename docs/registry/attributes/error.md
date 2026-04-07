@@ -3,6 +3,9 @@
 
 # Error
 
+- [Error Attributes](#error-attributes)
+- [Deprecated Error Attributes](#deprecated-error-attributes)
+
 ## Error Attributes
 
 This document defines the shared attributes used to report an error.
@@ -11,16 +14,9 @@ This document defines the shared attributes used to report an error.
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="error-message" href="#error-message">`error.message`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | A message providing more detail about an error in human-readable form. [1] | `Unexpected input type: string`; `The user has exceeded their storage quota` |
-| <a id="error-type" href="#error-type">`error.type`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | Describes a class of error the operation ended with. [2] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` |
+| <a id="error-type" href="#error-type">`error.type`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` |
 
-**[1] `error.message`:** `error.message` should provide additional context and detail about an error.
-It is NOT RECOMMENDED to duplicate the value of `error.type` in `error.message`.
-It is also NOT RECOMMENDED to duplicate the value of `exception.message` in `error.message`.
-
-`error.message` is NOT RECOMMENDED for metrics or spans due to its unbounded cardinality and overlap with span status.
-
-**[2] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
+**[1] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
 When `error.type` is set to a type (e.g., an exception type), its
 canonical class name identifying the type within the artifact SHOULD be used.
@@ -47,3 +43,19 @@ it's RECOMMENDED to:
 | Value | Description | Stability |
 | --- | --- | --- |
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+
+## Deprecated Error Attributes
+
+This document defines deprecated attributes used to report an error.
+
+**Attributes:**
+
+| Key | Stability | Value Type | Description | Example Values |
+| --- | --- | --- | --- | --- |
+| <a id="error-message" href="#error-message">`error.message`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Use domain-specific error message attribute. For example, use `feature_flag.error.message` for feature flag errors. | string | A message providing more detail about an error in human-readable form. [2] | `Unexpected input type: string`; `The user has exceeded their storage quota` |
+
+**[2] `error.message`:** `error.message` should provide additional context and detail about an error.
+It is NOT RECOMMENDED to duplicate the value of `error.type` in `error.message`.
+It is also NOT RECOMMENDED to duplicate the value of `exception.message` in `error.message`.
+
+`error.message` is NOT RECOMMENDED for metrics or spans due to its unbounded cardinality and overlap with span status.

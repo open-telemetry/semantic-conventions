@@ -1,8 +1,0 @@
-change_type: enhancement
-component: rpc
-note: Use consistent set of attributes between RPC spans and metrics
-issues: [2922, 3197]
-subtext: |
-  - Use `rpc.response.status_code` on common metrics and spans.
-  - Make `error.type` note consistent between metrics and spans.
-  - Promote notes on `rpc.method` and `rpc.service` to attribute definition.

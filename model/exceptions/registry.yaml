@@ -20,6 +20,10 @@ groups:
         brief: The exception message.
         examples:
           ["Division by zero", "Can't convert 'int' object to str implicitly"]
+        note: |
+          > [!WARNING]
+          >
+          > This attribute may contain sensitive information.
       - id: exception.stacktrace
         type: string
         stability: stable

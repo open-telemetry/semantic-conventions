@@ -30,6 +30,9 @@ groups:
         sampling_relevant: true
       - ref: db.operation.batch.size
       - ref: db.response.returned_rows
+        note: |
+          The number of rows returned by the database operation as observed
+          by the instrumentation at the time the span ends.
       - ref: db.query.text
         sampling_relevant: true
         requirement_level:
@@ -61,6 +64,9 @@ groups:
       - ref: server.port
         sampling_relevant: true
       - ref: db.response.returned_rows
+        note: |
+          The number of rows returned by the database operation as observed
+          by the instrumentation at the time the span ends.
       - ref: db.query.text
         sampling_relevant: true
         requirement_level:
@@ -111,10 +117,8 @@ groups:
     stability: stable
     brief: This span describes database client call.
     note: |
-      Instrumentations SHOULD, when possible, record database spans that cover the duration of
-      the corresponding API call as if it was observed by the caller (such as client application).
-      For example, if a transient issue happened and was retried within this database call, the corresponding
-      span should cover the duration of the logical operation with all retries.
+      Instrumentations SHOULD, when possible, record database spans that represent the logical database
+      operation as observed by the caller (such as client application).
 
       When a database client provides higher-level convenience APIs for specific operations
       (e.g., calling a stored procedure), which internally generate and execute a generic query,
@@ -123,6 +127,8 @@ groups:
       readily available at the generic query level.
 
       **Span name** is covered in the [Name](/docs/db/database-spans.md#name) section.
+
+      **Span duration** is covered in the [Database client span duration](/docs/db/database-spans.md#database-client-span-duration) section.
 
       **Span kind** SHOULD be `CLIENT`. It MAY be set to `INTERNAL` on spans representing
       in-memory database calls.
@@ -137,9 +143,12 @@ groups:
     extends: trace.db.common.full
     attributes:
       # experimental attributes must be opt-in stable spans
-      # TODO (trask) make this recommended once it is stable
+      # TODO (@trask) make this recommended once it is stable
       - ref: db.response.returned_rows
         requirement_level: opt_in
+        note: |
+          The number of rows returned by the database operation as observed
+          by the instrumentation at the time the span ends.
 
   - id: span.db.sql_server.client
     type: span
@@ -279,7 +288,7 @@ groups:
         examples: ["products", "customers"]
       - ref: db.response.status_code
         brief: >
-          [Maria DB error code](https://mariadb.com/kb/en/mariadb-error-code-reference/)
+          [Maria DB error code](https://mariadb.com/docs/server/reference/error-codes)
           represented as a string.
         note: >
           MariaDB uses vendor-specific error codes on all errors and reports
@@ -712,7 +721,7 @@ groups:
           at all):
 
           - [DB2 SQL codes](https://www.ibm.com/docs/db2-for-zos/12?topic=codes-sql).
-          - [Maria DB error codes](https://mariadb.com/kb/en/mariadb-error-code-reference/)
+          - [Maria DB error codes](https://mariadb.com/docs/server/reference/error-codes)
           - [Microsoft SQL Server errors](https://docs.microsoft.com/sql/relational-databases/errors-events/database-engine-events-and-errors)
           - [MySQL error codes](https://dev.mysql.com/doc/mysql-errors/9.0/en/error-reference-introduction.html)
           - [Oracle error codes](https://docs.oracle.com/cd/B28359_01/server.111/b28278/toc.htm)
@@ -751,7 +760,7 @@ groups:
           The collection name SHOULD NOT be extracted from `db.query.text`.
       - ref: db.response.returned_rows
         # experimental attributes must be opt-in stable spans
-        # TODO (trask) make this recommended once it is stable
+        # TODO (@trask) make this recommended once it is stable
         requirement_level: opt_in
 
   - id: span.azure.cosmosdb.client
@@ -972,7 +981,7 @@ groups:
         requirement_level: opt_in
   - id: span.db.oracledb.client
     type: span
-    stability: development
+    stability: release_candidate
     extends: span.db.sql.client
     span_kind: client
     brief: >
@@ -983,16 +992,20 @@ groups:
       - ref: db.namespace
         sampling_relevant: true
         brief: >
-          The database associated with the connection, qualified by the instance name,
-          database name and service name.
+          The unique identifier of the database associated with the connection.
         note: |
-          `db.namespace` SHOULD be set to the combination of instance name, database name and
-          service name following the `{service_name}|{database_name}|{instance_name}` pattern.
-          Any missing components (and their associated separators) SHOULD be omitted.
-
-          For CDB architecture, database name would be pdb name. For Non-CDB, it would be
-          `DB_NAME` parameter.
-        examples: ["ORCL1\\|PDB1\\|db_high.adb.oraclecloud.com", "ORCL1\\|DB1\\|db_low.adb.oraclecloud.com", "ORCL1\\|DB1\\|order-processing-service"]
+          Use the value of `DB_UNIQUE_NAME` parameter. This defines the database's globally unique identifier and must remain unique across the enterprise.
+        examples: ["ORCL1", "ORCL2", "ORCL3"]
+      - ref: oracle.db.service
+        sampling_relevant: true
+      - ref: oracle.db.instance.name
+        sampling_relevant: true
+      - ref: oracle.db.pdb
+        sampling_relevant: true
+      - ref: oracle.db.name
+        sampling_relevant: true
+      - ref: oracle.db.domain
+        sampling_relevant: true
       - ref: db.response.status_code
         brief: >
           [Oracle Database error number](https://docs.oracle.com/en/error-help/db/) recorded as a string.

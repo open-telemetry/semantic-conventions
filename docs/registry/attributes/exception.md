@@ -14,9 +14,15 @@ This document defines the shared attributes used to report a single exception as
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="exception-message" href="#exception-message">`exception.message`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The exception message. | `Division by zero`; `Can't convert 'int' object to str implicitly` |
+| <a id="exception-message" href="#exception-message">`exception.message`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The exception message. [1] | `Division by zero`; `Can't convert 'int' object to str implicitly` |
 | <a id="exception-stacktrace" href="#exception-stacktrace">`exception.stacktrace`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | A stacktrace as a string in the natural representation for the language runtime. The representation is to be determined and documented by each language SIG. | `Exception in thread "main" java.lang.RuntimeException: Test exception\n at com.example.GenerateTrace.methodB(GenerateTrace.java:13)\n at com.example.GenerateTrace.methodA(GenerateTrace.java:9)\n at com.example.GenerateTrace.main(GenerateTrace.java:5)` |
 | <a id="exception-type" href="#exception-type">`exception.type`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The type of the exception (its fully-qualified class name, if applicable). The dynamic type of the exception should be preferred over the static type in languages that support it. | `java.net.ConnectException`; `OSError` |
+
+**[1] `exception.message`:**
+
+> [!WARNING]
+>
+> This attribute may contain sensitive information.
 
 ## Deprecated Exception Attributes
 

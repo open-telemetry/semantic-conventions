@@ -10,3 +10,23 @@ groups:
         requirement_level: recommended
       - ref: gcp.gce.instance.hostname
         requirement_level: recommended
+  - id: entity.gcp.gce.instance_group_manager
+    type: entity
+    stability: development
+    name: gcp.gce.instance_group_manager
+    brief: >
+      A GCE instance group manager.
+    attributes:
+      - ref: gcp.gce.instance_group_manager.name
+        role: identifying
+        requirement_level: required
+      - ref: gcp.gce.instance_group_manager.zone
+        role: identifying
+        requirement_level:
+          conditionally_required: >
+            When the instance group is zonal, then zone MUST be filled out.
+      - ref: gcp.gce.instance_group_manager.region
+        role: identifying
+        requirement_level:
+          conditionally_required: >
+            When the instance group is regional, then region MUST be filled out.

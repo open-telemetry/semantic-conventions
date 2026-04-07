@@ -35,7 +35,7 @@ Authors of runtime instrumentations are responsible for the choice of
 
 For example, some programming languages have multiple runtime environments
 that vary significantly in their implementation, like [Python which has many
-implementations](https://wiki.python.org/moin/PythonImplementations). For
+implementations](https://www.python.org/download/alternatives). For
 such languages, consider using specific `{environment}` prefixes to avoid
 ambiguity, like `cpython.*` and `pypy.*`.
 
