@@ -50,7 +50,7 @@ and one for disabling the old schema called `semconv.k8s.disableLegacy`. Then:
   - [K8s Deployment metrics](#k8s-deployment-metrics)
   - [K8s ReplicaSet metrics](#k8s-replicaset-metrics)
   - [K8s ReplicationController metrics](#k8s-replicationcontroller-metrics)
-  - [K8s StatefulsSet metrics](#k8s-statefulsset-metrics)
+  - [K8s StatefulSet metrics](#k8s-statefulset-metrics)
   - [K8s HorizontalPodAutoscaler metrics](#k8s-horizontalpodautoscaler-metrics)
   - [K8s DaemonSet metrics](#k8s-daemonset-metrics)
   - [K8s Job metrics](#k8s-job-metrics)
@@ -169,7 +169,7 @@ The changes in their metric names and types are the following:
 
 <!-- prettier-ignore-end -->
 
-### K8s StatefulsSet metrics
+### K8s StatefulSet metrics
 
 The K8s StatefulSet metrics implemented by the Collector and specifically the
 [k8scluster](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/v0.115.0/receiver/k8sclusterreceiver/documentation.md)
