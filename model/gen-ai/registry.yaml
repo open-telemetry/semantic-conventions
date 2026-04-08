@@ -193,7 +193,6 @@ groups:
           The value is measured from when the client issues the generation request
           to when the first chunk is received in the response stream.
         examples: [0.5, 1.2]
-        unit: s
       - id: gen_ai.usage.input_tokens
         stability: development
         type: int
@@ -237,6 +236,7 @@ groups:
               deprecated:
                 reason: renamed
                 renamed_to: "output"
+                note: "Use `output` instead."
               brief: 'Output tokens (completion, response, etc.)'
             - id: output
               stability: development
