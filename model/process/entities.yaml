@@ -67,10 +67,12 @@ groups:
       Represents the executable file associated with a process.
       A single executable may be run my multiple process instances.
     attributes:
-      - ref: process.executable.path
+      - ref: process.executable.build_id.htlhash
         role: identifying
         requirement_level: required
-      - ref: process.executable.build_id.htlhash
+      - ref: process.executable.path
+        role: descriptive
+        requirement_level: opt_in
       - ref: process.executable.build_id.go
         role: descriptive
         requirement_level: opt_in
