@@ -22,11 +22,10 @@ issues: [3535]
 subtext: |
   - Move process.executable to its own entity
   - Identifying attribute:
-    - process.executable.name
+    - process.executable.build_id.htlhash
+      - We need to update its description in another PR.
   - Descriptive attributes:
     - process.executable.build_id.go
     - process.executable.build_id.gnu
     - process.executable.path
-  - process.executable.build_id.htlhash
-    - Added for now with default roles and requirement level
-      - We need to update its description in another PR.
+    - process.executable.name
