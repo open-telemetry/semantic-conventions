@@ -57,8 +57,7 @@ groups:
         stability: development
         type: string
         brief: >
-          Profiling specific build ID for executables. See the OTel specification
-          for Profiles for more information.
+          OpenTelemetry deterministic build ID for executables.
         examples: ['600DCAFE4A110000F2BF38C493F5FB92']
       - id: process.executable.name
         type: string
