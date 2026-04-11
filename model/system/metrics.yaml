@@ -396,7 +396,7 @@ groups:
     unit: "{lock}"
     attributes:
       - ref: system.device
-        brief: OS-specific identifier for the device where the filesystem resides.
+        brief: OS-specific identifier for the device where the file resides.
         examples: ["08:01"]
       - ref: file.lock.type
       - ref: file.lock.class
