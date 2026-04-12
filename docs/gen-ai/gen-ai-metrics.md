@@ -10,6 +10,7 @@ linkTitle: Metrics
 
 - [Generative AI client metrics](#generative-ai-client-metrics)
   - [Metric: `gen_ai.client.token.usage`](#metric-gen_aiclienttokenusage)
+    - [Detailed token usage](#detailed-token-usage)
   - [Metric: `gen_ai.client.operation.duration`](#metric-gen_aiclientoperationduration)
   - [Metric: `gen_ai.client.operation.time_to_first_chunk`](#metric-gen_aiclientoperationtime_to_first_chunk)
   - [Metric: `gen_ai.client.operation.time_per_output_chunk`](#metric-gen_aiclientoperationtime_per_output_chunk)
@@ -67,6 +68,26 @@ If instrumentation cannot efficiently obtain number of input and/or output token
 
 When systems report both used tokens and billable tokens, instrumentation MUST report billable tokens.
 
+#### Detailed token usage
+
+When providers report detailed token breakdowns (such as cached tokens or reasoning tokens),
+instrumentations SHOULD record additional data points with `gen_ai.token.usage_reason` set.
+
+These detailed data points represent **subsets** of the total `input` or `output` token counts.
+To avoid double counting, consumers MUST NOT sum detailed data points with their parent totals.
+Instead, `sum(gen_ai.client.token.usage)` where `gen_ai.token.usage_reason` is **not set** yields
+the correct total token count.
+
+For example, a response with 100 input tokens (50 cached) and 200 output tokens (150 reasoning)
+produces the following data points:
+
+| `gen_ai.token.type` | `gen_ai.token.usage_reason` | Value |
+| --- | --- | --- |
+| `input` | *(not set)* | 100 |
+| `input` | `cache_read` | 50 |
+| `output` | *(not set)* | 200 |
+| `output` | `reasoning` | 150 |
+
 This metric SHOULD be specified with [ExplicitBucketBoundaries] of [1, 4, 16, 64, 256, 1024, 4096, 16384, 65536, 262144, 1048576, 4194304, 16777216, 67108864].
 
 <!-- semconv metric.gen_ai.client.token.usage -->
@@ -76,7 +97,21 @@ This metric SHOULD be specified with [ExplicitBucketBoundaries] of [1, 4, 16, 64
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `gen_ai.client.token.usage` | Histogram | `{token}` | Number of input and output tokens used. | ![Development](https://img.shields.io/badge/-development-blue) | |
+| `gen_ai.client.token.usage` | Histogram | `{token}` | Number of input and output tokens used. [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
+
+**[1]:** When detailed token usage is available (e.g., cache read tokens, reasoning tokens),
+instrumentations SHOULD record additional data points with the `gen_ai.token.cache`
+or `gen_ai.token.reasoning` attributes set. These detailed data points represent
+subsets of the total `input` or `output` token counts and MUST NOT be summed with
+them to avoid double counting.
+
+For example, a response with 100 input tokens (50 cached) and 200 output tokens (150 reasoning)
+SHOULD produce:
+
+- `gen_ai.client.token.usage{gen_ai.token.type="input"}` = 100
+- `gen_ai.client.token.usage{gen_ai.token.type="input", gen_ai.token.cache="read"}` = 50
+- `gen_ai.client.token.usage{gen_ai.token.type="output"}` = 200
+- `gen_ai.client.token.usage{gen_ai.token.type="output", gen_ai.token.reasoning=true}` = 150
 
 **Attributes:**
 
@@ -86,9 +121,11 @@ This metric SHOULD be specified with [ExplicitBucketBoundaries] of [1, 4, 16, 64
 | [`gen_ai.provider.name`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The Generative AI provider as identified by the client or server instrumentation. [2] | `openai`; `gcp.gen_ai`; `gcp.vertex_ai` |
 | [`gen_ai.token.type`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The type of token being counted. | `input`; `output` |
 | [`gen_ai.request.model`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If available. | string | The name of the GenAI model a request is being made to. | `gpt-4` |
-| [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If `server.address` is set. | int | GenAI server port. [3] | `80`; `8080`; `443` |
+| [`gen_ai.token.cache`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [3] | string | The cache classification for input tokens. [4] | `read`; `creation` |
+| [`gen_ai.token.reasoning`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [5] | boolean | Whether the output tokens were used for internal reasoning (e.g., chain-of-thought). [6] | |
+| [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If `server.address` is set. | int | GenAI server port. [7] | `80`; `8080`; `443` |
 | [`gen_ai.response.model`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the model that generated the response. | `gpt-4-0613` |
-| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | GenAI server address. [4] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
+| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | GenAI server address. [8] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 
 **[1] `gen_ai.operation.name`:** If one of the predefined values applies, but specific system uses a different name it's RECOMMENDED to document it in the semantic conventions for specific GenAI system and use system-specific name in the instrumentation. If a different name is not documented, instrumentation libraries SHOULD use applicable predefined value.
 
@@ -111,9 +148,25 @@ should have the `gen_ai.provider.name` set to `aws.bedrock` and include
 applicable `aws.bedrock.*` attributes and are not expected to include
 `openai.*` attributes.
 
-**[3] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[3] `gen_ai.token.cache`:** when the provider reports a cache breakdown for input tokens.
 
-**[4] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
+**[4] `gen_ai.token.cache`:** This attribute SHOULD only be set on data points where `gen_ai.token.type=input`
+and the provider reports a cache breakdown.
+
+When set, it represents a subset of total input tokens. Omit this attribute
+for non-cached input tokens to preserve metric additivity.
+
+**[5] `gen_ai.token.reasoning`:** when the provider reports reasoning token usage for output tokens.
+
+**[6] `gen_ai.token.reasoning`:** This attribute SHOULD only be set to `true` on data points where
+`gen_ai.token.type=output` and the provider reports a reasoning token breakdown.
+
+When set, it represents a subset of total output tokens. Omit this attribute
+(or set to `false`) for non-reasoning output tokens to preserve metric additivity.
+
+**[7] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+
+**[8] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
 ---
 
@@ -143,9 +196,9 @@ applicable `aws.bedrock.*` attributes and are not expected to include
 | `azure.ai.openai` | [Azure OpenAI](https://learn.microsoft.com/en-us/azure/ai-services/openai/overview) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `cohere` | [Cohere](https://cohere.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `deepseek` | [DeepSeek](https://www.deepseek.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `gcp.gemini` | [Gemini](https://cloud.google.com/products/gemini) [5] | ![Development](https://img.shields.io/badge/-development-blue) |
-| `gcp.gen_ai` | Any Google generative AI endpoint [6] | ![Development](https://img.shields.io/badge/-development-blue) |
-| `gcp.vertex_ai` | [Vertex AI](https://cloud.google.com/vertex-ai) [7] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gcp.gemini` | [Gemini](https://cloud.google.com/products/gemini) [9] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gcp.gen_ai` | Any Google generative AI endpoint [10] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `gcp.vertex_ai` | [Vertex AI](https://cloud.google.com/vertex-ai) [11] | ![Development](https://img.shields.io/badge/-development-blue) |
 | `groq` | [Groq](https://groq.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `ibm.watsonx.ai` | [IBM Watsonx AI](https://www.ibm.com/products/watsonx-ai) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `mistral_ai` | [Mistral AI](https://mistral.ai/) | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -153,11 +206,20 @@ applicable `aws.bedrock.*` attributes and are not expected to include
 | `perplexity` | [Perplexity](https://www.perplexity.ai/) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `x_ai` | [xAI](https://x.ai/) | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[5]:** Used when accessing the 'generativelanguage.googleapis.com' endpoint. Also known as the AI Studio API.
+**[9]:** Used when accessing the 'generativelanguage.googleapis.com' endpoint. Also known as the AI Studio API.
 
-**[6]:** May be used when specific backend is unknown.
+**[10]:** May be used when specific backend is unknown.
 
-**[7]:** Used when accessing the 'aiplatform.googleapis.com' endpoint.
+**[11]:** Used when accessing the 'aiplatform.googleapis.com' endpoint.
+
+---
+
+`gen_ai.token.cache` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value | Description | Stability |
+| --- | --- | --- |
+| `creation` | Input tokens written to a provider-managed cache. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `read` | Input tokens served from a provider-managed cache. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 

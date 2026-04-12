@@ -46,6 +46,20 @@ groups:
       code_generation:
         metric_value_type: int
     brief: 'Number of input and output tokens used.'
+    note: |
+      When detailed token usage is available (e.g., cache read tokens, reasoning tokens),
+      instrumentations SHOULD record additional data points with the `gen_ai.token.cache`
+      or `gen_ai.token.reasoning` attributes set. These detailed data points represent
+      subsets of the total `input` or `output` token counts and MUST NOT be summed with
+      them to avoid double counting.
+
+      For example, a response with 100 input tokens (50 cached) and 200 output tokens (150 reasoning)
+      SHOULD produce:
+
+      - `gen_ai.client.token.usage{gen_ai.token.type="input"}` = 100
+      - `gen_ai.client.token.usage{gen_ai.token.type="input", gen_ai.token.cache="read"}` = 50
+      - `gen_ai.client.token.usage{gen_ai.token.type="output"}` = 200
+      - `gen_ai.client.token.usage{gen_ai.token.type="output", gen_ai.token.reasoning=true}` = 150
     instrument: histogram
     unit: "{token}"
     stability: development
@@ -53,6 +67,12 @@ groups:
     attributes:
       - ref: gen_ai.token.type
         requirement_level: required
+      - ref: gen_ai.token.cache
+        requirement_level:
+          conditionally_required: when the provider reports a cache breakdown for input tokens.
+      - ref: gen_ai.token.reasoning
+        requirement_level:
+          conditionally_required: when the provider reports reasoning token usage for output tokens.
   - id: metric.gen_ai.client.operation.duration
     type: metric
     metric_name: gen_ai.client.operation.duration

@@ -246,6 +246,36 @@ groups:
               brief: 'Output tokens (completion, response, etc.)'
         brief: The type of token being counted.
         examples: ['input', 'output']
+      - id: gen_ai.token.cache
+        stability: development
+        type:
+          members:
+            - id: read
+              stability: development
+              value: "read"
+              brief: 'Input tokens served from a provider-managed cache.'
+            - id: creation
+              stability: development
+              value: "creation"
+              brief: 'Input tokens written to a provider-managed cache.'
+        brief: The cache classification for input tokens.
+        note: |
+          This attribute SHOULD only be set on data points where `gen_ai.token.type=input`
+          and the provider reports a cache breakdown.
+
+          When set, it represents a subset of total input tokens. Omit this attribute
+          for non-cached input tokens to preserve metric additivity.
+        examples: ['read', 'creation']
+      - id: gen_ai.token.reasoning
+        stability: development
+        type: boolean
+        brief: Whether the output tokens were used for internal reasoning (e.g., chain-of-thought).
+        note: |
+          This attribute SHOULD only be set to `true` on data points where
+          `gen_ai.token.type=output` and the provider reports a reasoning token breakdown.
+
+          When set, it represents a subset of total output tokens. Omit this attribute
+          (or set to `false`) for non-reasoning output tokens to preserve metric additivity.
       - id: gen_ai.conversation.id
         stability: development
         type: string
