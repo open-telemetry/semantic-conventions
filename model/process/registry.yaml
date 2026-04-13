@@ -57,8 +57,10 @@ groups:
         stability: development
         type: string
         brief: >
-          OpenTelemetry deterministic build ID for executables. See the [OTel
-          specification for Profile Mapping for more information.](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/profiles/mappings.md#algorithm-for-processexecutablebuild_idhtlhash).
+          OpenTelemetry deterministic build ID for executables. See the OTel
+          specification for
+          [Profile
+          Mapping](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/profiles/mappings.md#algorithm-for-processexecutablebuild_idhtlhash). for more information.
         examples: ['600DCAFE4A110000F2BF38C493F5FB92']
       - id: process.executable.name
         type: string
