@@ -424,6 +424,9 @@ groups:
       - ref: gen_ai.data_source.id
         requirement_level:
           conditionally_required: if applicable.
+      - ref: gen_ai.agent.invocation.trigger
+        requirement_level:
+          recommended: if known
 
   - id: attributes.gen_ai.invoke_agent.client
     type: attribute_group

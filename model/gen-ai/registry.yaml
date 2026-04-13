@@ -264,6 +264,35 @@ groups:
         type: string
         brief: The version of the GenAI agent.
         examples: ["1.0.0", "2025-05-01"]
+      - id: gen_ai.agent.invocation.trigger
+        stability: development
+        type:
+          members:
+            - id: direct
+              stability: development
+              value: "direct"
+              brief: 'Agent invoked directly by a user, application, or system — not delegated by another agent.'
+            - id: agent
+              stability: development
+              value: "agent"
+              brief: 'Agent invoked by another agent via delegation or handoff.'
+        brief: Indicates what triggered the agent invocation.
+        note: |
+          This attribute distinguishes whether an agent was invoked directly
+          (`direct`) or delegated to by another GenAI agent (`agent`).
+
+          `direct` covers all non-agent triggers: user requests, application
+          logic, scheduled jobs, event-driven invocations, and orchestration
+          by systems that are not themselves GenAI agents. `agent` indicates
+          that another GenAI agent deliberately chose to delegate work to
+          this agent.
+
+          The parent-child span relationship shows temporal containment but
+          not semantic intent. When an `invoke_agent` span is nested under
+          another `invoke_agent`, the nesting shows that agent B ran during
+          agent A's execution, but not whether A deliberately delegated to B.
+          This attribute makes that distinction explicit and queryable.
+        examples: ["direct", "agent"]
       - id: gen_ai.tool.name
         stability: development
         type: string

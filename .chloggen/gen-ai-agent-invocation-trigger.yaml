@@ -1,0 +1,9 @@
+change_type: enhancement
+component: gen_ai
+note: "Add `gen_ai.agent.invocation.trigger` attribute to `invoke_agent` spans"
+issues: [1961, 2664]
+subtext: |
+  Adds `gen_ai.agent.invocation.trigger` enum attribute (values: `direct`, `agent`)
+  to both CLIENT and INTERNAL `invoke_agent` spans, enabling operators to
+  distinguish directly-invoked from agent-delegated invocations without
+  walking the span tree.
