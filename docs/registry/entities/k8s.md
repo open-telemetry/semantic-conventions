@@ -273,6 +273,13 @@ conflict.
 **type:** `k8s.node.system_container`
 
 **Description:** A Kubernetes Node System Container.
+
+**Attributes:**
+
+| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
+| --- | --- | --- | --- | --- | --- | --- |
+| Identity | [`k8s.node.system_container.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the system container running on the K8s Node. | `kubelet`; `runtime`; `pods`; `misc` |
+
 ## K8s Persistentvolume
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
@@ -285,7 +292,6 @@ conflict.
 
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- | --- |
-| Identity | [`k8s.node.system_container.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the system container running on the K8s Node. | `kubelet`; `runtime`; `pods`; `misc` |
 | Identity | [`k8s.persistentvolume.uid`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The UID of the PersistentVolume. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` |
 | Description | [`k8s.persistentvolume.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the PersistentVolume. | `pv-data-01` |
 | Description | [`k8s.storageclass.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of K8s [StorageClass](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#storageclass-v1-storage-k8s-io) object. | `gold.storageclass.storage.k8s.io` |
