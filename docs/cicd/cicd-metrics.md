@@ -46,7 +46,7 @@ Examples of such metrics include:
 * runtime metrics of any processes executed as part of the pipeline run like JVM metrics
 
 These metrics could be used to correlate build failures with environment issues like overload or out-of-memory.
-They could also be used in pipeline-level aggregations to inform adjustements of allocated worker resources.
+They could also be used in pipeline-level aggregations to inform adjustments of allocated worker resources.
 
 When reporting host, container, runtime, and other metrics in CI/CD pipelines, instrumentation authors and application developers SHOULD use applicable [CICD and VCS resource conventions][cicdres] and MAY also associate all or specific metrics with `cicd.pipeline.run` to correlate them with run information.
 
