@@ -158,7 +158,7 @@ groups:
       - id: file.lock.mechanism
         type: string
         brief: >
-          Mechanism of lock or operation
+          "The lock [mechanism](https://pubs.opengroup.org/onlinepubs/9699919799/functions/fcntl.html)"
         stability: development
         examples: ["POSIX", "FLOCK", "DELEG", "LEASE"]
       - id: file.lock.mode

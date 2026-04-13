@@ -56,7 +56,7 @@ These attributes may be used for any filesystem lock or related operation
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="file-lock-mechanism" href="#file-lock-mechanism">`file.lock.mechanism`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Mechanism of lock or operation | `POSIX`; `FLOCK`; `DELEG`; `LEASE` |
+| <a id="file-lock-mechanism" href="#file-lock-mechanism">`file.lock.mechanism`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The lock [mechanism](https://pubs.opengroup.org/onlinepubs/9699919799/functions/fcntl.html) | `POSIX`; `FLOCK`; `DELEG`; `LEASE` |
 | <a id="file-lock-mode" href="#file-lock-mode">`file.lock.mode`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Mode of lock or operation | `ADVISORY`; `MANDATORY`; `BREAKING`; `ACTIVE`; `BREAKER` |
 | <a id="file-lock-type" href="#file-lock-type">`file.lock.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The [lock type](https://pubs.opengroup.org/onlinepubs/9699919799/functions/fcntl.html) | `read` |
 
