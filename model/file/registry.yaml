@@ -155,10 +155,10 @@ groups:
         stability: development
         brief: "The [lock type](https://pubs.opengroup.org/onlinepubs/9699919799/functions/fcntl.html)"
         examples: ["read"]
-      - id: file.lock.class
+      - id: file.lock.mechanism
         type: string
         brief: >
-          Class of lock or operation
+          Mechanism of lock or operation
         stability: development
         examples: ["POSIX", "FLOCK", "DELEG", "LEASE"]
       - id: file.lock.mode
