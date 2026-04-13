@@ -399,7 +399,7 @@ groups:
         brief: OS-specific identifier for the device where the file resides.
         examples: ["08:01"]
       - ref: file.lock.type
-      - ref: file.lock.class
+      - ref: file.lock.mechanism
       - ref: file.lock.mode
     entity_associations:
       - host
