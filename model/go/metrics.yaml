@@ -13,6 +13,8 @@ groups:
     attributes:
       - ref: go.memory.type
         requirement_level: recommended
+      - ref: go.memory.detailed_type
+        requirement_level: opt_in
     stability: development
 
   - id: metric.go.memory.limit
@@ -66,6 +68,33 @@ groups:
       Computed from `/gc/heap/goal:bytes`.
     instrument: updowncounter
     unit: "By"
+    stability: development
+
+  - id: metric.go.memory.gc.cycles
+    type: metric
+    metric_name: go.memory.gc.cycles
+    annotations:
+      code_generation:
+        metric_value_type: int
+    brief: "Number of completed GC cycles."
+    note: >
+      Computed from `/gc/cycles/total:gc-cycles`.
+    instrument: counter
+    unit: "{gc_cycle}"
+    stability: development
+
+  - id: metric.go.memory.gc.pause.duration
+    type: metric
+    metric_name: go.memory.gc.pause.duration
+    annotations:
+      code_generation:
+        metric_value_type: double
+    brief: "Distribution of individual GC-related stop-the-world pause latencies. This is the time from deciding to stop the world until the world is started again."
+    note: >
+      Computed from `/sched/pauses/total/gc:seconds`.
+      Bucket boundaries are provided by the runtime, and are subject to change.
+    instrument: histogram
+    unit: "s"
     stability: development
 
   - id: metric.go.goroutine.count

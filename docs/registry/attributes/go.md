@@ -11,7 +11,51 @@ This document defines Go related attributes.
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
+| <a id="go-memory-detailed-type" href="#go-memory-detailed-type">`go.memory.detailed_type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The detailed type of memory. | `mcache-inuse`; `heap-objects` |
 | <a id="go-memory-type" href="#go-memory-type">`go.memory.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The type of memory. | `other`; `stack` |
+
+---
+
+`go.memory.detailed_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value | Description | Stability |
+| --- | --- | --- |
+| `heap-free` | Memory that is completely free and eligible to be returned to the underlying system, but has not been. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `heap-objects` | Memory occupied by live objects and dead objects that have not yet been marked free by the garbage collector. [2] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `heap-stacks` | Memory allocated from the heap that is reserved for stack space, whether or not it is currently in-use. [3] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `heap-unused` | Memory that is reserved for heap objects but is not currently used to hold heap objects. [4] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `mcache-free` | Memory that is reserved for runtime mcache structures, but not in-use. [5] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `mcache-inuse` | Memory that is occupied by runtime mcache structures that are currently being used. [6] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `mspan-free` | Memory that is reserved for runtime mspan structures, but not in-use. [7] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `mspan-inuse` | Memory that is occupied by runtime mspan structures that are currently being used. [8] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `os-stacks` | Stack memory allocated by the underlying operating system. In cgo programs this metric includes OS thread stacks allocated directly from the OS. [9] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `other` | Memory used by execution trace buffers, structures for debugging the runtime, finalizer and profiler specials, and more. [10] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `other-metadata` | Memory that is reserved for or used to hold runtime metadata. [11] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `profiling` | Memory that is used by the stack trace hash map used for profiling. [12] | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**[1]:** Computed from `/memory/classes/heap/free:bytes`.
+
+**[2]:** Computed from `/memory/classes/heap/objects:bytes`.
+
+**[3]:** Computed from `/memory/classes/heap/stacks:bytes`.
+
+**[4]:** Computed from `/memory/classes/heap/unused:bytes`.
+
+**[5]:** Computed from `/memory/classes/metadata/mcache/free:bytes`.
+
+**[6]:** Computed from `/memory/classes/metadata/mcache/inuse:bytes`.
+
+**[7]:** Computed from `/memory/classes/metadata/mspan/free:bytes`.
+
+**[8]:** Computed from `/memory/classes/metadata/mspan/inuse:bytes`.
+
+**[9]:** Computed from `/memory/classes/os-stacks:bytes`.
+
+**[10]:** Computed from `/memory/classes/other:bytes`.
+
+**[11]:** Computed from `/memory/classes/metadata/other:bytes`.
+
+**[12]:** Computed from `/memory/classes/profiling/buckets:bytes`.
 
 ---
 
@@ -20,6 +64,6 @@ This document defines Go related attributes.
 | Value | Description | Stability |
 | --- | --- | --- |
 | `other` | Memory used by the Go runtime, excluding other categories of memory usage described in this enumeration. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `stack` | Memory allocated from the heap that is reserved for stack space, whether or not it is currently in-use. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `stack` | Memory allocated from the heap that is reserved for stack space, whether or not it is currently in-use. [13] | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[1]:** Computed from `/memory/classes/heap/stacks:bytes`.
+**[13]:** Computed from `/memory/classes/heap/stacks:bytes`.

@@ -21,3 +21,81 @@ groups:
               stability: development
         brief: The type of memory.
         examples: ["other", "stack"]
+      - id: go.memory.detailed_type
+        stability: development
+        type:
+          members:
+            - id: heap-free
+              value: 'heap-free'
+              brief: 'Memory that is completely free and eligible to be returned to the underlying system, but has not been.'
+              note: >
+                Computed from `/memory/classes/heap/free:bytes`.
+              stability: development
+            - id: heap-objects
+              value: 'heap-objects'
+              brief: 'Memory occupied by live objects and dead objects that have not yet been marked free by the garbage collector.'
+              note: >
+                Computed from `/memory/classes/heap/objects:bytes`.
+              stability: development
+            - id: heap-stacks
+              value: 'heap-stacks'
+              brief: 'Memory allocated from the heap that is reserved for stack space, whether or not it is currently in-use.'
+              note: >
+                Computed from `/memory/classes/heap/stacks:bytes`.
+              stability: development
+            - id: heap-unused
+              value: 'heap-unused'
+              brief: 'Memory that is reserved for heap objects but is not currently used to hold heap objects.'
+              note: >
+                Computed from `/memory/classes/heap/unused:bytes`.
+              stability: development
+            - id: mcache-free
+              value: 'mcache-free'
+              brief: 'Memory that is reserved for runtime mcache structures, but not in-use.'
+              note: >
+                Computed from `/memory/classes/metadata/mcache/free:bytes`.
+              stability: development
+            - id: mcache-inuse
+              value: 'mcache-inuse'
+              brief: 'Memory that is occupied by runtime mcache structures that are currently being used.'
+              note: >
+                Computed from `/memory/classes/metadata/mcache/inuse:bytes`.
+              stability: development
+            - id: mspan-free
+              value: 'mspan-free'
+              brief: 'Memory that is reserved for runtime mspan structures, but not in-use.'
+              note: >
+                Computed from `/memory/classes/metadata/mspan/free:bytes`.
+              stability: development
+            - id: mspan-inuse
+              value: 'mspan-inuse'
+              brief: 'Memory that is occupied by runtime mspan structures that are currently being used.'
+              note: >
+                Computed from `/memory/classes/metadata/mspan/inuse:bytes`.
+              stability: development
+            - id: os-stacks
+              value: 'os-stacks'
+              brief: 'Stack memory allocated by the underlying operating system. In cgo programs this metric includes OS thread stacks allocated directly from the OS.'
+              note: >
+                Computed from `/memory/classes/os-stacks:bytes`.
+              stability: development
+            - id: other
+              value: 'other'
+              brief: 'Memory used by execution trace buffers, structures for debugging the runtime, finalizer and profiler specials, and more.'
+              note: >
+                Computed from `/memory/classes/other:bytes`.
+              stability: development
+            - id: other-metadata
+              value: 'other-metadata'
+              brief: 'Memory that is reserved for or used to hold runtime metadata.'
+              note: >
+                Computed from `/memory/classes/metadata/other:bytes`.
+              stability: development
+            - id: profiling
+              value: 'profiling'
+              brief: 'Memory that is used by the stack trace hash map used for profiling.'
+              note: >
+                Computed from `/memory/classes/profiling/buckets:bytes`.
+              stability: development
+        brief: The detailed type of memory.
+        examples: ["mcache-inuse", "heap-objects"]
