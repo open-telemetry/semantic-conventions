@@ -410,6 +410,10 @@ groups:
               value: "execute_tool"
               brief: 'Execute a tool'
               stability: development
+            - id: invoke_workflow
+              value: "invoke_workflow"
+              brief: 'Invoke GenAI workflow'
+              stability: development
             - id: search_memory
               value: "search_memory"
               brief: 'Search/query memories from a memory store'
