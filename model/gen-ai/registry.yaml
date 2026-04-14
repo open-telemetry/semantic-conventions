@@ -164,9 +164,6 @@ groups:
         stability: development
         type: boolean
         brief: Indicates whether the GenAI request was made in streaming mode.
-        note: >
-          When true, the response is delivered incrementally as it is generated.
-          When false or not set, the response is delivered as a single complete response.
       - id: gen_ai.response.id
         stability: development
         type: string
