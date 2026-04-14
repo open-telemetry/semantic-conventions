@@ -64,7 +64,7 @@ groups:
           conditionally_required: if applicable and if the request includes a seed
       - ref: gen_ai.request.stream
         requirement_level:
-          conditionally_required: if the request is a streaming request
+          conditionally_required: If and only if the request is streaming. If unset, the request is assumed to be non-streaming.
       - ref: gen_ai.output.type
         requirement_level:
           conditionally_required: when applicable and if the request includes an output format.
