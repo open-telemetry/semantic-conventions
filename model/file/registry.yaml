@@ -139,7 +139,7 @@ groups:
         examples: ['/usr/bin/python3']
   - id: registry.file.lock
     type: attribute_group
-    display_name: File locks
+    display_name: File lock
     brief: >
         These attributes may be used for any filesystem lock or related operation
     attributes:
