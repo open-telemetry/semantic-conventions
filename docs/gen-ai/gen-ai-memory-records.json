@@ -1,0 +1,39 @@
+{
+    "$defs": {
+        "MemoryRecord": {
+            "additionalProperties": true,
+            "description": "Represents a single memory record stored in or retrieved from a memory store.",
+            "properties": {
+                "content": {
+                    "description": "The content of the memory record.",
+                    "title": "Content",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "A unique identifier for the memory record.",
+                    "title": "Id",
+                    "type": "string"
+                },
+                "score": {
+                    "description": "The relevance score of the memory record (populated on search results).",
+                    "title": "Score",
+                    "type": "number"
+                },
+                "metadata": {
+                    "additionalProperties": true,
+                    "description": "Provider-specific metadata associated with the memory record.",
+                    "title": "Metadata",
+                    "type": "object"
+                }
+            },
+            "title": "MemoryRecord",
+            "type": "object"
+        }
+    },
+    "description": "Represents the list of memory records stored in or retrieved from a memory store.",
+    "items": {
+        "$ref": "#/$defs/MemoryRecord"
+    },
+    "title": "MemoryRecords",
+    "type": "array"
+}
