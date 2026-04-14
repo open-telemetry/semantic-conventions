@@ -384,9 +384,9 @@ groups:
     entity_associations:
       - host
 
-  - id: metric.system.filesystem.locks.count
+  - id: metric.system.filesystem.lock.count
     type: metric
-    metric_name: system.filesystem.locks.count
+    metric_name: system.filesystem.lock.count
     annotations:
       code_generation:
         metric_value_type: int
