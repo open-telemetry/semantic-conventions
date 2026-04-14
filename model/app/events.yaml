@@ -13,9 +13,10 @@ groups:
       to provide a basic schema that can be used for all crashes, but it existence
       does not preclude other, more narrow events to be defined with more extensive
       schemas to handle specific crash scenarios on specific platforms.
-      Crash events can be produced asynchronously, so it can contain attributes
-      that are normally provided by the SDK Resource. See the definition of
-      `app.async` for more details about how to use them as it pertains to crashes.
+      Crash events can be produced asynchronously by another SDK instance, so it
+      can contain attributes that are normally provided by the SDK Resource. The
+      appearance of any of those attributes (e.g. app.build_id) means they should
+      be used instead of the ones provided in the Resource.
       How the instrumentation will determine whether an instance of a crash has
       already been reported and how the necessary data will be retrieved is left up
       to the instrumentation. Providing enough data to dedupe is NOT REQUIRED.
@@ -24,14 +25,11 @@ groups:
       usable for debugging without additional data not specified in the event
       (e.g. stacktrace already deobfuscated). If that is not the case, additional
       information like `app.build_id` SHOULD be provided to make the data useful for
-      debugging, either as an attribute in this event or derived from the Resource if
-      `app.sync` is not true.
+      debugging, either derived from the Resource or as attributes in this event if
+      they differ from what is defined there (in the asynchronous case).
     attributes:
-      - ref: app.async
-        requirement_level: opt_in
       - ref: app.build_id
-        requirement_level:
-          conditionally_required: Recommended if `app.async` is set, opt_in otherwise.
+        requirement_level: opt_in
       - ref: app.crash.id
         requirement_level: opt_in
       - ref: exception.type
@@ -41,17 +39,13 @@ groups:
       - ref: exception.stacktrace
         requirement_level: opt_in
       - ref: os.name
-        requirement_level:
-          conditionally_required: Recommended if `app.async` is set, opt_in otherwise.
+        requirement_level: opt_in
       - ref: os.version
-        requirement_level:
-          conditionally_required: Recommended if `app.async` is set, opt_in otherwise.
+        requirement_level: opt_in
       - ref: service.name
-        requirement_level:
-          conditionally_required: Recommended if `app.async` is set, opt_in otherwise.
+        requirement_level: opt_in
       - ref: service.version
-        requirement_level:
-          conditionally_required: Recommended if `app.async` is set, opt_in otherwise.
+        requirement_level: opt_in
       - ref: session.id
         requirement_level: recommended
   - id: event.app.screen.click
