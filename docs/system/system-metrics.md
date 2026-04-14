@@ -47,6 +47,7 @@ Resource attributes related to a host, SHOULD be reported under the `host.*` nam
   - [Metric: `system.filesystem.usage`](#metric-systemfilesystemusage)
   - [Metric: `system.filesystem.utilization`](#metric-systemfilesystemutilization)
   - [Metric: `system.filesystem.limit`](#metric-systemfilesystemlimit)
+  - [Metric: `system.filesystem.lock.count`](#metric-systemfilesystemlockcount)
 - [Network metrics](#network-metrics)
   - [Metric: `system.network.packet.dropped`](#metric-systemnetworkpacketdropped)
   - [Metric: `system.network.packet.count`](#metric-systemnetworkpacketcount)
