@@ -705,18 +705,6 @@ groups:
         brief: The unique identifier of the memory record.
         examples: ["mem_5j66UpCpwteGg4YSxUnt7lPY"]
 
-      - id: gen_ai.memory.record.content
-        stability: development
-        type: any
-        brief: The content/value of the memory record.
-        note: |
-          > [!WARNING]
-          > This attribute may contain sensitive information including user/PII data.
-
-          Instrumentations SHOULD NOT capture this by default.
-        examples:
-          - '{"preference": "dark_mode", "value": true}'
-
       - id: gen_ai.memory.query.text
         stability: development
         type: string
@@ -729,8 +717,12 @@ groups:
       - id: gen_ai.memory.records
         stability: development
         type: any
-        brief: The memory records returned from a search operation.
+        brief: The memory records stored or retrieved in a memory operation.
         note: |
+          Instrumentations MUST follow [Memory records JSON schema](/docs/gen-ai/gen-ai-memory-records.json).
+          When the attribute is recorded on events, it MUST be recorded in structured
+          form. When recorded on spans, it MAY be recorded as a JSON string if structured
+          format is not supported and SHOULD be recorded in structured form otherwise.
 
           Each record object SHOULD contain at least the following properties:
           `content` (any): The content of the memory record.

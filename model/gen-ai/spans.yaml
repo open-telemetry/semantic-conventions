@@ -635,10 +635,7 @@ groups:
       - ref: gen_ai.memory.store.id
         requirement_level:
           conditionally_required: if applicable
-      - ref: gen_ai.memory.record.id
-        requirement_level:
-          conditionally_required: when available (provided or returned)
-      - ref: gen_ai.memory.record.content
+      - ref: gen_ai.memory.records
         requirement_level: opt_in
 
   - id: span.gen_ai.delete_memory.client
