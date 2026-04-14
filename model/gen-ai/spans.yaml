@@ -80,7 +80,7 @@ groups:
         requirement_level: recommended
       - ref: gen_ai.response.time_to_first_chunk
         requirement_level:
-          recommended: if available and the request was a streaming request
+          recommended: if the request was a streaming request
       - ref: gen_ai.usage.input_tokens
         requirement_level: recommended
       - ref: gen_ai.usage.cache_read.input_tokens
