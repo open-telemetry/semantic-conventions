@@ -186,7 +186,6 @@ groups:
         type: double
         brief: Time to first chunk in a streaming response, measured from request issuance, in seconds.
         note: >
-          This attribute SHOULD only be set for streaming responses.
           The value is measured from when the client issues the generation request
           to when the first chunk is received in the response stream.
         examples: [0.5, 1.2]
