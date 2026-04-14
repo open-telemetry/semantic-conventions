@@ -14,6 +14,9 @@ groups:
           The dynamic type of the exception should be preferred over the static type
           in languages that support it.
         examples: ["java.net.ConnectException", "OSError"]
+        note: |
+          If an exception type is a wrapper that is not meaningful for classifying the
+          failure, instrumentation MAY use the type of the unwrapped inner exception instead.
       - id: exception.message
         type: string
         stability: stable

@@ -767,6 +767,11 @@ of `[ 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10, 30, 60, 120, 300 ]`.
 When `error.type` is set to a type (e.g., an exception type), its
 canonical class name identifying the type within the artifact SHOULD be used.
 
+If an error type is a wrapper that is not meaningful for classifying the error,
+instrumentation MAY use the type of the unwrapped inner error instead. For example, in Go,
+errors created with `fmt.Errorf` using `%w` MAY be unwrapped when the wrapper type does not
+help classify the failure.
+
 Instrumentations SHOULD document the list of errors they report.
 
 The cardinality of `error.type` within one instrumentation library SHOULD be low.
@@ -847,6 +852,11 @@ of `[ 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10, 30, 60, 120, 300 ]`.
 
 When `error.type` is set to a type (e.g., an exception type), its
 canonical class name identifying the type within the artifact SHOULD be used.
+
+If an error type is a wrapper that is not meaningful for classifying the error,
+instrumentation MAY use the type of the unwrapped inner error instead. For example, in Go,
+errors created with `fmt.Errorf` using `%w` MAY be unwrapped when the wrapper type does not
+help classify the failure.
 
 Instrumentations SHOULD document the list of errors they report.
 
