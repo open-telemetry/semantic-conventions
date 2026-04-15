@@ -76,6 +76,18 @@ groups:
               stability: development
               value: "mistral_ai"
               brief: '[Mistral AI](https://mistral.ai/)'
+            - id: moonshot_ai
+              stability: development
+              value: "moonshot_ai"
+              brief: '[Moonshot AI](https://www.moonshot.ai/)'
+            - id: minimax
+              stability: development
+              value: "minimax"
+              brief: '[MiniMax](https://www.minimax.io/)'
+            - id: z_ai
+              stability: development
+              value: "z_ai"
+              brief: '[zAI](https://z.ai/)'
 
         brief: The Generative AI provider as identified by the client
           or server instrumentation.
