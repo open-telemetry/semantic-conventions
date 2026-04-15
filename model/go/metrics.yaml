@@ -68,6 +68,19 @@ groups:
     unit: "By"
     stability: development
 
+  - id: metric.go.memory.gc.cycles
+    type: metric
+    metric_name: go.memory.gc.cycles
+    annotations:
+      code_generation:
+        metric_value_type: int
+    brief: "Number of completed GC cycles."
+    note: >
+      Computed from `/gc/cycles/total:gc-cycles`.
+    instrument: counter
+    unit: "{gc_cycle}"
+    stability: development
+
   - id: metric.go.goroutine.count
     type: metric
     metric_name: go.goroutine.count
