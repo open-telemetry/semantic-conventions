@@ -12,7 +12,9 @@ groups:
     unit: "By"
     attributes:
       - ref: go.memory.type
-        requirement_level: recommended
+        requirement_level: required
+      - ref: go.memory.detailed_type
+        requirement_level: opt_in
     stability: development
 
   - id: metric.go.memory.limit
@@ -134,4 +136,24 @@ groups:
       Computed from `/gc/gogc:percent`.
     instrument: updowncounter
     unit: "%"
+    stability: development
+
+  - id: metric.go.cpu.time
+    type: metric
+    metric_name: go.cpu.time
+    annotations:
+      code_generation:
+        metric_value_type: double
+    brief: "Estimated CPU time spent by the Go runtime."
+    note: >
+      Computed from `/cpu/classes/...` metrics.
+      This metric is an overestimate, and not directly comparable to system CPU time measurements.
+      Compare only with other `go.cpu.time` metrics.
+    instrument: counter
+    unit: "s"
+    attributes:
+      - ref: go.cpu.state
+        requirement_level: required
+      - ref: go.cpu.detailed_state
+        requirement_level: opt_in
     stability: development
