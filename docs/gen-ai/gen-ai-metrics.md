@@ -71,22 +71,23 @@ When systems report both used tokens and billable tokens, instrumentation MUST r
 #### Detailed token usage
 
 When providers report detailed token breakdowns (such as cached tokens or reasoning tokens),
-instrumentations SHOULD record additional data points with `gen_ai.token.usage_reason` set.
+instrumentations SHOULD record additional data points with `gen_ai.token.cache`
+or `gen_ai.token.reasoning` attributes set.
 
 These detailed data points represent **subsets** of the total `input` or `output` token counts.
 To avoid double counting, consumers MUST NOT sum detailed data points with their parent totals.
-Instead, `sum(gen_ai.client.token.usage)` where `gen_ai.token.usage_reason` is **not set** yields
-the correct total token count.
+Instead, `sum(gen_ai.client.token.usage)` where neither `gen_ai.token.cache` nor
+`gen_ai.token.reasoning` is set yields the correct total token count.
 
 For example, a response with 100 input tokens (50 cached) and 200 output tokens (150 reasoning)
 produces the following data points:
 
-| `gen_ai.token.type` | `gen_ai.token.usage_reason` | Value |
-| --- | --- | --- |
-| `input` | *(not set)* | 100 |
-| `input` | `cache_read` | 50 |
-| `output` | *(not set)* | 200 |
-| `output` | `reasoning` | 150 |
+| `gen_ai.token.type` | `gen_ai.token.cache` | `gen_ai.token.reasoning` | Value |
+| --- | --- | --- | --- |
+| `input` | *(not set)* | *(not set)* | 100 |
+| `input` | `read` | *(not set)* | 50 |
+| `output` | *(not set)* | *(not set)* | 200 |
+| `output` | *(not set)* | `true` | 150 |
 
 This metric SHOULD be specified with [ExplicitBucketBoundaries] of [1, 4, 16, 64, 256, 1024, 4096, 16384, 65536, 262144, 1048576, 4194304, 16777216, 67108864].
 

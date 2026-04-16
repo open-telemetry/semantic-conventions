@@ -1,8 +1,8 @@
 change_type: enhancement
 component: gen-ai
-note: "Add `gen_ai.token.usage_reason` attribute for detailed token usage metrics (cache, reasoning)"
+note: "Add `gen_ai.token.cache` and `gen_ai.token.reasoning` attributes for detailed token usage metrics"
 issues: [3341]
 subtext: |
-  Add `gen_ai.token.usage_reason` enum attribute with values `cache_read`, `cache_creation`,
-  and `reasoning` to provide granular token usage breakdowns on the `gen_ai.client.token.usage`
+  Add `gen_ai.token.cache` (string) and `gen_ai.token.reasoning` (boolean) attributes
+  to provide granular token usage breakdowns on the `gen_ai.client.token.usage`
   metric while preserving backward compatibility and metric additivity.

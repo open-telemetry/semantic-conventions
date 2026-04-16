@@ -21,6 +21,8 @@ exclude = [
   # TODO (lmolkova) treat timeout as not a failure?
   "^https://www.intersystems.com",
   "^https://gcc.gnu.org",
+  # Azure OpenAI product page was removed after Microsoft rebranding
+  "^https://azure.microsoft.com/products/ai-services/openai-service",
 ]
 
 # better to be safe and avoid failures
