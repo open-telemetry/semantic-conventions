@@ -1,0 +1,138 @@
+groups:
+  - id: metric.network.flow.bytes
+    type: metric
+    metric_name: network.flow.bytes
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: Bytes transferred from a source endpoint to a destination endpoint.
+    note: |
+      This metric describes point-to-point network traffic from the application point of view.
+      If captured from the host perspective, implementations SHOULD document whether protocol and stack overhead is included.
+    instrument: counter
+    unit: "By"
+    attributes:
+      - ref: netflow.direction
+        requirement_level: required
+      - ref: source.address
+        requirement_level: required
+      - ref: destination.address
+        requirement_level: required
+      - ref: source.port
+        requirement_level:
+          recommended: when the source endpoint uses a transport-specific port.
+      - ref: destination.port
+        requirement_level:
+          recommended: when the destination endpoint uses a transport-specific port.
+      - ref: network.transport
+        requirement_level:
+          recommended: when known.
+      - ref: network.interface.name
+        requirement_level:
+          recommended: when known.
+      - ref: service.name
+        requirement_level:
+          recommended: when the local service is identified.
+      - ref: service.namespace
+        requirement_level:
+          recommended: when the local service namespace is identified.
+      - ref: service.peer.name
+        requirement_level:
+          recommended: when the remote service is identified.
+      - ref: service.peer.namespace
+        requirement_level:
+          recommended: when the remote service namespace is identified.
+      - ref: source.cidr
+        requirement_level:
+          opt_in: when the source address is classified into configured CIDR ranges.
+      - ref: destination.cidr
+        requirement_level:
+          opt_in: when the destination address is classified into configured CIDR ranges.
+      - ref: source.cloud.availability_zone
+        requirement_level:
+          opt_in: when source-side cloud zone information is available.
+      - ref: destination.cloud.availability_zone
+        requirement_level:
+          opt_in: when destination-side cloud zone information is available.
+      - ref: k8s.cluster.name
+        requirement_level:
+          recommended: when the flow is observed in Kubernetes.
+      - ref: source.k8s.namespace.name
+        requirement_level:
+          opt_in: when source-side Kubernetes namespace metadata is available.
+      - ref: source.k8s.pod.name
+        requirement_level:
+          opt_in: when source-side Kubernetes Pod metadata is available.
+      - ref: source.k8s.type
+        requirement_level:
+          opt_in: when source-side Kubernetes workload type is available.
+      - ref: source.k8s.owner.name
+        requirement_level:
+          opt_in: when source-side Kubernetes workload owner metadata is available.
+      - ref: source.k8s.owner.type
+        requirement_level:
+          opt_in: when source-side Kubernetes workload owner type is available.
+      - ref: source.k8s.node.name
+        requirement_level:
+          opt_in: when source-side Kubernetes node metadata is available.
+      - ref: source.k8s.node.ip
+        requirement_level:
+          opt_in: when source-side Kubernetes node IP metadata is available.
+      - ref: destination.k8s.namespace.name
+        requirement_level:
+          opt_in: when destination-side Kubernetes namespace metadata is available.
+      - ref: destination.k8s.pod.name
+        requirement_level:
+          opt_in: when destination-side Kubernetes Pod metadata is available.
+      - ref: destination.k8s.type
+        requirement_level:
+          opt_in: when destination-side Kubernetes workload type is available.
+      - ref: destination.k8s.owner.name
+        requirement_level:
+          opt_in: when destination-side Kubernetes workload owner metadata is available.
+      - ref: destination.k8s.owner.type
+        requirement_level:
+          opt_in: when destination-side Kubernetes workload owner type is available.
+      - ref: destination.k8s.node.name
+        requirement_level:
+          opt_in: when destination-side Kubernetes node metadata is available.
+      - ref: destination.k8s.node.ip
+        requirement_level:
+          opt_in: when destination-side Kubernetes node IP metadata is available.
+
+  - id: metric.network.inter.zone.bytes
+    type: metric
+    metric_name: network.inter.zone.bytes
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: Bytes transferred between source and destination cloud availability zones.
+    note: |
+      This metric is intended for reduced-cardinality reporting of inter-zone traffic.
+      It can be emitted alongside `network.flow.bytes` without requiring zone attributes on every flow datapoint.
+    instrument: counter
+    unit: "By"
+    attributes:
+      - ref: netflow.direction
+        requirement_level: required
+      - ref: source.cloud.availability_zone
+        requirement_level: required
+      - ref: destination.cloud.availability_zone
+        requirement_level: required
+      - ref: k8s.cluster.name
+        requirement_level:
+          recommended: when the flow is observed in Kubernetes.
+      - ref: service.name
+        requirement_level:
+          recommended: when the local service is identified.
+      - ref: service.namespace
+        requirement_level:
+          recommended: when the local service namespace is identified.
+      - ref: service.peer.name
+        requirement_level:
+          recommended: when the remote service is identified.
+      - ref: service.peer.namespace
+        requirement_level:
+          recommended: when the remote service namespace is identified.

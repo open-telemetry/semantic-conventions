@@ -1,0 +1,211 @@
+groups:
+  - id: registry.netflow
+    type: attribute_group
+    display_name: Network Flow Attributes
+    brief: >
+      Attributes for describing network flow telemetry between source and destination endpoints.
+    attributes:
+      - id: netflow.direction
+        type:
+          members:
+            - id: ingress
+              value: ingress
+              stability: development
+              brief: The flow was observed as incoming traffic.
+            - id: egress
+              value: egress
+              stability: development
+              brief: The flow was observed as outgoing traffic.
+        stability: development
+        brief: The application-level direction of the network flow.
+        examples: ["ingress", "egress"]
+      - id: source.cidr
+        type: string
+        stability: development
+        brief: The CIDR range that matched the source address.
+        note: >
+          If the instrumentation associates addresses with named CIDR ranges,
+          this attribute SHOULD contain the configured CIDR range identifier.
+        examples: ["10.0.0.0/8", "cluster-internal"]
+      - id: destination.cidr
+        type: string
+        stability: development
+        brief: The CIDR range that matched the destination address.
+        note: >
+          If the instrumentation associates addresses with named CIDR ranges,
+          this attribute SHOULD contain the configured CIDR range identifier.
+        examples: ["192.168.0.0/16", "private"]
+      - id: source.cloud.availability_zone
+        type: string
+        stability: development
+        brief: The cloud availability zone associated with the source side of the flow.
+        examples: ["us-east-1c"]
+      - id: destination.cloud.availability_zone
+        type: string
+        stability: development
+        brief: The cloud availability zone associated with the destination side of the flow.
+        examples: ["us-east-1d"]
+      - id: source.k8s.namespace.name
+        type: string
+        stability: development
+        brief: The name of the Kubernetes namespace associated with the source side of the flow.
+        examples: ["frontend"]
+      - id: source.k8s.pod.name
+        type: string
+        stability: development
+        brief: The name of the Kubernetes Pod associated with the source side of the flow.
+        examples: ["frontend-7c9d4b6d7f-9kz2m"]
+      - id: source.k8s.type
+        type:
+          members:
+            - id: pod
+              value: pod
+              stability: development
+            - id: replicaset
+              value: replicaset
+              stability: development
+            - id: deployment
+              value: deployment
+              stability: development
+            - id: statefulset
+              value: statefulset
+              stability: development
+            - id: daemonset
+              value: daemonset
+              stability: development
+            - id: job
+              value: job
+              stability: development
+            - id: cronjob
+              value: cronjob
+              stability: development
+            - id: node
+              value: node
+              stability: development
+        stability: development
+        brief: The Kubernetes workload type associated with the source side of the flow.
+        examples: ["deployment", "pod"]
+      - id: source.k8s.owner.name
+        type: string
+        stability: development
+        brief: The name of the Kubernetes workload owner associated with the source side of the flow.
+        examples: ["frontend"]
+      - id: source.k8s.owner.type
+        type:
+          members:
+            - id: replicaset
+              value: replicaset
+              stability: development
+            - id: deployment
+              value: deployment
+              stability: development
+            - id: statefulset
+              value: statefulset
+              stability: development
+            - id: daemonset
+              value: daemonset
+              stability: development
+            - id: job
+              value: job
+              stability: development
+            - id: cronjob
+              value: cronjob
+              stability: development
+            - id: node
+              value: node
+              stability: development
+        stability: development
+        brief: The Kubernetes workload owner type associated with the source side of the flow.
+        examples: ["deployment"]
+      - id: source.k8s.node.name
+        type: string
+        stability: development
+        brief: The name of the Kubernetes node associated with the source side of the flow.
+        examples: ["ip-10-0-12-34.ec2.internal"]
+      - id: source.k8s.node.ip
+        type: string
+        stability: development
+        brief: The IP address of the Kubernetes node associated with the source side of the flow.
+        examples: ["10.0.12.34"]
+      - id: destination.k8s.namespace.name
+        type: string
+        stability: development
+        brief: The name of the Kubernetes namespace associated with the destination side of the flow.
+        examples: ["backend"]
+      - id: destination.k8s.pod.name
+        type: string
+        stability: development
+        brief: The name of the Kubernetes Pod associated with the destination side of the flow.
+        examples: ["backend-76d8f7c6d9-4n1qp"]
+      - id: destination.k8s.type
+        type:
+          members:
+            - id: pod
+              value: pod
+              stability: development
+            - id: replicaset
+              value: replicaset
+              stability: development
+            - id: deployment
+              value: deployment
+              stability: development
+            - id: statefulset
+              value: statefulset
+              stability: development
+            - id: daemonset
+              value: daemonset
+              stability: development
+            - id: job
+              value: job
+              stability: development
+            - id: cronjob
+              value: cronjob
+              stability: development
+            - id: node
+              value: node
+              stability: development
+        stability: development
+        brief: The Kubernetes workload type associated with the destination side of the flow.
+        examples: ["deployment", "pod"]
+      - id: destination.k8s.owner.name
+        type: string
+        stability: development
+        brief: The name of the Kubernetes workload owner associated with the destination side of the flow.
+        examples: ["backend"]
+      - id: destination.k8s.owner.type
+        type:
+          members:
+            - id: replicaset
+              value: replicaset
+              stability: development
+            - id: deployment
+              value: deployment
+              stability: development
+            - id: statefulset
+              value: statefulset
+              stability: development
+            - id: daemonset
+              value: daemonset
+              stability: development
+            - id: job
+              value: job
+              stability: development
+            - id: cronjob
+              value: cronjob
+              stability: development
+            - id: node
+              value: node
+              stability: development
+        stability: development
+        brief: The Kubernetes workload owner type associated with the destination side of the flow.
+        examples: ["deployment"]
+      - id: destination.k8s.node.name
+        type: string
+        stability: development
+        brief: The name of the Kubernetes node associated with the destination side of the flow.
+        examples: ["ip-10-0-34-56.ec2.internal"]
+      - id: destination.k8s.node.ip
+        type: string
+        stability: development
+        brief: The IP address of the Kubernetes node associated with the destination side of the flow.
+        examples: ["10.0.34.56"]
