@@ -232,7 +232,6 @@ groups:
               deprecated:
                 reason: renamed
                 renamed_to: "output"
-                note: "Use `output` instead."
               brief: 'Output tokens (completion, response, etc.)'
             - id: output
               stability: development
