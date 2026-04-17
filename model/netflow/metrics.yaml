@@ -13,6 +13,12 @@ groups:
     instrument: counter
     unit: "By"
     attributes:
+      - ref: host.ip
+        note: |
+          This value belongs to the IP of the node where the network observability agent runs. It allows
+          deduplicating information of the same flow when source and destination are in different nodes
+          and thus they are observed by agents both in the source and destination nodes.
+        requirement_level: recommended
       - ref: network.flow.direction
         requirement_level: opt_in
       - ref: network.transport
@@ -123,6 +129,12 @@ groups:
     instrument: counter
     unit: "By"
     attributes:
+      - ref: host.ip
+        note: |
+          This value belongs to the IP of the node where the network observability agent runs. It allows
+          deduplicating information of the same flow when source and destination are in different nodes
+          and thus they are observed by agents both in the source and destination nodes.
+        requirement_level: recommended
       - ref: network.flow.direction
         requirement_level: opt_in
       - ref: network.transport
