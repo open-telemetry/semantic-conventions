@@ -5,7 +5,7 @@ groups:
     brief: >
       Attributes for describing network flow telemetry between source and destination endpoints.
     attributes:
-      - id: netflow.direction
+      - id: network.flow.direction
         type:
           members:
             - id: ingress
@@ -55,7 +55,7 @@ groups:
         stability: development
         brief: The name of the Kubernetes Pod associated with the source side of the flow.
         examples: ["frontend-7c9d4b6d7f-9kz2m"]
-      - id: source.k8s.type
+      - id: source.k8s.resource.type
         type:
           members:
             - id: pod
@@ -83,7 +83,7 @@ groups:
               value: node
               stability: development
         stability: development
-        brief: The Kubernetes workload type associated with the source side of the flow.
+        brief: The Kubernetes resource type associated with the source side of the flow.
         examples: ["deployment", "pod"]
       - id: source.k8s.owner.name
         type: string
@@ -137,7 +137,7 @@ groups:
         stability: development
         brief: The name of the Kubernetes Pod associated with the destination side of the flow.
         examples: ["backend-76d8f7c6d9-4n1qp"]
-      - id: destination.k8s.type
+      - id: destination.k8s.resource.type
         type:
           members:
             - id: pod
@@ -165,7 +165,7 @@ groups:
               value: node
               stability: development
         stability: development
-        brief: The Kubernetes workload type associated with the destination side of the flow.
+        brief: The Kubernetes resource type associated with the destination side of the flow.
         examples: ["deployment", "pod"]
       - id: destination.k8s.owner.name
         type: string
