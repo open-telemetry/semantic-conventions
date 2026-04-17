@@ -184,10 +184,7 @@ groups:
       - id: gen_ai.response.time_to_first_chunk
         stability: development
         type: double
-        brief: Time to first chunk in a streaming response, measured from request issuance, in seconds.
-        note: >
-          The value is measured from when the client issues the generation request
-          to when the first chunk is received in the response stream.
+        brief: Time to first chunk in a streaming response, measured from request issuance, in seconds. The value is measured from when the client issues the generation request to when the first chunk is received in the response stream.
         examples: [0.5, 1.2]
       - id: gen_ai.usage.input_tokens
         stability: development
