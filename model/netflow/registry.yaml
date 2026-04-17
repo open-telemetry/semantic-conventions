@@ -40,11 +40,41 @@ groups:
         stability: development
         brief: The cloud availability zone associated with the source side of the flow.
         examples: ["us-east-1c"]
+      - id: source.geo.country.iso_code
+        type: string
+        stability: development
+        brief: The two-letter ISO country code associated with the source side of the flow.
+        note: >
+          This attribute follows the semantics of `geo.country.iso_code`, but is scoped to the source side
+          of the network flow.
+        examples: ["CA"]
+      - id: source.autonomous_system.number
+        type: int
+        stability: development
+        brief: The Autonomous System Number associated with the source side of the flow.
+        note: >
+          This attribute is typically populated from Geo IP or routing metadata associated with the source address.
+        examples: [64512]
       - id: destination.cloud.availability_zone
         type: string
         stability: development
         brief: The cloud availability zone associated with the destination side of the flow.
         examples: ["us-east-1d"]
+      - id: destination.geo.country.iso_code
+        type: string
+        stability: development
+        brief: The two-letter ISO country code associated with the destination side of the flow.
+        note: >
+          This attribute follows the semantics of `geo.country.iso_code`, but is scoped to the destination side
+          of the network flow.
+        examples: ["US"]
+      - id: destination.autonomous_system.number
+        type: int
+        stability: development
+        brief: The Autonomous System Number associated with the destination side of the flow.
+        note: >
+          This attribute is typically populated from Geo IP or routing metadata associated with the destination address.
+        examples: [64513]
       - id: source.k8s.namespace.name
         type: string
         stability: development

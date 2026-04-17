@@ -101,16 +101,16 @@ groups:
       - ref: destination.k8s.node.ip
         requirement_level:
           opt_in: when the flow is observed in Kubernetes.
-      - ref: source.country
+      - ref: source.geo.country.iso_code
         requirement_level:
           opt_in: when Geo IP data is observed for the source address.
-      - ref: destination.country
+      - ref: destination.geo.country.iso_code
         requirement_level:
           opt_in: when Geo IP data is observed for the destination address.
-      - ref: source.asn
+      - ref: source.autonomous_system.number
         requirement_level:
           opt_in: when Geo IP data is observed for the source address.
-      - ref: destination.asn
+      - ref: destination.autonomous_system.number
         requirement_level:
           opt_in: when Geo IP data is observed for the destination address.
 
@@ -217,15 +217,15 @@ groups:
       - ref: destination.k8s.node.ip
         requirement_level:
           opt_in: when the flow is observed in Kubernetes.
-      - ref: source.country
+      - ref: source.geo.country.iso_code
         requirement_level:
           opt_in: when Geo IP data is observed for the source address.
-      - ref: destination.country
+      - ref: destination.geo.country.iso_code
         requirement_level:
           opt_in: when Geo IP data is observed for the destination address.
-      - ref: source.asn
+      - ref: source.autonomous_system.number
         requirement_level:
           opt_in: when Geo IP data is observed for the source address.
-      - ref: destination.asn
+      - ref: destination.autonomous_system.number
         requirement_level:
           opt_in: when Geo IP data is observed for the destination address.
