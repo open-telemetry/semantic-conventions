@@ -97,8 +97,8 @@ check-file-and-folder-names-in-docs:
 
 .PHONY: misspell
 misspell:
-	@if ! npm ls cspell; then npm install; fi
-	npx cspell . --no-progress
+	@if ! npm ls cspell; then npm ci --ignore-scripts; fi
+	npx --no -- cspell . --no-progress
 
 .PHONY: normalized-link-check
 # NOTE: Search "model/*/**" rather than "model" to skip `model/README.md`, which
@@ -220,7 +220,7 @@ fix: table-generation registry-generation markdown-toc
 	@echo "All autofixes complete"
 
 .PHONY: install-tools
-install-tools: $(MISSPELL)
+install-tools:
 	npm ci --ignore-scripts
 	@echo "All tools installed"
 
