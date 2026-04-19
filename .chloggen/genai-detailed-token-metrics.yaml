@@ -3,6 +3,8 @@ component: gen-ai
 note: "Add `gen_ai.token.cache` and `gen_ai.token.reasoning` attributes for detailed token usage metrics"
 issues: [3341]
 subtext: |
-  Add `gen_ai.token.cache` (string) and `gen_ai.token.reasoning` (boolean) attributes
-  to provide granular token usage breakdowns on the `gen_ai.client.token.usage`
-  metric while preserving backward compatibility and metric additivity.
+  Add `gen_ai.token.cache` (enum: read/creation/uncached) and `gen_ai.token.reasoning`
+  (boolean) attributes to the `gen_ai.client.token.usage` metric. When a provider
+  reports breakdowns, instrumentations partition token counts across these attribute
+  values instead of emitting overlapping totals and subsets. This is a semantic
+  correction to the metric model while the attributes are at development stability.

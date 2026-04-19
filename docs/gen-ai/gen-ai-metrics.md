@@ -71,23 +71,26 @@ When systems report both used tokens and billable tokens, instrumentation MUST r
 #### Detailed token usage
 
 When providers report detailed token breakdowns (such as cached tokens or reasoning tokens),
-instrumentations SHOULD record additional data points with `gen_ai.token.cache`
-or `gen_ai.token.reasoning` attributes set.
+instrumentations SHOULD partition the token count across the relevant attribute values
+instead of emitting a separate total alongside subsets. The partitioned data points
+MUST sum to the total token count for that token type.
 
-These detailed data points represent **subsets** of the total `input` or `output` token counts.
-To avoid double counting, consumers MUST NOT sum detailed data points with their parent totals.
-Instead, `sum(gen_ai.client.token.usage)` where neither `gen_ai.token.cache` nor
-`gen_ai.token.reasoning` is set yields the correct total token count.
+When no breakdown is available, a single data point with only `gen_ai.token.type` set
+SHOULD be recorded. Absence of `gen_ai.token.cache` or `gen_ai.token.reasoning` means
+the provider did not report a breakdown, not that the value is a total bucket.
 
-For example, a response with 100 input tokens (50 cached) and 200 output tokens (150 reasoning)
-produces the following data points:
+To compute total tokens, aggregate across all values of `gen_ai.token.cache` or
+`gen_ai.token.reasoning` for a given `gen_ai.token.type`.
+
+For example, a response with 100 input tokens (50 cache-read, 50 uncached) and
+200 output tokens (150 reasoning, 50 non-reasoning) produces the following data points:
 
 | `gen_ai.token.type` | `gen_ai.token.cache` | `gen_ai.token.reasoning` | Value |
 | --- | --- | --- | --- |
-| `input` | *(not set)* | *(not set)* | 100 |
 | `input` | `read` | *(not set)* | 50 |
-| `output` | *(not set)* | *(not set)* | 200 |
+| `input` | `uncached` | *(not set)* | 50 |
 | `output` | *(not set)* | `true` | 150 |
+| `output` | *(not set)* | `false` | 50 |
 
 This metric SHOULD be specified with [ExplicitBucketBoundaries] of [1, 4, 16, 64, 256, 1024, 4096, 16384, 65536, 262144, 1048576, 4194304, 16777216, 67108864].
 

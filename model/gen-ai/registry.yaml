@@ -258,24 +258,41 @@ groups:
               stability: development
               value: "creation"
               brief: 'Input tokens written to a provider-managed cache.'
+            - id: uncached
+              stability: development
+              value: "uncached"
+              brief: 'Input tokens neither served from nor written to a provider-managed cache.'
         brief: The cache classification for input tokens.
         note: |
-          This attribute SHOULD only be set on data points where `gen_ai.token.type=input`
-          and the provider reports a cache breakdown.
+          When the provider reports a cache breakdown, instrumentations SHOULD
+          partition input tokens across values of this attribute so that they
+          sum to the total input token count. Instrumentations MUST NOT emit a
+          bare `gen_ai.token.type=input` data point alongside cache-partitioned
+          data points for the same request.
 
-          When set, it represents a subset of total input tokens. Omit this attribute
-          for non-cached input tokens to preserve metric additivity.
-        examples: ['read', 'creation']
+          When the provider does not report a cache breakdown, omit this
+          attribute entirely and record a single `gen_ai.token.type=input`
+          data point with the total count.
+
+          Partition members with a value of zero MAY be omitted.
+        examples: ['read', 'creation', 'uncached']
       - id: gen_ai.token.reasoning
         stability: development
         type: boolean
         brief: Whether the output tokens were used for internal reasoning (e.g., chain-of-thought).
         note: |
-          This attribute SHOULD only be set to `true` on data points where
-          `gen_ai.token.type=output` and the provider reports a reasoning token breakdown.
+          When the provider reports a reasoning token breakdown, instrumentations
+          SHOULD partition output tokens by setting this attribute to `true`
+          (reasoning tokens) and `false` (non-reasoning tokens) so that they
+          sum to the total output token count. Instrumentations MUST NOT emit a
+          bare `gen_ai.token.type=output` data point alongside reasoning-partitioned
+          data points for the same request.
 
-          When set, it represents a subset of total output tokens. Omit this attribute
-          (or set to `false`) for non-reasoning output tokens to preserve metric additivity.
+          When the provider does not report a reasoning breakdown, omit this
+          attribute entirely and record a single `gen_ai.token.type=output`
+          data point with the total count.
+
+          Partition members with a value of zero MAY be omitted.
       - id: gen_ai.conversation.id
         stability: development
         type: string

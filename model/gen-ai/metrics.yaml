@@ -47,19 +47,22 @@ groups:
         metric_value_type: int
     brief: 'Number of input and output tokens used.'
     note: |
-      When detailed token usage is available (e.g., cache read tokens, reasoning tokens),
-      instrumentations SHOULD record additional data points with the `gen_ai.token.cache`
-      or `gen_ai.token.reasoning` attributes set. These detailed data points represent
-      subsets of the total `input` or `output` token counts and MUST NOT be summed with
-      them to avoid double counting.
+      When the provider reports a detailed token breakdown, instrumentations
+      SHOULD partition the token count across the relevant attribute values
+      instead of emitting a separate total. The partitioned data points MUST
+      sum to the total token count for that token type, and a bare data point
+      with only `gen_ai.token.type` set MUST NOT be emitted alongside them.
 
-      For example, a response with 100 input tokens (50 cached) and 200 output tokens (150 reasoning)
-      SHOULD produce:
+      When no breakdown is available, a single data point with only
+      `gen_ai.token.type` set SHOULD be recorded.
 
-      - `gen_ai.client.token.usage{gen_ai.token.type="input"}` = 100
+      For example, a response with 100 input tokens (50 cache-read, 50 uncached)
+      and 200 output tokens (150 reasoning, 50 non-reasoning) SHOULD produce:
+
       - `gen_ai.client.token.usage{gen_ai.token.type="input", gen_ai.token.cache="read"}` = 50
-      - `gen_ai.client.token.usage{gen_ai.token.type="output"}` = 200
+      - `gen_ai.client.token.usage{gen_ai.token.type="input", gen_ai.token.cache="uncached"}` = 50
       - `gen_ai.client.token.usage{gen_ai.token.type="output", gen_ai.token.reasoning=true}` = 150
+      - `gen_ai.client.token.usage{gen_ai.token.type="output", gen_ai.token.reasoning=false}` = 50
     instrument: histogram
     unit: "{token}"
     stability: development
