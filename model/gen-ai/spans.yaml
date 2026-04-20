@@ -62,6 +62,9 @@ groups:
       - ref: gen_ai.request.seed
         requirement_level:
           conditionally_required: if applicable and if the request includes a seed
+      - ref: gen_ai.request.stream
+        requirement_level:
+          conditionally_required: If and only if the request is streaming. If unset, the request is assumed to be non-streaming.
       - ref: gen_ai.output.type
         requirement_level:
           conditionally_required: when applicable and if the request includes an output format.
@@ -75,6 +78,9 @@ groups:
           fine-tuned custom model, the value should have a more specific name than the base model that's been fine-tuned.
       - ref: gen_ai.response.finish_reasons
         requirement_level: recommended
+      - ref: gen_ai.response.time_to_first_chunk
+        requirement_level:
+          recommended: if the request was a streaming request
       - ref: gen_ai.usage.input_tokens
         requirement_level: recommended
       - ref: gen_ai.usage.cache_read.input_tokens
