@@ -11,7 +11,6 @@ groups:
       - ref: browser.brands
       - ref: browser.platform
       - ref: browser.mobile
-      - ref: browser.document.url.full
       - ref: browser.language
       - ref: user_agent.original
         brief: 'Full user-agent string provided by the browser'
@@ -20,3 +19,18 @@ groups:
           to retrieve brands and platform individually from the User-Agent Client Hints API.
           To retrieve the value, the legacy `navigator.userAgent` API can be used.
         examples: ['Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.54 Safari/537.36']
+
+  - id: entity.browser.document
+    type: entity
+    stability: development
+    name: browser.document
+    brief: >
+      The web page document loaded in the browser.
+    note: >
+      `entity.browser.document` is defined as a separate entity from `entity.browser` because
+      the `entity.browser` attributes (e.g. brands, platform, language) represent the user agent
+      and runtime environment, which are immutable for the lifetime of the SDK.
+      In contrast, the document URL changes on every navigation and represents a distinct
+      concept tied to the current browser document rather than the browser itself.
+    attributes:
+      - ref: browser.document.url.full

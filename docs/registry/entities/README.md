@@ -29,6 +29,7 @@ Currently, the following namespaces exist:
 | | [aws.log](aws.md#aws-log) | ![Development](https://img.shields.io/badge/-development-blue) |
 | Browser | | |
 | | [browser](browser.md#browser) | ![Development](https://img.shields.io/badge/-development-blue) |
+| | [browser.document](browser.md#browser-document) | ![Development](https://img.shields.io/badge/-development-blue) |
 | CICD | | |
 | | [cicd.pipeline](cicd.md#cicd-pipeline) | ![Development](https://img.shields.io/badge/-development-blue) |
 | | [cicd.pipeline.run](cicd.md#cicd-pipeline-run) | ![Development](https://img.shields.io/badge/-development-blue) |
