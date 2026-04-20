@@ -103,19 +103,22 @@ This metric SHOULD be specified with [ExplicitBucketBoundaries] of [1, 4, 16, 64
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `gen_ai.client.token.usage` | Histogram | `{token}` | Number of input and output tokens used. [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
 
-**[1]:** When detailed token usage is available (e.g., cache read tokens, reasoning tokens),
-instrumentations SHOULD record additional data points with the `gen_ai.token.cache`
-or `gen_ai.token.reasoning` attributes set. These detailed data points represent
-subsets of the total `input` or `output` token counts and MUST NOT be summed with
-them to avoid double counting.
+**[1]:** When the provider reports a detailed token breakdown, instrumentations
+SHOULD partition the token count across the relevant attribute values
+instead of emitting a separate total. The partitioned data points MUST
+sum to the total token count for that token type, and a bare data point
+with only `gen_ai.token.type` set MUST NOT be emitted alongside them.
 
-For example, a response with 100 input tokens (50 cached) and 200 output tokens (150 reasoning)
-SHOULD produce:
+When no breakdown is available, a single data point with only
+`gen_ai.token.type` set SHOULD be recorded.
 
-- `gen_ai.client.token.usage{gen_ai.token.type="input"}` = 100
+For example, a response with 100 input tokens (50 cache-read, 50 uncached)
+and 200 output tokens (150 reasoning, 50 non-reasoning) SHOULD produce:
+
 - `gen_ai.client.token.usage{gen_ai.token.type="input", gen_ai.token.cache="read"}` = 50
-- `gen_ai.client.token.usage{gen_ai.token.type="output"}` = 200
+- `gen_ai.client.token.usage{gen_ai.token.type="input", gen_ai.token.cache="uncached"}` = 50
 - `gen_ai.client.token.usage{gen_ai.token.type="output", gen_ai.token.reasoning=true}` = 150
+- `gen_ai.client.token.usage{gen_ai.token.type="output", gen_ai.token.reasoning=false}` = 50
 
 **Attributes:**
 
@@ -125,7 +128,7 @@ SHOULD produce:
 | [`gen_ai.provider.name`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The Generative AI provider as identified by the client or server instrumentation. [2] | `openai`; `gcp.gen_ai`; `gcp.vertex_ai` |
 | [`gen_ai.token.type`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The type of token being counted. | `input`; `output` |
 | [`gen_ai.request.model`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If available. | string | The name of the GenAI model a request is being made to. | `gpt-4` |
-| [`gen_ai.token.cache`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [3] | string | The cache classification for input tokens. [4] | `read`; `creation` |
+| [`gen_ai.token.cache`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [3] | string | The cache classification for input tokens. [4] | `read`; `creation`; `uncached` |
 | [`gen_ai.token.reasoning`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [5] | boolean | Whether the output tokens were used for internal reasoning (e.g., chain-of-thought). [6] | |
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If `server.address` is set. | int | GenAI server port. [7] | `80`; `8080`; `443` |
 | [`gen_ai.response.model`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the model that generated the response. | `gpt-4-0613` |
@@ -154,19 +157,32 @@ applicable `aws.bedrock.*` attributes and are not expected to include
 
 **[3] `gen_ai.token.cache`:** when the provider reports a cache breakdown for input tokens.
 
-**[4] `gen_ai.token.cache`:** This attribute SHOULD only be set on data points where `gen_ai.token.type=input`
-and the provider reports a cache breakdown.
+**[4] `gen_ai.token.cache`:** When the provider reports a cache breakdown, instrumentations SHOULD
+partition input tokens across values of this attribute so that they
+sum to the total input token count. Instrumentations MUST NOT emit a
+bare `gen_ai.token.type=input` data point alongside cache-partitioned
+data points for the same request.
 
-When set, it represents a subset of total input tokens. Omit this attribute
-for non-cached input tokens to preserve metric additivity.
+When the provider does not report a cache breakdown, omit this
+attribute entirely and record a single `gen_ai.token.type=input`
+data point with the total count.
+
+Partition members with a value of zero MAY be omitted.
 
 **[5] `gen_ai.token.reasoning`:** when the provider reports reasoning token usage for output tokens.
 
-**[6] `gen_ai.token.reasoning`:** This attribute SHOULD only be set to `true` on data points where
-`gen_ai.token.type=output` and the provider reports a reasoning token breakdown.
+**[6] `gen_ai.token.reasoning`:** When the provider reports a reasoning token breakdown, instrumentations
+SHOULD partition output tokens by setting this attribute to `true`
+(reasoning tokens) and `false` (non-reasoning tokens) so that they
+sum to the total output token count. Instrumentations MUST NOT emit a
+bare `gen_ai.token.type=output` data point alongside reasoning-partitioned
+data points for the same request.
 
-When set, it represents a subset of total output tokens. Omit this attribute
-(or set to `false`) for non-reasoning output tokens to preserve metric additivity.
+When the provider does not report a reasoning breakdown, omit this
+attribute entirely and record a single `gen_ai.token.type=output`
+data point with the total count.
+
+Partition members with a value of zero MAY be omitted.
 
 **[7] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
@@ -224,6 +240,7 @@ When set, it represents a subset of total output tokens. Omit this attribute
 | --- | --- | --- |
 | `creation` | Input tokens written to a provider-managed cache. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `read` | Input tokens served from a provider-managed cache. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `uncached` | Input tokens neither served from nor written to a provider-managed cache. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
