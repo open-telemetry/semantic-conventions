@@ -16,9 +16,9 @@ This document defines Go related attributes.
 | <a id="go-memory-detailed-type" href="#go-memory-detailed-type">`go.memory.detailed_type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The detailed type of memory. [2] | `heap/objects`; `heap/free` |
 | <a id="go-memory-type" href="#go-memory-type">`go.memory.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The type of memory. | `other`; `stack` |
 
-**[1] `go.cpu.detailed_state`:** Value SHOULD match the specific CPU class reported by the Go runtime under `/cpu/classes/...`.
+**[1] `go.cpu.detailed_state`:** Value SHOULD match the specific CPU class reported by the Go runtime under `/cpu/classes/...`. The list of possible values is subject to change with the Go version used.
 
-**[2] `go.memory.detailed_type`:** Value SHOULD match the specific memory class reported by the Go runtime under `/memory/classes/...`.
+**[2] `go.memory.detailed_type`:** Value SHOULD match the specific memory class reported by the Go runtime under `/memory/classes/...`. The list of possible values is subject to change with the Go version used.
 
 ---
 
