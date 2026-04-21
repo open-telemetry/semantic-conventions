@@ -90,10 +90,11 @@ This metric SHOULD be specified with [`ExplicitBucketBoundaries` advisory parame
 When `error.type` is set to a type (e.g., an exception type), its
 canonical class name identifying the type within the artifact SHOULD be used.
 
-If an error type is a wrapper that is not meaningful for classifying the error,
-instrumentation MAY use the type of the unwrapped inner error instead. For example, in Go,
-errors created with `fmt.Errorf` using `%w` MAY be unwrapped when the wrapper type does not
-help classify the failure.
+If the recorded error type is a wrapper that is not meaningful for
+failure classification, instrumentation MAY use the type of the inner
+error instead. For example, in Go, errors created with `fmt.Errorf`
+using `%w` MAY be unwrapped when the wrapper type does not help
+classify the failure.
 
 Instrumentations SHOULD document the list of errors they report.
 
@@ -207,10 +208,11 @@ This metric is [required][MetricRequired].
 When `error.type` is set to a type (e.g., an exception type), its
 canonical class name identifying the type within the artifact SHOULD be used.
 
-If an error type is a wrapper that is not meaningful for classifying the error,
-instrumentation MAY use the type of the unwrapped inner error instead. For example, in Go,
-errors created with `fmt.Errorf` using `%w` MAY be unwrapped when the wrapper type does not
-help classify the failure.
+If the recorded error type is a wrapper that is not meaningful for
+failure classification, instrumentation MAY use the type of the inner
+error instead. For example, in Go, errors created with `fmt.Errorf`
+using `%w` MAY be unwrapped when the wrapper type does not help
+classify the failure.
 
 Instrumentations SHOULD document the list of errors they report.
 
@@ -309,10 +311,11 @@ The metric SHOULD be reported once per message delivery. For example, if receivi
 When `error.type` is set to a type (e.g., an exception type), its
 canonical class name identifying the type within the artifact SHOULD be used.
 
-If an error type is a wrapper that is not meaningful for classifying the error,
-instrumentation MAY use the type of the unwrapped inner error instead. For example, in Go,
-errors created with `fmt.Errorf` using `%w` MAY be unwrapped when the wrapper type does not
-help classify the failure.
+If the recorded error type is a wrapper that is not meaningful for
+failure classification, instrumentation MAY use the type of the inner
+error instead. For example, in Go, errors created with `fmt.Errorf`
+using `%w` MAY be unwrapped when the wrapper type does not help
+classify the failure.
 
 Instrumentations SHOULD document the list of errors they report.
 
@@ -416,10 +419,11 @@ This metric SHOULD be specified with [`ExplicitBucketBoundaries` advisory parame
 When `error.type` is set to a type (e.g., an exception type), its
 canonical class name identifying the type within the artifact SHOULD be used.
 
-If an error type is a wrapper that is not meaningful for classifying the error,
-instrumentation MAY use the type of the unwrapped inner error instead. For example, in Go,
-errors created with `fmt.Errorf` using `%w` MAY be unwrapped when the wrapper type does not
-help classify the failure.
+If the recorded error type is a wrapper that is not meaningful for
+failure classification, instrumentation MAY use the type of the inner
+error instead. For example, in Go, errors created with `fmt.Errorf`
+using `%w` MAY be unwrapped when the wrapper type does not help
+classify the failure.
 
 Instrumentations SHOULD document the list of errors they report.
 
