@@ -26,6 +26,8 @@ This document defines the shared attributes used to report a single exception as
 
 **[2] `exception.type`:** If an exception type is a wrapper that is not meaningful for classifying the
 failure, instrumentation MAY use the type of the unwrapped inner exception instead.
+For example, in Go, errors created with `fmt.Errorf` using `%w` MAY be
+unwrapped when the wrapper type does not help classify the failure.
 
 ## Deprecated Exception Attributes
 
