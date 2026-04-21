@@ -32,6 +32,10 @@
 /docs/runtime/jvm-metrics.md      @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-jvm-approvers
 /model/jvm/                       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-jvm-approvers
 
+# Go semantic conventions
+/docs/runtime/go-metrics.md      @open-telemetry/specs-semconv-approvers @open-telemetry/go-approvers
+/model/go/                       @open-telemetry/specs-semconv-approvers @open-telemetry/go-approvers
+
 # HTTP semantic conventions
 /docs/http/                            @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
 /docs/url/                             @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers

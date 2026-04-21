@@ -53,17 +53,12 @@ For more information about the maintainer role, see the [community repository](h
 
 For more information about the approver role, see the [community repository](https://github.com/open-telemetry/community/blob/main/guides/contributor/membership.md#approver).
 
-### Emeritus Maintainers
+### Emeritus
 
-- [Johannes Tax](https://github.com/pyohannes)
-- [Reiley Yang](https://github.com/reyang)
-
-For more information about the emeritus role, see the [community repository](https://github.com/open-telemetry/community/blob/main/guides/contributor/membership.md#emeritus-maintainerapprovertriager).
-
-### Emeritus Approvers
-
-- [Christian Neumüller](https://github.com/Oberon00)
-- [James Moessis](https://github.com/jamesmoessis)
-- [Sean Marciniak](https://github.com/MovieStoreGuy)
+- [Christian Neumüller](https://github.com/Oberon00), Approver
+- [James Moessis](https://github.com/jamesmoessis), Approver
+- [Johannes Tax](https://github.com/pyohannes), Maintainer
+- [Reiley Yang](https://github.com/reyang), Maintainer
+- [Sean Marciniak](https://github.com/MovieStoreGuy), Approver
 
 For more information about the emeritus role, see the [community repository](https://github.com/open-telemetry/community/blob/main/guides/contributor/membership.md#emeritus-maintainerapprovertriager).
