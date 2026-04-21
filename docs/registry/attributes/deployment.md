@@ -14,7 +14,7 @@ This document defines attributes for software deployments.
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="deployment-environment-name" href="#deployment-environment-name">`deployment.environment.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Name of the [deployment environment](https://wikipedia.org/wiki/Deployment_environment) (aka deployment tier). [1] | `staging`; `production` |
+| <a id="deployment-environment-name" href="#deployment-environment-name">`deployment.environment.name`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | Name of the [deployment environment](https://wikipedia.org/wiki/Deployment_environment) (aka deployment tier). [1] | `staging`; `production` |
 | <a id="deployment-id" href="#deployment-id">`deployment.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The id of the deployment. | `1208` |
 | <a id="deployment-name" href="#deployment-name">`deployment.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the deployment. | `deploy my app`; `deploy-frontend` |
 | <a id="deployment-status" href="#deployment-status">`deployment.status`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The status of the deployment. | `failed`; `succeeded` |
@@ -33,10 +33,10 @@ considered to be identifying the same service:
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `development` | Development environment | ![Development](https://img.shields.io/badge/-development-blue) |
-| `production` | Production environment | ![Development](https://img.shields.io/badge/-development-blue) |
-| `staging` | Staging environment | ![Development](https://img.shields.io/badge/-development-blue) |
-| `test` | Testing environment | ![Development](https://img.shields.io/badge/-development-blue) |
+| `development` | Development environment | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `production` | Production environment | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `staging` | Staging environment | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `test` | Testing environment | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ---
 

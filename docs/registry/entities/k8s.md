@@ -266,6 +266,20 @@ conflict.
 - A label `data` with empty string value SHOULD be recorded as
   the `k8s.node.label.data` attribute with value `""`.
 
+## K8s Node System Container
+
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
+
+**type:** `k8s.node.system_container`
+
+**Description:** A Kubernetes Node System Container.
+
+**Attributes:**
+
+| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
+| --- | --- | --- | --- | --- | --- | --- |
+| Identity | [`k8s.node.system_container.name`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the system container running on the K8s Node. | `kubelet`; `runtime`; `pods`; `misc` |
+
 ## K8s Persistentvolume
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
