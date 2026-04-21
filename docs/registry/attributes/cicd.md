@@ -28,7 +28,7 @@ This group describes attributes specific to pipelines within a Continuous Integr
 | <a id="cicd-worker-state" href="#cicd-worker-state">`cicd.worker.state`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The state of a CICD worker / agent. | `idle`; `busy`; `down` |
 | <a id="cicd-worker-url-full" href="#cicd-worker-url-full">`cicd.worker.url.full`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The [URL](https://wikipedia.org/wiki/URL) of the worker, providing the complete address in order to locate and identify the worker. | `https://cicd.example.org/worker/abc123` |
 
-**[1] `cicd.pipeline.task.run.id`:** For a given pipeline run and task the `cicd.pipeline.task.run.id` MUST be unique. For different pipeline runs of the same pipeline the task run id MAY remain the same and thus MAY allow correlating the `cicd.pipeline.task.run.result` of tasks across pipeline runs.
+**[1] `cicd.pipeline.task.run.id`:** For a given pipeline run and task, the `cicd.pipeline.task.run.id` MUST be unique within that run. For the same task across different runs of the same pipeline, the `cicd.pipeline.task.run.id` MAY remain the same, enabling correlation of `cicd.pipeline.task.run.result` values across multiple pipeline runs.
 
 ---
 
