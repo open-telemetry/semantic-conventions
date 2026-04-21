@@ -510,3 +510,64 @@ groups:
       - k8s.node
     instrument: updowncounter
     unit: "By"
+
+  - id: metric.k8s.container.cpu.limit
+    type: metric
+    metric_name: k8s.container.cpu.limit
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    deprecated:
+      reason: renamed
+      renamed_to: k8s.container.cpu.limit.desired
+    brief: "Deprecated, use `k8s.container.cpu.limit.desired` and `k8s.container.cpu.limit.current` instead."
+    entity_associations:
+      - k8s.container
+    instrument: updowncounter
+    unit: "{cpu}"
+  - id: metric.k8s.container.cpu.limit_utilization
+    type: metric
+    metric_name: k8s.container.cpu.limit_utilization
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    deprecated:
+      reason: renamed
+      renamed_to: k8s.container.cpu.limit.utilization
+    brief: "Deprecated, use `k8s.container.cpu.limit.utilization` instead."
+    entity_associations:
+      - k8s.container
+    instrument: gauge
+    unit: "1"
+  - id: metric.k8s.container.cpu.request
+    type: metric
+    metric_name: k8s.container.cpu.request
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    deprecated:
+      reason: renamed
+      renamed_to: k8s.container.cpu.request.desired
+    brief: "Deprecated, use `k8s.container.cpu.request.desired` and `k8s.container.cpu.request.current` instead."
+    entity_associations:
+      - k8s.container
+    instrument: updowncounter
+    unit: "{cpu}"
+  - id: metric.k8s.container.cpu.request_utilization
+    type: metric
+    metric_name: k8s.container.cpu.request_utilization
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    deprecated:
+      reason: renamed
+      renamed_to: k8s.container.cpu.request.utilization
+    brief: "Deprecated, use `k8s.container.cpu.request.utilization` instead."
+    entity_associations:
+      - k8s.container
+    instrument: gauge
+    unit: "1"
