@@ -571,3 +571,33 @@ groups:
       - k8s.container
     instrument: gauge
     unit: "1"
+  - id: metric.k8s.container.memory.limit
+    type: metric
+    metric_name: k8s.container.memory.limit
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    deprecated:
+      reason: renamed
+      renamed_to: k8s.container.memory.limit.desired
+    brief: "Deprecated, use `k8s.container.memory.limit.desired` and `k8s.container.memory.limit.current` instead."
+    entity_associations:
+      - k8s.container
+    instrument: updowncounter
+    unit: "By"
+  - id: metric.k8s.container.memory.request
+    type: metric
+    metric_name: k8s.container.memory.request
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    deprecated:
+      reason: renamed
+      renamed_to: k8s.container.memory.request.desired
+    brief: "Deprecated, use `k8s.container.memory.request.desired` and `k8s.container.memory.request.current` instead."
+    entity_associations:
+      - k8s.container
+    instrument: updowncounter
+    unit: "By"
