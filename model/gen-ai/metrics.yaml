@@ -156,6 +156,3 @@ groups:
       - ref: gen_ai.workflow.name
         requirement_level:
           conditionally_required: If available.
-        note: |
-          This attribute can be populated in different frameworks eg: name of the first chain in LangChain OR name of the crew in CrewAI.
-          Workflow name should be unique within the application.

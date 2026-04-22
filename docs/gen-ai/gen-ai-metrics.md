@@ -823,8 +823,9 @@ applicable `aws.bedrock.*` attributes and are not expected to include
 Individual systems may include additional system-specific attributes.
 It is recommended to check system-specific documentation, if available.
 
-`gen_ai.workflow.duration` measures the end-to-end duration of a workflow run
-at the application orchestration boundary, regardless of workflow complexity.
+`gen_ai.workflow.duration` represents the end-to-end duration of a workflow execution,
+measured from the point where application code initiates the workflow to the point where the workflow completes,
+independent of workflow complexity.
 If instrumentation measures only a single provider-facing client operation
 (for example, one model API call), `gen_ai.client.operation.duration` SHOULD be used instead.
 Instrumentation MAY emit both metrics for the same request path when both boundaries are available.
@@ -858,7 +859,10 @@ the canonical name of exception that occurred, or another low-cardinality error 
 Instrumentations SHOULD document the list of errors they report.
 
 **[2] `gen_ai.workflow.name`:** This attribute can be populated in different frameworks eg: name of the first chain in LangChain OR name of the crew in CrewAI.
-Workflow name should be unique within the application.
+Workflow name is usually provided by user application in a way specific to generative AI framework or library orchestrating the workflow. It's usually a static name that's expected to be unique within one application.
+
+`gen_ai.workflow.name` MUST have low cardinality. Semantic conventions for individual Generative AI frameworks SHOULD document what `gen_ai.workflow.name` means in the context of that framework.
+If there is no low-cardinality workflow name available for a given framework, this attribute MUST NOT be captured by default.
 
 ---
 
