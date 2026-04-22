@@ -325,6 +325,7 @@ available)
 - [#2197](https://github.com/open-telemetry/semantic-conventions/issues/2197)
 - [#3558](https://github.com/open-telemetry/semantic-conventions/issues/3558) (CPU and memory resize: desired/current split)
 - [#3559](https://github.com/open-telemetry/semantic-conventions/pull/3559) (CPU metrics)
+- [#3646](https://github.com/open-telemetry/semantic-conventions/pull/3646) (Memory metrics)
 
 The changes in their metrics are the following:
 

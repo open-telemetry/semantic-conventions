@@ -2272,7 +2272,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `k8s.container.memory.request.current` | UpDownCounter | `By` | Memory resource requested currently configured for a running container. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.container`](/docs/registry/entities/k8s.md#k8s-container) |
+| `k8s.container.memory.request.current` | UpDownCounter | `By` | Memory resource request currently configured for a running container. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.container`](/docs/registry/entities/k8s.md#k8s-container) |
 
 **[1]:** This metric aligns with the request in the
 [`resources`](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#resourcerequirements-v1-core) field of
