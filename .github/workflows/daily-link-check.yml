@@ -11,6 +11,7 @@ permissions:
 
 jobs:
   link-check:
+    if: github.repository_owner == 'open-telemetry'
     uses: ./.github/workflows/reusable-link-check.yml
 
   workflow-notification:

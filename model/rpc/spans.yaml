@@ -25,16 +25,6 @@ groups:
         requirement_level:
           conditionally_required: If and only if it's different than `rpc.method`.
 
-  - id: rpc.server
-    type: attribute_group
-    brief: 'This document defines semantic conventions for remote procedure calls.'
-    extends: rpc
-    attributes:
-      - ref: client.address
-        requirement_level: recommended
-      - ref: client.port
-        requirement_level: recommended
-
   - id: span.rpc.call.client
     type: span
     stability: release_candidate
@@ -66,7 +56,7 @@ groups:
   - id: span.rpc.call.server
     type: span
     stability: release_candidate
-    extends: rpc.server
+    extends: rpc
     span_kind: server
     brief: This span represents an incoming Remote Procedure Call (RPC).
     note: |
@@ -128,7 +118,7 @@ groups:
   - id: span.rpc.connect_rpc.call.server
     type: span
     stability: development
-    extends: rpc.server
+    extends: rpc
     span_kind: server
     brief: This span represents an incoming Remote Procedure Call (RPC).
     note: |
@@ -237,7 +227,7 @@ groups:
   - id: span.rpc.grpc.call.server
     type: span
     stability: release_candidate
-    extends: rpc.server
+    extends: rpc
     span_kind: server
     brief: This span represents an incoming Remote Procedure Call (RPC).
     note: |
@@ -326,7 +316,7 @@ groups:
   - id: span.rpc.jsonrpc.call.server
     type: span
     stability: development
-    extends: rpc.server
+    extends: rpc
     span_kind: server
     brief: This span represents an incoming Remote Procedure Call (RPC).
     note: |
@@ -439,7 +429,7 @@ groups:
   - id: span.rpc.dubbo.call.server
     type: span
     stability: release_candidate
-    extends: rpc.server
+    extends: rpc
     span_kind: server
     brief: This span represents an incoming Remote Procedure Call (RPC).
     note: |

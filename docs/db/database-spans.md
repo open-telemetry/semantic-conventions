@@ -11,6 +11,7 @@ linkTitle: Spans
 - [Name](#name)
 - [Span definition](#span-definition)
   - [Notes and well-known identifiers for `db.system.name`](#notes-and-well-known-identifiers-for-dbsystemname)
+- [Database client span duration](#database-client-span-duration)
 - [Sanitization of `db.query.text`](#sanitization-of-dbquerytext)
 - [Generating a summary of the query](#generating-a-summary-of-the-query)
 - [Context propagation](#context-propagation)
@@ -47,7 +48,7 @@ linkTitle: Spans
 
 ## Name
 
-Database spans MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.54.0/specification/trace/api.md#span).
+Database spans MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.55.0/specification/trace/api.md#span).
 
 The **span name** SHOULD be `{db.query.summary}` if a summary is available.
 
@@ -85,10 +86,8 @@ For example, for an operation describing SQL query on an anonymous table like `S
 
 This span describes database client call.
 
-Instrumentations SHOULD, when possible, record database spans that cover the duration of
-the corresponding API call as if it was observed by the caller (such as client application).
-For example, if a transient issue happened and was retried within this database call, the corresponding
-span should cover the duration of the logical operation with all retries.
+Instrumentations SHOULD, when possible, record database spans that represent the logical database
+operation as observed by the caller (such as client application).
 
 When a database client provides higher-level convenience APIs for specific operations
 (e.g., calling a stored procedure), which internally generate and execute a generic query,
@@ -97,6 +96,8 @@ These often allow setting `db.operation.*` attributes, which usually are not
 readily available at the generic query level.
 
 **Span name** is covered in the [Name](/docs/db/database-spans.md#name) section.
+
+**Span duration** is covered in the [Database client span duration](/docs/db/database-spans.md#database-client-span-duration) section.
 
 **Span kind** SHOULD be `CLIENT`. It MAY be set to `INTERNAL` on spans representing
 in-memory database calls.
@@ -127,7 +128,7 @@ classify as errors.
 | [`network.peer.port`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` if and only if `network.peer.address` is set. | int | Peer port number of the network connection. | `65123` |
 | [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Name of the database host. [20] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 | [`db.query.parameter.<key>`](/docs/registry/attributes/db.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | A database query parameter, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value. [21] | `someval`; `55` |
-| [`db.response.returned_rows`](/docs/registry/attributes/db.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | Number of rows returned by the operation. | `10`; `30`; `1000` |
+| [`db.response.returned_rows`](/docs/registry/attributes/db.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | Number of rows returned by the operation. [22] | `10`; `30`; `1000` |
 
 **[1] `db.system.name`:** The actual DBMS may differ from the one identified by the client. For example, when using PostgreSQL client libraries to connect to a CockroachDB, the `db.system.name` is set to `postgresql` based on the instrumentation's best knowledge.
 
@@ -235,6 +236,9 @@ Examples:
 - For a query `"SELECT * FROM users WHERE username = %(userName)s;` with parameter
   `userName = "jdoe"`, the attribute `db.query.parameter.userName` SHOULD be set to `"jdoe"`.
 
+**[22] `db.response.returned_rows`:** The number of rows returned by the database operation as observed
+by the instrumentation at the time the span ends.
+
 The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):
 
@@ -324,6 +328,20 @@ If the concrete DBMS is known to the instrumentation, its specific identifier MU
 Back ends could, for example, use the provided identifier to determine the appropriate SQL dialect for parsing the `db.query.text`.
 
 When additional attributes are added that only apply to a specific DBMS, its identifier SHOULD be used as a namespace in the attribute key as for the attributes in the sections below.
+
+## Database client span duration
+
+Database client spans SHOULD, when possible, cover the duration of the
+corresponding API call as observed by the caller (such as the client application).
+For example, if a transient issue happened and was retried within this database call, the corresponding
+span should cover the duration of the logical operation with all retries.
+
+If there is any possibility for application code to not fully consume the database response
+(and for the database client library to then have to clean up the database response asynchronously),
+the database client span SHOULD NOT be ended in this cleanup phase,
+and instead SHOULD end at some point after the initial call returns to the caller.
+This avoids the span being ended asynchronously later on at a time
+which is no longer directly associated with the application code which made the database request.
 
 ## Sanitization of `db.query.text`
 

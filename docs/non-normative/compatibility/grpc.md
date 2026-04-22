@@ -2,7 +2,7 @@
 linkTitle: gRPC
 --->
 
-<!-- disable mdlint requirement for tables to be aligned -->
+<!-- disable markdownlint requirement for tables to be aligned -->
 <!-- markdownlint-disable-file MD060 -->
 
 # Compatibility between OpenTelemetry and gRPC semantic conventions
@@ -92,7 +92,6 @@ OpenTelemetry to gRPC, they should be preserved.
 - `server.port`
 - `rpc.request.metadata.<key>` and `rpc.response.metadata.<key>`
 - `rpc.method_original`
-- (server spans only) `client.address` and `client.port`
 
 ### Events
 

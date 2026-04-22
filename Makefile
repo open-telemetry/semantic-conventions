@@ -33,7 +33,7 @@ VERSIONED_OPA_CONTAINER_NO_REPO=$(shell cat dependencies.Dockerfile | awk '$$4==
 # Fully qualified references to containers used in this Makefile. These
 # include the container repository, so that the build will work with tools
 # like "podman" with a default "/etc/containers/registries.conf", where
-# a default respository of "docker.io" is not assumed. This is intended to
+# a default repository of "docker.io" is not assumed. This is intended to
 # eliminate errors from podman such as:
 #
 #    Error: short-name "otel/weaver:v1.2.3" did not resolve to an alias
@@ -146,8 +146,8 @@ markdown-toc:
 
 .PHONY: markdownlint
 markdownlint:
-	@if ! npm ls markdownlint-cli; then npm ci --ignore-scripts; fi
-	npx --no -- markdownlint-cli -c .markdownlint.yaml "**/*.md" --ignore ./.github/ --ignore ./node_modules/ --ignore ./.git/
+	@if ! npm ls markdownlint-cli2; then npm ci --ignore-scripts; fi
+	npx --no -- markdownlint-cli2 '**/*.md'
 
 .PHONY: install-yamllint
 install-yamllint:

@@ -111,7 +111,7 @@ public boolean createIfNotExists(String resourceId) throws IOException {
     // we do not set span status to error and the "error.type" attribute
     // as the exception is not an error,
     // but we still log and set attributes that capture additional details
-    logger.withEventName("acme.resource.create.error")
+    logger.withEventName("acme.resource.create.exception")
       .withAttribute("acme.resource.create.status", "already_exists")
       .withException(e)
       .debug();
@@ -124,7 +124,7 @@ public boolean createIfNotExists(String resourceId) throws IOException {
   } catch (IOException e) {
     // this exception is expected to be handled by the caller
     // and could be a transient error
-    logger.withEventName("acme.resource.create.error")
+    logger.withEventName("acme.resource.create.exception")
       .withException(e)
       .warn();
 
@@ -141,4 +141,4 @@ public boolean createIfNotExists(String resourceId) throws IOException {
 ```
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
-[SpanStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.54.0/specification/trace/api.md#set-status
+[SpanStatus]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.55.0/specification/trace/api.md#set-status
