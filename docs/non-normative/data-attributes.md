@@ -66,4 +66,3 @@ with context.attach(ctx):
 
 1. **Low Cardinality**: To avoid performance degradation in metrics backends (like Prometheus), do not use unique IDs (e.g., `user_id`) in `data.*` attributes.
 2. **No Actual Data**: Never place actual PII (e.g., an email address) inside these attributes. They are for metadata only.
-3. **Mandatory Review**: Any new value added to `data.category` must be approved by the Data Governance committee to ensure consistent reporting.
