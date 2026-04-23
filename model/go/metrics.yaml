@@ -12,7 +12,7 @@ groups:
     unit: "By"
     attributes:
       - ref: go.memory.type
-        requirement_level: required
+        requirement_level: recommended
       - ref: go.memory.detailed_type
         requirement_level: opt_in
     stability: development
