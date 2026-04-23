@@ -186,6 +186,18 @@ areas:
     status:
       - inactive
 
+  - name: "Semantic Conventions: Go"
+    owner:
+      - name: "go-approvers"
+        github: go-approvers
+    project: "N/A"
+    board: "https://github.com/orgs/open-telemetry/projects/186"
+    labels:
+      - area:go
+    status:
+      - accepting_contributions
+      - active
+
   - name: "Semantic Conventions: Logs"
     owner:
       - name: "semconv-log-approvers"

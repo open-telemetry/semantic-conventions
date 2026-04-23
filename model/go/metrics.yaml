@@ -68,6 +68,20 @@ groups:
     unit: "By"
     stability: development
 
+  - id: metric.go.memory.gc.pause.duration
+    type: metric
+    metric_name: go.memory.gc.pause.duration
+    annotations:
+      code_generation:
+        metric_value_type: double
+    brief: "Distribution of individual GC-related stop-the-world pause latencies. This is the time from deciding to stop the world until the world is started again."
+    note: >
+      Computed from `/sched/pauses/total/gc:seconds`.
+      Bucket boundaries are provided by the runtime, and are subject to change.
+    instrument: histogram
+    unit: "s"
+    stability: development
+
   - id: metric.go.goroutine.count
     type: metric
     metric_name: go.goroutine.count

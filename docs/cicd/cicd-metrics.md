@@ -46,7 +46,7 @@ Examples of such metrics include:
 * runtime metrics of any processes executed as part of the pipeline run like JVM metrics
 
 These metrics could be used to correlate build failures with environment issues like overload or out-of-memory.
-They could also be used in pipeline-level aggregations to inform adjustements of allocated worker resources.
+They could also be used in pipeline-level aggregations to inform adjustments of allocated worker resources.
 
 When reporting host, container, runtime, and other metrics in CI/CD pipelines, instrumentation authors and application developers SHOULD use applicable [CICD and VCS resource conventions][cicdres] and MAY also associate all or specific metrics with `cicd.pipeline.run` to correlate them with run information.
 
@@ -82,6 +82,12 @@ This metric is [recommended][MetricRecommended].
 
 When `error.type` is set to a type (e.g., an exception type), its
 canonical class name identifying the type within the artifact SHOULD be used.
+
+If the recorded error type is a wrapper that is not meaningful for
+failure classification, instrumentation MAY use the type of the inner
+error instead. For example, in Go, errors created with `fmt.Errorf`
+using `%w` MAY be unwrapped when the wrapper type does not help
+classify the failure.
 
 Instrumentations SHOULD document the list of errors they report.
 
@@ -230,6 +236,12 @@ This means that this error count might not be the same as the count of metric `c
 When `error.type` is set to a type (e.g., an exception type), its
 canonical class name identifying the type within the artifact SHOULD be used.
 
+If the recorded error type is a wrapper that is not meaningful for
+failure classification, instrumentation MAY use the type of the inner
+error instead. For example, in Go, errors created with `fmt.Errorf`
+using `%w` MAY be unwrapped when the wrapper type does not help
+classify the failure.
+
 Instrumentations SHOULD document the list of errors they report.
 
 The cardinality of `error.type` within one instrumentation library SHOULD be low.
@@ -283,6 +295,12 @@ This metric is [recommended][MetricRecommended].
 
 When `error.type` is set to a type (e.g., an exception type), its
 canonical class name identifying the type within the artifact SHOULD be used.
+
+If the recorded error type is a wrapper that is not meaningful for
+failure classification, instrumentation MAY use the type of the inner
+error instead. For example, in Go, errors created with `fmt.Errorf`
+using `%w` MAY be unwrapped when the wrapper type does not help
+classify the failure.
 
 Instrumentations SHOULD document the list of errors they report.
 

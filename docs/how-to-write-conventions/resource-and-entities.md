@@ -287,7 +287,7 @@ and Resource in OpenTelemetry:
 1. *Open expansion*: Allowing users outside of OpenTelemetry to provide
    Entity definitions and relationships within the system.
 2. *Telescoping Identity*: Allowing flexible denormalization of
-   observability data to optimise critical queries (e.g. alerts, dashboard,
+   observability data to optimize critical queries (e.g. alerts, dashboard,
    etc.)
 
 ### Open Expansion
@@ -324,10 +324,10 @@ where users can decide how *small* or *large* the size of an OpenTelemetry
 resource will be on the wire (and correspondingly, how large data points
 may be when stored, depending on storage solution).
 
-For example, in the extreme, OpenTelemery could synthesize a UUID for
+For example, in the extreme, OpenTelemetry could synthesize a UUID for
 every system which produces telemetry. All identifying attributes for
 Resource and Entity could be sent via a side channel with known
-relationships to this UUID. While this would optimise the runtime
+relationships to this UUID. While this would optimize the runtime
 generation and sending of telemetry, it comes at the cost of downstream
 storage systems needing to join data back together either at ingestion
 time or query time. For high performance use cases, e.g. alerting, these
