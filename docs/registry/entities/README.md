@@ -96,7 +96,7 @@ Currently, the following namespaces exist:
 | | [service.instance](service.md#service-instance) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | | [service.namespace](service.md#service-namespace) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | Telemetry | | |
-| | [telemetry.distro](telemetry.md#telemetry-distro) | ![Development](https://img.shields.io/badge/-development-blue) |
+| | [telemetry.distro](telemetry.md#telemetry-distro) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | | [telemetry.sdk](telemetry.md#telemetry-sdk) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | VCS | | |
 | | [vcs.ref](vcs.md#vcs-ref) | ![Development](https://img.shields.io/badge/-development-blue) |
