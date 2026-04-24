@@ -7,5 +7,9 @@ weight: -2
 This is an automatically generated registry of available semantic conventions.
 
 - [Attributes](attributes/README.md)
+{#- Only emit the Entities link when the registry actually defines entity
+    groups. Downstream registries that reuse this template may have no entities. #}
+{% if ctx.groups | selectattr("type", "equalto", "entity") | list | length > 0 -%}
 - [Entities](entities/README.md)
+{% endif -%}
 
