@@ -59,6 +59,20 @@ groups:
         stability: development
         brief: The cloud availability zone associated with the destination side of the flow.
         examples: ["us-east-1d"]
+      - id: source.name
+        type: string
+        stability: development
+        brief: >
+          Anything that identifies the source of the network flow, like a network host name,
+          a container name, or an IP address. Human-friendly names are preferred over numeric addresses
+        examples: ["subdomain.example.org", "192.33.22.12"]
+      - id: destination.name
+        type: string
+        stability: development
+        brief: >
+          Anything that identifies the destination of the network flow, like a network host name
+          a container name, or an IP address. Human-friendly names are preferred over numeric addresses
+        examples: ["subdomain.example.org", "192.33.22.12"]
       - id: source.k8s.namespace.name
         type: string
         stability: development

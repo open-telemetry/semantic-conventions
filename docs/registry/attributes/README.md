@@ -81,6 +81,7 @@ Currently, the following namespaces exist:
 - [Mainframe](mainframe.md)
 - [MCP](mcp.md)
 - [Messaging](messaging.md)
+- [Netflow](netflow.md)
 - [Network](network.md)
 - [NFS](nfs.md)
 - [NodeJS](nodejs.md)

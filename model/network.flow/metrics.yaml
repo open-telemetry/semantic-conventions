@@ -13,19 +13,12 @@ groups:
     instrument: counter
     unit: "By"
     attributes:
-      - ref: host.ip
+      - ref: network.local.address
         note: |
           This value is the IP address of the node where the network observability agent runs. It allows
           deduplicating information of the same flow when source and destination are in different nodes
           and thus they are observed by agents both in the source and destination nodes.
         requirement_level: recommended
-      - ref: network.flow.iface
-        requirement_level: opt_in
-      - ref: network.flow.iface.direction
-        requirement_level: opt_in
-      - ref: network.transport
-        note: The transport protocol of the observed network traffic.
-        requirement_level: opt_in
       - ref: network.interface.name
         note: |
           Provides granularity about the different network interfaces where the
@@ -33,6 +26,11 @@ groups:
           interfaces eth0 and eth1 could send/receive traffic through both interfaces,
           but it can also contain names for the internal virtual interfaces that would
           enable the communication between containers in the same host.
+        requirement_level: opt_in
+      - ref: network.interface.direction
+        requirement_level: opt_in
+      - ref: network.transport
+        note: The transport protocol of the observed network traffic.
         requirement_level: opt_in
       - ref: source.address
         requirement_level: opt_in
@@ -62,12 +60,6 @@ groups:
       - ref: k8s.cluster.name
         requirement_level:
           recommended: when the flow is observed in Kubernetes.
-      - ref: source.k8s.name
-        requirement_level:
-          opt_in: when the flow is observed in Kubernetes.
-      - ref: destination.k8s.name
-        requirement_level:
-          opt_in: when the flow is observed in Kubernetes.
       - ref: source.k8s.namespace.name
         requirement_level:
           recommended: when the flow is observed in Kubernetes.
@@ -125,13 +117,13 @@ groups:
     instrument: counter
     unit: "By"
     attributes:
-      - ref: host.address
+      - ref: network.local.address
         note: |
           This value is the address of the node where the network observability agent runs. It allows
           deduplicating information of the same flow when source and destination are in different nodes
           and thus they are observed by agents both in the source and destination nodes.
         requirement_level: recommended
-      - ref: network.flow.direction
+      - ref: network.interface.direction
         requirement_level: opt_in
       - ref: network.transport
         requirement_level: opt_in
@@ -165,12 +157,6 @@ groups:
       - ref: k8s.cluster.name
         requirement_level:
           recommended: when the flow is observed in Kubernetes.
-      - ref: source.k8s.name
-        requirement_level:
-          opt_in: when the flow is observed in Kubernetes.
-      - ref: destination.k8s.name
-        requirement_level:
-          opt_in: when the flow is observed in Kubernetes.
       - ref: source.k8s.namespace.name
         requirement_level:
           recommended: when the flow is observed in Kubernetes.
