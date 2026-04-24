@@ -19,7 +19,7 @@ groups:
         stability: development
         brief: The direction of the network flow as seen from the network interface.
         note: |
-          This field does not necessarily match with ingoing/outgoing traffic as
+          This field does not necessarily match with incoming/outgoing traffic as
           seen from the host or application level.
 
           For example, imagine a container sending network data

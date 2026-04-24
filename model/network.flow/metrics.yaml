@@ -15,7 +15,7 @@ groups:
     attributes:
       - ref: host.ip
         note: |
-          This value belongs to the IP of the node where the network observability agent runs. It allows
+          This value is the IP address of the node where the network observability agent runs. It allows
           deduplicating information of the same flow when source and destination are in different nodes
           and thus they are observed by agents both in the source and destination nodes.
         requirement_level: recommended
@@ -31,7 +31,7 @@ groups:
           Provides granularity about the different network interfaces where the
           network traffic is being observed. For example, a host with two network
           interfaces eth0 and eth1 could send/receive traffic through both interfaces,
-          but if can also contain names for the internal virtual interfaces that would
+          but it can also contain names for the internal virtual interfaces that would
           enable the communication between containers in the same host.
         requirement_level: opt_in
       - ref: source.address
@@ -42,13 +42,13 @@ groups:
         requirement_level: opt_in
       - ref: destination.port
         requirement_level:
-          recommended: when the same host runs multiple service instances. For differentiation
+          recommended: when the same host runs multiple service instances, for differentiation
       - ref: source.cidr
         requirement_level:
-          recommended: when the source address is classified into configured CIDR ranges and there is no other low-cardinality attribute to define the network flow destination.
+          recommended: when the source address is classified into configured CIDR ranges and there is no other low-cardinality attribute to group the network flow source.
       - ref: destination.cidr
         requirement_level:
-          recommended: when the source address is classified into configured CIDR ranges and there is no other low-cardinality attribute to define the network flow destination.
+          recommended: when the destination address is classified into configured CIDR ranges and there is no other low-cardinality attribute to group the network flow destination.
       - ref: source.name
         requirement_level: opt_in
       - ref: destination.name
@@ -125,9 +125,9 @@ groups:
     instrument: counter
     unit: "By"
     attributes:
-      - ref: host.ip
+      - ref: host.address
         note: |
-          This value belongs to the IP of the node where the network observability agent runs. It allows
+          This value is the address of the node where the network observability agent runs. It allows
           deduplicating information of the same flow when source and destination are in different nodes
           and thus they are observed by agents both in the source and destination nodes.
         requirement_level: recommended
@@ -145,13 +145,13 @@ groups:
         requirement_level: opt_in
       - ref: destination.port
         requirement_level:
-          recommended: when the same host runs multiple service instances. For differentiation
+          recommended: when the same host runs multiple service instances, for differentiation
       - ref: source.cidr
         requirement_level:
-          recommended: when the source address is classified into configured CIDR ranges and there is no other low-cardinality attribute to define the network flow destination.
+          recommended: when the source address is classified into configured CIDR ranges and there is no other low-cardinality attribute to group the network flow source.
       - ref: destination.cidr
         requirement_level:
-          recommended: when the source address is classified into configured CIDR ranges and there is no other low-cardinality attribute to define the network flow destination.
+          recommended: when the destination address is classified into configured CIDR ranges and there is no other low-cardinality attribute to group the network flow destination.
       - ref: source.name
         requirement_level: opt_in
       - ref: destination.name
