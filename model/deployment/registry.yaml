@@ -37,20 +37,20 @@ groups:
             - id: production
               value: "production"
               brief: Production environment
-              stability: development
+              stability: stable
             - id: staging
               value: "staging"
               brief: Staging environment
-              stability: development
+              stability: stable
             - id: test
               value: "test"
               brief: Testing environment
-              stability: development
+              stability: stable
             - id: development
               value: "development"
               brief: Development environment
-              stability: development
-        stability: development
+              stability: stable
+        stability: stable
         brief: >
           Name of the [deployment environment](https://wikipedia.org/wiki/Deployment_environment)
           (aka deployment tier).

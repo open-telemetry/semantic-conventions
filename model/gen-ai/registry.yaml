@@ -47,7 +47,7 @@ groups:
             - id: azure.ai.openai
               stability: development
               value: "azure.ai.openai"
-              brief: '[Azure OpenAI](https://azure.microsoft.com/products/ai-services/openai-service/)'
+              brief: '[Azure OpenAI](https://learn.microsoft.com/en-us/azure/ai-services/openai/overview)'
             - id: ibm.watsonx.ai
               stability: development
               value: "ibm.watsonx.ai"
@@ -160,6 +160,10 @@ groups:
         type: int
         brief: Requests with same seed value more likely to return same result.
         examples: [100]
+      - id: gen_ai.request.stream
+        stability: development
+        type: boolean
+        brief: Indicates whether the GenAI request was made in streaming mode.
       - id: gen_ai.response.id
         stability: development
         type: string
@@ -177,6 +181,14 @@ groups:
         examples:
           - [stop]
           - [stop, length]
+      - id: gen_ai.response.time_to_first_chunk
+        stability: development
+        type: double
+        brief: >
+          Time to first chunk in a streaming response, measured from request issuance, in seconds.
+          The value is measured from when the client issues the generation request to when the first
+          chunk is received in the response stream.
+        examples: [0.5, 1.2]
       - id: gen_ai.usage.input_tokens
         stability: development
         type: int

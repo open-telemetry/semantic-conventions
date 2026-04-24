@@ -1,0 +1,4 @@
+change_type: enhancement
+component: v8js
+note: Add `v8js.resource.active` gauge for tracking resources that keep the event loop active.
+issues: [3445]

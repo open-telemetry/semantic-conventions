@@ -12,12 +12,6 @@ groups:
       - ref: process.parent_pid
         role: descriptive
         requirement_level: opt_in
-      - ref: process.executable.name
-        role: descriptive
-        requirement_level: opt_in
-      - ref: process.executable.path
-        role: descriptive
-        requirement_level: opt_in
       - ref: process.command
         role: descriptive
         requirement_level: recommended
@@ -62,3 +56,29 @@ groups:
         role: identifying
       - ref: process.runtime.description
         role: descriptive
+
+  - id: entity.process.executable
+    type: entity
+    stability: development
+    name: process.executable
+    brief: >
+      The executable of a process.
+    note: >
+      Represents the executable file associated with a process.
+      A single executable may be run my multiple process instances.
+    attributes:
+      - ref: process.executable.build_id.htlhash
+        role: identifying
+        requirement_level: required
+      - ref: process.executable.path
+        role: descriptive
+        requirement_level: opt_in
+      - ref: process.executable.build_id.go
+        role: descriptive
+        requirement_level: opt_in
+      - ref: process.executable.build_id.gnu
+        role: descriptive
+        requirement_level: opt_in
+      - ref: process.executable.name
+        role: descriptive
+        requirement_level: recommended
