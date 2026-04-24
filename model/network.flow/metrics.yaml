@@ -32,6 +32,10 @@ groups:
       - ref: network.transport
         note: The transport protocol of the observed network traffic.
         requirement_level: opt_in
+      - ref: network.type
+        requirement_level: opt_in
+      - ref: network.protocol.name
+        requirement_level: opt_in
       - ref: source.address
         requirement_level: opt_in
       - ref: destination.address
@@ -123,11 +127,22 @@ groups:
           deduplicating information of the same flow when source and destination are in different nodes
           and thus they are observed by agents both in the source and destination nodes.
         requirement_level: recommended
+      - ref: network.interface.name
+        note: |
+          Provides granularity about the different network interfaces where the
+          network traffic is being observed. For example, a host with two network
+          interfaces eth0 and eth1 could send/receive traffic through both interfaces,
+          but it can also contain names for the internal virtual interfaces that would
+          enable the communication between containers in the same host.
+        requirement_level: opt_in
       - ref: network.interface.direction
         requirement_level: opt_in
       - ref: network.transport
+        note: The transport protocol of the observed network traffic.
         requirement_level: opt_in
-      - ref: network.interface.name
+      - ref: network.type
+        requirement_level: opt_in
+      - ref: network.protocol.name
         requirement_level: opt_in
       - ref: source.address
         requirement_level: opt_in
