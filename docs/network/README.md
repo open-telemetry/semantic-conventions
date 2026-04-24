@@ -1,12 +1,12 @@
 <!--- Hugo front matter used to generate the website version of this page:
-linkTitle: Browser
+linkTitle: Network
 --->
 
-# Semantic conventions for Network Flow metrics
+# Semantic conventions for Network metrics
 
 **Status**: [Development][DocumentStatus]
 
-This document defines semantic conventions for Network Flow metrics.
+This document defines semantic conventions for Network metrics.
 
 Semantic conventions are defined for the following signals:
 
