@@ -55,7 +55,7 @@ This metric is [recommended][MetricRecommended].
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`go.memory.type`](/docs/registry/attributes/go.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The type of memory. | `other`; `stack` |
+| [`go.memory.type`](/docs/registry/attributes/go.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The type of memory. | `other`; `stack` |
 | [`go.memory.detailed_type`](/docs/registry/attributes/go.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The detailed type of memory. [1] | `heap/objects`; `heap/free` |
 
 **[1] `go.memory.detailed_type`:** Value SHOULD match the specific memory class reported by the Go runtime under `/memory/classes/...`. The list of possible values is subject to change with the Go version used.
