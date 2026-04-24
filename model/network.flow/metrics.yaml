@@ -19,11 +19,20 @@ groups:
           deduplicating information of the same flow when source and destination are in different nodes
           and thus they are observed by agents both in the source and destination nodes.
         requirement_level: recommended
-      - ref: network.flow.direction
+      - ref: network.flow.iface
+        requirement_level: opt_in
+      - ref: network.flow.iface.direction
         requirement_level: opt_in
       - ref: network.transport
+        note: The transport protocol of the observed network traffic.
         requirement_level: opt_in
       - ref: network.interface.name
+        note: |
+          Provides granularity about the different network interfaces where the
+          network traffic is being observed. For example, a host with two network
+          interfaces eth0 and eth1 could send/receive traffic through both interfaces,
+          but if can also contain names for the internal virtual interfaces that would
+          enable the communication between containers in the same host.
         requirement_level: opt_in
       - ref: source.address
         requirement_level: opt_in
@@ -101,19 +110,6 @@ groups:
       - ref: destination.k8s.node.ip
         requirement_level:
           opt_in: when the flow is observed in Kubernetes.
-      - ref: source.geo.country.iso_code
-        requirement_level:
-          opt_in: when Geo IP data is observed for the source address.
-      - ref: destination.geo.country.iso_code
-        requirement_level:
-          opt_in: when Geo IP data is observed for the destination address.
-      - ref: source.autonomous_system.number
-        requirement_level:
-          opt_in: when Geo IP data is observed for the source address.
-      - ref: destination.autonomous_system.number
-        requirement_level:
-          opt_in: when Geo IP data is observed for the destination address.
-
 
   - id: metric.network.inter.zone.bytes
     type: metric
@@ -217,15 +213,3 @@ groups:
       - ref: destination.k8s.node.ip
         requirement_level:
           opt_in: when the flow is observed in Kubernetes.
-      - ref: source.geo.country.iso_code
-        requirement_level:
-          opt_in: when Geo IP data is observed for the source address.
-      - ref: destination.geo.country.iso_code
-        requirement_level:
-          opt_in: when Geo IP data is observed for the destination address.
-      - ref: source.autonomous_system.number
-        requirement_level:
-          opt_in: when Geo IP data is observed for the source address.
-      - ref: destination.autonomous_system.number
-        requirement_level:
-          opt_in: when Geo IP data is observed for the destination address.
