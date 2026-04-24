@@ -4,11 +4,14 @@ linkTitle: Network Flows
 
 # Semantic conventions for Network Flows
 
-**Status**: [Development][DocumentStatus]
-
 This document defines semantic conventions for Network flows.
 
 <!-- toc -->
+
+- [Metrics](#metrics)
+  - [Metric `network.flow.bytes`](#metric-networkflowbytes)
+  - [Metric `network.inter.zone.bytes`](#metric-networkinterzonebytes)
+
 <!-- tocstop -->
 
 ## Metrics
