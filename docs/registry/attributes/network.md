@@ -4,6 +4,7 @@
 # Network
 
 - [Network Attributes](#network-attributes)
+- [Network Flow Attributes](#network-flow-attributes)
 - [Deprecated Network Attributes](#deprecated-network-attributes)
 
 ## Network Attributes
@@ -134,6 +135,65 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 | `ipv4` | IPv4 | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `ipv6` | IPv6 | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
+## Network Flow Attributes
+
+Attributes for describing network flow telemetry between source and destination endpoints.
+
+**Attributes:**
+
+| Key | Stability | Value Type | Description | Example Values |
+| --- | --- | --- | --- | --- |
+| <a id="destination-cidr" href="#destination-cidr">`destination.cidr`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The CIDR range that matched the destination address. [6] | `192.168.0.0/16` |
+| <a id="destination-cloud-availability-zone" href="#destination-cloud-availability-zone">`destination.cloud.availability_zone`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The cloud availability zone associated with the destination side of the flow. | `us-east-1d` |
+| <a id="destination-k8s-namespace-name" href="#destination-k8s-namespace-name">`destination.k8s.namespace.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the Kubernetes namespace associated with the destination side of the flow. | `backend` |
+| <a id="destination-k8s-node-ip" href="#destination-k8s-node-ip">`destination.k8s.node.ip`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The IP address of the Kubernetes node associated with the destination side of the flow. | `10.0.34.56` |
+| <a id="destination-k8s-node-name" href="#destination-k8s-node-name">`destination.k8s.node.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the Kubernetes node associated with the destination side of the flow. | `ip-10-0-34-56.ec2.internal` |
+| <a id="destination-k8s-owner-name" href="#destination-k8s-owner-name">`destination.k8s.owner.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the Kubernetes workload owner associated with the destination side of the flow. | `backend` |
+| <a id="destination-k8s-owner-type" href="#destination-k8s-owner-type">`destination.k8s.owner.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The Kubernetes workload owner type associated with the destination side of the flow. | `Deployment`; `DaemonSet` |
+| <a id="destination-k8s-pod-name" href="#destination-k8s-pod-name">`destination.k8s.pod.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the Kubernetes Pod associated with the destination side of the flow. | `backend-76d8f7c6d9-4n1qp` |
+| <a id="destination-k8s-resource-type" href="#destination-k8s-resource-type">`destination.k8s.resource.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The Kubernetes resource type associated with the destination side of the flow. | `Pod`; `Service` |
+| <a id="destination-name" href="#destination-name">`destination.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Anything that identifies the destination of the network flow, like a network host name a container name, or an IP address. Human-friendly names are preferred over numeric addresses | `subdomain.example.org`; `192.33.22.12` |
+| <a id="network-interface-direction" href="#network-interface-direction">`network.interface.direction`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The direction of the network flow as seen from the network interface. [7] | `ingress`; `egress` |
+| <a id="source-cidr" href="#source-cidr">`source.cidr`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The CIDR range that matched the source address. [8] | `10.0.0.0/8` |
+| <a id="source-cloud-availability-zone" href="#source-cloud-availability-zone">`source.cloud.availability_zone`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The cloud availability zone associated with the source side of the flow. | `us-east-1c` |
+| <a id="source-k8s-namespace-name" href="#source-k8s-namespace-name">`source.k8s.namespace.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the Kubernetes namespace associated with the source side of the flow. | `frontend` |
+| <a id="source-k8s-node-ip" href="#source-k8s-node-ip">`source.k8s.node.ip`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The IP address of the Kubernetes node associated with the source side of the flow. | `10.0.12.34` |
+| <a id="source-k8s-node-name" href="#source-k8s-node-name">`source.k8s.node.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the Kubernetes node associated with the source side of the flow. | `ip-10-0-12-34.ec2.internal` |
+| <a id="source-k8s-owner-name" href="#source-k8s-owner-name">`source.k8s.owner.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the Kubernetes workload owner associated with the source side of the flow. | `frontend` |
+| <a id="source-k8s-owner-type" href="#source-k8s-owner-type">`source.k8s.owner.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The Kubernetes workload owner type associated with the source side of the flow. | `Deployment`; `Daemonset` |
+| <a id="source-k8s-pod-name" href="#source-k8s-pod-name">`source.k8s.pod.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the Kubernetes Pod associated with the source side of the flow. | `frontend-7c9d4b6d7f-9kz2m` |
+| <a id="source-k8s-resource-type" href="#source-k8s-resource-type">`source.k8s.resource.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The Kubernetes resource type associated with the source side of the flow. | `Node`; `Pod` |
+| <a id="source-name" href="#source-name">`source.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Anything that identifies the source of the network flow, like a network host name, a container name, or an IP address. Human-friendly names are preferred over numeric addresses | `subdomain.example.org`; `192.33.22.12` |
+
+**[6] `destination.cidr`:** The instrumentation can associate addresses with CIDR ranges.
+This value can be derived from the host network configuration,
+or can match a user-defined value that is provided to the
+instrumentation.
+
+**[7] `network.interface.direction`:** This field does not necessarily match with incoming/outgoing traffic as
+seen from the host or application level.
+
+For example, imagine a container sending network data
+through a virtual interface veth0 that is connected to the host's physical
+interface eth1. If the network probes are attached to veth0, the
+traffic would be observed as "egress". However, if the network probes are
+attached to eth1, the traffic would be observed as "ingress", because
+eth1 is receiving the data from the connected veth0 interface.
+
+**[8] `source.cidr`:** The instrumentation can associate addresses with CIDR ranges.
+This value can be derived from the host network configuration,
+or can match a user-defined value that is provided to the
+instrumentation.
+
+---
+
+`network.interface.direction` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value | Description | Stability |
+| --- | --- | --- |
+| `egress` | The flow was observed as egress traffic. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ingress` | The flow was observed as ingress traffic. | ![Development](https://img.shields.io/badge/-development-blue) |
+
 ## Deprecated Network Attributes
 
 These attributes may be used for any network related operation.
@@ -174,10 +234,10 @@ These attributes may be used for any network related operation.
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `inproc` | In-process communication. [6] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `inproc` | In-process communication. [9] | ![Development](https://img.shields.io/badge/-development-blue) |
 | `ip_tcp` | ip_tcp | ![Development](https://img.shields.io/badge/-development-blue) |
 | `ip_udp` | ip_udp | ![Development](https://img.shields.io/badge/-development-blue) |
 | `other` | Something else (non IP-based). | ![Development](https://img.shields.io/badge/-development-blue) |
 | `pipe` | Named or anonymous pipe. | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[6]:** Signals that there is only in-process communication not using a "real" network protocol in cases where network attributes would normally be expected. Usually all other network attributes can be left out in that case.
+**[9]:** Signals that there is only in-process communication not using a "real" network protocol in cases where network attributes would normally be expected. Usually all other network attributes can be left out in that case.
