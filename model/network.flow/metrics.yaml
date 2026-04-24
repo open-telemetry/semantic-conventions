@@ -57,10 +57,10 @@ groups:
         requirement_level: opt_in
       - ref: source.cloud.availability_zone
         requirement_level:
-          opt_in: when source-side cloud zone information is available.
+          recommended: when source-side cloud zone information is available.
       - ref: destination.cloud.availability_zone
         requirement_level:
-          opt_in: when destination-side cloud zone information is available.
+          recommended: when destination-side cloud zone information is available.
       - ref: k8s.cluster.name
         requirement_level:
           recommended: when the flow is observed in Kubernetes.
@@ -72,40 +72,44 @@ groups:
           recommended: when the flow is observed in Kubernetes.
       - ref: source.k8s.pod.name
         requirement_level:
-          opt_in: when the flow is observed in Kubernetes.
+          recommended: |
+            when the flow is observed in Kubernetes and you need pod granularity for metrics.
+            It might cause high metrics cardinality.
       - ref: destination.k8s.pod.name
         requirement_level:
-          opt_in: when the flow is observed in Kubernetes.
+          recommended: |
+            when the flow is observed in Kubernetes and you need pod granularity for metrics.
+            It might cause high metrics cardinality.
       - ref: source.k8s.resource.type
         requirement_level:
-          opt_in: when the flow is observed in Kubernetes.
+          recommended: when the flow is observed in Kubernetes and you need resource granularity for metrics.
       - ref: destination.k8s.resource.type
         requirement_level:
-          opt_in: when the flow is observed in Kubernetes.
+          recommended: when the flow is observed in Kubernetes and you need resource granularity for metrics.
       - ref: source.k8s.owner.name
         requirement_level:
-          opt_in: when the flow is observed in Kubernetes.
+          recommended: when the flow is observed in Kubernetes and you need owner granularity for metrics.
       - ref: destination.k8s.owner.name
         requirement_level:
-          opt_in: when the flow is observed in Kubernetes.
+          recommended: when the flow is observed in Kubernetes and you need owner granularity for metrics.
       - ref: source.k8s.owner.type
         requirement_level:
-          opt_in: when the flow is observed in Kubernetes.
+          recommended: when the flow is observed in Kubernetes and you need owner granularity for metrics.
       - ref: destination.k8s.owner.type
         requirement_level:
-          opt_in: when the flow is observed in Kubernetes.
+          recommended: when the flow is observed in Kubernetes and you need owner granularity for metrics.
       - ref: source.k8s.node.name
         requirement_level:
-          opt_in: when the flow is observed in Kubernetes.
+          recommended: when the flow is observed in Kubernetes and you need node granularity for metrics.
       - ref: destination.k8s.node.name
         requirement_level:
-          opt_in: when the flow is observed in Kubernetes.
+          recommended: when the flow is observed in Kubernetes and you need node granularity for metrics.
       - ref: source.k8s.node.ip
         requirement_level:
-          opt_in: when the flow is observed in Kubernetes.
+          recommended: when the flow is observed in Kubernetes and you need node granularity for metrics.
       - ref: destination.k8s.node.ip
         requirement_level:
-          opt_in: when the flow is observed in Kubernetes.
+          recommended: when the flow is observed in Kubernetes and you need node granularity for metrics.
 
   - id: metric.network.inter.zone.bytes
     type: metric
@@ -123,7 +127,7 @@ groups:
     attributes:
       - ref: network.local.address
         note: |
-          This value is the address of the node where the network observability agent runs. It allows
+          This value is the IP address of the node where the network observability agent runs. It allows
           deduplicating information of the same flow when source and destination are in different nodes
           and thus they are observed by agents both in the source and destination nodes.
         requirement_level: recommended
@@ -165,10 +169,10 @@ groups:
         requirement_level: opt_in
       - ref: source.cloud.availability_zone
         requirement_level:
-          opt_in: when source-side cloud zone information is available.
+          recommended: when source-side cloud zone information is available.
       - ref: destination.cloud.availability_zone
         requirement_level:
-          opt_in: when destination-side cloud zone information is available.
+          recommended: when destination-side cloud zone information is available.
       - ref: k8s.cluster.name
         requirement_level:
           recommended: when the flow is observed in Kubernetes.
@@ -180,37 +184,41 @@ groups:
           recommended: when the flow is observed in Kubernetes.
       - ref: source.k8s.pod.name
         requirement_level:
-          opt_in: when the flow is observed in Kubernetes.
+          recommended: |
+            when the flow is observed in Kubernetes and you need pod granularity for metrics.
+            It might cause high metrics cardinality.
       - ref: destination.k8s.pod.name
         requirement_level:
-          opt_in: when the flow is observed in Kubernetes.
+          recommended: |
+            when the flow is observed in Kubernetes and you need pod granularity for metrics.
+            It might cause high metrics cardinality.
       - ref: source.k8s.resource.type
         requirement_level:
-          opt_in: when the flow is observed in Kubernetes.
+          recommended: when the flow is observed in Kubernetes and you need resource granularity for metrics.
       - ref: destination.k8s.resource.type
         requirement_level:
-          opt_in: when the flow is observed in Kubernetes.
+          recommended: when the flow is observed in Kubernetes and you need resource granularity for metrics.
       - ref: source.k8s.owner.name
         requirement_level:
-          opt_in: when the flow is observed in Kubernetes.
+          recommended: when the flow is observed in Kubernetes and you need owner granularity for metrics.
       - ref: destination.k8s.owner.name
         requirement_level:
-          opt_in: when the flow is observed in Kubernetes.
+          recommended: when the flow is observed in Kubernetes and you need owner granularity for metrics.
       - ref: source.k8s.owner.type
         requirement_level:
-          opt_in: when the flow is observed in Kubernetes.
+          recommended: when the flow is observed in Kubernetes and you need owner granularity for metrics.
       - ref: destination.k8s.owner.type
         requirement_level:
-          opt_in: when the flow is observed in Kubernetes.
+          recommended: when the flow is observed in Kubernetes and you need owner granularity for metrics.
       - ref: source.k8s.node.name
         requirement_level:
-          opt_in: when the flow is observed in Kubernetes.
+          recommended: when the flow is observed in Kubernetes and you need node granularity for metrics.
       - ref: destination.k8s.node.name
         requirement_level:
-          opt_in: when the flow is observed in Kubernetes.
+          recommended: when the flow is observed in Kubernetes and you need node granularity for metrics.
       - ref: source.k8s.node.ip
         requirement_level:
-          opt_in: when the flow is observed in Kubernetes.
+          recommended: when the flow is observed in Kubernetes and you need node granularity for metrics.
       - ref: destination.k8s.node.ip
         requirement_level:
-          opt_in: when the flow is observed in Kubernetes.
+          recommended: when the flow is observed in Kubernetes and you need node granularity for metrics.
