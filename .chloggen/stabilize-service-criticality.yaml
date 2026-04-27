@@ -1,0 +1,7 @@
+change_type: "enhancement"
+component: "service"
+note: "Stabilize `service.criticality` attribute."
+issues: [2986]
+subtext: |
+  The `service.criticality` attribute and its allowed values (`critical`, `high`, `medium`, `low`)
+  are now stable.
