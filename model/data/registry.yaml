@@ -9,33 +9,7 @@ groups:
       This allows every service in a pipeline to be aware of the "cargo" (the data) it is currently processing, enabling dynamic guardrails such as automated encryption, audit logging, or real-time access blocking at trust boundaries.
     attributes:
       - id: data.category
-        type:
-          members:
-            - id: pii
-              value: 'pii'
-              brief: >
-                Personally Identifiable Information.
-              stability: development
-            - id: financial
-              value: 'financial'
-              brief: >
-                Financial data (e.g., credit card numbers, bank account info).
-              stability: development
-            - id: health
-              value: 'health'
-              brief: >
-                Health data (e.g., medical records, PHI).
-              stability: development
-            - id: internal
-              value: 'internal'
-              brief: >
-                Internal-only data.
-              stability: development
-            - id: public
-              value: 'public'
-              brief: >
-                Publicly available data.
-              stability: development
+        type: string
         stability: development
         brief: >
           A taxonomy identifier describing the semantic nature of the data.
@@ -43,28 +17,7 @@ groups:
           It is used for regulatory compliance mapping and filtering in governance dashboards.
         examples: ["pii", "financial", "health", "internal", "public"]
       - id: data.sensitivity
-        type:
-          members:
-            - id: public
-              value: 'public'
-              brief: >
-                Data that is safe for public disclosure.
-              stability: development
-            - id: internal
-              value: 'internal'
-              brief: >
-                Data intended for internal use within the organization.
-              stability: development
-            - id: confidential
-              value: 'confidential'
-              brief: >
-                Sensitive data that requires protection from unauthorized access.
-              stability: development
-            - id: restricted
-              value: 'restricted'
-              brief: >
-                Highly sensitive data that requires strict access controls and protection.
-              stability: development
+        type: string
         stability: development
         brief: >
           A classification level indicating the potential impact of unauthorized disclosure.

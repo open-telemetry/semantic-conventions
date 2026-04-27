@@ -17,26 +17,3 @@ A data attribute group represents a logical or physical collection of informatio
 **[1] `data.category`:** It is used for regulatory compliance mapping and filtering in governance dashboards.
 
 **[2] `data.sensitivity`:** It drives automated security workflows like alerting and encryption.
-
----
-
-`data.category` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value | Description | Stability |
-| --- | --- | --- |
-| `financial` | Financial data (e.g., credit card numbers, bank account info). | ![Development](https://img.shields.io/badge/-development-blue) |
-| `health` | Health data (e.g., medical records, PHI). | ![Development](https://img.shields.io/badge/-development-blue) |
-| `internal` | Internal-only data. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `pii` | Personally Identifiable Information. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `public` | Publicly available data. | ![Development](https://img.shields.io/badge/-development-blue) |
-
----
-
-`data.sensitivity` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value | Description | Stability |
-| --- | --- | --- |
-| `confidential` | Sensitive data that requires protection from unauthorized access. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `internal` | Data intended for internal use within the organization. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `public` | Data that is safe for public disclosure. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `restricted` | Highly sensitive data that requires strict access controls and protection. | ![Development](https://img.shields.io/badge/-development-blue) |
