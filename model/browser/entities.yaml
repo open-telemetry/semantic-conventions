@@ -26,7 +26,6 @@ groups:
     name: browser.document
     brief: >
       The web page document loaded in the browser.
-    note: >
       `entity.browser.document` is defined as a separate entity from `entity.browser` because
       the `entity.browser` attributes (e.g. brands, platform, language) represent the user agent
       and runtime environment, which are immutable for the lifetime of the SDK.

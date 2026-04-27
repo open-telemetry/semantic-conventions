@@ -42,7 +42,7 @@ The list of possible values is defined in the [W3C User-Agent Client Hints speci
 
 **type:** `browser.document`
 
-**Description:** The web page document loaded in the browser.
+**Description:** The web page document loaded in the browser. `entity.browser.document` is defined as a separate entity from `entity.browser` because the `entity.browser` attributes (e.g. brands, platform, language) represent the user agent and runtime environment, which are immutable for the lifetime of the SDK. In contrast, the document URL changes on every navigation and represents a distinct concept tied to the current browser document rather than the browser itself.
 
 > [!warning]
 > This entity definition contains attributes without a role.
