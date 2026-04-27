@@ -33,7 +33,7 @@ VERSIONED_OPA_CONTAINER_NO_REPO=$(shell cat dependencies.Dockerfile | awk '$$4==
 # Fully qualified references to containers used in this Makefile. These
 # include the container repository, so that the build will work with tools
 # like "podman" with a default "/etc/containers/registries.conf", where
-# a default respository of "docker.io" is not assumed. This is intended to
+# a default repository of "docker.io" is not assumed. This is intended to
 # eliminate errors from podman such as:
 #
 #    Error: short-name "otel/weaver:v1.2.3" did not resolve to an alias
@@ -55,7 +55,14 @@ ifndef DOCKER_COMMAND
     ifneq ($(strip $(shell podman --version 2>&1)),)
         DOCKER_COMMAND := podman
     endif
-else
+endif
+
+# Only warn once both autodetect paths have failed. The previous
+# condition printed the warning whenever DOCKER_COMMAND *was* set
+# (i.e. docker or podman had been found), so every container target
+# on a working machine emitted a spurious "Neither docker nor podman
+# can be executed" line (#3626).
+ifndef DOCKER_COMMAND
     $(info Neither docker nor podman can be executed. Did you install and configure one of them to be used?)
 endif
 

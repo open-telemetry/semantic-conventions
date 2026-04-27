@@ -14,7 +14,7 @@
         'github-actions',
       ],
       schedule: [
-        '* * 2 * *', // monthly, on the 2nd
+        '* 0-7 2 * *', // monthly, before 8am on the 2nd
       ],
     },
     {
@@ -22,7 +22,7 @@
         '!github-actions',
       ],
       schedule: [
-        '* * * * 2', // weekly, on Tuesday
+        '* 0-7 * * 2', // weekly, before 8am on Tuesday
       ],
     },
     {
@@ -34,7 +34,7 @@
   ],
   "lockFileMaintenance": {
     "enabled": true,
-    "schedule": ["before 8am on Monday"]
+    "schedule": ["* 0-7 * * 2"] // weekly, before 8am on Tuesday
   },
   "labels": [
     "dependencies"

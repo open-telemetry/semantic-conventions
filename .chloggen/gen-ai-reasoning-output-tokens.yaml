@@ -1,0 +1,6 @@
+change_type: enhancement
+component: gen-ai
+note: Add `gen_ai.usage.reasoning.output_tokens` attribute for reasoning tokens
+issues: [3194]
+subtext: |
+  - Add `gen_ai.usage.reasoning.output_tokens` for tokens used for reasoning

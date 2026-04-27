@@ -1,0 +1,4 @@
+change_type: enhancement
+component: exceptions
+note: Add guidance that `error.type` and `exception.type` may unwrap uninformative wrapper types.
+issues: [3588, 3623]

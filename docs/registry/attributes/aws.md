@@ -216,7 +216,7 @@ This document defines attributes for AWS Secrets Manager.
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="aws-secretsmanager-secret-arn" href="#aws-secretsmanager-secret-arn">`aws.secretsmanager.secret.arn`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The ARN of the Secret stored in the Secrets Mangger | `arn:aws:secretsmanager:us-east-1:123456789012:secret:SecretName-6RandomCharacters` |
+| <a id="aws-secretsmanager-secret-arn" href="#aws-secretsmanager-secret-arn">`aws.secretsmanager.secret.arn`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The ARN of the Secret stored in the Secrets Manager | `arn:aws:secretsmanager:us-east-1:123456789012:secret:SecretName-6RandomCharacters` |
 
 ## Amazon SNS Attributes
 

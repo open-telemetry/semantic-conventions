@@ -36,7 +36,7 @@ A semantic convention that refers to an attribute from another semantic
 convention MAY modify the requirement level within its own scope. Otherwise,
 requirement level from the referred semantic convention applies.
 
-<!-- TODO(jsuereth) - make examples not break on changes to semconv -->
+<!-- TODO(@jsuereth) - make examples not break on changes to semconv -->
 
 For example, [Database semantic convention](/docs/db/README.md) references
 `network.transport` attribute defined in [General attributes](./README.md) with
@@ -90,7 +90,7 @@ provide special instructions on how to handle it. If no instructions are given
 and if instrumentation can populate the attribute, instrumentation SHOULD use
 the `Opt-In` requirement level on the attribute.
 
-<!-- TODO(jsuereth) - make examples not break on changes to semconv -->
+<!-- TODO(@jsuereth) - make examples not break on changes to semconv -->
 
 For example, `server.address` is `Conditionally Required` by a convention. When
 server IP address is available instead, instrumentation can do a DNS

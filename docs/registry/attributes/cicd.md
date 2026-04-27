@@ -18,7 +18,7 @@ This group describes attributes specific to pipelines within a Continuous Integr
 | <a id="cicd-pipeline-run-state" href="#cicd-pipeline-run-state">`cicd.pipeline.run.state`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The pipeline run goes through these states during its lifecycle. | `pending`; `executing`; `finalizing` |
 | <a id="cicd-pipeline-run-url-full" href="#cicd-pipeline-run-url-full">`cicd.pipeline.run.url.full`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The [URL](https://wikipedia.org/wiki/URL) of the pipeline run, providing the complete address in order to locate and identify the pipeline run. | `https://github.com/open-telemetry/semantic-conventions/actions/runs/9753949763?pr=1075` |
 | <a id="cicd-pipeline-task-name" href="#cicd-pipeline-task-name">`cicd.pipeline.task.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The human readable name of a task within a pipeline. Task here most closely aligns with a [computing process](https://wikipedia.org/wiki/Pipeline_(computing)) in a pipeline. Other terms for tasks include commands, steps, and procedures. | `Run GoLang Linter`; `Go Build`; `go-test`; `deploy_binary` |
-| <a id="cicd-pipeline-task-run-id" href="#cicd-pipeline-task-run-id">`cicd.pipeline.task.run.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The unique identifier of a task run within a pipeline. | `12097` |
+| <a id="cicd-pipeline-task-run-id" href="#cicd-pipeline-task-run-id">`cicd.pipeline.task.run.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The unique identifier of a task run within a pipeline. [1] | `12097` |
 | <a id="cicd-pipeline-task-run-result" href="#cicd-pipeline-task-run-result">`cicd.pipeline.task.run.result`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The result of a task run. | `success`; `failure`; `timeout`; `skipped` |
 | <a id="cicd-pipeline-task-run-url-full" href="#cicd-pipeline-task-run-url-full">`cicd.pipeline.task.run.url.full`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The [URL](https://wikipedia.org/wiki/URL) of the pipeline task run, providing the complete address in order to locate and identify the pipeline task run. | `https://github.com/open-telemetry/semantic-conventions/actions/runs/9753949763/job/26920038674?pr=1075` |
 | <a id="cicd-pipeline-task-type" href="#cicd-pipeline-task-type">`cicd.pipeline.task.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The type of the task within a pipeline. | `build`; `test`; `deploy` |
@@ -27,6 +27,8 @@ This group describes attributes specific to pipelines within a Continuous Integr
 | <a id="cicd-worker-name" href="#cicd-worker-name">`cicd.worker.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of a worker within a CICD system. | `agent-abc`; `controller`; `Ubuntu LTS` |
 | <a id="cicd-worker-state" href="#cicd-worker-state">`cicd.worker.state`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The state of a CICD worker / agent. | `idle`; `busy`; `down` |
 | <a id="cicd-worker-url-full" href="#cicd-worker-url-full">`cicd.worker.url.full`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The [URL](https://wikipedia.org/wiki/URL) of the worker, providing the complete address in order to locate and identify the worker. | `https://cicd.example.org/worker/abc123` |
+
+**[1] `cicd.pipeline.task.run.id`:** For a given pipeline run and task, the `cicd.pipeline.task.run.id` MUST be unique within that run. For the same task across different runs of the same pipeline, the `cicd.pipeline.task.run.id` MAY remain the same, enabling correlation of `cicd.pipeline.task.run.result` values across multiple pipeline runs.
 
 ---
 
@@ -90,8 +92,8 @@ This group describes attributes specific to pipelines within a Continuous Integr
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `available` | The worker is not performing work for the CICD system. It is available to the CICD system to perform work on (online / idle). [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `available` | The worker is not performing work for the CICD system. It is available to the CICD system to perform work on (online / idle). [2] | ![Development](https://img.shields.io/badge/-development-blue) |
 | `busy` | The worker is performing work for the CICD system. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `offline` | The worker is not available to the CICD system (disconnected / down). | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[1]:** Pipelines might have conditions on which workers they are able to run so not every worker might be available to every pipeline.
+**[2]:** Pipelines might have conditions on which workers they are able to run so not every worker might be available to every pipeline.
