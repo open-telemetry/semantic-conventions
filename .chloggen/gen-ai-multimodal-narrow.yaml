@@ -1,0 +1,25 @@
+change_type: enhancement
+
+component: gen-ai
+
+note: >
+  Narrow multimodal additions to the chat message JSON schemas: add `document`
+  to the Modality enum, add optional `byte_size` to BlobPart/FilePart/UriPart,
+  and introduce a new StrippedPart type for fail-closed observability when an
+  instrumentation detects but intentionally does not capture content bytes.
+
+issues: [3672]
+
+subtext: |
+  - gen-ai-input-messages.json:
+    - Modality enum gains `document`.
+    - BlobPart, FilePart, UriPart each gain optional `byte_size` field.
+    - New StrippedPart type with required `type` and `stripped_reason` fields,
+      optional `modality` / `mime_type` / `byte_size`. Allows recording that
+      bytes were detected but intentionally not stored (size cap, modality
+      allow-list, redactor error, upload error, no_store_configured).
+    - ChatMessage.parts accepts StrippedPart in addition to existing part types.
+  - gen-ai-output-messages.json: same changes mirrored on OutputMessage.parts.
+  - Reference implementation in genai-otel-instrument v1.1.1 emits the canonical
+    JSON shape via gen_ai.input.messages / gen_ai.output.messages when
+    OTEL_SEMCONV_STABILITY_OPT_IN=gen_ai.
