@@ -213,11 +213,18 @@ completion](#simple-chat-completion) above, but contain additional types of Part
 - `blob` parts, which represent data sent inline to or from the model.
 - `uri` parts, which represent a reference to a remote file by URI.
 - `file` parts, which represent a reference to a pre-uploaded file by ID.
+- `stripped` parts, which represent media that was detected but whose bytes were intentionally
+  not captured by the instrumentation (e.g. due to a configured size cap, modality allow-list,
+  redactor failure, or store unavailability). They allow consumers to distinguish "no media in
+  this turn" from "media was deliberately stripped".
 
-These parts contain an optional `modality` field to capture the general category of the
-content, and an optional `mime_type` to capture the specific [IANA media
-type](https://www.iana.org/assignments/media-types/media-types.xhtml) of the content, if known.
-See the [normative JSON schema](/docs/gen-ai/gen-ai-input-messages.json) for more details.
+These parts contain an optional `modality` field (`image`, `video`, `audio`, or `document`) to
+capture the general category of the content, and an optional `mime_type` to capture the specific
+[IANA media type](https://www.iana.org/assignments/media-types/media-types.xhtml) of the content,
+if known. They also accept an optional `byte_size` field reporting the size of the captured
+or referenced payload in bytes, which is useful for cost-of-capture telemetry and storage
+planning. See the [normative JSON schema](/docs/gen-ai/gen-ai-input-messages.json) for more
+details.
 
 ### Multimodal inputs example
 
@@ -268,6 +275,25 @@ See the [normative JSON schema](/docs/gen-ai/gen-ai-input-messages.json) for mor
         "modality": "audio",
         "mime_type": "audio/wav",
         "content": "aGVsbG8gd29ybGQgaW1hZ2luZSB0aGlzIGlzIGFuIGltYWdlCg=="
+      },
+      // A document referenced by URI, with optional byte_size reported by the
+      // instrumentation for cost-of-capture telemetry
+      {
+        "type": "uri",
+        "modality": "document",
+        "mime_type": "application/pdf",
+        "uri": "https://example.com/whitepaper.pdf",
+        "byte_size": 2457600
+      },
+      // A part that the instrumentation detected as a 30 MiB video but intentionally
+      // did not capture because it exceeded the configured per-part size cap.
+      // The original bytes are not present and cannot be retrieved post-hoc.
+      {
+        "type": "stripped",
+        "modality": "video",
+        "mime_type": "video/mp4",
+        "byte_size": 31457280,
+        "stripped_reason": "size_exceeded"
       }
     ]
   }

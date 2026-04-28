@@ -1,6 +1,7 @@
 {
     "$defs": {
         "BlobPart": {
+            "additionalProperties": true,
             "description": "Represents blob binary data sent inline to the model",
             "properties": {
                 "type": {
@@ -43,8 +44,8 @@
                 "byte_size": {
                     "anyOf": [
                         {
-                            "type": "integer",
-                            "minimum": 0
+                            "minimum": 0,
+                            "type": "integer"
                         },
                         {
                             "type": "null"
@@ -184,8 +185,8 @@
                 "byte_size": {
                     "anyOf": [
                         {
-                            "type": "integer",
-                            "minimum": 0
+                            "minimum": 0,
+                            "type": "integer"
                         },
                         {
                             "type": "null"
@@ -295,9 +296,85 @@
             "title": "Role",
             "type": "string"
         },
+        "ServerToolCallPart": {
+            "additionalProperties": true,
+            "description": "Represents a server-side tool call invocation. Server tool calls are executed by the model\nprovider on the server side rather than by the client application. Provider-specific tools\n(e.g., code_interpreter, web_search) can have well-defined schemas defined by the respective providers.",
+            "properties": {
+                "type": {
+                    "const": "server_tool_call",
+                    "description": "The type of the content captured in this part.",
+                    "title": "Type",
+                    "type": "string"
+                },
+                "id": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "Unique identifier for the server tool call.",
+                    "title": "Id"
+                },
+                "name": {
+                    "description": "Name of the server tool.",
+                    "title": "Name",
+                    "type": "string"
+                },
+                "server_tool_call": {
+                    "$ref": "#/$defs/GenericServerToolCall",
+                    "description": "Polymorphic server tool call details with type discriminator. The structure varies based on the tool type."
+                }
+            },
+            "required": [
+                "type",
+                "name",
+                "server_tool_call"
+            ],
+            "title": "ServerToolCallPart",
+            "type": "object"
+        },
+        "ServerToolCallResponsePart": {
+            "additionalProperties": true,
+            "description": "Represents a server-side tool call response. Contains the outcome and details of a server tool\nexecution. Provider-specific tools (e.g., code_interpreter, web_search) can have well-defined\nresponse schemas defined by the respective providers.",
+            "properties": {
+                "type": {
+                    "const": "server_tool_call_response",
+                    "description": "The type of the content captured in this part.",
+                    "title": "Type",
+                    "type": "string"
+                },
+                "id": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "Unique server tool call identifier matching the original call.",
+                    "title": "Id"
+                },
+                "server_tool_call_response": {
+                    "$ref": "#/$defs/GenericServerToolCallResponse",
+                    "description": "Polymorphic server tool call response with type discriminator. The structure varies based on the tool type."
+                }
+            },
+            "required": [
+                "type",
+                "server_tool_call_response"
+            ],
+            "title": "ServerToolCallResponsePart",
+            "type": "object"
+        },
         "StrippedPart": {
             "additionalProperties": true,
-            "description": "Represents a content part that was detected by the instrumentation but whose bytes were intentionally NOT captured. Allows consumers to distinguish 'no media in this turn' from 'media was deliberately stripped' (e.g. by a configured size cap, modality allow-list, redactor failure, or store unavailability). Bytes are not present and cannot be retrieved post-hoc.",
+            "description": "Represents a content part that was detected by the instrumentation but whose bytes were\nintentionally NOT captured. Allows consumers to distinguish 'no media in this turn' from\n'media was deliberately stripped' (e.g. by a configured size cap, modality allow-list,\nredactor failure, or store unavailability). Bytes are not present and cannot be retrieved\npost-hoc.",
             "properties": {
                 "type": {
                     "const": "stripped",
@@ -312,8 +389,12 @@
                         },
                         {
                             "type": "string"
+                        },
+                        {
+                            "type": "null"
                         }
                     ],
+                    "default": null,
                     "description": "The general modality of the stripped content if it was determinable.",
                     "title": "Modality"
                 },
@@ -333,8 +414,8 @@
                 "byte_size": {
                     "anyOf": [
                         {
-                            "type": "integer",
-                            "minimum": 0
+                            "minimum": 0,
+                            "type": "integer"
                         },
                         {
                             "type": "null"
@@ -345,16 +426,8 @@
                     "title": "Byte Size"
                 },
                 "stripped_reason": {
-                    "enum": [
-                        "size_exceeded",
-                        "modality_not_allowed",
-                        "redactor_error",
-                        "upload_error",
-                        "no_store_configured"
-                    ],
-                    "description": "The reason the bytes were not captured.",
-                    "title": "Stripped Reason",
-                    "type": "string"
+                    "$ref": "#/$defs/StrippedReason",
+                    "description": "The reason the bytes were not captured."
                 }
             },
             "required": [
@@ -363,6 +436,18 @@
             ],
             "title": "StrippedPart",
             "type": "object"
+        },
+        "StrippedReason": {
+            "description": "Reason that bytes were not captured for a content part.",
+            "enum": [
+                "size_exceeded",
+                "modality_not_allowed",
+                "redactor_error",
+                "upload_error",
+                "no_store_configured"
+            ],
+            "title": "StrippedReason",
+            "type": "string"
         },
         "TextPart": {
             "additionalProperties": true,
@@ -430,7 +515,7 @@
         },
         "ToolCallResponsePart": {
             "additionalProperties": true,
-            "description": "Represents a tool call result sent to the model or a built-in tool call outcome and details.",
+            "description": "Represents a tool call result sent to the model.",
             "properties": {
                 "type": {
                     "const": "tool_call_response",
@@ -461,92 +546,6 @@
                 "response"
             ],
             "title": "ToolCallResponsePart",
-            "type": "object"
-        },
-        "ServerToolCallPart": {
-            "additionalProperties": true,
-            "description": "Represents a server-side tool call invocation. Server tool calls are executed by the model provider on the server side rather than by the client application. Provider-specific tools (e.g., code_interpreter, web_search) can have well-defined schemas defined by the respective providers.",
-            "properties": {
-                "type": {
-                    "const": "server_tool_call",
-                    "description": "The type of the content captured in this part.",
-                    "title": "Type",
-                    "type": "string"
-                },
-                "id": {
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "default": null,
-                    "description": "Unique identifier for the server tool call.",
-                    "title": "Id"
-                },
-                "name": {
-                    "description": "Name of the server tool.",
-                    "title": "Name",
-                    "type": "string"
-                },
-                "server_tool_call": {
-                    "description": "Polymorphic server tool call details with type discriminator. The structure varies based on the tool type.",
-                    "oneOf": [
-                        {
-                            "$ref": "#/$defs/GenericServerToolCall"
-                        }
-                    ],
-                    "title": "Server Tool Call"
-                }
-            },
-            "required": [
-                "type",
-                "name",
-                "server_tool_call"
-            ],
-            "title": "ServerToolCallPart",
-            "type": "object"
-        },
-        "ServerToolCallResponsePart": {
-            "additionalProperties": true,
-            "description": "Represents a server-side tool call response. Contains the outcome and details of a server tool execution. Provider-specific tools (e.g., code_interpreter, web_search) can have well-defined response schemas defined by the respective providers.",
-            "properties": {
-                "type": {
-                    "const": "server_tool_call_response",
-                    "description": "The type of the content captured in this part.",
-                    "title": "Type",
-                    "type": "string"
-                },
-                "id": {
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "default": null,
-                    "description": "Unique server tool call identifier matching the original call.",
-                    "title": "Id"
-                },
-                "server_tool_call_response": {
-                    "description": "Polymorphic server tool call response with type discriminator. The structure varies based on the tool type.",
-                    "oneOf": [
-                        {
-                            "$ref": "#/$defs/GenericServerToolCallResponse"
-                        }
-                    ],
-                    "title": "Server Tool Call Response"
-                }
-            },
-            "required": [
-                "type",
-                "server_tool_call_response"
-            ],
-            "title": "ServerToolCallResponsePart",
             "type": "object"
         },
         "UriPart": {
@@ -592,8 +591,8 @@
                 "byte_size": {
                     "anyOf": [
                         {
-                            "type": "integer",
-                            "minimum": 0
+                            "minimum": 0,
+                            "type": "integer"
                         },
                         {
                             "type": "null"

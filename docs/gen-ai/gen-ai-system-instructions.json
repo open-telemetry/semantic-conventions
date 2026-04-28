@@ -1,6 +1,7 @@
 {
     "$defs": {
         "BlobPart": {
+            "additionalProperties": true,
             "description": "Represents blob binary data sent inline to the model",
             "properties": {
                 "type": {
@@ -39,6 +40,20 @@
                     "format": "binary",
                     "title": "Content",
                     "type": "string"
+                },
+                "byte_size": {
+                    "anyOf": [
+                        {
+                            "minimum": 0,
+                            "type": "integer"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "Size of the captured payload in bytes, as observed by the instrumentation at capture time. Useful for cost-of-capture telemetry and storage planning.",
+                    "title": "Byte Size"
                 }
             },
             "required": [
@@ -88,6 +103,20 @@
                     "description": "An identifier referencing a file that was pre-uploaded to the provider.",
                     "title": "File Id",
                     "type": "string"
+                },
+                "byte_size": {
+                    "anyOf": [
+                        {
+                            "minimum": 0,
+                            "type": "integer"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "Size of the referenced file in bytes, when known.",
+                    "title": "Byte Size"
                 }
             },
             "required": [
@@ -114,11 +143,44 @@
             "title": "GenericPart",
             "type": "object"
         },
+        "GenericServerToolCall": {
+            "additionalProperties": true,
+            "description": "Represents an arbitrary server tool call with any type and properties.\nThis allows for extensibility with custom server tool types.",
+            "properties": {
+                "type": {
+                    "description": "Type identifier for the server tool call.",
+                    "title": "Type",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "type"
+            ],
+            "title": "GenericServerToolCall",
+            "type": "object"
+        },
+        "GenericServerToolCallResponse": {
+            "additionalProperties": true,
+            "description": "Represents an arbitrary server tool call response with any type and properties.\nThis allows for extensibility with custom server tool response types.",
+            "properties": {
+                "type": {
+                    "description": "Type identifier for the server tool call response.",
+                    "title": "Type",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "type"
+            ],
+            "title": "GenericServerToolCallResponse",
+            "type": "object"
+        },
         "Modality": {
             "enum": [
                 "image",
                 "video",
-                "audio"
+                "audio",
+                "document"
             ],
             "title": "Modality",
             "type": "string"
@@ -145,6 +207,159 @@
             ],
             "title": "ReasoningPart",
             "type": "object"
+        },
+        "ServerToolCallPart": {
+            "additionalProperties": true,
+            "description": "Represents a server-side tool call invocation. Server tool calls are executed by the model\nprovider on the server side rather than by the client application. Provider-specific tools\n(e.g., code_interpreter, web_search) can have well-defined schemas defined by the respective providers.",
+            "properties": {
+                "type": {
+                    "const": "server_tool_call",
+                    "description": "The type of the content captured in this part.",
+                    "title": "Type",
+                    "type": "string"
+                },
+                "id": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "Unique identifier for the server tool call.",
+                    "title": "Id"
+                },
+                "name": {
+                    "description": "Name of the server tool.",
+                    "title": "Name",
+                    "type": "string"
+                },
+                "server_tool_call": {
+                    "$ref": "#/$defs/GenericServerToolCall",
+                    "description": "Polymorphic server tool call details with type discriminator. The structure varies based on the tool type."
+                }
+            },
+            "required": [
+                "type",
+                "name",
+                "server_tool_call"
+            ],
+            "title": "ServerToolCallPart",
+            "type": "object"
+        },
+        "ServerToolCallResponsePart": {
+            "additionalProperties": true,
+            "description": "Represents a server-side tool call response. Contains the outcome and details of a server tool\nexecution. Provider-specific tools (e.g., code_interpreter, web_search) can have well-defined\nresponse schemas defined by the respective providers.",
+            "properties": {
+                "type": {
+                    "const": "server_tool_call_response",
+                    "description": "The type of the content captured in this part.",
+                    "title": "Type",
+                    "type": "string"
+                },
+                "id": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "Unique server tool call identifier matching the original call.",
+                    "title": "Id"
+                },
+                "server_tool_call_response": {
+                    "$ref": "#/$defs/GenericServerToolCallResponse",
+                    "description": "Polymorphic server tool call response with type discriminator. The structure varies based on the tool type."
+                }
+            },
+            "required": [
+                "type",
+                "server_tool_call_response"
+            ],
+            "title": "ServerToolCallResponsePart",
+            "type": "object"
+        },
+        "StrippedPart": {
+            "additionalProperties": true,
+            "description": "Represents a content part that was detected by the instrumentation but whose bytes were\nintentionally NOT captured. Allows consumers to distinguish 'no media in this turn' from\n'media was deliberately stripped' (e.g. by a configured size cap, modality allow-list,\nredactor failure, or store unavailability). Bytes are not present and cannot be retrieved\npost-hoc.",
+            "properties": {
+                "type": {
+                    "const": "stripped",
+                    "description": "The type of the content captured in this part.",
+                    "title": "Type",
+                    "type": "string"
+                },
+                "modality": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/Modality"
+                        },
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "The general modality of the stripped content if it was determinable.",
+                    "title": "Modality"
+                },
+                "mime_type": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "The IANA MIME type of the stripped data, if known.",
+                    "title": "Mime Type"
+                },
+                "byte_size": {
+                    "anyOf": [
+                        {
+                            "minimum": 0,
+                            "type": "integer"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "Size of the stripped payload in bytes, as observed before stripping.",
+                    "title": "Byte Size"
+                },
+                "stripped_reason": {
+                    "$ref": "#/$defs/StrippedReason",
+                    "description": "The reason the bytes were not captured."
+                }
+            },
+            "required": [
+                "type",
+                "stripped_reason"
+            ],
+            "title": "StrippedPart",
+            "type": "object"
+        },
+        "StrippedReason": {
+            "description": "Reason that bytes were not captured for a content part.",
+            "enum": [
+                "size_exceeded",
+                "modality_not_allowed",
+                "redactor_error",
+                "upload_error",
+                "no_store_configured"
+            ],
+            "title": "StrippedReason",
+            "type": "string"
         },
         "TextPart": {
             "additionalProperties": true,
@@ -212,7 +427,7 @@
         },
         "ToolCallResponsePart": {
             "additionalProperties": true,
-            "description": "Represents a tool call result sent to the model or a built-in tool call outcome and details.",
+            "description": "Represents a tool call result sent to the model.",
             "properties": {
                 "type": {
                     "const": "tool_call_response",
@@ -284,6 +499,20 @@
                     "description": "A URI referencing attached data. It should not be a base64 data URL, which should use the `blob` part instead. The URI may use a scheme known to the provider api (e.g. `gs://bucket/object.png`), or be a publicly accessible location.",
                     "title": "Uri",
                     "type": "string"
+                },
+                "byte_size": {
+                    "anyOf": [
+                        {
+                            "minimum": 0,
+                            "type": "integer"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "Size of the referenced payload in bytes, when known.",
+                    "title": "Byte Size"
                 }
             },
             "required": [
@@ -308,6 +537,12 @@
                 "$ref": "#/$defs/ToolCallResponsePart"
             },
             {
+                "$ref": "#/$defs/ServerToolCallPart"
+            },
+            {
+                "$ref": "#/$defs/ServerToolCallResponsePart"
+            },
+            {
                 "$ref": "#/$defs/BlobPart"
             },
             {
@@ -318,6 +553,9 @@
             },
             {
                 "$ref": "#/$defs/ReasoningPart"
+            },
+            {
+                "$ref": "#/$defs/StrippedPart"
             },
             {
                 "$ref": "#/$defs/GenericPart"
