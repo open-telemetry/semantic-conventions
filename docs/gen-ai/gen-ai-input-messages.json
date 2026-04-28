@@ -39,6 +39,20 @@
                     "format": "binary",
                     "title": "Content",
                     "type": "string"
+                },
+                "byte_size": {
+                    "anyOf": [
+                        {
+                            "type": "integer",
+                            "minimum": 0
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "Size of the captured payload in bytes, as observed by the instrumentation at capture time. Useful for cost-of-capture telemetry and storage planning.",
+                    "title": "Byte Size"
                 }
             },
             "required": [
@@ -94,6 +108,9 @@
                             },
                             {
                                 "$ref": "#/$defs/ReasoningPart"
+                            },
+                            {
+                                "$ref": "#/$defs/StrippedPart"
                             },
                             {
                                 "$ref": "#/$defs/GenericPart"
@@ -163,6 +180,20 @@
                     "description": "An identifier referencing a file that was pre-uploaded to the provider.",
                     "title": "File Id",
                     "type": "string"
+                },
+                "byte_size": {
+                    "anyOf": [
+                        {
+                            "type": "integer",
+                            "minimum": 0
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "Size of the referenced file in bytes, when known.",
+                    "title": "Byte Size"
                 }
             },
             "required": [
@@ -225,7 +256,8 @@
             "enum": [
                 "image",
                 "video",
-                "audio"
+                "audio",
+                "document"
             ],
             "title": "Modality",
             "type": "string"
@@ -262,6 +294,75 @@
             ],
             "title": "Role",
             "type": "string"
+        },
+        "StrippedPart": {
+            "additionalProperties": true,
+            "description": "Represents a content part that was detected by the instrumentation but whose bytes were intentionally NOT captured. Allows consumers to distinguish 'no media in this turn' from 'media was deliberately stripped' (e.g. by a configured size cap, modality allow-list, redactor failure, or store unavailability). Bytes are not present and cannot be retrieved post-hoc.",
+            "properties": {
+                "type": {
+                    "const": "stripped",
+                    "description": "The type of the content captured in this part.",
+                    "title": "Type",
+                    "type": "string"
+                },
+                "modality": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/Modality"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ],
+                    "description": "The general modality of the stripped content if it was determinable.",
+                    "title": "Modality"
+                },
+                "mime_type": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "The IANA MIME type of the stripped data, if known.",
+                    "title": "Mime Type"
+                },
+                "byte_size": {
+                    "anyOf": [
+                        {
+                            "type": "integer",
+                            "minimum": 0
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "Size of the stripped payload in bytes, as observed before stripping.",
+                    "title": "Byte Size"
+                },
+                "stripped_reason": {
+                    "enum": [
+                        "size_exceeded",
+                        "modality_not_allowed",
+                        "redactor_error",
+                        "upload_error",
+                        "no_store_configured"
+                    ],
+                    "description": "The reason the bytes were not captured.",
+                    "title": "Stripped Reason",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "type",
+                "stripped_reason"
+            ],
+            "title": "StrippedPart",
+            "type": "object"
         },
         "TextPart": {
             "additionalProperties": true,
@@ -487,6 +588,20 @@
                     "description": "A URI referencing attached data. It should not be a base64 data URL, which should use the `blob` part instead. The URI may use a scheme known to the provider api (e.g. `gs://bucket/object.png`), or be a publicly accessible location.",
                     "title": "Uri",
                     "type": "string"
+                },
+                "byte_size": {
+                    "anyOf": [
+                        {
+                            "type": "integer",
+                            "minimum": 0
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "Size of the referenced payload in bytes, when known.",
+                    "title": "Byte Size"
                 }
             },
             "required": [
