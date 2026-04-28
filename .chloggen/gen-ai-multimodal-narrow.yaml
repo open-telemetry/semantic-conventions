@@ -4,22 +4,25 @@ component: gen-ai
 
 note: >
   Narrow multimodal additions to the chat message JSON schemas: add `document`
-  to the Modality enum, add optional `byte_size` to BlobPart/FilePart/UriPart,
-  and introduce a new StrippedPart type for fail-closed observability when an
-  instrumentation detects but intentionally does not capture content bytes.
+  to the Modality enum, add an optional `byte_size` field to
+  BlobPart / FilePart / UriPart, make their `content` / `file_id` / `uri`
+  fields optional, and add an optional free-form `stripped_reason` field on
+  the same three part types so instrumentations can record that bytes (or
+  referenced identifiers) were intentionally not captured without introducing
+  a new part type.
 
 issues: [3672]
 
 subtext: |
-  - gen-ai-input-messages.json:
+  - gen-ai-input-messages.json (and gen-ai-output-messages.json):
     - Modality enum gains `document`.
-    - BlobPart, FilePart, UriPart each gain optional `byte_size` field.
-    - New StrippedPart type with required `type` and `stripped_reason` fields,
-      optional `modality` / `mime_type` / `byte_size`. Allows recording that
-      bytes were detected but intentionally not stored (size cap, modality
-      allow-list, redactor error, upload error, no_store_configured).
-    - ChatMessage.parts accepts StrippedPart in addition to existing part types.
-  - gen-ai-output-messages.json: same changes mirrored on OutputMessage.parts.
+    - BlobPart, FilePart, UriPart each gain an optional `byte_size` field.
+    - BlobPart.content, FilePart.file_id, UriPart.uri become optional. When the
+      instrumentation intentionally did not capture bytes / id / URI, the field
+      is omitted and `stripped_reason` is set instead.
+    - Each of the three part types gains an optional free-form `stripped_reason`
+      field. Free-form (not an enum) so instrumentations can describe their own
+      capture-skipping conditions without needing a spec change.
   - Reference implementation in genai-otel-instrument v1.1.1 emits the canonical
     JSON shape via gen_ai.input.messages / gen_ai.output.messages when
     OTEL_SEMCONV_STABILITY_OPT_IN=gen_ai.

@@ -213,18 +213,17 @@ completion](#simple-chat-completion) above, but contain additional types of Part
 - `blob` parts, which represent data sent inline to or from the model.
 - `uri` parts, which represent a reference to a remote file by URI.
 - `file` parts, which represent a reference to a pre-uploaded file by ID.
-- `stripped` parts, which represent media that was detected but whose bytes were intentionally
-  not captured by the instrumentation (e.g. due to a configured size cap, modality allow-list,
-  redactor failure, or store unavailability). They allow consumers to distinguish "no media in
-  this turn" from "media was deliberately stripped".
 
 These parts contain an optional `modality` field (`image`, `video`, `audio`, or `document`) to
 capture the general category of the content, and an optional `mime_type` to capture the specific
 [IANA media type](https://www.iana.org/assignments/media-types/media-types.xhtml) of the content,
 if known. They also accept an optional `byte_size` field reporting the size of the captured
-or referenced payload in bytes, which is useful for cost-of-capture telemetry and storage
-planning. See the [normative JSON schema](/docs/gen-ai/gen-ai-input-messages.json) for more
-details.
+or referenced payload in bytes (useful for cost-of-capture telemetry and storage planning), and
+an optional `stripped_reason` field that, when set, indicates the bytes (or referenced
+`file_id`/`uri`) were intentionally not captured by the instrumentation along with a short
+free-form reason (e.g. `"size_exceeded"`, `"modality_not_allowed"`). When `stripped_reason` is
+set, the `content`/`file_id`/`uri` field MAY be omitted. See the
+[normative JSON schema](/docs/gen-ai/gen-ai-input-messages.json) for more details.
 
 ### Multimodal inputs example
 
@@ -285,11 +284,12 @@ details.
         "uri": "https://example.com/whitepaper.pdf",
         "byte_size": 2457600
       },
-      // A part that the instrumentation detected as a 30 MiB video but intentionally
+      // A 30 MiB inline video that the instrumentation detected but intentionally
       // did not capture because it exceeded the configured per-part size cap.
-      // The original bytes are not present and cannot be retrieved post-hoc.
+      // The original part type ("blob") is preserved; the `content` field is
+      // omitted and `stripped_reason` records why.
       {
-        "type": "stripped",
+        "type": "blob",
         "modality": "video",
         "mime_type": "video/mp4",
         "byte_size": 31457280,

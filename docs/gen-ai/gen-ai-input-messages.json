@@ -36,10 +36,18 @@
                     "title": "Modality"
                 },
                 "content": {
-                    "description": "Raw bytes of the attached data. This field SHOULD be encoded as a base64 string when serialized to JSON.",
-                    "format": "binary",
-                    "title": "Content",
-                    "type": "string"
+                    "anyOf": [
+                        {
+                            "format": "binary",
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "Raw bytes of the attached data. This field SHOULD be encoded as a base64 string when serialized to JSON. MAY be omitted when the instrumentation intentionally did not capture the bytes; in that case `stripped_reason` SHOULD be set.",
+                    "title": "Content"
                 },
                 "byte_size": {
                     "anyOf": [
@@ -52,14 +60,26 @@
                         }
                     ],
                     "default": null,
-                    "description": "Size of the captured payload in bytes, as observed by the instrumentation at capture time. Useful for cost-of-capture telemetry and storage planning.",
+                    "description": "Size of the captured or referenced payload in bytes, as observed by the instrumentation at capture time. Useful for cost-of-capture telemetry and storage planning.",
                     "title": "Byte Size"
+                },
+                "stripped_reason": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "If set, indicates that the bytes (or the referenced file id / uri) were intentionally NOT captured by the instrumentation, and gives a short reason. Allows consumers to distinguish 'no media in this turn' from 'media was deliberately not captured'. The value is a free-form short string defined by the instrumentation (e.g. 'size_exceeded', 'modality_not_allowed').",
+                    "title": "Stripped Reason"
                 }
             },
             "required": [
                 "type",
-                "modality",
-                "content"
+                "modality"
             ],
             "title": "BlobPart",
             "type": "object"
@@ -109,9 +129,6 @@
                             },
                             {
                                 "$ref": "#/$defs/ReasoningPart"
-                            },
-                            {
-                                "$ref": "#/$defs/StrippedPart"
                             },
                             {
                                 "$ref": "#/$defs/GenericPart"
@@ -178,9 +195,17 @@
                     "title": "Modality"
                 },
                 "file_id": {
-                    "description": "An identifier referencing a file that was pre-uploaded to the provider.",
-                    "title": "File Id",
-                    "type": "string"
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "An identifier referencing a file that was pre-uploaded to the provider. MAY be omitted when the instrumentation intentionally did not capture the identifier; in that case `stripped_reason` SHOULD be set.",
+                    "title": "File Id"
                 },
                 "byte_size": {
                     "anyOf": [
@@ -193,14 +218,26 @@
                         }
                     ],
                     "default": null,
-                    "description": "Size of the referenced file in bytes, when known.",
+                    "description": "Size of the captured or referenced payload in bytes, as observed by the instrumentation at capture time. Useful for cost-of-capture telemetry and storage planning.",
                     "title": "Byte Size"
+                },
+                "stripped_reason": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "If set, indicates that the bytes (or the referenced file id / uri) were intentionally NOT captured by the instrumentation, and gives a short reason. Allows consumers to distinguish 'no media in this turn' from 'media was deliberately not captured'. The value is a free-form short string defined by the instrumentation (e.g. 'size_exceeded', 'modality_not_allowed').",
+                    "title": "Stripped Reason"
                 }
             },
             "required": [
                 "type",
-                "modality",
-                "file_id"
+                "modality"
             ],
             "title": "FilePart",
             "type": "object"
@@ -372,83 +409,6 @@
             "title": "ServerToolCallResponsePart",
             "type": "object"
         },
-        "StrippedPart": {
-            "additionalProperties": true,
-            "description": "Represents a content part that was detected by the instrumentation but whose bytes were\nintentionally NOT captured. Allows consumers to distinguish 'no media in this turn' from\n'media was deliberately stripped' (e.g. by a configured size cap, modality allow-list,\nredactor failure, or store unavailability). Bytes are not present and cannot be retrieved\npost-hoc.",
-            "properties": {
-                "type": {
-                    "const": "stripped",
-                    "description": "The type of the content captured in this part.",
-                    "title": "Type",
-                    "type": "string"
-                },
-                "modality": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/$defs/Modality"
-                        },
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "default": null,
-                    "description": "The general modality of the stripped content if it was determinable.",
-                    "title": "Modality"
-                },
-                "mime_type": {
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "default": null,
-                    "description": "The IANA MIME type of the stripped data, if known.",
-                    "title": "Mime Type"
-                },
-                "byte_size": {
-                    "anyOf": [
-                        {
-                            "minimum": 0,
-                            "type": "integer"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "default": null,
-                    "description": "Size of the stripped payload in bytes, as observed before stripping.",
-                    "title": "Byte Size"
-                },
-                "stripped_reason": {
-                    "$ref": "#/$defs/StrippedReason",
-                    "description": "The reason the bytes were not captured."
-                }
-            },
-            "required": [
-                "type",
-                "stripped_reason"
-            ],
-            "title": "StrippedPart",
-            "type": "object"
-        },
-        "StrippedReason": {
-            "description": "Reason that bytes were not captured for a content part.",
-            "enum": [
-                "size_exceeded",
-                "modality_not_allowed",
-                "redactor_error",
-                "upload_error",
-                "no_store_configured"
-            ],
-            "title": "StrippedReason",
-            "type": "string"
-        },
         "TextPart": {
             "additionalProperties": true,
             "description": "Represents text content sent to or received from the model.",
@@ -584,9 +544,17 @@
                     "title": "Modality"
                 },
                 "uri": {
-                    "description": "A URI referencing attached data. It should not be a base64 data URL, which should use the `blob` part instead. The URI may use a scheme known to the provider api (e.g. `gs://bucket/object.png`), or be a publicly accessible location.",
-                    "title": "Uri",
-                    "type": "string"
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "A URI referencing attached data. It should not be a base64 data URL, which should use the `blob` part instead. The URI may use a scheme known to the provider api (e.g. `gs://bucket/object.png`), or be a publicly accessible location. MAY be omitted when the instrumentation intentionally did not capture the URI; in that case `stripped_reason` SHOULD be set.",
+                    "title": "Uri"
                 },
                 "byte_size": {
                     "anyOf": [
@@ -599,14 +567,26 @@
                         }
                     ],
                     "default": null,
-                    "description": "Size of the referenced payload in bytes, when known.",
+                    "description": "Size of the captured or referenced payload in bytes, as observed by the instrumentation at capture time. Useful for cost-of-capture telemetry and storage planning.",
                     "title": "Byte Size"
+                },
+                "stripped_reason": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "If set, indicates that the bytes (or the referenced file id / uri) were intentionally NOT captured by the instrumentation, and gives a short reason. Allows consumers to distinguish 'no media in this turn' from 'media was deliberately not captured'. The value is a free-form short string defined by the instrumentation (e.g. 'size_exceeded', 'modality_not_allowed').",
+                    "title": "Stripped Reason"
                 }
             },
             "required": [
                 "type",
-                "modality",
-                "uri"
+                "modality"
             ],
             "title": "UriPart",
             "type": "object"
