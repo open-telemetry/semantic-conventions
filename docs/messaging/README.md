@@ -45,6 +45,7 @@ Semantic conventions for messaging systems are defined for the following signals
 Technology specific semantic conventions are defined for the following messaging systems:
 
 * [Kafka](kafka.md): Semantic Conventions for *Apache Kafka*.
+* [NATS](nats.md): Semantic Conventions for *NATS*.
 * [RabbitMQ](rabbitmq.md): Semantic Conventions for *RabbitMQ*.
 * [RocketMQ](rocketmq.md): Semantic Conventions for *Apache RocketMQ*.
 * [SNS](sns.md): Semantic Conventions for *Amazon SNS*.

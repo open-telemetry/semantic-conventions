@@ -333,3 +333,14 @@ groups:
         requirement_level: recommended
       - ref: aws.request_id
         requirement_level: recommended
+
+  - id: messaging.nats
+    type: attribute_group
+    stability: development
+    extends: attributes.messaging.trace.minimal
+    brief: "Attributes that exist for NATS request types."
+    attributes:
+      - ref: messaging.nats.stream
+        requirement_level: recommended
+      - ref: messaging.nats.sequence
+        requirement_level: recommended

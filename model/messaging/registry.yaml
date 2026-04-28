@@ -200,6 +200,10 @@ groups:
               value: 'kafka'
               brief: 'Apache Kafka'
               stability: development
+            - id: nats
+              value: 'nats'
+              brief: 'NATS'
+              stability: development
             - id: rabbitmq
               value: 'rabbitmq'
               brief: 'RabbitMQ'
@@ -419,3 +423,22 @@ groups:
         brief: >
           The UTC epoch seconds at which the message has been accepted and stored in the entity.
         examples: 1701393730
+
+  - id: registry.messaging.nats
+    type: attribute_group
+    display_name: NATS Attributes
+    brief: >
+      This group describes attributes specific to NATS.
+    attributes:
+      - id: messaging.nats.stream
+        type: string
+        stability: development
+        brief: >
+          The name of the JetStream stream.
+        examples: [ "ORDERS" ]
+      - id: messaging.nats.sequence
+        type: int
+        stability: development
+        brief: >
+          The sequence number of the message in the stream.
+        examples: [ 1 ]

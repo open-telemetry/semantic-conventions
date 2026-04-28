@@ -1,0 +1,8 @@
+change_type: new_component
+component: messaging
+note: Add semantic conventions for NATS.
+issues: [0]
+subtext: |
+  Added NATS specific attributes:
+  - `messaging.nats.stream`
+  - `messaging.nats.sequence`
