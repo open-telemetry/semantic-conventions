@@ -28,4 +28,4 @@ groups:
       The web page document loaded in the browser.
     attributes:
       - ref: browser.document.url.full
-        role: identifying      
+        role: identifying
