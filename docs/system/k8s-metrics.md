@@ -2383,7 +2383,7 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `k8s.container.ephemeral_storage.usage` | UpDownCounter | `By` | The ephemeral storage used by a container. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.container`](/docs/registry/entities/k8s.md#k8s-container) |
 
-**[1]:** By emitting this metric with the fs.type attribute, users can monitor both components independently or sum them up to get the total ephemeral storage usage to compare against requests and limits.
+**[1]:** By emitting the fs.type attribute, users can monitor both components independently or sum them up to get the total ephemeral storage usage to compare against requests and limits.
 
 **Attributes:**
 
