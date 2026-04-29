@@ -1506,6 +1506,23 @@ groups:
       See https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#resourcerequirements-v1-core for details.
     instrument: updowncounter
     unit: "By"
+  - id: metric.k8s.container.ephemeral_storage.usage
+    type: metric
+    metric_name: k8s.container.ephemeral_storage.usage
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "The ephemeral storage used by a container."
+    entity_associations:
+      - k8s.container
+    note: |
+      By emitting this metric with the fs.type attribute, users can monitor both components independently or sum them up to get the total ephemeral storage usage to compare against requests and limits.
+    instrument: updowncounter
+    unit: "By"
+    attributes:
+      - ref: k8s.container.ephemeral_storage.fs_type
+        requirement_level: required
   - id: metric.k8s.container.restart.count
     type: metric
     metric_name: k8s.container.restart.count

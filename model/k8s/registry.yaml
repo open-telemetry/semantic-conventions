@@ -217,6 +217,23 @@ groups:
         brief: >
           Last terminated reason of the Container.
         examples: ["Evicted", "Error"]
+      - id: k8s.container.ephemeral_storage.fs_type
+        type:
+          members:
+            - id: rootfs
+              value: 'rootfs'
+              brief: "For the container's writable layer usage."
+              stability: development
+            - id: logs
+              value: 'logs'
+              brief: "For the container's log files usage (stdout/stderr)."
+              stability: development
+        stability: development
+        brief: >
+          The type of file system component for ephemeral storage.
+        note: |
+          Eviction decisions based on ephemeral-storage resource limits are calculated by summing both rootfs and logs usage.
+        examples: ['rootfs', 'logs']
 
       - id: k8s.replicaset.uid
         type: string
