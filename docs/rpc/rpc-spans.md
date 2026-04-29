@@ -9,13 +9,13 @@ linkTitle: Spans
 This document defines how to describe remote procedure calls
 (also called "remote method invocations" / "RMI") with spans.
 
-<!-- toc -->
+<!-- START doctoc -->
 
 - [Name](#name)
 - [RPC client span](#rpc-client-span)
 - [RPC server span](#rpc-server-span)
 
-<!-- tocstop -->
+<!-- END doctoc -->
 
 > [!IMPORTANT]
 > Existing RPC instrumentations that are using
@@ -44,7 +44,7 @@ This document defines how to describe remote procedure calls
 
 ## Name
 
-RPC spans MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.55.0/specification/trace/api.md#span).
+RPC spans MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.56.0/specification/trace/api.md#span).
 
 The *span name* SHOULD be `{rpc.method}` if it is available and not set to
 `_OTHER`.

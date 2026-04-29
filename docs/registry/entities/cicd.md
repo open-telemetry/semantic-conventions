@@ -46,9 +46,9 @@
 
 **type:** `cicd.worker`
 
-**Description:** A CICD worker is a component of the CICD system that performs work (eg. running pipeline tasks or performing sync).
+**Description:** A CI/CD worker is a component of the CI/CD system that performs work (eg. running pipeline tasks or performing sync).
 A single pipeline run may be distributed across multiple workers. Any OpenTelemetry signal associated with a worker should be associated to the worker that performed the corresponding work.
-For example, when a pipeline run involves several workers, its task run spans may reference the different `cicd.worker` resources corresponding to the workers that executed each task run. The pipeline run's parent span may instead reference the CICD controller as the `cicd.worker` resource.
+For example, when a pipeline run involves several workers, its task run spans may reference the different `cicd.worker` resources corresponding to the workers that executed each task run. The pipeline run's parent span may instead reference the CI/CD controller as the `cicd.worker` resource.
 
 > [!warning]
 > This entity definition contains attributes without a role.
@@ -58,6 +58,6 @@ For example, when a pipeline run involves several workers, its task run spans ma
 
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- | --- |
-| Other | [`cicd.worker.id`](/docs/registry/attributes/cicd.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The unique identifier of a worker within a CICD system. | `abc123`; `10.0.1.2`; `controller` |
-| Other | [`cicd.worker.name`](/docs/registry/attributes/cicd.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of a worker within a CICD system. | `agent-abc`; `controller`; `Ubuntu LTS` |
+| Other | [`cicd.worker.id`](/docs/registry/attributes/cicd.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The unique identifier of a worker within a CI/CD system. | `abc123`; `10.0.1.2`; `controller` |
+| Other | [`cicd.worker.name`](/docs/registry/attributes/cicd.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of a worker within a CI/CD system. | `agent-abc`; `controller`; `Ubuntu LTS` |
 | Other | [`cicd.worker.url.full`](/docs/registry/attributes/cicd.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` If available | string | The [URL](https://wikipedia.org/wiki/URL) of the worker, providing the complete address in order to locate and identify the worker. | `https://cicd.example.org/worker/abc123` |

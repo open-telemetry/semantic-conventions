@@ -8,7 +8,7 @@ cascade:
 redirects:
   - { from: 'attributes-registry/*', to: 'registry/attributes/:splat' }
   - { from: 'database/*', to: 'db/:splat' }
-cSpell:ignore: semconv CICD
+cSpell:ignore: semconv
 auto_gen: below
 linkTitle: Semantic conventions
 --->
@@ -22,7 +22,7 @@ The benefit to using Semantic Conventions is in following a common naming scheme
 Semantic Conventions are defined for the following areas:
 
 * **[General](general/README.md): General Semantic Conventions**.
-* [CICD](cicd/README.md): Semantic Conventions for CICD systems.
+* [CI/CD](cicd/README.md): Semantic Conventions for CI/CD systems.
 * [Cloud Providers](cloud-providers/README.md): Semantic Conventions for cloud providers libraries.
 * [CloudEvents](cloudevents/README.md): Semantic Conventions for the CloudEvents specification.
 * [Database](db/README.md): Semantic Conventions for database operations.

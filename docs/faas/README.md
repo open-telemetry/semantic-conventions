@@ -12,6 +12,7 @@ Semantic conventions for FaaS are defined for the following signals:
 
 * [FaaS Spans](faas-spans.md): Semantic Conventions for FaaS *spans*.
 * [FaaS Metrics](faas-metrics.md): Semantic Conventions for FaaS *metrics*.
+* [FaaS Exceptions](faas-exceptions.md): Semantic Conventions for FaaS *exceptions*.
 
 Technology specific semantic conventions are defined for the following FaaS services:
 
