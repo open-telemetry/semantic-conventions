@@ -4,12 +4,6 @@
             "additionalProperties": true,
             "description": "Represents blob binary data sent inline to the model",
             "properties": {
-                "type": {
-                    "const": "blob",
-                    "description": "The type of the content captured in this part.",
-                    "title": "Type",
-                    "type": "string"
-                },
                 "mime_type": {
                     "anyOf": [
                         {
@@ -34,6 +28,39 @@
                     ],
                     "description": "The general modality of the data if it is known. Instrumentations SHOULD also set the mimeType field if the specific type is known.",
                     "title": "Modality"
+                },
+                "byte_size": {
+                    "anyOf": [
+                        {
+                            "minimum": 0,
+                            "type": "integer"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "Size of the captured or referenced payload in bytes, as observed by the instrumentation at capture time. Useful for cost-of-capture telemetry and storage planning.",
+                    "title": "Byte Size"
+                },
+                "stripped_reason": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "If set, indicates that the bytes (or the referenced file id / uri) were intentionally NOT captured by the instrumentation, and gives a short reason. Allows consumers to distinguish 'no media in this turn' from 'media was deliberately not captured'. The value is a free-form short string defined by the instrumentation (e.g. 'size_exceeded', 'modality_not_allowed').",
+                    "title": "Stripped Reason"
+                },
+                "type": {
+                    "const": "blob",
+                    "description": "The type of the content captured in this part.",
+                    "title": "Type",
+                    "type": "string"
                 },
                 "content": {
                     "anyOf": [
@@ -48,38 +75,11 @@
                     "default": null,
                     "description": "Raw bytes of the attached data. This field SHOULD be encoded as a base64 string when serialized to JSON. MAY be omitted when the instrumentation intentionally did not capture the bytes; in that case `stripped_reason` SHOULD be set.",
                     "title": "Content"
-                },
-                "byte_size": {
-                    "anyOf": [
-                        {
-                            "minimum": 0,
-                            "type": "integer"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "default": null,
-                    "description": "Size of the captured or referenced payload in bytes, as observed by the instrumentation at capture time. Useful for cost-of-capture telemetry and storage planning.",
-                    "title": "Byte Size"
-                },
-                "stripped_reason": {
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "default": null,
-                    "description": "If set, indicates that the bytes (or the referenced file id / uri) were intentionally NOT captured by the instrumentation, and gives a short reason. Allows consumers to distinguish 'no media in this turn' from 'media was deliberately not captured'. The value is a free-form short string defined by the instrumentation (e.g. 'size_exceeded', 'modality_not_allowed').",
-                    "title": "Stripped Reason"
                 }
             },
             "required": [
-                "type",
-                "modality"
+                "modality",
+                "type"
             ],
             "title": "BlobPart",
             "type": "object"
@@ -88,12 +88,6 @@
             "additionalProperties": true,
             "description": "Represents an external referenced file sent to the model by file id",
             "properties": {
-                "type": {
-                    "const": "file",
-                    "description": "The type of the content captured in this part.",
-                    "title": "Type",
-                    "type": "string"
-                },
                 "mime_type": {
                     "anyOf": [
                         {
@@ -119,19 +113,6 @@
                     "description": "The general modality of the data if it is known. Instrumentations SHOULD also set the mimeType field if the specific type is known.",
                     "title": "Modality"
                 },
-                "file_id": {
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "default": null,
-                    "description": "An identifier referencing a file that was pre-uploaded to the provider. MAY be omitted when the instrumentation intentionally did not capture the identifier; in that case `stripped_reason` SHOULD be set.",
-                    "title": "File Id"
-                },
                 "byte_size": {
                     "anyOf": [
                         {
@@ -158,11 +139,30 @@
                     "default": null,
                     "description": "If set, indicates that the bytes (or the referenced file id / uri) were intentionally NOT captured by the instrumentation, and gives a short reason. Allows consumers to distinguish 'no media in this turn' from 'media was deliberately not captured'. The value is a free-form short string defined by the instrumentation (e.g. 'size_exceeded', 'modality_not_allowed').",
                     "title": "Stripped Reason"
+                },
+                "type": {
+                    "const": "file",
+                    "description": "The type of the content captured in this part.",
+                    "title": "Type",
+                    "type": "string"
+                },
+                "file_id": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "An identifier referencing a file that was pre-uploaded to the provider. MAY be omitted when the instrumentation intentionally did not capture the identifier; in that case `stripped_reason` SHOULD be set.",
+                    "title": "File Id"
                 }
             },
             "required": [
-                "type",
-                "modality"
+                "modality",
+                "type"
             ],
             "title": "FilePart",
             "type": "object"
@@ -427,12 +427,6 @@
             "additionalProperties": true,
             "description": "Represents an external referenced file sent to the model by URI",
             "properties": {
-                "type": {
-                    "const": "uri",
-                    "description": "The type of the content captured in this part.",
-                    "title": "Type",
-                    "type": "string"
-                },
                 "mime_type": {
                     "anyOf": [
                         {
@@ -457,19 +451,6 @@
                     ],
                     "description": "The general modality of the data if it is known. Instrumentations SHOULD also set the mimeType field if the specific type is known.",
                     "title": "Modality"
-                },
-                "uri": {
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "default": null,
-                    "description": "A URI referencing attached data. It should not be a base64 data URL, which should use the `blob` part instead. The URI may use a scheme known to the provider api (e.g. `gs://bucket/object.png`), or be a publicly accessible location. MAY be omitted when the instrumentation intentionally did not capture the URI; in that case `stripped_reason` SHOULD be set.",
-                    "title": "Uri"
                 },
                 "byte_size": {
                     "anyOf": [
@@ -497,11 +478,30 @@
                     "default": null,
                     "description": "If set, indicates that the bytes (or the referenced file id / uri) were intentionally NOT captured by the instrumentation, and gives a short reason. Allows consumers to distinguish 'no media in this turn' from 'media was deliberately not captured'. The value is a free-form short string defined by the instrumentation (e.g. 'size_exceeded', 'modality_not_allowed').",
                     "title": "Stripped Reason"
+                },
+                "type": {
+                    "const": "uri",
+                    "description": "The type of the content captured in this part.",
+                    "title": "Type",
+                    "type": "string"
+                },
+                "uri": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "A URI referencing attached data. It should not be a base64 data URL, which should use the `blob` part instead. The URI may use a scheme known to the provider api (e.g. `gs://bucket/object.png`), or be a publicly accessible location. MAY be omitted when the instrumentation intentionally did not capture the URI; in that case `stripped_reason` SHOULD be set.",
+                    "title": "Uri"
                 }
             },
             "required": [
-                "type",
-                "modality"
+                "modality",
+                "type"
             ],
             "title": "UriPart",
             "type": "object"
