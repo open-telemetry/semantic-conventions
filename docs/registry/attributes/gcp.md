@@ -180,6 +180,8 @@ This document defines attributes for Google Compute Engine (GCE).
 | <a id="gcp-gce-instance-group-manager-region" href="#gcp-gce-instance-group-manager-region">`gcp.gce.instance_group_manager.region`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The region of a **regional** Instance Group Manager (e.g., `us-central1`). Set this **only** when the IGM is regional. | `us-central1`; `europe-west1` |
 | <a id="gcp-gce-instance-group-manager-zone" href="#gcp-gce-instance-group-manager-zone">`gcp.gce.instance_group_manager.zone`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The zone of a **zonal** Instance Group Manager (e.g., `us-central1-a`). Set this **only** when the IGM is zonal. | `us-central1-a`; `europe-west1-b` |
 
+**[6] `gcp.gce.instance.labels.<key>`:** For example, a GCE instance label `team` with value `observability` SHOULD be recorded as the `gcp.gce.instance.labels.team` attribute with value `"observability"`. The `<key>` MUST be the exact GCE instance label key.
+
 ## Generative AI Attributes
 
 This documents defines attributes for Google generative AI systems.
@@ -188,9 +190,9 @@ This documents defines attributes for Google generative AI systems.
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="gcp-gen-ai-operation-config" href="#gcp-gen-ai-operation-config">`gcp.gen_ai.operation.config.<key>`</a> | ![Development](https://img.shields.io/badge/-development-blue) | template[any] | Operation-specific request configuration options for Google generative AI operations, the `<key>` being the configuration name, the value being the corresponding configuration value. [6] | A config `audioTimestamp` with value `true` SHOULD be recorded as the<br>`gcp.gen_ai.operation.config.audioTimestamp` attribute with value `true`.; A config `safetySettings` with value `[{"threshold":"OFF"}]` SHOULD be recorded as the<br>`gcp.gen_ai.operation.config.safetySettings` attribute with value:`[{"threshold":"OFF"}]`; A config `thinkingConfig` with value `{"includeThoughts":true}` SHOULD be recorded as the<br>`gcp.gen_ai.operation.config.thinkingConfig` attribute with value:`{"includeThoughts":"true"}` |
+| <a id="gcp-gen-ai-operation-config" href="#gcp-gen-ai-operation-config">`gcp.gen_ai.operation.config.<key>`</a> | ![Development](https://img.shields.io/badge/-development-blue) | template[any] | Operation-specific request configuration options for Google generative AI operations, the `<key>` being the configuration name, the value being the corresponding configuration value. [7] | A config `audioTimestamp` with value `true` SHOULD be recorded as the<br>`gcp.gen_ai.operation.config.audioTimestamp` attribute with value `true`.; A config `safetySettings` with value `[{"threshold":"OFF"}]` SHOULD be recorded as the<br>`gcp.gen_ai.operation.config.safetySettings` attribute with value:`[{"threshold":"OFF"}]`; A config `thinkingConfig` with value `{"includeThoughts":true}` SHOULD be recorded as the<br>`gcp.gen_ai.operation.config.thinkingConfig` attribute with value:`{"includeThoughts":"true"}` |
 
-**[6] `gcp.gen_ai.operation.config.<key>`:** The available `<key>` values are dependent on `gen_ai.operation.name` and SHOULD
+**[7] `gcp.gen_ai.operation.config.<key>`:** The available `<key>` values are dependent on `gen_ai.operation.name` and SHOULD
 correspond to fields on the operation-specific `*Config` data structure in the
 Google Gen AI SDK. The Google Gen AI SDK provides these `*Config` data structures
 in multiple languages, generated from a common source of truth. See
@@ -222,4 +224,3 @@ instrumentations SHOULD provide an opt-in mechanism through which the config
 information can be dumped into this field as a tool for debugging and as an escape
 hatch for the subset of configuration that is not yet representable using
 standardized conventions.
-**[6] `gcp.gce.instance.labels.<key>`:** For example, a GCE instance label `team` with value `observability` SHOULD be recorded as the `gcp.gce.instance.labels.team` attribute with value `"observability"`. The `<key>` MUST be the exact GCE instance label key.
