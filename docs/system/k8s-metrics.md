@@ -2383,7 +2383,7 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `k8s.container.ephemeral_storage.usage` | UpDownCounter | `By` | The ephemeral storage used by a container. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`k8s.container`](/docs/registry/entities/k8s.md#k8s-container) |
 
-**[1]:** By emitting the fs.type attribute, users can monitor both components independently or sum them up to get the total ephemeral storage usage to compare against requests and limits.
+**[1]:** The value for this metric can be compared against `metric.k8s.container.ephemeral_storage.request` and `metric.k8s.container.ephemeral_storage.limit`.
 
 **Attributes:**
 
@@ -2391,7 +2391,7 @@ This metric is [recommended][MetricRecommended].
 | --- | --- | --- | --- | --- | --- |
 | [`k8s.container.ephemeral_storage.fs_type`](/docs/registry/attributes/k8s.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The type of file system component for ephemeral storage. [1] | `rootfs`; `logs` |
 
-**[1] `k8s.container.ephemeral_storage.fs_type`:** Eviction decisions based on ephemeral-storage resource limits are calculated by summing both rootfs and logs usage.
+**[1] `k8s.container.ephemeral_storage.fs_type`:** Eviction decisions based on ephemeral-storage resource limits are made based on the total container usage.
 
 ---
 

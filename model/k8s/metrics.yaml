@@ -1517,7 +1517,7 @@ groups:
     entity_associations:
       - k8s.container
     note: |
-      By emitting the fs.type attribute, users can monitor both components independently or sum them up to get the total ephemeral storage usage to compare against requests and limits.
+      The value for this metric can be compared against `metric.k8s.container.ephemeral_storage.request` and `metric.k8s.container.ephemeral_storage.limit`.
     instrument: updowncounter
     unit: "By"
     attributes:

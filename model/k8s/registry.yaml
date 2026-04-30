@@ -232,7 +232,7 @@ groups:
         brief: >
           The type of file system component for ephemeral storage.
         note: |
-          Eviction decisions based on ephemeral-storage resource limits are calculated by summing both rootfs and logs usage.
+          Eviction decisions based on ephemeral-storage resource limits are made based on the total container usage.
         examples: ['rootfs', 'logs']
 
       - id: k8s.replicaset.uid

@@ -127,7 +127,7 @@ Which states:
 Therefore, UIDs between clusters should be extremely unlikely to
 conflict.
 
-**[2] `k8s.container.ephemeral_storage.fs_type`:** Eviction decisions based on ephemeral-storage resource limits are calculated by summing both rootfs and logs usage.
+**[2] `k8s.container.ephemeral_storage.fs_type`:** Eviction decisions based on ephemeral-storage resource limits are made based on the total container usage.
 
 **[3] `k8s.cronjob.annotation.<key>`:** Examples:
 
