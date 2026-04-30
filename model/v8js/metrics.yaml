@@ -15,13 +15,13 @@ groups:
     note: >
       The values can be retrieved from [`perf_hooks.PerformanceObserver(...).observe({ entryTypes: ['gc'] })`](https://nodejs.org/api/perf_hooks.html#performanceobserverobserveoptions)
 
-  - id: metric.v8js.memory.heap.limit
+  - id: metric.v8js.memory.heap.space.size
     type: metric
-    metric_name: v8js.memory.heap.limit
+    metric_name: v8js.memory.heap.space.size
     annotations:
       code_generation:
         metric_value_type: int
-    brief: "Total heap memory size pre-allocated."
+    brief: "Total heap memory size pre-allocated for a heap space."
     instrument: updowncounter
     unit: "By"
     stability: development
@@ -81,14 +81,14 @@ groups:
     note: >
       Value can be retrieved from value `physical_space_size` of [`v8.getHeapSpaceStatistics()`](https://nodejs.org/api/v8.html#v8getheapspacestatistics)
 
-  - id: metric.v8js.memory.heap.max
+  - id: metric.v8js.memory.heap.limit
     type: metric
-    metric_name: v8js.memory.heap.max
+    metric_name: v8js.memory.heap.limit
     annotations:
       code_generation:
         metric_value_type: int
     brief: "Maximum heap size allowed by the V8 engine."
-    instrument: gauge
+    instrument: updowncounter
     unit: "By"
     stability: development
     note: >
