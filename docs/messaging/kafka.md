@@ -6,13 +6,13 @@ linkTitle: Kafka
 
 **Status**: [Development][DocumentStatus]
 
-<!-- toc -->
+<!-- START doctoc -->
 
 - [Span attributes](#span-attributes)
 - [Examples](#examples)
   - [Apache Kafka with Quarkus or Spring Boot example](#apache-kafka-with-quarkus-or-spring-boot-example)
 
-<!-- tocstop -->
+<!-- END doctoc -->
 
 The Semantic Conventions for [Apache Kafka](https://kafka.apache.org/) extend and override the [Messaging Semantic Conventions](README.md).
 

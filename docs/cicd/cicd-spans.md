@@ -2,25 +2,25 @@
 linkTitle: Spans
 --->
 
-# Semantic conventions for CICD spans
+# Semantic conventions for CI/CD spans
 
 **Status**: [Development][DocumentStatus]
 
-<!-- toc -->
+<!-- START doctoc -->
 
-- [CICD Spans](#cicd-spans)
+- [CI/CD Spans](#cicd-spans)
   - [Pipeline run](#pipeline-run)
   - [Pipeline task run](#pipeline-task-run)
 
-<!-- tocstop -->
+<!-- END doctoc -->
 
-## CICD Spans
+## CI/CD Spans
 
-The conventions described in this section are specific to Continuous Integration / Continuous Deployment (CICD) systems.
+The conventions described in this section are specific to Continuous Integration / Continuous Deployment (CI/CD) systems.
 
-Any resources of the [CICD and VCS resource conventions][cicdres] that apply SHOULD be used.
+Any resources of the [CI/CD and VCS resource conventions][cicdres] that apply SHOULD be used.
 
-[cicdres]: /docs/resource/cicd.md "CICD and VCS resource conventions"
+[cicdres]: /docs/resource/cicd.md "CI/CD and VCS resource conventions"
 
 ### Pipeline run
 
@@ -31,11 +31,11 @@ Any resources of the [CICD and VCS resource conventions][cicdres] that apply SHO
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-This span describes a CICD pipeline run.
+This span describes a CI/CD pipeline run.
 
 For all pipeline runs, a span with kind `SERVER` SHOULD be created corresponding to the execution of the pipeline run.
 
-**Span name** MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.55.0/specification/trace/api.md#span).
+**Span name** MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.56.0/specification/trace/api.md#span).
 
 The span name SHOULD be `{action} {pipeline}` if there is a (low-cardinality) pipeline name available.
 If the pipeline name is not available or is likely to have high cardinality, then the span name SHOULD be `{action}`.
@@ -99,7 +99,7 @@ it's RECOMMENDED to:
 | Value | Description | Stability |
 | --- | --- | --- |
 | `cancellation` | The pipeline run was cancelled, eg. by a user manually cancelling the pipeline run. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `error` | The pipeline run failed due to an error in the CICD system, eg. due to the worker being killed. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `error` | The pipeline run failed due to an error in the CI/CD system, eg. due to the worker being killed. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `failure` | The pipeline run did not finish successfully, eg. due to a compile error or a failing test. Such failures are usually detected by non-zero exit codes of the tools executed in the pipeline run. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `skip` | The pipeline run was skipped, eg. due to a precondition not being met. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `success` | The pipeline run finished successfully. | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -184,7 +184,7 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | Value | Description | Stability |
 | --- | --- | --- |
 | `cancellation` | The task run was cancelled, eg. by a user manually cancelling the task run. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `error` | The task run failed due to an error in the CICD system, eg. due to the worker being killed. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `error` | The task run failed due to an error in the CI/CD system, eg. due to the worker being killed. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `failure` | The task run did not finish successfully, eg. due to a compile error or a failing test. Such failures are usually detected by non-zero exit codes of the tools executed in the task run. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `skip` | The task run was skipped, eg. due to a precondition not being met. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `success` | The task run finished successfully. | ![Development](https://img.shields.io/badge/-development-blue) |

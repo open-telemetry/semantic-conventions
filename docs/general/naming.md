@@ -9,7 +9,7 @@ aliases: [attribute-naming]
 <details>
 <summary>Table of Contents</summary>
 
-<!-- toc -->
+<!-- START doctoc -->
 
 - [General naming considerations](#general-naming-considerations)
 - [Name abbreviation guidelines](#name-abbreviation-guidelines)
@@ -34,7 +34,7 @@ aliases: [attribute-naming]
   - [System-specific metrics](#system-specific-metrics)
   - [Known exceptions](#known-exceptions)
 
-<!-- tocstop -->
+<!-- END doctoc -->
 
 </details>
 

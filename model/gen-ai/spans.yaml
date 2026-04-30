@@ -89,6 +89,11 @@ groups:
         requirement_level: recommended
       - ref: gen_ai.usage.output_tokens
         requirement_level: recommended
+      - ref: gen_ai.usage.reasoning.output_tokens
+        requirement_level:
+          recommended: when applicable
+        note: >
+          The value SHOULD be included in `gen_ai.usage.output_tokens`.
       - ref: gen_ai.conversation.id
         requirement_level:
           conditionally_required: when available
@@ -125,7 +130,7 @@ groups:
     note: |
       **Span name** SHOULD be `{gen_ai.operation.name} {gen_ai.request.model}`.
       Semantic conventions for individual GenAI systems and frameworks MAY specify different span name format
-      and MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.55.0/specification/trace/api.md#span).
+      and MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.56.0/specification/trace/api.md#span).
 
       **Span kind** SHOULD be `CLIENT` and MAY be set to `INTERNAL` on spans representing
       call to models running in the same process. It's RECOMMENDED to use `CLIENT` kind
@@ -200,6 +205,9 @@ groups:
       - ref: gen_ai.usage.cache_read.input_tokens
         note: >
           Corresponds to `usage.input_tokens_details.cached_tokens` or a similar property in the model response.
+      - ref: gen_ai.usage.reasoning.output_tokens
+        note: >
+          Corresponds to `usage.output_tokens_details.reasoning_tokens` in the model response.
       - ref: openai.request.service_tier
         requirement_level:
           conditionally_required: if the request includes a service_tier and the value is not 'auto'

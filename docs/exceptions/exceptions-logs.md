@@ -7,10 +7,10 @@ linkTitle: Logs
 **Status**: [Stable, except where otherwise specified][DocumentStatus]
 
 This document defines semantic conventions for recording exceptions on
-[logs](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.55.0/specification/logs/api.md#emit-a-logrecord)
-emitted through the [Logger API](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.55.0/specification/logs/api.md#logger).
+[logs](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.56.0/specification/logs/api.md#emit-a-logrecord)
+emitted through the [Logger API](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.56.0/specification/logs/api.md#logger).
 
-<!-- toc -->
+<!-- START doctoc -->
 
 - [Recording an exception](#recording-an-exception)
   - [When not to record exceptions](#when-not-to-record-exceptions)
@@ -25,7 +25,7 @@ emitted through the [Logger API](https://github.com/open-telemetry/opentelemetry
   - [Attributes](#attributes)
   - [Stacktrace representation](#stacktrace-representation)
 
-<!-- tocstop -->
+<!-- END doctoc -->
 
 > [!IMPORTANT]
 >
@@ -59,14 +59,14 @@ not hosted in OpenTelemetry.
 This document does not apply to logging bridges.
 
 Exceptions SHOULD be recorded as attributes on the
-[LogRecord](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.55.0/specification/logs/data-model.md#log-and-event-record-definition) passed to the [Logger](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.55.0/specification/logs/api.md#logger) emit
+[LogRecord](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.56.0/specification/logs/data-model.md#log-and-event-record-definition) passed to the [Logger](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.56.0/specification/logs/api.md#logger) emit
 operations.
 
 Exception events emitted by instrumentations that also record spans for the same
 operation MUST be associated with the corresponding span context.
 
 When language implementations support passing exception instances to the
-[Emit a LogRecord](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.55.0/specification/logs/api.md#emit-a-logrecord) API, instrumentations SHOULD provide the exception instance
+[Emit a LogRecord](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.56.0/specification/logs/api.md#emit-a-logrecord) API, instrumentations SHOULD provide the exception instance
 rather than manually setting individual exception attributes.
 
 ![Development](https://img.shields.io/badge/-development-blue) Instrumentations
@@ -103,7 +103,7 @@ global unhandled exception handlers, SHOULD use the `exception` event name.
 
 The severity reflects the expected impact of the exception, not just its presence.
 
-[Severity Number](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.55.0/specification/logs/data-model.md#field-severitynumber)
+[Severity Number](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.56.0/specification/logs/data-model.md#field-severitynumber)
 SHOULD be provided on all exception events and SHOULD be set based on the context
 in which the exception occurs, following the guidance below.
 
@@ -173,7 +173,7 @@ severity.
 ### Attributes
 
 The table below indicates which attributes should be added to the
-[LogRecord](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.55.0/specification/logs/data-model.md#log-and-event-record-definition).
+[LogRecord](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.56.0/specification/logs/data-model.md#log-and-event-record-definition).
 
 ![Development](https://img.shields.io/badge/-development-blue) Instrumentations MAY
 provide additional attributes to describe the context in which the exception occurred.

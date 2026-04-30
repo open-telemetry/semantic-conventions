@@ -8,7 +8,7 @@ linkTitle: NFS
 
 This document describes instruments and attributes for NFS and NFSD metrics.
 
-<!-- toc -->
+<!-- START doctoc -->
 
 - [NFS metrics](#nfs-metrics)
   - [Metric: `nfs.client.net.count`](#metric-nfsclientnetcount)
@@ -29,7 +29,7 @@ This document describes instruments and attributes for NFS and NFSD metrics.
   - [Metric: `nfs.server.operation.count`](#metric-nfsserveroperationcount)
   - [Metric: `nfs.server.procedure.count`](#metric-nfsserverprocedurecount)
 
-<!-- tocstop -->
+<!-- END doctoc -->
 
 ## NFS metrics
 

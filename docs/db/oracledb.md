@@ -6,14 +6,14 @@ linkTitle: Oracle Database
 
 **Status**: [Mixed][DocumentStatus]
 
-<!-- toc -->
+<!-- START doctoc -->
 
 - [Spans](#spans)
 - [Context propagation](#context-propagation)
   - [V$SESSION.ACTION](#vsessionaction)
 - [Metrics](#metrics)
 
-<!-- tocstop -->
+<!-- END doctoc -->
 
 The Semantic Conventions for *Oracle Database* extend and override the [Database Semantic Conventions](README.md).
 

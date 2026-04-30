@@ -4,13 +4,15 @@
     "_check:format:any": "npx prettier --check --ignore-path ''",
     "check": "make check",
     "check:format": "npm run _check:format || (echo '[help] Run: npm run format'; exit 1)",
+    "check:toc": "doctoc --update-only --mintocitems 1 --toc-pragma-style compact --notitle --dryrun .",
     "fix": "make fix",
     "fix:format": "npm run _check:format -- --write",
+    "fix:toc": "doctoc --update-only --mintocitems 1 --toc-pragma-style compact --notitle .",
     "test": "npm run check"
   },
   "devDependencies": {
-    "markdown-toc": "1.2.0",
-    "markdownlint-cli2": "0.22.0",
+    "doctoc": "2.4.1",
+    "markdownlint-cli2": "0.22.1",
     "prettier": "3.8.3"
   },
   "prettier": {

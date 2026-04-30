@@ -96,3 +96,19 @@ groups:
       [`v8.getHeapStatistics()`](https://nodejs.org/api/v8.html#v8getheapstatistics).
       This represents the absolute ceiling the heap can grow to, controlled by
       `--max-old-space-size` or V8 defaults.
+
+  - id: metric.v8js.resource.active
+    type: metric
+    metric_name: v8js.resource.active
+    annotations:
+      code_generation:
+        metric_value_type: int
+    brief: "Gauge of the active resources that are currently keeping the event loop alive."
+    instrument: gauge
+    unit: "{resource}"
+    stability: development
+    attributes:
+      - ref: v8js.resource.type
+        requirement_level: required
+    note: >
+      The values can be retrieved from [`process.getActiveResourcesInfo()`](https://nodejs.org/api/process.html#processgetactiveresourcesinfo)

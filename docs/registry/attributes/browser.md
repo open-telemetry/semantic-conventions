@@ -12,6 +12,7 @@ The web browser attributes
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
 | <a id="browser-brands" href="#browser-brands">`browser.brands`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string[] | Array of brand name and version separated by a space [1] | `[" Not A;Brand 99", "Chromium 99", "Chrome 99"]` |
+| <a id="browser-document-url-full" href="#browser-document-url-full">`browser.document.url.full`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Absolute URL of the current browser document according to [RFC3986](https://www.rfc-editor.org/rfc/rfc3986). | `https://www.example.com/search?q=OpenTelemetry#SemConv` |
 | <a id="browser-language" href="#browser-language">`browser.language`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Preferred language of the user using the browser [2] | `en`; `en-US`; `fr`; `fr-FR` |
 | <a id="browser-mobile" href="#browser-mobile">`browser.mobile`</a> | ![Development](https://img.shields.io/badge/-development-blue) | boolean | A boolean that is true if the browser is running on a mobile device [3] | |
 | <a id="browser-platform" href="#browser-platform">`browser.platform`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The platform on which the browser is running [4] | `Windows`; `macOS`; `Android` |

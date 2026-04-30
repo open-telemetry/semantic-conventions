@@ -13,6 +13,8 @@ groups:
     attributes:
       - ref: go.memory.type
         requirement_level: recommended
+      - ref: go.memory.detailed_type
+        requirement_level: opt_in
     stability: development
 
   - id: metric.go.memory.limit
@@ -66,6 +68,19 @@ groups:
       Computed from `/gc/heap/goal:bytes`.
     instrument: updowncounter
     unit: "By"
+    stability: development
+
+  - id: metric.go.memory.gc.cycles
+    type: metric
+    metric_name: go.memory.gc.cycles
+    annotations:
+      code_generation:
+        metric_value_type: int
+    brief: "Number of completed GC cycles."
+    note: >
+      Computed from `/gc/cycles/total:gc-cycles`.
+    instrument: counter
+    unit: "{gc_cycle}"
     stability: development
 
   - id: metric.go.memory.gc.pause.duration
@@ -134,4 +149,24 @@ groups:
       Computed from `/gc/gogc:percent`.
     instrument: updowncounter
     unit: "%"
+    stability: development
+
+  - id: metric.go.cpu.time
+    type: metric
+    metric_name: go.cpu.time
+    annotations:
+      code_generation:
+        metric_value_type: double
+    brief: "Estimated CPU time spent by the Go runtime."
+    note: >
+      Computed from `/cpu/classes/...` metrics.
+      This metric is an overestimate, and not directly comparable to system CPU time measurements.
+      Compare only with other `go.cpu.time` metrics.
+    instrument: counter
+    unit: "s"
+    attributes:
+      - ref: go.cpu.state
+        requirement_level: required
+      - ref: go.cpu.detailed_state
+        requirement_level: opt_in
     stability: development

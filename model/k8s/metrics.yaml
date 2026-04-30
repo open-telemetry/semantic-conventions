@@ -1378,32 +1378,76 @@ groups:
       If the CPU request is not set, this metric SHOULD NOT be emitted for that container.
     instrument: gauge
     unit: "1"
-  - id: metric.k8s.container.memory.limit
+  - id: metric.k8s.container.memory.limit.desired
     type: metric
-    metric_name: k8s.container.memory.limit
+    metric_name: k8s.container.memory.limit.desired
     annotations:
       code_generation:
         metric_value_type: int
     stability: development
-    brief: "Maximum memory resource limit set for the container."
+    brief: "Maximum memory resource limit as defined by the container spec."
     entity_associations:
       - k8s.container
     note: |
-      See https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#resourcerequirements-v1-core for details.
+      This metric aligns with the limit in the
+      [`resources`](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#resourcerequirements-v1-core) field of
+      [K8s Container](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#container-v1-core)
+      (spec.containers[*].resources). Also see `Desired Resources` in
+      <https://kubernetes.io/docs/tasks/configure-pod-container/resize-container-resources/> for more details.
     instrument: updowncounter
     unit: "By"
-  - id: metric.k8s.container.memory.request
+  - id: metric.k8s.container.memory.limit.current
     type: metric
-    metric_name: k8s.container.memory.request
+    metric_name: k8s.container.memory.limit.current
     annotations:
       code_generation:
         metric_value_type: int
     stability: development
-    brief: "Memory resource requested for the container."
+    brief: "Maximum memory resource limit currently configured for a running container."
     entity_associations:
       - k8s.container
     note: |
-      See https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#resourcerequirements-v1-core for details.
+      This metric aligns with the limit in the
+      [`resources`](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#resourcerequirements-v1-core) field of
+      [K8s ContainerStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#containerstatus-v1-core)
+      (status.containerStatuses[*].resources). Also see `Actual Resources` in
+      <https://kubernetes.io/docs/tasks/configure-pod-container/resize-container-resources/> for more details.
+    instrument: updowncounter
+    unit: "By"
+  - id: metric.k8s.container.memory.request.desired
+    type: metric
+    metric_name: k8s.container.memory.request.desired
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "Memory resource requested as defined by the container spec."
+    entity_associations:
+      - k8s.container
+    note: |
+      This metric aligns with the request in the
+      [`resources`](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#resourcerequirements-v1-core) field of
+      [K8s Container](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#container-v1-core)
+      (spec.containers[*].resources). Also see `Desired Resources` in
+      <https://kubernetes.io/docs/tasks/configure-pod-container/resize-container-resources/> for more details.
+    instrument: updowncounter
+    unit: "By"
+  - id: metric.k8s.container.memory.request.current
+    type: metric
+    metric_name: k8s.container.memory.request.current
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "Memory resource request currently configured for a running container."
+    entity_associations:
+      - k8s.container
+    note: |
+      This metric aligns with the request in the
+      [`resources`](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#resourcerequirements-v1-core) field of
+      [K8s ContainerStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#containerstatus-v1-core)
+      (status.containerStatuses[*].resources). Also see `Actual Resources` in
+      <https://kubernetes.io/docs/tasks/configure-pod-container/resize-container-resources/> for more details.
     instrument: updowncounter
     unit: "By"
   - id: metric.k8s.container.storage.limit

@@ -8,12 +8,12 @@ linkTitle: Exceptions
 
 This document defines semantic conventions for recording exceptions on HTTP operations.
 
-<!-- toc -->
+<!-- START doctoc -->
 
 - [HTTP client request exception](#http-client-request-exception)
 - [HTTP server request exception](#http-server-request-exception)
 
-<!-- tocstop -->
+<!-- END doctoc -->
 
 ## HTTP client request exception
 

@@ -22,10 +22,10 @@ This group describes attributes specific to pipelines within a Continuous Integr
 | <a id="cicd-pipeline-task-run-result" href="#cicd-pipeline-task-run-result">`cicd.pipeline.task.run.result`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The result of a task run. | `success`; `failure`; `timeout`; `skipped` |
 | <a id="cicd-pipeline-task-run-url-full" href="#cicd-pipeline-task-run-url-full">`cicd.pipeline.task.run.url.full`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The [URL](https://wikipedia.org/wiki/URL) of the pipeline task run, providing the complete address in order to locate and identify the pipeline task run. | `https://github.com/open-telemetry/semantic-conventions/actions/runs/9753949763/job/26920038674?pr=1075` |
 | <a id="cicd-pipeline-task-type" href="#cicd-pipeline-task-type">`cicd.pipeline.task.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The type of the task within a pipeline. | `build`; `test`; `deploy` |
-| <a id="cicd-system-component" href="#cicd-system-component">`cicd.system.component`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of a component of the CICD system. | `controller`; `scheduler`; `agent` |
-| <a id="cicd-worker-id" href="#cicd-worker-id">`cicd.worker.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The unique identifier of a worker within a CICD system. | `abc123`; `10.0.1.2`; `controller` |
-| <a id="cicd-worker-name" href="#cicd-worker-name">`cicd.worker.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of a worker within a CICD system. | `agent-abc`; `controller`; `Ubuntu LTS` |
-| <a id="cicd-worker-state" href="#cicd-worker-state">`cicd.worker.state`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The state of a CICD worker / agent. | `idle`; `busy`; `down` |
+| <a id="cicd-system-component" href="#cicd-system-component">`cicd.system.component`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of a component of the CI/CD system. | `controller`; `scheduler`; `agent` |
+| <a id="cicd-worker-id" href="#cicd-worker-id">`cicd.worker.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The unique identifier of a worker within a CI/CD system. | `abc123`; `10.0.1.2`; `controller` |
+| <a id="cicd-worker-name" href="#cicd-worker-name">`cicd.worker.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of a worker within a CI/CD system. | `agent-abc`; `controller`; `Ubuntu LTS` |
+| <a id="cicd-worker-state" href="#cicd-worker-state">`cicd.worker.state`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The state of a CI/CD worker / agent. | `idle`; `busy`; `down` |
 | <a id="cicd-worker-url-full" href="#cicd-worker-url-full">`cicd.worker.url.full`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The [URL](https://wikipedia.org/wiki/URL) of the worker, providing the complete address in order to locate and identify the worker. | `https://cicd.example.org/worker/abc123` |
 
 **[1] `cicd.pipeline.task.run.id`:** For a given pipeline run and task, the `cicd.pipeline.task.run.id` MUST be unique within that run. For the same task across different runs of the same pipeline, the `cicd.pipeline.task.run.id` MAY remain the same, enabling correlation of `cicd.pipeline.task.run.result` values across multiple pipeline runs.
@@ -47,7 +47,7 @@ This group describes attributes specific to pipelines within a Continuous Integr
 | Value | Description | Stability |
 | --- | --- | --- |
 | `cancellation` | The pipeline run was cancelled, eg. by a user manually cancelling the pipeline run. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `error` | The pipeline run failed due to an error in the CICD system, eg. due to the worker being killed. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `error` | The pipeline run failed due to an error in the CI/CD system, eg. due to the worker being killed. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `failure` | The pipeline run did not finish successfully, eg. due to a compile error or a failing test. Such failures are usually detected by non-zero exit codes of the tools executed in the pipeline run. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `skip` | The pipeline run was skipped, eg. due to a precondition not being met. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `success` | The pipeline run finished successfully. | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -70,7 +70,7 @@ This group describes attributes specific to pipelines within a Continuous Integr
 | Value | Description | Stability |
 | --- | --- | --- |
 | `cancellation` | The task run was cancelled, eg. by a user manually cancelling the task run. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `error` | The task run failed due to an error in the CICD system, eg. due to the worker being killed. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `error` | The task run failed due to an error in the CI/CD system, eg. due to the worker being killed. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `failure` | The task run did not finish successfully, eg. due to a compile error or a failing test. Such failures are usually detected by non-zero exit codes of the tools executed in the task run. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `skip` | The task run was skipped, eg. due to a precondition not being met. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `success` | The task run finished successfully. | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -92,8 +92,8 @@ This group describes attributes specific to pipelines within a Continuous Integr
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `available` | The worker is not performing work for the CICD system. It is available to the CICD system to perform work on (online / idle). [2] | ![Development](https://img.shields.io/badge/-development-blue) |
-| `busy` | The worker is performing work for the CICD system. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `offline` | The worker is not available to the CICD system (disconnected / down). | ![Development](https://img.shields.io/badge/-development-blue) |
+| `available` | The worker is not performing work for the CI/CD system. It is available to the CI/CD system to perform work on (online / idle). [2] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `busy` | The worker is performing work for the CI/CD system. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `offline` | The worker is not available to the CI/CD system (disconnected / down). | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[2]:** Pipelines might have conditions on which workers they are able to run so not every worker might be available to every pipeline.

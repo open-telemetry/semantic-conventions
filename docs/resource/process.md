@@ -6,7 +6,7 @@ linkTitle: Process
 
 **Status**: [Development][DocumentStatus]
 
-<!-- toc -->
+<!-- START doctoc -->
 
 - [Process](#process)
   - [Selecting process command attributes](#selecting-process-command-attributes)
@@ -19,7 +19,7 @@ linkTitle: Process
   - [Python runtimes](#python-runtimes)
   - [Ruby runtimes](#ruby-runtimes)
 
-<!-- tocstop -->
+<!-- END doctoc -->
 
 ## Process
 
@@ -45,8 +45,6 @@ linkTitle: Process
 | Description | [`process.args_count`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | Length of the process.command_args array [1] | `4` |
 | Description | [`process.command_args`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string[] | All the command arguments (including the command/executable itself) as received by the process. On Linux-based systems (and some other Unixoid systems supporting procfs), can be set according to the list of null-delimited strings extracted from `proc/[pid]/cmdline`. For libc-based executables, this would be the full argv vector passed to `main`. SHOULD NOT be collected by default unless there is sanitization that excludes sensitive data. | `["cmd/otecol", "--config=config.yaml"]` |
 | Description | [`process.command_line`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The full command used to launch the process as a single string representing the full command. On Windows, can be set to the result of `GetCommandLineW`. Do not set this if you have to assemble it just for monitoring; use `process.command_args` instead. SHOULD NOT be collected by default unless there is sanitization that excludes sensitive data. | `C:\cmd\otecol --config="my directory\config.yaml"` |
-| Description | [`process.executable.name`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The name of the process executable. On Linux based systems, this SHOULD be set to the base name of the target of `/proc/[pid]/exe`. On Windows, this SHOULD be set to the base name of `GetProcessImageFileNameW`. | `otelcol` |
-| Description | [`process.executable.path`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The full path to the process executable. On Linux based systems, can be set to the target of `proc/[pid]/exe`. On Windows, can be set to the result of `GetProcessImageFileNameW`. | `/usr/bin/cmd/otelcol` |
 | Description | [`process.interactive`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | boolean | Whether the process is connected to an interactive shell. | |
 | Description | [`process.linux.cgroup`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The control group associated with the process. [2] | `1:name=systemd:/user.slice/user-1000.slice/session-3.scope`; `0::/user.slice/user-1000.slice/user@1000.service/tmux-spawn-0267755b-4639-4a27-90ed-f19f88e53748.scope` |
 | Description | [`process.parent_pid`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | Parent Process identifier (PPID). | `111` |
