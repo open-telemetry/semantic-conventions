@@ -20,8 +20,8 @@ Kubernetes resource attributes.
 | <a id="k8s-container-name" href="#k8s-container-name">`k8s.container.name`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The name of the Container from Pod specification, must be unique within a Pod. Container runtime usually uses different globally unique name (`container.name`). | `redis` |
 | <a id="k8s-container-restart-count" href="#k8s-container-restart-count">`k8s.container.restart_count`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | int | Number of times the container was restarted. This attribute can be used to identify a particular container (running or stopped) within a container spec. | |
 | <a id="k8s-container-status-last-terminated-reason" href="#k8s-container-status-last-terminated-reason">`k8s.container.status.last_terminated_reason`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Last terminated reason of the Container. | `Evicted`; `Error` |
-| <a id="k8s-container-status-reason" href="#k8s-container-status-reason">`k8s.container.status.reason`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The reason for the container state. Corresponds to the `reason` field of the: [K8s ContainerStateWaiting](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#containerstatewaiting-v1-core) or [K8s ContainerStateTerminated](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#containerstateterminated-v1-core) | `ContainerCreating`; `CrashLoopBackOff`; `CreateContainerConfigError`; `ErrImagePull`; `ImagePullBackOff`; `OOMKilled`; `Completed`; `Error`; `ContainerCannotRun` |
-| <a id="k8s-container-status-state" href="#k8s-container-status-state">`k8s.container.status.state`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The state of the container. [K8s ContainerState](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#containerstate-v1-core) | `terminated`; `running`; `waiting` |
+| <a id="k8s-container-status-reason" href="#k8s-container-status-reason">`k8s.container.status.reason`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The reason for the container state. Corresponds to the `reason` field of the: [K8s ContainerStateWaiting](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#containerstatewaiting-v1-core) or [K8s ContainerStateTerminated](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#containerstateterminated-v1-core) | `ContainerCreating`; `CrashLoopBackOff`; `CreateContainerConfigError`; `ErrImagePull`; `ImagePullBackOff`; `OOMKilled`; `Completed`; `Error`; `ContainerCannotRun` |
+| <a id="k8s-container-status-state" href="#k8s-container-status-state">`k8s.container.status.state`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The state of the container. [K8s ContainerState](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#containerstate-v1-core) | `terminated`; `running`; `waiting` |
 | <a id="k8s-cronjob-annotation" href="#k8s-cronjob-annotation">`k8s.cronjob.annotation.<key>`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The cronjob annotation placed on the CronJob, the `<key>` being the annotation name, the value being the annotation value. [3] | `4`; `` |
 | <a id="k8s-cronjob-label" href="#k8s-cronjob-label">`k8s.cronjob.label.<key>`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The label placed on the CronJob, the `<key>` being the label name, the value being the label value. [4] | `weekly`; `` |
 | <a id="k8s-cronjob-name" href="#k8s-cronjob-name">`k8s.cronjob.name`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The name of the CronJob. | `opentelemetry` |
@@ -100,7 +100,7 @@ Kubernetes resource attributes.
 | <a id="k8s-statefulset-label" href="#k8s-statefulset-label">`k8s.statefulset.label.<key>`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The label placed on the StatefulSet, the `<key>` being the label name, the value being the label value, even if the value is empty. [47] | `guestbook`; `` |
 | <a id="k8s-statefulset-name" href="#k8s-statefulset-name">`k8s.statefulset.name`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The name of the StatefulSet. | `opentelemetry` |
 | <a id="k8s-statefulset-uid" href="#k8s-statefulset-uid">`k8s.statefulset.uid`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The UID of the StatefulSet. | `275ecb36-5aa8-4c2a-9c47-d8bb681b9aff` |
-| <a id="k8s-storageclass-name" href="#k8s-storageclass-name">`k8s.storageclass.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of K8s [StorageClass](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#storageclass-v1-storage-k8s-io) object. | `gold.storageclass.storage.k8s.io` |
+| <a id="k8s-storageclass-name" href="#k8s-storageclass-name">`k8s.storageclass.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of K8s [StorageClass](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#storageclass-v1-storage-k8s-io) object. | `gold.storageclass.storage.k8s.io` |
 | <a id="k8s-volume-name" href="#k8s-volume-name">`k8s.volume.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the K8s volume. | `volume0` |
 | <a id="k8s-volume-type" href="#k8s-volume-type">`k8s.volume.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The type of the K8s volume. | `emptyDir`; `persistentVolumeClaim` |
 
@@ -208,7 +208,7 @@ conflict.
   the `k8s.namespace.label.data` attribute with value `""`.
 
 **[17] `k8s.namespace.phase`:** This attribute aligns with the `phase` field of the
-[K8s NamespaceStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#namespacestatus-v1-core)
+[K8s NamespaceStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#namespacestatus-v1-core)
 
 **[18] `k8s.node.annotation.<key>`:** Examples:
 
@@ -218,13 +218,13 @@ conflict.
   the `k8s.node.annotation.data` attribute with value `""`.
 
 **[19] `k8s.node.condition.status`:** This attribute aligns with the `status` field of the
-[NodeCondition](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#nodecondition-v1-core)
+[NodeCondition](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#nodecondition-v1-core)
 
 **[20] `k8s.node.condition.type`:** K8s Node conditions as described
-by [K8s documentation](https://v1-32.docs.kubernetes.io/docs/reference/node/node-status/#condition).
+by [K8s documentation](https://kubernetes.io/docs/reference/node/node-status/#condition).
 
 This attribute aligns with the `type` field of the
-[NodeCondition](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#nodecondition-v1-core)
+[NodeCondition](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#nodecondition-v1-core)
 
 The set of possible values is not limited to those listed here. Managed Kubernetes environments,
 or custom controllers MAY introduce additional node condition types.
@@ -557,12 +557,12 @@ When not set, Kubernetes distributes traffic evenly across all endpoints cluster
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `configMap` | A [configMap](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#configmap) volume | ![Development](https://img.shields.io/badge/-development-blue) |
-| `downwardAPI` | A [downwardAPI](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#downwardapi) volume | ![Development](https://img.shields.io/badge/-development-blue) |
-| `emptyDir` | An [emptyDir](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#emptydir) volume | ![Development](https://img.shields.io/badge/-development-blue) |
-| `local` | A [local](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#local) volume | ![Development](https://img.shields.io/badge/-development-blue) |
-| `persistentVolumeClaim` | A [persistentVolumeClaim](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#persistentvolumeclaim) volume | ![Development](https://img.shields.io/badge/-development-blue) |
-| `secret` | A [secret](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#secret) volume | ![Development](https://img.shields.io/badge/-development-blue) |
+| `configMap` | A [configMap](https://kubernetes.io/docs/concepts/storage/volumes/#configmap) volume | ![Development](https://img.shields.io/badge/-development-blue) |
+| `downwardAPI` | A [downwardAPI](https://kubernetes.io/docs/concepts/storage/volumes/#downwardapi) volume | ![Development](https://img.shields.io/badge/-development-blue) |
+| `emptyDir` | An [emptyDir](https://kubernetes.io/docs/concepts/storage/volumes/#emptydir) volume | ![Development](https://img.shields.io/badge/-development-blue) |
+| `local` | A [local](https://kubernetes.io/docs/concepts/storage/volumes/#local) volume | ![Development](https://img.shields.io/badge/-development-blue) |
+| `persistentVolumeClaim` | A [persistentVolumeClaim](https://kubernetes.io/docs/concepts/storage/volumes/#persistentvolumeclaim) volume | ![Development](https://img.shields.io/badge/-development-blue) |
+| `secret` | A [secret](https://kubernetes.io/docs/concepts/storage/volumes/#secret) volume | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ## Deprecated Kubernetes Attributes
 
