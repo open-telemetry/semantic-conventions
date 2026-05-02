@@ -150,8 +150,7 @@ groups:
       - ref: server.address
         requirement_level: recommended
         brief: >
-          The logical server hostname or IP address serving the GraphQL
-          endpoint.
+          The logical server hostname or IP address serving the GraphQL endpoint.
         note: >
           This SHOULD be the logical server address, not a proxy or load
           balancer address.
@@ -370,6 +369,9 @@ groups:
         requirement_level: recommended
       - ref: graphql.document.hash
         requirement_level: recommended
+      - ref: graphql.document.id
+        requirement_level:
+          conditionally_required: If using trusted documents.
 
   - id: span.graphql.step.execution.internal
     type: span
@@ -427,17 +429,20 @@ groups:
         requirement_level: recommended
       - ref: graphql.document.hash
         requirement_level: recommended
+      - ref: graphql.document.id
+        requirement_level:
+          conditionally_required: If using trusted documents.
       - ref: graphql.operation.step.id
         requirement_level: required
       - ref: graphql.operation.step.kind
         requirement_level: recommended
       - ref: graphql.operation.step.plan.id
         requirement_level: recommended
-      - ref: graphql.source.name
+      - ref: graphql.source_schema.name
         requirement_level: opt_in
-      - ref: graphql.source.operation.name
+      - ref: graphql.source_schema.operation.name
         requirement_level: opt_in
-      - ref: graphql.source.operation.hash
+      - ref: graphql.source_schema.operation.hash
         requirement_level: opt_in
 
   - id: span.graphql.operation.execution.internal
@@ -484,7 +489,7 @@ groups:
     brief: >
       This span represents the execution of a GraphQL field.
     note: |
-      **Span name** SHOULD be `{graphql.selection.field.coordinate}`.
+      **Span name** SHOULD be `{graphql.field.schema_coordinate}`.
 
       This span covers the execution of an individual field, including both
       synchronous and asynchronous resolvers. The span ends when the resolver
@@ -524,15 +529,15 @@ groups:
       - ref: graphql.processing.type
         requirement_level: required
         brief: MUST be `resolve`.
-      - ref: graphql.selection.name
+      - ref: graphql.field.alias
         requirement_level: recommended
-      - ref: graphql.selection.path
+      - ref: graphql.field.path
         requirement_level: recommended
-      - ref: graphql.selection.field.name
+      - ref: graphql.field.name
         requirement_level: required
-      - ref: graphql.selection.field.parent_type
+      - ref: graphql.field.parent_type
         requirement_level: required
-      - ref: graphql.selection.field.coordinate
+      - ref: graphql.field.schema_coordinate
         requirement_level: required
 
   - id: span.graphql.dataloader.dispatch.internal
@@ -586,7 +591,7 @@ groups:
       the causal relationship between resolvers and the batch is preserved.
 
       Each link SHOULD include the following attributes:
-      - `graphql.selection.field.coordinate`: The coordinate of the field
+      - `graphql.field.schema_coordinate`: The schema coordinate of the field
         that triggered the load request (e.g., `User.avatar`).
 
       When the number of contributing resolvers exceeds a practical limit,

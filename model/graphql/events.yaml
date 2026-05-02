@@ -23,17 +23,19 @@ groups:
       SHOULD record both the GraphQL error details and the exception information
       on the same `graphql.error` event rather than emitting separate events.
       The exception attributes (`exception.type`, `exception.message`,
-      `exception.stacktrace`) MAY be included alongside the `graphql.error.*`
-      attributes on the same event. This avoids duplicate events for the same
-      underlying issue and keeps the error context together.
+      `exception.stacktrace`) MAY be included alongside the GraphQL-specific
+      error detail attributes on the same event. This avoids duplicate events
+      for the same underlying issue and keeps the error context together.
 
       When a GraphQL error is NOT caused by an exception (e.g., validation errors,
-      authorization errors returned by the GraphQL layer), only the `graphql.error.*`
-      attributes are needed.
+      authorization errors returned by the GraphQL layer), only the
+      GraphQL-specific error detail attributes are needed.
 
       Instrumentations SHOULD cap the number of error events per span to a configurable
-      maximum (default: 10) to prevent excessive telemetry. When capped, the total error
-      count SHOULD still be recorded via `graphql.error.count` on the parent span.
+      maximum (default: 10) to prevent excessive telemetry. If error events are capped,
+      `graphql.error.count` on the parent span SHOULD reflect the total number of
+      errors rather than the number of emitted events. `graphql.error.count` SHOULD be
+      omitted when the count is 0.
 
       **Relationship to span status and `error.type`:**
       GraphQL error events provide detailed per-error information from the response `errors`
@@ -51,12 +53,26 @@ groups:
     attributes:
       - ref: graphql.error.message
         requirement_level: required
-      - ref: graphql.error.locations
+      - ref: graphql.document.locations
         requirement_level:
           conditionally_required: Should be included when the error can be associated with a specific location in the GraphQL document.
-      - ref: graphql.error.path
+      - ref: graphql.field.path
         requirement_level:
           conditionally_required: Must be included when the error can be associated with a particular field in the GraphQL result.
+        note: >
+          The path of the response field which experienced the error. If an
+          error can be associated to a particular field in the GraphQL result,
+          it must contain an entry with the key path that details the path of
+          the response field which experienced the error.
+
+          This allows clients to identify whether a null result is intentional
+          or caused by a runtime error.
+
+          The path starts from the root of the response. Field names are
+          separated by dots and list indices are represented using bracket
+          notation. If the error happens in an aliased field, the path should
+          use the aliased name, since it represents a path in the response, not
+          in the request.
       - ref: graphql.error.code
         requirement_level: opt_in
       - ref: exception.type
@@ -79,7 +95,7 @@ groups:
           The exception stacktrace, when available and the error was caused
           by an exception. This attribute is opt-in due to its size and
           potential to contain sensitive information.
-      - ref: graphql.error.schema_coordinate
+      - ref: graphql.field.schema_coordinate
         requirement_level:
           conditionally_required: Should be included when the error can be associated with a particular field in the GraphQL schema.
       - ref: graphql.operation.type

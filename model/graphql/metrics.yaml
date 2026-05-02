@@ -80,9 +80,9 @@ groups:
       request durations.
     extends: metric_attributes.graphql.server
 
-  - id: metric.graphql.server.active_requests
+  - id: metric.graphql.server.request.active
     type: metric
-    metric_name: graphql.server.active_requests
+    metric_name: graphql.server.request.active
     annotations:
       code_generation:
         metric_value_type: int
@@ -177,9 +177,9 @@ groups:
       decremented when a subscription is terminated (either by client
       disconnect or server-side cancellation).
 
-      This is distinct from `graphql.server.active_requests`, which tracks
+      This is distinct from `graphql.server.request.active`, which tracks
       short-lived request processing (parse → execute → respond). For
-      subscriptions, `active_requests` only covers the initial setup request,
+      subscriptions, `request.active` only covers the initial setup request,
       while this metric tracks the long-lived subscription connection that
       may remain open for hours or days delivering events.
     attributes:

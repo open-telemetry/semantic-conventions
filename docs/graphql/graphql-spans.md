@@ -478,8 +478,9 @@ context.
 | [`graphql.operation.type`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The type of the operation being executed. | `query`; `mutation`; `subscription` |
 | [`graphql.processing.type`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | MUST be `plan`. [1] | `parse`; `validate`; `execute`; `resolve` |
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If the planning phase ended with an error. | string | Describes a class of error the operation ended with. [2] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` |
-| [`graphql.document.hash`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The hash of the operation document. [3] | `sha256:400483f38c08e8a3d3b972409c9dfb8e4a326e1b1940864932acd9f873d8664c` |
-| [`graphql.operation.name`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the operation being executed. [4] | `FindBookById`; `GetUserProfile` |
+| [`graphql.document.id`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If using trusted documents. | string | The document identifier for trusted documents. [3] | `aa3e37c1bf54708e93f12c137afba004` |
+| [`graphql.document.hash`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The hash of the operation document. [4] | `sha256:400483f38c08e8a3d3b972409c9dfb8e4a326e1b1940864932acd9f873d8664c` |
+| [`graphql.operation.name`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the operation being executed. [5] | `FindBookById`; `GetUserProfile` |
 
 **[1] `graphql.processing.type`:** This attribute allows telemetry consumers to programmatically identify what kind of processing a span represents without relying on span names.
 
@@ -490,10 +491,12 @@ a low-cardinality error identifier such as the exception type.
 If the planning phase completes successfully, instrumentations
 SHOULD NOT set `error.type`.
 
-**[3] `graphql.document.hash`:** The hash algorithm used SHOULD be specified as part of the value (e.g., "sha256:..."). Instrumentations SHOULD use SHA-256 as the default hash algorithm unless there is a specific reason to use a different one. This can be used for monitoring operation distribution and caching strategies.
+**[3] `graphql.document.id`:** This is a hash or identifier of the document provided by the user to identify trusted documents.
+
+**[4] `graphql.document.hash`:** The hash algorithm used SHOULD be specified as part of the value (e.g., "sha256:..."). Instrumentations SHOULD use SHA-256 as the default hash algorithm unless there is a specific reason to use a different one. This can be used for monitoring operation distribution and caching strategies.
 When both `graphql.document.hash` and `graphql.document.id` are available, they SHOULD be preferred over transmitting the raw GraphQL document text for telemetry purposes. This reduces payload size and avoids exposing potentially sensitive operation details.
 
-**[4] `graphql.operation.name`:** This represents the operation name as specified in the GraphQL operation document. When the operation name is not provided, this attribute SHOULD be omitted.
+**[5] `graphql.operation.name`:** This represents the operation name as specified in the GraphQL operation document. When the operation name is not provided, this attribute SHOULD be omitted.
 
 ---
 
@@ -673,14 +676,15 @@ separate preceding phase.
 | [`graphql.operation.step.id`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The id of the step in the execution plan. [1] | `0`; `1`; `2` |
 | [`graphql.processing.type`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | MUST be `step_execute`. [2] | `parse`; `validate`; `execute`; `resolve` |
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If the step execution ended with an error. | string | Describes a class of error the operation ended with. [3] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` |
-| [`graphql.document.hash`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The hash of the operation document. [4] | `sha256:400483f38c08e8a3d3b972409c9dfb8e4a326e1b1940864932acd9f873d8664c` |
-| [`graphql.operation.name`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the operation being executed. [5] | `FindBookById`; `GetUserProfile` |
-| [`graphql.operation.step.kind`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The kind of step in the execution plan. [6] | `node`; `operation`; `fetch`; `batch` |
-| [`graphql.operation.step.plan.id`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The id of the execution plan this step belongs to. [7] | `plan-1`; `abc-123` |
+| [`graphql.document.id`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If using trusted documents. | string | The document identifier for trusted documents. [4] | `aa3e37c1bf54708e93f12c137afba004` |
+| [`graphql.document.hash`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The hash of the operation document. [5] | `sha256:400483f38c08e8a3d3b972409c9dfb8e4a326e1b1940864932acd9f873d8664c` |
+| [`graphql.operation.name`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the operation being executed. [6] | `FindBookById`; `GetUserProfile` |
+| [`graphql.operation.step.kind`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The kind of step in the execution plan. [7] | `node`; `operation`; `fetch`; `batch` |
+| [`graphql.operation.step.plan.id`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The id of the execution plan this step belongs to. [8] | `plan-1`; `abc-123` |
 | [`graphql.operation.type`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The type of the operation being executed. | `query`; `mutation`; `subscription` |
-| [`graphql.source.name`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The name of the source system. [8] | `accounts`; `products`; `reviews` |
-| [`graphql.source.operation.hash`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | A hash of the GraphQL operation to be executed on the source. [9] | `sha256:abc123`; `md5:def456` |
-| [`graphql.source.operation.name`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The name of the GraphQL operation to be executed on the source. [10] | `GetUser`; `FetchProducts`; `ResolveReviews` |
+| [`graphql.source_schema.name`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The name of the source schema. [9] | `accounts`; `products`; `reviews` |
+| [`graphql.source_schema.operation.hash`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | A hash of the GraphQL operation to be executed on the source schema. [10] | `sha256:abc123`; `md5:def456` |
+| [`graphql.source_schema.operation.name`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The name of the GraphQL operation to be executed on the source schema. [11] | `GetUser`; `FetchProducts`; `ResolveReviews` |
 
 **[1] `graphql.operation.step.id`:** The step identifier is implementation-specific and may be numeric, UUID, or any other format used by the GraphQL execution engine.
 
@@ -693,21 +697,23 @@ a low-cardinality error identifier such as the exception type.
 If the step execution completes successfully, instrumentations
 SHOULD NOT set `error.type`.
 
-**[4] `graphql.document.hash`:** The hash algorithm used SHOULD be specified as part of the value (e.g., "sha256:..."). Instrumentations SHOULD use SHA-256 as the default hash algorithm unless there is a specific reason to use a different one. This can be used for monitoring operation distribution and caching strategies.
+**[4] `graphql.document.id`:** This is a hash or identifier of the document provided by the user to identify trusted documents.
+
+**[5] `graphql.document.hash`:** The hash algorithm used SHOULD be specified as part of the value (e.g., "sha256:..."). Instrumentations SHOULD use SHA-256 as the default hash algorithm unless there is a specific reason to use a different one. This can be used for monitoring operation distribution and caching strategies.
 When both `graphql.document.hash` and `graphql.document.id` are available, they SHOULD be preferred over transmitting the raw GraphQL document text for telemetry purposes. This reduces payload size and avoids exposing potentially sensitive operation details.
 
-**[5] `graphql.operation.name`:** This represents the operation name as specified in the GraphQL operation document. When the operation name is not provided, this attribute SHOULD be omitted.
+**[6] `graphql.operation.name`:** This represents the operation name as specified in the GraphQL operation document. When the operation name is not provided, this attribute SHOULD be omitted.
 
-**[6] `graphql.operation.step.kind`:** The step kind describes the type of work performed in this execution step. Values are implementation-specific but common examples include node resolution, fetch operations, and batch processing.
+**[7] `graphql.operation.step.kind`:** The step kind describes the type of work performed in this execution step. Values are implementation-specific but common examples include node resolution, fetch operations, and batch processing.
 
-**[7] `graphql.operation.step.plan.id`:** The plan identifier links this step to a specific execution plan, enabling correlation of all steps within the same plan. This is particularly useful in federated GraphQL systems where plans may be cached and reused.
+**[8] `graphql.operation.step.plan.id`:** The plan identifier links this step to a specific execution plan, enabling correlation of all steps within the same plan. This is particularly useful in federated GraphQL systems where plans may be cached and reused.
 
-**[8] `graphql.source.name`:** The human-readable name of the downstream source that a distributed GraphQL gateway dispatches to. For example, this could be a subgraph name in a federated system or a stitched schema name.
+**[9] `graphql.source_schema.name`:** The human-readable name of the source schema (subgraph) that a distributed GraphQL gateway dispatches to. For example, this could be a subgraph name in a federated system or a stitched schema name. The term "source schema" follows the [GraphQL Composite Schemas Specification](https://github.com/graphql/composite-schemas-spec).
 
-**[9] `graphql.source.operation.hash`:** A hash of the operation document that the gateway sends to the source system. Useful for identifying operations without transmitting the full document.
+**[10] `graphql.source_schema.operation.hash`:** A hash of the operation document that the gateway sends to the source schema. Useful for identifying operations without transmitting the full document.
 The hash algorithm used SHOULD be specified as part of the value (e.g., "sha256:..."), consistent with `graphql.document.hash`.
 
-**[10] `graphql.source.operation.name`:** The operation name of the query or mutation that the gateway sends to the source system.
+**[11] `graphql.source_schema.operation.name`:** The operation name of the query or mutation that the gateway sends to the source schema.
 
 ---
 
@@ -761,7 +767,7 @@ The hash algorithm used SHOULD be specified as part of the value (e.g., "sha256:
 
 This span represents the execution of a GraphQL field.
 
-**Span name** SHOULD be `{graphql.selection.field.coordinate}`.
+**Span name** SHOULD be `{graphql.field.schema_coordinate}`.
 
 This span covers the execution of an individual field, including both
 synchronous and asynchronous resolvers. The span ends when the resolver
@@ -797,29 +803,29 @@ exception or the field resolution results in a GraphQL error.
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`graphql.processing.type`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | MUST be `resolve`. [1] | `parse`; `validate`; `execute`; `resolve` |
-| [`graphql.selection.field.coordinate`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The coordinate of the field that is being resolved. [2] | `Person.address`; `Query.findBookById` |
-| [`graphql.selection.field.name`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the field that is being resolved. [3] | `address`; `name`; `id` |
-| [`graphql.selection.field.parent_type`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The type that declares the field that is being resolved. [4] | `Person`; `Query`; `Mutation` |
+| [`graphql.field.name`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the field that is being resolved. [1] | `address`; `name`; `id` |
+| [`graphql.field.parent_type`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The type that declares the field that is being resolved. [2] | `Person`; `Query`; `Mutation` |
+| [`graphql.field.schema_coordinate`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The schema coordinate of the field that is being resolved. [3] | `Person.address`; `Query.findBookById` |
+| [`graphql.processing.type`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | MUST be `resolve`. [4] | `parse`; `validate`; `execute`; `resolve` |
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If the field resolution ended with an error. | string | Describes a class of error the operation ended with. [5] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` |
-| [`graphql.selection.name`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the selection that is being resolved. Either the field name or an alias. [6] | `newAddress`; `bookTitle` |
-| [`graphql.selection.path`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The path of the selection that is being resolved. [7] | `person[0].address` |
+| [`graphql.field.alias`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The alias of the field that is being resolved. [6] | `newAddress`; `bookTitle` |
+| [`graphql.field.path`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The path of the field that is being resolved. [7] | `person[0].address` |
 
-**[1] `graphql.processing.type`:** This attribute allows telemetry consumers to programmatically identify what kind of processing a span represents without relying on span names.
+**[1] `graphql.field.name`:** This is always the actual field name as defined in the schema, not an alias.
 
-**[2] `graphql.selection.field.coordinate`:** The coordinate follows the format "{ParentType}.{fieldName}" and uniquely identifies the field within the GraphQL schema.
+**[2] `graphql.field.parent_type`:** This is the GraphQL type name that contains the field definition.
 
-**[3] `graphql.selection.field.name`:** This is always the actual field name as defined in the schema, not an alias.
+**[3] `graphql.field.schema_coordinate`:** The schema coordinate follows the format "{ParentType}.{fieldName}" and uniquely identifies the field within the GraphQL schema.
 
-**[4] `graphql.selection.field.parent_type`:** This is the GraphQL type name that contains the field definition.
+**[4] `graphql.processing.type`:** This attribute allows telemetry consumers to programmatically identify what kind of processing a span represents without relying on span names.
 
 **[5] `error.type`:** If the resolver throws an exception or results in a GraphQL field error,
 `error.type` SHOULD be set to the exception type (its fully-qualified
 class name, if applicable) or the `graphql.error.code` if available.
 
-**[6] `graphql.selection.name`:** If the field has an alias, this SHOULD be the alias name. Otherwise, it SHOULD be the field name.
+**[6] `graphql.field.alias`:** If the field has an alias, this SHOULD be the alias name. Otherwise, it SHOULD be the field name.
 
-**[7] `graphql.selection.path`:** The path represents the location of the field being resolved within the result structure. Therefore, if a field is aliased, the path will use the alias name instead of the actual field name.
+**[7] `graphql.field.path`:** The path represents the location of the field being resolved within the result structure. Therefore, if a field is aliased, the path will use the alias name instead of the actual field name.
 
 ---
 
@@ -939,7 +945,7 @@ whose resolvers contributed load requests to this batch, so that
 the causal relationship between resolvers and the batch is preserved.
 
 Each link SHOULD include the following attributes:
-- `graphql.selection.field.coordinate`: The coordinate of the field
+- `graphql.field.schema_coordinate`: The schema coordinate of the field
   that triggered the load request (e.g., `User.avatar`).
 
 When the number of contributing resolvers exceeds a practical limit,
