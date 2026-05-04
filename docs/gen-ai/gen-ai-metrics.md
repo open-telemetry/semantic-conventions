@@ -76,18 +76,18 @@ This metric SHOULD be specified with [ExplicitBucketBoundaries] of [1, 4, 16, 64
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `gen_ai.client.token.usage` | Histogram | `{token}` | Number of input and output tokens used. | ![Development](https://img.shields.io/badge/-development-blue) | |
+| `gen_ai.client.token.usage` | Histogram | `{token}` | Number of input and output tokens used. | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | |
 
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`gen_ai.operation.name`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the operation being performed. [1] | `chat`; `generate_content`; `text_completion` |
-| [`gen_ai.provider.name`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The Generative AI provider as identified by the client or server instrumentation. [2] | `openai`; `gcp.gen_ai`; `gcp.vertex_ai` |
-| [`gen_ai.token.type`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The type of token being counted. | `input`; `output` |
-| [`gen_ai.request.model`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If available. | string | The name of the GenAI model a request is being made to. | `gpt-4` |
+| [`gen_ai.operation.name`](/docs/registry/attributes/gen-ai.md) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | `Required` | string | The name of the operation being performed. [1] | `chat`; `generate_content`; `text_completion` |
+| [`gen_ai.provider.name`](/docs/registry/attributes/gen-ai.md) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | `Required` | string | The Generative AI provider as identified by the client or server instrumentation. [2] | `openai`; `gcp.gen_ai`; `gcp.vertex_ai` |
+| [`gen_ai.token.type`](/docs/registry/attributes/gen-ai.md) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | `Required` | string | The type of token being counted. | `input`; `output` |
+| [`gen_ai.request.model`](/docs/registry/attributes/gen-ai.md) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | `Conditionally Required` If available. | string | The name of the GenAI model a request is being made to. | `gpt-4` |
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If `server.address` is set. | int | GenAI server port. [3] | `80`; `8080`; `443` |
-| [`gen_ai.response.model`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the model that generated the response. | `gpt-4-0613` |
+| [`gen_ai.response.model`](/docs/registry/attributes/gen-ai.md) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | `Recommended` | string | The name of the model that generated the response. | `gpt-4-0613` |
 | [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | GenAI server address. [4] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 
 **[1] `gen_ai.operation.name`:** If one of the predefined values applies, but specific system uses a different name it's RECOMMENDED to document it in the semantic conventions for specific GenAI system and use system-specific name in the instrumentation. If a different name is not documented, instrumentation libraries SHOULD use applicable predefined value.
@@ -185,18 +185,18 @@ This metric SHOULD be specified with [ExplicitBucketBoundaries] of [0.01, 0.02, 
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `gen_ai.client.operation.duration` | Histogram | `s` | GenAI operation duration. | ![Development](https://img.shields.io/badge/-development-blue) | |
+| `gen_ai.client.operation.duration` | Histogram | `s` | GenAI operation duration. | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | |
 
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`gen_ai.operation.name`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the operation being performed. [1] | `chat`; `generate_content`; `text_completion` |
-| [`gen_ai.provider.name`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The Generative AI provider as identified by the client or server instrumentation. [2] | `openai`; `gcp.gen_ai`; `gcp.vertex_ai` |
+| [`gen_ai.operation.name`](/docs/registry/attributes/gen-ai.md) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | `Required` | string | The name of the operation being performed. [1] | `chat`; `generate_content`; `text_completion` |
+| [`gen_ai.provider.name`](/docs/registry/attributes/gen-ai.md) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | `Required` | string | The Generative AI provider as identified by the client or server instrumentation. [2] | `openai`; `gcp.gen_ai`; `gcp.vertex_ai` |
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if the operation ended in an error | string | Describes a class of error the operation ended with. [3] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` |
-| [`gen_ai.request.model`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If available. | string | The name of the GenAI model a request is being made to. | `gpt-4` |
+| [`gen_ai.request.model`](/docs/registry/attributes/gen-ai.md) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | `Conditionally Required` If available. | string | The name of the GenAI model a request is being made to. | `gpt-4` |
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If `server.address` is set. | int | GenAI server port. [4] | `80`; `8080`; `443` |
-| [`gen_ai.response.model`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the model that generated the response. | `gpt-4-0613` |
+| [`gen_ai.response.model`](/docs/registry/attributes/gen-ai.md) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | `Recommended` | string | The name of the model that generated the response. | `gpt-4-0613` |
 | [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | GenAI server address. [5] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 
 **[1] `gen_ai.operation.name`:** If one of the predefined values applies, but specific system uses a different name it's RECOMMENDED to document it in the semantic conventions for specific GenAI system and use system-specific name in the instrumentation. If a different name is not documented, instrumentation libraries SHOULD use applicable predefined value.
@@ -297,7 +297,7 @@ This metric SHOULD be specified with [ExplicitBucketBoundaries] of [0.01, 0.02, 
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `gen_ai.client.operation.time_to_first_chunk` | Histogram | `s` | Time to receive the first chunk, measured from when the client issues the generation request to when the first chunk is received in the response stream. [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
+| `gen_ai.client.operation.time_to_first_chunk` | Histogram | `s` | Time to receive the first chunk, measured from when the client issues the generation request to when the first chunk is received in the response stream. [1] | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | |
 
 **[1]:** This metrics SHOULD be reported for streaming calls and SHOULD NOT be reported otherwise.
 
@@ -305,11 +305,11 @@ This metric SHOULD be specified with [ExplicitBucketBoundaries] of [0.01, 0.02, 
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`gen_ai.operation.name`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the operation being performed. [1] | `chat`; `generate_content`; `text_completion` |
-| [`gen_ai.provider.name`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The Generative AI provider as identified by the client or server instrumentation. [2] | `openai`; `gcp.gen_ai`; `gcp.vertex_ai` |
-| [`gen_ai.request.model`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If available. | string | The name of the GenAI model a request is being made to. | `gpt-4` |
+| [`gen_ai.operation.name`](/docs/registry/attributes/gen-ai.md) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | `Required` | string | The name of the operation being performed. [1] | `chat`; `generate_content`; `text_completion` |
+| [`gen_ai.provider.name`](/docs/registry/attributes/gen-ai.md) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | `Required` | string | The Generative AI provider as identified by the client or server instrumentation. [2] | `openai`; `gcp.gen_ai`; `gcp.vertex_ai` |
+| [`gen_ai.request.model`](/docs/registry/attributes/gen-ai.md) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | `Conditionally Required` If available. | string | The name of the GenAI model a request is being made to. | `gpt-4` |
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If `server.address` is set. | int | GenAI server port. [3] | `80`; `8080`; `443` |
-| [`gen_ai.response.model`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the model that generated the response. | `gpt-4-0613` |
+| [`gen_ai.response.model`](/docs/registry/attributes/gen-ai.md) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | `Recommended` | string | The name of the model that generated the response. | `gpt-4-0613` |
 | [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | GenAI server address. [4] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 
 **[1] `gen_ai.operation.name`:** If one of the predefined values applies, but specific system uses a different name it's RECOMMENDED to document it in the semantic conventions for specific GenAI system and use system-specific name in the instrumentation. If a different name is not documented, instrumentation libraries SHOULD use applicable predefined value.
@@ -398,7 +398,7 @@ This metric SHOULD be specified with [ExplicitBucketBoundaries] of [0.01, 0.02, 
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `gen_ai.client.operation.time_per_output_chunk` | Histogram | `s` | Time per output chunk, recorded for each chunk received after the first one, measured as the time elapsed from the end of the previous chunk to the end of the current chunk. [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
+| `gen_ai.client.operation.time_per_output_chunk` | Histogram | `s` | Time per output chunk, recorded for each chunk received after the first one, measured as the time elapsed from the end of the previous chunk to the end of the current chunk. [1] | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | |
 
 **[1]:** This metrics SHOULD be reported for streaming calls and SHOULD NOT be reported otherwise.
 
@@ -406,11 +406,11 @@ This metric SHOULD be specified with [ExplicitBucketBoundaries] of [0.01, 0.02, 
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`gen_ai.operation.name`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the operation being performed. [1] | `chat`; `generate_content`; `text_completion` |
-| [`gen_ai.provider.name`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The Generative AI provider as identified by the client or server instrumentation. [2] | `openai`; `gcp.gen_ai`; `gcp.vertex_ai` |
-| [`gen_ai.request.model`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If available. | string | The name of the GenAI model a request is being made to. | `gpt-4` |
+| [`gen_ai.operation.name`](/docs/registry/attributes/gen-ai.md) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | `Required` | string | The name of the operation being performed. [1] | `chat`; `generate_content`; `text_completion` |
+| [`gen_ai.provider.name`](/docs/registry/attributes/gen-ai.md) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | `Required` | string | The Generative AI provider as identified by the client or server instrumentation. [2] | `openai`; `gcp.gen_ai`; `gcp.vertex_ai` |
+| [`gen_ai.request.model`](/docs/registry/attributes/gen-ai.md) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | `Conditionally Required` If available. | string | The name of the GenAI model a request is being made to. | `gpt-4` |
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If `server.address` is set. | int | GenAI server port. [3] | `80`; `8080`; `443` |
-| [`gen_ai.response.model`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the model that generated the response. | `gpt-4-0613` |
+| [`gen_ai.response.model`](/docs/registry/attributes/gen-ai.md) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | `Recommended` | string | The name of the model that generated the response. | `gpt-4-0613` |
 | [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | GenAI server address. [4] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 
 **[1] `gen_ai.operation.name`:** If one of the predefined values applies, but specific system uses a different name it's RECOMMENDED to document it in the semantic conventions for specific GenAI system and use system-specific name in the instrumentation. If a different name is not documented, instrumentation libraries SHOULD use applicable predefined value.
@@ -506,18 +506,18 @@ This metric SHOULD be specified with [ExplicitBucketBoundaries] of
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `gen_ai.server.request.duration` | Histogram | `s` | Generative AI server request duration such as time-to-last byte or last output token. | ![Development](https://img.shields.io/badge/-development-blue) | |
+| `gen_ai.server.request.duration` | Histogram | `s` | Generative AI server request duration such as time-to-last byte or last output token. | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | |
 
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`gen_ai.operation.name`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the operation being performed. [1] | `chat`; `generate_content`; `text_completion` |
-| [`gen_ai.provider.name`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The Generative AI provider as identified by the client or server instrumentation. [2] | `openai`; `gcp.gen_ai`; `gcp.vertex_ai` |
+| [`gen_ai.operation.name`](/docs/registry/attributes/gen-ai.md) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | `Required` | string | The name of the operation being performed. [1] | `chat`; `generate_content`; `text_completion` |
+| [`gen_ai.provider.name`](/docs/registry/attributes/gen-ai.md) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | `Required` | string | The Generative AI provider as identified by the client or server instrumentation. [2] | `openai`; `gcp.gen_ai`; `gcp.vertex_ai` |
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if the operation ended in an error | string | Describes a class of error the operation ended with. [3] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` |
-| [`gen_ai.request.model`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If available. | string | The name of the GenAI model a request is being made to. | `gpt-4` |
+| [`gen_ai.request.model`](/docs/registry/attributes/gen-ai.md) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | `Conditionally Required` If available. | string | The name of the GenAI model a request is being made to. | `gpt-4` |
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If `server.address` is set. | int | GenAI server port. [4] | `80`; `8080`; `443` |
-| [`gen_ai.response.model`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the model that generated the response. | `gpt-4-0613` |
+| [`gen_ai.response.model`](/docs/registry/attributes/gen-ai.md) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | `Recommended` | string | The name of the model that generated the response. | `gpt-4-0613` |
 | [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | GenAI server address. [5] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 
 **[1] `gen_ai.operation.name`:** If one of the predefined values applies, but specific system uses a different name it's RECOMMENDED to document it in the semantic conventions for specific GenAI system and use system-specific name in the instrumentation. If a different name is not documented, instrumentation libraries SHOULD use applicable predefined value.
@@ -625,17 +625,17 @@ This metric SHOULD be specified with [ExplicitBucketBoundaries] of
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `gen_ai.server.time_per_output_token` | Histogram | `s` | Time per output token generated after the first token for successful responses. | ![Development](https://img.shields.io/badge/-development-blue) | |
+| `gen_ai.server.time_per_output_token` | Histogram | `s` | Time per output token generated after the first token for successful responses. | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | |
 
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`gen_ai.operation.name`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the operation being performed. [1] | `chat`; `generate_content`; `text_completion` |
-| [`gen_ai.provider.name`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The Generative AI provider as identified by the client or server instrumentation. [2] | `openai`; `gcp.gen_ai`; `gcp.vertex_ai` |
-| [`gen_ai.request.model`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If available. | string | The name of the GenAI model a request is being made to. | `gpt-4` |
+| [`gen_ai.operation.name`](/docs/registry/attributes/gen-ai.md) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | `Required` | string | The name of the operation being performed. [1] | `chat`; `generate_content`; `text_completion` |
+| [`gen_ai.provider.name`](/docs/registry/attributes/gen-ai.md) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | `Required` | string | The Generative AI provider as identified by the client or server instrumentation. [2] | `openai`; `gcp.gen_ai`; `gcp.vertex_ai` |
+| [`gen_ai.request.model`](/docs/registry/attributes/gen-ai.md) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | `Conditionally Required` If available. | string | The name of the GenAI model a request is being made to. | `gpt-4` |
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If `server.address` is set. | int | GenAI server port. [3] | `80`; `8080`; `443` |
-| [`gen_ai.response.model`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the model that generated the response. | `gpt-4-0613` |
+| [`gen_ai.response.model`](/docs/registry/attributes/gen-ai.md) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | `Recommended` | string | The name of the model that generated the response. | `gpt-4-0613` |
 | [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | GenAI server address. [4] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 
 **[1] `gen_ai.operation.name`:** If one of the predefined values applies, but specific system uses a different name it's RECOMMENDED to document it in the semantic conventions for specific GenAI system and use system-specific name in the instrumentation. If a different name is not documented, instrumentation libraries SHOULD use applicable predefined value.
@@ -730,17 +730,17 @@ This metric SHOULD be specified with [ExplicitBucketBoundaries] of
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `gen_ai.server.time_to_first_token` | Histogram | `s` | Time to generate first token for successful responses. | ![Development](https://img.shields.io/badge/-development-blue) | |
+| `gen_ai.server.time_to_first_token` | Histogram | `s` | Time to generate first token for successful responses. | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | |
 
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`gen_ai.operation.name`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the operation being performed. [1] | `chat`; `generate_content`; `text_completion` |
-| [`gen_ai.provider.name`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The Generative AI provider as identified by the client or server instrumentation. [2] | `openai`; `gcp.gen_ai`; `gcp.vertex_ai` |
-| [`gen_ai.request.model`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If available. | string | The name of the GenAI model a request is being made to. | `gpt-4` |
+| [`gen_ai.operation.name`](/docs/registry/attributes/gen-ai.md) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | `Required` | string | The name of the operation being performed. [1] | `chat`; `generate_content`; `text_completion` |
+| [`gen_ai.provider.name`](/docs/registry/attributes/gen-ai.md) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | `Required` | string | The Generative AI provider as identified by the client or server instrumentation. [2] | `openai`; `gcp.gen_ai`; `gcp.vertex_ai` |
+| [`gen_ai.request.model`](/docs/registry/attributes/gen-ai.md) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | `Conditionally Required` If available. | string | The name of the GenAI model a request is being made to. | `gpt-4` |
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If `server.address` is set. | int | GenAI server port. [3] | `80`; `8080`; `443` |
-| [`gen_ai.response.model`](/docs/registry/attributes/gen-ai.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the model that generated the response. | `gpt-4-0613` |
+| [`gen_ai.response.model`](/docs/registry/attributes/gen-ai.md) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | `Recommended` | string | The name of the model that generated the response. | `gpt-4-0613` |
 | [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | GenAI server address. [4] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 
 **[1] `gen_ai.operation.name`:** If one of the predefined values applies, but specific system uses a different name it's RECOMMENDED to document it in the semantic conventions for specific GenAI system and use system-specific name in the instrumentation. If a different name is not documented, instrumentation libraries SHOULD use applicable predefined value.

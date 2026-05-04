@@ -21,7 +21,7 @@ This document defines semantic conventions for recording exceptions on Generativ
 <!-- see templates/registry/markdown/snippet.md.j2 -->
 <!-- prettier-ignore-start -->
 
-**Status:** ![Development](https://img.shields.io/badge/-development-blue)
+**Status:** ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
 
 The event name MUST be `gen_ai.client.operation.exception`.
 

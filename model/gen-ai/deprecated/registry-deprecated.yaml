@@ -16,16 +16,18 @@ groups:
         type: int
         stability: development
         deprecated:
-          reason: renamed
-          renamed_to: gen_ai.usage.input_tokens
+          reason: uncategorized
+          note: >
+            Replaced by `gen_ai.usage.input_tokens`, which has moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
         brief: "Deprecated, use `gen_ai.usage.input_tokens` instead."
         examples: [42]
       - id: gen_ai.usage.completion_tokens
         type: int
         stability: development
         deprecated:
-          reason: renamed
-          renamed_to: gen_ai.usage.output_tokens
+          reason: uncategorized
+          note: >
+            Replaced by `gen_ai.usage.output_tokens`, which has moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
         brief: "Deprecated, use `gen_ai.usage.output_tokens` instead."
         examples: [42]
       - id: gen_ai.prompt
@@ -148,8 +150,9 @@ groups:
               brief: 'Mistral AI'
         brief: "Deprecated, use `gen_ai.provider.name` instead."
         deprecated:
-          reason: renamed
-          renamed_to: gen_ai.provider.name
+          reason: uncategorized
+          note: >
+            Replaced by `gen_ai.provider.name`, which has moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
   - id: registry.gen_ai.openai.deprecated
     type: attribute_group
     brief: Describes deprecated `gen_ai.openai` attributes.
@@ -159,8 +162,9 @@ groups:
         stability: development
         type: int
         deprecated:
-          reason: renamed
-          renamed_to: gen_ai.request.seed
+          reason: uncategorized
+          note: >
+            Replaced by `gen_ai.request.seed`, which has moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
         brief: "Deprecated, use `gen_ai.request.seed`."
         examples: [100]
       - id: gen_ai.openai.request.response_format
@@ -182,8 +186,9 @@ groups:
         brief: >
           Deprecated, use `gen_ai.output.type`.
         deprecated:
-          reason: renamed
-          renamed_to: gen_ai.output.type
+          reason: uncategorized
+          note: >
+            Replaced by `gen_ai.output.type`, which has moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
       - id: gen_ai.openai.request.service_tier
         stability: development
         type:

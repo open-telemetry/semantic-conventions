@@ -8,6 +8,14 @@ linkTitle: Generative AI
 
 > [!IMPORTANT]
 >
+> GenAI semantic conventions in this repository are deprecated. Future GenAI
+> semantic convention development has moved to the
+> [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
+
+<!-- -->
+
+> [!IMPORTANT]
+>
 > Existing GenAI instrumentations that are using
 > [v1.36.0 of this document](https://github.com/open-telemetry/semantic-conventions/blob/v1.36.0/docs/gen-ai/README.md)
 > (or prior):

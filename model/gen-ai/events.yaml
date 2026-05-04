@@ -3,6 +3,10 @@ groups:
     name: gen_ai.client.inference.operation.details
     type: event
     stability: development
+    deprecated:
+      reason: uncategorized
+      note: >
+        Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
     brief: >
       Describes the details of a GenAI completion request including chat history
       and parameters.
@@ -15,6 +19,10 @@ groups:
     name: gen_ai.evaluation.result
     type: event
     stability: development
+    deprecated:
+      reason: uncategorized
+      note: >
+        Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
     brief: >
       This event captures the result of evaluating GenAI output for quality, accuracy, or other characteristics.
       This event SHOULD be parented to GenAI operation span being evaluated when possible
@@ -48,6 +56,10 @@ groups:
   - id: event.gen_ai.client.operation.exception
     name: gen_ai.client.operation.exception
     stability: development
+    deprecated:
+      reason: uncategorized
+      note: >
+        Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
     type: event
     brief: >
       This event represents an exception that occurred during a Generative AI client operation,
