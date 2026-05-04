@@ -13,6 +13,7 @@ ignorePaths:
   - 'internal/*'
   - '**.j2'
   - '**.rego'
+  - 'package.json'
 patterns:
   - name: CodeBlock
     pattern: |
