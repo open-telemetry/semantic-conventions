@@ -203,24 +203,28 @@ groups:
               stability: development
         brief: "Deprecated, use `openai.request.service_tier`."
         deprecated:
-          reason: renamed
-          renamed_to: openai.request.service_tier
+          reason: uncategorized
+          note: >
+            Replaced by `openai.request.service_tier`, which has moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
       - id: gen_ai.openai.response.service_tier
         stability: development
         type: string
         brief: "Deprecated, use `openai.response.service_tier`."
         examples: ['scale', 'default']
         deprecated:
-          reason: renamed
-          renamed_to: openai.response.service_tier
+          reason: uncategorized
+          note: >
+            Replaced by `openai.response.service_tier`, which has moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
       - id: gen_ai.openai.response.system_fingerprint
         stability: development
         type: string
         brief: "Deprecated, use `openai.response.system_fingerprint`."
         examples: ["fp_44709d6fcb"]
         deprecated:
-          reason: renamed
-          renamed_to: openai.response.system_fingerprint
+          reason: uncategorized
+          note: >
+            Replaced by `openai.response.system_fingerprint`, which has moved to the
+            [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
 
   - id: registry.gen_ai
     type: attribute_group
