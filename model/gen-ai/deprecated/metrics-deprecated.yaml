@@ -1,6 +1,10 @@
 groups:
   - id: metric_attributes.gen_ai
     type: attribute_group
+    deprecated:
+      reason: uncategorized
+      note: >
+        Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
     brief: 'This group describes GenAI metrics attributes'
     attributes:
       - ref: server.address
@@ -21,6 +25,10 @@ groups:
         requirement_level: required
   - id: metric_attributes.gen_ai.server
     type: attribute_group
+    deprecated:
+      reason: uncategorized
+      note: >
+        Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
     brief: 'This group describes GenAI server metrics attributes'
     extends: metric_attributes.gen_ai
     attributes:
@@ -33,6 +41,10 @@ groups:
           Instrumentations SHOULD document the list of errors they report.
   - id: metric_attributes.openai
     type: attribute_group
+    deprecated:
+      reason: uncategorized
+      note: >
+        Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
     brief: 'This group describes GenAI server metrics attributes'
     attributes:
       - ref: openai.response.service_tier
@@ -49,6 +61,10 @@ groups:
     instrument: histogram
     unit: "{token}"
     stability: development
+    deprecated:
+      reason: uncategorized
+      note: >
+        Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
     extends: metric_attributes.gen_ai
     attributes:
       - ref: gen_ai.token.type
@@ -63,6 +79,10 @@ groups:
     instrument: histogram
     unit: "s"
     stability: development
+    deprecated:
+      reason: uncategorized
+      note: >
+        Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
     extends: metric_attributes.gen_ai
     attributes:
       - ref: error.type
@@ -84,6 +104,10 @@ groups:
     instrument: histogram
     unit: "s"
     stability: development
+    deprecated:
+      reason: uncategorized
+      note: >
+        Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
     extends: metric_attributes.gen_ai
   - id: metric.gen_ai.client.operation.time_per_output_chunk
     type: metric
@@ -98,6 +122,10 @@ groups:
     instrument: histogram
     unit: "s"
     stability: development
+    deprecated:
+      reason: uncategorized
+      note: >
+        Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
     extends: metric_attributes.gen_ai
   - id: metric.gen_ai.server.request.duration
     type: metric
@@ -109,6 +137,10 @@ groups:
     instrument: histogram
     unit: "s"
     stability: development
+    deprecated:
+      reason: uncategorized
+      note: >
+        Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
     extends: metric_attributes.gen_ai.server
   - id: metric.gen_ai.server.time_per_output_token
     type: metric
@@ -120,6 +152,10 @@ groups:
     instrument: histogram
     unit: "s"
     stability: development
+    deprecated:
+      reason: uncategorized
+      note: >
+        Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
     extends: metric_attributes.gen_ai
   - id: metric.gen_ai.server.time_to_first_token
     type: metric
@@ -131,4 +167,8 @@ groups:
     instrument: histogram
     unit: "s"
     stability: development
+    deprecated:
+      reason: uncategorized
+      note: >
+        Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
     extends: metric_attributes.gen_ai

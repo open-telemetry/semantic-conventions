@@ -105,11 +105,6 @@
 /model/dotnet/                    @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-dotnet-approver
 /model/signalr/                   @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-dotnet-approver
 
-# Gen-AI semantic conventions
-/docs/gen-ai/                     @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-genai-approvers
-/model/gen-ai/                    @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-genai-approvers
-/model/openai/                    @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-genai-approvers
-/model/mcp/                       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-genai-approvers
 
 # Security semantic conventions
 /docs/dns/                        @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-security-approvers

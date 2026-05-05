@@ -1,5 +1,9 @@
 groups:
   - id: mcp.common.attributes
+    deprecated:
+      reason: uncategorized
+      note: >
+        Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
     type: attribute_group
     brief: Common MCP attributes
     attributes:
