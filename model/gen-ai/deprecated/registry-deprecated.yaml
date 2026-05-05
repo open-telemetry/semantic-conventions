@@ -236,9 +236,10 @@ groups:
       reason: uncategorized
       note: >
         Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
-    display_name: GenAI Attributes
+    display_name: GenAI Attributes (Moved)
     brief: >
-      This document defines the attributes used to describe telemetry in the context of Generative Artificial Intelligence (GenAI) Models requests and responses.
+      Generative AI (GenAI) attributes have moved to the
+      [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
     attributes:
       - id: gen_ai.provider.name
         stability: development

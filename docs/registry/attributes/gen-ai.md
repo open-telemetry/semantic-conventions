@@ -3,13 +3,13 @@
 
 # Gen AI
 
-- [GenAI Attributes](#genai-attributes)
+- [GenAI Attributes (Moved)](#genai-attributes-moved)
 - [Deprecated GenAI Attributes](#deprecated-genai-attributes)
 - [Deprecated OpenAI GenAI Attributes](#deprecated-openai-genai-attributes)
 
-## GenAI Attributes
+## GenAI Attributes (Moved)
 
-This document defines the attributes used to describe telemetry in the context of Generative Artificial Intelligence (GenAI) Models requests and responses.
+Generative AI (GenAI) attributes have moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
 
 **Attributes:**
 

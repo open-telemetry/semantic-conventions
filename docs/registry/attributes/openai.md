@@ -3,9 +3,9 @@
 
 # OpenAI
 
-## OpenAI Attributes
+## OpenAI Attributes (Moved)
 
-This group defines attributes for OpenAI.
+OpenAI attributes have moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
 
 **Attributes:**
 

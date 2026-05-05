@@ -5,8 +5,10 @@ groups:
       note: >
         Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
     type: attribute_group
+    display_name: MCP Attributes (Moved)
     brief: >
       [Model Context Protocol (MCP)](https://modelcontextprotocol.io) attributes
+      have moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
     attributes:
       - id: mcp.method.name
         deprecated:
