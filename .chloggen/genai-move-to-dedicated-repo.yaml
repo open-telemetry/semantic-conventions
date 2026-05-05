@@ -12,8 +12,5 @@ subtext: |
   `docs/gen-ai/`) are deprecated in this repository and have moved to the
   [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
 
-  GenAI telemetry emitted by instrumentations that follow the new repository's
-  conventions MUST set `schema_url` to the schema published by the new
-  repository (TBD URL family, e.g. `https://opentelemetry.io/schemas/gen-ai/<version>`)
-  rather than to `https://opentelemetry.io/schemas/<version>` from this
-  repository.
+  Instrumentations following the new repository's conventions should refer to
+  it for the corresponding `schema_url` to use.

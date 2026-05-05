@@ -22,7 +22,7 @@ The following semantic conventions surrounding metrics are defined:
 * **[General Guidelines](#general-guidelines): General metrics guidelines.**
 * [Database](/docs/db/database-metrics.md): For SQL and NoSQL client metrics.
 * [FaaS](/docs/faas/faas-metrics.md): For [Function as a Service](https://wikipedia.org/wiki/Function_as_a_service) metrics.
-* [GenAI](/docs/gen-ai/gen-ai-metrics.md): For Generative AI metrics.
+* GenAI: For Generative AI metrics, see the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
 * [HTTP](/docs/http/http-metrics.md): For HTTP client and server metrics.
 * [Messaging](/docs/messaging/messaging-metrics.md): For messaging systems (queues, publish/subscribe, etc.) metrics.
 * [RPC](/docs/rpc/rpc-metrics.md): For RPC client and server metrics.
