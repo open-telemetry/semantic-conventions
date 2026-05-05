@@ -1,5 +1,9 @@
 groups:
   - id: trace.mcp.common.attributes
+    deprecated:
+      reason: uncategorized
+      note: >
+        Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
     type: attribute_group
     extends: mcp.common.attributes
     brief: MCP common span attributes
@@ -15,6 +19,10 @@ groups:
           conditionally_required: When the client executes a request.
 
   - id: span.mcp.client
+    deprecated:
+      reason: uncategorized
+      note: >
+        Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
     type: span
     span_kind: client
     brief: This span describes the MCP call from the client side.
@@ -61,6 +69,10 @@ groups:
         requirement_level: opt_in
 
   - id: span.mcp.server
+    deprecated:
+      reason: uncategorized
+      note: >
+        Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
     type: span
     span_kind: server
     brief: This span describes the processing of the MCP request or notification
