@@ -1,0 +1,19 @@
+change_type: breaking
+
+component: gen-ai
+
+note: Move Generative AI semantic conventions to a dedicated repository.
+
+issues: [3696]
+
+subtext: |
+  All `gen_ai.*` attributes, metrics, events, and spans previously defined under
+  `model/gen-ai/`, `model/openai/`, and `model/mcp/` (and documented under
+  `docs/gen-ai/`) are deprecated in this repository and have moved to the
+  [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
+
+  GenAI telemetry emitted by instrumentations that follow the new repository's
+  conventions MUST set `schema_url` to the schema published by the new
+  repository (TBD URL family, e.g. `https://opentelemetry.io/schemas/gen-ai/<version>`)
+  rather than to `https://opentelemetry.io/schemas/<version>` from this
+  repository.
