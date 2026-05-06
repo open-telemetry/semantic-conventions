@@ -7,7 +7,7 @@ aliases: [metrics-general]
 
 **Status**: [Mixed][DocumentStatus]
 
-<!-- toc -->
+<!-- START doctoc -->
 
 - [General guidelines](#general-guidelines)
   - [Units](#units)
@@ -15,14 +15,14 @@ aliases: [metrics-general]
   - [Instrument types](#instrument-types)
   - [Consistent UpDownCounter timeseries](#consistent-updowncounter-timeseries)
 
-<!-- tocstop -->
+<!-- END doctoc -->
 
 The following semantic conventions surrounding metrics are defined:
 
 * **[General Guidelines](#general-guidelines): General metrics guidelines.**
 * [Database](/docs/db/database-metrics.md): For SQL and NoSQL client metrics.
 * [FaaS](/docs/faas/faas-metrics.md): For [Function as a Service](https://wikipedia.org/wiki/Function_as_a_service) metrics.
-* [GenAI](/docs/gen-ai/gen-ai-metrics.md): For Generative AI metrics.
+* GenAI: For Generative AI metrics, see the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
 * [HTTP](/docs/http/http-metrics.md): For HTTP client and server metrics.
 * [Messaging](/docs/messaging/messaging-metrics.md): For messaging systems (queues, publish/subscribe, etc.) metrics.
 * [RPC](/docs/rpc/rpc-metrics.md): For RPC client and server metrics.
@@ -37,7 +37,7 @@ The following semantic conventions surrounding metrics are defined:
 * [OTel SDK Telemetry](/docs/otel/sdk-metrics.md): Metrics emitted by the OpenTelemetry SDK components.
 
 Apart from semantic conventions for metrics, [traces](trace.md), [logs](logs.md), and [events](events.md), OpenTelemetry also
-defines the concept of overarching [Resources](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.55.0/specification/resource/sdk.md) with
+defines the concept of overarching [Resources](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.56.0/specification/resource/sdk.md) with
 their own [Resource Semantic Conventions](/docs/resource/README.md).
 
 ## General guidelines
@@ -88,7 +88,7 @@ usable.
 
 When building components that interoperate between OpenTelemetry and a system
 using the OpenMetrics exposition format, use the
-[OpenMetrics Guidelines](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.55.0/specification/compatibility/prometheus_and_openmetrics.md).
+[OpenMetrics Guidelines](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.56.0/specification/compatibility/prometheus_and_openmetrics.md).
 
 ### Instrument units
 

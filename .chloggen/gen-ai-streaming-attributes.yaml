@@ -1,7 +1,0 @@
-change_type: enhancement
-component: gen_ai
-note: "Add streaming attributes for GenAI inference spans"
-issues: [3598]
-subtext: |
-  Adds `gen_ai.request.stream` (boolean) and `gen_ai.response.time_to_first_chunk` (double)
-  attributes for streaming inference operations.

@@ -11,7 +11,25 @@ This document defines Go related attributes.
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
+| <a id="go-cpu-detailed-state" href="#go-cpu-detailed-state">`go.cpu.detailed_state`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The detailed state of the CPU. [1] | `gc/pause`; `gc/mark/assist` |
+| <a id="go-cpu-state" href="#go-cpu-state">`go.cpu.state`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The state of the CPU. | `user`; `gc` |
+| <a id="go-memory-detailed-type" href="#go-memory-detailed-type">`go.memory.detailed_type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The detailed type of memory. [2] | `heap/objects`; `heap/free` |
 | <a id="go-memory-type" href="#go-memory-type">`go.memory.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The type of memory. | `other`; `stack` |
+
+**[1] `go.cpu.detailed_state`:** Value SHOULD match the specific CPU class reported by the Go runtime under `/cpu/classes/...`. The list of possible values is subject to change with the Go version used.
+
+**[2] `go.memory.detailed_type`:** Value SHOULD match the specific memory class reported by the Go runtime under `/memory/classes/...`. The list of possible values is subject to change with the Go version used.
+
+---
+
+`go.cpu.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value | Description | Stability |
+| --- | --- | --- |
+| `gc` | CPU time spent performing garbage collection tasks. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `idle` | Available CPU time not spent executing any Go or Go runtime code. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `scavenge` | CPU time spent returning unused memory to the underlying platform. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `user` | CPU time spent running user Go code. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -20,6 +38,6 @@ This document defines Go related attributes.
 | Value | Description | Stability |
 | --- | --- | --- |
 | `other` | Memory used by the Go runtime, excluding other categories of memory usage described in this enumeration. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `stack` | Memory allocated from the heap that is reserved for stack space, whether or not it is currently in-use. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `stack` | Memory allocated from the heap that is reserved for stack space, whether or not it is currently in-use. [3] | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[1]:** Computed from `/memory/classes/heap/stacks:bytes`.
+**[3]:** Computed from `/memory/classes/heap/stacks:bytes`.

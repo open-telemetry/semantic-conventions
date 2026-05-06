@@ -7,10 +7,10 @@ linkTitle: Logs
 **Status**: [Stable, except where otherwise specified][DocumentStatus]
 
 This document defines semantic conventions for recording exceptions on
-[logs](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.55.0/specification/logs/api.md#emit-a-logrecord)
-emitted through the [Logger API](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.55.0/specification/logs/api.md#logger).
+[logs](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.56.0/specification/logs/api.md#emit-a-logrecord)
+emitted through the [Logger API](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.56.0/specification/logs/api.md#logger).
 
-<!-- toc -->
+<!-- START doctoc -->
 
 - [Recording an exception](#recording-an-exception)
   - [When not to record exceptions](#when-not-to-record-exceptions)
@@ -25,7 +25,7 @@ emitted through the [Logger API](https://github.com/open-telemetry/opentelemetry
   - [Attributes](#attributes)
   - [Stacktrace representation](#stacktrace-representation)
 
-<!-- tocstop -->
+<!-- END doctoc -->
 
 > [!IMPORTANT]
 >
@@ -59,14 +59,14 @@ not hosted in OpenTelemetry.
 This document does not apply to logging bridges.
 
 Exceptions SHOULD be recorded as attributes on the
-[LogRecord](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.55.0/specification/logs/data-model.md#log-and-event-record-definition) passed to the [Logger](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.55.0/specification/logs/api.md#logger) emit
+[LogRecord](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.56.0/specification/logs/data-model.md#log-and-event-record-definition) passed to the [Logger](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.56.0/specification/logs/api.md#logger) emit
 operations.
 
 Exception events emitted by instrumentations that also record spans for the same
 operation MUST be associated with the corresponding span context.
 
 When language implementations support passing exception instances to the
-[Emit a LogRecord](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.55.0/specification/logs/api.md#emit-a-logrecord) API, instrumentations SHOULD provide the exception instance
+[Emit a LogRecord](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.56.0/specification/logs/api.md#emit-a-logrecord) API, instrumentations SHOULD provide the exception instance
 rather than manually setting individual exception attributes.
 
 ![Development](https://img.shields.io/badge/-development-blue) Instrumentations
@@ -103,7 +103,7 @@ global unhandled exception handlers, SHOULD use the `exception` event name.
 
 The severity reflects the expected impact of the exception, not just its presence.
 
-[Severity Number](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.55.0/specification/logs/data-model.md#field-severitynumber)
+[Severity Number](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.56.0/specification/logs/data-model.md#field-severitynumber)
 SHOULD be provided on all exception events and SHOULD be set based on the context
 in which the exception occurs, following the guidance below.
 
@@ -173,7 +173,7 @@ severity.
 ### Attributes
 
 The table below indicates which attributes should be added to the
-[LogRecord](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.55.0/specification/logs/data-model.md#log-and-event-record-definition).
+[LogRecord](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.56.0/specification/logs/data-model.md#log-and-event-record-definition).
 
 ![Development](https://img.shields.io/badge/-development-blue) Instrumentations MAY
 provide additional attributes to describe the context in which the exception occurred.
@@ -191,7 +191,7 @@ the corresponding span.
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`exception.message`](/docs/registry/attributes/exception.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [1] | string | The exception message. [2] | `Division by zero`; `Can't convert 'int' object to str implicitly` |
-| [`exception.type`](/docs/registry/attributes/exception.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [3] | string | The type of the exception (its fully-qualified class name, if applicable). The dynamic type of the exception should be preferred over the static type in languages that support it. | `java.net.ConnectException`; `OSError` |
+| [`exception.type`](/docs/registry/attributes/exception.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [3] | string | The type of the exception (its fully-qualified class name, if applicable). The dynamic type of the exception should be preferred over the static type in languages that support it. [4] | `java.net.ConnectException`; `OSError` |
 | [`exception.stacktrace`](/docs/registry/attributes/exception.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | A stacktrace as a string in the natural representation for the language runtime. The representation is to be determined and documented by each language SIG. | `Exception in thread "main" java.lang.RuntimeException: Test exception\n at com.example.GenerateTrace.methodB(GenerateTrace.java:13)\n at com.example.GenerateTrace.methodA(GenerateTrace.java:9)\n at com.example.GenerateTrace.main(GenerateTrace.java:5)` |
 
 **[1] `exception.message`:** Required if `exception.type` is not set, recommended otherwise.
@@ -203,6 +203,12 @@ the corresponding span.
 > This attribute may contain sensitive information.
 
 **[3] `exception.type`:** Required if `exception.message` is not set, recommended otherwise.
+
+**[4] `exception.type`:** If the recorded exception type is a wrapper that is not meaningful for
+failure classification, instrumentation MAY use the type of the inner
+exception instead. For example, in Go, errors created with `fmt.Errorf`
+using `%w` MAY be unwrapped when the wrapper type does not help
+classify the failure.
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->

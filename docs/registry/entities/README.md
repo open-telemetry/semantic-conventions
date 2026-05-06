@@ -29,6 +29,7 @@ Currently, the following namespaces exist:
 | | [aws.log](aws.md#aws-log) | ![Development](https://img.shields.io/badge/-development-blue) |
 | Browser | | |
 | | [browser](browser.md#browser) | ![Development](https://img.shields.io/badge/-development-blue) |
+| | [browser.document](browser.md#browser-document) | ![Development](https://img.shields.io/badge/-development-blue) |
 | CICD | | |
 | | [cicd.pipeline](cicd.md#cicd-pipeline) | ![Development](https://img.shields.io/badge/-development-blue) |
 | | [cicd.pipeline.run](cicd.md#cicd-pipeline-run) | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -90,13 +91,14 @@ Currently, the following namespaces exist:
 | | [otel.scope](otel.md#otel-scope) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Obsoleted. |
 | Process | | |
 | | [process](process.md#process) | ![Development](https://img.shields.io/badge/-development-blue) |
+| | [process.executable](process.md#process-executable) | ![Development](https://img.shields.io/badge/-development-blue) |
 | | [process.runtime](process.md#process-runtime) | ![Development](https://img.shields.io/badge/-development-blue) |
 | Service | | |
 | | [service](service.md#service) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | | [service.instance](service.md#service-instance) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | | [service.namespace](service.md#service-namespace) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | Telemetry | | |
-| | [telemetry.distro](telemetry.md#telemetry-distro) | ![Development](https://img.shields.io/badge/-development-blue) |
+| | [telemetry.distro](telemetry.md#telemetry-distro) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | | [telemetry.sdk](telemetry.md#telemetry-sdk) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | VCS | | |
 | | [vcs.ref](vcs.md#vcs-ref) | ![Development](https://img.shields.io/badge/-development-blue) |

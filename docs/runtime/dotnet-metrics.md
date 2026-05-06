@@ -8,7 +8,7 @@ linkTitle: .NET
 
 This document describes semantic conventions for .NET CLR runtime metrics in OpenTelemetry.
 
-<!-- toc -->
+<!-- START doctoc -->
 
 - [.NET CLR Process](#net-clr-process)
   - [Metric: `dotnet.process.cpu.count`](#metric-dotnetprocesscpucount)
@@ -35,7 +35,7 @@ This document describes semantic conventions for .NET CLR runtime metrics in Ope
   - [Metric: `dotnet.assembly.count`](#metric-dotnetassemblycount)
   - [Metric: `dotnet.exceptions`](#metric-dotnetexceptions)
 
-<!-- tocstop -->
+<!-- END doctoc -->
 
 ## .NET CLR Process
 

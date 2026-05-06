@@ -21,3 +21,44 @@ groups:
               stability: development
         brief: The type of memory.
         examples: ["other", "stack"]
+
+      - id: go.memory.detailed_type
+        stability: development
+        type: string
+        brief: The detailed type of memory.
+        note: >
+          Value SHOULD match the specific memory class reported by the Go runtime under `/memory/classes/...`.
+          The list of possible values is subject to change with the Go version used.
+        examples: ["heap/objects", "heap/free"]
+
+      - id: go.cpu.state
+        stability: development
+        type:
+          members:
+            - id: user
+              value: 'user'
+              brief: 'CPU time spent running user Go code.'
+              stability: development
+            - id: gc
+              value: 'gc'
+              brief: 'CPU time spent performing garbage collection tasks.'
+              stability: development
+            - id: scavenge
+              value: 'scavenge'
+              brief: 'CPU time spent returning unused memory to the underlying platform.'
+              stability: development
+            - id: idle
+              value: 'idle'
+              brief: 'Available CPU time not spent executing any Go or Go runtime code.'
+              stability: development
+        brief: The state of the CPU.
+        examples: ["user", "gc"]
+
+      - id: go.cpu.detailed_state
+        stability: development
+        type: string
+        brief: The detailed state of the CPU.
+        note: >
+          Value SHOULD match the specific CPU class reported by the Go runtime under `/cpu/classes/...`.
+          The list of possible values is subject to change with the Go version used.
+        examples: ["gc/pause", "gc/mark/assist"]

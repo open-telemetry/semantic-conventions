@@ -1,10 +1,20 @@
 groups:
   - id: registry.mcp
+    deprecated:
+      reason: uncategorized
+      note: >
+        Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
     type: attribute_group
+    display_name: MCP Attributes (Moved)
     brief: >
       [Model Context Protocol (MCP)](https://modelcontextprotocol.io) attributes
+      have moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
     attributes:
       - id: mcp.method.name
+        deprecated:
+          reason: uncategorized
+          note: >
+            Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
         brief: The name of the request or notification method.
         stability: development
         type:
@@ -136,11 +146,19 @@ groups:
                 user via the client
               stability: development
       - id: mcp.session.id
+        deprecated:
+          reason: uncategorized
+          note: >
+            Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
         type: string
         brief: Identifies [MCP session](https://modelcontextprotocol.io/specification/2025-06-18/basic/transports#session-management).
         stability: development
         examples: ["191c4850af6c49e08843a3f6c80e5046"]
       - id: mcp.resource.uri
+        deprecated:
+          reason: uncategorized
+          note: >
+            Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
         type: string
         brief: The value of the resource uri.
         note: >
@@ -149,6 +167,10 @@ groups:
         stability: development
         examples: ["postgres://database/customers/schema", "file:///home/user/documents/report.pdf"]
       - id: mcp.protocol.version
+        deprecated:
+          reason: uncategorized
+          note: >
+            Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
         type: string
         brief: The [version](https://modelcontextprotocol.io/specification/versioning) of the Model Context Protocol used.
         stability: development
