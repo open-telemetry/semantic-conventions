@@ -6,14 +6,14 @@ linkTitle: gRPC
 
 **Status**: [Release Candidate][DocumentStatus], unless otherwise specified
 
-<!-- toc -->
+<!-- START doctoc -->
 
 - [Spans](#spans)
   - [Client](#client)
   - [Server](#server)
 - [Metrics](#metrics)
 
-<!-- tocstop -->
+<!-- END doctoc -->
 
 The Semantic Conventions for [gRPC](https://grpc.io/) extend and override the [RPC Semantic Conventions](README.md).
 

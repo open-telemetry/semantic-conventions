@@ -19,7 +19,7 @@ fix_file() {
   # Uses a negative lookahead to skip URLs pointing to semantic_conventions/
   # paths that were moved from the spec repo and no longer exist in newer versions.
   perl -pi -e "
-    s,\Q${SPECIFICATION_URL_PREFIX}\Ev1\.\d+\.\d+(?=/specification/(?!.*/semantic_conventions/)),${SPECIFICATION_URL_PREFIX}${LATEST_SPECIFICATION_VERSION},g;
+    s,\Q${SPECIFICATION_URL_PREFIX}\Ev1\.\d+\.\d+(?!.*/semantic_conventions/),${SPECIFICATION_URL_PREFIX}${LATEST_SPECIFICATION_VERSION},g;
     s,\Q${SPECIFICATION_BADGE_PREFIX}\Ev1\.\d+\.\d+,${SPECIFICATION_BADGE_PREFIX}${LATEST_SPECIFICATION_VERSION},g;
     s,\Q${SPECIFICATION_BADGE_RELEASE_TAG_PREFIX}\Ev1\.\d+\.\d+,${SPECIFICATION_BADGE_RELEASE_TAG_PREFIX}${LATEST_SPECIFICATION_VERSION},g;
   " "$1"

@@ -55,6 +55,3 @@ extract_metric_namespace_prefix(name) = namespace if {
     namespace := concat("", [name, "."])
 }
 
-is_property_set(obj, property) = true if {
-    obj[property] != null
-} else = false

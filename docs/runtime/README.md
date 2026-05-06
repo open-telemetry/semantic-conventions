@@ -9,12 +9,12 @@ linkTitle: Runtime environment
 This document defines semantic conventions for
 runtime environment spans, metrics and logs.
 
-<!-- toc -->
+<!-- START doctoc -->
 
 - [Metrics](#metrics)
   - [Attributes](#attributes)
 
-<!-- tocstop -->
+<!-- END doctoc -->
 
 ## Metrics
 

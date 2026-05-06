@@ -2,6 +2,10 @@ groups:
   - id: attributes.gen_ai.common
     type: attribute_group
     stability: development
+    deprecated:
+      reason: uncategorized
+      note: >
+        Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
     brief: >
       Common attributes for all GenAI spans.
     attributes:
@@ -25,6 +29,10 @@ groups:
   - id: attributes.gen_ai.common.client
     type: attribute_group
     stability: development
+    deprecated:
+      reason: uncategorized
+      note: >
+        Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
     brief: >
       Common attributes for GenAI client spans.
     extends: attributes.gen_ai.common
@@ -40,6 +48,10 @@ groups:
   - id: attributes.gen_ai.inference.client
     type: attribute_group
     stability: development
+    deprecated:
+      reason: uncategorized
+      note: >
+        Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
     brief: >
       Describes GenAI inference attributes.
     extends: attributes.gen_ai.common.client
@@ -62,6 +74,9 @@ groups:
       - ref: gen_ai.request.seed
         requirement_level:
           conditionally_required: if applicable and if the request includes a seed
+      - ref: gen_ai.request.stream
+        requirement_level:
+          conditionally_required: If and only if the request is streaming. If unset, the request is assumed to be non-streaming.
       - ref: gen_ai.output.type
         requirement_level:
           conditionally_required: when applicable and if the request includes an output format.
@@ -75,6 +90,9 @@ groups:
           fine-tuned custom model, the value should have a more specific name than the base model that's been fine-tuned.
       - ref: gen_ai.response.finish_reasons
         requirement_level: recommended
+      - ref: gen_ai.response.time_to_first_chunk
+        requirement_level:
+          recommended: if the request was a streaming request
       - ref: gen_ai.usage.input_tokens
         requirement_level: recommended
       - ref: gen_ai.usage.cache_read.input_tokens
@@ -83,6 +101,11 @@ groups:
         requirement_level: recommended
       - ref: gen_ai.usage.output_tokens
         requirement_level: recommended
+      - ref: gen_ai.usage.reasoning.output_tokens
+        requirement_level:
+          recommended: when applicable
+        note: >
+          The value SHOULD be included in `gen_ai.usage.output_tokens`.
       - ref: gen_ai.conversation.id
         requirement_level:
           conditionally_required: when available
@@ -112,6 +135,10 @@ groups:
   - id: span.gen_ai.inference.client
     type: span
     stability: development
+    deprecated:
+      reason: uncategorized
+      note: >
+        Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
     span_kind: client
     brief: >
       This span represents a client call to Generative AI model or service that generates
@@ -119,7 +146,7 @@ groups:
     note: |
       **Span name** SHOULD be `{gen_ai.operation.name} {gen_ai.request.model}`.
       Semantic conventions for individual GenAI systems and frameworks MAY specify different span name format
-      and MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.55.0/specification/trace/api.md#span).
+      and MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.56.0/specification/trace/api.md#span).
 
       **Span kind** SHOULD be `CLIENT` and MAY be set to `INTERNAL` on spans representing
       call to models running in the same process. It's RECOMMENDED to use `CLIENT` kind
@@ -146,6 +173,10 @@ groups:
     extends: attributes.gen_ai.inference.client
     type: attribute_group
     stability: development
+    deprecated:
+      reason: uncategorized
+      note: >
+        Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
     brief: >
       Describes attributes that are common to OpenAI-based Generative AI services.
     attributes:
@@ -176,6 +207,10 @@ groups:
   - id: span.openai.inference.client
     extends: attributes.gen_ai.inference.openai_based
     stability: development
+    deprecated:
+      reason: uncategorized
+      note: >
+        Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
     span_kind: client
     type: span
     brief: >
@@ -194,6 +229,9 @@ groups:
       - ref: gen_ai.usage.cache_read.input_tokens
         note: >
           Corresponds to `usage.input_tokens_details.cached_tokens` or a similar property in the model response.
+      - ref: gen_ai.usage.reasoning.output_tokens
+        note: >
+          Corresponds to `usage.output_tokens_details.reasoning_tokens` in the model response.
       - ref: openai.request.service_tier
         requirement_level:
           conditionally_required: if the request includes a service_tier and the value is not 'auto'
@@ -208,6 +246,10 @@ groups:
   - id: span.azure.ai.inference.client
     extends: attributes.gen_ai.inference.openai_based
     stability: development
+    deprecated:
+      reason: uncategorized
+      note: >
+        Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
     type: span
     span_kind: client
     brief: >
@@ -238,6 +280,10 @@ groups:
     type: span
     span_kind: client
     stability: development
+    deprecated:
+      reason: uncategorized
+      note: >
+        Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
     brief: >
       Describes GenAI embeddings span - a request to a Generative AI model or service
       that generates an embeddings based on the input.
@@ -271,6 +317,10 @@ groups:
     type: span
     span_kind: client
     stability: development
+    deprecated:
+      reason: uncategorized
+      note: >
+        Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
     brief: >
       Describes GenAI retrieval span - a request to a Generative AI service or framework
       that retrieves relevant information or context from a vector database or search system.
@@ -302,6 +352,10 @@ groups:
   - id: span.gen_ai.create_agent.client
     type: span
     stability: development
+    deprecated:
+      reason: uncategorized
+      note: >
+        Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
     span_kind: client
     brief: >
       Describes GenAI agent creation and is usually applicable when working
@@ -344,6 +398,10 @@ groups:
   - id: attributes.gen_ai.invoke_agent.common
     type: attribute_group
     stability: development
+    deprecated:
+      reason: uncategorized
+      note: >
+        Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
     brief: >
       Common attributes for GenAI invoke_agent spans.
     extends: attributes.gen_ai.common
@@ -422,6 +480,10 @@ groups:
   - id: attributes.gen_ai.invoke_agent.client
     type: attribute_group
     stability: development
+    deprecated:
+      reason: uncategorized
+      note: >
+        Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
     brief: >
       Describes GenAI invoke_agent client attributes.
     extends: attributes.gen_ai.invoke_agent.common
@@ -437,6 +499,10 @@ groups:
   - id: attributes.gen_ai.invoke_agent.internal
     type: attribute_group
     stability: development
+    deprecated:
+      reason: uncategorized
+      note: >
+        Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
     brief: >
       Describes GenAI invoke_agent internal attributes.
     extends: attributes.gen_ai.invoke_agent.common
@@ -444,6 +510,10 @@ groups:
   - id: span.gen_ai.invoke_agent.client
     type: span
     stability: development
+    deprecated:
+      reason: uncategorized
+      note: >
+        Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
     span_kind: client
     brief: >
       Describes GenAI agent invocation over a remote service.
@@ -472,6 +542,10 @@ groups:
   - id: span.gen_ai.invoke_agent.internal
     type: span
     stability: development
+    deprecated:
+      reason: uncategorized
+      note: >
+        Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
     span_kind: internal
     brief: >
       Describes GenAI agent invocation within the same process.
@@ -496,6 +570,10 @@ groups:
   - id: span.gen_ai.execute_tool.internal
     type: span
     stability: development
+    deprecated:
+      reason: uncategorized
+      note: >
+        Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
     span_kind: internal
     brief: Describes tool execution span.
     note: |
@@ -506,7 +584,7 @@ groups:
       GenAI instrumentations that can instrument tool execution calls SHOULD do so,
       unless another instrumentation can reliably cover all supported tool types.
       MCP tool executions may also be traced by the
-      [corresponding MCP instrumentation](/docs/gen-ai/mcp.md#client).
+      [corresponding MCP instrumentation](https://github.com/open-telemetry/semantic-conventions/blob/v1.41.0/docs/gen-ai/mcp.md#client).
 
       Tools are often executed directly by application code. Application developers
       are encouraged to follow this semantic convention for tools invoked by their
@@ -542,6 +620,10 @@ groups:
   - id: span.aws.bedrock.client
     extends: span.gen_ai.inference.client
     stability: development
+    deprecated:
+      reason: uncategorized
+      note: >
+        Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
     span_kind: client
     type: span
     brief: >
@@ -555,6 +637,10 @@ groups:
   - id: span.anthropic.inference.client
     extends: attributes.gen_ai.inference.client
     stability: development
+    deprecated:
+      reason: uncategorized
+      note: >
+        Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
     span_kind: client
     type: span
     brief: >
@@ -582,6 +668,10 @@ groups:
     type: span
     span_kind: internal
     stability: development
+    deprecated:
+      reason: uncategorized
+      note: >
+        Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
     brief: >
       Represents an operation that executes a coordinated process composed of multiple agents
       or other operations involving generative AI.
