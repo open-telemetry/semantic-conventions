@@ -7,13 +7,13 @@ groups:
     attributes:
       - id: k8s.cluster.name
         type: string
-        stability: beta
+        stability: release_candidate
         brief: >
           The name of the cluster.
         examples: ['opentelemetry-cluster']
       - id: k8s.cluster.uid
         type: string
-        stability: beta
+        stability: release_candidate
         brief: >
           A pseudo-ID for the cluster, set to the UID of the `kube-system`
           namespace.
@@ -43,19 +43,19 @@ groups:
         examples: ['218fc5a9-a5f1-4b54-aa05-46717d0ab26d']
       - id: k8s.node.name
         type: string
-        stability: beta
+        stability: release_candidate
         brief: >
           The name of the Node.
         examples: ['node-1']
       - id: k8s.node.uid
         type: string
-        stability: beta
+        stability: release_candidate
         brief: >
           The UID of the Node.
         examples: ['1eb3a0c6-0477-4080-a9cb-0cb7db65c6a2']
       - id: k8s.node.label
         type: template[string]
-        stability: beta
+        stability: release_candidate
         brief: >
           The label placed on the Node, the `<key>` being the label name, the value being the label value, even if the value is empty.
         note: |
@@ -68,7 +68,7 @@ groups:
         examples: ['arm64', '']
       - id: k8s.node.annotation
         type: template[string]
-        stability: beta
+        stability: release_candidate
         brief: >
           The annotation placed on the Node, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
         note: |
@@ -79,15 +79,21 @@ groups:
           - An annotation `data` with empty string value SHOULD be recorded as
             the `k8s.node.annotation.data` attribute with value `""`.
         examples: [ '0', '' ]
+      - id: k8s.node.system_container.name
+        type: string
+        stability: development
+        brief: >
+          The name of the system container running on the K8s Node.
+        examples: ['kubelet', 'runtime', 'pods', 'misc']
       - id: k8s.namespace.name
         type: string
-        stability: beta
+        stability: release_candidate
         brief: >
           The name of the namespace that the pod is running in.
         examples: ['default']
       - id: k8s.namespace.label
         type: template[string]
-        stability: beta
+        stability: release_candidate
         brief: >
           The label placed on the Namespace, the `<key>` being the label name, the value being the label value, even if the value is empty.
         note: |
@@ -101,7 +107,7 @@ groups:
         examples: ['default', '']
       - id: k8s.namespace.annotation
         type: template[string]
-        stability: beta
+        stability: release_candidate
         brief: >
           The annotation placed on the Namespace, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
         note: |
@@ -115,19 +121,19 @@ groups:
         examples: ['0', '']
       - id: k8s.pod.uid
         type: string
-        stability: beta
+        stability: release_candidate
         brief: >
           The UID of the Pod.
         examples: ['275ecb36-5aa8-4c2a-9c47-d8bb681b9aff']
       - id: k8s.pod.name
         type: string
-        stability: beta
+        stability: release_candidate
         brief: >
           The name of the Pod.
         examples: ['opentelemetry-pod-autoconf']
       - id: k8s.pod.ip
         type: string
-        stability: beta
+        stability: release_candidate
         brief: >
           IP address allocated to the Pod.
         examples: [ '172.18.0.2' ]
@@ -136,7 +142,7 @@ groups:
           [K8s PodStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#podstatus-v1-core).
       - id: k8s.pod.hostname
         type: string
-        stability: beta
+        stability: release_candidate
         brief: >
           Specifies the hostname of the Pod.
         note: |
@@ -149,7 +155,7 @@ groups:
         examples: [ 'collector-gateway' ]
       - id: k8s.pod.start_time
         type: string
-        stability: beta
+        stability: release_candidate
         brief: >
           The start timestamp of the Pod.
         examples: [ '2025-12-04T08:41:03Z' ]
@@ -162,7 +168,7 @@ groups:
           in ISO 8601 (RFC 3339 compatible) format.
       - id: k8s.pod.label
         type: template[string]
-        stability: beta
+        stability: release_candidate
         brief: >
           The label placed on the Pod, the `<key>` being the label name, the value being the label value.
         examples: ['my-app', 'x64', '']
@@ -177,7 +183,7 @@ groups:
             the `k8s.pod.label.data` attribute with value `""`.
       - id: k8s.pod.annotation
         type: template[string]
-        stability: beta
+        stability: release_candidate
         brief: >
           The annotation placed on the Pod, the `<key>` being the annotation name, the value being the annotation value.
         note: |
@@ -192,7 +198,7 @@ groups:
         examples: [ 'true', 'x64', '' ]
       - id: k8s.container.name
         type: string
-        stability: beta
+        stability: release_candidate
         brief: >
           The name of the Container from Pod specification, must be unique
           within a Pod. Container runtime usually uses different globally unique
@@ -200,7 +206,7 @@ groups:
         examples: ['redis']
       - id: k8s.container.restart_count
         type: int
-        stability: beta
+        stability: release_candidate
         brief: >
           Number of times the container was restarted. This attribute can be
           used to identify a particular container (running or stopped) within a
@@ -211,22 +217,39 @@ groups:
         brief: >
           Last terminated reason of the Container.
         examples: ["Evicted", "Error"]
+      - id: k8s.container.ephemeral_storage.fs_type
+        type:
+          members:
+            - id: rootfs
+              value: 'rootfs'
+              brief: "For the container's writable layer usage."
+              stability: development
+            - id: logs
+              value: 'logs'
+              brief: "For the container's log files usage (stdout/stderr)."
+              stability: development
+        stability: development
+        brief: >
+          The type of file system component for ephemeral storage.
+        note: |
+          Eviction decisions based on ephemeral-storage resource limits are made based on the total container usage.
+        examples: ['rootfs', 'logs']
 
       - id: k8s.replicaset.uid
         type: string
-        stability: beta
+        stability: release_candidate
         brief: >
           The UID of the ReplicaSet.
         examples: ['275ecb36-5aa8-4c2a-9c47-d8bb681b9aff']
       - id: k8s.replicaset.name
         type: string
-        stability: beta
+        stability: release_candidate
         brief: >
           The name of the ReplicaSet.
         examples: ['opentelemetry']
       - id: k8s.replicaset.label
         type: template[string]
-        stability: beta
+        stability: release_candidate
         brief: >
           The label placed on the ReplicaSet, the `<key>` being the label name, the value being the label value, even if the value is empty.
         note: |
@@ -240,7 +263,7 @@ groups:
         examples: ['guestbook', '']
       - id: k8s.replicaset.annotation
         type: template[string]
-        stability: beta
+        stability: release_candidate
         brief: >
           The annotation placed on the ReplicaSet, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
         note: |
@@ -278,19 +301,19 @@ groups:
         examples: [ 'opentelemetry' ]
       - id: k8s.deployment.uid
         type: string
-        stability: beta
+        stability: release_candidate
         brief: >
           The UID of the Deployment.
         examples: ['275ecb36-5aa8-4c2a-9c47-d8bb681b9aff']
       - id: k8s.deployment.name
         type: string
-        stability: beta
+        stability: release_candidate
         brief: >
           The name of the Deployment.
         examples: ['opentelemetry']
       - id: k8s.deployment.label
         type: template[string]
-        stability: beta
+        stability: release_candidate
         brief: >
           The label placed on the Deployment, the `<key>` being the label name, the value being the label value, even if the value is empty.
         note: |
@@ -304,7 +327,7 @@ groups:
         examples: ['guestbook', '']
       - id: k8s.deployment.annotation
         type: template[string]
-        stability: beta
+        stability: release_candidate
         brief: >
           The annotation placed on the Deployment, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
         note: |
@@ -318,19 +341,19 @@ groups:
         examples: ['1', '']
       - id: k8s.statefulset.uid
         type: string
-        stability: beta
+        stability: release_candidate
         brief: >
           The UID of the StatefulSet.
         examples: ['275ecb36-5aa8-4c2a-9c47-d8bb681b9aff']
       - id: k8s.statefulset.name
         type: string
-        stability: beta
+        stability: release_candidate
         brief: >
           The name of the StatefulSet.
         examples: ['opentelemetry']
       - id: k8s.statefulset.label
         type: template[string]
-        stability: beta
+        stability: release_candidate
         brief: >
           The label placed on the StatefulSet, the `<key>` being the label name, the value being the label value, even if the value is empty.
         note: |
@@ -344,7 +367,7 @@ groups:
         examples: ['guestbook', '']
       - id: k8s.statefulset.annotation
         type: template[string]
-        stability: beta
+        stability: release_candidate
         brief: >
           The annotation placed on the StatefulSet, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
         note: |
@@ -358,19 +381,19 @@ groups:
         examples: ['1', '']
       - id: k8s.daemonset.uid
         type: string
-        stability: beta
+        stability: release_candidate
         brief: >
           The UID of the DaemonSet.
         examples: ['275ecb36-5aa8-4c2a-9c47-d8bb681b9aff']
       - id: k8s.daemonset.name
         type: string
-        stability: beta
+        stability: release_candidate
         brief: >
           The name of the DaemonSet.
         examples: ['opentelemetry']
       - id: k8s.daemonset.label
         type: template[string]
-        stability: beta
+        stability: release_candidate
         brief: >
           The label placed on the DaemonSet, the `<key>` being the label name, the value being the label value, even if the value is empty.
         note: |
@@ -384,7 +407,7 @@ groups:
         examples: ['guestbook', '']
       - id: k8s.daemonset.annotation
         type: template[string]
-        stability: beta
+        stability: release_candidate
         brief: >
           The annotation placed on the DaemonSet, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
         note: |
@@ -442,19 +465,19 @@ groups:
           This attribute reflects the `type` field of spec.metrics[] in the HPA.
       - id: k8s.job.uid
         type: string
-        stability: beta
+        stability: release_candidate
         brief: >
           The UID of the Job.
         examples: ['275ecb36-5aa8-4c2a-9c47-d8bb681b9aff']
       - id: k8s.job.name
         type: string
-        stability: beta
+        stability: release_candidate
         brief: >
           The name of the Job.
         examples: ['opentelemetry']
       - id: k8s.job.label
         type: template[string]
-        stability: beta
+        stability: release_candidate
         brief: >
           The label placed on the Job, the `<key>` being the label name, the value being the label value, even if the value is empty.
         note: |
@@ -468,7 +491,7 @@ groups:
         examples: ['ci', '']
       - id: k8s.job.annotation
         type: template[string]
-        stability: beta
+        stability: release_candidate
         brief: >
           The annotation placed on the Job, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
         note: |
@@ -482,19 +505,19 @@ groups:
         examples: ['1', '']
       - id: k8s.cronjob.uid
         type: string
-        stability: beta
+        stability: release_candidate
         brief: >
           The UID of the CronJob.
         examples: ['275ecb36-5aa8-4c2a-9c47-d8bb681b9aff']
       - id: k8s.cronjob.name
         type: string
-        stability: beta
+        stability: release_candidate
         brief: >
           The name of the CronJob.
         examples: ['opentelemetry']
       - id: k8s.cronjob.label
         type: template[string]
-        stability: beta
+        stability: release_candidate
         brief: >
           The label placed on the CronJob, the `<key>` being the label name, the value being the label value.
         note: |
@@ -507,7 +530,7 @@ groups:
         examples: ['weekly', '']
       - id: k8s.cronjob.annotation
         type: template[string]
-        stability: beta
+        stability: release_candidate
         brief: >
           The cronjob annotation placed on the CronJob, the `<key>` being the annotation name, the value being the annotation value.
         note: |
@@ -533,27 +556,27 @@ groups:
           members:
             - id: persistent_volume_claim
               value: 'persistentVolumeClaim'
-              brief: "A [persistentVolumeClaim](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#persistentvolumeclaim) volume"
+              brief: "A [persistentVolumeClaim](https://kubernetes.io/docs/concepts/storage/volumes/#persistentvolumeclaim) volume"
               stability: development
             - id: config_map
               value: 'configMap'
-              brief: "A [configMap](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#configmap) volume"
+              brief: "A [configMap](https://kubernetes.io/docs/concepts/storage/volumes/#configmap) volume"
               stability: development
             - id: downward_api
               value: 'downwardAPI'
-              brief: "A [downwardAPI](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#downwardapi) volume"
+              brief: "A [downwardAPI](https://kubernetes.io/docs/concepts/storage/volumes/#downwardapi) volume"
               stability: development
             - id: empty_dir
               value: 'emptyDir'
-              brief: "An [emptyDir](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#emptydir) volume"
+              brief: "An [emptyDir](https://kubernetes.io/docs/concepts/storage/volumes/#emptydir) volume"
               stability: development
             - id: secret
               value: 'secret'
-              brief: "A [secret](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#secret) volume"
+              brief: "A [secret](https://kubernetes.io/docs/concepts/storage/volumes/#secret) volume"
               stability: development
             - id: local
               value: 'local'
-              brief: "A [local](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#local) volume"
+              brief: "A [local](https://kubernetes.io/docs/concepts/storage/volumes/#local) volume"
               stability: development
       - id: k8s.namespace.phase
         stability: development
@@ -561,7 +584,7 @@ groups:
           The phase of the K8s namespace.
         note: |
           This attribute aligns with the `phase` field of the
-          [K8s NamespaceStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#namespacestatus-v1-core)
+          [K8s NamespaceStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#namespacestatus-v1-core)
         examples: [ "active", "terminating" ]
         type:
           members:
@@ -579,10 +602,10 @@ groups:
           The condition type of a K8s Node.
         note: |
           K8s Node conditions as described
-          by [K8s documentation](https://v1-32.docs.kubernetes.io/docs/reference/node/node-status/#condition).
+          by [K8s documentation](https://kubernetes.io/docs/reference/node/node-status/#condition).
 
           This attribute aligns with the `type` field of the
-          [NodeCondition](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#nodecondition-v1-core)
+          [NodeCondition](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#nodecondition-v1-core)
 
           The set of possible values is not limited to those listed here. Managed Kubernetes environments,
           or custom controllers MAY introduce additional node condition types.
@@ -616,7 +639,7 @@ groups:
           The status of the condition, one of True, False, Unknown.
         note: |
           This attribute aligns with the `status` field of the
-          [NodeCondition](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#nodecondition-v1-core)
+          [NodeCondition](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#nodecondition-v1-core)
         examples: [ "true", "false", "unknown" ]
         type:
           members:
@@ -633,7 +656,7 @@ groups:
         stability: experimental
         brief: >
           The state of the container.
-          [K8s ContainerState](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#containerstate-v1-core)
+          [K8s ContainerState](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#containerstate-v1-core)
         type:
           members:
             - id: terminated
@@ -691,9 +714,9 @@ groups:
         stability: experimental
         brief: >
           The reason for the container state. Corresponds to the `reason` field of the:
-          [K8s ContainerStateWaiting](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#containerstatewaiting-v1-core)
+          [K8s ContainerStateWaiting](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#containerstatewaiting-v1-core)
           or
-          [K8s ContainerStateTerminated](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#containerstateterminated-v1-core)
+          [K8s ContainerStateTerminated](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#containerstateterminated-v1-core)
         examples: ['ContainerCreating', 'CrashLoopBackOff', 'CreateContainerConfigError', 'ErrImagePull', 'ImagePullBackOff', 'OOMKilled', 'Completed', 'Error', 'ContainerCannotRun']
       - id: k8s.hugepage.size
         type: string
@@ -706,7 +729,7 @@ groups:
         stability: development
         brief: >
           The name of K8s
-          [StorageClass](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#storageclass-v1-storage-k8s-io)
+          [StorageClass](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#storageclass-v1-storage-k8s-io)
           object.
         examples: [ 'gold.storageclass.storage.k8s.io' ]
       - id: k8s.resourcequota.resource_name
@@ -961,3 +984,157 @@ groups:
           If the zone is not populated (e.g., nodes without the `topology.kubernetes.io/zone` label),
           the attribute value will be an empty string.
         examples: ['us-east-1a', 'us-west-2b', 'zone-a', '']
+
+      # PersistentVolume attributes
+      - id: k8s.persistentvolume.uid
+        type: string
+        stability: development
+        brief: >
+          The UID of the PersistentVolume.
+        examples: ['275ecb36-5aa8-4c2a-9c47-d8bb681b9aff']
+      - id: k8s.persistentvolume.name
+        type: string
+        stability: development
+        brief: >
+          The name of the PersistentVolume.
+        examples: ['pv-data-01']
+      - id: k8s.persistentvolume.label
+        type: template[string]
+        stability: development
+        brief: >
+          The label placed on the PersistentVolume, the `<key>` being the label name, the value being the label value, even if the value is empty.
+        note: |
+          Examples:
+
+          - A label `type` with value `ssd` SHOULD be recorded as
+            the `k8s.persistentvolume.label.type` attribute with value `"ssd"`.
+          - A label `data` with empty string value SHOULD be recorded as
+            the `k8s.persistentvolume.label.data` attribute with value `""`.
+        examples: ['ssd', '']
+      - id: k8s.persistentvolume.annotation
+        type: template[string]
+        stability: development
+        brief: >
+          The annotation placed on the PersistentVolume, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
+        note: |
+          Examples:
+
+          - An annotation `pv.kubernetes.io/provisioned-by` with value `kubernetes.io/aws-ebs` SHOULD be recorded as
+            the `k8s.persistentvolume.annotation.pv.kubernetes.io/provisioned-by` attribute with value `"kubernetes.io/aws-ebs"`.
+          - An annotation `data` with empty string value SHOULD be recorded as
+            the `k8s.persistentvolume.annotation.data` attribute with value `""`.
+        examples: ['kubernetes.io/aws-ebs', '']
+      - id: k8s.persistentvolume.reclaim_policy
+        stability: development
+        brief: >
+          The reclaim policy of the PersistentVolume.
+        note: |
+          This attribute aligns with the `persistentVolumeReclaimPolicy` field of the
+          [K8s PersistentVolumeSpec](https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/persistent-volume-v1/#PersistentVolumeSpec).
+        examples: ['Delete', 'Retain', 'Recycle']
+        type:
+          members:
+            - id: delete
+              value: 'Delete'
+              brief: 'The volume will be deleted when released from its claim.'
+              stability: development
+            - id: recycle
+              value: 'Recycle'
+              brief: 'The volume will be recycled (basic scrub) when released from its claim.'
+              stability: development
+            - id: retain
+              value: 'Retain'
+              brief: 'The volume will be retained when released from its claim.'
+              stability: development
+      - id: k8s.persistentvolume.status.phase
+        stability: development
+        brief: >
+          The phase of the PersistentVolume.
+        note: |
+          This attribute aligns with the `phase` field of the
+          [K8s PersistentVolumeStatus](https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/persistent-volume-v1/#PersistentVolumeStatus).
+        examples: ['Pending', 'Available', 'Bound', 'Released', 'Failed']
+        type:
+          members:
+            - id: available
+              value: 'Available'
+              brief: 'The volume is available and not yet bound to a claim.'
+              stability: development
+            - id: bound
+              value: 'Bound'
+              brief: 'The volume is bound to a claim.'
+              stability: development
+            - id: failed
+              value: 'Failed'
+              brief: 'The volume has failed its automatic reclamation.'
+              stability: development
+            - id: pending
+              value: 'Pending'
+              brief: 'The volume is being provisioned.'
+              stability: development
+            - id: released
+              value: 'Released'
+              brief: 'The claim has been deleted but the volume is not yet available.'
+              stability: development
+
+      # PersistentVolumeClaim attributes
+      - id: k8s.persistentvolumeclaim.uid
+        type: string
+        stability: development
+        brief: >
+          The UID of the PersistentVolumeClaim.
+        examples: ['275ecb36-5aa8-4c2a-9c47-d8bb681b9aff']
+      - id: k8s.persistentvolumeclaim.name
+        type: string
+        stability: development
+        brief: >
+          The name of the PersistentVolumeClaim.
+        examples: ['pvc-data-01']
+      - id: k8s.persistentvolumeclaim.label
+        type: template[string]
+        stability: development
+        brief: >
+          The label placed on the PersistentVolumeClaim, the `<key>` being the label name, the value being the label value, even if the value is empty.
+        note: |
+          Examples:
+
+          - A label `app` with value `my-app` SHOULD be recorded as
+            the `k8s.persistentvolumeclaim.label.app` attribute with value `"my-app"`.
+          - A label `data` with empty string value SHOULD be recorded as
+            the `k8s.persistentvolumeclaim.label.data` attribute with value `""`.
+        examples: ['my-app', '']
+      - id: k8s.persistentvolumeclaim.annotation
+        type: template[string]
+        stability: development
+        brief: >
+          The annotation placed on the PersistentVolumeClaim, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
+        note: |
+          Examples:
+
+          - An annotation `volume.beta.kubernetes.io/storage-provisioner` with value `kubernetes.io/aws-ebs` SHOULD be recorded as
+            the `k8s.persistentvolumeclaim.annotation.volume.beta.kubernetes.io/storage-provisioner` attribute with value `"kubernetes.io/aws-ebs"`.
+          - An annotation `data` with empty string value SHOULD be recorded as
+            the `k8s.persistentvolumeclaim.annotation.data` attribute with value `""`.
+        examples: ['kubernetes.io/aws-ebs', '']
+      - id: k8s.persistentvolumeclaim.status.phase
+        stability: development
+        brief: >
+          The phase of the PersistentVolumeClaim.
+        note: |
+          This attribute aligns with the `phase` field of the
+          [K8s PersistentVolumeClaimStatus](https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/persistent-volume-claim-v1/#PersistentVolumeClaimStatus).
+        examples: ['Pending', 'Bound', 'Lost']
+        type:
+          members:
+            - id: bound
+              value: 'Bound'
+              brief: 'The claim is bound to a volume.'
+              stability: development
+            - id: lost
+              value: 'Lost'
+              brief: 'The claim has lost its underlying volume (the volume does not exist anymore).'
+              stability: development
+            - id: pending
+              value: 'Pending'
+              brief: 'The claim has not yet been bound to a volume.'
+              stability: development

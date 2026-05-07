@@ -33,20 +33,6 @@ areas:
       - accepting_contributions
       - active
 
-  - name: "Semantic Conventions: GenAI"
-    owner:
-      - name: "semconv-genai-approvers"
-        github: semconv-genai-approvers
-    project: "https://github.com/open-telemetry/community/blob/main/projects/gen-ai.md"
-    board: "https://github.com/orgs/open-telemetry/projects/82"
-    labels:
-      - area:gen-ai
-      - area:openai
-      - area:mcp
-    status:
-      - accepting_contributions
-      - active
-
   - name: "Semantic Conventions: CI/CD"
     owner:
       - name: "semconv-cicd-approvers"
@@ -185,6 +171,18 @@ areas:
       - area:jvm
     status:
       - inactive
+
+  - name: "Semantic Conventions: Go"
+    owner:
+      - name: "go-approvers"
+        github: go-approvers
+    project: "N/A"
+    board: "https://github.com/orgs/open-telemetry/projects/186"
+    labels:
+      - area:go
+    status:
+      - accepting_contributions
+      - active
 
   - name: "Semantic Conventions: Logs"
     owner:

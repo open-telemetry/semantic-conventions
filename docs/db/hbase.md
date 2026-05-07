@@ -6,12 +6,12 @@ linkTitle: HBase
 
 **Status**: [Development][DocumentStatus]
 
-<!-- toc -->
+<!-- START doctoc -->
 
 - [Spans](#spans)
 - [Metrics](#metrics)
 
-<!-- tocstop -->
+<!-- END doctoc -->
 
 The Semantic Conventions for [HBase](https://hbase.apache.org/) extend and override the [Database Semantic Conventions](README.md).
 

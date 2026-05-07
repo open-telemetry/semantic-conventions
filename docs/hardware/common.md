@@ -6,7 +6,7 @@ linkTitle: Metrics
 
 **Status**: [Development][DocumentStatus]
 
-<!-- toc -->
+<!-- START doctoc -->
 
 - [Common hardware metrics](#common-hardware-metrics)
   - [Metric: `hw.energy`](#metric-hwenergy)
@@ -14,7 +14,7 @@ linkTitle: Metrics
   - [Metric: `hw.power`](#metric-hwpower)
   - [Metric: `hw.status`](#metric-hwstatus)
 
-<!-- tocstop -->
+<!-- END doctoc -->
 
 Hardware metrics do not include attributes that identify the device, machine, or host they are reported for. This
 information is expected to be provided via resource attributes configured by user applications.

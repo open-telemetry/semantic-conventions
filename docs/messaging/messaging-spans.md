@@ -6,7 +6,7 @@ linkTitle: Spans
 
 **Status**: [Development][DocumentStatus]
 
-<!-- toc -->
+<!-- START doctoc -->
 
 - [Definitions](#definitions)
   - [Message](#message)
@@ -37,7 +37,7 @@ linkTitle: Spans
   - [Batch publishing with "Create" spans](#batch-publishing-with-create-spans)
   - [Batch publishing without "Create" spans](#batch-publishing-without-create-spans)
 
-<!-- tocstop -->
+<!-- END doctoc -->
 
 > [!IMPORTANT]
 >
@@ -190,7 +190,7 @@ in such a way that it cannot be changed by intermediaries.
 
 ### Span name
 
-Messaging spans SHOULD follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.55.0/specification/trace/api.md#span).
+Messaging spans SHOULD follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.56.0/specification/trace/api.md#span).
 
 The **span name** SHOULD be `{messaging.operation.name} {destination}`
 (see below for the exact definition of the [`{destination}`](#destination-placeholder) placeholder).
@@ -403,6 +403,12 @@ Messaging system-specific attributes MUST be defined in the corresponding `messa
 
 When `error.type` is set to a type (e.g., an exception type), its
 canonical class name identifying the type within the artifact SHOULD be used.
+
+If the recorded error type is a wrapper that is not meaningful for
+failure classification, instrumentation MAY use the type of the inner
+error instead. For example, in Go, errors created with `fmt.Errorf`
+using `%w` MAY be unwrapped when the wrapper type does not help
+classify the failure.
 
 Instrumentations SHOULD document the list of errors they report.
 

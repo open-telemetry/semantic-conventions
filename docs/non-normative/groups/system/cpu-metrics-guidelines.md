@@ -98,7 +98,7 @@ used:
 
 `avg(sum(rate(system.cpu.time{cpu.mode!="idle"}[5m])) by (cpu.logical_number))/(5*60)`
 
-Note that the above formulas can be ambigous and hence they are not standardized
+Note that the above formulas can be ambiguous and hence they are not standardized
 as part of the Semantic Conventions project. They are only provided as examples.
 
 Projects like

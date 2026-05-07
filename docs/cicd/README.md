@@ -1,17 +1,17 @@
 <!--- Hugo front matter used to generate the website version of this page:
-linkTitle: CICD
+linkTitle: CI/CD
 --->
 
-# Semantic conventions for CICD
+# Semantic conventions for CI/CD
 
 **Status**: [Development][DocumentStatus]
 
-This document defines semantic conventions for Continuous Integration and Continuous Deployment (CICD) spans and metrics.
+This document defines semantic conventions for Continuous Integration and Continuous Deployment (CI/CD) spans and metrics.
 
-Semantic conventions for CICD are defined for the following signals:
+Semantic conventions for CI/CD are defined for the following signals:
 
-* [CICD Spans](cicd-spans.md): Semantic Conventions for CICD *spans*.
-* [CICD Metrics](cicd-metrics.md): Semantic Conventions for CICD *metrics*.
-* [CICD Logs](cicd-logs.md): Semantic Conventions for CICD *logs*.
+* [CI/CD Spans](cicd-spans.md): Semantic Conventions for CI/CD *spans*.
+* [CI/CD Metrics](cicd-metrics.md): Semantic Conventions for CI/CD *metrics*.
+* [CI/CD Logs](cicd-logs.md): Semantic Conventions for CI/CD *logs*.
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status

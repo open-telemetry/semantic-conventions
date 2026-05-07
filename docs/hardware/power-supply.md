@@ -6,7 +6,7 @@ linkTitle: Power Supply
 
 **Status**: [Development][DocumentStatus]
 
-<!-- toc -->
+<!-- START doctoc -->
 
 - [Power supply metrics `hw.power_supply.*`](#power-supply-metrics-hwpower_supply)
   - [Metric: `hw.power_supply.limit`](#metric-hwpower_supplylimit)
@@ -14,7 +14,7 @@ linkTitle: Power Supply
   - [Metric: `hw.power_supply.usage`](#metric-hwpower_supplyusage)
   - [Metric: `hw.status` (Power Supply)](#metric-hwstatus-power-supply)
 
-<!-- tocstop -->
+<!-- END doctoc -->
 
 ## Power supply metrics `hw.power_supply.*`
 
