@@ -60,11 +60,11 @@ Instrumentations SHOULD set both `error.type` on the span and emit error events 
 | [`exception.type`](/docs/registry/attributes/exception.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If the error was caused by an exception. | string | The type of the exception (its fully-qualified class name, if applicable). The dynamic type of the exception should be preferred over the static type in languages that support it. [3] | `java.net.ConnectException`; `OSError` |
 | [`graphql.document.locations`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [4] | any | The locations in the GraphQL document associated with an error. [5] | `[{ "line": 3, "column": 7 }, { "line": 5, "column": 4 }]` |
 | [`graphql.field.path`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [6] | string | The path of the field that is being resolved. [7] | `person[0].address` |
-| [`graphql.field.schema_coordinate`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [8] | string | The schema coordinate of the field that is being resolved. [9] | `Person.address`; `Query.findBookById` |
-| [`graphql.operation.name`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If available and not empty. | string | The name of the operation being executed. [10] | `FindBookById`; `GetUserProfile` |
-| [`graphql.operation.type`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The type of the operation being executed. [11] | `query`; `mutation`; `subscription` |
-| [`exception.stacktrace`](/docs/registry/attributes/exception.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | string | A stacktrace as a string in the natural representation for the language runtime. The representation is to be determined and documented by each language SIG. [12] | `Exception in thread "main" java.lang.RuntimeException: Test exception\n at com.example.GenerateTrace.methodB(GenerateTrace.java:13)\n at com.example.GenerateTrace.methodA(GenerateTrace.java:9)\n at com.example.GenerateTrace.main(GenerateTrace.java:5)` |
-| [`graphql.error.code`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | An optional error code from the extensions field. [13] | `GRAPHQL_VALIDATION_FAILED`; `UNAUTHENTICATED`; `HC00116` |
+| [`graphql.field.schema_coordinate`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [8] | string | The schema coordinate of the field that is being resolved, in the form `{ParentType}.{fieldName}`. | `Person.address`; `Query.findBookById` |
+| [`graphql.operation.name`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If available and not empty. | string | The name of the operation being executed. [9] | `FindBookById`; `GetUserProfile` |
+| [`graphql.operation.type`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The type of the operation being executed. [10] | `query`; `mutation`; `subscription` |
+| [`exception.stacktrace`](/docs/registry/attributes/exception.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | string | A stacktrace as a string in the natural representation for the language runtime. The representation is to be determined and documented by each language SIG. [11] | `Exception in thread "main" java.lang.RuntimeException: Test exception\n at com.example.GenerateTrace.methodB(GenerateTrace.java:13)\n at com.example.GenerateTrace.methodA(GenerateTrace.java:9)\n at com.example.GenerateTrace.main(GenerateTrace.java:5)` |
+| [`graphql.error.code`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | An optional error code from the extensions field. [12] | `GRAPHQL_VALIDATION_FAILED`; `UNAUTHENTICATED`; `HC00116` |
 
 **[1] `graphql.error.message`:** Every error must contain an entry with the key message with a string description of the error intended for the developer as a guide to understand and correct the error.
 > **Warning** > This attribute has unbounded cardinality and MUST NOT be used as a metric > dimension. It is intended for span events and log records only.
@@ -86,15 +86,13 @@ The path starts from the root of the response. Field names are separated by dots
 
 **[8] `graphql.field.schema_coordinate`:** Should be included when the error can be associated with a particular field in the GraphQL schema.
 
-**[9] `graphql.field.schema_coordinate`:** The schema coordinate follows the format "{ParentType}.{fieldName}" and uniquely identifies the field within the GraphQL schema.
+**[9] `graphql.operation.name`:** Including the operation name on error events enables correlation of errors to specific operations, especially useful when error events are processed independently of spans (e.g., in log-based pipelines).
 
-**[10] `graphql.operation.name`:** Including the operation name on error events enables correlation of errors to specific operations, especially useful when error events are processed independently of spans (e.g., in log-based pipelines).
+**[10] `graphql.operation.type`:** Including the operation type on error events enables correlation and filtering of errors by operation type without requiring access to the parent span.
 
-**[11] `graphql.operation.type`:** Including the operation type on error events enables correlation and filtering of errors by operation type without requiring access to the parent span.
+**[11] `exception.stacktrace`:** The exception stacktrace, when available and the error was caused by an exception. This attribute is opt-in due to its size and potential to contain sensitive information.
 
-**[12] `exception.stacktrace`:** The exception stacktrace, when available and the error was caused by an exception. This attribute is opt-in due to its size and potential to contain sensitive information.
-
-**[13] `graphql.error.code`:** This is an optional field that can be used to categorize errors. The error extension code is a recommended way to categorize errors for easier filtering and monitoring.
+**[12] `graphql.error.code`:** This is an optional field that can be used to categorize errors. The error extension code is a recommended way to categorize errors for easier filtering and monitoring.
 
 ---
 

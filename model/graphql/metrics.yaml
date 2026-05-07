@@ -104,6 +104,25 @@ groups:
       - ref: graphql.operation.type
         requirement_level:
           conditionally_required: If available.
+      - ref: graphql.document.id
+        requirement_level: opt_in
+        note: |
+          The `graphql.document.id` MUST only be enabled when the set of
+          document identifiers has bounded cardinality, such as when using
+          trusted documents or persisted operations.
+      - ref: graphql.document.hash
+        requirement_level: opt_in
+        note: |
+          The `graphql.document.hash` MUST only be enabled when the set of
+          document hashes has bounded cardinality, such as when using
+          persisted operations or trusted documents.
+      - ref: graphql.operation.name
+        requirement_level: opt_in
+        note: |
+          The `graphql.operation.name` is provided by the client and can have
+          unbounded cardinality. It MUST only be enabled when the operation
+          namespace has bounded cardinality, such as when using persisted
+          operations or trusted documents.
 
   - id: metric.graphql.server.processing.duration
     type: metric
@@ -116,10 +135,15 @@ groups:
     unit: "s"
     stability: development
     note: |
-      This metric measures the duration of individual processing phases
-      within a GraphQL server request. The `graphql.processing.type`
-      attribute identifies which phase is being measured (e.g., parse,
-      validate, execute, plan).
+      This metric measures the duration of individual request-level processing
+      phases within a GraphQL server request. The `graphql.processing.type`
+      attribute identifies which phase is being measured (for example, `parse`,
+      `validate`, `variable_coercion`, `plan`, or `execute`).
+
+      This metric SHOULD NOT be used for `request`, `resolve`, `step_execute`,
+      `dataloader_dispatch`, `dataloader_batch`, or `subscription_event`
+      processing, which represent either broader request duration or more
+      specific work with dedicated spans and metrics.
 
       When reported alongside a corresponding span, the metric value
       SHOULD match the span duration.
@@ -130,9 +154,11 @@ groups:
     attributes:
       - ref: graphql.processing.type
         requirement_level: required
+        examples: [ "parse", "validate", "variable_coercion", "plan", "execute" ]
         note: |
-          Identifies the processing phase being measured. Common values
-          include `parse`, `validate`, `execute`, and `plan`.
+          Identifies the request-level processing phase being measured. Values
+          SHOULD be one of `parse`, `validate`, `variable_coercion`, `plan`, or
+          `execute`.
 
   - id: metric.graphql.server.response.error_count
     type: metric

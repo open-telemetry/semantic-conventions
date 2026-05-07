@@ -118,7 +118,7 @@ Each operation span SHOULD have its own `graphql.operation.type` and
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`graphql.processing.type`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | MUST be `request`. [1] | `parse`; `validate`; `execute`; `resolve` |
+| [`graphql.processing.type`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The type of processing represented by this span. [1] | `request` |
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If the GraphQL operation ended with an error. | string | Describes a class of error the operation ended with. [2] | `GRAPHQL_PARSE_FAILED`; `GRAPHQL_VALIDATION_FAILED`; `HC0016`; `java.lang.RuntimeException` |
 | [`graphql.document.id`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If using trusted documents. | string | The document identifier for trusted documents. [3] | `aa3e37c1bf54708e93f12c137afba004` |
 | [`graphql.operation.name`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If available and not empty. | string | The name of the operation being executed. [4] | `FindBookById`; `GetUserProfile` |
@@ -127,7 +127,7 @@ Each operation span SHOULD have its own `graphql.operation.type` and
 | [`graphql.document.hash`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The hash of the operation document. [7] | `sha256:400483f38c08e8a3d3b972409c9dfb8e4a326e1b1940864932acd9f873d8664c` |
 | [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The logical server hostname or IP address serving the GraphQL endpoint. [8] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 
-**[1] `graphql.processing.type`:** This attribute allows telemetry consumers to programmatically identify what kind of processing a span represents without relying on span names.
+**[1] `graphql.processing.type`:** MUST be `request`.
 
 **[2] `error.type`:** GraphQL errors can occur during various phases of request processing.
 
@@ -203,6 +203,7 @@ and SHOULD be provided **at span creation time** (if provided at all):
 | `request` | Processing the entire GraphQL request. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `resolve` | Resolving an individual field. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `step_execute` | Executing an individual step within an execution plan. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `subscription_event` | Processing an individual GraphQL subscription event. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `validate` | Validating the GraphQL document against the schema. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `variable_coercion` | Coercing and validating input variables. | ![Development](https://img.shields.io/badge/-development-blue) |
 
@@ -234,12 +235,12 @@ where the document string is parsed into an abstract syntax tree (AST).
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`graphql.processing.type`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | MUST be `parse`. [1] | `parse`; `validate`; `execute`; `resolve` |
+| [`graphql.processing.type`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The type of processing represented by this span. [1] | `parse` |
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If the processing phase ended with an error. | string | Describes a class of error the operation ended with. [2] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` |
 | [`graphql.document.id`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If using trusted documents. | string | The document identifier for trusted documents. [3] | `aa3e37c1bf54708e93f12c137afba004` |
 | [`graphql.document.hash`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The hash of the operation document. [4] | `sha256:400483f38c08e8a3d3b972409c9dfb8e4a326e1b1940864932acd9f873d8664c` |
 
-**[1] `graphql.processing.type`:** This attribute allows telemetry consumers to programmatically identify what kind of processing a span represents without relying on span names.
+**[1] `graphql.processing.type`:** MUST be `parse`.
 
 **[2] `error.type`:** If the processing phase fails, `error.type` SHOULD be set to the
 `graphql.error.code` from the error's extensions if available, or to
@@ -276,6 +277,7 @@ When both `graphql.document.hash` and `graphql.document.id` are available, they 
 | `request` | Processing the entire GraphQL request. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `resolve` | Resolving an individual field. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `step_execute` | Executing an individual step within an execution plan. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `subscription_event` | Processing an individual GraphQL subscription event. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `validate` | Validating the GraphQL document against the schema. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `variable_coercion` | Coercing and validating input variables. | ![Development](https://img.shields.io/badge/-development-blue) |
 
@@ -307,12 +309,12 @@ where the document AST is validated against the GraphQL schema.
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`graphql.processing.type`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | MUST be `validate`. [1] | `parse`; `validate`; `execute`; `resolve` |
+| [`graphql.processing.type`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The type of processing represented by this span. [1] | `validate` |
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If the processing phase ended with an error. | string | Describes a class of error the operation ended with. [2] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` |
 | [`graphql.document.id`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If using trusted documents. | string | The document identifier for trusted documents. [3] | `aa3e37c1bf54708e93f12c137afba004` |
 | [`graphql.document.hash`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The hash of the operation document. [4] | `sha256:400483f38c08e8a3d3b972409c9dfb8e4a326e1b1940864932acd9f873d8664c` |
 
-**[1] `graphql.processing.type`:** This attribute allows telemetry consumers to programmatically identify what kind of processing a span represents without relying on span names.
+**[1] `graphql.processing.type`:** MUST be `validate`.
 
 **[2] `error.type`:** If the processing phase fails, `error.type` SHOULD be set to the
 `graphql.error.code` from the error's extensions if available, or to
@@ -349,6 +351,7 @@ When both `graphql.document.hash` and `graphql.document.id` are available, they 
 | `request` | Processing the entire GraphQL request. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `resolve` | Resolving an individual field. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `step_execute` | Executing an individual step within an execution plan. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `subscription_event` | Processing an individual GraphQL subscription event. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `validate` | Validating the GraphQL document against the schema. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `variable_coercion` | Coercing and validating input variables. | ![Development](https://img.shields.io/badge/-development-blue) |
 
@@ -381,13 +384,13 @@ where input variables are coerced and validated according to their types.
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`graphql.operation.type`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The type of the operation being executed. | `query`; `mutation`; `subscription` |
-| [`graphql.processing.type`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | MUST be `variable_coercion`. [1] | `parse`; `validate`; `execute`; `resolve` |
+| [`graphql.processing.type`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The type of processing represented by this span. [1] | `variable_coercion` |
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If the processing phase ended with an error. | string | Describes a class of error the operation ended with. [2] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` |
 | [`graphql.document.id`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If using trusted documents. | string | The document identifier for trusted documents. [3] | `aa3e37c1bf54708e93f12c137afba004` |
 | [`graphql.document.hash`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The hash of the operation document. [4] | `sha256:400483f38c08e8a3d3b972409c9dfb8e4a326e1b1940864932acd9f873d8664c` |
 | [`graphql.operation.name`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the operation being executed. [5] | `FindBookById`; `GetUserProfile` |
 
-**[1] `graphql.processing.type`:** This attribute allows telemetry consumers to programmatically identify what kind of processing a span represents without relying on span names.
+**[1] `graphql.processing.type`:** MUST be `variable_coercion`.
 
 **[2] `error.type`:** If the processing phase fails, `error.type` SHOULD be set to the
 `graphql.error.code` from the error's extensions if available, or to
@@ -437,6 +440,7 @@ When both `graphql.document.hash` and `graphql.document.id` are available, they 
 | `request` | Processing the entire GraphQL request. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `resolve` | Resolving an individual field. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `step_execute` | Executing an individual step within an execution plan. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `subscription_event` | Processing an individual GraphQL subscription event. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `validate` | Validating the GraphQL document against the schema. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `variable_coercion` | Coercing and validating input variables. | ![Development](https://img.shields.io/badge/-development-blue) |
 
@@ -476,13 +480,13 @@ context.
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`graphql.operation.type`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The type of the operation being executed. | `query`; `mutation`; `subscription` |
-| [`graphql.processing.type`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | MUST be `plan`. [1] | `parse`; `validate`; `execute`; `resolve` |
+| [`graphql.processing.type`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The type of processing represented by this span. [1] | `plan` |
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If the planning phase ended with an error. | string | Describes a class of error the operation ended with. [2] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` |
 | [`graphql.document.id`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If using trusted documents. | string | The document identifier for trusted documents. [3] | `aa3e37c1bf54708e93f12c137afba004` |
 | [`graphql.document.hash`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The hash of the operation document. [4] | `sha256:400483f38c08e8a3d3b972409c9dfb8e4a326e1b1940864932acd9f873d8664c` |
 | [`graphql.operation.name`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the operation being executed. [5] | `FindBookById`; `GetUserProfile` |
 
-**[1] `graphql.processing.type`:** This attribute allows telemetry consumers to programmatically identify what kind of processing a span represents without relying on span names.
+**[1] `graphql.processing.type`:** MUST be `plan`.
 
 **[2] `error.type`:** If the planning phase fails, `error.type` SHOULD be set to the
 `graphql.error.code` from the error's extensions if available, or to
@@ -532,6 +536,7 @@ When both `graphql.document.hash` and `graphql.document.id` are available, they 
 | `request` | Processing the entire GraphQL request. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `resolve` | Resolving an individual field. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `step_execute` | Executing an individual step within an execution plan. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `subscription_event` | Processing an individual GraphQL subscription event. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `validate` | Validating the GraphQL document against the schema. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `variable_coercion` | Coercing and validating input variables. | ![Development](https://img.shields.io/badge/-development-blue) |
 
@@ -564,13 +569,13 @@ including field resolution and result formatting.
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`graphql.operation.type`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The type of the operation being executed. | `query`; `mutation`; `subscription` |
-| [`graphql.processing.type`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | MUST be `execute`. [1] | `parse`; `validate`; `execute`; `resolve` |
+| [`graphql.processing.type`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The type of processing represented by this span. [1] | `execute` |
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If the processing phase ended with an error. | string | Describes a class of error the operation ended with. [2] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` |
 | [`graphql.document.id`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If using trusted documents. | string | The document identifier for trusted documents. [3] | `aa3e37c1bf54708e93f12c137afba004` |
 | [`graphql.document.hash`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The hash of the operation document. [4] | `sha256:400483f38c08e8a3d3b972409c9dfb8e4a326e1b1940864932acd9f873d8664c` |
 | [`graphql.operation.name`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the operation being executed. [5] | `FindBookById`; `GetUserProfile` |
 
-**[1] `graphql.processing.type`:** This attribute allows telemetry consumers to programmatically identify what kind of processing a span represents without relying on span names.
+**[1] `graphql.processing.type`:** MUST be `execute`.
 
 **[2] `error.type`:** If the processing phase fails, `error.type` SHOULD be set to the
 `graphql.error.code` from the error's extensions if available, or to
@@ -620,6 +625,7 @@ When both `graphql.document.hash` and `graphql.document.id` are available, they 
 | `request` | Processing the entire GraphQL request. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `resolve` | Resolving an individual field. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `step_execute` | Executing an individual step within an execution plan. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `subscription_event` | Processing an individual GraphQL subscription event. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `validate` | Validating the GraphQL document against the schema. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `variable_coercion` | Coercing and validating input variables. | ![Development](https://img.shields.io/badge/-development-blue) |
 
@@ -674,7 +680,7 @@ separate preceding phase.
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`graphql.operation.step.id`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The id of the step in the execution plan. [1] | `0`; `1`; `2` |
-| [`graphql.processing.type`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | MUST be `step_execute`. [2] | `parse`; `validate`; `execute`; `resolve` |
+| [`graphql.processing.type`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The type of processing represented by this span. [2] | `step_execute` |
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If the step execution ended with an error. | string | Describes a class of error the operation ended with. [3] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` |
 | [`graphql.document.id`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If using trusted documents. | string | The document identifier for trusted documents. [4] | `aa3e37c1bf54708e93f12c137afba004` |
 | [`graphql.document.hash`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The hash of the operation document. [5] | `sha256:400483f38c08e8a3d3b972409c9dfb8e4a326e1b1940864932acd9f873d8664c` |
@@ -688,7 +694,7 @@ separate preceding phase.
 
 **[1] `graphql.operation.step.id`:** The step identifier is implementation-specific and may be numeric, UUID, or any other format used by the GraphQL execution engine.
 
-**[2] `graphql.processing.type`:** This attribute allows telemetry consumers to programmatically identify what kind of processing a span represents without relying on span names.
+**[2] `graphql.processing.type`:** MUST be `step_execute`.
 
 **[3] `error.type`:** If the step execution fails, `error.type` SHOULD be set to the
 `graphql.error.code` from the error's extensions if available, or to
@@ -749,6 +755,7 @@ The hash algorithm used SHOULD be specified as part of the value (e.g., "sha256:
 | `request` | Processing the entire GraphQL request. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `resolve` | Resolving an individual field. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `step_execute` | Executing an individual step within an execution plan. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `subscription_event` | Processing an individual GraphQL subscription event. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `validate` | Validating the GraphQL document against the schema. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `variable_coercion` | Coercing and validating input variables. | ![Development](https://img.shields.io/badge/-development-blue) |
 
@@ -805,27 +812,25 @@ exception or the field resolution results in a GraphQL error.
 | --- | --- | --- | --- | --- | --- |
 | [`graphql.field.name`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the field that is being resolved. [1] | `address`; `name`; `id` |
 | [`graphql.field.parent_type`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The type that declares the field that is being resolved. [2] | `Person`; `Query`; `Mutation` |
-| [`graphql.field.schema_coordinate`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The schema coordinate of the field that is being resolved. [3] | `Person.address`; `Query.findBookById` |
-| [`graphql.processing.type`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | MUST be `resolve`. [4] | `parse`; `validate`; `execute`; `resolve` |
-| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If the field resolution ended with an error. | string | Describes a class of error the operation ended with. [5] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` |
-| [`graphql.field.alias`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The alias of the field that is being resolved. [6] | `newAddress`; `bookTitle` |
-| [`graphql.field.path`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The path of the field that is being resolved. [7] | `person[0].address` |
+| [`graphql.field.schema_coordinate`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The schema coordinate of the field that is being resolved, in the form `{ParentType}.{fieldName}`. | `Person.address`; `Query.findBookById` |
+| [`graphql.processing.type`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The type of processing represented by this span. [3] | `resolve` |
+| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If the field resolution ended with an error. | string | Describes a class of error the operation ended with. [4] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` |
+| [`graphql.field.alias`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The alias of the field that is being resolved. [5] | `newAddress`; `bookTitle` |
+| [`graphql.field.path`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The path of the field that is being resolved. [6] | `person[0].address` |
 
 **[1] `graphql.field.name`:** This is always the actual field name as defined in the schema, not an alias.
 
 **[2] `graphql.field.parent_type`:** This is the GraphQL type name that contains the field definition.
 
-**[3] `graphql.field.schema_coordinate`:** The schema coordinate follows the format "{ParentType}.{fieldName}" and uniquely identifies the field within the GraphQL schema.
+**[3] `graphql.processing.type`:** MUST be `resolve`.
 
-**[4] `graphql.processing.type`:** This attribute allows telemetry consumers to programmatically identify what kind of processing a span represents without relying on span names.
-
-**[5] `error.type`:** If the resolver throws an exception or results in a GraphQL field error,
+**[4] `error.type`:** If the resolver throws an exception or results in a GraphQL field error,
 `error.type` SHOULD be set to the exception type (its fully-qualified
 class name, if applicable) or the `graphql.error.code` if available.
 
-**[6] `graphql.field.alias`:** If the field has an alias, this SHOULD be the alias name. Otherwise, it SHOULD be the field name.
+**[5] `graphql.field.alias`:** If the field has an alias, this SHOULD be the alias name. Otherwise, it SHOULD be the field name.
 
-**[7] `graphql.field.path`:** The path represents the location of the field being resolved within the result structure. Therefore, if a field is aliased, the path will use the alias name instead of the actual field name.
+**[6] `graphql.field.path`:** The path represents the location of the field being resolved within the result structure. Therefore, if a field is aliased, the path will use the alias name instead of the actual field name.
 
 ---
 
@@ -850,6 +855,7 @@ class name, if applicable) or the `graphql.error.code` if available.
 | `request` | Processing the entire GraphQL request. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `resolve` | Resolving an individual field. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `step_execute` | Executing an individual step within an execution plan. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `subscription_event` | Processing an individual GraphQL subscription event. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `validate` | Validating the GraphQL document against the schema. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `variable_coercion` | Coercing and validating input variables. | ![Development](https://img.shields.io/badge/-development-blue) |
 
@@ -888,9 +894,9 @@ resolver execution span that triggered the batch dispatch.
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`graphql.processing.type`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | MUST be `dataloader_dispatch`. [1] | `parse`; `validate`; `execute`; `resolve` |
+| [`graphql.processing.type`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The type of processing represented by this span. [1] | `dataloader_dispatch` |
 
-**[1] `graphql.processing.type`:** This attribute allows telemetry consumers to programmatically identify what kind of processing a span represents without relying on span names.
+**[1] `graphql.processing.type`:** MUST be `dataloader_dispatch`.
 
 ---
 
@@ -907,6 +913,7 @@ resolver execution span that triggered the batch dispatch.
 | `request` | Processing the entire GraphQL request. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `resolve` | Resolving an individual field. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `step_execute` | Executing an individual step within an execution plan. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `subscription_event` | Processing an individual GraphQL subscription event. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `validate` | Validating the GraphQL document against the schema. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `variable_coercion` | Coercing and validating input variables. | ![Development](https://img.shields.io/badge/-development-blue) |
 
@@ -962,7 +969,7 @@ reflects the true batch size regardless of link count.
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`graphql.dataloader.batch.size`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | int | The number of individual requests in the DataLoader batch. [1] | `5`; `12`; `25` |
-| [`graphql.processing.type`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | MUST be `dataloader_batch`. [2] | `parse`; `validate`; `execute`; `resolve` |
+| [`graphql.processing.type`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The type of processing represented by this span. [2] | `dataloader_batch` |
 | [`graphql.dataloader.name`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the DataLoader instance. [3] | `UserLoader`; `ProductByIdLoader`; `CommentsByPostIdLoader` |
 | [`graphql.dataloader.batch.keys`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string[] | A subset of the keys requested in the DataLoader batch. [4] | `["user:1", "user:2", "user:3"]`; `["post:42", "post:99"]` |
 | [`graphql.dataloader.cache.hit_count`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The number of requests in the batch that were served from the DataLoader cache. [5] | `0`; `3`; `10` |
@@ -970,7 +977,7 @@ reflects the true batch size regardless of link count.
 
 **[1] `graphql.dataloader.batch.size`:** This represents the total number of individual load requests that were batched together in a single batch operation. This includes both cache hits and cache misses.
 
-**[2] `graphql.processing.type`:** This attribute allows telemetry consumers to programmatically identify what kind of processing a span represents without relying on span names.
+**[2] `graphql.processing.type`:** MUST be `dataloader_batch`.
 
 **[3] `graphql.dataloader.name`:** This represents the name or identifier of the DataLoader instance. When the DataLoader implementation supports naming, this SHOULD be set. This helps in identifying specific DataLoader instances in observability.
 
@@ -995,6 +1002,7 @@ reflects the true batch size regardless of link count.
 | `request` | Processing the entire GraphQL request. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `resolve` | Resolving an individual field. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `step_execute` | Executing an individual step within an execution plan. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `subscription_event` | Processing an individual GraphQL subscription event. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `validate` | Validating the GraphQL document against the schema. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `variable_coercion` | Coercing and validating input variables. | ![Development](https://img.shields.io/badge/-development-blue) |
 
@@ -1041,26 +1049,35 @@ processing fails.
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`graphql.operation.type`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | MUST be `subscription`. | `query`; `mutation`; `subscription` |
-| [`graphql.processing.type`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | MUST be `execute`. [1] | `parse`; `validate`; `execute`; `resolve` |
-| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [2] | string | Describes a class of error the operation ended with. [3] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` |
-| [`graphql.operation.name`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If available and not empty. | string | The name of the operation being executed. [4] | `FindBookById`; `GetUserProfile` |
-| [`graphql.subscription.id`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A unique identifier for the subscription instance. [5] | `sub-abc123`; `ws-conn-42-sub-1` |
+| [`graphql.operation.type`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The type of the operation being executed. [1] | `subscription` |
+| [`graphql.processing.type`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The type of processing represented by this span. [2] | `subscription_event` |
+| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [3] | string | Describes a class of error the operation ended with. [4] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` |
+| [`graphql.document.id`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If using trusted documents. | string | The document identifier for trusted documents. [5] | `aa3e37c1bf54708e93f12c137afba004` |
+| [`graphql.operation.name`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If available and not empty. | string | The name of the operation being executed. [6] | `FindBookById`; `GetUserProfile` |
+| [`graphql.document.hash`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The hash of the operation document. [7] | `sha256:400483f38c08e8a3d3b972409c9dfb8e4a326e1b1940864932acd9f873d8664c` |
+| [`graphql.subscription.id`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A unique identifier for the subscription instance. [8] | `sub-abc123`; `ws-conn-42-sub-1` |
 
-**[1] `graphql.processing.type`:** This attribute allows telemetry consumers to programmatically identify what kind of processing a span represents without relying on span names.
+**[1] `graphql.operation.type`:** MUST be `subscription`.
 
-**[2] `error.type`:** If the subscription event processing ended with an error.
+**[2] `graphql.processing.type`:** MUST be `subscription_event`.
 
-**[3] `error.type`:** If the subscription event processing fails, `error.type` SHOULD be set to
+**[3] `error.type`:** If the subscription event processing ended with an error.
+
+**[4] `error.type`:** If the subscription event processing fails, `error.type` SHOULD be set to
 the `graphql.error.code` from the error's extensions if available, or to
 a low-cardinality error identifier such as the exception type.
 
 If the subscription event completes successfully, instrumentations
 SHOULD NOT set `error.type`.
 
-**[4] `graphql.operation.name`:** This represents the operation name as specified in the GraphQL operation document. When the operation name is not provided, this attribute SHOULD be omitted.
+**[5] `graphql.document.id`:** This is a hash or identifier of the document provided by the user to identify trusted documents.
 
-**[5] `graphql.subscription.id`:** This identifier tracks a specific subscription instance throughout its lifecycle. It SHOULD be unique within the scope of the server and can be used to correlate subscription creation, events, and termination.
+**[6] `graphql.operation.name`:** This represents the operation name as specified in the GraphQL operation document. When the operation name is not provided, this attribute SHOULD be omitted.
+
+**[7] `graphql.document.hash`:** The hash algorithm used SHOULD be specified as part of the value (e.g., "sha256:..."). Instrumentations SHOULD use SHA-256 as the default hash algorithm unless there is a specific reason to use a different one. This can be used for monitoring operation distribution and caching strategies.
+When both `graphql.document.hash` and `graphql.document.id` are available, they SHOULD be preferred over transmitting the raw GraphQL document text for telemetry purposes. This reduces payload size and avoids exposing potentially sensitive operation details.
+
+**[8] `graphql.subscription.id`:** This identifier tracks a specific subscription instance throughout its lifecycle. It SHOULD be unique within the scope of the server and can be used to correlate subscription creation, events, and termination.
 
 ---
 
@@ -1096,6 +1113,7 @@ SHOULD NOT set `error.type`.
 | `request` | Processing the entire GraphQL request. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `resolve` | Resolving an individual field. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `step_execute` | Executing an individual step within an execution plan. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `subscription_event` | Processing an individual GraphQL subscription event. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `validate` | Validating the GraphQL document against the schema. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `variable_coercion` | Coercing and validating input variables. | ![Development](https://img.shields.io/badge/-development-blue) |
 

@@ -66,6 +66,10 @@ groups:
               value: "execute"
               brief: "Executing a GraphQL operation."
               stability: development
+            - id: subscription_event
+              value: "subscription_event"
+              brief: "Processing an individual GraphQL subscription event."
+              stability: development
             - id: step_execute
               value: "step_execute"
               brief: "Executing an individual step within an execution plan."
@@ -122,7 +126,7 @@ groups:
           This is a hash or identifier of the document provided by the user to
           identify trusted documents.
       - id: graphql.document.locations
-        type: any
+        type: any[]
         stability: development
         brief: >
           The locations in the GraphQL document associated with an error.
@@ -180,14 +184,12 @@ groups:
         note: >
           This is the GraphQL type name that contains the field definition.
       - id: graphql.field.schema_coordinate
-        brief: "The schema coordinate of the field that is being resolved."
+        brief: >
+          The schema coordinate of the field that is being resolved, in the
+          form `{ParentType}.{fieldName}`.
         type: string
         stability: development
         examples: [ "Person.address", "Query.findBookById" ]
-        note: >
-          The schema coordinate follows the format
-          "{ParentType}.{fieldName}" and uniquely identifies the field within
-          the GraphQL schema.
 
   - id: registry.graphql.error
     type: attribute_group

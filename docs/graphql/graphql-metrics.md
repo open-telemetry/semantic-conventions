@@ -128,6 +128,22 @@ attribute sets on increment and decrement.
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`graphql.operation.type`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If available. | string | The type of the operation being executed. | `query`; `mutation`; `subscription` |
+| [`graphql.document.hash`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The hash of the operation document. [1] | `sha256:400483f38c08e8a3d3b972409c9dfb8e4a326e1b1940864932acd9f873d8664c` |
+| [`graphql.document.id`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The document identifier for trusted documents. [2] | `aa3e37c1bf54708e93f12c137afba004` |
+| [`graphql.operation.name`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The name of the operation being executed. [3] | `FindBookById`; `GetUserProfile` |
+
+**[1] `graphql.document.hash`:** The `graphql.document.hash` MUST only be enabled when the set of
+document hashes has bounded cardinality, such as when using
+persisted operations or trusted documents.
+
+**[2] `graphql.document.id`:** The `graphql.document.id` MUST only be enabled when the set of
+document identifiers has bounded cardinality, such as when using
+trusted documents or persisted operations.
+
+**[3] `graphql.operation.name`:** The `graphql.operation.name` is provided by the client and can have
+unbounded cardinality. It MUST only be enabled when the operation
+namespace has bounded cardinality, such as when using persisted
+operations or trusted documents.
 
 ---
 
@@ -155,10 +171,15 @@ attribute sets on increment and decrement.
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `graphql.server.processing.duration` | Histogram | `s` | Duration of a GraphQL server processing phase. [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
 
-**[1]:** This metric measures the duration of individual processing phases
-within a GraphQL server request. The `graphql.processing.type`
-attribute identifies which phase is being measured (e.g., parse,
-validate, execute, plan).
+**[1]:** This metric measures the duration of individual request-level processing
+phases within a GraphQL server request. The `graphql.processing.type`
+attribute identifies which phase is being measured (for example, `parse`,
+`validate`, `variable_coercion`, `plan`, or `execute`).
+
+This metric SHOULD NOT be used for `request`, `resolve`, `step_execute`,
+`dataloader_dispatch`, `dataloader_batch`, or `subscription_event`
+processing, which represent either broader request duration or more
+specific work with dedicated spans and metrics.
 
 When reported alongside a corresponding span, the metric value
 SHOULD match the span duration.
@@ -170,13 +191,14 @@ durations for the respective processing phases.
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`graphql.processing.type`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The type of processing represented by this span. [1] | `parse`; `validate`; `execute`; `resolve` |
+| [`graphql.processing.type`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The type of processing represented by this span. [1] | `parse`; `validate`; `variable_coercion`; `plan`; `execute` |
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If the processing phase ended with an error. | string | Describes a class of error the operation ended with. [2] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` |
 | [`graphql.operation.type`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If available. | string | The type of the operation being executed. | `query`; `mutation`; `subscription` |
 | [`graphql.operation.name`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The name of the operation being executed. [3] | `FindBookById`; `GetUserProfile` |
 
-**[1] `graphql.processing.type`:** Identifies the processing phase being measured. Common values
-include `parse`, `validate`, `execute`, and `plan`.
+**[1] `graphql.processing.type`:** Identifies the request-level processing phase being measured. Values
+SHOULD be one of `parse`, `validate`, `variable_coercion`, `plan`, or
+`execute`.
 
 **[2] `error.type`:** For phase-level metrics, `error.type` captures the category of error
 that caused the phase to fail. This allows monitoring error rates
@@ -224,6 +246,7 @@ or `graphql.document.id` MAY be used as lower-cardinality alternatives.
 | `request` | Processing the entire GraphQL request. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `resolve` | Resolving an individual field. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `step_execute` | Executing an individual step within an execution plan. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `subscription_event` | Processing an individual GraphQL subscription event. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `validate` | Validating the GraphQL document against the schema. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `variable_coercion` | Coercing and validating input variables. | ![Development](https://img.shields.io/badge/-development-blue) |
 

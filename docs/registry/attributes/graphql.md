@@ -64,6 +64,7 @@ The value MUST be an array of objects, where each object has the following prope
 | `request` | Processing the entire GraphQL request. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `resolve` | Resolving an individual field. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `step_execute` | Executing an individual step within an execution plan. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `subscription_event` | Processing an individual GraphQL subscription event. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `validate` | Validating the GraphQL document against the schema. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `variable_coercion` | Coercing and validating input variables. | ![Development](https://img.shields.io/badge/-development-blue) |
 
@@ -119,7 +120,7 @@ Attributes for GraphQL fields
 | <a id="graphql-field-name" href="#graphql-field-name">`graphql.field.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the field that is being resolved. [14] | `address`; `name`; `id` |
 | <a id="graphql-field-parent-type" href="#graphql-field-parent-type">`graphql.field.parent_type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The type that declares the field that is being resolved. [15] | `Person`; `Query`; `Mutation` |
 | <a id="graphql-field-path" href="#graphql-field-path">`graphql.field.path`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The path of the field that is being resolved. [16] | `person[0].address` |
-| <a id="graphql-field-schema-coordinate" href="#graphql-field-schema-coordinate">`graphql.field.schema_coordinate`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The schema coordinate of the field that is being resolved. [17] | `Person.address`; `Query.findBookById` |
+| <a id="graphql-field-schema-coordinate" href="#graphql-field-schema-coordinate">`graphql.field.schema_coordinate`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The schema coordinate of the field that is being resolved, in the form `{ParentType}.{fieldName}`. | `Person.address`; `Query.findBookById` |
 
 **[13] `graphql.field.alias`:** If the field has an alias, this SHOULD be the alias name. Otherwise, it SHOULD be the field name.
 
@@ -129,8 +130,6 @@ Attributes for GraphQL fields
 
 **[16] `graphql.field.path`:** The path represents the location of the field being resolved within the result structure. Therefore, if a field is aliased, the path will use the alias name instead of the actual field name.
 
-**[17] `graphql.field.schema_coordinate`:** The schema coordinate follows the format "{ParentType}.{fieldName}" and uniquely identifies the field within the GraphQL schema.
-
 ## GraphQL Operation Attributes
 
 This document defines attributes for GraphQL operation execution steps and planning.
@@ -139,15 +138,15 @@ This document defines attributes for GraphQL operation execution steps and plann
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="graphql-operation-step-id" href="#graphql-operation-step-id">`graphql.operation.step.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The id of the step in the execution plan. [18] | `0`; `1`; `2` |
-| <a id="graphql-operation-step-kind" href="#graphql-operation-step-kind">`graphql.operation.step.kind`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The kind of step in the execution plan. [19] | `node`; `operation`; `fetch`; `batch` |
-| <a id="graphql-operation-step-plan-id" href="#graphql-operation-step-plan-id">`graphql.operation.step.plan.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The id of the execution plan this step belongs to. [20] | `plan-1`; `abc-123` |
+| <a id="graphql-operation-step-id" href="#graphql-operation-step-id">`graphql.operation.step.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The id of the step in the execution plan. [17] | `0`; `1`; `2` |
+| <a id="graphql-operation-step-kind" href="#graphql-operation-step-kind">`graphql.operation.step.kind`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The kind of step in the execution plan. [18] | `node`; `operation`; `fetch`; `batch` |
+| <a id="graphql-operation-step-plan-id" href="#graphql-operation-step-plan-id">`graphql.operation.step.plan.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The id of the execution plan this step belongs to. [19] | `plan-1`; `abc-123` |
 
-**[18] `graphql.operation.step.id`:** The step identifier is implementation-specific and may be numeric, UUID, or any other format used by the GraphQL execution engine.
+**[17] `graphql.operation.step.id`:** The step identifier is implementation-specific and may be numeric, UUID, or any other format used by the GraphQL execution engine.
 
-**[19] `graphql.operation.step.kind`:** The step kind describes the type of work performed in this execution step. Values are implementation-specific but common examples include node resolution, fetch operations, and batch processing.
+**[18] `graphql.operation.step.kind`:** The step kind describes the type of work performed in this execution step. Values are implementation-specific but common examples include node resolution, fetch operations, and batch processing.
 
-**[20] `graphql.operation.step.plan.id`:** The plan identifier links this step to a specific execution plan, enabling correlation of all steps within the same plan. This is particularly useful in federated GraphQL systems where plans may be cached and reused.
+**[19] `graphql.operation.step.plan.id`:** The plan identifier links this step to a specific execution plan, enabling correlation of all steps within the same plan. This is particularly useful in federated GraphQL systems where plans may be cached and reused.
 
 ## GraphQL Source Schema Attributes
 
@@ -157,16 +156,16 @@ This document defines attributes for GraphQL source schemas (subgraphs) in distr
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="graphql-source-schema-name" href="#graphql-source-schema-name">`graphql.source_schema.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the source schema. [21] | `accounts`; `products`; `reviews` |
-| <a id="graphql-source-schema-operation-hash" href="#graphql-source-schema-operation-hash">`graphql.source_schema.operation.hash`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | A hash of the GraphQL operation to be executed on the source schema. [22] | `sha256:abc123`; `md5:def456` |
-| <a id="graphql-source-schema-operation-name" href="#graphql-source-schema-operation-name">`graphql.source_schema.operation.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the GraphQL operation to be executed on the source schema. [23] | `GetUser`; `FetchProducts`; `ResolveReviews` |
+| <a id="graphql-source-schema-name" href="#graphql-source-schema-name">`graphql.source_schema.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the source schema. [20] | `accounts`; `products`; `reviews` |
+| <a id="graphql-source-schema-operation-hash" href="#graphql-source-schema-operation-hash">`graphql.source_schema.operation.hash`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | A hash of the GraphQL operation to be executed on the source schema. [21] | `sha256:abc123`; `md5:def456` |
+| <a id="graphql-source-schema-operation-name" href="#graphql-source-schema-operation-name">`graphql.source_schema.operation.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the GraphQL operation to be executed on the source schema. [22] | `GetUser`; `FetchProducts`; `ResolveReviews` |
 
-**[21] `graphql.source_schema.name`:** The human-readable name of the source schema (subgraph) that a distributed GraphQL gateway dispatches to. For example, this could be a subgraph name in a federated system or a stitched schema name. The term "source schema" follows the [GraphQL Composite Schemas Specification](https://github.com/graphql/composite-schemas-spec).
+**[20] `graphql.source_schema.name`:** The human-readable name of the source schema (subgraph) that a distributed GraphQL gateway dispatches to. For example, this could be a subgraph name in a federated system or a stitched schema name. The term "source schema" follows the [GraphQL Composite Schemas Specification](https://github.com/graphql/composite-schemas-spec).
 
-**[22] `graphql.source_schema.operation.hash`:** A hash of the operation document that the gateway sends to the source schema. Useful for identifying operations without transmitting the full document.
+**[21] `graphql.source_schema.operation.hash`:** A hash of the operation document that the gateway sends to the source schema. Useful for identifying operations without transmitting the full document.
 The hash algorithm used SHOULD be specified as part of the value (e.g., "sha256:..."), consistent with `graphql.document.hash`.
 
-**[23] `graphql.source_schema.operation.name`:** The operation name of the query or mutation that the gateway sends to the source schema.
+**[22] `graphql.source_schema.operation.name`:** The operation name of the query or mutation that the gateway sends to the source schema.
 
 ## GraphQL Subscription Attributes
 
@@ -176,6 +175,6 @@ Attributes for GraphQL subscription operations.
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="graphql-subscription-id" href="#graphql-subscription-id">`graphql.subscription.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | A unique identifier for the subscription instance. [24] | `sub-abc123`; `ws-conn-42-sub-1` |
+| <a id="graphql-subscription-id" href="#graphql-subscription-id">`graphql.subscription.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | A unique identifier for the subscription instance. [23] | `sub-abc123`; `ws-conn-42-sub-1` |
 
-**[24] `graphql.subscription.id`:** This identifier tracks a specific subscription instance throughout its lifecycle. It SHOULD be unique within the scope of the server and can be used to correlate subscription creation, events, and termination.
+**[23] `graphql.subscription.id`:** This identifier tracks a specific subscription instance throughout its lifecycle. It SHOULD be unique within the scope of the server and can be used to correlate subscription creation, events, and termination.

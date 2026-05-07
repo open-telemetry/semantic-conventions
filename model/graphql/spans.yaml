@@ -251,7 +251,8 @@ groups:
           SHOULD NOT set `error.type`.
       - ref: graphql.processing.type
         requirement_level: required
-        brief: MUST be `parse`.
+        examples: [ "parse" ]
+        note: MUST be `parse`.
       - ref: graphql.document.hash
         requirement_level: recommended
       - ref: graphql.document.id
@@ -284,7 +285,8 @@ groups:
           SHOULD NOT set `error.type`.
       - ref: graphql.processing.type
         requirement_level: required
-        brief: MUST be `validate`.
+        examples: [ "validate" ]
+        note: MUST be `validate`.
       - ref: graphql.document.hash
         requirement_level: recommended
       - ref: graphql.document.id
@@ -318,7 +320,8 @@ groups:
           SHOULD NOT set `error.type`.
       - ref: graphql.processing.type
         requirement_level: required
-        brief: MUST be `variable_coercion`.
+        examples: [ "variable_coercion" ]
+        note: MUST be `variable_coercion`.
       - ref: graphql.operation.type
         requirement_level: required
       - ref: graphql.operation.name
@@ -353,7 +356,8 @@ groups:
     attributes:
       - ref: graphql.processing.type
         requirement_level: required
-        brief: MUST be `plan`.
+        examples: [ "plan" ]
+        note: MUST be `plan`.
       - ref: error.type
         requirement_level:
           conditionally_required: If the planning phase ended with an error.
@@ -413,7 +417,8 @@ groups:
     attributes:
       - ref: graphql.processing.type
         requirement_level: required
-        brief: MUST be `step_execute`.
+        examples: [ "step_execute" ]
+        note: MUST be `step_execute`.
       - ref: error.type
         requirement_level:
           conditionally_required: If the step execution ended with an error.
@@ -472,7 +477,8 @@ groups:
           SHOULD NOT set `error.type`.
       - ref: graphql.processing.type
         requirement_level: required
-        brief: MUST be `execute`.
+        examples: [ "execute" ]
+        note: MUST be `execute`.
       - ref: graphql.operation.type
         requirement_level: required
       - ref: graphql.operation.name
@@ -529,7 +535,8 @@ groups:
           class name, if applicable) or the `graphql.error.code` if available.
       - ref: graphql.processing.type
         requirement_level: required
-        brief: MUST be `resolve`.
+        examples: [ "resolve" ]
+        note: MUST be `resolve`.
       - ref: graphql.field.alias
         requirement_level: recommended
       - ref: graphql.field.path
@@ -563,7 +570,8 @@ groups:
     attributes:
       - ref: graphql.processing.type
         requirement_level: required
-        brief: MUST be `dataloader_dispatch`.
+        examples: [ "dataloader_dispatch" ]
+        note: MUST be `dataloader_dispatch`.
 
   - id: span.graphql.dataloader.batch.internal
     type: span
@@ -602,7 +610,8 @@ groups:
     attributes:
       - ref: graphql.processing.type
         requirement_level: required
-        brief: MUST be `dataloader_batch`.
+        examples: [ "dataloader_batch" ]
+        note: MUST be `dataloader_batch`.
       - ref: graphql.dataloader.name
         requirement_level: recommended
       - ref: graphql.dataloader.batch.size
@@ -655,12 +664,19 @@ groups:
           SHOULD NOT set `error.type`.
       - ref: graphql.processing.type
         requirement_level: required
-        brief: MUST be `execute`.
+        examples: [ "subscription_event" ]
+        note: MUST be `subscription_event`.
       - ref: graphql.operation.type
         requirement_level: required
-        brief: MUST be `subscription`.
+        examples: [ "subscription" ]
+        note: MUST be `subscription`.
       - ref: graphql.operation.name
         requirement_level:
           conditionally_required: If available and not empty.
+      - ref: graphql.document.hash
+        requirement_level: recommended
+      - ref: graphql.document.id
+        requirement_level:
+          conditionally_required: If using trusted documents.
       - ref: graphql.subscription.id
         requirement_level: recommended
