@@ -2,9 +2,9 @@
 <!-- see templates/registry/markdown/entity_namespace.md.j2 -->
 {%- import 'entity_macros.j2' as entity %}
 
-# {{ ctx.id | title_case | acronym }}
+# {{ ctx.id | title_case | acronym | map_text("namespace_mapping") }}
 {% for e in ctx.groups | sort(attribute='name') %}
-## {{ e.name | title_case | acronym }}
+## {{ e.name | title_case | acronym | map_text("namespace_mapping") }}
 
 {{ entity.header(e) | trim }}
 
