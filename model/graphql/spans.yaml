@@ -101,8 +101,9 @@ groups:
       `graphql.operation.name` attributes.
     attributes:
       - ref: graphql.processing.type
-        requirement_level: required
-        brief: MUST be `request`.
+        requirement_level:
+          required: MUST be `request`.
+        examples: ["request"]
       - ref: error.type
         requirement_level:
           conditionally_required: If the GraphQL operation ended with an error.
