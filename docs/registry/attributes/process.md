@@ -51,7 +51,9 @@ An operating system process.
 
 **[1] `process.args_count`:** This field can be useful for querying or performing bucket analysis on how many arguments were provided to start a process. More arguments may be an indication of suspicious activity.
 
-**[2] `process.entrypoint`:** This is the file that was executed to start the process, which may be different from the process executable in cases where the executable is being used to run a script or other file. For example, `python myscript.py` would have an entrypoint of `/usr/scripts/myscript.py` but the executable would be `python`.
+**[2] `process.entrypoint`:** This is the path to the file which is executing within the process. In cases where a runtime is being used to execute scripts, the entrypoint is to correspond to different the script. In other cases it corresponds to the path to the executable being run.
+
+For example, the `python myscript.py` command would have an entrypoint of `/usr/scripts/myscript.py`. Whereas for executables on Linux based systems, the value would match `proc/[pid]/exe` and on Windows, the value would match `GetProcessImageFileNameW`.
 
 **[3] `process.environment_variable.<key>`:** Examples:
 

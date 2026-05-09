@@ -92,6 +92,7 @@ groups:
           the entrypoint is to correspond to different the script.
           In other cases it corresponds to the path to the executable being run.
 
+
           For example, the `python myscript.py` command would have an entrypoint of `/usr/scripts/myscript.py`.
           Whereas for executables on Linux based systems, the value would match `proc/[pid]/exe` and
           on Windows, the value would match `GetProcessImageFileNameW`.
