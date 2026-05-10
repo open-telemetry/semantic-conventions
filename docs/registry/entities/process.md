@@ -31,7 +31,7 @@
 
 **[1] `process.args_count`:** This field can be useful for querying or performing bucket analysis on how many arguments were provided to start a process. More arguments may be an indication of suspicious activity.
 
-**[2] `process.entrypoint`:** This is the path to the file which is executing within the process. In cases where a runtime is being used to execute scripts, the entrypoint is to correspond to different the script. In other cases it corresponds to the path to the executable being run.
+**[2] `process.entrypoint`:** This is the path to the file which is executing within the process. In cases where a runtime is being used to execute scripts, the entrypoint will be the script filename including path. In other cases the entrypoint will be the executable path.
 
 For example, the `python myscript.py` command would have an entrypoint of `/usr/scripts/myscript.py`. Whereas for executables on Linux based systems, the value would match `proc/[pid]/exe` and on Windows, the value would match `GetProcessImageFileNameW`.
 
