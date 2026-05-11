@@ -1,0 +1,9 @@
+change_type: enhancement
+
+component: otel
+
+note: Clarify that `error.type` for the `otel.sdk.processor.span.processed` and `otel.sdk.processor.log.processed` metrics is a closed set defined by the SDK specification, currently containing only `queue_full`.
+
+issues: []
+
+subtext:
