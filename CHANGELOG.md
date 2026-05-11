@@ -7,6 +7,12 @@
 
 <!-- next version -->
 
+## v1.41.1
+
+### 🧰 Bug fixes 🧰
+
+- Exclude `k8s.container.cpu.limit_utilization` and `k8s.container.cpu.request_utilization` metrics from code generation ([#3711](https://github.com/open-telemetry/semantic-conventions/issues/3711))
+
 ## v1.41.0
 
 ### 🛑 Breaking changes 🛑
