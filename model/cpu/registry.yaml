@@ -37,10 +37,6 @@ groups:
               value: 'steal'
               brief: Steal
               stability: development
-            - id: kernel
-              value: 'kernel'
-              brief: Kernel
-              stability: development
         stability: development
         examples: [ "user", "system" ]
       - id: cpu.logical_number
