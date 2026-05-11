@@ -78,11 +78,10 @@ groups:
       - ref: otel.component.name
       - ref: error.type
         brief: >
-          A low-cardinality description of the failure reason. SDK Batching Span Processors MUST use `queue_full` for spans dropped due to a full queue.
-        note: |
-          The set of failure modes for SDK Span Processors is defined by the OpenTelemetry SDK specification and is intended to be closed: implementations SHOULD NOT introduce new `error.type` values for this metric outside of those defined by the specification.
-          Currently, the only specification-defined value is `queue_full` (used by Batching Span Processors when spans are dropped because the queue is full). The well-known values listed below are inherited from the generic `error.type` attribute and are not all applicable to this metric.
-        examples: ["queue_full"]
+          A low-cardinality description of the failure reason.
+          SDK Batching Span Processors MUST use `queue_full` for spans dropped due to a full queue.
+          SDK Span Processors MUST use `already_shutdown` for spans dropped because the processor has already been shut down.
+        examples: ["queue_full", "already_shutdown"]
 
   - id: metric.otel.sdk.exporter.span.inflight
     type: metric
@@ -194,11 +193,10 @@ groups:
       - ref: otel.component.name
       - ref: error.type
         brief: >
-          A low-cardinality description of the failure reason. SDK Batching Log Record Processors MUST use `queue_full` for log records dropped due to a full queue.
-        note: |
-          The set of failure modes for SDK Log Record Processors is defined by the OpenTelemetry SDK specification and is intended to be closed: implementations SHOULD NOT introduce new `error.type` values for this metric outside of those defined by the specification.
-          Currently, the only specification-defined value is `queue_full` (used by Batching Log Record Processors when log records are dropped because the queue is full). The well-known values listed below are inherited from the generic `error.type` attribute and are not all applicable to this metric.
-        examples: ["queue_full"]
+          A low-cardinality description of the failure reason.
+          SDK Batching Log Record Processors MUST use `queue_full` for log records dropped due to a full queue.
+          SDK Log Record Processors MUST use `already_shutdown` for log records dropped because the processor has already been shut down.
+        examples: ["queue_full", "already_shutdown"]
 
   - id: metric.otel.sdk.exporter.log.inflight
     type: metric
