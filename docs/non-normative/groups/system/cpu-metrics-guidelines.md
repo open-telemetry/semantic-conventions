@@ -36,7 +36,7 @@ specific environments explicitly provide them. For example
 provides an opinionated metrics for `*.cpu.usage` that can be used directly, yet
 should be optional since it is derived from the `.cpu.time` metrics and is not
 uniquely implemented in other systems like the
-[Docker stats API](https://docs.docker.com/reference/api/engine/version/v1.51/#tag/Container/operation/ContainerStats).
+[Docker stats API](https://docs.docker.com/reference/api/engine/version/v1.52/#tag/Container/operation/ContainerStats).
 
 ## Implementation Guidance
 
@@ -98,7 +98,7 @@ used:
 
 `avg(sum(rate(system.cpu.time{cpu.mode!="idle"}[5m])) by (cpu.logical_number))/(5*60)`
 
-Note that the above formulas can be ambigous and hence they are not standardized
+Note that the above formulas can be ambiguous and hence they are not standardized
 as part of the Semantic Conventions project. They are only provided as examples.
 
 Projects like

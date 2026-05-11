@@ -7,13 +7,16 @@ test_fails_on_stable_entity_with_attributes_having_no_role if {
         "type": "entity",
         "name": "foo",
         "stability": "stable",
+        "brief": "brief.",
         "attributes": [{
             "name": "test.experimental",
             "stability": "stable",
+            "brief": "brief."
         }, {
             "name": "test.id",
             "stability": "stable",
             "role": "identifying",
+            "brief": "brief."
         }]}]}
 }
 
@@ -23,10 +26,12 @@ test_fails_on_stable_entity_with_attributes_having_no_id if {
         "type": "entity",
         "name": "foo",
         "stability": "stable",
+        "brief": "brief.",
         "attributes": [{
             "name": "test.experimental",
             "stability": "stable",
             "role": "descriptive",
+            "brief": "brief."
         }]}]}
 }
 
@@ -36,13 +41,16 @@ test_passes_on_stable_entity_with_id if {
         "type": "entity",
         "name": "foo",
         "stability": "stable",
+        "brief": "brief.",
         "attributes": [{
             "name": "test.experimental",
             "stability": "stable",
             "role": "descriptive",
+            "brief": "brief."
         },{
             "name": "test.id",
             "stability": "stable",
             "role": "identifying",
+            "brief": "brief."
         }]}]}
 }

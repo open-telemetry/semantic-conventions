@@ -8,14 +8,16 @@ groups:
         requirement_level: opt_in
         note: |
           See [Setting `server.address` and `server.port` attributes](/docs/http/http-spans.md#setting-serveraddress-and-serverport-attributes).
-          > **Warning**
+
+          > [!WARNING]
           > Since this attribute is based on HTTP headers, opting in to it may allow an attacker
           > to trigger cardinality limits, degrading the usefulness of the metric.
       - ref: server.port
         requirement_level: opt_in
         note: |
           See [Setting `server.address` and `server.port` attributes](/docs/http/http-spans.md#setting-serveraddress-and-serverport-attributes).
-          > **Warning**
+
+          > [!WARNING]
           > Since this attribute is based on HTTP headers, opting in to it may allow an attacker
           > to trigger cardinality limits, degrading the usefulness of the metric.
       - ref: user_agent.synthetic.type
@@ -70,7 +72,8 @@ groups:
           Name of the local HTTP server that received the request.
         note: |
           See [Setting `server.address` and `server.port` attributes](/docs/http/http-spans.md#setting-serveraddress-and-serverport-attributes).
-          > **Warning**
+
+          > [!WARNING]
           > Since this attribute is based on HTTP headers, opting in to it may allow an attacker
           > to trigger cardinality limits, degrading the usefulness of the metric.
       - ref: server.port
@@ -79,7 +82,8 @@ groups:
           Port of the local HTTP server that received the request.
         note: |
           See [Setting `server.address` and `server.port` attributes](/docs/http/http-spans.md#setting-serveraddress-and-serverport-attributes).
-          > **Warning**
+
+          > [!WARNING]
           > Since this attribute is based on HTTP headers, opting in to it may allow an attacker
           > to trigger cardinality limits, degrading the usefulness of the metric.
 

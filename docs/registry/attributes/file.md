@@ -10,7 +10,7 @@ Describes file attributes.
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | <a id="file-accessed" href="#file-accessed">`file.accessed`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Time when the file was last accessed, in ISO 8601 format. [1] | `2021-01-01T12:00:00Z` |
 | <a id="file-attributes" href="#file-attributes">`file.attributes`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string[] | Array of file attributes. [2] | `["readonly", "hidden"]` |
 | <a id="file-changed" href="#file-changed">`file.changed`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Time when the file attributes or metadata was last changed, in ISO 8601 format. [3] | `2021-01-01T12:00:00Z` |
@@ -27,7 +27,7 @@ Describes file attributes.
 | <a id="file-owner-id" href="#file-owner-id">`file.owner.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The user ID (UID) or security identifier (SID) of the file owner. | `1000` |
 | <a id="file-owner-name" href="#file-owner-name">`file.owner.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Username of the file owner. | `root` |
 | <a id="file-path" href="#file-path">`file.path`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Full path to the file, including the file name. It should include the drive letter, when appropriate. | `/home/alice/example.png`; `C:\Program Files\MyApp\myapp.exe` |
-| <a id="file-size" href="#file-size">`file.size`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | File size in bytes. |  |
+| <a id="file-size" href="#file-size">`file.size`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | File size in bytes. | |
 | <a id="file-symbolic-link-target-path" href="#file-symbolic-link-target-path">`file.symbolic_link.target_path`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Path to the target of a symbolic link. [7] | `/usr/bin/python3` |
 
 **[1] `file.accessed`:** This attribute might not be supported by some file systems — NFS, FAT32, in embedded OS, etc.

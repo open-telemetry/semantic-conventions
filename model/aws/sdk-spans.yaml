@@ -26,11 +26,13 @@ groups:
         examples:
           - DynamoDB
           - S3
+        note: ""
       - ref: rpc.method
         brief: "The name of the operation corresponding to the request, as returned by the AWS SDK"
         examples:
           - GetItem
           - PutItem
+        note: ""
       - ref: aws.request_id
         requirement_level: recommended
       - ref: aws.extended_request_id

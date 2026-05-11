@@ -13,7 +13,7 @@ These attributes provide context about source code
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | <a id="code-column-number" href="#code-column-number">`code.column.number`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | int | The column number in `code.file.path` best representing the operation. It SHOULD point within the code unit named in `code.function.name`. This attribute MUST NOT be used on the Profile signal since the data is already captured in 'message Line'. This constraint is imposed to prevent redundancy and maintain data integrity. | `16` |
 | <a id="code-file-path" href="#code-file-path">`code.file.path`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The source code file name that identifies the code unit as uniquely as possible (preferably an absolute file path). This attribute MUST NOT be used on the Profile signal since the data is already captured in 'message Function'. This constraint is imposed to prevent redundancy and maintain data integrity. | `/usr/local/MyApplication/content_root/app/index.php` |
 | <a id="code-function-name" href="#code-function-name">`code.function.name`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The method or function fully-qualified name without arguments. The value should fit the natural representation of the language runtime, which is also likely the same used within `code.stacktrace` attribute value. This attribute MUST NOT be used on the Profile signal since the data is already captured in 'message Function'. This constraint is imposed to prevent redundancy and maintain data integrity. [1] | `com.example.MyHttpService.serveRequest`; `GuzzleHttp\Client::transfer`; `fopen` |
@@ -43,7 +43,7 @@ These deprecated attributes provide context about source code
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | <a id="code-column" href="#code-column">`code.column`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `code.column.number`. | int | Deprecated, use `code.column.number` | `16` |
 | <a id="code-filepath" href="#code-filepath">`code.filepath`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `code.file.path`. | string | Deprecated, use `code.file.path` instead | `/usr/local/MyApplication/content_root/app/index.php` |
 | <a id="code-function" href="#code-function">`code.function`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Value should be included in `code.function.name` which is expected to be a fully-qualified name. | string | Deprecated, use `code.function.name` instead | `serveRequest` |

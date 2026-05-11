@@ -19,16 +19,16 @@ Attributes describing telemetry around messaging systems and messaging activitie
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | <a id="messaging-batch-message-count" href="#messaging-batch-message-count">`messaging.batch.message_count`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The number of messages sent, received, or processed in the scope of the batching operation. [1] | `0`; `1`; `2` |
 | <a id="messaging-client-id" href="#messaging-client-id">`messaging.client.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | A unique identifier for the client that consumes or produces a message. | `client-5`; `myhost@8742@s8083jm` |
 | <a id="messaging-consumer-group-name" href="#messaging-consumer-group-name">`messaging.consumer.group.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the consumer group with which a consumer is associated. [2] | `my-group`; `indexer` |
-| <a id="messaging-destination-anonymous" href="#messaging-destination-anonymous">`messaging.destination.anonymous`</a> | ![Development](https://img.shields.io/badge/-development-blue) | boolean | A boolean that is true if the message destination is anonymous (could be unnamed or have auto-generated name). |  |
+| <a id="messaging-destination-anonymous" href="#messaging-destination-anonymous">`messaging.destination.anonymous`</a> | ![Development](https://img.shields.io/badge/-development-blue) | boolean | A boolean that is true if the message destination is anonymous (could be unnamed or have auto-generated name). | |
 | <a id="messaging-destination-name" href="#messaging-destination-name">`messaging.destination.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The message destination name [3] | `MyQueue`; `MyTopic` |
 | <a id="messaging-destination-partition-id" href="#messaging-destination-partition-id">`messaging.destination.partition.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The identifier of the partition messages are sent to or received from, unique within the `messaging.destination.name`. | `1` |
 | <a id="messaging-destination-subscription-name" href="#messaging-destination-subscription-name">`messaging.destination.subscription.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the destination subscription from which a message is consumed. [4] | `subscription-a` |
 | <a id="messaging-destination-template" href="#messaging-destination-template">`messaging.destination.template`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Low cardinality representation of the messaging destination name [5] | `/customers/{customerId}` |
-| <a id="messaging-destination-temporary" href="#messaging-destination-temporary">`messaging.destination.temporary`</a> | ![Development](https://img.shields.io/badge/-development-blue) | boolean | A boolean that is true if the message destination is temporary and might not exist anymore after messages are processed. |  |
+| <a id="messaging-destination-temporary" href="#messaging-destination-temporary">`messaging.destination.temporary`</a> | ![Development](https://img.shields.io/badge/-development-blue) | boolean | A boolean that is true if the message destination is temporary and might not exist anymore after messages are processed. | |
 | <a id="messaging-message-body-size" href="#messaging-message-body-size">`messaging.message.body.size`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The size of the message body in bytes. [6] | `1439` |
 | <a id="messaging-message-conversation-id" href="#messaging-message-conversation-id">`messaging.message.conversation_id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The conversation ID identifying the conversation to which the message belongs, represented as a string. Sometimes called "Correlation ID". | `MyConversationId` |
 | <a id="messaging-message-envelope-size" href="#messaging-message-envelope-size">`messaging.message.envelope.size`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The size of the message body and metadata in bytes. [7] | `2738` |
@@ -62,8 +62,8 @@ size should be used.
 
 `messaging.operation.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `create` | A message is created. "Create" spans always refer to a single message and are used to provide a unique creation context for messages in batch sending scenarios. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `process` | One or more messages are processed by a consumer. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `receive` | One or more messages are requested by a consumer. This operation refers to pull-based scenarios, where consumers explicitly call methods of messaging SDKs to receive messages. | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -74,8 +74,8 @@ size should be used.
 
 `messaging.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `activemq` | Apache ActiveMQ | ![Development](https://img.shields.io/badge/-development-blue) |
 | `aws.sns` | Amazon Simple Notification Service (SNS) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `aws_sqs` | Amazon Simple Queue Service (SQS) | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -96,7 +96,7 @@ This group describes attributes specific to Azure Event Hubs.
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | <a id="messaging-eventhubs-message-enqueued-time" href="#messaging-eventhubs-message-enqueued-time">`messaging.eventhubs.message.enqueued_time`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The UTC epoch seconds at which the message has been accepted and stored in the entity. | `1701393730` |
 
 ## GCP Pub/Sub Attributes
@@ -106,7 +106,7 @@ This group describes attributes specific to GCP Pub/Sub.
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | <a id="messaging-gcp-pubsub-message-ack-deadline" href="#messaging-gcp-pubsub-message-ack-deadline">`messaging.gcp_pubsub.message.ack_deadline`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The ack deadline in seconds set for the modify ack deadline request. | `10` |
 | <a id="messaging-gcp-pubsub-message-ack-id" href="#messaging-gcp-pubsub-message-ack-id">`messaging.gcp_pubsub.message.ack_id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The ack id for a given message. | `ack_id` |
 | <a id="messaging-gcp-pubsub-message-delivery-attempt" href="#messaging-gcp-pubsub-message-delivery-attempt">`messaging.gcp_pubsub.message.delivery_attempt`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The delivery attempt for a given message. | `2` |
@@ -119,9 +119,9 @@ This group describes attributes specific to Apache Kafka.
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | <a id="messaging-kafka-message-key" href="#messaging-kafka-message-key">`messaging.kafka.message.key`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Message keys in Kafka are used for grouping alike messages to ensure they're processed on the same partition. They differ from `messaging.message.id` in that they're not unique. If the key is `null`, the attribute MUST NOT be set. [10] | `myKey` |
-| <a id="messaging-kafka-message-tombstone" href="#messaging-kafka-message-tombstone">`messaging.kafka.message.tombstone`</a> | ![Development](https://img.shields.io/badge/-development-blue) | boolean | A boolean that is true if the message is a tombstone. |  |
+| <a id="messaging-kafka-message-tombstone" href="#messaging-kafka-message-tombstone">`messaging.kafka.message.tombstone`</a> | ![Development](https://img.shields.io/badge/-development-blue) | boolean | A boolean that is true if the message is a tombstone. | |
 | <a id="messaging-kafka-offset" href="#messaging-kafka-offset">`messaging.kafka.offset`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The offset of a record in the corresponding Kafka partition. | `42` |
 
 **[10] `messaging.kafka.message.key`:** If the key type is not string, it's string representation has to be supplied for the attribute. If the key has no unambiguous, canonical string form, don't include its value.
@@ -133,7 +133,7 @@ This group describes attributes specific to RabbitMQ.
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | <a id="messaging-rabbitmq-destination-routing-key" href="#messaging-rabbitmq-destination-routing-key">`messaging.rabbitmq.destination.routing_key`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | RabbitMQ message routing key. | `myKey` |
 | <a id="messaging-rabbitmq-message-delivery-tag" href="#messaging-rabbitmq-message-delivery-tag">`messaging.rabbitmq.message.delivery_tag`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | RabbitMQ message delivery tag | `123` |
 
@@ -144,7 +144,7 @@ This group describes attributes specific to RocketMQ.
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | <a id="messaging-rocketmq-consumption-model" href="#messaging-rocketmq-consumption-model">`messaging.rocketmq.consumption_model`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Model of message consumption. This only applies to consumer spans. | `clustering`; `broadcasting` |
 | <a id="messaging-rocketmq-message-delay-time-level" href="#messaging-rocketmq-message-delay-time-level">`messaging.rocketmq.message.delay_time_level`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The delay time level for delay message, which determines the message delay time. | `3` |
 | <a id="messaging-rocketmq-message-delivery-timestamp" href="#messaging-rocketmq-message-delivery-timestamp">`messaging.rocketmq.message.delivery_timestamp`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The timestamp in milliseconds that the delay message is expected to be delivered to consumer. | `1665987217045` |
@@ -158,8 +158,8 @@ This group describes attributes specific to RocketMQ.
 
 `messaging.rocketmq.consumption_model` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `broadcasting` | Broadcasting consumption model | ![Development](https://img.shields.io/badge/-development-blue) |
 | `clustering` | Clustering consumption model | ![Development](https://img.shields.io/badge/-development-blue) |
 
@@ -167,8 +167,8 @@ This group describes attributes specific to RocketMQ.
 
 `messaging.rocketmq.message.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `delay` | Delay message | ![Development](https://img.shields.io/badge/-development-blue) |
 | `fifo` | FIFO message | ![Development](https://img.shields.io/badge/-development-blue) |
 | `normal` | Normal message | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -181,7 +181,7 @@ This group describes attributes specific to Azure Service Bus.
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | <a id="messaging-servicebus-disposition-status" href="#messaging-servicebus-disposition-status">`messaging.servicebus.disposition_status`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Describes the [settlement type](https://learn.microsoft.com/azure/service-bus-messaging/message-transfers-locks-settlement#peeklock). | `complete`; `abandon`; `dead_letter` |
 | <a id="messaging-servicebus-message-delivery-count" href="#messaging-servicebus-message-delivery-count">`messaging.servicebus.message.delivery_count`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | Number of deliveries that have been attempted for this message. | `2` |
 | <a id="messaging-servicebus-message-enqueued-time" href="#messaging-servicebus-message-enqueued-time">`messaging.servicebus.message.enqueued_time`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The UTC epoch seconds at which the message has been accepted and stored in the entity. | `1701393730` |
@@ -190,8 +190,8 @@ This group describes attributes specific to Azure Service Bus.
 
 `messaging.servicebus.disposition_status` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `abandon` | Message is abandoned | ![Development](https://img.shields.io/badge/-development-blue) |
 | `complete` | Message is completed | ![Development](https://img.shields.io/badge/-development-blue) |
 | `dead_letter` | Message is sent to dead letter queue | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -204,9 +204,9 @@ Describes deprecated messaging attributes.
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | <a id="messaging-client-id" href="#messaging-client-id">`messaging.client_id`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `messaging.client.id`. | string | Deprecated, use `messaging.client.id` instead. | `client-5`; `myhost@8742@s8083jm` |
-| <a id="messaging-destination-publish-anonymous" href="#messaging-destination-publish-anonymous">`messaging.destination_publish.anonymous`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Removed. No replacement at this time. | boolean | Deprecated, no replacement at this time. |  |
+| <a id="messaging-destination-publish-anonymous" href="#messaging-destination-publish-anonymous">`messaging.destination_publish.anonymous`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Removed. No replacement at this time. | boolean | Deprecated, no replacement at this time. | |
 | <a id="messaging-destination-publish-name" href="#messaging-destination-publish-name">`messaging.destination_publish.name`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Removed. No replacement at this time. | string | Deprecated, no replacement at this time. | `MyQueue`; `MyTopic` |
 | <a id="messaging-eventhubs-consumer-group" href="#messaging-eventhubs-consumer-group">`messaging.eventhubs.consumer.group`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `messaging.consumer.group.name`. | string | Deprecated, use `messaging.consumer.group.name` instead. | `$Default` |
 | <a id="messaging-kafka-consumer-group" href="#messaging-kafka-consumer-group">`messaging.kafka.consumer.group`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `messaging.consumer.group.name`. | string | Deprecated, use `messaging.consumer.group.name` instead. | `my-group` |

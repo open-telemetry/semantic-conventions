@@ -10,7 +10,7 @@ The operating system (OS) on which the process represented by this resource is r
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | <a id="os-build-id" href="#os-build-id">`os.build_id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Unique identifier for a particular build or compilation of the operating system. | `TQ3C.230805.001.B2`; `20E247`; `22621` |
 | <a id="os-description" href="#os-description">`os.description`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Human readable (not intended to be parsed) OS version information, like e.g. reported by `ver` or `lsb_release -a` commands. | `Microsoft Windows [Version 10.0.18363.778]`; `Ubuntu 18.04.1 LTS` |
 | <a id="os-name" href="#os-name">`os.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Human readable operating system name. | `iOS`; `Android`; `Ubuntu` |
@@ -21,8 +21,8 @@ The operating system (OS) on which the process represented by this resource is r
 
 `os.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `aix` | AIX (Advanced Interactive eXecutive) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `darwin` | Apple Darwin | ![Development](https://img.shields.io/badge/-development-blue) |
 | `dragonflybsd` | DragonFly BSD | ![Development](https://img.shields.io/badge/-development-blue) |

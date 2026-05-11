@@ -47,7 +47,7 @@ to
 | Change | Comments |
 | --- | --- |
 | `http.method` &rarr; `http.request.method` | Now captures only 9 common HTTP methods by default (configurable) plus `_OTHER` |
-| `http.status_code` &rarr; `http.response.status_code` |  |
+| `http.status_code` &rarr; `http.response.status_code` | |
 | `http.request.header.<key>` | &bullet; Dash (`"-"`) to underscore (`"_"`) normalization in `<key>` has been removed<br>&bullet; On HTTP server spans: now must be provided to sampler |
 | `http.response.header.<key>` | Dash (`"-"`) to underscore (`"_"`) normalization in `<key>` has been removed |
 | `http.request_content_length` &rarr; `http.request.body.size` | &bullet; Recommended &rarr; Opt-In<br>&bullet; _Not marked stable yet_ |
@@ -60,7 +60,7 @@ to
 | `net.sock.peer.port` &rarr; `network.peer.port` | Now captured even if same as `server.port` |
 | `net.sock.peer.name` | Removed |
 | New: `http.request.method_original` | Only captured when `http.request.method` is `_OTHER` |
-| New: `error.type` |  |
+| New: `error.type` | |
 <!-- prettier-ignore-end -->
 
 References:
@@ -132,13 +132,13 @@ Metric changes:
 | Attribute change | Comments |
 | --- | --- |
 | `http.method` &rarr; `http.request.method` | Now captures only 9 common HTTP methods by default plus `_OTHER` |
-| `http.status_code` &rarr; `http.response.status_code` |  |
-| `net.peer.name` &rarr; `server.address` |  |
+| `http.status_code` &rarr; `http.response.status_code` | |
+| `net.peer.name` &rarr; `server.address` | |
 | `net.peer.port` &rarr; `server.port` | Now captured even when same as default port for scheme |
 | `net.sock.peer.addr` | Removed |
 | `net.protocol.name` &rarr; `network.protocol.name` | Recommended &rarr; Conditionally required if not `http` and `network.protocol.version` is set |
 | `net.protocol.version` &rarr; `network.protocol.version` | Examples fixed: `2.0` &rarr; `2` and `3.0` &rarr; `3`; see note if [migrating from `<= v1.19.0`](#migrating-from--v1190) |
-| New: `error.type` |  |
+| New: `error.type` | |
 <!-- prettier-ignore-end -->
 
 References:
@@ -163,13 +163,13 @@ Metric changes:
 | --- | --- |
 | `http.route` | No change |
 | `http.method` → `http.request.method` | Now captures only 9 common HTTP methods by default plus `_OTHER` |
-| `http.status_code` → `http.response.status_code` |  |
+| `http.status_code` → `http.response.status_code` | |
 | `http.scheme` → `url.scheme` | Now factors in [`X-Forwarded-Proto` span][X-Forwarded-Proto], [`Forwarded#proto` span][Forwarded#proto] headers |
 | `net.protocol.name` → `network.protocol.name` | Recommended → Conditionally required if not `http` and `network.protocol.version` is set |
 | `net.protocol.version` → `network.protocol.version` | Examples fixed: `2.0` → `2` and `3.0` → `3`; see note if [migrating from `<= v1.19.0`](#migrating-from--v1190) |
 | `net.host.name` → `server.address` | &bullet; Recommended → Opt-In (due to high-cardinality vulnerability since based on HTTP headers)<br>&bullet; Now based only on [`Host` span][Host header], [`:authority` span][HTTP/2 authority], [`X-Forwarded-Host` span][X-Forwarded-Host], [`Forwarded#host` span][Forwarded#host] headers |
 | `net.host.port` → `server.port` | &bullet; Recommended → Opt-In (due to high-cardinality vulnerability since based on HTTP headers)<br>&bullet; Now based only on [`Host` span][Host header], [`:authority` span][HTTP/2 authority], [`X-Forwarded-Host` span][X-Forwarded-Host], [`Forwarded#host` span][Forwarded#host] headers |
-| New: `error.type` |  |
+| New: `error.type` | |
 <!-- prettier-ignore-end -->
 
 References:

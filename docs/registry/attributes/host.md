@@ -10,7 +10,7 @@ A host is defined as a computing instance. For example, physical servers, virtua
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | <a id="host-arch" href="#host-arch">`host.arch`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The CPU architecture the host system is running on. | `amd64`; `arm32`; `arm64` |
 | <a id="host-cpu-cache-l2-size" href="#host-cpu-cache-l2-size">`host.cpu.cache.l2.size`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The amount of level 2 memory cache available to the processor (in Bytes). | `12288000` |
 | <a id="host-cpu-family" href="#host-cpu-family">`host.cpu.family`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Family or generation of the CPU. | `6`; `PA-RISC 1.1e` |
@@ -37,8 +37,8 @@ A host is defined as a computing instance. For example, physical servers, virtua
 
 `host.arch` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `amd64` | AMD64 | ![Development](https://img.shields.io/badge/-development-blue) |
 | `arm32` | ARM32 | ![Development](https://img.shields.io/badge/-development-blue) |
 | `arm64` | ARM64 | ![Development](https://img.shields.io/badge/-development-blue) |

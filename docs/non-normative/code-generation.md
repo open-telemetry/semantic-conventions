@@ -1,6 +1,6 @@
 # Generating semantic convention libraries
 
-<!-- toc -->
+<!-- START doctoc -->
 
 - [Stability and versioning](#stability-and-versioning)
   - [Deprecated conventions](#deprecated-conventions)
@@ -10,7 +10,7 @@
     - [Weaver config](#weaver-config)
     - [Jinja templates](#jinja-templates)
 
-<!-- tocstop -->
+<!-- END doctoc -->
 
 The code for OpenTelemetry Semantic Conventions defined in this repository can be auto-generated.
 
@@ -31,7 +31,7 @@ Possible solutions include:
 - Follow language-specific conventions to annotate unstable parts. For example, Semantic Conventions in Python puts unstable attributes in `opentelemetry.semconv._incubating` import path which is considered (following Python underscore convention) to be internal and subject to change.
 - Ship two different artifacts: one that contains stable Semantic Conventions and another one with all available conventions. For example, [semantic-conventions in Java](https://github.com/open-telemetry/semantic-conventions-java) are shipped in two artifacts: `opentelemetry-semconv` and `opentelemetry-semconv-incubating`.
 
-> Note:
+> [!Note]
 > Shipping two versions of the same artifact (stable and preview) could be problematic due to diamond-dependency problems.
 > For example, if user application depends on the `semconv v1.0.0-preview` and some library brings transitive dependency on `semconv v1.1.0` that does not contain
 > experimental conventions, the latter would be resolved leading to compilation or runtime issues in the application.

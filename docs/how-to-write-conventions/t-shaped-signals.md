@@ -53,6 +53,6 @@ for a particular domain first. After providing a baseline set of signals for
 that domain, then explore deeper integrations that may be vendor or
 implementation specific.
 
-For example, see [Database semantic conventions](/docs/database/README.md) where
+For example, see [Database semantic conventions](/docs/db/README.md) where
 there is general guidance for spans about communicating with a database, and
 additionally there is database-specific guidance as an extension of the general.

@@ -10,13 +10,13 @@ These attributes may be used for any operation to store information about a thre
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | <a id="thread-id" href="#thread-id">`thread.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | Current "managed" thread ID (as opposed to OS thread ID). [1] | `42` |
 | <a id="thread-name" href="#thread-name">`thread.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Current thread name. [2] | `main` |
 
 **[1] `thread.id`:** Examples of where the value can be extracted from:
 
-| Language or platform  | Source |
+| Language or platform | Source |
 | --- | --- |
 | JVM | `Thread.currentThread().threadId()` |
 | .NET | `Thread.CurrentThread.ManagedThreadId` |
@@ -27,7 +27,7 @@ These attributes may be used for any operation to store information about a thre
 
 **[2] `thread.name`:** Examples of where the value can be extracted from:
 
-| Language or platform  | Source |
+| Language or platform | Source |
 | --- | --- |
 | JVM | `Thread.currentThread().getName()` |
 | .NET | `Thread.CurrentThread.Name` |

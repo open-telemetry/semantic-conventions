@@ -10,9 +10,10 @@ Describes V8 JS Engine Runtime related attributes.
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | <a id="v8js-gc-type" href="#v8js-gc-type">`v8js.gc.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The type of garbage collection. | `major`; `minor`; `incremental` |
 | <a id="v8js-heap-space-name" href="#v8js-heap-space-name">`v8js.heap.space.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the space type of heap memory. [1] | `new_space`; `old_space`; `code_space` |
+| <a id="v8js-resource-type" href="#v8js-resource-type">`v8js.resource.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The type of resource keeping the event loop active. | `Immediate`; `TCPServerWrap`; `TCPWrap` |
 
 **[1] `v8js.heap.space.name`:** Value can be retrieved from value `space_name` of [`v8.getHeapSpaceStatistics()`](https://nodejs.org/api/v8.html#v8getheapspacestatistics)
 
@@ -20,8 +21,8 @@ Describes V8 JS Engine Runtime related attributes.
 
 `v8js.gc.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `incremental` | Incremental (Incremental Marking). | ![Development](https://img.shields.io/badge/-development-blue) |
 | `major` | Major (Mark Sweep Compact). | ![Development](https://img.shields.io/badge/-development-blue) |
 | `minor` | Minor (Scavenge). | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -31,10 +32,22 @@ Describes V8 JS Engine Runtime related attributes.
 
 `v8js.heap.space.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `code_space` | Code memory space. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `large_object_space` | Large object memory space. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `map_space` | Map memory space. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `new_space` | New memory space. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `old_space` | Old memory space. | ![Development](https://img.shields.io/badge/-development-blue) |
+
+---
+
+`v8js.resource.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value | Description | Stability |
+| --- | --- | --- |
+| `Immediate` | Active `setImmediate` callbacks. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `TCPServerWrap` | Active TCP Servers. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `TCPWrap` | Active TCP connections. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `Timeout` | Active `setTimeout` or `setInterval` timers. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `TTYWrap` | Active Terminal I/O (stdin/stdout). | ![Development](https://img.shields.io/badge/-development-blue) |

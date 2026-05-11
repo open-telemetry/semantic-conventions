@@ -521,6 +521,7 @@ test_removed_metrics if {
                 "type": "metric",
                 "metric_name": "test.missing",
                 "stability": "development",
+                "brief": "brief.",
             }],
     }
     count(deny) == 0 with data.semconv as {
@@ -529,12 +530,14 @@ test_removed_metrics if {
                 "type": "metric",
                 "metric_name": "test.missing",
                 "stability": "development",
+                "brief": "brief.",
             }],
             "groups": [{
                 "id": "metric.test",
                 "type": "metric",
                 "metric_name": "test.missing",
                 "stability": "development",
+                "brief": "brief.",
             }]
     }
 }
@@ -547,12 +550,14 @@ test_metric_stability_change if {
                 "type": "metric",
                 "metric_name": "test.missing",
                 "stability": "stable",
+                "brief": "brief.",
             }],
             "groups": [{
                 "id": "metric.test",
                 "type": "metric",
                 "metric_name": "test.missing",
                 "stability": "experimental",
+                "brief": "brief.",
             }]
     }
     count(deny) == 0 with data.semconv as {
@@ -561,12 +566,14 @@ test_metric_stability_change if {
                 "type": "metric",
                 "metric_name": "test.missing",
                 "stability": "stable",
+                "brief": "brief.",
             }],
             "groups": [{
                 "id": "metric.test",
                 "type": "metric",
                 "metric_name": "test.missing",
                 "stability": "stable",
+                "brief": "brief.",
             }]
     }
 }
@@ -580,6 +587,7 @@ test_metric_unit_change if {
                 "metric_name": "test.missing",
                 "stability": "stable",
                 "unit": "s",
+                "brief": "brief.",
             }],
             "groups": [{
                 "id": "metric.test",
@@ -587,6 +595,7 @@ test_metric_unit_change if {
                 "metric_name": "test.missing",
                 "stability": "stable",
                 "unit": "ms",
+                "brief": "brief.",
             }]
     }
     count(deny) == 0 with data.semconv as {
@@ -596,6 +605,7 @@ test_metric_unit_change if {
                 "metric_name": "test.missing",
                 "stability": "stable",
                 "unit": "s",
+                "brief": "brief.",
             }],
             "groups": [{
                 "id": "metric.test",
@@ -603,6 +613,7 @@ test_metric_unit_change if {
                 "metric_name": "test.missing",
                 "stability": "stable",
                 "unit": "s",
+                "brief": "brief.",
             }]
     }
 }
@@ -617,6 +628,7 @@ test_metric_instrument_change if {
                 "stability": "stable",
                 "unit": "s",
                 "instrument": "histogram",
+                "brief": "brief.",
             }],
             "groups": [{
                 "id": "metric.test",
@@ -625,6 +637,7 @@ test_metric_instrument_change if {
                 "stability": "stable",
                 "unit": "s",
                 "instrument": "gauge",
+                "brief": "brief.",
             }]
     }
     count(deny) == 0 with data.semconv as {
@@ -635,6 +648,7 @@ test_metric_instrument_change if {
                 "stability": "stable",
                 "unit": "s",
                 "instrument": "histogram",
+                "brief": "brief.",
             }],
             "groups": [{
                 "id": "metric.test",
@@ -643,6 +657,7 @@ test_metric_instrument_change if {
                 "stability": "stable",
                 "unit": "s",
                 "instrument": "histogram",
+                "brief": "brief.",
             }]
     }
 }
@@ -661,6 +676,7 @@ test_metric_attribute_missing if {
                     "name": "test.missing",
                     "requirement_level": "required"
                 }],
+                "brief": "brief.",
             }],
             "groups": [{
                 "id": "metric.test",
@@ -669,6 +685,7 @@ test_metric_attribute_missing if {
                 "stability": "stable",
                 "unit": "s",
                 "instrument": "gauge",
+                "brief": "brief.",
             }]
     }
     count(deny) == 0 with data.semconv as {
@@ -686,6 +703,7 @@ test_metric_attribute_missing if {
                     "name": "test.ignored",
                     "requirement_level": "opt_in"
                 }],
+                "brief": "brief.",
             }],
             "groups": [{
                 "id": "metric.test",
@@ -698,6 +716,7 @@ test_metric_attribute_missing if {
                     "name": "test.missing",
                     "requirement_level": "required"
                 }],
+                "brief": "brief.",
             }]
     }
 }
@@ -716,6 +735,7 @@ test_metric_attribute_added if {
                     "name": "test.missing",
                     "requirement_level": "required"
                 }],
+                "brief": "brief.",
             }],
             "groups": [{
                 "id": "metric.test",
@@ -731,6 +751,7 @@ test_metric_attribute_added if {
                     "name": "test.added",
                     "requirement_level": "required"
                 }],
+                "brief": "brief.",
             }]
     }
 }

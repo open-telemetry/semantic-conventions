@@ -5,8 +5,8 @@
 
 `{{enum.name}}` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 {% for espec in enum.type.members | sort(attribute='value') %}
 {%- if filter(espec) == "True" -%}
 | `{{ espec.value }}` | {{ (espec.brief or espec.id) | trim }}{{ notes.add({"note": espec.note}) }} | {{ stability.badge(espec.stability, espec.deprecated, espec.brief) }} |
@@ -18,8 +18,8 @@
 {% macro field_table(enum, notes) %}
 `{{enum.id}}` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 {% for espec in enum.members | sort(attribute='value') %}
 {%- if filter(espec) == "True" -%}
 | `{{ espec.value }}` | {{ (espec.brief or espec.id) | trim }}{{ notes.add({"note": espec.note}) }} | {{ stability.badge(espec.stability, espec.deprecated, espec.brief) }} |

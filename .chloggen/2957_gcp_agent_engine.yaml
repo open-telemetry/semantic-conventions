@@ -1,4 +1,0 @@
-change_type: enhancement
-component: cloud
-note: Add `gcp.agent_engine` as a value for `cloud.platform`
-issues: [2957]

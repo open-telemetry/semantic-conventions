@@ -19,7 +19,9 @@
 {%- endmacro -%}
 {% macro print_examples(examples) %}{%- for e in examples %}{%if loop.first == false %}; {% endif %}{{ escape_multiline_markdown_cell(e | trim) }}{%- endfor %}{% endmacro %}
 
-{% macro format(item) %}{%- if item.examples %}
+{% macro format(item) %}{% if item.examples or item.type == "enum" or item.type is mapping %}{{formatText(item) | trim }} {% endif %}{% endmacro %}
+
+{% macro formatText(item) %}{%- if item.examples %}
 {%- if "[]" in item.type and "template" not in item.type %}
 {%- if item.examples is sequence %}
 {%- if item.examples | select("sequence") | length == 0 %}`{{ item.examples | trim }}`

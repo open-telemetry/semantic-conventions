@@ -10,8 +10,8 @@ FaaS attributes
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
-|---|---|---|---|---|
-| <a id="faas-coldstart" href="#faas-coldstart">`faas.coldstart`</a> | ![Development](https://img.shields.io/badge/-development-blue) | boolean | A boolean that is true if the serverless function is executed for the first time (aka cold-start). |  |
+| --- | --- | --- | --- | --- |
+| <a id="faas-coldstart" href="#faas-coldstart">`faas.coldstart`</a> | ![Development](https://img.shields.io/badge/-development-blue) | boolean | A boolean that is true if the serverless function is executed for the first time (aka cold-start). | |
 | <a id="faas-cron" href="#faas-cron">`faas.cron`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | A string containing the schedule period as [Cron Expression](https://docs.oracle.com/cd/E12058_01/doc/doc.1014/e12030/cron_expressions.htm). | `0/5 * * * ? *` |
 | <a id="faas-document-collection" href="#faas-document-collection">`faas.document.collection`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the source on which the triggering operation was performed. For example, in Cloud Storage or S3 corresponds to the bucket name, and in Cosmos DB to the database name. | `myBucketName`; `myDbName` |
 | <a id="faas-document-name" href="#faas-document-name">`faas.document.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The document name/table subjected to the operation. For example, in Cloud Storage or S3 is the name of the file, and in Cosmos DB the table name. | `myFile.txt`; `myTableName` |
@@ -69,8 +69,8 @@ definition of function name MUST be used for this attribute
 
 `faas.document.operation` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `delete` | When an object is deleted. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `edit` | When an object is modified. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `insert` | When a new object is created. | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -79,8 +79,8 @@ definition of function name MUST be used for this attribute
 
 `faas.invoked_provider` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `alibaba_cloud` | Alibaba Cloud | ![Development](https://img.shields.io/badge/-development-blue) |
 | `aws` | Amazon Web Services | ![Development](https://img.shields.io/badge/-development-blue) |
 | `azure` | Microsoft Azure | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -91,8 +91,8 @@ definition of function name MUST be used for this attribute
 
 `faas.trigger` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `datasource` | A response to some data source operation such as a database or filesystem read/write | ![Development](https://img.shields.io/badge/-development-blue) |
 | `http` | To provide an answer to an inbound HTTP request | ![Development](https://img.shields.io/badge/-development-blue) |
 | `other` | If none of the others apply | ![Development](https://img.shields.io/badge/-development-blue) |
