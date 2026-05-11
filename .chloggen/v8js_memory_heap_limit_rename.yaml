@@ -1,7 +1,0 @@
-change_type: breaking
-component: v8js
-note: |
-  Rename `v8js.memory.heap.limit` to `v8js.memory.heap.space.size` (per-space pre-allocated size from `v8.getHeapSpaceStatistics()`),
-  and add a new `v8js.memory.heap.limit` UpDownCounter representing the absolute heap size limit from `v8.getHeapStatistics().heap_size_limit`
-  (controlled by `--max-old-space-size` or V8 defaults).
-issues: [3476]

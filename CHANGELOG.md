@@ -7,6 +7,46 @@
 
 <!-- next version -->
 
+## v1.42.0
+
+### 🛑 Breaking changes 🛑
+
+- `gen-ai`: Move Generative AI semantic conventions to a dedicated repository. ([#3696](https://github.com/open-telemetry/semantic-conventions/issues/3696))
+  All `gen_ai.*` attributes, metrics, events, and spans previously defined under
+  `model/gen-ai/`, `model/openai/`, and `model/mcp/` (and documented under
+  `docs/gen-ai/`) are deprecated in this repository and have moved to the
+  [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
+  
+  Instrumentations following the new repository's conventions should refer to
+  it for the corresponding `schema_url` to use.
+  
+- `v8js`: Rename `v8js.memory.heap.limit` to `v8js.memory.heap.space.size` (per-space pre-allocated size from `v8.getHeapSpaceStatistics()`),
+and add a new `v8js.memory.heap.limit` UpDownCounter representing the absolute heap size limit from `v8.getHeapStatistics().heap_size_limit`
+(controlled by `--max-old-space-size` or V8 defaults).
+ ([#3476](https://github.com/open-telemetry/semantic-conventions/issues/3476))
+
+### 🚀 New components 🚀
+
+- `browser`: Introduce `browser.document.url.full` attribute and `browser.document` entity to capture the absolute URL of the current browser document. ([#174](https://github.com/open-telemetry/semantic-conventions/issues/174))
+  The `browser.document` entity is introduced as a separate entity from `browser` because
+  the browser runtime attributes (brands, platform, language) are immutable for the SDK
+  lifetime, while the document URL changes on every navigation. The new attribute follows
+  RFC3986 and has `Recommended` requirement level at `Development` stability.
+  
+
+### 💡 Enhancements 💡
+
+- `gcp`: Add GCE instance labels as resource attributes. ([#2617](https://github.com/open-telemetry/semantic-conventions/issues/2617))
+- `k8s`: Add metric `k8s.container.ephemeral_storage.usage` to track ephemeral storage usage by containers. ([#3681](https://github.com/open-telemetry/semantic-conventions/issues/3681))
+  This metric includes an attribute `k8s.container.ephemeral_storage.fs_type` to distinguish between `rootfs` and `logs` usage.
+  
+- `k8s`: Promote `k8s.pod.cpu.time`, `k8s.node.cpu.time` and `container.cpu.time` metrics to `release_candidate` ([#3001](https://github.com/open-telemetry/semantic-conventions/issues/3001))
+
+### 🧰 Bug fixes 🧰
+
+- `cicd`: Consistent spelling of "CI/CD" throughout the CICD registry. ([#3634](https://github.com/open-telemetry/semantic-conventions/issues/3634))
+- `k8s`: Exclude `k8s.container.cpu.limit_utilization` and `k8s.container.cpu.request_utilization` metrics from code generation ([#3711](https://github.com/open-telemetry/semantic-conventions/issues/3711), [#3705](https://github.com/open-telemetry/semantic-conventions/issues/3705))
+
 ## v1.41.0
 
 ### 🛑 Breaking changes 🛑
