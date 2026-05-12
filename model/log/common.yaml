@@ -29,3 +29,17 @@ groups:
         requirement_level: opt_in
       - ref: log.file.path_resolved
         requirement_level: opt_in
+
+  - id: attributes.log_bridge
+    type: attribute_group
+    brief: >
+      Instrumentation Scope attributes that identify the log bridge that
+      produced the log record. These attributes are intended to be reported on
+      the `InstrumentationScope` associated with log records emitted by a log
+      bridge, distinct from the producer (e.g. logger name / category) which
+      is reported as the `InstrumentationScope` name.
+    attributes:
+      - ref: log_bridge.name
+        requirement_level: opt_in
+      - ref: log_bridge.version
+        requirement_level: opt_in
