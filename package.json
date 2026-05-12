@@ -12,7 +12,7 @@
   },
   "devDependencies": {
     "doctoc": "2.4.1",
-    "markdownlint-cli2": "0.22.0",
+    "markdownlint-cli2": "0.22.1",
     "prettier": "3.8.3"
   },
   "prettier": {

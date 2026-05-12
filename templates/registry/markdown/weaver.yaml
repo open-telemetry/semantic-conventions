@@ -60,3 +60,9 @@ acronyms:
   - VCS
   - zOS
   - JSONRPC
+text_maps:
+  namespace_mapping:
+    CICD: CI/CD
+    CICD Pipeline: CI/CD Pipeline
+    CICD Pipeline Run: CI/CD Pipeline Run
+    CICD Worker: CI/CD Worker

@@ -21,33 +21,15 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
-    brief: "Total heap memory size pre-allocated."
+    brief: "Maximum heap size allowed by the V8 engine."
     instrument: updowncounter
     unit: "By"
     stability: development
-    attributes:
-      - ref: v8js.heap.space.name
-        requirement_level: required
     note: >
-      The value can be retrieved from value `space_size` of
-      [`v8.getHeapSpaceStatistics()`](https://nodejs.org/api/v8.html#v8getheapspacestatistics)
-
-  - id: metric.v8js.memory.heap.used
-    type: metric
-    metric_name: v8js.memory.heap.used
-    annotations:
-      code_generation:
-        metric_value_type: int
-    brief: "Heap Memory size allocated."
-    instrument: updowncounter
-    unit: "By"
-    stability: development
-    attributes:
-      - ref: v8js.heap.space.name
-        requirement_level: required
-    note: >
-      The value can be retrieved from value `space_used_size` of
-      [`v8.getHeapSpaceStatistics()`](https://nodejs.org/api/v8.html#v8getheapspacestatistics)
+      The value can be retrieved from value `heap_size_limit` of
+      [`v8.getHeapStatistics()`](https://nodejs.org/api/v8.html#v8getheapstatistics).
+      This represents the absolute ceiling the heap can grow to, controlled by
+      `--max-old-space-size` or V8 defaults.
 
   - id: metric.v8js.memory.heap.space.available_size
     type: metric
@@ -80,6 +62,40 @@ groups:
         requirement_level: required
     note: >
       Value can be retrieved from value `physical_space_size` of [`v8.getHeapSpaceStatistics()`](https://nodejs.org/api/v8.html#v8getheapspacestatistics)
+
+  - id: metric.v8js.memory.heap.space.size
+    type: metric
+    metric_name: v8js.memory.heap.space.size
+    annotations:
+      code_generation:
+        metric_value_type: int
+    brief: "Total heap memory size pre-allocated for a heap space."
+    instrument: updowncounter
+    unit: "By"
+    stability: development
+    attributes:
+      - ref: v8js.heap.space.name
+        requirement_level: required
+    note: >
+      The value can be retrieved from value `space_size` of
+      [`v8.getHeapSpaceStatistics()`](https://nodejs.org/api/v8.html#v8getheapspacestatistics)
+
+  - id: metric.v8js.memory.heap.used
+    type: metric
+    metric_name: v8js.memory.heap.used
+    annotations:
+      code_generation:
+        metric_value_type: int
+    brief: "Heap Memory size allocated."
+    instrument: updowncounter
+    unit: "By"
+    stability: development
+    attributes:
+      - ref: v8js.heap.space.name
+        requirement_level: required
+    note: >
+      The value can be retrieved from value `space_used_size` of
+      [`v8.getHeapSpaceStatistics()`](https://nodejs.org/api/v8.html#v8getheapspacestatistics)
 
   - id: metric.v8js.resource.active
     type: metric

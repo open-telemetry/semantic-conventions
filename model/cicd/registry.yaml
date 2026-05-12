@@ -106,7 +106,7 @@ groups:
             - id: error
               value: error
               brief: >-
-                The task run failed due to an error in the CICD system, eg. due to the worker being killed.
+                The task run failed due to an error in the CI/CD system, eg. due to the worker being killed.
               stability: development
             - id: timeout
               value: timeout
@@ -159,7 +159,7 @@ groups:
             - id: error
               value: error
               brief: >-
-                The pipeline run failed due to an error in the CICD system, eg. due to the worker being killed.
+                The pipeline run failed due to an error in the CI/CD system, eg. due to the worker being killed.
               stability: development
             - id: timeout
               value: timeout
@@ -199,7 +199,7 @@ groups:
       - id: cicd.worker.id
         type: string
         stability: development
-        brief: The unique identifier of a worker within a CICD system.
+        brief: The unique identifier of a worker within a CI/CD system.
         examples:
           [
             "abc123",
@@ -209,7 +209,7 @@ groups:
       - id: cicd.worker.name
         type: string
         stability: development
-        brief: The name of a worker within a CICD system.
+        brief: The name of a worker within a CI/CD system.
         examples:
           [
             "agent-abc",
@@ -231,26 +231,26 @@ groups:
             - id: available
               value: available
               brief: >-
-                The worker is not performing work for the CICD system.
-                It is available to the CICD system to perform work on (online / idle).
+                The worker is not performing work for the CI/CD system.
+                It is available to the CI/CD system to perform work on (online / idle).
               note: "Pipelines might have conditions on which workers they are able to run so not every worker might be available to every pipeline."
               stability: development
             - id: busy
               value: busy
-              brief: "The worker is performing work for the CICD system."
+              brief: "The worker is performing work for the CI/CD system."
               stability: development
             - id: offline
               value: offline
-              brief: "The worker is not available to the CICD system (disconnected / down)."
+              brief: "The worker is not available to the CI/CD system (disconnected / down)."
               stability: development
         stability: development
         brief: >
-          The state of a CICD worker / agent.
+          The state of a CI/CD worker / agent.
         examples: ["idle", "busy", "down"]
       - id: cicd.system.component
         type: string
         stability: development
-        brief: The name of a component of the CICD system.
+        brief: The name of a component of the CI/CD system.
         examples:
           [
             "controller",
