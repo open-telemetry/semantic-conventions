@@ -8,11 +8,6 @@ groups:
       unrecoverable programming errors such as exceptions or signals that
       indicate an error has happened at a lower level.
     note: |
-      This event identifies the crash of an end-user facing app, a specific type
-      of unexpected app termination defined in the `brief` section. It is intended
-      to provide a basic schema that can be used for all crashes, but it existence
-      does not preclude other, more narrow events to be defined with more extensive
-      schemas to handle specific crash scenarios on specific platforms.
       Crash events can be produced asynchronously by another SDK instance, so it
       can contain attributes that are normally provided by the SDK Resource. The
       appearance of any of those attributes (e.g. app.build_id) means they should
