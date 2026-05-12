@@ -111,46 +111,46 @@ This event represents a termination of a user-facing application due to
 unrecoverable programming errors such as exceptions or signals that
 indicate an error has happened at a lower level.
 
-This event identifies the crash of an end-user facing app, a specific type
-of unexpected app termination defined in the `brief` section. It is intended
-to provide a basic schema that can be used for all crashes, but it existence
-does not preclude other, more narrow events to be defined with more extensive
-schemas to handle specific crash scenarios on specific platforms.
-Crash events can be produced asynchronously by another SDK instance, so it
-can contain attributes that are normally provided by the SDK Resource. The
-appearance of any of those attributes (e.g. app.build_id) means they should
-be used instead of the ones provided in the Resource.
+Crash events can be produced asynchronously by an OTel SDK instance that is
+not running in the application instance in which the crash happened. For
+example, the instrumentation may report crashes from previous app instances
+based on information found in tombstones on disk.
+If the reporter of the crash is not the crashing application instance itself,
+relevant resource attributes that identify the application instance that
+crashed MUST be provided as event attributes so that the corresponding
+attributes from the reporter's resource aren't used instead.
 How the instrumentation will determine whether an instance of a crash has
 already been reported and how the necessary data will be retrieved is left up
 to the instrumentation. Providing enough data to dedupe is NOT REQUIRED.
-If `exception` attributes are used, it indicates that the exception represented
-by those attributes caused the crash. When used, these attributes SHOULD be
-usable for debugging without additional data not specified in the event
-(e.g. stacktrace already deobfuscated). If that is not the case, additional
-information like `app.build_id` SHOULD be provided to make the data useful for
-debugging, either derived from the Resource or as attributes in this event if
-they differ from what is defined there (in the asynchronous case).
 
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
+| [`app.build_id`](/docs/registry/attributes/app.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [1] | string | Unique identifier for a particular build or compilation of the application. | `6cff0a7e-cefc-4668-96f5-1273d8b334d0`; `9f2b833506aa6973a92fde9733e6271f`; `my-app-1.0.0-code-123` |
+| [`os.name`](/docs/registry/attributes/os.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [2] | string | Human readable operating system name. | `iOS`; `Android`; `Ubuntu` |
+| [`os.version`](/docs/registry/attributes/os.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [3] | string | The version string of the operating system as defined in [Version Attributes](/docs/resource/README.md#version-attributes). | `14.2.1`; `18.04.1` |
+| [`service.version`](/docs/registry/attributes/service.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [4] | string | The version string of the service component. The format is not defined by these conventions. | `2.0.0`; `a01dbef8a` |
+| [`app.crash.id`](/docs/registry/attributes/app.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A unique identifier representing an instance of an end-user facing app crash. [5] | `083d3d2d-9a0e-47f8-be3d-bc3c5538ba38` |
+| [`exception.message`](/docs/registry/attributes/exception.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | If this contains obfuscated symbols, `app.build_id` SHOULD be provided so they can be deobfuscated. [6] | `Division by zero`; `Can't convert 'int' object to str implicitly` |
+| [`exception.stacktrace`](/docs/registry/attributes/exception.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | If this contains obfuscated symbols, `app.build_id` SHOULD be provided so they can be deobfuscated. | `Exception in thread "main" java.lang.RuntimeException: Test exception\n at com.example.GenerateTrace.methodB(GenerateTrace.java:13)\n at com.example.GenerateTrace.methodA(GenerateTrace.java:9)\n at com.example.GenerateTrace.main(GenerateTrace.java:5)` |
+| [`exception.type`](/docs/registry/attributes/exception.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | If this contains obfuscated symbols, `app.build_id` SHOULD be provided so they can be deobfuscated. | `java.net.ConnectException`; `OSError` |
 | [`session.id`](/docs/registry/attributes/session.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A unique id to identify a session. | `00112233-4455-6677-8899-aabbccddeeff` |
-| [`app.build_id`](/docs/registry/attributes/app.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Unique identifier for a particular build or compilation of the application. | `6cff0a7e-cefc-4668-96f5-1273d8b334d0`; `9f2b833506aa6973a92fde9733e6271f`; `my-app-1.0.0-code-123` |
-| [`app.crash.id`](/docs/registry/attributes/app.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | A unique identifier representing an instance of an end-user facing app crash. [1] | `083d3d2d-9a0e-47f8-be3d-bc3c5538ba38` |
-| [`exception.message`](/docs/registry/attributes/exception.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | string | The exception message. [2] | `Division by zero`; `Can't convert 'int' object to str implicitly` |
-| [`exception.stacktrace`](/docs/registry/attributes/exception.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | string | A stacktrace as a string in the natural representation for the language runtime. The representation is to be determined and documented by each language SIG. | `Exception in thread "main" java.lang.RuntimeException: Test exception\n at com.example.GenerateTrace.methodB(GenerateTrace.java:13)\n at com.example.GenerateTrace.methodA(GenerateTrace.java:9)\n at com.example.GenerateTrace.main(GenerateTrace.java:5)` |
-| [`exception.type`](/docs/registry/attributes/exception.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | string | The type of the exception (its fully-qualified class name, if applicable). The dynamic type of the exception should be preferred over the static type in languages that support it. | `java.net.ConnectException`; `OSError` |
-| [`os.name`](/docs/registry/attributes/os.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Human readable operating system name. | `iOS`; `Android`; `Ubuntu` |
-| [`os.version`](/docs/registry/attributes/os.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The version string of the operating system as defined in [Version Attributes](/docs/resource/README.md#version-attributes). | `14.2.1`; `18.04.1` |
-| [`service.version`](/docs/registry/attributes/service.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | string | The version string of the service component. The format is not defined by these conventions. | `2.0.0`; `a01dbef8a` |
 
-**[1] `app.crash.id`:** Its value COULD be meaningful and be used as a reference for other telemetry and metadata recorded by
+**[1] `app.build_id`:** If reporter is not the crashing application instance itself and it's available.
+
+**[2] `os.name`:** If reporter is not the crashing application instance itself.
+
+**[3] `os.version`:** If reporter is not the crashing application instance itself.
+
+**[4] `service.version`:** If reporter is not the crashing application instance itself.
+
+**[5] `app.crash.id`:** Its value MAY be meaningful and be used as a reference for telemetry and metadata recorded by
 the same instrumentation (e.g. it is an ID generated by an external source that captured the crash).
-It COULD come from a source external to the instrumentation such that it can be used to look up additional
+It MAY come from a source external to the instrumentation such that it can be used to look up additional
 data from other sources as well as facilitate deduplication.
 
-**[2] `exception.message`:**
+**[6] `exception.message`:**
 
 > [!WARNING]
 >
