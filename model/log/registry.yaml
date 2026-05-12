@@ -80,3 +80,33 @@ groups:
         examples:
           - "77 <86>1 2015-08-06T21:58:59.694Z 192.168.2.133 inactive - - - Something happened"
           - "[INFO] 8/3/24 12:34:56 Something happened"
+
+  - id: registry.log_bridge
+    type: attribute_group
+    display_name: Log Bridge Attributes
+    brief: >
+      Attributes identifying a log bridge - the OpenTelemetry component that
+      converts log records emitted by a logging library into OpenTelemetry
+      log records. These attributes are intended to be reported as
+      Instrumentation Scope attributes on the bridge's `InstrumentationScope`.
+    attributes:
+      - id: log_bridge.name
+        type: string
+        stability: development
+        brief: >
+          The name of the log bridge package that produced the log record.
+        note: >
+          The log bridge is the OpenTelemetry component that bridges a logging
+          library (e.g. Log4j, ILogger, `tracing`) to OpenTelemetry. This is
+          distinct from the `Instrumentation Scope` name, which identifies the
+          producer of the log call (typically the logger name / category).
+        examples:
+          - "opentelemetry-appender-tracing"
+          - "OpenTelemetry.Extensions.Logging"
+          - "io.opentelemetry.instrumentation.log4j-appender-2.17"
+      - id: log_bridge.version
+        type: string
+        stability: development
+        brief: >
+          The version of the log bridge package that produced the log record.
+        examples: ["0.32.0", "1.10.0"]
