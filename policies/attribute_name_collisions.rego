@@ -6,29 +6,11 @@ import rego.v1
 attribute_names := { obj |
     group := input.groups[_];
     attr := group.attributes[_];
-    obj := { "name": attr.name, "const_name": to_const_name(attr.name), "namespace_prefix": to_namespace_prefix(attr.name), "deprecated": is_property_set(attr, "deprecated"), "annotations": property_or_null(attr, "annotations") }
-}
-
-# check that attribute constant names do not collide
-deny contains attr_registry_collision(description, name) if {
-    some i
-    name := attribute_names[i].name
-    const_name := attribute_names[i].const_name
-    annotations := attribute_names[i].annotations
-
-    not annotations["code_generation"]["exclude"]
-
-    collisions := [other.name |
-        other := attribute_names[_]
-        other.name != name
-        other.const_name == const_name
-
-        not other.annotations["code_generation"]["exclude"]
-    ]
-    count(collisions) > 0
-
-    # TODO (https://github.com/open-telemetry/weaver/issues/279): provide other violation properties once weaver supports it.
-    description := sprintf("Attribute '%s' has the same constant name '%s' as '%s'.", [name, const_name, collisions])
+    obj := {
+        "name": attr.name,
+        "namespace_prefix": to_namespace_prefix(attr.name),
+        "deprecated": is_property_set(attr, "deprecated"),
+    }
 }
 
 # check that attribute names do not collide with namespaces
@@ -74,19 +56,3 @@ attr_registry_collision(description, attr_name) = violation if {
         "group": "",
     }
 }
-
-to_namespace_prefix(name) = namespace if {
-    namespace := concat("", [name, "."])
-}
-
-to_const_name(name) = const_name if {
-    const_name := replace(name, ".", "_")
-}
-
-is_property_set(obj, property) = true if {
-    obj[property] != null
-} else = false
-
-property_or_null(obj, property) := obj[property] if {
-    obj[property]
-} else = null

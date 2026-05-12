@@ -55,7 +55,14 @@ ifndef DOCKER_COMMAND
     ifneq ($(strip $(shell podman --version 2>&1)),)
         DOCKER_COMMAND := podman
     endif
-else
+endif
+
+# Only warn once both autodetect paths have failed. The previous
+# condition printed the warning whenever DOCKER_COMMAND *was* set
+# (i.e. docker or podman had been found), so every container target
+# on a working machine emitted a spurious "Neither docker nor podman
+# can be executed" line (#3626).
+ifndef DOCKER_COMMAND
     $(info Neither docker nor podman can be executed. Did you install and configure one of them to be used?)
 endif
 
@@ -122,27 +129,23 @@ markdown-link-check: normalized-link-check
 markdown-link-check-local-only: normalized-link-check
 	.github/scripts/link-check.sh --local-links-only $(FILES)
 
-# This target runs markdown-toc on all files that contain
-# a comment <!-- tocstop -->.
+# This target runs doctoc on all files that contain
+# a comment <!-- START doctoc -->.
 #
-# The recommended way to prepare a .md file for markdown-toc is
+# The recommended way to prepare a .md file for doctoc is
 # to add these comments:
 #
-#   <!-- toc -->
-#   <!-- tocstop -->
+#   <!-- START doctoc -->
+#   <!-- END doctoc -->
 .PHONY: markdown-toc
 markdown-toc:
-	@if ! npm ls markdown-toc; then npm ci --ignore-scripts; fi
-	@find . -type f -name '*.md' -not -path './.github/*' -not -path './node_modules/*' -not -path './.git/*' | while read -r f; do \
-		if grep -q '<!-- tocstop -->' "$$f"; then \
-			echo markdown-toc: processing "$$f"; \
-			npx --no -- markdown-toc --bullets "-" --no-first-h1 --no-stripHeadingTags -i "$$f" || exit 1; \
-		elif grep -q '<!-- toc -->' "$$f"; then \
-			echo markdown-toc: ERROR: '<!-- tocstop -->' missing from "$$f"; exit 1; \
-		else \
-			echo markdown-toc: no TOC markers, skipping "$$f"; \
-		fi; \
-	done
+	@if ! npm ls doctoc; then npm ci --ignore-scripts; fi
+	npx --no -- doctoc . --update-only --mintocitems 1 --toc-pragma-style compact --notitle || exit 1;
+
+.PHONY: markdown-toc-check
+markdown-toc-check:
+	@if ! npm ls doctoc; then npm ci --ignore-scripts; fi
+	npx --no -- doctoc . --update-only --mintocitems 1 --toc-pragma-style compact --notitle --dryrun || exit 1;
 
 .PHONY: markdownlint
 markdownlint:
@@ -217,8 +220,7 @@ schema-check:
 # Run all checks in order of speed / likely failure.
 # As a last thing, run attribute registry generation and git-diff for differences.
 .PHONY: check
-check: misspell markdownlint markdown-toc markdown-link-check check-policies registry-generation
-	git diff --exit-code ':*.md' || (echo 'Generated markdown Table of Contents is out of date, please run "make markdown-toc" and commit the changes in this PR.' && exit 1)
+check: misspell markdownlint markdown-toc-check markdown-link-check check-policies registry-generation
 	@echo "All checks complete"
 
 # Attempt to fix issues / regenerate tables.

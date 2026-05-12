@@ -7,7 +7,7 @@ linkTitle: gRPC
 
 # Compatibility between OpenTelemetry and gRPC semantic conventions
 
-<!-- toc -->
+<!-- START doctoc -->
 
 - [Metrics](#metrics)
   - [Metric mapping](#metric-mapping)
@@ -17,7 +17,7 @@ linkTitle: gRPC
   - [Additional attributes](#additional-attributes)
   - [Events](#events)
 
-<!-- tocstop -->
+<!-- END doctoc -->
 
 The gRPC project defines conventions for [OpenTelemetry Metrics](https://github.com/grpc/proposal/blob/master/A66-otel-stats.md)
 and experimental conventions for [OpenTelemetry Tracing](https://github.com/grpc/proposal/blob/master/A72-open-telemetry-tracing.md).

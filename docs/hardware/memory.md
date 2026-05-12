@@ -6,14 +6,14 @@ linkTitle: Memory
 
 **Status**: [Development][DocumentStatus]
 
-<!-- toc -->
+<!-- START doctoc -->
 
 - [Memory metrics `hw.memory.*`](#memory-metrics-hwmemory)
   - [Metric: `hw.errors` (Memory)](#metric-hwerrors-memory)
   - [Metric: `hw.memory.size`](#metric-hwmemorysize)
   - [Metric: `hw.status` (Memory)](#metric-hwstatus-memory)
 
-<!-- tocstop -->
+<!-- END doctoc -->
 
 ## Memory metrics `hw.memory.*`
 

@@ -8,7 +8,7 @@ linkTitle: HTTP
 
 This article defines semantic conventions for HTTP metrics emitted by .NET components and runtime.
 
-<!-- toc -->
+<!-- START doctoc -->
 
 - [HTTP client](#http-client)
   - [Metric: `http.client.request.duration`](#metric-httpclientrequestduration)
@@ -20,7 +20,7 @@ This article defines semantic conventions for HTTP metrics emitted by .NET compo
   - [Metric: `http.server.request.duration`](#metric-httpserverrequestduration)
   - [Metric: `http.server.active_requests`](#metric-httpserveractive_requests)
 
-<!-- tocstop -->
+<!-- END doctoc -->
 
 ## HTTP client
 
@@ -76,7 +76,7 @@ Notes:
 
 ### Metric: `http.client.connection.duration`
 
-This metric SHOULD be specified with [`ExplicitBucketBoundaries` advisory parameter](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.55.0/specification/metrics/api.md#instrument-advisory-parameters) of `[ 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10, 30, 60, 120, 300 ]`.
+This metric SHOULD be specified with [`ExplicitBucketBoundaries` advisory parameter](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.56.0/specification/metrics/api.md#instrument-advisory-parameters) of `[ 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10, 30, 60, 120, 300 ]`.
 
 <!-- Tables in this document are not auto-generated and are intentionally frozen in time. From the .NET perspective this metric and its attributes are stable till the next major version. They are still experimental in the OpenTelemetry. -->
 | Name | Instrument Type | Unit (UCUM) | Description |
@@ -103,7 +103,7 @@ This metric SHOULD be specified with [`ExplicitBucketBoundaries` advisory parame
 
 ### Metric: `http.client.request.time_in_queue`
 
-this metric SHOULD be specified with [`ExplicitBucketBoundaries` advisory parameter](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.55.0/specification/metrics/api.md#instrument-advisory-parameters) of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 ]`.
+this metric SHOULD be specified with [`ExplicitBucketBoundaries` advisory parameter](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.56.0/specification/metrics/api.md#instrument-advisory-parameters) of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 ]`.
 
 <!-- Tables in this document are not auto-generated and are intentionally frozen in time. From the .NET perspective this metric and its attributes are stable till the next major version. They are still experimental in the OpenTelemetry. -->
 | Name | Instrument Type | Unit (UCUM) | Description |

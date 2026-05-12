@@ -5,7 +5,7 @@
 <details>
 <summary>Table of Contents</summary>
 
-<!-- toc -->
+<!-- START doctoc -->
 
 - [Requirement Levels](#requirement-levels)
   - [Required](#required)
@@ -14,7 +14,7 @@
   - [Opt-In](#opt-in)
 - [Performance suggestions](#performance-suggestions)
 
-<!-- tocstop -->
+<!-- END doctoc -->
 
 </details>
 

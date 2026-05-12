@@ -5,13 +5,13 @@
 <details>
 <summary>Table of Contents</summary>
 
-<!-- toc -->
+<!-- START doctoc -->
 
 - [Required](#required)
 - [Recommended](#recommended)
 - [Opt-In](#opt-in)
 
-<!-- tocstop -->
+<!-- END doctoc -->
 
 </details>
 

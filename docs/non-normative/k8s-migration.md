@@ -42,7 +42,7 @@ and one for disabling the old schema called `semconv.k8s.disableLegacy`. Then:
 - It is an error to disable both schemas
 - Both schemas can be enabled with `--feature-gates=-semconv.k8s.disableLegacy,+semconv.k8s.enableStable`.
 
-<!-- toc -->
+<!-- START doctoc -->
 
 - [Summary of changes](#summary-of-changes)
   - [K8s network metrics](#k8s-network-metrics)
@@ -70,7 +70,7 @@ and one for disabling the old schema called `semconv.k8s.disableLegacy`. Then:
   - [Container Runtime](#container-runtime)
   - [K8s Pod Status Phase and Reason](#k8s-pod-status-phase-and-reason)
 
-<!-- tocstop -->
+<!-- END doctoc -->
 
 ## Summary of changes
 
@@ -323,8 +323,9 @@ receiver were introduced as semantic conventions in:
 available)
 - [#2074](https://github.com/open-telemetry/semantic-conventions/issues/2074)
 - [#2197](https://github.com/open-telemetry/semantic-conventions/issues/2197)
-- [#3558](https://github.com/open-telemetry/semantic-conventions/issues/3558) (CPU resize: desired/current split)
-- [#3559](https://github.com/open-telemetry/semantic-conventions/pull/3559)
+- [#3558](https://github.com/open-telemetry/semantic-conventions/issues/3558) (CPU and memory resize: desired/current split)
+- [#3559](https://github.com/open-telemetry/semantic-conventions/pull/3559) (CPU metrics)
+- [#3646](https://github.com/open-telemetry/semantic-conventions/pull/3646) (Memory metrics)
 
 The changes in their metrics are the following:
 
@@ -334,8 +335,8 @@ The changes in their metrics are the following:
 | ---------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
 | `k8s.container.cpu_limit` (type: `gauge`) | `k8s.container.cpu.limit.desired`, `k8s.container.cpu.limit.current` (type: `updowncounter`) |
 | `k8s.container.cpu_request` (type: `gauge`) | `k8s.container.cpu.request.desired`, `k8s.container.cpu.request.current` (type: `updowncounter`) |
-| `k8s.container.memory_limit` (type: `gauge`) | `k8s.container.memory.limit` (type: `updowncounter`) |
-| `k8s.container.memory_request` (type: `gauge`) | `k8s.container.memory.request` (type: `updowncounter`) |
+| `k8s.container.memory_limit` (type: `gauge`) | `k8s.container.memory.limit.desired`, `k8s.container.memory.limit.current` (type: `updowncounter`) |
+| `k8s.container.memory_request` (type: `gauge`) | `k8s.container.memory.request.desired`, `k8s.container.memory.request.current` (type: `updowncounter`) |
 | `k8s.container.storage_limit` (type: `gauge`) | `k8s.container.storage.limit` (type: `updowncounter`) |
 | `k8s.container.storage_request` (type: `gauge`) | `k8s.container.storage.request` (type: `updowncounter`) |
 | `k8s.container.ephemeralstorage_limit` (type: `gauge`) | `k8s.container.ephemeral_storage.limit` (type: `updowncounter`) |
@@ -347,7 +348,7 @@ The changes in their metrics are the following:
 
 <!-- prettier-ignore-end -->
 
-**Note:** For CPU limit and request, SemConv splits each into `desired` (from spec) and `current` (from container status) to support [K8s container resource resize](https://kubernetes.io/docs/tasks/configure-pod-container/resize-container-resources/).
+**Note:** For CPU and memory limit and request, SemConv splits each into `desired` (from spec) and `current` (from container status) to support [K8s container resource resize](https://kubernetes.io/docs/tasks/configure-pod-container/resize-container-resources/).
 
 ### K8s ResourceQuota metrics
 

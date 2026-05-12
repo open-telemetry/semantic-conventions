@@ -9,7 +9,7 @@ aliases: [attribute-naming]
 <details>
 <summary>Table of Contents</summary>
 
-<!-- toc -->
+<!-- START doctoc -->
 
 - [General naming considerations](#general-naming-considerations)
 - [Name abbreviation guidelines](#name-abbreviation-guidelines)
@@ -34,7 +34,7 @@ aliases: [attribute-naming]
   - [System-specific metrics](#system-specific-metrics)
   - [Known exceptions](#known-exceptions)
 
-<!-- tocstop -->
+<!-- END doctoc -->
 
 </details>
 
@@ -47,11 +47,12 @@ implied to mean all of these._
 
 Every name MUST be a valid Unicode sequence.
 
-_Note: we merely require that the names are represented as Unicode sequences.
-This specification does not define how exactly the Unicode sequences are
-encoded. The encoding can vary from one programming language to another and from
-one wire format to another. Use the idiomatic way to represent Unicode in the
-particular programming language or wire format._
+> [!NOTE]
+> We merely require that the names are represented as Unicode sequences.
+> This specification does not define how exactly the Unicode sequences are
+> encoded. The encoding can vary from one programming language to another and from
+> one wire format to another. Use the idiomatic way to represent Unicode in the
+> particular programming language or wire format.
 
 Names SHOULD follow these rules:
 

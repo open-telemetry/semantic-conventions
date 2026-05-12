@@ -9,14 +9,14 @@ linkTitle: Version selection
 This document defines declarative configuration for semantic convention
 version selection.
 
-<!-- toc -->
+<!-- START doctoc -->
 
 - [Declarative configuration](#declarative-configuration)
   - [Unsupported configuration](#unsupported-configuration)
 - [Additional rules for stable instrumentations](#additional-rules-for-stable-instrumentations)
 - [Relationship with `OTEL_SEMCONV_STABILITY_OPT_IN`](#relationship-with-otel_semconv_stability_opt_in)
 
-<!-- tocstop -->
+<!-- END doctoc -->
 
 ## Declarative configuration
 
