@@ -22,7 +22,7 @@ Currently, the following namespaces exist:
 | Namespace | Entity | Stability |
 | --------- | ------ | --------- |
 {%- for bundle in ctx %}
-| {{ bundle.id | title_case | acronym }} | | |
+| {{ bundle.id | title_case | acronym | map_text("namespace_mapping") }} | | |
 {%- for group in bundle.groups | sort(attribute='name') -%}
     {%- set my_file_name = bundle.id | kebab_case ~ ".md#" ~ (group.name | kebab_case) %}
 | | [{{ group.name }}]({{my_file_name}}) | {{ stability.badge(group.stability, group.deprecated) | trim }} |

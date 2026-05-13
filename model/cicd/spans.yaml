@@ -2,7 +2,7 @@ groups:
   - id: span.cicd.pipeline.run.server
     type: span
     span_kind: server
-    brief: This span describes a CICD pipeline run.
+    brief: This span describes a CI/CD pipeline run.
     note: |
       For all pipeline runs, a span with kind `SERVER` SHOULD be created corresponding to the execution of the pipeline run.
 

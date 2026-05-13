@@ -175,7 +175,7 @@ Attributes defining a running environment (e.g. Operating System, Cloud, Data Ce
 - [Operating System](./os.md)
 - [Device](./device.md)
 - [Cloud](./cloud.md)
-- [CICD](./cicd.md)
+- [CI/CD](./cicd.md)
 - Deployment:
   - [Deployment Environment](./deployment-environment.md)
   - [Kubernetes](k8s/README.md)

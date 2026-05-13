@@ -1,6 +1,0 @@
-change_type: enhancement
-component: exception
-note: >
-  Improve exception event definition: add guidance on how to set event name and
-  severity.
-issues: [3311]

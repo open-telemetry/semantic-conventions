@@ -1,8 +1,0 @@
-change_type: enhancement
-component: faas
-note: Define domain-specific exception event for FaaS invocations
-issues: [3451]
-subtext: |
-  This domain-specific exception event provides a structured way to record
-  exceptions that occur during FaaS function invocations:
-  - `faas.invocation.exception` for exceptions during function execution

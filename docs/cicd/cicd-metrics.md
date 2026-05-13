@@ -2,13 +2,13 @@
 linkTitle: Metrics
 --->
 
-# Semantic conventions for CICD metrics
+# Semantic conventions for CI/CD metrics
 
 **Status**: [Development][DocumentStatus]
 
 <!-- START doctoc -->
 
-- [CICD Metrics](#cicd-metrics)
+- [CI/CD Metrics](#cicd-metrics)
   - [Guidance on per pipeline run metrics](#guidance-on-per-pipeline-run-metrics)
   - [Metric: `cicd.pipeline.run.duration`](#metric-cicdpipelinerunduration)
   - [Metric: `cicd.pipeline.run.active`](#metric-cicdpipelinerunactive)
@@ -29,11 +29,11 @@ linkTitle: Metrics
 
 <!-- END doctoc -->
 
-## CICD Metrics
+## CI/CD Metrics
 
-The conventions described in this section are specific to Continuous Integration / Continuous Deployment (CICD) systems.
+The conventions described in this section are specific to Continuous Integration / Continuous Deployment (CI/CD) systems.
 
-**Disclaimer:** These are initial CICD metrics and attributes
+**Disclaimer:** These are initial CI/CD metrics and attributes
 but more may be added in the future.
 
 ### Guidance on per pipeline run metrics
@@ -48,11 +48,11 @@ Examples of such metrics include:
 These metrics could be used to correlate build failures with environment issues like overload or out-of-memory.
 They could also be used in pipeline-level aggregations to inform adjustments of allocated worker resources.
 
-When reporting host, container, runtime, and other metrics in CI/CD pipelines, instrumentation authors and application developers SHOULD use applicable [CICD and VCS resource conventions][cicdres] and MAY also associate all or specific metrics with `cicd.pipeline.run` to correlate them with run information.
+When reporting host, container, runtime, and other metrics in CI/CD pipelines, instrumentation authors and application developers SHOULD use applicable [CI/CD and VCS resource conventions][cicdres] and MAY also associate all or specific metrics with `cicd.pipeline.run` to correlate them with run information.
 
 The [`cicd.pipeline.run`](/docs/resource/cicd.md#cicd-pipeline-run) entity identifies a pipeline run. Associating it with metrics inherently causes high cardinality and may increase costs with some metric storage backends. Thus, `cicd.pipeline.run` entity MUST be opt-in.
 
-[cicdres]: /docs/resource/cicd.md "CICD and VCS resource conventions"
+[cicdres]: /docs/resource/cicd.md "CI/CD and VCS resource conventions"
 
 ### Metric: `cicd.pipeline.run.duration`
 
@@ -111,7 +111,7 @@ it's RECOMMENDED to:
 | Value | Description | Stability |
 | --- | --- | --- |
 | `cancellation` | The pipeline run was cancelled, eg. by a user manually cancelling the pipeline run. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `error` | The pipeline run failed due to an error in the CICD system, eg. due to the worker being killed. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `error` | The pipeline run failed due to an error in the CI/CD system, eg. due to the worker being killed. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `failure` | The pipeline run did not finish successfully, eg. due to a compile error or a failing test. Such failures are usually detected by non-zero exit codes of the tools executed in the pipeline run. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `skip` | The pipeline run was skipped, eg. due to a precondition not being met. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `success` | The pipeline run finished successfully. | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -184,13 +184,13 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `cicd.worker.count` | UpDownCounter | `{count}` | The number of workers on the CICD system by state. | ![Development](https://img.shields.io/badge/-development-blue) | |
+| `cicd.worker.count` | UpDownCounter | `{count}` | The number of workers on the CI/CD system by state. | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`cicd.worker.state`](/docs/registry/attributes/cicd.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The state of a CICD worker / agent. | `idle`; `busy`; `down` |
+| [`cicd.worker.state`](/docs/registry/attributes/cicd.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The state of a CI/CD worker / agent. | `idle`; `busy`; `down` |
 
 ---
 
@@ -198,9 +198,9 @@ This metric is [recommended][MetricRecommended].
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `available` | The worker is not performing work for the CICD system. It is available to the CICD system to perform work on (online / idle). [1] | ![Development](https://img.shields.io/badge/-development-blue) |
-| `busy` | The worker is performing work for the CICD system. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `offline` | The worker is not available to the CICD system (disconnected / down). | ![Development](https://img.shields.io/badge/-development-blue) |
+| `available` | The worker is not performing work for the CI/CD system. It is available to the CI/CD system to perform work on (online / idle). [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `busy` | The worker is performing work for the CI/CD system. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `offline` | The worker is not available to the CI/CD system (disconnected / down). | ![Development](https://img.shields.io/badge/-development-blue) |
 
 **[1]:** Pipelines might have conditions on which workers they are able to run so not every worker might be available to every pipeline.
 
@@ -280,7 +280,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `cicd.system.errors` | Counter | `{error}` | The number of errors in a component of the CICD system (eg. controller, scheduler, agent). [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
+| `cicd.system.errors` | Counter | `{error}` | The number of errors in a component of the CI/CD system (eg. controller, scheduler, agent). [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 **[1]:** Errors in pipeline run execution are explicitly excluded. Ie a test failure is not counted in this metric.
 
@@ -288,7 +288,7 @@ This metric is [recommended][MetricRecommended].
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`cicd.system.component`](/docs/registry/attributes/cicd.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of a component of the CICD system. | `controller`; `scheduler`; `agent` |
+| [`cicd.system.component`](/docs/registry/attributes/cicd.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of a component of the CI/CD system. | `controller`; `scheduler`; `agent` |
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` |
 
 **[1] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.

@@ -19,3 +19,13 @@ groups:
           to retrieve brands and platform individually from the User-Agent Client Hints API.
           To retrieve the value, the legacy `navigator.userAgent` API can be used.
         examples: ['Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.54 Safari/537.36']
+
+  - id: entity.browser.document
+    type: entity
+    stability: development
+    name: browser.document
+    brief: >
+      The web page document loaded in the browser.
+    attributes:
+      - ref: browser.document.url.full
+        role: identifying

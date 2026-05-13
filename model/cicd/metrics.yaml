@@ -45,7 +45,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
-    brief: 'The number of workers on the CICD system by state.'
+    brief: 'The number of workers on the CI/CD system by state.'
     instrument: updowncounter
     unit: "{count}"
     stability: development
@@ -78,7 +78,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
-    brief: 'The number of errors in a component of the CICD system (eg. controller, scheduler, agent).'
+    brief: 'The number of errors in a component of the CI/CD system (eg. controller, scheduler, agent).'
     note: 'Errors in pipeline run execution are explicitly excluded. Ie a test failure is not counted in this metric.'
     instrument: counter
     unit: "{error}"
