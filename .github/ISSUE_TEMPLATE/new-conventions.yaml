@@ -69,7 +69,6 @@ body:
         - area:jvm
         - area:k8s
         - area:log
-        - area:log-bridge
         - area:mainframe
         - area:messaging
         - area:network

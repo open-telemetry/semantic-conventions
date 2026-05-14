@@ -78,7 +78,6 @@ Currently, the following namespaces exist:
 - [K8s](k8s.md)
 - [Linux](linux.md)
 - [Log](log.md)
-- [Log Bridge](log-bridge.md)
 - [Mainframe](mainframe.md)
 - [MCP](mcp.md)
 - [Messaging](messaging.md)
