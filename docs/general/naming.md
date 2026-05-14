@@ -99,8 +99,10 @@ Names SHOULD follow these rules:
 Metric instrument names defined by OpenTelemetry Semantic Conventions MUST
 match the regular expression `[a-z][a-z0-9_]*(\.[a-z][a-z0-9_]*)*` — i.e.
 lowercase ASCII alphanumerics and underscores, separated by dots into
-namespaces. This restriction applies only to metric names defined by Semantic
-Conventions; user-defined metric names follow the broader rules of the
+namespaces. This conservative subset is chosen to maximize compatibility
+across backends and toolchains. This restriction applies only to metric names
+defined by Semantic Conventions; user-defined metric names follow the broader
+rules of the
 [OpenTelemetry Metrics API instrument name syntax](https://opentelemetry.io/docs/specs/otel/metrics/api/#instrument-name-syntax).
 
 ## Name abbreviation guidelines
