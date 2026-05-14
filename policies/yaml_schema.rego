@@ -26,14 +26,16 @@ deny contains yaml_schema_violation(description, group.id, name) if {
 }
 
 # checks metric name format
+# Semantic Convention metric names use a stricter character set than the general
+# attribute/event/resource naming rule: see docs/general/naming.md.
 deny contains yaml_schema_violation(description, group.id, name) if {
     group := input.groups[_]
     name := group.metric_name
 
     name != null
-    not regex.match(name_regex, name)
+    not regex.match(metric_name_regex, name)
 
-    description := sprintf("Metric name '%s' is invalid. Metric name %s'", [name, invalid_name_helper])
+    description := sprintf("Metric name '%s' is invalid. Metric name %s", [name, invalid_metric_name_helper])
 }
 
 # checks that metric id matches metric.{metric_name}
@@ -200,9 +202,16 @@ yaml_schema_violation(description, group, attr) = violation if {
 # valid: 'foo.bar', 'foo.1bar', 'foo.1_bar'
 name_regex := "^[a-z][a-z0-9]*([._][a-z0-9]+)*$"
 
+# Stricter regex for metric names per docs/general/naming.md: lowercase ASCII
+# alphanumerics and underscores within each dot-separated segment, segments
+# separated only by '.', and each segment must start with a letter.
+metric_name_regex := "^[a-z][a-z0-9_]*(\\.[a-z][a-z0-9_]*)*$"
+
 has_namespace_regex := "^[a-z0-9_]+\\.([a-z0-9._]+)+$"
 
 invalid_name_helper := "must consist of lowercase alphanumeric characters separated by '_' and '.'"
+
+invalid_metric_name_helper := "must consist of lowercase alphanumeric characters and underscores '_', grouped into dot-separated namespaces, and each namespace segment must start with a letter"
 
 is_empty_or_null(obj, property) if {
     prop := object.get(obj, property, null)
