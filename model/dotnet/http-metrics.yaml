@@ -1,0 +1,25 @@
+groups:
+  - id: http.client.request.time_in_queue
+    type: metric
+    metric_name: http.client.request.time_in_queue
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: stable
+    brief: "The amount of time requests spent on a queue waiting for an available connection."
+    instrument: histogram
+    unit: "s"
+    note: >
+      Meter name: `System.Net.Http`; Added in: .NET 8.0.
+    attributes:
+      - ref: http.request.method
+        requirement_level: recommended
+      - ref: network.protocol.version
+        requirement_level: recommended
+      - ref: server.address
+        requirement_level: required
+      - ref: server.port
+        requirement_level:
+          conditionally_required: If not the default (`80` for `http` scheme, `443` for `https`).
+      - ref: url.scheme
+        requirement_level: recommended

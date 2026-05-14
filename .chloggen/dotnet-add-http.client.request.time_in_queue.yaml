@@ -1,0 +1,4 @@
+change_type: bug_fix
+component: dotnet
+note: "Add the http.client.request.time_in_queue metric to .NET semantic conventions which was documented but missing"
+issues: []
