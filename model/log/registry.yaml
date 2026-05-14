@@ -81,7 +81,7 @@ groups:
           - "77 <86>1 2015-08-06T21:58:59.694Z 192.168.2.133 inactive - - - Something happened"
           - "[INFO] 8/3/24 12:34:56 Something happened"
 
-  - id: registry.log_bridge
+  - id: registry.log.bridge
     type: attribute_group
     display_name: Log Bridge Attributes
     brief: >
@@ -90,7 +90,7 @@ groups:
       log records. These attributes are intended to be reported as
       Instrumentation Scope attributes on the bridge's `InstrumentationScope`.
     attributes:
-      - id: log_bridge.name
+      - id: log.bridge.name
         type: string
         stability: development
         brief: >
@@ -104,7 +104,7 @@ groups:
           - "opentelemetry-appender-tracing"
           - "OpenTelemetry.Extensions.Logging"
           - "io.opentelemetry.instrumentation.log4j-appender-2.17"
-      - id: log_bridge.version
+      - id: log.bridge.version
         type: string
         stability: development
         brief: >
