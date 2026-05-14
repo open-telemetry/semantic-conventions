@@ -1,0 +1,9 @@
+change_type: enhancement
+
+component: azure
+
+note: Add `azure.resourcegroup.name` attribute for the name of the Azure resource group the resource belongs to.
+
+issues: [3697]
+
+subtext:

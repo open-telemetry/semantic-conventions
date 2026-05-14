@@ -1,0 +1,9 @@
+change_type: enhancement
+
+component: cloud
+
+note: Document that `cloud.account.id` maps to the Azure subscription ID.
+
+issues: [3708]
+
+subtext:
