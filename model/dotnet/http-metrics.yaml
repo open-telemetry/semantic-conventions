@@ -1,5 +1,5 @@
 groups:
-  - id: http.client.request.time_in_queue
+  - id: metric.http.client.request.time_in_queue
     type: metric
     metric_name: http.client.request.time_in_queue
     annotations:
