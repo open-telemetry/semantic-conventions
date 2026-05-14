@@ -39,13 +39,13 @@ groups:
           In implementations like [`opencontainers/cgroup`](https://pkg.go.dev/github.com/opencontainers/cgroups@v0.0.6#CpuUsage),
           [Moby/Docker](https://pkg.go.dev/github.com/Moby/Moby@v28.5.2+incompatible/api/types/container#CPUUsage)
           or [cAdvisor](https://pkg.go.dev/github.com/google/cadvisor@v0.56.2/info/v1#CpuUsage), the respective states
-          are retrieved from the cgroup stats directly:
+          are retrieved from the cgroup stats directly.
           In cgroup v1 the user/system modes come from the
           [cpuacct.stat](https://www.kernel.org/doc/html/latest/admin-guide/cgroup-v1/cpuacct.html#cpu-accounting-controller)
-          file and the `user`/`system` stats respectively
+          file and the `user`/`system` stats respectively.
           In cgroup v2 the user/system modes come from the
           [cpu.stat](https://docs.kernel.org/admin-guide/cgroup-v2.html#cpu-interface-files) file
-          and the `user_usec`/`system_usec` stats respectively
+          and the `user_usec`/`system_usec` stats respectively.
 
           Kubernetes only exposes the total CPU time
           ([cpu.stat.usage_usec](https://docs.kernel.org/admin-guide/cgroup-v2.html#cpu-interface-files))
