@@ -239,4 +239,9 @@ groups:
           Counts items dropped for any reason, e.g. queue overflow or export failures that exhausted retries.
           The value is the cumulative count from the time the component was started until the moment the
           enclosing event (e.g. `otel.sdk.component.shutdown`) is emitted.
+
+          This attribute is only applicable to components that track a lifetime dropped count, such as
+          queue-based processors (e.g. the Batching Span Processor or Batching Log Record Processor).
+          Components that do not track this MUST omit the attribute. Consumers MUST treat absence as
+          "unknown / not applicable", not as `0`.
         examples: [0, 42]

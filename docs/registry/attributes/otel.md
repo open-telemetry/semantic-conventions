@@ -68,6 +68,11 @@ Attributes used for OpenTelemetry component self-monitoring
 The value is the cumulative count from the time the component was started until the moment the
 enclosing event (e.g. `otel.sdk.component.shutdown`) is emitted.
 
+This attribute is only applicable to components that track a lifetime dropped count, such as
+queue-based processors (e.g. the Batching Span Processor or Batching Log Record Processor).
+Components that do not track this MUST omit the attribute. Consumers MUST treat absence as
+"unknown / not applicable", not as `0`.
+
 **[2] `otel.component.name`:** Implementations SHOULD ensure a low cardinality for this attribute, even across application or SDK restarts.
 E.g. implementations MUST NOT use UUIDs as values for this attribute.
 

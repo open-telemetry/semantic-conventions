@@ -14,11 +14,16 @@ groups:
       "did my pipeline drain cleanly when the application was shutting down?".
       It is emitted exactly once per component instance per shutdown.
 
-      The severity of the emitted log record SHOULD be:
+      The severity of the emitted log record SHOULD be `WARN` if **any** of the following hold,
+      and `INFO` otherwise:
 
-      - `WARN` when `otel.component.shutdown.outcome` is not `success`,
-        or when `otel.component.dropped_count` is greater than `0`.
-      - `INFO` otherwise.
+      - `otel.component.shutdown.outcome` is not `success`, or
+      - `otel.component.dropped_count` is **present** and greater than `0`.
+
+      Components that do not track a lifetime dropped count MUST omit
+      `otel.component.dropped_count`. Absence of the attribute MUST NOT be treated as `0`
+      for the severity rule above; it means "not applicable / not tracked" and the severity
+      is determined solely by `otel.component.shutdown.outcome` for those components.
 
       Implementations MUST take care that emitting this event does not itself depend on the
       component (or pipeline) that is being shut down. For example, the SDK SHOULD NOT route an
@@ -35,6 +40,10 @@ groups:
         requirement_level: required
       - ref: otel.component.dropped_count
         requirement_level:
-          recommended: If the component tracks a lifetime dropped count.
+          recommended: >
+            If the component tracks a lifetime dropped count (e.g. queue-based processors such as
+            the Batching Span Processor or Batching Log Record Processor). Components that do not
+            track this MUST omit the attribute; consumers MUST treat absence as "unknown",
+            not as `0`.
         brief: >
           The total number of items the component dropped over its lifetime, up to and including the shutdown.
