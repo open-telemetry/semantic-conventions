@@ -1,0 +1,40 @@
+groups:
+  - id: event.otel.sdk.component.shutdown
+    type: event
+    name: otel.sdk.component.shutdown
+    stability: development
+    brief: >
+      Indicates that an OpenTelemetry SDK component (e.g. a span processor or exporter) has finished shutting down.
+    note: |
+      The OpenTelemetry SDK SHOULD emit an `otel.sdk.component.shutdown` event from each long-lived
+      SDK component (e.g. the Batching Span Processor) when its `Shutdown` operation has completed,
+      either successfully, with errors, or after a timeout.
+
+      The event is intended for SDK self-observability and answers the question
+      "did my pipeline drain cleanly when the application was shutting down?".
+      It is emitted exactly once per component instance per shutdown.
+
+      The severity of the emitted log record SHOULD be:
+
+      - `WARN` when `otel.component.shutdown.outcome` is not `success`,
+        or when `otel.component.dropped_count` is greater than `0`.
+      - `INFO` otherwise.
+
+      Implementations MUST take care that emitting this event does not itself depend on the
+      component (or pipeline) that is being shut down. For example, the SDK SHOULD NOT route an
+      `otel.sdk.component.shutdown` event for a log processor through the same `LoggerProvider`
+      that owns the processor being shut down.
+
+      The event body is not used (per the [event guidelines](/docs/general/events.md)).
+    attributes:
+      - ref: otel.component.type
+        requirement_level: required
+      - ref: otel.component.name
+        requirement_level: required
+      - ref: otel.component.shutdown.outcome
+        requirement_level: required
+      - ref: otel.component.dropped_count
+        requirement_level:
+          recommended: If the component tracks a lifetime dropped count.
+        brief: >
+          The total number of items the component dropped over its lifetime, up to and including the shutdown.
