@@ -208,3 +208,35 @@ groups:
           as `otel.component.name`, the second one `batching_span_processor/1` and so on.
           These values will therefore be reused in the case of an application restart.
         examples: ["otlp_grpc_span_exporter/0", "custom-name"]
+      - id: otel.component.shutdown.outcome
+        type:
+          members:
+            - id: success
+              value: "success"
+              brief: >
+                The component shut down cleanly and drained any pending work.
+              stability: development
+            - id: failed
+              value: "failed"
+              brief: >
+                The component shut down with one or more failures other than a timeout (e.g. an exporter rejected the final batch).
+              stability: development
+            - id: timed_out
+              value: "timed_out"
+              brief: >
+                The component did not finish shutting down within the configured shutdown timeout.
+              stability: development
+        stability: development
+        brief: >
+          The outcome of an OpenTelemetry SDK component shutdown.
+        examples: ["success", "failed", "timed_out"]
+      - id: otel.component.dropped_count
+        type: int
+        stability: development
+        brief: >
+          The total number of telemetry items (spans, log records, metric data points, etc.) the OpenTelemetry SDK component dropped over its lifetime.
+        note: |
+          Counts items dropped for any reason, e.g. queue overflow or export failures that exhausted retries.
+          The value is the cumulative count from the time the component was started until the moment the
+          enclosing event (e.g. `otel.sdk.component.shutdown`) is emitted.
+        examples: [0, 42]

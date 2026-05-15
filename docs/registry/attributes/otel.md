@@ -59,10 +59,16 @@ Attributes used for OpenTelemetry component self-monitoring
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="otel-component-name" href="#otel-component-name">`otel.component.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | A name uniquely identifying the instance of the OpenTelemetry component within its containing SDK instance. [1] | `otlp_grpc_span_exporter/0`; `custom-name` |
-| <a id="otel-component-type" href="#otel-component-type">`otel.component.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | A name identifying the type of the OpenTelemetry component. [2] | `batching_span_processor`; `com.example.MySpanExporter` |
+| <a id="otel-component-dropped-count" href="#otel-component-dropped-count">`otel.component.dropped_count`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The total number of telemetry items (spans, log records, metric data points, etc.) the OpenTelemetry SDK component dropped over its lifetime. [1] | `0`; `42` |
+| <a id="otel-component-name" href="#otel-component-name">`otel.component.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | A name uniquely identifying the instance of the OpenTelemetry component within its containing SDK instance. [2] | `otlp_grpc_span_exporter/0`; `custom-name` |
+| <a id="otel-component-shutdown-outcome" href="#otel-component-shutdown-outcome">`otel.component.shutdown.outcome`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The outcome of an OpenTelemetry SDK component shutdown. | `success`; `failed`; `timed_out` |
+| <a id="otel-component-type" href="#otel-component-type">`otel.component.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | A name identifying the type of the OpenTelemetry component. [3] | `batching_span_processor`; `com.example.MySpanExporter` |
 
-**[1] `otel.component.name`:** Implementations SHOULD ensure a low cardinality for this attribute, even across application or SDK restarts.
+**[1] `otel.component.dropped_count`:** Counts items dropped for any reason, e.g. queue overflow or export failures that exhausted retries.
+The value is the cumulative count from the time the component was started until the moment the
+enclosing event (e.g. `otel.sdk.component.shutdown`) is emitted.
+
+**[2] `otel.component.name`:** Implementations SHOULD ensure a low cardinality for this attribute, even across application or SDK restarts.
 E.g. implementations MUST NOT use UUIDs as values for this attribute.
 
 Implementations MAY achieve these goals by following a `<otel.component.type>/<instance-counter>` pattern, e.g. `batching_span_processor/0`.
@@ -76,8 +82,18 @@ With this implementation, for example the first Batching Span Processor would ha
 as `otel.component.name`, the second one `batching_span_processor/1` and so on.
 These values will therefore be reused in the case of an application restart.
 
-**[2] `otel.component.type`:** If none of the standardized values apply, implementations SHOULD use the language-defined name of the type.
+**[3] `otel.component.type`:** If none of the standardized values apply, implementations SHOULD use the language-defined name of the type.
 E.g. for Java the fully qualified classname SHOULD be used in this case.
+
+---
+
+`otel.component.shutdown.outcome` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value | Description | Stability |
+| --- | --- | --- |
+| `failed` | The component shut down with one or more failures other than a timeout (e.g. an exporter rejected the final batch). | ![Development](https://img.shields.io/badge/-development-blue) |
+| `success` | The component shut down cleanly and drained any pending work. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `timed_out` | The component did not finish shutting down within the configured shutdown timeout. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -110,9 +126,9 @@ Attributes used by non-OTLP exporters to represent OpenTelemetry Event's concept
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="otel-event-name" href="#otel-event-name">`otel.event.name`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | Identifies the class / type of event. [3] | `browser.mouse.click`; `device.app.lifecycle` |
+| <a id="otel-event-name" href="#otel-event-name">`otel.event.name`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | Identifies the class / type of event. [4] | `browser.mouse.click`; `device.app.lifecycle` |
 
-**[3] `otel.event.name`:** This attribute SHOULD be used by non-OTLP exporters when destination does not support `EventName` or equivalent field. This attribute MAY be used by applications using existing logging libraries so that it can be used to set the `EventName` field by Collector or SDK components.
+**[4] `otel.event.name`:** This attribute SHOULD be used by non-OTLP exporters when destination does not support `EventName` or equivalent field. This attribute MAY be used by applications using existing logging libraries so that it can be used to set the `EventName` field by Collector or SDK components.
 
 ## OTel Scope Attributes
 
