@@ -38,15 +38,24 @@ groups:
 
       **Timestamp:** MUST be the absolute time when the HTTP client call started, in milliseconds since the Unix epoch.
 
-      **Timing attributes:** All timing attributes on this event (including `http.call.end_time`) MUST be interpreted as non-negative deltas in milliseconds from `Timestamp` (elapsed time from call start to each recorded phase boundary).
+      **Timing attributes:** All timing attributes on this event (including `http.call.end_time`) MUST be interpreted as
+      non-negative deltas in milliseconds from `Timestamp` (elapsed time from call start to each recorded phase boundary).
 
       **ObservedTimestamp:** SHOULD be set to the time the event was emitted when it differs materially from `Timestamp`.
 
-      **Trace context:** When an OpenTelemetry trace is available for the operation, the event MUST use the Context of the corresponding HTTP client span so backends can correlate the event with the span. When no such span exists, the event MAY omit span correlation.
+      **Trace context:** When an OpenTelemetry trace is available for the operation, the event MUST use the Context of the
+      corresponding HTTP client span so backends can correlate the event with the span. When no such span exists, the event
+      MAY omit span correlation.
 
       **Attribute emission:** Instrumentations SHOULD emit only timing attributes that the platform provides and SHOULD omit attributes that are unknown or not applicable.
 
-      **Span attribute copy:** Instrumentations MAY expose a configuration boolean to copy a curated list of attributes from the corresponding HTTP client span onto this event. Copied attributes MUST use the same semantics as on the [HTTP client span](/docs/http/http-spans.md); attribute definitions are in the attribute registry (see [HTTP client span](/docs/http/http-spans.md) and linked registry pages). On this event, copied attributes are `Opt-In` when the option is enabled (requirement levels may differ from the span). Those attributes support metrics filtering and aggregation on backends that cannot yet correlate by context alone. When the option is disabled, those attributes SHOULD be omitted. When it is enabled, instrumentations SHOULD populate them.
+      **Span attribute copy:** Instrumentations MAY expose a configuration boolean to copy a curated list of attributes from the
+      corresponding HTTP client span onto this event. Copied attributes MUST use the same semantics as on the
+      [HTTP client span](/docs/http/http-spans.md); attribute definitions are in the attribute registry
+      (see [HTTP client span](/docs/http/http-spans.md) and linked registry pages). On this event, copied attributes are
+      `Opt-In` when the option is enabled (requirement levels may differ from the span). Those attributes support metrics
+      filtering and aggregation on backends that cannot yet correlate by context alone. When the option is disabled, those
+      attributes SHOULD be omitted. When it is enabled, instrumentations SHOULD populate them.
     attributes:
       - ref: http.dns.start_time
         requirement_level: opt_in
