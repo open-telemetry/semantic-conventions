@@ -556,27 +556,27 @@ groups:
           members:
             - id: persistent_volume_claim
               value: 'persistentVolumeClaim'
-              brief: "A [persistentVolumeClaim](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#persistentvolumeclaim) volume"
+              brief: "A [persistentVolumeClaim](https://kubernetes.io/docs/concepts/storage/volumes/#persistentvolumeclaim) volume"
               stability: development
             - id: config_map
               value: 'configMap'
-              brief: "A [configMap](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#configmap) volume"
+              brief: "A [configMap](https://kubernetes.io/docs/concepts/storage/volumes/#configmap) volume"
               stability: development
             - id: downward_api
               value: 'downwardAPI'
-              brief: "A [downwardAPI](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#downwardapi) volume"
+              brief: "A [downwardAPI](https://kubernetes.io/docs/concepts/storage/volumes/#downwardapi) volume"
               stability: development
             - id: empty_dir
               value: 'emptyDir'
-              brief: "An [emptyDir](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#emptydir) volume"
+              brief: "An [emptyDir](https://kubernetes.io/docs/concepts/storage/volumes/#emptydir) volume"
               stability: development
             - id: secret
               value: 'secret'
-              brief: "A [secret](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#secret) volume"
+              brief: "A [secret](https://kubernetes.io/docs/concepts/storage/volumes/#secret) volume"
               stability: development
             - id: local
               value: 'local'
-              brief: "A [local](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#local) volume"
+              brief: "A [local](https://kubernetes.io/docs/concepts/storage/volumes/#local) volume"
               stability: development
       - id: k8s.namespace.phase
         stability: development
@@ -584,7 +584,7 @@ groups:
           The phase of the K8s namespace.
         note: |
           This attribute aligns with the `phase` field of the
-          [K8s NamespaceStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#namespacestatus-v1-core)
+          [K8s NamespaceStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#namespacestatus-v1-core)
         examples: [ "active", "terminating" ]
         type:
           members:
@@ -602,10 +602,10 @@ groups:
           The condition type of a K8s Node.
         note: |
           K8s Node conditions as described
-          by [K8s documentation](https://v1-32.docs.kubernetes.io/docs/reference/node/node-status/#condition).
+          by [K8s documentation](https://kubernetes.io/docs/reference/node/node-status/#condition).
 
           This attribute aligns with the `type` field of the
-          [NodeCondition](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#nodecondition-v1-core)
+          [NodeCondition](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#nodecondition-v1-core)
 
           The set of possible values is not limited to those listed here. Managed Kubernetes environments,
           or custom controllers MAY introduce additional node condition types.
@@ -639,7 +639,7 @@ groups:
           The status of the condition, one of True, False, Unknown.
         note: |
           This attribute aligns with the `status` field of the
-          [NodeCondition](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#nodecondition-v1-core)
+          [NodeCondition](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#nodecondition-v1-core)
         examples: [ "true", "false", "unknown" ]
         type:
           members:
@@ -656,7 +656,7 @@ groups:
         stability: experimental
         brief: >
           The state of the container.
-          [K8s ContainerState](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#containerstate-v1-core)
+          [K8s ContainerState](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#containerstate-v1-core)
         type:
           members:
             - id: terminated
@@ -714,9 +714,9 @@ groups:
         stability: experimental
         brief: >
           The reason for the container state. Corresponds to the `reason` field of the:
-          [K8s ContainerStateWaiting](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#containerstatewaiting-v1-core)
+          [K8s ContainerStateWaiting](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#containerstatewaiting-v1-core)
           or
-          [K8s ContainerStateTerminated](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#containerstateterminated-v1-core)
+          [K8s ContainerStateTerminated](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#containerstateterminated-v1-core)
         examples: ['ContainerCreating', 'CrashLoopBackOff', 'CreateContainerConfigError', 'ErrImagePull', 'ImagePullBackOff', 'OOMKilled', 'Completed', 'Error', 'ContainerCannotRun']
       - id: k8s.hugepage.size
         type: string
@@ -729,7 +729,7 @@ groups:
         stability: development
         brief: >
           The name of K8s
-          [StorageClass](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#storageclass-v1-storage-k8s-io)
+          [StorageClass](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#storageclass-v1-storage-k8s-io)
           object.
         examples: [ 'gold.storageclass.storage.k8s.io' ]
       - id: k8s.resourcequota.resource_name
