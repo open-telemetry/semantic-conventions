@@ -137,3 +137,32 @@ groups:
           This attribute is only applicable to symbolic links.
         stability: development
         examples: ['/usr/bin/python3']
+  - id: registry.file.lock
+    type: attribute_group
+    display_name: File lock
+    brief: >
+        These attributes may be used for any filesystem lock or related operation
+    attributes:
+      - id: file.lock.type
+        type:
+          members:
+            - id: read
+              value: 'read'
+              stability: development
+            - id: write
+              value: 'write'
+              stability: development
+        stability: development
+        brief: "The [lock type](https://pubs.opengroup.org/onlinepubs/9699919799/functions/fcntl.html)"
+        examples: ["read"]
+      - id: file.lock.mechanism
+        type: string
+        brief: "The lock [mechanism](https://pubs.opengroup.org/onlinepubs/9699919799/functions/fcntl.html)"
+        stability: development
+        examples: ["POSIX", "FLOCK", "DELEG", "LEASE"]
+      - id: file.lock.mode
+        type: string
+        brief: >
+          Mode of lock or operation
+        stability: development
+        examples: ["ADVISORY", "MANDATORY", "BREAKING", "ACTIVE", "BREAKER"]
