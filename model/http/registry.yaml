@@ -204,3 +204,86 @@ groups:
         brief: State of the HTTP connection in the HTTP connection pool.
         stability: development
         examples: ["active", "idle"]
+
+  - id: registry.http.client_network_timing
+    type: attribute_group
+    display_name: HTTP Client Network Timing Event Attributes
+    brief: >
+      These attributes are defined for `http.client.network_timing` events.
+      Each value is a non-negative delta in milliseconds from the event `Timestamp`.
+    attributes:
+      - id: http.dns.start_time
+        type: int
+        stability: development
+        brief: DNS lookup start time.
+        examples: [0]
+      - id: http.dns.end_time
+        type: int
+        stability: development
+        brief: DNS lookup end time.
+        examples: [18]
+      - id: http.connect.start_time
+        type: int
+        stability: development
+        brief: TCP connection establishment start time.
+        examples: [20]
+      - id: http.connect.end_time
+        type: int
+        stability: development
+        brief: TCP connection establishment end time.
+        examples: [85]
+      - id: http.secure_connect.start_time
+        type: int
+        stability: development
+        brief: TLS handshake start time (HTTPS only).
+        examples: [86]
+      - id: http.secure_connect.end_time
+        type: int
+        stability: development
+        brief: TLS handshake end time (HTTPS only).
+        examples: [210]
+      - id: http.request.headers.start_time
+        type: int
+        stability: development
+        brief: Request headers transmission start time.
+        examples: [212]
+      - id: http.request.headers.end_time
+        type: int
+        stability: development
+        brief: Request headers transmission end time.
+        examples: [215]
+      - id: http.request.body.start_time
+        type: int
+        stability: development
+        brief: Request body transmission start time (if request has body).
+        examples: [215]
+      - id: http.request.body.end_time
+        type: int
+        stability: development
+        brief: Request body transmission end time (if request has body).
+        examples: [280]
+      - id: http.response.headers.start_time
+        type: int
+        stability: development
+        brief: Response headers reception start time.
+        examples: [295]
+      - id: http.response.headers.end_time
+        type: int
+        stability: development
+        brief: Response headers reception end time.
+        examples: [300]
+      - id: http.response.body.start_time
+        type: int
+        stability: development
+        brief: Response body reception start time.
+        examples: [300]
+      - id: http.response.body.end_time
+        type: int
+        stability: development
+        brief: Response body reception end time.
+        examples: [315]
+      - id: http.call.end_time
+        type: int
+        stability: development
+        brief: Call complete time.
+        examples: [320]
