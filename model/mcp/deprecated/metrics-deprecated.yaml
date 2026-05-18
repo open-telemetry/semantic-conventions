@@ -1,5 +1,9 @@
 groups:
   - id: mcp.operation.metrics.attributes
+    deprecated:
+      reason: uncategorized
+      note: >
+        Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
     type: attribute_group
     brief: MCP request metrics attributes
     extends: mcp.common.attributes
@@ -8,6 +12,10 @@ groups:
         requirement_level: opt_in
 
   - id: mcp.session.metrics.attributes
+    deprecated:
+      reason: uncategorized
+      note: >
+        Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
     type: attribute_group
     brief: MCP session metrics attributes
     attributes:
@@ -36,6 +44,10 @@ groups:
           conditionally_required: If and only if session ends with an error.
 
   - id: metric.mcp.client.operation.duration
+    deprecated:
+      reason: uncategorized
+      note: >
+        Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
     type: metric
     metric_name: mcp.client.operation.duration
     brief: >
@@ -54,6 +66,10 @@ groups:
           recommended: When `server.address` is set
 
   - id: metric.mcp.server.operation.duration
+    deprecated:
+      reason: uncategorized
+      note: >
+        Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
     type: metric
     metric_name: mcp.server.operation.duration
     brief: >
@@ -65,6 +81,10 @@ groups:
     extends: mcp.operation.metrics.attributes
 
   - id: metric.mcp.client.session.duration
+    deprecated:
+      reason: uncategorized
+      note: >
+        Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
     type: metric
     metric_name: mcp.client.session.duration
     brief: The duration of the MCP session as observed on the MCP client.
@@ -81,6 +101,10 @@ groups:
           recommended: When `server.address` is set
 
   - id: metric.mcp.server.session.duration
+    deprecated:
+      reason: uncategorized
+      note: >
+        Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
     type: metric
     metric_name: mcp.server.session.duration
     brief: The duration of the MCP session as observed on the MCP server.

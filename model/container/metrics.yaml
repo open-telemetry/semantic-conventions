@@ -22,7 +22,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
-    stability: development
+    stability: release_candidate
     brief: "Total CPU time consumed."
     note: >
       Total CPU time consumed by the specific container on all available CPU cores
