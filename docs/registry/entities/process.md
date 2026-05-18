@@ -22,17 +22,22 @@
 | Description | [`process.args_count`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | Length of the process.command_args array [1] | `4` |
 | Description | [`process.command_args`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string[] | All the command arguments (including the command/executable itself) as received by the process. On Linux-based systems (and some other Unixoid systems supporting procfs), can be set according to the list of null-delimited strings extracted from `proc/[pid]/cmdline`. For libc-based executables, this would be the full argv vector passed to `main`. SHOULD NOT be collected by default unless there is sanitization that excludes sensitive data. | `["cmd/otecol", "--config=config.yaml"]` |
 | Description | [`process.command_line`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The full command used to launch the process as a single string representing the full command. On Windows, can be set to the result of `GetCommandLineW`. Do not set this if you have to assemble it just for monitoring; use `process.command_args` instead. SHOULD NOT be collected by default unless there is sanitization that excludes sensitive data. | `C:\cmd\otecol --config="my directory\config.yaml"` |
+| Description | [`process.entrypoint`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The full path to the file being executed in this process. [2] | `/usr/bin/cmd/otelcol`; `/usr/scripts/myscript.py` |
 | Description | [`process.interactive`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | boolean | Whether the process is connected to an interactive shell. | |
-| Description | [`process.linux.cgroup`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The control group associated with the process. [2] | `1:name=systemd:/user.slice/user-1000.slice/session-3.scope`; `0::/user.slice/user-1000.slice/user@1000.service/tmux-spawn-0267755b-4639-4a27-90ed-f19f88e53748.scope` |
+| Description | [`process.linux.cgroup`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The control group associated with the process. [3] | `1:name=systemd:/user.slice/user-1000.slice/session-3.scope`; `0::/user.slice/user-1000.slice/user@1000.service/tmux-spawn-0267755b-4639-4a27-90ed-f19f88e53748.scope` |
 | Description | [`process.parent_pid`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | Parent Process identifier (PPID). | `111` |
-| Description | [`process.title`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Process title (proctitle) [3] | `cat /etc/hostname`; `xfce4-session`; `bash` |
+| Description | [`process.title`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Process title (proctitle) [4] | `cat /etc/hostname`; `xfce4-session`; `bash` |
 | Description | [`process.working_directory`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The working directory of the process. | `/root` |
 
 **[1] `process.args_count`:** This field can be useful for querying or performing bucket analysis on how many arguments were provided to start a process. More arguments may be an indication of suspicious activity.
 
-**[2] `process.linux.cgroup`:** Control groups (cgroups) are a kernel feature used to organize and manage process resources. This attribute provides the path(s) to the cgroup(s) associated with the process, which should match the contents of the [/proc/\[PID\]/cgroup](https://man7.org/linux/man-pages/man7/cgroups.7.html) file.
+**[2] `process.entrypoint`:** This is the path to the file which is executing within the process. In cases where a runtime is being used to execute scripts, the entrypoint will be the script filename including path. In other cases the entrypoint will be the executable path.
 
-**[3] `process.title`:** In many Unix-like systems, process title (proctitle), is the string that represents the name or command line of a running process, displayed by system monitoring tools like ps, top, and htop.
+For example, the `python myscript.py` command would have an entrypoint of `/usr/scripts/myscript.py`. Whereas for executables on Linux based systems, the value would match `proc/[pid]/exe` and on Windows, the value would match `GetProcessImageFileNameW`.
+
+**[3] `process.linux.cgroup`:** Control groups (cgroups) are a kernel feature used to organize and manage process resources. This attribute provides the path(s) to the cgroup(s) associated with the process, which should match the contents of the [/proc/\[PID\]/cgroup](https://man7.org/linux/man-pages/man7/cgroups.7.html) file.
+
+**[4] `process.title`:** In many Unix-like systems, process title (proctitle), is the string that represents the name or command line of a running process, displayed by system monitoring tools like ps, top, and htop.
 
 ## Process Executable
 
@@ -46,13 +51,12 @@
 
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- | --- |
-| Identity | [`process.executable.build_id.htlhash`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Deterministic build ID for executables. [4] | `600DCAFE4A110000F2BF38C493F5FB92` |
+| Identity | [`process.executable.build_id.htlhash`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Deterministic build ID for executables. [5] | `600DCAFE4A110000F2BF38C493F5FB92` |
 | Description | [`process.executable.name`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the process executable. On Linux based systems, this SHOULD be set to the base name of the target of `/proc/[pid]/exe`. On Windows, this SHOULD be set to the base name of `GetProcessImageFileNameW`. | `otelcol` |
 | Description | [`process.executable.build_id.gnu`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The GNU build ID as found in the `.note.gnu.build-id` ELF section (hex string). | `c89b11207f6479603b0d49bf291c092c2b719293` |
 | Description | [`process.executable.build_id.go`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The Go build ID as retrieved by `go tool buildid <go executable>`. | `foh3mEXu7BLZjsN9pOwG/kATcXlYVCDEFouRMQed_/WwRFB1hPo9LBkekthSPG/x8hMC8emW2cCjXD0_1aY` |
-| Description | [`process.executable.path`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The full path to the process executable. On Linux based systems, can be set to the target of `proc/[pid]/exe`. On Windows, can be set to the result of `GetProcessImageFileNameW`. | `/usr/bin/cmd/otelcol` |
 
-**[4] `process.executable.build_id.htlhash`:** GNU and Go build IDs may be stripped or unavailable in some environments
+**[5] `process.executable.build_id.htlhash`:** GNU and Go build IDs may be stripped or unavailable in some environments
 (e.g., Alpine Linux, Docker images). This attribute provides a deterministic
 build ID computed by hashing the first and last 4096 bytes of the file
 along with its length:
