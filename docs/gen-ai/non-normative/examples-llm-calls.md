@@ -48,7 +48,7 @@ sequenceDiagram
 | Property                         | Value                                      |
 | -------------------------------- | ------------------------------------------ |
 | Span name                        | `"chat gpt-4"`                             |
-| Trace ID                         | `"4bf92f3577b34da6a3ce929d0e0e4736"`       |
+| Trace id                         | `"4bf92f3577b34da6a3ce929d0e0e4736"`       |
 | Span ID                          | `"00f067aa0ba902b7"`                       |
 | `gen_ai.provider.name`           | `"openai"`                                 |
 | `gen_ai.operation.name`          | `"chat"`                                   |
@@ -66,7 +66,7 @@ sequenceDiagram
 | Property                         | Value                                                      |
 | -------------------------------- | ---------------------------------------------------------- |
 | Span name                        | `"chat gpt-4"`                                             |
-| Trace ID                         | `"4bf92f3577b34da6a3ce929d0e0e4736"`                       |
+| Trace id                         | `"4bf92f3577b34da6a3ce929d0e0e4736"`                       |
 | Span ID                          | `"00f067aa0ba902b7"`                                       |
 | `gen_ai.provider.name`           | `"openai"`                                                 |
 | `gen_ai.operation.name`          | `"chat"`                                                   |
@@ -130,7 +130,7 @@ Span:
 | Property                         | Value                                      |
 | -------------------------------- | ------------------------------------------ |
 | Span name                        | `"chat gpt-4"`                             |
-| Trace ID                         | `"4bf92f3577b34da6a3ce929d0e0e4736"`       |
+| Trace id                         | `"4bf92f3577b34da6a3ce929d0e0e4736"`       |
 | Span ID                          | `"00f067aa0ba902b7"`                       |
 | `gen_ai.provider.name`           | `"openai"`                                 |
 | `gen_ai.operation.name`          | `"chat"`                                   |
@@ -147,7 +147,7 @@ Event:
 
 | Property                         | Value                                                     |
 | -------------------------------- | --------------------------------------------------------- |
-| Trace ID                         | `"4bf92f3577b34da6a3ce929d0e0e4736"`                      |
+| Trace id                         | `"4bf92f3577b34da6a3ce929d0e0e4736"`                      |
 | Span ID                          | `"00f067aa0ba902b7"`                                      |
 | `gen_ai.provider.name`           | `"openai"`                                                |
 | `gen_ai.operation.name`          | `"chat"`                                                  |
@@ -650,7 +650,7 @@ Span:
 | Property                         | Value                                                         |
 | -------------------------------- | ------------------------------------------------------------- |
 | Span name                        | `"chat gpt-4"`                                                |
-| Trace ID                         | `"4bf92f3577b34da6a3ce929d0e0e4736"`                          |
+| Trace id                         | `"4bf92f3577b34da6a3ce929d0e0e4736"`                          |
 | Span ID                          | `"00f067aa0ba902b7"`                                          |
 | `gen_ai.provider.name`           | `"openai"`                                                    |
 | `gen_ai.operation.name`          | `"chat"`                                                      |
@@ -716,7 +716,7 @@ Span:
 This is an example of telemetry generated for OpenAI Responses API call with `code_interpreter` tool that results in
 a model provider executing a tool and returning response along with tool call details. Built-in tools use
 `server_tool_call` and `server_tool_call_response` part types with polymorphic content to separate them from
-client-side function tool calls.
+client side function tool calls.
 
 ```py
 response = client.responses.create(   

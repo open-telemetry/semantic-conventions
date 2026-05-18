@@ -94,7 +94,7 @@ This event is opt-in and could be used to store input and output details indepen
 the canonical name of exception that occurred, or another low-cardinality error identifier.
 Instrumentations SHOULD document the list of errors they report.
 
-**[3] `gen_ai.conversation.id`:** Instrumentations SHOULD populate conversation ID when they have it readily available
+**[3] `gen_ai.conversation.id`:** Instrumentations SHOULD populate comversation id when they have it readily available
 for a given operation, for example:
 
 - when client framework being instrumented manages conversation history
@@ -103,7 +103,7 @@ for a given operation, for example:
 (see [AWS Bedrock agent sessions](https://docs.aws.amazon.com/bedrock/latest/userguide/agents-session-state.html),
 [OpenAI Assistant threads](https://platform.openai.com/docs/api-reference/threads))
 
-Application developers that manage conversation history MAY add conversation ID to GenAI and other
+Application developers that manage conversation history MAY add comversation id to GenAI and other
 spans or logs using custom span or log record processors or hooks provided by instrumentation
 libraries.
 
@@ -117,7 +117,7 @@ Additional output format details may be recorded in the future in the `gen_ai.ou
 
 **[7] `gen_ai.request.stream`:** If and only if the request is streaming. If unset, the request is assumed to be non-streaming.
 
-**[8] `server.port`:** When observed from the client-side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[8] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
 **[9] `gen_ai.response.model`:** If available. The name of the GenAI model that provided the response. If the model is supplied by a vendor, then the value must be the exact name of the model actually used. If the model is a fine-tuned custom model, the value should have a more specific name than the base model that's been fine-tuned.
 
@@ -132,7 +132,7 @@ by summing different token types parsed from the provider output.
 
 **[13] `gen_ai.usage.reasoning.output_tokens`:** The value SHOULD be included in `gen_ai.usage.output_tokens`.
 
-**[14] `server.address`:** When observed from the client-side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
+**[14] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
 **[15] `gen_ai.input.messages`:** Instrumentations MUST follow [Input messages JSON schema](/docs/gen-ai/gen-ai-input-messages.json).
 When the attribute is recorded on events, it MUST be recorded in structured
@@ -250,7 +250,7 @@ to enable populating optional properties.
 
 The event name MUST be `gen_ai.evaluation.result`.
 
-This event captures the result of evaluating GenAI output for quality, accuracy, or other characteristics. This event SHOULD be parented to GenAI operation span being evaluated when possible or set `gen_ai.response.id` when span ID is not available.
+This event captures the result of evaluating GenAI output for quality, accuracy, or other characteristics. This event SHOULD be parented to GenAI operation span being evaluated when possible or set `gen_ai.response.id` when span id is not available.
 
 **Attributes:**
 
@@ -271,7 +271,7 @@ Instrumentations SHOULD document the list of errors they report.
 
 **[3] `gen_ai.response.id`:** The unique identifier assigned to the specific
 completion being evaluated. This attribute helps correlate the evaluation
-event with the corresponding operation when span ID is not available.
+event with the corresponding operation when span id is not available.
 
 ---
 

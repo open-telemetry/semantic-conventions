@@ -9,7 +9,7 @@ groups:
           recommended: When the MCP request or notification is part of a session.
       - ref: mcp.resource.uri
         requirement_level:
-          conditionally_required: When the client executes a request type that includes a resource URI parameter.
+          conditionally_required: When the client executes a request type that includes a resource uri parameter.
       - ref: jsonrpc.request.id
         requirement_level:
           conditionally_required: When the client executes a request.
@@ -17,7 +17,7 @@ groups:
   - id: span.mcp.client
     type: span
     span_kind: client
-    brief: This span describes the MCP call from the client-side.
+    brief: This span describes the MCP call from the client side.
     note: |
       It's reported by the MCP client when it initiates the request
       or notification or by the MCP server when server initiates the operation.
