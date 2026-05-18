@@ -189,7 +189,7 @@ is returned with `isError` set to `true`, this attribute SHOULD be set to
 **[2] `jsonrpc.request.id`:** Under the [JSON-RPC specification](https://www.jsonrpc.org/specification), the `id` property may be a string, number, null, or omitted entirely. When omitted, the request is treated as a notification. Using `null` is not equivalent to omitting the `id`, but it is discouraged.
 Instrumentations SHOULD NOT capture this attribute when the `id` is `null` or omitted.
 
-**[3] `mcp.resource.uri`:** When the client executes a request type that includes a resource uri parameter.
+**[3] `mcp.resource.uri`:** When the client executes a request type that includes a resource URI parameter.
 
 **[4] `mcp.resource.uri`:** This is a URI of the resource provided in the following requests or notifications: `resources/read`, `resources/subscribe`, `resources/unsubscribe`, or `notifications/resources/updated`.
 
@@ -367,16 +367,16 @@ is returned with `isError` set to `true`, this attribute SHOULD be set to
 **[2] `jsonrpc.request.id`:** Under the [JSON-RPC specification](https://www.jsonrpc.org/specification), the `id` property may be a string, number, null, or omitted entirely. When omitted, the request is treated as a notification. Using `null` is not equivalent to omitting the `id`, but it is discouraged.
 Instrumentations SHOULD NOT capture this attribute when the `id` is `null` or omitted.
 
-**[3] `mcp.resource.uri`:** When the client executes a request type that includes a resource uri parameter.
+**[3] `mcp.resource.uri`:** When the client executes a request type that includes a resource URI parameter.
 
 **[4] `mcp.resource.uri`:** This is a URI of the resource provided in the following requests or notifications: `resources/read`, `resources/subscribe`, `resources/unsubscribe`, or `notifications/resources/updated`.
 
 **[5] `rpc.response.status_code`:** Usually it represents an error code, but may also represent partial success, warning, or differentiate between various types of successful outcomes.
 Semantic conventions for individual RPC frameworks SHOULD document what `rpc.response.status_code` means in the context of that system and which values are considered to represent errors.
 
-**[6] `client.address`:** When observed from the server-side, and when communicating through an intermediary, `client.address` SHOULD represent the client address behind any intermediaries,  for example proxies, if it's available.
+**[6] `client.address`:** When observed from the server side, and when communicating through an intermediary, `client.address` SHOULD represent the client address behind any intermediaries,  for example proxies, if it's available.
 
-**[7] `client.port`:** When observed from the server-side, and when communicating through an intermediary, `client.port` SHOULD represent the client port behind any intermediaries,  for example proxies, if it's available.
+**[7] `client.port`:** When observed from the server side, and when communicating through an intermediary, `client.port` SHOULD represent the client port behind any intermediaries,  for example proxies, if it's available.
 
 **[8] `gen_ai.operation.name`:** SHOULD be set to `execute_tool` when the operation describes a tool call and SHOULD NOT be set otherwise.
 
@@ -1019,7 +1019,7 @@ MCP server span (`s4`):
 ### Streamable HTTP
 
 In the HTTP examples, we assume that HTTP instrumentation is enabled on both client
-and server-side along with the MCP instrumentation.
+and server side along with the MCP instrumentation.
 
 #### Initialize
 

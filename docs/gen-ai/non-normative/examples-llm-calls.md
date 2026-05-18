@@ -49,7 +49,7 @@ sequenceDiagram
 | -------------------------------- | ------------------------------------------ |
 | Span name                        | `"chat gpt-4"`                             |
 | Trace id                         | `"4bf92f3577b34da6a3ce929d0e0e4736"`       |
-| Span ID                          | `"00f067aa0ba902b7"`                       |
+| Span id                          | `"00f067aa0ba902b7"`                       |
 | `gen_ai.provider.name`           | `"openai"`                                 |
 | `gen_ai.operation.name`          | `"chat"`                                   |
 | `gen_ai.request.model`           | `"gpt-4"`                                  |
@@ -67,7 +67,7 @@ sequenceDiagram
 | -------------------------------- | ---------------------------------------------------------- |
 | Span name                        | `"chat gpt-4"`                                             |
 | Trace id                         | `"4bf92f3577b34da6a3ce929d0e0e4736"`                       |
-| Span ID                          | `"00f067aa0ba902b7"`                                       |
+| Span id                          | `"00f067aa0ba902b7"`                                       |
 | `gen_ai.provider.name`           | `"openai"`                                                 |
 | `gen_ai.operation.name`          | `"chat"`                                                   |
 | `gen_ai.request.model`           | `"gpt-4"`                                                  |
@@ -131,7 +131,7 @@ Span:
 | -------------------------------- | ------------------------------------------ |
 | Span name                        | `"chat gpt-4"`                             |
 | Trace id                         | `"4bf92f3577b34da6a3ce929d0e0e4736"`       |
-| Span ID                          | `"00f067aa0ba902b7"`                       |
+| Span id                          | `"00f067aa0ba902b7"`                       |
 | `gen_ai.provider.name`           | `"openai"`                                 |
 | `gen_ai.operation.name`          | `"chat"`                                   |
 | `gen_ai.request.model`           | `"gpt-4"`                                  |
@@ -148,7 +148,7 @@ Event:
 | Property                         | Value                                                     |
 | -------------------------------- | --------------------------------------------------------- |
 | Trace id                         | `"4bf92f3577b34da6a3ce929d0e0e4736"`                      |
-| Span ID                          | `"00f067aa0ba902b7"`                                      |
+| Span id                          | `"00f067aa0ba902b7"`                                      |
 | `gen_ai.provider.name`           | `"openai"`                                                |
 | `gen_ai.operation.name`          | `"chat"`                                                  |
 | `gen_ai.request.model`           | `"gpt-4"`                                                 |
@@ -651,7 +651,7 @@ Span:
 | -------------------------------- | ------------------------------------------------------------- |
 | Span name                        | `"chat gpt-4"`                                                |
 | Trace id                         | `"4bf92f3577b34da6a3ce929d0e0e4736"`                          |
-| Span ID                          | `"00f067aa0ba902b7"`                                          |
+| Span id                          | `"00f067aa0ba902b7"`                                          |
 | `gen_ai.provider.name`           | `"openai"`                                                    |
 | `gen_ai.operation.name`          | `"chat"`                                                      |
 | `gen_ai.request.model`           | `"gpt-4"`                                                     |
