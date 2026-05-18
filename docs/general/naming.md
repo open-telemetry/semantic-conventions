@@ -9,7 +9,7 @@ aliases: [attribute-naming]
 <details>
 <summary>Table of Contents</summary>
 
-<!-- toc -->
+<!-- START doctoc -->
 
 - [General naming considerations](#general-naming-considerations)
 - [Name abbreviation guidelines](#name-abbreviation-guidelines)
@@ -34,7 +34,7 @@ aliases: [attribute-naming]
   - [System-specific metrics](#system-specific-metrics)
   - [Known exceptions](#known-exceptions)
 
-<!-- tocstop -->
+<!-- END doctoc -->
 
 </details>
 
@@ -47,11 +47,12 @@ implied to mean all of these._
 
 Every name MUST be a valid Unicode sequence.
 
-_Note: we merely require that the names are represented as Unicode sequences.
-This specification does not define how exactly the Unicode sequences are
-encoded. The encoding can vary from one programming language to another and from
-one wire format to another. Use the idiomatic way to represent Unicode in the
-particular programming language or wire format._
+> [!NOTE]
+> We merely require that the names are represented as Unicode sequences.
+> This specification does not define how exactly the Unicode sequences are
+> encoded. The encoding can vary from one programming language to another and from
+> one wire format to another. Use the idiomatic way to represent Unicode in the
+> particular programming language or wire format.
 
 Names SHOULD follow these rules:
 
@@ -314,6 +315,12 @@ be confusing in delta backends.
   using metric event timestamps. For example, `system.cpu.utilization` is
   defined as the difference in `system.cpu.time` measurements divided by the
   elapsed time and number of CPUs.
+
+- **duration** - a histogram that measures operation duration
+  should be called `{operation name}.duration`.
+  For example, `http.server.request.duration` for the time taken to process each HTTP request.
+  The difference with `time` is that `time` is used to measure monotonically increasing total time,
+  whereas `duration` captures the elapsed time of discrete operations.
 
 - **io** - an instrument that measures bidirectional data flow should be
   called `entity.io` and have attributes for direction. For example,

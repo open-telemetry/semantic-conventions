@@ -1,0 +1,13 @@
+change_type: new_component
+
+component: browser
+
+note: "Introduce `browser.document.url.full` attribute and `browser.document` entity to capture the absolute URL of the current browser document."
+
+issues: [174]
+
+subtext: |
+  The `browser.document` entity is introduced as a separate entity from `browser` because
+  the browser runtime attributes (brands, platform, language) are immutable for the SDK
+  lifetime, while the document URL changes on every navigation. The new attribute follows
+  RFC3986 and has `Recommended` requirement level at `Development` stability.

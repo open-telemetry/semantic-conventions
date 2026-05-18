@@ -32,6 +32,10 @@
 /docs/runtime/jvm-metrics.md      @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-jvm-approvers
 /model/jvm/                       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-jvm-approvers
 
+# Go semantic conventions
+/docs/runtime/go-metrics.md      @open-telemetry/specs-semconv-approvers @open-telemetry/go-approvers
+/model/go/                       @open-telemetry/specs-semconv-approvers @open-telemetry/go-approvers
+
 # HTTP semantic conventions
 /docs/http/                            @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
 /docs/url/                             @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
@@ -101,11 +105,6 @@
 /model/dotnet/                    @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-dotnet-approver
 /model/signalr/                   @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-dotnet-approver
 
-# Gen-AI semantic conventions
-/docs/gen-ai/                     @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-genai-approvers
-/model/gen-ai/                    @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-genai-approvers
-/model/openai/                    @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-genai-approvers
-/model/mcp/                       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-genai-approvers
 
 # Security semantic conventions
 /docs/dns/                        @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-security-approvers
@@ -116,7 +115,7 @@
 /model/tls/                       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-security-approvers
 /model/user/                      @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-security-approvers
 
-# CICD semantic conventions
+# CI/CD semantic conventions
 /docs/cicd/                       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-cicd-approvers
 /docs/resource/deployment-environment.md  @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-cicd-approvers @open-telemetry/semconv-service-and-deployment-approvers
 /model/artifact/                  @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-cicd-approvers

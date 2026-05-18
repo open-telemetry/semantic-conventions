@@ -6,10 +6,10 @@ linkTitle: Resource
 
 **Status**: [Mixed][DocumentStatus]
 
-This document defines standard attributes for resources. These attributes are typically used in the [Resource](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.55.0/specification/resource/sdk.md) and are also recommended to be used anywhere else where there is a need to describe a resource in a consistent manner. The majority of these attributes are inherited from
+This document defines standard attributes for resources. These attributes are typically used in the [Resource](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.56.0/specification/resource/sdk.md) and are also recommended to be used anywhere else where there is a need to describe a resource in a consistent manner. The majority of these attributes are inherited from
 [OpenCensus Resource standard](https://github.com/census-instrumentation/opencensus-specs/blob/master/resource/StandardResources.md).
 
-<!-- toc -->
+<!-- START doctoc -->
 
 - [TODOs](#todos)
 - [Document conventions](#document-conventions)
@@ -25,7 +25,7 @@ This document defines standard attributes for resources. These attributes are ty
 - [Version attributes](#version-attributes)
 - [Cloud-Provider-specific attributes](#cloud-provider-specific-attributes)
 
-<!-- tocstop -->
+<!-- END doctoc -->
 
 ## TODOs
 
@@ -53,14 +53,14 @@ Given their significance some resource attributes are treated specifically as de
 ### Semantic attributes with dedicated environment variable
 
 These are the attributes which MAY be configurable via a dedicated environment variable
-as specified in [OpenTelemetry Environment Variable Specification](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.55.0/specification/configuration/sdk-environment-variables.md):
+as specified in [OpenTelemetry Environment Variable Specification](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.56.0/specification/configuration/sdk-environment-variables.md):
 
 - [`service.name`](#service)
 
 ### Semantic attributes with SDK-provided default value
 
 These are the attributes which MUST be provided by the SDK
-as specified in the [Resource SDK specification](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.55.0/specification/resource/sdk.md#sdk-provided-resource-attributes):
+as specified in the [Resource SDK specification](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.56.0/specification/resource/sdk.md#sdk-provided-resource-attributes):
 
 - [`service.name`](#service)
 - [`telemetry.sdk` group](#telemetry-sdk)
@@ -128,22 +128,18 @@ All custom identifiers SHOULD be stable across different versions of an implemen
 <!-- see templates/registry/markdown/snippet.md.j2 -->
 <!-- prettier-ignore-start -->
 
-**Status:** ![Development](https://img.shields.io/badge/-development-blue)
+**Status:** ![Stable](https://img.shields.io/badge/-stable-lightgreen)
 
 **type:** `telemetry.distro`
 
 **Description:** The distribution of telemetry SDK used to capture data recorded by the instrumentation libraries.
 
-> [!warning]
-> This entity definition contains attributes without a role.
-> Stable Entities MUST NOT have attributes without a defined role.
-
 **Attributes:**
 
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- | --- |
-| Other | [`telemetry.distro.name`](/docs/registry/attributes/telemetry.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the auto instrumentation agent or distribution, if used. [1] | `parts-unlimited-java` |
-| Other | [`telemetry.distro.version`](/docs/registry/attributes/telemetry.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The version string of the auto instrumentation agent or distribution, if used. | `1.2.3` |
+| Identity | [`telemetry.distro.name`](/docs/registry/attributes/telemetry.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The name of the auto instrumentation agent or distribution, if used. [1] | `parts-unlimited-java` |
+| Description | [`telemetry.distro.version`](/docs/registry/attributes/telemetry.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The version string of the auto instrumentation agent or distribution, if used. | `1.2.3` |
 
 **[1] `telemetry.distro.name`:** Official auto instrumentation agents and distributions SHOULD set the `telemetry.distro.name` attribute to
 a string starting with `opentelemetry-`, e.g. `opentelemetry-java-instrumentation`.
@@ -179,7 +175,7 @@ Attributes defining a running environment (e.g. Operating System, Cloud, Data Ce
 - [Operating System](./os.md)
 - [Device](./device.md)
 - [Cloud](./cloud.md)
-- [CICD](./cicd.md)
+- [CI/CD](./cicd.md)
 - Deployment:
   - [Deployment Environment](./deployment-environment.md)
   - [Kubernetes](k8s/README.md)

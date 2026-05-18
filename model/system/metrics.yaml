@@ -545,6 +545,100 @@ groups:
     entity_associations:
       - host
 
+  - id: metric.system.memory.linux.hugepages.limit
+    type: metric
+    metric_name: system.memory.linux.hugepages.limit
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "Total number of hugepages available."
+    instrument: updowncounter
+    unit: "{page}"
+    attributes: []
+    entity_associations:
+      - host
+
+  - id: metric.system.memory.linux.hugepages.page_size
+    type: metric
+    metric_name: system.memory.linux.hugepages.page_size
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "System hugepage size in bytes."
+    instrument: updowncounter
+    unit: "By"
+    attributes: []
+    entity_associations:
+      - host
+
+  - id: metric.system.memory.linux.hugepages.reserved
+    type: metric
+    metric_name: system.memory.linux.hugepages.reserved
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "Number of reserved hugepages."
+    note: |
+      Hugepages for which a commitment to allocate has been made, but no allocation has yet been made.
+      This is reported as a separate metric rather than a `usage` state because reserved pages are already counted in `free` pages.
+      They represent a subset of free pages that cannot be used for non-reserved allocations.
+    instrument: updowncounter
+    unit: "{page}"
+    attributes: []
+    entity_associations:
+      - host
+
+  - id: metric.system.memory.linux.hugepages.surplus
+    type: metric
+    metric_name: system.memory.linux.hugepages.surplus
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "Number of surplus hugepages."
+    note: |
+      Overcommitted hugepages beyond the persistent pool.
+      This is reported as a separate metric rather than a `usage` state because surplus pages can be in either `used` or `free` state.
+      Including them in `usage` would break the convention that `usage` states sum to the `limit`.
+    instrument: updowncounter
+    unit: "{page}"
+    attributes: []
+    entity_associations:
+      - host
+
+  - id: metric.system.memory.linux.hugepages.usage
+    type: metric
+    metric_name: system.memory.linux.hugepages.usage
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "Number of hugepages in use by state."
+    instrument: updowncounter
+    unit: "{page}"
+    attributes:
+      - ref: system.memory.linux.hugepages.state
+    entity_associations:
+      - host
+
+  - id: metric.system.memory.linux.hugepages.utilization
+    type: metric
+    metric_name: system.memory.linux.hugepages.utilization
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: "Percentage of hugepages in use by state."
+    instrument: gauge
+    unit: "1"
+    attributes:
+      - ref: system.memory.linux.hugepages.state
+    entity_associations:
+      - host
+
   - id: metric.system.memory.linux.slab.usage
     type: metric
     metric_name: system.memory.linux.slab.usage

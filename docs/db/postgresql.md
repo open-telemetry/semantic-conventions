@@ -6,14 +6,14 @@ linkTitle: PostgreSQL
 
 **Status**: [Stable][DocumentStatus], Unless otherwise specified.
 
-<!-- toc -->
+<!-- START doctoc -->
 
 - [Spans](#spans)
 - [Context propagation](#context-propagation)
   - [SET application_name](#set-application_name)
 - [Metrics](#metrics)
 
-<!-- tocstop -->
+<!-- END doctoc -->
 
 The Semantic Conventions for *PostgreSQL* extend and override the [Database Semantic Conventions](README.md).
 

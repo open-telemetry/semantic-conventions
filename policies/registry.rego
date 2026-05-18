@@ -148,10 +148,3 @@ get_attribute_name(attr, group) := name if {
     name := trim(full_name, ".")
 }
 
-to_const_name(name) = const_name if {
-    const_name := replace(name, ".", "_")
-}
-
-is_property_set(obj, property) = true if {
-    obj[property] != null
-} else = false

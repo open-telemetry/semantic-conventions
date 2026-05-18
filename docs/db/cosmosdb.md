@@ -6,7 +6,7 @@ linkTitle: Cosmos DB
 
 **Status**: [Development][DocumentStatus]
 
-<!-- toc -->
+<!-- START doctoc -->
 
 - [Spans](#spans)
   - [Example](#example)
@@ -16,7 +16,7 @@ linkTitle: Cosmos DB
   - [Metric: `azure.cosmosdb.client.operation.request_charge`](#metric-azurecosmosdbclientoperationrequest_charge)
   - [Metric: `azure.cosmosdb.client.active_instance.count`](#metric-azurecosmosdbclientactive_instancecount)
 
-<!-- tocstop -->
+<!-- END doctoc -->
 
 The Semantic Conventions for [Microsoft Cosmos DB](https://azure.microsoft.com/products/cosmos-db/)
 extend and override the [Database Semantic Conventions](README.md).
@@ -334,7 +334,7 @@ This metric is [required][MetricRequired].
 
 It captures the Request Units consumed by each operation in Azure Cosmos DB. Since Request Units serve as a form of throughput control within the Azure Cosmos DB database, monitoring their usage is crucial to avoid throttling.
 
-This metric SHOULD be specified with [`ExplicitBucketBoundaries` advisory parameter](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.55.0/specification/metrics/api.md#instrument-advisory-parameters) of `[ 1, 5, 10, 25, 50, 100, 250, 500, 1000]`.
+This metric SHOULD be specified with [`ExplicitBucketBoundaries` advisory parameter](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.56.0/specification/metrics/api.md#instrument-advisory-parameters) of `[ 1, 5, 10, 25, 50, 100, 250, 500, 1000]`.
 
 Explaining bucket configuration:
 

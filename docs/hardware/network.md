@@ -6,7 +6,7 @@ linkTitle: Network
 
 **Status**: [Development][DocumentStatus]
 
-<!-- toc -->
+<!-- START doctoc -->
 
 - [Network metrics `hw.network.*`](#network-metrics-hwnetwork)
   - [Metric: `hw.errors` (Network)](#metric-hwerrors-network)
@@ -17,7 +17,7 @@ linkTitle: Network
   - [Metric: `hw.network.up`](#metric-hwnetworkup)
   - [Metric: `hw.status` (Network)](#metric-hwstatus-network)
 
-<!-- tocstop -->
+<!-- END doctoc -->
 
 ## Network metrics `hw.network.*`
 

@@ -6,13 +6,13 @@ linkTitle: Elasticsearch
 
 **Status**: [Development][DocumentStatus]
 
-<!-- toc -->
+<!-- START doctoc -->
 
 - [Spans](#spans)
   - [Example](#example)
 - [Metrics](#metrics)
 
-<!-- tocstop -->
+<!-- END doctoc -->
 
 The Semantic Conventions for [Elasticsearch](https://www.elastic.co/) extend and override the [Database Semantic Conventions](README.md).
 

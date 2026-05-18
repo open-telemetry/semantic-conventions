@@ -9,7 +9,7 @@ linkTitle: Events
 This document defines events related to client-side applications
 (e.g. web apps or mobile apps).
 
-<!-- toc -->
+<!-- START doctoc -->
 
 - [Click Events](#click-events)
   - [Event: `app.screen.click`](#event-appscreenclick)
@@ -18,7 +18,7 @@ This document defines events related to client-side applications
   - [Event: `app.jank`](#event-appjank)
 - [Attributes](#attributes)
 
-<!-- tocstop -->
+<!-- END doctoc -->
 
 ## Click Events
 

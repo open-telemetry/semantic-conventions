@@ -61,7 +61,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
-    stability: development
+    stability: release_candidate
     brief: "Total CPU time consumed."
     entity_associations:
       - k8s.pod
@@ -537,7 +537,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
-    stability: development
+    stability: release_candidate
     brief: "Total CPU time consumed."
     note: >
       Total CPU time consumed by the specific Node on all available CPU cores
@@ -559,6 +559,80 @@ groups:
     entity_associations:
       - k8s.node
     unit: "{cpu}"
+
+  # k8s.node.system_container.* metrics
+  - id: metric.k8s.node.system_container.cpu.usage
+    type: metric
+    metric_name: k8s.node.system_container.cpu.usage
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: "Node's system container CPU usage, measured in cpus."
+    note: >
+      This metric is derived from the
+      [CPUStats.UsageNanoCores](https://github.com/kubernetes/kubelet/blob/v0.35.2/pkg/apis/stats/v1alpha1/types.go#L233)
+      field of the [ContainerStats](https://github.com/kubernetes/kubelet/blob/v0.35.2/pkg/apis/stats/v1alpha1/types.go#L157C6-L157C20)
+      of [Node.SystemContainers](https://github.com/kubernetes/kubelet/blob/v0.35.2/pkg/apis/stats/v1alpha1/types.go#L40)
+      of the Kubelet's stats API.
+    instrument: gauge
+    entity_associations:
+      - k8s.node.system_container
+    unit: "{cpu}"
+  - id: metric.k8s.node.system_container.cpu.time
+    type: metric
+    metric_name: k8s.node.system_container.cpu.time
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: "Node's system container CPU time."
+    note: >
+      This metric is derived from the
+      [CPUStats.UsageCoreNanoSeconds](https://github.com/kubernetes/kubelet/blob/v0.35.2/pkg/apis/stats/v1alpha1/types.go#L236)
+      field of the [ContainerStats](https://github.com/kubernetes/kubelet/blob/v0.35.2/pkg/apis/stats/v1alpha1/types.go#L157C6-L157C20)
+      of [Node.SystemContainers](https://github.com/kubernetes/kubelet/blob/v0.35.2/pkg/apis/stats/v1alpha1/types.go#L40)
+      of the Kubelet's stats API.
+    instrument: counter
+    entity_associations:
+      - k8s.node.system_container
+    unit: "s"
+  - id: metric.k8s.node.system_container.memory.usage
+    type: metric
+    metric_name: k8s.node.system_container.memory.usage
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "Node's system container memory usage."
+    note: >
+      This metric is derived from the
+      [MemoryStats.UsageBytes](https://github.com/kubernetes/kubelet/blob/v0.35.2/pkg/apis/stats/v1alpha1/types.go#L252)
+      field of the [ContainerStats](https://github.com/kubernetes/kubelet/blob/v0.35.2/pkg/apis/stats/v1alpha1/types.go#L157C6-L157C20)
+      of [Node.SystemContainers](https://github.com/kubernetes/kubelet/blob/v0.35.2/pkg/apis/stats/v1alpha1/types.go#L40)
+      of the Kubelet's stats API.
+    instrument: updowncounter
+    entity_associations:
+      - k8s.node.system_container
+    unit: "By"
+  - id: metric.k8s.node.system_container.memory.working_set
+    type: metric
+    metric_name: k8s.node.system_container.memory.working_set
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "The amount of working set memory."
+    note: >
+      This metric is derived from the
+      [MemoryStats.WorkingSetBytes](https://github.com/kubernetes/kubelet/blob/v0.35.2/pkg/apis/stats/v1alpha1/types.go#L256)
+      field of the [ContainerStats](https://github.com/kubernetes/kubelet/blob/v0.35.2/pkg/apis/stats/v1alpha1/types.go#L157C6-L157C20)
+      of [Node.SystemContainers](https://github.com/kubernetes/kubelet/blob/v0.35.2/pkg/apis/stats/v1alpha1/types.go#L40)
+      of the Kubelet's stats API.
+    instrument: updowncounter
+    entity_associations:
+      - k8s.node.system_container
+    unit: "By"
 
   # k8s.node.filesystem.* metrics
   - id: metric.k8s.node.filesystem.available
@@ -757,7 +831,7 @@ groups:
       - k8s.deployment
     note: |
       This metric aligns with the `replicas` field of the
-      [K8s DeploymentSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#deploymentspec-v1-apps).
+      [K8s DeploymentSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#deploymentspec-v1-apps).
     instrument: updowncounter
     unit: "{pod}"
   - id: metric.k8s.deployment.pod.available
@@ -772,7 +846,7 @@ groups:
     brief: "Total number of available replica pods (ready for at least minReadySeconds) targeted by this deployment."
     note: |
       This metric aligns with the `availableReplicas` field of the
-      [K8s DeploymentStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#deploymentstatus-v1-apps).
+      [K8s DeploymentStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#deploymentstatus-v1-apps).
     instrument: updowncounter
     unit: "{pod}"
 
@@ -789,7 +863,7 @@ groups:
       - k8s.replicaset
     note: |
       This metric aligns with the `replicas` field of the
-      [K8s ReplicaSetSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#replicasetspec-v1-apps).
+      [K8s ReplicaSetSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#replicasetspec-v1-apps).
     instrument: updowncounter
     unit: "{pod}"
   - id: metric.k8s.replicaset.pod.available
@@ -804,7 +878,7 @@ groups:
     brief: "Total number of available replica pods (ready for at least minReadySeconds) targeted by this replicaset."
     note: |
       This metric aligns with the `availableReplicas` field of the
-      [K8s ReplicaSetStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#replicasetstatus-v1-apps).
+      [K8s ReplicaSetStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#replicasetstatus-v1-apps).
     instrument: updowncounter
     unit: "{pod}"
 
@@ -821,7 +895,7 @@ groups:
       - k8s.replicationcontroller
     note: |
       This metric aligns with the `replicas` field of the
-      [K8s ReplicationControllerSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#replicationcontrollerspec-v1-core)
+      [K8s ReplicationControllerSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#replicationcontrollerspec-v1-core)
     instrument: updowncounter
     unit: "{pod}"
   - id: metric.k8s.replicationcontroller.pod.available
@@ -836,7 +910,7 @@ groups:
     brief: "Total number of available replica pods (ready for at least minReadySeconds) targeted by this replication controller."
     note: |
       This metric aligns with the `availableReplicas` field of the
-      [K8s ReplicationControllerStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#replicationcontrollerstatus-v1-core)
+      [K8s ReplicationControllerStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#replicationcontrollerstatus-v1-core)
     instrument: updowncounter
     unit: "{pod}"
 
@@ -853,7 +927,7 @@ groups:
       - k8s.statefulset
     note: |
       This metric aligns with the `replicas` field of the
-      [K8s StatefulSetSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#statefulsetspec-v1-apps).
+      [K8s StatefulSetSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#statefulsetspec-v1-apps).
     instrument: updowncounter
     unit: "{pod}"
   - id: metric.k8s.statefulset.pod.ready
@@ -868,7 +942,7 @@ groups:
     brief: "The number of replica pods created for this statefulset with a Ready Condition."
     note: |
       This metric aligns with the `readyReplicas` field of the
-      [K8s StatefulSetStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#statefulsetstatus-v1-apps).
+      [K8s StatefulSetStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#statefulsetstatus-v1-apps).
     instrument: updowncounter
     unit: "{pod}"
   - id: metric.k8s.statefulset.pod.current
@@ -883,7 +957,7 @@ groups:
     brief: "The number of replica pods created by the statefulset controller from the statefulset version indicated by currentRevision."
     note: |
       This metric aligns with the `currentReplicas` field of the
-      [K8s StatefulSetStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#statefulsetstatus-v1-apps).
+      [K8s StatefulSetStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#statefulsetstatus-v1-apps).
     instrument: updowncounter
     unit: "{pod}"
   - id: metric.k8s.statefulset.pod.updated
@@ -898,7 +972,7 @@ groups:
     brief: "Number of replica pods created by the statefulset controller from the statefulset version indicated by updateRevision."
     note: |
       This metric aligns with the `updatedReplicas` field of the
-      [K8s StatefulSetStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#statefulsetstatus-v1-apps).
+      [K8s StatefulSetStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#statefulsetstatus-v1-apps).
     instrument: updowncounter
     unit: "{pod}"
 
@@ -913,7 +987,7 @@ groups:
     brief: "Desired number of replica pods managed by this horizontal pod autoscaler, as last calculated by the autoscaler."
     note: |
       This metric aligns with the `desiredReplicas` field of the
-      [K8s HorizontalPodAutoscalerStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#horizontalpodautoscalerstatus-v2-autoscaling)
+      [K8s HorizontalPodAutoscalerStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#horizontalpodautoscalerstatus-v2-autoscaling)
     instrument: updowncounter
     entity_associations:
       - k8s.hpa
@@ -928,7 +1002,7 @@ groups:
     brief: "Current number of replica pods managed by this horizontal pod autoscaler, as last seen by the autoscaler."
     note: |
       This metric aligns with the `currentReplicas` field of the
-      [K8s HorizontalPodAutoscalerStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#horizontalpodautoscalerstatus-v2-autoscaling)
+      [K8s HorizontalPodAutoscalerStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#horizontalpodautoscalerstatus-v2-autoscaling)
     instrument: updowncounter
     entity_associations:
       - k8s.hpa
@@ -943,7 +1017,7 @@ groups:
     brief: "The upper limit for the number of replica pods to which the autoscaler can scale up."
     note: |
       This metric aligns with the `maxReplicas` field of the
-      [K8s HorizontalPodAutoscalerSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#horizontalpodautoscalerspec-v2-autoscaling)
+      [K8s HorizontalPodAutoscalerSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#horizontalpodautoscalerspec-v2-autoscaling)
     instrument: updowncounter
     entity_associations:
       - k8s.hpa
@@ -958,7 +1032,7 @@ groups:
     brief: "The lower limit for the number of replica pods to which the autoscaler can scale down."
     note: |
       This metric aligns with the `minReplicas` field of the
-      [K8s HorizontalPodAutoscalerSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#horizontalpodautoscalerspec-v2-autoscaling)
+      [K8s HorizontalPodAutoscalerSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#horizontalpodautoscalerspec-v2-autoscaling)
     instrument: updowncounter
     entity_associations:
       - k8s.hpa
@@ -970,7 +1044,7 @@ groups:
     brief: "Target value for CPU resource in HPA config."
     note: |
       This metric aligns with the `value` field of the
-      [K8s HPA MetricTarget](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#metrictarget-v2-autoscaling).
+      [K8s HPA MetricTarget](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#metrictarget-v2-autoscaling).
       If the type of the metric is [`ContainerResource`](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/#support-for-metrics-apis),
       the `k8s.container.name` attribute MUST be set to identify the specific container within the pod to which the metric applies.
     instrument: gauge
@@ -990,7 +1064,7 @@ groups:
     brief: "Target average value for CPU resource in HPA config."
     note: |
       This metric aligns with the `averageValue` field of the
-      [K8s HPA MetricTarget](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#metrictarget-v2-autoscaling).
+      [K8s HPA MetricTarget](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#metrictarget-v2-autoscaling).
       If the type of the metric is [`ContainerResource`](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/#support-for-metrics-apis),
       the `k8s.container.name` attribute MUST be set to identify the specific container within the pod to which the metric applies.
     instrument: gauge
@@ -1010,7 +1084,7 @@ groups:
     brief: "Target average utilization, in percentage, for CPU resource in HPA config."
     note: |
       This metric aligns with the `averageUtilization` field of the
-      [K8s HPA MetricTarget](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#metrictarget-v2-autoscaling).
+      [K8s HPA MetricTarget](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#metrictarget-v2-autoscaling).
       If the type of the metric is [`ContainerResource`](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/#support-for-metrics-apis),
       the `k8s.container.name` attribute MUST be set to identify the specific container within the pod to which the metric applies.
     instrument: gauge
@@ -1035,7 +1109,7 @@ groups:
     brief: "Number of nodes that are running at least 1 daemon pod and are supposed to run the daemon pod."
     note: |
       This metric aligns with the `currentNumberScheduled` field of the
-      [K8s DaemonSetStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#daemonsetstatus-v1-apps).
+      [K8s DaemonSetStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#daemonsetstatus-v1-apps).
     instrument: updowncounter
     entity_associations:
       - k8s.daemonset
@@ -1050,7 +1124,7 @@ groups:
     brief: "Number of nodes that should be running the daemon pod (including nodes currently running the daemon pod)."
     note: |
       This metric aligns with the `desiredNumberScheduled` field of the
-      [K8s DaemonSetStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#daemonsetstatus-v1-apps).
+      [K8s DaemonSetStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#daemonsetstatus-v1-apps).
     instrument: updowncounter
     entity_associations:
       - k8s.daemonset
@@ -1065,7 +1139,7 @@ groups:
     brief: "Number of nodes that are running the daemon pod, but are not supposed to run the daemon pod."
     note: |
       This metric aligns with the `numberMisscheduled` field of the
-      [K8s DaemonSetStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#daemonsetstatus-v1-apps).
+      [K8s DaemonSetStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#daemonsetstatus-v1-apps).
     instrument: updowncounter
     entity_associations:
       - k8s.daemonset
@@ -1080,7 +1154,7 @@ groups:
     brief: "Number of nodes that should be running the daemon pod and have one or more of the daemon pod running and ready."
     note: |
       This metric aligns with the `numberReady` field of the
-      [K8s DaemonSetStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#daemonsetstatus-v1-apps).
+      [K8s DaemonSetStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#daemonsetstatus-v1-apps).
     instrument: updowncounter
     entity_associations:
       - k8s.daemonset
@@ -1101,7 +1175,7 @@ groups:
       - k8s.job
     note: |
       This metric aligns with the `active` field of the
-      [K8s JobStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#jobstatus-v1-batch).
+      [K8s JobStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#jobstatus-v1-batch).
   - id: metric.k8s.job.pod.failed
     type: metric
     metric_name: k8s.job.pod.failed
@@ -1116,7 +1190,7 @@ groups:
       - k8s.job
     note: |
       This metric aligns with the `failed` field of the
-      [K8s JobStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#jobstatus-v1-batch).
+      [K8s JobStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#jobstatus-v1-batch).
   - id: metric.k8s.job.pod.successful
     type: metric
     metric_name: k8s.job.pod.successful
@@ -1131,7 +1205,7 @@ groups:
       - k8s.job
     note: |
       This metric aligns with the `succeeded` field of the
-      [K8s JobStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#jobstatus-v1-batch).
+      [K8s JobStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#jobstatus-v1-batch).
   - id: metric.k8s.job.pod.desired_successful
     type: metric
     metric_name: k8s.job.pod.desired_successful
@@ -1146,7 +1220,7 @@ groups:
       - k8s.job
     note: |
       This metric aligns with the `completions` field of the
-      [K8s JobSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#jobspec-v1-batch)..
+      [K8s JobSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#jobspec-v1-batch)..
   - id: metric.k8s.job.pod.max_parallel
     type: metric
     metric_name: k8s.job.pod.max_parallel
@@ -1161,7 +1235,7 @@ groups:
       - k8s.job
     note: |
       This metric aligns with the `parallelism` field of the
-      [K8s JobSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#jobspec-v1-batch).
+      [K8s JobSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#jobspec-v1-batch).
 
   # k8s.cronjob.* metrics
   - id: metric.k8s.cronjob.job.active
@@ -1178,7 +1252,7 @@ groups:
       - k8s.cronjob
     note: |
       This metric aligns with the `active` field of the
-      [K8s CronJobStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#cronjobstatus-v1-batch).
+      [K8s CronJobStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#cronjobstatus-v1-batch).
 
   # k8s.namespace.* metrics
   - id: metric.k8s.namespace.phase
@@ -1198,60 +1272,182 @@ groups:
         requirement_level: required
 
   # k8s.container.* metrics
-  - id: metric.k8s.container.cpu.limit
+  - id: metric.k8s.container.cpu.limit.desired
     type: metric
-    metric_name: k8s.container.cpu.limit
+    metric_name: k8s.container.cpu.limit.desired
     annotations:
       code_generation:
         metric_value_type: double
     stability: development
-    brief: "Maximum CPU resource limit set for the container."
+    brief: "Maximum CPU resource limit as defined by the container spec."
     entity_associations:
       - k8s.container
     note: |
-      See https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#resourcerequirements-v1-core for details.
+      This metric aligns with the limit in the
+      [`resources`](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#resourcerequirements-v1-core) field of
+      [K8s Container](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#container-v1-core)
+      (spec.containers[*].resources). Also see `Desired Resources` in
+      <https://kubernetes.io/docs/tasks/configure-pod-container/resize-container-resources/> for more details.
     instrument: updowncounter
     unit: "{cpu}"
-  - id: metric.k8s.container.cpu.request
+  - id: metric.k8s.container.cpu.limit.current
     type: metric
-    metric_name: k8s.container.cpu.request
+    metric_name: k8s.container.cpu.limit.current
     annotations:
       code_generation:
         metric_value_type: double
     stability: development
-    brief: "CPU resource requested for the container."
+    brief: "Maximum CPU resource limit currently configured for a running container."
     entity_associations:
       - k8s.container
     note: |
-      See https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#resourcerequirements-v1-core for details.
+      This metric aligns with the limit in the
+      [`resources`](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#resourcerequirements-v1-core) field of
+      [K8s ContainerStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#containerstatus-v1-core)
+      (status.containerStatuses[*].resources). Also see `Actual Resources` in
+      <https://kubernetes.io/docs/tasks/configure-pod-container/resize-container-resources/> for more details.
     instrument: updowncounter
     unit: "{cpu}"
-  - id: metric.k8s.container.memory.limit
+  - id: metric.k8s.container.cpu.limit.utilization
     type: metric
-    metric_name: k8s.container.memory.limit
+    metric_name: k8s.container.cpu.limit.utilization
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: "The ratio of container CPU usage to its current CPU limit."
+    entity_associations:
+      - k8s.container
+    note: |
+      The current CPU limit reflects the actual resources applied to the container, as reported by
+      [ContainerStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#containerstatus-v1-core).
+      The value range is [0.0,1.0]. A value of 1.0 means the container is using 100% of its actual CPU limit.
+      If the CPU limit is not set, this metric SHOULD NOT be emitted for that container.
+    instrument: gauge
+    unit: "1"
+  - id: metric.k8s.container.cpu.request.desired
+    type: metric
+    metric_name: k8s.container.cpu.request.desired
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: "CPU resource requested as defined by the container spec."
+    entity_associations:
+      - k8s.container
+    note: |
+      This metric aligns with the request in the
+      [`resources`](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#resourcerequirements-v1-core) field of
+      [K8s Container](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#container-v1-core)
+      (spec.containers[*].resources). Also see `Desired Resources` in
+      <https://kubernetes.io/docs/tasks/configure-pod-container/resize-container-resources/> for more details.
+    instrument: updowncounter
+    unit: "{cpu}"
+  - id: metric.k8s.container.cpu.request.current
+    type: metric
+    metric_name: k8s.container.cpu.request.current
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: "CPU resource requested currently configured for a running container."
+    entity_associations:
+      - k8s.container
+    note: |
+      This metric aligns with the request in the
+      [`resources`](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#resourcerequirements-v1-core) field of
+      [K8s ContainerStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#containerstatus-v1-core)
+      (status.containerStatuses[*].resources). Also see `Actual Resources` in
+      <https://kubernetes.io/docs/tasks/configure-pod-container/resize-container-resources/> for more details.
+    instrument: updowncounter
+    unit: "{cpu}"
+  - id: metric.k8s.container.cpu.request.utilization
+    type: metric
+    metric_name: k8s.container.cpu.request.utilization
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: "The ratio of container CPU usage to its current CPU request."
+    entity_associations:
+      - k8s.container
+    note: |
+      The current CPU request reflects the request applied to the running container, as reported by
+      [ContainerStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#containerstatus-v1-core).
+      The value range is [0.0,1.0]. A value of 1.0 means the container is using 100% of its actual CPU request.
+      If the CPU request is not set, this metric SHOULD NOT be emitted for that container.
+    instrument: gauge
+    unit: "1"
+  - id: metric.k8s.container.memory.limit.desired
+    type: metric
+    metric_name: k8s.container.memory.limit.desired
     annotations:
       code_generation:
         metric_value_type: int
     stability: development
-    brief: "Maximum memory resource limit set for the container."
+    brief: "Maximum memory resource limit as defined by the container spec."
     entity_associations:
       - k8s.container
     note: |
-      See https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#resourcerequirements-v1-core for details.
+      This metric aligns with the limit in the
+      [`resources`](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#resourcerequirements-v1-core) field of
+      [K8s Container](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#container-v1-core)
+      (spec.containers[*].resources). Also see `Desired Resources` in
+      <https://kubernetes.io/docs/tasks/configure-pod-container/resize-container-resources/> for more details.
     instrument: updowncounter
     unit: "By"
-  - id: metric.k8s.container.memory.request
+  - id: metric.k8s.container.memory.limit.current
     type: metric
-    metric_name: k8s.container.memory.request
+    metric_name: k8s.container.memory.limit.current
     annotations:
       code_generation:
         metric_value_type: int
     stability: development
-    brief: "Memory resource requested for the container."
+    brief: "Maximum memory resource limit currently configured for a running container."
     entity_associations:
       - k8s.container
     note: |
-      See https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#resourcerequirements-v1-core for details.
+      This metric aligns with the limit in the
+      [`resources`](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#resourcerequirements-v1-core) field of
+      [K8s ContainerStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#containerstatus-v1-core)
+      (status.containerStatuses[*].resources). Also see `Actual Resources` in
+      <https://kubernetes.io/docs/tasks/configure-pod-container/resize-container-resources/> for more details.
+    instrument: updowncounter
+    unit: "By"
+  - id: metric.k8s.container.memory.request.desired
+    type: metric
+    metric_name: k8s.container.memory.request.desired
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "Memory resource requested as defined by the container spec."
+    entity_associations:
+      - k8s.container
+    note: |
+      This metric aligns with the request in the
+      [`resources`](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#resourcerequirements-v1-core) field of
+      [K8s Container](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#container-v1-core)
+      (spec.containers[*].resources). Also see `Desired Resources` in
+      <https://kubernetes.io/docs/tasks/configure-pod-container/resize-container-resources/> for more details.
+    instrument: updowncounter
+    unit: "By"
+  - id: metric.k8s.container.memory.request.current
+    type: metric
+    metric_name: k8s.container.memory.request.current
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "Memory resource request currently configured for a running container."
+    entity_associations:
+      - k8s.container
+    note: |
+      This metric aligns with the request in the
+      [`resources`](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#resourcerequirements-v1-core) field of
+      [K8s ContainerStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#containerstatus-v1-core)
+      (status.containerStatuses[*].resources). Also see `Actual Resources` in
+      <https://kubernetes.io/docs/tasks/configure-pod-container/resize-container-resources/> for more details.
     instrument: updowncounter
     unit: "By"
   - id: metric.k8s.container.storage.limit
@@ -1265,7 +1461,7 @@ groups:
     entity_associations:
       - k8s.container
     note: |
-      See https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#resourcerequirements-v1-core for details.
+      See https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#resourcerequirements-v1-core for details.
     instrument: updowncounter
     unit: "By"
   - id: metric.k8s.container.storage.request
@@ -1279,7 +1475,7 @@ groups:
     entity_associations:
       - k8s.container
     note: |
-      See https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#resourcerequirements-v1-core for details.
+      See https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#resourcerequirements-v1-core for details.
     instrument: updowncounter
     unit: "By"
   - id: metric.k8s.container.ephemeral_storage.limit
@@ -1293,7 +1489,7 @@ groups:
     entity_associations:
       - k8s.container
     note: |
-      See https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#resourcerequirements-v1-core for details.
+      See https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#resourcerequirements-v1-core for details.
     instrument: updowncounter
     unit: "By"
   - id: metric.k8s.container.ephemeral_storage.request
@@ -1307,9 +1503,26 @@ groups:
     entity_associations:
       - k8s.container
     note: |
-      See https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#resourcerequirements-v1-core for details.
+      See https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#resourcerequirements-v1-core for details.
     instrument: updowncounter
     unit: "By"
+  - id: metric.k8s.container.ephemeral_storage.usage
+    type: metric
+    metric_name: k8s.container.ephemeral_storage.usage
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "The ephemeral storage used by a container."
+    entity_associations:
+      - k8s.container
+    note: |
+      The value for this metric can be compared against `metric.k8s.container.ephemeral_storage.request` and `metric.k8s.container.ephemeral_storage.limit`.
+    instrument: updowncounter
+    unit: "By"
+    attributes:
+      - ref: k8s.container.ephemeral_storage.fs_type
+        requirement_level: required
   - id: metric.k8s.container.restart.count
     type: metric
     metric_name: k8s.container.restart.count
@@ -1344,33 +1557,7 @@ groups:
       - k8s.container
     note: |
       This metric SHOULD reflect the value of the `ready` field in the
-      [K8s ContainerStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#containerstatus-v1-core).
-  - id: metric.k8s.container.cpu.limit_utilization
-    type: metric
-    metric_name: k8s.container.cpu.limit_utilization
-    annotations:
-      code_generation:
-        metric_value_type: double
-    stability: development
-    brief: "The ratio of container CPU usage to its CPU limit."
-    entity_associations:
-      - k8s.container
-    note: >
-      The value range is [0.0,1.0]. A value of 1.0 means the container is using 100% of its CPU limit. If the CPU limit is not set, this metric SHOULD NOT be emitted for that container.
-    instrument: gauge
-    unit: "1"
-  - id: metric.k8s.container.cpu.request_utilization
-    type: metric
-    metric_name: k8s.container.cpu.request_utilization
-    annotations:
-      code_generation:
-        metric_value_type: double
-    stability: development
-    brief: "The ratio of container CPU usage to its CPU request."
-    entity_associations:
-      - k8s.container
-    instrument: gauge
-    unit: "1"
+      [K8s ContainerStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#containerstatus-v1-core).
 
   # k8s.resourcequota.cpu.* metrics
   - id: metric.k8s.resourcequota.cpu.limit.hard
@@ -1389,7 +1576,7 @@ groups:
       - k8s.resourcequota
     note: |
       This metric is retrieved from the `hard` field of the
-      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
+      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#resourcequotastatus-v1-core).
   - id: metric.k8s.resourcequota.cpu.limit.used
     type: metric
     metric_name: k8s.resourcequota.cpu.limit.used
@@ -1406,7 +1593,7 @@ groups:
       - k8s.resourcequota
     note: |
       This metric is retrieved from the `used` field of the
-      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
+      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#resourcequotastatus-v1-core).
   - id: metric.k8s.resourcequota.cpu.request.hard
     type: metric
     metric_name: k8s.resourcequota.cpu.request.hard
@@ -1423,7 +1610,7 @@ groups:
       - k8s.resourcequota
     note: |
       This metric is retrieved from the `hard` field of the
-      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
+      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#resourcequotastatus-v1-core).
   - id: metric.k8s.resourcequota.cpu.request.used
     type: metric
     metric_name: k8s.resourcequota.cpu.request.used
@@ -1440,7 +1627,7 @@ groups:
       - k8s.resourcequota
     note: |
       This metric is retrieved from the `used` field of the
-      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
+      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#resourcequotastatus-v1-core).
 
   # k8s.resourcequota.memory.* metrics
   - id: metric.k8s.resourcequota.memory.limit.hard
@@ -1459,7 +1646,7 @@ groups:
       - k8s.resourcequota
     note: |
       This metric is retrieved from the `hard` field of the
-      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
+      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#resourcequotastatus-v1-core).
   - id: metric.k8s.resourcequota.memory.limit.used
     type: metric
     metric_name: k8s.resourcequota.memory.limit.used
@@ -1476,7 +1663,7 @@ groups:
       - k8s.resourcequota
     note: |
       This metric is retrieved from the `used` field of the
-      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
+      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#resourcequotastatus-v1-core).
   - id: metric.k8s.resourcequota.memory.request.hard
     type: metric
     metric_name: k8s.resourcequota.memory.request.hard
@@ -1493,7 +1680,7 @@ groups:
       - k8s.resourcequota
     note: |
       This metric is retrieved from the `hard` field of the
-      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
+      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#resourcequotastatus-v1-core).
   - id: metric.k8s.resourcequota.memory.request.used
     type: metric
     metric_name: k8s.resourcequota.memory.request.used
@@ -1510,7 +1697,7 @@ groups:
       - k8s.resourcequota
     note: |
       This metric is retrieved from the `used` field of the
-      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
+      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#resourcequotastatus-v1-core).
 
   # k8s.resourcequota.hugepage_count.* metrics
   - id: metric.k8s.resourcequota.hugepage_count.request.hard
@@ -1529,7 +1716,7 @@ groups:
       - k8s.resourcequota
     note: |
       This metric is retrieved from the `hard` field of the
-      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
+      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#resourcequotastatus-v1-core).
     attributes:
       - ref: k8s.hugepage.size
         requirement_level: required
@@ -1549,7 +1736,7 @@ groups:
       - k8s.resourcequota
     note: |
       This metric is retrieved from the `used` field of the
-      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
+      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#resourcequotastatus-v1-core).
     attributes:
       - ref: k8s.hugepage.size
         requirement_level: required
@@ -1571,7 +1758,7 @@ groups:
       - k8s.resourcequota
     note: |
       This metric is retrieved from the `hard` field of the
-      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
+      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#resourcequotastatus-v1-core).
 
       The `k8s.storageclass.name` should be required when a resource quota is defined for a specific
       storage class.
@@ -1597,7 +1784,7 @@ groups:
       - k8s.resourcequota
     note: |
       This metric is retrieved from the `used` field of the
-      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
+      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#resourcequotastatus-v1-core).
 
       The `k8s.storageclass.name` should be required when a resource quota is defined for a specific
       storage class.
@@ -1623,7 +1810,7 @@ groups:
     unit: "{persistentvolumeclaim}"
     note: |
       This metric is retrieved from the `hard` field of the
-      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
+      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#resourcequotastatus-v1-core).
 
       The `k8s.storageclass.name` should be required when a resource quota is defined for a specific
       storage class.
@@ -1649,7 +1836,7 @@ groups:
     unit: "{persistentvolumeclaim}"
     note: |
       This metric is retrieved from the `used` field of the
-      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
+      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#resourcequotastatus-v1-core).
 
       The `k8s.storageclass.name` should be required when a resource quota is defined for a specific
       storage class.
@@ -1679,7 +1866,7 @@ groups:
       - k8s.resourcequota
     note: |
       This metric is retrieved from the `hard` field of the
-      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
+      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#resourcequotastatus-v1-core).
   - id: metric.k8s.resourcequota.ephemeral_storage.request.used
     type: metric
     metric_name: k8s.resourcequota.ephemeral_storage.request.used
@@ -1696,7 +1883,7 @@ groups:
       - k8s.resourcequota
     note: |
       This metric is retrieved from the `used` field of the
-      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
+      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#resourcequotastatus-v1-core).
   - id: metric.k8s.resourcequota.ephemeral_storage.limit.hard
     type: metric
     metric_name: k8s.resourcequota.ephemeral_storage.limit.hard
@@ -1713,7 +1900,7 @@ groups:
       - k8s.resourcequota
     note: |
       This metric is retrieved from the `hard` field of the
-      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
+      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#resourcequotastatus-v1-core).
   - id: metric.k8s.resourcequota.ephemeral_storage.limit.used
     type: metric
     metric_name: k8s.resourcequota.ephemeral_storage.limit.used
@@ -1730,7 +1917,7 @@ groups:
       - k8s.resourcequota
     note: |
       This metric is retrieved from the `used` field of the
-      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
+      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#resourcequotastatus-v1-core).
 
   # k8s.resourcequota.object_count metric
   - id: metric.k8s.resourcequota.object_count.hard
@@ -1749,7 +1936,7 @@ groups:
       - k8s.resourcequota
     note: |
       This metric is retrieved from the `hard` field of the
-      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
+      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#resourcequotastatus-v1-core).
     attributes:
       - ref: k8s.resourcequota.resource_name
         requirement_level: required
@@ -1769,7 +1956,7 @@ groups:
       - k8s.resourcequota
     note: |
       This metric is retrieved from the `used` field of the
-      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#resourcequotastatus-v1-core).
+      [K8s ResourceQuotaStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.34/#resourcequotastatus-v1-core).
     attributes:
       - ref: k8s.resourcequota.resource_name
         requirement_level: required
@@ -1838,3 +2025,94 @@ groups:
 
       This metric signals that external endpoints have been assigned by the load balancer controller, but it does not
       guarantee that the load balancer is healthy.
+
+  # k8s.persistentvolume.* metrics
+  - id: metric.k8s.persistentvolume.status.phase
+    type: metric
+    metric_name: k8s.persistentvolume.status.phase
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "Number of PersistentVolumes in a given phase."
+    instrument: updowncounter
+    unit: "{persistentvolume}"
+    entity_associations:
+      - k8s.persistentvolume
+    attributes:
+      - ref: k8s.persistentvolume.status.phase
+        requirement_level: required
+    note: |
+      All possible phases should be reported at each interval to avoid gaps in the time series.
+      This metric is derived from the `.status.phase` field of the
+      [K8s PersistentVolumeStatus](https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/persistent-volume-v1/#PersistentVolumeStatus).
+
+  # k8s.persistentvolumeclaim.* metrics
+  - id: metric.k8s.persistentvolumeclaim.status.phase
+    type: metric
+    metric_name: k8s.persistentvolumeclaim.status.phase
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "Number of PersistentVolumeClaims in a given phase."
+    instrument: updowncounter
+    unit: "{persistentvolumeclaim}"
+    entity_associations:
+      - k8s.persistentvolumeclaim
+    attributes:
+      - ref: k8s.persistentvolumeclaim.status.phase
+        requirement_level: required
+    note: |
+      All possible phases should be reported at each interval to avoid gaps in the time series.
+      This metric is derived from the `.status.phase` field of the
+      [K8s PersistentVolumeClaimStatus](https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/persistent-volume-claim-v1/#PersistentVolumeClaimStatus).
+
+  - id: metric.k8s.persistentvolume.storage.capacity
+    type: metric
+    metric_name: k8s.persistentvolume.storage.capacity
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "The storage capacity of the PersistentVolume."
+    instrument: updowncounter
+    unit: "By"
+    entity_associations:
+      - k8s.persistentvolume
+    note: >
+      This metric is derived from the `.spec.capacity.storage` field of the
+      [K8s PersistentVolumeSpec](https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/persistent-volume-v1/#PersistentVolumeSpec).
+
+  - id: metric.k8s.persistentvolumeclaim.storage.request
+    type: metric
+    metric_name: k8s.persistentvolumeclaim.storage.request
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "The storage requested by the PersistentVolumeClaim."
+    instrument: updowncounter
+    unit: "By"
+    entity_associations:
+      - k8s.persistentvolumeclaim
+    note: >
+      This metric is derived from the `.spec.resources.requests.storage` field of the
+      [K8s PersistentVolumeClaimSpec](https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/persistent-volume-claim-v1/#PersistentVolumeClaimSpec).
+
+  - id: metric.k8s.persistentvolumeclaim.storage.capacity
+    type: metric
+    metric_name: k8s.persistentvolumeclaim.storage.capacity
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "The actual storage capacity provisioned for the PersistentVolumeClaim."
+    instrument: updowncounter
+    unit: "By"
+    entity_associations:
+      - k8s.persistentvolumeclaim
+    note: |
+      Only available when the PVC is bound. May differ from the requested capacity due to provisioner rounding.
+      This metric is derived from the `.status.capacity.storage` field of the
+      [K8s PersistentVolumeClaimStatus](https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/persistent-volume-claim-v1/#PersistentVolumeClaimStatus).

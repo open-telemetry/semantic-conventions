@@ -8,7 +8,7 @@ cascade:
 redirects:
   - { from: 'attributes-registry/*', to: 'registry/attributes/:splat' }
   - { from: 'database/*', to: 'db/:splat' }
-cSpell:ignore: semconv CICD
+cSpell:ignore: semconv
 auto_gen: below
 linkTitle: Semantic conventions
 --->
@@ -22,14 +22,14 @@ The benefit to using Semantic Conventions is in following a common naming scheme
 Semantic Conventions are defined for the following areas:
 
 * **[General](general/README.md): General Semantic Conventions**.
-* [CICD](cicd/README.md): Semantic Conventions for CICD systems.
+* [CI/CD](cicd/README.md): Semantic Conventions for CI/CD systems.
 * [Cloud Providers](cloud-providers/README.md): Semantic Conventions for cloud providers libraries.
 * [CloudEvents](cloudevents/README.md): Semantic Conventions for the CloudEvents specification.
 * [Database](db/README.md): Semantic Conventions for database operations.
 * [Exceptions](exceptions/README.md): Semantic Conventions for exceptions.
 * [FaaS](faas/README.md): Semantic Conventions for Function as a Service (FaaS) operations.
 * [Feature Flags](feature-flags/README.md): Semantic Conventions for feature flag evaluations.
-* [Generative AI](gen-ai/README.md): Semantic Conventions for generative AI (LLM, etc.) operations.
+* [Generative AI](gen-ai/README.md): Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
 * [GraphQL](graphql/README.md): Semantic Conventions for GraphQL implementations.
 * [HTTP](http/README.md): Semantic Conventions for HTTP client and server operations.
 * [Messaging](messaging/README.md): Semantic Conventions for messaging operations and systems.

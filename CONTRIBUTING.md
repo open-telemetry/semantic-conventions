@@ -9,7 +9,7 @@ requirements and recommendations.
 <details>
 <summary>Table of Contents</summary>
 
-<!-- toc -->
+<!-- START doctoc -->
 
 - [Sign the CLA](#sign-the-cla)
 - [How to contribute](#how-to-contribute)
@@ -39,7 +39,7 @@ requirements and recommendations.
 - [Schema files](#schema-files)
 - [Merging existing ECS conventions](#merging-existing-ecs-conventions)
 
-<!-- tocstop -->
+<!-- END doctoc -->
 
 </details>
 

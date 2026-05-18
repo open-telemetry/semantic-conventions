@@ -12,14 +12,14 @@ measurements are aggregated and exported as metrics, which provide insight into
 those operations. By including RPC properties as attributes on measurements, the
 metrics can be filtered for finer grain analysis.
 
-<!-- toc -->
+<!-- START doctoc -->
 
 - [RPC server](#rpc-server)
   - [Metric: `rpc.server.call.duration`](#metric-rpcservercallduration)
 - [RPC client](#rpc-client)
   - [Metric: `rpc.client.call.duration`](#metric-rpcclientcallduration)
 
-<!-- tocstop -->
+<!-- END doctoc -->
 
 > [!IMPORTANT]
 > Existing RPC instrumentations that are using
@@ -55,7 +55,7 @@ metrics can be filtered for finer grain analysis.
 This metric is [required][MetricRequired].
 
 This metric SHOULD be specified with
-[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.55.0/specification/metrics/api.md#instrument-advisory-parameters)
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.56.0/specification/metrics/api.md#instrument-advisory-parameters)
 of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 ]`.
 
 <!-- semconv metric.rpc.server.call.duration -->
@@ -154,7 +154,7 @@ Semantic conventions for individual RPC frameworks SHOULD document what `rpc.res
 This metric is [required][MetricRequired].
 
 This metric SHOULD be specified with
-[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.55.0/specification/metrics/api.md#instrument-advisory-parameters)
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.56.0/specification/metrics/api.md#instrument-advisory-parameters)
 of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 ]`.
 
 <!-- semconv metric.rpc.client.call.duration -->

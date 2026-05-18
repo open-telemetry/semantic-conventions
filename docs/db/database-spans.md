@@ -6,7 +6,7 @@ linkTitle: Spans
 
 **Status**: [Stable][DocumentStatus], Unless otherwise specified.
 
-<!-- toc -->
+<!-- START doctoc -->
 
 - [Name](#name)
 - [Span definition](#span-definition)
@@ -18,7 +18,7 @@ linkTitle: Spans
   - [SQL commenter](#sql-commenter)
 - [Semantic conventions for specific database technologies](#semantic-conventions-for-specific-database-technologies)
 
-<!-- tocstop -->
+<!-- END doctoc -->
 
 > [!IMPORTANT]
 >
@@ -48,7 +48,7 @@ linkTitle: Spans
 
 ## Name
 
-Database spans MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.55.0/specification/trace/api.md#span).
+Database spans MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.56.0/specification/trace/api.md#span).
 
 The **span name** SHOULD be `{db.query.summary}` if a summary is available.
 

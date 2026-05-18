@@ -93,7 +93,7 @@ that users who have very specific and detailed needs are still covered by our
 semantic conventions so they don't need to go out of their way coming up with
 their own, risking the same kind of disparate instrumentation problem that
 semantic conventions are intended to solve. The main differences in how we
-handle Speciialist Class instrumentation are:
+handle Specialist Class instrumentation are:
 
 1. The names and resulting values will map directly to what a user would expect
    hunting down the information themselves. We will rarely be prescriptive in
@@ -151,7 +151,7 @@ Specialist Class.
 
 ### Naming
 
-For General Class, choose a name that most accurately descibes the general
+For General Class, choose a name that most accurately describes the general
 concept without biasing to a platform. Lean towards simplicity where possible,
 as this is the instrumentation that will be used by the widest audience; we want
 it to be as clear to understand and ergonomic to use as possible.
@@ -174,7 +174,7 @@ closely matches our vision for our general use cases, and we want to ensure that
 users who are not specialists and just want the most important basic information
 can acquire it as easily as possible using out-of-the-box semconv
 instrumentation. This means we are more likely within General Class
-instrumentation to make judgements about exactly what the value should be, and
+instrumentation to make judgments about exactly what the value should be, and
 whether the value should be reshaped by instrumentation in any case when pulling
 the values from sources if it serves general purpose use cases.
 

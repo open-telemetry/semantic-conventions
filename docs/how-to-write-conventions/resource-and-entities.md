@@ -4,7 +4,7 @@ aliases: [/docs/specs/semconv/non-normative/how-to-write-conventions/resource-an
 
 # Resource and Entities
 
-<!-- toc -->
+<!-- START doctoc -->
 
 - [Modelling Guide](#modelling-guide)
   - [Declaring associations between signals](#declaring-associations-between-signals)
@@ -20,7 +20,7 @@ aliases: [/docs/specs/semconv/non-normative/how-to-write-conventions/resource-an
   - [Open Expansion](#open-expansion)
   - [Telescoping Identity](#telescoping-identity)
 
-<!-- tocstop -->
+<!-- END doctoc -->
 
 ## Modelling Guide
 
@@ -177,7 +177,7 @@ minimal set of attributes that is sufficient for uniquely identifying that entit
 uniquely identified by (`process.pid`,`process.creation.time`)
 attributes. Adding for example `process.executable.name`
 attribute to the identity is unnecessary and violates the
-rule of having a [minimally sufficient ID](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.55.0/specification/entities/data-model.md#minimally-sufficient-identity).
+rule of having a [minimally sufficient ID](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.56.0/specification/entities/data-model.md#minimally-sufficient-identity).
 
 Identifying attributes generally form the lifespan of an entity. This is
 important, particularly, for metrics written against an entity. The lifespan
@@ -232,7 +232,7 @@ semantic convention namespacing rules.
 ## Background: Resource and Entities
 
 In OpenTelemetry, every signal is associated with a Resource.
-According to the [Specification](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.55.0/specification/resource/README.md#overview)
+According to the [Specification](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.56.0/specification/resource/README.md#overview)
 this is:
 
 > A Resource is a representation of the entity producing telemetry. Within
@@ -247,7 +247,7 @@ this is:
 > * It SHOULD allow users to determine where that entity resides within their
 >   infrastructure.
 
-All resources are composed of [Entities](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.55.0/specification/entities/README.md#overview).
+All resources are composed of [Entities](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.56.0/specification/entities/README.md#overview).
 An entity is specified as:
 
 > Entity represents an object of interest associated with
@@ -262,7 +262,7 @@ several key differences between the two:
   *descriptive* attributes.
   - Identifying attributes can be used to identify the entity
     within some system (See
-    [minimally sufficient id](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.55.0/specification/entities/data-model.md#minimally-sufficient-identity)).
+    [minimally sufficient id](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.56.0/specification/entities/data-model.md#minimally-sufficient-identity)).
     For Example, the `k8s.pod.uid` would be considered an
     identifying attribute for a pod within kubernetes.
   - *Descriptive* attributes can be used to provide additional labels for
@@ -287,7 +287,7 @@ and Resource in OpenTelemetry:
 1. *Open expansion*: Allowing users outside of OpenTelemetry to provide
    Entity definitions and relationships within the system.
 2. *Telescoping Identity*: Allowing flexible denormalization of
-   observability data to optimise critical queries (e.g. alerts, dashboard,
+   observability data to optimize critical queries (e.g. alerts, dashboard,
    etc.)
 
 ### Open Expansion
@@ -324,10 +324,10 @@ where users can decide how *small* or *large* the size of an OpenTelemetry
 resource will be on the wire (and correspondingly, how large data points
 may be when stored, depending on storage solution).
 
-For example, in the extreme, OpenTelemery could synthesize a UUID for
+For example, in the extreme, OpenTelemetry could synthesize a UUID for
 every system which produces telemetry. All identifying attributes for
 Resource and Entity could be sent via a side channel with known
-relationships to this UUID. While this would optimise the runtime
+relationships to this UUID. While this would optimize the runtime
 generation and sending of telemetry, it comes at the cost of downstream
 storage systems needing to join data back together either at ingestion
 time or query time. For high performance use cases, e.g. alerting, these

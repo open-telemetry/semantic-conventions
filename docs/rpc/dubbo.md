@@ -6,14 +6,14 @@ linkTitle: Dubbo
 
 **Status**: [Release Candidate][DocumentStatus], unless otherwise specified
 
-<!-- toc -->
+<!-- START doctoc -->
 
 - [Spans](#spans)
   - [Client](#client)
   - [Server](#server)
 - [Metrics](#metrics)
 
-<!-- tocstop -->
+<!-- END doctoc -->
 
 The Semantic Conventions for [Apache Dubbo](https://dubbo.apache.org/) extend and override the [RPC Semantic Conventions](README.md).
 

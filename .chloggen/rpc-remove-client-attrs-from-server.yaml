@@ -1,4 +1,0 @@
-change_type: breaking
-component: rpc
-note: Remove `client.address` and `client.port` attributes from RPC server spans.
-issues: [3487, 3488]

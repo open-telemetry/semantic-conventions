@@ -32,8 +32,25 @@ groups:
           The status of the deployment.
         stability: development
       - id: deployment.environment.name
-        type: string
-        stability: development
+        type:
+          members:
+            - id: production
+              value: "production"
+              brief: Production environment
+              stability: stable
+            - id: staging
+              value: "staging"
+              brief: Staging environment
+              stability: stable
+            - id: test
+              value: "test"
+              brief: Testing environment
+              stability: stable
+            - id: development
+              value: "development"
+              brief: Development environment
+              stability: stable
+        stability: stable
         brief: >
           Name of the [deployment environment](https://wikipedia.org/wiki/Deployment_environment)
           (aka deployment tier).

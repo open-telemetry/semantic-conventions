@@ -8,7 +8,7 @@ metric_names := { obj |
     group.type = "metric"
     obj := {
     "name": group.metric_name,
-    "namespace_prefix": extract_metric_namespace_prefix(group.metric_name),
+    "namespace_prefix": to_namespace_prefix(group.metric_name),
     "deprecated": is_property_set(group, "deprecated")
     }
 }
@@ -51,10 +51,3 @@ metrics_registry_collision(description, metric_name) = violation if {
     }
 }
 
-extract_metric_namespace_prefix(name) = namespace if {
-    namespace := concat("", [name, "."])
-}
-
-is_property_set(obj, property) = true if {
-    obj[property] != null
-} else = false
