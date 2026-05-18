@@ -716,7 +716,7 @@ Span:
 This is an example of telemetry generated for OpenAI Responses API call with `code_interpreter` tool that results in
 a model provider executing a tool and returning response along with tool call details. Built-in tools use
 `server_tool_call` and `server_tool_call_response` part types with polymorphic content to separate them from
-client side function tool calls.
+client-side function tool calls.
 
 ```py
 response = client.responses.create(   
