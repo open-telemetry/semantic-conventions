@@ -41,6 +41,7 @@ Semantic conventions for HTTP are defined for the following signals:
 * [HTTP Spans](http-spans.md): Semantic Conventions for HTTP client and server *spans*.
 * [HTTP Metrics](http-metrics.md): Semantic Conventions for HTTP client and server *metrics*.
 * [HTTP Exceptions](http-exceptions.md): Semantic Conventions for HTTP client and server *exceptions*.
+* [HTTP Client Network Timing](http-client-network-timing.md): Semantic Conventions for the HTTP client network timing *event*.
 
 For help migrating from non-stable to stable conventions, see [the migration guide](../non-normative/http-migration.md).
 
