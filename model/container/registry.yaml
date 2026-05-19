@@ -61,7 +61,7 @@ groups:
         brief: >
           Runtime specific image identifier. Usually a hash algorithm followed by a UUID.
         note: >
-          Docker defines a sha256 of the image id; `container.image.id` corresponds to the `Image` field from the Docker
+          Docker defines a sha256 of the image ID; `container.image.id` corresponds to the `Image` field from the Docker
           container inspect [API](https://docs.docker.com/reference/api/engine/version/v1.52/#tag/Container/operation/ContainerInspect)
           endpoint.
 
@@ -76,7 +76,7 @@ groups:
         type: string[]
         stability: release_candidate
         brief: >
-          Repo digests of the container image as provided by the container runtime.
+          repository digests of the container image as provided by the container runtime.
         note: >
           [Docker](https://docs.docker.com/reference/api/engine/version/v1.52/#tag/Image/operation/ImageInspect) and
           [CRI](https://github.com/kubernetes/cri-api/blob/c75ef5b473bbe2d0a4fc92f82235efd665ea8e9f/pkg/apis/runtime/v1/api.proto#L1237-L1238)
@@ -113,7 +113,7 @@ groups:
         brief: >
           Container labels, `<key>` being the label name, the value being the label value.
         note: >
-          For example, a docker container label `app` with value `nginx` SHOULD be recorded
+          For example, a Docker container label `app` with value `nginx` SHOULD be recorded
           as the `container.label.app` attribute with value `"nginx"`.
         examples: [ 'nginx' ]
       - id: container.csi.plugin.name

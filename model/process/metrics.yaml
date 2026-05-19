@@ -125,7 +125,7 @@ groups:
       code_generation:
         metric_value_type: int
     stability: development
-    brief: "Number of unix file descriptors in use by the process."
+    brief: "Number of UNIX file descriptors in use by the process."
     instrument: updowncounter
     unit: "{file_descriptor}"
     entity_associations:
