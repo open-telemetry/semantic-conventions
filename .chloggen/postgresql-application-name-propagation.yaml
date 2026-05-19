@@ -1,0 +1,5 @@
+change_type: enhancement
+component: db
+note: Add context propagation for PostgreSQL via `SET application_name`.
+issues: [2162]
+subtext:
