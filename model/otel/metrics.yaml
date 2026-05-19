@@ -78,8 +78,10 @@ groups:
       - ref: otel.component.name
       - ref: error.type
         brief: >
-          A low-cardinality description of the failure reason. SDK Batching Span Processors MUST use `queue_full` for spans dropped due to a full queue.
-        examples: ["queue_full"]
+          A low-cardinality description of the failure reason.
+          SDK Batching Span Processors MUST use `queue_full` for spans dropped due to a full queue.
+          SDK Span Processors MUST use `already_shutdown` for spans dropped because the processor has already been shut down.
+        examples: ["queue_full", "already_shutdown"]
 
   - id: metric.otel.sdk.exporter.span.inflight
     type: metric
@@ -191,8 +193,10 @@ groups:
       - ref: otel.component.name
       - ref: error.type
         brief: >
-          A low-cardinality description of the failure reason. SDK Batching Log Record Processors MUST use `queue_full` for log records dropped due to a full queue.
-        examples: ["queue_full"]
+          A low-cardinality description of the failure reason.
+          SDK Batching Log Record Processors MUST use `queue_full` for log records dropped due to a full queue.
+          SDK Log Record Processors MUST use `already_shutdown` for log records dropped because the processor has already been shut down.
+        examples: ["queue_full", "already_shutdown"]
 
   - id: metric.otel.sdk.exporter.log.inflight
     type: metric
