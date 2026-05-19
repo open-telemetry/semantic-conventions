@@ -1,0 +1,9 @@
+change_type: enhancement
+
+component: client, destination, server, source
+
+note: Add `as.number` and `as.organization.name` attributes to `client`, `destination`, `server`, and `source` namespaces for Autonomous System Number (ASN) support.
+
+issues: [1663]
+
+subtext:

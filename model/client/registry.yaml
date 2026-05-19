@@ -26,3 +26,13 @@ groups:
         note: >
           When observed from the server side, and when communicating through an intermediary, `client.port` SHOULD represent
           the client port behind any intermediaries,  for example proxies, if it's available.
+      - id: client.as.number
+        type: int
+        stability: development
+        brief: "The [Autonomous System Number (ASN)](https://www.iana.org/assignments/as-numbers/as-numbers.xhtml) associated with the client's IP address."
+        examples: [64496, 15169]
+      - id: client.as.organization.name
+        type: string
+        stability: development
+        brief: "The name of the organization associated with the client's ASN."
+        examples: ["Example Networks Inc.", "Google LLC"]

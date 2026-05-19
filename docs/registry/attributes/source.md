@@ -12,6 +12,8 @@ These attributes may be used to describe the sender of a network exchange/packet
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
 | <a id="source-address" href="#source-address">`source.address`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Source address - domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [1] | `source.example.com`; `10.1.2.80`; `/tmp/my.sock` |
+| <a id="source-as-number" href="#source-as-number">`source.as.number`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The [Autonomous System Number (ASN)](https://www.iana.org/assignments/as-numbers/as-numbers.xhtml) associated with the source's IP address. | `64496`; `15169` |
+| <a id="source-as-organization-name" href="#source-as-organization-name">`source.as.organization.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the organization associated with the source's ASN. | `Example Networks Inc.`; `Google LLC` |
 | <a id="source-port" href="#source-port">`source.port`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | Source port number | `3389`; `2888` |
 
 **[1] `source.address`:** When observed from the destination side, and when communicating through an intermediary, `source.address` SHOULD represent the source address behind any intermediaries, for example proxies, if it's available.

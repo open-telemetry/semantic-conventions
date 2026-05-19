@@ -12,6 +12,8 @@ These attributes may be used to describe the client in a connection-based networ
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
 | <a id="client-address" href="#client-address">`client.address`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | Client address - domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [1] | `client.example.com`; `10.1.2.80`; `/tmp/my.sock` |
+| <a id="client-as-number" href="#client-as-number">`client.as.number`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The [Autonomous System Number (ASN)](https://www.iana.org/assignments/as-numbers/as-numbers.xhtml) associated with the client's IP address. | `64496`; `15169` |
+| <a id="client-as-organization-name" href="#client-as-organization-name">`client.as.organization.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the organization associated with the client's ASN. | `Example Networks Inc.`; `Google LLC` |
 | <a id="client-port" href="#client-port">`client.port`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | int | Client port number. [2] | `65123` |
 
 **[1] `client.address`:** When observed from the server side, and when communicating through an intermediary, `client.address` SHOULD represent the client address behind any intermediaries,  for example proxies, if it's available.

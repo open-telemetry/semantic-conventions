@@ -12,6 +12,8 @@ These attributes may be used to describe the server in a connection-based networ
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
 | <a id="server-address" href="#server-address">`server.address`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [1] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
+| <a id="server-as-number" href="#server-as-number">`server.as.number`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The [Autonomous System Number (ASN)](https://www.iana.org/assignments/as-numbers/as-numbers.xhtml) associated with the server's IP address. | `64496`; `15169` |
+| <a id="server-as-organization-name" href="#server-as-organization-name">`server.as.organization.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the organization associated with the server's ASN. | `Example Networks Inc.`; `Google LLC` |
 | <a id="server-port" href="#server-port">`server.port`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | int | Server port number. [2] | `80`; `8080`; `443` |
 
 **[1] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.

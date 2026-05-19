@@ -12,6 +12,8 @@ These attributes may be used to describe the receiver of a network exchange/pack
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
 | <a id="destination-address" href="#destination-address">`destination.address`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Destination address - domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [1] | `destination.example.com`; `10.1.2.80`; `/tmp/my.sock` |
+| <a id="destination-as-number" href="#destination-as-number">`destination.as.number`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The [Autonomous System Number (ASN)](https://www.iana.org/assignments/as-numbers/as-numbers.xhtml) associated with the destination's IP address. | `64496`; `15169` |
+| <a id="destination-as-organization-name" href="#destination-as-organization-name">`destination.as.organization.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the organization associated with the destination's ASN. | `Example Networks Inc.`; `Google LLC` |
 | <a id="destination-port" href="#destination-port">`destination.port`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | Destination port number | `3389`; `2888` |
 
 **[1] `destination.address`:** When observed from the source side, and when communicating through an intermediary, `destination.address` SHOULD represent the destination address behind any intermediaries, for example proxies, if it's available.
