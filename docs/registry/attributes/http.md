@@ -4,6 +4,7 @@
 # HTTP
 
 - [HTTP Attributes](#http-attributes)
+- [HTTP Client Network Timing Event Attributes](#http-client-network-timing-event-attributes)
 - [Deprecated HTTP Attributes](#deprecated-http-attributes)
 
 ## HTTP Attributes
@@ -122,6 +123,30 @@ support custom route formatting. Instrumentations SHOULD document the format and
 | `PUT` | PUT method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `QUERY` | QUERY method. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `TRACE` | TRACE method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+
+## HTTP Client Network Timing Event Attributes
+
+These attributes are defined for `http.client.network_timing` events. Each value is a non-negative delta in milliseconds from the event `Timestamp`.
+
+**Attributes:**
+
+| Key | Stability | Value Type | Description | Example Values |
+| --- | --- | --- | --- | --- |
+| <a id="http-call-end-time" href="#http-call-end-time">`http.call.end_time`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | Call complete time. | `320` |
+| <a id="http-connect-end-time" href="#http-connect-end-time">`http.connect.end_time`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | TCP connection establishment end time. | `85` |
+| <a id="http-connect-start-time" href="#http-connect-start-time">`http.connect.start_time`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | TCP connection establishment start time. | `20` |
+| <a id="http-dns-end-time" href="#http-dns-end-time">`http.dns.end_time`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | DNS lookup end time. | `18` |
+| <a id="http-dns-start-time" href="#http-dns-start-time">`http.dns.start_time`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | DNS lookup start time. | `0` |
+| <a id="http-request-body-end-time" href="#http-request-body-end-time">`http.request.body.end_time`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | Request body transmission end time (if request has body). | `280` |
+| <a id="http-request-body-start-time" href="#http-request-body-start-time">`http.request.body.start_time`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | Request body transmission start time (if request has body). | `215` |
+| <a id="http-request-headers-end-time" href="#http-request-headers-end-time">`http.request.headers.end_time`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | Request headers transmission end time. | `215` |
+| <a id="http-request-headers-start-time" href="#http-request-headers-start-time">`http.request.headers.start_time`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | Request headers transmission start time. | `212` |
+| <a id="http-response-body-end-time" href="#http-response-body-end-time">`http.response.body.end_time`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | Response body reception end time. | `315` |
+| <a id="http-response-body-start-time" href="#http-response-body-start-time">`http.response.body.start_time`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | Response body reception start time. | `300` |
+| <a id="http-response-headers-end-time" href="#http-response-headers-end-time">`http.response.headers.end_time`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | Response headers reception end time. | `300` |
+| <a id="http-response-headers-start-time" href="#http-response-headers-start-time">`http.response.headers.start_time`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | Response headers reception start time. | `295` |
+| <a id="http-secure-connect-end-time" href="#http-secure-connect-end-time">`http.secure_connect.end_time`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | TLS handshake end time (HTTPS only). | `210` |
+| <a id="http-secure-connect-start-time" href="#http-secure-connect-start-time">`http.secure_connect.start_time`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | TLS handshake start time (HTTPS only). | `86` |
 
 ## Deprecated HTTP Attributes
 

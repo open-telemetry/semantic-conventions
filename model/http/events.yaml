@@ -27,6 +27,90 @@ groups:
           conditionally_required: Required if `exception.type` is not set, recommended otherwise.
       - ref: exception.stacktrace
 
+  - id: event.http.client.network_timing
+    name: http.client.network_timing
+    stability: development
+    type: event
+    brief: >
+      This event captures per-phase timing for an HTTP client request.
+    note: |
+      This event MAY be emitted when instrumentation has access to network phase timings for an HTTP client call.
+
+      **Timestamp:** MUST be the absolute time when the HTTP client call started, in milliseconds since the Unix epoch.
+
+      **Timing attributes:** All timing attributes on this event (including `http.call.end_time`) MUST be interpreted as
+      non-negative deltas in milliseconds from `Timestamp` (elapsed time from call start to each recorded phase boundary).
+
+      **ObservedTimestamp:** SHOULD be set to the time the event was emitted when it differs materially from `Timestamp`.
+
+      **Trace context:** When an OpenTelemetry span is associated with the operation, the event MUST use the Context of the
+      corresponding HTTP client span so backends can correlate the event with the span. When no such span exists, the event
+      MAY omit span correlation.
+
+      **Attribute emission:** Instrumentations SHOULD emit only timing attributes that the platform provides and SHOULD omit attributes that are unknown or not applicable.
+
+      **Span attribute copy:** Instrumentations MAY expose a configuration boolean to copy a curated list of attributes from the
+      corresponding HTTP client span onto this event. Copied attributes MUST use the same semantics as on the
+      [HTTP client span](/docs/http/http-spans.md); attribute definitions are in the attribute registry
+      (see [HTTP client span](/docs/http/http-spans.md) and linked registry pages). On this event, copied attributes are
+      `Opt-In` when the option is enabled (requirement levels may differ from the span). Those attributes support metrics
+      filtering and aggregation on backends that cannot yet correlate by context alone. When the option is disabled, those
+      attributes SHOULD be omitted. When it is enabled, instrumentations SHOULD populate them.
+    attributes:
+      - ref: http.dns.start_time
+        requirement_level: opt_in
+      - ref: http.dns.end_time
+        requirement_level: opt_in
+      - ref: http.connect.start_time
+        requirement_level: opt_in
+      - ref: http.connect.end_time
+        requirement_level: opt_in
+      - ref: http.secure_connect.start_time
+        requirement_level: opt_in
+      - ref: http.secure_connect.end_time
+        requirement_level: opt_in
+      - ref: http.request.headers.start_time
+        requirement_level: opt_in
+      - ref: http.request.headers.end_time
+        requirement_level: opt_in
+      - ref: http.request.body.start_time
+        requirement_level: opt_in
+      - ref: http.request.body.end_time
+        requirement_level: opt_in
+      - ref: http.response.headers.start_time
+        requirement_level: opt_in
+      - ref: http.response.headers.end_time
+        requirement_level: opt_in
+      - ref: http.response.body.start_time
+        requirement_level: opt_in
+      - ref: http.response.body.end_time
+        requirement_level: opt_in
+      - ref: http.call.end_time
+        requirement_level: required
+      # Opt-in: copy from corresponding HTTP client span when span-attribute copy is enabled (see note).
+      - ref: url.full
+        requirement_level: opt_in
+      - ref: http.request.method
+        requirement_level: opt_in
+      - ref: http.response.status_code
+        requirement_level: opt_in
+      - ref: server.address
+        requirement_level: opt_in
+      - ref: server.port
+        requirement_level: opt_in
+      - ref: network.protocol.version
+        requirement_level: opt_in
+      - ref: network.connection.type
+        requirement_level: opt_in
+      - ref: network.carrier.name
+        requirement_level: opt_in
+      - ref: exception.type
+        requirement_level: opt_in
+      - ref: http.request.body.size
+        requirement_level: opt_in
+      - ref: http.response.body.size
+        requirement_level: opt_in
+
   - id: event.http.server.request.exception
     name: http.server.request.exception
     stability: development
