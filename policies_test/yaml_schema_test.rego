@@ -26,7 +26,7 @@ test_fails_on_invalid_attribute_member_id if {
 }
 
 test_fails_on_invalid_metric_name if {
-    every name in invalid_names {
+    every name in invalid_metric_names {
         count(deny) >= 1 with input as {"groups": create_metric(name)}
     }
 }
@@ -84,8 +84,10 @@ test_fails_on_missing_resource_name if {
 test_passes_on_valid_names if {
     every name in valid_names {
         count(deny) == 0 with input as {"groups": create_attribute_group(name)}
-        count(deny) == 0 with input as {"groups": create_metric(name)}
         count(deny) == 0 with input as {"groups": create_event(name)}
+    }
+    every name in valid_metric_names {
+        count(deny) == 0 with input as {"groups": create_metric(name)}
     }
 }
 
@@ -199,4 +201,30 @@ valid_names := [
     "foo_1.bar",
     "foo.bar.baz",
     "foo.bar_baz",
+]
+
+# Metric names follow the stricter rule documented in docs/general/naming.md:
+# each dot-separated segment must start with a letter ([a-z]).
+valid_metric_names := [
+    "foo.bar",
+    "foo_1.bar",
+    "foo.bar.baz",
+    "foo.bar_baz",
+]
+
+# Metric-specific invalid names. We do not reuse `invalid_names` because some
+# entries there (e.g. "foo.bar_", "foo.bar__baz", "foo_.bar") are rejected by
+# the general name_regex but are permitted by the documented metric_name_regex.
+invalid_metric_names := [
+    "1foo.bar",
+    "_foo.bar",
+    ".foo.bar",
+    "foo.bar.",
+    "foo..bar",
+    "foo._bar",
+    "foo.1bar",
+    "foo.bar,baz",
+    "fü.bär",
+    "Foo.bar",
+    "foo.bAR",
 ]
