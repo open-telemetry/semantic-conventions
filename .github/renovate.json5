@@ -28,8 +28,28 @@
     {
       matchPackageNames: [
         'otel/**',
+        'open-telemetry/opentelemetry-specification',
       ],
       schedule: ['at any time'],
+    },
+  ],
+  customManagers: [
+    {
+      customType: "regex",
+      description: "Update otel spec version in docs",
+      managerFilePatterns: [
+        "docs/**/*.md",
+        "README.md",
+      ],
+      matchStrings: [
+        "https://github.com/open-telemetry/opentelemetry-specification/blob/(?<depVersion>v[0-9.]+?)/(?!.*/semantic_conventions/)",
+        "https://img.shields.io/badge/OTel_specification_version-(?<depVersion>v[0-9.]+?)-",
+        "https://github.com/open-telemetry/opentelemetry-specification/releases/tag/(?<depVersion>v[0-9.]+?)\\)",
+      ],
+      datasourceTemplate: "github-tags",
+      packageNameTemplate: "open-telemetry/opentelemetry-specification",
+      versioningTemplate: "semver",
+      currentValueTemplate: "{{depVersion}}",
     },
   ],
   "lockFileMaintenance": {
