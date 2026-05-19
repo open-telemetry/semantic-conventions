@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
+title: Semantic conventions for OpenTelemetry SDK metrics
 linkTitle: SDK Metrics
---->
+---
 
 # Semantic conventions for OpenTelemetry SDK metrics
 

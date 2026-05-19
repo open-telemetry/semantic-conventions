@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
+title: Instrumenting AWS Lambda
 linkTitle: AWS Lambda
---->
+---
 
 # Instrumenting AWS Lambda
 

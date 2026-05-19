@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
+title: Compatibility considerations for AWS
 linkTitle: AWS
---->
+---
 
 # Compatibility considerations for AWS
 

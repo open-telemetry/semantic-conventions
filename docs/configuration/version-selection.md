@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
+title: Semantic convention version selection
 linkTitle: Version selection
---->
+---
 
 # Semantic convention version selection
 
