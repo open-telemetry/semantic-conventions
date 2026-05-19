@@ -4,7 +4,7 @@
 # File
 
 - [File Attributes](#file-attributes)
-- [File lock](#file-lock)
+- [File Lock Attributes](#file-lock-attributes)
 
 ## File Attributes
 
@@ -48,7 +48,7 @@ On NTFS, this is analogous to an Alternate Data Stream (ADS), and the default da
 
 **[7] `file.symbolic_link.target_path`:** This attribute is only applicable to symbolic links.
 
-## File lock
+## File Lock Attributes
 
 These attributes may be used for any filesystem lock or related operation
 
@@ -56,9 +56,9 @@ These attributes may be used for any filesystem lock or related operation
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="file-lock-mechanism" href="#file-lock-mechanism">`file.lock.mechanism`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The lock [mechanism](https://pubs.opengroup.org/onlinepubs/9699919799/functions/fcntl.html) | `POSIX`; `FLOCK`; `DELEG`; `LEASE` |
-| <a id="file-lock-mode" href="#file-lock-mode">`file.lock.mode`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Mode of lock or operation | `ADVISORY`; `MANDATORY`; `BREAKING`; `ACTIVE`; `BREAKER` |
-| <a id="file-lock-type" href="#file-lock-type">`file.lock.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The [lock type](https://pubs.opengroup.org/onlinepubs/9699919799/functions/fcntl.html) | `read` |
+| <a id="file-lock-mechanism" href="#file-lock-mechanism">`file.lock.mechanism`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The lock mechanism such as noted by [POSIX](https://pubs.opengroup.org/onlinepubs/9699919799/functions/fcntl.html) | `POSIX`; `FLOCK`; `DELEG`; `LEASE` |
+| <a id="file-lock-mode" href="#file-lock-mode">`file.lock.mode`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Mode of lock or operation such as documented by [POSIX](https://pubs.opengroup.org/onlinepubs/9699919799/functions/fcntl.html) | `ADVISORY`; `MANDATORY`; `BREAKING`; `ACTIVE`; `BREAKER` |
+| <a id="file-lock-type" href="#file-lock-type">`file.lock.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The lock type as represented by i.e. [POSIX](https://pubs.opengroup.org/onlinepubs/9699919799/functions/fcntl.html)'s l_type. | `read` |
 
 ---
 

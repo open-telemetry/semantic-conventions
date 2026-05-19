@@ -843,9 +843,9 @@ This metric is [opt-in][MetricOptIn].
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`file.lock.mechanism`](/docs/registry/attributes/file.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The lock [mechanism](https://pubs.opengroup.org/onlinepubs/9699919799/functions/fcntl.html) | `POSIX`; `FLOCK`; `DELEG`; `LEASE` |
-| [`file.lock.mode`](/docs/registry/attributes/file.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Mode of lock or operation | `ADVISORY`; `MANDATORY`; `BREAKING`; `ACTIVE`; `BREAKER` |
-| [`file.lock.type`](/docs/registry/attributes/file.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The [lock type](https://pubs.opengroup.org/onlinepubs/9699919799/functions/fcntl.html) | `read` |
+| [`file.lock.mechanism`](/docs/registry/attributes/file.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The lock mechanism such as noted by [POSIX](https://pubs.opengroup.org/onlinepubs/9699919799/functions/fcntl.html) | `POSIX`; `FLOCK`; `DELEG`; `LEASE` |
+| [`file.lock.mode`](/docs/registry/attributes/file.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Mode of lock or operation such as documented by [POSIX](https://pubs.opengroup.org/onlinepubs/9699919799/functions/fcntl.html) | `ADVISORY`; `MANDATORY`; `BREAKING`; `ACTIVE`; `BREAKER` |
+| [`file.lock.type`](/docs/registry/attributes/file.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The lock type as represented by i.e. [POSIX](https://pubs.opengroup.org/onlinepubs/9699919799/functions/fcntl.html)'s l_type. | `read` |
 | [`system.device`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | OS-specific identifier for the device where the file resides. | `08:01` |
 
 ---
