@@ -39,6 +39,7 @@ body:
         - area:container
         - area:cpu
         - area:cpython
+        - area:data
         - area:db
         - area:deployment
         - area:destination

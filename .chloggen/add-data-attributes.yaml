@@ -1,0 +1,7 @@
+change_type: "enhancement"
+component: "data"
+note: "Introduce `data.category` and `data.sensitivity` attributes to support data governance and security use cases."
+issues: [3644]
+subtext: |
+  These attributes allow for classifying data based on its semantic nature and sensitivity level,
+  enabling automated security workflows, compliance mapping, and improved observability of sensitive data.

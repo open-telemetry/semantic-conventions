@@ -48,6 +48,7 @@ Currently, the following namespaces exist:
 - [Container](container.md)
 - [CPU](cpu.md)
 - [CPython](cpython.md)
+- [Data](data.md)
 - [DB](db.md)
 - [Deployment](deployment.md)
 - [Destination](destination.md)

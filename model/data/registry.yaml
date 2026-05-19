@@ -1,0 +1,26 @@
+groups:
+  - id: registry.data
+    type: attribute_group
+    display_name: Data Attributes
+    brief: >
+      A data attribute group represents a logical or physical collection of information (e.g., a database table, an S3 object, or a message queue) being monitored for security and governance.
+    note: >
+      In a security-aware infrastructure, context transfer is the mechanism that propagates metadata—such as `data.sensitivity`—across a distributed request chain using distributed baggage.
+      This allows every service in a pipeline to be aware of the "cargo" (the data) it is currently processing, enabling dynamic guardrails such as automated encryption, audit logging, or real-time access blocking at trust boundaries.
+    attributes:
+      - id: data.category
+        type: string
+        stability: development
+        brief: >
+          A taxonomy identifier describing the semantic nature of the data.
+        note: >
+          It is used for regulatory compliance mapping and filtering in governance dashboards.
+        examples: ["pii", "financial", "health", "internal", "public"]
+      - id: data.sensitivity
+        type: string
+        stability: development
+        brief: >
+          A classification level indicating the potential impact of unauthorized disclosure.
+        note: >
+          It drives automated security workflows like alerting and encryption.
+        examples: ["public", "internal", "confidential", "restricted"]
