@@ -262,6 +262,7 @@ areas:
     labels:
       - area:service
       - area:deployment
+      - area:data
     status:
       - accepting_contributions
       - active
