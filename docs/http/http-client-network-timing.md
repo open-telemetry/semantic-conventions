@@ -50,7 +50,7 @@ non-negative deltas in milliseconds from `Timestamp` (elapsed time from call sta
 
 **ObservedTimestamp:** SHOULD be set to the time the event was emitted when it differs materially from `Timestamp`.
 
-**Trace context:** When an OpenTelemetry trace is available for the operation, the event MUST use the Context of the
+**Trace context:** When an OpenTelemetry span is associated with the operation, the event MUST use the Context of the
 corresponding HTTP client span so backends can correlate the event with the span. When no such span exists, the event
 MAY omit span correlation.
 
