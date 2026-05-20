@@ -37,6 +37,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md)
 
 - [Alexander Wert](https://github.com/AlexanderWert), Elastic
 - [Armin Ruech](https://github.com/arminru), Dynatrace
+- [Christophe Kamphaus](https://github.com/kamphaus), Independent
 - [Joao Grassi](https://github.com/joaopgrassi), Dynatrace
 - [Josh Suereth](https://github.com/jsuereth), Google
 - [Liudmila Molkova](https://github.com/lmolkova), Grafana Labs
@@ -47,7 +48,6 @@ For more information about the maintainer role, see the [community repository](h
 ### Approvers
 
 - [Alexandra Konrad](https://github.com/trisch-me), Elastic
-- [Christophe Kamphaus](https://github.com/kamphaus), Independent
 - [Daniel Dyla](https://github.com/dyladan), Dynatrace
 - [Ted Young](https://github.com/tedsuo), Grafana Labs
 
