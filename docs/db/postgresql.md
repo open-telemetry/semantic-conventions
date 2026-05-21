@@ -173,11 +173,11 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 ### SET application_name
 
-Instrumentations MAY propagate context using [`SET application_name`](https://www.postgresql.org/docs/current/runtime-config-logging.html#GUC-APPLICATION-NAME) by injecting fixed-length part of span context (trace-id, span-id, trace-flags, protocol version) before executing a query. For example, when using W3C Trace Context, only a string representation of [`traceparent`](https://www.w3.org/TR/trace-context/#traceparent-header) SHOULD be injected. Context injection SHOULD NOT be enabled by default, but instrumentation MAY allow users to opt into it.
+Instrumentations MAY propagate W3C Trace Context using [`SET application_name`](https://www.postgresql.org/docs/current/runtime-config-logging.html#GUC-APPLICATION-NAME) by setting `application_name` to the string representation of [`traceparent`](https://www.w3.org/TR/trace-context/#traceparent-header) before executing a query. The value MUST NOT include any prefix, suffix, or wrapper. Context injection SHOULD NOT be enabled by default, but instrumentation MAY allow users to opt into it.
 
-Variable context parts (`tracestate`, `baggage`) SHOULD NOT be injected since `application_name` value length (63 characters in a standard build) is limited to less than [`NAMEDATALEN`](https://www.postgresql.org/docs/current/runtime-config-preset.html#GUC-MAX-IDENTIFIER-LENGTH) characters .
+Other context values (`tracestate`, `baggage`) MUST NOT be injected because `application_name` is limited to less than [`NAMEDATALEN`](https://www.postgresql.org/docs/current/runtime-config-preset.html#GUC-MAX-IDENTIFIER-LENGTH) characters (63 characters in a standard build).
 
-Instrumentations that propagate context MUST execute `SET application_name` on the same physical connection as the SQL statement.
+Because `application_name` is session-scoped, instrumentations SHOULD update it before every propagated query on the same physical connection as the query. Instrumentations MAY clear or restore it after query execution. Users should be aware that while enabled, this mechanism may overwrite connection-level `application_name` values between queries.
 
 The `application_name` value is visible in [`pg_stat_activity`](https://www.postgresql.org/docs/current/monitoring-stats.html#MONITORING-PG-STAT-ACTIVITY-VIEW) and can be included in PostgreSQL server logs via `%a` in [`log_line_prefix`](https://www.postgresql.org/docs/current/runtime-config-logging.html#GUC-LOG-LINE-PREFIX).
 
