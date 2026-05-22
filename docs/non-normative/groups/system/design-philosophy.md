@@ -201,11 +201,11 @@ baseline level of knowledge of the concepts being instrumented**. The `brief`
 and `note` fields of metrics and attributes should be used to convey information
 that is crucial to understanding the instrumentation intention, i.e.:
 
-* Differences in the same piece of data when it is instrumented on different
+- Differences in the same piece of data when it is instrumented on different
   platforms
-* When we recommend calculations be done on particular data rather than
+- When we recommend calculations be done on particular data rather than
   surfacing direct values from existing tools
-* When particular names or enum values were chosen when there are common
+- When particular names or enum values were chosen when there are common
   alternate terms for the same concept
 
 For root metrics and attributes, we will strive to always have a `brief` field.
@@ -213,13 +213,13 @@ The `brief` field should explain what the metric/attribute is, and if the
 explanation of a value is simple (i.e. simply surfacing a value from a common
 source like `procfs`) then the explanation of what the value should be can go in
 the brief. If the value needs some calculation explanation and justification,
-the information should be moved to the `note` field.
-For enum values, it is often the case that the intention of these values is
-obvious given whatever `brief` was provided for the attribute as a whole. A
-brief can be included in a scenario where we have had to make some choice on the
-value that isn't immediately obvious; the most common scenario is when some
-terminology differs across platforms and we had to choose one term to represent
-all scenarios. In this case, the `brief` can be used to clarify our intention.
+the information should be moved to the `note` field. For enum values, it is
+often the case that the intention of these values is obvious given whatever
+`brief` was provided for the attribute as a whole. A brief can be included in a
+scenario where we have had to make some choice on the value that isn't
+immediately obvious; the most common scenario is when some terminology differs
+across platforms and we had to choose one term to represent all scenarios. In
+this case, the `brief` can be used to clarify our intention.
 
 In cases where information about a concept is required to describe our intention
 for instrumentation, all information must come with citations to authoritative
@@ -301,6 +301,11 @@ had OS root namespaces, different sources like `system`, `process`, etc. could
 get very tangled within each OS namespace, defeating the intended design
 philosophy.
 
-However, to clarify — when we refer to avoiding OS names at the “root namespace” level, we also mean avoiding them at the area level. The OS name should appear after the area of concern (such as `system.memory.linux.*`), not before it. This ensures that users can first navigate by functional area (e.g. memory, CPU, network) and then, if necessary, drill down into OS-specific variants within that area.
+However, to clarify — when we refer to avoiding OS names at the “root namespace”
+level, we also mean avoiding them at the area level. The OS name should appear
+after the area of concern (such as `system.memory.linux.*`), not before it. This
+ensures that users can first navigate by functional area (e.g. memory, CPU,
+network) and then, if necessary, drill down into OS-specific variants within
+that area.
 
 [use cases doc]: ./use-cases.md
