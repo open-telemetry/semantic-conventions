@@ -47,7 +47,7 @@ groups:
         metric_value_type: int
     brief: 'The number of workers on the CI/CD system by state.'
     instrument: updowncounter
-    unit: "{count}"
+    unit: "{worker}"
     stability: development
     attributes:
       - ref: cicd.worker.state
