@@ -162,7 +162,7 @@ groups:
     attributes:
       - ref: vcs.change.id
         requirement_level:
-          conditionally_required: if a change is associate with the ref.
+          conditionally_required: if a change is associated with the ref.
       - ref: vcs.repository.url.full
         requirement_level: required
       - ref: vcs.repository.name
@@ -199,7 +199,7 @@ groups:
     attributes:
       - ref: vcs.change.id
         requirement_level:
-          conditionally_required: if a change is associate with the ref.
+          conditionally_required: if a change is associated with the ref.
       - ref: vcs.repository.url.full
         requirement_level: required
       - ref: vcs.repository.name
