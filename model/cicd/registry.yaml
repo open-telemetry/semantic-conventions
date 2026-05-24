@@ -246,7 +246,7 @@ groups:
         stability: development
         brief: >
           The state of a CI/CD worker / agent.
-        examples: ["idle", "busy", "down"]
+        examples: ["available", "busy", "offline"]
       - id: cicd.system.component
         type: string
         stability: development
