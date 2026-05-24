@@ -101,8 +101,8 @@ Currently, the following namespaces exist:
 | | [telemetry.distro](telemetry.md#telemetry-distro) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | | [telemetry.sdk](telemetry.md#telemetry-sdk) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | VCS | | |
-| | [vcs.ref](vcs.md#vcs-ref) | ![Development](https://img.shields.io/badge/-development-blue) |
-| | [vcs.repo](vcs.md#vcs-repo) | ![Development](https://img.shields.io/badge/-development-blue) |
+| | [vcs.ref](vcs.md#vcs-ref) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| | [vcs.repo](vcs.md#vcs-repo) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | Webengine | | |
 | | [webengine](webengine.md#webengine) | ![Development](https://img.shields.io/badge/-development-blue) |
 | zOS | | |
