@@ -31,9 +31,9 @@ Currently, the following namespaces exist:
 | | [browser](browser.md#browser) | ![Development](https://img.shields.io/badge/-development-blue) |
 | | [browser.document](browser.md#browser-document) | ![Development](https://img.shields.io/badge/-development-blue) |
 | CI/CD | | |
-| | [cicd.pipeline](cicd.md#cicd-pipeline) | ![Development](https://img.shields.io/badge/-development-blue) |
-| | [cicd.pipeline.run](cicd.md#cicd-pipeline-run) | ![Development](https://img.shields.io/badge/-development-blue) |
-| | [cicd.worker](cicd.md#cicd-worker) | ![Development](https://img.shields.io/badge/-development-blue) |
+| | [cicd.pipeline](cicd.md#cicd-pipeline) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| | [cicd.pipeline.run](cicd.md#cicd-pipeline-run) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| | [cicd.worker](cicd.md#cicd-worker) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | Cloud | | |
 | | [cloud](cloud.md#cloud) | ![Development](https://img.shields.io/badge/-development-blue) |
 | CloudFoundry | | |

@@ -65,15 +65,15 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `cicd.pipeline.run.duration` | Histogram | `s` | Duration of a pipeline run grouped by pipeline, state and result. | ![Development](https://img.shields.io/badge/-development-blue) | [`cicd.pipeline`](/docs/registry/entities/cicd.md#cicd-pipeline) |
+| `cicd.pipeline.run.duration` | Histogram | `s` | Duration of a pipeline run grouped by pipeline, state and result. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | [`cicd.pipeline`](/docs/registry/entities/cicd.md#cicd-pipeline) |
 
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`cicd.pipeline.name`](/docs/registry/attributes/cicd.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The human readable name of the pipeline within a CI/CD system. | `Build and Test`; `Lint`; `Deploy Go Project`; `deploy_to_environment` |
-| [`cicd.pipeline.run.state`](/docs/registry/attributes/cicd.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The pipeline run goes through these states during its lifecycle. | `pending`; `executing`; `finalizing` |
-| [`cicd.pipeline.result`](/docs/registry/attributes/cicd.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [1] | string | The result of a pipeline run. | `success`; `failure`; `timeout`; `skipped` |
+| [`cicd.pipeline.name`](/docs/registry/attributes/cicd.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | string | The human readable name of the pipeline within a CI/CD system. | `Build and Test`; `Lint`; `Deploy Go Project`; `deploy_to_environment` |
+| [`cicd.pipeline.run.state`](/docs/registry/attributes/cicd.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | string | The pipeline run goes through these states during its lifecycle. | `pending`; `executing`; `finalizing` |
+| [`cicd.pipeline.result`](/docs/registry/attributes/cicd.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Conditionally Required` [1] | string | The result of a pipeline run. | `success`; `failure`; `timeout`; `skipped` |
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the pipeline run failed. | string | Describes a class of error the operation ended with. [2] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` |
 
 **[1] `cicd.pipeline.result`:** If and only if the pipeline run result has been set during that state.
@@ -110,12 +110,12 @@ it's RECOMMENDED to:
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `cancellation` | The pipeline run was cancelled, eg. by a user manually cancelling the pipeline run. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `error` | The pipeline run failed due to an error in the CI/CD system, eg. due to the worker being killed. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `failure` | The pipeline run did not finish successfully, eg. due to a compile error or a failing test. Such failures are usually detected by non-zero exit codes of the tools executed in the pipeline run. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `skip` | The pipeline run was skipped, eg. due to a precondition not being met. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `success` | The pipeline run finished successfully. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `timeout` | A timeout caused the pipeline run to be interrupted. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `cancellation` | The pipeline run was cancelled, eg. by a user manually cancelling the pipeline run. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `error` | The pipeline run failed due to an error in the CI/CD system, eg. due to the worker being killed. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `failure` | The pipeline run did not finish successfully, eg. due to a compile error or a failing test. Such failures are usually detected by non-zero exit codes of the tools executed in the pipeline run. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `skip` | The pipeline run was skipped, eg. due to a precondition not being met. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `success` | The pipeline run finished successfully. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `timeout` | A timeout caused the pipeline run to be interrupted. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 ---
 
@@ -123,9 +123,9 @@ it's RECOMMENDED to:
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `executing` | The executing state spans the execution of any run tasks (eg. build, test). | ![Development](https://img.shields.io/badge/-development-blue) |
-| `finalizing` | The finalizing state spans from when the run has finished executing (eg. cleanup of run resources). | ![Development](https://img.shields.io/badge/-development-blue) |
-| `pending` | The run pending state spans from the event triggering the pipeline run until the execution of the run starts (eg. time spent in a queue, provisioning agents, creating run resources). | ![Development](https://img.shields.io/badge/-development-blue) |
+| `executing` | The executing state spans the execution of any run tasks (eg. build, test). | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `finalizing` | The finalizing state spans from when the run has finished executing (eg. cleanup of run resources). | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `pending` | The run pending state spans from the event triggering the pipeline run until the execution of the run starts (eg. time spent in a queue, provisioning agents, creating run resources). | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 ---
 
@@ -150,14 +150,14 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `cicd.pipeline.run.active` | UpDownCounter | `{run}` | The number of pipeline runs currently active in the system by state. | ![Development](https://img.shields.io/badge/-development-blue) | [`cicd.pipeline`](/docs/registry/entities/cicd.md#cicd-pipeline) |
+| `cicd.pipeline.run.active` | UpDownCounter | `{run}` | The number of pipeline runs currently active in the system by state. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | [`cicd.pipeline`](/docs/registry/entities/cicd.md#cicd-pipeline) |
 
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`cicd.pipeline.name`](/docs/registry/attributes/cicd.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The human readable name of the pipeline within a CI/CD system. | `Build and Test`; `Lint`; `Deploy Go Project`; `deploy_to_environment` |
-| [`cicd.pipeline.run.state`](/docs/registry/attributes/cicd.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The pipeline run goes through these states during its lifecycle. | `pending`; `executing`; `finalizing` |
+| [`cicd.pipeline.name`](/docs/registry/attributes/cicd.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | string | The human readable name of the pipeline within a CI/CD system. | `Build and Test`; `Lint`; `Deploy Go Project`; `deploy_to_environment` |
+| [`cicd.pipeline.run.state`](/docs/registry/attributes/cicd.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | string | The pipeline run goes through these states during its lifecycle. | `pending`; `executing`; `finalizing` |
 
 ---
 
@@ -165,9 +165,9 @@ This metric is [recommended][MetricRecommended].
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `executing` | The executing state spans the execution of any run tasks (eg. build, test). | ![Development](https://img.shields.io/badge/-development-blue) |
-| `finalizing` | The finalizing state spans from when the run has finished executing (eg. cleanup of run resources). | ![Development](https://img.shields.io/badge/-development-blue) |
-| `pending` | The run pending state spans from the event triggering the pipeline run until the execution of the run starts (eg. time spent in a queue, provisioning agents, creating run resources). | ![Development](https://img.shields.io/badge/-development-blue) |
+| `executing` | The executing state spans the execution of any run tasks (eg. build, test). | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `finalizing` | The finalizing state spans from when the run has finished executing (eg. cleanup of run resources). | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `pending` | The run pending state spans from the event triggering the pipeline run until the execution of the run starts (eg. time spent in a queue, provisioning agents, creating run resources). | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
@@ -184,13 +184,13 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `cicd.worker.count` | UpDownCounter | `{count}` | The number of workers on the CI/CD system by state. | ![Development](https://img.shields.io/badge/-development-blue) | |
+| `cicd.worker.count` | UpDownCounter | `{worker}` | The number of workers on the CI/CD system by state. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | |
 
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`cicd.worker.state`](/docs/registry/attributes/cicd.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The state of a CI/CD worker / agent. | `idle`; `busy`; `down` |
+| [`cicd.worker.state`](/docs/registry/attributes/cicd.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | string | The state of a CI/CD worker / agent. | `available`; `busy`; `offline` |
 
 ---
 
@@ -198,9 +198,9 @@ This metric is [recommended][MetricRecommended].
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `available` | The worker is not performing work for the CI/CD system. It is available to the CI/CD system to perform work on (online / idle). [1] | ![Development](https://img.shields.io/badge/-development-blue) |
-| `busy` | The worker is performing work for the CI/CD system. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `offline` | The worker is not available to the CI/CD system (disconnected / down). | ![Development](https://img.shields.io/badge/-development-blue) |
+| `available` | The worker is not performing work for the CI/CD system. It is available to the CI/CD system to perform work on (online / idle). [1] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `busy` | The worker is performing work for the CI/CD system. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `offline` | The worker is not available to the CI/CD system (disconnected / down). | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 **[1]:** Pipelines might have conditions on which workers they are able to run so not every worker might be available to every pipeline.
 
@@ -219,7 +219,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `cicd.pipeline.run.errors` | Counter | `{error}` | The number of errors encountered in pipeline runs (eg. compile, test failures). [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`cicd.pipeline`](/docs/registry/entities/cicd.md#cicd-pipeline) |
+| `cicd.pipeline.run.errors` | Counter | `{error}` | The number of errors encountered in pipeline runs (eg. compile, test failures). [1] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | [`cicd.pipeline`](/docs/registry/entities/cicd.md#cicd-pipeline) |
 
 **[1]:** There might be errors in a pipeline run that are non fatal (eg. they are suppressed) or in a parallel stage multiple stages could have a fatal error.
 This means that this error count might not be the same as the count of metric `cicd.pipeline.run.duration` with run result `failure`.
@@ -228,7 +228,7 @@ This means that this error count might not be the same as the count of metric `c
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`cicd.pipeline.name`](/docs/registry/attributes/cicd.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The human readable name of the pipeline within a CI/CD system. | `Build and Test`; `Lint`; `Deploy Go Project`; `deploy_to_environment` |
+| [`cicd.pipeline.name`](/docs/registry/attributes/cicd.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | string | The human readable name of the pipeline within a CI/CD system. | `Build and Test`; `Lint`; `Deploy Go Project`; `deploy_to_environment` |
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` |
 
 **[1] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
@@ -280,7 +280,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `cicd.system.errors` | Counter | `{error}` | The number of errors in a component of the CI/CD system (eg. controller, scheduler, agent). [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
+| `cicd.system.errors` | Counter | `{error}` | The number of errors in a component of the CI/CD system (eg. controller, scheduler, agent). [1] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | |
 
 **[1]:** Errors in pipeline run execution are explicitly excluded. Ie a test failure is not counted in this metric.
 
@@ -288,7 +288,7 @@ This metric is [recommended][MetricRecommended].
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`cicd.system.component`](/docs/registry/attributes/cicd.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of a component of the CI/CD system. | `controller`; `scheduler`; `agent` |
+| [`cicd.system.component`](/docs/registry/attributes/cicd.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | string | The name of a component of the CI/CD system. | `controller`; `scheduler`; `agent` |
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` |
 
 **[1] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.

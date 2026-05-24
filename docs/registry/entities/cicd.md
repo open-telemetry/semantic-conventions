@@ -5,7 +5,7 @@
 
 ## CI/CD Pipeline
 
-**Status:** ![Development](https://img.shields.io/badge/-development-blue)
+**Status:** ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid)
 
 **type:** `cicd.pipeline`
 
@@ -19,11 +19,11 @@
 
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- | --- |
-| Other | [`cicd.pipeline.name`](/docs/registry/attributes/cicd.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The human readable name of the pipeline within a CI/CD system. | `Build and Test`; `Lint`; `Deploy Go Project`; `deploy_to_environment` |
+| Other | [`cicd.pipeline.name`](/docs/registry/attributes/cicd.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The human readable name of the pipeline within a CI/CD system. | `Build and Test`; `Lint`; `Deploy Go Project`; `deploy_to_environment` |
 
 ## CI/CD Pipeline Run
 
-**Status:** ![Development](https://img.shields.io/badge/-development-blue)
+**Status:** ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid)
 
 **type:** `cicd.pipeline.run`
 
@@ -37,12 +37,12 @@
 
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- | --- |
-| Other | [`cicd.pipeline.run.id`](/docs/registry/attributes/cicd.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The unique identifier of a pipeline run within a CI/CD system. | `120912` |
-| Other | [`cicd.pipeline.run.url.full`](/docs/registry/attributes/cicd.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The [URL](https://wikipedia.org/wiki/URL) of the pipeline run, providing the complete address in order to locate and identify the pipeline run. | `https://github.com/open-telemetry/semantic-conventions/actions/runs/9753949763?pr=1075` |
+| Other | [`cicd.pipeline.run.id`](/docs/registry/attributes/cicd.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The unique identifier of a pipeline run within a CI/CD system. | `120912` |
+| Other | [`cicd.pipeline.run.url.full`](/docs/registry/attributes/cicd.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The [URL](https://wikipedia.org/wiki/URL) of the pipeline run, providing the complete address in order to locate and identify the pipeline run. | `https://github.com/open-telemetry/semantic-conventions/actions/runs/9753949763?pr=1075` |
 
 ## CI/CD Worker
 
-**Status:** ![Development](https://img.shields.io/badge/-development-blue)
+**Status:** ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid)
 
 **type:** `cicd.worker`
 
@@ -58,6 +58,6 @@ For example, when a pipeline run involves several workers, its task run spans ma
 
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- | --- |
-| Other | [`cicd.worker.id`](/docs/registry/attributes/cicd.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The unique identifier of a worker within a CI/CD system. | `abc123`; `10.0.1.2`; `controller` |
-| Other | [`cicd.worker.name`](/docs/registry/attributes/cicd.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of a worker within a CI/CD system. | `agent-abc`; `controller`; `Ubuntu LTS` |
-| Other | [`cicd.worker.url.full`](/docs/registry/attributes/cicd.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` If available | string | The [URL](https://wikipedia.org/wiki/URL) of the worker, providing the complete address in order to locate and identify the worker. | `https://cicd.example.org/worker/abc123` |
+| Other | [`cicd.worker.id`](/docs/registry/attributes/cicd.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | string | The unique identifier of a worker within a CI/CD system. | `abc123`; `10.0.1.2`; `controller` |
+| Other | [`cicd.worker.name`](/docs/registry/attributes/cicd.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The name of a worker within a CI/CD system. | `agent-abc`; `controller`; `Ubuntu LTS` |
+| Other | [`cicd.worker.url.full`](/docs/registry/attributes/cicd.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` If available | string | The [URL](https://wikipedia.org/wiki/URL) of the worker, providing the complete address in order to locate and identify the worker. | `https://cicd.example.org/worker/abc123` |
