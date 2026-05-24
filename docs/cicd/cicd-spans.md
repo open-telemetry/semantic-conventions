@@ -4,7 +4,7 @@ linkTitle: Spans
 
 # Semantic conventions for CI/CD spans
 
-**Status**: [Development][DocumentStatus]
+**Status**: [Release Candidate][DocumentStatus]
 
 <!-- START doctoc -->
 
