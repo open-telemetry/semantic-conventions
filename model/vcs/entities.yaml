@@ -1,7 +1,7 @@
 groups:
   - id: entity.vcs.repo
     type: entity
-    stability: development
+    stability: release_candidate
     name: vcs.repo
     brief: >
         A repository in the Version Control System.
@@ -11,7 +11,7 @@ groups:
 
   - id: entity.vcs.ref
     type: entity
-    stability: development
+    stability: release_candidate
     name: vcs.ref
     brief: >
         A reference to a specific version in the Version Control System.
