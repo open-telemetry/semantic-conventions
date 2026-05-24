@@ -1,7 +1,7 @@
 groups:
   - id: entity.cicd.pipeline
     type: entity
-    stability: development
+    stability: release_candidate
     name: cicd.pipeline
     brief: >
         A pipeline is a series of automated steps that helps software teams deliver code.
@@ -10,7 +10,7 @@ groups:
 
   - id: entity.cicd.pipeline.run
     type: entity
-    stability: development
+    stability: release_candidate
     name: cicd.pipeline.run
     brief: >
       A pipeline run is a singular execution of a given pipeline's tasks.
@@ -20,7 +20,7 @@ groups:
 
   - id: entity.cicd.worker
     type: entity
-    stability: development
+    stability: release_candidate
     name: cicd.worker
     brief: >
       A CI/CD worker is a component of the CI/CD system that performs work (eg. running pipeline tasks or performing sync).
