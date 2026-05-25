@@ -384,6 +384,26 @@ groups:
     entity_associations:
       - host
 
+  - id: metric.system.filesystem.lock.count
+    type: metric
+    metric_name: system.filesystem.lock.count
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "Filesystem lock counts."
+    instrument: updowncounter
+    unit: "{lock}"
+    attributes:
+      - ref: system.device
+        brief: OS-specific identifier for the device where the file resides.
+        examples: ["08:01"]
+      - ref: file.lock.type
+      - ref: file.lock.mechanism
+      - ref: file.lock.mode
+    entity_associations:
+      - host
+
   # system.network.* metrics
   - id: metric.system.network.packet.dropped
     type: metric

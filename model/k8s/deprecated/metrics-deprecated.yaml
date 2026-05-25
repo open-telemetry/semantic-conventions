@@ -532,6 +532,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+        exclude: true
     stability: development
     deprecated:
       reason: renamed
@@ -562,6 +563,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+        exclude: true
     stability: development
     deprecated:
       reason: renamed
