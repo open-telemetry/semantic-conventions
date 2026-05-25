@@ -18,7 +18,7 @@ deny contains entity_stability_violation(description, group.id, "") if {
     ]
     count(ids) < 1
 
-    description := sprintf("Stable entity '%s' has no identifying attributes", [group.name])
+    description := sprintf("%s entity '%s' has no identifying attributes", [group.stability, group.name])
 }
 
 
@@ -36,7 +36,7 @@ deny contains entity_stability_violation(description, group.id, attr.name) if {
     attr := group.attributes[_]
     not attr.role
 
-    description := sprintf("Stable entity '%s' has attribute without role: '%s'", [group.name, attr.name])
+    description := sprintf("%s entity '%s' has attribute without role: '%s'", [group.stability, group.name, attr.name])
 }
 
 entity_stability_violation(description, group, attr) = violation if {
