@@ -7,6 +7,7 @@ groups:
         A pipeline is a series of automated steps that helps software teams deliver code.
     attributes:
       - ref: cicd.pipeline.name
+        role: identifying
 
   - id: entity.cicd.pipeline.run
     type: entity
@@ -16,7 +17,9 @@ groups:
       A pipeline run is a singular execution of a given pipeline's tasks.
     attributes:
       - ref: cicd.pipeline.run.id
+        role: identifying
       - ref: cicd.pipeline.run.url.full
+        role: descriptive
 
   - id: entity.cicd.worker
     type: entity
@@ -33,8 +36,11 @@ groups:
       The pipeline run's parent span may instead reference the CI/CD controller as the `cicd.worker` resource.
     attributes:
       - ref: cicd.worker.id
+        role: identifying
         requirement_level: required
       - ref: cicd.worker.name
+        role: descriptive
       - ref: cicd.worker.url.full
+        role: descriptive
         requirement_level:
           recommended: If available
