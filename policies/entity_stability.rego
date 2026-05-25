@@ -1,12 +1,13 @@
 package after_resolution
 import rego.v1
 
-# checks for stable entity groups that have no identifying attributes
+# checks for entity groups that have no identifying attributes
 deny contains entity_stability_violation(description, group.id, "") if {
     group := input.groups[_]
     # ignore attribute_groups
     group.type == "entity"
-    group.stability == "stable"
+    stabilities := ["stable", "release_candidate", "beta"]
+    stabilities[group.stability]
 
     exceptions = {}
     not exceptions[group.id]
@@ -21,12 +22,13 @@ deny contains entity_stability_violation(description, group.id, "") if {
 }
 
 
-# checks for stable entity groups that have attributes with no role
+# checks for entity groups that have attributes with no role
 deny contains entity_stability_violation(description, group.id, attr.name) if {
     group := input.groups[_]
     # ignore attribute_groups
     group.type == "entity"
-    group.stability == "stable"
+    stabilities := ["stable", "release_candidate", "beta"]
+    stabilities[group.stability]
 
     exceptions = {}
     not exceptions[group.id]
