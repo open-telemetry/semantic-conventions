@@ -162,3 +162,21 @@ test_passes_on_beta_entity_with_id if {
             "brief": "brief."
         }]}]}
 }
+
+test_passes_on_development_entity_having_no_role if {
+    count(deny) == 0 with input as {"groups": [{
+        "id": "entity.foo",
+        "type": "entity",
+        "name": "foo",
+        "stability": "development",
+        "brief": "brief.",
+        "attributes": [{
+            "name": "test.experimental",
+            "stability": "development",
+            "brief": "brief."
+        },{
+            "name": "test.id",
+            "stability": "beta",
+            "brief": "brief."
+        }]}]}
+}
