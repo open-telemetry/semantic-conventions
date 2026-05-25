@@ -123,7 +123,7 @@ test_passes_on_stable_entity_with_id if {
         }]}]}
 }
 
-test_passes_on_stable_entity_with_id if {
+test_passes_on_rc_entity_with_id if {
     count(deny) == 0 with input as {"groups": [{
         "id": "entity.foo",
         "type": "entity",
@@ -143,7 +143,7 @@ test_passes_on_stable_entity_with_id if {
         }]}]}
 }
 
-test_passes_on_stable_entity_with_id if {
+test_passes_on_beta_entity_with_id if {
     count(deny) == 0 with input as {"groups": [{
         "id": "entity.foo",
         "type": "entity",
