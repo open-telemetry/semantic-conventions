@@ -6,7 +6,7 @@ deny contains entity_stability_violation(description, group.id, "") if {
     group := input.groups[_]
     # ignore attribute_groups
     group.type == "entity"
-    stabilities := ["stable", "release_candidate", "beta"]
+    stabilities := {"stable", "release_candidate", "beta"}
     stabilities[group.stability]
 
     exceptions = {}
@@ -27,7 +27,7 @@ deny contains entity_stability_violation(description, group.id, attr.name) if {
     group := input.groups[_]
     # ignore attribute_groups
     group.type == "entity"
-    stabilities := ["stable", "release_candidate", "beta"]
+    stabilities := {"stable", "release_candidate", "beta"}
     stabilities[group.stability]
 
     exceptions = {}
