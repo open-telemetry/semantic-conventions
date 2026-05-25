@@ -183,13 +183,26 @@ areas:
     status:
       - accepting_contributions
       - active
+  
+  - name: "Semantic Conventions: Ruby"
+    owner:
+      - name: "ruby-approvers"
+        github: ruby-approvers
+    project: "N/A"
+    board: "https://github.com/orgs/open-telemetry/projects/186"
+    labels:
+      - area:rails
+      - area:ruby
+    status:
+      - accepting_contributions
+      - active
 
   - name: "Semantic Conventions: Logs"
     owner:
       - name: "semconv-log-approvers"
         github: semconv-log-approvers
     project: "N/A"
-    board: "https://github.com/orgs/open-telemetry/projects/65"
+    board: "N/A"
     labels:
       - area:log
       - area:event
