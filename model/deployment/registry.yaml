@@ -15,7 +15,7 @@ groups:
         type: string
         stability: development
         brief: >
-          The id of the deployment.
+          The ID of the deployment.
         examples: ["1208"]
       - id: deployment.status
         type:

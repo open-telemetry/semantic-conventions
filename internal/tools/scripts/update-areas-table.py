@@ -63,7 +63,7 @@ for area in data['areas']:
     if area.get('notes'):
         notes = " ".join(area['notes'].split())
     elif not area.get('notes') and 'inactive' in status:
-        notes = "The SIG is inactive. Bugs and bugfixes are welcome. For substantial changes, follow the [new project process](https://github.com/open-telemetry/community/blob/main/project-management.md)"
+        notes = "The SIG is inactive. Bugs and bug fixes are welcome. For substantial changes, follow the [new project process](https://github.com/open-telemetry/community/blob/main/project-management.md)"
     elif not area.get('notes') and 'accepting_contributions' in status:
         notes = "The SIG is looking for contributions!"
 

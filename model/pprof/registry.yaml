@@ -46,7 +46,7 @@ groups:
         stability: development
       - id: pprof.profile.drop_frames
         brief: >
-          Frames with Function.function_name fully matching the regexp will be
+          Frames with Function.function_name fully matching the regular expression will be
           dropped from the samples, along with their successors.
         type: string
         examples:
@@ -54,7 +54,7 @@ groups:
         stability: development
       - id: pprof.profile.keep_frames
         brief: >
-          Frames with Function.function_name fully matching the regexp will be
+          Frames with Function.function_name fully matching the regular expression will be
           kept, even if it matches drop_frames.
         type: string
         examples:

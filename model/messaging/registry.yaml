@@ -51,7 +51,7 @@ groups:
         brief: Low cardinality representation of the messaging destination name
         note: >
           Destination names could be constructed from templates.
-          An example would be a destination name involving a user name or product id.
+          An example would be a destination name involving a username or product ID.
           Although the destination name in this case is of high cardinality,
           the underlying template is of low cardinality and can be effectively
           used for grouping and aggregation.
@@ -300,7 +300,7 @@ groups:
         type: string[]
         stability: development
         brief: >
-          Key(s) of message, another way to mark message besides message id.
+          Key(s) of message, another way to mark message besides message ID.
         examples:
           - [keyA, keyB]
       - id: messaging.rocketmq.message.tag
@@ -353,7 +353,7 @@ groups:
         type: string
         stability: development
         brief: >
-         The ack id for a given message.
+         The ack ID for a given message.
         examples: 'ack_id'
       - id: messaging.gcp_pubsub.message.ack_deadline
         type: int
