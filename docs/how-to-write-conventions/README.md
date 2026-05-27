@@ -25,6 +25,7 @@ aliases: [/docs/specs/semconv/general/how-to-define-semantic-conventions]
     - [Defining events](#defining-events)
       - [What occurrence does this event represent](#what-occurrence-does-this-event-represent)
       - [Event naming pattern](#event-naming-pattern)
+      - [Timestamps](#timestamps)
       - [Severity](#severity)
       - [Event attributes and body](#event-attributes-and-body)
 - [Stabilizing existing conventions](#stabilizing-existing-conventions)
@@ -385,8 +386,9 @@ when it is useful for sampling or is known when the span starts.
 An event definition should describe the
 [occurrence it represents](#what-occurrence-does-this-event-represent), the
 [event name](#event-naming-pattern), when instrumentations should record it,
-the default [severity](#severity), whether the event is expected to be recorded
-with a parent span context, and the applicable [attributes and body](#event-attributes-and-body).
+which [timestamp](#timestamps) to use, the default [severity](#severity), whether
+the event is expected to be recorded with a parent span context, and the
+applicable [attributes and body](#event-attributes-and-body).
 
 ##### What occurrence does this event represent
 
@@ -430,6 +432,19 @@ attribute sets.
 
 When recording events from an existing system that does not have a single event
 name, follow [External event compatibility](/docs/general/events.md#external-event-compatibility).
+
+##### Timestamps
+
+Events MUST set
+[Timestamp](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.57.0/specification/logs/data-model.md#field-timestamp)
+to the time when the event occurred.
+
+Events MUST NOT set
+[ObservedTimestamp](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.57.0/specification/logs/data-model.md#field-observedtimestamp).
+
+When defining an event, document which occurrence time should be used as the
+event timestamp when it is not obvious, especially for events received from
+external systems.
 
 ##### Severity
 
