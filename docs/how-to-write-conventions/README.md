@@ -371,7 +371,7 @@ When not to define events:
   same meaning and structure - reuse or extend the existing event definition
   instead.
 - For unstructured diagnostic messages that are not intended to be queried as
-  named events - use logs instead.
+  named events - emit regular log records (not modeled as events) instead.
 
 Events often complement span definitions. If an event is emitted while a related
 span is active, instrumentations should associate the event with the corresponding
@@ -434,8 +434,10 @@ Events MUST set
 [Timestamp](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.57.0/specification/logs/data-model.md#field-timestamp)
 to the time when the event occurred.
 
-Events MUST NOT set
-[ObservedTimestamp](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.57.0/specification/logs/data-model.md#field-observedtimestamp).
+Semantic conventions SHOULD NOT mandate a value for
+[ObservedTimestamp](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.57.0/specification/logs/data-model.md#field-observedtimestamp);
+SDKs, collectors, or other components SHOULD populate it to reflect when the
+event was observed/received.
 
 When defining an event, document which occurrence time should be used as the
 event timestamp when it is not obvious, especially for events received from
