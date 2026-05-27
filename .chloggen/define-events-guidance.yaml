@@ -1,0 +1,9 @@
+change_type: enhancement
+
+T: docs
+
+note: Add guidance for defining events in semantic conventions.
+
+issues: [1855, 3749]
+
+subtext:
