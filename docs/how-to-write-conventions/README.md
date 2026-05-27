@@ -23,6 +23,10 @@ aliases: [/docs/specs/semconv/general/how-to-define-semantic-conventions]
     - [Defining metrics](#defining-metrics)
     - [Defining entities](#defining-entities)
     - [Defining events](#defining-events)
+      - [What occurrence does this event represent](#what-occurrence-does-this-event-represent)
+      - [Event naming pattern](#event-naming-pattern)
+      - [Severity](#severity)
+      - [Event attributes and body](#event-attributes-and-body)
 - [Stabilizing existing conventions](#stabilizing-existing-conventions)
   - [Migration plan](#migration-plan)
 
@@ -339,7 +343,140 @@ Follow the [Entity Modeling Guide](resource-and-entities.md).
 
 #### Defining events
 
-TBD
+Events describe named occurrences at a meaningful point in time.
+
+This section covers standalone events represented by `LogRecord`s. See
+[Semantic conventions for events](/docs/general/events.md) for general event
+semantics.
+
+When to define events:
+
+- The occurrence is significant for your observability needs.
+- The occurrence does not require a new trace context or child operations.
+- The occurrence represents a checkpoint, state change, or outcome in a longer
+  operation or asynchronous flow.
+
+For example, define events for application interactions, state transitions,
+feature flag evaluations, and exceptions that occur while an operation is being
+executed.
+
+When not to define events:
+
+- For operations with a duration and meaningful operation boundary - use spans
+  instead.
+- For properties that describe a whole span and do not need their own timestamp -
+  use span attributes instead.
+- For details that are already captured by an existing event definition with the
+  same meaning and structure - reuse or extend the existing event definition
+  instead.
+- For unstructured diagnostic messages that are not intended to be queried as
+  named events - use logs instead.
+
+Events often complement span definitions. If an event is emitted while a related
+span is active, instrumentations should associate the event with the corresponding
+span context. Events do not create trace context and do not have child spans.
+
+Use an event instead of a span attribute when the data describes a distinct
+occurrence within the operation, can happen zero or more times for the same span,
+or needs its own timestamp, severity, or occurrence-specific attributes.
+Use a span attribute when the data describes the operation as a whole, especially
+when it is useful for sampling or is known when the span starts.
+
+An event definition should describe the
+[occurrence it represents](#what-occurrence-does-this-event-represent), the
+[event name](#event-naming-pattern), when instrumentations should record it,
+the default [severity](#severity), whether the event is expected to be recorded
+with a parent span context, and the applicable [attributes and body](#event-attributes-and-body).
+
+##### What occurrence does this event represent
+
+Define the scope and meaning of the occurrence:
+
+- When the event is recorded, including the timestamp it represents.
+- Whether the event is recorded once, can be recorded multiple times, or is
+  recorded for both start and end checkpoints.
+- Whether the event is meaningful only when associated with a parent span, or
+  whether it can also be emitted independently.
+- Conditions under which instrumentation SHOULD or SHOULD NOT record the event.
+
+If the event can be emitted independently of a span, define enough attributes to
+make the event useful without relying on span attributes.
+
+Define separate events for occurrences that have different meanings, different
+severity, or a significantly different set of attributes. Reuse the same event
+definition across multiple operations when it represents the same occurrence and
+has the same event name, severity guidance, and attribute structure.
+
+##### Event naming pattern
+
+Event names uniquely identify an event structure. When users query for a specific
+event name, they should get events that comply with the corresponding semantic
+convention.
+
+- Event names MUST be low-cardinality.
+- Event names SHOULD follow the [Naming guidelines](/docs/general/naming.md).
+- Event names SHOULD NOT include runtime values. Use attributes for identifiers,
+  names, or other values that vary per occurrence.
+- Use a domain-specific name when the event is tied to a specific operation or
+  system. For example, `http.client.request.exception` represents exceptions
+  during HTTP client requests.
+- Use a shared name only when the same definition applies to all occurrences
+  recorded with that name.
+
+When many related event definitions need a common grouping, such as audit or
+security relevance, prefer defining or reusing a low-cardinality classification
+attribute instead of using a broad event name with different meanings and
+attribute sets.
+
+When recording events from an existing system that does not have a single event
+name, follow [External event compatibility](/docs/general/events.md#external-event-compatibility).
+
+##### Severity
+
+Events SHOULD specify a default
+[severity number](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.57.0/specification/logs/data-model.md#field-severitynumber).
+
+Define the severity number based on the expected impact of the occurrence.
+If the same event can have different severity depending on context, document the
+conditions for setting each severity.
+
+For exception events, follow the severity guidance in
+[Semantic conventions for exceptions in logs](/docs/exceptions/exceptions-logs.md#severity).
+
+Semantic conventions SHOULD NOT define a
+[severity text](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.57.0/specification/logs/data-model.md#field-severitytext)
+value only to mirror the severity number short name. If instrumentation receives
+a meaningful severity string from an external system, document how that string
+is mapped to severity number and whether it is preserved as severity text.
+
+##### Event attributes and body
+
+Semantic conventions that define events MUST document the event name and
+attributes. See [General event semantics](/docs/general/events.md#general-event-semantics).
+
+Use attributes to represent structured event details and context:
+
+- Reuse existing attributes when possible, especially attributes that are used on
+  related spans, metrics, resources, or other events.
+- Include attributes that users are likely to filter, group, aggregate, or
+  correlate on.
+- When the event is normally associated with a span, avoid copying every span
+  attribute by default. Reference span-level attributes on the event only when
+  they are needed to understand, route, or retain the event without the span.
+- Prefer flat attributes when the value can be represented clearly without
+  structure. Use complex attributes only when the structure is part of the
+  event semantics and a flat representation would be awkward or lossy.
+- Include `error.type` when the event represents a failure that users need to
+  classify.
+- Specify [requirement level](/docs/general/attribute-requirement-level.md) and
+  tailor the brief and note to the event.
+- Document attributes that may contain sensitive information, be expensive to
+  collect, have high cardinality, or be especially large.
+
+Events SHOULD NOT use
+[body](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.57.0/specification/logs/data-model.md#field-body)
+except to represent a string display message of the event. Do not put structured
+event fields in the body when they can be defined as event attributes.
 
 ## Stabilizing existing conventions
 
