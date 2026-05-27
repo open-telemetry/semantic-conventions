@@ -1,6 +1,6 @@
 change_type: enhancement
 
-T: docs
+component: docs
 
 note: Add guidance for defining events in semantic conventions.
 
