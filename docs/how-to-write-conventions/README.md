@@ -425,11 +425,6 @@ convention.
 - Use a shared name only when the same definition applies to all occurrences
   recorded with that name.
 
-When many related event definitions need a common grouping, such as audit or
-security relevance, prefer defining or reusing a low-cardinality classification
-attribute instead of using a broad event name with different meanings and
-attribute sets.
-
 When recording events from an existing system that does not have a single event
 name, follow [External event compatibility](/docs/general/events.md#external-event-compatibility).
 
