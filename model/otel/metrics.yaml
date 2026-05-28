@@ -79,6 +79,7 @@ groups:
       - ref: error.type
         brief: >
           A low-cardinality description of the failure reason.
+        note:
           SDK Batching Span Processors MUST use `queue_full` for spans dropped due to a full queue.
           SDK Span Processors MUST use `already_shutdown` for spans dropped because the processor has already been shut down.
         examples: ["queue_full", "already_shutdown"]
