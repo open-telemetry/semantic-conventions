@@ -1,7 +1,6 @@
-
 change_type: enhancement
 component: docs
 note: >
   Don't allow signal definition to reference attributes with lower stability 
   than the signal itself (unless they are opt-in).
-issues: [999]
+issues: [3752]
