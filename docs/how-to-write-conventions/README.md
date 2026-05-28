@@ -358,8 +358,9 @@ When to define events:
   operation or asynchronous flow.
 
 For example, define events for application interactions, state transitions,
-feature flag evaluations, and exceptions that occur while an operation is being
-executed.
+feature flag evaluations, lifecycle moments such as service startup,
+configuration reload, or shutdown completion, and exceptions that occur while an
+operation is being executed.
 
 When not to define events:
 
@@ -373,9 +374,10 @@ When not to define events:
 - For unstructured diagnostic messages that are not intended to be queried as
   named events - emit regular log records (not modeled as events) instead.
 
-Events often complement span definitions. If an event is emitted while a related
-span is active, instrumentations should associate the event with the corresponding
-span context. Events do not create trace context and do not have child spans.
+Events often complement span definitions. Events can be emitted inside or outside
+an active trace context. If an event is emitted while a related span is active,
+instrumentations should associate the event with the corresponding span context.
+Events do not create trace context and do not have child spans.
 
 Use an event instead of a span attribute when the data describes a distinct
 occurrence within the operation, can happen zero or more times for the same span,
