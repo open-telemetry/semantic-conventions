@@ -194,6 +194,7 @@ groups:
       - ref: error.type
         brief: >
           A low-cardinality description of the failure reason.
+        note:
           SDK Batching Log Record Processors MUST use `queue_full` for log records dropped due to a full queue.
           SDK Log Record Processors MUST use `already_shutdown` for log records dropped because the processor has already been shut down.
         examples: ["queue_full", "already_shutdown"]
