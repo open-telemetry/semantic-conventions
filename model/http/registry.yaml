@@ -212,78 +212,78 @@ groups:
       These attributes are defined for `http.client.network_timing` events.
       Each value is a non-negative delta in milliseconds from the event `Timestamp`.
     attributes:
-      - id: http.dns.start_time
+      - id: http.dns.start_reltime
         type: int
         stability: development
-        brief: DNS lookup start time.
+        brief: DNS lookup start relative time.
         examples: [0]
-      - id: http.dns.end_time
+      - id: http.dns.end_reltime
         type: int
         stability: development
-        brief: DNS lookup end time.
+        brief: DNS lookup end relative time.
         examples: [18]
-      - id: http.connect.start_time
+      - id: http.connect.start_reltime
         type: int
         stability: development
-        brief: TCP connection establishment start time.
+        brief: TCP connection establishment start relative time.
         examples: [20]
-      - id: http.connect.end_time
+      - id: http.connect.end_reltime
         type: int
         stability: development
-        brief: TCP connection establishment end time.
+        brief: TCP connection establishment end relative time.
         examples: [85]
-      - id: http.secure_connect.start_time
+      - id: http.secure_connect.start_reltime
         type: int
         stability: development
-        brief: TLS handshake start time (HTTPS only).
+        brief: TLS handshake start relative time (HTTPS only).
         examples: [86]
-      - id: http.secure_connect.end_time
+      - id: http.secure_connect.end_reltime
         type: int
         stability: development
-        brief: TLS handshake end time (HTTPS only).
+        brief: TLS handshake end relative time (HTTPS only).
         examples: [210]
-      - id: http.request.headers.start_time
+      - id: http.request.headers.start_reltime
         type: int
         stability: development
-        brief: Request headers transmission start time.
+        brief: Request headers transmission start relative time.
         examples: [212]
-      - id: http.request.headers.end_time
+      - id: http.request.headers.end_reltime
         type: int
         stability: development
-        brief: Request headers transmission end time.
+        brief: Request headers transmission end relative time.
         examples: [215]
-      - id: http.request.body.start_time
+      - id: http.request.body.start_reltime
         type: int
         stability: development
-        brief: Request body transmission start time (if request has body).
+        brief: Request body transmission start relative time (if request has body).
         examples: [215]
-      - id: http.request.body.end_time
+      - id: http.request.body.end_reltime
         type: int
         stability: development
-        brief: Request body transmission end time (if request has body).
+        brief: Request body transmission end relative time (if request has body).
         examples: [280]
-      - id: http.response.headers.start_time
+      - id: http.response.headers.start_reltime
         type: int
         stability: development
-        brief: Response headers reception start time.
+        brief: Response headers reception start relative time.
         examples: [295]
-      - id: http.response.headers.end_time
+      - id: http.response.headers.end_reltime
         type: int
         stability: development
-        brief: Response headers reception end time.
+        brief: Response headers reception end relative time.
         examples: [300]
-      - id: http.response.body.start_time
+      - id: http.response.body.start_reltime
         type: int
         stability: development
-        brief: Response body reception start time.
+        brief: Response body reception start relative time.
         examples: [300]
-      - id: http.response.body.end_time
+      - id: http.response.body.end_reltime
         type: int
         stability: development
-        brief: Response body reception end time.
+        brief: Response body reception end relative time.
         examples: [315]
-      - id: http.call.end_time
+      - id: http.call.end_reltime
         type: int
         stability: development
-        brief: Call complete time.
+        brief: Call complete relative time.
         examples: [320]
