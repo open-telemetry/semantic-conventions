@@ -178,11 +178,6 @@ groups:
         requirement_level: required
       - ref: network.peer.address
         requirement_level: opt_in
-        note: >
-          `network.peer.address` is opt-in because it is typically high-cardinality
-          (one time series per remote IP) and, combined with the cumulative temporality
-          of UpDownCounter, can cause unbounded memory growth and metric stream
-          accumulation in the SDK over the lifetime of the process.
       - ref: network.protocol.version
         requirement_level: recommended
       - ref: server.address
