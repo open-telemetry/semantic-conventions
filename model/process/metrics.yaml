@@ -5,7 +5,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
-    stability: development
+    stability: release_candidate
     brief: "Total CPU seconds broken down by different CPU modes."
     instrument: counter
     unit: "s"
@@ -27,7 +27,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
-    stability: development
+    stability: release_candidate
     brief:
       Difference in process.cpu.time since the last measurement, divided by the elapsed time and number of CPUs
       available to the process.
@@ -51,7 +51,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
-    stability: development
+    stability: release_candidate
     brief: "The amount of physical memory in use."
     instrument: updowncounter
     unit: "By"
@@ -65,7 +65,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
-    stability: development
+    stability: release_candidate
     brief: "The amount of committed virtual memory."
     instrument: updowncounter
     unit: "By"
@@ -79,7 +79,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
-    stability: development
+    stability: release_candidate
     brief: "Disk bytes transferred."
     instrument: counter
     unit: "By"
@@ -95,7 +95,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
-    stability: development
+    stability: release_candidate
     brief: "Network bytes transferred."
     instrument: counter
     unit: "By"
@@ -111,7 +111,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
-    stability: development
+    stability: release_candidate
     brief: "Process threads count."
     instrument: updowncounter
     unit: "{thread}"
@@ -124,7 +124,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
-    stability: development
+    stability: release_candidate
     brief: "Number of unix file descriptors in use by the process."
     instrument: updowncounter
     unit: "{file_descriptor}"
@@ -137,7 +137,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
-    stability: development
+    stability: release_candidate
     brief: "Number of handles held by the process."
     instrument: updowncounter
     unit: "{handle}"
@@ -150,7 +150,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
-    stability: development
+    stability: release_candidate
     brief: "Number of times the process has been context switched."
     instrument: counter
     unit: "{context_switch}"
@@ -166,7 +166,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
-    stability: development
+    stability: release_candidate
     brief: "Number of page faults the process has made."
     instrument: counter
     unit: "{fault}"
@@ -186,7 +186,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
-    stability: development
+    stability: release_candidate
     brief: "The time the process has been running."
     note: |
       Instrumentations SHOULD use a gauge with type `double` and measure uptime in seconds as a floating point number with the highest precision available.
