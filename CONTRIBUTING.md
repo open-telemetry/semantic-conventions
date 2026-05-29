@@ -382,9 +382,8 @@ PRs that modify files under `model/` are validated against
 no active SIG/project (status `inactive` in AREAS.md) are automatically
 closed with an explanatory comment.
 
-If your PR is a bugfix to an inactive area whose `Notes` column explicitly
-welcomes bugfixes, ask a maintainer/approver to apply the
-`triage:accepted:ready` label and reopen the PR.
+If you believe a PR was closed in error, please reach out in the
+`#otel-semantic-conventions` channel on the [CNCF Slack](https://slack.cncf.io/).
 
 ### Auto formatting
 

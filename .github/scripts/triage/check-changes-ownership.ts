@@ -36,16 +36,14 @@ This PR modifies file(s) in area(s) that do not currently have an active SIG/pro
 
 Per the [area ownership process](https://github.com/open-telemetry/semantic-conventions/blob/main/AREAS.md),
 changes to these areas need an active SIG/project, so this PR has been automatically
-closed and labeled \`triage:rejected:declined\`. **This does not mean your change is
-unwelcome** — here is what you can do next:
+closed and labeled \`triage:rejected:declined\`.
 
-- **Bugfix**: If the area's \`Notes\` column in \`AREAS.md\` explicitly welcomes bugfixes,
-  ask a maintainer/approver to apply the \`triage:accepted:ready\` label and reopen this
-  PR. See [Area ownership check](https://github.com/open-telemetry/semantic-conventions/blob/main/CONTRIBUTING.md#area-ownership-check)
-  in the contributing guide.
-- **New conventions or substantial changes**: Consider starting a new SIG/project.
+This does not mean your change is unwelcome:
+
+- **For substantial changes or new conventions**: Consider starting a new SIG/project.
   See the [Project Management](https://github.com/open-telemetry/community/blob/main/project-management.md) guide.
-- **Questions**: Open an issue or reach out in the \`#otel-semantic-conventions\` Slack channel.
+- **If you believe this was closed in error**: Please reach out in the
+  \`#otel-semantic-conventions\` channel on the [CNCF Slack](https://slack.cncf.io/).
 
 Thanks again for taking the time to contribute! 🙏`;
 }
