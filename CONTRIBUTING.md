@@ -30,6 +30,7 @@ requirements and recommendations.
 - [Reviewer guidelines](#reviewer-guidelines)
 - [Automation](#automation)
   - [Consistency checks](#consistency-checks)
+  - [Area ownership check](#area-ownership-check)
   - [Auto formatting](#auto-formatting)
   - [Markdown style](#markdown-style)
   - [Misspell check](#misspell-check)

@@ -28,15 +28,26 @@ async function shouldSkipCheck() {
 }
 
 function getCommentText(changesWithoutOwners: string[]): string {
-    return `
-This PR contains changes to area(s) that do not have an active SIG/project and will be auto-closed:
+    return `👋 Thanks for your contribution!
+
+This PR modifies file(s) in area(s) that do not currently have an active SIG/project:
 
 - ${changesWithoutOwners.join('\n- ')}
 
-Such changes may be rejected or put on hold until a new SIG/project is established.
+Per the [area ownership process](https://github.com/open-telemetry/semantic-conventions/blob/main/AREAS.md),
+changes to these areas need an active SIG/project, so this PR has been automatically
+closed and labeled \`triage:rejected:declined\`. **This does not mean your change is
+unwelcome** — here is what you can do next:
 
-Please refer to the [Semantic Convention Areas](https://github.com/open-telemetry/semantic-conventions/blob/main/AREAS.md)
-document to see the current active SIGs and also to learn how to kick start a new one.`;
+- **Bugfix**: If the area's \`Notes\` column in \`AREAS.md\` explicitly welcomes bugfixes,
+  ask a maintainer/approver to apply the \`triage:accepted:ready\` label and reopen this
+  PR. See [Area ownership check](https://github.com/open-telemetry/semantic-conventions/blob/main/CONTRIBUTING.md#area-ownership-check)
+  in the contributing guide.
+- **New conventions or substantial changes**: Consider starting a new SIG/project.
+  See the [Project Management](https://github.com/open-telemetry/community/blob/main/project-management.md) guide.
+- **Questions**: Open an issue or reach out in the \`#otel-semantic-conventions\` Slack channel.
+
+Thanks again for taking the time to contribute! 🙏`;
 }
 
 async function changesInInactiveAreas(): Promise<boolean> {
