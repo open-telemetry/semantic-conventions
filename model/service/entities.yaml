@@ -44,3 +44,12 @@ groups:
       - ref: service.namespace
         role: identifying
         requirement_level: required
+  - id: entity.service.instance
+    type: entity
+    name: service.instance
+    attributes:
+      - ref: service.instance.id
+        requirement_level: required
+      - ref: service.instance.cost_center
+        requirement_level: recommended
+        role: descriptive
