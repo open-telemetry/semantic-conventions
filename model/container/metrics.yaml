@@ -23,9 +23,9 @@ groups:
       code_generation:
         metric_value_type: double
     stability: release_candidate
-    brief: "Total CPU time consumed."
+    brief: "CPU time consumed."
     note: >
-      Total CPU time consumed by the specific container on all available CPU cores
+      CPU time consumed by the specific container on all available CPU cores
     instrument: counter
     unit: "s"
     entity_associations:
@@ -33,9 +33,30 @@ groups:
     attributes:
       - ref: cpu.mode
         brief: "The CPU mode for this data point. A container's CPU metric SHOULD be characterized _either_ by data points with no `mode` labels, _or only_ data points with `mode` labels."
-        note: "Following states SHOULD be used: `user`, `system`, `kernel`"
+        note: >
+          Following modes SHOULD be used for containers if available: `user`, `system`.
+
+          In implementations like [`opencontainers/cgroup`](https://pkg.go.dev/github.com/opencontainers/cgroups@v0.0.6#CpuUsage),
+          [Moby/Docker](https://pkg.go.dev/github.com/Moby/Moby@v28.5.2+incompatible/api/types/container#CPUUsage)
+          or [cAdvisor](https://pkg.go.dev/github.com/google/cadvisor@v0.56.2/info/v1#CpuUsage), the respective states
+          are retrieved from the cgroup stats directly.
+          In cgroup v1 the user/system modes come from the
+          [cpuacct.stat](https://www.kernel.org/doc/html/latest/admin-guide/cgroup-v1/cpuacct.html#cpu-accounting-controller)
+          file and the `user`/`system` stats respectively.
+          In cgroup v2 the user/system modes come from the
+          [cpu.stat](https://docs.kernel.org/admin-guide/cgroup-v2.html#cpu-interface-files) file
+          and the `user_usec`/`system_usec` stats respectively.
+
+          Kubernetes only exposes the total CPU time
+          ([cpu.stat.usage_usec](https://docs.kernel.org/admin-guide/cgroup-v2.html#cpu-interface-files))
+          through Kubelet's stats API, hence the metric should be
+          reported without the mode attribute implying it is the total of all modes.
+
+          In pure container environments the CPU's mode is usually available and cpu.mode should be reported.
+          In that case summarising the CPU time over the different modes gives the total CPU time.
         requirement_level:
-          conditionally_required: Required if mode is available, i.e. metrics coming from the Docker Stats API.
+          conditionally_required: >
+            Required if mode is available, i.e. metrics coming from the Docker Stats API, containerd stats or cAdvisor.
 
   - id: metric.container.cpu.usage
     type: metric
@@ -54,9 +75,11 @@ groups:
     attributes:
       - ref: cpu.mode
         brief: "The CPU mode for this data point. A container's CPU metric SHOULD be characterized _either_ by data points with no `mode` labels, _or only_ data points with `mode` labels."
-        note: "Following states SHOULD be used: `user`, `system`, `kernel`"
+        note: >
+          Following modes SHOULD be used for containers if available: `user`, `system`.
         requirement_level:
-          conditionally_required: Required if mode is available, i.e. metrics coming from the Docker Stats API.
+          conditionally_required: >
+            Required if mode is available, i.e. metrics coming from the Docker Stats API, containerd stats or cAdvisor.
 
   # container.memory.* metrics and attribute group
   - id: metric.container.memory.usage
