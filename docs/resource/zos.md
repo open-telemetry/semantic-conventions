@@ -117,12 +117,12 @@ The following table describes how to populate attributes on the `process` entity
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`process.command`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The command used to launch the process (i.e. the command name). On z/OS, SHOULD be set to the name of the job used to start the z/OS system software. | `CICSSTRT` |
-| [`process.pid`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | int | Process identifier (PID). [1] | `008A` |
-| [`process.owner`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The username of the user that owns the process. [2] | `CICSUSR` |
-| [`process.runtime.description`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | An additional description about the runtime of the process, for example a specific vendor customization of the runtime environment. | `IBM Customer Information Control System (CICS) Transaction Server for z/OS Version 5.6` |
-| [`process.runtime.name`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The name of the runtime of this process. | `CICS Transaction Server z/OS Version 5.6` |
-| [`process.runtime.version`](/docs/registry/attributes/process.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The version of the runtime of this process, as returned by the runtime without modification. | `5.6` |
+| [`process.command`](/docs/registry/attributes/process.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | string | The command used to launch the process (i.e. the command name). On z/OS, SHOULD be set to the name of the job used to start the z/OS system software. | `CICSSTRT` |
+| [`process.pid`](/docs/registry/attributes/process.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | int | Process identifier (PID). [1] | `008A` |
+| [`process.owner`](/docs/registry/attributes/process.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Opt-In` | string | The username of the user that owns the process. [2] | `CICSUSR` |
+| [`process.runtime.description`](/docs/registry/attributes/process.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Opt-In` | string | An additional description about the runtime of the process, for example a specific vendor customization of the runtime environment. | `IBM Customer Information Control System (CICS) Transaction Server for z/OS Version 5.6` |
+| [`process.runtime.name`](/docs/registry/attributes/process.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Opt-In` | string | The name of the runtime of this process. | `CICS Transaction Server z/OS Version 5.6` |
+| [`process.runtime.version`](/docs/registry/attributes/process.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Opt-In` | string | The version of the runtime of this process, as returned by the runtime without modification. | `5.6` |
 
 **[1] `process.pid`:** On z/OS, SHOULD be set to the Address Space Identifier.
 
