@@ -83,7 +83,7 @@ groups:
         examples: ['otelcol']
       - id: process.entrypoint
         type: string
-        stability: release_candidate
+        stability: development
         brief: >
           The full path to the file being executed in this process.
         note: >
