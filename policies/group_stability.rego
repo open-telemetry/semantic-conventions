@@ -33,7 +33,7 @@ deny contains group_stability_violation(description, group.id, name) if {
     group_rank := stability_rank[group.stability]
 
     attr := group.attributes[_]
-    attr.requirement_level != "opt_in"
+    not attr.requirement_level == "opt_in"
 
     attr_rank := stability_rank[attr.stability]
 
