@@ -16,7 +16,7 @@ Attributes specific to a cpu instance.
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
 | <a id="cpu-logical-number" href="#cpu-logical-number">`cpu.logical_number`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The logical CPU number [0..n-1] | `1` |
-| <a id="cpu-mode" href="#cpu-mode">`cpu.mode`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The mode of the CPU | `user`; `system` |
+| <a id="cpu-mode" href="#cpu-mode">`cpu.mode`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The mode of the CPU | `user`; `system` |
 
 ---
 
@@ -24,11 +24,10 @@ Attributes specific to a cpu instance.
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `idle` | Idle | ![Development](https://img.shields.io/badge/-development-blue) |
-| `interrupt` | Interrupt | ![Development](https://img.shields.io/badge/-development-blue) |
-| `iowait` | IO Wait | ![Development](https://img.shields.io/badge/-development-blue) |
-| `kernel` | Kernel | ![Development](https://img.shields.io/badge/-development-blue) |
-| `nice` | Nice | ![Development](https://img.shields.io/badge/-development-blue) |
-| `steal` | Steal | ![Development](https://img.shields.io/badge/-development-blue) |
-| `system` | System | ![Development](https://img.shields.io/badge/-development-blue) |
-| `user` | User | ![Development](https://img.shields.io/badge/-development-blue) |
+| `idle` | Idle | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `interrupt` | Interrupt | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `iowait` | IO Wait | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `nice` | Nice | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `steal` | Steal | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `system` | System | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `user` | User | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
