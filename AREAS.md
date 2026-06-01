@@ -20,7 +20,7 @@ This document provides an overview of the semantic conventions areas, along with
 their owners, related project (and project board) as well as its current status.
 
 > [!Note]
-> PRs that modify files under `model/` touching an area marked `inactive`
+> PRs that modify files under `model/` or `docs/` touching an area marked `inactive`
 > are automatically closed by a bot. See
 > [Area ownership check](./CONTRIBUTING.md#area-ownership-check) in the
 > contributing guide for the bypass procedure for legitimate bugfixes.
