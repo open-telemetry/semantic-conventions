@@ -377,7 +377,7 @@ For more information on each check, see:
 
 ### Area ownership check
 
-PRs that modify files under `model/` are validated against
+PRs that modify files under `model/` or `docs/` are validated against
 [AREAS.md](./AREAS.md) by an automated check. PRs that touch areas with
 no active SIG/project (status `inactive` in AREAS.md) are automatically
 closed with an explanatory comment.
