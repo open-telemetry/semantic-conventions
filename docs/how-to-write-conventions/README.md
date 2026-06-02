@@ -357,7 +357,7 @@ When to define events:
 - The occurrence represents a checkpoint, state change, or outcome in a longer
   operation or asynchronous flow.
 
-For example, define events for application interactions, state transitions,
+For example, define events for user interactions, state transitions,
 feature flag evaluations, lifecycle moments such as service startup,
 configuration reload, or shutdown completion, and exceptions that occur while an
 operation is being executed.
