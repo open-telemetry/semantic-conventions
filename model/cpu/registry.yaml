@@ -12,39 +12,39 @@ groups:
             - id: user
               value: 'user'
               brief: User
-              stability: development
+              stability: release_candidate
             - id: system
               value: 'system'
               brief: System
-              stability: development
+              stability: release_candidate
             - id: nice
               value: 'nice'
               brief: Nice
-              stability: development
+              stability: release_candidate
             - id: idle
               value: 'idle'
               brief: Idle
-              stability: development
+              stability: release_candidate
             - id: iowait
               value: 'iowait'
               brief: IO Wait
-              stability: development
+              stability: release_candidate
             - id: interrupt
               value: 'interrupt'
               brief: Interrupt
-              stability: development
+              stability: release_candidate
             - id: steal
               value: 'steal'
               brief: Steal
-              stability: development
+              stability: release_candidate
             - id: kernel
               value: 'kernel'
-              stability: development
+              stability: release_candidate
               brief: "Deprecated. Use `system` instead."
               deprecated:
                 reason: renamed
                 renamed_to: "system"
-        stability: development
+        stability: release_candidate
         examples: [ "user", "system" ]
       - id: cpu.logical_number
         type: int
