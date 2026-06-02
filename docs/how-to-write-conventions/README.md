@@ -376,7 +376,6 @@ When not to define events:
 
 Events often complement span definitions. Events can be emitted inside or outside
 an active trace context.
-Events do not create trace context and do not have child spans.
 
 Use an event instead of a span attribute when the data describes a distinct
 occurrence within the operation, can happen zero or more times for the same span,
