@@ -364,9 +364,9 @@ operation is being executed.
 
 When not to define events:
 
-- For operations with a duration and meaningful operation boundary - use spans
+- For operations that have a duration and meaningful boundary - use spans
   instead.
-- For properties that describe a whole span and do not need their own timestamp -
+- For properties that describe a whole operation and do not need their own timestamp -
   use span attributes instead.
 - For details that are already captured by an existing event definition with the
   same meaning and structure - reuse or extend the existing event definition
