@@ -353,8 +353,8 @@ When to define events:
 
 - The occurrence is significant for your observability needs.
 - The occurrence does not require a new trace context or child operations.
-- The occurrence represents a checkpoint, state change, or outcome in a longer
-  operation or asynchronous flow.
+- The occurrence represents a checkpoint, state change, point-in-time
+  occurrence, or outcome in a longer operation or asynchronous flow.
 
 For example, define events for user interactions, state transitions,
 feature flag evaluations, lifecycle moments such as service startup,
