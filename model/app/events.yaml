@@ -27,7 +27,7 @@ groups:
         requirement_level: recommended
       - ref: exception.type
         requirement_level: recommended
-        brief: If this contains obfuscated symbols, `app.build_id` SHOULD be provided so they can be deobfuscated.
+        note: If this contains obfuscated symbols, `app.build_id` SHOULD be provided so they can be deobfuscated.
       - ref: exception.message
         requirement_level: recommended
         brief: If this contains obfuscated symbols, `app.build_id` SHOULD be provided so they can be deobfuscated.
