@@ -375,8 +375,7 @@ When not to define events:
   named events - emit regular log records (not modeled as events) instead.
 
 Events often complement span definitions. Events can be emitted inside or outside
-an active trace context. If an event is emitted while a related span is active,
-instrumentations should associate the event with the corresponding span context.
+an active trace context.
 Events do not create trace context and do not have child spans.
 
 Use an event instead of a span attribute when the data describes a distinct
