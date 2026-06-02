@@ -386,7 +386,6 @@ the default [severity](#severity), whether the event is expected to be recorded
 with a parent span context, and the applicable
 [attributes and body](#event-attributes-and-body).
 
-
 ##### Event naming pattern
 
 Event names uniquely identify an event structure. When users query for a specific
