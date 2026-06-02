@@ -23,7 +23,6 @@ aliases: [/docs/specs/semconv/general/how-to-define-semantic-conventions]
     - [Defining metrics](#defining-metrics)
     - [Defining entities](#defining-entities)
     - [Defining events](#defining-events)
-      - [What occurrence does this event represent](#what-occurrence-does-this-event-represent)
       - [Event naming pattern](#event-naming-pattern)
       - [Timestamps](#timestamps)
       - [Severity](#severity)
@@ -368,9 +367,6 @@ When not to define events:
   instead.
 - For properties that describe a whole operation and do not need their own timestamp -
   use span attributes instead.
-- For details that are already captured by an existing event definition with the
-  same meaning and structure - reuse or extend the existing event definition
-  instead.
 - For unstructured diagnostic messages that are not intended to be queried as
   named events - emit regular log records (not modeled as events) instead.
 
@@ -383,31 +379,13 @@ or needs its own timestamp, severity, or occurrence-specific attributes.
 Use a span attribute when the data describes the operation as a whole, especially
 when it is useful for sampling or is known when the span starts.
 
-An event definition should describe the
-[occurrence it represents](#what-occurrence-does-this-event-represent), the
-[event name](#event-naming-pattern), when instrumentations should record it,
-which [timestamp](#timestamps) to use, the default [severity](#severity), whether
-the event is expected to be recorded with a parent span context, and the
-applicable [attributes and body](#event-attributes-and-body).
+An event definition should describe when the event is recorded and what
+domain-specific occurrence it represents in the instrumented component, the
+[event name](#event-naming-pattern), which [timestamp](#timestamps) to use,
+the default [severity](#severity), whether the event is expected to be recorded
+with a parent span context, and the applicable
+[attributes and body](#event-attributes-and-body).
 
-##### What occurrence does this event represent
-
-Define the scope and meaning of the occurrence:
-
-- When the event is recorded, including the timestamp it represents.
-- Whether the event is recorded once, can be recorded multiple times, or is
-  recorded for both start and end checkpoints.
-- Whether the event is meaningful only when associated with a parent span, or
-  whether it can also be emitted independently.
-- Conditions under which instrumentation SHOULD or SHOULD NOT record the event.
-
-If the event can be emitted independently of a span, define enough attributes to
-make the event useful without relying on span attributes.
-
-Define separate events for occurrences that have different meanings, different
-severity, or a significantly different set of attributes. Reuse the same event
-definition across multiple operations when it represents the same occurrence and
-has the same event name, severity guidance, and attribute structure.
 
 ##### Event naming pattern
 
