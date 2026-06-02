@@ -26,7 +26,7 @@ aliases: [/docs/specs/semconv/general/how-to-define-semantic-conventions]
       - [Event naming pattern](#event-naming-pattern)
       - [Timestamps](#timestamps)
       - [Severity](#severity)
-      - [Event attributes and body](#event-attributes-and-body)
+      - [Event attributes](#event-attributes)
 - [Stabilizing existing conventions](#stabilizing-existing-conventions)
   - [Migration plan](#migration-plan)
 
@@ -382,11 +382,12 @@ when it is useful for sampling or is known when the span starts.
 An event definition should describe when the event is recorded and what
 domain-specific occurrence it represents in the instrumented component, the
 [event name](#event-naming-pattern), which [timestamp](#timestamps) to use,
-the default [severity](#severity), whether the event is expected to be recorded
-with a parent span context, and the applicable
-[attributes and body](#event-attributes-and-body).
+the default [severity](#severity), and the applicable
+[attributes](#event-attributes).
 
 ##### Event naming pattern
+
+Semantic conventions MUST document the event name.
 
 Event names uniquely identify an event structure. When users query for a specific
 event name, they should get events that comply with the corresponding semantic
@@ -407,22 +408,22 @@ name, follow [External event compatibility](/docs/general/events.md#external-eve
 
 ##### Timestamps
 
-Events MUST set
+Events MUST have
 [Timestamp](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.57.0/specification/logs/data-model.md#field-timestamp)
-to the time when the event occurred.
+set to the time when the event occurred.
+
+Semantic conventions MUST document which occurrence time should be used as the
+event timestamp when it is not obvious, especially for events received from
+external systems.
 
 Semantic conventions MUST NOT mandate a value for
 [ObservedTimestamp](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.57.0/specification/logs/data-model.md#field-observedtimestamp);
 SDKs, collectors, or other components SHOULD populate it to reflect when the
 event was observed/received.
 
-When defining an event, document which occurrence time should be used as the
-event timestamp when it is not obvious, especially for events received from
-external systems.
-
 ##### Severity
 
-Events SHOULD specify a default
+Semantic conventions SHOULD specify a default
 [severity number](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.57.0/specification/logs/data-model.md#field-severitynumber).
 
 Define the severity number based on the expected impact of the occurrence.
@@ -438,10 +439,9 @@ value only to mirror the severity number short name. If instrumentation receives
 a meaningful severity string from an external system, document how that string
 is mapped to severity number and whether it is preserved as severity text.
 
-##### Event attributes and body
+##### Event attributes
 
-Semantic conventions that define events MUST document the event name and
-attributes. See [General event semantics](/docs/general/events.md#general-event-semantics).
+Semantic conventions MUST document the event attributes.
 
 Use attributes to represent structured event details and context:
 
