@@ -30,13 +30,13 @@ groups:
         note: If this contains obfuscated symbols, `app.build_id` SHOULD be provided so they can be deobfuscated.
       - ref: exception.message
         requirement_level: recommended
-        brief: If this contains obfuscated symbols, `app.build_id` SHOULD be provided so they can be deobfuscated.
+        note: If this contains obfuscated symbols, `app.build_id` SHOULD be provided so they can be deobfuscated.
       - ref: exception.stacktrace
         requirement_level: recommended
-        brief: If this contains obfuscated symbols, `app.build_id` SHOULD be provided so they can be deobfuscated.
+        note: If this contains obfuscated symbols, `app.build_id` SHOULD be provided so they can be deobfuscated.
       - ref: os.name
         requirement_level:
-          conditionally_required: If reporter is not the crashing application instance itself.
+          conditionally_required: If reporter is not the crashing application instance itself and the OS name is available.
       - ref: os.version
         requirement_level:
           conditionally_required: If reporter is not the crashing application instance itself.
