@@ -393,7 +393,7 @@ event name, they should get events that comply with the corresponding semantic
 convention.
 
 - Event names SHOULD follow the [Naming guidelines](/docs/general/naming.md).
-- Event names SHOULD NOT include runtime values. Use attributes for identifiers,
+- Event names MUST NOT include dynamic values. Use attributes for identifiers,
   names, or other values that vary per occurrence.
 - Use a domain-specific name when the event is tied to a specific operation or
   system. For example, `http.client.request.exception` represents exceptions
