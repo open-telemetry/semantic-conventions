@@ -10,7 +10,7 @@ aliases: [events-general]
 This document describes the semantic conventions for Events that are
 represented in the data model by an
 [`EventRecord`](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.57.0/specification/logs/data-model.md#log-and-event-record-definition)
-(a `LogRecord` with an event name.).
+(a `LogRecord` with an event name).
 
 <!-- START doctoc -->
 
@@ -84,8 +84,9 @@ semantic convention.
 - Use a shared name only when the same definition applies to all occurrences
   recorded with that name.
 - When modeling events from an existing system as OpenTelemetry Events, it's
-  common for the system to lack a single name field or require multiple field
-  to identify the event. In such cases, semantic conventions can use a combination of fields to create a low-cardinality event name.
+  common for the system to lack a single name field or require multiple fields
+  to identify the event. In such cases, semantic conventions can use a
+  combination of fields to create a low-cardinality event name.
 
 ## Timestamps
 
