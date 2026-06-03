@@ -458,7 +458,8 @@ Use attributes to represent structured event details and context:
   collect, have high cardinality, or be especially large.
 
 Semantic conventions MUST NOT define a value for
-[body](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.57.0/specification/logs/data-model.md#field-body).
+[body](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.57.0/specification/logs/data-model.md#field-body)
+except to represent a string display message of the event.
 
 ## Stabilizing existing conventions
 
