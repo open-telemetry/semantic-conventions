@@ -431,11 +431,8 @@ conditions for setting each severity.
 For exception events, follow the severity guidance in
 [Semantic conventions for exceptions in logs](/docs/exceptions/exceptions-logs.md#severity).
 
-Semantic conventions SHOULD NOT define a
-[severity text](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.57.0/specification/logs/data-model.md#field-severitytext)
-value only to mirror the severity number short name. If instrumentation receives
-a meaningful severity string from an external system, document how that string
-is mapped to severity number and whether it is preserved as severity text.
+Semantic conventions MUST NOT define a
+[severity text](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.57.0/specification/logs/data-model.md#field-severitytext).
 
 ##### Event attributes
 
