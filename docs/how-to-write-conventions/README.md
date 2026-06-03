@@ -392,7 +392,6 @@ Event names uniquely identify an event structure. When users query for a specifi
 event name, they should get events that comply with the corresponding semantic
 convention.
 
-- Event names MUST be low-cardinality.
 - Event names SHOULD follow the [Naming guidelines](/docs/general/naming.md).
 - Event names SHOULD NOT include runtime values. Use attributes for identifiers,
   names, or other values that vary per occurrence.
