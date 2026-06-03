@@ -367,7 +367,8 @@ When not to define events:
 - For properties that describe a whole operation and do not need their own timestamp -
   use span attributes instead.
 - For unstructured diagnostic messages that are not intended to be queried as
-  named events - emit regular log records (not modeled as events) instead.
+  named events - emit regular log records instead. These records are not modeled
+  as events, but can still follow applicable log semantic conventions.
 
 Events often complement span definitions. Events can be emitted inside or outside
 an active trace context.
