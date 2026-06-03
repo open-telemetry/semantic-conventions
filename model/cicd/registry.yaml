@@ -123,7 +123,7 @@ groups:
         stability: release_candidate
         brief: >
           The result of a task run.
-        examples: ["success", "failure", "timeout", "skipped"]
+        examples: ["success", "failure", "timeout", "skip"]
       - id: cicd.pipeline.task.type
         type:
           members:
@@ -176,7 +176,7 @@ groups:
         stability: release_candidate
         brief: >
           The result of a pipeline run.
-        examples: ["success", "failure", "timeout", "skipped"]
+        examples: ["success", "failure", "timeout", "skip"]
       - id: cicd.pipeline.action.name
         type:
           members:
