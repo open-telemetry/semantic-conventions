@@ -351,7 +351,6 @@ semantics.
 
 When to define events:
 
-- The occurrence is significant for your observability needs.
 - The occurrence does not require a new trace context or child operations.
 - The occurrence represents a checkpoint, state change, point-in-time
   occurrence, or outcome in a longer operation or asynchronous flow.
