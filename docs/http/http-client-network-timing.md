@@ -42,12 +42,17 @@ This event captures per-phase timing for an HTTP client request.
 
 This event MAY be emitted when instrumentation has access to network phase timings for an HTTP client call.
 
-**Timestamp:** MUST be the absolute time when the HTTP client call started, in milliseconds since the Unix epoch.
+**Timestamp:** MUST be set to the absolute time when the HTTP client call started, per the OpenTelemetry log and event
+record [`Timestamp`](https://opentelemetry.io/docs/specs/otel/logs/data-model/#field-timestamp) (nanoseconds since the
+Unix epoch on OTLP).
 
-**Timing attributes:** All `*_reltime` attributes on this event (including `http.call.end_reltime`) MUST be interpreted
+**Timing attributes:** All `*_relative_time` attributes on this event (including `http.call.end_relative_time`) MUST be interpreted
 as non-negative deltas in milliseconds from `Timestamp` (elapsed time from call start to each recorded phase boundary).
+When deriving `*_relative_time` from absolute timestamps, the delta MUST be computed in milliseconds.
 
-**ObservedTimestamp:** SHOULD be set to the time the event was emitted when it differs materially from `Timestamp`.
+**ObservedTimestamp:** SHOULD be set to the time the event was emitted when it differs materially from `Timestamp`,
+following OpenTelemetry [`ObservedTimestamp`](https://opentelemetry.io/docs/specs/otel/logs/data-model/#field-observedtimestamp)
+semantics.
 
 **Trace context:** When an OpenTelemetry span is associated with the operation, the event MUST use the Context of the
 corresponding HTTP client span so backends can correlate the event with the span. When no such span exists, the event
@@ -59,21 +64,21 @@ MAY omit span correlation.
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`http.call.end_reltime`](/docs/registry/attributes/http.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | int | Call complete relative time. | `320` |
-| [`http.connect.end_reltime`](/docs/registry/attributes/http.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | TCP connection establishment end relative time. | `85` |
-| [`http.connect.start_reltime`](/docs/registry/attributes/http.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | TCP connection establishment start relative time. | `20` |
-| [`http.dns.end_reltime`](/docs/registry/attributes/http.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | DNS lookup end relative time. | `18` |
-| [`http.dns.start_reltime`](/docs/registry/attributes/http.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | DNS lookup start relative time. | `0` |
-| [`http.request.body.end_reltime`](/docs/registry/attributes/http.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | Request body transmission end relative time (if request has body). | `280` |
-| [`http.request.body.start_reltime`](/docs/registry/attributes/http.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | Request body transmission start relative time (if request has body). | `215` |
-| [`http.request.headers.end_reltime`](/docs/registry/attributes/http.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | Request headers transmission end relative time. | `215` |
-| [`http.request.headers.start_reltime`](/docs/registry/attributes/http.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | Request headers transmission start relative time. | `212` |
-| [`http.response.body.end_reltime`](/docs/registry/attributes/http.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | Response body reception end relative time. | `315` |
-| [`http.response.body.start_reltime`](/docs/registry/attributes/http.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | Response body reception start relative time. | `300` |
-| [`http.response.headers.end_reltime`](/docs/registry/attributes/http.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | Response headers reception end relative time. | `300` |
-| [`http.response.headers.start_reltime`](/docs/registry/attributes/http.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | Response headers reception start relative time. | `295` |
-| [`http.secure_connect.end_reltime`](/docs/registry/attributes/http.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | TLS handshake end relative time (HTTPS only). | `210` |
-| [`http.secure_connect.start_reltime`](/docs/registry/attributes/http.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | TLS handshake start relative time (HTTPS only). | `86` |
+| [`http.call.end_relative_time`](/docs/registry/attributes/http.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | int | Call complete relative time. | `320` |
+| [`http.connect.end_relative_time`](/docs/registry/attributes/http.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | TCP connection establishment end relative time. | `85` |
+| [`http.connect.start_relative_time`](/docs/registry/attributes/http.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | TCP connection establishment start relative time. | `20` |
+| [`http.dns.end_relative_time`](/docs/registry/attributes/http.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | DNS lookup end relative time. | `18` |
+| [`http.dns.start_relative_time`](/docs/registry/attributes/http.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | DNS lookup start relative time. | `0` |
+| [`http.request.body.end_relative_time`](/docs/registry/attributes/http.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | Request body transmission end relative time (if request has body). | `280` |
+| [`http.request.body.start_relative_time`](/docs/registry/attributes/http.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | Request body transmission start relative time (if request has body). | `215` |
+| [`http.request.headers.end_relative_time`](/docs/registry/attributes/http.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | Request headers transmission end relative time. | `215` |
+| [`http.request.headers.start_relative_time`](/docs/registry/attributes/http.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | Request headers transmission start relative time. | `212` |
+| [`http.response.body.end_relative_time`](/docs/registry/attributes/http.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | Response body reception end relative time. | `315` |
+| [`http.response.body.start_relative_time`](/docs/registry/attributes/http.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | Response body reception start relative time. | `300` |
+| [`http.response.headers.end_relative_time`](/docs/registry/attributes/http.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | Response headers reception end relative time. | `300` |
+| [`http.response.headers.start_relative_time`](/docs/registry/attributes/http.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | Response headers reception start relative time. | `295` |
+| [`http.secure_connect.end_relative_time`](/docs/registry/attributes/http.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | TLS handshake end relative time (HTTPS only). | `210` |
+| [`http.secure_connect.start_relative_time`](/docs/registry/attributes/http.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | TLS handshake start relative time (HTTPS only). | `86` |
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
@@ -85,21 +90,21 @@ Per-phase timing attributes are listed in phase order. Definitions are in the [H
 
 | Attribute | Requirement level |
 | --- | --- |
-| [`http.dns.start_reltime`](../registry/attributes/http.md#http-dns-start-reltime) | Opt-In |
-| [`http.dns.end_reltime`](../registry/attributes/http.md#http-dns-end-reltime) | Opt-In |
-| [`http.connect.start_reltime`](../registry/attributes/http.md#http-connect-start-reltime) | Opt-In |
-| [`http.connect.end_reltime`](../registry/attributes/http.md#http-connect-end-reltime) | Opt-In |
-| [`http.secure_connect.start_reltime`](../registry/attributes/http.md#http-secure-connect-start-reltime) | Opt-In |
-| [`http.secure_connect.end_reltime`](../registry/attributes/http.md#http-secure-connect-end-reltime) | Opt-In |
-| [`http.request.headers.start_reltime`](../registry/attributes/http.md#http-request-headers-start-reltime) | Opt-In |
-| [`http.request.headers.end_reltime`](../registry/attributes/http.md#http-request-headers-end-reltime) | Opt-In |
-| [`http.request.body.start_reltime`](../registry/attributes/http.md#http-request-body-start-reltime) | Opt-In |
-| [`http.request.body.end_reltime`](../registry/attributes/http.md#http-request-body-end-reltime) | Opt-In |
-| [`http.response.headers.start_reltime`](../registry/attributes/http.md#http-response-headers-start-reltime) | Opt-In |
-| [`http.response.headers.end_reltime`](../registry/attributes/http.md#http-response-headers-end-reltime) | Opt-In |
-| [`http.response.body.start_reltime`](../registry/attributes/http.md#http-response-body-start-reltime) | Opt-In |
-| [`http.response.body.end_reltime`](../registry/attributes/http.md#http-response-body-end-reltime) | Opt-In |
-| [`http.call.end_reltime`](../registry/attributes/http.md#http-call-end-reltime) | Required |
+| [`http.dns.start_relative_time`](../registry/attributes/http.md#http-dns-start-relative-time) | Opt-In |
+| [`http.dns.end_relative_time`](../registry/attributes/http.md#http-dns-end-relative-time) | Opt-In |
+| [`http.connect.start_relative_time`](../registry/attributes/http.md#http-connect-start-relative-time) | Opt-In |
+| [`http.connect.end_relative_time`](../registry/attributes/http.md#http-connect-end-relative-time) | Opt-In |
+| [`http.secure_connect.start_relative_time`](../registry/attributes/http.md#http-secure-connect-start-relative-time) | Opt-In |
+| [`http.secure_connect.end_relative_time`](../registry/attributes/http.md#http-secure-connect-end-relative-time) | Opt-In |
+| [`http.request.headers.start_relative_time`](../registry/attributes/http.md#http-request-headers-start-relative-time) | Opt-In |
+| [`http.request.headers.end_relative_time`](../registry/attributes/http.md#http-request-headers-end-relative-time) | Opt-In |
+| [`http.request.body.start_relative_time`](../registry/attributes/http.md#http-request-body-start-relative-time) | Opt-In |
+| [`http.request.body.end_relative_time`](../registry/attributes/http.md#http-request-body-end-relative-time) | Opt-In |
+| [`http.response.headers.start_relative_time`](../registry/attributes/http.md#http-response-headers-start-relative-time) | Opt-In |
+| [`http.response.headers.end_relative_time`](../registry/attributes/http.md#http-response-headers-end-relative-time) | Opt-In |
+| [`http.response.body.start_relative_time`](../registry/attributes/http.md#http-response-body-start-relative-time) | Opt-In |
+| [`http.response.body.end_relative_time`](../registry/attributes/http.md#http-response-body-end-relative-time) | Opt-In |
+| [`http.call.end_relative_time`](../registry/attributes/http.md#http-call-end-relative-time) | Required |
 
 ## Examples for derived metrics
 
@@ -112,15 +117,15 @@ Per-phase timing attributes are listed in phase order. Definitions are in the [H
 
 | Derived measure (example) | Possible calculation |
 | --- | --- |
-| DNS resolution duration | `http.dns.end_reltime` − `http.dns.start_reltime` |
-| TCP connection duration | `http.connect.end_reltime` − `http.connect.start_reltime` |
-| TLS handshake duration | `http.secure_connect.end_reltime` − `http.secure_connect.start_reltime` |
-| Total network setup duration | `http.connect.end_reltime` − `http.dns.start_reltime` |
-| Total request transmission duration | `http.request.body.end_reltime` − `http.request.headers.start_reltime`, or `http.request.headers.end_reltime` − `http.request.headers.start_reltime` when there is no body |
-| Total response reception duration | `http.response.body.end_reltime` − `http.response.headers.start_reltime`, or `http.call.end_reltime` − `http.response.headers.start_reltime` when response body timings are unavailable |
-| Total network transfer duration | `http.response.body.end_reltime` − `http.request.headers.start_reltime`, or `http.call.end_reltime` − `http.request.headers.start_reltime` when body end relative time is unavailable |
-| Time to first byte (TTFB) | `http.response.headers.start_reltime` − `http.request.body.end_reltime`, or `http.response.headers.start_reltime` − `http.request.headers.end_reltime` when there is no body |
-| Time to last byte (TTLB) | `http.response.body.end_reltime` − `http.request.body.end_reltime`, or `http.call.end_reltime` − `http.request.headers.end_reltime` when body timings are incomplete |
-| Total request duration (same origin as deltas) | `http.call.end_reltime` (elapsed from event `Timestamp` to call complete) |
+| DNS resolution duration | `http.dns.end_relative_time` − `http.dns.start_relative_time` |
+| TCP connection duration | `http.connect.end_relative_time` − `http.connect.start_relative_time` |
+| TLS handshake duration | `http.secure_connect.end_relative_time` − `http.secure_connect.start_relative_time` |
+| Total network setup duration | `http.connect.end_relative_time` − `http.dns.start_relative_time` |
+| Total request transmission duration | `http.request.body.end_relative_time` − `http.request.headers.start_relative_time`, or `http.request.headers.end_relative_time` − `http.request.headers.start_relative_time` when there is no body |
+| Total response reception duration | `http.response.body.end_relative_time` − `http.response.headers.start_relative_time`, or `http.call.end_relative_time` − `http.response.headers.start_relative_time` when response body timings are unavailable |
+| Total network transfer duration | `http.response.body.end_relative_time` − `http.request.headers.start_relative_time`, or `http.call.end_relative_time` − `http.request.headers.start_relative_time` when body end relative time is unavailable |
+| Time to first byte (TTFB) | `http.response.headers.start_relative_time` − `http.request.body.end_relative_time`, or `http.response.headers.start_relative_time` − `http.request.headers.end_relative_time` when there is no body |
+| Time to last byte (TTLB) | `http.response.body.end_relative_time` − `http.request.body.end_relative_time`, or `http.call.end_relative_time` − `http.request.headers.end_relative_time` when body timings are incomplete |
+| Total request duration (same origin as deltas) | `http.call.end_relative_time` (elapsed from event `Timestamp` to call complete) |
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
