@@ -402,9 +402,6 @@ convention.
 - Use a shared name only when the same definition applies to all occurrences
   recorded with that name.
 
-When recording events from an existing system that does not have a single event
-name, follow [External event compatibility](/docs/general/events.md#external-event-compatibility).
-
 ##### Timestamps
 
 Events MUST have
