@@ -345,7 +345,7 @@ Follow the [Entity Modeling Guide](resource-and-entities.md).
 
 Events describe named occurrences at a meaningful point in time.
 
-This section covers standalone events represented by `LogRecord`s. See
+This section covers events represented by `LogRecord`s. See
 [Semantic conventions for events](/docs/general/events.md) for general event
 semantics.
 
