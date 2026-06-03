@@ -395,9 +395,9 @@ convention.
 - Event names SHOULD follow the [Naming guidelines](/docs/general/naming.md).
 - Event names MUST NOT include dynamic values. Use attributes for identifiers,
   names, or other values that vary per occurrence.
-- Use a domain-specific name when the event is tied to a specific operation or
-  system. For example, `http.client.request.exception` represents exceptions
-  during HTTP client requests.
+- Use a fully qualified, domain-specific name when the event is tied to a
+  specific operation or system. For example, `http.client.request.exception`
+  represents exceptions during HTTP client requests.
 - Use a shared name only when the same definition applies to all occurrences
   recorded with that name.
 
