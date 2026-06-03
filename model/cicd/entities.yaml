@@ -8,6 +8,7 @@ groups:
     attributes:
       - ref: cicd.pipeline.name
         role: identifying
+        requirement_level: required
 
   - id: entity.cicd.pipeline.run
     type: entity
@@ -18,6 +19,7 @@ groups:
     attributes:
       - ref: cicd.pipeline.run.id
         role: identifying
+        requirement_level: required
       - ref: cicd.pipeline.run.url.full
         role: descriptive
 
