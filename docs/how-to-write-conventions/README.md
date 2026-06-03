@@ -414,7 +414,7 @@ external systems.
 
 Semantic conventions MUST NOT define a value for
 [ObservedTimestamp](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.57.0/specification/logs/data-model.md#field-observedtimestamp);
-SDKs, collectors, or other components SHOULD populate it to reflect when the
+SDKs, collectors, or other components should populate it to reflect when the
 event was observed/received.
 
 ##### Severity
