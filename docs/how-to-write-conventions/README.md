@@ -450,8 +450,8 @@ Use attributes to represent structured event details and context:
 - Prefer flat attributes when the value can be represented clearly without
   structure. Use complex attributes only when the structure is part of the
   event semantics and a flat representation would be awkward or lossy.
-- Include `error.type` when the event represents a failure that users need to
-  classify.
+- Include `error.type` when defining an event that represents a failure or an
+  operation outcome that can be either success or failure.
 - Specify [requirement level](/docs/general/attribute-requirement-level.md) and
   tailor the brief and note to the event.
 - Document attributes that may contain sensitive information, be expensive to
