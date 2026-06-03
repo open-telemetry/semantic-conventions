@@ -261,13 +261,15 @@ This metric is [recommended][MetricRecommended].
 | `otel.sdk.processor.span.processed` | Counter | `{span}` | The number of spans for which the processing has finished, either successful or failed. [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 **[1]:** For successful processing, `error.type` MUST NOT be set. For failed processing, `error.type` MUST contain the failure cause.
+SDK Batching Span Processors MUST use `queue_full` as the value of `error.type` for spans dropped due to a full queue.
+SDK Span Processors MUST use `already_shutdown` as the value of `error.type` for spans dropped because the processor has already been shut down.
 For the SDK Simple and Batching Span Processor a span is considered to be processed already when it has been submitted to the exporter, not when the corresponding export call has finished.
 
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | A low-cardinality description of the failure reason. SDK Batching Span Processors MUST use `queue_full` for spans dropped due to a full queue. [1] | `queue_full` |
+| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | A low-cardinality description of the failure reason. [1] | `queue_full`; `already_shutdown` |
 | [`otel.component.name`](/docs/registry/attributes/otel.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A name uniquely identifying the instance of the OpenTelemetry component within its containing SDK instance. [2] | `otlp_grpc_span_exporter/0`; `custom-name` |
 | [`otel.component.type`](/docs/registry/attributes/otel.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A name identifying the type of the OpenTelemetry component. [3] | `batching_span_processor`; `com.example.MySpanExporter` |
 
@@ -695,6 +697,8 @@ This metric is [recommended][MetricRecommended].
 | `otel.sdk.processor.log.processed` | Counter | `{log_record}` | The number of log records for which the processing has finished, either successful or failed. [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
 
 **[1]:** For successful processing, `error.type` MUST NOT be set. For failed processing, `error.type` MUST contain the failure cause.
+SDK Batching Log Record Processors MUST use `queue_full` as the value of `error.type` for log records dropped due to a full queue.
+SDK Log Record Processors MUST use `already_shutdown` as the value of `error.type` for log records dropped because the processor has already been shut down.
 For the SDK Simple and Batching Log Record Processor a log record is considered to be processed already when it has been submitted to the exporter,
 not when the corresponding export call has finished.
 
@@ -702,7 +706,7 @@ not when the corresponding export call has finished.
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | A low-cardinality description of the failure reason. SDK Batching Log Record Processors MUST use `queue_full` for log records dropped due to a full queue. [1] | `queue_full` |
+| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | A low-cardinality description of the failure reason. [1] | `queue_full`; `already_shutdown` |
 | [`otel.component.name`](/docs/registry/attributes/otel.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A name uniquely identifying the instance of the OpenTelemetry component within its containing SDK instance. [2] | `otlp_grpc_span_exporter/0`; `custom-name` |
 | [`otel.component.type`](/docs/registry/attributes/otel.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A name identifying the type of the OpenTelemetry component. [3] | `batching_span_processor`; `com.example.MySpanExporter` |
 
@@ -1154,7 +1158,7 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 
 This metric is [recommended][MetricRecommended].
 
-This metric SHOULD be specified with [`ExplicitBucketBoundaries` advisory parameter](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.56.0/specification/metrics/api.md#instrument-advisory-parameters) with a single bucket with no boundaries.
+This metric SHOULD be specified with [`ExplicitBucketBoundaries` advisory parameter](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.57.0/specification/metrics/api.md#instrument-advisory-parameters) with a single bucket with no boundaries.
 
 <!-- semconv metric.otel.sdk.metric_reader.collection.duration -->
 <!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->
@@ -1258,7 +1262,7 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 
 This metric is [recommended][MetricRecommended].
 
-This metric SHOULD be specified with [`ExplicitBucketBoundaries` advisory parameter](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.56.0/specification/metrics/api.md#instrument-advisory-parameters) with a single bucket with no boundaries.
+This metric SHOULD be specified with [`ExplicitBucketBoundaries` advisory parameter](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.57.0/specification/metrics/api.md#instrument-advisory-parameters) with a single bucket with no boundaries.
 
 <!-- semconv metric.otel.sdk.exporter.operation.duration -->
 <!-- NOTE: THIS TEXT IS AUTOGENERATED. DO NOT EDIT BY HAND. -->

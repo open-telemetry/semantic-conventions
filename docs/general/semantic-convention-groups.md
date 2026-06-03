@@ -48,6 +48,15 @@ to preserve code generation and documentation for legacy instrumentations.
 
 When group is renamed or no longer recommended, it SHOULD be deprecated.
 
+A group SHOULD NOT reference attributes with a lower maturity level than the
+group itself, unless the requirement level of that attribute is `opt_in`.
+The requirement level of such an attribute reference MAY be changed once the
+attribute reaches the group's stability level, in cases allowed by
+[Versioning and Stability][Stability].
+For example, a `stable` event may reference a `development` attribute only at
+the `opt_in` requirement level; that requirement level may change once the
+attribute becomes stable as well.
+
 See [Versioning and Stability][Stability] for the details on stability guarantees
 provided for semantic convention groups of different types.
 
@@ -71,11 +80,6 @@ Stability guarantees on a group level **do not** apply to unstable attribute ref
 
 - MAY add or remove references to unstable attributes with `opt_in`
   requirement level.
-- SHOULD NOT have references to unstable attributes with requirement level
-  other than `opt_in`.
-  The requirement level of an unstable attribute reference
-  MAY be changed when this attribute becomes stable in cases allowed by the
-  [Versioning and Stability][Stability].
 - MUST NOT remove references to stable attributes.
 
 Stable instrumentations MUST NOT report telemetry following the unstable part
@@ -86,5 +90,5 @@ users to opt into it.
 <!-- https://github.com/open-telemetry/semantic-conventions/issues/1511 -->
 
 [Stability]: https://opentelemetry.io/docs/specs/otel/versioning-and-stability/#semantic-conventions-stability
-[MaturityLevel]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.56.0/oteps/0232-maturity-of-otel.md
+[MaturityLevel]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.57.0/oteps/0232-maturity-of-otel.md
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
