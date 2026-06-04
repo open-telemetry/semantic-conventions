@@ -217,6 +217,8 @@ groups:
 
           Instrumentations SHOULD capture the body as string whenever possible as it makes it easier to use in human-readable form, also it allows to implement sanitization if needed.
 
+          Capturing HTTP request body content should be considered as fragile by nature as it depends on implementation details, configuration and usage of the instrumented HTTP client and server libraries.
+
           Textual content is typically detected based on the [Content-Type](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-type) header using heuristics
           such as checking if the media type starts with `text/` or ends with `/json`, `+json`, `/xml`, `+xml`, `/yaml` or `+yaml` or if the media type contains an explicit charset with `;charset=`.
         examples: ['Hello world!', '{"foo: "bar"}', 'aGVsbG8=']
@@ -233,6 +235,11 @@ groups:
           Instrumentations MUST disable capture by default and provide an opt-in configuration option to enable it as it can capture sensitive information and cause performance overhead.
 
           Instrumentations SHOULD capture the body as string whenever possible as it makes it easier to use in human-readable form, also it allows to implement sanitization if needed.
+
+          Capturing HTTP response body content should be considered as fragile by nature as it depends on implementation details, configuration and usage of the instrumented HTTP client and server libraries.
+
+          For HTTP clients, the [HTTP semantic conventions](https://opentelemetry.io/docs/specs/semconv/http/) define the HTTP [client span duration](https://opentelemetry.io/docs/specs/semconv/http/http-spans/#http-client-span-duration) to end when the response headers are received.
+          This means that the HTTP response body is typically read after the span has ended and thus can't be easily captured as a span attribute.
 
           Textual content is typically detected based on the [Content-Type](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-type) header using heuristics
           such as checking if the media type starts with `text/` or ends with `/json`, `+json`, `/xml`, `+xml`, `/yaml` or `+yaml` or if the media type contains an explicit charset with `;charset=`.
