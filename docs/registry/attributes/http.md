@@ -30,11 +30,16 @@ This document defines semantic convention attributes in the HTTP namespace.
 | <a id="http-route" href="#http-route">`http.route`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The matched route template for the request. This MUST be low-cardinality and include all static path segments, with dynamic path segments represented with placeholders. [7] | `/users/:userID?`; `my-controller/my-action/{id?}` |
 
 **[1] `http.request.body.content`:** Captured value MUST be limited in size and thus value is expected to be truncated in many cases.
-Instrumentations MUST provide configuration options to control the maximum captured body size.
+In addition to respecting the `AttributeValueLengthLimit` configuration option defined in the
+[OpenTelemetry SDK specification](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/common/README.md#configurable-parameters),
+instrumentations SHOULD provide configuration options or arbitrary limits to further limit the captured body size.
 
 Instrumentations MUST disable capture by default and provide an opt-in configuration option to enable it as it can capture sensitive information and cause performance overhead.
 
 Instrumentations SHOULD capture the body as string whenever possible as it makes it easier to use in human-readable form, also it allows to implement sanitization if needed.
+
+Capturing HTTP request body content should be considered as fragile by nature as it depends on implementation details,
+configuration and usage of the instrumented HTTP client and server libraries.
 
 Textual content is typically detected based on the [Content-Type](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-type) header using heuristics
 such as checking if the media type starts with `text/` or ends with `/json`, `+json`, `/xml`, `+xml`, `/yaml` or `+yaml` or if the media type contains an explicit charset with `;charset=`.
@@ -82,11 +87,20 @@ Tracing instrumentations that do so, MUST also set `http.request.method_original
 **[4] `http.request.resend_count`:** The resend count SHOULD be updated each time an HTTP request gets resent by the client, regardless of what was the cause of the resending (e.g. redirection, authorization failure, 503 Server Unavailable, network issues, or any other).
 
 **[5] `http.response.body.content`:** Captured value MUST be limited in size and thus value is expected to be truncated in many cases.
-Instrumentations MUST provide configuration options to control the maximum captured body size.
+In addition to respecting the `AttributeValueLengthLimit` configuration option defined in the
+[OpenTelemetry SDK specification](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/common/README.md#configurable-parameters),
+instrumentations SHOULD provide configuration options or arbitrary limits to further limit the captured body size.
 
 Instrumentations MUST disable capture by default and provide an opt-in configuration option to enable it as it can capture sensitive information and cause performance overhead.
 
 Instrumentations SHOULD capture the body as string whenever possible as it makes it easier to use in human-readable form, also it allows to implement sanitization if needed.
+
+Capturing HTTP response body content should be considered as fragile by nature as it depends on implementation details,
+configuration and usage of the instrumented HTTP client and server libraries.
+
+For HTTP clients, the [HTTP semantic conventions](https://opentelemetry.io/docs/specs/semconv/http/) define the HTTP
+[client span duration](https://opentelemetry.io/docs/specs/semconv/http/http-spans/#http-client-span-duration) to end when the response headers are received.
+This means that the HTTP response body is typically read after the span has ended and thus can't be easily captured as a span attribute.
 
 Textual content is typically detected based on the [Content-Type](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-type) header using heuristics
 such as checking if the media type starts with `text/` or ends with `/json`, `+json`, `/xml`, `+xml`, `/yaml` or `+yaml` or if the media type contains an explicit charset with `;charset=`.

@@ -276,11 +276,16 @@ If the request has completed successfully, instrumentations SHOULD NOT set `erro
 **[10] `network.protocol.version`:** If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set.
 
 **[11] `http.request.body.content`:** Captured value MUST be limited in size and thus value is expected to be truncated in many cases.
-Instrumentations MUST provide configuration options to control the maximum captured body size.
+In addition to respecting the `AttributeValueLengthLimit` configuration option defined in the
+[OpenTelemetry SDK specification](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/common/README.md#configurable-parameters),
+instrumentations SHOULD provide configuration options or arbitrary limits to further limit the captured body size.
 
 Instrumentations MUST disable capture by default and provide an opt-in configuration option to enable it as it can capture sensitive information and cause performance overhead.
 
 Instrumentations SHOULD capture the body as string whenever possible as it makes it easier to use in human-readable form, also it allows to implement sanitization if needed.
+
+Capturing HTTP request body content should be considered as fragile by nature as it depends on implementation details,
+configuration and usage of the instrumented HTTP client and server libraries.
 
 Textual content is typically detected based on the [Content-Type](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-type) header using heuristics
 such as checking if the media type starts with `text/` or ends with `/json`, `+json`, `/xml`, `+xml`, `/yaml` or `+yaml` or if the media type contains an explicit charset with `;charset=`.
@@ -303,11 +308,20 @@ Examples:
   attribute with value `["1.2.3.4", "1.2.3.5"]` or `["1.2.3.4, 1.2.3.5"]` depending on the HTTP library.
 
 **[13] `http.response.body.content`:** Captured value MUST be limited in size and thus value is expected to be truncated in many cases.
-Instrumentations MUST provide configuration options to control the maximum captured body size.
+In addition to respecting the `AttributeValueLengthLimit` configuration option defined in the
+[OpenTelemetry SDK specification](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/common/README.md#configurable-parameters),
+instrumentations SHOULD provide configuration options or arbitrary limits to further limit the captured body size.
 
 Instrumentations MUST disable capture by default and provide an opt-in configuration option to enable it as it can capture sensitive information and cause performance overhead.
 
 Instrumentations SHOULD capture the body as string whenever possible as it makes it easier to use in human-readable form, also it allows to implement sanitization if needed.
+
+Capturing HTTP response body content should be considered as fragile by nature as it depends on implementation details,
+configuration and usage of the instrumented HTTP client and server libraries.
+
+For HTTP clients, the [HTTP semantic conventions](https://opentelemetry.io/docs/specs/semconv/http/) define the HTTP
+[client span duration](https://opentelemetry.io/docs/specs/semconv/http/http-spans/#http-client-span-duration) to end when the response headers are received.
+This means that the HTTP response body is typically read after the span has ended and thus can't be easily captured as a span attribute.
 
 Textual content is typically detected based on the [Content-Type](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-type) header using heuristics
 such as checking if the media type starts with `text/` or ends with `/json`, `+json`, `/xml`, `+xml`, `/yaml` or `+yaml` or if the media type contains an explicit charset with `;charset=`.
@@ -615,11 +629,16 @@ When a query string value is redacted, the query string key SHOULD still be pres
 **[14] `client.port`:** When observed from the server side, and when communicating through an intermediary, `client.port` SHOULD represent the client port behind any intermediaries,  for example proxies, if it's available.
 
 **[15] `http.request.body.content`:** Captured value MUST be limited in size and thus value is expected to be truncated in many cases.
-Instrumentations MUST provide configuration options to control the maximum captured body size.
+In addition to respecting the `AttributeValueLengthLimit` configuration option defined in the
+[OpenTelemetry SDK specification](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/common/README.md#configurable-parameters),
+instrumentations SHOULD provide configuration options or arbitrary limits to further limit the captured body size.
 
 Instrumentations MUST disable capture by default and provide an opt-in configuration option to enable it as it can capture sensitive information and cause performance overhead.
 
 Instrumentations SHOULD capture the body as string whenever possible as it makes it easier to use in human-readable form, also it allows to implement sanitization if needed.
+
+Capturing HTTP request body content should be considered as fragile by nature as it depends on implementation details,
+configuration and usage of the instrumented HTTP client and server libraries.
 
 Textual content is typically detected based on the [Content-Type](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-type) header using heuristics
 such as checking if the media type starts with `text/` or ends with `/json`, `+json`, `/xml`, `+xml`, `/yaml` or `+yaml` or if the media type contains an explicit charset with `;charset=`.
@@ -642,11 +661,20 @@ Examples:
   attribute with value `["1.2.3.4", "1.2.3.5"]` or `["1.2.3.4, 1.2.3.5"]` depending on the HTTP library.
 
 **[17] `http.response.body.content`:** Captured value MUST be limited in size and thus value is expected to be truncated in many cases.
-Instrumentations MUST provide configuration options to control the maximum captured body size.
+In addition to respecting the `AttributeValueLengthLimit` configuration option defined in the
+[OpenTelemetry SDK specification](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/common/README.md#configurable-parameters),
+instrumentations SHOULD provide configuration options or arbitrary limits to further limit the captured body size.
 
 Instrumentations MUST disable capture by default and provide an opt-in configuration option to enable it as it can capture sensitive information and cause performance overhead.
 
 Instrumentations SHOULD capture the body as string whenever possible as it makes it easier to use in human-readable form, also it allows to implement sanitization if needed.
+
+Capturing HTTP response body content should be considered as fragile by nature as it depends on implementation details,
+configuration and usage of the instrumented HTTP client and server libraries.
+
+For HTTP clients, the [HTTP semantic conventions](https://opentelemetry.io/docs/specs/semconv/http/) define the HTTP
+[client span duration](https://opentelemetry.io/docs/specs/semconv/http/http-spans/#http-client-span-duration) to end when the response headers are received.
+This means that the HTTP response body is typically read after the span has ended and thus can't be easily captured as a span attribute.
 
 Textual content is typically detected based on the [Content-Type](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-type) header using heuristics
 such as checking if the media type starts with `text/` or ends with `/json`, `+json`, `/xml`, `+xml`, `/yaml` or `+yaml` or if the media type contains an explicit charset with `;charset=`.
