@@ -64,21 +64,21 @@ MAY omit span correlation.
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`http.call.end_relative_time`](/docs/registry/attributes/http.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | int | Call complete relative time. | `320` |
-| [`http.connect.end_relative_time`](/docs/registry/attributes/http.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | TCP connection establishment end relative time. | `85` |
-| [`http.connect.start_relative_time`](/docs/registry/attributes/http.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | TCP connection establishment start relative time. | `20` |
-| [`http.dns.end_relative_time`](/docs/registry/attributes/http.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | DNS lookup end relative time. | `18` |
-| [`http.dns.start_relative_time`](/docs/registry/attributes/http.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | DNS lookup start relative time. | `0` |
-| [`http.request.body.end_relative_time`](/docs/registry/attributes/http.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | Request body transmission end relative time (if request has body). | `280` |
-| [`http.request.body.start_relative_time`](/docs/registry/attributes/http.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | Request body transmission start relative time (if request has body). | `215` |
-| [`http.request.headers.end_relative_time`](/docs/registry/attributes/http.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | Request headers transmission end relative time. | `215` |
-| [`http.request.headers.start_relative_time`](/docs/registry/attributes/http.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | Request headers transmission start relative time. | `212` |
-| [`http.response.body.end_relative_time`](/docs/registry/attributes/http.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | Response body reception end relative time. | `315` |
-| [`http.response.body.start_relative_time`](/docs/registry/attributes/http.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | Response body reception start relative time. | `300` |
-| [`http.response.headers.end_relative_time`](/docs/registry/attributes/http.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | Response headers reception end relative time. | `300` |
-| [`http.response.headers.start_relative_time`](/docs/registry/attributes/http.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | Response headers reception start relative time. | `295` |
-| [`http.secure_connect.end_relative_time`](/docs/registry/attributes/http.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | TLS handshake end relative time (HTTPS only). | `210` |
-| [`http.secure_connect.start_relative_time`](/docs/registry/attributes/http.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | TLS handshake start relative time (HTTPS only). | `86` |
+| [`http.call.end_relative_time`](/docs/registry/attributes/http.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | double | Call complete relative time. | `320.0` |
+| [`http.connect.end_relative_time`](/docs/registry/attributes/http.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | double | TCP connection establishment end relative time. | `85.0` |
+| [`http.connect.start_relative_time`](/docs/registry/attributes/http.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | double | TCP connection establishment start relative time. | `20.0` |
+| [`http.dns.end_relative_time`](/docs/registry/attributes/http.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | double | DNS lookup end relative time. | `18.0` |
+| [`http.dns.start_relative_time`](/docs/registry/attributes/http.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | double | DNS lookup start relative time. | `0.0` |
+| [`http.request.body.end_relative_time`](/docs/registry/attributes/http.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | double | Request body transmission end relative time (if request has body). | `280.0` |
+| [`http.request.body.start_relative_time`](/docs/registry/attributes/http.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | double | Request body transmission start relative time (if request has body). | `215.0` |
+| [`http.request.headers.end_relative_time`](/docs/registry/attributes/http.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | double | Request headers transmission end relative time. | `215.0` |
+| [`http.request.headers.start_relative_time`](/docs/registry/attributes/http.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | double | Request headers transmission start relative time. | `212.0` |
+| [`http.response.body.end_relative_time`](/docs/registry/attributes/http.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | double | Response body reception end relative time. | `315.0` |
+| [`http.response.body.start_relative_time`](/docs/registry/attributes/http.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | double | Response body reception start relative time. | `300.0` |
+| [`http.response.headers.end_relative_time`](/docs/registry/attributes/http.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | double | Response headers reception end relative time. | `300.0` |
+| [`http.response.headers.start_relative_time`](/docs/registry/attributes/http.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | double | Response headers reception start relative time. | `295.0` |
+| [`http.secure_connect.end_relative_time`](/docs/registry/attributes/http.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | double | TLS handshake end relative time (HTTPS only). | `210.0` |
+| [`http.secure_connect.start_relative_time`](/docs/registry/attributes/http.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | double | TLS handshake start relative time (HTTPS only). | `86.0` |
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
