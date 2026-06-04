@@ -15,10 +15,10 @@ test_succeed_on_valid_entity_association if {
 
 create_metric_with_association(name, association) = json if {
     id := sprintf("metric.%s", [name])
-    json := {"id": id, "type": "metric", "metric_name": name, "stability": "rc", "entity_associations": [association], "brief": "brief."}
+    json := {"id": id, "type": "metric", "metric_name": name, "stability": "development", "entity_associations": [association], "brief": "brief."}
 }
 
 create_entity(name) = json if {
     id := sprintf("resource.%s", [name])
-    json := {"id": id, "type": "entity", "name": name, "stability": "rc", "brief": "brief."}
+    json := {"id": id, "type": "entity", "name": name, "stability": "development", "brief": "brief."}
 }
