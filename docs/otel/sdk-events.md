@@ -48,13 +48,13 @@ It is emitted exactly once per component instance per shutdown.
 The severity of the emitted log record SHOULD be `WARN` if **any** of the following hold,
 and `INFO` otherwise:
 
-- `otel.component.shutdown.outcome` is not `success`, or
+- `otel.component.shutdown.result` is not `success`, or
 - `otel.component.dropped_count` is **present** and greater than `0`.
 
 Components that do not track a lifetime dropped count MUST omit
 `otel.component.dropped_count`. Absence of the attribute MUST NOT be treated as `0`
 for the severity rule above; it means "not applicable / not tracked" and the severity
-is determined solely by `otel.component.shutdown.outcome` for those components.
+is determined solely by `otel.component.shutdown.result` for those components.
 
 Implementations MUST take care that emitting this event does not itself depend on the
 component (or pipeline) that is being shut down. For example, the SDK SHOULD NOT route an
@@ -68,7 +68,7 @@ The event body is not used (per the [event guidelines](/docs/general/events.md))
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`otel.component.name`](/docs/registry/attributes/otel.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | A name uniquely identifying the instance of the OpenTelemetry component within its containing SDK instance. [1] | `otlp_grpc_span_exporter/0`; `custom-name` |
-| [`otel.component.shutdown.outcome`](/docs/registry/attributes/otel.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The outcome of an OpenTelemetry SDK component shutdown. | `success`; `failed`; `timed_out` |
+| [`otel.component.shutdown.result`](/docs/registry/attributes/otel.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The result of an OpenTelemetry SDK component shutdown. | `success`; `failed`; `timed_out` |
 | [`otel.component.type`](/docs/registry/attributes/otel.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | A name identifying the type of the OpenTelemetry component. [2] | `batching_span_processor`; `com.example.MySpanExporter` |
 | [`otel.component.dropped_count`](/docs/registry/attributes/otel.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` [3] | int | The total number of items the component dropped over its lifetime, up to and including the shutdown. [4] | `0`; `42` |
 
@@ -102,7 +102,7 @@ Components that do not track this MUST omit the attribute. Consumers MUST treat 
 
 ---
 
-`otel.component.shutdown.outcome` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`otel.component.shutdown.result` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |
 | --- | --- | --- |

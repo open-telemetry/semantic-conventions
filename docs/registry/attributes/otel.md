@@ -61,7 +61,7 @@ Attributes used for OpenTelemetry component self-monitoring
 | --- | --- | --- | --- | --- |
 | <a id="otel-component-dropped-count" href="#otel-component-dropped-count">`otel.component.dropped_count`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The total number of telemetry items (spans, log records, metric data points, etc.) the OpenTelemetry SDK component dropped over its lifetime. [1] | `0`; `42` |
 | <a id="otel-component-name" href="#otel-component-name">`otel.component.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | A name uniquely identifying the instance of the OpenTelemetry component within its containing SDK instance. [2] | `otlp_grpc_span_exporter/0`; `custom-name` |
-| <a id="otel-component-shutdown-outcome" href="#otel-component-shutdown-outcome">`otel.component.shutdown.outcome`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The outcome of an OpenTelemetry SDK component shutdown. | `success`; `failed`; `timed_out` |
+| <a id="otel-component-shutdown-result" href="#otel-component-shutdown-result">`otel.component.shutdown.result`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The result of an OpenTelemetry SDK component shutdown. | `success`; `failed`; `timed_out` |
 | <a id="otel-component-type" href="#otel-component-type">`otel.component.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | A name identifying the type of the OpenTelemetry component. [3] | `batching_span_processor`; `com.example.MySpanExporter` |
 
 **[1] `otel.component.dropped_count`:** Counts items dropped for any reason, e.g. queue overflow or export failures that exhausted retries.
@@ -92,7 +92,7 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 
 ---
 
-`otel.component.shutdown.outcome` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`otel.component.shutdown.result` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |
 | --- | --- | --- |

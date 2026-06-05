@@ -208,7 +208,7 @@ groups:
           as `otel.component.name`, the second one `batching_span_processor/1` and so on.
           These values will therefore be reused in the case of an application restart.
         examples: ["otlp_grpc_span_exporter/0", "custom-name"]
-      - id: otel.component.shutdown.outcome
+      - id: otel.component.shutdown.result
         type:
           members:
             - id: success
@@ -228,7 +228,7 @@ groups:
               stability: development
         stability: development
         brief: >
-          The outcome of an OpenTelemetry SDK component shutdown.
+          The result of an OpenTelemetry SDK component shutdown.
         examples: ["success", "failed", "timed_out"]
       - id: otel.component.dropped_count
         type: int
