@@ -10,6 +10,6 @@ note: >
   covering all attempts and backoff. Also drop a spurious `error.type` note from
   the `*.inflight` metrics, which do not carry an `error.type` attribute.
 
-issues: []
+issues: [3770]
 
 subtext:
