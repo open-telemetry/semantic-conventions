@@ -18,10 +18,10 @@ groups:
       and `INFO` otherwise:
 
       - `otel.component.shutdown.result` is not `success`, or
-      - `otel.component.dropped_count` is **present** and greater than `0`.
+      - `otel.component.dropped` is **present** and greater than `0`.
 
       Components that do not track a lifetime dropped count MUST omit
-      `otel.component.dropped_count`. Absence of the attribute MUST NOT be treated as `0`
+      `otel.component.dropped`. Absence of the attribute MUST NOT be treated as `0`
       for the severity rule above; it means "not applicable / not tracked" and the severity
       is determined solely by `otel.component.shutdown.result` for those components.
 
@@ -38,7 +38,7 @@ groups:
         requirement_level: required
       - ref: otel.component.shutdown.result
         requirement_level: required
-      - ref: otel.component.dropped_count
+      - ref: otel.component.dropped
         requirement_level:
           recommended: >
             If the component tracks a lifetime dropped count (e.g. queue-based processors such as

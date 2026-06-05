@@ -230,7 +230,7 @@ groups:
         brief: >
           The result of an OpenTelemetry SDK component shutdown.
         examples: ["success", "failed", "timed_out"]
-      - id: otel.component.dropped_count
+      - id: otel.component.dropped
         type: int
         stability: development
         brief: >

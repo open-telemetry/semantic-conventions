@@ -59,12 +59,12 @@ Attributes used for OpenTelemetry component self-monitoring
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="otel-component-dropped-count" href="#otel-component-dropped-count">`otel.component.dropped_count`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The total number of telemetry items (spans, log records, metric data points, etc.) the OpenTelemetry SDK component dropped over its lifetime. [1] | `0`; `42` |
+| <a id="otel-component-dropped" href="#otel-component-dropped">`otel.component.dropped`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The total number of telemetry items (spans, log records, metric data points, etc.) the OpenTelemetry SDK component dropped over its lifetime. [1] | `0`; `42` |
 | <a id="otel-component-name" href="#otel-component-name">`otel.component.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | A name uniquely identifying the instance of the OpenTelemetry component within its containing SDK instance. [2] | `otlp_grpc_span_exporter/0`; `custom-name` |
 | <a id="otel-component-shutdown-result" href="#otel-component-shutdown-result">`otel.component.shutdown.result`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The result of an OpenTelemetry SDK component shutdown. | `success`; `failed`; `timed_out` |
 | <a id="otel-component-type" href="#otel-component-type">`otel.component.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | A name identifying the type of the OpenTelemetry component. [3] | `batching_span_processor`; `com.example.MySpanExporter` |
 
-**[1] `otel.component.dropped_count`:** Counts items dropped for any reason, e.g. queue overflow or export failures that exhausted retries.
+**[1] `otel.component.dropped`:** Counts items dropped for any reason, e.g. queue overflow or export failures that exhausted retries.
 The value is the cumulative count from the time the component was started until the moment the
 enclosing event (e.g. `otel.sdk.component.shutdown`) is emitted.
 
