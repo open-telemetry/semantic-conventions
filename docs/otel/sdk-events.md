@@ -35,45 +35,109 @@ that metrics cannot easily answer on their own, such as
 
 The event name MUST be `otel.sdk.component.shutdown`.
 
-Indicates that an OpenTelemetry SDK component (e.g. a span processor or exporter) has finished shutting down.
+Indicates that an OpenTelemetry SDK component's shutdown attempt has ended, whether by completing successfully, failing, or being abandoned (e.g. on timeout).
 
-The OpenTelemetry SDK SHOULD emit an `otel.sdk.component.shutdown` event from each long-lived
-SDK component (e.g. the Batching Span Processor) when its `Shutdown` operation has completed,
-either successfully, with errors, or after a timeout.
+**Applicability.**
 
-The event is intended for SDK self-observability and answers the question
-"did my pipeline drain cleanly when the application was shutting down?".
-It is emitted exactly once per component instance per shutdown.
+SDK implementations SHOULD emit an `otel.sdk.component.shutdown` event for each
+SDK component instance that has an explicit shutdown (or equivalent close/dispose)
+operation and that owns telemetry processing, buffering, reading, or exporting state.
+This includes, when applicable, span processors, log record processors, metric
+readers, and exporters. Passive helpers such as samplers, ID generators, propagators,
+and resource detectors are out of scope.
 
-The severity of the emitted log record SHOULD be `WARN` if **any** of the following hold,
-and `INFO` otherwise:
+Provider-level shutdown (e.g. `TracerProvider`, `LoggerProvider`, `MeterProvider`)
+is reported via the events emitted by the provider's child components, not by the
+provider itself, unless the provider has shutdown work whose outcome is not
+represented by any child component event.
 
-- `otel.component.shutdown.result` is not `success`, or
-- `otel.component.dropped` is **present** and greater than `0`, or
-- `otel.component.shutdown.dropped` is **present** and greater than `0`.
+**Emission rules.**
+
+The event SHOULD be emitted exactly once per component instance per logical
+shutdown transition, regardless of how many times the shutdown API is invoked.
+Repeated idempotent shutdown calls that perform no additional shutdown work
+MUST NOT emit additional events.
+
+If the process terminates without invoking the component's shutdown operation
+(e.g. a crash, `SIGKILL`, container eviction, or immediate process termination),
+no event is expected. Consumers MUST NOT interpret the absence of this event as
+evidence of a clean shutdown.
+
+A single SDK pipeline MAY produce multiple `otel.sdk.component.shutdown` events,
+one per component instance whose shutdown is reported. These events are
+component-local: consumers SHOULD use `otel.component.name` and
+`otel.component.type` to distinguish instances, and SHOULD NOT sum drop counts
+across events to compute a pipeline-wide loss number (the same telemetry item
+may be represented by more than one component's event).
+
+The event timestamp SHOULD reflect the time at which the shutdown attempt ended
+(whether by completing, failing, or being abandoned). The event body SHOULD be
+omitted; all event data defined by this convention is conveyed through attributes.
+
+**Severity.**
+
+Implementations SHOULD set the log record severity to `WARN`
+(`SeverityNumber` = `13`) if **any** of the following hold, and to `INFO`
+(`SeverityNumber` = `9`) otherwise:
+
+- `otel.component.shutdown.result` is not `success`,
+- `otel.component.shutdown.dropped` is **present** and greater than `0`, or
+- `otel.component.dropped` is **present** and greater than `0`.
+
+A component MAY therefore emit an event with `otel.component.shutdown.result` =
+`success` and `WARN` severity if it reports lifetime drops that occurred before
+shutdown. This is intentional: the event is meant to be a single terminal place
+to detect that the SDK lost telemetry, including drops that may have happened
+earlier when the metrics pipeline was unavailable or unreliable.
 
 Components that do not track a lifetime dropped count MUST omit
-`otel.component.dropped`, and components that do not buffer items MUST omit
-`otel.component.shutdown.dropped`. Absence of either attribute MUST NOT be treated as `0`
-for the severity rule above; it means "not applicable / not tracked" and the severity
-is determined by the remaining present attributes.
+`otel.component.dropped`, and components that do not own queued, buffered, retry,
+or in-flight telemetry items at shutdown MUST omit `otel.component.shutdown.dropped`.
+Absence of either attribute MUST NOT be treated as `0` for the severity rule
+above; absence means "not applicable / not tracked", and the severity is
+determined by the remaining present attributes.
 
-Implementations MUST take care that emitting this event does not itself depend on the
-component (or pipeline) that is being shut down. For example, the SDK SHOULD NOT route an
-`otel.sdk.component.shutdown` event for a log processor through the same `LoggerProvider`
-that owns the processor being shut down.
+**Relationship with existing SDK metrics.**
 
-The event body is not used (per the [event guidelines](/docs/general/events.md)).
+The drop counts on this event are component-local terminal summaries and are
+**not additive** with SDK self-observability metrics such as
+`otel.sdk.processor.*.processed` (with `error.type`) or
+`otel.sdk.exporter.*.exported` (with `error.type`). The same telemetry item MAY
+be represented both by an exporter failure metric data point and by a drop count
+on this event. This event exists in addition to those metrics because the metrics
+pipeline itself may be shutting down, and so the final state of the SDK is not
+always observable from metrics alone.
+
+The reason a shutdown failed is intentionally not classified on this event
+(there is no `error.type` attribute). Failure-cause classification is the
+responsibility of the operation-level signals
+(e.g. `otel.sdk.exporter.*.exported` with `error.type`) emitted while the SDK
+is still healthy.
+
+**Self-feedback.**
+
+Implementations MUST NOT emit this event through the same component instance whose
+shutdown is being reported. For log SDK components, implementations MUST NOT route
+the event through the same `LoggerProvider`, `LogRecordProcessor`, or
+`LogRecordExporter` instance that is currently being shut down. If no independent
+self-observability emission path is available, implementations MAY suppress the
+event rather than route it through the component or pipeline being shut down.
+
+**Forward compatibility.**
+
+Additional attributes (e.g. a shutdown duration) MAY be added in future revisions
+of this convention. Consumers MUST tolerate the presence of attributes they do
+not recognize.
 
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`otel.component.name`](/docs/registry/attributes/otel.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | A name uniquely identifying the instance of the OpenTelemetry component within its containing SDK instance. [1] | `otlp_grpc_span_exporter/0`; `custom-name` |
-| [`otel.component.shutdown.result`](/docs/registry/attributes/otel.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The result of an OpenTelemetry SDK component shutdown. | `success`; `failed`; `timed_out` |
-| [`otel.component.type`](/docs/registry/attributes/otel.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | A name identifying the type of the OpenTelemetry component. [2] | `batching_span_processor`; `com.example.MySpanExporter` |
-| [`otel.component.dropped`](/docs/registry/attributes/otel.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` [3] | int | The total number of items the component dropped during normal operation over its lifetime, excluding items lost during the shutdown act itself (see `otel.component.shutdown.dropped`). [4] | `0`; `42` |
-| [`otel.component.shutdown.dropped`](/docs/registry/attributes/otel.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` [5] | int | The number of items the component could not confirm delivered before shutdown terminated. MUST be `0` when `otel.component.shutdown.result` is `success`; non-zero values are an upper bound on actual loss (in-flight export requests abandoned at timeout may still succeed on the wire). [6] | `0`; `800` |
+| [`otel.component.shutdown.result`](/docs/registry/attributes/otel.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The result of an OpenTelemetry SDK component shutdown attempt. [2] | `success`; `failed`; `timed_out` |
+| [`otel.component.type`](/docs/registry/attributes/otel.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | A name identifying the type of the OpenTelemetry component. [3] | `batching_span_processor`; `com.example.MySpanExporter` |
+| [`otel.component.dropped`](/docs/registry/attributes/otel.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` [4] | int | The total number of items the component dropped during normal operation over its lifetime, excluding items abandoned during the shutdown attempt itself (see `otel.component.shutdown.dropped`). [5] | `0`; `42` |
+| [`otel.component.shutdown.dropped`](/docs/registry/attributes/otel.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` [6] | int | The number of telemetry items the component could not confirm delivered before the shutdown attempt ended. MUST be `0` when `otel.component.shutdown.result` is `success`; non-zero values are an upper bound on actual loss (in-flight export requests abandoned at timeout may still succeed on the wire). [7] | `0`; `800` |
 
 **[1] `otel.component.name`:** Implementations SHOULD ensure a low cardinality for this attribute, even across application or SDK restarts.
 E.g. implementations MUST NOT use UUIDs as values for this attribute.
@@ -89,51 +153,79 @@ With this implementation, for example the first Batching Span Processor would ha
 as `otel.component.name`, the second one `batching_span_processor/1` and so on.
 These values will therefore be reused in the case of an application restart.
 
-**[2] `otel.component.type`:** If none of the standardized values apply, implementations SHOULD use the language-defined name of the type.
+**[2] `otel.component.shutdown.result`:** `timed_out` takes precedence over `failed` when both are observed for the same
+shutdown attempt (e.g. when an exporter request is abandoned because the
+shutdown timeout expired).
+
+`success` MUST only be reported when the shutdown completed within the
+configured time budget AND no required shutdown step reported a failure.
+
+If no shutdown timeout/deadline applies to the component, implementations MUST
+NOT report `timed_out` unless the underlying shutdown API explicitly reports a
+timeout condition.
+
+**[3] `otel.component.type`:** If none of the standardized values apply, implementations SHOULD use the language-defined name of the type.
 E.g. for Java the fully qualified classname SHOULD be used in this case.
 
-**[3] `otel.component.dropped`:** If the component tracks a lifetime dropped count (e.g. queue-based processors such as the Batching Span Processor or Batching Log Record Processor). Components that do not track this MUST omit the attribute; consumers MUST treat absence as "unknown", not as `0`.
+**[4] `otel.component.dropped`:** If the component tracks a lifetime dropped count (e.g. queue-based processors such as the Batching Span Processor or Batching Log Record Processor). Components that do not track this MUST omit the attribute; consumers MUST treat absence as "unknown / not applicable", not as `0`.
 
-**[4] `otel.component.dropped`:** Counts items dropped during normal operation for any reason, e.g. queue overflow or export failures that exhausted retries.
-The value is the cumulative count from the time the component was started until the moment the
-enclosing event (e.g. `otel.sdk.component.shutdown`) is emitted.
+**[5] `otel.component.dropped`:** Counts telemetry items that the component accepted (or attempted to accept)
+and then dropped during normal operation for any reason, e.g. queue overflow or
+export failures that exhausted retries. The value MUST be a non-negative
+integer and is cumulative from the time the component was started until the
+moment the enclosing event (e.g. `otel.sdk.component.shutdown`) is emitted.
 
-Items that were buffered by the component when shutdown was initiated but could not be drained
-before shutdown terminated are reported separately via `otel.component.shutdown.dropped` and
-are NOT included in this lifetime counter.
+This counter MUST NOT include:
 
-This attribute is only applicable to components that track a lifetime dropped count, such as
-queue-based processors (e.g. the Batching Span Processor or Batching Log Record Processor).
-Components that do not track this MUST omit the attribute. Consumers MUST treat absence as
-"unknown / not applicable", not as `0`.
+- items that the component refused because its shutdown had already begun or
+  completed (those situations are typically already exposed by other SDK
+  metrics, e.g. `otel.sdk.processor.*.processed` with `error.type`), or
+- items reported via `otel.component.shutdown.dropped`.
 
-**[5] `otel.component.shutdown.dropped`:** If the component buffers items (e.g. queue-based processors such as the Batching Span Processor or Batching Log Record Processor). Non-buffering components MUST omit the attribute; consumers MUST treat absence as "unknown", not as `0`.
+This attribute is only applicable to components that track a lifetime dropped
+count, such as queue-based processors (e.g. the Batching Span Processor or
+Batching Log Record Processor). Components that do not track this MUST omit
+the attribute. Consumers MUST treat absence as "unknown / not applicable",
+not as `0`.
 
-**[6] `otel.component.shutdown.dropped`:** Reported on `otel.sdk.component.shutdown` events. Captures items that the component
-had accepted prior to shutdown but could not confirm delivered by the time the
-shutdown attempt was abandoned (typically because the configured shutdown timeout
-elapsed, or the final export attempt failed).
+**[6] `otel.component.shutdown.dropped`:** If the component owns queued, buffered, retry, or in-flight telemetry items at the time shutdown is initiated (e.g. queue-based processors such as the Batching Span Processor, or an exporter with an in-flight export request). Components that do not own such items MUST omit the attribute; consumers MUST treat absence as "unknown / not applicable", not as `0`.
 
-When `otel.component.shutdown.result` is `success`, this attribute MUST be `0`: a
-successful shutdown means the drain completed and nothing was left unconfirmed.
-Non-zero values therefore only occur when `otel.component.shutdown.result` is
-`failed` or `timed_out`.
+**[7] `otel.component.shutdown.dropped`:** Reported on the `otel.sdk.component.shutdown` event. Captures telemetry items
+that the component had accepted (queued, buffered, scheduled for retry, or
+handed to a downstream component/exporter) prior to shutdown but could not
+confirm delivered by the time the shutdown attempt ended (typically because
+the configured shutdown timeout elapsed, or the final export attempt failed).
+The value MUST be a non-negative integer.
 
-The reported value is an **upper bound** on actual data loss, not a precise count.
-The SDK counts items it could not confirm delivered at the moment the shutdown
-attempt was abandoned. In particular, in-flight export requests that the SDK had to
-abandon (e.g. at timeout) MAY still complete successfully on the wire after the SDK
-gave up; their items are nevertheless counted here because the SDK cannot confirm
-delivery. Implementations SHOULD count:
+**Invariant.** When `otel.component.shutdown.result` is `success`, this
+attribute MUST be `0` — a successful shutdown means the drain completed and
+nothing was left unconfirmed. Non-zero values therefore only occur when
+`otel.component.shutdown.result` is `failed` or `timed_out`.
 
-- items still in the component's buffer that were never handed to an exporter,
-- items handed to an exporter in a request that the SDK abandoned without a
-  confirmed response, and
-- items rejected by the final export attempt (e.g. OTLP partial-success rejections).
+**Upper-bound semantics.** The reported value is an **upper bound** on actual
+data loss, not a precise count. The SDK counts items it could not confirm
+delivered at the moment the shutdown attempt ended. In particular, in-flight
+export requests that the SDK had to abandon (e.g. at timeout) MAY still
+complete successfully on the wire after the SDK gave up; their items are
+nevertheless counted here because the SDK cannot confirm delivery.
+Implementations SHOULD count, for the component instance reporting the event:
 
-This attribute is only applicable to components that buffer items (e.g. the Batching
-Span Processor or Batching Log Record Processor). Non-buffering components MUST omit
-the attribute. Consumers MUST treat absence as "unknown / not applicable", not as `0`.
+- items still in the component's queue/buffer that were never handed to a
+  downstream component or exporter,
+- items handed to a downstream component or exporter in an operation that the
+  SDK abandoned without a confirmed response, and
+- items rejected by the final export/processing attempt (e.g. items reported
+  as rejected by an OTLP partial-success response).
+
+This attribute is applicable to any component that owns queued, buffered,
+retry, or in-flight telemetry items at the time shutdown is initiated. This
+includes both buffering components (e.g. the Batching Span Processor) and
+non-buffering components with an in-flight export request at shutdown time
+(e.g. an OTLP exporter). Components that do not own any such items at
+shutdown MUST omit the attribute. Consumers MUST treat absence as
+"unknown / not applicable", not as `0`, and SHOULD NOT sum this value across
+components to compute a pipeline-wide loss number (the same telemetry item
+may be counted by more than one component's event).
 
 ---
 
@@ -141,9 +233,9 @@ the attribute. Consumers MUST treat absence as "unknown / not applicable", not a
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `failed` | The component shut down with one or more failures other than a timeout (e.g. an exporter rejected the final batch). | ![Development](https://img.shields.io/badge/-development-blue) |
-| `success` | The component shut down cleanly and drained any pending work. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `timed_out` | The component did not finish shutting down within the configured shutdown timeout. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `failed` | The shutdown attempt ended within the configured time budget but one or more required shutdown steps failed (e.g. an exporter rejected the final batch, or a cleanup step threw). | ![Development](https://img.shields.io/badge/-development-blue) |
+| `success` | The shutdown attempt completed within the configured time budget and confirmed processing/delivery of all telemetry the component owned at the time shutdown was initiated. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `timed_out` | The shutdown attempt was abandoned because the configured shutdown timeout, deadline, or equivalent time budget expired. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
