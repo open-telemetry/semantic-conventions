@@ -18,12 +18,14 @@ groups:
       and `INFO` otherwise:
 
       - `otel.component.shutdown.result` is not `success`, or
-      - `otel.component.dropped` is **present** and greater than `0`.
+      - `otel.component.dropped` is **present** and greater than `0`, or
+      - `otel.component.shutdown.dropped` is **present** and greater than `0`.
 
       Components that do not track a lifetime dropped count MUST omit
-      `otel.component.dropped`. Absence of the attribute MUST NOT be treated as `0`
+      `otel.component.dropped`, and components that do not buffer items MUST omit
+      `otel.component.shutdown.dropped`. Absence of either attribute MUST NOT be treated as `0`
       for the severity rule above; it means "not applicable / not tracked" and the severity
-      is determined solely by `otel.component.shutdown.result` for those components.
+      is determined by the remaining present attributes.
 
       Implementations MUST take care that emitting this event does not itself depend on the
       component (or pipeline) that is being shut down. For example, the SDK SHOULD NOT route an
@@ -46,4 +48,15 @@ groups:
             track this MUST omit the attribute; consumers MUST treat absence as "unknown",
             not as `0`.
         brief: >
-          The total number of items the component dropped over its lifetime, up to and including the shutdown.
+          The total number of items the component dropped during normal operation over its lifetime,
+          excluding items lost during the shutdown act itself (see `otel.component.shutdown.dropped`).
+      - ref: otel.component.shutdown.dropped
+        requirement_level:
+          recommended: >
+            If the component buffers items (e.g. queue-based processors such as the Batching Span
+            Processor or Batching Log Record Processor). Non-buffering components MUST omit the
+            attribute; consumers MUST treat absence as "unknown", not as `0`.
+        brief: >
+          The number of items left in the component's buffer when shutdown terminated without
+          fully draining (typically non-zero only when `otel.component.shutdown.result` is
+          `failed` or `timed_out`).
