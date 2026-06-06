@@ -61,7 +61,7 @@ Attributes used for OpenTelemetry component self-monitoring
 | --- | --- | --- | --- | --- |
 | <a id="otel-component-dropped" href="#otel-component-dropped">`otel.component.dropped`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The total number of telemetry items (spans, log records, metric data points, etc.) the OpenTelemetry SDK component dropped during normal operation over its lifetime. [1] | `0`; `42` |
 | <a id="otel-component-name" href="#otel-component-name">`otel.component.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | A name uniquely identifying the instance of the OpenTelemetry component within its containing SDK instance. [2] | `otlp_grpc_span_exporter/0`; `custom-name` |
-| <a id="otel-component-shutdown-dropped" href="#otel-component-shutdown-dropped">`otel.component.shutdown.dropped`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The number of telemetry items that were buffered by the component when shutdown was initiated but could not be drained before shutdown terminated. [3] | `0`; `800` |
+| <a id="otel-component-shutdown-dropped" href="#otel-component-shutdown-dropped">`otel.component.shutdown.dropped`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The number of telemetry items that were buffered by the component when shutdown was initiated but could not be confirmed delivered before shutdown terminated. [3] | `0`; `800` |
 | <a id="otel-component-shutdown-result" href="#otel-component-shutdown-result">`otel.component.shutdown.result`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The result of an OpenTelemetry SDK component shutdown. | `success`; `failed`; `timed_out` |
 | <a id="otel-component-type" href="#otel-component-type">`otel.component.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | A name identifying the type of the OpenTelemetry component. [4] | `batching_span_processor`; `com.example.MySpanExporter` |
 
@@ -92,17 +92,31 @@ With this implementation, for example the first Batching Span Processor would ha
 as `otel.component.name`, the second one `batching_span_processor/1` and so on.
 These values will therefore be reused in the case of an application restart.
 
-**[3] `otel.component.shutdown.dropped`:** Reported on `otel.sdk.component.shutdown` events. Captures items lost specifically during
-the shutdown act — i.e., items that had been accepted into the component's buffer prior to
-shutdown but were still pending when the shutdown completed (typically because the
-configured shutdown timeout elapsed, or the final export attempt failed).
+**[3] `otel.component.shutdown.dropped`:** Reported on `otel.sdk.component.shutdown` events. Captures items that the component
+had accepted prior to shutdown but could not confirm delivered by the time the
+shutdown attempt was abandoned (typically because the configured shutdown timeout
+elapsed, or the final export attempt failed).
 
-A value of `0` means the shutdown drained cleanly. Non-zero values typically correlate with
-`otel.component.shutdown.result` being `failed` or `timed_out`.
+When `otel.component.shutdown.result` is `success`, this attribute MUST be `0`: a
+successful shutdown means the drain completed and nothing was left unconfirmed.
+Non-zero values therefore only occur when `otel.component.shutdown.result` is
+`failed` or `timed_out`.
 
-This attribute is only applicable to components that buffer items (e.g. the Batching Span
-Processor or Batching Log Record Processor). Non-buffering components MUST omit the
-attribute. Consumers MUST treat absence as "unknown / not applicable", not as `0`.
+The reported value is an **upper bound** on actual data loss, not a precise count.
+The SDK counts items it could not confirm delivered at the moment the shutdown
+attempt was abandoned. In particular, in-flight export requests that the SDK had to
+abandon (e.g. at timeout) MAY still complete successfully on the wire after the SDK
+gave up; their items are nevertheless counted here because the SDK cannot confirm
+delivery. Implementations SHOULD count:
+
+- items still in the component's buffer that were never handed to an exporter,
+- items handed to an exporter in a request that the SDK abandoned without a
+  confirmed response, and
+- items rejected by the final export attempt (e.g. OTLP partial-success rejections).
+
+This attribute is only applicable to components that buffer items (e.g. the Batching
+Span Processor or Batching Log Record Processor). Non-buffering components MUST omit
+the attribute. Consumers MUST treat absence as "unknown / not applicable", not as `0`.
 
 **[4] `otel.component.type`:** If none of the standardized values apply, implementations SHOULD use the language-defined name of the type.
 E.g. for Java the fully qualified classname SHOULD be used in this case.

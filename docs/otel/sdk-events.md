@@ -73,7 +73,7 @@ The event body is not used (per the [event guidelines](/docs/general/events.md))
 | [`otel.component.shutdown.result`](/docs/registry/attributes/otel.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The result of an OpenTelemetry SDK component shutdown. | `success`; `failed`; `timed_out` |
 | [`otel.component.type`](/docs/registry/attributes/otel.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | A name identifying the type of the OpenTelemetry component. [2] | `batching_span_processor`; `com.example.MySpanExporter` |
 | [`otel.component.dropped`](/docs/registry/attributes/otel.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` [3] | int | The total number of items the component dropped during normal operation over its lifetime, excluding items lost during the shutdown act itself (see `otel.component.shutdown.dropped`). [4] | `0`; `42` |
-| [`otel.component.shutdown.dropped`](/docs/registry/attributes/otel.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` [5] | int | The number of items left in the component's buffer when shutdown terminated without fully draining (typically non-zero only when `otel.component.shutdown.result` is `failed` or `timed_out`). [6] | `0`; `800` |
+| [`otel.component.shutdown.dropped`](/docs/registry/attributes/otel.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` [5] | int | The number of items the component could not confirm delivered before shutdown terminated. MUST be `0` when `otel.component.shutdown.result` is `success`; non-zero values are an upper bound on actual loss (in-flight export requests abandoned at timeout may still succeed on the wire). [6] | `0`; `800` |
 
 **[1] `otel.component.name`:** Implementations SHOULD ensure a low cardinality for this attribute, even across application or SDK restarts.
 E.g. implementations MUST NOT use UUIDs as values for this attribute.
@@ -109,17 +109,31 @@ Components that do not track this MUST omit the attribute. Consumers MUST treat 
 
 **[5] `otel.component.shutdown.dropped`:** If the component buffers items (e.g. queue-based processors such as the Batching Span Processor or Batching Log Record Processor). Non-buffering components MUST omit the attribute; consumers MUST treat absence as "unknown", not as `0`.
 
-**[6] `otel.component.shutdown.dropped`:** Reported on `otel.sdk.component.shutdown` events. Captures items lost specifically during
-the shutdown act — i.e., items that had been accepted into the component's buffer prior to
-shutdown but were still pending when the shutdown completed (typically because the
-configured shutdown timeout elapsed, or the final export attempt failed).
+**[6] `otel.component.shutdown.dropped`:** Reported on `otel.sdk.component.shutdown` events. Captures items that the component
+had accepted prior to shutdown but could not confirm delivered by the time the
+shutdown attempt was abandoned (typically because the configured shutdown timeout
+elapsed, or the final export attempt failed).
 
-A value of `0` means the shutdown drained cleanly. Non-zero values typically correlate with
-`otel.component.shutdown.result` being `failed` or `timed_out`.
+When `otel.component.shutdown.result` is `success`, this attribute MUST be `0`: a
+successful shutdown means the drain completed and nothing was left unconfirmed.
+Non-zero values therefore only occur when `otel.component.shutdown.result` is
+`failed` or `timed_out`.
 
-This attribute is only applicable to components that buffer items (e.g. the Batching Span
-Processor or Batching Log Record Processor). Non-buffering components MUST omit the
-attribute. Consumers MUST treat absence as "unknown / not applicable", not as `0`.
+The reported value is an **upper bound** on actual data loss, not a precise count.
+The SDK counts items it could not confirm delivered at the moment the shutdown
+attempt was abandoned. In particular, in-flight export requests that the SDK had to
+abandon (e.g. at timeout) MAY still complete successfully on the wire after the SDK
+gave up; their items are nevertheless counted here because the SDK cannot confirm
+delivery. Implementations SHOULD count:
+
+- items still in the component's buffer that were never handed to an exporter,
+- items handed to an exporter in a request that the SDK abandoned without a
+  confirmed response, and
+- items rejected by the final export attempt (e.g. OTLP partial-success rejections).
+
+This attribute is only applicable to components that buffer items (e.g. the Batching
+Span Processor or Batching Log Record Processor). Non-buffering components MUST omit
+the attribute. Consumers MUST treat absence as "unknown / not applicable", not as `0`.
 
 ---
 
