@@ -34,11 +34,8 @@ groups:
       evidence of a clean shutdown.
 
       A single SDK pipeline MAY produce multiple `otel.sdk.component.shutdown` events,
-      one per component instance whose shutdown is reported. These events are
-      component-local: consumers SHOULD use `otel.component.name` and
-      `otel.component.type` to distinguish instances, and SHOULD NOT sum drop counts
-      across events to compute a pipeline-wide loss number (the same telemetry item
-      may be represented by more than one component's event).
+      one per component instance whose shutdown is reported. Consumers SHOULD use
+      `otel.component.name` and `otel.component.type` to distinguish instances.
 
       The event timestamp SHOULD reflect the time at which the shutdown attempt ended
       (whether by completing, failing, or being abandoned). The event body SHOULD be
@@ -69,20 +66,16 @@ groups:
 
       **Relationship with existing SDK metrics.**
 
-      The drop counts on this event are component-local terminal summaries and are
-      **not additive** with SDK self-observability metrics such as
-      `otel.sdk.processor.*.processed` (with `error.type`) or
-      `otel.sdk.exporter.*.exported` (with `error.type`). The same telemetry item MAY
-      be represented both by an exporter failure metric data point and by a drop count
-      on this event. This event exists in addition to those metrics because the metrics
-      pipeline itself may be shutting down, and so the final state of the SDK is not
-      always observable from metrics alone.
+      The drop counts on this event are a terminal summary emitted at shutdown, when
+      the metrics pipeline itself may no longer be reliable. These counts MAY overlap
+      with per-operation SDK metrics (e.g. `otel.sdk.processor.*.processed` or
+      `otel.sdk.exporter.*.exported`, both with `error.type`) and SHOULD NOT be
+      combined with those metrics to compute aggregate loss.
 
       The reason a shutdown failed is intentionally not classified on this event
       (there is no `error.type` attribute). Failure-cause classification is the
-      responsibility of the operation-level signals
-      (e.g. `otel.sdk.exporter.*.exported` with `error.type`) emitted while the SDK
-      is still healthy.
+      responsibility of the operation-level signals (e.g. `otel.sdk.exporter.*.exported`
+      with `error.type`) emitted while the SDK is still healthy.
 
       **Self-feedback.**
 
