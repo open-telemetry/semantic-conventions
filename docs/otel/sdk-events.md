@@ -40,8 +40,8 @@ Indicates that an OpenTelemetry SDK component's shutdown attempt has ended, whet
 **Applicability.**
 
 SDK implementations SHOULD emit an `otel.sdk.component.shutdown` event for each
-SDK component instance that has an explicit shutdown (or equivalent close/dispose)
-operation and that owns telemetry processing, buffering, reading, or exporting state.
+SDK component instance that has an explicit `Shutdown` operation and that owns
+telemetry processing, buffering, reading, or exporting state.
 This includes, when applicable, span processors, log record processors, metric
 readers, and exporters. Passive helpers such as samplers, ID generators, propagators,
 and resource detectors are out of scope.
