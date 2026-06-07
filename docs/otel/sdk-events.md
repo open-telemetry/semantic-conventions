@@ -46,10 +46,13 @@ This includes, when applicable, span processors, log record processors, metric
 readers, and exporters. Passive helpers such as samplers, ID generators, propagators,
 and resource detectors are out of scope.
 
-Provider-level shutdown (e.g. `TracerProvider`, `LoggerProvider`, `MeterProvider`)
-is reported via the events emitted by the provider's child components, not by the
-provider itself, unless the provider has shutdown work whose outcome is not
-represented by any child component event.
+Providers (e.g. `TracerProvider`, `LoggerProvider`, `MeterProvider`) are not
+required to emit a separate `otel.sdk.component.shutdown` event: a provider's
+shutdown is already covered by the events emitted by its child components, and a
+higher-level provider event would carry no information beyond what those child
+events already convey. Implementations MAY emit an event for the provider only if
+it has shutdown work whose outcome is not represented by any child component
+event (e.g., releasing a provider-scoped resource).
 
 **Emission rules.**
 
