@@ -16,11 +16,12 @@ groups:
       readers, and exporters. Passive helpers such as samplers, ID generators, propagators,
       and resource detectors are out of scope.
 
-      Providers (e.g. `TracerProvider`, `LoggerProvider`, `MeterProvider`) MUST NOT
-      emit this event. A provider's shutdown is already covered by the events emitted
-      by its child components, and a higher-level provider event would carry no
-      information beyond what those child events already convey. A future revision of
-      this convention MAY define provider-level shutdown events if a need emerges.
+      Providers (e.g. `TracerProvider`, `LoggerProvider`, `MeterProvider`) are not
+      expected to emit this event. A provider's shutdown is already covered by the
+      events emitted by its child components, and a higher-level provider event would
+      carry no information beyond what those child events already convey. A future
+      revision of this convention may define provider-level shutdown events if a need
+      emerges.
 
       **Emission rules.**
 
