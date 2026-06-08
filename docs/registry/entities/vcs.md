@@ -15,7 +15,7 @@
 
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- | --- |
-| Identity | [`vcs.ref.head.revision`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The revision, literally [revised version](https://www.merriam-webster.com/dictionary/revision), The revision most often refers to a commit object in Git, or a revision number in SVN. [1] | `9d59409acf479dfa0df1aa568182e43e43df8bbe28d60fcf2bc52e30068802cc`; `main`; `123`; `HEAD` |
+| Identity | [`vcs.ref.head.revision`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | string | The revision, literally [revised version](https://www.merriam-webster.com/dictionary/revision), The revision most often refers to a commit object in Git, or a revision number in SVN. [1] | `9d59409acf479dfa0df1aa568182e43e43df8bbe28d60fcf2bc52e30068802cc`; `main`; `123`; `HEAD` |
 | Description | [`vcs.ref.head.name`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. [2] | `my-feature-branch`; `tag-1-test` |
 | Description | [`vcs.ref.type`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository. | `branch`; `tag` |
 
@@ -55,7 +55,7 @@ given time.
 
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- | --- |
-| Identity | [`vcs.repository.url.full`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The [canonical URL](https://support.google.com/webmasters/answer/10347851) of the repository providing the complete HTTP(S) address in order to locate and identify the repository through a browser. [3] | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` |
+| Identity | [`vcs.repository.url.full`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | string | The [canonical URL](https://support.google.com/webmasters/answer/10347851) of the repository providing the complete HTTP(S) address in order to locate and identify the repository through a browser. [3] | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` |
 | Description | [`vcs.repository.name`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The human readable name of the repository. It SHOULD NOT include any additional identifier like Group/SubGroup in GitLab or organization in GitHub. [4] | `semantic-conventions`; `my-cool-repo` |
 
 **[3] `vcs.repository.url.full`:** In Git Version Control Systems, the canonical URL SHOULD NOT include

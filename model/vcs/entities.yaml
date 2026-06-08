@@ -8,6 +8,7 @@ groups:
     attributes:
       - ref: vcs.repository.url.full
         role: identifying
+        requirement_level: required
       - ref: vcs.repository.name
         role: descriptive
 
@@ -22,5 +23,6 @@ groups:
         role: descriptive
       - ref: vcs.ref.head.revision
         role: identifying
+        requirement_level: required
       - ref: vcs.ref.type
         role: descriptive
