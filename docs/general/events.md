@@ -138,7 +138,7 @@ event details and context:
 - Specify [requirement level](/docs/general/attribute-requirement-level.md) and
   tailor the brief and note to the event.
 - Document attributes that may contain sensitive information, be expensive to
-  collect, have high cardinality, or be especially large.
+  collect, or be especially large.
 
 ## Body
 
