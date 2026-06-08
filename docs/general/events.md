@@ -60,7 +60,7 @@ especially when it is useful for sampling or is known when the span starts.
 
 An event definition should describe when the event is recorded and what
 domain-specific occurrence it represents in the instrumented component, the
-[event name](#event-naming), which [timestamp](#timestamps) to use, the default
+[event name](#event-name), which [timestamp](#timestamps) to use, the default
 [severity](#severity), and the applicable [attributes](#attributes).
 
 ## Event name
