@@ -102,7 +102,7 @@ Currently, the following namespaces exist:
 | | [telemetry.sdk](telemetry.md#telemetry-sdk) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | VCS | | |
 | | [vcs.ref](vcs.md#vcs-ref) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
-| | [vcs.repo](vcs.md#vcs-repo) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| | [vcs.repository](vcs.md#vcs-repository) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | Webengine | | |
 | | [webengine](webengine.md#webengine) | ![Development](https://img.shields.io/badge/-development-blue) |
 | zOS | | |

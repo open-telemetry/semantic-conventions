@@ -1,8 +1,8 @@
 groups:
-  - id: entity.vcs.repo
+  - id: entity.vcs.repository
     type: entity
     stability: release_candidate
-    name: vcs.repo
+    name: vcs.repository
     brief: >
         A repository in the Version Control System.
     attributes:

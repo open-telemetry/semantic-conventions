@@ -43,11 +43,11 @@ given time.
 | `branch` | [branch](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddefbranchabranch) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | `tag` | [tag](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddeftagatag) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
-## VCS Repo
+## VCS Repository
 
 **Status:** ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid)
 
-**type:** `vcs.repo`
+**type:** `vcs.repository`
 
 **Description:** A repository in the Version Control System.
 
