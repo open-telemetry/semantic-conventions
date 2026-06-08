@@ -94,10 +94,6 @@ Events MUST have
 [Timestamp](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.57.0/specification/logs/data-model.md#field-timestamp)
 set to the time when the event occurred.
 
-Semantic conventions MUST document which occurrence time should be used as the
-event timestamp when it is not obvious, especially for events received from
-external systems.
-
 Semantic conventions MUST NOT define a value for
 [ObservedTimestamp](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.57.0/specification/logs/data-model.md#field-observedtimestamp);
 SDKs, collectors, or other components should populate it to reflect when the
