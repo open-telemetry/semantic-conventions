@@ -15,7 +15,7 @@ represented in the data model by an
 <!-- START doctoc -->
 
 - [When to define events](#when-to-define-events)
-- [Event naming](#event-naming)
+- [Event name](#event-name)
 - [Timestamps](#timestamps)
 - [Severity](#severity)
 - [Attributes](#attributes)
@@ -63,7 +63,7 @@ domain-specific occurrence it represents in the instrumented component, the
 [event name](#event-naming), which [timestamp](#timestamps) to use, the default
 [severity](#severity), and the applicable [attributes](#attributes).
 
-## Event naming
+## Event name
 
 Semantic conventions MUST document the event name.
 
