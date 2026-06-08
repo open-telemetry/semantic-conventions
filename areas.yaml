@@ -53,7 +53,7 @@ areas:
     owner:
       - name: "semconv-security-approvers"
         github: semconv-security-approvers
-    project: "https://github.com/open-telemetry/community/blob/main/projects/security-semconv.md"
+    project: "https://github.com/open-telemetry/community/blob/main/projects/currently-inactive/security-semconv.md"
     board: "https://github.com/orgs/open-telemetry/projects/104"
     labels:
       - area:security
