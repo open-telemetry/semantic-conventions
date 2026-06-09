@@ -42,9 +42,11 @@ Indicates that an OpenTelemetry SDK component's shutdown attempt has ended, whet
 SDK implementations SHOULD emit an `otel.sdk.component.shutdown` event for each
 SDK component instance that has an explicit `Shutdown` operation and that owns
 telemetry processing, buffering, reading, or exporting state.
-This includes, when applicable, span processors, log record processors, metric
-readers, and exporters. Passive helpers such as samplers, ID generators, propagators,
-and resource detectors are out of scope.
+This includes span processors, log record processors, metric readers, span
+exporters, log record exporters, and metric exporters, as well as custom
+implementations of any of these categories. See the well-known values of
+[`otel.component.type`](/docs/registry/attributes/otel.md) for the full list of
+built-in types.
 
 Providers (e.g. `TracerProvider`, `LoggerProvider`, `MeterProvider`) are not
 expected to emit this event. A provider's shutdown is already covered by the
@@ -55,23 +57,21 @@ emerges.
 
 **Emission rules.**
 
-The event SHOULD be emitted exactly once per component instance per logical
-shutdown transition, regardless of how many times the shutdown API is invoked.
-Repeated idempotent shutdown calls that perform no additional shutdown work
-MUST NOT emit additional events.
+An OpenTelemetry SDK component is shut down at most once. The event SHOULD be
+emitted exactly once per component instance, reporting the result of that one
+shutdown. Subsequent invocations of the shutdown API on a component that is
+already shut down MUST NOT emit additional events.
 
 If the process terminates without invoking the component's shutdown operation
 (e.g. a crash, `SIGKILL`, container eviction, or immediate process termination),
 no event is expected. Consumers MUST NOT interpret the absence of this event as
 evidence of a clean shutdown.
 
-A single SDK pipeline MAY produce multiple `otel.sdk.component.shutdown` events,
-one per component instance whose shutdown is reported. Consumers SHOULD use
-`otel.component.name` and `otel.component.type` to distinguish instances.
-
 The event timestamp SHOULD reflect the time at which the shutdown attempt ended
-(whether by completing, failing, or being abandoned). The event body SHOULD be
-omitted; all event data defined by this convention is conveyed through attributes.
+(whether by completing, failing, or being abandoned). Combined with
+`otel.component.shutdown.duration`, the start of the shutdown attempt can be
+reconstructed as `timestamp - duration`. The event body SHOULD be omitted; all
+event data defined by this convention is conveyed through attributes.
 
 **Severity.**
 
@@ -120,9 +120,8 @@ event rather than route it through the component or pipeline being shut down.
 
 **Forward compatibility.**
 
-Additional attributes (e.g. a shutdown duration) MAY be added in future revisions
-of this convention. Consumers MUST tolerate the presence of attributes they do
-not recognize.
+Additional attributes MAY be added in future revisions of this convention.
+Consumers MUST tolerate the presence of attributes they do not recognize.
 
 **Attributes:**
 
@@ -133,6 +132,7 @@ not recognize.
 | [`otel.component.type`](/docs/registry/attributes/otel.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | A name identifying the type of the OpenTelemetry component. [3] | `batching_span_processor`; `com.example.MySpanExporter` |
 | [`otel.component.dropped`](/docs/registry/attributes/otel.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` [4] | int | The total number of items the component dropped during normal operation over its lifetime, excluding items abandoned during the shutdown attempt itself (see `otel.component.shutdown.dropped`). [5] | `0`; `42` |
 | [`otel.component.shutdown.dropped`](/docs/registry/attributes/otel.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` [6] | int | The number of telemetry items the component could not confirm delivered before the shutdown attempt ended. MUST be `0` when `otel.component.shutdown.result` is `success`; non-zero values are an upper bound on actual loss (in-flight export requests abandoned at timeout may still succeed on the wire). [7] | `0`; `800` |
+| [`otel.component.shutdown.duration`](/docs/registry/attributes/otel.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | double | The wall-clock elapsed time of the shutdown attempt, in seconds. Combined with the event timestamp, this lets consumers compute when the shutdown attempt started. [8] | `0.015`; `30.0` |
 
 **[1] `otel.component.name`:** Implementations SHOULD ensure a low cardinality for this attribute, even across application or SDK restarts.
 E.g. implementations MUST NOT use UUIDs as values for this attribute.
@@ -204,6 +204,13 @@ non-buffering components with an in-flight export request at shutdown time
 (e.g. an OTLP exporter). Components that do not own any such items at
 shutdown MUST omit the attribute. Consumers MUST treat absence as
 "unknown / not applicable", not as `0`.
+
+**[8] `otel.component.shutdown.duration`:** Measured from the moment the component's shutdown operation started to the
+moment the shutdown attempt ended (whether by completing, failing, or being
+abandoned). MUST be a non-negative value expressed in seconds.
+
+This attribute is informational and SHOULD NOT affect the severity of the
+enclosing event.
 
 ---
 

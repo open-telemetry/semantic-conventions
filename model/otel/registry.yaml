@@ -292,3 +292,16 @@ groups:
           shutdown MUST omit the attribute. Consumers MUST treat absence as
           "unknown / not applicable", not as `0`.
         examples: [0, 800]
+      - id: otel.component.shutdown.duration
+        type: double
+        stability: development
+        brief: >
+          The wall-clock elapsed time of the component's shutdown attempt, in seconds.
+        note: |
+          Measured from the moment the component's shutdown operation started to the
+          moment the shutdown attempt ended (whether by completing, failing, or being
+          abandoned). MUST be a non-negative value expressed in seconds.
+
+          This attribute is informational and SHOULD NOT affect the severity of the
+          enclosing event.
+        examples: [0.015, 30.0]
