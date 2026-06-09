@@ -76,11 +76,8 @@ event data defined by this convention is conveyed through attributes.
 **Severity.**
 
 Implementations SHOULD set the log record severity to `WARN`
-(`SeverityNumber` = `13`) if either of the following holds, and to `INFO`
-(`SeverityNumber` = `9`) otherwise:
-
-- `otel.component.shutdown.result` is not `success`, or
-- `otel.component.shutdown.dropped` is **present** and greater than `0`.
+(`SeverityNumber` = `13`) when `otel.component.shutdown.result` is not
+`success`, and to `INFO` (`SeverityNumber` = `9`) otherwise.
 
 `otel.component.dropped` (the lifetime counter) does not affect severity: it is
 reported on this event as a diagnostic snapshot, but lifetime drops are the
@@ -88,11 +85,6 @@ domain of per-operation SDK metrics (e.g. `otel.sdk.processor.*.processed` with
 `error.type`) and should be alerted on there. Operators who specifically want a
 "lost-any-data-ever" signal from this event alone can query for
 `otel.component.dropped > 0` directly.
-
-Components that do not own queued, buffered, retry, or in-flight telemetry items
-at shutdown MUST omit `otel.component.shutdown.dropped`. Absence of the
-attribute MUST NOT be treated as `0` for the severity rule above; absence means
-"not applicable / not tracked".
 
 **Relationship with existing SDK metrics.**
 
