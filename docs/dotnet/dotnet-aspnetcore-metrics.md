@@ -75,18 +75,30 @@ All routing metrics are reported by the `Microsoft.AspNetCore.Routing` meter.
 | --- | --- | --- | --- | --- | --- |
 | [`aspnetcore.routing.match_status`](/docs/registry/attributes/aspnetcore.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | Match result - success or failure | `success`; `failure` |
 | [`aspnetcore.routing.is_fallback`](/docs/registry/attributes/aspnetcore.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if and only if a route was successfully matched. | boolean | A value that indicates whether the matched route is a fallback route. | `true` |
-| [`http.route`](/docs/registry/attributes/http.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if and only if a route was successfully matched. | string | The matched route template for the request. This MUST be low-cardinality and include all static path segments, with dynamic path segments represented with placeholders. [1] | `/users/:userID?`; `my-controller/my-action/{id?}` |
+| [`http.route`](/docs/registry/attributes/http.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if and only if a route was successfully matched. | string | The normalized route template for the request. This MUST be low-cardinality and include all static path segments, with dynamic path segments represented with placeholders. [1] | `/users/{userID}`; `/api/weather/get`; `/api/weather/city/{id}`; `/archive/articles/{slug}` |
+| [`url.template`](/docs/registry/attributes/url.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The low-cardinality template of an [absolute path reference](https://www.rfc-editor.org/rfc/rfc3986#section-4.2). [2] | `/users/{id}`; `/users/:id`; `/users?id={id}`; `/api/{controller}/{action}/{id?}` |
 
 **[1] `http.route`:** MUST NOT be populated when this is not supported by the HTTP server framework as the route attribute should have low-cardinality and the URI path can NOT substitute it.
 SHOULD include the [application root](/docs/http/http-spans.md#http-server-definitions) if there is one.
 
-A static path segment is a part of the route template with a fixed, low-cardinality value. This includes literal strings like `/users/` and placeholders that
-are constrained to a finite, predefined set of values, e.g. `{controller}` or `{action}`.
+HTTP server span names SHOULD use `http.route` as the `{target}` when it is available.
 
-A dynamic path segment is a placeholder for a value that can have high cardinality and is not constrained to a predefined list like static path segments.
+When a route template provided by a framework contains information that does not belong in the normalized `http.route`, instrumentations SHOULD preserve
+the original route template in `url.template`.
+
+A static path segment is a part of the route template with a fixed, low-cardinality value, such as a literal path segment.
+Route parameters that are constrained to a finite, predefined set of values, such as `{controller}` or `{action}`, SHOULD be resolved to the matched static value.
+
+A dynamic path segment is a placeholder for a value that can have high cardinality and is not constrained to a predefined set of values.
+Instrumentations SHOULD represent dynamic path segments as `{name}` placeholders and SHOULD remove framework-specific syntax such as route constraints,
+regexes, wildcard markers, and optional parameter markers.
+
+Optional path segments SHOULD be omitted when they did not match the request.
 
 Instrumentations SHOULD use routing information provided by the corresponding web framework. They SHOULD pick the most precise source of routing information and MAY
 support custom route formatting. Instrumentations SHOULD document the format and the API used to obtain the route string.
+
+**[2] `url.template`:** The `url.template` MAY be populated with the matched route template as provided by ASP.NET Core.
 
 ---
 

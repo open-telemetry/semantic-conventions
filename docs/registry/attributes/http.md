@@ -25,7 +25,7 @@ This document defines semantic convention attributes in the HTTP namespace.
 | <a id="http-response-header" href="#http-response-header">`http.response.header.<key>`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string[] | HTTP response headers, `<key>` being the normalized HTTP Header name (lowercase), the value being the header values. [4] | `["application/json"]`; `["abc", "def"]` |
 | <a id="http-response-size" href="#http-response-size">`http.response.size`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The total size of the response in bytes. This should be the total number of bytes sent over the wire, including the status line (HTTP/1.1), framing (HTTP/2 and HTTP/3), headers, and response body and trailers if any. | `1437` |
 | <a id="http-response-status-code" href="#http-response-status-code">`http.response.status_code`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | int | [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6). | `200` |
-| <a id="http-route" href="#http-route">`http.route`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The matched route template for the request. This MUST be low-cardinality and include all static path segments, with dynamic path segments represented with placeholders. [5] | `/users/:userID?`; `my-controller/my-action/{id?}` |
+| <a id="http-route" href="#http-route">`http.route`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The normalized route template for the request. This MUST be low-cardinality and include all static path segments, with dynamic path segments represented with placeholders. [5] | `/users/{userID}`; `/api/weather/get`; `/api/weather/city/{id}`; `/archive/articles/{slug}` |
 
 **[1] `http.request.header.<key>`:** Instrumentations SHOULD require an explicit configuration of which headers are to be captured.
 Including all request headers can be a security risk - explicit configuration helps avoid leaking sensitive information.
@@ -88,10 +88,19 @@ Examples:
 **[5] `http.route`:** MUST NOT be populated when this is not supported by the HTTP server framework as the route attribute should have low-cardinality and the URI path can NOT substitute it.
 SHOULD include the [application root](/docs/http/http-spans.md#http-server-definitions) if there is one.
 
-A static path segment is a part of the route template with a fixed, low-cardinality value. This includes literal strings like `/users/` and placeholders that
-are constrained to a finite, predefined set of values, e.g. `{controller}` or `{action}`.
+HTTP server span names SHOULD use `http.route` as the `{target}` when it is available.
 
-A dynamic path segment is a placeholder for a value that can have high cardinality and is not constrained to a predefined list like static path segments.
+When a route template provided by a framework contains information that does not belong in the normalized `http.route`, instrumentations SHOULD preserve
+the original route template in `url.template`.
+
+A static path segment is a part of the route template with a fixed, low-cardinality value, such as a literal path segment.
+Route parameters that are constrained to a finite, predefined set of values, such as `{controller}` or `{action}`, SHOULD be resolved to the matched static value.
+
+A dynamic path segment is a placeholder for a value that can have high cardinality and is not constrained to a predefined set of values.
+Instrumentations SHOULD represent dynamic path segments as `{name}` placeholders and SHOULD remove framework-specific syntax such as route constraints,
+regexes, wildcard markers, and optional parameter markers.
+
+Optional path segments SHOULD be omitted when they did not match the request.
 
 Instrumentations SHOULD use routing information provided by the corresponding web framework. They SHOULD pick the most precise source of routing information and MAY
 support custom route formatting. Instrumentations SHOULD document the format and the API used to obtain the route string.
