@@ -49,20 +49,17 @@ groups:
       (`SeverityNumber` = `13`) when `otel.component.shutdown.result` is not
       `success`, and to `INFO` (`SeverityNumber` = `9`) otherwise.
 
-      `otel.component.dropped` (the lifetime counter) does not affect severity: it is
-      reported on this event as a diagnostic snapshot, but lifetime drops are the
-      domain of per-operation SDK metrics (e.g. `otel.sdk.processor.*.processed` with
-      `error.type`) and should be alerted on there. Operators who specifically want a
-      "lost-any-data-ever" signal from this event alone can query for
-      `otel.component.dropped > 0` directly.
+      `otel.component.dropped` (the lifetime counter) does not affect severity; it is
+      a diagnostic snapshot on this event, and lifetime drops are alerted on via
+      per-operation SDK metrics such as `otel.sdk.processor.*.processed` with
+      `error.type`.
 
       **Relationship with existing SDK metrics.**
 
-      The drop counts on this event are a terminal summary emitted at shutdown, when
-      the metrics pipeline itself may no longer be reliable. These counts MAY overlap
-      with per-operation SDK metrics (e.g. `otel.sdk.processor.*.processed` or
-      `otel.sdk.exporter.*.exported`, both with `error.type`) and SHOULD NOT be
-      combined with those metrics to compute aggregate loss.
+      Drop counts on this event MAY overlap with per-operation SDK metrics
+      (e.g. `otel.sdk.processor.*.processed` or `otel.sdk.exporter.*.exported`, both
+      with `error.type`) and SHOULD NOT be combined with those metrics to compute
+      aggregate loss.
 
       The reason a shutdown failed is intentionally not classified on this event
       (there is no `error.type` attribute). Failure-cause classification is the
