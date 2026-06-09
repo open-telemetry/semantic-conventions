@@ -54,12 +54,7 @@ groups:
       per-operation SDK metrics such as `otel.sdk.processor.*.processed` with
       `error.type`.
 
-      **Relationship with existing SDK metrics.**
-
-      Drop counts on this event MAY overlap with per-operation SDK metrics
-      (e.g. `otel.sdk.processor.*.processed` or `otel.sdk.exporter.*.exported`, both
-      with `error.type`) and SHOULD NOT be combined with those metrics to compute
-      aggregate loss.
+      **Relationship with `error.type`.**
 
       The reason a shutdown failed is intentionally not classified on this event
       (there is no `error.type` attribute). Failure-cause classification is the
