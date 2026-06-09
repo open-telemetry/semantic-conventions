@@ -46,25 +46,23 @@ groups:
       **Severity.**
 
       Implementations SHOULD set the log record severity to `WARN`
-      (`SeverityNumber` = `13`) if **any** of the following hold, and to `INFO`
+      (`SeverityNumber` = `13`) if either of the following holds, and to `INFO`
       (`SeverityNumber` = `9`) otherwise:
 
-      - `otel.component.shutdown.result` is not `success`,
-      - `otel.component.shutdown.dropped` is **present** and greater than `0`, or
-      - `otel.component.dropped` is **present** and greater than `0`.
+      - `otel.component.shutdown.result` is not `success`, or
+      - `otel.component.shutdown.dropped` is **present** and greater than `0`.
 
-      A component MAY therefore emit an event with `otel.component.shutdown.result` =
-      `success` and `WARN` severity if it reports lifetime drops that occurred before
-      shutdown. This is intentional: the event is meant to be a single terminal place
-      to detect that the SDK lost telemetry, including drops that may have happened
-      earlier when the metrics pipeline was unavailable or unreliable.
+      `otel.component.dropped` (the lifetime counter) does not affect severity: it is
+      reported on this event as a diagnostic snapshot, but lifetime drops are the
+      domain of per-operation SDK metrics (e.g. `otel.sdk.processor.*.processed` with
+      `error.type`) and should be alerted on there. Operators who specifically want a
+      "lost-any-data-ever" signal from this event alone can query for
+      `otel.component.dropped > 0` directly.
 
-      Components that do not track a lifetime dropped count MUST omit
-      `otel.component.dropped`, and components that do not own queued, buffered, retry,
-      or in-flight telemetry items at shutdown MUST omit `otel.component.shutdown.dropped`.
-      Absence of either attribute MUST NOT be treated as `0` for the severity rule
-      above; absence means "not applicable / not tracked", and the severity is
-      determined by the remaining present attributes.
+      Components that do not own queued, buffered, retry, or in-flight telemetry items
+      at shutdown MUST omit `otel.component.shutdown.dropped`. Absence of the
+      attribute MUST NOT be treated as `0` for the severity rule above; absence means
+      "not applicable / not tracked".
 
       **Relationship with existing SDK metrics.**
 
@@ -78,20 +76,6 @@ groups:
       (there is no `error.type` attribute). Failure-cause classification is the
       responsibility of the operation-level signals (e.g. `otel.sdk.exporter.*.exported`
       with `error.type`) emitted while the SDK is still healthy.
-
-      **Self-feedback.**
-
-      Implementations MUST NOT emit this event through the same component instance whose
-      shutdown is being reported. For log SDK components, implementations MUST NOT route
-      the event through the same `LoggerProvider`, `LogRecordProcessor`, or
-      `LogRecordExporter` instance that is currently being shut down. If no independent
-      self-observability emission path is available, implementations MAY suppress the
-      event rather than route it through the component or pipeline being shut down.
-
-      **Forward compatibility.**
-
-      Additional attributes MAY be added in future revisions of this convention.
-      Consumers MUST tolerate the presence of attributes they do not recognize.
     attributes:
       - ref: otel.component.type
         requirement_level: required
