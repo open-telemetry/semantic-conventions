@@ -177,7 +177,7 @@ groups:
       - ref: http.connection.state
         requirement_level: required
       - ref: network.peer.address
-        requirement_level: recommended
+        requirement_level: opt_in
       - ref: network.protocol.version
         requirement_level: recommended
       - ref: server.address
@@ -200,7 +200,7 @@ groups:
     unit: "s"
     attributes:
       - ref: network.peer.address
-        requirement_level: recommended
+        requirement_level: opt_in
       - ref: network.protocol.version
         requirement_level: recommended
       - ref: server.address

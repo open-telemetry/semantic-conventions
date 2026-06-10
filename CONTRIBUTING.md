@@ -30,6 +30,7 @@ requirements and recommendations.
 - [Reviewer guidelines](#reviewer-guidelines)
 - [Automation](#automation)
   - [Consistency checks](#consistency-checks)
+  - [Area ownership check](#area-ownership-check)
   - [Auto formatting](#auto-formatting)
   - [Markdown style](#markdown-style)
   - [Misspell check](#misspell-check)
@@ -373,6 +374,16 @@ For more information on each check, see:
 - [Markdown link check](#markdown-link-check)
 - [Yamllint check](#yamllint-check)
 - Prettier formatting
+
+### Area ownership check
+
+PRs that modify files under `model/` or `docs/` are validated against
+[AREAS.md](./AREAS.md) by an automated check. PRs that touch areas with
+no active SIG/project (status `inactive` in AREAS.md) are automatically
+closed with an explanatory comment.
+
+If you believe a PR was closed in error, please reach out in the
+`#otel-semantic-conventions` channel on the [CNCF Slack](https://slack.cncf.io/).
 
 ### Auto formatting
 
