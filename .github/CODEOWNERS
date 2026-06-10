@@ -36,6 +36,12 @@
 /docs/runtime/go-metrics.md      @open-telemetry/specs-semconv-approvers @open-telemetry/go-approvers
 /model/go/                       @open-telemetry/specs-semconv-approvers @open-telemetry/go-approvers
 
+# Ruby semantic conventions
+/docs/ruby/                      @open-telemetry/specs-semconv-approvers @open-telemetry/ruby-approvers
+/docs/runtime/ruby-metrics.md    @open-telemetry/specs-semconv-approvers @open-telemetry/ruby-approvers
+/model/rails/                    @open-telemetry/specs-semconv-approvers @open-telemetry/ruby-approvers
+/model/ruby/                     @open-telemetry/specs-semconv-approvers @open-telemetry/ruby-approvers
+
 # HTTP semantic conventions
 /docs/http/                            @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
 /docs/url/                             @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
