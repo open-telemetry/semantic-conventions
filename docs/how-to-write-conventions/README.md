@@ -339,7 +339,7 @@ Follow the [Entity Modeling Guide](resource-and-entities.md).
 
 #### Defining events
 
-TBD
+Follow the [Semantic conventions for events](/docs/general/events.md).
 
 ## Stabilizing existing conventions
 
