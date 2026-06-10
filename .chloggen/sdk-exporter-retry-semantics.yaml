@@ -1,0 +1,15 @@
+change_type: enhancement
+
+component: otel
+
+note: >
+  Clarify semantics of SDK exporter metrics when the exporter performs retries:
+  an export operation is considered finished only after the final attempt has
+  concluded, items are counted exactly once per operation, and
+  `otel.sdk.exporter.operation.duration` records one observation per operation
+  covering all attempts and backoff. Also drop a spurious `error.type` note from
+  the `*.inflight` metrics, which do not carry an `error.type` attribute.
+
+issues: [3770]
+
+subtext:
