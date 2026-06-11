@@ -241,57 +241,6 @@ groups:
           NOT report `timed_out` unless the underlying shutdown API explicitly reports a
           timeout condition.
         examples: ["success", "failed", "timed_out"]
-      - id: otel.component.dropped
-        type: int
-        stability: development
-        brief: >
-          The total number of telemetry items (spans, log records, metric data points, etc.) the OpenTelemetry SDK component dropped during normal operation over its lifetime.
-        note: |
-          Counts telemetry items that the component accepted (or attempted to accept)
-          and then dropped during normal operation for any reason, e.g. queue overflow
-          or export failures that exhausted retries. The value MUST be a non-negative
-          integer and is cumulative from the time the component was started until the
-          moment the enclosing event (e.g. `otel.sdk.component.shutdown`) is emitted.
-
-          This counter does NOT include items reported via
-          `otel.component.shutdown.dropped`, and does NOT include items refused because
-          the component's shutdown had already begun (those are typically already
-          exposed by other SDK metrics, e.g. `otel.sdk.processor.*.processed` with
-          `error.type`).
-
-          This attribute is only applicable to components that track a lifetime dropped
-          count, such as queue-based processors (e.g. the Batching Span Processor or
-          Batching Log Record Processor). Components that do not track this MUST omit
-          the attribute. Consumers MUST treat absence as "unknown / not applicable",
-          not as `0`.
-        examples: [0, 42]
-      - id: otel.component.shutdown.dropped
-        type: int
-        stability: development
-        brief: >
-          The number of telemetry items that the component had taken responsibility for before shutdown was initiated but could not confirm delivered before the shutdown attempt ended.
-        note: |
-          Reported on the `otel.sdk.component.shutdown` event. Counts telemetry items
-          the component had accepted prior to shutdown (queued, buffered, scheduled for
-          retry, or handed to a downstream component/exporter in an operation that did
-          not return) and could not confirm delivered by the time the shutdown attempt
-          ended (typically because the configured shutdown timeout elapsed, or the
-          final export attempt failed).
-
-          The value MUST be a non-negative integer. When `otel.component.shutdown.result`
-          is `success`, this attribute MUST be `0`. Non-zero values are an upper bound
-          on actual loss: in-flight export requests that the SDK abandoned (e.g. at
-          timeout) MAY still complete successfully on the wire after the SDK gave up,
-          but the SDK cannot confirm delivery so they are counted here.
-
-          This attribute is applicable to any component that owns queued, buffered,
-          retry, or in-flight telemetry items at the time shutdown is initiated. This
-          includes both buffering components (e.g. the Batching Span Processor) and
-          non-buffering components with an in-flight export request at shutdown time
-          (e.g. an OTLP exporter). Components that do not own any such items at
-          shutdown MUST omit the attribute. Consumers MUST treat absence as
-          "unknown / not applicable", not as `0`.
-        examples: [0, 800]
       - id: otel.component.shutdown.duration
         type: double
         stability: development
