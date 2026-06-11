@@ -1,8 +1,8 @@
-name: Validate prerelease
+name: Validate release
 
 on:
   release:
-    types: [prereleased]
+    types: [published]
 
 permissions:
   contents: read
@@ -11,7 +11,7 @@ jobs:
   validate-schema-file:
     runs-on: ubuntu-latest
     permissions:
-      contents: write # required to mark the release as not-for-release
+      issues: write # required to open an issue on failure
     steps:
       - name: Check out release tag
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
@@ -33,20 +33,25 @@ jobs:
       - name: Validate schema files
         run: make schema-check
 
-      - name: Mark release as not-for-release
+      - name: Open issue on failure
         if: failure()
         env:
           GH_TOKEN: ${{ github.token }}
           TAG: ${{ github.event.release.tag_name }}
-          RELEASE_NAME: ${{ github.event.release.name }}
-          RELEASE_BODY: ${{ github.event.release.body }}
+          RELEASE_URL: ${{ github.event.release.html_url }}
           RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
         run: |
-          warning="> [!CAUTION]
-          > Validation failed for this release — **do not promote it to a full release**.
-          > The schema file \`schemas/${TAG#v}\` is missing or invalid. See $RUN_URL"
-          gh release edit "$TAG" \
-            --title "⚠️ DO NOT RELEASE — ${RELEASE_NAME:-$TAG}" \
-            --notes "$warning
+          title="Schema validation failed for release $TAG"
+          body=$(cat <<EOF
+          Schema validation failed for [\`$TAG\`]($RELEASE_URL).
 
-          ${RELEASE_BODY}"
+          The schema file \`schemas/${TAG#v}\` is missing or invalid for this release tag.
+
+          **Recommended action:** fix the schema file and issue a new patch release.
+
+          - Workflow run: $RUN_URL
+          - Release: $RELEASE_URL
+
+          EOF
+          )
+          gh issue create --title "$title" --body "$body" --label bug
