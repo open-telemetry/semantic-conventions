@@ -191,7 +191,6 @@
 /docs/oracle-cloud                @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-oracle-cloud-approvers
 /model/oracle-cloud               @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-oracle-cloud-approvers
 
-
 # JavaScript semantic conventions
 /model/nodejs                     @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-js-approver
 /model/v8js                       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-js-approver
