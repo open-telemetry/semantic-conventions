@@ -1,4 +1,4 @@
-change_type: new_component
+change_type: enhancement
 
 component: log
 
@@ -9,4 +9,4 @@ note: |
   distinct from the producer of the log call which is reported as the
   Instrumentation Scope name.
 
-issues: [1550]
+issues: [1550, 3716]
