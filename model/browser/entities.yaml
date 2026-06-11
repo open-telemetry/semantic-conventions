@@ -15,8 +15,6 @@ groups:
       - ref: user_agent.original
         brief: 'Full user-agent string provided by the browser'
         note: >
-          The user-agent value SHOULD be provided only from browsers that do not have a mechanism
-          to retrieve brands and platform individually from the User-Agent Client Hints API.
           To retrieve the value, the legacy `navigator.userAgent` API can be used.
         examples: ['Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.54 Safari/537.36']
 
