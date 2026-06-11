@@ -194,3 +194,5 @@
 # JavaScript semantic conventions
 /model/nodejs                     @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-js-approver
 /model/v8js                       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-js-approver
+/docs/runtime/v8js-metrics.md     @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-js-approver
+/docs/runtime/nodejs-metrics.md   @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-js-approver
