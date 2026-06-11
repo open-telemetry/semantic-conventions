@@ -45,7 +45,7 @@ groups:
 
       **Severity.**
 
-      Implementations SHOULD set the log record severity to `WARN`
+      Implementations MUST set the log record severity to `WARN`
       (`SeverityNumber` = `13`) when `otel.component.shutdown.result` is not
       `success`, and to `INFO` (`SeverityNumber` = `9`) otherwise.
 
@@ -62,6 +62,15 @@ groups:
       abandoned). Consumers should treat a non-`success` `result` as
       "shutdown was not clean; some loss possible" and rely on per-operation
       signals for precise accounting.
+
+      **Nesting.**
+
+      When an SDK component invokes the shutdown of a child component inline as
+      part of its own shutdown (e.g. a batching processor shutting down its
+      exporter), the parent's `otel.component.shutdown.duration` mechanically
+      includes the time spent shutting down its children. Consumers SHOULD NOT
+      sum `otel.component.shutdown.duration` across components in the same
+      pipeline to estimate total shutdown wall time.
     attributes:
       - ref: otel.component.type
         requirement_level: required

@@ -96,6 +96,11 @@ If no shutdown timeout/deadline applies to the component, implementations MUST
 NOT report `timed_out` unless the underlying shutdown API explicitly reports a
 timeout condition.
 
+Implementations MUST set `otel.component.shutdown.result` to one of the
+well-known values defined in this convention. The three values are intended
+to be exhaustive: any shutdown attempt that did not complete cleanly is
+either `failed` or `timed_out`. Custom values MUST NOT be used.
+
 **[4] `otel.component.type`:** If none of the standardized values apply, implementations SHOULD use the language-defined name of the type.
 E.g. for Java the fully qualified classname SHOULD be used in this case.
 

@@ -75,7 +75,7 @@ event data defined by this convention is conveyed through attributes.
 
 **Severity.**
 
-Implementations SHOULD set the log record severity to `WARN`
+Implementations MUST set the log record severity to `WARN`
 (`SeverityNumber` = `13`) when `otel.component.shutdown.result` is not
 `success`, and to `INFO` (`SeverityNumber` = `9`) otherwise.
 
@@ -92,6 +92,15 @@ is still healthy. The exact count of telemetry items abandoned during a
 abandoned). Consumers should treat a non-`success` `result` as
 "shutdown was not clean; some loss possible" and rely on per-operation
 signals for precise accounting.
+
+**Nesting.**
+
+When an SDK component invokes the shutdown of a child component inline as
+part of its own shutdown (e.g. a batching processor shutting down its
+exporter), the parent's `otel.component.shutdown.duration` mechanically
+includes the time spent shutting down its children. Consumers SHOULD NOT
+sum `otel.component.shutdown.duration` across components in the same
+pipeline to estimate total shutdown wall time.
 
 **Attributes:**
 
@@ -126,6 +135,11 @@ configured time budget AND no required shutdown step reported a failure.
 If no shutdown timeout/deadline applies to the component, implementations MUST
 NOT report `timed_out` unless the underlying shutdown API explicitly reports a
 timeout condition.
+
+Implementations MUST set `otel.component.shutdown.result` to one of the
+well-known values defined in this convention. The three values are intended
+to be exhaustive: any shutdown attempt that did not complete cleanly is
+either `failed` or `timed_out`. Custom values MUST NOT be used.
 
 **[3] `otel.component.type`:** If none of the standardized values apply, implementations SHOULD use the language-defined name of the type.
 E.g. for Java the fully qualified classname SHOULD be used in this case.
