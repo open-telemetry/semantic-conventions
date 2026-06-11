@@ -20,7 +20,7 @@ jobs:
       issues: write
     needs:
       - link-check
-    if: always()
+    if: always() && github.repository_owner == 'open-telemetry'
     uses: ./.github/workflows/reusable-workflow-notification.yml
     with:
       success: ${{ needs.link-check.result == 'success' }}
