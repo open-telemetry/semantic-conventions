@@ -7,6 +7,6 @@ note: >
   can only take values `RECORD_ONLY` and `RECORD_AND_SAMPLE`, not `DROP`,
   since the metric does not count non-recording spans.
 
-issues: []
+issues: [3782]
 
 subtext:
