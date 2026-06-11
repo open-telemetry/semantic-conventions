@@ -1,0 +1,52 @@
+name: Validate prerelease
+
+on:
+  release:
+    types: [prereleased]
+
+permissions:
+  contents: read
+
+jobs:
+  validate-schema-file:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # required to mark the release as not-for-release
+    steps:
+      - name: Check out release tag
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          ref: ${{ github.event.release.tag_name }}
+
+      - name: Verify schema file exists for release tag
+        run: |
+          tag="${{ github.event.release.tag_name }}"
+          version="${tag#v}"
+          file="schemas/$version"
+          echo "Verifying schema file '$file' exists for tag '$tag'..."
+          if [[ ! -f "$file" ]]; then
+            echo "::error::Schema file '$file' does not exist for release tag '$tag'."
+            exit 1
+          fi
+          echo "OK: '$file' exists."
+
+      - name: Validate schema files
+        run: make schema-check
+
+      - name: Mark release as not-for-release
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ github.event.release.tag_name }}
+          RELEASE_NAME: ${{ github.event.release.name }}
+          RELEASE_BODY: ${{ github.event.release.body }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          warning="> [!CAUTION]
+          > Validation failed for this release — **do not promote it to a full release**.
+          > The schema file \`schemas/${TAG#v}\` is missing or invalid. See $RUN_URL"
+          gh release edit "$TAG" \
+            --title "⚠️ DO NOT RELEASE — ${RELEASE_NAME:-$TAG}" \
+            --notes "$warning
+
+          ${RELEASE_BODY}"
