@@ -47,7 +47,9 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `otel.sdk.span.live` | UpDownCounter | `{span}` | The number of created spans with `recording=true` for which the end operation has not been called yet. | ![Development](https://img.shields.io/badge/-development-blue) | |
+| `otel.sdk.span.live` | UpDownCounter | `{span}` | The number of created spans with `recording=true` for which the end operation has not been called yet. [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
+
+**[1]:** Non-recording spans are not counted, hence `otel.span.sampling_result` can only take values `RECORD_ONLY` and `RECORD_AND_SAMPLE`, not `DROP`.
 
 **Attributes:**
 
