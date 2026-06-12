@@ -4,6 +4,10 @@ file_format: 1.1.0
 schema_url: https://opentelemetry.io/schemas/1.42.0
 versions:
   1.42.0:
+    metrics:
+      changes:
+        - rename_metrics:
+            v8js.memory.heap.limit: v8js.memory.heap.space.size
   1.41.1:
   1.41.0:
     metrics:
