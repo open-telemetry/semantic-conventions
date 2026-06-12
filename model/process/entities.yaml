@@ -62,10 +62,10 @@ groups:
     stability: development
     name: process.executable
     brief: >
-      The executable of a process.
+      The executable running within a process.
     note: >
-      Represents the executable file associated with a process.
-      A single executable may be run my multiple process instances.
+      A single process executable may be run in multiple process instances
+      but it should not be used when the executable corresponds to the runtime.
     attributes:
       - ref: process.executable.build_id.htlhash
         role: identifying
