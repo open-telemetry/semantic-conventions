@@ -81,29 +81,29 @@ groups:
                 Service is business-critical; downtime directly impacts revenue, user experience, or core functionality.
               note: >
                 Examples include payment processing, authentication, and primary user-facing APIs.
-              stability: development
+              stability: alpha
             - id: high
               value: 'high'
               brief: >
                 Service is important but has degradation tolerance or fallback mechanisms.
               note: >
                 Examples include shopping cart, search, and recommendation engines.
-              stability: development
+              stability: alpha
             - id: medium
               value: 'medium'
               brief: >
                 Service provides supplementary functionality; degradation has limited user impact.
               note: >
                 Examples include analytics, reporting, and non-essential integrations.
-              stability: development
+              stability: alpha
             - id: low
               value: 'low'
               brief: >
                 Service is non-essential to core operations; used for background tasks or internal tools.
               note: >
                 Examples include batch processors, cleanup jobs, and internal dashboards.
-              stability: development
-        stability: development
+              stability: alpha
+        stability: alpha
         brief: >
           The operational criticality of the service.
         note: >
