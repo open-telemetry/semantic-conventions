@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
+title: Semantic conventions for DNS metrics emitted by .NET
 linkTitle: DNS
---->
+---
 
 # Semantic conventions for DNS metrics emitted by .NET
 

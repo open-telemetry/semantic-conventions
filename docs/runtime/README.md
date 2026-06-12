@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
+title: Semantic conventions for runtime environment
 linkTitle: Runtime environment
---->
+---
 
 # Semantic conventions for runtime environment
 

@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
+title: Semantic conventions for Node.js runtime metrics
 linkTitle: Node.js
---->
+---
 
 # Semantic conventions for Node.js runtime metrics
 

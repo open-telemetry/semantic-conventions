@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
+title: Semantic conventions for enclosure metrics
 linkTitle: Enclosure
---->
+---
 
 # Semantic conventions for enclosure metrics
 
