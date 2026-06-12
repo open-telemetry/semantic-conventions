@@ -15,21 +15,6 @@ groups:
     note: >
       The values can be retrieved from [`perf_hooks.PerformanceObserver(...).observe({ entryTypes: ['gc'] })`](https://nodejs.org/api/perf_hooks.html#performanceobserverobserveoptions)
 
-  - id: metric.v8js.memory.heap.limit
-    type: metric
-    metric_name: v8js.memory.heap.limit
-    annotations:
-      code_generation:
-        metric_value_type: int
-    brief: "Maximum heap size allowed by the V8 engine."
-    instrument: updowncounter
-    unit: "By"
-    stability: development
-    deprecated:
-      reason: renamed
-      renamed_to: v8js.memory.heap.space.size
-
-
   - id: metric.v8js.memory.heap.space.available_size
     type: metric
     metric_name: v8js.memory.heap.space.available_size
