@@ -90,7 +90,7 @@ Currently, the following namespaces exist:
 | OTel | | |
 | | [otel.scope](otel.md#otel-scope) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Obsoleted. |
 | Process | | |
-| | [process](process.md#process) | ![Development](https://img.shields.io/badge/-development-blue) |
+| | [process](process.md#process) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | | [process.executable](process.md#process-executable) | ![Development](https://img.shields.io/badge/-development-blue) |
 | | [process.runtime](process.md#process-runtime) | ![Development](https://img.shields.io/badge/-development-blue) |
 | Service | | |
