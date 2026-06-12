@@ -41,7 +41,6 @@ and add a new `v8js.memory.heap.limit` UpDownCounter representing the absolute h
   lifetime, while the document URL changes on every navigation. The new attribute follows
   RFC3986 and has `Recommended` requirement level at `Development` stability.
   
-
 ### 💡 Enhancements 💡
 
 - `app`: Defines a basic crash of an end-user facing app that requires a minimal amount of information. ([#3448](https://github.com/open-telemetry/semantic-conventions/issues/3448))
