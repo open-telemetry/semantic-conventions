@@ -2,7 +2,7 @@ groups:
   - id: registry.enduser.deprecated
     type: attribute_group
     display_name: Deprecated End User Attributes
-    brief: "Describes deprecated enduser attributes."
+    brief: "Describes deprecated end user attributes."
     attributes:
       - id: enduser.role
         type: string

@@ -11,7 +11,7 @@ Useful resources to understand Kubernetes objects and metadata:
 
 The "name" of a Kubernetes object is unique for that type of object within a
 "namespace" and only at a specific moment of time (names can be reused over
-time). The "uid" is unique across your whole cluster, and very likely across
+time). The "UID" is unique across your whole cluster, and very likely across
 time. Because of this it is recommended to always set the UID for every
 Kubernetes object, but "name" is usually more user friendly so can be also set.
 
