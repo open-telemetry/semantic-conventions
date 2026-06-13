@@ -7,5 +7,4 @@ docs/registry/**
 CHANGELOG.md
 areas.yaml
 .chloggen/config.yaml
-
-docs/**
+.chloggen/cicd-consistent-spelling.yaml
