@@ -42,6 +42,9 @@ groups:
       - ref: process.linux.cgroup
         role: descriptive
         requirement_level: opt_in
+      - ref: process.entrypoint
+        role: descriptive
+        requirement_level: opt_in
 
   - id: entity.process.runtime
     type: entity
@@ -70,9 +73,6 @@ groups:
       - ref: process.executable.build_id.htlhash
         role: identifying
         requirement_level: required
-      - ref: process.executable.path
-        role: descriptive
-        requirement_level: opt_in
       - ref: process.executable.build_id.go
         role: descriptive
         requirement_level: opt_in
