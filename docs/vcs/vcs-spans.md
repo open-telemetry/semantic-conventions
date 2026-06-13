@@ -7,6 +7,10 @@ linkTitle: Spans
 **Status**: [Development][DocumentStatus]
 
 <!-- START doctoc -->
+
+- [VCS Spans](#vcs-spans)
+  - [VCS client span](#vcs-client-span)
+
 <!-- END doctoc -->
 
 ## VCS Spans
@@ -31,6 +35,7 @@ If the repository name is not available, the span name SHOULD be `{vcs.action}`.
 
 **VCS Action Generic Mapping:**
 The canonical values of `vcs.action` map across both Distributed (DVCS) and Centralized (CVCS) Version Control Systems:
+
 * `clone`: Git `clone`, Mercurial `clone`, SVN `checkout` (initial copy), Perforce `clone`/`sync` (initial setup).
 * `fetch`: Git `fetch`, Mercurial `pull` (without update), Perforce `fetch`/`sync` (metadata only).
 * `pull`: Git `pull`, Mercurial `pull -u`, SVN `update`, Perforce `sync`.
