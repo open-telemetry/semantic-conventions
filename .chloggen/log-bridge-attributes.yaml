@@ -1,0 +1,12 @@
+change_type: enhancement
+
+component: log
+
+note: |
+  Introduce `log.bridge.name` and `log.bridge.version` Instrumentation Scope
+  attributes to identify the log bridge (the OpenTelemetry component that
+  converts a logging library's records into OpenTelemetry log records),
+  distinct from the producer of the log call which is reported as the
+  Instrumentation Scope name.
+
+issues: [1550, 3716]
