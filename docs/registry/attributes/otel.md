@@ -60,7 +60,9 @@ Attributes used for OpenTelemetry component self-monitoring
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
 | <a id="otel-component-name" href="#otel-component-name">`otel.component.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | A name uniquely identifying the instance of the OpenTelemetry component within its containing SDK instance. [1] | `otlp_grpc_span_exporter/0`; `custom-name` |
-| <a id="otel-component-type" href="#otel-component-type">`otel.component.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | A name identifying the type of the OpenTelemetry component. [2] | `batching_span_processor`; `com.example.MySpanExporter` |
+| <a id="otel-component-shutdown-duration" href="#otel-component-shutdown-duration">`otel.component.shutdown.duration`</a> | ![Development](https://img.shields.io/badge/-development-blue) | double | The wall-clock elapsed time of the component's shutdown attempt, in seconds. [2] | `0.015`; `30.0` |
+| <a id="otel-component-shutdown-result" href="#otel-component-shutdown-result">`otel.component.shutdown.result`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The result of an OpenTelemetry SDK component shutdown attempt. [3] | `success`; `failed`; `timed_out` |
+| <a id="otel-component-type" href="#otel-component-type">`otel.component.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | A name identifying the type of the OpenTelemetry component. [4] | `batching_span_processor`; `com.example.MySpanExporter` |
 
 **[1] `otel.component.name`:** Implementations SHOULD ensure a low cardinality for this attribute, even across application or SDK restarts.
 E.g. implementations MUST NOT use UUIDs as values for this attribute.
@@ -76,8 +78,41 @@ With this implementation, for example the first Batching Span Processor would ha
 as `otel.component.name`, the second one `batching_span_processor/1` and so on.
 These values will therefore be reused in the case of an application restart.
 
-**[2] `otel.component.type`:** If none of the standardized values apply, implementations SHOULD use the language-defined name of the type.
+**[2] `otel.component.shutdown.duration`:** Measured from the moment the component's shutdown operation started to the
+moment the shutdown attempt ended (whether by completing, failing, or being
+abandoned). MUST be a non-negative value expressed in seconds.
+
+This attribute is informational and SHOULD NOT affect the severity of the
+enclosing event.
+
+**[3] `otel.component.shutdown.result`:** `timed_out` takes precedence over `failed` when both are observed for the same
+shutdown attempt (e.g. when an exporter request is abandoned because the
+shutdown timeout expired).
+
+`success` MUST only be reported when the shutdown completed within the
+configured time budget AND no required shutdown step reported a failure.
+
+If no shutdown timeout/deadline applies to the component, implementations MUST
+NOT report `timed_out` unless the underlying shutdown API explicitly reports a
+timeout condition.
+
+Implementations MUST set `otel.component.shutdown.result` to one of the
+well-known values defined in this convention. The three values are intended
+to be exhaustive: any shutdown attempt that did not complete cleanly is
+either `failed` or `timed_out`. Custom values MUST NOT be used.
+
+**[4] `otel.component.type`:** If none of the standardized values apply, implementations SHOULD use the language-defined name of the type.
 E.g. for Java the fully qualified classname SHOULD be used in this case.
+
+---
+
+`otel.component.shutdown.result` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value | Description | Stability |
+| --- | --- | --- |
+| `failed` | The shutdown attempt ended within the configured time budget but one or more required shutdown steps failed (e.g. an exporter rejected the final batch, or a cleanup step threw). | ![Development](https://img.shields.io/badge/-development-blue) |
+| `success` | The shutdown attempt completed within the configured time budget and confirmed processing/delivery of all telemetry the component owned at the time shutdown was initiated. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `timed_out` | The shutdown attempt was abandoned because the configured shutdown timeout, deadline, or equivalent time budget expired. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -110,9 +145,9 @@ Attributes used by non-OTLP exporters to represent OpenTelemetry Event's concept
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="otel-event-name" href="#otel-event-name">`otel.event.name`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | Identifies the class / type of event. [3] | `browser.mouse.click`; `device.app.lifecycle` |
+| <a id="otel-event-name" href="#otel-event-name">`otel.event.name`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | Identifies the class / type of event. [5] | `browser.mouse.click`; `device.app.lifecycle` |
 
-**[3] `otel.event.name`:** This attribute SHOULD be used by non-OTLP exporters when destination does not support `EventName` or equivalent field. This attribute MAY be used by applications using existing logging libraries so that it can be used to set the `EventName` field by Collector or SDK components.
+**[5] `otel.event.name`:** This attribute SHOULD be used by non-OTLP exporters when destination does not support `EventName` or equivalent field. This attribute MAY be used by applications using existing logging libraries so that it can be used to set the `EventName` field by Collector or SDK components.
 
 ## OTel Scope Attributes
 
