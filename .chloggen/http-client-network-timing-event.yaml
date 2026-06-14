@@ -1,0 +1,11 @@
+change_type: enhancement
+
+component: http
+
+note: "Add the `http.client.network_timing` event for per-phase HTTP client network timing."
+
+issues: [3385]
+
+subtext: |
+  The `http.client.network_timing` event lets client instrumentations report where time is spent during an outbound HTTP
+  request—DNS, TCP connect, TLS, and request/response transfer.

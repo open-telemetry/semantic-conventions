@@ -4,6 +4,7 @@
 # HTTP
 
 - [HTTP Attributes](#http-attributes)
+- [HTTP Client Network Timing Event Attributes](#http-client-network-timing-event-attributes)
 - [Deprecated HTTP Attributes](#deprecated-http-attributes)
 
 ## HTTP Attributes
@@ -122,6 +123,30 @@ support custom route formatting. Instrumentations SHOULD document the format and
 | `PUT` | PUT method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `QUERY` | QUERY method. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `TRACE` | TRACE method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+
+## HTTP Client Network Timing Event Attributes
+
+These attributes are defined for `http.client.network_timing` events. Each value is a non-negative delta in milliseconds from the event `Timestamp`.
+
+**Attributes:**
+
+| Key | Stability | Value Type | Description | Example Values |
+| --- | --- | --- | --- | --- |
+| <a id="http-call-end-relative-time" href="#http-call-end-relative-time">`http.call.end_relative_time`</a> | ![Development](https://img.shields.io/badge/-development-blue) | double | Call complete relative time. | `320.0` |
+| <a id="http-connect-end-relative-time" href="#http-connect-end-relative-time">`http.connect.end_relative_time`</a> | ![Development](https://img.shields.io/badge/-development-blue) | double | TCP connection establishment end relative time. | `85.0` |
+| <a id="http-connect-start-relative-time" href="#http-connect-start-relative-time">`http.connect.start_relative_time`</a> | ![Development](https://img.shields.io/badge/-development-blue) | double | TCP connection establishment start relative time. | `20.0` |
+| <a id="http-dns-end-relative-time" href="#http-dns-end-relative-time">`http.dns.end_relative_time`</a> | ![Development](https://img.shields.io/badge/-development-blue) | double | DNS lookup end relative time. | `18.0` |
+| <a id="http-dns-start-relative-time" href="#http-dns-start-relative-time">`http.dns.start_relative_time`</a> | ![Development](https://img.shields.io/badge/-development-blue) | double | DNS lookup start relative time. | `0.0` |
+| <a id="http-request-body-end-relative-time" href="#http-request-body-end-relative-time">`http.request.body.end_relative_time`</a> | ![Development](https://img.shields.io/badge/-development-blue) | double | Request body transmission end relative time (if request has body). | `280.0` |
+| <a id="http-request-body-start-relative-time" href="#http-request-body-start-relative-time">`http.request.body.start_relative_time`</a> | ![Development](https://img.shields.io/badge/-development-blue) | double | Request body transmission start relative time (if request has body). | `215.0` |
+| <a id="http-request-headers-end-relative-time" href="#http-request-headers-end-relative-time">`http.request.headers.end_relative_time`</a> | ![Development](https://img.shields.io/badge/-development-blue) | double | Request headers transmission end relative time. | `215.0` |
+| <a id="http-request-headers-start-relative-time" href="#http-request-headers-start-relative-time">`http.request.headers.start_relative_time`</a> | ![Development](https://img.shields.io/badge/-development-blue) | double | Request headers transmission start relative time. | `212.0` |
+| <a id="http-response-body-end-relative-time" href="#http-response-body-end-relative-time">`http.response.body.end_relative_time`</a> | ![Development](https://img.shields.io/badge/-development-blue) | double | Response body reception end relative time. | `315.0` |
+| <a id="http-response-body-start-relative-time" href="#http-response-body-start-relative-time">`http.response.body.start_relative_time`</a> | ![Development](https://img.shields.io/badge/-development-blue) | double | Response body reception start relative time. | `300.0` |
+| <a id="http-response-headers-end-relative-time" href="#http-response-headers-end-relative-time">`http.response.headers.end_relative_time`</a> | ![Development](https://img.shields.io/badge/-development-blue) | double | Response headers reception end relative time. | `300.0` |
+| <a id="http-response-headers-start-relative-time" href="#http-response-headers-start-relative-time">`http.response.headers.start_relative_time`</a> | ![Development](https://img.shields.io/badge/-development-blue) | double | Response headers reception start relative time. | `295.0` |
+| <a id="http-secure-connect-end-relative-time" href="#http-secure-connect-end-relative-time">`http.secure_connect.end_relative_time`</a> | ![Development](https://img.shields.io/badge/-development-blue) | double | TLS handshake end relative time (HTTPS only). | `210.0` |
+| <a id="http-secure-connect-start-relative-time" href="#http-secure-connect-start-relative-time">`http.secure_connect.start_relative_time`</a> | ![Development](https://img.shields.io/badge/-development-blue) | double | TLS handshake start relative time (HTTPS only). | `86.0` |
 
 ## Deprecated HTTP Attributes
 
