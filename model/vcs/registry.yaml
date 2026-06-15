@@ -291,22 +291,32 @@ groups:
             - id: clone
               value: clone
               brief: "Clone is the operation of creating a local copy of a remote repository."
+              note: >
+                This action maps to Git `clone`, Mercurial `clone`, SVN `checkout` (initial copy), and Perforce `clone`/`sync` (initial setup).
               stability: development
             - id: fetch
               value: fetch
               brief: "Fetch is the operation of downloading changes from a remote repository without updating the working directory."
+              note: >
+                This action maps to Git `fetch`, Mercurial `pull` (without update), and Perforce `fetch`/`sync` (metadata only).
               stability: development
             - id: pull
               value: pull
               brief: "Pull is the operation of fetching and integrating remote changes into the local working directory."
+              note: >
+                This action maps to Git `pull`, Mercurial `pull -u`, SVN `update`, and Perforce `sync`.
               stability: development
             - id: push
               value: push
               brief: "Push is the operation of uploading local changes to a remote repository."
+              note: >
+                This action maps to Git `push`, Mercurial `push`, SVN `commit`, and Perforce `push`/`submit`.
               stability: development
             - id: checkout
               value: checkout
               brief: "Checkout is the operation of switching branches, revisions, or paths in the local working directory."
+              note: >
+                This action maps to Git `checkout`/`switch`, SVN `switch`, Mercurial `update`, and Perforce `switch`/`edit`.
               stability: development
         stability: development
         brief: >

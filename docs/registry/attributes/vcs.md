@@ -85,11 +85,21 @@ the `.git` extension.
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `checkout` | Checkout is the operation of switching branches, revisions, or paths in the local working directory. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `clone` | Clone is the operation of creating a local copy of a remote repository. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `fetch` | Fetch is the operation of downloading changes from a remote repository without updating the working directory. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `pull` | Pull is the operation of fetching and integrating remote changes into the local working directory. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `push` | Push is the operation of uploading local changes to a remote repository. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `checkout` | Checkout is the operation of switching branches, revisions, or paths in the local working directory. [9] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `clone` | Clone is the operation of creating a local copy of a remote repository. [10] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `fetch` | Fetch is the operation of downloading changes from a remote repository without updating the working directory. [11] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `pull` | Pull is the operation of fetching and integrating remote changes into the local working directory. [12] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `push` | Push is the operation of uploading local changes to a remote repository. [13] | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**[9]:** This action maps to Git `checkout`/`switch`, SVN `switch`, Mercurial `update`, and Perforce `switch`/`edit`.
+
+**[10]:** This action maps to Git `clone`, Mercurial `clone`, SVN `checkout` (initial copy), and Perforce `clone`/`sync` (initial setup).
+
+**[11]:** This action maps to Git `fetch`, Mercurial `pull` (without update), and Perforce `fetch`/`sync` (metadata only).
+
+**[12]:** This action maps to Git `pull`, Mercurial `pull -u`, SVN `update`, and Perforce `sync`.
+
+**[13]:** This action maps to Git `push`, Mercurial `push`, SVN `commit`, and Perforce `push`/`submit`.
 
 ---
 

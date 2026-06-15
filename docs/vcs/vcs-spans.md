@@ -31,16 +31,6 @@ This span describes a Version Control System (VCS) operation client.
 **Span name** MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/trace/api.md#span).
 
 The span name SHOULD be `{vcs.action} {vcs.repository.name}`.
-If the repository name is not available, the span name SHOULD be `{vcs.action}`.
-
-**VCS Action Generic Mapping:**
-The canonical values of `vcs.action` map across both Distributed (DVCS) and Centralized (CVCS) Version Control Systems:
-
-* `clone`: Git `clone`, Mercurial `clone`, SVN `checkout` (initial copy), Perforce `clone`/`sync` (initial setup).
-* `fetch`: Git `fetch`, Mercurial `pull` (without update), Perforce `fetch`/`sync` (metadata only).
-* `pull`: Git `pull`, Mercurial `pull -u`, SVN `update`, Perforce `sync`.
-* `push`: Git `push`, Mercurial `push`, SVN `commit`, Perforce `push`/`submit`.
-* `checkout`: Git `checkout`/`switch`, SVN `switch`, Mercurial `update`, Perforce `switch`/`edit`.
 
 **Span Hierarchy:**
 When integrated into CI/CD pipelines, VCS spans SHOULD be modeled as child spans of the CI/CD pipeline task/step execution spans (e.g., a task span representing a "checkout code" step).
@@ -130,11 +120,21 @@ the `.git` extension.
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `checkout` | Checkout is the operation of switching branches, revisions, or paths in the local working directory. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `clone` | Clone is the operation of creating a local copy of a remote repository. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `fetch` | Fetch is the operation of downloading changes from a remote repository without updating the working directory. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `pull` | Pull is the operation of fetching and integrating remote changes into the local working directory. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `push` | Push is the operation of uploading local changes to a remote repository. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `checkout` | Checkout is the operation of switching branches, revisions, or paths in the local working directory. [8] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `clone` | Clone is the operation of creating a local copy of a remote repository. [9] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `fetch` | Fetch is the operation of downloading changes from a remote repository without updating the working directory. [10] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `pull` | Pull is the operation of fetching and integrating remote changes into the local working directory. [11] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `push` | Push is the operation of uploading local changes to a remote repository. [12] | ![Development](https://img.shields.io/badge/-development-blue) |
+
+**[8]:** This action maps to Git `checkout`/`switch`, SVN `switch`, Mercurial `update`, and Perforce `switch`/`edit`.
+
+**[9]:** This action maps to Git `clone`, Mercurial `clone`, SVN `checkout` (initial copy), and Perforce `clone`/`sync` (initial setup).
+
+**[10]:** This action maps to Git `fetch`, Mercurial `pull` (without update), and Perforce `fetch`/`sync` (metadata only).
+
+**[11]:** This action maps to Git `pull`, Mercurial `pull -u`, SVN `update`, and Perforce `sync`.
+
+**[12]:** This action maps to Git `push`, Mercurial `push`, SVN `commit`, and Perforce `push`/`submit`.
 
 ---
 
