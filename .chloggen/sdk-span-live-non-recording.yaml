@@ -1,0 +1,12 @@
+change_type: enhancement
+
+component: otel
+
+note: >
+  Clarify that the `otel.span.sampling_result` attribute of `otel.sdk.span.live`
+  can only take values `RECORD_ONLY` and `RECORD_AND_SAMPLE`, not `DROP`,
+  since the metric does not count non-recording spans.
+
+issues: [3782]
+
+subtext:
