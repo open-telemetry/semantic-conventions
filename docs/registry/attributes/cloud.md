@@ -11,7 +11,7 @@ A cloud environment (e.g. GCP, Azure, AWS).
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="cloud-account-id" href="#cloud-account-id">`cloud.account.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The cloud account ID the resource is assigned to. [1] | `111111111111`; `opentelemetry`; `xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx` |
+| <a id="cloud-account-id" href="#cloud-account-id">`cloud.account.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The cloud account ID the resource is assigned to. [1] | `111111111111`; `opentelemetry`; `22222222-2222-2222-2222-222222222222` |
 | <a id="cloud-availability-zone" href="#cloud-availability-zone">`cloud.availability_zone`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Cloud regions often have multiple, isolated locations known as zones to increase availability. Availability zone represents the zone where the resource is running. [2] | `us-east-1c` |
 | <a id="cloud-platform" href="#cloud-platform">`cloud.platform`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The cloud platform in use. [3] | `akamai_cloud.compute`; `alibaba_cloud_ecs`; `alibaba_cloud_fc` |
 | <a id="cloud-provider" href="#cloud-provider">`cloud.provider`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Name of the cloud provider. | `akamai_cloud`; `alibaba_cloud`; `aws` |

@@ -62,7 +62,7 @@ groups:
           The cloud account ID the resource is assigned to.
         note: >
           For Azure, this is the subscription ID.
-        examples: ['111111111111', 'opentelemetry', 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx']
+        examples: ['111111111111', 'opentelemetry', '22222222-2222-2222-2222-222222222222']
       - id: cloud.region
         type: string
         stability: development

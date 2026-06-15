@@ -5,7 +5,7 @@ groups:
     brief: >
       This section defines generic attributes for Azure services.
     attributes:
-      - id: azure.resourcegroup.name
+      - id: azure.resource_group.name
         type: string
         stability: development
         brief: >

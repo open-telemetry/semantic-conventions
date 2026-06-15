@@ -16,7 +16,7 @@ This section defines generic attributes for Azure services.
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="azure-resourcegroup-name" href="#azure-resourcegroup-name">`azure.resourcegroup.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the Azure [resource group](https://learn.microsoft.com/azure/azure-resource-manager/management/manage-resource-groups-portal) the resource belongs to. | `my-resource-group`; `rg-myapp-prod` |
+| <a id="azure-resource-group-name" href="#azure-resource-group-name">`azure.resource_group.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the Azure [resource group](https://learn.microsoft.com/azure/azure-resource-manager/management/manage-resource-groups-portal) the resource belongs to. | `my-resource-group`; `rg-myapp-prod` |
 
 ## Azure Client Library Attributes
 
