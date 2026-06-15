@@ -64,7 +64,7 @@ groups:
         stability: development
       - id: process.executable.path
         type: string
-        stability: development
+        stability: release_candidate
         deprecated:
           reason: renamed
           renamed_to: process.entrypoint
