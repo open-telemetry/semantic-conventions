@@ -4,7 +4,7 @@ linkTitle: Metrics
 
 # Semantic conventions for CI/CD metrics
 
-**Status**: [Release Candidate][DocumentStatus]
+**Status**: [Mixed][DocumentStatus]
 
 <!-- START doctoc -->
 
