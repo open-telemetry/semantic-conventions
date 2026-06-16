@@ -36,7 +36,6 @@ Semantic Conventions are defined for the following areas:
 * [Object Stores](object-stores/README.md): Semantic Conventions for object stores operations.
 * [RPC](rpc/README.md): Semantic Conventions for RPC client and server operations.
 * [System](system/README.md): System Semantic Conventions.
-* [VCS](vcs/README.md): Semantic Conventions for Version Control Systems.
 
 Semantic Conventions by signals:
 
