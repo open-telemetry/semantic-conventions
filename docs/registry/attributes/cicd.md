@@ -11,22 +11,22 @@ This group describes attributes specific to pipelines within a Continuous Integr
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="cicd-pipeline-action-name" href="#cicd-pipeline-action-name">`cicd.pipeline.action.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The kind of action a pipeline run is performing. | `BUILD`; `RUN`; `SYNC` |
-| <a id="cicd-pipeline-name" href="#cicd-pipeline-name">`cicd.pipeline.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The human readable name of the pipeline within a CI/CD system. | `Build and Test`; `Lint`; `Deploy Go Project`; `deploy_to_environment` |
-| <a id="cicd-pipeline-result" href="#cicd-pipeline-result">`cicd.pipeline.result`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The result of a pipeline run. | `success`; `failure`; `timeout`; `skipped` |
-| <a id="cicd-pipeline-run-id" href="#cicd-pipeline-run-id">`cicd.pipeline.run.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The unique identifier of a pipeline run within a CI/CD system. | `120912` |
-| <a id="cicd-pipeline-run-state" href="#cicd-pipeline-run-state">`cicd.pipeline.run.state`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The pipeline run goes through these states during its lifecycle. | `pending`; `executing`; `finalizing` |
-| <a id="cicd-pipeline-run-url-full" href="#cicd-pipeline-run-url-full">`cicd.pipeline.run.url.full`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The [URL](https://wikipedia.org/wiki/URL) of the pipeline run, providing the complete address in order to locate and identify the pipeline run. | `https://github.com/open-telemetry/semantic-conventions/actions/runs/9753949763?pr=1075` |
-| <a id="cicd-pipeline-task-name" href="#cicd-pipeline-task-name">`cicd.pipeline.task.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The human readable name of a task within a pipeline. Task here most closely aligns with a [computing process](https://wikipedia.org/wiki/Pipeline_(computing)) in a pipeline. Other terms for tasks include commands, steps, and procedures. | `Run GoLang Linter`; `Go Build`; `go-test`; `deploy_binary` |
-| <a id="cicd-pipeline-task-run-id" href="#cicd-pipeline-task-run-id">`cicd.pipeline.task.run.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The unique identifier of a task run within a pipeline. [1] | `12097` |
-| <a id="cicd-pipeline-task-run-result" href="#cicd-pipeline-task-run-result">`cicd.pipeline.task.run.result`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The result of a task run. | `success`; `failure`; `timeout`; `skipped` |
-| <a id="cicd-pipeline-task-run-url-full" href="#cicd-pipeline-task-run-url-full">`cicd.pipeline.task.run.url.full`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The [URL](https://wikipedia.org/wiki/URL) of the pipeline task run, providing the complete address in order to locate and identify the pipeline task run. | `https://github.com/open-telemetry/semantic-conventions/actions/runs/9753949763/job/26920038674?pr=1075` |
-| <a id="cicd-pipeline-task-type" href="#cicd-pipeline-task-type">`cicd.pipeline.task.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The type of the task within a pipeline. | `build`; `test`; `deploy` |
-| <a id="cicd-system-component" href="#cicd-system-component">`cicd.system.component`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of a component of the CI/CD system. | `controller`; `scheduler`; `agent` |
-| <a id="cicd-worker-id" href="#cicd-worker-id">`cicd.worker.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The unique identifier of a worker within a CI/CD system. | `abc123`; `10.0.1.2`; `controller` |
-| <a id="cicd-worker-name" href="#cicd-worker-name">`cicd.worker.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of a worker within a CI/CD system. | `agent-abc`; `controller`; `Ubuntu LTS` |
-| <a id="cicd-worker-state" href="#cicd-worker-state">`cicd.worker.state`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The state of a CI/CD worker / agent. | `idle`; `busy`; `down` |
-| <a id="cicd-worker-url-full" href="#cicd-worker-url-full">`cicd.worker.url.full`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The [URL](https://wikipedia.org/wiki/URL) of the worker, providing the complete address in order to locate and identify the worker. | `https://cicd.example.org/worker/abc123` |
+| <a id="cicd-pipeline-action-name" href="#cicd-pipeline-action-name">`cicd.pipeline.action.name`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The kind of action a pipeline run is performing. | `BUILD`; `RUN`; `SYNC` |
+| <a id="cicd-pipeline-name" href="#cicd-pipeline-name">`cicd.pipeline.name`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The human readable name of the pipeline within a CI/CD system. | `Build and Test`; `Lint`; `Deploy Go Project`; `deploy_to_environment` |
+| <a id="cicd-pipeline-result" href="#cicd-pipeline-result">`cicd.pipeline.result`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The result of a pipeline run. | `success`; `failure`; `timeout`; `skip` |
+| <a id="cicd-pipeline-run-id" href="#cicd-pipeline-run-id">`cicd.pipeline.run.id`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The unique identifier of a pipeline run within a CI/CD system. | `120912` |
+| <a id="cicd-pipeline-run-state" href="#cicd-pipeline-run-state">`cicd.pipeline.run.state`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The pipeline run goes through these states during its lifecycle. | `pending`; `executing`; `finalizing` |
+| <a id="cicd-pipeline-run-url-full" href="#cicd-pipeline-run-url-full">`cicd.pipeline.run.url.full`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The [URL](https://wikipedia.org/wiki/URL) of the pipeline run, providing the complete address in order to locate and identify the pipeline run. | `https://github.com/open-telemetry/semantic-conventions/actions/runs/9753949763?pr=1075` |
+| <a id="cicd-pipeline-task-name" href="#cicd-pipeline-task-name">`cicd.pipeline.task.name`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The human readable name of a task within a pipeline. Task here most closely aligns with a [computing process](https://wikipedia.org/wiki/Pipeline_(computing)) in a pipeline. Other terms for tasks include commands, steps, and procedures. | `Run GoLang Linter`; `Go Build`; `go-test`; `deploy_binary` |
+| <a id="cicd-pipeline-task-run-id" href="#cicd-pipeline-task-run-id">`cicd.pipeline.task.run.id`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The unique identifier of a task run within a pipeline. [1] | `12097` |
+| <a id="cicd-pipeline-task-run-result" href="#cicd-pipeline-task-run-result">`cicd.pipeline.task.run.result`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The result of a task run. | `success`; `failure`; `timeout`; `skip` |
+| <a id="cicd-pipeline-task-run-url-full" href="#cicd-pipeline-task-run-url-full">`cicd.pipeline.task.run.url.full`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The [URL](https://wikipedia.org/wiki/URL) of the pipeline task run, providing the complete address in order to locate and identify the pipeline task run. | `https://github.com/open-telemetry/semantic-conventions/actions/runs/9753949763/job/26920038674?pr=1075` |
+| <a id="cicd-pipeline-task-type" href="#cicd-pipeline-task-type">`cicd.pipeline.task.type`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The type of the task within a pipeline. | `build`; `test`; `deploy` |
+| <a id="cicd-system-component" href="#cicd-system-component">`cicd.system.component`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The name of a component of the CI/CD system. | `controller`; `scheduler`; `agent` |
+| <a id="cicd-worker-id" href="#cicd-worker-id">`cicd.worker.id`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The unique identifier of a worker within a CI/CD system. | `abc123`; `10.0.1.2`; `controller` |
+| <a id="cicd-worker-name" href="#cicd-worker-name">`cicd.worker.name`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The name of a worker within a CI/CD system. | `agent-abc`; `controller`; `Ubuntu LTS` |
+| <a id="cicd-worker-state" href="#cicd-worker-state">`cicd.worker.state`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The state of a CI/CD worker / agent. | `available`; `busy`; `offline` |
+| <a id="cicd-worker-url-full" href="#cicd-worker-url-full">`cicd.worker.url.full`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The [URL](https://wikipedia.org/wiki/URL) of the worker, providing the complete address in order to locate and identify the worker. | `https://cicd.example.org/worker/abc123` |
 
 **[1] `cicd.pipeline.task.run.id`:** For a given pipeline run and task, the `cicd.pipeline.task.run.id` MUST be unique within that run. For the same task across different runs of the same pipeline, the `cicd.pipeline.task.run.id` MAY remain the same, enabling correlation of `cicd.pipeline.task.run.result` values across multiple pipeline runs.
 
@@ -36,9 +36,9 @@ This group describes attributes specific to pipelines within a Continuous Integr
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `BUILD` | The pipeline run is executing a build. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `RUN` | The pipeline run is executing. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `SYNC` | The pipeline run is executing a sync. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `BUILD` | The pipeline run is executing a build. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `RUN` | The pipeline run is executing. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `SYNC` | The pipeline run is executing a sync. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 ---
 
@@ -46,12 +46,12 @@ This group describes attributes specific to pipelines within a Continuous Integr
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `cancellation` | The pipeline run was cancelled, eg. by a user manually cancelling the pipeline run. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `error` | The pipeline run failed due to an error in the CI/CD system, eg. due to the worker being killed. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `failure` | The pipeline run did not finish successfully, eg. due to a compile error or a failing test. Such failures are usually detected by non-zero exit codes of the tools executed in the pipeline run. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `skip` | The pipeline run was skipped, eg. due to a precondition not being met. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `success` | The pipeline run finished successfully. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `timeout` | A timeout caused the pipeline run to be interrupted. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `cancellation` | The pipeline run was cancelled, eg. by a user manually cancelling the pipeline run. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `error` | The pipeline run failed due to an error in the CI/CD system, eg. due to the worker being killed. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `failure` | The pipeline run did not finish successfully, eg. due to a compile error or a failing test. Such failures are usually detected by non-zero exit codes of the tools executed in the pipeline run. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `skip` | The pipeline run was skipped, eg. due to a precondition not being met. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `success` | The pipeline run finished successfully. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `timeout` | A timeout caused the pipeline run to be interrupted. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 ---
 
@@ -59,9 +59,9 @@ This group describes attributes specific to pipelines within a Continuous Integr
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `executing` | The executing state spans the execution of any run tasks (eg. build, test). | ![Development](https://img.shields.io/badge/-development-blue) |
-| `finalizing` | The finalizing state spans from when the run has finished executing (eg. cleanup of run resources). | ![Development](https://img.shields.io/badge/-development-blue) |
-| `pending` | The run pending state spans from the event triggering the pipeline run until the execution of the run starts (eg. time spent in a queue, provisioning agents, creating run resources). | ![Development](https://img.shields.io/badge/-development-blue) |
+| `executing` | The executing state spans the execution of any run tasks (eg. build, test). | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `finalizing` | The finalizing state spans from when the run has finished executing (eg. cleanup of run resources). | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `pending` | The run pending state spans from the event triggering the pipeline run until the execution of the run starts (eg. time spent in a queue, provisioning agents, creating run resources). | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 ---
 
@@ -69,12 +69,12 @@ This group describes attributes specific to pipelines within a Continuous Integr
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `cancellation` | The task run was cancelled, eg. by a user manually cancelling the task run. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `error` | The task run failed due to an error in the CI/CD system, eg. due to the worker being killed. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `failure` | The task run did not finish successfully, eg. due to a compile error or a failing test. Such failures are usually detected by non-zero exit codes of the tools executed in the task run. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `skip` | The task run was skipped, eg. due to a precondition not being met. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `success` | The task run finished successfully. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `timeout` | A timeout caused the task run to be interrupted. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `cancellation` | The task run was cancelled, eg. by a user manually cancelling the task run. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `error` | The task run failed due to an error in the CI/CD system, eg. due to the worker being killed. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `failure` | The task run did not finish successfully, eg. due to a compile error or a failing test. Such failures are usually detected by non-zero exit codes of the tools executed in the task run. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `skip` | The task run was skipped, eg. due to a precondition not being met. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `success` | The task run finished successfully. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `timeout` | A timeout caused the task run to be interrupted. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 ---
 
@@ -82,9 +82,9 @@ This group describes attributes specific to pipelines within a Continuous Integr
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `build` | build | ![Development](https://img.shields.io/badge/-development-blue) |
-| `deploy` | deploy | ![Development](https://img.shields.io/badge/-development-blue) |
-| `test` | test | ![Development](https://img.shields.io/badge/-development-blue) |
+| `build` | build | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `deploy` | deploy | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `test` | test | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 ---
 
@@ -92,8 +92,8 @@ This group describes attributes specific to pipelines within a Continuous Integr
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `available` | The worker is not performing work for the CI/CD system. It is available to the CI/CD system to perform work on (online / idle). [2] | ![Development](https://img.shields.io/badge/-development-blue) |
-| `busy` | The worker is performing work for the CI/CD system. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `offline` | The worker is not available to the CI/CD system (disconnected / down). | ![Development](https://img.shields.io/badge/-development-blue) |
+| `available` | The worker is not performing work for the CI/CD system. It is available to the CI/CD system to perform work on (online / idle). [2] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `busy` | The worker is performing work for the CI/CD system. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `offline` | The worker is not available to the CI/CD system (disconnected / down). | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 **[2]:** Pipelines might have conditions on which workers they are able to run so not every worker might be available to every pipeline.

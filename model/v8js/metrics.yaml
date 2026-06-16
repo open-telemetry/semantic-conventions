@@ -15,22 +15,6 @@ groups:
     note: >
       The values can be retrieved from [`perf_hooks.PerformanceObserver(...).observe({ entryTypes: ['gc'] })`](https://nodejs.org/api/perf_hooks.html#performanceobserverobserveoptions)
 
-  - id: metric.v8js.memory.heap.limit
-    type: metric
-    metric_name: v8js.memory.heap.limit
-    annotations:
-      code_generation:
-        metric_value_type: int
-    brief: "Maximum heap size allowed by the V8 engine."
-    instrument: updowncounter
-    unit: "By"
-    stability: development
-    note: >
-      The value can be retrieved from value `heap_size_limit` of
-      [`v8.getHeapStatistics()`](https://nodejs.org/api/v8.html#v8getheapstatistics).
-      This represents the absolute ceiling the heap can grow to, controlled by
-      `--max-old-space-size` or V8 defaults.
-
   - id: metric.v8js.memory.heap.space.available_size
     type: metric
     metric_name: v8js.memory.heap.space.available_size

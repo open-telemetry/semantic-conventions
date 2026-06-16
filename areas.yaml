@@ -184,6 +184,19 @@ areas:
       - accepting_contributions
       - active
 
+  - name: "Semantic Conventions: Ruby"
+    owner:
+      - name: "ruby-approvers"
+        github: ruby-approvers
+    project: "N/A"
+    board: "N/A"
+    labels:
+      - area:rails
+      - area:ruby
+    status:
+      - accepting_contributions
+      - active
+
   - name: "Semantic Conventions: Logs"
     owner:
       - name: "semconv-log-approvers"
