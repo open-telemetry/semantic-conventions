@@ -463,7 +463,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `vcs.change.time_to_approval` | Gauge | `s` | The amount of time since its creation it took a change (pull request/merge request/changelist) to get the first approval. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | [`vcs.repository`](/docs/registry/entities/vcs.md#vcs-repository); [`vcs.ref`](/docs/registry/entities/vcs.md#vcs-ref) |
+| `vcs.change.time_to_approval` | Gauge | `s` | The amount of time since its creation it took a change (pull request/merge request/changelist) to get the first approval. | ![Development](https://img.shields.io/badge/-development-blue) | [`vcs.repository`](/docs/registry/entities/vcs.md#vcs-repository); [`vcs.ref`](/docs/registry/entities/vcs.md#vcs-ref) |
 
 **Attributes:**
 
@@ -544,7 +544,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `vcs.change.time_to_merge` | Gauge | `s` | The amount of time since its creation it took a change (pull request/merge request/changelist) to get merged into the target(base) ref. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | [`vcs.repository`](/docs/registry/entities/vcs.md#vcs-repository); [`vcs.ref`](/docs/registry/entities/vcs.md#vcs-ref) |
+| `vcs.change.time_to_merge` | Gauge | `s` | The amount of time since its creation it took a change (pull request/merge request/changelist) to get merged into the target(base) ref. | ![Development](https://img.shields.io/badge/-development-blue) | [`vcs.repository`](/docs/registry/entities/vcs.md#vcs-repository); [`vcs.ref`](/docs/registry/entities/vcs.md#vcs-ref) |
 
 **Attributes:**
 

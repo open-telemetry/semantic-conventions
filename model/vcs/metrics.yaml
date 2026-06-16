@@ -56,7 +56,7 @@ groups:
     brief: 'The amount of time since its creation it took a change (pull request/merge request/changelist) to get the first approval.'
     instrument: gauge
     unit: "s"
-    stability: release_candidate
+    stability: development
     attributes:
       - ref: vcs.repository.url.full
         requirement_level: required
@@ -86,7 +86,7 @@ groups:
     brief: 'The amount of time since its creation it took a change (pull request/merge request/changelist) to get merged into the target(base) ref.'
     instrument: gauge
     unit: "s"
-    stability: release_candidate
+    stability: development
     attributes:
       - ref: vcs.repository.url.full
         requirement_level: required
