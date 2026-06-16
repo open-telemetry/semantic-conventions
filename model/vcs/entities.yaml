@@ -14,7 +14,7 @@ groups:
 
   - id: entity.vcs.ref
     type: entity
-    stability: release_candidate
+    stability: development
     name: vcs.ref
     brief: >
         A reference to a specific version in the Version Control System.

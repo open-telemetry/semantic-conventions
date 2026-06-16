@@ -138,7 +138,7 @@ the same backends.
 <!-- see templates/registry/markdown/snippet.md.j2 -->
 <!-- prettier-ignore-start -->
 
-**Status:** ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid)
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
 **type:** `vcs.ref`
 
