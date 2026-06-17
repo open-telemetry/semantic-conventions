@@ -638,4 +638,4 @@ This metric is [recommended][MetricRecommended].
 <!-- endsemconv -->
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
-[MetricRecommended]: /docs/general/metric-requirement-level.md#recommended
+[MetricRecommended]: /docs/general/signal-requirement-level.md#recommended

@@ -458,4 +458,4 @@ It captures the number of active instances at any given time. Best practices dic
 <!-- endsemconv -->
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
-[MetricRecommended]: /docs/general/metric-requirement-level.md#recommended
+[MetricRecommended]: /docs/general/signal-requirement-level.md#recommended
