@@ -52,7 +52,7 @@ metrics can be filtered for finer grain analysis.
 
 ### Metric: `rpc.server.call.duration`
 
-This metric is [required][MetricRequired].
+This metric is [recommended][MetricRecommended].
 
 This metric SHOULD be specified with
 [`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.57.0/specification/metrics/api.md#instrument-advisory-parameters)
@@ -151,7 +151,7 @@ Semantic conventions for individual RPC frameworks SHOULD document what `rpc.res
 
 ### Metric: `rpc.client.call.duration`
 
-This metric is [required][MetricRequired].
+This metric is [recommended][MetricRecommended].
 
 This metric SHOULD be specified with
 [`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.57.0/specification/metrics/api.md#instrument-advisory-parameters)
@@ -253,4 +253,4 @@ When address is an IP address, instrumentations SHOULD NOT do a reverse DNS look
 <!-- endsemconv -->
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
-[MetricRequired]: /docs/general/metric-requirement-level.md#required
+[MetricRecommended]: /docs/general/metric-requirement-level.md#recommended
