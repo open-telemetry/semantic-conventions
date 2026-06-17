@@ -105,16 +105,12 @@ based on the configuration used when creating the Dubbo client and
 SHOULD NOT use actual network-level connection information for this purpose
 to ensure low cardinality.
 
-**Direct connection**
+For direct connection, when the consumer is configured with an explicit
+provider target URL, instrumentations SHOULD parse `server.address` and
+`server.port` from that URL.
 
-When the consumer is configured with an explicit provider target URL,
-instrumentations SHOULD parse `server.address` and `server.port` from
-that URL.
-
-**Service discovery (registry)**
-
-When the consumer uses service discovery through a registry,
-instrumentations SHOULD set `server.address` to:
+For service discovery through a registry, instrumentations SHOULD set
+`server.address` to:
 
 `{registry-protocol}://{registry-host}:{registry-port}/{logical-service-target}`
 
@@ -122,8 +118,8 @@ and SHOULD NOT set `server.port`.
 
 This value is composed of two parts separated by `/`:
 
-- **Registry endpoint**: `{registry-protocol}://{registry-host}:{registry-port}`
-- **Logical service target**: `{interface}[:{version}][:{group}]`, derived from
+- Registry endpoint: `{registry-protocol}://{registry-host}:{registry-port}`
+- Logical service target: `{interface}[:{version}][:{group}]`, derived from
   the consumer URL, where:
   - `{interface}` is the service interface name from the consumer URL.
   - `{version}` is the `version` URL parameter, if set.
