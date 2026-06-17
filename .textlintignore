@@ -1,0 +1,10 @@
+.textlintrc.yml
+.cspell/*
+.github/**
+internal/tools/**
+templates/**
+docs/registry/**
+CHANGELOG.md
+areas.yaml
+.chloggen/config.yaml
+.chloggen/cicd-consistent-spelling.yaml
