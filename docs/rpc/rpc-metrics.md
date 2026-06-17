@@ -253,4 +253,4 @@ When address is an IP address, instrumentations SHOULD NOT do a reverse DNS look
 <!-- endsemconv -->
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
-[MetricRecommended]: /docs/general/metric-requirement-level.md#recommended
+[MetricRecommended]: /docs/general/signal-requirement-level.md#recommended

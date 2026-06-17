@@ -382,7 +382,7 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 
 When this metric is reported alongside a messaging process span, the metric value SHOULD be the same as the corresponding span duration.
 
-This metric is [recommended][MetricRecommended] for push-based message delivery and is [recommended][MetricRecommended] for processing operations instrumented for pull-based scenarios.
+This metric is [recommended][MetricRecommended] for both push-based message delivery and processing operations instrumented for pull-based scenarios.
 
 This metric SHOULD be specified with [`ExplicitBucketBoundaries` advisory parameter](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.57.0/specification/metrics/api.md#instrument-advisory-parameters) of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 ]`.
 
@@ -487,4 +487,4 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 <!-- endsemconv -->
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
-[MetricRecommended]: /docs/general/metric-requirement-level.md#recommended
+[MetricRecommended]: /docs/general/signal-requirement-level.md#recommended

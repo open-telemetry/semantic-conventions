@@ -34,7 +34,7 @@ Instrumentations MAY offer a configuration option to disable Recommended signals
 ## Opt-In
 
 Instrumentations SHOULD emit the signal if and only if the user configures
-the instrumentation to do so. Instrumentation that doesn't support configuration
+the instrumentation to do so. Instrumentations that don't support configuration
 MUST NOT emit `Opt-In` signals.
 
 This requirement level is recommended for signals that are expensive to retrieve,
