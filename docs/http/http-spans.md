@@ -869,15 +869,15 @@ As an example, if a user sent a `POST` request with a body to `https://example.c
 
 Span name: `POST /uploads/{document_id}`.
 
-| Attribute name              | Value                     |
-| :-------------------------- | :------------------------ |
-| `http.request.method`       | `"POST"`                  |
-| `url.path`                  | `"/uploads/4"`            |
-| `url.scheme`                | `"https"`                 |
-| `http.route`                | `"/uploads/{document_id}"` |
+| Attribute name              | Value                          |
+|:----------------------------|:-------------------------------|
+| `http.request.method`       | `"POST"`                       |
+| `url.path`                  | `"/uploads/4"`                 |
+| `url.scheme`                | `"https"`                      |
+| `http.route`                | `"/uploads/{document_id}"`     |
 | `url.template`              | `"/uploads/{document_id:int}"` |
-| `http.response.status_code` | `201`                     |
-| `error.type`                | `WebSocketDisconnect`     |
+| `http.response.status_code` | `201`                          |
+| `error.type`                | `WebSocketDisconnect`          |
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
 [SpanProcessor]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.57.0/specification/trace/sdk.md#span-processor
