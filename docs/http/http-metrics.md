@@ -135,8 +135,6 @@ If the request has completed successfully, instrumentations SHOULD NOT set `erro
 **[4] `http.route`:** MUST NOT be populated when this is not supported by the HTTP server framework as the route attribute should have low-cardinality and the URI path can NOT substitute it.
 SHOULD include the [application root](/docs/http/http-spans.md#http-server-definitions) if there is one.
 
-HTTP server span names SHOULD use `http.route` as the `{target}` when it is available.
-
 When a route template provided by a framework contains information that does not belong in the normalized `http.route`, instrumentations SHOULD preserve
 the original route template in `url.template`.
 
@@ -368,8 +366,6 @@ If the request has completed successfully, instrumentations SHOULD NOT set `erro
 **[4] `http.route`:** MUST NOT be populated when this is not supported by the HTTP server framework as the route attribute should have low-cardinality and the URI path can NOT substitute it.
 SHOULD include the [application root](/docs/http/http-spans.md#http-server-definitions) if there is one.
 
-HTTP server span names SHOULD use `http.route` as the `{target}` when it is available.
-
 When a route template provided by a framework contains information that does not belong in the normalized `http.route`, instrumentations SHOULD preserve
 the original route template in `url.template`.
 
@@ -521,8 +517,6 @@ If the request has completed successfully, instrumentations SHOULD NOT set `erro
 
 **[4] `http.route`:** MUST NOT be populated when this is not supported by the HTTP server framework as the route attribute should have low-cardinality and the URI path can NOT substitute it.
 SHOULD include the [application root](/docs/http/http-spans.md#http-server-definitions) if there is one.
-
-HTTP server span names SHOULD use `http.route` as the `{target}` when it is available.
 
 When a route template provided by a framework contains information that does not belong in the normalized `http.route`, instrumentations SHOULD preserve
 the original route template in `url.template`.
