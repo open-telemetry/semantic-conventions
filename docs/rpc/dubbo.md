@@ -115,6 +115,11 @@ For service discovery through a registry, instrumentations SHOULD set
 
 `{registry-protocol}://{registry-host}:{registry-port}/{logical-service-target}`
 
+The `{registry-port}` component is part of the registry endpoint in
+the service-discovery target and SHOULD NOT be recorded as
+`server.port`, because it is not the network transport port used for
+Dubbo RPC communication.
+
 It is composed of two parts separated by `/`:
 
 - Registry endpoint: `{registry-protocol}://{registry-host}:{registry-port}`
