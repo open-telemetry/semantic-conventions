@@ -397,7 +397,7 @@ groups:
           - 'api.example.com'
           - 'zookeeper://127.0.0.1:2181/com.example.HelloService:1.0.0:testGroup'
         note: |
-          Instrumentations SHOULD populate `server.address` (along with `server.port`)
+          Instrumentations SHOULD populate `server.address` (and `server.port`, when applicable)
           based on the configuration used when creating the Dubbo client and
           SHOULD NOT use actual network-level connection information for this purpose
           to ensure low cardinality.

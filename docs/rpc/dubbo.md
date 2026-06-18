@@ -100,7 +100,7 @@ Instrumentations SHOULD document the list of errors they report.
 If the request has completed successfully, instrumentations SHOULD NOT set
 `error.type`.
 
-**[4] `server.address`:** Instrumentations SHOULD populate `server.address` (along with `server.port`)
+**[4] `server.address`:** Instrumentations SHOULD populate `server.address` (and `server.port`, when applicable)
 based on the configuration used when creating the Dubbo client and
 SHOULD NOT use actual network-level connection information for this purpose
 to ensure low cardinality.
