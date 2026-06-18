@@ -110,13 +110,12 @@ provider target URL, instrumentations SHOULD parse `server.address` and
 `server.port` from that URL.
 
 For service discovery through a registry, instrumentations SHOULD set
-`server.address` to:
+`server.address` to the service-discovery target and SHOULD NOT set
+`server.port`. The service-discovery target is:
 
 `{registry-protocol}://{registry-host}:{registry-port}/{logical-service-target}`
 
-and SHOULD NOT set `server.port`.
-
-This value is composed of two parts separated by `/`:
+It is composed of two parts separated by `/`:
 
 - Registry endpoint: `{registry-protocol}://{registry-host}:{registry-port}`
 - Logical service target: `{interface}[:{version}][:{group}]`, derived from
@@ -143,13 +142,11 @@ Direct connection:
 Service discovery (registry):
 
 - Given a consumer that discovers providers via ZooKeeper for `com.example.HelloService` with `version=1.0.0` and `group=testGroup`, expected attributes:
-  - Registry endpoint: `"zookeeper://127.0.0.1:2181"`
-  - Logical service target: `"com.example.HelloService:1.0.0:testGroup"`
+  - Service-discovery target: `"zookeeper://127.0.0.1:2181/com.example.HelloService:1.0.0:testGroup"`
   - `server.address`: `"zookeeper://127.0.0.1:2181/com.example.HelloService:1.0.0:testGroup"`
   - `server.port`: not set
 - Given a consumer that discovers providers via Nacos for `com.example.HelloService` with `group=gray` (no version), expected attributes:
-  - Registry endpoint: `"nacos://127.0.0.1:8848"`
-  - Logical service target: `"com.example.HelloService::gray"`
+  - Service-discovery target: `"nacos://127.0.0.1:8848/com.example.HelloService::gray"`
   - `server.address`: `"nacos://127.0.0.1:8848/com.example.HelloService::gray"`
   - `server.port`: not set
 
