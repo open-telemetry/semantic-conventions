@@ -417,7 +417,7 @@ groups:
           `server.port`, because it is not the network transport port used for
           Dubbo RPC communication.
 
-          It is composed of two parts separated by `/`:
+          It is composed of two parts separated by the `/` between the registry endpoint and logical service target:
 
           - Registry endpoint: `{registry-protocol}://{registry-host}:{registry-port}`
           - Logical service target: `{interface}[:{version}][:{group}]`, derived from
