@@ -156,7 +156,7 @@ Service discovery (registry):
   - `server.port`: not set
 
 When the address is an IP address, instrumentations SHOULD NOT do a
-reverse proxy lookup to obtain a DNS name and SHOULD set `server.address`
+reverse DNS lookup to obtain a DNS name and SHOULD set `server.address`
 to the IP address provided.
 
 **[5] `server.port`:** if `server.address` is set and if the port is supported by the network transport used for communication.
