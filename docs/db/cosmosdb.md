@@ -62,7 +62,7 @@ Semantic conventions described in this document apply to the call-level spans on
 | [`azure.client.id`](/docs/registry/attributes/azure.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The unique identifier of the client instance. | `3ba4827d-4422-483f-b59f-85b74211c11d`; `storage-client-1` |
 | [`azure.cosmosdb.request.body.size`](/docs/registry/attributes/azure.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | int | Request payload size in bytes. | |
 | [`azure.resource_provider.namespace`](/docs/registry/attributes/azure.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | [Azure Resource Provider Namespace](https://learn.microsoft.com/azure/azure-resource-manager/management/azure-services-resource-providers) as recognized by the client. [8] | `Microsoft.DocumentDB` |
-| [`db.operation.batch.size`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | The number of queries included in a batch operation. [9] | `2`; `3`; `4` |
+| [`db.operation.batch.size`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | The number of database operations included in a batch operation. [9] | `2`; `3`; `4` |
 | [`db.query.text`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The database query being executed. [10] | `SELECT * FROM wuser_table where username = ?`; `SET mykey ?` |
 | [`db.stored_procedure.name`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` [11] | string | The name of a stored procedure within the database. [12] | `GetCustomer` |
 | [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Name of the database host. [13] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
@@ -209,7 +209,23 @@ Instrumentations SHOULD document how `error.type` is populated.
 
 **[8] `azure.resource_provider.namespace`:** When `azure.resource_provider.namespace` attribute is populated, it MUST be set to `Microsoft.DocumentDB` for all operations performed by Cosmos DB client.
 
-**[9] `db.operation.batch.size`:** Operations are only considered batches when they contain two or more operations, and so `db.operation.batch.size` SHOULD never be `1`.
+**[9] `db.operation.batch.size`:** A batch operation contains two or more database operations explicitly submitted
+as separate operations in a single client call, protocol message, or database
+command.
+
+A database call is not a batch operation solely because one operation accepts
+multiple operands, such as keys, rows, documents, points, or other data elements,
+including Redis [`MGET`](https://redis.io/docs/latest/commands/mget/) with
+multiple keys.
+
+In batch APIs that execute the same parameterized operation with multiple parameter
+sets, each parameter set represents one operation in the batch.
+
+`db.operation.batch.size` SHOULD be set to the number of operations in the batch.
+It SHOULD NOT be set when the database call contains only one operation.
+
+A request to execute a batch operation with no operations SHOULD also be treated
+as a batch operation, and `db.operation.batch.size` SHOULD be set to `0`.
 
 **[10] `db.query.text`:** For sanitization see [Sanitization of `db.query.text`](/docs/db/database-spans.md#sanitization-of-dbquerytext).
 For batch operations, if the individual operations are known to have the same query text then that query text SHOULD be used, otherwise all of the individual query texts SHOULD be concatenated with separator `; ` or some other database system specific separator if more applicable.
