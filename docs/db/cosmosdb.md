@@ -222,7 +222,7 @@ In batch APIs that execute the same parameterized operation with multiple parame
 sets, each parameter set represents one operation in the batch.
 
 `db.operation.batch.size` SHOULD be set to the number of operations in the batch.
-It SHOULD NOT be set when the database call contains only one operation.
+It SHOULD NOT be set for non-batch operations.
 
 A request to execute a batch operation with no operations SHOULD also be treated
 as a batch operation, and `db.operation.batch.size` SHOULD be set to `0`.
