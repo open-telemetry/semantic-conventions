@@ -209,9 +209,9 @@ Instrumentations SHOULD document how `error.type` is populated.
 
 **[8] `azure.resource_provider.namespace`:** When `azure.resource_provider.namespace` attribute is populated, it MUST be set to `Microsoft.DocumentDB` for all operations performed by Cosmos DB client.
 
-**[9] `db.operation.batch.size`:** A batch operation contains two or more database operations explicitly submitted
-as separate operations in a single client call, protocol message, or database
-command.
+**[9] `db.operation.batch.size`:** Except for empty batch requests described below, a batch operation contains two
+or more database operations explicitly submitted as separate operations in a single
+client call, protocol message, or database command.
 
 A database call is not a batch operation solely because one operation accepts
 multiple operands, such as keys, rows, documents, points, or other data elements,

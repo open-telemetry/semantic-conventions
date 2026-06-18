@@ -44,9 +44,9 @@ collection name then that collection name SHOULD be used.
 Semantic conventions for individual database systems SHOULD document what `db.namespace` means in the context of that system.
 It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 
-**[3] `db.operation.batch.size`:** A batch operation contains two or more database operations explicitly submitted
-as separate operations in a single client call, protocol message, or database
-command.
+**[3] `db.operation.batch.size`:** Except for empty batch requests described below, a batch operation contains two
+or more database operations explicitly submitted as separate operations in a single
+client call, protocol message, or database command.
 
 A database call is not a batch operation solely because one operation accepts
 multiple operands, such as keys, rows, documents, points, or other data elements,
@@ -57,7 +57,7 @@ In batch APIs that execute the same parameterized operation with multiple parame
 sets, each parameter set represents one operation in the batch.
 
 `db.operation.batch.size` SHOULD be set to the number of operations in the batch.
-It SHOULD NOT be set when the database call contains only one operation.
+It SHOULD NOT be set for non-batch operations.
 
 A request to execute a batch operation with no operations SHOULD also be treated
 as a batch operation, and `db.operation.batch.size` SHOULD be set to `0`.

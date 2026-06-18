@@ -160,9 +160,9 @@ groups:
         stability: stable
         brief: The number of database operations included in a batch operation.
         note: |
-          A batch operation contains two or more database operations explicitly submitted
-          as separate operations in a single client call, protocol message, or database
-          command.
+          Except for empty batch requests described below, a batch operation contains two
+          or more database operations explicitly submitted as separate operations in a single
+          client call, protocol message, or database command.
 
           A database call is not a batch operation solely because one operation accepts
           multiple operands, such as keys, rows, documents, points, or other data elements,

@@ -68,9 +68,9 @@ Instrumentations SHOULD document how `error.type` is populated.
 
 **[7] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
-**[8] `db.operation.batch.size`:** A batch operation contains two or more database operations explicitly submitted
-as separate operations in a single client call, protocol message, or database
-command.
+**[8] `db.operation.batch.size`:** Except for empty batch requests described below, a batch operation contains two
+or more database operations explicitly submitted as separate operations in a single
+client call, protocol message, or database command.
 
 A database call is not a batch operation solely because one operation accepts
 multiple operands, such as keys, rows, documents, points, or other data elements,

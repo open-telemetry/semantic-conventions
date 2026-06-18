@@ -131,9 +131,9 @@ Instrumentations SHOULD document how `error.type` is populated.
 
 **[10] `db.namespace`:** When communicating with an Elastic Cloud deployment, this should be collected from the "X-Found-Handling-Cluster" HTTP response header.
 
-**[11] `db.operation.batch.size`:** A batch operation contains two or more database operations explicitly submitted
-as separate operations in a single client call, protocol message, or database
-command.
+**[11] `db.operation.batch.size`:** Except for empty batch requests described below, a batch operation contains two
+or more database operations explicitly submitted as separate operations in a single
+client call, protocol message, or database command.
 
 A database call is not a batch operation solely because one operation accepts
 multiple operands, such as keys, rows, documents, points, or other data elements,
