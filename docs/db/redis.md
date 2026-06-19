@@ -72,6 +72,9 @@ Instrumentations SHOULD document how `error.type` is populated.
 or more database operations explicitly submitted as separate operations in a single
 client call, protocol message, or database command.
 
+Requests to batch APIs that contain only one operation SHOULD be modeled as single
+operations, not as batch operations.
+
 A database call is not a batch operation solely because one operation accepts
 multiple operands, such as keys, rows, documents, points, or other data elements,
 including Redis [`MGET`](https://redis.io/docs/latest/commands/mget/) with
