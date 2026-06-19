@@ -172,8 +172,10 @@ groups:
           including Redis [`MGET`](https://redis.io/docs/latest/commands/mget/) with
           multiple keys.
 
-          In batch APIs that execute the same parameterized operation with multiple parameter
-          sets, each parameter set represents one operation in the batch.
+          In batch APIs that execute the same parameterized operation with parameter sets,
+          each parameter set represents one database operation for determining whether the
+          request is a batch operation. Requests with only one parameter set SHOULD be modeled
+          as single operations, not as batch operations.
 
           `db.operation.batch.size` SHOULD be set to the number of operations in the batch.
           It SHOULD NOT be set for non-batch operations.
