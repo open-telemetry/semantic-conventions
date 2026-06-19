@@ -35,7 +35,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md)
 
 ### Maintainers
 
-- [Alexander Wert](https://github.com/AlexanderWert), Elastic
+- [Alexander Wert](https://github.com/AlexanderWert), Dash0
 - [Armin Ruech](https://github.com/arminru), Dynatrace
 - [Christophe Kamphaus](https://github.com/kamphaus), Independent
 - [Joao Grassi](https://github.com/joaopgrassi), Dynatrace
