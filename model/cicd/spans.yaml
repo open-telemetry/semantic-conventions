@@ -14,7 +14,7 @@ groups:
       The `{action}` SHOULD be the [`cicd.pipeline.action.name`](/docs/registry/attributes/cicd.md#cicd-pipeline-action-name).
 
       The `{pipeline}` SHOULD be the [`cicd.pipeline.name`](/docs/registry/attributes/cicd.md#cicd-pipeline-name).
-    stability: development
+    stability: release_candidate
     attributes:
       - ref: cicd.pipeline.result
         requirement_level: required
@@ -27,7 +27,7 @@ groups:
     type: span
     span_kind: internal
     brief: This span describes task execution in a pipeline run.
-    stability: development
+    stability: release_candidate
     attributes:
       - ref: cicd.pipeline.task.name
         requirement_level: required

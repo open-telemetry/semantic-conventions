@@ -4,7 +4,7 @@ linkTitle: Logs
 
 # Semantic conventions for CI/CD logs
 
-**Status**: [Development][DocumentStatus]
+**Status**: [Release Candidate][DocumentStatus]
 
 CI/CD systems emit logs as part of pipeline runs, usually consisting of the stdout/stderr
 of any processes launched as part of the pipeline run.

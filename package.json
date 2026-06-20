@@ -11,9 +11,9 @@
     "test": "npm run check"
   },
   "devDependencies": {
-    "doctoc": "2.4.1",
+    "doctoc": "2.5.0",
     "markdownlint-cli2": "0.22.1",
-    "prettier": "3.8.3"
+    "prettier": "3.8.4"
   },
   "prettier": {
     "proseWrap": "preserve",
