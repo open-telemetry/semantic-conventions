@@ -51,7 +51,7 @@ Specific attributes for Apache RocketMQ are defined below.
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`messaging.consumer.group.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | RocketMQ [consumer group name](https://rocketmq.apache.org/docs/domainModel/07consumergroup). | `my-group`; `indexer` |
+| [`messaging.consumer.group.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | RocketMQ [consumer group name](https://rocketmq.apache.org/docs/domainModel/08consumergroup/). | `my-group`; `indexer` |
 | [`messaging.operation.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The system-specific name of the messaging operation. | `ack`; `nack`; `send` |
 | [`messaging.rocketmq.namespace`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Namespace of RocketMQ resources, resources in different namespaces are individual. | `myNamespace` |
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the messaging operation has failed. | string | Describes a class of error the operation ended with. [1] | `amqp:decode-error`; `KAFKA_STORAGE_ERROR`; `channel-error` |

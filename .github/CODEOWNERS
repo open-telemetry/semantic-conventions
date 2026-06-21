@@ -36,6 +36,12 @@
 /docs/runtime/go-metrics.md      @open-telemetry/specs-semconv-approvers @open-telemetry/go-approvers
 /model/go/                       @open-telemetry/specs-semconv-approvers @open-telemetry/go-approvers
 
+# Ruby semantic conventions
+/docs/ruby/                      @open-telemetry/specs-semconv-approvers @open-telemetry/ruby-approvers
+/docs/runtime/ruby-metrics.md    @open-telemetry/specs-semconv-approvers @open-telemetry/ruby-approvers
+/model/rails/                    @open-telemetry/specs-semconv-approvers @open-telemetry/ruby-approvers
+/model/ruby/                     @open-telemetry/specs-semconv-approvers @open-telemetry/ruby-approvers
+
 # HTTP semantic conventions
 /docs/http/                            @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
 /docs/url/                             @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-http-approvers
@@ -184,3 +190,9 @@
 # Oracle Cloud Infrastructure semantic conventions
 /docs/oracle-cloud                @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-oracle-cloud-approvers
 /model/oracle-cloud               @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-oracle-cloud-approvers
+
+# JavaScript semantic conventions
+/model/nodejs                     @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-js-approver
+/model/v8js                       @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-js-approver
+/docs/runtime/v8js-metrics.md     @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-js-approver
+/docs/runtime/nodejs-metrics.md   @open-telemetry/specs-semconv-approvers @open-telemetry/semconv-js-approver
