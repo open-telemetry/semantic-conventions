@@ -1,0 +1,57 @@
+name: Validate release
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+
+jobs:
+  validate-schema-file:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write # required to open an issue on failure
+    steps:
+      - name: Check out release tag
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        with:
+          ref: ${{ github.event.release.tag_name }}
+
+      - name: Verify schema file exists for release tag
+        run: |
+          tag="${{ github.event.release.tag_name }}"
+          version="${tag#v}"
+          file="schemas/$version"
+          echo "Verifying schema file '$file' exists for tag '$tag'..."
+          if [[ ! -f "$file" ]]; then
+            echo "::error::Schema file '$file' does not exist for release tag '$tag'."
+            exit 1
+          fi
+          echo "OK: '$file' exists."
+
+      - name: Validate schema files
+        run: make schema-check
+
+      - name: Open issue on failure
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ github.event.release.tag_name }}
+          RELEASE_URL: ${{ github.event.release.html_url }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          title="Schema validation failed for release $TAG"
+          body=$(cat <<EOF
+          Schema validation failed for [\`$TAG\`]($RELEASE_URL).
+
+          The schema file \`schemas/${TAG#v}\` is missing or invalid for this release tag.
+
+          **Recommended action:** fix the schema file and issue a new patch release.
+
+          - Workflow run: $RUN_URL
+          - Release: $RELEASE_URL
+
+          EOF
+          )
+          gh issue create --title "$title" --body "$body" --label bug

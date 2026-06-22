@@ -145,28 +145,28 @@ conflict.
 
 **[5] `k8s.daemonset.annotation.<key>`:** Examples:
 
-- A label `replicas` with value `1` SHOULD be recorded
+- An annotation `replicas` with value `1` SHOULD be recorded
   as the `k8s.daemonset.annotation.replicas` attribute with value `"1"`.
-- A label `data` with empty string value SHOULD be recorded as
+- An annotation `data` with empty string value SHOULD be recorded as
   the `k8s.daemonset.annotation.data` attribute with value `""`.
 
 **[6] `k8s.daemonset.label.<key>`:** Examples:
 
 - A label `app` with value `guestbook` SHOULD be recorded
   as the `k8s.daemonset.label.app` attribute with value `"guestbook"`.
-- A label `data` with empty string value SHOULD be recorded as
+- A label `injected` with empty string value SHOULD be recorded as
   the `k8s.daemonset.label.injected` attribute with value `""`.
 
 **[7] `k8s.deployment.annotation.<key>`:** Examples:
 
-- A label `replicas` with value `1` SHOULD be recorded
+- An annotation `replicas` with value `1` SHOULD be recorded
   as the `k8s.deployment.annotation.replicas` attribute with value `"1"`.
-- A label `data` with empty string value SHOULD be recorded as
+- An annotation `data` with empty string value SHOULD be recorded as
   the `k8s.deployment.annotation.data` attribute with value `""`.
 
 **[8] `k8s.deployment.label.<key>`:** Examples:
 
-- A label `replicas` with value `0` SHOULD be recorded
+- A label `app` with value `guestbook` SHOULD be recorded
   as the `k8s.deployment.label.app` attribute with value `"guestbook"`.
 - A label `injected` with empty string value SHOULD be recorded as
   the `k8s.deployment.label.injected` attribute with value `""`.
@@ -181,23 +181,23 @@ conflict.
 
 **[13] `k8s.job.annotation.<key>`:** Examples:
 
-- A label `number` with value `1` SHOULD be recorded
+- An annotation `number` with value `1` SHOULD be recorded
   as the `k8s.job.annotation.number` attribute with value `"1"`.
-- A label `data` with empty string value SHOULD be recorded as
+- An annotation `data` with empty string value SHOULD be recorded as
   the `k8s.job.annotation.data` attribute with value `""`.
 
 **[14] `k8s.job.label.<key>`:** Examples:
 
 - A label `jobtype` with value `ci` SHOULD be recorded
   as the `k8s.job.label.jobtype` attribute with value `"ci"`.
-- A label `data` with empty string value SHOULD be recorded as
+- A label `automated` with empty string value SHOULD be recorded as
   the `k8s.job.label.automated` attribute with value `""`.
 
 **[15] `k8s.namespace.annotation.<key>`:** Examples:
 
-- A label `ttl` with value `0` SHOULD be recorded
+- An annotation `ttl` with value `0` SHOULD be recorded
   as the `k8s.namespace.annotation.ttl` attribute with value `"0"`.
-- A label `data` with empty string value SHOULD be recorded as
+- An annotation `data` with empty string value SHOULD be recorded as
   the `k8s.namespace.annotation.data` attribute with value `""`.
 
 **[16] `k8s.namespace.label.<key>`:** Examples:
@@ -311,9 +311,9 @@ in ISO 8601 (RFC 3339 compatible) format.
 
 **[34] `k8s.replicaset.annotation.<key>`:** Examples:
 
-- A label `replicas` with value `0` SHOULD be recorded
+- An annotation `replicas` with value `0` SHOULD be recorded
   as the `k8s.replicaset.annotation.replicas` attribute with value `"0"`.
-- A label `data` with empty string value SHOULD be recorded as
+- An annotation `data` with empty string value SHOULD be recorded as
   the `k8s.replicaset.annotation.data` attribute with value `""`.
 
 **[35] `k8s.replicaset.label.<key>`:** Examples:
@@ -386,14 +386,14 @@ When not set, Kubernetes distributes traffic evenly across all endpoints cluster
 
 **[46] `k8s.statefulset.annotation.<key>`:** Examples:
 
-- A label `replicas` with value `1` SHOULD be recorded
+- An annotation `replicas` with value `1` SHOULD be recorded
   as the `k8s.statefulset.annotation.replicas` attribute with value `"1"`.
-- A label `data` with empty string value SHOULD be recorded as
+- An annotation `data` with empty string value SHOULD be recorded as
   the `k8s.statefulset.annotation.data` attribute with value `""`.
 
 **[47] `k8s.statefulset.label.<key>`:** Examples:
 
-- A label `replicas` with value `0` SHOULD be recorded
+- A label `app` with value `guestbook` SHOULD be recorded
   as the `k8s.statefulset.label.app` attribute with value `"guestbook"`.
 - A label `injected` with empty string value SHOULD be recorded as
   the `k8s.statefulset.label.injected` attribute with value `""`.
