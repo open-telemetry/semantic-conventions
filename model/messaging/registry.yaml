@@ -20,6 +20,19 @@ groups:
         brief: >
           A unique identifier for the client that consumes or produces a message.
         examples: ['client-5', 'myhost@8742@s8083jm']
+      - id: messaging.cluster.id
+        type: string
+        stability: development
+        brief: >
+          A unique identifier for the cluster of brokers the client is connected to.
+        note: >
+          The cluster id is reported by the messaging system and identifies the broker cluster
+          independently of the individual brokers the client is configured to connect to.
+
+          Semantic conventions for individual messaging systems SHOULD document whether
+          `messaging.cluster.id` is applicable and how it can be obtained. For example, Apache Kafka
+          exposes a cluster id through the broker metadata available via its client (or AdminClient) API.
+        examples: ['MkU3OEVBNTcwNTJENDM2Qk', 'k8s-prod-cluster-1']
       - id: messaging.consumer.group.name
         type: string
         stability: development

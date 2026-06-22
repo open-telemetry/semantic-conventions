@@ -22,41 +22,45 @@ Attributes describing telemetry around messaging systems and messaging activitie
 | --- | --- | --- | --- | --- |
 | <a id="messaging-batch-message-count" href="#messaging-batch-message-count">`messaging.batch.message_count`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The number of messages sent, received, or processed in the scope of the batching operation. [1] | `0`; `1`; `2` |
 | <a id="messaging-client-id" href="#messaging-client-id">`messaging.client.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | A unique identifier for the client that consumes or produces a message. | `client-5`; `myhost@8742@s8083jm` |
-| <a id="messaging-consumer-group-name" href="#messaging-consumer-group-name">`messaging.consumer.group.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the consumer group with which a consumer is associated. [2] | `my-group`; `indexer` |
+| <a id="messaging-cluster-id" href="#messaging-cluster-id">`messaging.cluster.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | A unique identifier for the cluster of brokers the client is connected to. [2] | `MkU3OEVBNTcwNTJENDM2Qk`; `k8s-prod-cluster-1` |
+| <a id="messaging-consumer-group-name" href="#messaging-consumer-group-name">`messaging.consumer.group.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the consumer group with which a consumer is associated. [3] | `my-group`; `indexer` |
 | <a id="messaging-destination-anonymous" href="#messaging-destination-anonymous">`messaging.destination.anonymous`</a> | ![Development](https://img.shields.io/badge/-development-blue) | boolean | A boolean that is true if the message destination is anonymous (could be unnamed or have auto-generated name). | |
-| <a id="messaging-destination-name" href="#messaging-destination-name">`messaging.destination.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The message destination name [3] | `MyQueue`; `MyTopic` |
+| <a id="messaging-destination-name" href="#messaging-destination-name">`messaging.destination.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The message destination name [4] | `MyQueue`; `MyTopic` |
 | <a id="messaging-destination-partition-id" href="#messaging-destination-partition-id">`messaging.destination.partition.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The identifier of the partition messages are sent to or received from, unique within the `messaging.destination.name`. | `1` |
-| <a id="messaging-destination-subscription-name" href="#messaging-destination-subscription-name">`messaging.destination.subscription.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the destination subscription from which a message is consumed. [4] | `subscription-a` |
-| <a id="messaging-destination-template" href="#messaging-destination-template">`messaging.destination.template`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Low cardinality representation of the messaging destination name [5] | `/customers/{customerId}` |
+| <a id="messaging-destination-subscription-name" href="#messaging-destination-subscription-name">`messaging.destination.subscription.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the destination subscription from which a message is consumed. [5] | `subscription-a` |
+| <a id="messaging-destination-template" href="#messaging-destination-template">`messaging.destination.template`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Low cardinality representation of the messaging destination name [6] | `/customers/{customerId}` |
 | <a id="messaging-destination-temporary" href="#messaging-destination-temporary">`messaging.destination.temporary`</a> | ![Development](https://img.shields.io/badge/-development-blue) | boolean | A boolean that is true if the message destination is temporary and might not exist anymore after messages are processed. | |
-| <a id="messaging-message-body-size" href="#messaging-message-body-size">`messaging.message.body.size`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The size of the message body in bytes. [6] | `1439` |
+| <a id="messaging-message-body-size" href="#messaging-message-body-size">`messaging.message.body.size`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The size of the message body in bytes. [7] | `1439` |
 | <a id="messaging-message-conversation-id" href="#messaging-message-conversation-id">`messaging.message.conversation_id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The conversation ID identifying the conversation to which the message belongs, represented as a string. Sometimes called "Correlation ID". | `MyConversationId` |
-| <a id="messaging-message-envelope-size" href="#messaging-message-envelope-size">`messaging.message.envelope.size`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The size of the message body and metadata in bytes. [7] | `2738` |
+| <a id="messaging-message-envelope-size" href="#messaging-message-envelope-size">`messaging.message.envelope.size`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The size of the message body and metadata in bytes. [8] | `2738` |
 | <a id="messaging-message-id" href="#messaging-message-id">`messaging.message.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | A value used by the messaging system as an identifier for the message, represented as a string. | `452a7c7c7c7048c2f887f61572b18fc2` |
 | <a id="messaging-operation-name" href="#messaging-operation-name">`messaging.operation.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The system-specific name of the messaging operation. | `ack`; `nack`; `send` |
-| <a id="messaging-operation-type" href="#messaging-operation-type">`messaging.operation.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | A string identifying the type of the messaging operation. [8] | `create`; `send`; `receive` |
-| <a id="messaging-system" href="#messaging-system">`messaging.system`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The messaging system as identified by the client instrumentation. [9] | `activemq`; `aws.sns`; `aws_sqs` |
+| <a id="messaging-operation-type" href="#messaging-operation-type">`messaging.operation.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | A string identifying the type of the messaging operation. [9] | `create`; `send`; `receive` |
+| <a id="messaging-system" href="#messaging-system">`messaging.system`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The messaging system as identified by the client instrumentation. [10] | `activemq`; `aws.sns`; `aws_sqs` |
 
 **[1] `messaging.batch.message_count`:** Instrumentations SHOULD NOT set `messaging.batch.message_count` on spans that operate with a single message. When a messaging client library supports both batch and single-message API for the same operation, instrumentations SHOULD use `messaging.batch.message_count` for batching APIs and SHOULD NOT use it for single-message APIs.
 
-**[2] `messaging.consumer.group.name`:** Semantic conventions for individual messaging systems SHOULD document whether `messaging.consumer.group.name` is applicable and what it means in the context of that system.
+**[2] `messaging.cluster.id`:** The cluster id is reported by the messaging system and identifies the broker cluster independently of the individual brokers the client is configured to connect to.
+Semantic conventions for individual messaging systems SHOULD document whether `messaging.cluster.id` is applicable and how it can be obtained. For example, Apache Kafka exposes a cluster id through the broker metadata available via its client (or AdminClient) API.
 
-**[3] `messaging.destination.name`:** Destination name SHOULD uniquely identify a specific queue, topic or other entity within the broker. If
+**[3] `messaging.consumer.group.name`:** Semantic conventions for individual messaging systems SHOULD document whether `messaging.consumer.group.name` is applicable and what it means in the context of that system.
+
+**[4] `messaging.destination.name`:** Destination name SHOULD uniquely identify a specific queue, topic or other entity within the broker. If
 the broker doesn't have such notion, the destination name SHOULD uniquely identify the broker.
 
-**[4] `messaging.destination.subscription.name`:** Semantic conventions for individual messaging systems SHOULD document whether `messaging.destination.subscription.name` is applicable and what it means in the context of that system.
+**[5] `messaging.destination.subscription.name`:** Semantic conventions for individual messaging systems SHOULD document whether `messaging.destination.subscription.name` is applicable and what it means in the context of that system.
 
-**[5] `messaging.destination.template`:** Destination names could be constructed from templates. An example would be a destination name involving a user name or product id. Although the destination name in this case is of high cardinality, the underlying template is of low cardinality and can be effectively used for grouping and aggregation.
+**[6] `messaging.destination.template`:** Destination names could be constructed from templates. An example would be a destination name involving a user name or product id. Although the destination name in this case is of high cardinality, the underlying template is of low cardinality and can be effectively used for grouping and aggregation.
 
-**[6] `messaging.message.body.size`:** This can refer to both the compressed or uncompressed body size. If both sizes are known, the uncompressed
+**[7] `messaging.message.body.size`:** This can refer to both the compressed or uncompressed body size. If both sizes are known, the uncompressed
 body size should be used.
 
-**[7] `messaging.message.envelope.size`:** This can refer to both the compressed or uncompressed size. If both sizes are known, the uncompressed
+**[8] `messaging.message.envelope.size`:** This can refer to both the compressed or uncompressed size. If both sizes are known, the uncompressed
 size should be used.
 
-**[8] `messaging.operation.type`:** If a custom value is used, it MUST be of low cardinality.
+**[9] `messaging.operation.type`:** If a custom value is used, it MUST be of low cardinality.
 
-**[9] `messaging.system`:** The actual messaging system may differ from the one known by the client. For example, when using Kafka client libraries to communicate with Azure Event Hubs, the `messaging.system` is set to `kafka` based on the instrumentation's best knowledge.
+**[10] `messaging.system`:** The actual messaging system may differ from the one known by the client. For example, when using Kafka client libraries to communicate with Azure Event Hubs, the `messaging.system` is set to `kafka` based on the instrumentation's best knowledge.
 
 ---
 
@@ -120,11 +124,11 @@ This group describes attributes specific to Apache Kafka.
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="messaging-kafka-message-key" href="#messaging-kafka-message-key">`messaging.kafka.message.key`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Message keys in Kafka are used for grouping alike messages to ensure they're processed on the same partition. They differ from `messaging.message.id` in that they're not unique. If the key is `null`, the attribute MUST NOT be set. [10] | `myKey` |
+| <a id="messaging-kafka-message-key" href="#messaging-kafka-message-key">`messaging.kafka.message.key`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Message keys in Kafka are used for grouping alike messages to ensure they're processed on the same partition. They differ from `messaging.message.id` in that they're not unique. If the key is `null`, the attribute MUST NOT be set. [11] | `myKey` |
 | <a id="messaging-kafka-message-tombstone" href="#messaging-kafka-message-tombstone">`messaging.kafka.message.tombstone`</a> | ![Development](https://img.shields.io/badge/-development-blue) | boolean | A boolean that is true if the message is a tombstone. | |
 | <a id="messaging-kafka-offset" href="#messaging-kafka-offset">`messaging.kafka.offset`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The offset of a record in the corresponding Kafka partition. | `42` |
 
-**[10] `messaging.kafka.message.key`:** If the key type is not string, it's string representation has to be supplied for the attribute. If the key has no unambiguous, canonical string form, don't include its value.
+**[11] `messaging.kafka.message.key`:** If the key type is not string, it's string representation has to be supplied for the attribute. If the key has no unambiguous, canonical string form, don't include its value.
 
 ## RabbitMQ Attributes
 
