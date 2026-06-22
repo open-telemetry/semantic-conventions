@@ -7,6 +7,19 @@
   "postUpdateOptions" : [
     "gomodTidy"
   ],
+  "customManagers": [
+    {
+      customType: 'regex',
+      description: 'Keep VS Code semconv schema URL in sync with otel/weaver',
+      fileMatch: ['^\\.vscode/settings\\.json$'],
+      matchStrings: [
+        'https://raw\\.githubusercontent\\.com/open-telemetry/weaver/(?<currentValue>v\\d+\\.\\d+\\.\\d+)/schemas/semconv\\.schema\\.json',
+      ],
+      depNameTemplate: 'otel/weaver',
+      datasourceTemplate: 'docker',
+      versioningTemplate: 'semver',
+    },
+  ],
   "packageRules": [
     {
       groupName: 'github actions',
