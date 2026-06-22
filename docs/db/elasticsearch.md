@@ -49,7 +49,7 @@ with the endpoint identifier stored in `db.operation.name`, and the index stored
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [7] | int | Server port number. [8] | `80`; `8080`; `443` |
 | [`db.collection.name`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The index or data stream against which the query is executed. [9] | `my_index`; `index1, index2` |
 | [`db.namespace`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The name of the Elasticsearch cluster which the client connects to. [10] | `customers`; `test.users` |
-| [`db.operation.batch.size`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | The number of queries included in a batch operation. [11] | `2`; `3`; `4` |
+| [`db.operation.batch.size`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | The number of database operations included in a batch operation. [11] | `2`; `3`; `4` |
 | [`db.query.text`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` [12] | string | The request body for a [search-type query](https://www.elastic.co/guide/en/elasticsearch/reference/current/search.html), as a json string. [13] | `"{\"query\":{\"term\":{\"user.id\":\"kimchy\"}}}"` |
 | [`elasticsearch.node.name`](/docs/registry/attributes/elasticsearch.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Represents the human-readable identifier of the node/instance to which a request was routed. [14] | `instance-0000000001` |
 | [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Name of the database host. [15] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
@@ -131,7 +131,28 @@ Instrumentations SHOULD document how `error.type` is populated.
 
 **[10] `db.namespace`:** When communicating with an Elastic Cloud deployment, this should be collected from the "X-Found-Handling-Cluster" HTTP response header.
 
-**[11] `db.operation.batch.size`:** Operations are only considered batches when they contain two or more operations, and so `db.operation.batch.size` SHOULD never be `1`.
+**[11] `db.operation.batch.size`:** Except for empty batch requests described below, a batch operation contains two
+or more database operations explicitly submitted as separate operations in a single
+client call, protocol message, or database command.
+
+Requests to batch APIs that contain only one operation SHOULD be modeled as single
+operations, not as batch operations.
+
+A database call is not a batch operation solely because one operation accepts
+multiple operands, such as keys, rows, documents, points, or other data elements,
+including Redis [`MGET`](https://redis.io/docs/latest/commands/mget/) with
+multiple keys.
+
+In batch APIs that execute the same parameterized operation with parameter sets,
+each parameter set represents one database operation for determining whether the
+request is a batch operation. Requests with only one parameter set SHOULD be modeled
+as single operations, not as batch operations.
+
+`db.operation.batch.size` SHOULD be set to the number of operations in the batch.
+It SHOULD NOT be set for non-batch operations.
+
+A request to execute a batch operation with no operations SHOULD also be treated
+as a batch operation, and `db.operation.batch.size` SHOULD be set to `0`.
 
 **[12] `db.query.text`:** Should be collected by default for search-type queries and only if there is sanitization that excludes sensitive information.
 
