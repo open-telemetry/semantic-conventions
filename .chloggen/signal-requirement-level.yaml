@@ -1,0 +1,11 @@
+change_type: deprecation
+
+component: docs
+
+note: >
+  Add a generic signal requirement level document and deprecate the
+  metric-specific one.
+
+issues: [3810, 3278]
+
+subtext:

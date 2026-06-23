@@ -1,4 +1,50 @@
 groups:
+  - id: event.app.crash
+    stability: development
+    type: event
+    name: app.crash
+    brief: |
+      This event represents a termination of a user-facing application due to
+      unrecoverable programming errors such as exceptions or signals that
+      indicate an error has happened at a lower level.
+    note: |
+      Crash events can be produced asynchronously by an OTel SDK instance that is
+      not running in the application instance in which the crash happened. For
+      example, the instrumentation may report crashes from previous app instances
+      based on information found in tombstones on disk.
+      If the reporter of the crash is not the crashing application instance itself,
+      relevant resource attributes that identify the application instance that
+      crashed MUST be provided as event attributes so that the corresponding
+      attributes from the reporter's resource aren't used instead.
+      How the instrumentation will determine whether an instance of a crash has
+      already been reported and how the necessary data will be retrieved is left up
+      to the instrumentation. Providing enough data to dedupe is NOT REQUIRED.
+    attributes:
+      - ref: app.build_id
+        requirement_level:
+          conditionally_required: If reporter is not the crashing application instance itself and it's available.
+      - ref: app.crash.id
+        requirement_level: recommended
+      - ref: exception.type
+        requirement_level: recommended
+        note: If this contains obfuscated symbols, `app.build_id` SHOULD be provided so they can be deobfuscated.
+      - ref: exception.message
+        requirement_level: recommended
+        note: If this contains obfuscated symbols, `app.build_id` SHOULD be provided so they can be deobfuscated.
+      - ref: exception.stacktrace
+        requirement_level: recommended
+        note: If this contains obfuscated symbols, `app.build_id` SHOULD be provided so they can be deobfuscated.
+      - ref: os.name
+        requirement_level:
+          conditionally_required: If reporter is not the crashing application instance itself and the OS name is available.
+      - ref: os.version
+        requirement_level:
+          conditionally_required: If reporter is not the crashing application instance itself.
+      - ref: service.version
+        requirement_level:
+          conditionally_required: If reporter is not the crashing application instance itself.
+      - ref: session.id
+        requirement_level: recommended
   - id: event.app.screen.click
     stability: development
     type: event

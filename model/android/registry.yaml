@@ -18,7 +18,7 @@ groups:
         brief: >
           This attribute represents the state of the application.
         note: >
-          The Android lifecycle states are defined in [Activity lifecycle callbacks](https://developer.android.com/guide/components/activities/activity-lifecycle#lc),
+          The Android lifecycle states are defined in [Activity lifecycle callbacks](https://developer.android.com/guide/components/activities/activity-lifecycle#lifecycle-callbacks),
           and from which the `OS identifiers` are derived.
         examples: [ "created" ]
         type:

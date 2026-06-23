@@ -1,4 +1,0 @@
-change_type: bug_fix
-component: k8s
-note: "Exclude `k8s.container.cpu.limit_utilization` and `k8s.container.cpu.request_utilization` metrics from code generation"
-issues: [3711, 3705]

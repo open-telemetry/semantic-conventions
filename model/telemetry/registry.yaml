@@ -40,6 +40,10 @@ groups:
               value: "java"
               brief: Java
               stability: stable
+            - id: kotlin
+              value: "kotlin"
+              brief: Kotlin
+              stability: stable
             - id: nodejs
               value: "nodejs"
               brief: Node.js
