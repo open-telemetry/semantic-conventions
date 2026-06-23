@@ -14,6 +14,8 @@ ignorePaths:
   - '**.j2'
   - '**.rego'
   - 'package.json'
+  - '**/deprecated/*.yaml'
+  - 'docs/registry/attributes/gen-ai.md'
 patterns:
   - name: CodeBlock
     pattern: |
@@ -109,7 +111,6 @@ dictionaries:
 words:
   - actian
   - jank
-  - cicd
   - tmpfs
   - exfat
   - gogc
@@ -177,8 +178,6 @@ ignoreWords:
   - rego
   - Pygq
   - Wdrha
-  - celsius
-  - fahrenheit
   - yamlize
   - Yamlify
   - crun
