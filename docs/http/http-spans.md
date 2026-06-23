@@ -276,10 +276,12 @@ If the request has completed successfully, instrumentations SHOULD NOT set `erro
 
 **[10] `network.protocol.version`:** If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set.
 
-**[11] `http.request.body.content`:** Captured value MUST be limited in size and thus value is expected to be truncated in many cases.
-In addition to respecting the `AttributeValueLengthLimit` configuration option defined in the
-[OpenTelemetry SDK specification](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/common/README.md#configurable-parameters),
-instrumentations SHOULD provide configuration options or arbitrary limits to further limit the captured body size.
+**[11] `http.request.body.content`:** Captured value MAY be limited in size and thus value is expected to be truncated in many cases.
+
+The maximum captured body size must be limited by the `AttributeValueLengthLimit` configuration option defined in the
+[OpenTelemetry SDK specification](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/common/README.md#configurable-parameters).
+
+To prevent excessive overhead and storage by default, instrumentations MUST issue a warning when the feature is used without an explicit `AttributeValueLengthLimit` configuration option.
 
 Instrumentations MUST disable capture by default and provide an opt-in configuration option to enable it as it can capture sensitive information and cause performance overhead.
 
@@ -308,10 +310,12 @@ Examples:
 - A header `X-Forwarded-For: 1.2.3.4, 1.2.3.5` SHOULD be recorded as the `http.request.header.x-forwarded-for`
   attribute with value `["1.2.3.4", "1.2.3.5"]` or `["1.2.3.4, 1.2.3.5"]` depending on the HTTP library.
 
-**[13] `http.response.body.content`:** Captured value MUST be limited in size and thus value is expected to be truncated in many cases.
-In addition to respecting the `AttributeValueLengthLimit` configuration option defined in the
-[OpenTelemetry SDK specification](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/common/README.md#configurable-parameters),
-instrumentations SHOULD provide configuration options or arbitrary limits to further limit the captured body size.
+**[13] `http.response.body.content`:** Captured value MAY be limited in size and thus value is expected to be truncated in many cases.
+
+The maximum captured body size must be limited by the `AttributeValueLengthLimit` configuration option defined in the
+[OpenTelemetry SDK specification](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/common/README.md#configurable-parameters).
+
+To prevent excessive overhead and storage by default, instrumentations MUST issue a warning when the feature is used without an explicit `AttributeValueLengthLimit` configuration option.
 
 Instrumentations MUST disable capture by default and provide an opt-in configuration option to enable it as it can capture sensitive information and cause performance overhead.
 
@@ -630,10 +634,12 @@ When a query string value is redacted, the query string key SHOULD still be pres
 
 **[14] `client.port`:** When observed from the server side, and when communicating through an intermediary, `client.port` SHOULD represent the client port behind any intermediaries,  for example proxies, if it's available.
 
-**[15] `http.request.body.content`:** Captured value MUST be limited in size and thus value is expected to be truncated in many cases.
-In addition to respecting the `AttributeValueLengthLimit` configuration option defined in the
-[OpenTelemetry SDK specification](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/common/README.md#configurable-parameters),
-instrumentations SHOULD provide configuration options or arbitrary limits to further limit the captured body size.
+**[15] `http.request.body.content`:** Captured value MAY be limited in size and thus value is expected to be truncated in many cases.
+
+The maximum captured body size must be limited by the `AttributeValueLengthLimit` configuration option defined in the
+[OpenTelemetry SDK specification](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/common/README.md#configurable-parameters).
+
+To prevent excessive overhead and storage by default, instrumentations MUST issue a warning when the feature is used without an explicit `AttributeValueLengthLimit` configuration option.
 
 Instrumentations MUST disable capture by default and provide an opt-in configuration option to enable it as it can capture sensitive information and cause performance overhead.
 
@@ -662,10 +668,12 @@ Examples:
 - A header `X-Forwarded-For: 1.2.3.4, 1.2.3.5` SHOULD be recorded as the `http.request.header.x-forwarded-for`
   attribute with value `["1.2.3.4", "1.2.3.5"]` or `["1.2.3.4, 1.2.3.5"]` depending on the HTTP library.
 
-**[17] `http.response.body.content`:** Captured value MUST be limited in size and thus value is expected to be truncated in many cases.
-In addition to respecting the `AttributeValueLengthLimit` configuration option defined in the
-[OpenTelemetry SDK specification](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/common/README.md#configurable-parameters),
-instrumentations SHOULD provide configuration options or arbitrary limits to further limit the captured body size.
+**[17] `http.response.body.content`:** Captured value MAY be limited in size and thus value is expected to be truncated in many cases.
+
+The maximum captured body size must be limited by the `AttributeValueLengthLimit` configuration option defined in the
+[OpenTelemetry SDK specification](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/common/README.md#configurable-parameters).
+
+To prevent excessive overhead and storage by default, instrumentations MUST issue a warning when the feature is used without an explicit `AttributeValueLengthLimit` configuration option.
 
 Instrumentations MUST disable capture by default and provide an opt-in configuration option to enable it as it can capture sensitive information and cause performance overhead.
 

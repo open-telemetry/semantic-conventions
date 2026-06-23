@@ -209,10 +209,12 @@ groups:
         brief: >
           The content of the uncompressed HTTP request body, captured as a string when the request content is textual or as binary otherwise.
         note: |
-          Captured value MUST be limited in size and thus value is expected to be truncated in many cases.
-          In addition to respecting the `AttributeValueLengthLimit` configuration option defined in the
-          [OpenTelemetry SDK specification](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/common/README.md#configurable-parameters),
-          instrumentations SHOULD provide configuration options or arbitrary limits to further limit the captured body size.
+          Captured value MAY be limited in size and thus value is expected to be truncated in many cases.
+
+          The maximum captured body size must be limited by the `AttributeValueLengthLimit` configuration option defined in the
+          [OpenTelemetry SDK specification](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/common/README.md#configurable-parameters).
+
+          To prevent excessive overhead and storage by default, instrumentations MUST issue a warning when the feature is used without an explicit `AttributeValueLengthLimit` configuration option.
 
           Instrumentations MUST disable capture by default and provide an opt-in configuration option to enable it as it can capture sensitive information and cause performance overhead.
 
@@ -230,10 +232,12 @@ groups:
         brief: >
           The content of the uncompressed HTTP response body, captured as a string when the response content is textual or as byte array otherwise.
         note: |
-          Captured value MUST be limited in size and thus value is expected to be truncated in many cases.
-          In addition to respecting the `AttributeValueLengthLimit` configuration option defined in the
-          [OpenTelemetry SDK specification](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/common/README.md#configurable-parameters),
-          instrumentations SHOULD provide configuration options or arbitrary limits to further limit the captured body size.
+          Captured value MAY be limited in size and thus value is expected to be truncated in many cases.
+
+          The maximum captured body size must be limited by the `AttributeValueLengthLimit` configuration option defined in the
+          [OpenTelemetry SDK specification](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/common/README.md#configurable-parameters).
+
+          To prevent excessive overhead and storage by default, instrumentations MUST issue a warning when the feature is used without an explicit `AttributeValueLengthLimit` configuration option.
 
           Instrumentations MUST disable capture by default and provide an opt-in configuration option to enable it as it can capture sensitive information and cause performance overhead.
 
