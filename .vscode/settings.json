@@ -2,7 +2,8 @@
     "editor.rulers": [80],
     "yaml.schemas": {
         "https://raw.githubusercontent.com/open-telemetry/weaver/v0.24.2/schemas/semconv.schema.json": [
-            "model/**/*.yaml"
+            "model/**/*.yaml",
+            "!model/manifest.yaml"
         ],
         "./sigs-schema.json": [
             "sigs.yaml"

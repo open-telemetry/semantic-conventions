@@ -343,6 +343,13 @@ generate-schema-next:
 		--output /home/weaver/target
 		# --param next_version=$(NEXT_SEMCONV_VERSION)
 	$(TOOLS_DIR)/scripts/generate-schema-next.sh $(NEXT_SEMCONV_VERSION) $(LATEST_RELEASED_SEMCONV_VERSION) $(TOOLS_DIR)/bin/schema-diff.yaml
+	@tmp_file=$$(mktemp); \
+	$(SED) 's|^schema_url: https://opentelemetry.io/schemas/.*$$|schema_url: https://opentelemetry.io/schemas/$(NEXT_SEMCONV_VERSION)|' model/manifest.yaml > "$$tmp_file" && \
+	mv "$$tmp_file" model/manifest.yaml || { \
+		rm -f "$$tmp_file"; \
+		echo "Failed to update schema_url in model/manifest.yaml"; \
+		exit 1; \
+	};
 
 .PHONY: areas-table-generation
 areas-table-generation:
