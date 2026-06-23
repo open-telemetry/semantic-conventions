@@ -81,14 +81,14 @@ groups:
           set to the base name of the target of `/proc/[pid]/exe`. On Windows,
           this SHOULD be set to the base name of `GetProcessImageFileNameW`.
         examples: ['otelcol']
-      - id: process.entrypoint
+      - id: process.launch_path
         type: string
         stability: development
         brief: >
-          The full path to the file being executed in this process as seen by external observer/monitors.
+          The full path to the file being executed in this process as can be seen by external observer/monitors.
         note: >
           This should be the path to the file which was initially launched.
-          For example, the `python myscript.py` command would have an entrypoint of `/usr/local/bin/python3` as python is the entrypoint for the process to launch/run the script.
+          For example, the `python myscript.py` command would have a launch_path of `/usr/local/bin/python3` as python is what is launched to execute in the process.
 
 
           On Linux based systems, the value would match `proc/[pid]/exe` and

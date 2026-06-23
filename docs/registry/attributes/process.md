@@ -21,16 +21,16 @@ An operating system process.
 | <a id="process-command-line" href="#process-command-line">`process.command_line`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The full command used to launch the process as a single string representing the full command. On Windows, can be set to the result of `GetCommandLineW`. Do not set this if you have to assemble it just for monitoring; use `process.command_args` instead. SHOULD NOT be collected by default unless there is sanitization that excludes sensitive data. | `C:\cmd\otecol --config="my directory\config.yaml"` |
 | <a id="process-context-switch-type" href="#process-context-switch-type">`process.context_switch.type`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | Specifies whether the context switches for this data point were voluntary or involuntary. | `voluntary`; `involuntary` |
 | <a id="process-creation-time" href="#process-creation-time">`process.creation.time`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The date and time the process was created, in ISO 8601 format. | `2023-11-21T09:25:34.853Z` |
-| <a id="process-entrypoint" href="#process-entrypoint">`process.entrypoint`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The full path to the file being executed in this process as seen by external observer/monitors. [2] | `/usr/bin/cmd/otelcol`; `/usr/local/bin/python3` |
-| <a id="process-environment-variable" href="#process-environment-variable">`process.environment_variable.<key>`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | Process environment variables, `<key>` being the environment variable name, the value being the environment variable value. [3] | `ubuntu`; `/usr/local/bin:/usr/bin` |
+| <a id="process-environment-variable" href="#process-environment-variable">`process.environment_variable.<key>`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | Process environment variables, `<key>` being the environment variable name, the value being the environment variable value. [2] | `ubuntu`; `/usr/local/bin:/usr/bin` |
 | <a id="process-executable-build-id-gnu" href="#process-executable-build-id-gnu">`process.executable.build_id.gnu`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The GNU build ID as found in the `.note.gnu.build-id` ELF section (hex string). | `c89b11207f6479603b0d49bf291c092c2b719293` |
 | <a id="process-executable-build-id-go" href="#process-executable-build-id-go">`process.executable.build_id.go`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The Go build ID as retrieved by `go tool buildid <go executable>`. | `foh3mEXu7BLZjsN9pOwG/kATcXlYVCDEFouRMQed_/WwRFB1hPo9LBkekthSPG/x8hMC8emW2cCjXD0_1aY` |
-| <a id="process-executable-build-id-htlhash" href="#process-executable-build-id-htlhash">`process.executable.build_id.htlhash`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | Deterministic build ID for executables. [4] | `600DCAFE4A110000F2BF38C493F5FB92` |
+| <a id="process-executable-build-id-htlhash" href="#process-executable-build-id-htlhash">`process.executable.build_id.htlhash`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | Deterministic build ID for executables. [3] | `600DCAFE4A110000F2BF38C493F5FB92` |
 | <a id="process-executable-name" href="#process-executable-name">`process.executable.name`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The name of the process executable. On Linux based systems, this SHOULD be set to the base name of the target of `/proc/[pid]/exe`. On Windows, this SHOULD be set to the base name of `GetProcessImageFileNameW`. | `otelcol` |
 | <a id="process-exit-code" href="#process-exit-code">`process.exit.code`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | int | The exit code of the process. | `127` |
 | <a id="process-exit-time" href="#process-exit-time">`process.exit.time`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The date and time the process exited, in ISO 8601 format. | `2023-11-21T09:26:12.315Z` |
 | <a id="process-group-leader-pid" href="#process-group-leader-pid">`process.group_leader.pid`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | int | The PID of the process's group leader. This is also the process group ID (PGID) of the process. | `23` |
 | <a id="process-interactive" href="#process-interactive">`process.interactive`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | boolean | Whether the process is connected to an interactive shell. | |
+| <a id="process-launch-path" href="#process-launch-path">`process.launch_path`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The full path to the file being executed in this process as can be seen by external observer/monitors. [4] | `/usr/bin/cmd/otelcol`; `/usr/local/bin/python3` |
 | <a id="process-owner" href="#process-owner">`process.owner`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The username of the user that owns the process. | `root` |
 | <a id="process-parent-pid" href="#process-parent-pid">`process.parent_pid`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | int | Parent Process identifier (PPID). | `111` |
 | <a id="process-pid" href="#process-pid">`process.pid`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | int | Process identifier (PID). | `1234` |
@@ -51,11 +51,7 @@ An operating system process.
 
 **[1] `process.args_count`:** This field can be useful for querying or performing bucket analysis on how many arguments were provided to start a process. More arguments may be an indication of suspicious activity.
 
-**[2] `process.entrypoint`:** This should be the path to the file which was initially launched. For example, the `python myscript.py` command would have an entrypoint of `/usr/local/bin/python3` as python is the entrypoint for the process to launch/run the script.
-
-On Linux based systems, the value would match `proc/[pid]/exe` and on Windows, the value would match `GetProcessImageFileNameW`.
-
-**[3] `process.environment_variable.<key>`:** Examples:
+**[2] `process.environment_variable.<key>`:** Examples:
 
 - an environment variable `USER` with value `"ubuntu"` SHOULD be recorded
 as the `process.environment_variable.USER` attribute with value `"ubuntu"`.
@@ -64,7 +60,7 @@ as the `process.environment_variable.USER` attribute with value `"ubuntu"`.
 SHOULD be recorded as the `process.environment_variable.PATH` attribute
 with value `"/usr/local/bin:/usr/bin"`.
 
-**[4] `process.executable.build_id.htlhash`:** GNU and Go build IDs may be stripped or unavailable in some environments
+**[3] `process.executable.build_id.htlhash`:** GNU and Go build IDs may be stripped or unavailable in some environments
 (e.g., Alpine Linux, Docker images). This attribute provides a deterministic
 build ID computed by hashing the first and last 4096 bytes of the file
 along with its length:
@@ -77,6 +73,10 @@ BuildID ← Digest[:16]
 
 The result is the first 16 bytes (128 bits) of the SHA256 digest,
 represented as a hex string.
+
+**[4] `process.launch_path`:** This should be the path to the file which was initially launched. For example, the `python myscript.py` command would have a launch_path of `/usr/local/bin/python3` as python is what is launched to execute in the process.
+
+On Linux based systems, the value would match `proc/[pid]/exe` and on Windows, the value would match `GetProcessImageFileNameW`.
 
 **[5] `process.title`:** In many Unix-like systems, process title (proctitle), is the string that represents the name or command line of a running process, displayed by system monitoring tools like ps, top, and htop.
 
@@ -125,7 +125,7 @@ Deprecated process attributes.
 | <a id="process-context-switch-type" href="#process-context-switch-type">`process.context_switch_type`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `process.context_switch.type`. | string | "Deprecated, use `process.context_switch.type` instead." | `voluntary`; `involuntary` |
 | <a id="process-cpu-state" href="#process-cpu-state">`process.cpu.state`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `cpu.mode`. | string | Deprecated, use `cpu.mode` instead. | `system`; `user`; `wait` |
 | <a id="process-executable-build-id-profiling" href="#process-executable-build-id-profiling">`process.executable.build_id.profiling`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `process.executable.build_id.htlhash`. | string | "Deprecated, use `process.executable.build_id.htlhash` instead." | `600DCAFE4A110000F2BF38C493F5FB92` |
-| <a id="process-executable-path" href="#process-executable-path">`process.executable.path`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>`process.entrypoint` should be used instead to capture the entrypoint of the process. | string | The full path to the process executable. On Linux based systems, can be set to the target of `proc/[pid]/exe`. On Windows, can be set to the result of `GetProcessImageFileNameW`. | `/usr/bin/cmd/otelcol` |
+| <a id="process-executable-path" href="#process-executable-path">`process.executable.path`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>`process.launch_path` should be used instead to capture the path used to launch the process. | string | The full path to the process executable. On Linux based systems, can be set to the target of `proc/[pid]/exe`. On Windows, can be set to the result of `GetProcessImageFileNameW`. | `/usr/bin/cmd/otelcol` |
 | <a id="process-paging-fault-type" href="#process-paging-fault-type">`process.paging.fault_type`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `system.paging.fault.type`. | string | Deprecated, use `system.paging.fault.type` instead. | `major`; `minor` |
 
 ---

@@ -42,7 +42,7 @@ groups:
       - ref: process.linux.cgroup
         role: descriptive
         requirement_level: opt_in
-      - ref: process.entrypoint
+      - ref: process.launch_path
         role: descriptive
         requirement_level: opt_in
 
