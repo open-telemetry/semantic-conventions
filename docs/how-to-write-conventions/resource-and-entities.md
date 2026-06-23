@@ -305,9 +305,9 @@ When defining a new set of entities within OpenTelemetry Semantic
 Conventions, they should be namespaced, as per the
 [Semantic Convention naming policy](/docs/general/naming.md#general-naming-considerations).
 This gives clear indication which concepts are clearly related with each
-other. For example, the K8s namespace would define Kubernetes related
+other. For example, the `k8s` namespace would define Kubernetes related
 entities and their relationships. Users would know to create a new
-namespace when modelling concepts on top of K8s.
+namespace when modelling concepts on top of `k8s`.
 
 Expansion to existing concepts is done through "is-a" relationships.
 These are relationships where one entity is known to represent the same

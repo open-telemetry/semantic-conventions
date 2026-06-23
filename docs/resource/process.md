@@ -104,7 +104,7 @@ Example:
 
 | `process.runtime.name` | `process.runtime.version` | `process.runtime.description` |
 | --- | --- | --- |
-| BEAM | 11.1 | Erlang/OTP 23 erts-11.1 |
+| `BEAM` | `11.1` | `Erlang/OTP 23 erts-11.1` |
 
 ### Go runtimes
 
@@ -150,14 +150,14 @@ Examples for some Java runtimes
 
 | Name | `process.runtime.name` | `process.runtime.version` | `process.runtime.description` |
 | --- | --- | --- | --- |
-| OpenJDK | OpenJDK Runtime Environment | 11.0.8+10 | Oracle Corporation OpenJDK 64-Bit Server VM 11.0.8+10 |
-| AdoptOpenJDK Eclipse J9 | OpenJDK Runtime Environment | 11.0.8+10 | Eclipse OpenJ9 Eclipse OpenJ9 VM openj9-0.21.0 |
-| AdoptOpenJDK Hotspot | OpenJDK Runtime Environment | 11.0.8+10 | AdoptOpenJDK OpenJDK 64-Bit Server VM 11.0.8+10 |
-| SapMachine | OpenJDK Runtime Environment | 11.0.8+10-LTS-sapmachine | SAP SE OpenJDK 64-Bit Server VM 11.0.8+10-LTS-sapmachine |
-| Zulu OpenJDK | OpenJDK Runtime Environment | 11.0.8+10-LTS | Azul Systems, Inc OpenJDK 64-Bit Server VM Zulu11.41+23-CA |
-| Oracle Hotspot 8 (32 bit) | Java(TM) SE Runtime Environment | 1.8.0_221-b11 | Oracle Corporation Java HotSpot(TM) Client VM 25.221-b11 |
-| IBM J9 8 | Java(TM) SE Runtime Environment | 8.0.5.25 - pwa6480sr5fp25-20181030_01(SR5 FP25) | IBM Corporation IBM J9 VM 2.9 |
-| Android 11 | Android Runtime | 0.9 | The Android Project Dalvik 2.1.0 |
+| OpenJDK` | `OpenJDK Runtime Environment` | `11.0.8+10` | `Oracle Corporation OpenJDK 64-Bit Server VM 11.0.8+10` |
+| AdoptOpenJDK Eclipse J9 | `OpenJDK Runtime Environment` | `11.0.8+10` | `Eclipse OpenJ9 Eclipse OpenJ9 VM openj9-0.21.0` |
+| AdoptOpenJDK Hotspot | `OpenJDK Runtime Environment` | `11.0.8+10` | `AdoptOpenJDK OpenJDK 64-Bit Server VM 11.0.8+10` |
+| SapMachine | `OpenJDK Runtime Environment` | `11.0.8+10-LTS-sapmachine` | `SAP SE OpenJDK 64-Bit Server VM 11.0.8+10-LTS-sapmachine` |
+| Zulu OpenJDK | `OpenJDK Runtime Environment` | `11.0.8+10-LTS` | `Azul Systems, Inc OpenJDK 64-Bit Server VM Zulu11.41+23-CA` |
+| Oracle Hotspot 8 (32 bit) | `Java(TM) SE Runtime Environment` | `1.8.0_221-b11` | `Oracle Corporation Java HotSpot(TM) Client VM 25.221-b11` |
+| IBM J9 8 | `Java(TM) SE Runtime Environment` | `8.0.5.25 - pwa6480sr5fp25-20181030_01(SR5 FP25)` | `IBM Corporation IBM J9 VM 2.9` |
+| Android 11 | `Android Runtime` | `0.9` | `The Android Project Dalvik 2.1.0` |
 
 ### JavaScript runtimes
 
@@ -174,8 +174,8 @@ Examples for some JavaScript runtimes
 
 | Name | `process.runtime.name` | `process.runtime.version` |
 | --- | --- | --- |
-| Node.js | Node.js | 14.15.4 |
-| Web Browser | browser | Mozilla/5.0 (Macintosh; Intel Mac macOS 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36 |
+| Node.js | `nodejs` | `14.15.4` |
+| Web Browser | `browser` | `Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36` |
 
 ### .NET runtimes
 
@@ -198,8 +198,8 @@ Examples for some .NET runtimes
 
 | Name | `process.runtime.name` | `process.runtime.version` | `process.runtime.description` |
 | --- | --- | --- | --- |
-| .NET Framework | .NET Framework | 4.8 | .NET Framework 4.8.9195.0 |
-| .NET | .NET | 7.0.14 | .NET 7.0.14 |
+| .NET Framework | `.NET Framework` | `4.8` | .`NET Framework 4.8.9195.0` |
+| .NET | `.NET` | `7.0.14` | `.NET 7.0.14` |
 
 ### Python runtimes
 
@@ -233,9 +233,9 @@ Examples for some Python runtimes:
 
 | Name | `process.runtime.name` | `process.runtime.version` | `process.runtime.description` |
 | --- | --- | --- | --- |
-| CPython 3.7.3 on Windows | cpython | 3.7.3 | 3.7.3 (v3.7.3:ef4ec6ed12, Mar 25 2019, 22:22:05) [MSC v.1916 64 bit (AMD64)] |
-| CPython 3.13.1 on Linux | cpython | 3.13.1 | 3.13.1 (main, Dec  6 2024, 18:40:43) [Clang 18.1.8 ] |
-| PyPy 3 7.3.17 on Linux | pypy | 7.3.17 | 3.10.14 (39dc8d3c85a7, Aug 27 2024, 14:32:27)<br>[PyPy 7.3.17 with GCC 10.2.1 20210130 (Red Hat 10.2.1-11)] |
+| CPython 3.7.3 on Windows | `cpython` | `3.7.3` | `3.7.3 (v3.7.3:ef4ec6ed12, Mar 25 2019, 22:22:05) [MSC v.1916 64 bit (AMD64)]` |
+| CPython 3.13.1 on Linux | `cpython` | `3.13.1` | `3.13.1 (main, Dec  6 2024, 18:40:43) [Clang 18.1.8 ]` |
+| PyPy 3 7.3.17 on Linux | `pypy` | `7.3.17` | `3.10.14 (39dc8d3c85a7, Aug 27 2024, 14:32:27)<br>[PyPy 7.3.17 with GCC 10.2.1 20210130 (Red Hat 10.2.1-11)]` |
 
 Note that on CPython GCC/Clang Linux builds (up to and including 3.9) and PyPy, there is an actual newline in the `sys.version` string.
 
@@ -251,7 +251,7 @@ Examples for some Ruby runtimes
 
 | Name | `process.runtime.name` | `process.runtime.version` | `process.runtime.description` |
 | --- | --- | --- | --- |
-| MRI | Ruby | 2.7.1 | Ruby 2.7.1p83 (2020-03-31 revision a0c7c23c9c) [x86_64-darwin19] |
-| TruffleRuby | truffleruby | 2.6.2 | truffleruby (Shopify) 20.0.0-dev-92ed3059, like Ruby 2.6.2, GraalVM CE Native [x86_64-darwin] |
+| MRI | `ruby` | `2.7.1` | `ruby 2.7.1p83 (2020-03-31 revision a0c7c23c9c) [x86_64-darwin19]` |
+| TruffleRuby` | `truffleruby` | `2.6.2` | `truffleruby (Shopify) 20.0.0-dev-92ed3059, like ruby 2.6.2, GraalVM CE Native [x86_64-darwin]` |
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status

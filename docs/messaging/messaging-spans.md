@@ -78,7 +78,7 @@ This envelope may offer the possibility to convey additional metadata, often in 
 
 A message is sent by a message *producer* to:
 
-* Physically: some message *broker* (which can be e.g., a single server, or a cluster, or a local process reached via IPC). The broker handles the actual delivery, re-delivery, persistence, etc. In some messaging systems the broker may be identical or colocateed with (some) message consumers.
+* Physically: some message *broker* (which can be e.g., a single server, or a cluster, or a local process reached via IPC). The broker handles the actual delivery, re-delivery, persistence, etc. In some messaging systems the broker may be identical or colocated with (some) message consumers.
 With Apache Kafka, the physical broker a message is written to depends on the number of partitions, and which broker is the *leader* of the partition the record is written to.
 * Logically: some particular message *destination*.
 

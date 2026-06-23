@@ -39,7 +39,7 @@ This document defines standard attributes for resources. These attributes are ty
 
 **Status**: [Stable][DocumentStatus]
 
-Attributes are grouped logically by the type of the concept that they described. Attributes in the same group have a common prefix that ends with a dot. For example all attributes that describe Kubernetes properties start with "K8s."
+Attributes are grouped logically by the type of the concept that they described. Attributes in the same group have a common prefix that ends with a dot. For example all attributes that describe Kubernetes properties start with `k8s.`.
 
 See [Attribute Requirement Levels](../general/attribute-requirement-level.md) for details on when attributes
 should be included.
