@@ -61,7 +61,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `container.cpu.time` | Counter | `s` | CPU time consumed. [1] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | [`container`](/docs/registry/entities/container.md#container) |
+| `container.cpu.time` | Counter | `s` | Total CPU time consumed. [1] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | [`container`](/docs/registry/entities/container.md#container) |
 
 **[1]:** CPU time consumed by the specific container on all available CPU cores
 
@@ -107,7 +107,7 @@ This metric is [opt-in][MetricOptIn].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `container.cpu.usage` | Gauge | `{cpu}` | Container's CPU usage, measured in cpus. Range from 0 to the number of allocatable CPUs. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`container`](/docs/registry/entities/container.md#container) |
+| `container.cpu.usage` | Gauge | `{cpu}` | Container's CPU usage, measured in CPUs. Range from 0 to the number of allocatable CPUs. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`container`](/docs/registry/entities/container.md#container) |
 
 **[1]:** CPU usage of the specific container on all available CPU cores, averaged over the sample window
 

@@ -255,7 +255,7 @@ This section describes how to handle the span creation and additional attributes
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-This span represents server side if the FaaS invocations triggered in response response to some data source operation such as a database or filesystem read/write.
+This span represents server-side if the FaaS invocations triggered in response response to some data source operation such as a database or filesystem read/write.
 
 **Span kind** SHOULD be `SERVER`.
 
@@ -307,7 +307,7 @@ A function is scheduled to be executed regularly. The following additional attri
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-This span represents server side if the FaaS invocations triggered by a timer.
+This span represents server-side if the FaaS invocations triggered by a timer.
 
 **Span kind** SHOULD be `SERVER`.
 

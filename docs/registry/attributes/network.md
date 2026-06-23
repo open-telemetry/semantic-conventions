@@ -19,13 +19,13 @@ These attributes may be used for any network related operation.
 | <a id="network-carrier-mnc" href="#network-carrier-mnc">`network.carrier.mnc`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The mobile carrier network code. | `001` |
 | <a id="network-carrier-name" href="#network-carrier-name">`network.carrier.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the mobile carrier. | `sprint` |
 | <a id="network-connection-state" href="#network-connection-state">`network.connection.state`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The state of network connection [1] | `close_wait` |
-| <a id="network-connection-subtype" href="#network-connection-subtype">`network.connection.subtype`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | This describes more details regarding the connection.type. It may be the type of cell technology connection, but it could be used for describing details about a wifi connection. | `LTE` |
+| <a id="network-connection-subtype" href="#network-connection-subtype">`network.connection.subtype`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | This describes more details regarding the connection.type. It may be the type of cell technology connection, but it could be used for describing details about a Wi-Fi connection. | `LTE` |
 | <a id="network-connection-type" href="#network-connection-type">`network.connection.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The internet connection type. | `wifi` |
 | <a id="network-interface-name" href="#network-interface-name">`network.interface.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The network interface name. | `lo`; `eth0` |
 | <a id="network-io-direction" href="#network-io-direction">`network.io.direction`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The network IO operation direction. | `transmit` |
-| <a id="network-local-address" href="#network-local-address">`network.local.address`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | Local address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` |
+| <a id="network-local-address" href="#network-local-address">`network.local.address`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | Local address of the network connection - IP address or UNIX domain socket name. | `10.1.2.80`; `/tmp/my.sock` |
 | <a id="network-local-port" href="#network-local-port">`network.local.port`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | int | Local port number of the network connection. | `65123` |
-| <a id="network-peer-address" href="#network-peer-address">`network.peer.address`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | Peer address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` |
+| <a id="network-peer-address" href="#network-peer-address">`network.peer.address`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | Peer address of the network connection - IP address or UNIX domain socket name. | `10.1.2.80`; `/tmp/my.sock` |
 | <a id="network-peer-port" href="#network-peer-port">`network.peer.port`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | int | Peer port number of the network connection. | `65123` |
 | <a id="network-protocol-name" href="#network-protocol-name">`network.protocol.name`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | [OSI application layer](https://wikipedia.org/wiki/Application_layer) or non-OSI equivalent. [2] | `amqp`; `http`; `mqtt` |
 | <a id="network-protocol-version" href="#network-protocol-version">`network.protocol.version`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The actual version of the protocol used for network communication. [3] | `1.1`; `2` |
@@ -101,7 +101,7 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 | `cell` | cell | ![Development](https://img.shields.io/badge/-development-blue) |
 | `unavailable` | unavailable | ![Development](https://img.shields.io/badge/-development-blue) |
 | `unknown` | unknown | ![Development](https://img.shields.io/badge/-development-blue) |
-| `wifi` | wifi | ![Development](https://img.shields.io/badge/-development-blue) |
+| `wifi` | Wi-Fi | ![Development](https://img.shields.io/badge/-development-blue) |
 | `wired` | wired | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
@@ -123,7 +123,7 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 | `quic` | QUIC | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `tcp` | TCP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `udp` | UDP | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `unix` | Unix domain socket | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `unix` | UNIX domain socket | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ---
 
@@ -166,7 +166,7 @@ These attributes may be used for any network related operation.
 | --- | --- | --- |
 | `inet` | IPv4 address | ![Development](https://img.shields.io/badge/-development-blue) |
 | `inet6` | IPv6 address | ![Development](https://img.shields.io/badge/-development-blue) |
-| `unix` | Unix domain socket path | ![Development](https://img.shields.io/badge/-development-blue) |
+| `unix` | UNIX domain socket path | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 

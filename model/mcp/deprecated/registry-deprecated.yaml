@@ -160,7 +160,7 @@ groups:
           note: >
             Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
         type: string
-        brief: The value of the resource uri.
+        brief: The value of the resource URI.
         note: >
           This is a URI of the resource provided in the following requests or notifications:
           `resources/read`, `resources/subscribe`, `resources/unsubscribe`, or `notifications/resources/updated`.
