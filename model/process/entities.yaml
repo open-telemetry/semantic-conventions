@@ -51,8 +51,8 @@ groups:
       The single (language) runtime instance which is monitored.
     note: >
       This entity (resource attributes) should not be reported when the process is being
-      externally observed as the runtime details is not readily available and instead,
-      the executable entity should be reported with the details of the runtime executable.
+      externally observed as the runtime details will not be readily available.
+      In the externally observed scenario, the `process.executable` entity may be used to describe the runtime.
     attributes:
       - ref: process.runtime.name
         role: identifying
@@ -72,7 +72,7 @@ groups:
       which has been deployed to a system and the execution of that executable
       via a process is resulting in the production of the telemetry.
       This entity (resource attributes) should not be used to describe the runtime executable unless,
-      the process is being externally observed hence the runtime details is not readily available.
+      the process is being externally observed as that results in the runtime details not being readily available.
     attributes:
       - ref: process.executable.build_id.htlhash
         role: identifying
