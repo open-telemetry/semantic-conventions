@@ -1,0 +1,36 @@
+groups:
+  - id: span.vcs.client
+    type: span
+    span_kind: client
+    stability: development
+    brief: >
+      This span describes a Version Control System (VCS) operation client.
+    note: |
+      **Span name** MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/trace/api.md#span).
+
+      The span name SHOULD be `{vcs.action} {vcs.repository.name}`.
+
+      **Span Hierarchy:**
+      When integrated into CI/CD pipelines, VCS spans SHOULD be modeled as child spans of the CI/CD pipeline task/step execution spans (e.g., a task span representing a "checkout code" step).
+      Any underlying HTTP client or RPC spans representing the actual network communication with the VCS server/provider SHOULD be modeled as child spans of the VCS span.
+
+    attributes:
+      - ref: vcs.action
+        requirement_level: required
+      - ref: vcs.repository.name
+        requirement_level: required
+      - ref: vcs.repository.url.full
+        requirement_level: recommended
+      - ref: vcs.ref.head.name
+        requirement_level: recommended
+      - ref: vcs.ref.head.revision
+        requirement_level: recommended
+      - ref: vcs.ref.type
+        requirement_level: recommended
+      - ref: server.address
+        requirement_level: recommended
+      - ref: server.port
+        requirement_level: recommended
+      - ref: error.type
+        requirement_level:
+          conditionally_required: If the VCS operation fails.
