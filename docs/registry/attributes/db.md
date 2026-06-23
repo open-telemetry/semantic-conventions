@@ -19,7 +19,7 @@ This group defines the attributes used to describe telemetry in the context of d
 | <a id="db-client-connection-state" href="#db-client-connection-state">`db.client.connection.state`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The state of a connection in the pool | `idle` |
 | <a id="db-collection-name" href="#db-collection-name">`db.collection.name`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The name of a collection (table, container) within the database. [1] | `public.users`; `customers` |
 | <a id="db-namespace" href="#db-namespace">`db.namespace`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The name of the database, fully qualified within the server address and port. [2] | `customers`; `test.users` |
-| <a id="db-operation-batch-size" href="#db-operation-batch-size">`db.operation.batch.size`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | int | The number of queries included in a batch operation. [3] | `2`; `3`; `4` |
+| <a id="db-operation-batch-size" href="#db-operation-batch-size">`db.operation.batch.size`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | int | The number of database operations included in a batch operation. [3] | `2`; `3`; `4` |
 | <a id="db-operation-name" href="#db-operation-name">`db.operation.name`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The name of the operation or command being executed. [4] | `findAndModify`; `HMSET`; `SELECT` |
 | <a id="db-operation-parameter" href="#db-operation-parameter">`db.operation.parameter.<key>`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | A database operation parameter, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value. [5] | `someval`; `55` |
 | <a id="db-query-parameter" href="#db-query-parameter">`db.query.parameter.<key>`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | A database query parameter, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value. [6] | `someval`; `55` |
@@ -44,7 +44,28 @@ collection name then that collection name SHOULD be used.
 Semantic conventions for individual database systems SHOULD document what `db.namespace` means in the context of that system.
 It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 
-**[3] `db.operation.batch.size`:** Operations are only considered batches when they contain two or more operations, and so `db.operation.batch.size` SHOULD never be `1`.
+**[3] `db.operation.batch.size`:** Except for empty batch requests described below, a batch operation contains two
+or more database operations explicitly submitted as separate operations in a single
+client call, protocol message, or database command.
+
+Requests to batch APIs that contain only one operation SHOULD be modeled as single
+operations, not as batch operations.
+
+A database call is not a batch operation solely because one operation accepts
+multiple operands, such as keys, rows, documents, points, or other data elements,
+including Redis [`MGET`](https://redis.io/docs/latest/commands/mget/) with
+multiple keys.
+
+In batch APIs that execute the same parameterized operation with parameter sets,
+each parameter set represents one database operation for determining whether the
+request is a batch operation. Requests with only one parameter set SHOULD be modeled
+as single operations, not as batch operations.
+
+`db.operation.batch.size` SHOULD be set to the number of operations in the batch.
+It SHOULD NOT be set for non-batch operations.
+
+A request to execute a batch operation with no operations SHOULD also be treated
+as a batch operation, and `db.operation.batch.size` SHOULD be set to `0`.
 
 **[4] `db.operation.name`:** It is RECOMMENDED to capture the value as provided by the application
 without attempting to do any case normalization.

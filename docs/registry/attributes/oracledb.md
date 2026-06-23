@@ -11,11 +11,11 @@ This section defines attributes for Oracle Database.
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="oracle-db-domain" href="#oracle-db-domain">`oracle.db.domain`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The database domain associated with the connection. [1] | `example.com`; `corp.internal`; `prod.db.local` |
-| <a id="oracle-db-instance-name" href="#oracle-db-instance-name">`oracle.db.instance.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The instance name associated with the connection in an Oracle Real Application Clusters environment. [2] | `ORCL1`; `ORCL2`; `ORCL3` |
-| <a id="oracle-db-name" href="#oracle-db-name">`oracle.db.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The database name associated with the connection. [3] | `ORCL1`; `FREE` |
-| <a id="oracle-db-pdb" href="#oracle-db-pdb">`oracle.db.pdb`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The pluggable database (PDB) name associated with the connection. [4] | `PDB1`; `FREEPDB` |
-| <a id="oracle-db-service" href="#oracle-db-service">`oracle.db.service`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The service name currently associated with the database connection. [5] | `order-processing-service`; `db_low.adb.oraclecloud.com`; `db_high.adb.oraclecloud.com` |
+| <a id="oracle-db-domain" href="#oracle-db-domain">`oracle.db.domain`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The database domain associated with the connection. [1] | `example.com`; `corp.internal`; `prod.db.local` |
+| <a id="oracle-db-instance-name" href="#oracle-db-instance-name">`oracle.db.instance.name`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The instance name associated with the connection in an Oracle Real Application Clusters environment. [2] | `ORCL1`; `ORCL2`; `ORCL3` |
+| <a id="oracle-db-name" href="#oracle-db-name">`oracle.db.name`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The database name associated with the connection. [3] | `ORCL1`; `FREE` |
+| <a id="oracle-db-pdb" href="#oracle-db-pdb">`oracle.db.pdb`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The pluggable database (PDB) name associated with the connection. [4] | `PDB1`; `FREEPDB` |
+| <a id="oracle-db-service" href="#oracle-db-service">`oracle.db.service`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The service name currently associated with the database connection. [5] | `order-processing-service`; `db_low.adb.oraclecloud.com`; `db_high.adb.oraclecloud.com` |
 
 **[1] `oracle.db.domain`:** This attribute SHOULD be set to the value of the `DB_DOMAIN` initialization parameter,
 as exposed in `v$parameter`. `DB_DOMAIN` defines the domain portion of the global

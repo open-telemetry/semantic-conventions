@@ -4,7 +4,7 @@ linkTitle: CI/CD
 
 # Semantic conventions for CI/CD
 
-**Status**: [Development][DocumentStatus]
+**Status**: [Release Candidate][DocumentStatus]
 
 This document defines semantic conventions for Continuous Integration and Continuous Deployment (CI/CD) spans and metrics.
 

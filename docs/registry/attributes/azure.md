@@ -3,9 +3,20 @@
 
 # Azure
 
+- [General Azure Attributes](#general-azure-attributes)
 - [Azure Client Library Attributes](#azure-client-library-attributes)
 - [Azure Cosmos DB Attributes](#azure-cosmos-db-attributes)
 - [Deprecated Azure Attributes](#deprecated-azure-attributes)
+
+## General Azure Attributes
+
+This section defines generic attributes for Azure services.
+
+**Attributes:**
+
+| Key | Stability | Value Type | Description | Example Values |
+| --- | --- | --- | --- | --- |
+| <a id="azure-resource-group-name" href="#azure-resource-group-name">`azure.resource_group.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the Azure [resource group](https://learn.microsoft.com/azure/azure-resource-manager/management/manage-resource-groups-portal) the resource belongs to. | `my-resource-group`; `rg-myapp-prod` |
 
 ## Azure Client Library Attributes
 

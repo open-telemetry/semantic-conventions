@@ -1,0 +1,5 @@
+change_type: enhancement
+component: db
+note: Promote Oracle Database connection attributes to release candidate so the
+  RC `db.oracledb.client` span does not reference lower-stability attributes.
+issues: [3753]
