@@ -6,11 +6,10 @@ linkTitle: SDK Events
 
 **Status**: [Development][DocumentStatus]
 
-This document describes events emitted by the OpenTelemetry SDK components themselves about their own lifecycle.
+Self-observability events emitted by OpenTelemetry SDK components.
 
-These events are intended for SDK self-observability and answer questions
-that metrics cannot easily answer on their own, such as
-"did my pipeline drain cleanly when the application was shutting down?".
+These events complement SDK self-observability metrics by providing per-instance
+confirmation of lifecycle transitions, such as whether shutdown completed cleanly.
 
 > [!NOTE]
 > Events are in-development and not yet available in some languages. Check the [spec-compliance matrix](https://github.com/open-telemetry/opentelemetry-specification/blob/main/spec-compliance-matrix.md#logs) to see the implementation status in the corresponding language.
@@ -39,12 +38,12 @@ Indicates that an OpenTelemetry SDK component's shutdown attempt has ended, whet
 
 **Applicability.**
 
-SDK implementations SHOULD emit an `otel.sdk.component.shutdown` event for each
-SDK component instance that has an explicit `Shutdown` operation and that owns
-telemetry processing, buffering, reading, or exporting state.
-This includes span processors, log record processors, metric readers, span
-exporters, log record exporters, and metric exporters, as well as custom
-implementations of any of these categories. See the well-known values of
+This event SHOULD be emitted by each SDK component instance that has an
+explicit `Shutdown` operation and that owns telemetry processing, buffering,
+reading, or exporting state. This includes span processors, log record
+processors, metric readers, span exporters, log record exporters, and metric
+exporters, as well as custom implementations of any of these categories. See
+the well-known values of
 [`otel.component.type`](/docs/registry/attributes/otel.md) for the full list of
 built-in types.
 
@@ -57,10 +56,8 @@ emerges.
 
 **Emission rules.**
 
-An OpenTelemetry SDK component is shut down at most once. The event SHOULD be
-emitted exactly once per component instance, reporting the result of that one
-shutdown. Subsequent invocations of the shutdown API on a component that is
-already shut down MUST NOT emit additional events.
+At most one `otel.sdk.component.shutdown` event is emitted per component
+instance per process lifetime, reporting the result of that one shutdown.
 
 If the process terminates without invoking the component's shutdown operation
 (e.g. a crash, `SIGKILL`, container eviction, or immediate process termination),
@@ -70,8 +67,7 @@ evidence of a clean shutdown.
 The event timestamp SHOULD reflect the time at which the shutdown attempt ended
 (whether by completing, failing, or being abandoned). Combined with
 `otel.component.shutdown.duration`, the start of the shutdown attempt can be
-reconstructed as `timestamp - duration`. The event body SHOULD be omitted; all
-event data defined by this convention is conveyed through attributes.
+reconstructed as `timestamp - duration`.
 
 **Severity.**
 
@@ -79,28 +75,12 @@ Implementations MUST set the log record severity to `WARN`
 (`SeverityNumber` = `13`) when `otel.component.shutdown.result` is not
 `success`, and to `INFO` (`SeverityNumber` = `9`) otherwise.
 
-**Relationship with `error.type` and per-operation drop accounting.**
-
-The reason a shutdown failed is intentionally not classified on this event
-(there is no `error.type` attribute). Failure-cause classification and
-lifetime/per-operation drop accounting are the responsibility of the
-operation-level signals (e.g. `otel.sdk.exporter.*.exported` and
-`otel.sdk.processor.*.processed` with `error.type`) emitted while the SDK
-is still healthy. The exact count of telemetry items abandoned during a
-`failed` or `timed_out` shutdown is often unknowable to the component
-(e.g. items still in a worker thread's buffer at the moment shutdown is
-abandoned). Consumers should treat a non-`success` `result` as
-"shutdown was not clean; some loss possible" and rely on per-operation
-signals for precise accounting.
-
 **Nesting.**
 
 When an SDK component invokes the shutdown of a child component inline as
 part of its own shutdown (e.g. a batching processor shutting down its
 exporter), the parent's `otel.component.shutdown.duration` mechanically
-includes the time spent shutting down its children. Consumers SHOULD NOT
-sum `otel.component.shutdown.duration` across components in the same
-pipeline to estimate total shutdown wall time.
+includes the time spent shutting down its children.
 
 **Attributes:**
 
