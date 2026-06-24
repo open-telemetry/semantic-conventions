@@ -6,7 +6,7 @@ linkTitle: Resource
 
 **Status**: [Mixed][DocumentStatus]
 
-This document defines standard attributes for resources. These attributes are typically used in the [Resource](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.57.0/specification/resource/sdk.md) and are also recommended to be used anywhere else where there is a need to describe a resource in a consistent manner. The majority of these attributes are inherited from
+This document defines standard attributes for resources. These attributes are typically used in the [Resource](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.58.0/specification/resource/sdk.md) and are also recommended to be used anywhere else where there is a need to describe a resource in a consistent manner. The majority of these attributes are inherited from
 [OpenCensus Resource standard](https://github.com/census-instrumentation/opencensus-specs/blob/master/resource/StandardResources.md).
 
 <!-- START doctoc -->
@@ -53,14 +53,14 @@ Given their significance some resource attributes are treated specifically as de
 ### Semantic attributes with dedicated environment variable
 
 These are the attributes which MAY be configurable via a dedicated environment variable
-as specified in [OpenTelemetry Environment Variable Specification](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.57.0/specification/configuration/sdk-environment-variables.md):
+as specified in [OpenTelemetry Environment Variable Specification](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.58.0/specification/configuration/sdk-environment-variables.md):
 
 - [`service.name`](#service)
 
 ### Semantic attributes with SDK-provided default value
 
 These are the attributes which MUST be provided by the SDK
-as specified in the [Resource SDK specification](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.57.0/specification/resource/sdk.md#sdk-provided-resource-attributes):
+as specified in the [Resource SDK specification](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.58.0/specification/resource/sdk.md#sdk-provided-resource-attributes):
 
 - [`service.name`](#service)
 - [`telemetry.sdk` group](#telemetry-sdk)
@@ -110,6 +110,7 @@ All custom identifiers SHOULD be stable across different versions of an implemen
 | `erlang` | erlang | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `go` | go | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `java` | java | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `kotlin` | kotlin | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `nodejs` | nodejs | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `php` | php | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `python` | python | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |

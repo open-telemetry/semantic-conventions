@@ -7,16 +7,19 @@
 change_type: enhancement
 
 # The name of the area of concern in the attributes-registry, (e.g. http, cloud, db)
-component: process
+component: disk, network, system
 
 # A brief description of the change. Surround your text with quotes ("") if it needs to start with a backtick (`).
-note: Promote process attributes to release_candidate
+note: Promote disk.io.direction, network.io.direction, and system.paging.fault.type attributes to RC
 
 # Mandatory: One or more tracking issues related to the change. You can use the PR number here if no issue exists.
 # The values here must be integers.
-issues: [3041]
+issues: [3796]
 
 # (Optional) One or more lines of additional information to render under the primary note.
 # These lines will be padded with 2 spaces and then inserted directly into the document.
 # Use pipe (|) for multiline entries.
-subtext:
+subtext: |
+  The `network.io.direction` brief was updated based on review feedback to clarify that
+  it describes traffic at the observing interface boundary and is not intended to represent
+  logical connection or network flow direction.

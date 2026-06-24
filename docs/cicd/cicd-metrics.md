@@ -4,7 +4,7 @@ linkTitle: Metrics
 
 # Semantic conventions for CI/CD metrics
 
-**Status**: [Development][DocumentStatus]
+**Status**: [Mixed][DocumentStatus]
 
 <!-- START doctoc -->
 
@@ -65,15 +65,15 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `cicd.pipeline.run.duration` | Histogram | `s` | Duration of a pipeline run grouped by pipeline, state and result. | ![Development](https://img.shields.io/badge/-development-blue) | [`cicd.pipeline`](/docs/registry/entities/cicd.md#cicd-pipeline) |
+| `cicd.pipeline.run.duration` | Histogram | `s` | Duration of a pipeline run grouped by pipeline, state and result. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | [`cicd.pipeline`](/docs/registry/entities/cicd.md#cicd-pipeline) |
 
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`cicd.pipeline.name`](/docs/registry/attributes/cicd.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The human readable name of the pipeline within a CI/CD system. | `Build and Test`; `Lint`; `Deploy Go Project`; `deploy_to_environment` |
-| [`cicd.pipeline.run.state`](/docs/registry/attributes/cicd.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The pipeline run goes through these states during its lifecycle. | `pending`; `executing`; `finalizing` |
-| [`cicd.pipeline.result`](/docs/registry/attributes/cicd.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [1] | string | The result of a pipeline run. | `success`; `failure`; `timeout`; `skipped` |
+| [`cicd.pipeline.name`](/docs/registry/attributes/cicd.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | string | The human readable name of the pipeline within a CI/CD system. | `Build and Test`; `Lint`; `Deploy Go Project`; `deploy_to_environment` |
+| [`cicd.pipeline.run.state`](/docs/registry/attributes/cicd.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | string | The pipeline run goes through these states during its lifecycle. | `pending`; `executing`; `finalizing` |
+| [`cicd.pipeline.result`](/docs/registry/attributes/cicd.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Conditionally Required` [1] | string | The result of a pipeline run. | `success`; `failure`; `timeout`; `skip` |
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the pipeline run failed. | string | Describes a class of error the operation ended with. [2] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` |
 
 **[1] `cicd.pipeline.result`:** If and only if the pipeline run result has been set during that state.
@@ -110,12 +110,12 @@ it's RECOMMENDED to:
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `cancellation` | The pipeline run was cancelled, eg. by a user manually cancelling the pipeline run. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `error` | The pipeline run failed due to an error in the CI/CD system, eg. due to the worker being killed. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `failure` | The pipeline run did not finish successfully, eg. due to a compile error or a failing test. Such failures are usually detected by non-zero exit codes of the tools executed in the pipeline run. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `skip` | The pipeline run was skipped, eg. due to a precondition not being met. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `success` | The pipeline run finished successfully. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `timeout` | A timeout caused the pipeline run to be interrupted. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `cancellation` | The pipeline run was cancelled, eg. by a user manually cancelling the pipeline run. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `error` | The pipeline run failed due to an error in the CI/CD system, eg. due to the worker being killed. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `failure` | The pipeline run did not finish successfully, eg. due to a compile error or a failing test. Such failures are usually detected by non-zero exit codes of the tools executed in the pipeline run. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `skip` | The pipeline run was skipped, eg. due to a precondition not being met. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `success` | The pipeline run finished successfully. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `timeout` | A timeout caused the pipeline run to be interrupted. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 ---
 
@@ -123,9 +123,9 @@ it's RECOMMENDED to:
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `executing` | The executing state spans the execution of any run tasks (eg. build, test). | ![Development](https://img.shields.io/badge/-development-blue) |
-| `finalizing` | The finalizing state spans from when the run has finished executing (eg. cleanup of run resources). | ![Development](https://img.shields.io/badge/-development-blue) |
-| `pending` | The run pending state spans from the event triggering the pipeline run until the execution of the run starts (eg. time spent in a queue, provisioning agents, creating run resources). | ![Development](https://img.shields.io/badge/-development-blue) |
+| `executing` | The executing state spans the execution of any run tasks (eg. build, test). | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `finalizing` | The finalizing state spans from when the run has finished executing (eg. cleanup of run resources). | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `pending` | The run pending state spans from the event triggering the pipeline run until the execution of the run starts (eg. time spent in a queue, provisioning agents, creating run resources). | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 ---
 
@@ -150,14 +150,14 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `cicd.pipeline.run.active` | UpDownCounter | `{run}` | The number of pipeline runs currently active in the system by state. | ![Development](https://img.shields.io/badge/-development-blue) | [`cicd.pipeline`](/docs/registry/entities/cicd.md#cicd-pipeline) |
+| `cicd.pipeline.run.active` | UpDownCounter | `{run}` | The number of pipeline runs currently active in the system by state. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | [`cicd.pipeline`](/docs/registry/entities/cicd.md#cicd-pipeline) |
 
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`cicd.pipeline.name`](/docs/registry/attributes/cicd.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The human readable name of the pipeline within a CI/CD system. | `Build and Test`; `Lint`; `Deploy Go Project`; `deploy_to_environment` |
-| [`cicd.pipeline.run.state`](/docs/registry/attributes/cicd.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The pipeline run goes through these states during its lifecycle. | `pending`; `executing`; `finalizing` |
+| [`cicd.pipeline.name`](/docs/registry/attributes/cicd.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | string | The human readable name of the pipeline within a CI/CD system. | `Build and Test`; `Lint`; `Deploy Go Project`; `deploy_to_environment` |
+| [`cicd.pipeline.run.state`](/docs/registry/attributes/cicd.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | string | The pipeline run goes through these states during its lifecycle. | `pending`; `executing`; `finalizing` |
 
 ---
 
@@ -165,9 +165,9 @@ This metric is [recommended][MetricRecommended].
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `executing` | The executing state spans the execution of any run tasks (eg. build, test). | ![Development](https://img.shields.io/badge/-development-blue) |
-| `finalizing` | The finalizing state spans from when the run has finished executing (eg. cleanup of run resources). | ![Development](https://img.shields.io/badge/-development-blue) |
-| `pending` | The run pending state spans from the event triggering the pipeline run until the execution of the run starts (eg. time spent in a queue, provisioning agents, creating run resources). | ![Development](https://img.shields.io/badge/-development-blue) |
+| `executing` | The executing state spans the execution of any run tasks (eg. build, test). | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `finalizing` | The finalizing state spans from when the run has finished executing (eg. cleanup of run resources). | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `pending` | The run pending state spans from the event triggering the pipeline run until the execution of the run starts (eg. time spent in a queue, provisioning agents, creating run resources). | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
@@ -184,13 +184,13 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `cicd.worker.count` | UpDownCounter | `{count}` | The number of workers on the CI/CD system by state. | ![Development](https://img.shields.io/badge/-development-blue) | |
+| `cicd.worker.count` | UpDownCounter | `{worker}` | The number of workers on the CI/CD system by state. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | |
 
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`cicd.worker.state`](/docs/registry/attributes/cicd.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The state of a CI/CD worker / agent. | `idle`; `busy`; `down` |
+| [`cicd.worker.state`](/docs/registry/attributes/cicd.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | string | The state of a CI/CD worker / agent. | `available`; `busy`; `offline` |
 
 ---
 
@@ -198,9 +198,9 @@ This metric is [recommended][MetricRecommended].
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `available` | The worker is not performing work for the CI/CD system. It is available to the CI/CD system to perform work on (online / idle). [1] | ![Development](https://img.shields.io/badge/-development-blue) |
-| `busy` | The worker is performing work for the CI/CD system. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `offline` | The worker is not available to the CI/CD system (disconnected / down). | ![Development](https://img.shields.io/badge/-development-blue) |
+| `available` | The worker is not performing work for the CI/CD system. It is available to the CI/CD system to perform work on (online / idle). [1] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `busy` | The worker is performing work for the CI/CD system. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `offline` | The worker is not available to the CI/CD system (disconnected / down). | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 **[1]:** Pipelines might have conditions on which workers they are able to run so not every worker might be available to every pipeline.
 
@@ -219,7 +219,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `cicd.pipeline.run.errors` | Counter | `{error}` | The number of errors encountered in pipeline runs (eg. compile, test failures). [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`cicd.pipeline`](/docs/registry/entities/cicd.md#cicd-pipeline) |
+| `cicd.pipeline.run.errors` | Counter | `{error}` | The number of errors encountered in pipeline runs (eg. compile, test failures). [1] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | [`cicd.pipeline`](/docs/registry/entities/cicd.md#cicd-pipeline) |
 
 **[1]:** There might be errors in a pipeline run that are non fatal (eg. they are suppressed) or in a parallel stage multiple stages could have a fatal error.
 This means that this error count might not be the same as the count of metric `cicd.pipeline.run.duration` with run result `failure`.
@@ -228,7 +228,7 @@ This means that this error count might not be the same as the count of metric `c
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`cicd.pipeline.name`](/docs/registry/attributes/cicd.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The human readable name of the pipeline within a CI/CD system. | `Build and Test`; `Lint`; `Deploy Go Project`; `deploy_to_environment` |
+| [`cicd.pipeline.name`](/docs/registry/attributes/cicd.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | string | The human readable name of the pipeline within a CI/CD system. | `Build and Test`; `Lint`; `Deploy Go Project`; `deploy_to_environment` |
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` |
 
 **[1] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
@@ -280,7 +280,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `cicd.system.errors` | Counter | `{error}` | The number of errors in a component of the CI/CD system (eg. controller, scheduler, agent). [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
+| `cicd.system.errors` | Counter | `{error}` | The number of errors in a component of the CI/CD system (eg. controller, scheduler, agent). [1] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | |
 
 **[1]:** Errors in pipeline run execution are explicitly excluded. Ie a test failure is not counted in this metric.
 
@@ -288,7 +288,7 @@ This metric is [recommended][MetricRecommended].
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`cicd.system.component`](/docs/registry/attributes/cicd.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of a component of the CI/CD system. | `controller`; `scheduler`; `agent` |
+| [`cicd.system.component`](/docs/registry/attributes/cicd.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | string | The name of a component of the CI/CD system. | `controller`; `scheduler`; `agent` |
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` |
 
 **[1] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
@@ -347,17 +347,17 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `vcs.change.count` | UpDownCounter | `{change}` | The number of changes (pull requests/merge requests/changelists) in a repository, categorized by their state (e.g. open or merged). | ![Development](https://img.shields.io/badge/-development-blue) | [`vcs.repo`](/docs/registry/entities/vcs.md#vcs-repo) |
+| `vcs.change.count` | UpDownCounter | `{change}` | The number of changes (pull requests/merge requests/changelists) in a repository, categorized by their state (e.g. open or merged). | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | [`vcs.repository`](/docs/registry/entities/vcs.md#vcs-repository) |
 
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`vcs.change.state`](/docs/registry/attributes/vcs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The state of the change (pull request/merge request/changelist). | `open`; `closed`; `merged` |
-| [`vcs.repository.url.full`](/docs/registry/attributes/vcs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The [canonical URL](https://support.google.com/webmasters/answer/10347851) of the repository providing the complete HTTP(S) address in order to locate and identify the repository through a browser. [1] | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` |
-| [`vcs.owner.name`](/docs/registry/attributes/vcs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The group owner within the version control system. | `my-org`; `myteam`; `business-unit` |
-| [`vcs.repository.name`](/docs/registry/attributes/vcs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The human readable name of the repository. It SHOULD NOT include any additional identifier like Group/SubGroup in GitLab or organization in GitHub. [2] | `semantic-conventions`; `my-cool-repo` |
-| [`vcs.provider.name`](/docs/registry/attributes/vcs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The name of the version control system provider. | `github`; `gitlab`; `gitea`; `bitbucket` |
+| [`vcs.change.state`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | string | The state of the change (pull request/merge request/changelist). | `open`; `closed`; `merged` |
+| [`vcs.repository.url.full`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | string | The [canonical URL](https://support.google.com/webmasters/answer/10347851) of the repository providing the complete HTTP(S) address in order to locate and identify the repository through a browser. [1] | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` |
+| [`vcs.owner.name`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The group owner within the version control system. | `my-org`; `myteam`; `business-unit` |
+| [`vcs.repository.name`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The human readable name of the repository. It SHOULD NOT include any additional identifier like Group/SubGroup in GitLab or organization in GitHub. [2] | `semantic-conventions`; `my-cool-repo` |
+| [`vcs.provider.name`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Opt-In` | string | The name of the version control system provider. | `github`; `gitlab`; `gitea`; `bitbucket` |
 
 **[1] `vcs.repository.url.full`:** In Git Version Control Systems, the canonical URL SHOULD NOT include
 the `.git` extension.
@@ -372,10 +372,10 @@ the same backends.
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `closed` | Closed means the merge request has been closed without merging. This can happen for various reasons, such as the changes being deemed unnecessary, the issue being resolved in another way, or the author deciding to withdraw the request. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `merged` | Merged indicates that the change has been successfully integrated into the target codebase. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `open` | Open means the change is currently active and under review. It hasn't been merged into the target branch yet, and it's still possible to make changes or add comments. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `wip` | WIP (work-in-progress, draft) means the change is still in progress and not yet ready for a full review. It might still undergo significant changes. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `closed` | Closed means the merge request has been closed without merging. This can happen for various reasons, such as the changes being deemed unnecessary, the issue being resolved in another way, or the author deciding to withdraw the request. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `merged` | Merged indicates that the change has been successfully integrated into the target codebase. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `open` | Open means the change is currently active and under review. It hasn't been merged into the target branch yet, and it's still possible to make changes or add comments. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `wip` | WIP (work-in-progress, draft) means the change is still in progress and not yet ready for a full review. It might still undergo significant changes. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 ---
 
@@ -383,10 +383,10 @@ the same backends.
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `bitbucket` | [Bitbucket](https://bitbucket.org) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `gitea` | [Gitea](https://gitea.io) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `github` | [GitHub](https://github.com) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `gitlab` | [GitLab](https://gitlab.com) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `bitbucket` | [Bitbucket](https://bitbucket.org) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `gitea` | [Gitea](https://gitea.io) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `github` | [GitHub](https://github.com) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `gitlab` | [GitLab](https://gitlab.com) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
@@ -403,18 +403,18 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `vcs.change.duration` | Gauge | `s` | The time duration a change (pull request/merge request/changelist) has been in a given state. | ![Development](https://img.shields.io/badge/-development-blue) | [`vcs.repo`](/docs/registry/entities/vcs.md#vcs-repo) |
+| `vcs.change.duration` | Gauge | `s` | The time duration a change (pull request/merge request/changelist) has been in a given state. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | [`vcs.repository`](/docs/registry/entities/vcs.md#vcs-repository) |
 
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`vcs.change.state`](/docs/registry/attributes/vcs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The state of the change (pull request/merge request/changelist). | `open`; `closed`; `merged` |
-| [`vcs.ref.head.name`](/docs/registry/attributes/vcs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. [1] | `my-feature-branch`; `tag-1-test` |
-| [`vcs.repository.url.full`](/docs/registry/attributes/vcs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The [canonical URL](https://support.google.com/webmasters/answer/10347851) of the repository providing the complete HTTP(S) address in order to locate and identify the repository through a browser. [2] | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` |
-| [`vcs.owner.name`](/docs/registry/attributes/vcs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The group owner within the version control system. | `my-org`; `myteam`; `business-unit` |
-| [`vcs.repository.name`](/docs/registry/attributes/vcs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The human readable name of the repository. It SHOULD NOT include any additional identifier like Group/SubGroup in GitLab or organization in GitHub. [3] | `semantic-conventions`; `my-cool-repo` |
-| [`vcs.provider.name`](/docs/registry/attributes/vcs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The name of the version control system provider. | `github`; `gitlab`; `gitea`; `bitbucket` |
+| [`vcs.change.state`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | string | The state of the change (pull request/merge request/changelist). | `open`; `closed`; `merged` |
+| [`vcs.ref.head.name`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. [1] | `my-feature-branch`; `tag-1-test` |
+| [`vcs.repository.url.full`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | string | The [canonical URL](https://support.google.com/webmasters/answer/10347851) of the repository providing the complete HTTP(S) address in order to locate and identify the repository through a browser. [2] | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` |
+| [`vcs.owner.name`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The group owner within the version control system. | `my-org`; `myteam`; `business-unit` |
+| [`vcs.repository.name`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The human readable name of the repository. It SHOULD NOT include any additional identifier like Group/SubGroup in GitLab or organization in GitHub. [3] | `semantic-conventions`; `my-cool-repo` |
+| [`vcs.provider.name`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Opt-In` | string | The name of the version control system provider. | `github`; `gitlab`; `gitea`; `bitbucket` |
 
 **[1] `vcs.ref.head.name`:** `head` refers to where you are right now; the current reference at a
 given time.
@@ -432,10 +432,10 @@ the same backends.
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `closed` | Closed means the merge request has been closed without merging. This can happen for various reasons, such as the changes being deemed unnecessary, the issue being resolved in another way, or the author deciding to withdraw the request. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `merged` | Merged indicates that the change has been successfully integrated into the target codebase. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `open` | Open means the change is currently active and under review. It hasn't been merged into the target branch yet, and it's still possible to make changes or add comments. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `wip` | WIP (work-in-progress, draft) means the change is still in progress and not yet ready for a full review. It might still undergo significant changes. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `closed` | Closed means the merge request has been closed without merging. This can happen for various reasons, such as the changes being deemed unnecessary, the issue being resolved in another way, or the author deciding to withdraw the request. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `merged` | Merged indicates that the change has been successfully integrated into the target codebase. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `open` | Open means the change is currently active and under review. It hasn't been merged into the target branch yet, and it's still possible to make changes or add comments. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `wip` | WIP (work-in-progress, draft) means the change is still in progress and not yet ready for a full review. It might still undergo significant changes. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 ---
 
@@ -443,10 +443,10 @@ the same backends.
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `bitbucket` | [Bitbucket](https://bitbucket.org) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `gitea` | [Gitea](https://gitea.io) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `github` | [GitHub](https://github.com) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `gitlab` | [GitLab](https://gitlab.com) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `bitbucket` | [Bitbucket](https://bitbucket.org) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `gitea` | [Gitea](https://gitea.io) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `github` | [GitHub](https://github.com) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `gitlab` | [GitLab](https://gitlab.com) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
@@ -463,20 +463,20 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `vcs.change.time_to_approval` | Gauge | `s` | The amount of time since its creation it took a change (pull request/merge request/changelist) to get the first approval. | ![Development](https://img.shields.io/badge/-development-blue) | [`vcs.repo`](/docs/registry/entities/vcs.md#vcs-repo); [`vcs.ref`](/docs/registry/entities/vcs.md#vcs-ref) |
+| `vcs.change.time_to_approval` | Gauge | `s` | The amount of time since its creation it took a change (pull request/merge request/changelist) to get the first approval. | ![Development](https://img.shields.io/badge/-development-blue) | [`vcs.repository`](/docs/registry/entities/vcs.md#vcs-repository); [`vcs.ref`](/docs/registry/entities/vcs.md#vcs-ref) |
 
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`vcs.ref.head.name`](/docs/registry/attributes/vcs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. [1] | `my-feature-branch`; `tag-1-test` |
-| [`vcs.repository.url.full`](/docs/registry/attributes/vcs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The [canonical URL](https://support.google.com/webmasters/answer/10347851) of the repository providing the complete HTTP(S) address in order to locate and identify the repository through a browser. [2] | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` |
-| [`vcs.owner.name`](/docs/registry/attributes/vcs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The group owner within the version control system. | `my-org`; `myteam`; `business-unit` |
-| [`vcs.ref.base.name`](/docs/registry/attributes/vcs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. [3] | `my-feature-branch`; `tag-1-test` |
-| [`vcs.repository.name`](/docs/registry/attributes/vcs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The human readable name of the repository. It SHOULD NOT include any additional identifier like Group/SubGroup in GitLab or organization in GitHub. [4] | `semantic-conventions`; `my-cool-repo` |
-| [`vcs.provider.name`](/docs/registry/attributes/vcs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The name of the version control system provider. | `github`; `gitlab`; `gitea`; `bitbucket` |
-| [`vcs.ref.base.revision`](/docs/registry/attributes/vcs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The revision, literally [revised version](https://www.merriam-webster.com/dictionary/revision), The revision most often refers to a commit object in Git, or a revision number in SVN. [5] | `9d59409acf479dfa0df1aa568182e43e43df8bbe28d60fcf2bc52e30068802cc`; `main`; `123`; `HEAD` |
-| [`vcs.ref.head.revision`](/docs/registry/attributes/vcs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The revision, literally [revised version](https://www.merriam-webster.com/dictionary/revision), The revision most often refers to a commit object in Git, or a revision number in SVN. [6] | `9d59409acf479dfa0df1aa568182e43e43df8bbe28d60fcf2bc52e30068802cc`; `main`; `123`; `HEAD` |
+| [`vcs.ref.head.name`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. [1] | `my-feature-branch`; `tag-1-test` |
+| [`vcs.repository.url.full`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | string | The [canonical URL](https://support.google.com/webmasters/answer/10347851) of the repository providing the complete HTTP(S) address in order to locate and identify the repository through a browser. [2] | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` |
+| [`vcs.owner.name`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The group owner within the version control system. | `my-org`; `myteam`; `business-unit` |
+| [`vcs.ref.base.name`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. [3] | `my-feature-branch`; `tag-1-test` |
+| [`vcs.repository.name`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The human readable name of the repository. It SHOULD NOT include any additional identifier like Group/SubGroup in GitLab or organization in GitHub. [4] | `semantic-conventions`; `my-cool-repo` |
+| [`vcs.provider.name`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Opt-In` | string | The name of the version control system provider. | `github`; `gitlab`; `gitea`; `bitbucket` |
+| [`vcs.ref.base.revision`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Opt-In` | string | The revision, literally [revised version](https://www.merriam-webster.com/dictionary/revision), The revision most often refers to a commit object in Git, or a revision number in SVN. [5] | `9d59409acf479dfa0df1aa568182e43e43df8bbe28d60fcf2bc52e30068802cc`; `main`; `123`; `HEAD` |
+| [`vcs.ref.head.revision`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Opt-In` | string | The revision, literally [revised version](https://www.merriam-webster.com/dictionary/revision), The revision most often refers to a commit object in Git, or a revision number in SVN. [6] | `9d59409acf479dfa0df1aa568182e43e43df8bbe28d60fcf2bc52e30068802cc`; `main`; `123`; `HEAD` |
 
 **[1] `vcs.ref.head.name`:** `head` refers to where you are right now; the current reference at a
 given time.
@@ -524,10 +524,10 @@ revision based on the VCS system and situational context.
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `bitbucket` | [Bitbucket](https://bitbucket.org) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `gitea` | [Gitea](https://gitea.io) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `github` | [GitHub](https://github.com) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `gitlab` | [GitLab](https://gitlab.com) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `bitbucket` | [Bitbucket](https://bitbucket.org) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `gitea` | [Gitea](https://gitea.io) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `github` | [GitHub](https://github.com) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `gitlab` | [GitLab](https://gitlab.com) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
@@ -544,20 +544,20 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `vcs.change.time_to_merge` | Gauge | `s` | The amount of time since its creation it took a change (pull request/merge request/changelist) to get merged into the target(base) ref. | ![Development](https://img.shields.io/badge/-development-blue) | [`vcs.repo`](/docs/registry/entities/vcs.md#vcs-repo); [`vcs.ref`](/docs/registry/entities/vcs.md#vcs-ref) |
+| `vcs.change.time_to_merge` | Gauge | `s` | The amount of time since its creation it took a change (pull request/merge request/changelist) to get merged into the target(base) ref. | ![Development](https://img.shields.io/badge/-development-blue) | [`vcs.repository`](/docs/registry/entities/vcs.md#vcs-repository); [`vcs.ref`](/docs/registry/entities/vcs.md#vcs-ref) |
 
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`vcs.ref.head.name`](/docs/registry/attributes/vcs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. [1] | `my-feature-branch`; `tag-1-test` |
-| [`vcs.repository.url.full`](/docs/registry/attributes/vcs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The [canonical URL](https://support.google.com/webmasters/answer/10347851) of the repository providing the complete HTTP(S) address in order to locate and identify the repository through a browser. [2] | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` |
-| [`vcs.owner.name`](/docs/registry/attributes/vcs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The group owner within the version control system. | `my-org`; `myteam`; `business-unit` |
-| [`vcs.ref.base.name`](/docs/registry/attributes/vcs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. [3] | `my-feature-branch`; `tag-1-test` |
-| [`vcs.repository.name`](/docs/registry/attributes/vcs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The human readable name of the repository. It SHOULD NOT include any additional identifier like Group/SubGroup in GitLab or organization in GitHub. [4] | `semantic-conventions`; `my-cool-repo` |
-| [`vcs.provider.name`](/docs/registry/attributes/vcs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The name of the version control system provider. | `github`; `gitlab`; `gitea`; `bitbucket` |
-| [`vcs.ref.base.revision`](/docs/registry/attributes/vcs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The revision, literally [revised version](https://www.merriam-webster.com/dictionary/revision), The revision most often refers to a commit object in Git, or a revision number in SVN. [5] | `9d59409acf479dfa0df1aa568182e43e43df8bbe28d60fcf2bc52e30068802cc`; `main`; `123`; `HEAD` |
-| [`vcs.ref.head.revision`](/docs/registry/attributes/vcs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The revision, literally [revised version](https://www.merriam-webster.com/dictionary/revision), The revision most often refers to a commit object in Git, or a revision number in SVN. [6] | `9d59409acf479dfa0df1aa568182e43e43df8bbe28d60fcf2bc52e30068802cc`; `main`; `123`; `HEAD` |
+| [`vcs.ref.head.name`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. [1] | `my-feature-branch`; `tag-1-test` |
+| [`vcs.repository.url.full`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | string | The [canonical URL](https://support.google.com/webmasters/answer/10347851) of the repository providing the complete HTTP(S) address in order to locate and identify the repository through a browser. [2] | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` |
+| [`vcs.owner.name`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The group owner within the version control system. | `my-org`; `myteam`; `business-unit` |
+| [`vcs.ref.base.name`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. [3] | `my-feature-branch`; `tag-1-test` |
+| [`vcs.repository.name`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The human readable name of the repository. It SHOULD NOT include any additional identifier like Group/SubGroup in GitLab or organization in GitHub. [4] | `semantic-conventions`; `my-cool-repo` |
+| [`vcs.provider.name`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Opt-In` | string | The name of the version control system provider. | `github`; `gitlab`; `gitea`; `bitbucket` |
+| [`vcs.ref.base.revision`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Opt-In` | string | The revision, literally [revised version](https://www.merriam-webster.com/dictionary/revision), The revision most often refers to a commit object in Git, or a revision number in SVN. [5] | `9d59409acf479dfa0df1aa568182e43e43df8bbe28d60fcf2bc52e30068802cc`; `main`; `123`; `HEAD` |
+| [`vcs.ref.head.revision`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Opt-In` | string | The revision, literally [revised version](https://www.merriam-webster.com/dictionary/revision), The revision most often refers to a commit object in Git, or a revision number in SVN. [6] | `9d59409acf479dfa0df1aa568182e43e43df8bbe28d60fcf2bc52e30068802cc`; `main`; `123`; `HEAD` |
 
 **[1] `vcs.ref.head.name`:** `head` refers to where you are right now; the current reference at a
 given time.
@@ -605,10 +605,10 @@ revision based on the VCS system and situational context.
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `bitbucket` | [Bitbucket](https://bitbucket.org) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `gitea` | [Gitea](https://gitea.io) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `github` | [GitHub](https://github.com) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `gitlab` | [GitLab](https://gitlab.com) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `bitbucket` | [Bitbucket](https://bitbucket.org) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `gitea` | [Gitea](https://gitea.io) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `github` | [GitHub](https://github.com) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `gitlab` | [GitLab](https://gitlab.com) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
@@ -625,14 +625,14 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `vcs.repository.count` | UpDownCounter | `{repository}` | The number of repositories in an organization. | ![Development](https://img.shields.io/badge/-development-blue) | |
+| `vcs.repository.count` | UpDownCounter | `{repository}` | The number of repositories in an organization. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | |
 
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`vcs.owner.name`](/docs/registry/attributes/vcs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The group owner within the version control system. | `my-org`; `myteam`; `business-unit` |
-| [`vcs.provider.name`](/docs/registry/attributes/vcs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The name of the version control system provider. | `github`; `gitlab`; `gitea`; `bitbucket` |
+| [`vcs.owner.name`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The group owner within the version control system. | `my-org`; `myteam`; `business-unit` |
+| [`vcs.provider.name`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Opt-In` | string | The name of the version control system provider. | `github`; `gitlab`; `gitea`; `bitbucket` |
 
 ---
 
@@ -640,10 +640,10 @@ This metric is [recommended][MetricRecommended].
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `bitbucket` | [Bitbucket](https://bitbucket.org) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `gitea` | [Gitea](https://gitea.io) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `github` | [GitHub](https://github.com) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `gitlab` | [GitLab](https://gitlab.com) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `bitbucket` | [Bitbucket](https://bitbucket.org) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `gitea` | [Gitea](https://gitea.io) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `github` | [GitHub](https://github.com) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `gitlab` | [GitLab](https://gitlab.com) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
@@ -660,17 +660,17 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `vcs.ref.count` | UpDownCounter | `{ref}` | The number of refs of type branch or tag in a repository. | ![Development](https://img.shields.io/badge/-development-blue) | [`vcs.repo`](/docs/registry/entities/vcs.md#vcs-repo) |
+| `vcs.ref.count` | UpDownCounter | `{ref}` | The number of refs of type branch or tag in a repository. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | [`vcs.repository`](/docs/registry/entities/vcs.md#vcs-repository) |
 
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`vcs.ref.type`](/docs/registry/attributes/vcs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository. | `branch`; `tag` |
-| [`vcs.repository.url.full`](/docs/registry/attributes/vcs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The [canonical URL](https://support.google.com/webmasters/answer/10347851) of the repository providing the complete HTTP(S) address in order to locate and identify the repository through a browser. [1] | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` |
-| [`vcs.owner.name`](/docs/registry/attributes/vcs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The group owner within the version control system. | `my-org`; `myteam`; `business-unit` |
-| [`vcs.repository.name`](/docs/registry/attributes/vcs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The human readable name of the repository. It SHOULD NOT include any additional identifier like Group/SubGroup in GitLab or organization in GitHub. [2] | `semantic-conventions`; `my-cool-repo` |
-| [`vcs.provider.name`](/docs/registry/attributes/vcs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The name of the version control system provider. | `github`; `gitlab`; `gitea`; `bitbucket` |
+| [`vcs.ref.type`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | string | The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository. | `branch`; `tag` |
+| [`vcs.repository.url.full`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | string | The [canonical URL](https://support.google.com/webmasters/answer/10347851) of the repository providing the complete HTTP(S) address in order to locate and identify the repository through a browser. [1] | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` |
+| [`vcs.owner.name`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The group owner within the version control system. | `my-org`; `myteam`; `business-unit` |
+| [`vcs.repository.name`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The human readable name of the repository. It SHOULD NOT include any additional identifier like Group/SubGroup in GitLab or organization in GitHub. [2] | `semantic-conventions`; `my-cool-repo` |
+| [`vcs.provider.name`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Opt-In` | string | The name of the version control system provider. | `github`; `gitlab`; `gitea`; `bitbucket` |
 
 **[1] `vcs.repository.url.full`:** In Git Version Control Systems, the canonical URL SHOULD NOT include
 the `.git` extension.
@@ -685,10 +685,10 @@ the same backends.
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `bitbucket` | [Bitbucket](https://bitbucket.org) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `gitea` | [Gitea](https://gitea.io) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `github` | [GitHub](https://github.com) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `gitlab` | [GitLab](https://gitlab.com) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `bitbucket` | [Bitbucket](https://bitbucket.org) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `gitea` | [Gitea](https://gitea.io) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `github` | [GitHub](https://github.com) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `gitlab` | [GitLab](https://gitlab.com) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 ---
 
@@ -696,8 +696,8 @@ the same backends.
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `branch` | [branch](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddefbranchabranch) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `tag` | [tag](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddeftagatag) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `branch` | [branch](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddefbranchabranch) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `tag` | [tag](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddeftagatag) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
@@ -714,7 +714,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `vcs.ref.lines_delta` | Gauge | `{line}` | The number of lines added/removed in a ref (branch) relative to the ref from the `vcs.ref.base.name` attribute. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`vcs.repo`](/docs/registry/entities/vcs.md#vcs-repo) |
+| `vcs.ref.lines_delta` | Gauge | `{line}` | The number of lines added/removed in a ref (branch) relative to the ref from the `vcs.ref.base.name` attribute. [1] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | [`vcs.repository`](/docs/registry/entities/vcs.md#vcs-repository) |
 
 **[1]:** This metric should be reported for each `vcs.line_change.type` value. For example if a ref added 3 lines and removed 2 lines,
 instrumentation SHOULD report two measurements: 3 and 2 (both positive numbers).
@@ -724,16 +724,16 @@ If number of lines added/removed should be calculated from the start of time, th
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`vcs.line_change.type`](/docs/registry/attributes/vcs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The type of line change being measured on a branch or change. | `added`; `removed` |
-| [`vcs.ref.base.name`](/docs/registry/attributes/vcs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. [1] | `my-feature-branch`; `tag-1-test` |
-| [`vcs.ref.base.type`](/docs/registry/attributes/vcs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository. [2] | `branch`; `tag` |
-| [`vcs.ref.head.name`](/docs/registry/attributes/vcs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. [3] | `my-feature-branch`; `tag-1-test` |
-| [`vcs.ref.head.type`](/docs/registry/attributes/vcs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository. [4] | `branch`; `tag` |
-| [`vcs.repository.url.full`](/docs/registry/attributes/vcs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The [canonical URL](https://support.google.com/webmasters/answer/10347851) of the repository providing the complete HTTP(S) address in order to locate and identify the repository through a browser. [5] | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` |
-| [`vcs.change.id`](/docs/registry/attributes/vcs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` if a change is associate with the ref. | string | The ID of the change (pull request/merge request/changelist) if applicable. This is usually a unique (within repository) identifier generated by the VCS system. | `123` |
-| [`vcs.owner.name`](/docs/registry/attributes/vcs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The group owner within the version control system. | `my-org`; `myteam`; `business-unit` |
-| [`vcs.repository.name`](/docs/registry/attributes/vcs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The human readable name of the repository. It SHOULD NOT include any additional identifier like Group/SubGroup in GitLab or organization in GitHub. [6] | `semantic-conventions`; `my-cool-repo` |
-| [`vcs.provider.name`](/docs/registry/attributes/vcs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The name of the version control system provider. | `github`; `gitlab`; `gitea`; `bitbucket` |
+| [`vcs.line_change.type`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | string | The type of line change being measured on a branch or change. | `added`; `removed` |
+| [`vcs.ref.base.name`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. [1] | `my-feature-branch`; `tag-1-test` |
+| [`vcs.ref.base.type`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | string | The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository. [2] | `branch`; `tag` |
+| [`vcs.ref.head.name`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. [3] | `my-feature-branch`; `tag-1-test` |
+| [`vcs.ref.head.type`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | string | The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository. [4] | `branch`; `tag` |
+| [`vcs.repository.url.full`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | string | The [canonical URL](https://support.google.com/webmasters/answer/10347851) of the repository providing the complete HTTP(S) address in order to locate and identify the repository through a browser. [5] | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` |
+| [`vcs.change.id`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Conditionally Required` if a change is associated with the ref. | string | The ID of the change (pull request/merge request/changelist) if applicable. This is usually a unique (within repository) identifier generated by the VCS system. | `123` |
+| [`vcs.owner.name`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The group owner within the version control system. | `my-org`; `myteam`; `business-unit` |
+| [`vcs.repository.name`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The human readable name of the repository. It SHOULD NOT include any additional identifier like Group/SubGroup in GitLab or organization in GitHub. [6] | `semantic-conventions`; `my-cool-repo` |
+| [`vcs.provider.name`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Opt-In` | string | The name of the version control system provider. | `github`; `gitlab`; `gitea`; `bitbucket` |
 
 **[1] `vcs.ref.base.name`:** `base` refers to the starting point of a change. For example, `main`
 would be the base reference of type branch if you've created a new
@@ -762,8 +762,8 @@ the same backends.
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `added` | How many lines were added. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `removed` | How many lines were removed. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `added` | How many lines were added. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `removed` | How many lines were removed. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 ---
 
@@ -771,10 +771,10 @@ the same backends.
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `bitbucket` | [Bitbucket](https://bitbucket.org) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `gitea` | [Gitea](https://gitea.io) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `github` | [GitHub](https://github.com) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `gitlab` | [GitLab](https://gitlab.com) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `bitbucket` | [Bitbucket](https://bitbucket.org) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `gitea` | [Gitea](https://gitea.io) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `github` | [GitHub](https://github.com) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `gitlab` | [GitLab](https://gitlab.com) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 ---
 
@@ -782,8 +782,8 @@ the same backends.
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `branch` | [branch](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddefbranchabranch) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `tag` | [tag](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddeftagatag) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `branch` | [branch](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddefbranchabranch) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `tag` | [tag](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddeftagatag) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 ---
 
@@ -791,8 +791,8 @@ the same backends.
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `branch` | [branch](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddefbranchabranch) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `tag` | [tag](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddeftagatag) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `branch` | [branch](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddefbranchabranch) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `tag` | [tag](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddeftagatag) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
@@ -809,7 +809,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `vcs.ref.revisions_delta` | Gauge | `{revision}` | The number of revisions (commits) a ref (branch) is ahead/behind the branch from the `vcs.ref.base.name` attribute. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`vcs.repo`](/docs/registry/entities/vcs.md#vcs-repo) |
+| `vcs.ref.revisions_delta` | Gauge | `{revision}` | The number of revisions (commits) a ref (branch) is ahead/behind the branch from the `vcs.ref.base.name` attribute. [1] | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | [`vcs.repository`](/docs/registry/entities/vcs.md#vcs-repository) |
 
 **[1]:** This metric should be reported for each `vcs.revision_delta.direction` value. For example if branch `a` is 3 commits behind and 2 commits ahead of `trunk`,
 instrumentation SHOULD report two measurements: 3 and 2 (both positive numbers) and `vcs.ref.base.name` is set to `trunk`.
@@ -818,16 +818,16 @@ instrumentation SHOULD report two measurements: 3 and 2 (both positive numbers) 
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`vcs.ref.base.name`](/docs/registry/attributes/vcs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. [1] | `my-feature-branch`; `tag-1-test` |
-| [`vcs.ref.base.type`](/docs/registry/attributes/vcs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository. [2] | `branch`; `tag` |
-| [`vcs.ref.head.name`](/docs/registry/attributes/vcs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. [3] | `my-feature-branch`; `tag-1-test` |
-| [`vcs.ref.head.type`](/docs/registry/attributes/vcs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository. [4] | `branch`; `tag` |
-| [`vcs.repository.url.full`](/docs/registry/attributes/vcs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The [canonical URL](https://support.google.com/webmasters/answer/10347851) of the repository providing the complete HTTP(S) address in order to locate and identify the repository through a browser. [5] | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` |
-| [`vcs.revision_delta.direction`](/docs/registry/attributes/vcs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The type of revision comparison. | `ahead`; `behind` |
-| [`vcs.change.id`](/docs/registry/attributes/vcs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` if a change is associate with the ref. | string | The ID of the change (pull request/merge request/changelist) if applicable. This is usually a unique (within repository) identifier generated by the VCS system. | `123` |
-| [`vcs.owner.name`](/docs/registry/attributes/vcs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The group owner within the version control system. | `my-org`; `myteam`; `business-unit` |
-| [`vcs.repository.name`](/docs/registry/attributes/vcs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The human readable name of the repository. It SHOULD NOT include any additional identifier like Group/SubGroup in GitLab or organization in GitHub. [6] | `semantic-conventions`; `my-cool-repo` |
-| [`vcs.provider.name`](/docs/registry/attributes/vcs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The name of the version control system provider. | `github`; `gitlab`; `gitea`; `bitbucket` |
+| [`vcs.ref.base.name`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. [1] | `my-feature-branch`; `tag-1-test` |
+| [`vcs.ref.base.type`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | string | The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository. [2] | `branch`; `tag` |
+| [`vcs.ref.head.name`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. [3] | `my-feature-branch`; `tag-1-test` |
+| [`vcs.ref.head.type`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | string | The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository. [4] | `branch`; `tag` |
+| [`vcs.repository.url.full`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | string | The [canonical URL](https://support.google.com/webmasters/answer/10347851) of the repository providing the complete HTTP(S) address in order to locate and identify the repository through a browser. [5] | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` |
+| [`vcs.revision_delta.direction`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | string | The type of revision comparison. | `ahead`; `behind` |
+| [`vcs.change.id`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Conditionally Required` if a change is associated with the ref. | string | The ID of the change (pull request/merge request/changelist) if applicable. This is usually a unique (within repository) identifier generated by the VCS system. | `123` |
+| [`vcs.owner.name`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The group owner within the version control system. | `my-org`; `myteam`; `business-unit` |
+| [`vcs.repository.name`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The human readable name of the repository. It SHOULD NOT include any additional identifier like Group/SubGroup in GitLab or organization in GitHub. [6] | `semantic-conventions`; `my-cool-repo` |
+| [`vcs.provider.name`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Opt-In` | string | The name of the version control system provider. | `github`; `gitlab`; `gitea`; `bitbucket` |
 
 **[1] `vcs.ref.base.name`:** `base` refers to the starting point of a change. For example, `main`
 would be the base reference of type branch if you've created a new
@@ -856,10 +856,10 @@ the same backends.
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `bitbucket` | [Bitbucket](https://bitbucket.org) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `gitea` | [Gitea](https://gitea.io) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `github` | [GitHub](https://github.com) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `gitlab` | [GitLab](https://gitlab.com) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `bitbucket` | [Bitbucket](https://bitbucket.org) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `gitea` | [Gitea](https://gitea.io) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `github` | [GitHub](https://github.com) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `gitlab` | [GitLab](https://gitlab.com) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 ---
 
@@ -867,8 +867,8 @@ the same backends.
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `branch` | [branch](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddefbranchabranch) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `tag` | [tag](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddeftagatag) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `branch` | [branch](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddefbranchabranch) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `tag` | [tag](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddeftagatag) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 ---
 
@@ -876,8 +876,8 @@ the same backends.
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `branch` | [branch](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddefbranchabranch) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `tag` | [tag](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddeftagatag) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `branch` | [branch](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddefbranchabranch) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `tag` | [tag](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddeftagatag) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 ---
 
@@ -885,8 +885,8 @@ the same backends.
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `ahead` | How many revisions the change is ahead of the target ref. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `behind` | How many revisions the change is behind the target ref. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ahead` | How many revisions the change is ahead of the target ref. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `behind` | How many revisions the change is behind the target ref. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
@@ -903,18 +903,18 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `vcs.ref.time` | Gauge | `s` | Time a ref (branch) created from the default branch (trunk) has existed. The `ref.type` attribute will always be `branch`. | ![Development](https://img.shields.io/badge/-development-blue) | [`vcs.repo`](/docs/registry/entities/vcs.md#vcs-repo) |
+| `vcs.ref.time` | Gauge | `s` | Time a ref (branch) created from the default branch (trunk) has existed. The `ref.type` attribute will always be `branch`. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | [`vcs.repository`](/docs/registry/entities/vcs.md#vcs-repository) |
 
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`vcs.ref.head.name`](/docs/registry/attributes/vcs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. [1] | `my-feature-branch`; `tag-1-test` |
-| [`vcs.ref.head.type`](/docs/registry/attributes/vcs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository. [2] | `branch`; `tag` |
-| [`vcs.repository.url.full`](/docs/registry/attributes/vcs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The [canonical URL](https://support.google.com/webmasters/answer/10347851) of the repository providing the complete HTTP(S) address in order to locate and identify the repository through a browser. [3] | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` |
-| [`vcs.owner.name`](/docs/registry/attributes/vcs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The group owner within the version control system. | `my-org`; `myteam`; `business-unit` |
-| [`vcs.repository.name`](/docs/registry/attributes/vcs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The human readable name of the repository. It SHOULD NOT include any additional identifier like Group/SubGroup in GitLab or organization in GitHub. [4] | `semantic-conventions`; `my-cool-repo` |
-| [`vcs.provider.name`](/docs/registry/attributes/vcs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The name of the version control system provider. | `github`; `gitlab`; `gitea`; `bitbucket` |
+| [`vcs.ref.head.name`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. [1] | `my-feature-branch`; `tag-1-test` |
+| [`vcs.ref.head.type`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | string | The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository. [2] | `branch`; `tag` |
+| [`vcs.repository.url.full`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | string | The [canonical URL](https://support.google.com/webmasters/answer/10347851) of the repository providing the complete HTTP(S) address in order to locate and identify the repository through a browser. [3] | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` |
+| [`vcs.owner.name`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The group owner within the version control system. | `my-org`; `myteam`; `business-unit` |
+| [`vcs.repository.name`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The human readable name of the repository. It SHOULD NOT include any additional identifier like Group/SubGroup in GitLab or organization in GitHub. [4] | `semantic-conventions`; `my-cool-repo` |
+| [`vcs.provider.name`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Opt-In` | string | The name of the version control system provider. | `github`; `gitlab`; `gitea`; `bitbucket` |
 
 **[1] `vcs.ref.head.name`:** `head` refers to where you are right now; the current reference at a
 given time.
@@ -935,10 +935,10 @@ the same backends.
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `bitbucket` | [Bitbucket](https://bitbucket.org) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `gitea` | [Gitea](https://gitea.io) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `github` | [GitHub](https://github.com) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `gitlab` | [GitLab](https://gitlab.com) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `bitbucket` | [Bitbucket](https://bitbucket.org) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `gitea` | [Gitea](https://gitea.io) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `github` | [GitHub](https://github.com) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `gitlab` | [GitLab](https://gitlab.com) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 ---
 
@@ -946,8 +946,8 @@ the same backends.
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `branch` | [branch](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddefbranchabranch) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `tag` | [tag](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddeftagatag) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `branch` | [branch](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddefbranchabranch) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `tag` | [tag](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddeftagatag) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
@@ -964,16 +964,16 @@ This metric is [opt-in][MetricOptIn].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `vcs.contributor.count` | Gauge | `{contributor}` | The number of unique contributors to a repository. | ![Development](https://img.shields.io/badge/-development-blue) | [`vcs.repo`](/docs/registry/entities/vcs.md#vcs-repo) |
+| `vcs.contributor.count` | Gauge | `{contributor}` | The number of unique contributors to a repository. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | [`vcs.repository`](/docs/registry/entities/vcs.md#vcs-repository) |
 
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`vcs.repository.url.full`](/docs/registry/attributes/vcs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The [canonical URL](https://support.google.com/webmasters/answer/10347851) of the repository providing the complete HTTP(S) address in order to locate and identify the repository through a browser. [1] | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` |
-| [`vcs.owner.name`](/docs/registry/attributes/vcs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The group owner within the version control system. | `my-org`; `myteam`; `business-unit` |
-| [`vcs.repository.name`](/docs/registry/attributes/vcs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The human readable name of the repository. It SHOULD NOT include any additional identifier like Group/SubGroup in GitLab or organization in GitHub. [2] | `semantic-conventions`; `my-cool-repo` |
-| [`vcs.provider.name`](/docs/registry/attributes/vcs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The name of the version control system provider. | `github`; `gitlab`; `gitea`; `bitbucket` |
+| [`vcs.repository.url.full`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | string | The [canonical URL](https://support.google.com/webmasters/answer/10347851) of the repository providing the complete HTTP(S) address in order to locate and identify the repository through a browser. [1] | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` |
+| [`vcs.owner.name`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The group owner within the version control system. | `my-org`; `myteam`; `business-unit` |
+| [`vcs.repository.name`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The human readable name of the repository. It SHOULD NOT include any additional identifier like Group/SubGroup in GitLab or organization in GitHub. [2] | `semantic-conventions`; `my-cool-repo` |
+| [`vcs.provider.name`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Opt-In` | string | The name of the version control system provider. | `github`; `gitlab`; `gitea`; `bitbucket` |
 
 **[1] `vcs.repository.url.full`:** In Git Version Control Systems, the canonical URL SHOULD NOT include
 the `.git` extension.
@@ -988,10 +988,10 @@ the same backends.
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `bitbucket` | [Bitbucket](https://bitbucket.org) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `gitea` | [Gitea](https://gitea.io) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `github` | [GitHub](https://github.com) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `gitlab` | [GitLab](https://gitlab.com) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `bitbucket` | [Bitbucket](https://bitbucket.org) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `gitea` | [Gitea](https://gitea.io) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `github` | [GitHub](https://github.com) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `gitlab` | [GitLab](https://gitlab.com) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->

@@ -1,4 +1,0 @@
-change_type: bug_fix
-component: browser
-note: "remove the condition to include `user_agent.original` attribute in browser resource"
-issues: [3738]
