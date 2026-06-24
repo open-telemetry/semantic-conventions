@@ -28,6 +28,6 @@ eventually results in new version of schema file being published.
 ## After the release
 
 - Publishing a release triggers the [post-release workflow](https://github.com/open-telemetry/semantic-conventions/actions/workflows/post-release.yml),
-  which opens a pull request against main bumping the development `schema_url` in 
-  `model/manifest.yaml` to the `{minor}.{minor+1}.0-unreleased` version. 
+  which opens a pull request against main bumping the development `schema_url` in
+  `model/manifest.yaml` to the `{minor}.{minor+1}.0-unreleased` version.
   Review and merge that pull request.
