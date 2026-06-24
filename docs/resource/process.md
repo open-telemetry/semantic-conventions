@@ -28,7 +28,7 @@ linkTitle: Process
 <!-- see templates/registry/markdown/snippet.md.j2 -->
 <!-- prettier-ignore-start -->
 
-**Status:** ![Development](https://img.shields.io/badge/-development-blue)
+**Status:** ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid)
 
 **type:** `process`
 
