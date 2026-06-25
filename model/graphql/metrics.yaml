@@ -316,5 +316,5 @@ groups:
       measures the transport-level duration.
 
       Histogram bucket boundaries SHOULD be chosen to capture expected
-      request durations. 
+      request durations.
     extends: metric_attributes.graphql.client
