@@ -71,6 +71,10 @@ jobs:
           branch="otelbot/bump-schema-url-${NEXT_VERSION}"
 
           git checkout -b "$branch"
+          if git diff --quiet; then
+            echo "No changes to commit; schema_url already up to date."
+            exit 0
+          fi
           git commit -a -m "$message"
           git push --set-upstream origin "$branch"
           gh pr create --title "$message" \
