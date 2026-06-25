@@ -126,7 +126,7 @@ groups:
           This is a hash or identifier of the document provided by the user to
           identify trusted documents.
       - id: graphql.document.locations
-        type: any[]
+        type: any
         stability: development
         brief: >
           The locations in the GraphQL document associated with an error.

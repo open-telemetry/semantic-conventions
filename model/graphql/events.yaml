@@ -50,7 +50,7 @@ groups:
 
       **Relationship to span status and `error.type`:**
       GraphQL error events provide detailed per-error information from the response `errors`
-
+      array. They are complementary to span-level error signals:
 
       - `error.type` on the parent span provides a low-cardinality error classification
         for the overall operation outcome. It SHOULD be set based on the `graphql.error.code`

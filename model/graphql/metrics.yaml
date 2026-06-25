@@ -229,6 +229,43 @@ groups:
           namespace has bounded cardinality, such as when using persisted
           operations or trusted documents.
 
+  - id: metric.graphql.server.subscription.event_count
+    type: metric
+    metric_name: graphql.server.subscription.event_count
+    annotations:
+      code_generation:
+        metric_value_type: int
+    brief: "Number of GraphQL subscription events processed."
+    instrument: counter
+    unit: "{event}"
+    stability: development
+    note: |
+      This metric is incremented once for each subscription event processed
+      by the server, including events whose processing ends with an error.
+    attributes:
+      - ref: graphql.document.id
+        requirement_level: opt_in
+        note: |
+          The `graphql.document.id` MUST only be enabled when the set of
+          document identifiers has bounded cardinality, such as when using
+          trusted documents or persisted operations.
+      - ref: graphql.document.hash
+        requirement_level: opt_in
+        note: |
+          The `graphql.document.hash` MUST only be enabled when the set of
+          document hashes has bounded cardinality, such as when using
+          persisted operations or trusted documents.
+      - ref: graphql.operation.name
+        requirement_level: opt_in
+        note: |
+          The `graphql.operation.name` is provided by the client and can have
+          unbounded cardinality. It MUST only be enabled when the operation
+          namespace has bounded cardinality, such as when using persisted
+          operations or trusted documents.
+      - ref: error.type
+        requirement_level:
+          conditionally_required: If the subscription event processing ended with an error.
+
   - id: metric.graphql.server.subscription.event.duration
     type: metric
     metric_name: graphql.server.subscription.event.duration

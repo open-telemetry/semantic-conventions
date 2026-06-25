@@ -50,7 +50,7 @@ the `{graphql.operation.type} {graphql.operation.name}` format when
 `graphql.operation.name` is available and the operation is successfully identified
 in the document.
 
-> **Warning**
+> [!Warning]
 > The `graphql.operation.name` value is provided by the client and can have high
 > cardinality. Using it in the GraphQL server span name is NOT RECOMMENDED for
 > ad-hoc operations without careful consideration of cardinality implications.
@@ -74,7 +74,7 @@ request errors, total execution failure (where `data` is `null` and `errors`
 is non-empty), and partial success (where both `data` and `errors` are present).
 Individual GraphQL errors SHOULD still be recorded as events.
 
-> **Note**
+> [!Note]
 > Instrumentations that have additional context about specific errors MAY
 > use this context to set the span status more precisely. For example, if
 > an instrumentation knows that the errors only affect optional,
@@ -85,6 +85,7 @@ Individual GraphQL errors SHOULD still be recorded as events.
 Span status descriptions are optional and SHOULD only be set when they provide
 additional context not already captured by `error.type` or error events.
 Recommended cases for setting a description:
+
 
 - When the error is ambiguous without additional context
 - To distinguish between complete failure and partial success when both set
@@ -779,8 +780,7 @@ This span represents the execution of a GraphQL field.
 This span covers the execution of an individual field, including both
 synchronous and asynchronous resolvers. The span ends when the resolver
 result is available.
-
-> **Warning**
+> [!Warning]
 > Creating spans for every resolver execution can result in traces with
 > hundreds or thousands of spans, severely impacting performance and
 > trace readability. Instrumentations MUST NOT create resolver execution
@@ -788,6 +788,7 @@ result is available.
 
 Instrumentations SHOULD provide configuration options to control which
 resolvers generate spans. Recommended strategies include:
+
 
 - **Manual selection**: Allow developers to explicitly mark specific
   resolvers for tracing (e.g., via annotations, decorators, or configuration)
@@ -952,6 +953,8 @@ whose resolvers contributed load requests to this batch, so that
 the causal relationship between resolvers and the batch is preserved.
 
 Each link SHOULD include the following attributes:
+
+
 - `graphql.field.schema_coordinate`: The schema coordinate of the field
   that triggered the load request (e.g., `User.avatar`).
 
@@ -1035,6 +1038,8 @@ instrumentations SHOULD create a new root span or link to the original
 subscription span.
 
 Context propagation for subscriptions:
+
+
 - The initial subscription request carries context from the client
 - Each subscription event SHOULD propagate context from the originating
   subscription where possible

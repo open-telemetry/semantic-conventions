@@ -87,7 +87,7 @@ groups:
       When a GraphQL operation uses `@defer` or `@stream` directives, the response
       is delivered incrementally. The server span SHOULD encompass the entire response
       delivery, including all deferred and streamed payloads. If the instrumentation
-
+      cannot keep the span open for the full incremental delivery, it SHOULD:
 
       - End the span after the initial payload and document this behavior
       - Record deferred/streamed errors as separate events if the span
@@ -102,9 +102,9 @@ groups:
       `graphql.operation.name` attributes.
     attributes:
       - ref: graphql.processing.type
-        requirement_level:
-          required: MUST be `request`.
+        requirement_level: required
         examples: ["request"]
+        note: MUST be `request`.
       - ref: error.type
         requirement_level:
           conditionally_required: If the GraphQL operation ended with an error.

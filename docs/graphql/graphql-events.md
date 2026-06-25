@@ -28,6 +28,7 @@ The event name MUST be `graphql.error`.
 This event describes a GraphQL error that occurred during operation execution.
 
 GraphQL errors can occur during various phases of request processing including parsing, validation, and execution. Errors SHOULD be recorded on the span that represents the work during which the error occurred:
+
 - For queries and mutations, errors SHOULD be recorded on the root
   `graphql.server` span.
 - For subscriptions, errors that occur during the initial subscription
