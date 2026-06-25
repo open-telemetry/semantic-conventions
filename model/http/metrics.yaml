@@ -1,65 +1,54 @@
-groups:
+file_format: definition/2
+
+attribute_groups:
   - id: metric_attributes.http.server
-    type: attribute_group
-    brief: 'HTTP server attributes'
-    extends: attributes.http.server
+    visibility: public
+    stability: development
+    brief: 'HTTP server metric attributes'
     attributes:
-      - ref: server.address
-        requirement_level: opt_in
-        note: |
-          See [Setting `server.address` and `server.port` attributes](/docs/http/http-spans.md#setting-serveraddress-and-serverport-attributes).
-
-          > [!WARNING]
-          > Since this attribute is based on HTTP headers, opting in to it may allow an attacker
-          > to trigger cardinality limits, degrading the usefulness of the metric.
-      - ref: server.port
-        requirement_level: opt_in
-        note: |
-          See [Setting `server.address` and `server.port` attributes](/docs/http/http-spans.md#setting-serveraddress-and-serverport-attributes).
-
-          > [!WARNING]
-          > Since this attribute is based on HTTP headers, opting in to it may allow an attacker
-          > to trigger cardinality limits, degrading the usefulness of the metric.
+      - ref_group: attributes.http.server
       - ref: user_agent.synthetic.type
         requirement_level: opt_in
+
   - id: metric_attributes.http.client
-    type: attribute_group
-    brief: 'HTTP client attributes'
-    extends: attributes.http.client
+    visibility: public
+    stability: development
+    brief: 'HTTP client metric attributes'
+    attributes:
+      - ref_group: attributes.http.client
 
   - id: metric_attributes.http.client.experimental
-    type: attribute_group
-    brief: 'HTTP client experimental attributes'
-    extends: metric_attributes.http.client
+    visibility: public
+    stability: development
+    brief: 'HTTP client experimental metric attributes (extends metric_attributes.http.client)'
     attributes:
+      - ref_group: attributes.http.client
       - ref: url.template
         requirement_level:
           conditionally_required: If available.
         note: >
           The `url.template` MUST have low cardinality. It is not usually available on HTTP clients, but may be known by the application or specialized HTTP instrumentation.
 
-  - id: metric.http.server.request.duration
-    type: metric
-    metric_name: http.server.request.duration
-    annotations:
-      code_generation:
-        metric_value_type: double
+metrics:
+  - name: http.server.request.duration
+    stability: stable
     brief: "Duration of HTTP server requests."
     instrument: histogram
     unit: "s"
-    stability: stable
-    extends: metric_attributes.http.server
-
-  - id: metric.http.server.active_requests
-    type: metric
-    metric_name: http.server.active_requests
     annotations:
       code_generation:
-        metric_value_type: int
+        metric_value_type: double
+    attributes:
+      - ref_group: metric_attributes.http.server
+
+  - name: http.server.active_requests
     stability: development
     brief: "Number of active HTTP server requests."
     instrument: updowncounter
     unit: "{request}"
+    annotations:
+      code_generation:
+        metric_value_type: int
     attributes:
       - ref: http.request.method
         requirement_level: required
@@ -87,92 +76,85 @@ groups:
           > Since this attribute is based on HTTP headers, opting in to it may allow an attacker
           > to trigger cardinality limits, degrading the usefulness of the metric.
 
-  - id: metric.http.server.request.body.size
-    type: metric
-    metric_name: http.server.request.body.size
-    annotations:
-      code_generation:
-        metric_value_type: int
+  - name: http.server.request.body.size
     stability: development
     brief: "Size of HTTP server request bodies."
     instrument: histogram
     unit: "By"
+    annotations:
+      code_generation:
+        metric_value_type: int
     note: >
       The size of the request payload body in bytes. This is the number of bytes transferred excluding headers and
       is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length)
       header. For requests using transport encoding, this should be the compressed size.
-    extends: metric_attributes.http.server
+    attributes:
+      - ref_group: metric_attributes.http.server
 
-  - id: metric.http.server.response.body.size
-    type: metric
-    metric_name: http.server.response.body.size
-    annotations:
-      code_generation:
-        metric_value_type: int
+  - name: http.server.response.body.size
     stability: development
     brief: "Size of HTTP server response bodies."
     instrument: histogram
     unit: "By"
+    annotations:
+      code_generation:
+        metric_value_type: int
     note: >
       The size of the response payload body in bytes. This is the number of bytes transferred excluding headers and
       is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length)
       header. For requests using transport encoding, this should be the compressed size.
-    extends: metric_attributes.http.server
+    attributes:
+      - ref_group: metric_attributes.http.server
 
-  - id: metric.http.client.request.duration
-    type: metric
-    metric_name: http.client.request.duration
-    annotations:
-      code_generation:
-        metric_value_type: double
+  - name: http.client.request.duration
+    stability: stable
     brief: "Duration of HTTP client requests."
     instrument: histogram
     unit: "s"
-    stability: stable
-    extends: metric_attributes.http.client
-
-  - id: metric.http.client.request.body.size
-    type: metric
-    metric_name: http.client.request.body.size
     annotations:
       code_generation:
-        metric_value_type: int
+        metric_value_type: double
+    attributes:
+      - ref_group: metric_attributes.http.client
+
+  - name: http.client.request.body.size
     stability: development
     brief: "Size of HTTP client request bodies."
     instrument: histogram
     unit: "By"
+    annotations:
+      code_generation:
+        metric_value_type: int
     note: >
       The size of the request payload body in bytes. This is the number of bytes transferred excluding headers and
       is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length)
       header. For requests using transport encoding, this should be the compressed size.
-    extends: metric_attributes.http.client.experimental
+    attributes:
+      - ref_group: metric_attributes.http.client.experimental
 
-  - id: metric.http.client.response.body.size
-    type: metric
-    metric_name: http.client.response.body.size
-    annotations:
-      code_generation:
-        metric_value_type: int
+  - name: http.client.response.body.size
     stability: development
     brief: "Size of HTTP client response bodies."
     instrument: histogram
     unit: "By"
+    annotations:
+      code_generation:
+        metric_value_type: int
     note: >
       The size of the response payload body in bytes. This is the number of bytes transferred excluding headers and
       is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length)
       header. For requests using transport encoding, this should be the compressed size.
-    extends: metric_attributes.http.client.experimental
+    attributes:
+      - ref_group: metric_attributes.http.client.experimental
 
-  - id: metric.http.client.open_connections
-    type: metric
-    metric_name: http.client.open_connections
-    annotations:
-      code_generation:
-        metric_value_type: int
+  - name: http.client.open_connections
     stability: development
     brief: "Number of outbound HTTP connections that are currently active or idle on the client."
     instrument: updowncounter
     unit: "{connection}"
+    annotations:
+      code_generation:
+        metric_value_type: int
     attributes:
       - ref: http.connection.state
         requirement_level: required
@@ -188,16 +170,14 @@ groups:
         requirement_level: opt_in
         examples: ["http", "https"]
 
-  - id: metric.http.client.connection.duration
-    type: metric
-    metric_name: http.client.connection.duration
-    annotations:
-      code_generation:
-        metric_value_type: double
+  - name: http.client.connection.duration
     stability: development
     brief: "The duration of the successfully established outbound HTTP connections."
     instrument: histogram
     unit: "s"
+    annotations:
+      code_generation:
+        metric_value_type: double
     attributes:
       - ref: network.peer.address
         requirement_level: opt_in
@@ -211,16 +191,14 @@ groups:
         requirement_level: opt_in
         examples: ["http", "https"]
 
-  - id: metric.http.client.active_requests
-    type: metric
-    metric_name: http.client.active_requests
-    annotations:
-      code_generation:
-        metric_value_type: int
+  - name: http.client.active_requests
     stability: development
     brief: "Number of active HTTP requests."
     instrument: updowncounter
     unit: "{request}"
+    annotations:
+      code_generation:
+        metric_value_type: int
     attributes:
       - ref: http.request.method
         requirement_level: recommended

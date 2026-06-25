@@ -1,30 +1,78 @@
-groups:
-  - id: span.http.client
-    type: span
-    extends: attributes.http.client
-    span_kind: client
+file_format: definition/2
+spans:
+  - type: span.http.client
+    kind: client
+    name:
+      note: HTTP span name
     stability: stable
     brief: >
       This span represents an outbound HTTP request.
     note: |
       There are two ways HTTP client spans can be implemented in an instrumentation:
-
       1. Instrumentations SHOULD create an HTTP span for each attempt to send an HTTP request over the wire.
          In case the request is resent, the resend attempts MUST follow the [HTTP resend spec](#http-request-retries-and-redirects).
          In this case, instrumentations SHOULD NOT (also) emit a logical encompassing HTTP client span.
-
       2. If for some reason it is not possible to emit a span for each send attempt (because e.g. the instrumented library does not expose hooks that would allow this),
          instrumentations MAY create an HTTP span for the top-most operation of the HTTP client.
          In this case, the `url.full` MUST be the absolute URL that was originally requested, before any HTTP-redirects that may happen when executing the request.
-
       **Span name:** refer to the [Span Name](/docs/http/http-spans.md#name) section.
-
       **Span kind** MUST be `CLIENT`.
-
       **Span status:** refer to the [Span Status](/docs/http/http-spans.md#status) section.
     attributes:
       - ref: http.request.method
         sampling_relevant: true
+        requirement_level: required
+      - ref: http.response.status_code
+        requirement_level:
+          conditionally_required: If and only if one was received/sent.
+      - ref: error.type
+        requirement_level:
+          conditionally_required: If request has ended with an error.
+        examples: ['timeout', 'java.net.UnknownHostException', 'server_certificate_invalid', '500']
+        note: |
+          If the request fails with an error before response status code was sent or received,
+          `error.type` SHOULD be set to exception type (its fully-qualified class name, if applicable)
+          or a component-specific low cardinality error identifier.
+          If response status code was sent or received and status indicates an error according to [HTTP span status definition](/docs/http/http-spans.md),
+          `error.type` SHOULD be set to the status code number (represented as a string), an exception type (if thrown) or a component-specific error identifier.
+          The `error.type` value SHOULD be predictable and SHOULD have low cardinality.
+          Instrumentations SHOULD document the list of errors they report.
+          The cardinality of `error.type` within one instrumentation library SHOULD be low, but
+          telemetry consumers that aggregate data from multiple instrumentation libraries and applications
+          should be prepared for `error.type` to have high cardinality at query time, when no
+          additional filters are applied.
+          If the request has completed successfully, instrumentations SHOULD NOT set `error.type`.
+      - ref: network.protocol.name
+        examples: ['http', 'spdy']
+        requirement_level:
+          conditionally_required: If not `http` and `network.protocol.version` is set.
+      - ref: network.protocol.version
+        examples: ['1.0', '1.1', '2', '3']
+      - ref: server.address
+        sampling_relevant: true
+        requirement_level: required
+        note: |
+          In HTTP/1.1, when the [request target](https://www.rfc-editor.org/rfc/rfc9112.html#name-request-target)
+          is passed in its [absolute-form](https://www.rfc-editor.org/rfc/rfc9112.html#section-3.2.2),
+          the `server.address` SHOULD match the host component of the request target.
+          In all other cases, `server.address` SHOULD match the host component of the
+          `Host` header in HTTP/1.1 or the `:authority` pseudo-header in HTTP/2 and HTTP/3.
+      - ref: server.port
+        sampling_relevant: true
+        requirement_level: required
+        note: |
+          In the case of HTTP/1.1, when the [request target](https://www.rfc-editor.org/rfc/rfc9112.html#name-request-target)
+          is passed in its [absolute-form](https://www.rfc-editor.org/rfc/rfc9112.html#section-3.2.2),
+          the `server.port` SHOULD match the port component of the request target.
+          In all other cases, `server.port` SHOULD match the port component of the
+          `Host` header in HTTP/1.1 or the `:authority` pseudo-header in HTTP/2 and HTTP/3.
+      - ref: url.scheme
+        requirement_level: opt_in
+        examples: ["http", "https"]
+      - ref: url.template
+        requirement_level: opt_in
+        note: >
+          The `url.template` MUST have low cardinality. It is not usually available on HTTP clients, but may be known by the application or specialized HTTP instrumentation.
       - ref: http.request.method_original
         requirement_level:
           conditionally_required: If and only if it's different than `http.request.method`.
@@ -35,16 +83,11 @@ groups:
         requirement_level: opt_in
       - ref: http.response.header
         requirement_level: opt_in
-      - ref: server.address
-        sampling_relevant: true
-      - ref: server.port
-        sampling_relevant: true
       - ref: url.full
         sampling_relevant: true
         requirement_level: required
       - ref: user_agent.original
         requirement_level: opt_in
-      - ref: url.scheme
       - ref: network.peer.address
       - ref: network.peer.port
         requirement_level:
@@ -64,36 +107,82 @@ groups:
         requirement_level: opt_in
       - ref: user_agent.synthetic.type
         requirement_level: opt_in
-
-  - id: span.http.server
-    type: span
-    extends: attributes.http.server
-    span_kind: server
+  - type: span.http.server
+    kind: server
+    name:
+      note: HTTP span name
+    stability: stable
     brief: >
       This span represents an inbound HTTP request.
     note: |
       **Span name:** refer to the [Span Name](/docs/http/http-spans.md#name) section.
-
       **Span kind** MUST be `SERVER`.
-
       **Span status:** refer to the [Span Status](/docs/http/http-spans.md#status) section.
-    stability: stable
     attributes:
       - ref: http.request.method
         sampling_relevant: true
+        requirement_level: required
+      - ref: http.response.status_code
+        requirement_level:
+          conditionally_required: If and only if one was received/sent.
+      - ref: error.type
+        requirement_level:
+          conditionally_required: If request has ended with an error.
+        examples: ['timeout', 'java.net.UnknownHostException', 'server_certificate_invalid', '500']
+        note: |
+          If the request fails with an error before response status code was sent or received,
+          `error.type` SHOULD be set to exception type (its fully-qualified class name, if applicable)
+          or a component-specific low cardinality error identifier.
+          If response status code was sent or received and status indicates an error according to [HTTP span status definition](/docs/http/http-spans.md),
+          `error.type` SHOULD be set to the status code number (represented as a string), an exception type (if thrown) or a component-specific error identifier.
+          The `error.type` value SHOULD be predictable and SHOULD have low cardinality.
+          Instrumentations SHOULD document the list of errors they report.
+          The cardinality of `error.type` within one instrumentation library SHOULD be low, but
+          telemetry consumers that aggregate data from multiple instrumentation libraries and applications
+          should be prepared for `error.type` to have high cardinality at query time, when no
+          additional filters are applied.
+          If the request has completed successfully, instrumentations SHOULD NOT set `error.type`.
+      - ref: network.protocol.name
+        examples: ['http', 'spdy']
+        requirement_level:
+          conditionally_required: If not `http` and `network.protocol.version` is set.
+      - ref: network.protocol.version
+        examples: ['1.0', '1.1', '2', '3']
+      - ref: http.route
+        requirement_level:
+          conditionally_required: If and only if it's available
+      - ref: server.address
+        sampling_relevant: true
+        brief: >
+          Name of the local HTTP server that received the request.
+        note: >
+          See [Setting `server.address` and `server.port` attributes](/docs/http/http-spans.md#setting-serveraddress-and-serverport-attributes).
+      - ref: server.port
+        sampling_relevant: true
+        brief: >
+          Port of the local HTTP server that received the request.
+        note: >
+          See [Setting `server.address` and `server.port` attributes](/docs/http/http-spans.md#setting-serveraddress-and-serverport-attributes).
+        requirement_level:
+          conditionally_required: If available and `server.address` is set.
+      - ref: url.scheme
+        sampling_relevant: true
+        requirement_level: required
+        examples: ["http", "https"]
+        note: >
+          The scheme of the original client request, if known
+          (e.g. from [Forwarded#proto](https://developer.mozilla.org/docs/Web/HTTP/Headers/Forwarded#proto),
+          [X-Forwarded-Proto](https://developer.mozilla.org/docs/Web/HTTP/Headers/X-Forwarded-Proto),
+          or a similar header).
+          Otherwise, the scheme of the immediate peer request.
       - ref: http.request.method_original
         requirement_level:
           conditionally_required: If and only if it's different than `http.request.method`.
-      - ref: http.route
       - ref: http.request.header
         sampling_relevant: true
         requirement_level: opt_in
       - ref: http.response.header
         requirement_level: opt_in
-      - ref: server.address
-        sampling_relevant: true
-      - ref: server.port
-        sampling_relevant: true
       - ref: network.local.address
         requirement_level: opt_in
         brief: Local socket address. Useful in case of a multi-IP host.
@@ -117,8 +206,6 @@ groups:
       - ref: url.query
         requirement_level:
           conditionally_required: If and only if one was received/sent.
-        sampling_relevant: true
-      - ref: url.scheme
         sampling_relevant: true
       - ref: user_agent.original
         sampling_relevant: true
