@@ -34,7 +34,7 @@ confirmation of lifecycle transitions, such as whether shutdown completed cleanl
 
 The event name MUST be `otel.sdk.component.shutdown`.
 
-Indicates that an OpenTelemetry SDK provider's shutdown attempt has ended, whether by completing successfully, failing, or timing out.
+Indicates that an OpenTelemetry SDK component's shutdown attempt has ended, whether by completing successfully, failing, or timing out.
 
 **Applicability.**
 

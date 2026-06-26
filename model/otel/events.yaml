@@ -4,7 +4,7 @@ groups:
     name: otel.sdk.component.shutdown
     stability: development
     brief: >
-      Indicates that an OpenTelemetry SDK provider's shutdown attempt has ended,
+      Indicates that an OpenTelemetry SDK component's shutdown attempt has ended,
       whether by completing successfully, failing, or timing out.
     note: |
       **Applicability.**
