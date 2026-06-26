@@ -34,61 +34,43 @@ confirmation of lifecycle transitions, such as whether shutdown completed cleanl
 
 The event name MUST be `otel.sdk.component.shutdown`.
 
-Indicates that an OpenTelemetry SDK component's shutdown attempt has ended, whether by completing successfully, failing, or being abandoned (e.g. on timeout).
+Indicates that an OpenTelemetry SDK provider's shutdown attempt has ended, whether by completing successfully, failing, or timing out.
 
 **Applicability.**
 
-This event SHOULD be emitted by each SDK component instance that has an
-explicit `Shutdown` operation and that owns telemetry processing, buffering,
-reading, or exporting state. This includes span processors, log record
-processors, metric readers, span exporters, log record exporters, and metric
-exporters, as well as custom implementations of any of these categories. See
-the well-known values of
-[`otel.component.type`](/docs/registry/attributes/otel.md) for the full list of
-built-in types.
-
-Providers (e.g. `TracerProvider`, `LoggerProvider`, `MeterProvider`) are not
-expected to emit this event. A provider's shutdown is already covered by the
-events emitted by its child components, and a higher-level provider event would
-carry no information beyond what those child events already convey. A future
-revision of this convention may define provider-level shutdown events if a need
-emerges.
+This event SHOULD be emitted by each SDK provider instance
+(`TracerProvider`, `LoggerProvider`, `MeterProvider`) when its shutdown
+operation completes.
 
 **Emission rules.**
 
-At most one `otel.sdk.component.shutdown` event is emitted per component
-instance per process lifetime, reporting the result of that one shutdown.
+At most one `otel.sdk.component.shutdown` event is emitted per provider
+instance per process lifetime.
 
-If the process terminates without invoking the component's shutdown operation
-(e.g. a crash, `SIGKILL`, container eviction, or immediate process termination),
-no event is expected. Consumers MUST NOT interpret the absence of this event as
-evidence of a clean shutdown.
+If the process terminates without invoking the provider's shutdown
+(e.g. a crash, `SIGKILL`, container eviction, or immediate process
+termination), no event is expected. Consumers MUST NOT interpret the
+absence of this event as evidence of a clean shutdown.
 
-The event timestamp SHOULD reflect the time at which the shutdown attempt ended
-(whether by completing, failing, or being abandoned). Combined with
-`otel.component.shutdown.duration`, the start of the shutdown attempt can be
-reconstructed as `timestamp - duration`.
+The event timestamp SHOULD reflect the time at which the provider fully
+completed the shutdown process, including shutting down all child
+components. Combined with the `otel.component.shutdown.duration`
+attribute, the start of the shutdown attempt can be reconstructed as
+`timestamp - duration`.
 
 **Severity.**
 
 Implementations MUST set the log record severity to `WARN`
-(`SeverityNumber` = `13`) when `otel.component.shutdown.result` is not
-`success`, and to `INFO` (`SeverityNumber` = `9`) otherwise.
-
-**Nesting.**
-
-When an SDK component invokes the shutdown of a child component inline as
-part of its own shutdown (e.g. a batching processor shutting down its
-exporter), the parent's `otel.component.shutdown.duration` mechanically
-includes the time spent shutting down its children.
+(`SeverityNumber` = `13`) when `error.type` is present, and to `INFO`
+(`SeverityNumber` = `9`) otherwise.
 
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`otel.component.name`](/docs/registry/attributes/otel.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | A name uniquely identifying the instance of the OpenTelemetry component within its containing SDK instance. [1] | `otlp_grpc_span_exporter/0`; `custom-name` |
-| [`otel.component.shutdown.result`](/docs/registry/attributes/otel.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The result of an OpenTelemetry SDK component shutdown attempt. [2] | `success`; `failed`; `timed_out` |
-| [`otel.component.type`](/docs/registry/attributes/otel.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | A name identifying the type of the OpenTelemetry component. [3] | `batching_span_processor`; `com.example.MySpanExporter` |
+| [`otel.component.type`](/docs/registry/attributes/otel.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The provider type. [2] | `logger_provider`; `tracer_provider`; `meter_provider` |
+| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if the shutdown was not successful. | string | Describes the class of error that caused the shutdown to fail. [3] | `timeout`; `failed` |
 | [`otel.component.shutdown.duration`](/docs/registry/attributes/otel.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | double | The wall-clock elapsed time of the shutdown attempt, in seconds. Combined with the event timestamp, this lets consumers compute when the shutdown attempt started. [4] | `0.015`; `30.0` |
 
 **[1] `otel.component.name`:** Implementations SHOULD ensure a low cardinality for this attribute, even across application or SDK restarts.
@@ -105,41 +87,31 @@ With this implementation, for example the first Batching Span Processor would ha
 as `otel.component.name`, the second one `batching_span_processor/1` and so on.
 These values will therefore be reused in the case of an application restart.
 
-**[2] `otel.component.shutdown.result`:** `timed_out` takes precedence over `failed` when both are observed for the same
-shutdown attempt (e.g. when an exporter request is abandoned because the
-shutdown timeout expired).
-
-`success` MUST only be reported when the shutdown completed within the
-configured time budget AND no required shutdown step reported a failure.
-
-If no shutdown timeout/deadline applies to the component, implementations MUST
-NOT report `timed_out` unless the underlying shutdown API explicitly reports a
-timeout condition.
-
-Implementations MUST set `otel.component.shutdown.result` to one of the
-well-known values defined in this convention. The three values are intended
-to be exhaustive: any shutdown attempt that did not complete cleanly is
-either `failed` or `timed_out`. Custom values MUST NOT be used.
-
-**[3] `otel.component.type`:** If none of the standardized values apply, implementations SHOULD use the language-defined name of the type.
+**[2] `otel.component.type`:** If none of the standardized values apply, implementations SHOULD use the language-defined name of the type.
 E.g. for Java the fully qualified classname SHOULD be used in this case.
 
-**[4] `otel.component.shutdown.duration`:** Measured from the moment the component's shutdown operation started to the
-moment the shutdown attempt ended (whether by completing, failing, or being
-abandoned). MUST be a non-negative value expressed in seconds.
+**[3] `error.type`:** `timeout` takes precedence over `failed` when both conditions are
+observed (e.g. the shutdown budget expired while a child component
+was still flushing).
 
-This attribute is informational and SHOULD NOT affect the severity of the
-enclosing event.
+Documented values for this event:
+
+| Value | Description |
+|---|---|
+| `timeout` | The configured shutdown budget expired before all child components completed. |
+| `failed` | One or more child components reported failure within the time budget. |
+
+**[4] `otel.component.shutdown.duration`:** Measured from the moment the shutdown operation started to the moment
+it ended (whether by completing, failing, or timing out). MUST be a
+non-negative value expressed in seconds.
 
 ---
 
-`otel.component.shutdown.result` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `failed` | The shutdown attempt ended within the configured time budget but one or more required shutdown steps failed (e.g. an exporter rejected the final batch, or a cleanup step threw). | ![Development](https://img.shields.io/badge/-development-blue) |
-| `success` | The shutdown attempt completed within the configured time budget and confirmed processing/delivery of all telemetry the component owned at the time shutdown was initiated. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `timed_out` | The shutdown attempt was abandoned because the configured shutdown timeout, deadline, or equivalent time budget expired. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
 ---
 
@@ -149,6 +121,8 @@ enclosing event.
 | --- | --- | --- |
 | `batching_log_processor` | The builtin SDK batching log record processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `batching_span_processor` | The builtin SDK batching span processor | ![Development](https://img.shields.io/badge/-development-blue) |
+| `logger_provider` | The builtin SDK LoggerProvider | ![Development](https://img.shields.io/badge/-development-blue) |
+| `meter_provider` | The builtin SDK MeterProvider | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_grpc_log_exporter` | OTLP log record exporter over gRPC with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_grpc_metric_exporter` | OTLP metric exporter over gRPC with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_grpc_span_exporter` | OTLP span exporter over gRPC with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -162,6 +136,7 @@ enclosing event.
 | `prometheus_http_text_metric_exporter` | Prometheus metric exporter over HTTP with the default text-based format | ![Development](https://img.shields.io/badge/-development-blue) |
 | `simple_log_processor` | The builtin SDK simple log record processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `simple_span_processor` | The builtin SDK simple span processor | ![Development](https://img.shields.io/badge/-development-blue) |
+| `tracer_provider` | The builtin SDK TracerProvider | ![Development](https://img.shields.io/badge/-development-blue) |
 | `zipkin_http_span_exporter` | Zipkin span exporter over HTTP | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- prettier-ignore-end -->
