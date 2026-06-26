@@ -12,7 +12,7 @@
       ],
       depNameTemplate: "open-telemetry/weaver",
       datasourceTemplate: "github-releases",
-      versioningTemplate": "semver",
+      versioningTemplate: "semver",
       extractVersionTemplate: "^v(?<version>.*)$"
     },
   ],
