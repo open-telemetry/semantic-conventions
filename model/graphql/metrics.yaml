@@ -6,6 +6,18 @@ groups:
       - ref: graphql.operation.type
         requirement_level:
           conditionally_required: If available.
+      - ref: graphql.document.id
+        requirement_level: opt_in
+        note: |
+          The `graphql.document.id` MUST only be enabled when the set of
+          document identifiers has bounded cardinality, such as when using
+          trusted documents or persisted operations.
+      - ref: graphql.document.hash
+        requirement_level: opt_in
+        note: |
+          The `graphql.document.hash` MUST only be enabled when the set of
+          document hashes has bounded cardinality, such as when using
+          persisted operations or trusted documents.
       - ref: graphql.operation.name
         requirement_level: opt_in
         note: |
@@ -22,12 +34,6 @@ groups:
     brief: "Common attributes for GraphQL server request-level metrics."
     extends: metric_attributes.graphql.server.base
     attributes:
-      - ref: graphql.document.id
-        requirement_level: opt_in
-        note: |
-          The `graphql.document.id` MUST only be enabled when the set of
-          document identifiers has bounded cardinality, such as when using
-          trusted documents or persisted operations.
       - ref: error.type
         requirement_level:
           conditionally_required: If the GraphQL request ended with an error.
@@ -107,29 +113,7 @@ groups:
       and the operation type is known. This means requests that fail during
       parsing will not be reflected in this metric, but it ensures consistent
       attribute sets on increment and decrement.
-    attributes:
-      - ref: graphql.operation.type
-        requirement_level:
-          conditionally_required: If available.
-      - ref: graphql.document.id
-        requirement_level: opt_in
-        note: |
-          The `graphql.document.id` MUST only be enabled when the set of
-          document identifiers has bounded cardinality, such as when using
-          trusted documents or persisted operations.
-      - ref: graphql.document.hash
-        requirement_level: opt_in
-        note: |
-          The `graphql.document.hash` MUST only be enabled when the set of
-          document hashes has bounded cardinality, such as when using
-          persisted operations or trusted documents.
-      - ref: graphql.operation.name
-        requirement_level: opt_in
-        note: |
-          The `graphql.operation.name` is provided by the client and can have
-          unbounded cardinality. It MUST only be enabled when the operation
-          namespace has bounded cardinality, such as when using persisted
-          operations or trusted documents.
+    extends: metric_attributes.graphql.server.base
 
   - id: metric.graphql.server.processing.duration
     type: metric

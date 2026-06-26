@@ -59,8 +59,9 @@ request durations.
 | --- | --- | --- | --- | --- | --- |
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If the GraphQL request ended with an error. | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` |
 | [`graphql.operation.type`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If available. | string | The type of the operation being executed. | `query`; `mutation`; `subscription` |
-| [`graphql.document.id`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The document identifier for trusted documents. [2] | `aa3e37c1bf54708e93f12c137afba004` |
-| [`graphql.operation.name`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The name of the operation being executed. [3] | `FindBookById`; `GetUserProfile` |
+| [`graphql.document.hash`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The hash of the operation document. [2] | `sha256:400483f38c08e8a3d3b972409c9dfb8e4a326e1b1940864932acd9f873d8664c` |
+| [`graphql.document.id`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The document identifier for trusted documents. [3] | `aa3e37c1bf54708e93f12c137afba004` |
+| [`graphql.operation.name`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The name of the operation being executed. [4] | `FindBookById`; `GetUserProfile` |
 
 **[1] `error.type`:** For GraphQL, `error.type` captures the category of error that caused
 the request to fail. Since GraphQL can return partial data with errors
@@ -71,11 +72,15 @@ The `error.type` value SHOULD be predictable and SHOULD have low
 cardinality. Instrumentations SHOULD document the list of errors
 they report.
 
-**[2] `graphql.document.id`:** The `graphql.document.id` MUST only be enabled when the set of
+**[2] `graphql.document.hash`:** The `graphql.document.hash` MUST only be enabled when the set of
+document hashes has bounded cardinality, such as when using
+persisted operations or trusted documents.
+
+**[3] `graphql.document.id`:** The `graphql.document.id` MUST only be enabled when the set of
 document identifiers has bounded cardinality, such as when using
 trusted documents or persisted operations.
 
-**[3] `graphql.operation.name`:** The `graphql.operation.name` is provided by the client and can have
+**[4] `graphql.operation.name`:** The `graphql.operation.name` is provided by the client and can have
 unbounded cardinality. It MUST only be enabled when the operation
 namespace has bounded cardinality, such as when using persisted
 operations or trusted documents.
@@ -152,6 +157,9 @@ unbounded cardinality. It MUST only be enabled when the operation
 namespace has bounded cardinality, such as when using persisted
 operations or trusted documents.
 
+When `graphql.operation.name` is not enabled, `graphql.document.hash`
+or `graphql.document.id` MAY be used as lower-cardinality alternatives.
+
 ---
 
 `graphql.operation.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
@@ -201,7 +209,9 @@ durations for the respective processing phases.
 | [`graphql.processing.type`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The type of processing represented by this span. [1] | `parse`; `validate`; `variable_coercion`; `plan`; `execute` |
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If the processing phase ended with an error. | string | Describes a class of error the operation ended with. [2] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` |
 | [`graphql.operation.type`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If available. | string | The type of the operation being executed. | `query`; `mutation`; `subscription` |
-| [`graphql.operation.name`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The name of the operation being executed. [3] | `FindBookById`; `GetUserProfile` |
+| [`graphql.document.hash`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The hash of the operation document. [3] | `sha256:400483f38c08e8a3d3b972409c9dfb8e4a326e1b1940864932acd9f873d8664c` |
+| [`graphql.document.id`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The document identifier for trusted documents. [4] | `aa3e37c1bf54708e93f12c137afba004` |
+| [`graphql.operation.name`](/docs/registry/attributes/graphql.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The name of the operation being executed. [5] | `FindBookById`; `GetUserProfile` |
 
 **[1] `graphql.processing.type`:** Identifies the request-level processing phase being measured. Values
 SHOULD be one of `parse`, `validate`, `variable_coercion`, `plan`, or
@@ -211,7 +221,15 @@ SHOULD be one of `parse`, `validate`, `variable_coercion`, `plan`, or
 that caused the phase to fail. This allows monitoring error rates
 per phase independently of the overall request outcome.
 
-**[3] `graphql.operation.name`:** The `graphql.operation.name` is provided by the client and can have
+**[3] `graphql.document.hash`:** The `graphql.document.hash` MUST only be enabled when the set of
+document hashes has bounded cardinality, such as when using
+persisted operations or trusted documents.
+
+**[4] `graphql.document.id`:** The `graphql.document.id` MUST only be enabled when the set of
+document identifiers has bounded cardinality, such as when using
+trusted documents or persisted operations.
+
+**[5] `graphql.operation.name`:** The `graphql.operation.name` is provided by the client and can have
 unbounded cardinality. It MUST only be enabled when the operation
 namespace has bounded cardinality, such as when using persisted
 operations or trusted documents.
