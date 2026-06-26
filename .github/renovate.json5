@@ -10,9 +10,10 @@
       matchStrings: [
         "https://raw\\.githubusercontent\\.com/open-telemetry/weaver/(?<currentValue>v\\d+\\.\\d+\\.\\d+)/schemas/semconv\\.schema\\.json",
       ],
-      depNameTemplate: "otel/weaver",
-      datasourceTemplate: "docker",
-      versioningTemplate: "semver",
+      depNameTemplate: "open-telemetry/weaver",
+      datasourceTemplate: "github-releases",
+      versioningTemplate": "semver",
+      extractVersionTemplate: "^v(?<version>.*)$"
     },
   ],
   packageRules: [
