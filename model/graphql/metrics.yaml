@@ -69,6 +69,10 @@ groups:
       request on the server. It starts when the server begins processing
       the GraphQL operation and ends when the response is complete.
 
+      For subscription operations, the response is complete when the
+      subscription terminates. This metric therefore records the full
+      subscription duration, not only the initial subscription setup.
+
       When this metric is reported alongside a GraphQL server span, the
       metric value SHOULD be the same as the GraphQL server span duration.
 
@@ -94,6 +98,9 @@ groups:
       This metric tracks the number of GraphQL requests currently being
       processed by the server. It is incremented when processing begins
       and decremented when processing is complete.
+
+      For subscription operations, the request remains active until the
+      subscription terminates.
 
       Since `graphql.operation.type` is not available before parsing,
       instrumentations SHOULD delay the increment until after parsing completes
@@ -186,48 +193,6 @@ groups:
           conditionally_required: If available.
       - ref: graphql.operation.name
         requirement_level: opt_in
-
-  - id: metric.graphql.server.subscription.active
-    type: metric
-    metric_name: graphql.server.subscription.active
-    annotations:
-      code_generation:
-        metric_value_type: int
-    brief: "Number of active GraphQL subscriptions."
-    instrument: updowncounter
-    unit: "{subscription}"
-    stability: development
-    note: |
-      This metric tracks the number of GraphQL subscriptions currently active
-      on the server. It is incremented when a subscription is created and
-      decremented when a subscription is terminated (either by client
-      disconnect or server-side cancellation).
-
-      This is distinct from `graphql.server.request.active`, which tracks
-      short-lived request processing (parse → execute → respond). For
-      subscriptions, `request.active` only covers the initial setup request,
-      while this metric tracks the long-lived subscription connection that
-      may remain open for hours or days delivering events.
-    attributes:
-      - ref: graphql.document.id
-        requirement_level: opt_in
-        note: |
-          The `graphql.document.id` MUST only be enabled when the set of
-          document identifiers has bounded cardinality, such as when using
-          trusted documents or persisted operations.
-      - ref: graphql.document.hash
-        requirement_level: opt_in
-        note: |
-          The `graphql.document.hash` MUST only be enabled when the set of
-          document hashes has bounded cardinality, such as when using
-          persisted operations or trusted documents.
-      - ref: graphql.operation.name
-        requirement_level: opt_in
-        note: |
-          The `graphql.operation.name` is provided by the client and can have
-          unbounded cardinality. It MUST only be enabled when the operation
-          namespace has bounded cardinality, such as when using persisted
-          operations or trusted documents.
 
   - id: metric.graphql.server.subscription.event_count
     type: metric

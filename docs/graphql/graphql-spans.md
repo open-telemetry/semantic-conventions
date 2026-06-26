@@ -61,10 +61,13 @@ in the document.
 > the operation was not found or could not be identified in the document.
 > This prevents potential security issues and ensures span names remain meaningful.
 
-For subscription operations, the server span represents the initial subscription
-request and setup. Individual subscription events are represented by separate
-`graphql.subscription.event` spans. Long-lived subscriptions MAY end the server
-span after successful setup, with subsequent events creating their own spans.
+For subscription operations, the server span represents the entire subscription
+operation. It starts when the server begins processing the subscription request
+and ends when the subscription terminates. This mirrors HTTP server spans for
+long-lived transports such as Server-Sent Events and WebSockets, where the
+transport-level request may remain active while events are delivered.
+Individual subscription events are represented by separate
+`graphql.subscription.event` spans.
 
 **Span status** guidance:
 
@@ -1031,9 +1034,8 @@ GraphQL subscription. Each time the subscription source emits an event,
 a new span SHOULD be created to track the execution of the subscription
 field selection set against that event.
 
-The span SHOULD be a child of the `graphql.server` span that initiated
-the subscription, if that span is still available. When the originating
-server span has ended (as is common with long-lived subscriptions),
+The span SHOULD be a child of the `graphql.server` span for the
+subscription. When the originating server span is not available,
 instrumentations SHOULD create a new root span or link to the original
 subscription span.
 
