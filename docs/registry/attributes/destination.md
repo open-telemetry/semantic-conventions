@@ -12,6 +12,25 @@ These attributes may be used to describe the receiver of a network exchange/pack
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
 | <a id="destination-address" href="#destination-address">`destination.address`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Destination address - domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [1] | `destination.example.com`; `10.1.2.80`; `/tmp/my.sock` |
+| <a id="destination-cidr" href="#destination-cidr">`destination.cidr`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The CIDR range that matched the destination address. [2] | `192.168.0.0/16` |
+| <a id="destination-cloud-availability-zone" href="#destination-cloud-availability-zone">`destination.cloud.availability_zone`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The cloud availability zone associated with the destination side of the flow. [3] | `us-east-1d` |
+| <a id="destination-cloud-region" href="#destination-cloud-region">`destination.cloud.region`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The cloud region associated with the destination side of the flow. [4] | `us-east-1` |
+| <a id="destination-k8s-namespace-name" href="#destination-k8s-namespace-name">`destination.k8s.namespace.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the Kubernetes namespace associated with the destination side of the flow. | `backend` |
+| <a id="destination-k8s-node-ip" href="#destination-k8s-node-ip">`destination.k8s.node.ip`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The IP address of the Kubernetes node associated with the destination side of the flow. | `10.0.34.56` |
+| <a id="destination-k8s-node-name" href="#destination-k8s-node-name">`destination.k8s.node.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the Kubernetes node associated with the destination side of the flow. | `ip-10-0-34-56.ec2.internal` |
+| <a id="destination-k8s-owner-name" href="#destination-k8s-owner-name">`destination.k8s.owner.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the Kubernetes workload owner associated with the destination side of the flow. | `backend` |
+| <a id="destination-k8s-owner-type" href="#destination-k8s-owner-type">`destination.k8s.owner.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The Kubernetes workload owner type associated with the destination side of the flow. | `Deployment`; `DaemonSet` |
+| <a id="destination-k8s-pod-name" href="#destination-k8s-pod-name">`destination.k8s.pod.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the Kubernetes Pod associated with the destination side of the flow. | `backend-76d8f7c6d9-4n1qp` |
+| <a id="destination-k8s-resource-type" href="#destination-k8s-resource-type">`destination.k8s.resource.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The Kubernetes resource type associated with the destination side of the flow. | `Pod`; `Service` |
 | <a id="destination-port" href="#destination-port">`destination.port`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | Destination port number | `3389`; `2888` |
 
 **[1] `destination.address`:** When observed from the source side, and when communicating through an intermediary, `destination.address` SHOULD represent the destination address behind any intermediaries, for example proxies, if it's available.
+
+**[2] `destination.cidr`:** The instrumentation can associate addresses with CIDR ranges.
+This value can be derived from the host network configuration,
+or can match a user-defined value that is provided to the
+instrumentation.
+
+**[3] `destination.cloud.availability_zone`:** Mirrors [`cloud.availability_zone`](/docs/registry/attributes/cloud.md) for the destination endpoint of the flow.
+
+**[4] `destination.cloud.region`:** Mirrors [`cloud.region`](/docs/registry/attributes/cloud.md) for the destination endpoint of the flow.

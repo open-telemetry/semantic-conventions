@@ -23,3 +23,62 @@ groups:
         stability: development
         brief: 'Source port number'
         examples: [3389, 2888]
+      # Attributes describing the source endpoint of a network flow.
+      # See the network flow convention in docs/network/network-flow.md.
+      - id: source.cidr
+        type: string
+        stability: development
+        brief: The CIDR range that matched the source address.
+        note: |-
+          The instrumentation can associate addresses with CIDR ranges.
+          This value can be derived from the host network configuration,
+          or can match a user-defined value that is provided to the
+          instrumentation.
+        examples: ["10.0.0.0/8"]
+      - id: source.cloud.region
+        type: string
+        stability: development
+        brief: The cloud region associated with the source side of the flow.
+        note: Mirrors [`cloud.region`](/docs/registry/attributes/cloud.md) for the source endpoint of the flow.
+        examples: ["us-east-1"]
+      - id: source.cloud.availability_zone
+        type: string
+        stability: development
+        brief: The cloud availability zone associated with the source side of the flow.
+        note: Mirrors [`cloud.availability_zone`](/docs/registry/attributes/cloud.md) for the source endpoint of the flow.
+        examples: ["us-east-1c"]
+      - id: source.k8s.namespace.name
+        type: string
+        stability: development
+        brief: The name of the Kubernetes namespace associated with the source side of the flow.
+        examples: ["frontend"]
+      - id: source.k8s.pod.name
+        type: string
+        stability: development
+        brief: The name of the Kubernetes Pod associated with the source side of the flow.
+        examples: ["frontend-7c9d4b6d7f-9kz2m"]
+      - id: source.k8s.resource.type
+        type: string
+        stability: development
+        brief: The Kubernetes resource type associated with the source side of the flow.
+        examples: ["Node", "Pod"]
+      - id: source.k8s.owner.name
+        type: string
+        stability: development
+        brief: The name of the Kubernetes workload owner associated with the source side of the flow.
+        examples: ["frontend"]
+      - id: source.k8s.owner.type
+        type: string
+        stability: development
+        brief: The Kubernetes workload owner type associated with the source side of the flow.
+        examples: ["Deployment", "Daemonset"]
+      - id: source.k8s.node.name
+        type: string
+        stability: development
+        brief: The name of the Kubernetes node associated with the source side of the flow.
+        examples: ["ip-10-0-12-34.ec2.internal"]
+      - id: source.k8s.node.ip
+        type: string
+        stability: development
+        brief: The IP address of the Kubernetes node associated with the source side of the flow.
+        examples: ["10.0.12.34"]

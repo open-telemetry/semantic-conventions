@@ -12,6 +12,25 @@ These attributes may be used to describe the sender of a network exchange/packet
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
 | <a id="source-address" href="#source-address">`source.address`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Source address - domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [1] | `source.example.com`; `10.1.2.80`; `/tmp/my.sock` |
+| <a id="source-cidr" href="#source-cidr">`source.cidr`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The CIDR range that matched the source address. [2] | `10.0.0.0/8` |
+| <a id="source-cloud-availability-zone" href="#source-cloud-availability-zone">`source.cloud.availability_zone`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The cloud availability zone associated with the source side of the flow. [3] | `us-east-1c` |
+| <a id="source-cloud-region" href="#source-cloud-region">`source.cloud.region`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The cloud region associated with the source side of the flow. [4] | `us-east-1` |
+| <a id="source-k8s-namespace-name" href="#source-k8s-namespace-name">`source.k8s.namespace.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the Kubernetes namespace associated with the source side of the flow. | `frontend` |
+| <a id="source-k8s-node-ip" href="#source-k8s-node-ip">`source.k8s.node.ip`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The IP address of the Kubernetes node associated with the source side of the flow. | `10.0.12.34` |
+| <a id="source-k8s-node-name" href="#source-k8s-node-name">`source.k8s.node.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the Kubernetes node associated with the source side of the flow. | `ip-10-0-12-34.ec2.internal` |
+| <a id="source-k8s-owner-name" href="#source-k8s-owner-name">`source.k8s.owner.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the Kubernetes workload owner associated with the source side of the flow. | `frontend` |
+| <a id="source-k8s-owner-type" href="#source-k8s-owner-type">`source.k8s.owner.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The Kubernetes workload owner type associated with the source side of the flow. | `Deployment`; `Daemonset` |
+| <a id="source-k8s-pod-name" href="#source-k8s-pod-name">`source.k8s.pod.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the Kubernetes Pod associated with the source side of the flow. | `frontend-7c9d4b6d7f-9kz2m` |
+| <a id="source-k8s-resource-type" href="#source-k8s-resource-type">`source.k8s.resource.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The Kubernetes resource type associated with the source side of the flow. | `Node`; `Pod` |
 | <a id="source-port" href="#source-port">`source.port`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | Source port number | `3389`; `2888` |
 
 **[1] `source.address`:** When observed from the destination side, and when communicating through an intermediary, `source.address` SHOULD represent the source address behind any intermediaries, for example proxies, if it's available.
+
+**[2] `source.cidr`:** The instrumentation can associate addresses with CIDR ranges.
+This value can be derived from the host network configuration,
+or can match a user-defined value that is provided to the
+instrumentation.
+
+**[3] `source.cloud.availability_zone`:** Mirrors [`cloud.availability_zone`](/docs/registry/attributes/cloud.md) for the source endpoint of the flow.
+
+**[4] `source.cloud.region`:** Mirrors [`cloud.region`](/docs/registry/attributes/cloud.md) for the source endpoint of the flow.

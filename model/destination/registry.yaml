@@ -23,3 +23,62 @@ groups:
         stability: development
         brief: 'Destination port number'
         examples: [3389, 2888]
+      # Attributes describing the destination endpoint of a network flow.
+      # See the network flow convention in docs/network/network-flow.md.
+      - id: destination.cidr
+        type: string
+        stability: development
+        brief: The CIDR range that matched the destination address.
+        note: |-
+          The instrumentation can associate addresses with CIDR ranges.
+          This value can be derived from the host network configuration,
+          or can match a user-defined value that is provided to the
+          instrumentation.
+        examples: ["192.168.0.0/16"]
+      - id: destination.cloud.region
+        type: string
+        stability: development
+        brief: The cloud region associated with the destination side of the flow.
+        note: Mirrors [`cloud.region`](/docs/registry/attributes/cloud.md) for the destination endpoint of the flow.
+        examples: ["us-east-1"]
+      - id: destination.cloud.availability_zone
+        type: string
+        stability: development
+        brief: The cloud availability zone associated with the destination side of the flow.
+        note: Mirrors [`cloud.availability_zone`](/docs/registry/attributes/cloud.md) for the destination endpoint of the flow.
+        examples: ["us-east-1d"]
+      - id: destination.k8s.namespace.name
+        type: string
+        stability: development
+        brief: The name of the Kubernetes namespace associated with the destination side of the flow.
+        examples: ["backend"]
+      - id: destination.k8s.pod.name
+        type: string
+        stability: development
+        brief: The name of the Kubernetes Pod associated with the destination side of the flow.
+        examples: ["backend-76d8f7c6d9-4n1qp"]
+      - id: destination.k8s.resource.type
+        type: string
+        stability: development
+        brief: The Kubernetes resource type associated with the destination side of the flow.
+        examples: ["Pod", "Service"]
+      - id: destination.k8s.owner.name
+        type: string
+        stability: development
+        brief: The name of the Kubernetes workload owner associated with the destination side of the flow.
+        examples: ["backend"]
+      - id: destination.k8s.owner.type
+        type: string
+        stability: development
+        brief: The Kubernetes workload owner type associated with the destination side of the flow.
+        examples: ["Deployment", "DaemonSet"]
+      - id: destination.k8s.node.name
+        type: string
+        stability: development
+        brief: The name of the Kubernetes node associated with the destination side of the flow.
+        examples: ["ip-10-0-34-56.ec2.internal"]
+      - id: destination.k8s.node.ip
+        type: string
+        stability: development
+        brief: The IP address of the Kubernetes node associated with the destination side of the flow.
+        examples: ["10.0.34.56"]
