@@ -97,7 +97,7 @@ was still flushing).
 Documented values for this event:
 
 | Value | Description |
-|---|---|
+| --- | --- |
 | `timeout` | The configured shutdown budget expired before all child components completed. |
 | `failed` | One or more child components reported failure within the time budget. |
 
