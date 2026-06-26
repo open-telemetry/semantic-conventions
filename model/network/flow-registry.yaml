@@ -1,3 +1,12 @@
+# Attributes for the network flow convention.
+#
+# Note: the `source.*` and `destination.*` attributes below describe the two
+# endpoints of a single flow data point. They are intentionally defined here,
+# under the active `network` area, rather than in `model/source` or
+# `model/destination`: those directories map to `source`/`destination` areas
+# that have no active SIG in areas.yaml, so editing them would re-trigger the
+# area-ownership bot that auto-closed this contribution
+# (see .github/scripts/triage/check-changes-ownership.ts).
 groups:
   - id: registry.network.flow
     type: attribute_group
@@ -17,10 +26,15 @@ groups:
               stability: development
               brief: The flow was observed as egress traffic.
         stability: development
-        brief: The direction of the network flow as seen from the network interface.
+        brief: >
+          The direction of the network flow as observed at the physical or logical
+          network interface where the traffic was captured.
         note: |
-          This field does not necessarily match with incoming/outgoing traffic as
-          seen from the host or application level.
+          This attribute describes the direction at the network interface (device) level.
+          It is distinct from [`network.io.direction`](/docs/registry/attributes/network.md)
+          (`transmit`/`receive`), which describes the traffic direction from the perspective
+          of the observing host. The interface-level direction does not necessarily match the
+          incoming/outgoing direction as seen from the host or application level.
 
           For example, imagine a container sending network data
           through a virtual interface veth0 that is connected to the host's physical
@@ -49,30 +63,42 @@ groups:
           or can match a user-defined value that is provided to the
           instrumentation.
         examples: ["192.168.0.0/16"]
+      - id: source.cloud.region
+        type: string
+        stability: development
+        brief: The cloud region associated with the source side of the flow.
+        note: Mirrors [`cloud.region`](/docs/registry/attributes/cloud.md) for the source endpoint of the flow.
+        examples: ["us-east-1"]
       - id: source.cloud.availability_zone
         type: string
         stability: development
         brief: The cloud availability zone associated with the source side of the flow.
+        note: Mirrors [`cloud.availability_zone`](/docs/registry/attributes/cloud.md) for the source endpoint of the flow.
         examples: ["us-east-1c"]
+      - id: destination.cloud.region
+        type: string
+        stability: development
+        brief: The cloud region associated with the destination side of the flow.
+        note: Mirrors [`cloud.region`](/docs/registry/attributes/cloud.md) for the destination endpoint of the flow.
+        examples: ["us-east-1"]
       - id: destination.cloud.availability_zone
         type: string
         stability: development
         brief: The cloud availability zone associated with the destination side of the flow.
+        note: Mirrors [`cloud.availability_zone`](/docs/registry/attributes/cloud.md) for the destination endpoint of the flow.
         examples: ["us-east-1d"]
-      - id: source.name
-        type: string
+      - id: network.flow.inter_zone
+        type: boolean
         stability: development
         brief: >
-          Anything that identifies the source of the network flow, like a network host name,
-          a container name, or an IP address. Human-friendly names are preferred over numeric addresses
-        examples: ["subdomain.example.org", "192.33.22.12"]
-      - id: destination.name
-        type: string
-        stability: development
-        brief: >
-          Anything that identifies the destination of the network flow, like a network host name
-          a container name, or an IP address. Human-friendly names are preferred over numeric addresses
-        examples: ["subdomain.example.org", "192.33.22.12"]
+          Indicates whether the source and destination of the flow are located in different
+          cloud availability zones.
+        note: |
+          This pre-computed attribute lets consumers select or aggregate inter-zone traffic
+          (for example to monitor cross-AZ data transfer costs) without having to compare
+          `source.cloud.availability_zone` and `destination.cloud.availability_zone` at query
+          time, which is impractical in query languages such as PromQL.
+        examples: [true, false]
       - id: source.k8s.namespace.name
         type: string
         stability: development

@@ -1,7 +1,7 @@
 groups:
-  - id: metric.network.flow.bytes
+  - id: metric.network.flow.io
     type: metric
-    metric_name: network.flow.bytes
+    metric_name: network.flow.io
     annotations:
       code_generation:
         metric_value_type: int
@@ -27,117 +27,11 @@ groups:
           but it can also contain names for the internal virtual interfaces that would
           enable the communication between containers in the same host.
         requirement_level: opt_in
-      - ref: network.interface.direction
-        requirement_level: opt_in
-      - ref: network.transport
-        note: The transport protocol of the observed network traffic.
-        requirement_level: opt_in
-      - ref: network.type
-        requirement_level: opt_in
-      - ref: network.protocol.name
-        requirement_level: opt_in
-      - ref: source.address
-        requirement_level: opt_in
-      - ref: destination.address
-        requirement_level: opt_in
-      - ref: source.port
-        requirement_level: opt_in
-      - ref: destination.port
-        requirement_level:
-          recommended: when the same host runs multiple service instances, for differentiation
-      - ref: source.cidr
-        requirement_level:
-          recommended: when the source address is classified into configured CIDR ranges and there is no other low-cardinality attribute to group the network flow source.
-      - ref: destination.cidr
-        requirement_level:
-          recommended: when the destination address is classified into configured CIDR ranges and there is no other low-cardinality attribute to group the network flow destination.
-      - ref: source.name
-        requirement_level: opt_in
-      - ref: destination.name
-        requirement_level: opt_in
-      - ref: source.cloud.availability_zone
-        requirement_level:
-          recommended: when source-side cloud zone information is available.
-      - ref: destination.cloud.availability_zone
-        requirement_level:
-          recommended: when destination-side cloud zone information is available.
-      - ref: k8s.cluster.name
-        requirement_level:
-          recommended: when the flow is observed in Kubernetes.
-      - ref: source.k8s.namespace.name
-        requirement_level:
-          recommended: when the flow is observed in Kubernetes.
-      - ref: destination.k8s.namespace.name
-        requirement_level:
-          recommended: when the flow is observed in Kubernetes.
-      - ref: source.k8s.pod.name
-        requirement_level:
-          recommended: |
-            when the flow is observed in Kubernetes and you need pod granularity for metrics.
-            It might cause high metrics cardinality.
-      - ref: destination.k8s.pod.name
-        requirement_level:
-          recommended: |
-            when the flow is observed in Kubernetes and you need pod granularity for metrics.
-            It might cause high metrics cardinality.
-      - ref: source.k8s.resource.type
-        requirement_level:
-          recommended: when the flow is observed in Kubernetes and you need resource granularity for metrics.
-      - ref: destination.k8s.resource.type
-        requirement_level:
-          recommended: when the flow is observed in Kubernetes and you need resource granularity for metrics.
-      - ref: source.k8s.owner.name
-        requirement_level:
-          recommended: when the flow is observed in Kubernetes and you need owner granularity for metrics.
-      - ref: destination.k8s.owner.name
-        requirement_level:
-          recommended: when the flow is observed in Kubernetes and you need owner granularity for metrics.
-      - ref: source.k8s.owner.type
-        requirement_level:
-          recommended: when the flow is observed in Kubernetes and you need owner granularity for metrics.
-      - ref: destination.k8s.owner.type
-        requirement_level:
-          recommended: when the flow is observed in Kubernetes and you need owner granularity for metrics.
-      - ref: source.k8s.node.name
-        requirement_level:
-          recommended: when the flow is observed in Kubernetes and you need node granularity for metrics.
-      - ref: destination.k8s.node.name
-        requirement_level:
-          recommended: when the flow is observed in Kubernetes and you need node granularity for metrics.
-      - ref: source.k8s.node.ip
-        requirement_level:
-          recommended: when the flow is observed in Kubernetes and you need node granularity for metrics.
-      - ref: destination.k8s.node.ip
-        requirement_level:
-          recommended: when the flow is observed in Kubernetes and you need node granularity for metrics.
-
-  - id: metric.network.inter.zone.bytes
-    type: metric
-    metric_name: network.inter.zone.bytes
-    annotations:
-      code_generation:
-        metric_value_type: int
-    stability: development
-    brief: Bytes transferred between source and destination cloud availability zones.
-    note: |
-      This metric is intended for reduced-cardinality reporting of inter-zone traffic.
-      It can be emitted alongside `network.flow.bytes` without requiring zone attributes on every flow datapoint.
-    instrument: counter
-    unit: "By"
-    attributes:
-      - ref: network.local.address
-        note: |
-          This value is the IP address of the node where the network observability agent runs. It allows
-          deduplicating information of the same flow when source and destination are in different nodes
-          and thus they are observed by agents both in the source and destination nodes.
-        requirement_level: recommended
-      - ref: network.interface.name
-        note: |
-          Provides granularity about the different network interfaces where the
-          network traffic is being observed. For example, a host with two network
-          interfaces eth0 and eth1 could send/receive traffic through both interfaces,
-          but it can also contain names for the internal virtual interfaces that would
-          enable the communication between containers in the same host.
+      - ref: network.io.direction
+        note: >
+          The traffic direction from the perspective of the observing host
+          (`transmit`/`receive`). See `network.interface.direction` for the
+          interface-level (`ingress`/`egress`) direction.
         requirement_level: opt_in
       - ref: network.interface.direction
         requirement_level: opt_in
@@ -163,16 +57,21 @@ groups:
       - ref: destination.cidr
         requirement_level:
           recommended: when the destination address is classified into configured CIDR ranges and there is no other low-cardinality attribute to group the network flow destination.
-      - ref: source.name
-        requirement_level: opt_in
-      - ref: destination.name
-        requirement_level: opt_in
+      - ref: source.cloud.region
+        requirement_level:
+          recommended: when source-side cloud region information is available.
+      - ref: destination.cloud.region
+        requirement_level:
+          recommended: when destination-side cloud region information is available.
       - ref: source.cloud.availability_zone
         requirement_level:
           recommended: when source-side cloud zone information is available.
       - ref: destination.cloud.availability_zone
         requirement_level:
           recommended: when destination-side cloud zone information is available.
+      - ref: network.flow.inter_zone
+        requirement_level:
+          recommended: when source and destination cloud availability zones are known.
       - ref: k8s.cluster.name
         requirement_level:
           recommended: when the flow is observed in Kubernetes.
