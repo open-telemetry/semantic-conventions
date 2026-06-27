@@ -1,0 +1,10 @@
+change_type: enhancement
+
+component: db
+
+note: >
+  Clarify `db.query.parameter.<key>` semantics around sensitive data handling.
+
+issues: [3831]
+
+subtext:
