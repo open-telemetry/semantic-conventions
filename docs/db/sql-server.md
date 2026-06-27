@@ -149,7 +149,10 @@ then `<key>` SHOULD be the 0-based index.
 up with the parameterized placeholders present in `db.query.text`.
 
 It is RECOMMENDED to capture the value as provided by the application
-without attempting to do any case normalization.
+without attempting to do any case normalization or sanitization.
+
+If sanitization is required for a parameter,
+`db.query.parameter.<key>` SHOULD NOT be captured for that parameter.
 
 `db.query.parameter.<key>` SHOULD NOT be captured on batch operations.
 
