@@ -1,4 +1,5 @@
 file_format: definition/2
+
 events:
   - name: http.client.request.exception
     stability: development
@@ -8,10 +9,13 @@ events:
       from completing successfully.
     note: >
       This event SHOULD be recorded when an exception occurs during HTTP client operations.
+
       Instrumentations SHOULD set the severity to WARN (severity number 13) when recording this event.
+
       Some HTTP client frameworks generate artificial exceptions for non-successful HTTP status codes
       (e.g., 404 Not Found). When possible, instrumentations SHOULD NOT record these artificial
       exceptions, or SHOULD set the severity to DEBUG (severity number 5).
+
       Instrumentations MAY provide a configuration option to populate exception events
       with the attributes captured on the corresponding HTTP client span.
     attributes:
@@ -22,6 +26,7 @@ events:
         requirement_level:
           conditionally_required: Required if `exception.type` is not set, recommended otherwise.
       - ref: exception.stacktrace
+
   - name: http.server.request.exception
     stability: development
     brief: >
@@ -30,7 +35,9 @@ events:
       the server from successfully handling the request.
     note: >
       This event SHOULD be recorded when an exception occurs during HTTP server request processing.
+
       Instrumentations SHOULD set the severity to ERROR (severity number 17) when recording this event.
+
       Instrumentations MAY provide a configuration option to populate exception events
       with the attributes captured on the corresponding HTTP server span.
     attributes:

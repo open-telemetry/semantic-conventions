@@ -1,0 +1,4 @@
+change_type: enhancement
+component: http
+note: Migrate HTTP semantic conventions to Weaver v2 schema
+issues: [3809]

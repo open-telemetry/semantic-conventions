@@ -2,9 +2,7 @@ file_format: definition/2
 
 attribute_groups:
   - id: attributes.http.common
-    visibility: public
-    stability: development
-    brief: "Describes HTTP attributes."
+    visibility: internal
     attributes:
       - ref: http.request.method
         requirement_level: required
@@ -40,9 +38,7 @@ attribute_groups:
         examples: ['1.0', '1.1', '2', '3']
 
   - id: attributes.http.client
-    visibility: public
-    stability: development
-    brief: 'HTTP Client attributes'
+    visibility: internal
     attributes:
       - ref_group: attributes.http.common
       - ref: server.address
@@ -72,9 +68,7 @@ attribute_groups:
           The `url.template` MUST have low cardinality. It is not usually available on HTTP clients, but may be known by the application or specialized HTTP instrumentation.
 
   - id: attributes.http.server
-    visibility: public
-    stability: development
-    brief: 'HTTP Server attributes'
+    visibility: internal
     attributes:
       - ref_group: attributes.http.common
       - ref: http.route
