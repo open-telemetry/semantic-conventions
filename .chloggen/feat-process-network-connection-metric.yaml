@@ -1,0 +1,10 @@
+# This file is used by the changelog generator.
+# For more info, see https://github.com/open-telemetry/weaver/releases
+
+change_type: new_component
+component: process
+note: Add process.network.connection.count metric definition
+issues: []
+subtext: |
+  Adds a new metric that reports the number of established network connections
+  per process, grouped by server address and port.
