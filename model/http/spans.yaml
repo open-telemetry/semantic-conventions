@@ -3,6 +3,7 @@ file_format: definition/2
 spans:
   - type: http.client
     kind: client
+    requirement_level: recommended
     name:
       note: "{http.request.method}"
     stability: stable
@@ -70,6 +71,7 @@ spans:
 
   - type: http.server
     kind: server
+    requirement_level: recommended
     name:
       note: "{http.request.method} {http.route}"
     brief: >
