@@ -1,5 +1,24 @@
 file_format: definition/2
 
+attribute_groups:
+  - id: registry.http
+    visibility: public
+    stability: stable
+    brief: "This document defines semantic convention attributes in the HTTP namespace."
+    attributes:
+      - ref: http.request.body.size
+      - ref: http.request.header
+      - ref: http.request.method
+      - ref: http.request.method_original
+      - ref: http.request.resend_count
+      - ref: http.request.size
+      - ref: http.response.body.size
+      - ref: http.response.header
+      - ref: http.response.size
+      - ref: http.response.status_code
+      - ref: http.route
+      - ref: http.connection.state
+
 attributes:
   - key: http.request.body.size
     type: int

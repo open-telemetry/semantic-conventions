@@ -1,5 +1,26 @@
 file_format: definition/2
 
+attribute_groups:
+  - id: registry.http.deprecated
+    visibility: public
+    stability: development
+    brief: "Describes deprecated HTTP attributes."
+    attributes:
+      - ref: http.method
+      - ref: http.status_code
+      - ref: http.scheme
+      - ref: http.url
+      - ref: http.target
+      - ref: http.request_content_length
+      - ref: http.response_content_length
+      - ref: http.client_ip
+      - ref: http.host
+      - ref: http.request_content_length_uncompressed
+      - ref: http.response_content_length_uncompressed
+      - ref: http.server_name
+      - ref: http.flavor
+      - ref: http.user_agent
+
 attributes:
   - key: http.method
     type: string
