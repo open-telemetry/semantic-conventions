@@ -1,42 +1,38 @@
 {
-  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    "config:best-practices",
-    "helpers:pinGitHubActionDigestsToSemver"
-  ],
-  "postUpdateOptions" : [
-    "gomodTidy"
-  ],
-  "packageRules": [
+  $schema: "https://docs.renovatebot.com/renovate-schema.json",
+  extends: ["config:best-practices", "helpers:pinGitHubActionDigestsToSemver"],
+  postUpdateOptions: ["gomodTidy"],
+  customManagers: [
     {
-      groupName: 'github actions',
-      matchManagers: [
-        'github-actions',
+      customType: "regex",
+      description: "Keep VS Code semconv schema URL in sync with otel/weaver",
+      managerFilePatterns: ["/^\\.vscode/settings\\.json$/"],
+      matchStrings: [
+        "https://raw\\.githubusercontent\\.com/open-telemetry/weaver/(?<currentValue>v\\d+\\.\\d+\\.\\d+)/schemas/semconv\\.schema\\.json",
       ],
-      schedule: [
-        '* 0-7 2 * *', // monthly, before 8am on the 2nd
-      ],
-    },
-    {
-      matchManagers: [
-        '!github-actions',
-      ],
-      schedule: [
-        '* 0-7 * * 2', // weekly, before 8am on Tuesday
-      ],
-    },
-    {
-      matchPackageNames: [
-        'otel/**',
-      ],
-      schedule: ['at any time'],
+      depNameTemplate: "otel/weaver",
+      datasourceTemplate: "docker",
+      versioningTemplate: "semver",
     },
   ],
-  "lockFileMaintenance": {
-    "enabled": true,
-    "schedule": ["* 0-7 * * 2"] // weekly, before 8am on Tuesday
+  packageRules: [
+    {
+      groupName: "github actions",
+      matchManagers: ["github-actions"],
+      schedule: ["* 0-7 2 * *"], // monthly, before 8am on the 2nd
+    },
+    {
+      matchManagers: ["!github-actions"],
+      schedule: ["* 0-7 * * 2"], // weekly, before 8am on Tuesday
+    },
+    {
+      matchPackageNames: ["otel/**"],
+      schedule: ["at any time"],
+    },
+  ],
+  lockFileMaintenance: {
+    enabled: true,
+    schedule: ["* 0-7 * * 2"], // weekly, before 8am on Tuesday
   },
-  "labels": [
-    "dependencies"
-  ]
+  labels: ["dependencies"],
 }

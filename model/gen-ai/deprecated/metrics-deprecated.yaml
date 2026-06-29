@@ -57,6 +57,8 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      dependency_resolution:
+        exclude: true
     brief: 'Number of input and output tokens used.'
     instrument: histogram
     unit: "{token}"
@@ -75,6 +77,8 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      dependency_resolution:
+        exclude: true
     brief: 'GenAI operation duration.'
     instrument: histogram
     unit: "s"
@@ -98,6 +102,8 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      dependency_resolution:
+        exclude: true
     brief: 'Time to receive the first chunk, measured from when the client issues the generation request to when the first chunk is received in the response stream.'
     note: >
       This metrics SHOULD be reported for streaming calls and SHOULD NOT be reported otherwise.
@@ -115,6 +121,8 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      dependency_resolution:
+        exclude: true
     brief: >
       Time per output chunk, recorded for each chunk received after the first one, measured as the time elapsed from the end of the previous chunk to the end of the current chunk.
     note: >
@@ -133,6 +141,8 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      dependency_resolution:
+        exclude: true
     brief: 'Generative AI server request duration such as time-to-last byte or last output token.'
     instrument: histogram
     unit: "s"
@@ -148,6 +158,8 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      dependency_resolution:
+        exclude: true
     brief: 'Time per output token generated after the first token for successful responses.'
     instrument: histogram
     unit: "s"
@@ -163,6 +175,8 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      dependency_resolution:
+        exclude: true
     brief: 'Time to generate first token for successful responses.'
     instrument: histogram
     unit: "s"

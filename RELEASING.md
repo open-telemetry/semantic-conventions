@@ -24,3 +24,10 @@
 
 New release is then auto-discovered by [opentelemetry.io](https://github.com/open-telemetry/opentelemetry.io) pipelines which (via bot-generated PR)
 eventually results in new version of schema file being published.
+
+## After the release
+
+- Publishing a release triggers the [post-release workflow](https://github.com/open-telemetry/semantic-conventions/actions/workflows/post-release.yml),
+  which opens a pull request against main bumping the development `schema_url` in
+  `model/manifest.yaml` to the `{major}.{minor+1}.0-unreleased` version.
+  Review and merge that pull request.

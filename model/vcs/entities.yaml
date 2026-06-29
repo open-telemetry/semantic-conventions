@@ -1,13 +1,16 @@
 groups:
-  - id: entity.vcs.repo
+  - id: entity.vcs.repository
     type: entity
-    stability: development
-    name: vcs.repo
+    stability: release_candidate
+    name: vcs.repository
     brief: >
         A repository in the Version Control System.
     attributes:
       - ref: vcs.repository.url.full
+        role: identifying
+        requirement_level: required
       - ref: vcs.repository.name
+        role: descriptive
 
   - id: entity.vcs.ref
     type: entity
@@ -17,5 +20,9 @@ groups:
         A reference to a specific version in the Version Control System.
     attributes:
       - ref: vcs.ref.head.name
+        role: descriptive
       - ref: vcs.ref.head.revision
+        role: identifying
+        requirement_level: required
       - ref: vcs.ref.type
+        role: descriptive

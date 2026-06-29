@@ -335,7 +335,7 @@ The following metrics provide insights into Azure Cosmos DB client operation per
 
 ### Metric: `db.client.operation.duration`
 
-This metric is [required][MetricRequired].
+This metric is [recommended][MetricRecommended].
 
 It captures the total time taken by an Azure Cosmos DB operation. This metric follows the common [db.client.operation.duration](/docs/db/database-metrics.md#metric-dbclientoperationduration) definition.
 
@@ -343,7 +343,7 @@ Refer [azure.cosmosdb.client.operation.request_charge](#metric-azurecosmosdbclie
 
 ### Metric: `db.client.response.returned_rows`
 
-This metric is [required][MetricRequired].
+This metric is [recommended][MetricRecommended].
 
 It captures the number of items returned by a query or feed operation in Azure Cosmos DB. It helps identify response sizes that may contribute to high latency, increased memory/CPU usage, or network call failures. This metric follows the common [`db.client.response.returned_rows`](/docs/db/database-metrics.md#metric-dbclientresponsereturned_rows) definition.
 
@@ -351,11 +351,11 @@ Refer [azure.cosmosdb.client.operation.request_charge](#metric-azurecosmosdbclie
 
 ### Metric: `azure.cosmosdb.client.operation.request_charge`
 
-This metric is [required][MetricRequired].
+This metric is [recommended][MetricRecommended].
 
 It captures the Request Units consumed by each operation in Azure Cosmos DB. Since Request Units serve as a form of throughput control within the Azure Cosmos DB database, monitoring their usage is crucial to avoid throttling.
 
-This metric SHOULD be specified with [`ExplicitBucketBoundaries` advisory parameter](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.57.0/specification/metrics/api.md#instrument-advisory-parameters) of `[ 1, 5, 10, 25, 50, 100, 250, 500, 1000]`.
+This metric SHOULD be specified with [`ExplicitBucketBoundaries` advisory parameter](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.58.0/specification/metrics/api.md#instrument-advisory-parameters) of `[ 1, 5, 10, 25, 50, 100, 250, 500, 1000]`.
 
 Explaining bucket configuration:
 
@@ -448,7 +448,7 @@ Instrumentations SHOULD document how `error.type` is populated.
 
 ### Metric: `azure.cosmosdb.client.active_instance.count`
 
-This metric is [required][MetricRequired].
+This metric is [recommended][MetricRecommended].
 
 It captures the number of active instances at any given time. Best practices dictate that there should ideally be only one instance of the SDK client per Azure Cosmos DB account. Having multiple instances of the SDK client for the same account in a single process can lead to CPU or memory-related issues.
 
@@ -479,4 +479,4 @@ It captures the number of active instances at any given time. Best practices dic
 <!-- endsemconv -->
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
-[MetricRequired]: /docs/general/metric-requirement-level.md#required
+[MetricRecommended]: /docs/general/signal-requirement-level.md#recommended

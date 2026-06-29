@@ -3,8 +3,8 @@
 The [**Instrument Naming**](/docs/general/naming.md#instrument-naming) section
 defines the `*.usage`, `*.limit`, `*.utilization`, and `*.time` metrics, but it
 does **not** specify their
-[**requirement levels**](/docs/general/metric-requirement-level.md)
-(`required`,`recommended`, `opt-in`). Because these metrics convey overlapping
+[**requirement levels**](/docs/general/signal-requirement-level.md)
+(`recommended`, `opt-in`). Because these metrics convey overlapping
 information in different forms, implementations may become inconsistent without
 explicit guidance.
 
