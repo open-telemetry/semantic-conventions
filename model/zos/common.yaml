@@ -28,7 +28,7 @@ groups:
     annotations:
       dependency_resolution:
         exclude: true
-    type: attribute_group    
+    type: attribute_group
     stability: development
     name: process.zos
     brief: A process running on a z/OS system.
