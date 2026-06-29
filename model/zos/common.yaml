@@ -1,5 +1,8 @@
 groups:
   - id: service.zos.software
+    annotations:
+      dependency_resolution:
+        exclude: true
     type: attribute_group
     stability: development
     name: service.zos.software
@@ -22,7 +25,10 @@ groups:
         examples: 'CICSPLX2'
         requirement_level: required
   - id: process.zos
-    type: attribute_group
+    annotations:
+      dependency_resolution:
+        exclude: true
+    type: attribute_group    
     stability: development
     name: process.zos
     brief: A process running on a z/OS system.
@@ -49,6 +55,9 @@ groups:
         examples: '5.6'
         requirement_level: opt_in
   - id: os.zos
+    annotations:
+      dependency_resolution:
+        exclude: true
     type: attribute_group
     stability: development
     name: os.zos
@@ -68,6 +77,9 @@ groups:
         brief: 'The version string of the operating system. On z/OS, SHOULD be the release returned by the command `d iplinfo`.'
         examples: '3.1.0'
   - id: host.zos
+    annotations:
+      dependency_resolution:
+        exclude: true
     type: attribute_group
     stability: development
     name: host.zos

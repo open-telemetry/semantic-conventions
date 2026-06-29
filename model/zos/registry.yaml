@@ -1,5 +1,8 @@
 groups:
   - id: registry.zos
+    annotations:
+      dependency_resolution:
+        exclude: true
     type: attribute_group
     display_name: z/OS attributes
     brief: >

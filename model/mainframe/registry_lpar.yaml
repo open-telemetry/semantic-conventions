@@ -1,5 +1,8 @@
 groups:
   - id: registry.mainframe.lpar
+    annotations:
+      dependency_resolution:
+        exclude: true
     type: attribute_group
     display_name: Mainframe LPAR attributes
     brief: This document defines attributes of a Mainframe Logical Partition (LPAR).
