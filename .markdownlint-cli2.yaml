@@ -1,0 +1,4 @@
+config:
+  extends: .markdownlint.yaml
+frontmatter: '(^---\s*$[^]*?^---\s*$)(\r\n|\r|\n|$)'
+gitignore: '**/.{git,markdownlint}ignore'

@@ -1,4 +1,4 @@
-package before_resolution
+package after_resolution
 
 import future.keywords
 
@@ -14,12 +14,12 @@ test_fails_on_attribute_name_without_namespace if {
 
 test_fails_on_invalid_attribute_member_id if {
     every name in invalid_names {
-        count(deny) >= 1 with input as {"groups": [{"id": "yaml_schema.test", "attributes": [{"id": "foo.bar", "stability": "rc", "type": {
+        count(deny) >= 1 with input as {"groups": [{"id": "yaml_schema.test", "attributes": [{"name": "foo.bar", "stability": "rc", "type": {
                         "members": [{
                             "id": name,
                             "value": "test",
                             "stability": "stable",
-                            "brief": "brief"
+                            "brief": "brief."
                         }]
                     }}]}]}
     }
@@ -39,7 +39,7 @@ test_fails_on_invalid_metric_id if {
         "metric.foo.bar.deprecated",
     ]
     every id in invalid_ids {
-        count(deny) >= 1 with input as {"groups": [{"id": id, "type": "metric", "metric_name": "foo.bar", "brief": "brief"}]}
+        count(deny) >= 1 with input as {"groups": [{"id": id, "type": "metric", "metric_name": "foo.bar", "brief": "brief.",  "stability": "development"}]}
     }
 }
 
@@ -57,7 +57,7 @@ test_fails_on_invalid_event_id if {
         "evnt.foo.bar.deprecated",
     ]
     every id in invalid_ids {
-        count(deny) >= 1 with input as {"groups": [{"id": id, "type": "event", "name": "foo.bar", "brief": "brief"}]}
+        count(deny) >= 1 with input as {"groups": [{"id": id, "type": "event", "name": "foo.bar", "brief": "brief.",  "stability": "development"}]}
     }
 }
 
@@ -66,7 +66,7 @@ test_fails_on_referenced_event_name_on_event if {
                 "type": "event",
                 "name": "foo",
                 "stability": "rc",
-                "brief": "brief",
+                "brief": "brief.",
                 "attributes": [{"ref": "event.name"}]}]
     count(deny) == 1 with input as {"groups": event}
 }
@@ -78,7 +78,7 @@ test_fails_on_invalid_resource_name if {
 }
 
 test_fails_on_missing_resource_name if {
-    count(deny) >= 1 with input as {"groups": [{"id": "resource.", "type": "resource", "name": null}]}
+    count(deny) >= 1 with input as {"groups": [{"id": "resource.", "type": "resource", "name": null, "stability": "development"}]}
 }
 
 test_passes_on_valid_names if {
@@ -91,14 +91,14 @@ test_passes_on_valid_names if {
 
 test_passes_on_valid_attribute_member_id if {
     every name in valid_names {
-        count(deny) == 0 with input as {"groups": [{"id": "yaml_schema.test", "attributes": [{"id": "foo.bar", "stability": "rc", "type": {
+        count(deny) == 0 with input as {"groups": [{"id": "yaml_schema.test", "attributes": [{"name": "foo.bar", "stability": "rc", "type": {
                         "members": [{
                             "id": name,
                             "value": "test",
                             "stability": "stable"
                         }]
                     },
-                    "brief": "brief"
+                    "brief": "brief."
                 }]}]}
     }
 }
@@ -114,7 +114,7 @@ test_fails_on_invalid_span_id if {
         "span.foo.bar.client.deprecated",
     ]
     every id in invalid_ids {
-        count(deny) >= 1 with input as {"groups": [{"id": id, "type": "span", "span_kind": "client", "brief": "brief"}]}
+        count(deny) >= 1 with input as {"groups": [{"id": id, "type": "span", "span_kind": "client", "brief": "brief.",  "stability": "development"}]}
     }
 }
 
@@ -125,7 +125,7 @@ test_fails_on_invalid_resource_id if {
         "resource.foo.bar.deprecated",
     ]
     every id in invalid_ids {
-        count(deny) >= 1 with input as {"groups": [{"id": id, "type": "resource", "name": "foo.bar", "brief": "brief"}]}
+        count(deny) >= 1 with input as {"groups": [{"id": id, "type": "resource", "name": "foo.bar", "brief": "brief.", "stability": "development"}]}
     }
 }
 
@@ -136,11 +136,11 @@ test_fails_on_attribute_without_brief if {
     ]
 
     every brief in briefs {
-        count(deny) >= 1 with input as {"groups": [{"id": "yaml_schema.test", "attributes": [{"id": "foo.bar", "stability": "rc", "brief": brief}]}]}
+        count(deny) >= 1 with input as {"groups": [{"id": "yaml_schema.test", "attributes": [{"name": "foo.bar", "stability": "rc", "brief": brief}]}]}
     }
 
-    count(deny) >= 1 with input as {"groups": [{"id": "yaml_schema.test", "attributes": [{"id": "foo.bar", "stability": "rc"}]}]}
-    count(deny) == 0 with input as {"groups": [{"id": "yaml_schema.test", "attributes": [{"id": "foo.bar", "stability": "rc", "brief": "brief:"}]}]}
+    count(deny) >= 1 with input as {"groups": [{"id": "yaml_schema.test", "attributes": [{"name": "foo.bar", "stability": "rc"}]}]}
+    count(deny) == 0 with input as {"groups": [{"id": "yaml_schema.test", "attributes": [{"name": "foo.bar", "stability": "rc", "brief": "brief:"}]}]}
 }
 
 test_fails_on_group_without_brief if {
@@ -154,12 +154,12 @@ test_fails_on_group_without_brief if {
     }
 
     count(deny) >= 1 with input as {"groups": [{"id": "event.foo.bar", "type": "event", "name": "foo.bar", "stability": "rc"}]}
-    count(deny) == 0 with input as {"groups": [{"id": "event.foo.bar", "type": "event", "name": "foo.bar", "stability": "rc", "brief": "brief"}]}
+    count(deny) == 0 with input as {"groups": [{"id": "event.foo.bar", "type": "event", "name": "foo.bar", "stability": "rc", "brief": "brief."}]}
 }
 
 
 create_attribute_group(attr) = json if {
-    json := [{"id": "yaml_schema.test", "attributes": [{"id": attr, "stability": "rc", "brief": "brief"}]}]
+    json := [{"id": "yaml_schema.test", "attributes": [{"name": attr, "stability": "rc", "brief": "brief."}]}]
 }
 
 create_metric(name) = json if {
@@ -169,12 +169,12 @@ create_metric(name) = json if {
 
 create_event(name) = json if {
     id := sprintf("event.%s", [name])
-    json := [{"id": id, "type": "event", "name": name, "stability": "rc", "brief": "brief"}]
+    json := [{"id": id, "type": "event", "name": name, "stability": "rc", "brief": "brief."}]
 }
 
 create_resource(name) = json if {
     id := sprintf("resource.%s", [name])
-    json := [{"id": id, "type": "resource", "name": name, "stability": "rc", "brief": "brief"}]
+    json := [{"id": id, "type": "resource", "name": name, "stability": "rc", "brief": "brief."}]
 }
 
 invalid_names := [

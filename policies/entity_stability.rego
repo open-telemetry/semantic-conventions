@@ -1,12 +1,12 @@
 package after_resolution
 import rego.v1
 
-# checks for stable entity groups that have no identifying attributes
+# checks for entity groups that have no identifying attributes
 deny contains entity_stability_violation(description, group.id, "") if {
     group := input.groups[_]
     # ignore attribute_groups
     group.type == "entity"
-    group.stability == "stable"
+    group.stability != "development"
 
     exceptions = {}
     not exceptions[group.id]
@@ -17,16 +17,16 @@ deny contains entity_stability_violation(description, group.id, "") if {
     ]
     count(ids) < 1
 
-    description := sprintf("Stable entity '%s' has no identifying attributes", [group.name])
+    description := sprintf("Entity '%s' with stability '%s' has no identifying attributes", [group.name, group.stability])
 }
 
 
-# checks for stable entity groups that have attributes with no role
+# checks for entity groups that have attributes with no role
 deny contains entity_stability_violation(description, group.id, attr.name) if {
     group := input.groups[_]
     # ignore attribute_groups
     group.type == "entity"
-    group.stability == "stable"
+    group.stability != "development"
 
     exceptions = {}
     not exceptions[group.id]
@@ -34,7 +34,7 @@ deny contains entity_stability_violation(description, group.id, attr.name) if {
     attr := group.attributes[_]
     not attr.role
 
-    description := sprintf("Stable entity '%s' has attribute without role: '%s'", [group.name, attr.name])
+    description := sprintf("Entity '%s' with stability '%s' has attribute without role: '%s'", [group.name, group.stability, attr.name])
 }
 
 entity_stability_violation(description, group, attr) = violation if {

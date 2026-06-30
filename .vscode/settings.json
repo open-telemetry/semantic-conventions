@@ -1,13 +1,15 @@
 {
     "editor.rulers": [80],
     "yaml.schemas": {
-        "https://raw.githubusercontent.com/open-telemetry/weaver/v0.17.0/schemas/semconv.schema.json": [
-            "model/**/*.yaml"
+        "https://raw.githubusercontent.com/open-telemetry/weaver/v0.24.2/schemas/semconv.schema.json": [
+            "model/**/*.yaml",
+            "!model/manifest.yaml"
         ],
         "./sigs-schema.json": [
             "sigs.yaml"
         ]
     },
     "json.schemaDownload.enable": true,
-    "markdown.extension.toc.levels": "2..6"
+    "markdown.extension.toc.levels": "2..6",
+    "markdownlint.configFile": ".markdownlint.yaml"
 }

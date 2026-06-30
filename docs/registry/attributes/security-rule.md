@@ -10,7 +10,7 @@ Describes security rule attributes. Rule fields are used to capture the specific
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | <a id="security-rule-category" href="#security-rule-category">`security_rule.category`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | A categorization value keyword used by the entity using the rule for detection of this event | `Attempted Information Leak` |
 | <a id="security-rule-description" href="#security-rule-description">`security_rule.description`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The description of the rule generating the event. | `Block requests to public DNS over HTTPS / TLS protocols` |
 | <a id="security-rule-license" href="#security-rule-license">`security_rule.license`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Name of the license under which the rule used to generate this event is made available. | `Apache 2.0` |

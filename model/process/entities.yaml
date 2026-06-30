@@ -1,51 +1,47 @@
 groups:
   - id: entity.process
     type: entity
-    stability: development
+    stability: release_candidate
     name: process
     brief: >
         An operating system process.
     attributes:
       - ref: process.pid
         role: identifying
+        requirement_level: required
       - ref: process.parent_pid
         role: descriptive
-      - ref: process.executable.name
-        role: descriptive
-        requirement_level:
-          conditionally_required: See [Selecting process attributes](/docs/resource/process.md#selecting-process-attributes) for details.
-      - ref: process.executable.path
-        role: descriptive
-        requirement_level:
-          conditionally_required: See [Selecting process attributes](/docs/resource/process.md#selecting-process-attributes) for details.
+        requirement_level: opt_in
       - ref: process.command
         role: descriptive
-        requirement_level:
-          conditionally_required: See [Selecting process attributes](/docs/resource/process.md#selecting-process-attributes) for details.
+        requirement_level: recommended
       - ref: process.command_line
         role: descriptive
-        requirement_level:
-          conditionally_required: See [Selecting process attributes](/docs/resource/process.md#selecting-process-attributes) for details.
+        requirement_level: opt_in
       - ref: process.command_args
         role: descriptive
-        requirement_level:
-          conditionally_required: See [Selecting process attributes](/docs/resource/process.md#selecting-process-attributes) for details.
+        requirement_level: opt_in
       - ref: process.args_count
         role: descriptive
-        requirement_level:
-          conditionally_required: See [Selecting process attributes](/docs/resource/process.md#selecting-process-attributes) for details.
+        requirement_level: opt_in
       - ref: process.creation.time
         role: identifying
+        requirement_level: required
       - ref: process.interactive
         role: descriptive
+        requirement_level: opt_in
       - ref: process.title
         role: descriptive
+        requirement_level: opt_in
       - ref: process.working_directory
         role: descriptive
+        requirement_level: opt_in
       - ref: process.owner
         role: descriptive
+        requirement_level: recommended
       - ref: process.linux.cgroup
         role: descriptive
+        requirement_level: opt_in
 
   - id: entity.process.runtime
     type: entity
@@ -60,3 +56,29 @@ groups:
         role: identifying
       - ref: process.runtime.description
         role: descriptive
+
+  - id: entity.process.executable
+    type: entity
+    stability: development
+    name: process.executable
+    brief: >
+      The executable of a process.
+    note: >
+      Represents the executable file associated with a process.
+      A single executable may be run my multiple process instances.
+    attributes:
+      - ref: process.executable.build_id.htlhash
+        role: identifying
+        requirement_level: required
+      - ref: process.executable.path
+        role: descriptive
+        requirement_level: opt_in
+      - ref: process.executable.build_id.go
+        role: descriptive
+        requirement_level: opt_in
+      - ref: process.executable.build_id.gnu
+        role: descriptive
+        requirement_level: opt_in
+      - ref: process.executable.name
+        role: descriptive
+        requirement_level: recommended

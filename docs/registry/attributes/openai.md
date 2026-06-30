@@ -3,23 +3,36 @@
 
 # OpenAI
 
-## OpenAI Attributes
+## OpenAI Attributes (Moved)
 
-This group defines attributes for OpenAI.
+OpenAI attributes have moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
 
-**Attributes:**
+<details>
+<summary><b>Deprecated Attributes:</b></summary>
 
-| Key | Stability | Value Type | Description | Example Values |
-|---|---|---|---|---|
-| <a id="openai-request-service-tier" href="#openai-request-service-tier">`openai.request.service_tier`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The service tier requested. May be a specific tier, default, or auto. | `auto`; `default` |
-| <a id="openai-response-service-tier" href="#openai-response-service-tier">`openai.response.service_tier`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The service tier used for the response. | `scale`; `default` |
-| <a id="openai-response-system-fingerprint" href="#openai-response-system-fingerprint">`openai.response.system_fingerprint`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | A fingerprint to track any eventual change in the Generative AI environment. | `fp_44709d6fcb` |
+| Key | Value Type | Description | Example Values | Deprecation Explanation |
+| --- | --- | --- | --- | --- |
+| <a id="openai-api-type" href="#openai-api-type">`openai.api.type`</a> | string | The type of OpenAI API being used. | `chat_completions`; `responses` | Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). |
+| <a id="openai-request-service-tier" href="#openai-request-service-tier">`openai.request.service_tier`</a> | string | The service tier requested. May be a specific tier, default, or auto. | `auto`; `default` | Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). |
+| <a id="openai-response-service-tier" href="#openai-response-service-tier">`openai.response.service_tier`</a> | string | The service tier used for the response. | `scale`; `default` | Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). |
+| <a id="openai-response-system-fingerprint" href="#openai-response-system-fingerprint">`openai.response.system_fingerprint`</a> | string | A fingerprint to track any eventual change in the Generative AI environment. | `fp_44709d6fcb` | Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). |
+
+---
+
+`openai.api.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value | Description | Stability |
+| --- | --- | --- |
+| `chat_completions` | The OpenAI [Chat Completions API](https://developers.openai.com/api/reference/chat-completions/overview). | ![Development](https://img.shields.io/badge/-development-blue) |
+| `responses` | The OpenAI [Responses API](https://developers.openai.com/api/reference/responses/overview). | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
 `openai.request.service_tier` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `auto` | The system will utilize scale tier credits until they are exhausted. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `default` | The system will utilize the default scale tier. | ![Development](https://img.shields.io/badge/-development-blue) |
+
+</details>

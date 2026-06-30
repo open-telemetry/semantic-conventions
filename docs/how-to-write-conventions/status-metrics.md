@@ -6,7 +6,7 @@ linkTitle: Status Metrics
 
 **Status**: [Development][DocumentStatus]
 
-<!-- toc -->
+<!-- START doctoc -->
 
 - [Definition](#definition)
 - [Design](#design)
@@ -14,7 +14,7 @@ linkTitle: Status Metrics
   - [Should it be an Entity Attribute?](#should-it-be-an-entity-attribute)
   - [Naming](#naming)
 
-<!-- tocstop -->
+<!-- END doctoc -->
 
 ## Definition
 

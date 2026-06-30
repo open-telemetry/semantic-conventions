@@ -18,7 +18,7 @@ The entities registry is the catalog of available Entities.
 Currently, the following namespaces exist:
 
 | Namespace | Entity | Stability |
-|-----------|--------|-----------|
+| --------- | ------ | --------- |
 | Android | | |
 | | [android](android.md#android) | ![Development](https://img.shields.io/badge/-development-blue) |
 | App | | |
@@ -29,10 +29,11 @@ Currently, the following namespaces exist:
 | | [aws.log](aws.md#aws-log) | ![Development](https://img.shields.io/badge/-development-blue) |
 | Browser | | |
 | | [browser](browser.md#browser) | ![Development](https://img.shields.io/badge/-development-blue) |
-| CICD | | |
-| | [cicd.pipeline](cicd.md#cicd-pipeline) | ![Development](https://img.shields.io/badge/-development-blue) |
-| | [cicd.pipeline.run](cicd.md#cicd-pipeline-run) | ![Development](https://img.shields.io/badge/-development-blue) |
-| | [cicd.worker](cicd.md#cicd-worker) | ![Development](https://img.shields.io/badge/-development-blue) |
+| | [browser.document](browser.md#browser-document) | ![Development](https://img.shields.io/badge/-development-blue) |
+| CI/CD | | |
+| | [cicd.pipeline](cicd.md#cicd-pipeline) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| | [cicd.pipeline.run](cicd.md#cicd-pipeline-run) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| | [cicd.worker](cicd.md#cicd-worker) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | Cloud | | |
 | | [cloud](cloud.md#cloud) | ![Development](https://img.shields.io/badge/-development-blue) |
 | CloudFoundry | | |
@@ -57,6 +58,7 @@ Currently, the following namespaces exist:
 | | [gcp.apphub.workload](gcp.md#gcp-apphub-workload) | ![Development](https://img.shields.io/badge/-development-blue) |
 | | [gcp.cloud_run](gcp.md#gcp-cloud-run) | ![Development](https://img.shields.io/badge/-development-blue) |
 | | [gcp.gce](gcp.md#gcp-gce) | ![Development](https://img.shields.io/badge/-development-blue) |
+| | [gcp.gce.instance_group_manager](gcp.md#gcp-gce-instance-group-manager) | ![Development](https://img.shields.io/badge/-development-blue) |
 | Heroku | | |
 | | [heroku](heroku.md#heroku) | ![Development](https://img.shields.io/badge/-development-blue) |
 | Host | | |
@@ -72,10 +74,14 @@ Currently, the following namespaces exist:
 | | [k8s.job](k8s.md#k8s-job) | ![Development](https://img.shields.io/badge/-development-blue) |
 | | [k8s.namespace](k8s.md#k8s-namespace) | ![Development](https://img.shields.io/badge/-development-blue) |
 | | [k8s.node](k8s.md#k8s-node) | ![Development](https://img.shields.io/badge/-development-blue) |
+| | [k8s.node.system_container](k8s.md#k8s-node-system-container) | ![Development](https://img.shields.io/badge/-development-blue) |
+| | [k8s.persistentvolume](k8s.md#k8s-persistentvolume) | ![Development](https://img.shields.io/badge/-development-blue) |
+| | [k8s.persistentvolumeclaim](k8s.md#k8s-persistentvolumeclaim) | ![Development](https://img.shields.io/badge/-development-blue) |
 | | [k8s.pod](k8s.md#k8s-pod) | ![Development](https://img.shields.io/badge/-development-blue) |
 | | [k8s.replicaset](k8s.md#k8s-replicaset) | ![Development](https://img.shields.io/badge/-development-blue) |
 | | [k8s.replicationcontroller](k8s.md#k8s-replicationcontroller) | ![Development](https://img.shields.io/badge/-development-blue) |
 | | [k8s.resourcequota](k8s.md#k8s-resourcequota) | ![Development](https://img.shields.io/badge/-development-blue) |
+| | [k8s.service](k8s.md#k8s-service) | ![Development](https://img.shields.io/badge/-development-blue) |
 | | [k8s.statefulset](k8s.md#k8s-statefulset) | ![Development](https://img.shields.io/badge/-development-blue) |
 | Openshift | | |
 | | [openshift.clusterquota](openshift.md#openshift-clusterquota) | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -84,16 +90,19 @@ Currently, the following namespaces exist:
 | OTel | | |
 | | [otel.scope](otel.md#otel-scope) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Obsoleted. |
 | Process | | |
-| | [process](process.md#process) | ![Development](https://img.shields.io/badge/-development-blue) |
+| | [process](process.md#process) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| | [process.executable](process.md#process-executable) | ![Development](https://img.shields.io/badge/-development-blue) |
 | | [process.runtime](process.md#process-runtime) | ![Development](https://img.shields.io/badge/-development-blue) |
 | Service | | |
 | | [service](service.md#service) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| | [service.instance](service.md#service-instance) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| | [service.namespace](service.md#service-namespace) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | Telemetry | | |
-| | [telemetry.distro](telemetry.md#telemetry-distro) | ![Development](https://img.shields.io/badge/-development-blue) |
+| | [telemetry.distro](telemetry.md#telemetry-distro) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | | [telemetry.sdk](telemetry.md#telemetry-sdk) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | VCS | | |
 | | [vcs.ref](vcs.md#vcs-ref) | ![Development](https://img.shields.io/badge/-development-blue) |
-| | [vcs.repo](vcs.md#vcs-repo) | ![Development](https://img.shields.io/badge/-development-blue) |
+| | [vcs.repository](vcs.md#vcs-repository) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | Webengine | | |
 | | [webengine](webengine.md#webengine) | ![Development](https://img.shields.io/badge/-development-blue) |
 | zOS | | |

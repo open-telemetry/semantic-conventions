@@ -9,7 +9,7 @@ aliases: [attribute-naming]
 <details>
 <summary>Table of Contents</summary>
 
-<!-- toc -->
+<!-- START doctoc -->
 
 - [General naming considerations](#general-naming-considerations)
 - [Name abbreviation guidelines](#name-abbreviation-guidelines)
@@ -34,7 +34,7 @@ aliases: [attribute-naming]
   - [System-specific metrics](#system-specific-metrics)
   - [Known exceptions](#known-exceptions)
 
-<!-- tocstop -->
+<!-- END doctoc -->
 
 </details>
 
@@ -47,11 +47,12 @@ implied to mean all of these._
 
 Every name MUST be a valid Unicode sequence.
 
-_Note: we merely require that the names are represented as Unicode sequences.
-This specification does not define how exactly the Unicode sequences are
-encoded. The encoding can vary from one programming language to another and from
-one wire format to another. Use the idiomatic way to represent Unicode in the
-particular programming language or wire format._
+> [!NOTE]
+> We merely require that the names are represented as Unicode sequences.
+> This specification does not define how exactly the Unicode sequences are
+> encoded. The encoding can vary from one programming language to another and from
+> one wire format to another. Use the idiomatic way to represent Unicode in the
+> particular programming language or wire format.
 
 Names SHOULD follow these rules:
 
@@ -139,7 +140,7 @@ no longer recommended, it SHOULD be deprecated.
   the following Unicode code points: Latin alphabet, Numeric, Underscore, Dot
   (as namespace delimiter).
 
-> Note:
+> [!Note]
 > Semantic Conventions tooling limits names to lowercase
 > Latin alphabet, Numeric, Underscore, Dot (as namespace delimiter).
 > Names must start with a letter, end with an alphanumeric character, and must not
@@ -315,6 +316,12 @@ be confusing in delta backends.
   defined as the difference in `system.cpu.time` measurements divided by the
   elapsed time and number of CPUs.
 
+- **duration** - a histogram that measures operation duration
+  should be called `{operation name}.duration`.
+  For example, `http.server.request.duration` for the time taken to process each HTTP request.
+  The difference with `time` is that `time` is used to measure monotonically increasing total time,
+  whereas `duration` captures the elapsed time of discrete operations.
+
 - **io** - an instrument that measures bidirectional data flow should be
   called `entity.io` and have attributes for direction. For example,
   `system.network.io`.
@@ -426,7 +433,7 @@ attribute use the same system name (`azure.cosmosdb`).
 ### Known exceptions
 
 - Operational system and process-related attributes and metrics [follow a
-  pattern](/docs/system/system-metrics.md#systemos---os-specific-system-metrics)
+  pattern](/docs/system/system-metrics.md#systemmemoryos---os-specific-system-memory-metrics)
   of `system.{os}` and `process.{os}`. <!-- TODO: document why-->
 
 - [RPC](/docs/rpc/README.md) and [messaging](/docs/messaging/README.md) semantic

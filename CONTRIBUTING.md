@@ -9,7 +9,7 @@ requirements and recommendations.
 <details>
 <summary>Table of Contents</summary>
 
-<!-- toc -->
+<!-- START doctoc -->
 
 - [Sign the CLA](#sign-the-cla)
 - [How to contribute](#how-to-contribute)
@@ -30,6 +30,7 @@ requirements and recommendations.
 - [Reviewer guidelines](#reviewer-guidelines)
 - [Automation](#automation)
   - [Consistency checks](#consistency-checks)
+  - [Area ownership check](#area-ownership-check)
   - [Auto formatting](#auto-formatting)
   - [Markdown style](#markdown-style)
   - [Misspell check](#misspell-check)
@@ -39,7 +40,7 @@ requirements and recommendations.
 - [Schema files](#schema-files)
 - [Merging existing ECS conventions](#merging-existing-ecs-conventions)
 
-<!-- tocstop -->
+<!-- END doctoc -->
 
 </details>
 
@@ -67,22 +68,37 @@ Please make sure all Pull Requests are compliant with these rules!
 
 ### Which semantic conventions belong in this repo
 
-This repo contains semantic conventions supported by the OpenTelemetry ecosystem
-including, but not limited to, components hosted in OpenTelemetry.
+This repo contains semantic conventions supported by multiple components in the
+OpenTelemetry ecosystem including, but not limited to, components hosted in
+OpenTelemetry.
 
-Instrumentations hosted in OpenTelemetry SHOULD contribute their semantic
-conventions to this repo with the following exceptions:
+Instrumentations hosted in OpenTelemetry SHOULD contribute their semantic conventions
+to this repository when the corresponding conventions are applicable across multiple
+runtimes, across different types of libraries, or across multiple infrastructure
+components.
 
-- Instrumentations that follow external schema not fully compatible with OpenTelemetry such as
-  [Kafka client JMX metrics](https://github.com/open-telemetry/opentelemetry-java-instrumentation/blob/v2.10.0/instrumentation/kafka/kafka-clients/kafka-clients-2.6/library/README.md)
-  or [RabbitMQ Collector Receiver](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/v0.116.0/receiver/rabbitmqreceiver)
-  SHOULD document such conventions in their own repository.
+Conventions that are specific to a single runtime, library, or narrowly scoped
+implementation SHOULD be defined in the corresponding repository.
 
-Having all OTel conventions in this repo allows to reuse common attributes, enforce naming and compatibility policies,
-and helps to keep conventions consistent and backward compatible.
+> [!NOTE]
+> This guidance affects all new contributions to OpenTelemetry semantic conventions.
+> Existing conventions for specific areas MAY be moved outside of this repository.
+
+Examples of new convention areas that may be considered for this repository,
+given their general applicability:
+
+- database, messaging, or GenAI server conventions
+- websockets conventions
+
+Examples of conventions that should not be hosted in this repository:
+
+- [Kafka client JMX metrics](https://github.com/open-telemetry/opentelemetry-java-instrumentation/blob/v2.25.0/instrumentation/kafka/kafka-clients/kafka-clients-2.6/library/README.md)
+- [RabbitMQ Collector Receiver](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/v0.145.0/receiver/rabbitmqreceiver)
 
 Want to define your own conventions outside this repo while building on OTel’s?
 Come help us [decentralize semantic conventions](https://github.com/open-telemetry/weaver/issues/215).
+
+<!-- TODO add link to decentralized conventions docs and examples - https://github.com/open-telemetry/semantic-conventions/issues/3456 -->
 
 ### Suggesting conventions for a new area
 
@@ -115,12 +131,15 @@ environment configured:
   npm install
   ```
 
-- If on MacOs, ensure you have `gsed` (GNU Sed) installed. If you have [HomeBrew](https://brew.sh)
+- If on macOS, ensure you have `gsed` (GNU Sed) installed. If you have [HomeBrew](https://brew.sh)
   installed, then you can run the following command to install GSED.
 
   ```bash
   brew bundle
   ```
+
+- Lastly, ensure you have either [Docker](https://www.docker.com) or [Podman](https://podman.io) installed and
+  configured in such a way that the makefile can execute the `docker` command.
 
 ### 1. Modify the YAML model
 
@@ -172,7 +191,7 @@ the respective markdown files.
 If you want to update existing tables, just run the following commands:
 
 ```bash
-make table-generation attribute-registry-generation
+make generate-all
 ```
 
 When defining new telemetry signals (spans, metrics, events, resources) in YAML,
@@ -187,7 +206,7 @@ code-snippet into the markdown file:
 Then run markdown generation commands:
 
 ```bash
-make table-generation attribute-registry-generation
+make generate-all
 ```
 
 #### Hugo frontmatter
@@ -240,6 +259,7 @@ Keep in mind the following types of users (not limited to):
 1. Those who are consuming the data following these conventions (e.g., in alerts, dashboards, queries)
 2. Those who are using the conventions in instrumentations (e.g., library authors)
 3. Those who are using the conventions to derive heuristics, predictions and automatic analyses (e.g., observability products/back-ends)
+4. Those who define their own conventions (e.g., vendor-specific conventions, private registries)
 
 If a changelog entry is not required (e.g. editorial or trivial changes),
 a maintainer or approver will add the `Skip Changelog` label to the pull request.
@@ -342,7 +362,8 @@ You can perform all checks locally using this command:
 make check
 ```
 
-> Note: `make check` can take a long time as it checks all links.
+> [!Note]
+> `make check` can take a long time as it checks all links.
 > You should use this prior to submitting a PR to ensure validity.
 > However, you can run individual checks directly.
 
@@ -353,6 +374,16 @@ For more information on each check, see:
 - [Markdown link check](#markdown-link-check)
 - [Yamllint check](#yamllint-check)
 - Prettier formatting
+
+### Area ownership check
+
+PRs that modify files under `model/` or `docs/` are validated against
+[AREAS.md](./AREAS.md) by an automated check. PRs that touch areas with
+no active SIG/project (status `inactive` in AREAS.md) are automatically
+closed with an explanatory comment.
+
+If you believe a PR was closed in error, please reach out in the
+`#otel-semantic-conventions` channel on the [CNCF Slack](https://slack.cncf.io/).
 
 ### Auto formatting
 
@@ -406,7 +437,8 @@ To check for typos, run the following command:
 make misspell
 ```
 
-> **NOTE**: The `misspell` make target will also fetch and build the tool if
+> [!Note]
+> The `misspell` make target will also fetch and build the tool if
 > necessary. You'll need [Go](https://go.dev) to build the spellchecker.
 
 To quickly fix typos, use

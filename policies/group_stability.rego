@@ -1,11 +1,22 @@
 package after_resolution
 import rego.v1
-# checks that stable group does not have experimental attributes with requirement levels other than opt_in
+
+# Maturity ranking of stability levels. Higher number == more mature/stable.
+stability_rank := {
+    "development": 1,
+    "experimental": 1,
+    "alpha": 2,
+    "beta": 3,
+    "release_candidate": 4,
+    "stable": 5,
+}
+
+# checks that a group's stability is not higher than the stability of any of its
+# attributes, unless that attribute is opt_in
 deny contains group_stability_violation(description, group.id, name) if {
     group := input.groups[_]
     # ignore attribute_groups
     group.type != "attribute_group"
-    group.stability == "stable"
 
     exceptions = {
         # TODO: https://github.com/open-telemetry/semantic-conventions/issues/1514
@@ -17,14 +28,19 @@ deny contains group_stability_violation(description, group.id, name) if {
     }
     not exceptions[group.id]
 
-    attr := group.attributes[_]
+    group_rank := stability_rank[group.stability]
 
-    attr.stability != "stable"
-    attr.requirement_level != "opt_in"
+    attr := group.attributes[_]
+    not attr.requirement_level == "opt_in"
+
+    attr_rank := stability_rank[attr.stability]
+
+    # group claims a higher maturity than the attribute it references
+    group_rank > attr_rank
 
     name := attr.name
 
-    description := sprintf("Stable group '%s' references experimental attribute with requirement level '%s', only 'opt_in' level is allowed", [group.id, name])
+    description := sprintf("Group '%s' has stability '%s' which is higher than the stability '%s' of attribute '%s'; lower-stability attributes are only allowed at 'opt_in' requirement level", [group.id, group.stability, attr.stability, name])
 }
 
 group_stability_violation(description, group, attr) = violation if {

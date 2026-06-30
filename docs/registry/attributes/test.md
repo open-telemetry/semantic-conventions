@@ -10,7 +10,7 @@ This group describes attributes specific to [software tests](https://wikipedia.o
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | <a id="test-case-name" href="#test-case-name">`test.case.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The fully qualified human readable name of the [test case](https://wikipedia.org/wiki/Test_case). | `org.example.TestCase1.test1`; `example/tests/TestCase1.test1`; `ExampleTestCase1_test1` |
 | <a id="test-case-result-status" href="#test-case-result-status">`test.case.result.status`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The status of the actual test case result from test execution. | `pass`; `fail` |
 | <a id="test-suite-name" href="#test-suite-name">`test.suite.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The human readable name of a [test suite](https://wikipedia.org/wiki/Test_suite). | `TestSuite1` |
@@ -20,8 +20,8 @@ This group describes attributes specific to [software tests](https://wikipedia.o
 
 `test.case.result.status` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `fail` | fail | ![Development](https://img.shields.io/badge/-development-blue) |
 | `pass` | pass | ![Development](https://img.shields.io/badge/-development-blue) |
 
@@ -29,8 +29,8 @@ This group describes attributes specific to [software tests](https://wikipedia.o
 
 `test.suite.run.status` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `aborted` | aborted | ![Development](https://img.shields.io/badge/-development-blue) |
 | `failure` | failure | ![Development](https://img.shields.io/badge/-development-blue) |
 | `in_progress` | in_progress | ![Development](https://img.shields.io/badge/-development-blue) |

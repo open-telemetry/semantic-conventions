@@ -74,7 +74,7 @@ groups:
       code_generation:
         metric_value_type: int
     brief: >
-      The *approximate* number of bytes allocated on the managed GC heap since the process has
+      The _approximate_ number of bytes allocated on the managed GC heap since the process has
       started. The returned value does not include any native allocations.
     note: >
       Meter name: `System.Runtime`; Added in: .NET 9.0.

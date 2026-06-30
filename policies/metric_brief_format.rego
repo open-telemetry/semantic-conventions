@@ -1,4 +1,4 @@
-package before_resolution
+package after_resolution
 import rego.v1
 
 # This file enforces formatting policy for metric briefs.
@@ -27,6 +27,6 @@ deny contains metric_brief_violation(description, group.id) if {
     # Allow empty briefs - only check non-empty ones
     trimmed_brief != ""
     not endswith(trimmed_brief, ".")
-    
+
     description := sprintf("Non-empty metric brief '%s' must end with a period (.).", [trimmed_brief])
 }

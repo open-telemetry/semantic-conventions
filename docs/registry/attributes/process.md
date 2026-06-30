@@ -13,40 +13,40 @@ An operating system process.
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
-|---|---|---|---|---|
-| <a id="process-args-count" href="#process-args-count">`process.args_count`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | Length of the process.command_args array [1] | `4` |
-| <a id="process-command" href="#process-command">`process.command`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The command used to launch the process (i.e. the command name). On Linux based systems, can be set to the zeroth string in `proc/[pid]/cmdline`. On Windows, can be set to the first parameter extracted from `GetCommandLineW`. | `cmd/otelcol` |
-| <a id="process-command-args" href="#process-command-args">`process.command_args`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string[] | All the command arguments (including the command/executable itself) as received by the process. On Linux-based systems (and some other Unixoid systems supporting procfs), can be set according to the list of null-delimited strings extracted from `proc/[pid]/cmdline`. For libc-based executables, this would be the full argv vector passed to `main`. SHOULD NOT be collected by default unless there is sanitization that excludes sensitive data. | `["cmd/otecol", "--config=config.yaml"]` |
-| <a id="process-command-line" href="#process-command-line">`process.command_line`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The full command used to launch the process as a single string representing the full command. On Windows, can be set to the result of `GetCommandLineW`. Do not set this if you have to assemble it just for monitoring; use `process.command_args` instead. SHOULD NOT be collected by default unless there is sanitization that excludes sensitive data. | `C:\cmd\otecol --config="my directory\config.yaml"` |
-| <a id="process-context-switch-type" href="#process-context-switch-type">`process.context_switch.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Specifies whether the context switches for this data point were voluntary or involuntary. | `voluntary`; `involuntary` |
-| <a id="process-creation-time" href="#process-creation-time">`process.creation.time`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The date and time the process was created, in ISO 8601 format. | `2023-11-21T09:25:34.853Z` |
-| <a id="process-environment-variable" href="#process-environment-variable">`process.environment_variable.<key>`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Process environment variables, `<key>` being the environment variable name, the value being the environment variable value. [2] | `ubuntu`; `/usr/local/bin:/usr/bin` |
-| <a id="process-executable-build-id-gnu" href="#process-executable-build-id-gnu">`process.executable.build_id.gnu`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The GNU build ID as found in the `.note.gnu.build-id` ELF section (hex string). | `c89b11207f6479603b0d49bf291c092c2b719293` |
-| <a id="process-executable-build-id-go" href="#process-executable-build-id-go">`process.executable.build_id.go`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The Go build ID as retrieved by `go tool buildid <go executable>`. | `foh3mEXu7BLZjsN9pOwG/kATcXlYVCDEFouRMQed_/WwRFB1hPo9LBkekthSPG/x8hMC8emW2cCjXD0_1aY` |
-| <a id="process-executable-build-id-htlhash" href="#process-executable-build-id-htlhash">`process.executable.build_id.htlhash`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Profiling specific build ID for executables. See the OTel specification for Profiles for more information. | `600DCAFE4A110000F2BF38C493F5FB92` |
-| <a id="process-executable-name" href="#process-executable-name">`process.executable.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the process executable. On Linux based systems, this SHOULD be set to the base name of the target of `/proc/[pid]/exe`. On Windows, this SHOULD be set to the base name of `GetProcessImageFileNameW`. | `otelcol` |
-| <a id="process-executable-path" href="#process-executable-path">`process.executable.path`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The full path to the process executable. On Linux based systems, can be set to the target of `proc/[pid]/exe`. On Windows, can be set to the result of `GetProcessImageFileNameW`. | `/usr/bin/cmd/otelcol` |
-| <a id="process-exit-code" href="#process-exit-code">`process.exit.code`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The exit code of the process. | `127` |
-| <a id="process-exit-time" href="#process-exit-time">`process.exit.time`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The date and time the process exited, in ISO 8601 format. | `2023-11-21T09:26:12.315Z` |
-| <a id="process-group-leader-pid" href="#process-group-leader-pid">`process.group_leader.pid`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The PID of the process's group leader. This is also the process group ID (PGID) of the process. | `23` |
-| <a id="process-interactive" href="#process-interactive">`process.interactive`</a> | ![Development](https://img.shields.io/badge/-development-blue) | boolean | Whether the process is connected to an interactive shell. |  |
-| <a id="process-owner" href="#process-owner">`process.owner`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The username of the user that owns the process. | `root` |
-| <a id="process-parent-pid" href="#process-parent-pid">`process.parent_pid`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | Parent Process identifier (PPID). | `111` |
-| <a id="process-pid" href="#process-pid">`process.pid`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | Process identifier (PID). | `1234` |
-| <a id="process-real-user-id" href="#process-real-user-id">`process.real_user.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The real user ID (RUID) of the process. | `1000` |
-| <a id="process-real-user-name" href="#process-real-user-name">`process.real_user.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The username of the real user of the process. | `operator` |
-| <a id="process-runtime-description" href="#process-runtime-description">`process.runtime.description`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | An additional description about the runtime of the process, for example a specific vendor customization of the runtime environment. | `Eclipse OpenJ9 Eclipse OpenJ9 VM openj9-0.21.0` |
-| <a id="process-runtime-name" href="#process-runtime-name">`process.runtime.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the runtime of this process. | `OpenJDK Runtime Environment` |
-| <a id="process-runtime-version" href="#process-runtime-version">`process.runtime.version`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The version of the runtime of this process, as returned by the runtime without modification. | `14.0.2` |
-| <a id="process-saved-user-id" href="#process-saved-user-id">`process.saved_user.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The saved user ID (SUID) of the process. | `1002` |
-| <a id="process-saved-user-name" href="#process-saved-user-name">`process.saved_user.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The username of the saved user. | `operator` |
-| <a id="process-session-leader-pid" href="#process-session-leader-pid">`process.session_leader.pid`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The PID of the process's session leader. This is also the session ID (SID) of the process. | `14` |
-| <a id="process-state" href="#process-state">`process.state`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The process state, e.g., [Linux Process State Codes](https://man7.org/linux/man-pages/man1/ps.1.html#PROCESS_STATE_CODES) | `running` |
-| <a id="process-title" href="#process-title">`process.title`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Process title (proctitle) [3] | `cat /etc/hostname`; `xfce4-session`; `bash` |
-| <a id="process-user-id" href="#process-user-id">`process.user.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The effective user ID (EUID) of the process. | `1001` |
-| <a id="process-user-name" href="#process-user-name">`process.user.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The username of the effective user of the process. | `root` |
-| <a id="process-vpid" href="#process-vpid">`process.vpid`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | Virtual process identifier. [4] | `12` |
-| <a id="process-working-directory" href="#process-working-directory">`process.working_directory`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The working directory of the process. | `/root` |
+| --- | --- | --- | --- | --- |
+| <a id="process-args-count" href="#process-args-count">`process.args_count`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | int | Length of the process.command_args array [1] | `4` |
+| <a id="process-command" href="#process-command">`process.command`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The command used to launch the process (i.e. the command name). On Linux based systems, can be set to the zeroth string in `proc/[pid]/cmdline`. On Windows, can be set to the first parameter extracted from `GetCommandLineW`. | `cmd/otelcol` |
+| <a id="process-command-args" href="#process-command-args">`process.command_args`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string[] | All the command arguments (including the command/executable itself) as received by the process. On Linux-based systems (and some other Unixoid systems supporting procfs), can be set according to the list of null-delimited strings extracted from `proc/[pid]/cmdline`. For libc-based executables, this would be the full argv vector passed to `main`. SHOULD NOT be collected by default unless there is sanitization that excludes sensitive data. | `["cmd/otecol", "--config=config.yaml"]` |
+| <a id="process-command-line" href="#process-command-line">`process.command_line`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The full command used to launch the process as a single string representing the full command. On Windows, can be set to the result of `GetCommandLineW`. Do not set this if you have to assemble it just for monitoring; use `process.command_args` instead. SHOULD NOT be collected by default unless there is sanitization that excludes sensitive data. | `C:\cmd\otecol --config="my directory\config.yaml"` |
+| <a id="process-context-switch-type" href="#process-context-switch-type">`process.context_switch.type`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | Specifies whether the context switches for this data point were voluntary or involuntary. | `voluntary`; `involuntary` |
+| <a id="process-creation-time" href="#process-creation-time">`process.creation.time`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The date and time the process was created, in ISO 8601 format. | `2023-11-21T09:25:34.853Z` |
+| <a id="process-environment-variable" href="#process-environment-variable">`process.environment_variable.<key>`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | Process environment variables, `<key>` being the environment variable name, the value being the environment variable value. [2] | `ubuntu`; `/usr/local/bin:/usr/bin` |
+| <a id="process-executable-build-id-gnu" href="#process-executable-build-id-gnu">`process.executable.build_id.gnu`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The GNU build ID as found in the `.note.gnu.build-id` ELF section (hex string). | `c89b11207f6479603b0d49bf291c092c2b719293` |
+| <a id="process-executable-build-id-go" href="#process-executable-build-id-go">`process.executable.build_id.go`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The Go build ID as retrieved by `go tool buildid <go executable>`. | `foh3mEXu7BLZjsN9pOwG/kATcXlYVCDEFouRMQed_/WwRFB1hPo9LBkekthSPG/x8hMC8emW2cCjXD0_1aY` |
+| <a id="process-executable-build-id-htlhash" href="#process-executable-build-id-htlhash">`process.executable.build_id.htlhash`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | Deterministic build ID for executables. [3] | `600DCAFE4A110000F2BF38C493F5FB92` |
+| <a id="process-executable-name" href="#process-executable-name">`process.executable.name`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The name of the process executable. On Linux based systems, this SHOULD be set to the base name of the target of `/proc/[pid]/exe`. On Windows, this SHOULD be set to the base name of `GetProcessImageFileNameW`. | `otelcol` |
+| <a id="process-executable-path" href="#process-executable-path">`process.executable.path`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The full path to the process executable. On Linux based systems, can be set to the target of `proc/[pid]/exe`. On Windows, can be set to the result of `GetProcessImageFileNameW`. | `/usr/bin/cmd/otelcol` |
+| <a id="process-exit-code" href="#process-exit-code">`process.exit.code`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | int | The exit code of the process. | `127` |
+| <a id="process-exit-time" href="#process-exit-time">`process.exit.time`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The date and time the process exited, in ISO 8601 format. | `2023-11-21T09:26:12.315Z` |
+| <a id="process-group-leader-pid" href="#process-group-leader-pid">`process.group_leader.pid`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | int | The PID of the process's group leader. This is also the process group ID (PGID) of the process. | `23` |
+| <a id="process-interactive" href="#process-interactive">`process.interactive`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | boolean | Whether the process is connected to an interactive shell. | |
+| <a id="process-owner" href="#process-owner">`process.owner`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The username of the user that owns the process. | `root` |
+| <a id="process-parent-pid" href="#process-parent-pid">`process.parent_pid`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | int | Parent Process identifier (PPID). | `111` |
+| <a id="process-pid" href="#process-pid">`process.pid`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | int | Process identifier (PID). | `1234` |
+| <a id="process-real-user-id" href="#process-real-user-id">`process.real_user.id`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | int | The real user ID (RUID) of the process. | `1000` |
+| <a id="process-real-user-name" href="#process-real-user-name">`process.real_user.name`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The username of the real user of the process. | `operator` |
+| <a id="process-runtime-description" href="#process-runtime-description">`process.runtime.description`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | An additional description about the runtime of the process, for example a specific vendor customization of the runtime environment. | `Eclipse OpenJ9 Eclipse OpenJ9 VM openj9-0.21.0` |
+| <a id="process-runtime-name" href="#process-runtime-name">`process.runtime.name`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The name of the runtime of this process. | `OpenJDK Runtime Environment` |
+| <a id="process-runtime-version" href="#process-runtime-version">`process.runtime.version`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The version of the runtime of this process, as returned by the runtime without modification. | `14.0.2` |
+| <a id="process-saved-user-id" href="#process-saved-user-id">`process.saved_user.id`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | int | The saved user ID (SUID) of the process. | `1002` |
+| <a id="process-saved-user-name" href="#process-saved-user-name">`process.saved_user.name`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The username of the saved user. | `operator` |
+| <a id="process-session-leader-pid" href="#process-session-leader-pid">`process.session_leader.pid`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | int | The PID of the process's session leader. This is also the session ID (SID) of the process. | `14` |
+| <a id="process-state" href="#process-state">`process.state`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The process state, e.g., [Linux Process State Codes](https://man7.org/linux/man-pages/man1/ps.1.html#PROCESS_STATE_CODES) | `running` |
+| <a id="process-title" href="#process-title">`process.title`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | Process title (proctitle) [4] | `cat /etc/hostname`; `xfce4-session`; `bash` |
+| <a id="process-user-id" href="#process-user-id">`process.user.id`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | int | The effective user ID (EUID) of the process. | `1001` |
+| <a id="process-user-name" href="#process-user-name">`process.user.name`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The username of the effective user of the process. | `root` |
+| <a id="process-vpid" href="#process-vpid">`process.vpid`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | int | Virtual process identifier. [5] | `12` |
+| <a id="process-working-directory" href="#process-working-directory">`process.working_directory`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The working directory of the process. | `/root` |
 
 **[1] `process.args_count`:** This field can be useful for querying or performing bucket analysis on how many arguments were provided to start a process. More arguments may be an indication of suspicious activity.
 
@@ -59,46 +59,60 @@ as the `process.environment_variable.USER` attribute with value `"ubuntu"`.
 SHOULD be recorded as the `process.environment_variable.PATH` attribute
 with value `"/usr/local/bin:/usr/bin"`.
 
-**[3] `process.title`:** In many Unix-like systems, process title (proctitle), is the string that represents the name or command line of a running process, displayed by system monitoring tools like ps, top, and htop.
+**[3] `process.executable.build_id.htlhash`:** GNU and Go build IDs may be stripped or unavailable in some environments
+(e.g., Alpine Linux, Docker images). This attribute provides a deterministic
+build ID computed by hashing the first and last 4096 bytes of the file
+along with its length:
 
-**[4] `process.vpid`:** The process ID within a PID namespace. This is not necessarily unique across all processes on the host but it is unique within the process namespace that the process exists within.
+```
+Input   ← Concat(File[:4096], File[-4096:], BigEndianUInt64(Len(File)))
+Digest  ← SHA256(Input)
+BuildID ← Digest[:16]
+```
+
+The result is the first 16 bytes (128 bits) of the SHA256 digest,
+represented as a hex string.
+
+**[4] `process.title`:** In many Unix-like systems, process title (proctitle), is the string that represents the name or command line of a running process, displayed by system monitoring tools like ps, top, and htop.
+
+**[5] `process.vpid`:** The process ID within a PID namespace. This is not necessarily unique across all processes on the host but it is unique within the process namespace that the process exists within.
 
 ---
 
 `process.context_switch.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
-| `involuntary` | involuntary | ![Development](https://img.shields.io/badge/-development-blue) |
-| `voluntary` | voluntary | ![Development](https://img.shields.io/badge/-development-blue) |
+| Value | Description | Stability |
+| --- | --- | --- |
+| `involuntary` | involuntary | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `voluntary` | voluntary | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 ---
 
 `process.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
-| `defunct` | defunct | ![Development](https://img.shields.io/badge/-development-blue) |
-| `running` | running | ![Development](https://img.shields.io/badge/-development-blue) |
-| `sleeping` | sleeping | ![Development](https://img.shields.io/badge/-development-blue) |
-| `stopped` | stopped | ![Development](https://img.shields.io/badge/-development-blue) |
+| Value | Description | Stability |
+| --- | --- | --- |
+| `defunct` | defunct | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `running` | running | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `sleeping` | sleeping | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `stopped` | stopped | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 <details>
 <summary><b>Deprecated Attributes:</b></summary>
 
-| Key | Value Type | Summary | Example Values | Deprecation Explanation |
-|---|---|---|---|---|
-| <a id="process-context-switch-type" href="#process-context-switch-type">`process.context_switch_type`</a> | string | "Deprecated, use `process.context_switch.type` instead." | `voluntary`; `involuntary` |  Use `process.context_switch.type` instead.  |
-| <a id="process-cpu-state" href="#process-cpu-state">`process.cpu.state`</a> | string | Deprecated, use `cpu.mode` instead. | `system`; `user`; `wait` |  Use `cpu.mode` instead.  |
-| <a id="process-executable-build-id-profiling" href="#process-executable-build-id-profiling">`process.executable.build_id.profiling`</a> | string | "Deprecated, use `process.executable.build_id.htlhash` instead." | `600DCAFE4A110000F2BF38C493F5FB92` |  Use `process.executable.build_id.htlhash` instead.  |
-| <a id="process-paging-fault-type" href="#process-paging-fault-type">`process.paging.fault_type`</a> | string | Deprecated, use `system.paging.fault.type` instead. | `major`; `minor` |  Use `system.paging.fault.type` instead.  |
+| Key | Value Type | Description | Example Values | Deprecation Explanation |
+| --- | --- | --- | --- | --- |
+| <a id="process-context-switch-type" href="#process-context-switch-type">`process.context_switch_type`</a> | string | "Deprecated, use `process.context_switch.type` instead." | `voluntary`; `involuntary` | Use `process.context_switch.type` instead. |
+| <a id="process-cpu-state" href="#process-cpu-state">`process.cpu.state`</a> | string | Deprecated, use `cpu.mode` instead. | `system`; `user`; `wait` | Use `cpu.mode` instead. |
+| <a id="process-executable-build-id-profiling" href="#process-executable-build-id-profiling">`process.executable.build_id.profiling`</a> | string | "Deprecated, use `process.executable.build_id.htlhash` instead." | `600DCAFE4A110000F2BF38C493F5FB92` | Use `process.executable.build_id.htlhash` instead. |
+| <a id="process-paging-fault-type" href="#process-paging-fault-type">`process.paging.fault_type`</a> | string | Deprecated, use `system.paging.fault.type` instead. | `major`; `minor` | Use `system.paging.fault.type` instead. |
 
 ---
 
 `process.context_switch_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `involuntary` | involuntary | ![Development](https://img.shields.io/badge/-development-blue) |
 | `voluntary` | voluntary | ![Development](https://img.shields.io/badge/-development-blue) |
 
@@ -106,8 +120,8 @@ with value `"/usr/local/bin:/usr/bin"`.
 
 `process.cpu.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `system` | system | ![Development](https://img.shields.io/badge/-development-blue) |
 | `user` | user | ![Development](https://img.shields.io/badge/-development-blue) |
 | `wait` | wait | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -116,8 +130,8 @@ with value `"/usr/local/bin:/usr/bin"`.
 
 `process.paging.fault_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `major` | major | ![Development](https://img.shields.io/badge/-development-blue) |
 | `minor` | minor | ![Development](https://img.shields.io/badge/-development-blue) |
 
@@ -130,7 +144,7 @@ Describes Linux Process attributes
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
-|---|---|---|---|---|
-| <a id="process-linux-cgroup" href="#process-linux-cgroup">`process.linux.cgroup`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The control group associated with the process. [5] | `1:name=systemd:/user.slice/user-1000.slice/session-3.scope`; `0::/user.slice/user-1000.slice/user@1000.service/tmux-spawn-0267755b-4639-4a27-90ed-f19f88e53748.scope` |
+| --- | --- | --- | --- | --- |
+| <a id="process-linux-cgroup" href="#process-linux-cgroup">`process.linux.cgroup`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The control group associated with the process. [6] | `1:name=systemd:/user.slice/user-1000.slice/session-3.scope`; `0::/user.slice/user-1000.slice/user@1000.service/tmux-spawn-0267755b-4639-4a27-90ed-f19f88e53748.scope` |
 
-**[5] `process.linux.cgroup`:** Control groups (cgroups) are a kernel feature used to organize and manage process resources. This attribute provides the path(s) to the cgroup(s) associated with the process, which should match the contents of the [/proc/\[PID\]/cgroup](https://man7.org/linux/man-pages/man7/cgroups.7.html) file.
+**[6] `process.linux.cgroup`:** Control groups (cgroups) are a kernel feature used to organize and manage process resources. This attribute provides the path(s) to the cgroup(s) associated with the process, which should match the contents of the [/proc/\[PID\]/cgroup](https://man7.org/linux/man-pages/man7/cgroups.7.html) file.

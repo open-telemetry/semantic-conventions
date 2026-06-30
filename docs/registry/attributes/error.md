@@ -10,20 +10,19 @@ This document defines the shared attributes used to report an error.
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
-|---|---|---|---|---|
-| <a id="error-message" href="#error-message">`error.message`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | A message providing more detail about an error in human-readable form. [1] | `Unexpected input type: string`; `The user has exceeded their storage quota` |
-| <a id="error-type" href="#error-type">`error.type`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | Describes a class of error the operation ended with. [2] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` |
+| --- | --- | --- | --- | --- |
+| <a id="error-type" href="#error-type">`error.type`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` |
 
-**[1] `error.message`:** `error.message` should provide additional context and detail about an error.
-It is NOT RECOMMENDED to duplicate the value of `error.type` in `error.message`.
-It is also NOT RECOMMENDED to duplicate the value of `exception.message` in `error.message`.
-
-`error.message` is NOT RECOMMENDED for metrics or spans due to its unbounded cardinality and overlap with span status.
-
-**[2] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
+**[1] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
 When `error.type` is set to a type (e.g., an exception type), its
 canonical class name identifying the type within the artifact SHOULD be used.
+
+If the recorded error type is a wrapper that is not meaningful for
+failure classification, instrumentation MAY use the type of the inner
+error instead. For example, in Go, errors created with `fmt.Errorf`
+using `%w` MAY be unwrapped when the wrapper type does not help
+classify the failure.
 
 Instrumentations SHOULD document the list of errors they report.
 
@@ -34,7 +33,7 @@ additional filters are applied.
 
 If the operation has completed successfully, instrumentations SHOULD NOT set `error.type`.
 
-If a specific domain defines its own set of error identifiers (such as HTTP or gRPC status codes),
+If a specific domain defines its own set of error identifiers (such as HTTP or RPC status codes),
 it's RECOMMENDED to:
 
 - Use a domain-specific attribute
@@ -44,6 +43,21 @@ it's RECOMMENDED to:
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+
+<details>
+<summary><b>Deprecated Attributes:</b></summary>
+
+| Key | Value Type | Description | Example Values | Deprecation Explanation |
+| --- | --- | --- | --- | --- |
+| <a id="error-message" href="#error-message">`error.message`</a> | string | A message providing more detail about an error in human-readable form. [1] | `Unexpected input type: string`; `The user has exceeded their storage quota` | Use domain-specific error message attribute. For example, use `feature_flag.error.message` for feature flag errors. |
+
+**[1] `error.message`:** `error.message` should provide additional context and detail about an error.
+It is NOT RECOMMENDED to duplicate the value of `error.type` in `error.message`.
+It is also NOT RECOMMENDED to duplicate the value of `exception.message` in `error.message`.
+
+`error.message` is NOT RECOMMENDED for metrics or spans due to its unbounded cardinality and overlap with span status.
+
+</details>

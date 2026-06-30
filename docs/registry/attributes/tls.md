@@ -10,7 +10,7 @@ This document defines semantic convention attributes in the TLS namespace.
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | <a id="tls-cipher" href="#tls-cipher">`tls.cipher`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | String indicating the [cipher](https://datatracker.ietf.org/doc/html/rfc5246#appendix-A.5) used during the current connection. [1] | `TLS_RSA_WITH_3DES_EDE_CBC_SHA`; `TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256` |
 | <a id="tls-client-certificate" href="#tls-client-certificate">`tls.client.certificate`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | PEM-encoded stand-alone certificate offered by the client. This is usually mutually-exclusive of `client.certificate_chain` since this value also exists in that list. | `MII...` |
 | <a id="tls-client-certificate-chain" href="#tls-client-certificate-chain">`tls.client.certificate_chain`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string[] | Array of PEM-encoded certificates that make up the certificate chain offered by the client. This is usually mutually-exclusive of `client.certificate` since that value should be the first certificate in the chain. | `["MII...", "MI..."]` |
@@ -46,16 +46,16 @@ This document defines semantic convention attributes in the TLS namespace.
 
 `tls.protocol.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `ssl` | ssl | ![Development](https://img.shields.io/badge/-development-blue) |
 | `tls` | tls | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <details>
 <summary><b>Deprecated Attributes:</b></summary>
 
-| Key | Value Type | Summary | Example Values | Deprecation Explanation |
-|---|---|---|---|---|
-| <a id="tls-client-server-name" href="#tls-client-server-name">`tls.client.server_name`</a> | string | Deprecated, use `server.address` instead. | `opentelemetry.io` |  Use `server.address` instead.  |
+| Key | Value Type | Description | Example Values | Deprecation Explanation |
+| --- | --- | --- | --- | --- |
+| <a id="tls-client-server-name" href="#tls-client-server-name">`tls.client.server_name`</a> | string | Deprecated, use `server.address` instead. | `opentelemetry.io` | Use `server.address` instead. |
 
 </details>

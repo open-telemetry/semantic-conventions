@@ -10,7 +10,7 @@ Describes the end user.
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | <a id="enduser-id" href="#enduser-id">`enduser.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Unique identifier of an end user in the system. It maybe a username, email address, or other identifier. [1] | `username` |
 | <a id="enduser-pseudo-id" href="#enduser-pseudo-id">`enduser.pseudo.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Pseudonymous identifier of an end user. This identifier should be a random value that is not directly linked or associated with the end user's actual identity. [2] | `QdH5CAWJgqVT4rOr0qtumf` |
 
@@ -27,9 +27,9 @@ Describes the end user.
 <details>
 <summary><b>Deprecated Attributes:</b></summary>
 
-| Key | Value Type | Summary | Example Values | Deprecation Explanation |
-|---|---|---|---|---|
-| <a id="enduser-role" href="#enduser-role">`enduser.role`</a> | string | Deprecated, use `user.roles` instead. | `admin` |  Use `user.roles` instead.  |
-| <a id="enduser-scope" href="#enduser-scope">`enduser.scope`</a> | string | Deprecated, no replacement at this time. | `read:message, write:files` |  Removed, no replacement at this time.  |
+| Key | Value Type | Description | Example Values | Deprecation Explanation |
+| --- | --- | --- | --- | --- |
+| <a id="enduser-role" href="#enduser-role">`enduser.role`</a> | string | Deprecated, use `user.roles` instead. | `admin` | Use `user.roles` instead. |
+| <a id="enduser-scope" href="#enduser-scope">`enduser.scope`</a> | string | Deprecated, no replacement at this time. | `read:message, write:files` | Removed, no replacement at this time. |
 
 </details>

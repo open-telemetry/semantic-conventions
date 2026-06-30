@@ -8,29 +8,44 @@ const prNumber: number = +process.env.PR_NUMBER!;
 const changes: string[] = process.env.CHANGED_FILES!.split(',');
 
 /**
- * Checks if the PR already has the 'triage:accepted:ready' label, meaning the triage checks should be skipped.
- * @returns true if the PR has the 'triage:accepted:ready' assigned to it, false otherwise.
+ * Checks if the PR already has the 'triage:accepted:ready' or 'triage:accepted:ready-with-sig' label, meaning the triage checks should be skipped.
+ * Also checks if the PR title starts with '[chore]' which indicates a maintenance PR that should skip checks.
+ * @returns true if the PR has the 'triage:accepted:ready' or 'triage:accepted:ready-with-sig' label or title starts with '[chore]', false otherwise.
  */
 async function shouldSkipCheck() {
-    const result = await octokit.request("GET /repos/{owner}/{repo}/issues/{issue_number}/labels", {
+    const result = await octokit.request("GET /repos/{owner}/{repo}/issues/{issue_number}", {
         owner: owner,
         repo: repo,
         issue_number: prNumber
     });
 
-    return result.data.some(l => l.name === "triage:accepted:ready");
+    const hasAcceptedLabel = result.data.labels?.some(l =>
+        l.name === "triage:accepted:ready" || l.name === "triage:accepted:ready-with-sig"
+    ) ?? false;
+    const isChore = result.data.title.toLowerCase().startsWith('[chore]');
+
+    return hasAcceptedLabel || isChore;
 }
 
 function getCommentText(changesWithoutOwners: string[]): string {
-    return `
-This PR contains changes to area(s) that do not have an active SIG/project and will be auto-closed:
+    return `👋 Thanks for your contribution!
+
+This PR modifies file(s) in area(s) that do not currently have an active SIG/project:
 
 - ${changesWithoutOwners.join('\n- ')}
 
-Such changes may be rejected or put on hold until a new SIG/project is established.
+Per the [area ownership process](https://github.com/open-telemetry/semantic-conventions/blob/main/AREAS.md),
+changes to these areas need an active SIG/project, so this PR has been automatically
+closed and labeled \`triage:rejected:declined\`.
 
-Please refer to the [Semantic Convention Areas](https://github.com/open-telemetry/semantic-conventions/blob/main/AREAS.md)
-document to see the current active SIGs and also to learn how to kick start a new one.`;
+This does not mean your change is unwelcome:
+
+- **For substantial changes or new conventions**: Consider starting a new SIG/project.
+  See the [Project Management](https://github.com/open-telemetry/community/blob/main/project-management.md) guide.
+- **If you believe this was closed in error**: Please reach out in the
+  \`#otel-semantic-conventions\` channel on the [CNCF Slack](https://slack.cncf.io/).
+
+Thanks again for taking the time to contribute! 🙏`;
 }
 
 async function changesInInactiveAreas(): Promise<boolean> {

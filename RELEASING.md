@@ -6,6 +6,8 @@
   if there is one.
 - Run [opentelemetry.io workflow](https://github.com/open-telemetry/opentelemetry.io/actions/workflows/build-dev.yml)
   against `semantic-conventions` submodule as a smoke-test for docs. Fix broken links, if any.
+  - If there are failures you can't resolve, notify [#otel-comms](https://cloud-native.slack.com/archives/C02UN96HZH6)
+    and corrdinate fixing them.
 - Run the [prepare release workflow](https://github.com/open-telemetry/semantic-conventions/actions/workflows/prepare-release.yml).
   - Review and merge the pull request that it creates.
   - Note: the PR will need to be closed and the workflow re-run if any non-chore PRs are merged to `main` while the PR is open.
@@ -22,3 +24,10 @@
 
 New release is then auto-discovered by [opentelemetry.io](https://github.com/open-telemetry/opentelemetry.io) pipelines which (via bot-generated PR)
 eventually results in new version of schema file being published.
+
+## After the release
+
+- Publishing a release triggers the [post-release workflow](https://github.com/open-telemetry/semantic-conventions/actions/workflows/post-release.yml),
+  which opens a pull request against main bumping the development `schema_url` in
+  `model/manifest.yaml` to the `{major}.{minor+1}.0-unreleased` version.
+  Review and merge that pull request.

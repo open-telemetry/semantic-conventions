@@ -10,8 +10,9 @@ This document defines attributes for Feature Flags.
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | <a id="feature-flag-context-id" href="#feature-flag-context-id">`feature_flag.context.id`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The unique identifier for the flag evaluation context. For example, the targeting key. | `5157782b-2203-4c80-a857-dbbd5e7761db` |
+| <a id="feature-flag-error-message" href="#feature-flag-error-message">`feature_flag.error.message`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | A message providing more detail about an error that occurred during feature flag evaluation in human-readable form. | `Unexpected input type: string`; `The user has exceeded their storage quota` |
 | <a id="feature-flag-key" href="#feature-flag-key">`feature_flag.key`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The lookup key of the feature flag. | `logo-color` |
 | <a id="feature-flag-provider-name" href="#feature-flag-provider-name">`feature_flag.provider.name`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | Identifies the feature flag provider. | `Flag Manager` |
 | <a id="feature-flag-result-reason" href="#feature-flag-result-reason">`feature_flag.result.reason`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The reason code which shows how a feature flag value was determined. | `static`; `targeting_match`; `error`; `default` |
@@ -35,8 +36,8 @@ For example, the variant `red` maybe be used for the value `#c05543`.
 
 `feature_flag.result.reason` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `cached` | The resolved value was retrieved from cache. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | `default` | The resolved value fell back to a pre-configured value (no dynamic evaluation occurred or dynamic evaluation yielded no result). | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | `disabled` | The resolved value was the result of the flag being disabled in the management system. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
@@ -50,19 +51,19 @@ For example, the variant `red` maybe be used for the value `#c05543`.
 <details>
 <summary><b>Deprecated Attributes:</b></summary>
 
-| Key | Value Type | Summary | Example Values | Deprecation Explanation |
-|---|---|---|---|---|
-| <a id="feature-flag-evaluation-error-message" href="#feature-flag-evaluation-error-message">`feature_flag.evaluation.error.message`</a> | string | Deprecated, use `error.message` instead. | `Flag `header-color` expected type `string` but found type `number`` |  Use `error.message` instead.  |
-| <a id="feature-flag-evaluation-reason" href="#feature-flag-evaluation-reason">`feature_flag.evaluation.reason`</a> | string | Deprecated, use `feature_flag.result.reason` instead. | `static`; `targeting_match`; `error`; `default` |  Use `feature_flag.result.reason` instead.  |
-| <a id="feature-flag-provider-name" href="#feature-flag-provider-name">`feature_flag.provider_name`</a> | string | Deprecated, use `feature_flag.provider.name` instead. | `Flag Manager` |  Use `feature_flag.provider.name` instead.  |
-| <a id="feature-flag-variant" href="#feature-flag-variant">`feature_flag.variant`</a> | string | Deprecated, use `feature_flag.result.variant` instead. | `red`; `true`; `on` |  Use `feature_flag.result.variant` instead.  |
+| Key | Value Type | Description | Example Values | Deprecation Explanation |
+| --- | --- | --- | --- | --- |
+| <a id="feature-flag-evaluation-error-message" href="#feature-flag-evaluation-error-message">`feature_flag.evaluation.error.message`</a> | string | Deprecated, use `feature_flag.error.message` instead. | `Flag `header-color` expected type `string` but found type `number`` | Use `feature_flag.error.message` instead. |
+| <a id="feature-flag-evaluation-reason" href="#feature-flag-evaluation-reason">`feature_flag.evaluation.reason`</a> | string | Deprecated, use `feature_flag.result.reason` instead. | `static`; `targeting_match`; `error`; `default` | Use `feature_flag.result.reason` instead. |
+| <a id="feature-flag-provider-name" href="#feature-flag-provider-name">`feature_flag.provider_name`</a> | string | Deprecated, use `feature_flag.provider.name` instead. | `Flag Manager` | Use `feature_flag.provider.name` instead. |
+| <a id="feature-flag-variant" href="#feature-flag-variant">`feature_flag.variant`</a> | string | Deprecated, use `feature_flag.result.variant` instead. | `red`; `true`; `on` | Use `feature_flag.result.variant` instead. |
 
 ---
 
 `feature_flag.evaluation.reason` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `cached` | The resolved value was retrieved from cache. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `default` | The resolved value fell back to a pre-configured value (no dynamic evaluation occurred or dynamic evaluation yielded no result). | ![Development](https://img.shields.io/badge/-development-blue) |
 | `disabled` | The resolved value was the result of the flag being disabled in the management system. | ![Development](https://img.shields.io/badge/-development-blue) |

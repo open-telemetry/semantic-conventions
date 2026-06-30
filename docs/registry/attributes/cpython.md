@@ -10,15 +10,15 @@ This document defines CPython related attributes.
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | <a id="cpython-gc-generation" href="#cpython-gc-generation">`cpython.gc.generation`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | Value of the garbage collector collection generation. | `0`; `1`; `2` |
 
 ---
 
 `cpython.gc.generation` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
+| Value | Description | Stability |
+| --- | --- | --- |
 | `0` | Generation 0 | ![Development](https://img.shields.io/badge/-development-blue) |
 | `1` | Generation 1 | ![Development](https://img.shields.io/badge/-development-blue) |
 | `2` | Generation 2 | ![Development](https://img.shields.io/badge/-development-blue) |

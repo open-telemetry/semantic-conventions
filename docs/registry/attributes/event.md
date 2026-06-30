@@ -10,8 +10,8 @@ Attributes for Events represented using Log Records.
 <details>
 <summary><b>Deprecated Attributes:</b></summary>
 
-| Key | Value Type | Summary | Example Values | Deprecation Explanation |
-|---|---|---|---|---|
-| <a id="event-name" href="#event-name">`event.name`</a> | string | Identifies the class / type of event. | `browser.mouse.click`; `device.app.lifecycle` |  The value of this attribute MUST now be set as the value of the EventName field on the LogRecord to indicate that the LogRecord represents an Event.  |
+| Key | Value Type | Description | Example Values | Deprecation Explanation |
+| --- | --- | --- | --- | --- |
+| <a id="event-name" href="#event-name">`event.name`</a> | string | Identifies the class / type of event. | `browser.mouse.click`; `device.app.lifecycle` | The value of this attribute MUST now be set as the value of the EventName field on the LogRecord to indicate that the LogRecord represents an Event. |
 
 </details>

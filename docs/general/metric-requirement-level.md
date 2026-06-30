@@ -1,17 +1,21 @@
 # Metric requirement levels
 
-**Status**: [Stable][DocumentStatus]
+**Status**: [Deprecated][DocumentStatus]
+
+> [!WARNING]
+>
+> This document has been replaced by the generic [Signal Requirement Level](./signal-requirement-level.md).
 
 <details>
 <summary>Table of Contents</summary>
 
-<!-- toc -->
+<!-- START doctoc -->
 
 - [Required](#required)
 - [Recommended](#recommended)
 - [Opt-In](#opt-in)
 
-<!-- tocstop -->
+<!-- END doctoc -->
 
 </details>
 

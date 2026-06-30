@@ -1,191 +1,518 @@
 groups:
-  - id: span.rpc.client
-    type: span
-    stability: development
-    brief: This span represents an outgoing Remote Procedure Call (RPC).
-    note: |
-      **Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#span-name) section.
 
-      **Span kind** MUST be `CLIENT`.
-    extends: rpc_service
-    span_kind: client
-    events: [rpc.message]
+  - id: rpc
+    type: attribute_group
+    brief: 'This document defines semantic conventions for remote procedure calls.'
+    extends: common.rpc.attributes
     attributes:
-      - ref: rpc.system
-        requirement_level: required
-
-  - id: span.rpc.server
-    type: span
-    stability: development
-    extends: rpc_service.server
-    span_kind: server
-    brief: This span represents an incoming Remote Procedure Call (RPC).
-    events: [rpc.message]
-    note: |
-      **Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#span-name) section.
-
-      **Span kind** MUST be `SERVER`.
-    attributes:
-      - ref: rpc.system
-        requirement_level: required
-
-  - id: span.rpc.connect_rpc.client
-    type: span
-    stability: development
-    brief: This span represents an outgoing Remote Procedure Call (RPC).
-    note: |
-      `rpc.system` MUST be set to `"connect_rpc"` and SHOULD be provided **at span creation time.**
-
-      **Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#span-name) section.
-
-      **Span kind** MUST be `CLIENT`.
-    extends: rpc_service
-    span_kind: client
-    attributes:
-      - ref: rpc.connect_rpc.error_code
+      - ref: server.address
+        sampling_relevant: true
+      - ref: server.port
+        sampling_relevant: true
+      - ref: network.peer.address
+        requirement_level: recommended
+        note: >
+          If a RPC involved multiple network calls (for example retries), the
+          last contacted address SHOULD be used.
+      - ref: network.peer.port
         requirement_level:
-          conditionally_required: if available.
-      - ref: rpc.connect_rpc.request.metadata
-        requirement_level: opt_in
-      - ref: rpc.connect_rpc.response.metadata
-        requirement_level: opt_in
-
-  - id: span.rpc.connect_rpc.server
-    type: span
-    stability: development
-    extends: rpc_service.server
-    span_kind: server
-    brief: This span represents an incoming Remote Procedure Call (RPC).
-    note: |
-      `rpc.system` MUST be set to `"connect_rpc"` and SHOULD be provided **at span creation time.**
-
-      **Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#span-name) section.
-
-      **Span kind** MUST be `SERVER`.
-    attributes:
-      - ref: rpc.connect_rpc.error_code
-        requirement_level:
-          conditionally_required: if available.
-      - ref: rpc.connect_rpc.request.metadata
-        requirement_level: opt_in
-      - ref: rpc.connect_rpc.response.metadata
-        requirement_level: opt_in
-
-  - id: span.rpc.grpc.client
-    type: span
-    stability: development
-    brief: This span represents an outgoing Remote Procedure Call (RPC).
-    note: |
-      `rpc.system` MUST be set to `"grpc"` and SHOULD be provided **at span creation time.**
-
-      **Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#span-name) section.
-
-      **Span kind** MUST be `CLIENT`.
-
-      **Span status** Should be set based on the grpc status code. A mapping is defined in the [grpc status](/docs/rpc/grpc.md#grpc-status) section.
-    extends: rpc_service
-    span_kind: client
-    attributes:
+          recommended: If `network.peer.address` is set.
       - ref: rpc.method
-        requirement_level: required
-      - ref: rpc.service
-        requirement_level: required
-      - ref: rpc.grpc.status_code
-        requirement_level: required
-      - ref: rpc.grpc.request.metadata
-        requirement_level: opt_in
-      - ref: rpc.grpc.response.metadata
-        requirement_level: opt_in
+        requirement_level:
+          conditionally_required: if available.
+        sampling_relevant: true
+      - ref: rpc.method_original
+        requirement_level:
+          conditionally_required: If and only if it's different than `rpc.method`.
 
-  - id: span.rpc.grpc.server
+  - id: span.rpc.call.client
     type: span
-    stability: development
-    extends: rpc_service.server
+    stability: release_candidate
+    brief: This span represents an outgoing Remote Procedure Call (RPC).
+    note: |
+      RPC client spans SHOULD cover the entire client-side lifecycle of an RPC,
+      starting when the RPC is initiated and ending when the response is received
+      or the RPC is terminated due to an error or cancellation.
+
+      For streaming RPCs, the span covers the full lifetime of the request and/or
+      response streams until they are closed or terminated.
+
+      If a transient issue happened and was retried within this RPC, the corresponding
+      span SHOULD cover the duration of the logical call with all retries.
+
+      **Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#name) section.
+
+      **Span kind** MUST be `CLIENT`.
+
+      **Span status**: refer to the [Recording Errors](/docs/general/recording-errors.md)
+      document for details on how to record span status.
+    extends: rpc
+    span_kind: client
+    attributes:
+      - ref: rpc.system.name
+        requirement_level: required
+        sampling_relevant: true
+
+  - id: span.rpc.call.server
+    type: span
+    stability: release_candidate
+    extends: rpc
     span_kind: server
     brief: This span represents an incoming Remote Procedure Call (RPC).
     note: |
-      `rpc.system` MUST be set to `"grpc"` and SHOULD be provided **at span creation time.**
+      RPC server spans SHOULD cover the entire server-side lifecycle of an RPC,
+      starting when the request is received and ending when the response is sent
+      or the RPC is terminated due to an error or cancellation.
 
-      **Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#span-name) section.
+      For streaming RPCs, the span SHOULD cover the full lifetime of the request
+      and/or response streams until they are closed or terminated.
+
+      **Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#name) section.
 
       **Span kind** MUST be `SERVER`.
 
-      **Span status** Should be set based on the grpc status code. A mapping is defined in the [grpc status](/docs/rpc/grpc.md#grpc-status) section.
+      **Span status**: refer to the [Recording Errors](/docs/general/recording-errors.md)
+      document for details on how to record span status.
     attributes:
-      - ref: rpc.grpc.status_code
+      - ref: rpc.system.name
         requirement_level: required
-      - ref: rpc.grpc.request.metadata
-        requirement_level: opt_in
-      - ref: rpc.grpc.response.metadata
-        requirement_level: opt_in
+        sampling_relevant: true
 
-  - id: span.rpc.jsonrpc.client
+  - id: span.rpc.connect_rpc.call.client
     type: span
     stability: development
     brief: This span represents an outgoing Remote Procedure Call (RPC).
     note: |
-      `rpc.system` MUST be set to `"jsonrpc"` and SHOULD be provided **at span creation time.**
+      `rpc.system.name` MUST be set to `"connectrpc"` and SHOULD be provided **at span creation time.**
 
-      **Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#span-name) section.
+      **Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#name) section.
 
       **Span kind** MUST be `CLIENT`.
+
+      **Span status**: refer to the [Recording Errors](/docs/general/recording-errors.md)
+      document for details on how to record span status.
+    extends: rpc
+    span_kind: client
+    attributes:
+      - ref: rpc.response.status_code
+        requirement_level:
+          conditionally_required: if available.
+        brief: The [error code](https://connectrpc.com//docs/protocol/#error-codes) of the Connect response.
+        note: |
+          All status codes except `OK` SHOULD be considered errors.
+      - ref: rpc.request.metadata
+        requirement_level: opt_in
+      - ref: rpc.response.metadata
+        requirement_level: opt_in
+      - ref: server.address
+        brief: The domain name or address of the Connect RPC server.
+        requirement_level: required
+        note: >
+          When an IP address is provided instead of a domain name,
+          instrumentations SHOULD NOT do a reverse proxy lookup to obtain DNS
+          name and SHOULD set `server.address` to the provided IP address.
+      - ref: server.port
+        requirement_level:
+          conditionally_required: if available.
+
+  - id: span.rpc.connect_rpc.call.server
+    type: span
+    stability: development
+    extends: rpc
+    span_kind: server
+    brief: This span represents an incoming Remote Procedure Call (RPC).
+    note: |
+      `rpc.system.name` MUST be set to `"connectrpc"` and SHOULD be provided **at span creation time.**
+
+      **Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#name) section.
+
+      **Span kind** MUST be `SERVER`.
+
+      **Span status**: refer to the [Recording Errors](/docs/general/recording-errors.md)
+      document for details on how to record span status.
+    attributes:
+      - ref: rpc.response.status_code
+        requirement_level:
+          conditionally_required: if available.
+        brief: The [error code](https://connectrpc.com/docs/protocol/#error-codes) of the Connect response.
+        note: |
+          The following error codes SHOULD be considered errors:
+
+          - `unknown`
+          - `deadline_exceeded`
+          - `unimplemented`
+          - `internal`
+          - `unavailable`
+          - `data_loss`
+      - ref: rpc.request.metadata
+        requirement_level: opt_in
+      - ref: rpc.response.metadata
+        requirement_level: opt_in
+
+  - id: span.rpc.grpc.call.client
+    type: span
+    stability: release_candidate
+    brief: This span represents an outgoing Remote Procedure Call (RPC).
+    note: |
+      `rpc.system.name` MUST be set to `"grpc"` and SHOULD be provided **at span creation time.**
+
+      **Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#name) section.
+
+      **Span kind** MUST be `CLIENT`.
+
+      **Span status**: refer to the [Recording Errors](/docs/general/recording-errors.md)
+      document for details on how to record span status. See also `rpc.response.status_code` attribute
+      for the details on which values classify as errors.
     extends: rpc
     span_kind: client
     attributes:
       - ref: rpc.method
         requirement_level: required
-      - ref: rpc.jsonrpc.version
-        requirement_level:
-          conditionally_required: If other than the default version (`1.0`)
-      - ref: rpc.jsonrpc.request_id
-        requirement_level: recommended
-      - ref: rpc.jsonrpc.error_code
-        requirement_level:
-          conditionally_required: when available
-      - ref: rpc.jsonrpc.error_message
-        requirement_level: recommended
+      - ref: rpc.response.status_code
+        requirement_level: required
+        brief: >
+          The string representation of the [status code](https://github.com/grpc/grpc/blob/v1.75.0/doc/statuscodes.md)
+          returned by the server or generated by the client.
+        note: |
+          All status codes except `OK` SHOULD be considered errors.
+      - ref: rpc.request.metadata
+        requirement_level: opt_in
+      - ref: rpc.response.metadata
+        requirement_level: opt_in
+      - ref: server.address
+        note: |
+          Instrumentations SHOULD populate `server.address` (along with `server.port`)
+          based on the configuration used when creating the gRPC channel and
+          SHOULD NOT use actual network-level connection information for this purpose
+          to ensure low cardinality.
 
-  - id: span.rpc.jsonrpc.server
+          Instrumentations MAY parse address and port from the gRPC target string
+          according to the [gRPC Name Resolution specification](https://grpc.github.io/grpc/core/md_doc_naming.html),
+          depending on the scheme used. Or, they MAY use gRPC client APIs that
+          provide this information.
+
+          If the instrumentation cannot determine a server domain name or another
+          suitable low-cardinality identifier for a group of server instances
+          from the target string, it SHOULD set `server.address` to the entire
+          target string and SHOULD NOT set `server.port`.
+
+          When the address is an IP address, instrumentations SHOULD NOT do a
+          reverse proxy lookup to obtain a DNS name and SHOULD set `server.address`
+          to the IP address provided.
+
+          Examples:
+
+          - Given the target string `grpc.io:50051`, expected attributes:
+            - `server.address`: `"grpc.io"`
+            - `server.port`: `50051`
+          - Given the target string `dns://1.2.3.4/grpc.io:50051`, expected attributes:
+            - `server.address`: `"grpc.io"`
+            - `server.port`: `50051`
+          - Given the target string `unix:///run/containerd/containerd.sock`, expected attributes:
+            - `server.address`: `"/run/containerd/containerd.sock"`
+            - `server.port`: not set
+          - Given the target string `zk://zookeeper:2181/my-server`, expected attributes:
+            - `server.address`: `"zk://zookeeper:2181/my-server"`
+            - `server.port`: not set
+          - Given the target string `ipv4:198.51.100.123:50051,198.51.100.124:50051`, expected attributes:
+            - `server.address`: `"ipv4:198.51.100.123:50051,198.51.100.124:50051"`
+            - `server.port`: not set
+        requirement_level: required
+      - ref: server.port
+        note: >
+          See the `server.address` for details on parsing the target string.
+        requirement_level:
+          conditionally_required: If and only if the port is available and `server.address` is set.
+        examples: [50051]
+  - id: span.rpc.grpc.call.server
     type: span
-    stability: development
-    extends: rpc.server
+    stability: release_candidate
+    extends: rpc
     span_kind: server
     brief: This span represents an incoming Remote Procedure Call (RPC).
     note: |
-      `rpc.system` MUST be set to `"jsonrpc"` and SHOULD be provided **at span creation time.**
+      `rpc.system.name` MUST be set to `"grpc"` and SHOULD be provided **at span creation time.**
 
-      **Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#span-name) section.
+      **Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#name) section.
 
       **Span kind** MUST be `SERVER`.
+
+      **Span status**: refer to the [Recording Errors](/docs/general/recording-errors.md)
+      document for details on how to record span status. See also `rpc.response.status_code` attribute
+      for the details on which values classify as errors.
+    attributes:
+      - ref: rpc.response.status_code
+        requirement_level: required
+        brief: >
+          The string representation of the [status code](https://github.com/grpc/grpc/blob/v1.75.0/doc/statuscodes.md)
+          returned by the server.
+        note: |
+          The following status codes SHOULD be considered errors:
+
+          - `UNKNOWN`
+          - `DEADLINE_EXCEEDED`
+          - `UNIMPLEMENTED`
+          - `INTERNAL`
+          - `UNAVAILABLE`
+          - `DATA_LOSS`
+
+      - ref: rpc.request.metadata
+        requirement_level: opt_in
+      - ref: rpc.response.metadata
+        requirement_level: opt_in
+
+  - id: span.rpc.jsonrpc.call.client
+    type: span
+    stability: development
+    brief: This span represents an outgoing Remote Procedure Call (RPC).
+    note: |
+      `rpc.system.name` MUST be set to `"jsonrpc"` and SHOULD be provided **at span creation time.**
+
+      **Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#name) section.
+
+      **Span kind** MUST be `CLIENT`.
+
+      **Span status**: refer to the [Recording Errors](/docs/general/recording-errors.md)
+      document for details on how to record span status. Responses that include
+      an [`error` object](https://www.jsonrpc.org/specification#error_object)
+      are considered errors.
+    extends: rpc
+    span_kind: client
+    attributes:
+      - ref: jsonrpc.protocol.version
+        requirement_level:
+          conditionally_required: If other than the default version (`1.0`)
+      - ref: jsonrpc.request.id
+        requirement_level: recommended
+      - ref: rpc.method
+        brief: JSON-RPC method name provided in the request.
+        note: >
+          JSON-RPC supports sending and receiving arbitrary method names without
+          prior registration or definition. As a result, the method name MAY have
+          unbounded cardinality in edge or error cases.
+
+          General-purpose JSON-RPC instrumentations therefore SHOULD NOT set this
+          attribute by default and SHOULD provide a way to configure the list of
+          recognized RPC methods.
+          When tracing instrumentation converts RPC method to `_OTHER`, it MUST
+          also set `rpc.method_original` span attribute to the original value.
+        requirement_level: opt_in
+      - ref: rpc.response.status_code
+        brief: >
+          The [`error.code`](https://www.jsonrpc.org/specification#error_object)
+          property of response if it is an error response recorded as a string.
+        note:
+          All JSON RPC error codes SHOULD be considered errors.
+        requirement_level:
+          conditionally_required: when available
+      - ref: server.address
+        requirement_level:
+          recommended: >
+            Instrumentations that have access to the transport-level information
+            and can reliably extract domain name or another low-cardinality server
+            address from it SHOULD set this attribute.
+        note: ""
+
+  - id: span.rpc.jsonrpc.call.server
+    type: span
+    stability: development
+    extends: rpc
+    span_kind: server
+    brief: This span represents an incoming Remote Procedure Call (RPC).
+    note: |
+      `rpc.system.name` MUST be set to `"jsonrpc"` and SHOULD be provided **at span creation time.**
+
+      **Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#name) section.
+
+      **Span kind** MUST be `SERVER`.
+
+      **Span status**: refer to the [Recording Errors](/docs/general/recording-errors.md)
+      document for details on how to record span status. Responses that include
+      an [`error` object](https://www.jsonrpc.org/specification#error_object)
+      are considered errors.
+    attributes:
+      - ref: jsonrpc.protocol.version
+        requirement_level:
+          conditionally_required: If other than the default version (`1.0`)
+      - ref: jsonrpc.request.id
+        requirement_level: recommended
+      - ref: rpc.method
+        brief: JSON-RPC method name provided in the request.
+        note: >
+          JSON-RPC supports sending and receiving arbitrary method names without
+          prior registration or definition. As a result, the method name MAY have
+          unbounded cardinality in edge or error cases.
+
+          General-purpose JSON-RPC instrumentations therefore SHOULD NOT set this
+          attribute by default and SHOULD provide a way to configure the list of
+          recognized RPC methods.
+          When tracing instrumentation converts RPC method to `_OTHER`, it MUST
+          also set `rpc.method_original` span attribute to the original value.
+        requirement_level: opt_in
+      - ref: rpc.response.status_code
+        brief: >
+          The [`error.code`](https://www.jsonrpc.org/specification#error_object) property of
+          response recorded as a string.
+        note:
+          All JSON RPC error codes SHOULD be considered errors.
+        requirement_level:
+          conditionally_required: when available
+
+  - id: span.rpc.dubbo.call.client
+    type: span
+    stability: release_candidate
+    brief: This span represents an outgoing Remote Procedure Call (RPC).
+    note: |
+      `rpc.system.name` MUST be set to `"dubbo"` and SHOULD be provided **at span creation time.**
+
+      **Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#name) section.
+
+      **Span kind** MUST be `CLIENT`.
+
+      **Span status** Refer to the [Recording Errors](/docs/general/recording-errors.md)
+      document for details on how to record span status. See also `rpc.response.status_code` attribute
+      for the details on which values classify as errors.
+    extends: rpc
+    span_kind: client
     attributes:
       - ref: rpc.method
         requirement_level: required
-      - ref: rpc.jsonrpc.version
-        requirement_level:
-          conditionally_required: If other than the default version (`1.0`)
-      - ref: rpc.jsonrpc.request_id
-        requirement_level: recommended
-      - ref: rpc.jsonrpc.error_code
-        requirement_level:
-          conditionally_required: when available
-      - ref: rpc.jsonrpc.error_message
-        requirement_level: recommended
+      - ref: rpc.response.status_code
+        requirement_level: required
+        brief: >
+          The string representation of the Dubbo response status code returned by the server or generated by the client.
+        examples: ['OK', 'DEADLINE_EXCEEDED', 'SERVER_ERROR']
+        note: |
+          All status codes except `OK` SHOULD be considered errors.
 
-  - id: event.rpc.message
-    type: event
-    stability: development
-    name: rpc.message
-    brief: Describes a message sent or received within the context of an RPC call.
-    note: >
-      In the lifetime of an RPC stream, an event for each message sent/received on
-      client and server spans SHOULD be created. In case of unary calls only one sent
-      and one received message will be recorded for both client and server spans.
+          Status codes reference:
+
+          - Dubbo2: [Dubbo2 Protocol Status Codes](https://dubbo.apache.org/en/overview/reference/protocols/tcp/#protocol-specification)
+          - Dubbo3 Triple protocol: [Triple Protocol Error Codes](https://dubbo.apache.org/en/overview/reference/protocols/triple-spec/#311-request)
+      - ref: server.address
+        requirement_level:
+          conditionally_required: If available.
+        examples:
+          - '192.168.1.100'
+          - 'api.example.com'
+          - 'zookeeper://127.0.0.1:2181/com.example.HelloService:1.0.0:testGroup'
+        note: |
+          Instrumentations SHOULD populate `server.address` (and `server.port`, when applicable)
+          based on the configuration used when creating the Dubbo client and
+          SHOULD NOT use actual network-level connection information for this purpose
+          to ensure low cardinality.
+
+          For direct connection, when the consumer is configured with an explicit
+          provider target URL, instrumentations SHOULD parse `server.address` and
+          `server.port` from that URL.
+
+          For service discovery through a registry, instrumentations SHOULD set
+          `server.address` to the service-discovery target and SHOULD NOT set
+          `server.port`. The service-discovery target is:
+
+          `{registry-protocol}://{registry-host}:{registry-port}/{logical-service-target}`
+
+          The `{registry-port}` component is part of the registry endpoint in
+          the service-discovery target and SHOULD NOT be recorded as
+          `server.port`, because it is not the network transport port used for
+          Dubbo RPC communication.
+
+          It is composed of two parts separated by the `/` between the registry endpoint and logical service target:
+
+          - Registry endpoint: `{registry-protocol}://{registry-host}:{registry-port}`
+          - Logical service target: `{interface}[:{version}][:{group}]`, derived from
+            the consumer URL, where:
+            - `{interface}` is the service interface name from the consumer URL.
+            - `{version}` is the `version` URL parameter, if set.
+            - `{group}` is the `group` URL parameter, if set.
+            - When only `{group}` is set, the format is `{interface}::{group}`.
+
+          Examples:
+
+          Direct connection:
+
+          - Given the target URL `dubbo://192.168.1.100:20880/com.example.DemoService`, expected attributes:
+            - `server.address`: `"192.168.1.100"`
+            - `server.port`: `20880`
+          - Given the target URL `tri://api.example.com:50051/com.example.GreeterService`, expected attributes:
+            - `server.address`: `"api.example.com"`
+            - `server.port`: `50051`
+          - Given the target URL `tri://api.example.com/com.example.GreeterService` (port not specified), expected attributes:
+            - `server.address`: `"api.example.com"`
+            - `server.port`: not set
+
+          Service discovery (registry):
+
+          - Given a consumer that discovers providers via ZooKeeper for `com.example.HelloService` with `version=1.0.0` and `group=testGroup`, expected attributes:
+            - Service-discovery target: `"zookeeper://127.0.0.1:2181/com.example.HelloService:1.0.0:testGroup"`
+            - `server.address`: `"zookeeper://127.0.0.1:2181/com.example.HelloService:1.0.0:testGroup"`
+            - `server.port`: not set
+          - Given a consumer that discovers providers via Nacos for `com.example.HelloService` with `group=gray` (no version), expected attributes:
+            - Service-discovery target: `"nacos://127.0.0.1:8848/com.example.HelloService::gray"`
+            - `server.address`: `"nacos://127.0.0.1:8848/com.example.HelloService::gray"`
+            - `server.port`: not set
+
+          When the address is an IP address, instrumentations SHOULD NOT do a
+          reverse DNS lookup to obtain a DNS name and SHOULD set `server.address`
+          to the IP address provided.
+      - ref: server.port
+        requirement_level:
+          conditionally_required: if `server.address` is set and if the port is supported by the network transport used for communication.
+        examples: [20880, 50051]
+        note: >
+          See the `server.address` for details on parsing the target string.
+      - ref: rpc.request.metadata
+        requirement_level: opt_in
+      - ref: rpc.response.metadata
+        requirement_level: opt_in
+
+  - id: span.rpc.dubbo.call.server
+    type: span
+    stability: release_candidate
+    extends: rpc
+    span_kind: server
+    brief: This span represents an incoming Remote Procedure Call (RPC).
+    note: |
+      `rpc.system.name` MUST be set to `"dubbo"` and SHOULD be provided **at span creation time.**
+
+      **Span name:** refer to the [Span Name](/docs/rpc/rpc-spans.md#name) section.
+
+      **Span kind** MUST be `SERVER`.
+
+      **Span status** Refer to the [Recording Errors](/docs/general/recording-errors.md)
+      document for details on how to record span status. See also `rpc.response.status_code` attribute
+      for the details on which values classify as errors.
     attributes:
-      - ref: rpc.message.type
-        requirement_level: recommended
-      - ref: rpc.message.id
-        requirement_level: recommended
-      - ref: rpc.message.compressed_size
-        requirement_level: recommended
-      - ref: rpc.message.uncompressed_size
-        requirement_level: recommended
+      - ref: rpc.response.status_code
+        requirement_level: required
+        brief: >
+          The string representation of the Dubbo response status code returned by the server.
+        examples: ['OK', 'SERVER_ERROR', 'SERVER_THREADPOOL_EXHAUSTED_ERROR']
+        note: |
+          For Dubbo2, the following status codes SHOULD be considered errors:
+
+          - `SERVER_ERROR`
+          - `SERVER_THREADPOOL_EXHAUSTED_ERROR`
+          - `SERVER_TIMEOUT`
+          - `SERVICE_ERROR`
+
+          For Dubbo3 Triple protocol, the following status codes SHOULD be considered errors:
+
+          - `DATA_LOSS`
+          - `DEADLINE_EXCEEDED`
+          - `INTERNAL`
+          - `UNAVAILABLE`
+          - `UNIMPLEMENTED`
+          - `UNKNOWN`
+
+          Status codes reference:
+
+          - Dubbo2: [Dubbo2 Protocol Status Codes](https://dubbo.apache.org/en/overview/reference/protocols/tcp/#protocol-specification)
+          - Dubbo3 Triple protocol: [Triple Protocol Error Codes](https://dubbo.apache.org/en/overview/reference/protocols/triple-spec/#311-request)
+      - ref: server.port
+        requirement_level:
+          conditionally_required: if `server.address` is set and if the port is supported by the network transport used for communication.
+      - ref: rpc.request.metadata
+        requirement_level: opt_in
+      - ref: rpc.response.metadata
+        requirement_level: opt_in

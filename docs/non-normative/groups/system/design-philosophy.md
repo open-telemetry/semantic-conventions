@@ -93,7 +93,7 @@ that users who have very specific and detailed needs are still covered by our
 semantic conventions so they don't need to go out of their way coming up with
 their own, risking the same kind of disparate instrumentation problem that
 semantic conventions are intended to solve. The main differences in how we
-handle Speciialist Class instrumentation are:
+handle Specialist Class instrumentation are:
 
 1. The names and resulting values will map directly to what a user would expect
    hunting down the information themselves. We will rarely be prescriptive in
@@ -151,7 +151,7 @@ Specialist Class.
 
 ### Naming
 
-For General Class, choose a name that most accurately descibes the general
+For General Class, choose a name that most accurately describes the general
 concept without biasing to a platform. Lean towards simplicity where possible,
 as this is the instrumentation that will be used by the widest audience; we want
 it to be as clear to understand and ergonomic to use as possible.
@@ -174,7 +174,7 @@ closely matches our vision for our general use cases, and we want to ensure that
 users who are not specialists and just want the most important basic information
 can acquire it as easily as possible using out-of-the-box semconv
 instrumentation. This means we are more likely within General Class
-instrumentation to make judgements about exactly what the value should be, and
+instrumentation to make judgments about exactly what the value should be, and
 whether the value should be reshaped by instrumentation in any case when pulling
 the values from sources if it serves general purpose use cases.
 
@@ -201,11 +201,11 @@ baseline level of knowledge of the concepts being instrumented**. The `brief`
 and `note` fields of metrics and attributes should be used to convey information
 that is crucial to understanding the instrumentation intention, i.e.:
 
-* Differences in the same piece of data when it is instrumented on different
+- Differences in the same piece of data when it is instrumented on different
   platforms
-* When we recommend calculations be done on particular data rather than
+- When we recommend calculations be done on particular data rather than
   surfacing direct values from existing tools
-* When particular names or enum values were chosen when there are common
+- When particular names or enum values were chosen when there are common
   alternate terms for the same concept
 
 For root metrics and attributes, we will strive to always have a `brief` field.
@@ -213,13 +213,13 @@ The `brief` field should explain what the metric/attribute is, and if the
 explanation of a value is simple (i.e. simply surfacing a value from a common
 source like `procfs`) then the explanation of what the value should be can go in
 the brief. If the value needs some calculation explanation and justification,
-the information should be moved to the `note` field.  
-For enum values, it is often the case that the intention of these values is
-obvious given whatever `brief` was provided for the attribute as a whole. A
-brief can be included in a scenario where we have had to make some choice on the
-value that isn't immediately obvious; the most common scenario is when some
-terminology differs across platforms and we had to choose one term to represent
-all scenarios. In this case, the `brief` can be used to clarify our intention.
+the information should be moved to the `note` field. For enum values, it is
+often the case that the intention of these values is obvious given whatever
+`brief` was provided for the attribute as a whole. A brief can be included in a
+scenario where we have had to make some choice on the value that isn't
+immediately obvious; the most common scenario is when some terminology differs
+across platforms and we had to choose one term to represent all scenarios. In
+this case, the `brief` can be used to clarify our intention.
 
 In cases where information about a concept is required to describe our intention
 for instrumentation, all information must come with citations to authoritative
@@ -277,6 +277,7 @@ down with more specificity.
 Relevant discussions:
 [\#1255](https://github.com/open-telemetry/semantic-conventions/issues/1255),
 [\#1364](https://github.com/open-telemetry/semantic-conventions/pull/1364#discussion_r1852465994)
+[\#2984](https://github.com/open-telemetry/semantic-conventions/pull/2984#discussion_r2466369361)
 
 Monitoring operating systems is an old practice, and there are numerous heavily
 differing approaches within different platforms. There are lots of metrics, even
@@ -289,7 +290,7 @@ Thus we have decided that any instrumentation that is:
 1. Specific to a particular operating system
 2. Not meant to be part of what we consider our most important general use cases
 
-will have the Operating System name as part of the namespace.
+will include the Operating System name as part of the namespace.
 
 For example, there may be `process.linux`, `process.windows`, or `process.posix`
 names for metrics and attributes. We will not have root `linux.*`, `windows.*`,
@@ -299,5 +300,12 @@ source to be represented by the root namespace of the attribute/metric. If we
 had OS root namespaces, different sources like `system`, `process`, etc. could
 get very tangled within each OS namespace, defeating the intended design
 philosophy.
+
+However, to clarify — when we refer to avoiding OS names at the “root namespace”
+level, we also mean avoiding them at the area level. The OS name should appear
+after the area of concern (such as `system.memory.linux.*`), not before it. This
+ensures that users can first navigate by functional area (e.g. memory, CPU,
+network) and then, if necessary, drill down into OS-specific variants within
+that area.
 
 [use cases doc]: ./use-cases.md
