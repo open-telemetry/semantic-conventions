@@ -5,8 +5,6 @@
 
 ## Deployment Attributes
 
-This document defines attributes for software deployments.
-
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |

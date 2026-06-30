@@ -3,9 +3,7 @@
 
 # Pprof
 
-## Pprof specific attributes for the Profiling signal
-
-Attributes specific to pprof that help convert from pprof to Profiling signal.
+## Pprof Attributes
 
 **Attributes:**
 

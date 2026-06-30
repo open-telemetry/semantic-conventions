@@ -3,9 +3,7 @@
 
 # Aspnetcore
 
-## ASP.NET Core Attributes
-
-ASP.NET Core attributes
+## Aspnetcore Attributes
 
 **Attributes:**
 

@@ -5,8 +5,6 @@
 
 ## URL Attributes
 
-Attributes describing URL.
-
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |

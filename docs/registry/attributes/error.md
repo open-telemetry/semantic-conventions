@@ -5,8 +5,6 @@
 
 ## Error Attributes
 
-This document defines the shared attributes used to report an error.
-
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |

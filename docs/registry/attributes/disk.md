@@ -5,8 +5,6 @@
 
 ## Disk Attributes
 
-These attributes may be used for any disk related operation.
-
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |

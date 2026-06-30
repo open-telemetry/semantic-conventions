@@ -5,8 +5,6 @@
 
 ## Telemetry Attributes
 
-This document defines attributes for telemetry SDK.
-
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |

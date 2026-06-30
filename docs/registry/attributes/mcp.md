@@ -3,9 +3,7 @@
 
 # MCP
 
-## MCP Attributes (Moved)
-
-[Model Context Protocol (MCP)](https://modelcontextprotocol.io) attributes have moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
+## MCP Attributes
 
 <details>
 <summary><b>Deprecated Attributes:</b></summary>

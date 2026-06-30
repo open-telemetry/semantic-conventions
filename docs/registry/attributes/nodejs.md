@@ -3,9 +3,7 @@
 
 # NodeJS
 
-## Node.js Attributes
-
-Describes Node.js related attributes.
+## NodeJS Attributes
 
 **Attributes:**
 

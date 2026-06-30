@@ -5,8 +5,6 @@
 
 ## Event Attributes
 
-Attributes for Events represented using Log Records.
-
 <details>
 <summary><b>Deprecated Attributes:</b></summary>
 

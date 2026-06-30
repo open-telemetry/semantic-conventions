@@ -3,9 +3,7 @@
 
 # Enduser
 
-## End User Attributes
-
-Describes the end user.
+## Enduser Attributes
 
 **Attributes:**
 

@@ -5,8 +5,6 @@
 
 ## Device Attributes
 
-Describes device attributes.
-
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |

@@ -3,32 +3,7 @@
 
 # Log
 
-- [General Log Attributes](#general-log-attributes)
-- [Log File Attributes](#log-file-attributes)
-- [Log Record Attributes](#log-record-attributes)
-
-## General Log Attributes
-
-This document defines log attributes
-
-**Attributes:**
-
-| Key | Stability | Value Type | Description | Example Values |
-| --- | --- | --- | --- | --- |
-| <a id="log-iostream" href="#log-iostream">`log.iostream`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The stream associated with the log. See below for a list of well-known values. | `stdout`; `stderr` |
-
----
-
-`log.iostream` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value | Description | Stability |
-| --- | --- | --- |
-| `stderr` | Events from stderr stream | ![Development](https://img.shields.io/badge/-development-blue) |
-| `stdout` | Logs from stdout stream | ![Development](https://img.shields.io/badge/-development-blue) |
-
-## Log File Attributes
-
-Attributes for a file to which log was emitted.
+## Log Attributes
 
 **Attributes:**
 
@@ -38,15 +13,7 @@ Attributes for a file to which log was emitted.
 | <a id="log-file-name-resolved" href="#log-file-name-resolved">`log.file.name_resolved`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The basename of the file, with symlinks resolved. | `uuid.log` |
 | <a id="log-file-path" href="#log-file-path">`log.file.path`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The full path to the file. | `/var/log/mysql/audit.log` |
 | <a id="log-file-path-resolved" href="#log-file-path-resolved">`log.file.path_resolved`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The full path to the file, with symlinks resolved. | `/var/lib/docker/uuid.log` |
-
-## Log Record Attributes
-
-This document defines the generic attributes that may be used in any Log Record.
-
-**Attributes:**
-
-| Key | Stability | Value Type | Description | Example Values |
-| --- | --- | --- | --- | --- |
+| <a id="log-iostream" href="#log-iostream">`log.iostream`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The stream associated with the log. See below for a list of well-known values. | `stdout`; `stderr` |
 | <a id="log-record-original" href="#log-record-original">`log.record.original`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The complete original Log Record. [1] | `77 <86>1 2015-08-06T21:58:59.694Z 192.168.2.133 inactive - - - Something happened`; `[INFO] 8/3/24 12:34:56 Something happened` |
 | <a id="log-record-uid" href="#log-record-uid">`log.record.uid`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | A unique identifier for the Log Record. [2] | `01ARZ3NDEKTSV4RRFFQ69G5FAV` |
 
@@ -54,3 +21,12 @@ This document defines the generic attributes that may be used in any Log Record.
 
 **[2] `log.record.uid`:** If an id is provided, other log records with the same id will be considered duplicates and can be removed safely. This means, that two distinguishable log records MUST have different values.
 The id MAY be an [Universally Unique Lexicographically Sortable Identifier (ULID)](https://github.com/ulid/spec), but other identifiers (e.g. UUID) may be used as needed.
+
+---
+
+`log.iostream` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value | Description | Stability |
+| --- | --- | --- |
+| `stderr` | Events from stderr stream | ![Development](https://img.shields.io/badge/-development-blue) |
+| `stdout` | Logs from stdout stream | ![Development](https://img.shields.io/badge/-development-blue) |

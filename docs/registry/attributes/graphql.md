@@ -5,8 +5,6 @@
 
 ## GraphQL Attributes
 
-This document defines attributes for GraphQL.
-
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |

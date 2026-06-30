@@ -5,8 +5,6 @@
 
 ## TLS Attributes
 
-This document defines semantic convention attributes in the TLS namespace.
-
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |

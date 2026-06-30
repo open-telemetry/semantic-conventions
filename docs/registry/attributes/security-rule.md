@@ -3,9 +3,7 @@
 
 # Security rule
 
-## Security Rule
-
-Describes security rule attributes. Rule fields are used to capture the specifics of any observer or agent rules that generate alerts or other notable events.
+## Security Rule Attributes
 
 **Attributes:**
 

@@ -20,10 +20,8 @@
 
 {% macro name_with_link(attribute, attribute_registry_base_url, lineage_attributes) %}[`{{name(attribute)}}`]({{attribute_registry_base_url}}/{{ find_lineage(attribute.name, lineage_attributes) | split_id | list | reject("eq", "registry")| first | kebab_case }}.md){% endmacro %}
 
-{% macro display_name(group) %}
-{%- if 'display_name' in group %}{{ group.display_name }}
-{%- else %}{{ group.id | split_id | list | reject("eq", "registry") | join(" ") | title_case | acronym }} Attributes
-{%- endif %}{% endmacro %}
+{% macro display_name(group) %}{{ group | split_id | list | reject("eq", "registry") | join(" ") | title_case | acronym }} Attributes
+{% endmacro %}
 
 {% macro heading_link_fragments(title) %}{{ title | trim | lower | replace(" ", "-") | replace("(", "") | replace(")", "") | replace("/", "") | replace("\\", "") | replace(".", "") | replace("!", "") | replace("?", "") | replace("~", "") | replace("#", "")}}{% endmacro %}
 

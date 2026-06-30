@@ -3,9 +3,7 @@
 
 # RPC
 
-## Remote Procedure Call (RPC) Attributes
-
-This document defines attributes for remote procedure calls.
+## RPC Attributes
 
 **Attributes:**
 
@@ -75,10 +73,6 @@ Semantic conventions for individual RPC frameworks SHOULD document what `rpc.res
 
 | Key | Value Type | Description | Example Values | Deprecation Explanation |
 | --- | --- | --- | --- | --- |
-| <a id="message-compressed-size" href="#message-compressed-size">`message.compressed_size`</a> | int | Deprecated, no replacement at this time. | | Deprecated, no replacement at this time. |
-| <a id="message-id" href="#message-id">`message.id`</a> | int | Deprecated, no replacement at this time. | | Deprecated, no replacement at this time. |
-| <a id="message-type" href="#message-type">`message.type`</a> | string | Deprecated, no replacement at this time. | `SENT`; `RECEIVED` | Deprecated, no replacement at this time. |
-| <a id="message-uncompressed-size" href="#message-uncompressed-size">`message.uncompressed_size`</a> | int | Deprecated, no replacement at this time. | | Deprecated, no replacement at this time. |
 | <a id="rpc-connect-rpc-error-code" href="#rpc-connect-rpc-error-code">`rpc.connect_rpc.error_code`</a> | string | Deprecated, use `rpc.response.status_code` attribute instead. | `cancelled`; `unknown`; `invalid_argument` | Use `rpc.response.status_code` instead. |
 | <a id="rpc-connect-rpc-request-metadata" href="#rpc-connect-rpc-request-metadata">`rpc.connect_rpc.request.metadata.<key>`</a> | string[] | Deprecated, use `rpc.request.metadata` instead. | `["1.2.3.4", "1.2.3.5"]` | Use `rpc.request.metadata` instead. |
 | <a id="rpc-connect-rpc-response-metadata" href="#rpc-connect-rpc-response-metadata">`rpc.connect_rpc.response.metadata.<key>`</a> | string[] | Deprecated, use `rpc.response.metadata` instead. | `["attribute_value"]` | Use `rpc.response.metadata` instead. |
@@ -97,15 +91,6 @@ Semantic conventions for individual RPC frameworks SHOULD document what `rpc.res
 | <a id="rpc-system" href="#rpc-system">`rpc.system`</a> | string | Deprecated, use `rpc.system.name` attribute instead. | `grpc`; `java_rmi`; `dotnet_wcf` | Use `rpc.system.name` instead. |
 
 **[1] `rpc.message.id`:** This way we guarantee that the values will be consistent between different implementations.
-
----
-
-`message.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value | Description | Stability |
-| --- | --- | --- |
-| `RECEIVED` | received | ![Development](https://img.shields.io/badge/-development-blue) |
-| `SENT` | sent | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 

@@ -3,9 +3,7 @@
 
 # Profile
 
-## Profile Frame Attributes
-
-Describes the origin of a single frame in a Profile.
+## Profile Attributes
 
 **Attributes:**
 

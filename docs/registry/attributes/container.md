@@ -5,8 +5,6 @@
 
 ## Container Attributes
 
-A container instance.
-
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |

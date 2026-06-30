@@ -3,9 +3,7 @@
 
 # JSONRPC
 
-## JSON-RPC Attributes
-
-This document defines attributes for JSON-RPC.
+## JSONRPC Attributes
 
 **Attributes:**
 

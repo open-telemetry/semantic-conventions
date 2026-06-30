@@ -3,9 +3,7 @@
 
 # ONC RPC
 
-## ONC RPC (Sun RPC) attributes
-
-This document defines attributes for [ONC RPC (Sun RPC)](https://datatracker.ietf.org/doc/html/rfc5531)
+## ONC RPC Attributes
 
 **Attributes:**
 

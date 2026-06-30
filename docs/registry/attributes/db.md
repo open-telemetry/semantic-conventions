@@ -3,12 +3,7 @@
 
 # DB
 
-- [General Database Attributes](#general-database-attributes)
-- [Deprecated Database Metrics](#deprecated-database-metrics)
-
-## General Database Attributes
-
-This group defines the attributes used to describe telemetry in the context of databases.
+## DB Attributes
 
 **Attributes:**
 
@@ -205,6 +200,8 @@ stored procedure name then that stored procedure name SHOULD be used.
 | <a id="db-cassandra-page-size" href="#db-cassandra-page-size">`db.cassandra.page_size`</a> | int | Deprecated, use `cassandra.page.size` instead. | `5000` | Use `cassandra.page.size` instead. |
 | <a id="db-cassandra-speculative-execution-count" href="#db-cassandra-speculative-execution-count">`db.cassandra.speculative_execution_count`</a> | int | Deprecated, use `cassandra.speculative_execution.count` instead. | `0`; `2` | Use `cassandra.speculative_execution.count` instead. |
 | <a id="db-cassandra-table" href="#db-cassandra-table">`db.cassandra.table`</a> | string | Deprecated, use `db.collection.name` instead. | `mytable` | Use `db.collection.name` instead. |
+| <a id="db-client-connections-pool-name" href="#db-client-connections-pool-name">`db.client.connections.pool.name`</a> | string | Deprecated, use `db.client.connection.pool.name` instead. | `myDataSource` | Use `db.client.connection.pool.name` instead. |
+| <a id="db-client-connections-state" href="#db-client-connections-state">`db.client.connections.state`</a> | string | Deprecated, use `db.client.connection.state` instead. | `idle` | Use `db.client.connection.state` instead. |
 | <a id="db-connection-string" href="#db-connection-string">`db.connection_string`</a> | string | Deprecated, use `server.address`, `server.port` attributes instead. | `Server=(localdb)\v11.0;Integrated Security=true;` | Replaced by `server.address` and `server.port`. |
 | <a id="db-cosmosdb-client-id" href="#db-cosmosdb-client-id">`db.cosmosdb.client_id`</a> | string | Deprecated, use `azure.client.id` instead. | `3ba4827d-4422-483f-b59f-85b74211c11d` | Use `azure.client.id` instead. |
 | <a id="db-cosmosdb-connection-mode" href="#db-cosmosdb-connection-mode">`db.cosmosdb.connection_mode`</a> | string | Deprecated, use `azure.cosmosdb.connection.mode` instead. | `gateway`; `direct` | Use `azure.cosmosdb.connection.mode` instead. |
@@ -248,6 +245,15 @@ stored procedure name then that stored procedure name SHOULD be used.
 | `serial` | serial | ![Development](https://img.shields.io/badge/-development-blue) |
 | `three` | three | ![Development](https://img.shields.io/badge/-development-blue) |
 | `two` | two | ![Development](https://img.shields.io/badge/-development-blue) |
+
+---
+
+`db.client.connections.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value | Description | Stability |
+| --- | --- | --- |
+| `idle` | idle | ![Development](https://img.shields.io/badge/-development-blue) |
+| `used` | used | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -347,39 +353,5 @@ stored procedure name then that stored procedure name SHOULD be used.
 | `teradata` | Teradata | ![Development](https://img.shields.io/badge/-development-blue) |
 | `trino` | Trino | ![Development](https://img.shields.io/badge/-development-blue) |
 | `vertica` | Vertica | ![Development](https://img.shields.io/badge/-development-blue) |
-
-</details>
-
-## Deprecated Database Metrics
-
-Describes deprecated db metrics attributes.
-
-<details>
-<summary><b>Deprecated Attributes:</b></summary>
-
-| Key | Value Type | Description | Example Values | Deprecation Explanation |
-| --- | --- | --- | --- | --- |
-| <a id="db-client-connections-pool-name" href="#db-client-connections-pool-name">`db.client.connections.pool.name`</a> | string | Deprecated, use `db.client.connection.pool.name` instead. | `myDataSource` | Use `db.client.connection.pool.name` instead. |
-| <a id="db-client-connections-state" href="#db-client-connections-state">`db.client.connections.state`</a> | string | Deprecated, use `db.client.connection.state` instead. | `idle` | Use `db.client.connection.state` instead. |
-| <a id="pool-name" href="#pool-name">`pool.name`</a> | string | Deprecated, use `db.client.connection.pool.name` instead. | `myDataSource` | Use `db.client.connection.pool.name` instead. |
-| <a id="state" href="#state">`state`</a> | string | Deprecated, use `db.client.connection.state` instead. | `idle` | Use `db.client.connection.state` instead. |
-
----
-
-`db.client.connections.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value | Description | Stability |
-| --- | --- | --- |
-| `idle` | idle | ![Development](https://img.shields.io/badge/-development-blue) |
-| `used` | used | ![Development](https://img.shields.io/badge/-development-blue) |
-
----
-
-`state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value | Description | Stability |
-| --- | --- | --- |
-| `idle` | idle | ![Development](https://img.shields.io/badge/-development-blue) |
-| `used` | used | ![Development](https://img.shields.io/badge/-development-blue) |
 
 </details>

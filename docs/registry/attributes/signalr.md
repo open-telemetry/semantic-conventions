@@ -5,8 +5,6 @@
 
 ## SignalR Attributes
 
-SignalR attributes
-
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |

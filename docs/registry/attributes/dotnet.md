@@ -3,9 +3,7 @@
 
 # Dotnet
 
-## .NET Attributes
-
-This document defines .NET related attributes.
+## Dotnet Attributes
 
 **Attributes:**
 

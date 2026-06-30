@@ -5,8 +5,6 @@
 
 ## Exception Attributes
 
-This document defines the shared attributes used to report a single exception associated with a span or log.
-
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |

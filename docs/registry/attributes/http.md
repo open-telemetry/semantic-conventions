@@ -5,8 +5,6 @@
 
 ## HTTP Attributes
 
-This document defines semantic convention attributes in the HTTP namespace.
-
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |

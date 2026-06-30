@@ -5,8 +5,6 @@
 
 ## Android Attributes
 
-The Android platform on which the Android application is running.
-
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |

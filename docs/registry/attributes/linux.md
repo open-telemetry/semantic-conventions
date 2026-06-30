@@ -3,9 +3,7 @@
 
 # Linux
 
-## Deprecated Linux Attributes
-
-Deprecated Linux attributes.
+## Linux Attributes
 
 <details>
 <summary><b>Deprecated Attributes:</b></summary>

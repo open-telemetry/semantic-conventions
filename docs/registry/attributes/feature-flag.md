@@ -5,8 +5,6 @@
 
 ## Feature Flag Attributes
 
-This document defines attributes for Feature Flags.
-
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
@@ -55,7 +53,6 @@ For example, the variant `red` maybe be used for the value `#c05543`.
 | --- | --- | --- | --- | --- |
 | <a id="feature-flag-evaluation-error-message" href="#feature-flag-evaluation-error-message">`feature_flag.evaluation.error.message`</a> | string | Deprecated, use `feature_flag.error.message` instead. | `Flag `header-color` expected type `string` but found type `number`` | Use `feature_flag.error.message` instead. |
 | <a id="feature-flag-evaluation-reason" href="#feature-flag-evaluation-reason">`feature_flag.evaluation.reason`</a> | string | Deprecated, use `feature_flag.result.reason` instead. | `static`; `targeting_match`; `error`; `default` | Use `feature_flag.result.reason` instead. |
-| <a id="feature-flag-provider-name" href="#feature-flag-provider-name">`feature_flag.provider_name`</a> | string | Deprecated, use `feature_flag.provider.name` instead. | `Flag Manager` | Use `feature_flag.provider.name` instead. |
 | <a id="feature-flag-variant" href="#feature-flag-variant">`feature_flag.variant`</a> | string | Deprecated, use `feature_flag.result.variant` instead. | `red`; `true`; `on` | Use `feature_flag.result.variant` instead. |
 
 ---

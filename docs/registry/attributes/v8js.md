@@ -3,9 +3,7 @@
 
 # V8js
 
-## V8 JS Attributes
-
-Describes V8 JS Engine Runtime related attributes.
+## V8js Attributes
 
 **Attributes:**
 

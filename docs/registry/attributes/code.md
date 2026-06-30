@@ -5,8 +5,6 @@
 
 ## Code Attributes
 
-These attributes provide context about source code
-
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |

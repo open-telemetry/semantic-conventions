@@ -5,8 +5,6 @@
 
 ## iOS Attributes
 
-This group describes iOS-specific attributes.
-
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |

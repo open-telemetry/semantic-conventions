@@ -3,12 +3,7 @@
 
 # Service
 
-- [Service Attributes](#service-attributes)
-- [Service Attributes for Peer Services](#service-attributes-for-peer-services)
-
 ## Service Attributes
-
-A service instance.
 
 **Attributes:**
 
@@ -18,6 +13,8 @@ A service instance.
 | <a id="service-instance-id" href="#service-instance-id">`service.instance.id`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The string ID of the service instance. [2] | `627cc493-f310-47de-96bd-71410b7dec09` |
 | <a id="service-name" href="#service-name">`service.name`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | Logical name of the service. [3] | `shoppingcart` |
 | <a id="service-namespace" href="#service-namespace">`service.namespace`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | A namespace for `service.name`. [4] | `Shop` |
+| <a id="service-peer-name" href="#service-peer-name">`service.peer.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Logical name of the service on the other side of the connection. SHOULD be equal to the actual [`service.name`](/docs/resource/README.md#service) resource attribute of the remote service if any. | `shoppingcart` |
+| <a id="service-peer-namespace" href="#service-peer-namespace">`service.peer.namespace`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Logical namespace of the service on the other side of the connection. SHOULD be equal to the actual [`service.namespace`](/docs/resource/README.md#service) resource attribute of the remote service if any. | `Shop` |
 | <a id="service-version" href="#service-version">`service.version`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The version string of the service component. The format is not defined by these conventions. | `2.0.0`; `a01dbef8a` |
 
 **[1] `service.criticality`:** Application developers are encouraged to set `service.criticality` to express the operational importance of their services. Telemetry consumers MAY use this attribute to optimize telemetry collection or improve user experience.
@@ -72,14 +69,3 @@ The process executable name is the name of the process executable, the same valu
 **[7]:** Examples include batch processors, cleanup jobs, and internal dashboards.
 
 **[8]:** Examples include analytics, reporting, and non-essential integrations.
-
-## Service Attributes for Peer Services
-
-How to describe the service on the other side of a request.
-
-**Attributes:**
-
-| Key | Stability | Value Type | Description | Example Values |
-| --- | --- | --- | --- | --- |
-| <a id="service-peer-name" href="#service-peer-name">`service.peer.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Logical name of the service on the other side of the connection. SHOULD be equal to the actual [`service.name`](/docs/resource/README.md#service) resource attribute of the remote service if any. | `shoppingcart` |
-| <a id="service-peer-namespace" href="#service-peer-namespace">`service.peer.namespace`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Logical namespace of the service on the other side of the connection. SHOULD be equal to the actual [`service.namespace`](/docs/resource/README.md#service) resource attribute of the remote service if any. | `Shop` |

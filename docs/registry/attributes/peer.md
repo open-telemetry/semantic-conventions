@@ -5,8 +5,6 @@
 
 ## Peer Attributes
 
-These attribute may be used for any operation that accesses some remote service.
-
 <details>
 <summary><b>Deprecated Attributes:</b></summary>
 

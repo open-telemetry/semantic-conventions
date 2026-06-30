@@ -3,9 +3,7 @@
 
 # OpenAI
 
-## OpenAI Attributes (Moved)
-
-OpenAI attributes have moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
+## OpenAI Attributes
 
 <details>
 <summary><b>Deprecated Attributes:</b></summary>

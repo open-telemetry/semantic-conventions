@@ -5,8 +5,6 @@
 
 ## Go Attributes
 
-This document defines Go related attributes.
-
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |

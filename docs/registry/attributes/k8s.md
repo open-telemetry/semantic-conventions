@@ -3,9 +3,7 @@
 
 # K8s
 
-## Kubernetes Attributes
-
-Kubernetes resource attributes.
+## K8s Attributes
 
 **Attributes:**
 

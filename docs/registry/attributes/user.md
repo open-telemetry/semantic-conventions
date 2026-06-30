@@ -5,8 +5,6 @@
 
 ## User Attributes
 
-Describes information about the user.
-
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
