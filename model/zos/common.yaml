@@ -1,8 +1,5 @@
 groups:
   - id: service.zos.software
-    annotations:
-      dependency_resolution:
-        exclude: true
     type: attribute_group
     stability: development
     name: service.zos.software
@@ -25,9 +22,6 @@ groups:
         examples: 'CICSPLX2'
         requirement_level: required
   - id: process.zos
-    annotations:
-      dependency_resolution:
-        exclude: true
     type: attribute_group
     stability: development
     name: process.zos
