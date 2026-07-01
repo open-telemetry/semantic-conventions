@@ -1,10 +1,5 @@
 file_format: definition/2
 
-attribute_groups:
-  - id: registry.http
-    visibility: internal
-    stability: development
-    brief: "This document defines semantic convention attributes in the HTTP namespace."
 
 attributes:
   - key: http.request.body.size

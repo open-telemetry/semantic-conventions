@@ -1,15 +1,9 @@
 file_format: definition/2
 
-metrics:
-  - name: http.server.request.duration
-    requirement_level: recommended
-    annotations:
-      code_generation:
-        metric_value_type: double
-    brief: "Duration of HTTP server requests."
-    instrument: histogram
-    unit: "s"
-    stability: stable
+attribute_groups:
+  - id: metric_attributes.http.server
+    visibility: internal
+    brief: 'HTTP server attributes'
     attributes:
       - ref_group: attributes.http.server
       - ref: server.address
@@ -30,6 +24,44 @@ metrics:
           > to trigger cardinality limits, degrading the usefulness of the metric.
       - ref: user_agent.synthetic.type
         requirement_level: opt_in
+
+  - id: metric_attributes.http.client
+    visibility: internal
+    brief: 'HTTP client attributes'
+    attributes:
+      - ref_group: attributes.http.client
+      - ref: server.address
+        requirement_level: opt_in
+        note: |
+          See [Setting `server.address` and `server.port` attributes](/docs/http/http-spans.md#setting-serveraddress-and-serverport-attributes).
+      - ref: server.port
+        requirement_level: opt_in
+        note: |
+          See [Setting `server.address` and `server.port` attributes](/docs/http/http-spans.md#setting-serveraddress-and-serverport-attributes).
+
+  - id: metric_attributes.http.client.experimental
+    visibility: internal
+    brief: 'HTTP client experimental attributes'
+    attributes:
+      - ref_group: metric_attributes.http.client
+      - ref: url.template
+        requirement_level:
+          conditionally_required: If available.
+        note: >
+          The `url.template` MUST have low cardinality. It is not usually available on HTTP clients, but may be known by the application or specialized HTTP instrumentation.
+
+metrics:
+  - name: http.server.request.duration
+    requirement_level: recommended
+    annotations:
+      code_generation:
+        metric_value_type: double
+    brief: "Duration of HTTP server requests."
+    instrument: histogram
+    unit: "s"
+    stability: stable
+    attributes:
+      - ref_group: metric_attributes.http.server
 
   - name: http.server.active_requests
     requirement_level: recommended
@@ -81,25 +113,7 @@ metrics:
       is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length)
       header. For requests using transport encoding, this should be the compressed size.
     attributes:
-      - ref_group: attributes.http.server
-      - ref: server.address
-        requirement_level: opt_in
-        note: |
-          See [Setting `server.address` and `server.port` attributes](/docs/http/http-spans.md#setting-serveraddress-and-serverport-attributes).
-
-          > [!WARNING]
-          > Since this attribute is based on HTTP headers, opting in to it may allow an attacker
-          > to trigger cardinality limits, degrading the usefulness of the metric.
-      - ref: server.port
-        requirement_level: opt_in
-        note: |
-          See [Setting `server.address` and `server.port` attributes](/docs/http/http-spans.md#setting-serveraddress-and-serverport-attributes).
-
-          > [!WARNING]
-          > Since this attribute is based on HTTP headers, opting in to it may allow an attacker
-          > to trigger cardinality limits, degrading the usefulness of the metric.
-      - ref: user_agent.synthetic.type
-        requirement_level: opt_in
+      - ref_group: metric_attributes.http.server
 
   - name: http.server.response.body.size
     requirement_level: recommended
@@ -115,25 +129,7 @@ metrics:
       is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length)
       header. For requests using transport encoding, this should be the compressed size.
     attributes:
-      - ref_group: attributes.http.server
-      - ref: server.address
-        requirement_level: opt_in
-        note: |
-          See [Setting `server.address` and `server.port` attributes](/docs/http/http-spans.md#setting-serveraddress-and-serverport-attributes).
-
-          > [!WARNING]
-          > Since this attribute is based on HTTP headers, opting in to it may allow an attacker
-          > to trigger cardinality limits, degrading the usefulness of the metric.
-      - ref: server.port
-        requirement_level: opt_in
-        note: |
-          See [Setting `server.address` and `server.port` attributes](/docs/http/http-spans.md#setting-serveraddress-and-serverport-attributes).
-
-          > [!WARNING]
-          > Since this attribute is based on HTTP headers, opting in to it may allow an attacker
-          > to trigger cardinality limits, degrading the usefulness of the metric.
-      - ref: user_agent.synthetic.type
-        requirement_level: opt_in
+      - ref_group: metric_attributes.http.server
 
   - name: http.client.request.duration
     requirement_level: recommended
@@ -145,15 +141,7 @@ metrics:
     unit: "s"
     stability: stable
     attributes:
-      - ref_group: attributes.http.client
-      - ref: server.address
-        requirement_level: opt_in
-        note: |
-          See [Setting `server.address` and `server.port` attributes](/docs/http/http-spans.md#setting-serveraddress-and-serverport-attributes).
-      - ref: server.port
-        requirement_level: opt_in
-        note: |
-          See [Setting `server.address` and `server.port` attributes](/docs/http/http-spans.md#setting-serveraddress-and-serverport-attributes).
+      - ref_group: metric_attributes.http.client
 
   - name: http.client.request.body.size
     requirement_level: recommended
@@ -169,20 +157,7 @@ metrics:
       is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length)
       header. For requests using transport encoding, this should be the compressed size.
     attributes:
-      - ref_group: attributes.http.client
-      - ref: server.address
-        requirement_level: opt_in
-        note: |
-          See [Setting `server.address` and `server.port` attributes](/docs/http/http-spans.md#setting-serveraddress-and-serverport-attributes).
-      - ref: server.port
-        requirement_level: opt_in
-        note: |
-          See [Setting `server.address` and `server.port` attributes](/docs/http/http-spans.md#setting-serveraddress-and-serverport-attributes).
-      - ref: url.template
-        requirement_level:
-          conditionally_required: If available.
-        note: >
-          The `url.template` MUST have low cardinality. It is not usually available on HTTP clients, but may be known by the application or specialized HTTP instrumentation.
+      - ref_group: metric_attributes.http.client.experimental
 
   - name: http.client.response.body.size
     requirement_level: recommended
@@ -198,20 +173,7 @@ metrics:
       is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length)
       header. For requests using transport encoding, this should be the compressed size.
     attributes:
-      - ref_group: attributes.http.client
-      - ref: server.address
-        requirement_level: opt_in
-        note: |
-          See [Setting `server.address` and `server.port` attributes](/docs/http/http-spans.md#setting-serveraddress-and-serverport-attributes).
-      - ref: server.port
-        requirement_level: opt_in
-        note: |
-          See [Setting `server.address` and `server.port` attributes](/docs/http/http-spans.md#setting-serveraddress-and-serverport-attributes).
-      - ref: url.template
-        requirement_level:
-          conditionally_required: If available.
-        note: >
-          The `url.template` MUST have low cardinality. It is not usually available on HTTP clients, but may be known by the application or specialized HTTP instrumentation.
+      - ref_group: metric_attributes.http.client.experimental
 
   - name: http.client.open_connections
     requirement_level: recommended
