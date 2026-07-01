@@ -3,7 +3,6 @@ file_format: definition/2
 attribute_groups:
   - id: metric_attributes.http.server
     visibility: internal
-    brief: 'HTTP server attributes'
     attributes:
       - ref_group: attributes.http.server
       - ref: server.address
@@ -27,7 +26,6 @@ attribute_groups:
 
   - id: metric_attributes.http.client
     visibility: internal
-    brief: 'HTTP client attributes'
     attributes:
       - ref_group: attributes.http.client
       - ref: server.address
@@ -41,7 +39,6 @@ attribute_groups:
 
   - id: metric_attributes.http.client.experimental
     visibility: internal
-    brief: 'HTTP client experimental attributes'
     attributes:
       - ref_group: metric_attributes.http.client
       - ref: url.template
