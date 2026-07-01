@@ -2,24 +2,7 @@ file_format: definition/2
 
 attribute_groups:
   - id: registry.http.deprecated
-    visibility: public
-    stability: development
     brief: "Describes deprecated HTTP attributes."
-    attributes:
-      - ref: http.method
-      - ref: http.status_code
-      - ref: http.scheme
-      - ref: http.url
-      - ref: http.target
-      - ref: http.request_content_length
-      - ref: http.response_content_length
-      - ref: http.client_ip
-      - ref: http.host
-      - ref: http.request_content_length_uncompressed
-      - ref: http.response_content_length_uncompressed
-      - ref: http.server_name
-      - ref: http.flavor
-      - ref: http.user_agent
 
 attributes:
   - key: http.method
@@ -29,7 +12,6 @@ attributes:
     deprecated:
       reason: renamed
       renamed_to: http.request.method
-      note: "Replaced by http.request.method."
     examples: ["GET", "POST", "HEAD"]
   - key: http.status_code
     type: int
@@ -38,7 +20,6 @@ attributes:
     deprecated:
       reason: renamed
       renamed_to: http.response.status_code
-      note: "Replaced by http.response.status_code."
     examples: [200]
   - key: http.scheme
     type: string
@@ -47,7 +28,6 @@ attributes:
     deprecated:
       reason: renamed
       renamed_to: url.scheme
-      note: "Replaced by url.scheme."
     examples: ['http', 'https']
   - key: http.url
     type: string
@@ -56,7 +36,6 @@ attributes:
     deprecated:
       reason: renamed
       renamed_to: url.full
-      note: "Replaced by url.full."
     examples: ['https://www.foo.bar/search?q=OpenTelemetry#SemConv']
   - key: http.target
     type: string
@@ -88,7 +67,6 @@ attributes:
     deprecated:
       reason: renamed
       renamed_to: client.address
-      note: "Replaced by client.address."
     brief: "Deprecated, use `client.address` instead."
     examples: '83.164.160.102'
   - key: http.host
@@ -105,7 +83,6 @@ attributes:
     deprecated:
       reason: renamed
       renamed_to: http.request.body.size
-      note: "Replaced by http.request.body.size."
     type: int
     brief: "Deprecated, use `http.request.body.size` instead."
     examples: 5493
@@ -114,7 +91,6 @@ attributes:
     deprecated:
       reason: renamed
       renamed_to: http.response.body.size
-      note: "Replaced by http.response.body.size."
     type: int
     brief: "Deprecated, use `http.response.body.size` instead."
     examples: 5493
@@ -124,7 +100,6 @@ attributes:
     deprecated:
       reason: renamed
       renamed_to: server.address
-      note: "Replaced by server.address."
     brief: "Deprecated, use `server.address` instead."
     examples: ['example.com']
   - key: http.flavor
@@ -167,5 +142,4 @@ attributes:
     deprecated:
       reason: renamed
       renamed_to: user_agent.original
-      note: "Replaced by user_agent.original."
     stability: development
