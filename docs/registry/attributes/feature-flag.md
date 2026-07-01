@@ -49,11 +49,12 @@ For example, the variant `red` maybe be used for the value `#c05543`.
 <details>
 <summary><b>Deprecated Attributes:</b></summary>
 
-| Key | Value Type | Description | Example Values | Deprecation Explanation |
+| Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="feature-flag-evaluation-error-message" href="#feature-flag-evaluation-error-message">`feature_flag.evaluation.error.message`</a> | string | Deprecated, use `feature_flag.error.message` instead. | `Flag `header-color` expected type `string` but found type `number`` | Use `feature_flag.error.message` instead. |
-| <a id="feature-flag-evaluation-reason" href="#feature-flag-evaluation-reason">`feature_flag.evaluation.reason`</a> | string | Deprecated, use `feature_flag.result.reason` instead. | `static`; `targeting_match`; `error`; `default` | Use `feature_flag.result.reason` instead. |
-| <a id="feature-flag-variant" href="#feature-flag-variant">`feature_flag.variant`</a> | string | Deprecated, use `feature_flag.result.variant` instead. | `red`; `true`; `on` | Use `feature_flag.result.variant` instead. |
+| <a id="feature-flag-evaluation-error-message" href="#feature-flag-evaluation-error-message">`feature_flag.evaluation.error.message`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `feature_flag.error.message`. | string | Deprecated, use `feature_flag.error.message` instead. | `Flag `header-color` expected type `string` but found type `number`` |
+| <a id="feature-flag-evaluation-reason" href="#feature-flag-evaluation-reason">`feature_flag.evaluation.reason`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `feature_flag.result.reason`. | string | Deprecated, use `feature_flag.result.reason` instead. | `static`; `targeting_match`; `error`; `default` |
+| <a id="feature-flag-provider-name" href="#feature-flag-provider-name">`feature_flag.provider_name`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `feature_flag.provider.name`. | string | Deprecated, use `feature_flag.provider.name` instead. | `Flag Manager` |
+| <a id="feature-flag-variant" href="#feature-flag-variant">`feature_flag.variant`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `feature_flag.result.variant`. | string | Deprecated, use `feature_flag.result.variant` instead. | `red`; `true`; `on` |
 
 ---
 

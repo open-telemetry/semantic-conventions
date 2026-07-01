@@ -8,9 +8,9 @@
 <details>
 <summary><b>Deprecated Attributes:</b></summary>
 
-| Key | Value Type | Description | Example Values | Deprecation Explanation |
+| Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="linux-memory-slab-state" href="#linux-memory-slab-state">`linux.memory.slab.state`</a> | string | The Linux Slab memory state | `reclaimable`; `unreclaimable` | Use `system.memory.linux.slab.state` instead. |
+| <a id="linux-memory-slab-state" href="#linux-memory-slab-state">`linux.memory.slab.state`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `system.memory.linux.slab.state`. | string | The Linux Slab memory state | `reclaimable`; `unreclaimable` |
 
 ---
 

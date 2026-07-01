@@ -3,7 +3,7 @@
 
 # JVM
 
-## JVM Attributes
+## Java Virtual Machine (JVM) Attributes
 
 **Attributes:**
 

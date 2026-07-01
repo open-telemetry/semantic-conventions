@@ -75,9 +75,9 @@ classify the failure.
 <details>
 <summary><b>Deprecated Attributes:</b></summary>
 
-| Key | Value Type | Description | Example Values | Deprecation Explanation |
+| Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| [`exception.escaped`](/docs/registry/attributes/exception.md) | boolean | Indicates that the exception is escaping the scope of the span. | | It's no longer recommended to record exceptions that are handled and do not escape the scope of a span. |
+| [`exception.escaped`](/docs/registry/attributes/exception.md) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>It's no longer recommended to record exceptions that are handled and do not escape the scope of a span. | boolean | Indicates that the exception is escaping the scope of the span. | |
 
 </details>
 <!-- prettier-ignore-end -->

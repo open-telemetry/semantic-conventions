@@ -8,9 +8,9 @@
 <details>
 <summary><b>Deprecated Attributes:</b></summary>
 
-| Key | Value Type | Description | Example Values | Deprecation Explanation |
+| Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="az-namespace" href="#az-namespace">`az.namespace`</a> | string | Deprecated, use `azure.resource_provider.namespace` instead. | `Microsoft.Storage`; `Microsoft.KeyVault`; `Microsoft.ServiceBus` | Use `azure.resource_provider.namespace` instead. |
-| <a id="az-service-request-id" href="#az-service-request-id">`az.service_request_id`</a> | string | Deprecated, use `azure.service.request.id` instead. | `00000000-0000-0000-0000-000000000000` | Use `azure.service.request.id` instead. |
+| <a id="az-namespace" href="#az-namespace">`az.namespace`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `azure.resource_provider.namespace`. | string | Deprecated, use `azure.resource_provider.namespace` instead. | `Microsoft.Storage`; `Microsoft.KeyVault`; `Microsoft.ServiceBus` |
+| <a id="az-service-request-id" href="#az-service-request-id">`az.service_request_id`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `azure.service.request.id`. | string | Deprecated, use `azure.service.request.id` instead. | `00000000-0000-0000-0000-000000000000` |
 
 </details>

@@ -3,7 +3,7 @@
 
 # zOS
 
-## zOS Attributes
+## z/OS Attributes
 
 **Attributes:**
 

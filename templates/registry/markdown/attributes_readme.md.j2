@@ -32,7 +32,7 @@ All registered attributes are listed by namespace in this registry.
 Currently, the following namespaces exist:
 
 {% for bundle in ctx %}
-{%- set my_file_name = bundle.root_namespace | kebab_case ~ ".md" -%}
+{%- set my_file_name = bundle.root_namespace | kebab_case | map_text("root_namespace_aliases") ~ ".md" -%}
 - [{{ bundle.root_namespace | title_case | acronym | map_text("namespace_mapping") }}]({{ my_file_name }})
 {% endfor %}
 [developers recommendations]: ../../general/naming.md#recommendations-for-application-developers

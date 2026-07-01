@@ -8,12 +8,12 @@
 <details>
 <summary><b>Deprecated Attributes:</b></summary>
 
-| Key | Value Type | Description | Example Values | Deprecation Explanation |
+| Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="message-compressed-size" href="#message-compressed-size">`message.compressed_size`</a> | int | Deprecated, no replacement at this time. | | Deprecated, no replacement at this time. |
-| <a id="message-id" href="#message-id">`message.id`</a> | int | Deprecated, no replacement at this time. | | Deprecated, no replacement at this time. |
-| <a id="message-type" href="#message-type">`message.type`</a> | string | Deprecated, no replacement at this time. | `SENT`; `RECEIVED` | Deprecated, no replacement at this time. |
-| <a id="message-uncompressed-size" href="#message-uncompressed-size">`message.uncompressed_size`</a> | int | Deprecated, no replacement at this time. | | Deprecated, no replacement at this time. |
+| <a id="message-compressed-size" href="#message-compressed-size">`message.compressed_size`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, no replacement at this time. | int | Deprecated, no replacement at this time. | |
+| <a id="message-id" href="#message-id">`message.id`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, no replacement at this time. | int | Deprecated, no replacement at this time. | |
+| <a id="message-type" href="#message-type">`message.type`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, no replacement at this time. | string | Deprecated, no replacement at this time. | `SENT`; `RECEIVED` |
+| <a id="message-uncompressed-size" href="#message-uncompressed-size">`message.uncompressed_size`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, no replacement at this time. | int | Deprecated, no replacement at this time. | |
 
 ---
 

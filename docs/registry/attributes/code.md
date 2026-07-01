@@ -34,12 +34,12 @@ Examples:
 <details>
 <summary><b>Deprecated Attributes:</b></summary>
 
-| Key | Value Type | Description | Example Values | Deprecation Explanation |
+| Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="code-column" href="#code-column">`code.column`</a> | int | Deprecated, use `code.column.number` | `16` | Use `code.column.number` instead. |
-| <a id="code-filepath" href="#code-filepath">`code.filepath`</a> | string | Deprecated, use `code.file.path` instead | `/usr/local/MyApplication/content_root/app/index.php` | Use `code.file.path` instead. |
-| <a id="code-function" href="#code-function">`code.function`</a> | string | Deprecated, use `code.function.name` instead | `serveRequest` | Value should be included in `code.function.name` which is expected to be a fully-qualified name. |
-| <a id="code-lineno" href="#code-lineno">`code.lineno`</a> | int | Deprecated, use `code.line.number` instead | `42` | Use `code.line.number` instead. |
-| <a id="code-namespace" href="#code-namespace">`code.namespace`</a> | string | Deprecated, namespace is now included into `code.function.name` | `com.example.MyHttpService` | Value should be included in `code.function.name` which is expected to be a fully-qualified name. |
+| <a id="code-column" href="#code-column">`code.column`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `code.column.number`. | int | Deprecated, use `code.column.number` | `16` |
+| <a id="code-filepath" href="#code-filepath">`code.filepath`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `code.file.path`. | string | Deprecated, use `code.file.path` instead | `/usr/local/MyApplication/content_root/app/index.php` |
+| <a id="code-function" href="#code-function">`code.function`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Value should be included in `code.function.name` which is expected to be a fully-qualified name. | string | Deprecated, use `code.function.name` instead | `serveRequest` |
+| <a id="code-lineno" href="#code-lineno">`code.lineno`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `code.line.number`. | int | Deprecated, use `code.line.number` instead | `42` |
+| <a id="code-namespace" href="#code-namespace">`code.namespace`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Value should be included in `code.function.name` which is expected to be a fully-qualified name. | string | Deprecated, namespace is now included into `code.function.name` | `com.example.MyHttpService` |
 
 </details>

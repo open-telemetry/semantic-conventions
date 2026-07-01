@@ -27,9 +27,9 @@
 <details>
 <summary><b>Deprecated Attributes:</b></summary>
 
-| Key | Value Type | Description | Example Values | Deprecation Explanation |
+| Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="android-state" href="#android-state">`android.state`</a> | string | Deprecated. Use `android.app.state` attribute instead. | `created`; `background`; `foreground` | Use `android.app.state` instead. |
+| <a id="android-state" href="#android-state">`android.state`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `android.app.state`. | string | Deprecated. Use `android.app.state` attribute instead. | `created`; `background`; `foreground` |
 
 ---
 

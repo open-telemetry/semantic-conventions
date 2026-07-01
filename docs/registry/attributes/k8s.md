@@ -3,7 +3,7 @@
 
 # K8s
 
-## K8s Attributes
+## Kubernetes Attributes
 
 **Attributes:**
 
@@ -562,8 +562,8 @@ When not set, Kubernetes distributes traffic evenly across all endpoints cluster
 <details>
 <summary><b>Deprecated Attributes:</b></summary>
 
-| Key | Value Type | Description | Example Values | Deprecation Explanation |
+| Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="k8s-pod-labels" href="#k8s-pod-labels">`k8s.pod.labels.<key>`</a> | string | Deprecated, use `k8s.pod.label` instead. | `my-app` | Use `k8s.pod.label` instead. |
+| <a id="k8s-pod-labels" href="#k8s-pod-labels">`k8s.pod.labels.<key>`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `k8s.pod.label`. | string | Deprecated, use `k8s.pod.label` instead. | `my-app` |
 
 </details>

@@ -3,7 +3,7 @@
 
 # OS
 
-## OS Attributes
+## Operating System Attributes
 
 **Attributes:**
 

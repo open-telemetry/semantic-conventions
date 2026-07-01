@@ -3,7 +3,7 @@
 
 # V8js
 
-## V8js Attributes
+## V8 JS Attributes
 
 **Attributes:**
 

@@ -3,7 +3,7 @@
 
 # User agent
 
-## User Agent Attributes
+## User-agent Attributes
 
 **Attributes:**
 

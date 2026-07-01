@@ -42,11 +42,11 @@ The ID is assigned by the container runtime and can vary in different environmen
 <details>
 <summary><b>Deprecated Attributes:</b></summary>
 
-| Key | Value Type | Description | Example Values | Deprecation Explanation |
+| Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="container-cpu-state" href="#container-cpu-state">`container.cpu.state`</a> | string | Deprecated, use `cpu.mode` instead. | `user`; `kernel` | Use `cpu.mode` instead. |
-| <a id="container-labels" href="#container-labels">`container.labels.<key>`</a> | string | Deprecated, use `container.label` instead. | `nginx` | Use `container.label` instead. |
-| <a id="container-runtime" href="#container-runtime">`container.runtime`</a> | string | The container runtime managing this container. | `docker`; `containerd`; `rkt` | Use `container.runtime.name` instead. |
+| <a id="container-cpu-state" href="#container-cpu-state">`container.cpu.state`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `cpu.mode`. | string | Deprecated, use `cpu.mode` instead. | `user`; `kernel` |
+| <a id="container-labels" href="#container-labels">`container.labels.<key>`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `container.label`. | string | Deprecated, use `container.label` instead. | `nginx` |
+| <a id="container-runtime" href="#container-runtime">`container.runtime`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `container.runtime.name`. | string | The container runtime managing this container. | `docker`; `containerd`; `rkt` |
 
 ---
 

@@ -8,12 +8,12 @@
 <details>
 <summary><b>Deprecated Attributes:</b></summary>
 
-| Key | Value Type | Description | Example Values | Deprecation Explanation |
+| Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="openai-api-type" href="#openai-api-type">`openai.api.type`</a> | string | The type of OpenAI API being used. | `chat_completions`; `responses` | Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). |
-| <a id="openai-request-service-tier" href="#openai-request-service-tier">`openai.request.service_tier`</a> | string | The service tier requested. May be a specific tier, default, or auto. | `auto`; `default` | Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). |
-| <a id="openai-response-service-tier" href="#openai-response-service-tier">`openai.response.service_tier`</a> | string | The service tier used for the response. | `scale`; `default` | Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). |
-| <a id="openai-response-system-fingerprint" href="#openai-response-system-fingerprint">`openai.response.system_fingerprint`</a> | string | A fingerprint to track any eventual change in the Generative AI environment. | `fp_44709d6fcb` | Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). |
+| <a id="openai-api-type" href="#openai-api-type">`openai.api.type`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | string | The type of OpenAI API being used. | `chat_completions`; `responses` |
+| <a id="openai-request-service-tier" href="#openai-request-service-tier">`openai.request.service_tier`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | string | The service tier requested. May be a specific tier, default, or auto. | `auto`; `default` |
+| <a id="openai-response-service-tier" href="#openai-response-service-tier">`openai.response.service_tier`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | string | The service tier used for the response. | `scale`; `default` |
+| <a id="openai-response-system-fingerprint" href="#openai-response-system-fingerprint">`openai.response.system_fingerprint`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | string | A fingerprint to track any eventual change in the Generative AI environment. | `fp_44709d6fcb` |
 
 ---
 

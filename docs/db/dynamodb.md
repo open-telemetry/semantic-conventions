@@ -66,10 +66,10 @@ This span represents a `DynamoDB.BatchGetItem` call.
 <details>
 <summary><b>Deprecated Attributes:</b></summary>
 
-| Key | Value Type | Description | Example Values | Deprecation Explanation |
+| Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| [`rpc.system`](/docs/registry/attributes/rpc.md) | string | The value `aws-api`. | `aws-api` | Use `rpc.system.name` instead. |
-| [`rpc.service`](/docs/registry/attributes/rpc.md) | string | The name of the service to which a request is made, as returned by the AWS SDK. | `DynamoDB`; `S3` | Value should be included in `rpc.method` which is expected to be a fully-qualified name. |
+| [`rpc.system`](/docs/registry/attributes/rpc.md) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `rpc.system.name`. | string | The value `aws-api`. | `aws-api` |
+| [`rpc.service`](/docs/registry/attributes/rpc.md) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Value should be included in `rpc.method` which is expected to be a fully-qualified name. | string | The name of the service to which a request is made, as returned by the AWS SDK. | `DynamoDB`; `S3` |
 
 ---
 
@@ -124,10 +124,10 @@ This span represents a `DynamoDB.BatchWriteItem` call.
 <details>
 <summary><b>Deprecated Attributes:</b></summary>
 
-| Key | Value Type | Description | Example Values | Deprecation Explanation |
+| Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| [`rpc.system`](/docs/registry/attributes/rpc.md) | string | The value `aws-api`. | `aws-api` | Use `rpc.system.name` instead. |
-| [`rpc.service`](/docs/registry/attributes/rpc.md) | string | The name of the service to which a request is made, as returned by the AWS SDK. | `DynamoDB`; `S3` | Value should be included in `rpc.method` which is expected to be a fully-qualified name. |
+| [`rpc.system`](/docs/registry/attributes/rpc.md) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `rpc.system.name`. | string | The value `aws-api`. | `aws-api` |
+| [`rpc.service`](/docs/registry/attributes/rpc.md) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Value should be included in `rpc.method` which is expected to be a fully-qualified name. | string | The name of the service to which a request is made, as returned by the AWS SDK. | `DynamoDB`; `S3` |
 
 ---
 
@@ -186,10 +186,10 @@ This span represents a `DynamoDB.CreateTable` call.
 <details>
 <summary><b>Deprecated Attributes:</b></summary>
 
-| Key | Value Type | Description | Example Values | Deprecation Explanation |
+| Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| [`rpc.system`](/docs/registry/attributes/rpc.md) | string | The value `aws-api`. | `aws-api` | Use `rpc.system.name` instead. |
-| [`rpc.service`](/docs/registry/attributes/rpc.md) | string | The name of the service to which a request is made, as returned by the AWS SDK. | `DynamoDB`; `S3` | Value should be included in `rpc.method` which is expected to be a fully-qualified name. |
+| [`rpc.system`](/docs/registry/attributes/rpc.md) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `rpc.system.name`. | string | The value `aws-api`. | `aws-api` |
+| [`rpc.service`](/docs/registry/attributes/rpc.md) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Value should be included in `rpc.method` which is expected to be a fully-qualified name. | string | The name of the service to which a request is made, as returned by the AWS SDK. | `DynamoDB`; `S3` |
 
 ---
 
@@ -244,10 +244,10 @@ This span represents a `DynamoDB.DeleteItem` call.
 <details>
 <summary><b>Deprecated Attributes:</b></summary>
 
-| Key | Value Type | Description | Example Values | Deprecation Explanation |
+| Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| [`rpc.system`](/docs/registry/attributes/rpc.md) | string | The value `aws-api`. | `aws-api` | Use `rpc.system.name` instead. |
-| [`rpc.service`](/docs/registry/attributes/rpc.md) | string | The name of the service to which a request is made, as returned by the AWS SDK. | `DynamoDB`; `S3` | Value should be included in `rpc.method` which is expected to be a fully-qualified name. |
+| [`rpc.system`](/docs/registry/attributes/rpc.md) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `rpc.system.name`. | string | The value `aws-api`. | `aws-api` |
+| [`rpc.service`](/docs/registry/attributes/rpc.md) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Value should be included in `rpc.method` which is expected to be a fully-qualified name. | string | The name of the service to which a request is made, as returned by the AWS SDK. | `DynamoDB`; `S3` |
 
 ---
 
@@ -300,10 +300,10 @@ This span represents a `DynamoDB.DeleteTable` call.
 <details>
 <summary><b>Deprecated Attributes:</b></summary>
 
-| Key | Value Type | Description | Example Values | Deprecation Explanation |
+| Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| [`rpc.system`](/docs/registry/attributes/rpc.md) | string | The value `aws-api`. | `aws-api` | Use `rpc.system.name` instead. |
-| [`rpc.service`](/docs/registry/attributes/rpc.md) | string | The name of the service to which a request is made, as returned by the AWS SDK. | `DynamoDB`; `S3` | Value should be included in `rpc.method` which is expected to be a fully-qualified name. |
+| [`rpc.system`](/docs/registry/attributes/rpc.md) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `rpc.system.name`. | string | The value `aws-api`. | `aws-api` |
+| [`rpc.service`](/docs/registry/attributes/rpc.md) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Value should be included in `rpc.method` which is expected to be a fully-qualified name. | string | The name of the service to which a request is made, as returned by the AWS SDK. | `DynamoDB`; `S3` |
 
 ---
 
@@ -356,10 +356,10 @@ This span represents a `DynamoDB.DescribeTable` call.
 <details>
 <summary><b>Deprecated Attributes:</b></summary>
 
-| Key | Value Type | Description | Example Values | Deprecation Explanation |
+| Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| [`rpc.system`](/docs/registry/attributes/rpc.md) | string | The value `aws-api`. | `aws-api` | Use `rpc.system.name` instead. |
-| [`rpc.service`](/docs/registry/attributes/rpc.md) | string | The name of the service to which a request is made, as returned by the AWS SDK. | `DynamoDB`; `S3` | Value should be included in `rpc.method` which is expected to be a fully-qualified name. |
+| [`rpc.system`](/docs/registry/attributes/rpc.md) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `rpc.system.name`. | string | The value `aws-api`. | `aws-api` |
+| [`rpc.service`](/docs/registry/attributes/rpc.md) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Value should be included in `rpc.method` which is expected to be a fully-qualified name. | string | The name of the service to which a request is made, as returned by the AWS SDK. | `DynamoDB`; `S3` |
 
 ---
 
@@ -415,10 +415,10 @@ This span represents a `DynamoDB.GetItem` call.
 <details>
 <summary><b>Deprecated Attributes:</b></summary>
 
-| Key | Value Type | Description | Example Values | Deprecation Explanation |
+| Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| [`rpc.system`](/docs/registry/attributes/rpc.md) | string | The value `aws-api`. | `aws-api` | Use `rpc.system.name` instead. |
-| [`rpc.service`](/docs/registry/attributes/rpc.md) | string | The name of the service to which a request is made, as returned by the AWS SDK. | `DynamoDB`; `S3` | Value should be included in `rpc.method` which is expected to be a fully-qualified name. |
+| [`rpc.system`](/docs/registry/attributes/rpc.md) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `rpc.system.name`. | string | The value `aws-api`. | `aws-api` |
+| [`rpc.service`](/docs/registry/attributes/rpc.md) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Value should be included in `rpc.method` which is expected to be a fully-qualified name. | string | The name of the service to which a request is made, as returned by the AWS SDK. | `DynamoDB`; `S3` |
 
 ---
 
@@ -473,10 +473,10 @@ This span represents a `DynamoDB.ListTables` call.
 <details>
 <summary><b>Deprecated Attributes:</b></summary>
 
-| Key | Value Type | Description | Example Values | Deprecation Explanation |
+| Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| [`rpc.system`](/docs/registry/attributes/rpc.md) | string | The value `aws-api`. | `aws-api` | Use `rpc.system.name` instead. |
-| [`rpc.service`](/docs/registry/attributes/rpc.md) | string | The name of the service to which a request is made, as returned by the AWS SDK. | `DynamoDB`; `S3` | Value should be included in `rpc.method` which is expected to be a fully-qualified name. |
+| [`rpc.system`](/docs/registry/attributes/rpc.md) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `rpc.system.name`. | string | The value `aws-api`. | `aws-api` |
+| [`rpc.service`](/docs/registry/attributes/rpc.md) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Value should be included in `rpc.method` which is expected to be a fully-qualified name. | string | The name of the service to which a request is made, as returned by the AWS SDK. | `DynamoDB`; `S3` |
 
 ---
 
@@ -531,10 +531,10 @@ This span represents a `DynamoDB.PutItem` call.
 <details>
 <summary><b>Deprecated Attributes:</b></summary>
 
-| Key | Value Type | Description | Example Values | Deprecation Explanation |
+| Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| [`rpc.system`](/docs/registry/attributes/rpc.md) | string | The value `aws-api`. | `aws-api` | Use `rpc.system.name` instead. |
-| [`rpc.service`](/docs/registry/attributes/rpc.md) | string | The name of the service to which a request is made, as returned by the AWS SDK. | `DynamoDB`; `S3` | Value should be included in `rpc.method` which is expected to be a fully-qualified name. |
+| [`rpc.system`](/docs/registry/attributes/rpc.md) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `rpc.system.name`. | string | The value `aws-api`. | `aws-api` |
+| [`rpc.service`](/docs/registry/attributes/rpc.md) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Value should be included in `rpc.method` which is expected to be a fully-qualified name. | string | The name of the service to which a request is made, as returned by the AWS SDK. | `DynamoDB`; `S3` |
 
 ---
 
@@ -595,10 +595,10 @@ This span represents a `DynamoDB.Query` call.
 <details>
 <summary><b>Deprecated Attributes:</b></summary>
 
-| Key | Value Type | Description | Example Values | Deprecation Explanation |
+| Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| [`rpc.system`](/docs/registry/attributes/rpc.md) | string | The value `aws-api`. | `aws-api` | Use `rpc.system.name` instead. |
-| [`rpc.service`](/docs/registry/attributes/rpc.md) | string | The name of the service to which a request is made, as returned by the AWS SDK. | `DynamoDB`; `S3` | Value should be included in `rpc.method` which is expected to be a fully-qualified name. |
+| [`rpc.system`](/docs/registry/attributes/rpc.md) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `rpc.system.name`. | string | The value `aws-api`. | `aws-api` |
+| [`rpc.service`](/docs/registry/attributes/rpc.md) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Value should be included in `rpc.method` which is expected to be a fully-qualified name. | string | The name of the service to which a request is made, as returned by the AWS SDK. | `DynamoDB`; `S3` |
 
 ---
 
@@ -662,10 +662,10 @@ This span represents a `DynamoDB.Scan` call.
 <details>
 <summary><b>Deprecated Attributes:</b></summary>
 
-| Key | Value Type | Description | Example Values | Deprecation Explanation |
+| Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| [`rpc.system`](/docs/registry/attributes/rpc.md) | string | The value `aws-api`. | `aws-api` | Use `rpc.system.name` instead. |
-| [`rpc.service`](/docs/registry/attributes/rpc.md) | string | The name of the service to which a request is made, as returned by the AWS SDK. | `DynamoDB`; `S3` | Value should be included in `rpc.method` which is expected to be a fully-qualified name. |
+| [`rpc.system`](/docs/registry/attributes/rpc.md) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `rpc.system.name`. | string | The value `aws-api`. | `aws-api` |
+| [`rpc.service`](/docs/registry/attributes/rpc.md) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Value should be included in `rpc.method` which is expected to be a fully-qualified name. | string | The name of the service to which a request is made, as returned by the AWS SDK. | `DynamoDB`; `S3` |
 
 ---
 
@@ -720,10 +720,10 @@ This span represents a `DynamoDB.UpdateItem` call.
 <details>
 <summary><b>Deprecated Attributes:</b></summary>
 
-| Key | Value Type | Description | Example Values | Deprecation Explanation |
+| Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| [`rpc.system`](/docs/registry/attributes/rpc.md) | string | The value `aws-api`. | `aws-api` | Use `rpc.system.name` instead. |
-| [`rpc.service`](/docs/registry/attributes/rpc.md) | string | The name of the service to which a request is made, as returned by the AWS SDK. | `DynamoDB`; `S3` | Value should be included in `rpc.method` which is expected to be a fully-qualified name. |
+| [`rpc.system`](/docs/registry/attributes/rpc.md) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `rpc.system.name`. | string | The value `aws-api`. | `aws-api` |
+| [`rpc.service`](/docs/registry/attributes/rpc.md) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Value should be included in `rpc.method` which is expected to be a fully-qualified name. | string | The name of the service to which a request is made, as returned by the AWS SDK. | `DynamoDB`; `S3` |
 
 ---
 
@@ -781,10 +781,10 @@ This span represents a `DynamoDB.UpdateTable` call.
 <details>
 <summary><b>Deprecated Attributes:</b></summary>
 
-| Key | Value Type | Description | Example Values | Deprecation Explanation |
+| Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| [`rpc.system`](/docs/registry/attributes/rpc.md) | string | The value `aws-api`. | `aws-api` | Use `rpc.system.name` instead. |
-| [`rpc.service`](/docs/registry/attributes/rpc.md) | string | The name of the service to which a request is made, as returned by the AWS SDK. | `DynamoDB`; `S3` | Value should be included in `rpc.method` which is expected to be a fully-qualified name. |
+| [`rpc.system`](/docs/registry/attributes/rpc.md) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `rpc.system.name`. | string | The value `aws-api`. | `aws-api` |
+| [`rpc.service`](/docs/registry/attributes/rpc.md) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Value should be included in `rpc.method` which is expected to be a fully-qualified name. | string | The name of the service to which a request is made, as returned by the AWS SDK. | `DynamoDB`; `S3` |
 
 ---
 

@@ -3,7 +3,7 @@
 
 # GCP
 
-## GCP Attributes
+## Google Cloud Platform Attributes
 
 **Attributes:**
 

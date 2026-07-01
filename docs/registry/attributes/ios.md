@@ -28,11 +28,11 @@
 <details>
 <summary><b>Deprecated Attributes:</b></summary>
 
-| Key | Value Type | Description | Example Values | Deprecation Explanation |
+| Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="ios-state" href="#ios-state">`ios.state`</a> | string | Deprecated. Use the `ios.app.state` attribute. [1] | `active`; `inactive`; `background` | Use `ios.app.state` instead. |
+| <a id="ios-state" href="#ios-state">`ios.state`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `ios.app.state`. | string | Deprecated. Use the `ios.app.state` attribute. [2] | `active`; `inactive`; `background` |
 
-**[1] `ios.state`:** The iOS lifecycle states are defined in the [UIApplicationDelegate documentation](https://developer.apple.com/documentation/uikit/uiapplicationdelegate), and from which the `OS terminology` column values are derived.
+**[2] `ios.state`:** The iOS lifecycle states are defined in the [UIApplicationDelegate documentation](https://developer.apple.com/documentation/uikit/uiapplicationdelegate), and from which the `OS terminology` column values are derived.
 
 ---
 

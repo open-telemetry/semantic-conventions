@@ -45,8 +45,8 @@ considered to be identifying the same service:
 <details>
 <summary><b>Deprecated Attributes:</b></summary>
 
-| Key | Value Type | Description | Example Values | Deprecation Explanation |
+| Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="deployment-environment" href="#deployment-environment">`deployment.environment`</a> | string | Deprecated, use `deployment.environment.name` instead. | `staging`; `production` | Use `deployment.environment.name` instead. |
+| <a id="deployment-environment" href="#deployment-environment">`deployment.environment`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `deployment.environment.name`. | string | Deprecated, use `deployment.environment.name` instead. | `staging`; `production` |
 
 </details>

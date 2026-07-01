@@ -5,8 +5,6 @@
 
 ## Hardware Attributes
 
-Attributes for hardware.
-
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |

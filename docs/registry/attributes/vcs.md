@@ -143,13 +143,13 @@ the `.git` extension.
 <details>
 <summary><b>Deprecated Attributes:</b></summary>
 
-| Key | Value Type | Description | Example Values | Deprecation Explanation |
+| Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="vcs-repository-change-id" href="#vcs-repository-change-id">`vcs.repository.change.id`</a> | string | Deprecated, use `vcs.change.id` instead. | `123` | Use `vcs.change.id` instead. |
-| <a id="vcs-repository-change-title" href="#vcs-repository-change-title">`vcs.repository.change.title`</a> | string | Deprecated, use `vcs.change.title` instead. | `Fixes broken thing`; `feat: add my new feature`; `[chore] update dependency` | Use `vcs.change.title` instead. |
-| <a id="vcs-repository-ref-name" href="#vcs-repository-ref-name">`vcs.repository.ref.name`</a> | string | Deprecated, use `vcs.ref.head.name` instead. | `my-feature-branch`; `tag-1-test` | Use `vcs.ref.head.name` instead. |
-| <a id="vcs-repository-ref-revision" href="#vcs-repository-ref-revision">`vcs.repository.ref.revision`</a> | string | Deprecated, use `vcs.ref.head.revision` instead. | `9d59409acf479dfa0df1aa568182e43e43df8bbe28d60fcf2bc52e30068802cc`; `main`; `123`; `HEAD` | Use `vcs.ref.head.revision` instead. |
-| <a id="vcs-repository-ref-type" href="#vcs-repository-ref-type">`vcs.repository.ref.type`</a> | string | Deprecated, use `vcs.ref.head.type` instead. | `branch`; `tag` | Use `vcs.ref.head.type` instead. |
+| <a id="vcs-repository-change-id" href="#vcs-repository-change-id">`vcs.repository.change.id`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `vcs.change.id`. | string | Deprecated, use `vcs.change.id` instead. | `123` |
+| <a id="vcs-repository-change-title" href="#vcs-repository-change-title">`vcs.repository.change.title`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `vcs.change.title`. | string | Deprecated, use `vcs.change.title` instead. | `Fixes broken thing`; `feat: add my new feature`; `[chore] update dependency` |
+| <a id="vcs-repository-ref-name" href="#vcs-repository-ref-name">`vcs.repository.ref.name`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `vcs.ref.head.name`. | string | Deprecated, use `vcs.ref.head.name` instead. | `my-feature-branch`; `tag-1-test` |
+| <a id="vcs-repository-ref-revision" href="#vcs-repository-ref-revision">`vcs.repository.ref.revision`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `vcs.ref.head.revision`. | string | Deprecated, use `vcs.ref.head.revision` instead. | `9d59409acf479dfa0df1aa568182e43e43df8bbe28d60fcf2bc52e30068802cc`; `main`; `123`; `HEAD` |
+| <a id="vcs-repository-ref-type" href="#vcs-repository-ref-type">`vcs.repository.ref.type`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `vcs.ref.head.type`. | string | Deprecated, use `vcs.ref.head.type` instead. | `branch`; `tag` |
 
 ---
 

@@ -3,7 +3,7 @@
 
 # JSONRPC
 
-## JSONRPC Attributes
+## JSON-RPC Attributes
 
 **Attributes:**
 

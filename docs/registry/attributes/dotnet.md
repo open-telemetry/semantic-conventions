@@ -3,7 +3,7 @@
 
 # Dotnet
 
-## Dotnet Attributes
+## .NET Attributes
 
 **Attributes:**
 

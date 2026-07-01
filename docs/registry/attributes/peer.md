@@ -8,9 +8,9 @@
 <details>
 <summary><b>Deprecated Attributes:</b></summary>
 
-| Key | Value Type | Description | Example Values | Deprecation Explanation |
+| Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="peer-service" href="#peer-service">`peer.service`</a> | string | The [`service.name`](/docs/resource/README.md#service) of the remote service. SHOULD be equal to the actual `service.name` resource attribute of the remote service if any. [1] | `AuthTokenCache` | Use `service.peer.name` instead. |
+| <a id="peer-service" href="#peer-service">`peer.service`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `service.peer.name`. | string | The [`service.name`](/docs/resource/README.md#service) of the remote service. SHOULD be equal to the actual `service.name` resource attribute of the remote service if any. [1] | `AuthTokenCache` |
 
 **[1] `peer.service`:** Examples of `peer.service` that users may specify:
 

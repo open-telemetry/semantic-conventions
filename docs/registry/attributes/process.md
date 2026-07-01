@@ -98,11 +98,21 @@ represented as a hex string.
 <details>
 <summary><b>Deprecated Attributes:</b></summary>
 
-| Key | Value Type | Description | Example Values | Deprecation Explanation |
+| Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="process-cpu-state" href="#process-cpu-state">`process.cpu.state`</a> | string | Deprecated, use `cpu.mode` instead. | `system`; `user`; `wait` | Use `cpu.mode` instead. |
-| <a id="process-executable-build-id-profiling" href="#process-executable-build-id-profiling">`process.executable.build_id.profiling`</a> | string | "Deprecated, use `process.executable.build_id.htlhash` instead." | `600DCAFE4A110000F2BF38C493F5FB92` | Use `process.executable.build_id.htlhash` instead. |
-| <a id="process-paging-fault-type" href="#process-paging-fault-type">`process.paging.fault_type`</a> | string | Deprecated, use `system.paging.fault.type` instead. | `major`; `minor` | Use `system.paging.fault.type` instead. |
+| <a id="process-context-switch-type" href="#process-context-switch-type">`process.context_switch_type`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `process.context_switch.type`. | string | "Deprecated, use `process.context_switch.type` instead." | `voluntary`; `involuntary` |
+| <a id="process-cpu-state" href="#process-cpu-state">`process.cpu.state`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `cpu.mode`. | string | Deprecated, use `cpu.mode` instead. | `system`; `user`; `wait` |
+| <a id="process-executable-build-id-profiling" href="#process-executable-build-id-profiling">`process.executable.build_id.profiling`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `process.executable.build_id.htlhash`. | string | "Deprecated, use `process.executable.build_id.htlhash` instead." | `600DCAFE4A110000F2BF38C493F5FB92` |
+| <a id="process-paging-fault-type" href="#process-paging-fault-type">`process.paging.fault_type`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `system.paging.fault.type`. | string | Deprecated, use `system.paging.fault.type` instead. | `major`; `minor` |
+
+---
+
+`process.context_switch_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value | Description | Stability |
+| --- | --- | --- |
+| `involuntary` | involuntary | ![Development](https://img.shields.io/badge/-development-blue) |
+| `voluntary` | voluntary | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 

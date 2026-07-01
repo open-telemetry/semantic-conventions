@@ -94,9 +94,9 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 <details>
 <summary><b>Deprecated Attributes:</b></summary>
 
-| Key | Value Type | Description | Example Values | Deprecation Explanation |
+| Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="otel-library-name" href="#otel-library-name">`otel.library.name`</a> | string | Deprecated. Use the `otel.scope.name` attribute | `io.opentelemetry.contrib.mongodb` | Use `otel.scope.name` instead. |
-| <a id="otel-library-version" href="#otel-library-version">`otel.library.version`</a> | string | Deprecated. Use the `otel.scope.version` attribute. | `1.0.0` | Use `otel.scope.version` instead. |
+| <a id="otel-library-name" href="#otel-library-name">`otel.library.name`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `otel.scope.name`. | string | Deprecated. Use the `otel.scope.name` attribute | `io.opentelemetry.contrib.mongodb` |
+| <a id="otel-library-version" href="#otel-library-version">`otel.library.version`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `otel.scope.version`. | string | Deprecated. Use the `otel.scope.version` attribute. | `1.0.0` |
 
 </details>

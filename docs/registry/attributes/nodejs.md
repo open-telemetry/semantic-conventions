@@ -3,7 +3,7 @@
 
 # NodeJS
 
-## NodeJS Attributes
+## Node.js Attributes
 
 **Attributes:**
 

@@ -3,7 +3,7 @@
 
 # Enduser
 
-## Enduser Attributes
+## End User Attributes
 
 **Attributes:**
 
@@ -25,9 +25,9 @@
 <details>
 <summary><b>Deprecated Attributes:</b></summary>
 
-| Key | Value Type | Description | Example Values | Deprecation Explanation |
+| Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="enduser-role" href="#enduser-role">`enduser.role`</a> | string | Deprecated, use `user.roles` instead. | `admin` | Use `user.roles` instead. |
-| <a id="enduser-scope" href="#enduser-scope">`enduser.scope`</a> | string | Deprecated, no replacement at this time. | `read:message, write:files` | Removed, no replacement at this time. |
+| <a id="enduser-role" href="#enduser-role">`enduser.role`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Use `user.roles` instead. | string | Deprecated, use `user.roles` instead. | `admin` |
+| <a id="enduser-scope" href="#enduser-scope">`enduser.scope`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Removed, no replacement at this time. | string | Deprecated, no replacement at this time. | `read:message, write:files` |
 
 </details>

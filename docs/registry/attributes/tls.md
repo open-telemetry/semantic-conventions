@@ -52,8 +52,8 @@
 <details>
 <summary><b>Deprecated Attributes:</b></summary>
 
-| Key | Value Type | Description | Example Values | Deprecation Explanation |
+| Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="tls-client-server-name" href="#tls-client-server-name">`tls.client.server_name`</a> | string | Deprecated, use `server.address` instead. | `opentelemetry.io` | Use `server.address` instead. |
+| <a id="tls-client-server-name" href="#tls-client-server-name">`tls.client.server_name`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `server.address`. | string | Deprecated, use `server.address` instead. | `opentelemetry.io` |
 
 </details>

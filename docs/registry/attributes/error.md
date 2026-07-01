@@ -48,11 +48,11 @@ it's RECOMMENDED to:
 <details>
 <summary><b>Deprecated Attributes:</b></summary>
 
-| Key | Value Type | Description | Example Values | Deprecation Explanation |
+| Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="error-message" href="#error-message">`error.message`</a> | string | A message providing more detail about an error in human-readable form. [1] | `Unexpected input type: string`; `The user has exceeded their storage quota` | Use domain-specific error message attribute. For example, use `feature_flag.error.message` for feature flag errors. |
+| <a id="error-message" href="#error-message">`error.message`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Use domain-specific error message attribute. For example, use `feature_flag.error.message` for feature flag errors. | string | A message providing more detail about an error in human-readable form. [2] | `Unexpected input type: string`; `The user has exceeded their storage quota` |
 
-**[1] `error.message`:** `error.message` should provide additional context and detail about an error.
+**[2] `error.message`:** `error.message` should provide additional context and detail about an error.
 It is NOT RECOMMENDED to duplicate the value of `error.type` in `error.message`.
 It is also NOT RECOMMENDED to duplicate the value of `exception.message` in `error.message`.
 

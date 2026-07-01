@@ -3,7 +3,7 @@
 
 # RPC
 
-## RPC Attributes
+## Remote Procedure Call (RPC) Attributes
 
 **Attributes:**
 
@@ -71,26 +71,26 @@ Semantic conventions for individual RPC frameworks SHOULD document what `rpc.res
 <details>
 <summary><b>Deprecated Attributes:</b></summary>
 
-| Key | Value Type | Description | Example Values | Deprecation Explanation |
+| Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="rpc-connect-rpc-error-code" href="#rpc-connect-rpc-error-code">`rpc.connect_rpc.error_code`</a> | string | Deprecated, use `rpc.response.status_code` attribute instead. | `cancelled`; `unknown`; `invalid_argument` | Use `rpc.response.status_code` instead. |
-| <a id="rpc-connect-rpc-request-metadata" href="#rpc-connect-rpc-request-metadata">`rpc.connect_rpc.request.metadata.<key>`</a> | string[] | Deprecated, use `rpc.request.metadata` instead. | `["1.2.3.4", "1.2.3.5"]` | Use `rpc.request.metadata` instead. |
-| <a id="rpc-connect-rpc-response-metadata" href="#rpc-connect-rpc-response-metadata">`rpc.connect_rpc.response.metadata.<key>`</a> | string[] | Deprecated, use `rpc.response.metadata` instead. | `["attribute_value"]` | Use `rpc.response.metadata` instead. |
-| <a id="rpc-grpc-request-metadata" href="#rpc-grpc-request-metadata">`rpc.grpc.request.metadata.<key>`</a> | string[] | Deprecated, use `rpc.request.metadata` instead. | `["1.2.3.4", "1.2.3.5"]` | Use `rpc.request.metadata` instead. |
-| <a id="rpc-grpc-response-metadata" href="#rpc-grpc-response-metadata">`rpc.grpc.response.metadata.<key>`</a> | string[] | Deprecated, use `rpc.response.metadata` instead. | `["attribute_value"]` | Use `rpc.response.metadata` instead. |
-| <a id="rpc-grpc-status-code" href="#rpc-grpc-status-code">`rpc.grpc.status_code`</a> | int | Deprecated, use string representation on the `rpc.response.status_code` attribute instead. | `0`; `1`; `2` | Use string representation of the gRPC status code on the `rpc.response.status_code` attribute. |
-| <a id="rpc-jsonrpc-error-code" href="#rpc-jsonrpc-error-code">`rpc.jsonrpc.error_code`</a> | int | Deprecated, use string representation on the `rpc.response.status_code` attribute instead. | `-32700`; `100` | Use string representation of the error code on the `rpc.response.status_code` attribute. |
-| <a id="rpc-jsonrpc-error-message" href="#rpc-jsonrpc-error-message">`rpc.jsonrpc.error_message`</a> | string | Deprecated, use the span status description when reporting JSON-RPC spans. | `Parse error`; `User already exists` | Use the span status description when reporting JSON-RPC spans. |
-| <a id="rpc-jsonrpc-request-id" href="#rpc-jsonrpc-request-id">`rpc.jsonrpc.request_id`</a> | string | Deprecated, use `jsonrpc.request.id` instead. | `10`; `request-7`; `` | Use `jsonrpc.request.id` instead. |
-| <a id="rpc-jsonrpc-version" href="#rpc-jsonrpc-version">`rpc.jsonrpc.version`</a> | string | Deprecated, use `jsonrpc.protocol.version` instead. | `2.0`; `1.0` | Use `jsonrpc.protocol.version` instead. |
-| <a id="rpc-message-compressed-size" href="#rpc-message-compressed-size">`rpc.message.compressed_size`</a> | int | Compressed size of the message in bytes. | | Deprecated, no replacement at this time. |
-| <a id="rpc-message-id" href="#rpc-message-id">`rpc.message.id`</a> | int | MUST be calculated as two different counters starting from `1` one for sent messages and one for received message. [1] | | Deprecated, no replacement at this time. |
-| <a id="rpc-message-type" href="#rpc-message-type">`rpc.message.type`</a> | string | Whether this is a received or sent message. | `SENT`; `RECEIVED` | Deprecated, no replacement at this time. |
-| <a id="rpc-message-uncompressed-size" href="#rpc-message-uncompressed-size">`rpc.message.uncompressed_size`</a> | int | Uncompressed size of the message in bytes. | | Deprecated, no replacement at this time. |
-| <a id="rpc-service" href="#rpc-service">`rpc.service`</a> | string | Deprecated, use fully-qualified `rpc.method` instead. | `myservice.EchoService` | Value should be included in `rpc.method` which is expected to be a fully-qualified name. |
-| <a id="rpc-system" href="#rpc-system">`rpc.system`</a> | string | Deprecated, use `rpc.system.name` attribute instead. | `grpc`; `java_rmi`; `dotnet_wcf` | Use `rpc.system.name` instead. |
+| <a id="rpc-connect-rpc-error-code" href="#rpc-connect-rpc-error-code">`rpc.connect_rpc.error_code`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `rpc.response.status_code`. | string | Deprecated, use `rpc.response.status_code` attribute instead. | `cancelled`; `unknown`; `invalid_argument` |
+| <a id="rpc-connect-rpc-request-metadata" href="#rpc-connect-rpc-request-metadata">`rpc.connect_rpc.request.metadata.<key>`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `rpc.request.metadata`. | string[] | Deprecated, use `rpc.request.metadata` instead. | `["1.2.3.4", "1.2.3.5"]` |
+| <a id="rpc-connect-rpc-response-metadata" href="#rpc-connect-rpc-response-metadata">`rpc.connect_rpc.response.metadata.<key>`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `rpc.response.metadata`. | string[] | Deprecated, use `rpc.response.metadata` instead. | `["attribute_value"]` |
+| <a id="rpc-grpc-request-metadata" href="#rpc-grpc-request-metadata">`rpc.grpc.request.metadata.<key>`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `rpc.request.metadata`. | string[] | Deprecated, use `rpc.request.metadata` instead. | `["1.2.3.4", "1.2.3.5"]` |
+| <a id="rpc-grpc-response-metadata" href="#rpc-grpc-response-metadata">`rpc.grpc.response.metadata.<key>`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `rpc.response.metadata`. | string[] | Deprecated, use `rpc.response.metadata` instead. | `["attribute_value"]` |
+| <a id="rpc-grpc-status-code" href="#rpc-grpc-status-code">`rpc.grpc.status_code`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Use string representation of the gRPC status code on the `rpc.response.status_code` attribute. | int | Deprecated, use string representation on the `rpc.response.status_code` attribute instead. | `0`; `1`; `2` |
+| <a id="rpc-jsonrpc-error-code" href="#rpc-jsonrpc-error-code">`rpc.jsonrpc.error_code`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Use string representation of the error code on the `rpc.response.status_code` attribute. | int | Deprecated, use string representation on the `rpc.response.status_code` attribute instead. | `-32700`; `100` |
+| <a id="rpc-jsonrpc-error-message" href="#rpc-jsonrpc-error-message">`rpc.jsonrpc.error_message`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Use the span status description when reporting JSON-RPC spans. | string | Deprecated, use the span status description when reporting JSON-RPC spans. | `Parse error`; `User already exists` |
+| <a id="rpc-jsonrpc-request-id" href="#rpc-jsonrpc-request-id">`rpc.jsonrpc.request_id`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `jsonrpc.request.id`. | string | Deprecated, use `jsonrpc.request.id` instead. | `10`; `request-7`; `` |
+| <a id="rpc-jsonrpc-version" href="#rpc-jsonrpc-version">`rpc.jsonrpc.version`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `jsonrpc.protocol.version`. | string | Deprecated, use `jsonrpc.protocol.version` instead. | `2.0`; `1.0` |
+| <a id="rpc-message-compressed-size" href="#rpc-message-compressed-size">`rpc.message.compressed_size`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, no replacement at this time. | int | Compressed size of the message in bytes. | |
+| <a id="rpc-message-id" href="#rpc-message-id">`rpc.message.id`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, no replacement at this time. | int | MUST be calculated as two different counters starting from `1` one for sent messages and one for received message. [6] | |
+| <a id="rpc-message-type" href="#rpc-message-type">`rpc.message.type`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, no replacement at this time. | string | Whether this is a received or sent message. | `SENT`; `RECEIVED` |
+| <a id="rpc-message-uncompressed-size" href="#rpc-message-uncompressed-size">`rpc.message.uncompressed_size`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Deprecated, no replacement at this time. | int | Uncompressed size of the message in bytes. | |
+| <a id="rpc-service" href="#rpc-service">`rpc.service`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Value should be included in `rpc.method` which is expected to be a fully-qualified name. | string | Deprecated, use fully-qualified `rpc.method` instead. | `myservice.EchoService` |
+| <a id="rpc-system" href="#rpc-system">`rpc.system`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `rpc.system.name`. | string | Deprecated, use `rpc.system.name` attribute instead. | `grpc`; `java_rmi`; `dotnet_wcf` |
 
-**[1] `rpc.message.id`:** This way we guarantee that the values will be consistent between different implementations.
+**[6] `rpc.message.id`:** This way we guarantee that the values will be consistent between different implementations.
 
 ---
 

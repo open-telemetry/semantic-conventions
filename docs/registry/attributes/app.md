@@ -3,7 +3,7 @@
 
 # App
 
-## App Attributes
+## Application Attributes
 
 **Attributes:**
 

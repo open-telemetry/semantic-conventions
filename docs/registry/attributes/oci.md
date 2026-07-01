@@ -3,7 +3,7 @@
 
 # OCI
 
-## OCI Attributes
+## Open Container Initiative (OCI) Attributes
 
 **Attributes:**
 

@@ -72,7 +72,7 @@ Currently, the following namespaces exist:
 - [Heroku](heroku.md)
 - [Host](host.md)
 - [HTTP](http.md)
-- [Hw](hw.md)
+- [Hw](hardware.md)
 - [iOS](ios.md)
 - [JSONRPC](jsonrpc.md)
 - [JVM](jvm.md)
