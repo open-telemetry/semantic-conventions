@@ -5,6 +5,9 @@ groups:
     brief: This document defines attributes of a Mainframe Logical Partition (LPAR).
     attributes:
       - id: mainframe.lpar.name
+        annotations:
+          dependency_resolution:
+            exclude: true
         type: string
         stability: development
         brief: "Name of the logical partition that hosts a systems with a mainframe operating system."
