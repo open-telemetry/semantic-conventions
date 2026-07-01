@@ -36,7 +36,6 @@ or a single-item array containing a possibly comma-concatenated string, dependin
 the HTTP library provides access to headers.
 Examples:
 
-
 - A header `Content-Type: application/json` SHOULD be recorded as the `http.request.header.content-type`
   attribute with value `["application/json"]`.
 - A header `X-Forwarded-For: 1.2.3.4, 1.2.3.5` SHOULD be recorded as the `http.request.header.x-forwarded-for`
