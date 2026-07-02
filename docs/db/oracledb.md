@@ -48,11 +48,11 @@ Spans representing calls to a Oracle SQL Database adhere to the general [Semanti
 | [`db.query.summary`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` [11] | string | Low cardinality summary of a database query. [12] | `SELECT wuser_table`; `INSERT shipping_details SELECT orders`; `get user by id` |
 | [`db.query.text`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` [13] | string | The database query being executed. [14] | `SELECT * FROM wuser_table where username = ?` |
 | [`db.stored_procedure.name`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` [15] | string | The name of a stored procedure within the database. [16] | `GetCustomer` |
-| [`oracle.db.domain`](/docs/registry/attributes/oracledb.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The database domain associated with the connection. [17] | `example.com`; `corp.internal`; `prod.db.local` |
-| [`oracle.db.instance.name`](/docs/registry/attributes/oracledb.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The instance name associated with the connection in an Oracle Real Application Clusters environment. [18] | `ORCL1`; `ORCL2`; `ORCL3` |
-| [`oracle.db.name`](/docs/registry/attributes/oracledb.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The database name associated with the connection. [19] | `ORCL1`; `FREE` |
-| [`oracle.db.pdb`](/docs/registry/attributes/oracledb.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The pluggable database (PDB) name associated with the connection. [20] | `PDB1`; `FREEPDB` |
-| [`oracle.db.service`](/docs/registry/attributes/oracledb.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The service name currently associated with the database connection. [21] | `order-processing-service`; `db_low.adb.oraclecloud.com`; `db_high.adb.oraclecloud.com` |
+| [`oracle.db.domain`](/docs/registry/attributes/oracle.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The database domain associated with the connection. [17] | `example.com`; `corp.internal`; `prod.db.local` |
+| [`oracle.db.instance.name`](/docs/registry/attributes/oracle.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The instance name associated with the connection in an Oracle Real Application Clusters environment. [18] | `ORCL1`; `ORCL2`; `ORCL3` |
+| [`oracle.db.name`](/docs/registry/attributes/oracle.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The database name associated with the connection. [19] | `ORCL1`; `FREE` |
+| [`oracle.db.pdb`](/docs/registry/attributes/oracle.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The pluggable database (PDB) name associated with the connection. [20] | `PDB1`; `FREEPDB` |
+| [`oracle.db.service`](/docs/registry/attributes/oracle.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The service name currently associated with the database connection. [21] | `order-processing-service`; `db_low.adb.oraclecloud.com`; `db_high.adb.oraclecloud.com` |
 | [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Name of the database host. [22] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 | [`db.query.parameter.<key>`](/docs/registry/attributes/db.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | A database query parameter, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value. [23] | `someval`; `55` |
 | [`db.response.returned_rows`](/docs/registry/attributes/db.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | Number of rows returned by the operation. [24] | `10`; `30`; `1000` |
@@ -185,11 +185,11 @@ and SHOULD be provided **at span creation time** (if provided at all):
 * [`db.namespace`](/docs/registry/attributes/db.md)
 * [`db.query.summary`](/docs/registry/attributes/db.md)
 * [`db.query.text`](/docs/registry/attributes/db.md)
-* [`oracle.db.domain`](/docs/registry/attributes/oracledb.md)
-* [`oracle.db.instance.name`](/docs/registry/attributes/oracledb.md)
-* [`oracle.db.name`](/docs/registry/attributes/oracledb.md)
-* [`oracle.db.pdb`](/docs/registry/attributes/oracledb.md)
-* [`oracle.db.service`](/docs/registry/attributes/oracledb.md)
+* [`oracle.db.domain`](/docs/registry/attributes/oracle.md)
+* [`oracle.db.instance.name`](/docs/registry/attributes/oracle.md)
+* [`oracle.db.name`](/docs/registry/attributes/oracle.md)
+* [`oracle.db.pdb`](/docs/registry/attributes/oracle.md)
+* [`oracle.db.service`](/docs/registry/attributes/oracle.md)
 * [`server.address`](/docs/registry/attributes/server.md)
 * [`server.port`](/docs/registry/attributes/server.md)
 

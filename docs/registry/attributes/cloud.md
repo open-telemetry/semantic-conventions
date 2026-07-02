@@ -5,8 +5,6 @@
 
 ## Cloud Attributes
 
-A cloud environment (e.g. GCP, Azure, AWS).
-
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |

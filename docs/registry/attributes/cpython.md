@@ -3,9 +3,7 @@
 
 # CPython
 
-## CPython attributes
-
-This document defines CPython related attributes.
+## CPython Attributes
 
 **Attributes:**
 

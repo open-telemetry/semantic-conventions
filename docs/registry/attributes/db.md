@@ -3,13 +3,7 @@
 
 # DB
 
-- [General Database Attributes](#general-database-attributes)
-- [Deprecated Database Attributes](#deprecated-database-attributes)
-- [Deprecated Database Metrics](#deprecated-database-metrics)
-
-## General Database Attributes
-
-This group defines the attributes used to describe telemetry in the context of databases.
+## DB Attributes
 
 **Attributes:**
 
@@ -194,11 +188,8 @@ stored procedure name then that stored procedure name SHOULD be used.
 | `teradata` | [Teradata](https://www.teradata.com/) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `trino` | [Trino](https://trino.io/) | ![Development](https://img.shields.io/badge/-development-blue) |
 
-## Deprecated Database Attributes
-
-Describes deprecated database attributes.
-
-**Attributes:**
+<details>
+<summary><b>Deprecated Attributes:</b></summary>
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
@@ -209,6 +200,8 @@ Describes deprecated database attributes.
 | <a id="db-cassandra-page-size" href="#db-cassandra-page-size">`db.cassandra.page_size`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `cassandra.page.size`. | int | Deprecated, use `cassandra.page.size` instead. | `5000` |
 | <a id="db-cassandra-speculative-execution-count" href="#db-cassandra-speculative-execution-count">`db.cassandra.speculative_execution_count`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `cassandra.speculative_execution.count`. | int | Deprecated, use `cassandra.speculative_execution.count` instead. | `0`; `2` |
 | <a id="db-cassandra-table" href="#db-cassandra-table">`db.cassandra.table`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.collection.name`. | string | Deprecated, use `db.collection.name` instead. | `mytable` |
+| <a id="db-client-connections-pool-name" href="#db-client-connections-pool-name">`db.client.connections.pool.name`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.client.connection.pool.name`. | string | Deprecated, use `db.client.connection.pool.name` instead. | `myDataSource` |
+| <a id="db-client-connections-state" href="#db-client-connections-state">`db.client.connections.state`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.client.connection.state`. | string | Deprecated, use `db.client.connection.state` instead. | `idle` |
 | <a id="db-connection-string" href="#db-connection-string">`db.connection_string`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `server.address` and `server.port`. | string | Deprecated, use `server.address`, `server.port` attributes instead. | `Server=(localdb)\v11.0;Integrated Security=true;` |
 | <a id="db-cosmosdb-client-id" href="#db-cosmosdb-client-id">`db.cosmosdb.client_id`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `azure.client.id`. | string | Deprecated, use `azure.client.id` instead. | `3ba4827d-4422-483f-b59f-85b74211c11d` |
 | <a id="db-cosmosdb-connection-mode" href="#db-cosmosdb-connection-mode">`db.cosmosdb.connection_mode`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `azure.cosmosdb.connection.mode`. | string | Deprecated, use `azure.cosmosdb.connection.mode` instead. | `gateway`; `direct` |
@@ -252,6 +245,15 @@ Describes deprecated database attributes.
 | `serial` | serial | ![Development](https://img.shields.io/badge/-development-blue) |
 | `three` | three | ![Development](https://img.shields.io/badge/-development-blue) |
 | `two` | two | ![Development](https://img.shields.io/badge/-development-blue) |
+
+---
+
+`db.client.connections.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value | Description | Stability |
+| --- | --- | --- |
+| `idle` | idle | ![Development](https://img.shields.io/badge/-development-blue) |
+| `used` | used | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
@@ -352,33 +354,4 @@ Describes deprecated database attributes.
 | `trino` | Trino | ![Development](https://img.shields.io/badge/-development-blue) |
 | `vertica` | Vertica | ![Development](https://img.shields.io/badge/-development-blue) |
 
-## Deprecated Database Metrics
-
-Describes deprecated db metrics attributes.
-
-**Attributes:**
-
-| Key | Stability | Value Type | Description | Example Values |
-| --- | --- | --- | --- | --- |
-| <a id="db-client-connections-pool-name" href="#db-client-connections-pool-name">`db.client.connections.pool.name`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.client.connection.pool.name`. | string | Deprecated, use `db.client.connection.pool.name` instead. | `myDataSource` |
-| <a id="db-client-connections-state" href="#db-client-connections-state">`db.client.connections.state`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.client.connection.state`. | string | Deprecated, use `db.client.connection.state` instead. | `idle` |
-| <a id="pool-name" href="#pool-name">`pool.name`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.client.connection.pool.name`. | string | Deprecated, use `db.client.connection.pool.name` instead. | `myDataSource` |
-| <a id="state" href="#state">`state`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `db.client.connection.state`. | string | Deprecated, use `db.client.connection.state` instead. | `idle` |
-
----
-
-`db.client.connections.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value | Description | Stability |
-| --- | --- | --- |
-| `idle` | idle | ![Development](https://img.shields.io/badge/-development-blue) |
-| `used` | used | ![Development](https://img.shields.io/badge/-development-blue) |
-
----
-
-`state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value | Description | Stability |
-| --- | --- | --- |
-| `idle` | idle | ![Development](https://img.shields.io/badge/-development-blue) |
-| `used` | used | ![Development](https://img.shields.io/badge/-development-blue) |
+</details>

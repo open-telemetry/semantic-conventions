@@ -5,8 +5,6 @@
 
 ## Node.js Attributes
 
-Describes Node.js related attributes.
-
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |

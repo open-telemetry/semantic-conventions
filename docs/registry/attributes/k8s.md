@@ -3,12 +3,7 @@
 
 # K8s
 
-- [Kubernetes Attributes](#kubernetes-attributes)
-- [Deprecated Kubernetes Attributes](#deprecated-kubernetes-attributes)
-
 ## Kubernetes Attributes
-
-Kubernetes resource attributes.
 
 **Attributes:**
 
@@ -564,12 +559,11 @@ When not set, Kubernetes distributes traffic evenly across all endpoints cluster
 | `persistentVolumeClaim` | A [persistentVolumeClaim](https://kubernetes.io/docs/concepts/storage/volumes/#persistentvolumeclaim) volume | ![Development](https://img.shields.io/badge/-development-blue) |
 | `secret` | A [secret](https://kubernetes.io/docs/concepts/storage/volumes/#secret) volume | ![Development](https://img.shields.io/badge/-development-blue) |
 
-## Deprecated Kubernetes Attributes
-
-Describes deprecated k8s attributes.
-
-**Attributes:**
+<details>
+<summary><b>Deprecated Attributes:</b></summary>
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
 | <a id="k8s-pod-labels" href="#k8s-pod-labels">`k8s.pod.labels.<key>`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `k8s.pod.label`. | string | Deprecated, use `k8s.pod.label` instead. | `my-app` |
+
+</details>

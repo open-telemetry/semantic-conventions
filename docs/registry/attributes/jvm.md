@@ -5,8 +5,6 @@
 
 ## Java Virtual Machine (JVM) Attributes
 
-This document defines Java Virtual machine related attributes.
-
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |

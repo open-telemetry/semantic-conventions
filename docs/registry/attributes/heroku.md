@@ -5,8 +5,6 @@
 
 ## Heroku Attributes
 
-This document defines attributes for the Heroku platform on which application/s are running.
-
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |

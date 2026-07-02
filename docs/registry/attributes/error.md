@@ -3,12 +3,7 @@
 
 # Error
 
-- [Error Attributes](#error-attributes)
-- [Deprecated Error Attributes](#deprecated-error-attributes)
-
 ## Error Attributes
-
-This document defines the shared attributes used to report an error.
 
 **Attributes:**
 
@@ -50,11 +45,8 @@ it's RECOMMENDED to:
 | --- | --- | --- |
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
-## Deprecated Error Attributes
-
-This document defines deprecated attributes used to report an error.
-
-**Attributes:**
+<details>
+<summary><b>Deprecated Attributes:</b></summary>
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
@@ -65,3 +57,5 @@ It is NOT RECOMMENDED to duplicate the value of `error.type` in `error.message`.
 It is also NOT RECOMMENDED to duplicate the value of `exception.message` in `error.message`.
 
 `error.message` is NOT RECOMMENDED for metrics or spans due to its unbounded cardinality and overlap with span status.
+
+</details>

@@ -5,8 +5,6 @@
 
 ## Web Engine Attributes
 
-This document defines the attributes used to describe the packaged software running the application code.
-
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |

@@ -3,9 +3,7 @@
 
 # Mainframe
 
-## Mainframe LPAR attributes
-
-This document defines attributes of a Mainframe Logical Partition (LPAR).
+## Mainframe Attributes
 
 **Attributes:**
 

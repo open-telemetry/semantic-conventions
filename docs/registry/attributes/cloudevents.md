@@ -5,8 +5,6 @@
 
 ## CloudEvents Attributes
 
-This document defines attributes for CloudEvents.
-
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |

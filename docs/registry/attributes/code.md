@@ -3,12 +3,7 @@
 
 # Code
 
-- [Code Attributes](#code-attributes)
-- [Deprecated Code Attributes](#deprecated-code-attributes)
-
 ## Code Attributes
-
-These attributes provide context about source code
 
 **Attributes:**
 
@@ -36,11 +31,8 @@ Examples:
 * Rust: `playground::my_module::my_cool_func`
 * C function: `fopen`
 
-## Deprecated Code Attributes
-
-These deprecated attributes provide context about source code
-
-**Attributes:**
+<details>
+<summary><b>Deprecated Attributes:</b></summary>
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
@@ -49,3 +41,5 @@ These deprecated attributes provide context about source code
 | <a id="code-function" href="#code-function">`code.function`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Value should be included in `code.function.name` which is expected to be a fully-qualified name. | string | Deprecated, use `code.function.name` instead | `serveRequest` |
 | <a id="code-lineno" href="#code-lineno">`code.lineno`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `code.line.number`. | int | Deprecated, use `code.line.number` instead | `42` |
 | <a id="code-namespace" href="#code-namespace">`code.namespace`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Value should be included in `code.function.name` which is expected to be a fully-qualified name. | string | Deprecated, namespace is now included into `code.function.name` | `com.example.MyHttpService` |
+
+</details>

@@ -5,8 +5,6 @@
 
 ## DNS Attributes
 
-This document defines the shared attributes used to report a DNS query.
-
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |

@@ -5,8 +5,6 @@
 
 ## Open Container Initiative (OCI) Attributes
 
-An OCI image manifest.
-
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |

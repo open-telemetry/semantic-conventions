@@ -5,8 +5,6 @@
 
 ## CloudFoundry Attributes
 
-CloudFoundry resource attributes.
-
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |

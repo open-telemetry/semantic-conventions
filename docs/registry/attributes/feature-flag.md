@@ -3,12 +3,7 @@
 
 # Feature flag
 
-- [Feature Flag Attributes](#feature-flag-attributes)
-- [Deprecated Feature Flag Attributes](#deprecated-feature-flag-attributes)
-
 ## Feature Flag Attributes
-
-This document defines attributes for Feature Flags.
 
 **Attributes:**
 
@@ -51,11 +46,8 @@ For example, the variant `red` maybe be used for the value `#c05543`.
 | `targeting_match` | The resolved value was the result of a dynamic evaluation, such as a rule or specific user-targeting. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | `unknown` | The reason for the resolved value could not be determined. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
-## Deprecated Feature Flag Attributes
-
-Describes deprecated feature flag attributes.
-
-**Attributes:**
+<details>
+<summary><b>Deprecated Attributes:</b></summary>
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
@@ -79,3 +71,5 @@ Describes deprecated feature flag attributes.
 | `static` | The resolved value is static (no dynamic evaluation). | ![Development](https://img.shields.io/badge/-development-blue) |
 | `targeting_match` | The resolved value was the result of a dynamic evaluation, such as a rule or specific user-targeting. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `unknown` | The reason for the resolved value could not be determined. | ![Development](https://img.shields.io/badge/-development-blue) |
+
+</details>

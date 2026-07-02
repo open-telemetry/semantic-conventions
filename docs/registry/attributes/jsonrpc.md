@@ -5,8 +5,6 @@
 
 ## JSON-RPC Attributes
 
-This document defines attributes for JSON-RPC.
-
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |

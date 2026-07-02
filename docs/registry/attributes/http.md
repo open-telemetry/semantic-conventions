@@ -3,12 +3,7 @@
 
 # HTTP
 
-- [HTTP Attributes](#http-attributes)
-- [Deprecated HTTP Attributes](#deprecated-http-attributes)
-
 ## HTTP Attributes
-
-This document defines semantic convention attributes in the HTTP namespace.
 
 **Attributes:**
 
@@ -123,11 +118,8 @@ support custom route formatting. Instrumentations SHOULD document the format and
 | `QUERY` | QUERY method. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `TRACE` | TRACE method. | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 
-## Deprecated HTTP Attributes
-
-Describes deprecated HTTP attributes.
-
-**Attributes:**
+<details>
+<summary><b>Deprecated Attributes:</b></summary>
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
@@ -158,3 +150,5 @@ Describes deprecated HTTP attributes.
 | `3.0` | HTTP/3 | ![Development](https://img.shields.io/badge/-development-blue) |
 | `QUIC` | QUIC protocol. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `SPDY` | SPDY protocol. | ![Development](https://img.shields.io/badge/-development-blue) |
+
+</details>

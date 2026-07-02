@@ -3,12 +3,7 @@
 
 # TLS
 
-- [TLS Attributes](#tls-attributes)
-- [TLS Deprecated Attributes](#tls-deprecated-attributes)
-
 ## TLS Attributes
-
-This document defines semantic convention attributes in the TLS namespace.
 
 **Attributes:**
 
@@ -54,12 +49,11 @@ This document defines semantic convention attributes in the TLS namespace.
 | `ssl` | ssl | ![Development](https://img.shields.io/badge/-development-blue) |
 | `tls` | tls | ![Development](https://img.shields.io/badge/-development-blue) |
 
-## TLS Deprecated Attributes
-
-Describes deprecated `tls` attributes.
-
-**Attributes:**
+<details>
+<summary><b>Deprecated Attributes:</b></summary>
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
 | <a id="tls-client-server-name" href="#tls-client-server-name">`tls.client.server_name`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `server.address`. | string | Deprecated, use `server.address` instead. | `opentelemetry.io` |
+
+</details>

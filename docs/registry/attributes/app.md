@@ -5,8 +5,6 @@
 
 ## Application Attributes
 
-Describes attributes related to client-side applications (e.g. web apps or mobile apps).
-
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |

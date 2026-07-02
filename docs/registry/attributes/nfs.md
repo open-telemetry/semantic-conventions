@@ -5,8 +5,6 @@
 
 ## NFS Attributes
 
-Describes NFS Attributes
-
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |

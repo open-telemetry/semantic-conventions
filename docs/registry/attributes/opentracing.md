@@ -5,8 +5,6 @@
 
 ## OpenTracing Attributes
 
-Attributes used by the OpenTracing Shim layer.
-
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |

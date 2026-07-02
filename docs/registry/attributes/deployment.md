@@ -3,12 +3,7 @@
 
 # Deployment
 
-- [Deployment Attributes](#deployment-attributes)
-- [Deployment Deprecated Attributes](#deployment-deprecated-attributes)
-
 ## Deployment Attributes
-
-This document defines attributes for software deployments.
 
 **Attributes:**
 
@@ -47,12 +42,11 @@ considered to be identifying the same service:
 | `failed` | failed | ![Development](https://img.shields.io/badge/-development-blue) |
 | `succeeded` | succeeded | ![Development](https://img.shields.io/badge/-development-blue) |
 
-## Deployment Deprecated Attributes
-
-Describes deprecated deployment attributes.
-
-**Attributes:**
+<details>
+<summary><b>Deprecated Attributes:</b></summary>
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
 | <a id="deployment-environment" href="#deployment-environment">`deployment.environment`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `deployment.environment.name`. | string | Deprecated, use `deployment.environment.name` instead. | `staging`; `production` |
+
+</details>

@@ -3,9 +3,7 @@
 
 # Oracle cloud
 
-## General Oracle Cloud Attributes
-
-This section defines generic attributes for Oracle Cloud Infrastructure (OCI).
+## Oracle Cloud Attributes
 
 **Attributes:**
 

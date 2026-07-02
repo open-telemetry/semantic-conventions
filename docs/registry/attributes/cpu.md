@@ -5,8 +5,6 @@
 
 ## CPU Attributes
 
-Attributes specific to a cpu instance.
-
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |

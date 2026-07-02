@@ -5,9 +5,8 @@
 
 ## Peer Attributes
 
-These attribute may be used for any operation that accesses some remote service.
-
-**Attributes:**
+<details>
+<summary><b>Deprecated Attributes:</b></summary>
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
@@ -17,3 +16,5 @@ These attribute may be used for any operation that accesses some remote service.
 
 - A Redis cache of auth tokens as `peer.service="AuthTokenCache"`.
 - A gRPC service `rpc.service="io.opentelemetry.AuthService"` may be hosted in both a gateway, `peer.service="ExternalApiService"` and a backend, `peer.service="AuthService"`.
+
+</details>

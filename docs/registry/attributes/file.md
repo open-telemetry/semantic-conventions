@@ -3,12 +3,7 @@
 
 # File
 
-- [File Attributes](#file-attributes)
-- [File Lock Attributes](#file-lock-attributes)
-
 ## File Attributes
-
-Describes file attributes.
 
 **Attributes:**
 
@@ -24,6 +19,9 @@ Describes file attributes.
 | <a id="file-group-id" href="#file-group-id">`file.group.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Primary Group ID (GID) of the file. | `1000` |
 | <a id="file-group-name" href="#file-group-name">`file.group.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Primary group name of the file. | `users` |
 | <a id="file-inode" href="#file-inode">`file.inode`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Inode representing the file in the filesystem. | `256383` |
+| <a id="file-lock-mechanism" href="#file-lock-mechanism">`file.lock.mechanism`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The lock mechanism such as noted by [POSIX](https://pubs.opengroup.org/onlinepubs/9699919799/functions/fcntl.html) | `POSIX`; `FLOCK`; `DELEG`; `LEASE` |
+| <a id="file-lock-mode" href="#file-lock-mode">`file.lock.mode`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Mode of lock or operation such as documented by [POSIX](https://pubs.opengroup.org/onlinepubs/9699919799/functions/fcntl.html) | `ADVISORY`; `MANDATORY`; `BREAKING`; `ACTIVE`; `BREAKER` |
+| <a id="file-lock-type" href="#file-lock-type">`file.lock.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The lock type as represented by i.e. [POSIX](https://pubs.opengroup.org/onlinepubs/9699919799/functions/fcntl.html)'s l_type. | `read` |
 | <a id="file-mode" href="#file-mode">`file.mode`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Mode of the file in octal representation. | `0640` |
 | <a id="file-modified" href="#file-modified">`file.modified`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Time when the file content was last modified, in ISO 8601 format. | `2021-01-01T12:00:00Z` |
 | <a id="file-name" href="#file-name">`file.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Name of the file including the extension, without the directory. | `example.png` |
@@ -47,18 +45,6 @@ Describes file attributes.
 On NTFS, this is analogous to an Alternate Data Stream (ADS), and the default data stream for a file is just called $DATA. Zone.Identifier is commonly used by Windows to track contents downloaded from the Internet. An ADS is typically of the form: C:\path\to\filename.extension:some_fork_name, and some_fork_name is the value that should populate `fork_name`. `filename.extension` should populate `file.name`, and `extension` should populate `file.extension`. The full path, `file.path`, will include the fork name.
 
 **[7] `file.symbolic_link.target_path`:** This attribute is only applicable to symbolic links.
-
-## File Lock Attributes
-
-These attributes may be used for any filesystem lock or related operation
-
-**Attributes:**
-
-| Key | Stability | Value Type | Description | Example Values |
-| --- | --- | --- | --- | --- |
-| <a id="file-lock-mechanism" href="#file-lock-mechanism">`file.lock.mechanism`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The lock mechanism such as noted by [POSIX](https://pubs.opengroup.org/onlinepubs/9699919799/functions/fcntl.html) | `POSIX`; `FLOCK`; `DELEG`; `LEASE` |
-| <a id="file-lock-mode" href="#file-lock-mode">`file.lock.mode`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Mode of lock or operation such as documented by [POSIX](https://pubs.opengroup.org/onlinepubs/9699919799/functions/fcntl.html) | `ADVISORY`; `MANDATORY`; `BREAKING`; `ACTIVE`; `BREAKER` |
-| <a id="file-lock-type" href="#file-lock-type">`file.lock.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The lock type as represented by i.e. [POSIX](https://pubs.opengroup.org/onlinepubs/9699919799/functions/fcntl.html)'s l_type. | `read` |
 
 ---
 

@@ -5,8 +5,6 @@
 
 ## Openshift Attributes
 
-OpenShift resource attributes.
-
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |

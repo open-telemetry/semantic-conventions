@@ -5,8 +5,6 @@
 
 ## Host Attributes
 
-A host is defined as a computing instance. For example, physical servers, virtual machines, switches or disk array.
-
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |

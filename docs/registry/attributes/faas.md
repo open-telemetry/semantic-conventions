@@ -5,8 +5,6 @@
 
 ## Function as a Service Attributes
 
-FaaS attributes
-
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |

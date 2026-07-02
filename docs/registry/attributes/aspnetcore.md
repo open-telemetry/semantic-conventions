@@ -5,8 +5,6 @@
 
 ## ASP.NET Core Attributes
 
-ASP.NET Core attributes
-
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |

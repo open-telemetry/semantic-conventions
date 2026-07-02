@@ -3,11 +3,10 @@
 
 # Linux
 
-## Deprecated Linux Attributes
+## Linux Attributes
 
-Deprecated Linux attributes.
-
-**Attributes:**
+<details>
+<summary><b>Deprecated Attributes:</b></summary>
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
@@ -21,3 +20,5 @@ Deprecated Linux attributes.
 | --- | --- | --- |
 | `reclaimable` | reclaimable | ![Development](https://img.shields.io/badge/-development-blue) |
 | `unreclaimable` | unreclaimable | ![Development](https://img.shields.io/badge/-development-blue) |
+
+</details>

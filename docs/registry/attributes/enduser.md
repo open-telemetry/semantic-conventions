@@ -3,12 +3,7 @@
 
 # Enduser
 
-- [End User Attributes](#end-user-attributes)
-- [Deprecated End User Attributes](#deprecated-end-user-attributes)
-
 ## End User Attributes
-
-Describes the end user.
 
 **Attributes:**
 
@@ -27,13 +22,12 @@ Describes the end user.
 > [!Warning]
 > This field contains sensitive (linkable PII) information.
 
-## Deprecated End User Attributes
-
-Describes deprecated enduser attributes.
-
-**Attributes:**
+<details>
+<summary><b>Deprecated Attributes:</b></summary>
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
 | <a id="enduser-role" href="#enduser-role">`enduser.role`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Use `user.roles` instead. | string | Deprecated, use `user.roles` instead. | `admin` |
 | <a id="enduser-scope" href="#enduser-scope">`enduser.scope`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Removed, no replacement at this time. | string | Deprecated, no replacement at this time. | `read:message, write:files` |
+
+</details>

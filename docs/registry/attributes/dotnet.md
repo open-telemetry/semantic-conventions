@@ -5,8 +5,6 @@
 
 ## .NET Attributes
 
-This document defines .NET related attributes.
-
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |

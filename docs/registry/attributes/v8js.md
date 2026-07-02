@@ -5,8 +5,6 @@
 
 ## V8 JS Attributes
 
-Describes V8 JS Engine Runtime related attributes.
-
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |

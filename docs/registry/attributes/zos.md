@@ -3,9 +3,7 @@
 
 # zOS
 
-## z/OS attributes
-
-This document defines attributes of a z/OS resource.
+## z/OS Attributes
 
 **Attributes:**
 

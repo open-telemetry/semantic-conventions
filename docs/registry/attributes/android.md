@@ -3,12 +3,7 @@
 
 # Android
 
-- [Android Attributes](#android-attributes)
-- [Deprecated Android Attributes](#deprecated-android-attributes)
-
 ## Android Attributes
-
-The Android platform on which the Android application is running.
 
 **Attributes:**
 
@@ -29,11 +24,8 @@ The Android platform on which the Android application is running.
 | `created` | Any time before Activity.onResume() or, if the app has no Activity, Context.startService() has been called in the app for the first time. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `foreground` | Any time after Activity.onResume() or, if the app has no Activity, Context.startService() has been called when the app was in either the created or background states. | ![Development](https://img.shields.io/badge/-development-blue) |
 
-## Deprecated Android Attributes
-
-This document defines attributes that represents an occurrence of a lifecycle transition on the Android platform.
-
-**Attributes:**
+<details>
+<summary><b>Deprecated Attributes:</b></summary>
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
@@ -48,3 +40,5 @@ This document defines attributes that represents an occurrence of a lifecycle tr
 | `background` | Any time after Activity.onPause() or, if the app has no Activity, Context.stopService() has been called when the app was in the foreground state. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `created` | Any time before Activity.onResume() or, if the app has no Activity, Context.startService() has been called in the app for the first time. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `foreground` | Any time after Activity.onResume() or, if the app has no Activity, Context.startService() has been called when the app was in either the created or background states. | ![Development](https://img.shields.io/badge/-development-blue) |
+
+</details>

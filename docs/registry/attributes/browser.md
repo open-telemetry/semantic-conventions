@@ -5,8 +5,6 @@
 
 ## Browser Attributes
 
-The web browser attributes
-
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
