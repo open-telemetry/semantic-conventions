@@ -3,7 +3,7 @@
 
 # Faas
 
-## Faas Attributes
+## Function as a Service Attributes
 
 **Attributes:**
 

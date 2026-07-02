@@ -5,6 +5,8 @@
 
 ## Test Attributes
 
+This group describes attributes specific to [software tests](https://wikipedia.org/wiki/Software_testing).
+
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |

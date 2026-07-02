@@ -5,6 +5,8 @@
 
 ## Artifact Attributes
 
+This group describes attributes specific to artifacts. Artifacts are files or other immutable objects that are intended for distribution. This definition aligns directly with the [SLSA](https://slsa.dev/spec/v1.0/terminology#package-model) package model.
+
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |

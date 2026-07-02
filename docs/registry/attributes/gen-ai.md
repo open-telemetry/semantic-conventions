@@ -3,10 +3,15 @@
 
 # Gen AI
 
-## Gen AI Attributes
+- [GenAI Attributes (Moved)](#genai-attributes-moved)
+- [Deprecated GenAI Attributes](#deprecated-genai-attributes)
+- [Deprecated OpenAI GenAI Attributes](#deprecated-openai-genai-attributes)
 
-<details>
-<summary><b>Deprecated Attributes:</b></summary>
+## GenAI Attributes (Moved)
+
+Generative AI (GenAI) attributes have moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
+
+**Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
@@ -14,7 +19,6 @@
 | <a id="gen-ai-agent-id" href="#gen-ai-agent-id">`gen_ai.agent.id`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | string | The unique identifier of the GenAI agent. | `asst_5j66UpCpwteGg4YSxUnt7lPY` |
 | <a id="gen-ai-agent-name" href="#gen-ai-agent-name">`gen_ai.agent.name`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | string | Human-readable name of the GenAI agent provided by the application. | `Math Tutor`; `Fiction Writer` |
 | <a id="gen-ai-agent-version" href="#gen-ai-agent-version">`gen_ai.agent.version`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | string | The version of the GenAI agent. | `1.0.0`; `2025-05-01` |
-| <a id="gen-ai-completion" href="#gen-ai-completion">`gen_ai.completion`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Removed, no replacement at this time. | string | Deprecated, use Event API to report completions contents. | `[{'role': 'assistant', 'content': 'The capital of France is Paris.'}]` |
 | <a id="gen-ai-conversation-id" href="#gen-ai-conversation-id">`gen_ai.conversation.id`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | string | The unique identifier for a conversation (session, thread), used to store and correlate messages within this conversation. | `conv_5j66UpCpwteGg4YSxUnt7lPY` |
 | <a id="gen-ai-data-source-id" href="#gen-ai-data-source-id">`gen_ai.data_source.id`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | string | The data source identifier. [1] | `H7STPQYOND` |
 | <a id="gen-ai-embeddings-dimension-count" href="#gen-ai-embeddings-dimension-count">`gen_ai.embeddings.dimension.count`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | int | The number of dimensions the resulting output embeddings should have. | `512`; `1024` |
@@ -23,15 +27,9 @@
 | <a id="gen-ai-evaluation-score-label" href="#gen-ai-evaluation-score-label">`gen_ai.evaluation.score.label`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | string | Human readable label for evaluation. [2] | `relevant`; `not_relevant`; `correct`; `incorrect`; `pass`; `fail` |
 | <a id="gen-ai-evaluation-score-value" href="#gen-ai-evaluation-score-value">`gen_ai.evaluation.score.value`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | double | The evaluation score returned by the evaluator. | `4.0` |
 | <a id="gen-ai-input-messages" href="#gen-ai-input-messages">`gen_ai.input.messages`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | any | The chat history provided to the model as an input. [3] | [<br>&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;"role": "user",<br>&nbsp;&nbsp;&nbsp;&nbsp;"parts": [<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"type": "text",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"content": "Weather in Paris?"<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;]<br>&nbsp;&nbsp;},<br>&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;"role": "assistant",<br>&nbsp;&nbsp;&nbsp;&nbsp;"parts": [<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"type": "tool_call",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"id": "call_VSPygqKTWdrhaFErNvMV18Yl",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"name": "get_weather",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"arguments": {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"location": "Paris"<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;]<br>&nbsp;&nbsp;},<br>&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;"role": "tool",<br>&nbsp;&nbsp;&nbsp;&nbsp;"parts": [<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"type": "tool_call_response",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"id": " call_VSPygqKTWdrhaFErNvMV18Yl",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"result": "rainy, 57°F"<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;]<br>&nbsp;&nbsp;}<br>] |
-| <a id="gen-ai-openai-request-response-format" href="#gen-ai-openai-request-response-format">`gen_ai.openai.request.response_format`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `gen_ai.output.type`, which has moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | string | Deprecated, use `gen_ai.output.type`. | `text`; `json_object`; `json_schema` |
-| <a id="gen-ai-openai-request-seed" href="#gen-ai-openai-request-seed">`gen_ai.openai.request.seed`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `gen_ai.request.seed`, which has moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | int | Deprecated, use `gen_ai.request.seed`. | `100` |
-| <a id="gen-ai-openai-request-service-tier" href="#gen-ai-openai-request-service-tier">`gen_ai.openai.request.service_tier`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `openai.request.service_tier`, which has moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | string | Deprecated, use `openai.request.service_tier`. | `auto`; `default` |
-| <a id="gen-ai-openai-response-service-tier" href="#gen-ai-openai-response-service-tier">`gen_ai.openai.response.service_tier`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `openai.response.service_tier`, which has moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | string | Deprecated, use `openai.response.service_tier`. | `scale`; `default` |
-| <a id="gen-ai-openai-response-system-fingerprint" href="#gen-ai-openai-response-system-fingerprint">`gen_ai.openai.response.system_fingerprint`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `openai.response.system_fingerprint`, which has moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | string | Deprecated, use `openai.response.system_fingerprint`. | `fp_44709d6fcb` |
 | <a id="gen-ai-operation-name" href="#gen-ai-operation-name">`gen_ai.operation.name`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | string | The name of the operation being performed. [4] | `chat`; `generate_content`; `text_completion` |
 | <a id="gen-ai-output-messages" href="#gen-ai-output-messages">`gen_ai.output.messages`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | any | Messages returned by the model where each message represents a specific model response (choice, candidate). [5] | [<br>&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;"role": "assistant",<br>&nbsp;&nbsp;&nbsp;&nbsp;"parts": [<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"type": "text",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"content": "The weather in Paris is currently rainy with a temperature of 57°F."<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;],<br>&nbsp;&nbsp;&nbsp;&nbsp;"finish_reason": "stop"<br>&nbsp;&nbsp;}<br>] |
 | <a id="gen-ai-output-type" href="#gen-ai-output-type">`gen_ai.output.type`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | string | Represents the content type requested by the client. [6] | `text`; `json`; `image` |
-| <a id="gen-ai-prompt" href="#gen-ai-prompt">`gen_ai.prompt`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Removed, no replacement at this time. | string | Deprecated, use Event API to report prompt contents. | `[{'role': 'user', 'content': 'What is the capital of France?'}]` |
 | <a id="gen-ai-prompt-name" href="#gen-ai-prompt-name">`gen_ai.prompt.name`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | string | The name of the prompt that uniquely identifies it. | `analyze-code` |
 | <a id="gen-ai-provider-name" href="#gen-ai-provider-name">`gen_ai.provider.name`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | string | The Generative AI provider as identified by the client or server instrumentation. [7] | `openai`; `gcp.gen_ai`; `gcp.vertex_ai` |
 | <a id="gen-ai-request-choice-count" href="#gen-ai-request-choice-count">`gen_ai.request.choice.count`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | int | The target number of candidate completions to return. | `3` |
@@ -52,7 +50,6 @@
 | <a id="gen-ai-response-time-to-first-chunk" href="#gen-ai-response-time-to-first-chunk">`gen_ai.response.time_to_first_chunk`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | double | Time to first chunk in a streaming response, measured from request issuance, in seconds. The value is measured from when the client issues the generation request to when the first chunk is received in the response stream. | `0.5`; `1.2` |
 | <a id="gen-ai-retrieval-documents" href="#gen-ai-retrieval-documents">`gen_ai.retrieval.documents`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | any | The documents retrieved. [9] | [<br>&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;"id": "doc_123",<br>&nbsp;&nbsp;&nbsp;&nbsp;"score": 0.95<br>&nbsp;&nbsp;},<br>&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;"id": "doc_456",<br>&nbsp;&nbsp;&nbsp;&nbsp;"score": 0.87<br>&nbsp;&nbsp;},<br>&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;"id": "doc_789",<br>&nbsp;&nbsp;&nbsp;&nbsp;"score": 0.82<br>&nbsp;&nbsp;}<br>] |
 | <a id="gen-ai-retrieval-query-text" href="#gen-ai-retrieval-query-text">`gen_ai.retrieval.query.text`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | string | The query text used for retrieval. [10] | `What is the capital of France?`; `weather in Paris` |
-| <a id="gen-ai-system" href="#gen-ai-system">`gen_ai.system`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `gen_ai.provider.name`, which has moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | string | Deprecated, use `gen_ai.provider.name` instead. | `openai`; `gcp.gen_ai`; `gcp.vertex_ai` |
 | <a id="gen-ai-system-instructions" href="#gen-ai-system-instructions">`gen_ai.system_instructions`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | any | The system message or instructions provided to the GenAI model separately from the chat history. [11] | [<br>&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;"type": "text",<br>&nbsp;&nbsp;&nbsp;&nbsp;"content": "You are an Agent that greet users, always use greetings tool to respond"<br>&nbsp;&nbsp;}<br>]; [<br>&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;"type": "text",<br>&nbsp;&nbsp;&nbsp;&nbsp;"content": "You are a language translator."<br>&nbsp;&nbsp;},<br>&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;"type": "text",<br>&nbsp;&nbsp;&nbsp;&nbsp;"content": "Your mission is to translate text in English to French."<br>&nbsp;&nbsp;}<br>] |
 | <a id="gen-ai-token-type" href="#gen-ai-token-type">`gen_ai.token.type`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | string | The type of token being counted. | `input`; `output` |
 | <a id="gen-ai-tool-call-arguments" href="#gen-ai-tool-call-arguments">`gen_ai.tool.call.arguments`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | any | Parameters passed to the tool call. [12] | {<br>&nbsp;&nbsp;&nbsp;&nbsp;"location": "San Francisco?",<br>&nbsp;&nbsp;&nbsp;&nbsp;"date": "2025-10-01"<br>} |
@@ -64,10 +61,8 @@
 | <a id="gen-ai-tool-type" href="#gen-ai-tool-type">`gen_ai.tool.type`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | string | Type of the tool utilized by the agent [15] | `function`; `extension`; `datastore` |
 | <a id="gen-ai-usage-cache-creation-input-tokens" href="#gen-ai-usage-cache-creation-input-tokens">`gen_ai.usage.cache_creation.input_tokens`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | int | The number of input tokens written to a provider-managed cache. [16] | `25` |
 | <a id="gen-ai-usage-cache-read-input-tokens" href="#gen-ai-usage-cache-read-input-tokens">`gen_ai.usage.cache_read.input_tokens`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | int | The number of input tokens served from a provider-managed cache. [17] | `50` |
-| <a id="gen-ai-usage-completion-tokens" href="#gen-ai-usage-completion-tokens">`gen_ai.usage.completion_tokens`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `gen_ai.usage.output_tokens`, which has moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | int | Deprecated, use `gen_ai.usage.output_tokens` instead. | `42` |
 | <a id="gen-ai-usage-input-tokens" href="#gen-ai-usage-input-tokens">`gen_ai.usage.input_tokens`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | int | The number of tokens used in the GenAI input (prompt). [18] | `100` |
 | <a id="gen-ai-usage-output-tokens" href="#gen-ai-usage-output-tokens">`gen_ai.usage.output_tokens`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | int | The number of tokens used in the GenAI response (completion). | `180` |
-| <a id="gen-ai-usage-prompt-tokens" href="#gen-ai-usage-prompt-tokens">`gen_ai.usage.prompt_tokens`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `gen_ai.usage.input_tokens`, which has moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | int | Deprecated, use `gen_ai.usage.input_tokens` instead. | `42` |
 | <a id="gen-ai-usage-reasoning-output-tokens" href="#gen-ai-usage-reasoning-output-tokens">`gen_ai.usage.reasoning.output_tokens`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | int | The number of output tokens used for reasoning (e.g. chain-of-thought, extended thinking). [19] | `50` |
 | <a id="gen-ai-workflow-name" href="#gen-ai-workflow-name">`gen_ai.workflow.name`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | string | Human-readable name of the GenAI workflow provided by the application. [20] | `multi_agent_rag`; `customer_support_pipeline` |
 
@@ -220,25 +215,6 @@ by summing different token types parsed from the provider output.
 
 ---
 
-`gen_ai.openai.request.response_format` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value | Description | Stability |
-| --- | --- | --- |
-| `json_object` | JSON object response format | ![Development](https://img.shields.io/badge/-development-blue) |
-| `json_schema` | JSON schema response format | ![Development](https://img.shields.io/badge/-development-blue) |
-| `text` | Text response format | ![Development](https://img.shields.io/badge/-development-blue) |
-
----
-
-`gen_ai.openai.request.service_tier` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
-
-| Value | Description | Stability |
-| --- | --- | --- |
-| `auto` | The system will utilize scale tier credits until they are exhausted. | ![Development](https://img.shields.io/badge/-development-blue) |
-| `default` | The system will utilize the default scale tier. | ![Development](https://img.shields.io/badge/-development-blue) |
-
----
-
 `gen_ai.operation.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |
@@ -294,6 +270,29 @@ by summing different token types parsed from the provider output.
 
 ---
 
+`gen_ai.token.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value | Description | Stability |
+| --- | --- | --- |
+| `input` | Input tokens (prompt, input, etc.) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `output` | Output tokens (completion, response, etc.) | ![Development](https://img.shields.io/badge/-development-blue) |
+
+## Deprecated GenAI Attributes
+
+Describes deprecated `gen_ai` attributes.
+
+**Attributes:**
+
+| Key | Stability | Value Type | Description | Example Values |
+| --- | --- | --- | --- | --- |
+| <a id="gen-ai-completion" href="#gen-ai-completion">`gen_ai.completion`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Removed, no replacement at this time. | string | Deprecated, use Event API to report completions contents. | `[{'role': 'assistant', 'content': 'The capital of France is Paris.'}]` |
+| <a id="gen-ai-prompt" href="#gen-ai-prompt">`gen_ai.prompt`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Removed, no replacement at this time. | string | Deprecated, use Event API to report prompt contents. | `[{'role': 'user', 'content': 'What is the capital of France?'}]` |
+| <a id="gen-ai-system" href="#gen-ai-system">`gen_ai.system`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `gen_ai.provider.name`, which has moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | string | Deprecated, use `gen_ai.provider.name` instead. | `openai`; `gcp.gen_ai`; `gcp.vertex_ai` |
+| <a id="gen-ai-usage-completion-tokens" href="#gen-ai-usage-completion-tokens">`gen_ai.usage.completion_tokens`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `gen_ai.usage.output_tokens`, which has moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | int | Deprecated, use `gen_ai.usage.output_tokens` instead. | `42` |
+| <a id="gen-ai-usage-prompt-tokens" href="#gen-ai-usage-prompt-tokens">`gen_ai.usage.prompt_tokens`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `gen_ai.usage.input_tokens`, which has moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | int | Deprecated, use `gen_ai.usage.input_tokens` instead. | `42` |
+
+---
+
 `gen_ai.system` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |
@@ -320,13 +319,35 @@ by summing different token types parsed from the provider output.
 
 **[26]:** This refers to the 'aiplatform.googleapis.com' endpoint. May use common attributes prefixed with 'gcp.gen_ai.'.
 
+## Deprecated OpenAI GenAI Attributes
+
+Describes deprecated `gen_ai.openai` attributes.
+
+**Attributes:**
+
+| Key | Stability | Value Type | Description | Example Values |
+| --- | --- | --- | --- | --- |
+| <a id="gen-ai-openai-request-response-format" href="#gen-ai-openai-request-response-format">`gen_ai.openai.request.response_format`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `gen_ai.output.type`, which has moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | string | Deprecated, use `gen_ai.output.type`. | `text`; `json_object`; `json_schema` |
+| <a id="gen-ai-openai-request-seed" href="#gen-ai-openai-request-seed">`gen_ai.openai.request.seed`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `gen_ai.request.seed`, which has moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | int | Deprecated, use `gen_ai.request.seed`. | `100` |
+| <a id="gen-ai-openai-request-service-tier" href="#gen-ai-openai-request-service-tier">`gen_ai.openai.request.service_tier`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `openai.request.service_tier`, which has moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | string | Deprecated, use `openai.request.service_tier`. | `auto`; `default` |
+| <a id="gen-ai-openai-response-service-tier" href="#gen-ai-openai-response-service-tier">`gen_ai.openai.response.service_tier`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `openai.response.service_tier`, which has moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | string | Deprecated, use `openai.response.service_tier`. | `scale`; `default` |
+| <a id="gen-ai-openai-response-system-fingerprint" href="#gen-ai-openai-response-system-fingerprint">`gen_ai.openai.response.system_fingerprint`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `openai.response.system_fingerprint`, which has moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai). | string | Deprecated, use `openai.response.system_fingerprint`. | `fp_44709d6fcb` |
+
 ---
 
-`gen_ai.token.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`gen_ai.openai.request.response_format` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `input` | Input tokens (prompt, input, etc.) | ![Development](https://img.shields.io/badge/-development-blue) |
-| `output` | Output tokens (completion, response, etc.) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `json_object` | JSON object response format | ![Development](https://img.shields.io/badge/-development-blue) |
+| `json_schema` | JSON schema response format | ![Development](https://img.shields.io/badge/-development-blue) |
+| `text` | Text response format | ![Development](https://img.shields.io/badge/-development-blue) |
 
-</details>
+---
+
+`gen_ai.openai.request.service_tier` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value | Description | Stability |
+| --- | --- | --- |
+| `auto` | The system will utilize scale tier credits until they are exhausted. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `default` | The system will utilize the default scale tier. | ![Development](https://img.shields.io/badge/-development-blue) |

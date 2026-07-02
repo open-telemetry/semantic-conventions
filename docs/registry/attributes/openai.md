@@ -3,10 +3,11 @@
 
 # OpenAI
 
-## OpenAI Attributes
+## OpenAI Attributes (Moved)
 
-<details>
-<summary><b>Deprecated Attributes:</b></summary>
+OpenAI attributes have moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
+
+**Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
@@ -32,5 +33,3 @@
 | --- | --- | --- |
 | `auto` | The system will utilize scale tier credits until they are exhausted. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `default` | The system will utilize the default scale tier. | ![Development](https://img.shields.io/badge/-development-blue) |
-
-</details>

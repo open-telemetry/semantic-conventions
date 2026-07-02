@@ -3,10 +3,11 @@
 
 # MCP
 
-## MCP Attributes
+## MCP Attributes (Moved)
 
-<details>
-<summary><b>Deprecated Attributes:</b></summary>
+[Model Context Protocol (MCP)](https://modelcontextprotocol.io) attributes have moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
+
+**Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
@@ -48,5 +49,3 @@
 | `sampling/createMessage` | Request to create a sampling message. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `tools/call` | Request to call a tool. | ![Development](https://img.shields.io/badge/-development-blue) |
 | `tools/list` | Request to list tools available on server. | ![Development](https://img.shields.io/badge/-development-blue) |
-
-</details>

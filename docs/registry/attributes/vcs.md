@@ -3,7 +3,12 @@
 
 # VCS
 
-## VCS Attributes
+- [VCS Repository Attributes](#vcs-repository-attributes)
+- [VCS Deprecated Attributes](#vcs-deprecated-attributes)
+
+## VCS Repository Attributes
+
+This group defines the attributes for [Version Control Systems (VCS)](https://wikipedia.org/wiki/Version_control).
 
 **Attributes:**
 
@@ -140,8 +145,11 @@ the `.git` extension.
 | `ahead` | How many revisions the change is ahead of the target ref. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | `behind` | How many revisions the change is behind the target ref. | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
-<details>
-<summary><b>Deprecated Attributes:</b></summary>
+## VCS Deprecated Attributes
+
+Describes deprecated vcs attributes.
+
+**Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
@@ -159,5 +167,3 @@ the `.git` extension.
 | --- | --- | --- |
 | `branch` | [branch](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddefbranchabranch) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `tag` | [tag](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddeftagatag) | ![Development](https://img.shields.io/badge/-development-blue) |
-
-</details>
