@@ -77,6 +77,9 @@ The <span id="target-placeholder">`{target}`</span> SHOULD be one of the followi
 - [`url.template`](/docs/registry/attributes/url.md) for HTTP Client spans if enabled and available (![Development](https://img.shields.io/badge/-development-blue))
 - Other value MAY be provided through custom hooks at span start time or later.
 
+For HTTP Server spans, `{target}` SHOULD use the normalized route template provided in `http.route`.
+When the matched route template provided by the HTTP server framework contains syntax that is removed from `http.route`, instrumentations MAY preserve the original route template in `url.template`.
+
 Instrumentation MUST NOT default to using URI path as a `{target}`.
 
 ## Status
@@ -171,7 +174,7 @@ There are two ways HTTP client spans can be implemented in an instrumentation:
 | [`http.response.size`](/docs/registry/attributes/http.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The total size of the response in bytes. This should be the total number of bytes sent over the wire, including the status line (HTTP/1.1), framing (HTTP/2 and HTTP/3), headers, and response body and trailers if any. | `1437` |
 | [`network.transport`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [13] | `tcp`; `udp` |
 | [`url.scheme`](/docs/registry/attributes/url.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. | `http`; `https` |
-| [`url.template`](/docs/registry/attributes/url.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The low-cardinality template of an [absolute path reference](https://www.rfc-editor.org/rfc/rfc3986#section-4.2). [14] | `/users/{id}`; `/users/:id`; `/users?id={id}` |
+| [`url.template`](/docs/registry/attributes/url.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The low-cardinality template of an [absolute path reference](https://www.rfc-editor.org/rfc/rfc3986#section-4.2). [14] | `/users/{id}`; `/users/:id`; `/users?id={id}`; `/api/{controller}/{action}/{id?}` |
 | [`user_agent.original`](/docs/registry/attributes/user-agent.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | string | Value of the [HTTP User-Agent](https://www.rfc-editor.org/rfc/rfc9110.html#field.user-agent) header sent by the client. | `CERN-LineMode/2.15 libwww/2.17b3`; `Mozilla/5.0 (iPhone; CPU iPhone OS 14_7_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.2 Mobile/15E148 Safari/604.1`; `YourApp/1.0.0 grpc-java-okhttp/1.27.2` |
 | [`user_agent.synthetic.type`](/docs/registry/attributes/user-agent.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Specifies the category of synthetic traffic, such as tests or bots. [15] | `bot`; `test` |
 
@@ -474,7 +477,7 @@ This span represents an inbound HTTP request.
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If request has ended with an error. | string | Describes a class of error the operation ended with. [4] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` |
 | [`http.request.method_original`](/docs/registry/attributes/http.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [5] | string | Original HTTP method sent by the client in the request line. | `GeT`; `ACL`; `foo` |
 | [`http.response.status_code`](/docs/registry/attributes/http.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if one was received/sent. | int | [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6). | `200` |
-| [`http.route`](/docs/registry/attributes/http.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if it's available | string | The matched route template for the request. This MUST be low-cardinality and include all static path segments, with dynamic path segments represented with placeholders. [6] | `/users/:userID?`; `my-controller/my-action/{id?}` |
+| [`http.route`](/docs/registry/attributes/http.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if it's available | string | The normalized route template for the request. This MUST be low-cardinality and include all static path segments, with dynamic path segments represented with placeholders. [6] | `/users/{userId}`; `/api/weather/city/{id}`; `/articles/{slug}` |
 | [`network.protocol.name`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [7] | string | [OSI application layer](https://wikipedia.org/wiki/Application_layer) or non-OSI equivalent. [8] | `http`; `spdy` |
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If available and `server.address` is set. | int | Port of the local HTTP server that received the request. [9] | `80`; `8080`; `443` |
 | [`url.query`](/docs/registry/attributes/url.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if one was received/sent. | string | The [URI query](https://www.rfc-editor.org/rfc/rfc3986#section-3.4) component [10] | `q=OpenTelemetry` |
@@ -494,7 +497,8 @@ This span represents an inbound HTTP request.
 | [`network.local.address`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | string | Local socket address. Useful in case of a multi-IP host. | `10.1.2.80`; `/tmp/my.sock` |
 | [`network.local.port`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | int | Local socket port. Useful in case of a multi-port host. | `65123` |
 | [`network.transport`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [17] | `tcp`; `udp` |
-| [`user_agent.synthetic.type`](/docs/registry/attributes/user-agent.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Specifies the category of synthetic traffic, such as tests or bots. [18] | `bot`; `test` |
+| [`url.template`](/docs/registry/attributes/url.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The low-cardinality template of an [absolute path reference](https://www.rfc-editor.org/rfc/rfc3986#section-4.2). [18] | `/users/{id}`; `/users/:id`; `/users?id={id}`; `/api/{controller}/{action}/{id?}` |
+| [`user_agent.synthetic.type`](/docs/registry/attributes/user-agent.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Specifies the category of synthetic traffic, such as tests or bots. [19] | `bot`; `test` |
 
 **[1] `http.request.method`:** HTTP request method value SHOULD be "known" to the instrumentation.
 By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods),
@@ -545,10 +549,17 @@ If the request has completed successfully, instrumentations SHOULD NOT set `erro
 **[6] `http.route`:** MUST NOT be populated when this is not supported by the HTTP server framework as the route attribute should have low-cardinality and the URI path can NOT substitute it.
 SHOULD include the [application root](/docs/http/http-spans.md#http-server-definitions) if there is one.
 
-A static path segment is a part of the route template with a fixed, low-cardinality value. This includes literal strings like `/users/` and placeholders that
-are constrained to a finite, predefined set of values, e.g. `{controller}` or `{action}`.
+When a route template provided by a framework contains information that does not belong in the normalized `http.route`, instrumentations SHOULD preserve
+the original route template in `url.template`.
 
-A dynamic path segment is a placeholder for a value that can have high cardinality and is not constrained to a predefined list like static path segments.
+A static path segment is a part of the route template with a fixed, low-cardinality value, such as a literal path segment.
+Route parameters that are constrained to a finite, predefined set of values, such as `{controller}` or `{action}`, SHOULD be resolved to the matched static value.
+
+A dynamic path segment is a placeholder for a value that can have high cardinality and is not constrained to a predefined set of values.
+Instrumentations SHOULD represent dynamic path segments as `{name}` placeholders and SHOULD remove framework-specific syntax such as route constraints,
+regexes, wildcard markers, and optional parameter markers.
+
+Optional path segments SHOULD be omitted when they did not match the request.
 
 Instrumentations SHOULD use routing information provided by the corresponding web framework. They SHOULD pick the most precise source of routing information and MAY
 support custom route formatting. Instrumentations SHOULD document the format and the API used to obtain the route string.
@@ -627,7 +638,9 @@ Examples:
 
 **[17] `network.transport`:** Generally `tcp` for `HTTP/1.0`, `HTTP/1.1`, and `HTTP/2`. Generally `udp` for `HTTP/3`. Other obscure implementations are possible.
 
-**[18] `user_agent.synthetic.type`:** This attribute MAY be derived from the contents of the `user_agent.original` attribute. Components that populate the attribute are responsible for determining what they consider to be synthetic bot or test traffic. This attribute can either be set for self-identification purposes, or on telemetry detected to be generated as a result of a synthetic request. This attribute is useful for distinguishing between genuine client traffic and synthetic traffic generated by bots or tests.
+**[18] `url.template`:** The `url.template` MAY be populated with the matched route template as provided by the HTTP server framework. It complements `http.route`, which is normalized for low-cardinality grouping and span naming.
+
+**[19] `user_agent.synthetic.type`:** This attribute MAY be derived from the contents of the `user_agent.original` attribute. Components that populate the attribute are responsible for determining what they consider to be synthetic bot or test traffic. This attribute can either be set for self-identification purposes, or on telemetry detected to be generated as a result of a synthetic request. This attribute is useful for distinguishing between genuine client traffic and synthetic traffic generated by bots or tests.
 
 The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):
@@ -694,6 +707,7 @@ and SHOULD be provided **at span creation time** (if provided at all):
 <!-- endsemconv -->
 
 `http.route` MUST be provided at span creation time if and only if it's already available. If it becomes available after span starts, instrumentation MUST populate it anytime before span ends.
+When `url.template` is provided on an HTTP Server span, it SHOULD be provided at span creation time if and only if it's already available. If it becomes available after span starts, instrumentation MUST populate it anytime before span ends.
 
 ## Examples
 
@@ -716,7 +730,7 @@ Span name: `GET`
 
 The corresponding server Span may look like this:
 
-Span name: `GET /webshop/articles/:article_id`.
+Span name: `GET /webshop/articles/{article_id}`.
 
 | Attribute name              | Value                                                                              |
 | :-------------------------- | :--------------------------------------------------------------------------------- |
@@ -727,7 +741,8 @@ Span name: `GET /webshop/articles/:article_id`.
 | `server.address`            | `"example.com"`                                                                    |
 | `server.port`               | `8080`                                                                             |
 | `url.scheme`                | `"https"`                                                                          |
-| `http.route`                | `"/webshop/articles/:article_id"`                                                  |
+| `http.route`                | `"/webshop/articles/{article_id}"`                                                 |
+| `url.template`              | `"/webshop/articles/{article_id:int}"`                                             |
 | `http.response.status_code` | `200`                                                                              |
 | `client.address`            | `"192.0.2.4"`                                                                      |
 | `network.peer.address`      | `"192.0.2.5"` (the client goes through a proxy)                                    |
@@ -854,16 +869,17 @@ As an example, if a user requested `https://example.com` and server returned 500
 
 As an example, if a user sent a `POST` request with a body to `https://example.com:8080/uploads/4`, we may see the following span on a server side:
 
-Span name: `POST /uploads/:document_id`.
+Span name: `POST /uploads/{document_id}`.
 
-| Attribute name              | Value                     |
-| :-------------------------- | :------------------------ |
-| `http.request.method`       | `"POST"`                  |
-| `url.path`                  | `"/uploads/4"`            |
-| `url.scheme`                | `"https"`                 |
-| `http.route`                | `"/uploads/:document_id"` |
-| `http.response.status_code` | `201`                     |
-| `error.type`                | `WebSocketDisconnect`     |
+| Attribute name              | Value                          |
+|:----------------------------|:-------------------------------|
+| `http.request.method`       | `"POST"`                       |
+| `url.path`                  | `"/uploads/4"`                 |
+| `url.scheme`                | `"https"`                      |
+| `http.route`                | `"/uploads/{document_id}"`     |
+| `url.template`              | `"/uploads/{document_id:int}"` |
+| `http.response.status_code` | `201`                          |
+| `error.type`                | `WebSocketDisconnect`          |
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
 [SpanProcessor]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.58.0/specification/trace/sdk.md#span-processor

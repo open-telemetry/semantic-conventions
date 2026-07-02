@@ -50,6 +50,10 @@ groups:
       - ref: http.route
         requirement_level:
           conditionally_required: if and only if a route was successfully matched.
+      - ref: url.template
+        requirement_level: opt_in
+        note: >
+          The `url.template` MAY be populated with the matched route template as provided by ASP.NET Core.
       - ref: aspnetcore.routing.is_fallback
         requirement_level:
           conditionally_required: if and only if a route was successfully matched.

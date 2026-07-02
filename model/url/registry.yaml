@@ -170,7 +170,10 @@ groups:
         stability: development
         brief: >
           The low-cardinality template of an [absolute path reference](https://www.rfc-editor.org/rfc/rfc3986#section-4.2).
-        examples: ["/users/{id}", "/users/:id", "/users?id={id}"]
+        note: >
+          `url.template` MAY contain framework-specific route template syntax.
+          It can be used to preserve the matched route template as provided by an HTTP server framework.
+        examples: ["/users/{id}", "/users/:id", "/users?id={id}", "/api/{controller}/{action}/{id?}"]
       - id: url.top_level_domain
         type: string
         stability: development

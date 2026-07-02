@@ -22,8 +22,8 @@ Attributes describing URL.
 | <a id="url-registered-domain" href="#url-registered-domain">`url.registered_domain`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The highest registered url domain, stripped of the subdomain. [7] | `example.com`; `foo.co.uk` |
 | <a id="url-scheme" href="#url-scheme">`url.scheme`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. | `https`; `ftp`; `telnet` |
 | <a id="url-subdomain" href="#url-subdomain">`url.subdomain`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The subdomain portion of a fully qualified domain name includes all of the names except the host name under the registered_domain. In a partially qualified domain, or if the qualification level of the full name cannot be determined, subdomain contains all of the names below the registered domain. [8] | `east`; `sub2.sub1` |
-| <a id="url-template" href="#url-template">`url.template`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The low-cardinality template of an [absolute path reference](https://www.rfc-editor.org/rfc/rfc3986#section-4.2). | `/users/{id}`; `/users/:id`; `/users?id={id}` |
-| <a id="url-top-level-domain" href="#url-top-level-domain">`url.top_level_domain`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The effective top level domain (eTLD), also known as the domain suffix, is the last part of the domain name. For example, the top level domain for example.com is `com`. [9] | `com`; `co.uk` |
+| <a id="url-template" href="#url-template">`url.template`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The low-cardinality template of an [absolute path reference](https://www.rfc-editor.org/rfc/rfc3986#section-4.2). [9] | `/users/{id}`; `/users/:id`; `/users?id={id}`; `/api/{controller}/{action}/{id?}` |
+| <a id="url-top-level-domain" href="#url-top-level-domain">`url.top_level_domain`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The effective top level domain (eTLD), also known as the domain suffix, is the last part of the domain name. For example, the top level domain for example.com is `com`. [10] | `com`; `co.uk` |
 
 **[1] `url.domain`:** In some cases a URL may refer to an IP and/or port directly, without a domain name. In this case, the IP address would go to the domain field. If the URL contains a [literal IPv6 address](https://www.rfc-editor.org/rfc/rfc2732#section-2) enclosed by `[` and `]`, the `[` and `]` characters should also be captured in the domain field.
 
@@ -98,4 +98,6 @@ When a query string value is redacted, the query string key SHOULD still be pres
 
 **[8] `url.subdomain`:** The subdomain portion of `www.east.mydomain.co.uk` is `east`. If the domain has multiple levels of subdomain, such as `sub2.sub1.example.com`, the subdomain field should contain `sub2.sub1`, with no trailing period.
 
-**[9] `url.top_level_domain`:** This value can be determined precisely with the [public suffix list](https://publicsuffix.org/).
+**[9] `url.template`:** `url.template` MAY contain framework-specific route template syntax. It can be used to preserve the matched route template as provided by an HTTP server framework.
+
+**[10] `url.top_level_domain`:** This value can be determined precisely with the [public suffix list](https://publicsuffix.org/).
