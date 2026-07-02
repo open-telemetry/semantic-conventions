@@ -15,7 +15,9 @@ templates:
       map(select(.id | startswith("registry"))) |
       group_by(.id | split(".") | .[1]) |
       map({id: .[0].id | split(".") | .[1], groups: .}) |
-      map(select(.id as $id | ["artifact", "aws","cicd", "client", "destination", "gcp", "gen_ai", "geo", "mcp", "openai", "security_rule", "server", "session", "source", "test", "thread", "vcs"] | index($id)))'
+      map(select(
+        .id as $id | ["artifact", "aws","cicd", "client", "destination", "gcp", "gen_ai", "geo", "mcp", "openai", "security_rule", "server", "session", "source", "test", "thread", "vcs"] | index($id)
+      ))'
     application_mode: each
     file_name: attributes/{{ ctx.id | lower | kebab_case }}.md
   - pattern: registry_readme.md.j2
