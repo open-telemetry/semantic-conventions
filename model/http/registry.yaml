@@ -204,3 +204,86 @@ groups:
         brief: State of the HTTP connection in the HTTP connection pool.
         stability: development
         examples: ["active", "idle"]
+
+  - id: registry.http.client_network_timing
+    type: attribute_group
+    display_name: HTTP Client Network Timing Event Attributes
+    brief: >
+      These attributes are defined for `http.client.network_timing` events.
+      Each value is a non-negative delta in milliseconds from the event `Timestamp`.
+    attributes:
+      - id: http.dns.start_relative_time
+        type: double
+        stability: development
+        brief: DNS lookup start relative time.
+        examples: [0.0]
+      - id: http.dns.end_relative_time
+        type: double
+        stability: development
+        brief: DNS lookup end relative time.
+        examples: [18.0]
+      - id: http.connect.start_relative_time
+        type: double
+        stability: development
+        brief: TCP connection establishment start relative time.
+        examples: [20.0]
+      - id: http.connect.end_relative_time
+        type: double
+        stability: development
+        brief: TCP connection establishment end relative time.
+        examples: [85.0]
+      - id: http.secure_connect.start_relative_time
+        type: double
+        stability: development
+        brief: TLS handshake start relative time (HTTPS only).
+        examples: [86.0]
+      - id: http.secure_connect.end_relative_time
+        type: double
+        stability: development
+        brief: TLS handshake end relative time (HTTPS only).
+        examples: [210.0]
+      - id: http.request.headers.start_relative_time
+        type: double
+        stability: development
+        brief: Request headers transmission start relative time.
+        examples: [212.0]
+      - id: http.request.headers.end_relative_time
+        type: double
+        stability: development
+        brief: Request headers transmission end relative time.
+        examples: [215.0]
+      - id: http.request.body.start_relative_time
+        type: double
+        stability: development
+        brief: Request body transmission start relative time (if request has body).
+        examples: [215.0]
+      - id: http.request.body.end_relative_time
+        type: double
+        stability: development
+        brief: Request body transmission end relative time (if request has body).
+        examples: [280.0]
+      - id: http.response.headers.start_relative_time
+        type: double
+        stability: development
+        brief: Response headers reception start relative time.
+        examples: [295.0]
+      - id: http.response.headers.end_relative_time
+        type: double
+        stability: development
+        brief: Response headers reception end relative time.
+        examples: [300.0]
+      - id: http.response.body.start_relative_time
+        type: double
+        stability: development
+        brief: Response body reception start relative time.
+        examples: [300.0]
+      - id: http.response.body.end_relative_time
+        type: double
+        stability: development
+        brief: Response body reception end relative time.
+        examples: [315.0]
+      - id: http.call.end_relative_time
+        type: double
+        stability: development
+        brief: Call complete relative time.
+        examples: [320.0]

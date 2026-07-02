@@ -27,6 +27,64 @@ groups:
           conditionally_required: Required if `exception.type` is not set, recommended otherwise.
       - ref: exception.stacktrace
 
+  - id: event.http.client.network_timing
+    name: http.client.network_timing
+    stability: development
+    type: event
+    brief: >
+      This event captures per-phase timing for an HTTP client request.
+    note: |
+      This event MAY be emitted when instrumentation has access to network phase timings for an HTTP client call.
+
+      **Timestamp:** MUST be set to the absolute time when the HTTP client call started, per the OpenTelemetry log and event
+      record [`Timestamp`](https://opentelemetry.io/docs/specs/otel/logs/data-model/#field-timestamp) (nanoseconds since the
+      Unix epoch on OTLP).
+
+      **Timing attributes:** All `*_relative_time` attributes on this event (including `http.call.end_relative_time`) MUST be interpreted
+      as non-negative deltas in milliseconds from `Timestamp` (elapsed time from call start to each recorded phase boundary).
+      When deriving `*_relative_time` from absolute timestamps, the delta MUST be computed in milliseconds.
+
+      **ObservedTimestamp:** SHOULD be set to the time the event was emitted when it differs materially from `Timestamp`,
+      following OpenTelemetry [`ObservedTimestamp`](https://opentelemetry.io/docs/specs/otel/logs/data-model/#field-observedtimestamp)
+      semantics.
+
+      **Trace context:** When an OpenTelemetry span is associated with the operation, the event MUST use the Context of the
+      corresponding HTTP client span so backends can correlate the event with the span. When no such span exists, the event
+      MAY omit span correlation.
+
+      **Attribute emission:** Instrumentations SHOULD emit only timing attributes that the platform provides and SHOULD omit attributes that are unknown or not applicable.
+    attributes:
+      - ref: http.dns.start_relative_time
+        requirement_level: opt_in
+      - ref: http.dns.end_relative_time
+        requirement_level: opt_in
+      - ref: http.connect.start_relative_time
+        requirement_level: opt_in
+      - ref: http.connect.end_relative_time
+        requirement_level: opt_in
+      - ref: http.secure_connect.start_relative_time
+        requirement_level: opt_in
+      - ref: http.secure_connect.end_relative_time
+        requirement_level: opt_in
+      - ref: http.request.headers.start_relative_time
+        requirement_level: opt_in
+      - ref: http.request.headers.end_relative_time
+        requirement_level: opt_in
+      - ref: http.request.body.start_relative_time
+        requirement_level: opt_in
+      - ref: http.request.body.end_relative_time
+        requirement_level: opt_in
+      - ref: http.response.headers.start_relative_time
+        requirement_level: opt_in
+      - ref: http.response.headers.end_relative_time
+        requirement_level: opt_in
+      - ref: http.response.body.start_relative_time
+        requirement_level: opt_in
+      - ref: http.response.body.end_relative_time
+        requirement_level: opt_in
+      - ref: http.call.end_relative_time
+        requirement_level: required
+
   - id: event.http.server.request.exception
     name: http.server.request.exception
     stability: development
