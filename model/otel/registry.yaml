@@ -181,6 +181,21 @@ groups:
               brief: >
                 Prometheus metric exporter over HTTP with the default text-based format
               stability: development
+            - id: logger_provider
+              value: "logger_provider"
+              brief: >
+                The builtin SDK LoggerProvider
+              stability: development
+            - id: tracer_provider
+              value: "tracer_provider"
+              brief: >
+                The builtin SDK TracerProvider
+              stability: development
+            - id: meter_provider
+              value: "meter_provider"
+              brief: >
+                The builtin SDK MeterProvider
+              stability: development
         stability: development
         brief: >
           A name identifying the type of the OpenTelemetry component.
@@ -208,3 +223,13 @@ groups:
           as `otel.component.name`, the second one `batching_span_processor/1` and so on.
           These values will therefore be reused in the case of an application restart.
         examples: ["otlp_grpc_span_exporter/0", "custom-name"]
+      - id: otel.component.shutdown.duration
+        type: double
+        stability: development
+        brief: >
+          The wall-clock elapsed time of a shutdown attempt, in seconds.
+        note: |
+          Measured from the moment the shutdown operation started to the moment
+          it ended (whether by completing, failing, or timing out). MUST be a
+          non-negative value expressed in seconds.
+        examples: [0.015, 30.0]
