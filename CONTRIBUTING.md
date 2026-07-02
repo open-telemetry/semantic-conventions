@@ -220,9 +220,13 @@ linkTitle: HTTP
 --->
 ```
 
-When creating new markdown files, you should provide the `linkTitle` attribute.
-This is used to generate the navigation bar on the website,
-and will be listed relative to the "parent" document.
+Set `linkTitle` when adding a new Markdown file. It drives the website navigation, and shows up relative to the parent document, so it's easy to miss until someone points it out in review.
+
+Keep it short. Something like `Spans` or `Metrics` works better than spelling out the full convention name again.
+
+Sentence case is the default, but if the name is an established acronym or product name, keep its usual capitalization.
+
+Also, when renaming or moving files under `docs/`, make sure nothing on the website or any relative links still point to the old path.
 
 ### 3. Check new convention
 
