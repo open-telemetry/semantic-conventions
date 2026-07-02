@@ -49,6 +49,10 @@ groups:
     name: process.runtime
     brief: >
       The single (language) runtime instance which is monitored.
+    note: >
+      This entity (resource attributes) should not be reported when the process is being
+      externally observed as the runtime details will not be readily available.
+      In the externally observed scenario, the `process.executable` entity may be used to describe the runtime.
     attributes:
       - ref: process.runtime.name
         role: identifying
@@ -62,10 +66,13 @@ groups:
     stability: development
     name: process.executable
     brief: >
-      The executable of a process.
+      The executable running within a process and is designed to be common across processes.
     note: >
-      Represents the executable file associated with a process.
-      A single executable may be run my multiple process instances.
+      This entity (resource attributes) is used to represent an executable
+      which has been deployed to a system and the execution of that executable
+      via a process is resulting in the production of the telemetry.
+      This entity (resource attributes) should not be used to describe the runtime executable unless,
+      the process is being externally observed as that results in the runtime details not being readily available.
     attributes:
       - ref: process.executable.build_id.htlhash
         role: identifying
