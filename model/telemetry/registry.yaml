@@ -38,6 +38,7 @@ groups:
               stability: stable
             - id: kotlin
               value: "kotlin"
+              brief: Kotlin
               stability: stable
             - id: nodejs
               value: "nodejs"

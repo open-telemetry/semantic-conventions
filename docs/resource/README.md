@@ -110,7 +110,7 @@ All custom identifiers SHOULD be stable across different versions of an implemen
 | `erlang` | erlang | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `go` | go | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `java` | java | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `kotlin` | kotlin | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `kotlin` | Kotlin | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `nodejs` | nodejs | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `php` | php | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | `python` | python | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
