@@ -40,7 +40,6 @@
   Parameterized query text is now recommended to be collected by default, while
   query parameter values remain opt-in.
   
-
 ## v1.42.0
 
 ### 🛑 Breaking changes 🛑
