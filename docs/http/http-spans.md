@@ -290,7 +290,8 @@ Instrumentations SHOULD capture the body as string whenever possible as it makes
 Textual content is typically detected based on the [Content-Type](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-type) header using heuristics
 such as checking if the media type starts with `text/` or ends with `/json`, `+json`, `/xml`, `+xml`, `/yaml` or `+yaml` or if the media type contains an explicit charset with `;charset=`.
 
-Instrumentations that implement request body recording MUST NOT intentionally introduce side effects such as changing stream position or closing body stream independently from the application.
+Instrumentations that implement request body recording MUST NOT intentionally introduce side effects such as changing stream position or closing body stream independently from the
+application.
 
 When body is recorded on HTTP client or server spans, the instrumentation SHOULD record part of the body that was sent or received at the time HTTP span has ended.
 
@@ -325,7 +326,8 @@ Instrumentations SHOULD capture the body as string whenever possible as it makes
 Textual content is typically detected based on the [Content-Type](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-type) header using heuristics
 such as checking if the media type starts with `text/` or ends with `/json`, `+json`, `/xml`, `+xml`, `/yaml` or `+yaml` or if the media type contains an explicit charset with `;charset=`.
 
-Instrumentations that implement response body recording MUST NOT intentionally introduce side effects such as changing stream position or closing body stream independently from the application.
+Instrumentations that implement response body recording MUST NOT intentionally introduce side effects such as changing stream position or closing body stream independently from the
+application.
 
 When body is recorded on HTTP client or server spans, the instrumentation SHOULD record part of the body that was sent or received at the time HTTP span has ended.
 
@@ -646,7 +648,8 @@ Instrumentations SHOULD capture the body as string whenever possible as it makes
 Textual content is typically detected based on the [Content-Type](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-type) header using heuristics
 such as checking if the media type starts with `text/` or ends with `/json`, `+json`, `/xml`, `+xml`, `/yaml` or `+yaml` or if the media type contains an explicit charset with `;charset=`.
 
-Instrumentations that implement request body recording MUST NOT intentionally introduce side effects such as changing stream position or closing body stream independently from the application.
+Instrumentations that implement request body recording MUST NOT intentionally introduce side effects such as changing stream position or closing body stream independently from the
+application.
 
 When body is recorded on HTTP client or server spans, the instrumentation SHOULD record part of the body that was sent or received at the time HTTP span has ended.
 
@@ -681,7 +684,8 @@ Instrumentations SHOULD capture the body as string whenever possible as it makes
 Textual content is typically detected based on the [Content-Type](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-type) header using heuristics
 such as checking if the media type starts with `text/` or ends with `/json`, `+json`, `/xml`, `+xml`, `/yaml` or `+yaml` or if the media type contains an explicit charset with `;charset=`.
 
-Instrumentations that implement response body recording MUST NOT intentionally introduce side effects such as changing stream position or closing body stream independently from the application.
+Instrumentations that implement response body recording MUST NOT intentionally introduce side effects such as changing stream position or closing body stream independently from the
+application.
 
 When body is recorded on HTTP client or server spans, the instrumentation SHOULD record part of the body that was sent or received at the time HTTP span has ended.
 
