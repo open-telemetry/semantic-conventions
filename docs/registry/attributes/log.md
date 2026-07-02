@@ -4,6 +4,7 @@
 # Log
 
 - [General Log Attributes](#general-log-attributes)
+- [Log Bridge Attributes](#log-bridge-attributes)
 - [Log File Attributes](#log-file-attributes)
 - [Log Record Attributes](#log-record-attributes)
 
@@ -26,6 +27,19 @@ This document defines log attributes
 | `stderr` | Events from stderr stream | ![Development](https://img.shields.io/badge/-development-blue) |
 | `stdout` | Logs from stdout stream | ![Development](https://img.shields.io/badge/-development-blue) |
 
+## Log Bridge Attributes
+
+Attributes identifying a log bridge - the OpenTelemetry component that converts log records emitted by a logging library into OpenTelemetry log records. These attributes are intended to be reported as Instrumentation Scope attributes on the bridge's `InstrumentationScope`.
+
+**Attributes:**
+
+| Key | Stability | Value Type | Description | Example Values |
+| --- | --- | --- | --- | --- |
+| <a id="log-bridge-name" href="#log-bridge-name">`log.bridge.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the log bridge package that produced the log record. [1] | `opentelemetry-appender-tracing`; `OpenTelemetry.Extensions.Logging`; `io.opentelemetry.instrumentation.log4j-appender-2.17` |
+| <a id="log-bridge-version" href="#log-bridge-version">`log.bridge.version`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The version of the log bridge package that produced the log record. | `0.32.0`; `1.10.0` |
+
+**[1] `log.bridge.name`:** The log bridge is the OpenTelemetry component that bridges a logging library (e.g. Log4j, ILogger, `tracing`) to OpenTelemetry. This is distinct from the `Instrumentation Scope` name, which identifies the producer of the log call (typically the logger name / category).
+
 ## Log File Attributes
 
 Attributes for a file to which log was emitted.
@@ -47,10 +61,10 @@ This document defines the generic attributes that may be used in any Log Record.
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="log-record-original" href="#log-record-original">`log.record.original`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The complete original Log Record. [1] | `77 <86>1 2015-08-06T21:58:59.694Z 192.168.2.133 inactive - - - Something happened`; `[INFO] 8/3/24 12:34:56 Something happened` |
-| <a id="log-record-uid" href="#log-record-uid">`log.record.uid`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | A unique identifier for the Log Record. [2] | `01ARZ3NDEKTSV4RRFFQ69G5FAV` |
+| <a id="log-record-original" href="#log-record-original">`log.record.original`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The complete original Log Record. [2] | `77 <86>1 2015-08-06T21:58:59.694Z 192.168.2.133 inactive - - - Something happened`; `[INFO] 8/3/24 12:34:56 Something happened` |
+| <a id="log-record-uid" href="#log-record-uid">`log.record.uid`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | A unique identifier for the Log Record. [3] | `01ARZ3NDEKTSV4RRFFQ69G5FAV` |
 
-**[1] `log.record.original`:** This value MAY be added when processing a Log Record which was originally transmitted as a string or equivalent data type AND the Body field of the Log Record does not contain the same value. (e.g. a syslog or a log record read from a file.)
+**[2] `log.record.original`:** This value MAY be added when processing a Log Record which was originally transmitted as a string or equivalent data type AND the Body field of the Log Record does not contain the same value. (e.g. a syslog or a log record read from a file.)
 
-**[2] `log.record.uid`:** If an id is provided, other log records with the same id will be considered duplicates and can be removed safely. This means, that two distinguishable log records MUST have different values.
+**[3] `log.record.uid`:** If an id is provided, other log records with the same id will be considered duplicates and can be removed safely. This means, that two distinguishable log records MUST have different values.
 The id MAY be an [Universally Unique Lexicographically Sortable Identifier (ULID)](https://github.com/ulid/spec), but other identifiers (e.g. UUID) may be used as needed.
