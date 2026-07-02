@@ -36,18 +36,16 @@ The maximum captured body size must be limited by the `AttributeValueLengthLimit
 
 To prevent excessive overhead and storage by default, instrumentations MUST issue a warning when the feature is used without an explicit `AttributeValueLengthLimit` configuration option.
 
-Instrumentations MUST NOT capture this attribute by default and MAY provide an option to enable it.
-
-> [!WARNING]
-> This attribute may contain sensitive information.
+Instrumentations MUST disable capture by default and provide an opt-in configuration option to enable it as it can capture sensitive information and cause performance overhead.
 
 Instrumentations SHOULD capture the body as string whenever possible as it makes it easier to use in human-readable form, also it allows to implement sanitization if needed.
 
-Capturing HTTP request body content should be considered as fragile by nature as it depends on implementation details,
-configuration and usage of the instrumented HTTP client and server libraries.
-
 Textual content is typically detected based on the [Content-Type](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-type) header using heuristics
 such as checking if the media type starts with `text/` or ends with `/json`, `+json`, `/xml`, `+xml`, `/yaml` or `+yaml` or if the media type contains an explicit charset with `;charset=`.
+
+Instrumentations that implement request body recording MUST NOT intentionally introduce side effects such as changing stream position or closing body stream independently from the application.
+
+When body is recorded on HTTP client or server spans, the instrumentation SHOULD record part of the body that was sent or received at the time HTTP span has ended.
 
 **[2] `http.request.header.<key>`:** Instrumentations SHOULD require an explicit configuration of which headers are to be captured.
 Including all request headers can be a security risk - explicit configuration helps avoid leaking sensitive information.
@@ -102,15 +100,12 @@ Instrumentations MUST disable capture by default and provide an opt-in configura
 
 Instrumentations SHOULD capture the body as string whenever possible as it makes it easier to use in human-readable form, also it allows to implement sanitization if needed.
 
-Capturing HTTP response body content should be considered as fragile by nature as it depends on implementation details,
-configuration and usage of the instrumented HTTP client and server libraries.
-
-For HTTP clients, the [HTTP semantic conventions](https://opentelemetry.io/docs/specs/semconv/http/) define the HTTP
-[client span duration](https://opentelemetry.io/docs/specs/semconv/http/http-spans/#http-client-span-duration) to end when the response headers are received.
-This means that the HTTP response body is typically read after the span has ended and thus can't be easily captured as a span attribute.
-
 Textual content is typically detected based on the [Content-Type](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-type) header using heuristics
 such as checking if the media type starts with `text/` or ends with `/json`, `+json`, `/xml`, `+xml`, `/yaml` or `+yaml` or if the media type contains an explicit charset with `;charset=`.
+
+Instrumentations that implement response body recording MUST NOT intentionally introduce side effects such as changing stream position or closing body stream independently from the application.
+
+When body is recorded on HTTP client or server spans, the instrumentation SHOULD record part of the body that was sent or received at the time HTTP span has ended.
 
 **[6] `http.response.header.<key>`:** Instrumentations SHOULD require an explicit configuration of which headers are to be captured.
 Including all response headers can be a security risk - explicit configuration helps avoid leaking sensitive information.
