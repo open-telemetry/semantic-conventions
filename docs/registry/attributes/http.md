@@ -36,7 +36,10 @@ The maximum captured body size must be limited by the `AttributeValueLengthLimit
 
 To prevent excessive overhead and storage by default, instrumentations MUST issue a warning when the feature is used without an explicit `AttributeValueLengthLimit` configuration option.
 
-Instrumentations MUST disable capture by default and provide an opt-in configuration option to enable it as it can capture sensitive information and cause performance overhead.
+Instrumentations MUST NOT capture this attribute by default and MAY provide an option to enable it.
+
+> [!WARNING]
+> This attribute may contain sensitive information.
 
 Instrumentations SHOULD capture the body as string whenever possible as it makes it easier to use in human-readable form, also it allows to implement sanitization if needed.
 
