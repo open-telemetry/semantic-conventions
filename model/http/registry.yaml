@@ -204,3 +204,53 @@ groups:
         brief: State of the HTTP connection in the HTTP connection pool.
         stability: development
         examples: ["active", "idle"]
+      - id: http.request.body.content
+        type: any
+        brief: >
+          The content of the uncompressed HTTP request body, captured as a string when the request content is textual or as binary otherwise.
+        note: |
+          Captured value MAY be limited in size and thus value is expected to be truncated in many cases.
+
+          The maximum captured body size must be limited by the `AttributeValueLengthLimit` configuration option defined in the
+          [OpenTelemetry SDK specification](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/common/README.md#configurable-parameters).
+
+          To prevent excessive overhead and storage by default, instrumentations MUST issue a warning when the feature is used without an explicit `AttributeValueLengthLimit` configuration option.
+
+          Instrumentations MUST disable capture by default and provide an opt-in configuration option to enable it as it can capture sensitive information and cause performance overhead.
+
+          Instrumentations SHOULD capture the body as string whenever possible as it makes it easier to use in human-readable form, also it allows to implement sanitization if needed.
+
+          Textual content is typically detected based on the [Content-Type](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-type) header using heuristics
+          such as checking if the media type starts with `text/` or ends with `/json`, `+json`, `/xml`, `+xml`, `/yaml` or `+yaml` or if the media type contains an explicit charset with `;charset=`.
+
+          Instrumentations that implement request body recording MUST NOT intentionally introduce side effects such as changing stream position or closing body stream independently from the
+          application.
+
+          When body is recorded on HTTP client or server spans, the instrumentation SHOULD record part of the body that was sent or received at the time HTTP span has ended.
+        examples: ['Hello world!', '{"foo: "bar"}', 'aGVsbG8=']
+        stability: development
+      - id: http.response.body.content
+        type: any
+        brief: >
+          The content of the uncompressed HTTP response body, captured as a string when the response content is textual or as byte array otherwise.
+        note: |
+          Captured value MAY be limited in size and thus value is expected to be truncated in many cases.
+
+          The maximum captured body size must be limited by the `AttributeValueLengthLimit` configuration option defined in the
+          [OpenTelemetry SDK specification](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/common/README.md#configurable-parameters).
+
+          To prevent excessive overhead and storage by default, instrumentations MUST issue a warning when the feature is used without an explicit `AttributeValueLengthLimit` configuration option.
+
+          Instrumentations MUST disable capture by default and provide an opt-in configuration option to enable it as it can capture sensitive information and cause performance overhead.
+
+          Instrumentations SHOULD capture the body as string whenever possible as it makes it easier to use in human-readable form, also it allows to implement sanitization if needed.
+
+          Textual content is typically detected based on the [Content-Type](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-type) header using heuristics
+          such as checking if the media type starts with `text/` or ends with `/json`, `+json`, `/xml`, `+xml`, `/yaml` or `+yaml` or if the media type contains an explicit charset with `;charset=`.
+
+          Instrumentations that implement response body recording MUST NOT intentionally introduce side effects such as changing stream position or closing body stream independently from the
+          application.
+
+          When body is recorded on HTTP client or server spans, the instrumentation SHOULD record part of the body that was sent or received at the time HTTP span has ended.
+        examples: ['Hello world!', '{"foo: "bar"}', 'aGVsbG8=']
+        stability: development
