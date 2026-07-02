@@ -1,3 +1,7 @@
+---
+title: Cloud
+---
+
 # Cloud
 
 <!-- semconv entity.cloud -->

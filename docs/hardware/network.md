@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
+title: Semantic conventions for network metrics
 linkTitle: Network
---->
+---
 
 # Semantic conventions for network metrics
 

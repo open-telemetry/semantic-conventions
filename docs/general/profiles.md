@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
+title: Profiles attributes
 linkTitle: Profiles
---->
+---
 
 # Profiles attributes
 

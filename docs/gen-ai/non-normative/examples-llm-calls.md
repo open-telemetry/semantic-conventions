@@ -1,3 +1,7 @@
+---
+title: LLM call examples
+---
+
 # Moved: Generative AI semantic conventions
 
 > [!IMPORTANT]

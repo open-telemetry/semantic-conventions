@@ -1,3 +1,7 @@
+---
+title: "System semantic conventions: instrumentation design philosophy"
+---
+
 # System semantic conventions: instrumentation design philosophy
 
 The System Semantic Conventions are caught in a strange dichotomy that is unique
