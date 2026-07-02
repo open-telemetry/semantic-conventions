@@ -226,7 +226,6 @@ Keep it short. Something like `Spans` or `Metrics` works better than spelling ou
 
 Sentence case is the default, but if the name is an established acronym or product name, keep its usual capitalization.
 
-Also, when renaming or moving files under `docs/`, make sure nothing on the website or any relative links still point to the old path.
 
 ### 3. Check new convention
 
