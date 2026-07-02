@@ -145,7 +145,7 @@ non-negative value expressed in seconds.
 
 The component being shut down is identified by the existing
 [`otel.component.*`](/docs/registry/attributes/otel.md#otel-component-attributes) attributes,
-not encoded in the event name. This keeps the event name stable across all SDK component types
-(span processors, log processors, metric readers, exporters, etc.).
+not encoded in the event name. This keeps the event name stable and reusable
+as the set of emitting components grows.
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
