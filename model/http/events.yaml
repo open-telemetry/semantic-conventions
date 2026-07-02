@@ -1,8 +1,9 @@
-groups:
-  - id: event.http.client.request.exception
-    name: http.client.request.exception
+file_format: definition/2
+
+events:
+  - name: http.client.request.exception
     stability: development
-    type: event
+    requirement_level: recommended
     brief: >
       This event represents an exception that occurred during an HTTP client request,
       such as network failures, timeouts, or other errors that prevent the request
@@ -27,10 +28,9 @@ groups:
           conditionally_required: Required if `exception.type` is not set, recommended otherwise.
       - ref: exception.stacktrace
 
-  - id: event.http.server.request.exception
-    name: http.server.request.exception
+  - name: http.server.request.exception
     stability: development
-    type: event
+    requirement_level: recommended
     brief: >
       This event represents an exception that occurred during HTTP server request processing,
       such as application errors, internal failures, or other exceptions that prevent

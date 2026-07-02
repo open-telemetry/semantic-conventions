@@ -1,8 +1,11 @@
-groups:
-  - id: span.http.client
-    type: span
-    extends: attributes.http.client
-    span_kind: client
+file_format: definition/2
+
+spans:
+  - type: http.client
+    kind: client
+    requirement_level: recommended
+    name:
+      note: "{http.request.method}"
     stability: stable
     brief: >
       This span represents an outbound HTTP request.
@@ -23,6 +26,7 @@ groups:
 
       **Span status:** refer to the [Span Status](/docs/http/http-spans.md#status) section.
     attributes:
+      - ref_group: attributes.http.client
       - ref: http.request.method
         sampling_relevant: true
       - ref: http.request.method_original
@@ -65,10 +69,11 @@ groups:
       - ref: user_agent.synthetic.type
         requirement_level: opt_in
 
-  - id: span.http.server
-    type: span
-    extends: attributes.http.server
-    span_kind: server
+  - type: http.server
+    kind: server
+    requirement_level: recommended
+    name:
+      note: "{http.request.method} {http.route}"
     brief: >
       This span represents an inbound HTTP request.
     note: |
@@ -79,6 +84,7 @@ groups:
       **Span status:** refer to the [Span Status](/docs/http/http-spans.md#status) section.
     stability: stable
     attributes:
+      - ref_group: attributes.http.server
       - ref: http.request.method
         sampling_relevant: true
       - ref: http.request.method_original
