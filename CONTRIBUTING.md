@@ -226,7 +226,6 @@ Keep it short. Something like `Spans` or `Metrics` works better than spelling ou
 
 Sentence case is the default, but if the name is an established acronym or product name, keep its usual capitalization.
 
-
 ### 3. Check new convention
 
 Semantic conventions are validated for name formatting and backward compatibility with last released versions.
