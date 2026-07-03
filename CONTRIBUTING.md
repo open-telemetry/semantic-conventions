@@ -220,7 +220,7 @@ linkTitle: HTTP
 --->
 ```
 
-Set `linkTitle` when adding a new Markdown file. It drives the website navigation, and shows up relative to the parent document, so it's easy to miss until someone points it out in review.
+Set `linkTitle` when adding a new Markdown file. It drives the [website navigation](https://opentelemetry.io/docs/specs/semconv/) and shows up relative to the parent document.
 
 Keep it short. Something like `Spans` or `Metrics` works better than spelling out the full convention name again.
 
