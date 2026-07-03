@@ -44,6 +44,9 @@ groups:
           conditionally_required: If and only if session ends with an error.
 
   - id: metric.mcp.client.operation.duration
+    annotations:
+      dependency_resolution:
+        exclude: true
     deprecated:
       reason: uncategorized
       note: >
@@ -66,6 +69,9 @@ groups:
           recommended: When `server.address` is set
 
   - id: metric.mcp.server.operation.duration
+    annotations:
+      dependency_resolution:
+        exclude: true
     deprecated:
       reason: uncategorized
       note: >
@@ -81,6 +87,9 @@ groups:
     extends: mcp.operation.metrics.attributes
 
   - id: metric.mcp.client.session.duration
+    annotations:
+      dependency_resolution:
+        exclude: true
     deprecated:
       reason: uncategorized
       note: >
@@ -101,6 +110,9 @@ groups:
           recommended: When `server.address` is set
 
   - id: metric.mcp.server.session.duration
+    annotations:
+      dependency_resolution:
+        exclude: true
     deprecated:
       reason: uncategorized
       note: >
