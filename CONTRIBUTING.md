@@ -220,11 +220,17 @@ linkTitle: HTTP
 --->
 ```
 
-Set `linkTitle` when adding a new Markdown file. It drives the [website navigation](https://opentelemetry.io/docs/specs/semconv/) and shows up relative to the parent document.
+`linkTitle` is a short version of the page's title, shown in the website's
+[left side navigation][docsy-nav]. When adding a new Markdown file, keep it to
+the sub-area name -- for example, `Spans`, `Metrics`, or `Resources` -- instead of
+repeating the page's full title. Omit `linkTitle` when it would be identical to
+the title.
 
-Keep it short. Something like `Spans` or `Metrics` works better than spelling out the full convention name again.
+For title and heading capitalization, follow the
+[OpenTelemetry documentation style guide][otel-style-guide].
 
-Sentence case is the default, but if the name is an established acronym or product name, keep its usual capitalization.
+[docsy-nav]: https://www.docsy.dev/docs/content/navigation/#side-nav
+[otel-style-guide]: https://opentelemetry.io/docs/contributing/style-guide/
 
 ### 3. Check new convention
 
