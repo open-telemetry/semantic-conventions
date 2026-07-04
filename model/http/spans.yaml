@@ -5,7 +5,7 @@ spans:
     kind: client
     requirement_level: recommended
     name:
-      note: "{http.request.method}"
+      note: "refer to the [Span Name](/docs/http/http-spans.md#name) section."
     stability: stable
     brief: >
       This span represents an outbound HTTP request.
@@ -73,7 +73,7 @@ spans:
     kind: server
     requirement_level: recommended
     name:
-      note: "{http.request.method} {http.route}"
+      note: "refer to the [Span Name](/docs/http/http-spans.md#name) section."
     brief: >
       This span represents an inbound HTTP request.
     note: |
