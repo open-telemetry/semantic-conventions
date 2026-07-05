@@ -85,7 +85,7 @@ This metric reports the same values as accessing the corresponding processor tim
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`cpu.mode`](/docs/registry/attributes/cpu.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | string | The mode of the CPU | `user`; `system` |
+| [`cpu.mode`](attributes/cpu.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | string | The mode of the CPU | `user`; `system` |
 
 ---
 
@@ -151,7 +151,7 @@ This metric uses the [`GC.CollectionCount(int generation)`](https://learn.micros
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`dotnet.gc.heap.generation`](/docs/registry/attributes/dotnet.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | Name of the garbage collector managed heap generation. | `gen0`; `gen1`; `gen2` |
+| [`dotnet.gc.heap.generation`](attributes/dotnet.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | Name of the garbage collector managed heap generation. | `gen0`; `gen1`; `gen2` |
 
 ---
 
@@ -229,7 +229,7 @@ This metric reports the same values as calling [`GC.GetGCMemoryInfo().Generation
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`dotnet.gc.heap.generation`](/docs/registry/attributes/dotnet.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | Name of the garbage collector managed heap generation. | `gen0`; `gen1`; `gen2` |
+| [`dotnet.gc.heap.generation`](attributes/dotnet.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | Name of the garbage collector managed heap generation. | `gen0`; `gen1`; `gen2` |
 
 ---
 
@@ -267,7 +267,7 @@ This metric reports the same values as calling [`GC.GetGCMemoryInfo().Generation
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`dotnet.gc.heap.generation`](/docs/registry/attributes/dotnet.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | Name of the garbage collector managed heap generation. | `gen0`; `gen1`; `gen2` |
+| [`dotnet.gc.heap.generation`](attributes/dotnet.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | Name of the garbage collector managed heap generation. | `gen0`; `gen1`; `gen2` |
 
 ---
 
@@ -523,7 +523,7 @@ This metric reports the same values as counting calls to [`AppDomain.CurrentDoma
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | Describes a class of error the operation ended with. | `System.OperationCanceledException`; `Contoso.MyException` |
+| [`error.type`](attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | Describes a class of error the operation ended with. | `System.OperationCanceledException`; `Contoso.MyException` |
 
 ---
 

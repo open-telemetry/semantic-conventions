@@ -32,7 +32,7 @@ They may be used in any Profiles record they apply to.
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`profile.frame.type`](/docs/registry/attributes/profile.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Describes the interpreter or compiler of a single frame. | `cpython` |
+| [`profile.frame.type`](attributes/profile.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Describes the interpreter or compiler of a single frame. | `cpython` |
 
 ---
 
@@ -76,17 +76,17 @@ They may be used in any Profiles record they apply to.
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`pprof.location.is_folded`](/docs/registry/attributes/pprof.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | boolean | Provides an indication that multiple symbols map to this location's address, for example due to identical code folding by the linker. In that case the line information represents one of the multiple symbols. This field must be recomputed when the symbolization state of the profile changes. | |
-| [`pprof.mapping.has_filenames`](/docs/registry/attributes/pprof.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | boolean | Indicates that there are filenames related to this mapping. | |
-| [`pprof.mapping.has_functions`](/docs/registry/attributes/pprof.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | boolean | Indicates that there are functions related to this mapping. | |
-| [`pprof.mapping.has_inline_frames`](/docs/registry/attributes/pprof.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | boolean | Indicates that there are inline frames related to this mapping. | |
-| [`pprof.mapping.has_line_numbers`](/docs/registry/attributes/pprof.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | boolean | Indicates that there are line numbers related to this mapping. | |
-| [`pprof.profile.comment`](/docs/registry/attributes/pprof.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string[] | Free-form text associated with the profile. This field should not be used to store any machine-readable information, it is only for human-friendly content. | `["hello world", "bazinga"]` |
-| [`pprof.profile.doc_url`](/docs/registry/attributes/pprof.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Documentation link for this profile type. [1] | `http://pprof.example.com/cpu-profile.html` |
-| [`pprof.profile.drop_frames`](/docs/registry/attributes/pprof.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Frames with Function.function_name fully matching the regexp will be dropped from the samples, along with their successors. | `/foobar/` |
-| [`pprof.profile.keep_frames`](/docs/registry/attributes/pprof.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Frames with Function.function_name fully matching the regexp will be kept, even if it matches drop_frames. | `/bazinga/` |
-| [`pprof.scope.default_sample_type`](/docs/registry/attributes/pprof.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Records the pprof's default_sample_type in the original profile. Not set if the default sample type was missing. [2] | `cpu` |
-| [`pprof.scope.sample_type_order`](/docs/registry/attributes/pprof.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | int[] | Records the indexes of the sample types in the original profile. [3] | `[3, 0, 1, 2]` |
+| [`pprof.location.is_folded`](attributes/pprof.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | boolean | Provides an indication that multiple symbols map to this location's address, for example due to identical code folding by the linker. In that case the line information represents one of the multiple symbols. This field must be recomputed when the symbolization state of the profile changes. | |
+| [`pprof.mapping.has_filenames`](attributes/pprof.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | boolean | Indicates that there are filenames related to this mapping. | |
+| [`pprof.mapping.has_functions`](attributes/pprof.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | boolean | Indicates that there are functions related to this mapping. | |
+| [`pprof.mapping.has_inline_frames`](attributes/pprof.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | boolean | Indicates that there are inline frames related to this mapping. | |
+| [`pprof.mapping.has_line_numbers`](attributes/pprof.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | boolean | Indicates that there are line numbers related to this mapping. | |
+| [`pprof.profile.comment`](attributes/pprof.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string[] | Free-form text associated with the profile. This field should not be used to store any machine-readable information, it is only for human-friendly content. | `["hello world", "bazinga"]` |
+| [`pprof.profile.doc_url`](attributes/pprof.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Documentation link for this profile type. [1] | `http://pprof.example.com/cpu-profile.html` |
+| [`pprof.profile.drop_frames`](attributes/pprof.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Frames with Function.function_name fully matching the regexp will be dropped from the samples, along with their successors. | `/foobar/` |
+| [`pprof.profile.keep_frames`](attributes/pprof.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Frames with Function.function_name fully matching the regexp will be kept, even if it matches drop_frames. | `/bazinga/` |
+| [`pprof.scope.default_sample_type`](attributes/pprof.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Records the pprof's default_sample_type in the original profile. Not set if the default sample type was missing. [2] | `cpu` |
+| [`pprof.scope.sample_type_order`](attributes/pprof.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | int[] | Records the indexes of the sample types in the original profile. [3] | `[3, 0, 1, 2]` |
 
 **[1] `pprof.profile.doc_url`:** The URL must be absolute and may be missing if the profile was generated by code that did not supply a link
 

@@ -42,7 +42,7 @@ This metric is [recommended][MetricRecommended].
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`cpython.gc.generation`](/docs/registry/attributes/cpython.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | int | Value of the garbage collector collection generation. | `0`; `1`; `2` |
+| [`cpython.gc.generation`](attributes/cpython.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | int | Value of the garbage collector collection generation. | `0`; `1`; `2` |
 
 ---
 
@@ -77,7 +77,7 @@ This metric is [recommended][MetricRecommended].
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`cpython.gc.generation`](/docs/registry/attributes/cpython.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | int | Value of the garbage collector collection generation. | `0`; `1`; `2` |
+| [`cpython.gc.generation`](attributes/cpython.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | int | Value of the garbage collector collection generation. | `0`; `1`; `2` |
 
 ---
 
@@ -112,7 +112,7 @@ This metric is [recommended][MetricRecommended].
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`cpython.gc.generation`](/docs/registry/attributes/cpython.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | int | Value of the garbage collector collection generation. | `0`; `1`; `2` |
+| [`cpython.gc.generation`](attributes/cpython.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | int | Value of the garbage collector collection generation. | `0`; `1`; `2` |
 
 ---
 

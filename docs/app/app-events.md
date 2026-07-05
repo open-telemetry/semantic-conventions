@@ -43,10 +43,10 @@ The `app.screen.click` event can be used to indicate that a user has clicked or 
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`app.screen.coordinate.x`](/docs/registry/attributes/app.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | int | The x (horizontal) coordinate of a screen coordinate, in screen pixels. | `0`; `131` |
-| [`app.screen.coordinate.y`](/docs/registry/attributes/app.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | int | The y (vertical) component of a screen coordinate, in screen pixels. | `12`; `99` |
-| [`app.screen.id`](/docs/registry/attributes/app.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | An identifier that uniquely differentiates this screen from other screens in the same application. [1] | `f9bc787d-ff05-48ad-90e1-fca1d46130b3`; `com.example.app.MainActivity`; `com.example.shop.ProductDetailFragment`; `MyApp.ProfileView`; `MyApp.ProfileViewController` |
-| [`app.screen.name`](/docs/registry/attributes/app.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The name of an application screen. [2] | `MainActivity`; `ProductDetailFragment`; `ProfileView`; `ProfileViewController` |
+| [`app.screen.coordinate.x`](attributes/app.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | int | The x (horizontal) coordinate of a screen coordinate, in screen pixels. | `0`; `131` |
+| [`app.screen.coordinate.y`](attributes/app.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | int | The y (vertical) component of a screen coordinate, in screen pixels. | `12`; `99` |
+| [`app.screen.id`](attributes/app.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | An identifier that uniquely differentiates this screen from other screens in the same application. [1] | `f9bc787d-ff05-48ad-90e1-fca1d46130b3`; `com.example.app.MainActivity`; `com.example.shop.ProductDetailFragment`; `MyApp.ProfileView`; `MyApp.ProfileViewController` |
+| [`app.screen.name`](attributes/app.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The name of an application screen. [2] | `MainActivity`; `ProductDetailFragment`; `ProfileView`; `ProfileViewController` |
 
 **[1] `app.screen.id`:** A screen represents only the part of the device display drawn by the app. It typically contains multiple widgets or UI components and is larger in scope than individual widgets. Multiple screens can coexist on the same display simultaneously (e.g., split view on tablets).
 
@@ -75,12 +75,12 @@ Use this event to indicate that visual application component has been clicked, t
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`app.widget.id`](/docs/registry/attributes/app.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | An identifier that uniquely differentiates this widget from other widgets in the same application. [1] | `f9bc787d-ff05-48ad-90e1-fca1d46130b3`; `submit_order_1829` |
-| [`app.screen.id`](/docs/registry/attributes/app.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | An identifier that uniquely differentiates this screen from other screens in the same application. [2] | `f9bc787d-ff05-48ad-90e1-fca1d46130b3`; `com.example.app.MainActivity`; `com.example.shop.ProductDetailFragment`; `MyApp.ProfileView`; `MyApp.ProfileViewController` |
-| [`app.screen.coordinate.x`](/docs/registry/attributes/app.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The x (horizontal) coordinate of a screen coordinate, in screen pixels. | `0`; `131` |
-| [`app.screen.coordinate.y`](/docs/registry/attributes/app.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The y (vertical) component of a screen coordinate, in screen pixels. | `12`; `99` |
-| [`app.screen.name`](/docs/registry/attributes/app.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The name of an application screen. [3] | `MainActivity`; `ProductDetailFragment`; `ProfileView`; `ProfileViewController` |
-| [`app.widget.name`](/docs/registry/attributes/app.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The name of an application widget. [4] | `submit`; `attack`; `Clear Cart` |
+| [`app.widget.id`](attributes/app.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | An identifier that uniquely differentiates this widget from other widgets in the same application. [1] | `f9bc787d-ff05-48ad-90e1-fca1d46130b3`; `submit_order_1829` |
+| [`app.screen.id`](attributes/app.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | An identifier that uniquely differentiates this screen from other screens in the same application. [2] | `f9bc787d-ff05-48ad-90e1-fca1d46130b3`; `com.example.app.MainActivity`; `com.example.shop.ProductDetailFragment`; `MyApp.ProfileView`; `MyApp.ProfileViewController` |
+| [`app.screen.coordinate.x`](attributes/app.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The x (horizontal) coordinate of a screen coordinate, in screen pixels. | `0`; `131` |
+| [`app.screen.coordinate.y`](attributes/app.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The y (vertical) component of a screen coordinate, in screen pixels. | `12`; `99` |
+| [`app.screen.name`](attributes/app.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The name of an application screen. [3] | `MainActivity`; `ProductDetailFragment`; `ProfileView`; `ProfileViewController` |
+| [`app.widget.name`](attributes/app.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The name of an application widget. [4] | `submit`; `attack`; `Clear Cart` |
 
 **[1] `app.widget.id`:** A widget is an application component, typically an on-screen visual GUI element.
 
@@ -127,15 +127,15 @@ to the instrumentation. Providing enough data to dedupe is NOT REQUIRED.
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`app.build_id`](/docs/registry/attributes/app.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [1] | string | Unique identifier for a particular build or compilation of the application. | `6cff0a7e-cefc-4668-96f5-1273d8b334d0`; `9f2b833506aa6973a92fde9733e6271f`; `my-app-1.0.0-code-123` |
-| [`os.name`](/docs/registry/attributes/os.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [2] | string | Human readable operating system name. | `iOS`; `Android`; `Ubuntu` |
-| [`os.version`](/docs/registry/attributes/os.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [3] | string | The version string of the operating system as defined in [Version Attributes](/docs/resource/README.md#version-attributes). | `14.2.1`; `18.04.1` |
-| [`service.version`](/docs/registry/attributes/service.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [4] | string | The version string of the service component. The format is not defined by these conventions. | `2.0.0`; `a01dbef8a` |
-| [`app.crash.id`](/docs/registry/attributes/app.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A unique identifier representing an instance of an end-user facing app crash. [5] | `083d3d2d-9a0e-47f8-be3d-bc3c5538ba38` |
-| [`exception.message`](/docs/registry/attributes/exception.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The exception message. [6] | `Division by zero`; `Can't convert 'int' object to str implicitly` |
-| [`exception.stacktrace`](/docs/registry/attributes/exception.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | A stacktrace as a string in the natural representation for the language runtime. The representation is to be determined and documented by each language SIG. [7] | `Exception in thread "main" java.lang.RuntimeException: Test exception\n at com.example.GenerateTrace.methodB(GenerateTrace.java:13)\n at com.example.GenerateTrace.methodA(GenerateTrace.java:9)\n at com.example.GenerateTrace.main(GenerateTrace.java:5)` |
-| [`exception.type`](/docs/registry/attributes/exception.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The type of the exception (its fully-qualified class name, if applicable). The dynamic type of the exception should be preferred over the static type in languages that support it. [8] | `java.net.ConnectException`; `OSError` |
-| [`session.id`](/docs/registry/attributes/session.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A unique id to identify a session. | `00112233-4455-6677-8899-aabbccddeeff` |
+| [`app.build_id`](attributes/app.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [1] | string | Unique identifier for a particular build or compilation of the application. | `6cff0a7e-cefc-4668-96f5-1273d8b334d0`; `9f2b833506aa6973a92fde9733e6271f`; `my-app-1.0.0-code-123` |
+| [`os.name`](attributes/os.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [2] | string | Human readable operating system name. | `iOS`; `Android`; `Ubuntu` |
+| [`os.version`](attributes/os.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [3] | string | The version string of the operating system as defined in [Version Attributes](/docs/resource/README.md#version-attributes). | `14.2.1`; `18.04.1` |
+| [`service.version`](attributes/service.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [4] | string | The version string of the service component. The format is not defined by these conventions. | `2.0.0`; `a01dbef8a` |
+| [`app.crash.id`](attributes/app.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A unique identifier representing an instance of an end-user facing app crash. [5] | `083d3d2d-9a0e-47f8-be3d-bc3c5538ba38` |
+| [`exception.message`](attributes/exception.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The exception message. [6] | `Division by zero`; `Can't convert 'int' object to str implicitly` |
+| [`exception.stacktrace`](attributes/exception.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | A stacktrace as a string in the natural representation for the language runtime. The representation is to be determined and documented by each language SIG. [7] | `Exception in thread "main" java.lang.RuntimeException: Test exception\n at com.example.GenerateTrace.methodB(GenerateTrace.java:13)\n at com.example.GenerateTrace.methodA(GenerateTrace.java:9)\n at com.example.GenerateTrace.main(GenerateTrace.java:5)` |
+| [`exception.type`](attributes/exception.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The type of the exception (its fully-qualified class name, if applicable). The dynamic type of the exception should be preferred over the static type in languages that support it. [8] | `java.net.ConnectException`; `OSError` |
+| [`session.id`](attributes/session.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A unique id to identify a session. | `00112233-4455-6677-8899-aabbccddeeff` |
 
 **[1] `app.build_id`:** If reporter is not the crashing application instance itself and it's available.
 
@@ -185,9 +185,9 @@ Jank happens when the UI is rendered slowly enough for the user to experience so
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`app.jank.frame_count`](/docs/registry/attributes/app.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | int | A number of frame renders that experienced jank. [1] | `9`; `42` |
-| [`app.jank.period`](/docs/registry/attributes/app.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | double | The time period, in seconds, for which this jank is being reported. | `1.0`; `5.0`; `10.24` |
-| [`app.jank.threshold`](/docs/registry/attributes/app.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | double | The minimum rendering threshold for this jank, in seconds. | `0.016`; `0.7`; `1.024` |
+| [`app.jank.frame_count`](attributes/app.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | int | A number of frame renders that experienced jank. [1] | `9`; `42` |
+| [`app.jank.period`](attributes/app.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | double | The time period, in seconds, for which this jank is being reported. | `1.0`; `5.0`; `10.24` |
+| [`app.jank.threshold`](attributes/app.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | double | The minimum rendering threshold for this jank, in seconds. | `0.016`; `0.7`; `1.024` |
 
 **[1] `app.jank.frame_count`:** Depending on platform limitations, the value provided MAY be approximation.
 

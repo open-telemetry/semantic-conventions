@@ -34,8 +34,8 @@ This metric SHOULD be specified with [`ExplicitBucketBoundaries` advisory parame
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`signalr.connection.status`](/docs/registry/attributes/signalr.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | SignalR HTTP connection closure status. | `app_shutdown`; `timeout` |
-| [`signalr.transport`](/docs/registry/attributes/signalr.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | [SignalR transport type](https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/TransportProtocols.md) | `web_sockets`; `long_polling` |
+| [`signalr.connection.status`](attributes/signalr.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | SignalR HTTP connection closure status. | `app_shutdown`; `timeout` |
+| [`signalr.transport`](attributes/signalr.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | [SignalR transport type](https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/TransportProtocols.md) | `web_sockets`; `long_polling` |
 
 ---
 
@@ -78,8 +78,8 @@ This metric SHOULD be specified with [`ExplicitBucketBoundaries` advisory parame
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`signalr.connection.status`](/docs/registry/attributes/signalr.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | SignalR HTTP connection closure status. | `app_shutdown`; `timeout` |
-| [`signalr.transport`](/docs/registry/attributes/signalr.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | [SignalR transport type](https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/TransportProtocols.md) | `web_sockets`; `long_polling` |
+| [`signalr.connection.status`](attributes/signalr.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | SignalR HTTP connection closure status. | `app_shutdown`; `timeout` |
+| [`signalr.transport`](attributes/signalr.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | [SignalR transport type](https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/TransportProtocols.md) | `web_sockets`; `long_polling` |
 
 ---
 
