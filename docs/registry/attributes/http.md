@@ -31,6 +31,7 @@ This document defines semantic convention attributes in the HTTP namespace.
 Including all request headers can be a security risk - explicit configuration helps avoid leaking sensitive information.
 
 The `User-Agent` header is already captured in the `user_agent.original` attribute.
+
 Users MAY explicitly configure instrumentations to capture them even though it is not recommended.
 
 The attribute value MUST consist of either multiple header values as an array of strings
