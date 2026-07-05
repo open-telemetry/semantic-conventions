@@ -6,4 +6,4 @@ note: >
   Add `system.network.bandwidth.limit` metric for the bandwidth limit of a
   network interface, derived from the reported link speed.
 
-issues: [49169]
+issues: [3848]
