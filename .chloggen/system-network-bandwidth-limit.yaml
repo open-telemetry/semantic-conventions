@@ -1,0 +1,9 @@
+change_type: enhancement
+
+component: system
+
+note: >
+  Add `system.network.bandwidth.limit` metric for the bandwidth limit of a
+  network interface, derived from the reported link speed.
+
+issues: [49169]

@@ -498,6 +498,26 @@ groups:
     entity_associations:
       - host
 
+  - id: metric.system.network.bandwidth.limit
+    type: metric
+    metric_name: system.network.bandwidth.limit
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: The bandwidth limit of the network interface, derived from the reported link speed.
+    note: >
+      A full-duplex link carries this capacity in each direction, so the limit
+      is reported per direction. Together with the bytes transferred from
+      `system.network.io` it allows computing interface utilization.
+    instrument: updowncounter
+    unit: "By/s"
+    attributes:
+      - ref: network.interface.name
+      - ref: network.io.direction
+    entity_associations:
+      - host
+
   # system.process.* metrics
   - id: metric.system.process.count
     type: metric
