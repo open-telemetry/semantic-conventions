@@ -25,8 +25,6 @@ deny contains group_stability_violation(description, group.id, name) if {
         "entity.service",
         # TODO: https://github.com/open-telemetry/semantic-conventions/issues/1616
         "metric.dotnet.process.cpu.time",
-        # TODO: https://github.com/open-telemetry/semantic-conventions/issues/3753
-        "span.db.oracledb.client",
     }
     not exceptions[group.id]
 

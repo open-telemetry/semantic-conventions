@@ -1,4 +1,18 @@
 groups:
+  - id: registry.azure
+    type: attribute_group
+    display_name: General Azure Attributes
+    brief: >
+      This section defines generic attributes for Azure services.
+    attributes:
+      - id: azure.resource_group.name
+        type: string
+        stability: development
+        brief: >
+          The name of the Azure
+          [resource group](https://learn.microsoft.com/azure/azure-resource-manager/management/manage-resource-groups-portal)
+          the resource belongs to.
+        examples: ["my-resource-group", "rg-myapp-prod"]
   - id: registry.azure.client.sdk
     type: attribute_group
     display_name: Azure Client Library Attributes

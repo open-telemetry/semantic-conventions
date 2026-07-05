@@ -17,6 +17,9 @@ groups:
             Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
         brief: The name of the request or notification method.
         stability: development
+        annotations:
+          dependency_resolution:
+            exclude: true
         type:
           members:
             - id: notifications_cancelled
@@ -159,6 +162,9 @@ groups:
           reason: uncategorized
           note: >
             Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
+        annotations:
+          dependency_resolution:
+            exclude: true
         type: string
         brief: The value of the resource uri.
         note: >

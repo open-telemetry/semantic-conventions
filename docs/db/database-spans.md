@@ -48,7 +48,7 @@ linkTitle: Spans
 
 ## Name
 
-Database spans MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.57.0/specification/trace/api.md#span).
+Database spans MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.58.0/specification/trace/api.md#span).
 
 The **span name** SHOULD be `{db.query.summary}` if a summary is available.
 
@@ -120,7 +120,7 @@ classify as errors.
 | [`db.response.status_code`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [7] | string | Database response status code. [8] | `102`; `ORA-17002`; `08P01`; `404` |
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the operation failed. | string | Describes a class of error the operation ended with. [9] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` |
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [10] | int | Server port number. [11] | `80`; `8080`; `443` |
-| [`db.operation.batch.size`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | The number of queries included in a batch operation. [12] | `2`; `3`; `4` |
+| [`db.operation.batch.size`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | The number of database operations included in a batch operation. [12] | `2`; `3`; `4` |
 | [`db.query.summary`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` [13] | string | Low cardinality summary of a database query. [14] | `SELECT wuser_table`; `INSERT shipping_details SELECT orders`; `get user by id` |
 | [`db.query.text`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` [15] | string | The database query being executed. [16] | `SELECT * FROM wuser_table where username = ?`; `SET mykey ?` |
 | [`db.stored_procedure.name`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` [17] | string | The name of a stored procedure within the database. [18] | `GetCustomer` |
@@ -178,7 +178,28 @@ Instrumentations SHOULD document how `error.type` is populated.
 
 **[11] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
-**[12] `db.operation.batch.size`:** Operations are only considered batches when they contain two or more operations, and so `db.operation.batch.size` SHOULD never be `1`.
+**[12] `db.operation.batch.size`:** Except for empty batch requests described below, a batch operation contains two
+or more database operations explicitly submitted as separate operations in a single
+client call, protocol message, or database command.
+
+Requests to batch APIs that contain only one operation SHOULD be modeled as single
+operations, not as batch operations.
+
+A database call is not a batch operation solely because one operation accepts
+multiple operands, such as keys, rows, documents, points, or other data elements,
+including Redis [`MGET`](https://redis.io/docs/latest/commands/mget/) with
+multiple keys.
+
+In batch APIs that execute the same parameterized operation with parameter sets,
+each parameter set represents one database operation for determining whether the
+request is a batch operation. Requests with only one parameter set SHOULD be modeled
+as single operations, not as batch operations.
+
+`db.operation.batch.size` SHOULD be set to the number of operations in the batch.
+It SHOULD NOT be set for non-batch operations.
+
+A request to execute a batch operation with no operations SHOULD also be treated
+as a batch operation, and `db.operation.batch.size` SHOULD be set to `0`.
 
 **[13] `db.query.summary`:** if available through instrumentation hooks or if the instrumentation supports generating a query summary.
 
@@ -224,7 +245,12 @@ then `<key>` SHOULD be the 0-based index.
 up with the parameterized placeholders present in `db.query.text`.
 
 It is RECOMMENDED to capture the value as provided by the application
-without attempting to do any case normalization.
+without attempting to do any case normalization or sanitization.
+
+Instrumentations SHOULD NOT capture `db.query.parameter.<key>` by default
+since values may contain PII or sensitive details.
+Application operators are expected to enable specific keys depending
+on their privacy and security considerations.
 
 `db.query.parameter.<key>` SHOULD NOT be captured on batch operations.
 

@@ -107,7 +107,7 @@ Describes System Memory Paging attributes
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
 | <a id="system-paging-direction" href="#system-paging-direction">`system.paging.direction`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The paging access direction | `in` |
-| <a id="system-paging-fault-type" href="#system-paging-fault-type">`system.paging.fault.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The paging fault type | `minor` |
+| <a id="system-paging-fault-type" href="#system-paging-fault-type">`system.paging.fault.type`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The paging fault type | `minor` |
 | <a id="system-paging-state" href="#system-paging-state">`system.paging.state`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The memory paging state | `free` |
 
 ---
@@ -125,8 +125,8 @@ Describes System Memory Paging attributes
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `major` | major | ![Development](https://img.shields.io/badge/-development-blue) |
-| `minor` | minor | ![Development](https://img.shields.io/badge/-development-blue) |
+| `major` | major | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `minor` | minor | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 ---
 

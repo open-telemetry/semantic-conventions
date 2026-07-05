@@ -8,7 +8,7 @@ groups:
     attributes:
       - id: oracle.db.name
         type: string
-        stability: development
+        stability: release_candidate
         brief: >
           The database name associated with the connection.
         note: |
@@ -16,7 +16,7 @@ groups:
         examples: ["ORCL1", "FREE"]
       - id: oracle.db.domain
         type: string
-        stability: development
+        stability: release_candidate
         brief: >
          The database domain associated with the connection.
         note: |
@@ -28,7 +28,7 @@ groups:
         examples: ["example.com", "corp.internal", "prod.db.local"]
       - id: oracle.db.instance.name
         type: string
-        stability: development
+        stability: release_candidate
         brief: >
           The instance name associated with the connection in an Oracle Real Application Clusters environment.
         note: |
@@ -38,7 +38,7 @@ groups:
         examples: ["ORCL1", "ORCL2", "ORCL3"]
       - id: oracle.db.pdb
         type: string
-        stability: development
+        stability: release_candidate
         brief: >
           The pluggable database (PDB) name associated with the connection.
         note: |
@@ -49,7 +49,7 @@ groups:
         examples: ["PDB1", "FREEPDB"]
       - id: oracle.db.service
         type: string
-        stability: development
+        stability: release_candidate
         brief: >
           The service name currently associated with the database connection.
         note: |

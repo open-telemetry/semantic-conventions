@@ -392,15 +392,44 @@ groups:
       - ref: server.address
         requirement_level:
           conditionally_required: If available.
-        examples: ['192.168.1.100', 'api.example.com']
+        examples:
+          - '192.168.1.100'
+          - 'api.example.com'
+          - 'zookeeper://127.0.0.1:2181/com.example.HelloService:1.0.0:testGroup'
         note: |
-          Instrumentations SHOULD populate `server.address` (along with `server.port`)
+          Instrumentations SHOULD populate `server.address` (and `server.port`, when applicable)
           based on the configuration used when creating the Dubbo client and
           SHOULD NOT use actual network-level connection information for this purpose
           to ensure low cardinality.
 
-          The Dubbo registry address SHOULD NOT be used as `server.address`. Instead, use
-          the address of the actual server being called.
+          For direct connection, when the consumer is configured with an explicit
+          provider target URL, instrumentations SHOULD parse `server.address` and
+          `server.port` from that URL.
+
+          For service discovery through a registry, instrumentations SHOULD set
+          `server.address` to the service-discovery target and SHOULD NOT set
+          `server.port`. The service-discovery target is:
+
+          `{registry-protocol}://{registry-host}:{registry-port}/{logical-service-target}`
+
+          The `{registry-port}` component is part of the registry endpoint in
+          the service-discovery target and SHOULD NOT be recorded as
+          `server.port`, because it is not the network transport port used for
+          Dubbo RPC communication.
+
+          It is composed of two parts separated by the `/` between the registry endpoint and logical service target:
+
+          - Registry endpoint: `{registry-protocol}://{registry-host}:{registry-port}`
+          - Logical service target: `{interface}[:{version}][:{group}]`, derived from
+            the consumer URL, where:
+            - `{interface}` is the service interface name from the consumer URL.
+            - `{version}` is the `version` URL parameter, if set.
+            - `{group}` is the `group` URL parameter, if set.
+            - When only `{group}` is set, the format is `{interface}::{group}`.
+
+          Examples:
+
+          Direct connection:
 
           - Given the target URL `dubbo://192.168.1.100:20880/com.example.DemoService`, expected attributes:
             - `server.address`: `"192.168.1.100"`
@@ -412,8 +441,19 @@ groups:
             - `server.address`: `"api.example.com"`
             - `server.port`: not set
 
+          Service discovery (registry):
+
+          - Given a consumer that discovers providers via ZooKeeper for `com.example.HelloService` with `version=1.0.0` and `group=testGroup`, expected attributes:
+            - Service-discovery target: `"zookeeper://127.0.0.1:2181/com.example.HelloService:1.0.0:testGroup"`
+            - `server.address`: `"zookeeper://127.0.0.1:2181/com.example.HelloService:1.0.0:testGroup"`
+            - `server.port`: not set
+          - Given a consumer that discovers providers via Nacos for `com.example.HelloService` with `group=gray` (no version), expected attributes:
+            - Service-discovery target: `"nacos://127.0.0.1:8848/com.example.HelloService::gray"`
+            - `server.address`: `"nacos://127.0.0.1:8848/com.example.HelloService::gray"`
+            - `server.port`: not set
+
           When the address is an IP address, instrumentations SHOULD NOT do a
-          reverse proxy lookup to obtain a DNS name and SHOULD set `server.address`
+          reverse DNS lookup to obtain a DNS name and SHOULD set `server.address`
           to the IP address provided.
       - ref: server.port
         requirement_level:

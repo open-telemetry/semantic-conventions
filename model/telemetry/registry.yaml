@@ -36,6 +36,9 @@ groups:
             - id: java
               value: "java"
               stability: stable
+            - id: kotlin
+              value: "kotlin"
+              stability: stable
             - id: nodejs
               value: "nodejs"
               stability: stable

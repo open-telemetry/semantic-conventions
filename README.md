@@ -2,7 +2,7 @@
 
 [![Checks](https://github.com/open-telemetry/semantic-conventions/workflows/Checks/badge.svg)](https://github.com/open-telemetry/semantic-conventions/actions?query=workflow%3A%22Checks%22+branch%3Amain)
 [![GitHub tag (latest SemVer)](https://img.shields.io/github/tag/open-telemetry/semantic-conventions.svg?logo=opentelemetry&&color=f5a800&label=Latest%20release)](https://github.com/open-telemetry/semantic-conventions/releases/latest)
-[![Specification Version](https://img.shields.io/badge/OTel_specification_version-v1.57.0-blue?logo=opentelemetry&color=f5a800)](https://github.com/open-telemetry/opentelemetry-specification/releases/tag/v1.57.0)
+[![Specification Version](https://img.shields.io/badge/OTel_specification_version-v1.58.0-blue?logo=opentelemetry&color=f5a800)](https://github.com/open-telemetry/opentelemetry-specification/releases/tag/v1.58.0)
 [![Slack](https://img.shields.io/badge/Slack-%23otel--semantic--conventions-purple)](https://cloud-native.slack.com/archives/C041APFBYQP)
 
 Semantic Conventions define a common set of (semantic) attributes which
@@ -35,7 +35,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md)
 
 ### Maintainers
 
-- [Alexander Wert](https://github.com/AlexanderWert), Elastic
+- [Alexander Wert](https://github.com/AlexanderWert), Dash0
 - [Armin Ruech](https://github.com/arminru), Dynatrace
 - [Christophe Kamphaus](https://github.com/kamphaus), Independent
 - [Joao Grassi](https://github.com/joaopgrassi), Dynatrace

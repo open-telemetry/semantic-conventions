@@ -14,7 +14,7 @@ generation of semantics-related code.
 Semantic conventions for the spec MUST adhere to the
 [naming](../docs/general/naming.md),
 [attribute requirement level](../docs/general/attribute-requirement-level.md),
-and [metric requirement level](../docs/general/metric-requirement-level.md) conventions.
+and [requirement level](../docs/general/signal-requirement-level.md) conventions.
 
 Refer to the [syntax](https://github.com/open-telemetry/weaver/blob/main/schemas/semconv-syntax.md)
 for how to write the YAML files for semantic conventions and what the YAML properties mean.
