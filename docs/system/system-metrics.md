@@ -94,7 +94,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.uptime` | Gauge | `s` | The time the system has been running. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](entities/host.md#host) |
+| `system.uptime` | Gauge | `s` | The time the system has been running. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
 
 **[1]:** Instrumentations SHOULD use a gauge with type `double` and measure uptime in seconds as a floating point number with the highest precision available.
 The actual accuracy would depend on the instrumentation and operating system.
@@ -118,7 +118,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.cpu.physical.count` | UpDownCounter | `{cpu}` | Reports the number of actual physical processor cores on the hardware. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](entities/host.md#host) |
+| `system.cpu.physical.count` | UpDownCounter | `{cpu}` | Reports the number of actual physical processor cores on the hardware. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
 
 **[1]:** Calculated by multiplying the number of sockets by the number of cores per socket
 
@@ -137,7 +137,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.cpu.logical.count` | UpDownCounter | `{cpu}` | Reports the number of logical (virtual) processor cores created by the operating system to manage multitasking. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](entities/host.md#host) |
+| `system.cpu.logical.count` | UpDownCounter | `{cpu}` | Reports the number of logical (virtual) processor cores created by the operating system to manage multitasking. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
 
 **[1]:** Calculated by multiplying the number of sockets by the number of cores per socket, and then by the number of threads per core
 
@@ -156,14 +156,14 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.cpu.time` | Counter | `s` | Seconds each logical CPU spent on each mode. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](entities/host.md#host) |
+| `system.cpu.time` | Counter | `s` | Seconds each logical CPU spent on each mode. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
 
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`cpu.mode`](attributes/cpu.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The mode of the CPU [1] | `user`; `system` |
-| [`cpu.logical_number`](attributes/cpu.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The logical CPU number [0..n-1] | `1` |
+| [`cpu.mode`](/docs/registry/attributes/cpu.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The mode of the CPU [1] | `user`; `system` |
+| [`cpu.logical_number`](/docs/registry/attributes/cpu.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The logical CPU number [0..n-1] | `1` |
 
 **[1] `cpu.mode`:** Following states SHOULD be used: `user`, `system`, `nice`, `idle`, `iowait`, `interrupt`, `steal`
 
@@ -196,13 +196,13 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.cpu.frequency` | Gauge | `Hz` | Operating frequency of the logical CPU in Hertz. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](entities/host.md#host) |
+| `system.cpu.frequency` | Gauge | `Hz` | Operating frequency of the logical CPU in Hertz. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
 
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`cpu.logical_number`](attributes/cpu.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | int | The logical CPU number [0..n-1] | `1` |
+| [`cpu.logical_number`](/docs/registry/attributes/cpu.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | int | The logical CPU number [0..n-1] | `1` |
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
@@ -219,14 +219,14 @@ This metric is [opt-in][MetricOptIn].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.cpu.utilization` | Gauge | `1` | For each logical CPU, the utilization is calculated as the change in cumulative CPU time (cpu.time) over a measurement interval, divided by the elapsed time. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](entities/host.md#host) |
+| `system.cpu.utilization` | Gauge | `1` | For each logical CPU, the utilization is calculated as the change in cumulative CPU time (cpu.time) over a measurement interval, divided by the elapsed time. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
 
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`cpu.mode`](attributes/cpu.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The mode of the CPU [1] | `user`; `system` |
-| [`cpu.logical_number`](attributes/cpu.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The logical CPU number [0..n-1] | `1` |
+| [`cpu.mode`](/docs/registry/attributes/cpu.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The mode of the CPU [1] | `user`; `system` |
+| [`cpu.logical_number`](/docs/registry/attributes/cpu.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The logical CPU number [0..n-1] | `1` |
 
 **[1] `cpu.mode`:** Following modes SHOULD be used: `user`, `system`, `nice`, `idle`, `iowait`, `interrupt`, `steal`
 
@@ -264,13 +264,13 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.memory.usage` | UpDownCounter | `By` | Reports memory in use by state. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](entities/host.md#host) |
+| `system.memory.usage` | UpDownCounter | `By` | Reports memory in use by state. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
 
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`system.memory.state`](attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The memory state | `free`; `cached` |
+| [`system.memory.state`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The memory state | `free`; `cached` |
 
 ---
 
@@ -300,7 +300,7 @@ This metric is [opt-in][MetricOptIn].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.memory.limit` | UpDownCounter | `By` | Total virtual memory available in the system. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](entities/host.md#host) |
+| `system.memory.limit` | UpDownCounter | `By` | Total virtual memory available in the system. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
@@ -317,13 +317,13 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.memory.utilization` | Gauge | `1` | Percentage of memory bytes in use. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](entities/host.md#host) |
+| `system.memory.utilization` | Gauge | `1` | Percentage of memory bytes in use. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
 
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`system.memory.state`](attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The memory state | `free`; `cached` |
+| [`system.memory.state`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The memory state | `free`; `cached` |
 
 ---
 
@@ -357,14 +357,14 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.paging.usage` | UpDownCounter | `By` | Unix swap or windows pagefile usage. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](entities/host.md#host) |
+| `system.paging.usage` | UpDownCounter | `By` | Unix swap or windows pagefile usage. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
 
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`system.device`](attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Unique identifier for the device responsible for managing paging operations. | `/dev/dm-0` |
-| [`system.paging.state`](attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The memory paging state | `free` |
+| [`system.device`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Unique identifier for the device responsible for managing paging operations. | `/dev/dm-0` |
+| [`system.paging.state`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The memory paging state | `free` |
 
 ---
 
@@ -390,14 +390,14 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.paging.utilization` | Gauge | `1` | Swap (unix) or pagefile (windows) utilization. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](entities/host.md#host) |
+| `system.paging.utilization` | Gauge | `1` | Swap (unix) or pagefile (windows) utilization. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
 
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`system.device`](attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Unique identifier for the device responsible for managing paging operations. | `/dev/dm-0` |
-| [`system.paging.state`](attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The memory paging state | `free` |
+| [`system.device`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Unique identifier for the device responsible for managing paging operations. | `/dev/dm-0` |
+| [`system.paging.state`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The memory paging state | `free` |
 
 ---
 
@@ -423,13 +423,13 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.paging.faults` | Counter | `{fault}` | The number of page faults. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](entities/host.md#host) |
+| `system.paging.faults` | Counter | `{fault}` | The number of page faults. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
 
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`system.paging.fault.type`](attributes/system.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The paging fault type | `minor` |
+| [`system.paging.fault.type`](/docs/registry/attributes/system.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The paging fault type | `minor` |
 
 ---
 
@@ -455,14 +455,14 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.paging.operations` | Counter | `{operation}` | The number of paging operations. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](entities/host.md#host) |
+| `system.paging.operations` | Counter | `{operation}` | The number of paging operations. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
 
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`system.paging.direction`](attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The paging access direction | `in` |
-| [`system.paging.fault.type`](attributes/system.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The paging fault type | `minor` |
+| [`system.paging.direction`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The paging access direction | `in` |
+| [`system.paging.fault.type`](/docs/registry/attributes/system.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The paging fault type | `minor` |
 
 ---
 
@@ -501,14 +501,14 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.disk.io` | Counter | `By` | Disk bytes transferred. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](entities/host.md#host) |
+| `system.disk.io` | Counter | `By` | Disk bytes transferred. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
 
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`disk.io.direction`](attributes/disk.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The disk IO operation direction. | `read` |
-| [`system.device`](attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The device identifier | `(identifier)` |
+| [`disk.io.direction`](/docs/registry/attributes/disk.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The disk IO operation direction. | `read` |
+| [`system.device`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The device identifier | `(identifier)` |
 
 ---
 
@@ -534,14 +534,14 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.disk.operations` | Counter | `{operation}` | Disk operations count. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](entities/host.md#host) |
+| `system.disk.operations` | Counter | `{operation}` | Disk operations count. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
 
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`disk.io.direction`](attributes/disk.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The disk IO operation direction. | `read` |
-| [`system.device`](attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The device identifier | `(identifier)` |
+| [`disk.io.direction`](/docs/registry/attributes/disk.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The disk IO operation direction. | `read` |
+| [`system.device`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The device identifier | `(identifier)` |
 
 ---
 
@@ -567,7 +567,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.disk.io_time` | Counter | `s` | Time disk spent activated. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](entities/host.md#host) |
+| `system.disk.io_time` | Counter | `s` | Time disk spent activated. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
 
 **[1]:** The real elapsed time ("wall clock") used in the I/O path (time from operations running in parallel are not counted). Measured as:
 
@@ -580,7 +580,7 @@ This metric is [recommended][MetricRecommended].
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`system.device`](attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The device identifier | `(identifier)` |
+| [`system.device`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The device identifier | `(identifier)` |
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
@@ -597,7 +597,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.disk.operation_time` | Counter | `s` | Sum of the time each operation took to complete. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](entities/host.md#host) |
+| `system.disk.operation_time` | Counter | `s` | Sum of the time each operation took to complete. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
 
 **[1]:** Because it is the sum of time each request took, parallel-issued requests each contribute to make the count grow. Measured as:
 
@@ -608,8 +608,8 @@ This metric is [recommended][MetricRecommended].
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`disk.io.direction`](attributes/disk.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The disk IO operation direction. | `read` |
-| [`system.device`](attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The device identifier | `(identifier)` |
+| [`disk.io.direction`](/docs/registry/attributes/disk.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The disk IO operation direction. | `read` |
+| [`system.device`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The device identifier | `(identifier)` |
 
 ---
 
@@ -635,14 +635,14 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.disk.merged` | Counter | `{operation}` | The number of disk reads/writes merged into single physical disk access operations. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](entities/host.md#host) |
+| `system.disk.merged` | Counter | `{operation}` | The number of disk reads/writes merged into single physical disk access operations. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
 
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`disk.io.direction`](attributes/disk.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The disk IO operation direction. | `read` |
-| [`system.device`](attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The device identifier | `(identifier)` |
+| [`disk.io.direction`](/docs/registry/attributes/disk.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The disk IO operation direction. | `read` |
+| [`system.device`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The device identifier | `(identifier)` |
 
 ---
 
@@ -668,13 +668,13 @@ This metric is [opt-in][MetricOptIn].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.disk.limit` | UpDownCounter | `By` | The total storage capacity of the disk. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](entities/host.md#host) |
+| `system.disk.limit` | UpDownCounter | `By` | The total storage capacity of the disk. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
 
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`system.device`](attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The device identifier | `(identifier)` |
+| [`system.device`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The device identifier | `(identifier)` |
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
@@ -695,7 +695,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.filesystem.usage` | UpDownCounter | `By` | Reports a filesystem's space usage across different states. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](entities/host.md#host) |
+| `system.filesystem.usage` | UpDownCounter | `By` | Reports a filesystem's space usage across different states. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
 
 **[1]:** The sum of all `system.filesystem.usage` values over the different `system.filesystem.state` attributes
 SHOULD equal the total storage capacity of the filesystem, that is `system.filesystem.limit`.
@@ -704,11 +704,11 @@ SHOULD equal the total storage capacity of the filesystem, that is `system.files
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`system.device`](attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Identifier for the device where the filesystem resides. | `/dev/sda`; `\network-drive` |
-| [`system.filesystem.mode`](attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The filesystem mode | `rw, ro` |
-| [`system.filesystem.mountpoint`](attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The filesystem mount path | `/mnt/data` |
-| [`system.filesystem.state`](attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The filesystem state | `used` |
-| [`system.filesystem.type`](attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The filesystem type | `ext4` |
+| [`system.device`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Identifier for the device where the filesystem resides. | `/dev/sda`; `\network-drive` |
+| [`system.filesystem.mode`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The filesystem mode | `rw, ro` |
+| [`system.filesystem.mountpoint`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The filesystem mount path | `/mnt/data` |
+| [`system.filesystem.state`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The filesystem state | `used` |
+| [`system.filesystem.type`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The filesystem type | `ext4` |
 
 ---
 
@@ -748,17 +748,17 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.filesystem.utilization` | Gauge | `1` | Fraction of filesystem bytes used. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](entities/host.md#host) |
+| `system.filesystem.utilization` | Gauge | `1` | Fraction of filesystem bytes used. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
 
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`system.device`](attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Identifier for the device where the filesystem resides. | `/dev/sda`; `\network-drive` |
-| [`system.filesystem.mode`](attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The filesystem mode | `rw, ro` |
-| [`system.filesystem.mountpoint`](attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The filesystem mount path | `/mnt/data` |
-| [`system.filesystem.state`](attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The filesystem state | `used` |
-| [`system.filesystem.type`](attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The filesystem type | `ext4` |
+| [`system.device`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Identifier for the device where the filesystem resides. | `/dev/sda`; `\network-drive` |
+| [`system.filesystem.mode`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The filesystem mode | `rw, ro` |
+| [`system.filesystem.mountpoint`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The filesystem mount path | `/mnt/data` |
+| [`system.filesystem.state`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The filesystem state | `used` |
+| [`system.filesystem.type`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The filesystem type | `ext4` |
 
 ---
 
@@ -798,16 +798,16 @@ This metric is [opt-in][MetricOptIn].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.filesystem.limit` | UpDownCounter | `By` | The total storage capacity of the filesystem. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](entities/host.md#host) |
+| `system.filesystem.limit` | UpDownCounter | `By` | The total storage capacity of the filesystem. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
 
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`system.device`](attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Identifier for the device where the filesystem resides. | `/dev/sda`; `\network-drive` |
-| [`system.filesystem.mode`](attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The filesystem mode | `rw, ro` |
-| [`system.filesystem.mountpoint`](attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The filesystem mount path | `/mnt/data` |
-| [`system.filesystem.type`](attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The filesystem type | `ext4` |
+| [`system.device`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Identifier for the device where the filesystem resides. | `/dev/sda`; `\network-drive` |
+| [`system.filesystem.mode`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The filesystem mode | `rw, ro` |
+| [`system.filesystem.mountpoint`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The filesystem mount path | `/mnt/data` |
+| [`system.filesystem.type`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The filesystem type | `ext4` |
 
 ---
 
@@ -835,16 +835,16 @@ This metric is [opt-in][MetricOptIn].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.filesystem.lock.count` | UpDownCounter | `{lock}` | Filesystem lock counts. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](entities/host.md#host) |
+| `system.filesystem.lock.count` | UpDownCounter | `{lock}` | Filesystem lock counts. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
 
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`file.lock.mechanism`](attributes/file.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The lock mechanism such as noted by [POSIX](https://pubs.opengroup.org/onlinepubs/9699919799/functions/fcntl.html) | `POSIX`; `FLOCK`; `DELEG`; `LEASE` |
-| [`file.lock.mode`](attributes/file.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Mode of lock or operation such as documented by [POSIX](https://pubs.opengroup.org/onlinepubs/9699919799/functions/fcntl.html) | `ADVISORY`; `MANDATORY`; `BREAKING`; `ACTIVE`; `BREAKER` |
-| [`file.lock.type`](attributes/file.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The lock type as represented by i.e. [POSIX](https://pubs.opengroup.org/onlinepubs/9699919799/functions/fcntl.html)'s l_type. | `read` |
-| [`system.device`](attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | OS-specific identifier for the device where the file resides. | `08:01` |
+| [`file.lock.mechanism`](/docs/registry/attributes/file.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The lock mechanism such as noted by [POSIX](https://pubs.opengroup.org/onlinepubs/9699919799/functions/fcntl.html) | `POSIX`; `FLOCK`; `DELEG`; `LEASE` |
+| [`file.lock.mode`](/docs/registry/attributes/file.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Mode of lock or operation such as documented by [POSIX](https://pubs.opengroup.org/onlinepubs/9699919799/functions/fcntl.html) | `ADVISORY`; `MANDATORY`; `BREAKING`; `ACTIVE`; `BREAKER` |
+| [`file.lock.type`](/docs/registry/attributes/file.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The lock type as represented by i.e. [POSIX](https://pubs.opengroup.org/onlinepubs/9699919799/functions/fcntl.html)'s l_type. | `read` |
+| [`system.device`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | OS-specific identifier for the device where the file resides. | `08:01` |
 
 ---
 
@@ -874,7 +874,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.network.packet.dropped` | Counter | `{packet}` | Count of packets that are dropped or discarded even though there was no error. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](entities/host.md#host) |
+| `system.network.packet.dropped` | Counter | `{packet}` | Count of packets that are dropped or discarded even though there was no error. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
 
 **[1]:** Measured as:
 
@@ -886,8 +886,8 @@ This metric is [recommended][MetricRecommended].
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`network.interface.name`](attributes/network.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The network interface name. | `lo`; `eth0` |
-| [`network.io.direction`](attributes/network.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The direction of traffic from the perspective of the observing host's physical or virtual network interface. It should not be used to represent the logical direction of a stateful connection or network flow. | `transmit` |
+| [`network.interface.name`](/docs/registry/attributes/network.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The network interface name. | `lo`; `eth0` |
+| [`network.io.direction`](/docs/registry/attributes/network.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The direction of traffic from the perspective of the observing host's physical or virtual network interface. It should not be used to represent the logical direction of a stateful connection or network flow. | `transmit` |
 
 ---
 
@@ -913,14 +913,14 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.network.packet.count` | Counter | `{packet}` | The number of packets transferred. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](entities/host.md#host) |
+| `system.network.packet.count` | Counter | `{packet}` | The number of packets transferred. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
 
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`network.io.direction`](attributes/network.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The direction of traffic from the perspective of the observing host's physical or virtual network interface. It should not be used to represent the logical direction of a stateful connection or network flow. | `transmit` |
-| [`system.device`](attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The device identifier | `(identifier)` |
+| [`network.io.direction`](/docs/registry/attributes/network.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The direction of traffic from the perspective of the observing host's physical or virtual network interface. It should not be used to represent the logical direction of a stateful connection or network flow. | `transmit` |
+| [`system.device`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The device identifier | `(identifier)` |
 
 ---
 
@@ -946,7 +946,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.network.errors` | Counter | `{error}` | Count of network errors detected. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](entities/host.md#host) |
+| `system.network.errors` | Counter | `{error}` | Count of network errors detected. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
 
 **[1]:** Measured as:
 
@@ -958,8 +958,8 @@ This metric is [recommended][MetricRecommended].
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`network.interface.name`](attributes/network.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The network interface name. | `lo`; `eth0` |
-| [`network.io.direction`](attributes/network.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The direction of traffic from the perspective of the observing host's physical or virtual network interface. It should not be used to represent the logical direction of a stateful connection or network flow. | `transmit` |
+| [`network.interface.name`](/docs/registry/attributes/network.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The network interface name. | `lo`; `eth0` |
+| [`network.io.direction`](/docs/registry/attributes/network.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The direction of traffic from the perspective of the observing host's physical or virtual network interface. It should not be used to represent the logical direction of a stateful connection or network flow. | `transmit` |
 
 ---
 
@@ -985,14 +985,14 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.network.io` | Counter | `By` | The number of bytes transmitted and received. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](entities/host.md#host) |
+| `system.network.io` | Counter | `By` | The number of bytes transmitted and received. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
 
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`network.interface.name`](attributes/network.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The network interface name. | `lo`; `eth0` |
-| [`network.io.direction`](attributes/network.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The direction of traffic from the perspective of the observing host's physical or virtual network interface. It should not be used to represent the logical direction of a stateful connection or network flow. | `transmit` |
+| [`network.interface.name`](/docs/registry/attributes/network.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The network interface name. | `lo`; `eth0` |
+| [`network.io.direction`](/docs/registry/attributes/network.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The direction of traffic from the perspective of the observing host's physical or virtual network interface. It should not be used to represent the logical direction of a stateful connection or network flow. | `transmit` |
 
 ---
 
@@ -1018,15 +1018,15 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.network.connection.count` | UpDownCounter | `{connection}` | The number of connections. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](entities/host.md#host) |
+| `system.network.connection.count` | UpDownCounter | `{connection}` | The number of connections. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
 
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`network.connection.state`](attributes/network.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The state of network connection [1] | `close_wait` |
-| [`network.interface.name`](attributes/network.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The network interface name. | `lo`; `eth0` |
-| [`network.transport`](attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [2] | `tcp`; `udp` |
+| [`network.connection.state`](/docs/registry/attributes/network.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The state of network connection [1] | `close_wait` |
+| [`network.interface.name`](/docs/registry/attributes/network.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The network interface name. | `lo`; `eth0` |
+| [`network.transport`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [2] | `tcp`; `udp` |
 
 **[1] `network.connection.state`:** Connection states are defined as part of the [rfc9293](https://datatracker.ietf.org/doc/html/rfc9293#section-3.3.2)
 
@@ -1086,13 +1086,13 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.process.count` | UpDownCounter | `{process}` | Total number of processes in each state. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](entities/host.md#host) |
+| `system.process.count` | UpDownCounter | `{process}` | Total number of processes in each state. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
 
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`process.state`](attributes/process.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The process state, e.g., [Linux Process State Codes](https://man7.org/linux/man-pages/man1/ps.1.html#PROCESS_STATE_CODES) | `running` |
+| [`process.state`](/docs/registry/attributes/process.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The process state, e.g., [Linux Process State Codes](https://man7.org/linux/man-pages/man1/ps.1.html#PROCESS_STATE_CODES) | `running` |
 
 ---
 
@@ -1120,7 +1120,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.process.created` | Counter | `{process}` | Total number of processes created over uptime of the host. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](entities/host.md#host) |
+| `system.process.created` | Counter | `{process}` | Total number of processes created over uptime of the host. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
@@ -1168,7 +1168,7 @@ an `{os}` prefix to split this metric across OSes.
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.memory.linux.available` | UpDownCounter | `By` | An estimate of how much memory is available for starting new applications, without causing swapping. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](entities/host.md#host) |
+| `system.memory.linux.available` | UpDownCounter | `By` | An estimate of how much memory is available for starting new applications, without causing swapping. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
 
 **[1]:** This is an alternative to `system.memory.usage` metric with `state=free`.
 Linux starting from 3.14 exports "available" memory. It takes "free" memory as a baseline, and then factors in kernel-specific values.
@@ -1190,7 +1190,7 @@ See also `MemAvailable` in [/proc/meminfo](https://man7.org/linux/man-pages/man5
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.memory.linux.hugepages.limit` | UpDownCounter | `{page}` | Total number of hugepages available. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](entities/host.md#host) |
+| `system.memory.linux.hugepages.limit` | UpDownCounter | `{page}` | Total number of hugepages available. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
@@ -1205,7 +1205,7 @@ See also `MemAvailable` in [/proc/meminfo](https://man7.org/linux/man-pages/man5
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.memory.linux.hugepages.page_size` | UpDownCounter | `By` | System hugepage size in bytes. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](entities/host.md#host) |
+| `system.memory.linux.hugepages.page_size` | UpDownCounter | `By` | System hugepage size in bytes. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
@@ -1220,7 +1220,7 @@ See also `MemAvailable` in [/proc/meminfo](https://man7.org/linux/man-pages/man5
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.memory.linux.hugepages.reserved` | UpDownCounter | `{page}` | Number of reserved hugepages. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](entities/host.md#host) |
+| `system.memory.linux.hugepages.reserved` | UpDownCounter | `{page}` | Number of reserved hugepages. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
 
 **[1]:** Hugepages for which a commitment to allocate has been made, but no allocation has yet been made.
 This is reported as a separate metric rather than a `usage` state because reserved pages are already counted in `free` pages.
@@ -1239,7 +1239,7 @@ They represent a subset of free pages that cannot be used for non-reserved alloc
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.memory.linux.hugepages.surplus` | UpDownCounter | `{page}` | Number of surplus hugepages. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](entities/host.md#host) |
+| `system.memory.linux.hugepages.surplus` | UpDownCounter | `{page}` | Number of surplus hugepages. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
 
 **[1]:** Overcommitted hugepages beyond the persistent pool.
 This is reported as a separate metric rather than a `usage` state because surplus pages can be in either `used` or `free` state.
@@ -1258,13 +1258,13 @@ Including them in `usage` would break the convention that `usage` states sum to 
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.memory.linux.hugepages.usage` | UpDownCounter | `{page}` | Number of hugepages in use by state. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](entities/host.md#host) |
+| `system.memory.linux.hugepages.usage` | UpDownCounter | `{page}` | Number of hugepages in use by state. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
 
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`system.memory.linux.hugepages.state`](attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The Linux HugePages memory state | `free`; `used` |
+| [`system.memory.linux.hugepages.state`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The Linux HugePages memory state | `free`; `used` |
 
 ---
 
@@ -1288,13 +1288,13 @@ Including them in `usage` would break the convention that `usage` states sum to 
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.memory.linux.hugepages.utilization` | Gauge | `1` | Percentage of hugepages in use by state. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](entities/host.md#host) |
+| `system.memory.linux.hugepages.utilization` | Gauge | `1` | Percentage of hugepages in use by state. | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
 
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`system.memory.linux.hugepages.state`](attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The Linux HugePages memory state | `free`; `used` |
+| [`system.memory.linux.hugepages.state`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The Linux HugePages memory state | `free`; `used` |
 
 ---
 
@@ -1320,7 +1320,7 @@ This metric is [opt-in][MetricOptIn].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.memory.linux.shared` | UpDownCounter | `By` | Shared memory used (mostly by tmpfs). [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](entities/host.md#host) |
+| `system.memory.linux.shared` | UpDownCounter | `By` | Shared memory used (mostly by tmpfs). [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
 
 **[1]:** Equivalent of `shared` from [`free` command](https://man7.org/linux/man-pages/man1/free.1.html) or
 `Shmem` from [`/proc/meminfo`](https://man7.org/linux/man-pages/man5/proc.5.html)"
@@ -1340,7 +1340,7 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `system.memory.linux.slab.usage` | UpDownCounter | `By` | Reports the memory used by the Linux kernel for managing caches of frequently used objects. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](entities/host.md#host) |
+| `system.memory.linux.slab.usage` | UpDownCounter | `By` | Reports the memory used by the Linux kernel for managing caches of frequently used objects. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
 
 **[1]:** The sum over the `reclaimable` and `unreclaimable` state values in `memory.linux.slab.usage` SHOULD be equal to the total slab memory available on the system.
 Note that the total slab memory is not constant and may vary over time.
@@ -1350,7 +1350,7 @@ See also the [Slab allocator](https://blogs.oracle.com/linux/post/understanding-
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`system.memory.linux.slab.state`](attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The Linux Slab memory state | `reclaimable`; `unreclaimable` |
+| [`system.memory.linux.slab.state`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The Linux Slab memory state | `reclaimable`; `unreclaimable` |
 
 ---
 

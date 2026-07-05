@@ -41,9 +41,9 @@ The following table describes how to populate attributes on the `host` entity on
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`host.arch`](attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The CPU architecture the host system is running on. | `s390x` |
-| [`host.name`](attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Name of the host. On z/OS, SHOULD be the full qualified hostname used to register the z/OS system in DNS. | `SYS1.DOMAIN.COM` |
-| [`host.id`](attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Unique host ID. On z/OS, SHOULD be the concatenation of sysplex name and SMFID, separated by a dash | `SYSPLEX1-SYS1` |
+| [`host.arch`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The CPU architecture the host system is running on. | `s390x` |
+| [`host.name`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Name of the host. On z/OS, SHOULD be the full qualified hostname used to register the z/OS system in DNS. | `SYS1.DOMAIN.COM` |
+| [`host.id`](/docs/registry/attributes/host.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Unique host ID. On z/OS, SHOULD be the concatenation of sysplex name and SMFID, separated by a dash | `SYSPLEX1-SYS1` |
 
 ---
 
@@ -77,10 +77,10 @@ The following table describes how to populate the operating system attributes on
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`os.type`](attributes/os.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The operating system type. | `zos` |
-| [`os.version`](attributes/os.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The version string of the operating system. On z/OS, SHOULD be the release returned by the command `d iplinfo`. | `3.1.0` |
-| [`os.description`](attributes/os.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Human readable OS version information, e.g., as reported by command `d iplinfo`. | `IBM z/OS 3.1` |
-| [`os.name`](attributes/os.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Human readable operating system name. | `z/OS` |
+| [`os.type`](/docs/registry/attributes/os.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The operating system type. | `zos` |
+| [`os.version`](/docs/registry/attributes/os.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The version string of the operating system. On z/OS, SHOULD be the release returned by the command `d iplinfo`. | `3.1.0` |
+| [`os.description`](/docs/registry/attributes/os.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Human readable OS version information, e.g., as reported by command `d iplinfo`. | `IBM z/OS 3.1` |
+| [`os.name`](/docs/registry/attributes/os.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Human readable operating system name. | `z/OS` |
 
 ---
 
@@ -117,12 +117,12 @@ The following table describes how to populate attributes on the `process` entity
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`process.command`](attributes/process.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | string | The command used to launch the process (i.e. the command name). On z/OS, SHOULD be set to the name of the job used to start the z/OS system software. | `CICSSTRT` |
-| [`process.pid`](attributes/process.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | int | Process identifier (PID). [1] | `008A` |
-| [`process.owner`](attributes/process.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Opt-In` | string | The username of the user that owns the process. [2] | `CICSUSR` |
-| [`process.runtime.description`](attributes/process.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Opt-In` | string | An additional description about the runtime of the process, for example a specific vendor customization of the runtime environment. | `IBM Customer Information Control System (CICS) Transaction Server for z/OS Version 5.6` |
-| [`process.runtime.name`](attributes/process.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Opt-In` | string | The name of the runtime of this process. | `CICS Transaction Server z/OS Version 5.6` |
-| [`process.runtime.version`](attributes/process.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Opt-In` | string | The version of the runtime of this process, as returned by the runtime without modification. | `5.6` |
+| [`process.command`](/docs/registry/attributes/process.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | string | The command used to launch the process (i.e. the command name). On z/OS, SHOULD be set to the name of the job used to start the z/OS system software. | `CICSSTRT` |
+| [`process.pid`](/docs/registry/attributes/process.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | int | Process identifier (PID). [1] | `008A` |
+| [`process.owner`](/docs/registry/attributes/process.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Opt-In` | string | The username of the user that owns the process. [2] | `CICSUSR` |
+| [`process.runtime.description`](/docs/registry/attributes/process.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Opt-In` | string | An additional description about the runtime of the process, for example a specific vendor customization of the runtime environment. | `IBM Customer Information Control System (CICS) Transaction Server for z/OS Version 5.6` |
+| [`process.runtime.name`](/docs/registry/attributes/process.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Opt-In` | string | The name of the runtime of this process. | `CICS Transaction Server z/OS Version 5.6` |
+| [`process.runtime.version`](/docs/registry/attributes/process.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Opt-In` | string | The version of the runtime of this process, as returned by the runtime without modification. | `5.6` |
 
 **[1] `process.pid`:** On z/OS, SHOULD be set to the Address Space Identifier.
 

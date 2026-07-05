@@ -63,8 +63,8 @@ This metric is obtained from [`MemoryPoolMXBean#getUsage()`](https://docs.oracle
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`jvm.memory.pool.name`](attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Name of the memory pool. [1] | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` |
-| [`jvm.memory.type`](attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The type of memory. | `heap`; `non_heap` |
+| [`jvm.memory.pool.name`](/docs/registry/attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Name of the memory pool. [1] | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` |
+| [`jvm.memory.type`](/docs/registry/attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The type of memory. | `heap`; `non_heap` |
 
 **[1] `jvm.memory.pool.name`:** Pool names are generally obtained via [MemoryPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
 
@@ -99,8 +99,8 @@ This metric is obtained from [`MemoryPoolMXBean#getUsage()`](https://docs.oracle
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`jvm.memory.pool.name`](attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Name of the memory pool. [1] | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` |
-| [`jvm.memory.type`](attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The type of memory. | `heap`; `non_heap` |
+| [`jvm.memory.pool.name`](/docs/registry/attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Name of the memory pool. [1] | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` |
+| [`jvm.memory.type`](/docs/registry/attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The type of memory. | `heap`; `non_heap` |
 
 **[1] `jvm.memory.pool.name`:** Pool names are generally obtained via [MemoryPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
 
@@ -135,8 +135,8 @@ This metric is obtained from [`MemoryPoolMXBean#getUsage()`](https://docs.oracle
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`jvm.memory.pool.name`](attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Name of the memory pool. [1] | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` |
-| [`jvm.memory.type`](attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The type of memory. | `heap`; `non_heap` |
+| [`jvm.memory.pool.name`](/docs/registry/attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Name of the memory pool. [1] | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` |
+| [`jvm.memory.type`](/docs/registry/attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The type of memory. | `heap`; `non_heap` |
 
 **[1] `jvm.memory.pool.name`:** Pool names are generally obtained via [MemoryPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
 
@@ -171,8 +171,8 @@ This metric is obtained from [`MemoryPoolMXBean#getCollectionUsage()`](https://d
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`jvm.memory.pool.name`](attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Name of the memory pool. [1] | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` |
-| [`jvm.memory.type`](attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The type of memory. | `heap`; `non_heap` |
+| [`jvm.memory.pool.name`](/docs/registry/attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Name of the memory pool. [1] | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` |
+| [`jvm.memory.type`](/docs/registry/attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The type of memory. | `heap`; `non_heap` |
 
 **[1] `jvm.memory.pool.name`:** Pool names are generally obtained via [MemoryPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
 
@@ -216,9 +216,9 @@ This metric SHOULD be specified with [`ExplicitBucketBoundaries` advisory parame
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`jvm.gc.action`](attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Name of the garbage collector action. [1] | `end of minor GC`; `end of major GC` |
-| [`jvm.gc.name`](attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Name of the garbage collector. [2] | `G1 Young Generation`; `G1 Old Generation` |
-| [`jvm.gc.cause`](attributes/jvm.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Name of the garbage collector cause. [3] | `System.gc()`; `Allocation Failure` |
+| [`jvm.gc.action`](/docs/registry/attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Name of the garbage collector action. [1] | `end of minor GC`; `end of major GC` |
+| [`jvm.gc.name`](/docs/registry/attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Name of the garbage collector. [2] | `G1 Young Generation`; `G1 Old Generation` |
+| [`jvm.gc.cause`](/docs/registry/attributes/jvm.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Name of the garbage collector cause. [3] | `System.gc()`; `Allocation Failure` |
 
 **[1] `jvm.gc.action`:** Garbage collector action is generally obtained via [GarbageCollectionNotificationInfo#getGcAction()](https://docs.oracle.com/en/java/javase/11/docs/api/jdk.management/com/sun/management/GarbageCollectionNotificationInfo.html#getGcAction()).
 
@@ -261,8 +261,8 @@ Note that this is the number of platform threads (as opposed to virtual threads)
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`jvm.thread.daemon`](attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | boolean | Whether the thread is daemon or not. | |
-| [`jvm.thread.state`](attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | State of the thread. | `runnable`; `blocked` |
+| [`jvm.thread.daemon`](/docs/registry/attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | boolean | Whether the thread is daemon or not. | |
+| [`jvm.thread.state`](/docs/registry/attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | State of the thread. | `runnable`; `blocked` |
 
 ---
 
@@ -432,8 +432,8 @@ This metric is obtained from [`MemoryPoolMXBean#getUsage()`](https://docs.oracle
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`jvm.memory.pool.name`](attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Name of the memory pool. [1] | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` |
-| [`jvm.memory.type`](attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The type of memory. | `heap`; `non_heap` |
+| [`jvm.memory.pool.name`](/docs/registry/attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Name of the memory pool. [1] | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` |
+| [`jvm.memory.type`](/docs/registry/attributes/jvm.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The type of memory. | `heap`; `non_heap` |
 
 **[1] `jvm.memory.pool.name`:** Pool names are generally obtained via [MemoryPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
 
@@ -509,7 +509,7 @@ This metric is obtained from [`BufferPoolMXBean#getMemoryUsed()`](https://docs.o
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`jvm.buffer.pool.name`](attributes/jvm.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Name of the buffer pool. [1] | `mapped`; `direct` |
+| [`jvm.buffer.pool.name`](/docs/registry/attributes/jvm.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Name of the buffer pool. [1] | `mapped`; `direct` |
 
 **[1] `jvm.buffer.pool.name`:** Pool names are generally obtained via [BufferPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/BufferPoolMXBean.html#getName()).
 
@@ -535,7 +535,7 @@ This metric is obtained from [`BufferPoolMXBean#getTotalCapacity()`](https://doc
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`jvm.buffer.pool.name`](attributes/jvm.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Name of the buffer pool. [1] | `mapped`; `direct` |
+| [`jvm.buffer.pool.name`](/docs/registry/attributes/jvm.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Name of the buffer pool. [1] | `mapped`; `direct` |
 
 **[1] `jvm.buffer.pool.name`:** Pool names are generally obtained via [BufferPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/BufferPoolMXBean.html#getName()).
 
@@ -561,7 +561,7 @@ This metric is obtained from [`BufferPoolMXBean#getCount()`](https://docs.oracle
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`jvm.buffer.pool.name`](attributes/jvm.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Name of the buffer pool. [1] | `mapped`; `direct` |
+| [`jvm.buffer.pool.name`](/docs/registry/attributes/jvm.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Name of the buffer pool. [1] | `mapped`; `direct` |
 
 **[1] `jvm.buffer.pool.name`:** Pool names are generally obtained via [BufferPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/BufferPoolMXBean.html#getName()).
 

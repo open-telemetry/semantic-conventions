@@ -45,16 +45,16 @@ are considered errors.
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`error.type`](attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the operation failed. | string | Describes a class of error the operation ended with. [1] | `DEADLINE_EXCEEDED`; `java.net.UnknownHostException`; `-32602` |
-| [`jsonrpc.protocol.version`](attributes/jsonrpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If other than the default version (`1.0`) | string | Protocol version, as specified in the `jsonrpc` property of the request and its corresponding response. | `2.0`; `1.0` |
-| [`rpc.method_original`](attributes/rpc.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Conditionally Required` If and only if it's different than `rpc.method`. | string | The original name of the method used by the client. | `com.myservice.EchoService/catchAll`; `com.myservice.EchoService/unknownMethod`; `InvalidMethod` |
-| [`rpc.response.status_code`](attributes/rpc.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Conditionally Required` when available | string | The [`error.code`](https://www.jsonrpc.org/specification#error_object) property of response if it is an error response recorded as a string. [2] | `OK`; `DEADLINE_EXCEEDED`; `-32602` |
-| [`server.port`](attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if applicable and if `server.address` is set. | int | Server port number. [3] | `80`; `8080`; `443` |
-| [`jsonrpc.request.id`](attributes/jsonrpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A string representation of the `id` property of the request and its corresponding response. [4] | `10`; `request-7` |
-| [`network.peer.address`](attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Peer address of the network connection - IP address or Unix domain socket name. [5] | `10.1.2.80`; `/tmp/my.sock` |
-| [`network.peer.port`](attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` If `network.peer.address` is set. | int | Peer port number of the network connection. | `65123` |
-| [`server.address`](attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` [6] | string | A string identifying a group of RPC server instances request is sent to. | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
-| [`rpc.method`](attributes/rpc.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Opt-In` | string | JSON-RPC method name provided in the request. [7] | `com.example.ExampleService/exampleMethod`; `EchoService/Echo`; `_OTHER` |
+| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the operation failed. | string | Describes a class of error the operation ended with. [1] | `DEADLINE_EXCEEDED`; `java.net.UnknownHostException`; `-32602` |
+| [`jsonrpc.protocol.version`](/docs/registry/attributes/jsonrpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If other than the default version (`1.0`) | string | Protocol version, as specified in the `jsonrpc` property of the request and its corresponding response. | `2.0`; `1.0` |
+| [`rpc.method_original`](/docs/registry/attributes/rpc.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Conditionally Required` If and only if it's different than `rpc.method`. | string | The original name of the method used by the client. | `com.myservice.EchoService/catchAll`; `com.myservice.EchoService/unknownMethod`; `InvalidMethod` |
+| [`rpc.response.status_code`](/docs/registry/attributes/rpc.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Conditionally Required` when available | string | The [`error.code`](https://www.jsonrpc.org/specification#error_object) property of response if it is an error response recorded as a string. [2] | `OK`; `DEADLINE_EXCEEDED`; `-32602` |
+| [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if applicable and if `server.address` is set. | int | Server port number. [3] | `80`; `8080`; `443` |
+| [`jsonrpc.request.id`](/docs/registry/attributes/jsonrpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A string representation of the `id` property of the request and its corresponding response. [4] | `10`; `request-7` |
+| [`network.peer.address`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Peer address of the network connection - IP address or Unix domain socket name. [5] | `10.1.2.80`; `/tmp/my.sock` |
+| [`network.peer.port`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` If `network.peer.address` is set. | int | Peer port number of the network connection. | `65123` |
+| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` [6] | string | A string identifying a group of RPC server instances request is sent to. | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
+| [`rpc.method`](/docs/registry/attributes/rpc.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Opt-In` | string | JSON-RPC method name provided in the request. [7] | `com.example.ExampleService/exampleMethod`; `EchoService/Echo`; `_OTHER` |
 
 **[1] `error.type`:** If the RPC fails with an error before status code is returned,
 `error.type` SHOULD be set to the exception type (its fully-qualified class name, if applicable)
@@ -87,9 +87,9 @@ General-purpose JSON-RPC instrumentations therefore SHOULD NOT set this attribut
 The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):
 
-* [`rpc.method`](attributes/rpc.md)
-* [`server.address`](attributes/server.md)
-* [`server.port`](attributes/server.md)
+* [`rpc.method`](/docs/registry/attributes/rpc.md)
+* [`server.address`](/docs/registry/attributes/server.md)
+* [`server.port`](/docs/registry/attributes/server.md)
 
 ---
 
@@ -129,16 +129,16 @@ are considered errors.
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`error.type`](attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the operation failed. | string | Describes a class of error the operation ended with. [1] | `DEADLINE_EXCEEDED`; `java.net.UnknownHostException`; `-32602` |
-| [`jsonrpc.protocol.version`](attributes/jsonrpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If other than the default version (`1.0`) | string | Protocol version, as specified in the `jsonrpc` property of the request and its corresponding response. | `2.0`; `1.0` |
-| [`rpc.method_original`](attributes/rpc.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Conditionally Required` If and only if it's different than `rpc.method`. | string | The original name of the method used by the client. | `com.myservice.EchoService/catchAll`; `com.myservice.EchoService/unknownMethod`; `InvalidMethod` |
-| [`rpc.response.status_code`](attributes/rpc.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Conditionally Required` when available | string | The [`error.code`](https://www.jsonrpc.org/specification#error_object) property of response recorded as a string. [2] | `OK`; `DEADLINE_EXCEEDED`; `-32602` |
-| [`server.address`](attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If available. | string | A string identifying a group of RPC server instances request is sent to. [3] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
-| [`server.port`](attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if applicable and if `server.address` is set. | int | Server port number. [4] | `80`; `8080`; `443` |
-| [`jsonrpc.request.id`](attributes/jsonrpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A string representation of the `id` property of the request and its corresponding response. [5] | `10`; `request-7` |
-| [`network.peer.address`](attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Peer address of the network connection - IP address or Unix domain socket name. [6] | `10.1.2.80`; `/tmp/my.sock` |
-| [`network.peer.port`](attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` If `network.peer.address` is set. | int | Peer port number of the network connection. | `65123` |
-| [`rpc.method`](attributes/rpc.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Opt-In` | string | JSON-RPC method name provided in the request. [7] | `com.example.ExampleService/exampleMethod`; `EchoService/Echo`; `_OTHER` |
+| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the operation failed. | string | Describes a class of error the operation ended with. [1] | `DEADLINE_EXCEEDED`; `java.net.UnknownHostException`; `-32602` |
+| [`jsonrpc.protocol.version`](/docs/registry/attributes/jsonrpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If other than the default version (`1.0`) | string | Protocol version, as specified in the `jsonrpc` property of the request and its corresponding response. | `2.0`; `1.0` |
+| [`rpc.method_original`](/docs/registry/attributes/rpc.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Conditionally Required` If and only if it's different than `rpc.method`. | string | The original name of the method used by the client. | `com.myservice.EchoService/catchAll`; `com.myservice.EchoService/unknownMethod`; `InvalidMethod` |
+| [`rpc.response.status_code`](/docs/registry/attributes/rpc.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Conditionally Required` when available | string | The [`error.code`](https://www.jsonrpc.org/specification#error_object) property of response recorded as a string. [2] | `OK`; `DEADLINE_EXCEEDED`; `-32602` |
+| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If available. | string | A string identifying a group of RPC server instances request is sent to. [3] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
+| [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if applicable and if `server.address` is set. | int | Server port number. [4] | `80`; `8080`; `443` |
+| [`jsonrpc.request.id`](/docs/registry/attributes/jsonrpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A string representation of the `id` property of the request and its corresponding response. [5] | `10`; `request-7` |
+| [`network.peer.address`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Peer address of the network connection - IP address or Unix domain socket name. [6] | `10.1.2.80`; `/tmp/my.sock` |
+| [`network.peer.port`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` If `network.peer.address` is set. | int | Peer port number of the network connection. | `65123` |
+| [`rpc.method`](/docs/registry/attributes/rpc.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Opt-In` | string | JSON-RPC method name provided in the request. [7] | `com.example.ExampleService/exampleMethod`; `EchoService/Echo`; `_OTHER` |
 
 **[1] `error.type`:** If the RPC fails with an error before status code is returned,
 `error.type` SHOULD be set to the exception type (its fully-qualified class name, if applicable)
@@ -173,9 +173,9 @@ General-purpose JSON-RPC instrumentations therefore SHOULD NOT set this attribut
 The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):
 
-* [`rpc.method`](attributes/rpc.md)
-* [`server.address`](attributes/server.md)
-* [`server.port`](attributes/server.md)
+* [`rpc.method`](/docs/registry/attributes/rpc.md)
+* [`server.address`](/docs/registry/attributes/server.md)
+* [`server.port`](/docs/registry/attributes/server.md)
 
 ---
 
