@@ -10,7 +10,7 @@ change_type: enhancement
 component: messaging
 
 # A brief description of the change. Surround your text with quotes ("") if it needs to start with a backtick (`).
-note: Add `messaging.cluster.id` attribute identifying the cluster of brokers a client is connected to, and reference it from Kafka spans.
+note: Add `messaging.kafka.cluster.id` attribute identifying the Kafka cluster a client is connected to, and reference it from Kafka spans.
 
 # Mandatory: One or more tracking issues related to the change. You can use the PR number here if no issue exists.
 # The values here must be integers.

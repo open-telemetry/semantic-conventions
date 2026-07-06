@@ -67,9 +67,9 @@ For Apache Kafka, the following additional attributes are defined:
 | [`messaging.operation.type`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If applicable. | string | A string identifying the type of the messaging operation. [7] | `create`; `send`; `receive` |
 | [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If available. | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [8] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 | [`messaging.client.id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A unique identifier for the client that consumes or produces a message. | `client-5`; `myhost@8742@s8083jm` |
-| [`messaging.cluster.id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The Kafka cluster id, obtained from the broker metadata exposed through the Kafka client (or AdminClient) API. [9] | `MkU3OEVBNTcwNTJENDM2Qk`; `k8s-prod-cluster-1` |
 | [`messaging.consumer.group.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Kafka [consumer group id](https://docs.confluent.io/platform/current/clients/consumer.html). | `my-group`; `indexer` |
 | [`messaging.destination.partition.id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | String representation of the partition id the message (or batch) is sent to or received from. | `1` |
+| [`messaging.kafka.cluster.id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The Kafka cluster id, obtained from the broker metadata exposed through the Kafka client (or AdminClient) API. [9] | `MkU3OEVBNTcwNTJENDM2Qk` |
 | [`messaging.kafka.message.key`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` If span describes operation on a single message. | string | Message keys in Kafka are used for grouping alike messages to ensure they're processed on the same partition. They differ from `messaging.message.id` in that they're not unique. If the key is `null`, the attribute MUST NOT be set. [10] | `myKey` |
 | [`messaging.kafka.offset`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` If span describes operation on a single message. | int | The offset of a record in the corresponding Kafka partition. | `42` |
 | [`messaging.message.id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` If span describes operation on a single message. | string | A value used by the messaging system as an identifier for the message, represented as a string. | `452a7c7c7c7048c2f887f61572b18fc2` |
@@ -117,8 +117,7 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 
 **[8] `server.address`:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name.
 
-**[9] `messaging.cluster.id`:** The cluster id is reported by the messaging system and identifies the broker cluster independently of the individual brokers the client is configured to connect to.
-Semantic conventions for individual messaging systems SHOULD document whether `messaging.cluster.id` is applicable and how it can be obtained. For example, Apache Kafka exposes a cluster id through the broker metadata available via its client (or AdminClient) API.
+**[9] `messaging.kafka.cluster.id`:** The cluster id is a unique identifier reported by the Kafka broker. It identifies the cluster independently of the individual brokers the client is configured to connect to, and remains stable even if broker host names, IP addresses, or ports change.
 
 **[10] `messaging.kafka.message.key`:** If the key type is not string, it's string representation has to be supplied for the attribute. If the key has no unambiguous, canonical string form, don't include its value.
 
@@ -215,7 +214,7 @@ flowchart LR;
 | `messaging.operation.name` | `"send"` | `"poll"` | `"process"` | `"commit"` |
 | `messaging.operation.type` | `"send"` | `"receive"` | `"process"` | `"settle"` |
 | `messaging.client.id` | `"5"` | `"8"` | `"8"` | `"8"` |
-| `messaging.cluster.id` | `"MkU3OEVBNTcwNTJENDM2Qk"` | `"MkU3OEVBNTcwNTJENDM2Qk"` | `"MkU3OEVBNTcwNTJENDM2Qk"` | `"MkU3OEVBNTcwNTJENDM2Qk"` |
+| `messaging.kafka.cluster.id` | `"MkU3OEVBNTcwNTJENDM2Qk"` | `"MkU3OEVBNTcwNTJENDM2Qk"` | `"MkU3OEVBNTcwNTJENDM2Qk"` | `"MkU3OEVBNTcwNTJENDM2Qk"` |
 | `messaging.kafka.message.key` | `"myKey"` | `"myKey"` | `"myKey"` | |
 | `messaging.kafka.offset` | | `"12"` | `"12"` | `"12"` |
 
