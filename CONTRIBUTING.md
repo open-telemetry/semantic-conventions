@@ -220,9 +220,17 @@ linkTitle: HTTP
 --->
 ```
 
-When creating new markdown files, you should provide the `linkTitle` attribute.
-This is used to generate the navigation bar on the website,
-and will be listed relative to the "parent" document.
+`linkTitle` is a short version of the page's title, shown in the website's
+[left side navigation][docsy-nav]. When adding a new Markdown file, keep it to
+the sub-area name -- for example, `Spans`, `Metrics`, or `Resources` -- instead of
+repeating the page's full title. Omit `linkTitle` when it would be identical to
+the title.
+
+For title and heading capitalization, follow the
+[OpenTelemetry documentation style guide][otel-style-guide].
+
+[docsy-nav]: https://www.docsy.dev/docs/content/navigation/#side-nav
+[otel-style-guide]: https://opentelemetry.io/docs/contributing/style-guide/
 
 ### 3. Check new convention
 

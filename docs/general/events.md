@@ -9,7 +9,7 @@ aliases: [events-general]
 
 This document describes the semantic conventions for Events that are
 represented in the data model by an
-[`EventRecord`](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.57.0/specification/logs/data-model.md#log-and-event-record-definition)
+[`EventRecord`](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.58.0/specification/logs/data-model.md#log-and-event-record-definition)
 (a `LogRecord` with an event name).
 
 <!-- START doctoc -->
@@ -68,7 +68,7 @@ domain-specific occurrence it represents in the instrumented component, the
 Semantic conventions MUST document the event name.
 
 An event MUST have an
-[event name](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.57.0/specification/logs/data-model.md#field-eventname)
+[event name](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.58.0/specification/logs/data-model.md#field-eventname)
 that uniquely identifies the event structure.
 
 Event names uniquely identify an event structure. When users query for a
@@ -91,18 +91,18 @@ semantic convention.
 ## Timestamps
 
 Events MUST have
-[Timestamp](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.57.0/specification/logs/data-model.md#field-timestamp)
+[Timestamp](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.58.0/specification/logs/data-model.md#field-timestamp)
 set to the time when the event occurred.
 
 Semantic conventions MUST NOT define a value for
-[ObservedTimestamp](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.57.0/specification/logs/data-model.md#field-observedtimestamp);
+[ObservedTimestamp](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.58.0/specification/logs/data-model.md#field-observedtimestamp);
 SDKs, collectors, or other components should populate it to reflect when the
 event was observed/received.
 
 ## Severity
 
 Semantic conventions SHOULD specify a default
-[severity number](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.57.0/specification/logs/data-model.md#field-severitynumber).
+[severity number](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.58.0/specification/logs/data-model.md#field-severitynumber).
 
 Define the severity number based on the expected impact of the occurrence.
 If the same event can have different severity depending on context, document the
@@ -112,7 +112,7 @@ For exception events, follow the severity guidance in
 [Semantic conventions for exceptions in logs](/docs/exceptions/exceptions-logs.md#severity).
 
 Semantic conventions MUST NOT define a
-[severity text](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.57.0/specification/logs/data-model.md#field-severitytext).
+[severity text](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.58.0/specification/logs/data-model.md#field-severitytext).
 
 ## Attributes
 
@@ -139,7 +139,7 @@ event details and context:
 ## Body
 
 Semantic conventions MUST NOT define a value for
-[body](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.57.0/specification/logs/data-model.md#field-body)
+[body](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.58.0/specification/logs/data-model.md#field-body)
 except to represent a string display message of the event.
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status

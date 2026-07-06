@@ -1,0 +1,82 @@
+name: Post-release
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+
+jobs:
+  bump-schema-url:
+    runs-on: ubuntu-latest
+    if: ${{ github.repository_owner == 'open-telemetry' }}
+    permissions:
+      contents: write # required for pushing changes
+    steps:
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          ref: main
+
+      # only bump the development schema_url for minor/major releases,
+      # patch releases are cut from a release branch and don't move main forward.
+      # skip flag is controlling this
+      - name: Compute next development version
+        id: version
+        run: |
+          tag="${{ github.event.release.tag_name }}"
+          version="${tag#v}"
+          if [[ ! "$version" =~ ^([0-9]+)\.([0-9]+)\.([0-9]+)$ ]]; then
+            echo "unexpected release version: $version"
+            exit 1
+          fi
+          major="${BASH_REMATCH[1]}"
+          minor="${BASH_REMATCH[2]}"
+          patch="${BASH_REMATCH[3]}"
+          if [[ "$patch" != "0" ]]; then
+            echo "patch release $version, skipping schema_url bump"
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          next_version="$major.$((minor + 1)).0-unreleased"
+          echo "next_version=$next_version" >> "$GITHUB_OUTPUT"
+
+      - name: Use CLA approved github bot
+        if: ${{ steps.version.outputs.skip != 'true' }}
+        run: .github/scripts/use-cla-approved-github-bot.sh
+
+      - name: Bump schema_url in manifest
+        if: ${{ steps.version.outputs.skip != 'true' }}
+        run: |
+          next_version="${{ steps.version.outputs.next_version }}"
+          sed -i "s|^schema_url: https://opentelemetry.io/schemas/.*$|schema_url: https://opentelemetry.io/schemas/$next_version|" model/manifest.yaml
+
+      - uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
+        if: ${{ steps.version.outputs.skip != 'true' }}
+        id: otelbot-token
+        with:
+          app-id: ${{ vars.OTELBOT_APP_ID }}
+          private-key: ${{ secrets.OTELBOT_PRIVATE_KEY }}
+
+      - name: Create pull request
+        if: ${{ steps.version.outputs.skip != 'true' }}
+        env:
+          # not using secrets.GITHUB_TOKEN since pull requests from that token do not run workflows
+          GH_TOKEN: ${{ steps.otelbot-token.outputs.token }}
+          VERSION: ${{ github.event.release.tag_name }}
+          NEXT_VERSION: ${{ steps.version.outputs.next_version }}
+        run: |
+          message="[chore] Bump development schema_url to ${NEXT_VERSION}"
+          body="Post-release update for \`${VERSION}\`: bump \`model/manifest.yaml\` schema_url to \`https://opentelemetry.io/schemas/${NEXT_VERSION}\`."
+          branch="otelbot/bump-schema-url-${NEXT_VERSION}"
+
+          git checkout -b "$branch"
+          if git diff --quiet; then
+            echo "No changes to commit; schema_url already up to date."
+            exit 0
+          fi
+          git commit -a -m "$message"
+          git push --set-upstream origin "$branch"
+          gh pr create --title "$message" \
+                       --body "$body" \
+                       --base main

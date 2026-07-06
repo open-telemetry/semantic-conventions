@@ -1,4 +1,0 @@
-change_type: enhancement
-component: rpc
-note: "Clarify how to populate `server.address` and `server.port` for Dubbo consumers using service discovery."
-issues: [3408]
