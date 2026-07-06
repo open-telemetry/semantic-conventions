@@ -20,6 +20,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      stability:
+        # TODO https://github.com/open-telemetry/semantic-conventions/issues/1616
+        policy_exceptions:
+          - metric_lower_stability_attribute
     brief: "CPU time used by the process."
     note: >
       Meter name: `System.Runtime`; Added in: .NET 9.0.
