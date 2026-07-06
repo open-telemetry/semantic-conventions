@@ -1,4 +1,4 @@
 change_type: enhancement
 component: vcs
-note: "Define span conventions for Version Control System (VCS) operations and introduce the `vcs.action` attribute."
+note: "Define span conventions for Version Control System (VCS) operations and introduce the `vcs.operation.name` attribute."
 issues: [3767]

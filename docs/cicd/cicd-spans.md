@@ -214,9 +214,12 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 This span describes a Version Control System (VCS) operation client, such as a Git CLI command or a CI/CD pipeline step cloning a repository.
 
+VCS client spans are typically emitted by CI/CD pipeline steps executing VCS operations (e.g. checkout or clone tasks), or by wrapper tools and CLI utilities performing Git, SVN, or Mercurial operations.
+
 **Span name** MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/trace/api.md#span).
 
-The span name SHOULD be `{vcs.operation.name}`.
+The span name SHOULD follow the `{vcs.operation.name} {vcs.repository.name}` pattern, or `{vcs.operation.name}` if target information is not applicable or available.
+If the operation target is more specific (e.g. a branch or ref), the span name MAY be `{vcs.operation.name} {vcs.ref.head.name}` or `{vcs.operation.name} {vcs.repository.name} {vcs.ref.head.name}`.
 
 **Span kind** SHOULD be `CLIENT`.
 
@@ -229,7 +232,7 @@ The span name SHOULD be `{vcs.operation.name}`.
 | [`vcs.operation.name`](/docs/registry/attributes/vcs.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The type of action or operation performed by a VCS. [1] | `clone`; `fetch`; `pull`; `push`; `checkout`; `sync` |
 | [`vcs.repository.name`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Required` | string | The human readable name of the repository. It SHOULD NOT include any additional identifier like Group/SubGroup in GitLab or organization in GitHub. [2] | `semantic-conventions`; `my-cool-repo` |
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If the VCS operation fails. | string | Describes a class of error the operation ended with. [3] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` |
-| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The remote VCS server address. [4] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
+| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The remote VCS server address (e.g. github.com, gitlab.com, or self-hosted Git server). [4] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | Server port number. [5] | `80`; `8080`; `443` |
 | [`vcs.ref.head.name`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. [6] | `my-feature-branch`; `tag-1-test` |
 | [`vcs.ref.head.revision`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The revision, literally [revised version](https://www.merriam-webster.com/dictionary/revision), The revision most often refers to a commit object in Git, or a revision number in SVN. [7] | `9d59409acf479dfa0df1aa568182e43e43df8bbe28d60fcf2bc52e30068802cc`; `main`; `123`; `HEAD` |
