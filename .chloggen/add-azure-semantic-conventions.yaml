@@ -1,7 +1,0 @@
-change_type: enhancement
-
-component: azure
-
-note: Add `azure.resource_group.name` attribute for the name of the Azure resource group the resource belongs to and document that `cloud.account.id` maps to the Azure subscription ID.
-
-issues: [3697, 3708]
