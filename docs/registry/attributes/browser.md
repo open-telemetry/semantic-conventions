@@ -16,6 +16,10 @@ The web browser attributes
 | <a id="browser-language" href="#browser-language">`browser.language`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Preferred language of the user using the browser [2] | `en`; `en-US`; `fr`; `fr-FR` |
 | <a id="browser-mobile" href="#browser-mobile">`browser.mobile`</a> | ![Development](https://img.shields.io/badge/-development-blue) | boolean | A boolean that is true if the browser is running on a mobile device [3] | |
 | <a id="browser-platform" href="#browser-platform">`browser.platform`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The platform on which the browser is running [4] | `Windows`; `macOS`; `Android` |
+| <a id="browser-web-vital-delta" href="#browser-web-vital-delta">`browser.web_vital.delta`</a> | ![Development](https://img.shields.io/badge/-development-blue) | double | The delta between the current value and the last-reported value. See [delta](https://github.com/GoogleChrome/web-vitals?tab=readme-ov-file#report-only-the-delta-of-changes). | `0.2` |
+| <a id="browser-web-vital-id" href="#browser-web-vital-id">`browser.web_vital.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | A unique ID representing this particular metric instance. | `v3-1677874579383-6381583661209` |
+| <a id="browser-web-vital-name" href="#browser-web-vital-name">`browser.web_vital.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Name of the web vital. | `cls` |
+| <a id="browser-web-vital-value" href="#browser-web-vital-value">`browser.web_vital.value`</a> | ![Development](https://img.shields.io/badge/-development-blue) | double | Value of the web vital. | `1.0` |
 
 **[1] `browser.brands`:** This value is intended to be taken from the [UA client hints API](https://wicg.github.io/ua-client-hints/#interface) (`navigator.userAgentData.brands`).
 
@@ -25,3 +29,14 @@ The web browser attributes
 
 **[4] `browser.platform`:** This value is intended to be taken from the [UA client hints API](https://wicg.github.io/ua-client-hints/#interface) (`navigator.userAgentData.platform`). If unavailable, the legacy `navigator.platform` API SHOULD NOT be used instead and this attribute SHOULD be left unset in order for the values to be consistent.
 The list of possible values is defined in the [W3C User-Agent Client Hints specification](https://wicg.github.io/ua-client-hints/#sec-ch-ua-platform). Note that some (but not all) of these values can overlap with values in the [`os.type` and `os.name` attributes](./os.md). However, for consistency, the values in the `browser.platform` attribute should capture the exact value that the user agent provides.
+
+---
+
+`browser.web_vital.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value | Description | Stability |
+| --- | --- | --- |
+| `cls` | Cumulative Layout Shift. See [cls](https://web.dev/articles/cls). | ![Development](https://img.shields.io/badge/-development-blue) |
+| `fid` | First Input Delay. See [fid](https://web.dev/articles/fid). | ![Development](https://img.shields.io/badge/-development-blue) |
+| `inp` | Interation to Next Paint. See [inp](https://web.dev/articles/inp). | ![Development](https://img.shields.io/badge/-development-blue) |
+| `lcp` | Largest Contentful Paint. See [lcp](https://web.dev/articles/lcp). | ![Development](https://img.shields.io/badge/-development-blue) |

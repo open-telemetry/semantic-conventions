@@ -56,3 +56,40 @@ groups:
           This value is intended to be taken from the Navigator API
           `navigator.language`.
         examples: ["en", "en-US", "fr", "fr-FR"]
+      - id: browser.web_vital.name
+        type:
+          members:
+            - id: cls
+              value: 'cls'
+              brief: Cumulative Layout Shift. See [cls](https://web.dev/articles/cls).
+              stability: development
+            - id: lcp
+              value: 'lcp'
+              brief: Largest Contentful Paint. See [lcp](https://web.dev/articles/lcp).
+              stability: development
+            - id: fid
+              value: 'fid'
+              brief: First Input Delay. See [fid](https://web.dev/articles/fid).
+              stability: development
+            - id: inp
+              value: 'inp'
+              brief: Interation to Next Paint. See [inp](https://web.dev/articles/inp).
+              stability: development
+        stability: development
+        brief: Name of the web vital.
+        examples: ["cls"]
+      - id: browser.web_vital.value
+        type: double
+        stability: development
+        brief: Value of the web vital.
+        examples: [1.0]
+      - id: browser.web_vital.delta
+        type: double
+        stability: development
+        brief: The delta between the current value and the last-reported value. See [delta](https://github.com/GoogleChrome/web-vitals?tab=readme-ov-file#report-only-the-delta-of-changes).
+        examples: [0.2]
+      - id: browser.web_vital.id
+        type: string
+        stability: development
+        brief: A unique ID representing this particular metric instance.
+        examples: ["v3-1677874579383-6381583661209"]
