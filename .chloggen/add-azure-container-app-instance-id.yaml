@@ -1,0 +1,9 @@
+change_type: enhancement
+
+component: azure
+
+note: Add `azure.container_app` entity and `azure.container_app.instance.id` attribute for the replica name of an Azure Container App.
+
+issues: [3857]
+
+subtext:
