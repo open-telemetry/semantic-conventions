@@ -31,7 +31,7 @@ if [ $COUNT -eq 1 ]; then
     # trusted "pull_request_target" context, and GITHUB_REPOSITORY (the base repo)
     # can access the PR head commit by SHA.
     HEAD_SHA="$(gh pr view "$PR" --json headRefOid --jq '.headRefOid')"
-    CHLOG_CONTENT="$(gh api "repos/${GITHUB_REPOSITORY}/contents/${CHLOG}?ref=${HEAD_SHA}" --jq '.content' | base64 -d)"
+    CHLOG_CONTENT="$(gh api "repos/${GITHUB_REPOSITORY}/contents/${CHLOG}?ref=${HEAD_SHA}" --jq '.content' | (base64 -d 2>/dev/null || base64 -D 2>/dev/null))"
 
     CHANGE_TYPE=$(echo "$CHLOG_CONTENT" | awk -F': ' '/^change_type:/ {print $2}' | xargs)
     echo $CHANGE_TYPE
