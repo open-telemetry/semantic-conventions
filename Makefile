@@ -288,11 +288,9 @@ LATEST_RELEASED_SEMCONV_VERSION := $(shell git ls-remote --tags https://github.c
 # repository (see https://github.com/open-telemetry/opentelemetry-weaver-packages/tree/main/policies/check).
 # Only checks that are NOT provided upstream are kept locally under ./policies (see policies/README.md).
 #
-# TODO: these packages currently include changes that are still being contributed
-# upstream, so we consume them from a fork branch via the `@refspec` syntax. Once the
-# changes are merged, point this at the upstream repo's default branch instead:
-#   WEAVER_PACKAGES_REPO=https://github.com/open-telemetry/opentelemetry-weaver-packages.git
-WEAVER_PACKAGES_REPO=https://github.com/lmolkova/opentelemetry-weaver-packages.git@add-policies-from-semconv
+# TODO: pin commit or tag of opentelemetry-weaver-packages and add it to renovate
+# once weaver-packages is released.
+WEAVER_PACKAGES_REPO=https://github.com/open-telemetry/opentelemetry-weaver-packages.git
 .PHONY: check-policies
 check-policies:
 	$(DOCKER_RUN) --rm \
