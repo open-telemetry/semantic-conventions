@@ -17,7 +17,7 @@ jobs:
     if: ${{ github.repository_owner == 'open-telemetry' }}
     steps:
       # Check out the base repo (main) only, so we run our own trusted script.
-      # We do NOT check out the fork PR code: this workflow runs in the trusted
+      # We do NOT check out the fork PR code: this workflow runs in the 
       # "pull_request_target" context, so the changelog file is read via the
       # GitHub API inside the script instead.
       - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
