@@ -10,7 +10,7 @@ change_type: 'breaking'
 component: browser
 
 # A brief description of the change. Surround your text with quotes ("") if it needs to start with a backtick (`).
-note: Web vital fields moved from event body to browser.web_vital.* attributes.
+note: Reworked the browser.web_vital event - moved name/value/delta/id from the event body to browser.web_vital.* attributes, added browser.web_vital.rating and browser.web_vital.navigation_type, and updated the name enum (added fcp and ttfb, deprecated fid).
 
 # Mandatory: One or more tracking issues related to the change. You can use the PR number here if no issue exists.
 # The values here must be integers.

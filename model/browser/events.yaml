@@ -14,3 +14,7 @@ groups:
         requirement_level: required
       - ref: browser.web_vital.id
         requirement_level: required
+      - ref: browser.web_vital.rating
+        requirement_level: recommended
+      - ref: browser.web_vital.navigation_type
+        requirement_level: recommended
