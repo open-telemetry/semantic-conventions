@@ -41,7 +41,7 @@ groups:
     type: attribute_group
     display_name: Azure Container Apps Attributes
     brief: >
-      This section defines attributes for Azure Container Apps.
+      This section defines attributes for Azure Container Apps. Does not apply to Azure Container Apps Jobs.
     attributes:
       - id: azure.container_app.instance.id
         type: string

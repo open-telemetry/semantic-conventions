@@ -4,7 +4,7 @@ groups:
     stability: development
     name: azure.container_app
     brief: >
-      Resource used by Azure Container Apps.
+      Resource used by Azure Container Apps. Does not apply to Azure Container Apps Jobs.
     attributes:
       - ref: azure.container_app.instance.id
         role: identifying

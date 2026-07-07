@@ -33,7 +33,7 @@ This section defines generic attributes used by Azure Client Libraries.
 
 ## Azure Container Apps Attributes
 
-This section defines attributes for Azure Container Apps.
+This section defines attributes for Azure Container Apps. Does not apply to Azure Container Apps Jobs.
 
 **Attributes:**
 
