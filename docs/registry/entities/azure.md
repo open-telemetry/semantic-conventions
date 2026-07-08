@@ -3,13 +3,13 @@
 
 # Azure
 
-## Azure Container App
+## Azure Container App Instance
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-**type:** `azure.container_app`
+**type:** `azure.container_app.instance`
 
-**Description:** Resource used by Azure Container Apps. Does not apply to Azure Container Apps Jobs.
+**Description:** Resource used by an Azure Container App replica. Does not apply to Azure Container Apps Jobs.
 
 **Attributes:**
 

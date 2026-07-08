@@ -13,6 +13,16 @@ groups:
           [resource group](https://learn.microsoft.com/azure/azure-resource-manager/management/manage-resource-groups-portal)
           the resource belongs to.
         examples: ["my-resource-group", "rg-myapp-prod"]
+      - id: azure.container_app.instance.id
+        type: string
+        stability: development
+        brief: >
+          The name of the replica of an Azure Container App.
+        note: >
+          The value should be set to the
+          [`CONTAINER_APP_REPLICA_NAME`](https://learn.microsoft.com/azure/container-apps/environment-variables)
+          environment variable.
+        examples: ["my-containerapp--20mh1s9-86c8c4b497-zx9bq"]
   - id: registry.azure.client.sdk
     type: attribute_group
     display_name: Azure Client Library Attributes
@@ -37,22 +47,6 @@ groups:
         stability: development
         brief: The unique identifier of the client instance.
         examples: ["3ba4827d-4422-483f-b59f-85b74211c11d", "storage-client-1"]
-  - id: registry.azure.container_apps
-    type: attribute_group
-    display_name: Azure Container Apps Attributes
-    brief: >
-      This section defines attributes for Azure Container Apps. Does not apply to Azure Container Apps Jobs.
-    attributes:
-      - id: azure.container_app.instance.id
-        type: string
-        stability: development
-        brief: >
-          The name of the replica of an Azure Container App.
-        note: >
-          The value should be set to the
-          [`CONTAINER_APP_REPLICA_NAME`](https://learn.microsoft.com/azure/container-apps/environment-variables)
-          environment variable.
-        examples: ["my-containerapp--20mh1s9-86c8c4b497-zx9bq"]
   - id: registry.azure.cosmosdb
     type: attribute_group
     display_name: Azure Cosmos DB Attributes
