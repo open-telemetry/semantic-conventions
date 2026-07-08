@@ -9,3 +9,14 @@ groups:
       - ref: azure.container_app.instance.id
         role: identifying
         requirement_level: required
+
+  - id: entity.azure.container_app.revision
+    type: entity
+    stability: development
+    name: azure.container_app.revision
+    brief: >
+      Resource used by a revision of an Azure Container App.
+    attributes:
+      - ref: azure.container_app.revision
+        role: identifying
+        requirement_level: required
