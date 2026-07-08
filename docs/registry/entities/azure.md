@@ -33,4 +33,4 @@
 | --- | --- | --- | --- | --- | --- | --- |
 | Identity | [`azure.container_app.revision`](/docs/registry/attributes/azure.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the revision of an Azure Container App. [2] | `my-containerapp--20mh1s9` |
 
-**[2] `azure.container_app.revision`:** The value should be set to the [`CONTAINER_APP_REVISION_NAME`](https://learn.microsoft.com/azure/container-apps/environment-variables) environment variable.
+**[2] `azure.container_app.revision`:** The value should be set to the [`CONTAINER_APP_REVISION`](https://learn.microsoft.com/azure/container-apps/environment-variables) environment variable.

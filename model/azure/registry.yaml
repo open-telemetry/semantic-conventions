@@ -30,7 +30,7 @@ groups:
           The name of the revision of an Azure Container App.
         note: >
           The value should be set to the
-          [`CONTAINER_APP_REVISION_NAME`](https://learn.microsoft.com/azure/container-apps/environment-variables)
+          [`CONTAINER_APP_REVISION`](https://learn.microsoft.com/azure/container-apps/environment-variables)
           environment variable.
         examples: ["my-containerapp--20mh1s9"]
   - id: registry.azure.client.sdk

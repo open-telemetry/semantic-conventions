@@ -22,7 +22,7 @@ This section defines generic attributes for Azure services.
 
 **[1] `azure.container_app.instance.id`:** The value should be set to the [`CONTAINER_APP_REPLICA_NAME`](https://learn.microsoft.com/azure/container-apps/environment-variables) environment variable.
 
-**[2] `azure.container_app.revision`:** The value should be set to the [`CONTAINER_APP_REVISION_NAME`](https://learn.microsoft.com/azure/container-apps/environment-variables) environment variable.
+**[2] `azure.container_app.revision`:** The value should be set to the [`CONTAINER_APP_REVISION`](https://learn.microsoft.com/azure/container-apps/environment-variables) environment variable.
 
 ## Azure Client Library Attributes
 
