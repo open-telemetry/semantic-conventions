@@ -2,7 +2,10 @@ change_type: enhancement
 
 component: azure
 
-note: Add `azure.container_app.instance` and `azure.container_app.revision` entities, and `azure.container_app.instance.id` and `azure.container_app.revision` attributes, for identifying replicas and revisions of an Azure Container App.
+note: >
+  Add `azure.container_app.instance` and `azure.container_app.revision` entities, and
+  `azure.container_app.instance.id` and `azure.container_app.revision` attributes, for
+  identifying replicas and revisions of an Azure Container App.
 
 issues: [3857]
 
