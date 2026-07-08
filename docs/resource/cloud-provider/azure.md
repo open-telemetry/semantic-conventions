@@ -14,7 +14,7 @@ These conventions are recommended for resources running on
 
 **type:** `azure.container_app.instance`
 
-**Description:** Resource used by an Azure Container App replica. Does not apply to Azure Container Apps Jobs.
+**Description:** Resource used by an Azure Container App replica.
 
 **Attributes:**
 
