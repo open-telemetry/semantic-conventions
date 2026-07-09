@@ -751,6 +751,13 @@ groups:
             that does not support multiple operation names.
         note: |
           The operation name SHOULD NOT be extracted from `db.query.text`.
+
+          For SQL batch APIs, when the instrumentation observes individual batch
+          entries or parameter sets as separate operations, it MAY derive a
+          batch-level `db.operation.name` from those entries. If all batch
+          entries have the same operation name, that operation name SHOULD be
+          used prepended by `BATCH `. Otherwise, `db.operation.name` SHOULD be
+          `BATCH`.
         examples: ["EXECUTE", "INSERT"]
       - ref: db.collection.name
         requirement_level:
@@ -758,6 +765,12 @@ groups:
             that does not support multiple collection names.
         note: |
           The collection name SHOULD NOT be extracted from `db.query.text`.
+
+          For SQL batch APIs, when the instrumentation observes individual batch
+          entries or parameter sets as separate operations, it MAY derive a
+          batch-level `db.collection.name` from those entries. If all batch
+          entries have the same collection name, that collection name SHOULD be
+          used. Otherwise, `db.collection.name` SHOULD be omitted.
       - ref: db.response.returned_rows
         # experimental attributes must be opt-in stable spans
         # TODO (@trask) make this recommended once it is stable

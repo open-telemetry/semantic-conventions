@@ -82,6 +82,12 @@ Instrumentations SHOULD document how `error.type` is populated.
 
 **[7] `db.collection.name`:** The collection name SHOULD NOT be extracted from `db.query.text`.
 
+For SQL batch APIs, when the instrumentation observes individual batch
+entries or parameter sets as separate operations, it MAY derive a
+batch-level `db.collection.name` from those entries. If all batch
+entries have the same collection name, that collection name SHOULD be
+used. Otherwise, `db.collection.name` SHOULD be omitted.
+
 **[8] `db.operation.batch.size`:** Except for empty batch requests described below, a batch operation contains two
 or more database operations explicitly submitted as separate operations in a single
 client call, protocol message, or database command.
@@ -108,6 +114,13 @@ as a batch operation, and `db.operation.batch.size` SHOULD be set to `0`.
 **[9] `db.operation.name`:** If the operation is executed via a higher-level API that does not support multiple operation names.
 
 **[10] `db.operation.name`:** The operation name SHOULD NOT be extracted from `db.query.text`.
+
+For SQL batch APIs, when the instrumentation observes individual batch
+entries or parameter sets as separate operations, it MAY derive a
+batch-level `db.operation.name` from those entries. If all batch
+entries have the same operation name, that operation name SHOULD be
+used prepended by `BATCH `. Otherwise, `db.operation.name` SHOULD be
+`BATCH`.
 
 **[11] `db.query.summary`:** if available through instrumentation hooks or if the instrumentation supports generating a query summary.
 
