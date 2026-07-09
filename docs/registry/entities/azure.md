@@ -3,6 +3,22 @@
 
 # Azure
 
+## Azure Container App
+
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
+
+**type:** `azure.container_app`
+
+**Description:** Resource used by a revision of an Azure Container App.
+
+**Attributes:**
+
+| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
+| --- | --- | --- | --- | --- | --- | --- |
+| Identity | [`azure.container_app.revision`](/docs/registry/attributes/azure.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the revision of an Azure Container App. [1] | `my-containerapp--20mh1s9` |
+
+**[1] `azure.container_app.revision`:** The value should be set to the [`CONTAINER_APP_REVISION`](https://learn.microsoft.com/azure/container-apps/environment-variables) environment variable.
+
 ## Azure Container App Instance
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
@@ -15,22 +31,6 @@
 
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- | --- |
-| Identity | [`azure.container_app.instance.id`](/docs/registry/attributes/azure.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the replica of an Azure Container App. [1] | `my-containerapp--20mh1s9-86c8c4b497-zx9bq` |
+| Identity | [`azure.container_app.instance.id`](/docs/registry/attributes/azure.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the replica of an Azure Container App. [2] | `my-containerapp--20mh1s9-86c8c4b497-zx9bq` |
 
-**[1] `azure.container_app.instance.id`:** The value should be set to the [`CONTAINER_APP_REPLICA_NAME`](https://learn.microsoft.com/azure/container-apps/environment-variables) environment variable.
-
-## Azure Container App Revision
-
-**Status:** ![Development](https://img.shields.io/badge/-development-blue)
-
-**type:** `azure.container_app.revision`
-
-**Description:** Resource used by a revision of an Azure Container App.
-
-**Attributes:**
-
-| Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
-| --- | --- | --- | --- | --- | --- | --- |
-| Identity | [`azure.container_app.revision`](/docs/registry/attributes/azure.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the revision of an Azure Container App. [2] | `my-containerapp--20mh1s9` |
-
-**[2] `azure.container_app.revision`:** The value should be set to the [`CONTAINER_APP_REVISION`](https://learn.microsoft.com/azure/container-apps/environment-variables) environment variable.
+**[2] `azure.container_app.instance.id`:** The value should be set to the [`CONTAINER_APP_REPLICA_NAME`](https://learn.microsoft.com/azure/container-apps/environment-variables) environment variable.
