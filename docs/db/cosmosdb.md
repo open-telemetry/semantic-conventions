@@ -62,7 +62,7 @@ Semantic conventions described in this document apply to the call-level spans on
 | [`azure.client.id`](/docs/registry/attributes/azure.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The unique identifier of the client instance. | `3ba4827d-4422-483f-b59f-85b74211c11d`; `storage-client-1` |
 | [`azure.cosmosdb.request.body.size`](/docs/registry/attributes/azure.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | int | Request payload size in bytes. | |
 | [`azure.resource_provider.namespace`](/docs/registry/attributes/azure.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | [Azure Resource Provider Namespace](https://learn.microsoft.com/azure/azure-resource-manager/management/azure-services-resource-providers) as recognized by the client. [8] | `Microsoft.DocumentDB` |
-| [`db.operation.batch.size`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | The number of queries included in a batch operation. [9] | `2`; `3`; `4` |
+| [`db.operation.batch.size`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | The number of database operations included in a batch operation. [9] | `2`; `3`; `4` |
 | [`db.query.text`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The database query being executed. [10] | `SELECT * FROM wuser_table where username = ?`; `SET mykey ?` |
 | [`db.stored_procedure.name`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` [11] | string | The name of a stored procedure within the database. [12] | `GetCustomer` |
 | [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Name of the database host. [13] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
@@ -209,7 +209,28 @@ Instrumentations SHOULD document how `error.type` is populated.
 
 **[8] `azure.resource_provider.namespace`:** When `azure.resource_provider.namespace` attribute is populated, it MUST be set to `Microsoft.DocumentDB` for all operations performed by Cosmos DB client.
 
-**[9] `db.operation.batch.size`:** Operations are only considered batches when they contain two or more operations, and so `db.operation.batch.size` SHOULD never be `1`.
+**[9] `db.operation.batch.size`:** Except for empty batch requests described below, a batch operation contains two
+or more database operations explicitly submitted as separate operations in a single
+client call, protocol message, or database command.
+
+Requests to batch APIs that contain only one operation SHOULD be modeled as single
+operations, not as batch operations.
+
+A database call is not a batch operation solely because one operation accepts
+multiple operands, such as keys, rows, documents, points, or other data elements,
+including Redis [`MGET`](https://redis.io/docs/latest/commands/mget/) with
+multiple keys.
+
+In batch APIs that execute the same parameterized operation with parameter sets,
+each parameter set represents one database operation for determining whether the
+request is a batch operation. Requests with only one parameter set SHOULD be modeled
+as single operations, not as batch operations.
+
+`db.operation.batch.size` SHOULD be set to the number of operations in the batch.
+It SHOULD NOT be set for non-batch operations.
+
+A request to execute a batch operation with no operations SHOULD also be treated
+as a batch operation, and `db.operation.batch.size` SHOULD be set to `0`.
 
 **[10] `db.query.text`:** For sanitization see [Sanitization of `db.query.text`](/docs/db/database-spans.md#sanitization-of-dbquerytext).
 For batch operations, if the individual operations are known to have the same query text then that query text SHOULD be used, otherwise all of the individual query texts SHOULD be concatenated with separator `; ` or some other database system specific separator if more applicable.
@@ -236,7 +257,12 @@ then `<key>` SHOULD be the 0-based index.
 up with the parameterized placeholders present in `db.query.text`.
 
 It is RECOMMENDED to capture the value as provided by the application
-without attempting to do any case normalization.
+without attempting to do any case normalization or sanitization.
+
+Instrumentations SHOULD NOT capture `db.query.parameter.<key>` by default
+since values may contain PII or sensitive details.
+Application operators are expected to enable specific keys depending
+on their privacy and security considerations.
 
 `db.query.parameter.<key>` SHOULD NOT be captured on batch operations.
 
@@ -314,7 +340,7 @@ The following metrics provide insights into Azure Cosmos DB client operation per
 
 ### Metric: `db.client.operation.duration`
 
-This metric is [required][MetricRequired].
+This metric is [recommended][MetricRecommended].
 
 It captures the total time taken by an Azure Cosmos DB operation. This metric follows the common [db.client.operation.duration](/docs/db/database-metrics.md#metric-dbclientoperationduration) definition.
 
@@ -322,7 +348,7 @@ Refer [azure.cosmosdb.client.operation.request_charge](#metric-azurecosmosdbclie
 
 ### Metric: `db.client.response.returned_rows`
 
-This metric is [required][MetricRequired].
+This metric is [recommended][MetricRecommended].
 
 It captures the number of items returned by a query or feed operation in Azure Cosmos DB. It helps identify response sizes that may contribute to high latency, increased memory/CPU usage, or network call failures. This metric follows the common [`db.client.response.returned_rows`](/docs/db/database-metrics.md#metric-dbclientresponsereturned_rows) definition.
 
@@ -330,11 +356,11 @@ Refer [azure.cosmosdb.client.operation.request_charge](#metric-azurecosmosdbclie
 
 ### Metric: `azure.cosmosdb.client.operation.request_charge`
 
-This metric is [required][MetricRequired].
+This metric is [recommended][MetricRecommended].
 
 It captures the Request Units consumed by each operation in Azure Cosmos DB. Since Request Units serve as a form of throughput control within the Azure Cosmos DB database, monitoring their usage is crucial to avoid throttling.
 
-This metric SHOULD be specified with [`ExplicitBucketBoundaries` advisory parameter](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.57.0/specification/metrics/api.md#instrument-advisory-parameters) of `[ 1, 5, 10, 25, 50, 100, 250, 500, 1000]`.
+This metric SHOULD be specified with [`ExplicitBucketBoundaries` advisory parameter](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.58.0/specification/metrics/api.md#instrument-advisory-parameters) of `[ 1, 5, 10, 25, 50, 100, 250, 500, 1000]`.
 
 Explaining bucket configuration:
 
@@ -427,7 +453,7 @@ Instrumentations SHOULD document how `error.type` is populated.
 
 ### Metric: `azure.cosmosdb.client.active_instance.count`
 
-This metric is [required][MetricRequired].
+This metric is [recommended][MetricRecommended].
 
 It captures the number of active instances at any given time. Best practices dictate that there should ideally be only one instance of the SDK client per Azure Cosmos DB account. Having multiple instances of the SDK client for the same account in a single process can lead to CPU or memory-related issues.
 
@@ -458,4 +484,4 @@ It captures the number of active instances at any given time. Best practices dic
 <!-- endsemconv -->
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
-[MetricRequired]: /docs/general/metric-requirement-level.md#required
+[MetricRecommended]: /docs/general/signal-requirement-level.md#recommended

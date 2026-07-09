@@ -12,8 +12,8 @@
   },
   "devDependencies": {
     "doctoc": "2.5.0",
-    "markdownlint-cli2": "0.22.1",
-    "prettier": "3.8.4"
+    "markdownlint-cli2": "0.23.0",
+    "prettier": "3.9.4"
   },
   "prettier": {
     "proseWrap": "preserve",

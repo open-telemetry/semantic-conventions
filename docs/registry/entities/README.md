@@ -90,7 +90,7 @@ Currently, the following namespaces exist:
 | OTel | | |
 | | [otel.scope](otel.md#otel-scope) | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Obsoleted. |
 | Process | | |
-| | [process](process.md#process) | ![Development](https://img.shields.io/badge/-development-blue) |
+| | [process](process.md#process) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | | [process.executable](process.md#process-executable) | ![Development](https://img.shields.io/badge/-development-blue) |
 | | [process.runtime](process.md#process-runtime) | ![Development](https://img.shields.io/badge/-development-blue) |
 | Service | | |
@@ -102,7 +102,7 @@ Currently, the following namespaces exist:
 | | [telemetry.sdk](telemetry.md#telemetry-sdk) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | VCS | | |
 | | [vcs.ref](vcs.md#vcs-ref) | ![Development](https://img.shields.io/badge/-development-blue) |
-| | [vcs.repo](vcs.md#vcs-repo) | ![Development](https://img.shields.io/badge/-development-blue) |
+| | [vcs.repository](vcs.md#vcs-repository) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | Webengine | | |
 | | [webengine](webengine.md#webengine) | ![Development](https://img.shields.io/badge/-development-blue) |
 | zOS | | |

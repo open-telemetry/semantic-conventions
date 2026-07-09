@@ -22,7 +22,7 @@ These attributes may be used for any network related operation.
 | <a id="network-connection-subtype" href="#network-connection-subtype">`network.connection.subtype`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | This describes more details regarding the connection.type. It may be the type of cell technology connection, but it could be used for describing details about a wifi connection. | `LTE` |
 | <a id="network-connection-type" href="#network-connection-type">`network.connection.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The internet connection type. | `wifi` |
 | <a id="network-interface-name" href="#network-interface-name">`network.interface.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The network interface name. | `lo`; `eth0` |
-| <a id="network-io-direction" href="#network-io-direction">`network.io.direction`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The network IO operation direction. | `transmit` |
+| <a id="network-io-direction" href="#network-io-direction">`network.io.direction`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The direction of traffic from the perspective of the observing host's physical or virtual network interface. It should not be used to represent the logical direction of a stateful connection or network flow. | `transmit` |
 | <a id="network-local-address" href="#network-local-address">`network.local.address`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | Local address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` |
 | <a id="network-local-port" href="#network-local-port">`network.local.port`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | int | Local port number of the network connection. | `65123` |
 | <a id="network-peer-address" href="#network-peer-address">`network.peer.address`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | Peer address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` |
@@ -110,8 +110,8 @@ different processes could be listening on TCP port 12345 and UDP port 12345.
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `receive` | receive | ![Development](https://img.shields.io/badge/-development-blue) |
-| `transmit` | transmit | ![Development](https://img.shields.io/badge/-development-blue) |
+| `receive` | receive | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `transmit` | transmit | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 
 ---
 

@@ -15,6 +15,9 @@ groups:
           reason: uncategorized
           note: >
             Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
+        annotations:
+          dependency_resolution:
+            exclude: true
         stability: development
         type:
           members:
@@ -33,6 +36,9 @@ groups:
           reason: uncategorized
           note: >
             Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
+        annotations:
+          dependency_resolution:
+            exclude: true
         stability: development
         type:
           members:
@@ -50,6 +56,9 @@ groups:
           reason: uncategorized
           note: >
             Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
+        annotations:
+          dependency_resolution:
+            exclude: true
         stability: development
         type: string
         brief: The service tier used for the response.
@@ -59,6 +68,9 @@ groups:
           reason: uncategorized
           note: >
             Moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
+        annotations:
+          dependency_resolution:
+            exclude: true
         stability: development
         type: string
         brief: A fingerprint to track any eventual change in the Generative AI environment.
