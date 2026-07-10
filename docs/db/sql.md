@@ -94,7 +94,7 @@ For example, in Java, the [`SQLException`](https://docs.oracle.com/javase/8/docs
 class reports them with `getSQLState()` and `getErrorCode()` methods.
 
 Instrumentations SHOULD populate the `db.response.status_code` with the
-the most specific code available to them.
+most specific code available to them.
 
 Here's a non-exhaustive list of databases that report vendor-specific
 codes with granularity higher than SQLSTATE (or don't report SQLSTATE
