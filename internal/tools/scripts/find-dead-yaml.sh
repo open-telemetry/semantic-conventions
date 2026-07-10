@@ -24,7 +24,7 @@ echo "Indexing semconv lines in .md files under: $docs_folder ..."
 while IFS= read -r LINE; do
   semconv_snippets["$LINE"]=1
 done < <(
-  grep -rhoE '<!--[[:space:]]*semconv[[:space:]]+[a-z0-9._]+[[:space:]]*-->' "$docs_folder" --include="*.md" \
+  find "$docs_folder" -type f -name "*.md" -exec grep -hoE '<!--[[:space:]]*semconv[[:space:]]+[a-z0-9._]+[[:space:]]*-->' {} + \
     | sed -E 's/<!--[[:space:]]*semconv[[:space:]]+([a-z0-9._]+)[[:space:]]*-->/\1/'
 )
 

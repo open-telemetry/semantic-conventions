@@ -117,7 +117,7 @@ concatenated string of all codes with '/' used as a separator.
 
 For example, generic DB instrumentation that detected an error and has
 SQLSTATE `"42000"` and vendor-specific `1071` should set
-`db.response.status_code` to `"42000/1071"`."
+`db.response.status_code` to `"42000/1071"`.
 
 **[3] `error.type`:** The `error.type` SHOULD match the `db.response.status_code` returned by the database or the client library, or the canonical name of exception that occurred.
 When using canonical exception type name, instrumentation SHOULD do the best effort to report the most relevant type. For example, if the original exception is wrapped into a generic one, the original exception SHOULD be preferred.

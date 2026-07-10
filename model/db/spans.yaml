@@ -180,7 +180,7 @@ groups:
 
           For example, generic DB instrumentation that detected an error and has
           SQLSTATE `"42000"` and vendor-specific `1071` should set
-          `db.response.status_code` to `"42000/1071"`."
+          `db.response.status_code` to `"42000/1071"`.
 
         examples: ["ORA-17027", "1052", "2201B"]
         requirement_level:
