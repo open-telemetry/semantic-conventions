@@ -1,20 +1,8 @@
 groups:
-  - id: span.aws.client
-    type: span
-    stability: development
-    span_kind: client
+  - id: trace.aws.client.common
+    type: attribute_group
     brief: >
-        This span describes an AWS SDK client call.
-    note: |
-        **Span name** MUST be of the format `Service.Operation` as per the
-        AWS HTTP API, e.g., `DynamoDB.GetItem`, `S3.ListBuckets`. This is
-        equivalent to concatenating `rpc.service` and `rpc.method` with `.` and
-        consistent with the naming guidelines for RPC client spans.
-
-        AWS SDK span attributes are based on the request or response parameters
-        in AWS SDK API calls. The conventions have been collected over time based
-        on feedback from AWS users of tracing and will continue to increase as new
-        interesting conventions are found.
+      This group defines the attributes common to all AWS SDK client spans.
     attributes:
       - ref: rpc.system
         brief: "The value `aws-api`."
@@ -50,12 +38,30 @@ groups:
           The attribute's value should adhere to the AWS Region codes outlined in the
           [AWS documentation](https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html#available-regions).
 
+  - id: span.aws.client
+    type: span
+    stability: development
+    span_kind: client
+    extends: trace.aws.client.common
+    brief: >
+        This span describes an AWS SDK client call.
+    note: |
+        **Span name** MUST be of the format `Service.Operation` as per the
+        AWS HTTP API, e.g., `DynamoDB.GetItem`, `S3.ListBuckets`. This is
+        equivalent to concatenating `rpc.service` and `rpc.method` with `.` and
+        consistent with the naming guidelines for RPC client spans.
+
+        AWS SDK span attributes are based on the request or response parameters
+        in AWS SDK API calls. The conventions have been collected over time based
+        on feedback from AWS users of tracing and will continue to increase as new
+        interesting conventions are found.
+
   - id: span.dynamodb.batchgetitem.client
     brief: >
       This span represents a `DynamoDB.BatchGetItem` call.
     note: >
       `db.system.name` MUST be set to `"aws.dynamodb"` and SHOULD be provided **at span creation time**.
-    extends: span.aws.client
+    extends: trace.aws.client.common
     stability: development
     type: span
     span_kind: client
@@ -70,7 +76,7 @@ groups:
       This span represents a `DynamoDB.BatchWriteItem` call.
     note: >
       `db.system.name` MUST be set to `"aws.dynamodb"` and SHOULD be provided **at span creation time**.
-    extends: span.aws.client
+    extends: trace.aws.client.common
     type: span
     stability: development
     span_kind: client
@@ -87,7 +93,7 @@ groups:
       This span represents a `DynamoDB.CreateTable` call.
     note: >
       `db.system.name` MUST be set to `"aws.dynamodb"` and SHOULD be provided **at span creation time**.
-    extends: span.aws.client
+    extends: trace.aws.client.common
     type: span
     stability: development
     span_kind: client
@@ -115,7 +121,7 @@ groups:
       This span represents a `DynamoDB.DeleteItem` call.
     note: >
       `db.system.name` MUST be set to `"aws.dynamodb"` and SHOULD be provided **at span creation time**.
-    extends: span.aws.client
+    extends: trace.aws.client.common
     type: span
     stability: development
     span_kind: client
@@ -135,7 +141,7 @@ groups:
       This span represents a `DynamoDB.DeleteTable` call.
     note: >
       `db.system.name` MUST be set to `"aws.dynamodb"` and SHOULD be provided **at span creation time**.
-    extends: span.aws.client
+    extends: trace.aws.client.common
     type: span
     stability: development
     span_kind: client
@@ -151,7 +157,7 @@ groups:
       This span represents a `DynamoDB.DescribeTable` call.
     note: >
       `db.system.name` MUST be set to `"aws.dynamodb"` and SHOULD be provided **at span creation time**.
-    extends: span.aws.client
+    extends: trace.aws.client.common
     type: span
     stability: development
     span_kind: client
@@ -167,7 +173,7 @@ groups:
       This span represents a `DynamoDB.GetItem` call.
     note: >
       `db.system.name` MUST be set to `"aws.dynamodb"` and SHOULD be provided **at span creation time**.
-    extends: span.aws.client
+    extends: trace.aws.client.common
     type: span
     stability: development
     span_kind: client
@@ -189,7 +195,7 @@ groups:
       This span represents a `DynamoDB.ListTables` call.
     note: >
       `db.system.name` MUST be set to `"aws.dynamodb"` and SHOULD be provided **at span creation time**.
-    extends: span.aws.client
+    extends: trace.aws.client.common
     type: span
     stability: development
     span_kind: client
@@ -206,7 +212,7 @@ groups:
       This span represents a `DynamoDB.PutItem` call.
     note: >
       `db.system.name` MUST be set to `"aws.dynamodb"` and SHOULD be provided **at span creation time**.
-    extends: span.aws.client
+    extends: trace.aws.client.common
     type: span
     stability: development
     span_kind: client
@@ -223,7 +229,7 @@ groups:
       This span represents a `DynamoDB.Query` call.
     note: >
       `db.system.name` MUST be set to `"aws.dynamodb"` and SHOULD be provided **at span creation time**.
-    extends: span.aws.client
+    extends: trace.aws.client.common
     type: span
     stability: development
     span_kind: client
@@ -255,7 +261,7 @@ groups:
       This span represents a `DynamoDB.Scan` call.
     note: >
       `db.system.name` MUST be set to `"aws.dynamodb"` and SHOULD be provided **at span creation time**.
-    extends: span.aws.client
+    extends: trace.aws.client.common
     type: span
     stability: development
     span_kind: client
@@ -293,7 +299,7 @@ groups:
       This span represents a `DynamoDB.UpdateItem` call.
     note: >
       `db.system.name` MUST be set to `"aws.dynamodb"` and SHOULD be provided **at span creation time**.
-    extends: span.aws.client
+    extends: trace.aws.client.common
     type: span
     span_kind: client
     stability: development
@@ -313,7 +319,7 @@ groups:
       This span represents a `DynamoDB.UpdateTable` call.
     note: >
       `db.system.name` MUST be set to `"aws.dynamodb"` and SHOULD be provided **at span creation time**.
-    extends: span.aws.client
+    extends: trace.aws.client.common
     type: span
     stability: development
     span_kind: client
@@ -335,7 +341,7 @@ groups:
         requirement_level: recommended
 
   - id: span.aws.s3.client
-    extends: span.aws.client
+    extends: trace.aws.client.common
     type: span
     stability: development
     span_kind: client
