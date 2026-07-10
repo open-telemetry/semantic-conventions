@@ -31,11 +31,6 @@ This document defines semantic convention attributes in the HTTP namespace.
 
 **[1] `http.request.body.content`:** Captured value MAY be limited in size and thus value is expected to be truncated in many cases.
 
-The maximum captured body size must be limited by the `AttributeValueLengthLimit` configuration option defined in the
-[OpenTelemetry SDK specification](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/common/README.md#configurable-parameters).
-
-To prevent excessive overhead and storage by default, instrumentations MUST issue a warning when the feature is used without an explicit `AttributeValueLengthLimit` configuration option.
-
 Instrumentations MUST disable capture by default and provide an opt-in configuration option to enable it as it can capture sensitive information and cause performance overhead.
 
 Instrumentations SHOULD capture the body as string whenever possible as it makes it easier to use in human-readable form, also it allows to implement sanitization if needed.
@@ -91,11 +86,6 @@ Tracing instrumentations that do so, MUST also set `http.request.method_original
 **[4] `http.request.resend_count`:** The resend count SHOULD be updated each time an HTTP request gets resent by the client, regardless of what was the cause of the resending (e.g. redirection, authorization failure, 503 Server Unavailable, network issues, or any other).
 
 **[5] `http.response.body.content`:** Captured value MAY be limited in size and thus value is expected to be truncated in many cases.
-
-The maximum captured body size must be limited by the `AttributeValueLengthLimit` configuration option defined in the
-[OpenTelemetry SDK specification](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/common/README.md#configurable-parameters).
-
-To prevent excessive overhead and storage by default, instrumentations MUST issue a warning when the feature is used without an explicit `AttributeValueLengthLimit` configuration option.
 
 Instrumentations MUST disable capture by default and provide an opt-in configuration option to enable it as it can capture sensitive information and cause performance overhead.
 
