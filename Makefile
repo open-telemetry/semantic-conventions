@@ -266,6 +266,7 @@ generate-gh-issue-templates:
 	$(WEAVER_CONTAINER) registry generate \
 		--registry=/home/weaver/source \
 		--templates=/home/weaver/templates \
+		--v2 \
 		areas \
 		/home/weaver/target
 	$(TOOLS_DIR)/scripts/update-issue-template-areas.sh $(PWD)/internal/tools/bin/areas.txt
