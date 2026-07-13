@@ -51,13 +51,13 @@ jobs:
         with:
           app-id: ${{ vars.OTELBOT_APP_ID }}
           private-key: ${{ secrets.OTELBOT_PRIVATE_KEY }}
-          permission-contents: write
           permission-pull-requests: write
 
       - name: Create pull request
         env:
-          # not using secrets.GITHUB_TOKEN since pull requests from that token do not run workflows
+          # Use the App token for PR creation so the pull request runs workflows.
           GH_TOKEN: ${{ steps.otelbot-token.outputs.token }}
+          GITHUB_TOKEN: ${{ github.token }}
           INPUTS_VERSION: ${{ inputs.version }}
         run: |
           version=${INPUTS_VERSION}
@@ -65,10 +65,10 @@ jobs:
           body="Prepare release \`v${version}\`."
           branch="otelbot/prepare-release-v${version}"
 
-          gh auth setup-git
           git checkout -b $branch
           git commit -a -m "$message"
-          git push --set-upstream origin $branch
+          git push "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" $branch
           gh pr create --title "$message" \
                        --body "$body" \
+                       --head "$branch" \
                        --base main

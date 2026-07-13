@@ -62,14 +62,14 @@ jobs:
         with:
           app-id: ${{ vars.OTELBOT_APP_ID }}
           private-key: ${{ secrets.OTELBOT_PRIVATE_KEY }}
-          permission-contents: write
           permission-pull-requests: write
 
       - name: Create pull request
         if: ${{ steps.version.outputs.skip != 'true' }}
         env:
-          # not using secrets.GITHUB_TOKEN since pull requests from that token do not run workflows
+          # Use the App token for PR creation so the pull request runs workflows.
           GH_TOKEN: ${{ steps.otelbot-token.outputs.token }}
+          GITHUB_TOKEN: ${{ github.token }}
           VERSION: ${{ github.event.release.tag_name }}
           NEXT_VERSION: ${{ steps.version.outputs.next_version }}
         run: |
@@ -82,9 +82,9 @@ jobs:
             echo "No changes to commit; schema_url already up to date."
             exit 0
           fi
-          gh auth setup-git
           git commit -a -m "$message"
-          git push --set-upstream origin "$branch"
+          git push "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" "$branch"
           gh pr create --title "$message" \
                        --body "$body" \
+                       --head "$branch" \
                        --base main
