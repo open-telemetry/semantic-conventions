@@ -16,6 +16,8 @@ jobs:
     steps:
     - name: check out code
       uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+      with:
+        persist-credentials: false
 
     - name: install dependencies
       run: npm ci --ignore-scripts
@@ -33,6 +35,8 @@ jobs:
     steps:
     - name: check out code
       uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+      with:
+        persist-credentials: false
 
     - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6.3.0
 
@@ -50,6 +54,8 @@ jobs:
     steps:
     - name: check out code
       uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+      with:
+        persist-credentials: false
 
     - name: install dependencies
       run: npm ci --ignore-scripts
@@ -62,6 +68,8 @@ jobs:
     steps:
     - name: check out code
       uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+      with:
+        persist-credentials: false
 
     - name: run misspell
       run: make misspell
@@ -71,6 +79,8 @@ jobs:
     steps:
     - name: check out code
       uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+      with:
+        persist-credentials: false
     - name: verify semantic convention tables
       run: make table-check
 
@@ -79,6 +89,8 @@ jobs:
     steps:
     - name: check out code
       uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+      with:
+        persist-credentials: false
     - name: verify registry tables
       run: |
         make registry-generation
@@ -89,6 +101,8 @@ jobs:
     steps:
     - name: check out code
       uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+      with:
+        persist-credentials: false
     - name: verify schemas
       run: make schema-check
 
@@ -96,6 +110,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+      with:
+        persist-credentials: false
     - name: Components dropdown in issue templates
       run: |
         make generate-gh-issue-templates
@@ -106,6 +122,8 @@ jobs:
     steps:
     - name: check out code
       uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+      with:
+        persist-credentials: false
     - name: verify semantic conventions yaml definitions
       run: make check-policies
 
@@ -114,6 +132,8 @@ jobs:
     steps:
     - name: check out code
       uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+      with:
+        persist-credentials: false
     - name: verify semantic conventions yaml definitions
       run: make test-policies
 
@@ -122,6 +142,8 @@ jobs:
     steps:
     - name: check out code
       uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+      with:
+        persist-credentials: false
     - name: find signals defined in yaml files that are not used in the markdown files
       run: make check-dead-yaml
 
@@ -130,5 +152,7 @@ jobs:
     steps:
     - name: check out code
       uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+      with:
+        persist-credentials: false
     - name: check if the areas table is out-of-date
       run: make areas-table-check
