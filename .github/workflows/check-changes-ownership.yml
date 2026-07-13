@@ -14,23 +14,34 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
+      pull-requests: read
     outputs:
-      changed_files: ${{ steps.changed-files.outputs.all_changed_files }}
+      changed_files: ${{ steps.changed-files.outputs.changed_files }}
       any_changed: ${{ steps.changed-files.outputs.any_changed }}
     steps:
-       # Checkout the PR branch only to get the changed files from the .git folder
-      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
-        with:
-          ref: ${{ github.event.pull_request.head.ref }}
-          repository: ${{ github.event.pull_request.head.repo.full_name }}
-          fetch-depth: 0
-      - name: Get changed files
+      # Determine the changed directories under model/ from the GitHub API.
+      # This intentionally does NOT check out the (untrusted) fork PR code:
+      # this workflow runs in the trusted "pull_request_target" context, so
+      # fetching and executing fork code here would be a "pwn request" risk.
+      - name: Get changed model directories
         id: changed-files
-        uses: tj-actions/changed-files@9426d40962ed5378910ee2e21d5f8c6fcbf2dd96 # v47.0.6
-        with:
-          dir_names: "true"
-          files: model/**
-          separator: ","
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          REPO: ${{ github.repository }}
+        run: |
+          changed_files=$(gh api --paginate \
+            "repos/${REPO}/pulls/${PR_NUMBER}/files" \
+            --jq '.[].filename' \
+            | sed -n 's|^\(model/[^/][^/]*\)/.*|\1|p' \
+            | sort -u \
+            | paste -sd, -)
+          echo "changed_files=${changed_files}" >> "$GITHUB_OUTPUT"
+          if [ -n "${changed_files}" ]; then
+            echo "any_changed=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "any_changed=false" >> "$GITHUB_OUTPUT"
+          fi
 
   validate-area-ownership:
     runs-on: ubuntu-latest

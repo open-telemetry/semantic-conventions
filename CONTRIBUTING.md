@@ -429,10 +429,15 @@ To check for style violations, run:
 make markdownlint
 ```
 
-To fix style violations, follow the
-[instruction](https://github.com/DavidAnson/markdownlint#optionsresultversion)
-with the Node version of markdownlint. If you are using Visual Studio Code,
-you can also use the `fixAll` command of the
+To fix style violations, run
+[markdownlint-cli2](https://github.com/DavidAnson/markdownlint-cli2) with the
+`--fix` option:
+
+```bash
+npx --no -- markdownlint-cli2 --fix '**/*.md'
+```
+
+If you are using Visual Studio Code, you can also use the `fixAll` command of the
 [vscode markdownlint extension](https://github.com/DavidAnson/vscode-markdownlint).
 
 ### Misspell check

@@ -16,11 +16,6 @@ if [ -z ${PR:-} ]; then
     exit 1
 fi
 
-if [ -z ${PR_CHANGELOG_PATH:-} ]; then
-    echo "PR_CHANGELOG_PATH is required"
-    exit 1
-fi
-
 CHLOG="$(gh pr view $PR --json files --jq '.files.[].path | select (. | startswith(".chloggen/"))')"
 echo "Change log file(s): ${CHLOG}"
 
@@ -31,10 +26,17 @@ fi
 
 COUNT="$(echo "$CHLOG" | wc -l)"
 if [ $COUNT -eq 1 ]; then
-    CHANGE_TYPE=$(awk -F': ' '/^change_type:/ {print $2}' "$PR_CHANGELOG_PATH/$CHLOG" | xargs)
+    # Fetch the changelog file content from the PR head commit via the API rather
+    # than checking out the (untrusted) fork code. This workflow runs in the
+    # trusted "pull_request_target" context, and GITHUB_REPOSITORY (the base repo)
+    # can access the PR head commit by SHA.
+    HEAD_SHA="$(gh pr view "$PR" --json headRefOid --jq '.headRefOid')"
+    CHLOG_CONTENT="$(gh api "repos/${GITHUB_REPOSITORY}/contents/${CHLOG}?ref=${HEAD_SHA}" --jq '.content' | (base64 -d 2>/dev/null || base64 -D 2>/dev/null))"
+
+    CHANGE_TYPE=$(echo "$CHLOG_CONTENT" | awk -F': ' '/^change_type:/ {print $2}' | xargs)
     echo $CHANGE_TYPE
     gh pr edit "${PR}" --add-label "${CHANGE_TYPE}" || true
-    AREA=$(awk -F': ' '/^component:/ {print $2}' "$PR_CHANGELOG_PATH/$CHLOG" | xargs)
+    AREA=$(echo "$CHLOG_CONTENT" | awk -F': ' '/^component:/ {print $2}' | xargs)
     echo $AREA
     if [[ "$AREA" == \[*\] ]]; then
       cleaned=$(echo "$AREA" | tr -d '[]' | tr ',' '\n')
