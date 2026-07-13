@@ -1,5 +1,6 @@
 name: 'Check changes ownership'
-on: # zizmor: ignore[dangerous-triggers] PR files are read via the API; only trusted base-branch code is executed.
+on:
+  # zizmor: ignore[dangerous-triggers] PR files are read via the API; only trusted base-branch code is executed.
   pull_request_target:
     types: [opened, synchronize, edited, labeled, unlabeled]
     branches: [ 'main' ]
