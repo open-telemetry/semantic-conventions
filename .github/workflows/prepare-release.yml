@@ -20,31 +20,31 @@ jobs:
           persist-credentials: false
 
       - name: Validate version
+        env:
+          INPUTS_VERSION: ${{ inputs.version }}
         run: |
           version=${INPUTS_VERSION}
           if [[ ! "$version" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
             echo "unexpected version: $version"
             exit 1
           fi
-        env:
-          INPUTS_VERSION: ${{ inputs.version }}
 
       - name: Use CLA approved github bot
         run: .github/scripts/use-cla-approved-github-bot.sh
 
       - name: Update schema files
+        env:
+          INPUTS_VERSION: ${{ inputs.version }}
         run: |
           version=${INPUTS_VERSION}
           make generate-schema-next NEXT_SEMCONV_VERSION=$version
           git add "schemas/$version"
-        env:
-          INPUTS_VERSION: ${{ inputs.version }}
 
       - name: Update change log
-        run: |
-          make chlog-update VERSION=v${INPUTS_VERSION}
         env:
           INPUTS_VERSION: ${{ inputs.version }}
+        run: |
+          make chlog-update VERSION=v${INPUTS_VERSION}
 
       - uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
         id: otelbot-token

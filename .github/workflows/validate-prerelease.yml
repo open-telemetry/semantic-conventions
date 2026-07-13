@@ -20,6 +20,8 @@ jobs:
           persist-credentials: false
 
       - name: Verify schema file exists for release tag
+        env:
+          GITHUB_EVENT_RELEASE_TAG_NAME: ${{ github.event.release.tag_name }}
         run: |
           tag="${GITHUB_EVENT_RELEASE_TAG_NAME}"
           version="${tag#v}"
@@ -30,8 +32,6 @@ jobs:
             exit 1
           fi
           echo "OK: '$file' exists."
-        env:
-          GITHUB_EVENT_RELEASE_TAG_NAME: ${{ github.event.release.tag_name }}
 
       - name: Validate schema files
         run: make schema-check
