@@ -15,7 +15,8 @@ groups:
     stability: development
     name: azure.container_app
     brief: >
-      Resource used by Azure Container Apps.
+      Resource used by a revision of an Azure Container App.
     attributes:
       - ref: azure.container_app.revision
-        requirement_level: recommended
+        role: identifying
+        requirement_level: required
