@@ -70,6 +70,7 @@ and one for disabling the old schema called `semconv.k8s.disableLegacy`. Then:
   - [Container Runtime](#container-runtime)
   - [K8s Pod Status Phase and Reason](#k8s-pod-status-phase-and-reason)
   - [K8s labels and annotations](#k8s-labels-and-annotations)
+  - [K8s Pod/Node and Container Memory Usage](#k8s-podnode-and-container-memory-usage)
 
 <!-- END doctoc -->
 
@@ -567,5 +568,25 @@ The changes in these attributes are the following:
 | `k8s.node.annotations.<key>`                                                       | `k8s.node.annotation.<key>`      |
 | `k8s.namespace.labels.<key>`                                                       | `k8s.namespace.label.<key>`      |
 | `k8s.namespace.annotations.<key>`                                                  | `k8s.namespace.annotation.<key>` |
+
+<!-- prettier-ignore-end -->
+
+### K8s Pod/Node and Container Memory Usage
+
+The memory usage metrics implemented by the Collector and specifically the
+[k8scluster](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/v0.150.0/receiver/kubeletstatsreceiver/documentation.md)
+receiver changed their instrument types in
+[#3889](https://github.com/open-telemetry/semantic-conventions/pull/3889) in alignement with the rest
+of the project.
+
+The changes are the following:
+
+<!-- prettier-ignore-start -->
+
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                                                                   |
+| ---------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| `k8s.pod.memory.usage`    gauge                                            | `k8s.pod.memory.usage`    updowncounter |
+| `k8s.node.memory.usage`    gauge                                            | `k8s.node.memory.usage`    updowncounter |
+| `container.memory.usage`    gauge                                            | `container.memory.usage`    updowncounter |
 
 <!-- prettier-ignore-end -->

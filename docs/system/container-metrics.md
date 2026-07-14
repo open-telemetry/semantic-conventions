@@ -150,7 +150,7 @@ This metric is [opt-in][MetricOptIn].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `container.memory.usage` | Counter | `By` | Memory usage of the container. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`container`](/docs/registry/entities/container.md#container) |
+| `container.memory.usage` | UpDownCounter | `By` | Memory usage of the container. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`container`](/docs/registry/entities/container.md#container) |
 
 **[1]:** Memory usage of the container.
 
