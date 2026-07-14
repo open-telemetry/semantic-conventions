@@ -1140,8 +1140,8 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `system.process.limit` | UpDownCounter | `{thread}` | The maximum number of concurrent processes/tasks allowed by the operating system. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`host`](/docs/registry/entities/host.md#host) |
 
-**[1]:** On Linux, this corresponds to `/proc/sys/kernel/pid_max` or `/proc/sys/kernel/threads-max` 
-(retrieved via `getrlimit(RLIMIT_NPROC)`). 
+**[1]:** On Linux, this corresponds to `/proc/sys/kernel/pid_max` or `/proc/sys/kernel/threads-max`
+(retrieved via `getrlimit(RLIMIT_NPROC)`).
 On BSD-like systems, this corresponds to `sysctl kern.maxproc`. This metric is unsupported on Windows systems.
 
 <!-- prettier-ignore-end -->

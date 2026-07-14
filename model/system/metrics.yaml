@@ -542,8 +542,8 @@ groups:
     entity_associations:
       - host
     note: |
-      On Linux, this corresponds to `/proc/sys/kernel/pid_max` or `/proc/sys/kernel/threads-max` 
-      (retrieved via `getrlimit(RLIMIT_NPROC)`). 
+      On Linux, this corresponds to `/proc/sys/kernel/pid_max` or `/proc/sys/kernel/threads-max`
+      (retrieved via `getrlimit(RLIMIT_NPROC)`).
       On BSD-like systems, this corresponds to `sysctl kern.maxproc`. This metric is unsupported on Windows systems.
 
   # system.memory.linux.* metrics
