@@ -54,7 +54,7 @@ document for details on how to record span status.
 | [`rpc.request.metadata.<key>`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string[] | RPC request metadata, `<key>` being the normalized RPC metadata key (lowercase), the value being the metadata values. [7] | `["1.2.3.4", "1.2.3.5"]` |
 | [`rpc.response.metadata.<key>`](/docs/registry/attributes/rpc.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string[] | RPC response metadata, `<key>` being the normalized RPC metadata key (lowercase), the value being the metadata values. [8] | `["attribute_value"]` |
 
-**[1] `server.address`:** When an IP address is provided instead of a domain name, instrumentations SHOULD NOT do a reverse proxy lookup to obtain DNS name and SHOULD set `server.address` to the provided IP address.
+**[1] `server.address`:** When an IP address is provided instead of a domain name, instrumentations SHOULD NOT do a reverse DNS lookup to obtain DNS name and SHOULD set `server.address` to the provided IP address.
 
 **[2] `error.type`:** If the RPC fails with an error before status code is returned,
 `error.type` SHOULD be set to the exception type (its fully-qualified class name, if applicable)

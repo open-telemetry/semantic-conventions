@@ -15,6 +15,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      naming_conventions:
+        # TODO hw.fan.speed is used as a namespace by hw.fan.speed.limit
+        policy_exceptions:
+          - metric_namespace_collision
     stability: development
     brief: "Fan speed in revolutions per minute."
     instrument: gauge

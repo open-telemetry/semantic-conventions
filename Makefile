@@ -285,6 +285,13 @@ generate-gh-issue-templates:
 # .. which is why some additional processing is required to extract the
 # latest version number and strip off the "v" prefix.
 LATEST_RELEASED_SEMCONV_VERSION := $(shell git ls-remote --tags https://github.com/open-telemetry/semantic-conventions.git | cut -f 2 | sort --reverse | head -n 1 | tr '/' ' ' | cut -d ' ' -f 3 | $(SED) 's/v//g')
+# Most semantic-convention check policies live in the opentelemetry-weaver-packages
+# repository (see https://github.com/open-telemetry/opentelemetry-weaver-packages/tree/main/policies/check).
+# Only checks that are NOT provided upstream are kept locally under ./policies (see policies/README.md).
+#
+# TODO: pin commit or tag of opentelemetry-weaver-packages and add it to renovate
+# once weaver-packages is released.
+WEAVER_PACKAGES_REPO=https://github.com/open-telemetry/opentelemetry-weaver-packages.git
 .PHONY: check-policies
 check-policies:
 	$(DOCKER_RUN) --rm \
@@ -295,9 +302,14 @@ check-policies:
 		--mount 'type=bind,source=$(PWD)/policies,target=/home/weaver/policies,readonly' \
 		--mount 'type=bind,source=$(PWD)/model,target=/home/weaver/source,readonly' \
 		${WEAVER_CONTAINER} registry check \
+		--v2 \
 		--registry=/home/weaver/source \
 		--baseline-registry=https://github.com/open-telemetry/semantic-conventions/archive/refs/tags/v$(LATEST_RELEASED_SEMCONV_VERSION).zip[model] \
-		--policy=/home/weaver/policies
+		--policy=/home/weaver/policies \
+		--policy="$(WEAVER_PACKAGES_REPO)[policies/check/naming_conventions]" \
+		--policy="$(WEAVER_PACKAGES_REPO)[policies/check/stability]" \
+		--policy="$(WEAVER_PACKAGES_REPO)[policies/check/entity_associations]" \
+		--policy="$(WEAVER_PACKAGES_REPO)[policies/check/backwards-compatibility]"
 
 # Test rego policies
 .PHONY: test-policies

@@ -235,7 +235,7 @@ For title and heading capitalization, follow the
 ### 3. Check new convention
 
 Semantic conventions are validated for name formatting and backward compatibility with last released versions.
-Here's [the full list of compatibility checks](./policies/compatibility.rego).
+Check out [policy checks](./policies/README.md) for details.
 
 Removing attributes, metrics, or enum members is not allowed, they should be deprecated instead.
 It applies to stable and unstable conventions and prevents semantic conventions auto-generated libraries from introducing breaking changes.

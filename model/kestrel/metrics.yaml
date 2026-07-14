@@ -31,6 +31,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      stability:
+        # TODO https://github.com/open-telemetry/semantic-conventions/issues/1514
+        policy_exceptions:
+          - metric_lower_stability_attribute
     stability: stable
     brief: The duration of connections on the server.
     instrument: histogram
@@ -174,6 +178,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      stability:
+        # TODO https://github.com/open-telemetry/semantic-conventions/issues/1514
+        policy_exceptions:
+          - metric_lower_stability_attribute
     stability: stable
     brief: The duration of TLS handshakes on the server.
     instrument: histogram

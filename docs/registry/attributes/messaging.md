@@ -120,11 +120,14 @@ This group describes attributes specific to Apache Kafka.
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="messaging-kafka-message-key" href="#messaging-kafka-message-key">`messaging.kafka.message.key`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Message keys in Kafka are used for grouping alike messages to ensure they're processed on the same partition. They differ from `messaging.message.id` in that they're not unique. If the key is `null`, the attribute MUST NOT be set. [10] | `myKey` |
+| <a id="messaging-kafka-cluster-id" href="#messaging-kafka-cluster-id">`messaging.kafka.cluster.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The Kafka cluster id, obtained from the broker metadata exposed through the Kafka client (or AdminClient) API. [10] | `MkU3OEVBNTcwNTJENDM2Qk` |
+| <a id="messaging-kafka-message-key" href="#messaging-kafka-message-key">`messaging.kafka.message.key`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Message keys in Kafka are used for grouping alike messages to ensure they're processed on the same partition. They differ from `messaging.message.id` in that they're not unique. If the key is `null`, the attribute MUST NOT be set. [11] | `myKey` |
 | <a id="messaging-kafka-message-tombstone" href="#messaging-kafka-message-tombstone">`messaging.kafka.message.tombstone`</a> | ![Development](https://img.shields.io/badge/-development-blue) | boolean | A boolean that is true if the message is a tombstone. | |
 | <a id="messaging-kafka-offset" href="#messaging-kafka-offset">`messaging.kafka.offset`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The offset of a record in the corresponding Kafka partition. | `42` |
 
-**[10] `messaging.kafka.message.key`:** If the key type is not string, it's string representation has to be supplied for the attribute. If the key has no unambiguous, canonical string form, don't include its value.
+**[10] `messaging.kafka.cluster.id`:** The cluster id is a unique identifier reported by the Kafka broker. It identifies the cluster independently of the individual brokers the client is configured to connect to, and remains stable even if broker host names, IP addresses, or ports change.
+
+**[11] `messaging.kafka.message.key`:** If the key type is not string, it's string representation has to be supplied for the attribute. If the key has no unambiguous, canonical string form, don't include its value.
 
 ## RabbitMQ Attributes
 
