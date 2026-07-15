@@ -450,16 +450,6 @@ To check for typos, run the following command:
 make misspell
 ```
 
-> [!Note]
-> The `misspell` make target will also fetch and build the tool if
-> necessary. You'll need [Go](https://go.dev) to build the spellchecker.
-
-To quickly fix typos, use
-
-```bash
-make misspell-correction
-```
-
 ### Update the tables of content
 
 To update the tables of content, run:
