@@ -13,7 +13,6 @@
       depNameTemplate: "open-telemetry/weaver",
       datasourceTemplate: "github-releases",
       versioningTemplate: "semver",
-      extractVersionTemplate: "^v(?<version>.*)$"
     },
   ],
   packageRules: [
@@ -27,7 +26,7 @@
       schedule: ["* 0-7 * * 2"], // weekly, before 8am on Tuesday
     },
     {
-      matchPackageNames: ["otel/**"],
+      matchPackageNames: ["otel/**", "open-telemetry/weaver"],
       schedule: ["at any time"],
     },
   ],
