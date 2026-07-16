@@ -1,4 +1,4 @@
 change_type: enhancement
 component: db
-note: Add Application context propagation using piggyback
+note: Add application context propagation via piggybacking
 issues: [3901]

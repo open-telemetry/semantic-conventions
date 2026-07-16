@@ -265,7 +265,7 @@ using var tracerProvider = Sdk.CreateTracerProviderBuilder()
     .AddOtlpExporter()
     .Build();
 
-string connectString = <your_connection_string>;
+string connectString = "<your_connection_string>";
 
 using (OracleConnection connection = new OracleConnection(connectString))
 {
@@ -273,10 +273,10 @@ using (OracleConnection connection = new OracleConnection(connectString))
     {
         connection.Open();
 
-        // 2. Opt-in to client context piggybacking. 
-        // The driver automatically serializes the active W3C trace context 
+        // 2. Opt-in to client context piggybacking.
+        // The driver automatically serializes the active W3C trace context
         // into CLIENTCONTEXT (ora$opentelem$tracectx) during subsequent executions.
-        connection.DatabaseOpenTelemetryTracing = true; 
+        connection.DatabaseOpenTelemetryTracing = true;
 
         // 3. Execute queries. Trace context piggybacks silently on these roundtrips.
         command.CommandText = "INSERT INTO MYTABLE VALUES ('val1', 100)";
