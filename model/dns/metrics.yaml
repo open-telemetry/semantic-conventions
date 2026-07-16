@@ -11,7 +11,7 @@ groups:
     unit: "s"
     attributes:
       - ref: dns.question.name
-        requirement_level: required
+        requirement_level: opt_in
         examples: ["www.example.com", "dot.net"]
       - ref: error.type
         requirement_level:
