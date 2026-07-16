@@ -217,7 +217,7 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 ### Application context piggyback
 
-Instrumentations MAY propagate context by using an Oracle driver mechanism that piggybacks application context to the server in the same round trip as the SQL statement. Context injection SHOULD NOT be enabled by default, but instrumentation MAY allow users to opt into it.
+Instrumentations MAY propagate context by using an Oracle driver mechanism that piggybacks application context to the server in the same round trip as the SQL statement. Context injection SHOULD NOT be enabled by default, but instrumentations MAY allow users to opt into it.
 
 When using W3C Trace Context, instrumentations SHOULD inject [`traceparent`](https://www.w3.org/TR/trace-context/#traceparent-header). If [`tracestate`](https://www.w3.org/TR/trace-context/#tracestate-header) is present, instrumentations MAY inject it together with `traceparent` as part of the propagated trace context value.
 
