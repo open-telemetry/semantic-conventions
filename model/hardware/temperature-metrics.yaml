@@ -15,6 +15,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      naming_conventions:
+        # TODO hw.temperature is used as a namespace by hw.temperature.limit
+        policy_exceptions:
+          - metric_namespace_collision
     stability: development
     brief: "Temperature in degrees Celsius."
     instrument: gauge

@@ -105,7 +105,7 @@ from the target string, it SHOULD set `server.address` to the entire
 target string and SHOULD NOT set `server.port`.
 
 When the address is an IP address, instrumentations SHOULD NOT do a
-reverse proxy lookup to obtain a DNS name and SHOULD set `server.address`
+reverse DNS lookup to obtain a DNS name and SHOULD set `server.address`
 to the IP address provided.
 
 Examples:

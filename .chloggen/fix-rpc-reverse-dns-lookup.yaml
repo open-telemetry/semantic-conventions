@@ -1,0 +1,11 @@
+change_type: bug_fix
+
+component: rpc
+
+note: >
+  Fix wording in `server.address` note to say "reverse DNS lookup" instead of
+  "reverse proxy lookup".
+
+issues: [3871]
+
+subtext:

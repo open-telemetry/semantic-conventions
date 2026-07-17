@@ -163,9 +163,9 @@ groups:
       of the Kubelet's stats API.
     instrument: updowncounter
     unit: "By"
-  - id: metric.container.memory.paging.faults
+  - id: metric.container.paging.faults
     type: metric
-    metric_name: container.memory.paging.faults
+    metric_name: container.paging.faults
     stability: development
     annotations:
       code_generation:

@@ -21,6 +21,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      naming_conventions:
+        # TODO hw.battery.charge is used as a namespace by hw.battery.charge.limit
+        policy_exceptions:
+          - metric_namespace_collision
     stability: development
     brief: "Remaining fraction of battery charge."
     instrument: gauge
