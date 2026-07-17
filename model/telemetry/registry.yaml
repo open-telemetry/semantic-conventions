@@ -23,53 +23,55 @@ groups:
           members:
             - id: cpp
               value: "cpp"
-              brief: C++
+              brief: "[C++](https://opentelemetry.io/docs/languages/cpp/)"
               stability: stable
             - id: dotnet
               value: "dotnet"
-              brief: .NET
+              brief: "[.NET](https://opentelemetry.io/docs/languages/dotnet/)"
               stability: stable
             - id: erlang
               value: "erlang"
-              brief: Erlang
+              brief: "[Erlang/Elixir](https://opentelemetry.io/docs/languages/erlang/)"
               stability: stable
             - id: go
               value: "go"
+              brief: "[Go](https://opentelemetry.io/docs/languages/go/)"
               stability: stable
             - id: java
               value: "java"
-              brief: Java
+              brief: "[Java](https://opentelemetry.io/docs/languages/java/)"
               stability: stable
             - id: kotlin
               value: "kotlin"
-              brief: Kotlin
+              brief: "[Kotlin](https://opentelemetry.io/docs/languages/kotlin/)"
               stability: stable
             - id: nodejs
               value: "nodejs"
-              brief: Node.js
+              brief: "[Node.js](https://opentelemetry.io/docs/languages/js/)"
               stability: stable
             - id: php
               value: "php"
-              brief: PHP
+              brief: "[PHP](https://opentelemetry.io/docs/languages/php/)"
               stability: stable
             - id: python
               value: "python"
-              brief: Python
+              brief: "[Python](https://opentelemetry.io/docs/languages/python/)"
               stability: stable
             - id: ruby
               value: "ruby"
-              brief: Ruby
+              brief: "[Ruby](https://opentelemetry.io/docs/languages/ruby/)"
               stability: stable
             - id: rust
               value: "rust"
-              brief: Rust
+              brief: "[Rust](https://opentelemetry.io/docs/languages/rust/)"
               stability: stable
             - id: swift
               value: "swift"
-              brief: Swift
+              brief: "[Swift](https://opentelemetry.io/docs/languages/swift/)"
               stability: stable
             - id: webjs
               value: "webjs"
+              brief: "[Browser](https://opentelemetry.io/docs/languages/js/)"
               stability: stable
         stability: stable
         brief: >

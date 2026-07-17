@@ -69,6 +69,7 @@ and one for disabling the old schema called `semconv.k8s.disableLegacy`. Then:
   - [K8s Node memory metrics](#k8s-node-memory-metrics)
   - [Container Runtime](#container-runtime)
   - [K8s Pod Status Phase and Reason](#k8s-pod-status-phase-and-reason)
+  - [K8s labels and annotations](#k8s-labels-and-annotations)
 
 <!-- END doctoc -->
 
@@ -535,5 +536,36 @@ The changes in their metrics are the following:
 | ---------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
 | `k8s.pod.status_reason`    metric [1,6]                                            | `k8s.pod.status.reason` metric [0,1] with attribute `k8s.pod.status.reason` for the different reasons |
 | `k8s.pod.phase`       metric [1, 5]                                                | `k8s.pod.status.phase` metric [0,1] with attribute `k8s.pod.phase` for the different phases           |
+
+<!-- prettier-ignore-end -->
+
+### K8s labels and annotations
+
+The K8s label and annotation attributes implemented by the Collector and specifically the
+[k8sattributes](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/k8sattributesprocessor/README.md)
+processor were introduced as semantic conventions in
+[#625](https://github.com/open-telemetry/semantic-conventions/pull/625) (Pod),
+[#2130](https://github.com/open-telemetry/semantic-conventions/pull/2130) (Node) and
+[#2166](https://github.com/open-telemetry/semantic-conventions/pull/2166) (Namespace).
+
+Unlike the receivers described above, the k8sattributes processor gates this transition behind
+its own feature gates, `processor.k8sattributes.EmitV1K8sConventions` and
+`processor.k8sattributes.DontEmitV0K8sConventions`, rather than the
+`OTEL_SEMCONV_STABILITY_OPT_IN` environment variable. See the processor's
+[Semantic Conventions Compatibility](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/k8sattributesprocessor/README.md#semantic-conventions-compatibility)
+documentation for details.
+
+The changes in these attributes are the following:
+
+<!-- prettier-ignore-start -->
+
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                              |
+| ---------------------------------------------------------------------------------- | -------------------------------- |
+| `k8s.pod.labels.<key>`                                                             | `k8s.pod.label.<key>`            |
+| `k8s.pod.annotations.<key>`                                                        | `k8s.pod.annotation.<key>`       |
+| `k8s.node.labels.<key>`                                                            | `k8s.node.label.<key>`           |
+| `k8s.node.annotations.<key>`                                                       | `k8s.node.annotation.<key>`      |
+| `k8s.namespace.labels.<key>`                                                       | `k8s.namespace.label.<key>`      |
+| `k8s.namespace.annotations.<key>`                                                  | `k8s.namespace.annotation.<key>` |
 
 <!-- prettier-ignore-end -->
