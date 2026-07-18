@@ -201,7 +201,7 @@ table-check:
 		--param registry_base_url=/docs/registry/ \
 		--templates=/home/weaver/templates \
 		--target=markdown \
-		--dry-run \
+		--dry-run=true \
 		/home/weaver/target
 
 .PHONY: schema-check
