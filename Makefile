@@ -153,6 +153,7 @@ yamllint:
 	yamllint .
 
 # Generate markdown tables from YAML definitions
+# TODO(#3808): re-add `--future` once the markdown templates are switched to v2.
 .PHONY: table-generation
 table-generation:
 	$(DOCKER_RUN) --rm \
@@ -165,7 +166,6 @@ table-generation:
 		--param registry_base_url=/docs/registry/ \
 		--templates=/home/weaver/templates \
 		--target=markdown \
-		--future \
 		/home/weaver/target
 
 # DEPRECATED: Generate attribute registry markdown.
@@ -188,6 +188,7 @@ registry-generation:
 		  /home/weaver/target/registry/
 
 # Check if current markdown tables differ from the ones that would be generated from YAML definitions (weaver).
+# TODO(#3808): re-add `--future` once the markdown templates are switched to v2.
 .PHONY: table-check
 table-check:
 	$(DOCKER_RUN) --rm \
@@ -201,7 +202,6 @@ table-check:
 		--templates=/home/weaver/templates \
 		--target=markdown \
 		--dry-run \
-		--future \
 		/home/weaver/target
 
 .PHONY: schema-check

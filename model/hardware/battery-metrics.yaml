@@ -1,11 +1,10 @@
-groups:
-  # BATTERY METRICS
+# yaml-language-server: $schema=https://raw.githubusercontent.com/open-telemetry/weaver/v0.24.2/schemas/semconv.schema.v2.json
+file_format: definition/2
+attribute_groups:
   - id: metric_attributes.hw.battery
-    type: attribute_group
-    brief: >
-      Common attributes for battery metrics
-    extends: hardware.attributes.common
+    visibility: internal
     attributes:
+      - ref_group: hardware.attributes.common
       - ref: hw.battery.chemistry
         requirement_level: recommended
       - ref: hw.battery.capacity
@@ -15,9 +14,9 @@ groups:
       - ref: hw.vendor
         requirement_level: recommended
 
-  - id: metric.hw.battery.charge
-    type: metric
-    metric_name: hw.battery.charge
+metrics:
+  - name: hw.battery.charge
+    requirement_level: recommended
     annotations:
       code_generation:
         metric_value_type: double
@@ -29,12 +28,12 @@ groups:
     brief: "Remaining fraction of battery charge."
     instrument: gauge
     unit: "1"
-    extends: metric_attributes.hw.battery
+    attributes:
+      - ref_group: metric_attributes.hw.battery
 
     # TODO: decide on metric name - charge.limit is original
-  - id: metric.hw.battery.charge.limit
-    type: metric
-    metric_name: hw.battery.charge.limit
+  - name: hw.battery.charge.limit
+    requirement_level: recommended
     annotations:
       code_generation:
         metric_value_type: double
@@ -42,8 +41,8 @@ groups:
     brief: "Lower limit of battery charge fraction to ensure proper operation."
     instrument: gauge
     unit: "1"
-    extends: metric_attributes.hw.battery
     attributes:
+      - ref_group: metric_attributes.hw.battery
       - ref: hw.limit_type
         examples: ["critical", "throttled", "degraded"]
         requirement_level: recommended
@@ -54,9 +53,8 @@ groups:
           are typically provided by the hardware or firmware to guide safe and efficient battery
           usage.
 
-  - id: metric.hw.battery.time_left
-    type: metric
-    metric_name: hw.battery.time_left
+  - name: hw.battery.time_left
+    requirement_level: recommended
     annotations:
       code_generation:
         metric_value_type: double
@@ -64,8 +62,8 @@ groups:
     brief: "Time left before battery is completely charged or discharged."
     instrument: gauge
     unit: "s"
-    extends: metric_attributes.hw.battery
     attributes:
+      - ref_group: metric_attributes.hw.battery
       - ref: hw.state
         requirement_level: required
       - ref: hw.battery.state
@@ -74,3 +72,9 @@ groups:
         note: >
           The `hw.state` attribute should indicate the current state of the battery.
           It should be one of the predefined states such as "charging" or "discharging".
+
+metric_refinements:
+  - id: metric.hw.battery.status
+    ref: hw.status
+    attributes:
+      - ref_group: metric_attributes.hw.battery
