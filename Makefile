@@ -102,18 +102,18 @@ misspell:
 
 .PHONY: textlint
 textlint:
-	@if ! npm ls textlint; then npm install; fi
+	@if ! npm ls textlint; then npm ci --ignore-scripts; fi
 
 	@if [ "$(format)" = "github" ]; then \
-		npx textlint --format github .; \
+		npx --no -- textlint --format github .; \
 	else \
-		npx textlint .; \
+		npx --no -- textlint .; \
 	fi
 
 .PHONY: textlint-correction
 textlint-correction:
-	@if ! npm ls textlint; then npm install; fi
-	npx textlint --fix .
+	@if ! npm ls textlint; then npm ci --ignore-scripts; fi
+	npx --no -- textlint --fix .
 
 .PHONY: normalized-link-check
 # NOTE: Search "model/*/**" rather than "model" to skip `model/README.md`, which
