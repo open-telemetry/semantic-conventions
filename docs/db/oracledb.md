@@ -12,6 +12,8 @@ linkTitle: Oracle Database
 - [Context propagation](#context-propagation)
   - [Application context piggyback](#application-context-piggyback)
   - [V$SESSION.ACTION](#vsessionaction)
+  - [Choice of Propagation Mechanism](#choice-of-propagation-mechanism)
+    - [Recommendation Guidance](#recommendation-guidance)
 - [Metrics](#metrics)
 
 <!-- END doctoc -->
@@ -319,6 +321,20 @@ Then run the query:
 ```sql
 SELECT * FROM songs;
 ```
+
+### Choice of Propagation Mechanism
+
+When selecting a context propagation strategy for Oracle Database, telemetry implementations MUST prioritize the **Application Context Piggyback** mechanism over the legacy `V$SESSION.ACTION` method.
+
+| Mechanism | Implementation Type | Minimum Stack Requirements | Tracing Behavior |
+| :--- | :--- | :--- | :--- |
+| **Application Context Piggyback** | **Native** | Java JDBC Client 23.26.2+ & Oracle DB 26ai+ | Built-in server-side parsing of W3C telemetry context via the network protocol. |
+| **`V$SESSION.ACTION`** | **Passive Workaround** | Older Oracle versions | Diagnostic text label only. Requires external collectors or triggers to track changes. |
+
+#### Recommendation Guidance
+
+* **Use Application Context Piggyback by default:** For modern environments meeting the minimum stack requirements, the legacy `V$SESSION.ACTION` approach is **deprecated** for OpenTelemetry propagation. The application context piggyback mechanism allows the database engine to natively recognize and process trace boundaries without field collisions.
+* **Fallback Limitation:** `V$SESSION.ACTION` SHOULD only be used as a legacy fallback. Implementations must note that the database server does not natively evaluate or generate child spans from the `ACTION` attribute; any tracing dependencies relying on `ACTION` require external collector orchestration to monitor session state changes.
 
 ## Metrics
 
