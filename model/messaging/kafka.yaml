@@ -1,7 +1,7 @@
 file_format: definition/2
 
 span_refinements:
-  - id: messaging.kafka.create.producer
+  - id: span.messaging.kafka.create.producer
     ref: messaging.create.producer
     stability: development
     brief: Describes a message being created for sending to Apache Kafka.
@@ -21,7 +21,7 @@ span_refinements:
         requirement_level:
           conditionally_required: If value is `true`. When missing, the value is assumed to be `false`.
 
-  - id: messaging.kafka.send.producer
+  - id: span.messaging.kafka.send.producer
     ref: messaging.send.producer
     stability: development
     brief: Describes a producer sending one or more messages to Apache Kafka.
@@ -45,7 +45,7 @@ span_refinements:
         requirement_level:
           conditionally_required: If value is `true`. When missing, the value is assumed to be `false`.
 
-  - id: messaging.kafka.send.client
+  - id: span.messaging.kafka.send.client
     ref: messaging.send.client
     stability: development
     brief: Describes a producer sending one or more messages to Apache Kafka.
@@ -69,7 +69,7 @@ span_refinements:
         requirement_level:
           conditionally_required: If value is `true`. When missing, the value is assumed to be `false`.
 
-  - id: messaging.kafka.receive.client
+  - id: span.messaging.kafka.receive.client
     ref: messaging.receive.client
     stability: development
     brief: Describes a consumer receiving one or more messages from Apache Kafka (pull-based).
@@ -99,7 +99,7 @@ span_refinements:
         requirement_level:
           conditionally_required: If value is `true`. When missing, the value is assumed to be `false`.
 
-  - id: messaging.kafka.settle.client
+  - id: span.messaging.kafka.settle.client
     ref: messaging.settle.client
     stability: development
     brief: Describes a consumer committing offsets (settling) one or more messages from Apache Kafka.
@@ -123,7 +123,7 @@ span_refinements:
         requirement_level:
           recommended: If span describes operation on a single message.
 
-  - id: messaging.kafka.process.consumer
+  - id: span.messaging.kafka.process.consumer
     ref: messaging.process.consumer
     stability: development
     brief: Describes a consumer processing one or more messages from Apache Kafka (push-based).

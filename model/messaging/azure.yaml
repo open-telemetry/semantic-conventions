@@ -2,7 +2,7 @@ file_format: definition/2
 
 span_refinements:
   # Azure Service Bus
-  - id: messaging.servicebus.create.producer
+  - id: span.messaging.servicebus.create.producer
     ref: messaging.create.producer
     stability: development
     brief: Describes a message being created for sending to Azure Service Bus.
@@ -14,14 +14,15 @@ span_refinements:
       - ref: error.type
         examples: ['MessageLockLost', 'MessagingEntityNotFound', 'ServiceBusy']
       - ref: messaging.message.conversation_id
-        brief: &servicebus_conversation_id_brief Message [correlation Id](https://learn.microsoft.com/azure/service-bus-messaging/service-bus-messages-payloads#message-routing-and-correlation) property.
+        brief: &servicebus_conversation_id_brief >
+          Message [correlation Id](https://learn.microsoft.com/azure/service-bus-messaging/service-bus-messages-payloads#message-routing-and-correlation) property.
       - ref: messaging.operation.name
         brief: Azure Service Bus operation name.
         note: |
           For the "Create" span, `messaging.operation.name` SHOULD be set to `create`.
         examples: ['create']
 
-  - id: messaging.servicebus.send.producer
+  - id: span.messaging.servicebus.send.producer
     ref: messaging.send.producer
     stability: development
     brief: Describes a producer sending one or more messages to Azure Service Bus.
@@ -42,7 +43,7 @@ span_refinements:
           - send operations: `send`, `schedule`
         examples: ['send', 'schedule']
 
-  - id: messaging.servicebus.send.client
+  - id: span.messaging.servicebus.send.client
     ref: messaging.send.client
     stability: development
     brief: Describes a producer sending one or more messages to Azure Service Bus.
@@ -63,7 +64,7 @@ span_refinements:
           - send operations: `send`, `schedule`
         examples: ['send', 'schedule']
 
-  - id: messaging.servicebus.receive.client
+  - id: span.messaging.servicebus.receive.client
     ref: messaging.receive.client
     stability: development
     brief: Describes a consumer receiving one or more messages from Azure Service Bus.
@@ -94,7 +95,7 @@ span_refinements:
           - receive operations: `receive`, `peek`, `receive_deferred`
         examples: ['receive', 'peek', 'receive_deferred']
 
-  - id: messaging.servicebus.process.consumer
+  - id: span.messaging.servicebus.process.consumer
     ref: messaging.process.consumer
     stability: development
     brief: Describes a consumer processing one or more messages from Azure Service Bus (push-based).
@@ -123,7 +124,7 @@ span_refinements:
           otherwise it SHOULD be set to the name of the client method in snake_case.
         examples: ['process']
 
-  - id: messaging.servicebus.settle.client
+  - id: span.messaging.servicebus.settle.client
     ref: messaging.settle.client
     stability: development
     brief: Describes settling (complete/abandon/defer/dead-letter) one or more Azure Service Bus messages.
@@ -153,7 +154,7 @@ span_refinements:
           - settlement operations: `abandon`, `complete`, `defer`, `dead_letter`, `delete`
         examples: ['complete', 'abandon', 'dead_letter']
 
-  - id: messaging.eventhubs.create.producer
+  - id: span.messaging.eventhubs.create.producer
     ref: messaging.create.producer
     stability: development
     brief: Describes a message being created for sending to Azure Event Hubs.
@@ -175,7 +176,7 @@ span_refinements:
         note: |
           For the "Create" span, `messaging.operation.name` SHOULD be set to `create`.
 
-  - id: messaging.eventhubs.send.producer
+  - id: span.messaging.eventhubs.send.producer
     ref: messaging.send.producer
     stability: development
     brief: Describes a producer sending one or more messages to Azure Event Hubs.
@@ -197,7 +198,7 @@ span_refinements:
           For producer spans, `messaging.operation.name` SHOULD be set to `send`;
           otherwise it SHOULD be set to the name of the client method in snake_case.
 
-  - id: messaging.eventhubs.send.client
+  - id: span.messaging.eventhubs.send.client
     ref: messaging.send.client
     stability: development
     brief: Describes a producer sending one or more messages to Azure Event Hubs.
@@ -219,7 +220,7 @@ span_refinements:
           For producer spans, `messaging.operation.name` SHOULD be set to `send`;
           otherwise it SHOULD be set to the name of the client method in snake_case.
 
-  - id: messaging.eventhubs.receive.client
+  - id: span.messaging.eventhubs.receive.client
     ref: messaging.receive.client
     stability: development
     brief: Describes a consumer receiving one or more messages from Azure Event Hubs (pull-based).
@@ -247,7 +248,7 @@ span_refinements:
           For receiver spans, `messaging.operation.name` SHOULD be set to `receive`;
           otherwise it SHOULD be set to the name of the client method in snake_case.
 
-  - id: messaging.eventhubs.process.consumer
+  - id: span.messaging.eventhubs.process.consumer
     ref: messaging.process.consumer
     stability: development
     brief: Describes a consumer processing one or more messages from Azure Event Hubs (push-based).
@@ -275,7 +276,7 @@ span_refinements:
           For processing spans, `messaging.operation.name` SHOULD be set to `process`;
           otherwise it SHOULD be set to the name of the client method in snake_case.
 
-  - id: messaging.eventhubs.settle.client
+  - id: span.messaging.eventhubs.settle.client
     ref: messaging.settle.client
     stability: development
     brief: Describes checkpointing (settling) processed messages in Azure Event Hubs.

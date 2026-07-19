@@ -363,7 +363,11 @@ one of these possible approaches:
 
 ## Messaging spans
 
-Messaging attributes are organized into the following namespaces:
+The following sections define one span per [operation type](#operation-types).
+Semantic conventions for individual messaging systems refine these spans by adding
+system-specific attributes and requirement levels.
+
+The attributes used by these spans are organized into the following namespaces:
 
 - `messaging.message`: Contains attributes that describe individual messages.
 - `messaging.destination`: Contains attributes that describe the logical entity messages are sent to. See [Destinations](#destinations) for more details.
@@ -371,10 +375,6 @@ Messaging attributes are organized into the following namespaces:
 - `messaging.consumer`: Contains attributes that describe the application instance that consumes a message. See [Consumer](#consumer) for more details.
 
 Messaging system-specific attributes MUST be defined in the corresponding `messaging.{system}` namespace.
-
-The following sections define one span per [operation type](#operation-types).
-Semantic conventions for individual messaging systems refine these spans by adding
-system-specific attributes and requirement levels.
 
 ### Create span
 

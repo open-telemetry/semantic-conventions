@@ -1,7 +1,7 @@
 file_format: definition/2
 
 span_refinements:
-  - id: messaging.rocketmq.send.producer
+  - id: span.messaging.rocketmq.send.producer
     ref: messaging.send.producer
     stability: development
     brief: Describes a producer sending one or more messages to Apache RocketMQ.
@@ -29,7 +29,7 @@ span_refinements:
       - ref: messaging.rocketmq.message.tag
       - ref: messaging.rocketmq.message.keys
 
-  - id: messaging.rocketmq.receive.client
+  - id: span.messaging.rocketmq.receive.client
     ref: messaging.receive.client
     stability: development
     brief: Describes a consumer receiving one or more messages from Apache RocketMQ (pull-based).
@@ -56,7 +56,7 @@ span_refinements:
       - ref: messaging.rocketmq.message.tag
       - ref: messaging.rocketmq.message.keys
 
-  - id: messaging.rocketmq.process.consumer
+  - id: span.messaging.rocketmq.process.consumer
     ref: messaging.process.consumer
     stability: development
     brief: Describes a consumer processing one or more messages from Apache RocketMQ (push-based).

@@ -41,11 +41,12 @@ attribute_groups:
           conditionally_required: If the span describes an operation on a batch of messages.
       - ref: messaging.client.id
 
-  # Peer (intermediary node) attributes for spans that directly contact the broker
-  # over the network ("Send", "Receive", "Settle" client spans); `network.peer.*` is
-  # not applicable to "Create" or "Process" spans. `server.address`/`server.port`
-  # are applicable to all spans (the client library knows the broker address even on
-  # "Create" and push-based "Process"), so they are declared per-span, not here.
+  # Network attributes for spans that directly contact the broker over the network
+  # ("Send", "Receive", "Settle" client spans): the broker itself (`server.*`) plus
+  # the specific intermediary node the operation went to (`network.peer.*`).
+  # "Create" and "Process" spans do not reference this group: `network.peer.*` does
+  # not apply to them, so they declare `server.address`/`server.port` on their own
+  # (the client library knows the broker address there too).
   - id: messaging.attributes.network
     visibility: internal
     attributes:

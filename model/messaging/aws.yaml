@@ -1,7 +1,7 @@
 file_format: definition/2
 
 span_refinements:
-  - id: messaging.aws.sqs.send.producer
+  - id: span.messaging.aws.sqs.send.producer
     ref: messaging.send.producer
     stability: development
     brief: Describes a producer sending one or more messages to Amazon SQS.
@@ -17,7 +17,7 @@ span_refinements:
       - ref: aws.sqs.queue.url
       - ref: aws.request_id
 
-  - id: messaging.aws.sqs.receive.client
+  - id: span.messaging.aws.sqs.receive.client
     ref: messaging.receive.client
     stability: development
     brief: Describes a consumer receiving one or more messages from Amazon SQS (pull-based).
@@ -32,7 +32,7 @@ span_refinements:
       - ref: aws.sqs.queue.url
       - ref: aws.request_id
 
-  - id: messaging.aws.sqs.process.consumer
+  - id: span.messaging.aws.sqs.process.consumer
     ref: messaging.process.consumer
     stability: development
     brief: Describes a consumer processing one or more messages from Amazon SQS (push-based).
@@ -48,7 +48,7 @@ span_refinements:
       - ref: aws.request_id
 
   # Amazon SNS
-  - id: messaging.aws.sns.send.producer
+  - id: span.messaging.aws.sns.send.producer
     ref: messaging.send.producer
     stability: development
     brief: Describes a producer publishing one or more messages to Amazon SNS.
