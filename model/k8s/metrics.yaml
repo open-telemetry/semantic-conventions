@@ -97,7 +97,7 @@ groups:
       - k8s.pod
     note: >
       Total memory usage of the Pod
-    instrument: gauge
+    instrument: updowncounter
     unit: "By"
   - id: metric.k8s.pod.memory.available
     type: metric
@@ -700,7 +700,7 @@ groups:
     brief: "Memory usage of the Node."
     note: >
       Total memory usage of the Node
-    instrument: gauge
+    instrument: updowncounter
     entity_associations:
       - k8s.node
     unit: "By"

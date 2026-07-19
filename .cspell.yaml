@@ -182,4 +182,3 @@ ignoreWords:
   - yamlize
   - Yamlify
   - crun
-  - kotlin # added as a temporary workaround to enable ci to pass
