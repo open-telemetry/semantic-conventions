@@ -17,12 +17,12 @@ This section defines generic attributes for Azure services.
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
 | <a id="azure-container-app-instance-id" href="#azure-container-app-instance-id">`azure.container_app.instance.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the replica of an Azure Container App. [1] | `my-containerapp--20mh1s9-86c8c4b497-zx9bq` |
-| <a id="azure-container-app-revision" href="#azure-container-app-revision">`azure.container_app.revision`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the revision of an Azure Container App. [2] | `my-containerapp--20mh1s9` |
+| <a id="azure-container-app-revision-name" href="#azure-container-app-revision-name">`azure.container_app.revision.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the revision of an Azure Container App. [2] | `my-containerapp--20mh1s9` |
 | <a id="azure-resource-group-name" href="#azure-resource-group-name">`azure.resource_group.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the Azure [resource group](https://learn.microsoft.com/azure/azure-resource-manager/management/manage-resource-groups-portal) the resource belongs to. | `my-resource-group`; `rg-myapp-prod` |
 
 **[1] `azure.container_app.instance.id`:** The value should be set to the [`CONTAINER_APP_REPLICA_NAME`](https://learn.microsoft.com/azure/container-apps/environment-variables) environment variable.
 
-**[2] `azure.container_app.revision`:** The value should be set to the [`CONTAINER_APP_REVISION`](https://learn.microsoft.com/azure/container-apps/environment-variables) environment variable.
+**[2] `azure.container_app.revision.name`:** The value should be set to the [`CONTAINER_APP_REVISION`](https://learn.microsoft.com/azure/container-apps/environment-variables) environment variable.
 
 ## Azure Client Library Attributes
 

@@ -17,6 +17,6 @@ groups:
     brief: >
       Resource used by a revision of an Azure Container App. Does not apply to Azure Container Apps Jobs.
     attributes:
-      - ref: azure.container_app.revision
+      - ref: azure.container_app.revision.name
         role: identifying
         requirement_level: required
