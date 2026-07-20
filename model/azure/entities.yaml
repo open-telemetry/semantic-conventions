@@ -15,7 +15,7 @@ groups:
     stability: development
     name: azure.container_app
     brief: >
-      Resource used by a revision of an Azure Container App.
+      Resource used by a revision of an Azure Container App. Does not apply to Azure Container Apps Jobs.
     attributes:
       - ref: azure.container_app.revision
         role: identifying

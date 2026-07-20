@@ -9,7 +9,7 @@
 
 **type:** `azure.container_app`
 
-**Description:** Resource used by a revision of an Azure Container App.
+**Description:** Resource used by a revision of an Azure Container App. Does not apply to Azure Container Apps Jobs.
 
 **Attributes:**
 
