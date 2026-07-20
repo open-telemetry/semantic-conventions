@@ -5,7 +5,7 @@ applyTo: "docs/**/*.md"
 # Reviewing semantic convention Markdown docs
 
 Review the substance of the prose. Formatting, spelling, link validity, tables of
-content, and whether generated tables are up to date are enforced by CI, 
+contents, and whether generated tables are up to date are enforced by CI,
 so do not comment on those.
 
 Flag issues below with a short rationale and a doc link.

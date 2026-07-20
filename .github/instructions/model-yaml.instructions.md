@@ -5,10 +5,11 @@ applyTo: "model/**/*.yaml"
 # Reviewing semantic convention YAML models
 
 These files are the source of truth for all attributes, metrics, spans, events,
-and entities. Review for design and semantic quality — name formatting,
+and entities. Review for design and semantic quality. CI (`make check-policies`
+and other checks) already enforces the presence and format of these, so do not
+comment on them — only on their correctness and appropriateness: name formatting,
 namespace/constant collisions, backward compatibility, stability ordering,
-`brief` presence, and entity associations are enforced by `make check-policies`
-and other CI checks, so do not comment on those.
+`brief` presence, and entity associations.
 
 Flag violations of the guidance below with a short rationale and a doc link.
 
