@@ -250,7 +250,7 @@ Compared with `V$SESSION.ACTION`, application context piggyback avoids overloadi
 
 Example:
 
-Note that Oracle database drivers in different languages expose different APIs for enabling application context propagation. In .NET, using the `Oracle.ManagedDataAccess.Core` driver, the instrumentation hooks into the built-in provider source, and users enable server-side propagation via the `DatabaseOpenTelemetryTracing` property on the connection:
+Note that Oracle database drivers in different languages expose different APIs for enabling application context propagation. In [.NET](https://docs.oracle.com/en/database/oracle/oracle-database/26/odpnt/featOpenTelemetry.html#GUID-498BB919-43C4-494F-A73B-74980C40CFF3), using the `Oracle.ManagedDataAccess.Core` driver, the instrumentation hooks into the built-in provider source, and users enable server-side propagation via the `DatabaseOpenTelemetryTracing` property on the connection:
 
 ```csharp
 using OpenTelemetry;
@@ -330,7 +330,7 @@ When selecting a context propagation strategy for Oracle Database, telemetry imp
 
 | Mechanism | Implementation Type | Minimum Stack Requirements | Tracing Behavior |
 | :--- | :--- | :--- | :--- |
-| **Application Context Piggyback** | **Native** | • Java JDBC 23.26.200+<br>• .NET NuGet 23.26.200+<br>• Oracle DB 23.26.200+ | Built-in server-side parsing of W3C telemetry context via the network protocol. |
+| **Application Context Piggyback (Recommended)** | **Native** | • **Client:** Oracle JDBC Driver 23.26.2+ or ODP.NET (managed or core) 23.26.2+<br><br>• **Server:** Oracle AI Database 26ai 23.26.2+ | Built-in server-side parsing of W3C telemetry context via the network protocol. |
 | **`V$SESSION.ACTION`** | **Passive Workaround** | Older Oracle versions | Diagnostic text label only. Requires external collectors or triggers to track changes. |
 
 #### Recommendation Guidance
