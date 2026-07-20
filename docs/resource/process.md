@@ -150,7 +150,7 @@ Examples for some Java runtimes
 
 | Name | `process.runtime.name` | `process.runtime.version` | `process.runtime.description` |
 | --- | --- | --- | --- |
-| OpenJDK` | `OpenJDK Runtime Environment` | `11.0.8+10` | `Oracle Corporation OpenJDK 64-Bit Server VM 11.0.8+10` |
+| OpenJDK | `OpenJDK Runtime Environment` | `11.0.8+10` | `Oracle Corporation OpenJDK 64-Bit Server VM 11.0.8+10` |
 | AdoptOpenJDK Eclipse J9 | `OpenJDK Runtime Environment` | `11.0.8+10` | `Eclipse OpenJ9 Eclipse OpenJ9 VM openj9-0.21.0` |
 | AdoptOpenJDK Hotspot | `OpenJDK Runtime Environment` | `11.0.8+10` | `AdoptOpenJDK OpenJDK 64-Bit Server VM 11.0.8+10` |
 | SapMachine | `OpenJDK Runtime Environment` | `11.0.8+10-LTS-sapmachine` | `SAP SE OpenJDK 64-Bit Server VM 11.0.8+10-LTS-sapmachine` |
@@ -198,7 +198,7 @@ Examples for some .NET runtimes
 
 | Name | `process.runtime.name` | `process.runtime.version` | `process.runtime.description` |
 | --- | --- | --- | --- |
-| .NET Framework | `.NET Framework` | `4.8` | .`NET Framework 4.8.9195.0` |
+| .NET Framework | `.NET Framework` | `4.8` | `.NET Framework 4.8.9195.0` |
 | .NET | `.NET` | `7.0.14` | `.NET 7.0.14` |
 
 ### Python runtimes
@@ -252,6 +252,6 @@ Examples for some Ruby runtimes
 | Name | `process.runtime.name` | `process.runtime.version` | `process.runtime.description` |
 | --- | --- | --- | --- |
 | MRI | `ruby` | `2.7.1` | `ruby 2.7.1p83 (2020-03-31 revision a0c7c23c9c) [x86_64-darwin19]` |
-| TruffleRuby` | `truffleruby` | `2.6.2` | `truffleruby (Shopify) 20.0.0-dev-92ed3059, like ruby 2.6.2, GraalVM CE Native [x86_64-darwin]` |
+| TruffleRuby | `truffleruby` | `2.6.2` | `truffleruby (Shopify) 20.0.0-dev-92ed3059, like ruby 2.6.2, GraalVM CE Native [x86_64-darwin]` |
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
