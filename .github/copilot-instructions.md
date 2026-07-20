@@ -1,9 +1,11 @@
 # Copilot instructions
 
-This repository defines OpenTelemetry semantic conventions. The source of truth
-is the YAML model under `model/`; the Markdown under `docs/` is generated from it
-(see [CONTRIBUTING.md](../CONTRIBUTING.md) and
-[how to write conventions](../docs/how-to-write-conventions/README.md)).
+This repository defines OpenTelemetry semantic conventions. Attributes and
+telemetry signals are defined in the YAML model under `model/`, which is the
+source of truth. Docs under `docs/` are free-form prose with generated tables
+inside `<!-- semconv ... -->` blocks, except `docs/registry/`, which is fully
+generated. See [CONTRIBUTING.md](../CONTRIBUTING.md) and
+[how to write conventions](../docs/how-to-write-conventions/README.md).
 
 Scoped, path-specific instructions provide the detailed review guidance:
 
