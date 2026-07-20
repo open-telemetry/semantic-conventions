@@ -292,6 +292,8 @@ using (OracleConnection connection = new OracleConnection(connectString))
 }
 ```
 
+For detailed configuration of native in-database observability capabilities, trace management, and OTLP collector endpoint setups, refer to the official [Oracle Database OpenTelemetry Observability Architecture](https://docs.oracle.com/en/database/oracle/oracle-database/26/tgsql/observabilitly-open-telemetry.html) and the administrative [DBMS_OBSERVABILITY Package Reference](https://docs.oracle.com/en/database/oracle/oracle-database/26/arpls/dbms_observability.html).
+
 ### V$SESSION.ACTION
 
 Instrumentations MAY propagate context with a fixed-length, 64 byte value using [V$SESSION.ACTION](https://docs.oracle.com/en/database/oracle/oracle-database/23/refrn/V-SESSION.html) by injecting part of span context (trace-id, span-id, trace-flags, protocol version) before executing a query. For example, when using W3C Trace Context, only a string representation of [`traceparent`](https://www.w3.org/TR/trace-context/#traceparent-header) SHOULD be injected. Context injection SHOULD NOT be enabled by default, but instrumentation MAY allow users to opt into it.
@@ -328,7 +330,7 @@ When selecting a context propagation strategy for Oracle Database, telemetry imp
 
 | Mechanism | Implementation Type | Minimum Stack Requirements | Tracing Behavior |
 | :--- | :--- | :--- | :--- |
-| **Application Context Piggyback** | **Native** | Java JDBC Client 23.26.2+ & Oracle DB 26ai+ | Built-in server-side parsing of W3C telemetry context via the network protocol. |
+| **Application Context Piggyback** | **Native** | • Java JDBC 23.26.200+<br>• .NET NuGet 23.26.200+<br>• Oracle DB 23.26.200+ | Built-in server-side parsing of W3C telemetry context via the network protocol. |
 | **`V$SESSION.ACTION`** | **Passive Workaround** | Older Oracle versions | Diagnostic text label only. Requires external collectors or triggers to track changes. |
 
 #### Recommendation Guidance
