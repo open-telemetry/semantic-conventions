@@ -1087,7 +1087,9 @@ This metric is [opt-in][MetricOptIn].
 
 **[1]:** A full-duplex link carries this capacity in each direction, so the limit is reported per direction. Together with the bytes transferred from `system.network.io` it allows computing interface utilization.
 
-The value is the link speed reported by the operating system, for example `/sys/class/net/<interface>/speed` on Linux or the adapter link speed on Windows. Software throttling (such as Linux traffic control) does not change the reported value.
+The value is the link speed reported by the operating system, for example `/sys/class/net/<interface>/speed` on Linux or the adapter link speed on Windows, converted to bytes per second when the source reports a different unit (Linux reports Mbit/s). Software throttling (such as Linux traffic control) does not change the reported value.
+
+This is the operating-system view of the interface, pairing with the other `system.network.*` metrics. For the hardware-component view of link speed, use `hw.network.bandwidth.limit`.
 
 **Attributes:**
 
