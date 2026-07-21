@@ -528,6 +528,24 @@ groups:
     entity_associations:
       - host
 
+  - id: metric.system.process.limit
+    type: metric
+    metric_name: system.process.limit
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "The maximum number of concurrent processes/tasks allowed by the operating system."
+    instrument: updowncounter
+    unit: "{thread}"
+    attributes: []
+    entity_associations:
+      - host
+    note: |
+      On Linux, this corresponds to `/proc/sys/kernel/pid_max` or `/proc/sys/kernel/threads-max`.
+      A per-user process limit may also be retrieved via `getrlimit(RLIMIT_NPROC)`.
+      On BSD-like systems, this corresponds to `sysctl kern.maxproc`. This metric is unsupported on Windows systems.
+
   # system.memory.linux.* metrics
   - id: metric.system.memory.linux.available
     type: metric

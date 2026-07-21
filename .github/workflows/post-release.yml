@@ -17,14 +17,17 @@ jobs:
       - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
         with:
           ref: main
+          persist-credentials: false
 
       # only bump the development schema_url for minor/major releases,
       # patch releases are cut from a release branch and don't move main forward.
       # skip flag is controlling this
       - name: Compute next development version
         id: version
+        env:
+          GITHUB_EVENT_RELEASE_TAG_NAME: ${{ github.event.release.tag_name }}
         run: |
-          tag="${{ github.event.release.tag_name }}"
+          tag="${GITHUB_EVENT_RELEASE_TAG_NAME}"
           version="${tag#v}"
           if [[ ! "$version" =~ ^([0-9]+)\.([0-9]+)\.([0-9]+)$ ]]; then
             echo "unexpected release version: $version"
@@ -47,8 +50,10 @@ jobs:
 
       - name: Bump schema_url in manifest
         if: ${{ steps.version.outputs.skip != 'true' }}
+        env:
+          STEPS_VERSION_OUTPUTS_NEXT_VERSION: ${{ steps.version.outputs.next_version }}
         run: |
-          next_version="${{ steps.version.outputs.next_version }}"
+          next_version="${STEPS_VERSION_OUTPUTS_NEXT_VERSION}"
           sed -i "s|^schema_url: https://opentelemetry.io/schemas/.*$|schema_url: https://opentelemetry.io/schemas/$next_version|" model/manifest.yaml
 
       - uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
@@ -57,12 +62,14 @@ jobs:
         with:
           client-id: ${{ vars.OTELBOT_CLIENT_ID }}
           private-key: ${{ secrets.OTELBOT_PRIVATE_KEY }}
+          permission-pull-requests: write
 
       - name: Create pull request
         if: ${{ steps.version.outputs.skip != 'true' }}
         env:
-          # not using secrets.GITHUB_TOKEN since pull requests from that token do not run workflows
+          # Use the App token for PR creation so the pull request runs workflows.
           GH_TOKEN: ${{ steps.otelbot-token.outputs.token }}
+          GITHUB_TOKEN: ${{ github.token }}
           VERSION: ${{ github.event.release.tag_name }}
           NEXT_VERSION: ${{ steps.version.outputs.next_version }}
         run: |
@@ -76,7 +83,8 @@ jobs:
             exit 0
           fi
           git commit -a -m "$message"
-          git push --set-upstream origin "$branch"
+          git push "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" "$branch"
           gh pr create --title "$message" \
                        --body "$body" \
+                       --head "$branch" \
                        --base main

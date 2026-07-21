@@ -17,6 +17,8 @@ jobs:
       already-opened: ${{ steps.check-versions.outputs.already-opened }}
     steps:
       - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          persist-credentials: false
 
       - id: check-versions
         name: Check versions
@@ -50,6 +52,8 @@ jobs:
       - check-versions
     steps:
       - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          persist-credentials: false
 
       - name: Use CLA approved github bot
         run: .github/scripts/use-cla-approved-github-bot.sh
@@ -64,11 +68,13 @@ jobs:
         with:
           client-id: ${{ vars.OTELBOT_CLIENT_ID }}
           private-key: ${{ secrets.OTELBOT_PRIVATE_KEY }}
+          permission-pull-requests: write
 
       - name: Create pull request
         env:
           VERSION: ${{ needs.check-versions.outputs.latest-version }}
-          # not using secrets.GITHUB_TOKEN since pull requests from that token do not run workflows
+          GITHUB_TOKEN: ${{ github.token }}
+          # Use the App token for PR creation so the pull request runs workflows.
           GH_TOKEN: ${{ steps.otelbot-token.outputs.token }}
         run: |
           message="Update spec repo links to $VERSION"
@@ -77,7 +83,8 @@ jobs:
 
           git checkout -b $branch
           git commit -a -m "$message"
-          git push --set-upstream origin $branch
+          git push "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" $branch
           gh pr create --title "[chore] $message" \
                        --body "$body" \
+                       --head "$branch" \
                        --base main

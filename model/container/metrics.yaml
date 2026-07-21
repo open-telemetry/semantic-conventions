@@ -92,7 +92,7 @@ groups:
     brief: "Memory usage of the container."
     note: >
       Memory usage of the container.
-    instrument: counter
+    instrument: updowncounter
     entity_associations:
       - container
     unit: "By"

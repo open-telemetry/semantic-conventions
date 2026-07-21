@@ -70,6 +70,7 @@ and one for disabling the old schema called `semconv.k8s.disableLegacy`. Then:
   - [Container Runtime](#container-runtime)
   - [K8s Pod Status Phase and Reason](#k8s-pod-status-phase-and-reason)
   - [K8s labels and annotations](#k8s-labels-and-annotations)
+  - [K8s Pod/Node and Container Memory Usage](#k8s-podnode-and-container-memory-usage)
 
 <!-- END doctoc -->
 
@@ -241,12 +242,14 @@ The changes in their metric types are the following:
 
 <!-- prettier-ignore-start -->
 
-| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New |
-| ------------------------------------------------------ | --- |
-| `k8s.job.active_pods`                  (type: `gauge`) | `k8s.job.pod.active` (type: `updowncounter`) |
-| `k8s.job.failed_pods`                  (type: `gauge`) | `k8s.job.pod.failed` (type: `updowncounter`) |
-| `k8s.job.desired_successful_pods`      (type: `gauge`) | `k8s.job.pod.desired_successful`  (type: `updowncounter`) |
-| `k8s.job.max_parallel_pods`            (type: `gauge`) | `k8s.job.pod.max_parallel`   (type: `updowncounter`) |
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                      |
+| ---------------------------------------------------------------------------------- | -------------------------------------------------------- |
+| `k8s.job.active_pods`             (type: `gauge`)                                  | `k8s.job.pod.active` (type: `updowncounter`)             |
+| `k8s.job.failed_pods`             (type: `gauge`)                                  | `k8s.job.pod.failed` (type: `updowncounter`)             |
+| `k8s.job.desired_successful_pods` (type: `gauge`)                                  | `k8s.job.pod.desired_successful` (type: `updowncounter`) |
+| `k8s.job.max_parallel_pods`       (type: `gauge`)                                  | `k8s.job.pod.max_parallel` (type: `updowncounter`)       |
+
+<!-- prettier-ignore-end -->
 
 ### K8s Cronjob metrics
 
@@ -259,9 +262,9 @@ The changes in their metric types are the following:
 
 <!-- prettier-ignore-start -->
 
-| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New |
-| ------------------------------------------------ | ---- |
-| `k8s.cronjob.active_jobs`                  (type: `gauge`) | `k8s.cronjob.job.active` (type: `updowncounter`) |
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                              |
+| ---------------------------------------------------------------------------------- | ------------------------------------------------ |
+| `k8s.cronjob.active_jobs` (type: `gauge`)                                          | `k8s.cronjob.job.active` (type: `updowncounter`) |
 
 <!-- prettier-ignore-end -->
 
@@ -313,6 +316,8 @@ The changes are the following:
 | Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                    |
 | ---------------------------------------------------------------------------------- | -------------------------------------- |
 | `k8s.replication_controller.{name,uid}`                                            | `k8s.replicationcontroller.{name,uid}` |
+
+<!-- prettier-ignore-end -->
 
 ### K8s Container metrics
 
@@ -567,5 +572,25 @@ The changes in these attributes are the following:
 | `k8s.node.annotations.<key>`                                                       | `k8s.node.annotation.<key>`      |
 | `k8s.namespace.labels.<key>`                                                       | `k8s.namespace.label.<key>`      |
 | `k8s.namespace.annotations.<key>`                                                  | `k8s.namespace.annotation.<key>` |
+
+<!-- prettier-ignore-end -->
+
+### K8s Pod/Node and Container Memory Usage
+
+The memory usage metrics implemented by the Collector and specifically the
+[kubeletstats](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/v0.150.0/receiver/kubeletstatsreceiver/documentation.md)
+receiver changed their instrument types in
+[#3889](https://github.com/open-telemetry/semantic-conventions/pull/3889) in alignment with the rest
+of the project.
+
+The changes are the following:
+
+<!-- prettier-ignore-start -->
+
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                      |
+| ---------------------------------------------------------------------------------- | ---------------------------------------- |
+| `k8s.pod.memory.usage`   gauge                                                     | `k8s.pod.memory.usage`   updowncounter   |
+| `k8s.node.memory.usage`  gauge                                                     | `k8s.node.memory.usage`  updowncounter   |
+| `container.memory.usage` counter                                                   | `container.memory.usage` updowncounter   |
 
 <!-- prettier-ignore-end -->

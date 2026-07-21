@@ -16,10 +16,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          persist-credentials: false
 
       - name: Validate version
+        env:
+          INPUTS_VERSION: ${{ inputs.version }}
         run: |
-          version=${{ inputs.version }}
+          version=${INPUTS_VERSION}
           if [[ ! "$version" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
             echo "unexpected version: $version"
             exit 1
@@ -29,34 +33,42 @@ jobs:
         run: .github/scripts/use-cla-approved-github-bot.sh
 
       - name: Update schema files
+        env:
+          INPUTS_VERSION: ${{ inputs.version }}
         run: |
-          version=${{ inputs.version }}
+          version=${INPUTS_VERSION}
           make generate-schema-next NEXT_SEMCONV_VERSION=$version
           git add "schemas/$version"
 
       - name: Update change log
+        env:
+          INPUTS_VERSION: ${{ inputs.version }}
         run: |
-          make chlog-update VERSION=v${{ inputs.version }}
+          make chlog-update VERSION=v${INPUTS_VERSION}
 
       - uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
         id: otelbot-token
         with:
           client-id: ${{ vars.OTELBOT_CLIENT_ID }}
           private-key: ${{ secrets.OTELBOT_PRIVATE_KEY }}
+          permission-pull-requests: write
 
       - name: Create pull request
         env:
-          # not using secrets.GITHUB_TOKEN since pull requests from that token do not run workflows
+          # Use the App token for PR creation so the pull request runs workflows.
           GH_TOKEN: ${{ steps.otelbot-token.outputs.token }}
+          GITHUB_TOKEN: ${{ github.token }}
+          INPUTS_VERSION: ${{ inputs.version }}
         run: |
-          version=${{ inputs.version }}
+          version=${INPUTS_VERSION}
           message="[chore] Prepare release v${version}"
           body="Prepare release \`v${version}\`."
           branch="otelbot/prepare-release-v${version}"
 
           git checkout -b $branch
           git commit -a -m "$message"
-          git push --set-upstream origin $branch
+          git push "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" $branch
           gh pr create --title "$message" \
                        --body "$body" \
+                       --head "$branch" \
                        --base main
