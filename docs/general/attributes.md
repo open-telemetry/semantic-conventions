@@ -101,7 +101,7 @@ If `network.transport` is `"pipe"`, the absolute path to the file representing i
 If there is no such file (e.g., anonymous pipe),
 the name should explicitly be set to the empty string to distinguish it from the case where the name is just unknown or not covered by the instrumentation.
 
-For UNIX domain socket, `server.address` attribute represents remote endpoint address on the client-side and local endpoint address on the server-side.
+For UNIX domain socket, `server.address` attribute represents remote endpoint address on the client side and local endpoint address on the server side.
 
 ### Client attributes
 

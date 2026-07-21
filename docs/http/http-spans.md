@@ -699,7 +699,7 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 ### HTTP client-server example
 
-As an example, if a browser request for `https://example.com:8080/webshop/articles/4?s=1&t=2` is invoked from a host with IP 192.0.2.4, we may have the following Span on the client-side:
+As an example, if a browser request for `https://example.com:8080/webshop/articles/4?s=1&t=2` is invoked from a host with IP 192.0.2.4, we may have the following Span on the client side:
 
 Span name: `GET`
 
@@ -827,7 +827,7 @@ GET /hello - 200 (CLIENT, trace=t2, span=s1, http.request.resend_count=1)
 
 ### HTTP client call: DNS error
 
-As an example, if a user requested `https://does-not-exist-123.com`, we may have the following span on the client-side:
+As an example, if a user requested `https://does-not-exist-123.com`, we may have the following span on the client side:
 
 | Attribute name             | Value                              |
 | :------------------------- | :--------------------------------- |
@@ -839,7 +839,7 @@ As an example, if a user requested `https://does-not-exist-123.com`, we may have
 
 ### HTTP client call: Internal Server Error
 
-As an example, if a user requested `https://example.com` and server returned 500, we may have the following span on the client-side:
+As an example, if a user requested `https://example.com` and server returned 500, we may have the following span on the client side:
 
 | Attribute name              | Value                   |
 | :-------------------------- | :---------------------- |
@@ -852,7 +852,7 @@ As an example, if a user requested `https://example.com` and server returned 500
 
 ### HTTP server call: connection dropped before response body was sent
 
-As an example, if a user sent a `POST` request with a body to `https://example.com:8080/uploads/4`, we may see the following span on a server-side:
+As an example, if a user sent a `POST` request with a body to `https://example.com:8080/uploads/4`, we may see the following span on a server side:
 
 Span name: `POST /uploads/:document_id`.
 
