@@ -94,7 +94,7 @@ Names SHOULD follow these rules:
 
 - Use shorter names when it does not compromise clarity. Drop namespace
   components or words in multi-word components when they are not necessary. For example,
-  `vcs.change.id` describes pull request id as precisely as `vcs.repository.change.id` does.
+  `vcs.change.id` describes pull request ID as precisely as `vcs.repository.change.id` does.
 
 ## Name abbreviation guidelines
 

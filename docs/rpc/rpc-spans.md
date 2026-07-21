@@ -134,8 +134,8 @@ RPC methods.
 The `rpc.method` can be different from the name of any implementing
 method/function.
 The `code.function.name` attribute may be used to record the fully-qualified
-method actually executing the call on the server-side, or the
-RPC client stub method on the client-side.
+method actually executing the call on the server side, or the
+RPC client stub method on the client side.
 
 **[4] `rpc.response.status_code`:** Usually it represents an error code, but may also represent partial success, warning, or differentiate between various types of successful outcomes.
 Semantic conventions for individual RPC frameworks SHOULD document what `rpc.response.status_code` means in the context of that system and which values are considered to represent errors.
@@ -144,7 +144,7 @@ Semantic conventions for individual RPC frameworks SHOULD document what `rpc.res
 Semantic conventions for individual RPC systems SHOULD document how to populate this attribute.
 When address is an IP address, instrumentations SHOULD NOT do a reverse DNS lookup to obtain a DNS name and SHOULD set `server.address` to the provided IP address.
 
-**[6] `server.port`:** When observed from the client-side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[6] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
 **[7] `network.peer.address`:** If a RPC involved multiple network calls (for example retries), the last contacted address SHOULD be used.
 
@@ -255,8 +255,8 @@ RPC methods.
 The `rpc.method` can be different from the name of any implementing
 method/function.
 The `code.function.name` attribute may be used to record the fully-qualified
-method actually executing the call on the server-side, or the
-RPC client stub method on the client-side.
+method actually executing the call on the server side, or the
+RPC client stub method on the client side.
 
 **[4] `rpc.response.status_code`:** Usually it represents an error code, but may also represent partial success, warning, or differentiate between various types of successful outcomes.
 Semantic conventions for individual RPC frameworks SHOULD document what `rpc.response.status_code` means in the context of that system and which values are considered to represent errors.
@@ -265,7 +265,7 @@ Semantic conventions for individual RPC frameworks SHOULD document what `rpc.res
 Semantic conventions for individual RPC systems SHOULD document how to populate this attribute.
 When address is an IP address, instrumentations SHOULD NOT do a reverse DNS lookup to obtain a DNS name and SHOULD set `server.address` to the provided IP address.
 
-**[6] `server.port`:** When observed from the client-side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[6] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
 **[7] `network.peer.address`:** If a RPC involved multiple network calls (for example retries), the last contacted address SHOULD be used.
 

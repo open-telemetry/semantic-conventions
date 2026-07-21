@@ -20,7 +20,7 @@ filters:
       - /src=".*?"/
       # Other:
       - /(<|\()https?:\/\/.*?(>|\))/ # Raw URLs
-      - /`.*`/ # Raw code in backticks
+      - /`.*?`/ # Raw code in backticks
       - /attributes-registry, \(e.g. http, cloud, db\)/ # Example of Component names in changelog files
       - /\(e.g., http, databases/ # Example of domains names in migration notes
       - /\"id\":/ # IDs in JSON files
@@ -40,9 +40,11 @@ rules:
     skip: []
     exclude:
       - 'bug[- ]fix(es)?'
-      - 'readme(s)?'
-      - 'to-?do(s)?(?=[ ,.])'
+      - 'client ?side'
       - "indexes\\b"
+      - 'readme(s)?'
+      - 'server ?side'
+      - 'to-?do(s)?(?=[ ,.])'
       - 'web[- ]?site(s)?'
     terms:
       - Actix

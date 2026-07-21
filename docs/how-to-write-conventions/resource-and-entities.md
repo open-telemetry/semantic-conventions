@@ -262,7 +262,7 @@ several key differences between the two:
   *descriptive* attributes.
   - Identifying attributes can be used to identify the entity
     within some system (See
-    [minimally sufficient id](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.59.0/specification/entities/data-model.md#minimally-sufficient-identity)).
+    [minimally sufficient ID](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.59.0/specification/entities/data-model.md#minimally-sufficient-identity)).
     For Example, the `k8s.pod.uid` would be considered an
     identifying attribute for a pod within Kubernetes.
   - *Descriptive* attributes can be used to provide additional labels for
