@@ -220,14 +220,22 @@ linkTitle: HTTP
 --->
 ```
 
-When creating new markdown files, you should provide the `linkTitle` attribute.
-This is used to generate the navigation bar on the website,
-and will be listed relative to the "parent" document.
+`linkTitle` is a short version of the page's title, shown in the website's
+[left side navigation][docsy-nav]. When adding a new Markdown file, keep it to
+the sub-area name -- for example, `Spans`, `Metrics`, or `Resources` -- instead of
+repeating the page's full title. Omit `linkTitle` when it would be identical to
+the title.
+
+For title and heading capitalization, follow the
+[OpenTelemetry documentation style guide][otel-style-guide].
+
+[docsy-nav]: https://www.docsy.dev/docs/content/navigation/#side-nav
+[otel-style-guide]: https://opentelemetry.io/docs/contributing/style-guide/
 
 ### 3. Check new convention
 
 Semantic conventions are validated for name formatting and backward compatibility with last released versions.
-Here's [the full list of compatibility checks](./policies/compatibility.rego).
+Check out [policy checks](./policies/README.md) for details.
 
 Removing attributes, metrics, or enum members is not allowed, they should be deprecated instead.
 It applies to stable and unstable conventions and prevents semantic conventions auto-generated libraries from introducing breaking changes.
@@ -421,10 +429,15 @@ To check for style violations, run:
 make markdownlint
 ```
 
-To fix style violations, follow the
-[instruction](https://github.com/DavidAnson/markdownlint#optionsresultversion)
-with the Node version of markdownlint. If you are using Visual Studio Code,
-you can also use the `fixAll` command of the
+To fix style violations, run
+[markdownlint-cli2](https://github.com/DavidAnson/markdownlint-cli2) with the
+`--fix` option:
+
+```bash
+npx --no -- markdownlint-cli2 --fix '**/*.md'
+```
+
+If you are using Visual Studio Code, you can also use the `fixAll` command of the
 [vscode markdownlint extension](https://github.com/DavidAnson/vscode-markdownlint).
 
 ### Misspell check
@@ -435,16 +448,6 @@ To check for typos, run the following command:
 
 ```bash
 make misspell
-```
-
-> [!Note]
-> The `misspell` make target will also fetch and build the tool if
-> necessary. You'll need [Go](https://go.dev) to build the spellchecker.
-
-To quickly fix typos, use
-
-```bash
-make misspell-correction
 ```
 
 ### Update the tables of content

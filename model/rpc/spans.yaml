@@ -109,7 +109,7 @@ groups:
         requirement_level: required
         note: >
           When an IP address is provided instead of a domain name,
-          instrumentations SHOULD NOT do a reverse proxy lookup to obtain DNS
+          instrumentations SHOULD NOT do a reverse DNS lookup to obtain DNS
           name and SHOULD set `server.address` to the provided IP address.
       - ref: server.port
         requirement_level:
@@ -197,7 +197,7 @@ groups:
           target string and SHOULD NOT set `server.port`.
 
           When the address is an IP address, instrumentations SHOULD NOT do a
-          reverse proxy lookup to obtain a DNS name and SHOULD set `server.address`
+          reverse DNS lookup to obtain a DNS name and SHOULD set `server.address`
           to the IP address provided.
 
           Examples:

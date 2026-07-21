@@ -10,9 +10,6 @@ endif
 
 TOOLS_DIR := $(PWD)/internal/tools
 
-MISSPELL_BINARY=bin/misspell
-MISSPELL = $(TOOLS_DIR)/$(MISSPELL_BINARY)
-
 CHLOGGEN_BINARY=bin/chloggen
 CHLOGGEN = $(TOOLS_DIR)/$(CHLOGGEN_BINARY)
 CHLOGGEN_CONFIG  := .chloggen/config.yaml
@@ -87,7 +84,7 @@ endif
 
 # TODO: add `yamllint` step to `all` after making sure it works on Mac.
 .PHONY: all
-all: install-tools markdownlint misspell table-check schema-check check-file-and-folder-names-in-docs markdown-link-check
+all: install-tools markdownlint misspell table-check schema-check check-file-and-folder-names-in-docs check-yaml-extension markdown-link-check
 
 .PHONY: check-file-and-folder-names-in-docs
 check-file-and-folder-names-in-docs:
@@ -98,16 +95,19 @@ check-file-and-folder-names-in-docs:
 		exit 1; \
 	fi
 
-$(MISSPELL):
-	cd $(TOOLS_DIR) && go build -o $(MISSPELL_BINARY) github.com/client9/misspell/cmd/misspell
+.PHONY: check-yaml-extension
+check-yaml-extension:
+	@found=`find model -name '*.yml'`; \
+	if [ -n "$$found" ]; then \
+		echo "Error: Use the .yaml extension for model files, not .yml:"; \
+		echo $$found; \
+		exit 1; \
+	fi
 
 .PHONY: misspell
-misspell:	$(MISSPELL)
-	find . -type f -name '*.md' -not -path './.github/*' -not -path './node_modules/*' -not -path './.git/*' -exec $(MISSPELL) -error {} +
-
-.PHONY: misspell-correction
-misspell-correction:	$(MISSPELL)
-	find . -type f -name '*.md' -not -path './.github/*' -not -path './node_modules/*' -not -path './.git/*' -exec $(MISSPELL) -w {} +
+misspell:
+	@if ! npm ls cspell; then npm ci --ignore-scripts; fi
+	npx --no -- cspell . --no-progress
 
 .PHONY: normalized-link-check
 # NOTE: Search "model/*/**" rather than "model" to skip `model/README.md`, which
@@ -220,16 +220,16 @@ schema-check:
 # Run all checks in order of speed / likely failure.
 # As a last thing, run attribute registry generation and git-diff for differences.
 .PHONY: check
-check: misspell markdownlint markdown-toc-check markdown-link-check check-policies registry-generation
+check: misspell markdownlint markdown-toc-check markdown-link-check check-policies registry-generation check-yaml-extension
 	@echo "All checks complete"
 
 # Attempt to fix issues / regenerate tables.
 .PHONY: fix
-fix: table-generation registry-generation misspell-correction markdown-toc
+fix: table-generation registry-generation markdown-toc
 	@echo "All autofixes complete"
 
 .PHONY: install-tools
-install-tools: $(MISSPELL)
+install-tools:
 	npm ci --ignore-scripts
 	@echo "All tools installed"
 
@@ -266,6 +266,7 @@ generate-gh-issue-templates:
 	$(WEAVER_CONTAINER) registry generate \
 		--registry=/home/weaver/source \
 		--templates=/home/weaver/templates \
+		--v2 \
 		areas \
 		/home/weaver/target
 	$(TOOLS_DIR)/scripts/update-issue-template-areas.sh $(PWD)/internal/tools/bin/areas.txt
@@ -284,6 +285,13 @@ generate-gh-issue-templates:
 # .. which is why some additional processing is required to extract the
 # latest version number and strip off the "v" prefix.
 LATEST_RELEASED_SEMCONV_VERSION := $(shell git ls-remote --tags https://github.com/open-telemetry/semantic-conventions.git | cut -f 2 | sort --reverse | head -n 1 | tr '/' ' ' | cut -d ' ' -f 3 | $(SED) 's/v//g')
+# Most semantic-convention check policies live in the opentelemetry-weaver-packages
+# repository (see https://github.com/open-telemetry/opentelemetry-weaver-packages/tree/main/policies/check).
+# Only checks that are NOT provided upstream are kept locally under ./policies (see policies/README.md).
+#
+# TODO: pin commit or tag of opentelemetry-weaver-packages and add it to renovate
+# once weaver-packages is released.
+WEAVER_PACKAGES_REPO=https://github.com/open-telemetry/opentelemetry-weaver-packages.git
 .PHONY: check-policies
 check-policies:
 	$(DOCKER_RUN) --rm \
@@ -294,9 +302,14 @@ check-policies:
 		--mount 'type=bind,source=$(PWD)/policies,target=/home/weaver/policies,readonly' \
 		--mount 'type=bind,source=$(PWD)/model,target=/home/weaver/source,readonly' \
 		${WEAVER_CONTAINER} registry check \
+		--v2 \
 		--registry=/home/weaver/source \
 		--baseline-registry=https://github.com/open-telemetry/semantic-conventions/archive/refs/tags/v$(LATEST_RELEASED_SEMCONV_VERSION).zip[model] \
-		--policy=/home/weaver/policies
+		--policy=/home/weaver/policies \
+		--policy="$(WEAVER_PACKAGES_REPO)[policies/check/naming_conventions]" \
+		--policy="$(WEAVER_PACKAGES_REPO)[policies/check/stability]" \
+		--policy="$(WEAVER_PACKAGES_REPO)[policies/check/entity_associations]" \
+		--policy="$(WEAVER_PACKAGES_REPO)[policies/check/backwards-compatibility]"
 
 # Test rego policies
 .PHONY: test-policies
@@ -319,6 +332,7 @@ check-dead-yaml:
 	$(WEAVER_CONTAINER) registry generate \
 		--registry=/home/weaver/source \
 		--templates=/home/weaver/templates \
+		--v2 \
 		signal-groups \
 		/home/weaver/target
 	$(TOOLS_DIR)/scripts/find-dead-yaml.sh $(PWD)/internal/tools/bin/signal-groups.txt $(PWD)/docs

@@ -240,6 +240,17 @@ groups:
         type: boolean
         stability: development
         brief: 'A boolean that is true if the message is a tombstone.'
+      - id: messaging.kafka.cluster.id
+        type: string
+        stability: development
+        brief: >
+          The Kafka cluster id, obtained from the broker metadata exposed through the
+          Kafka client (or AdminClient) API.
+        note: >
+          The cluster id is a unique identifier reported by the Kafka broker. It identifies
+          the cluster independently of the individual brokers the client is configured to
+          connect to, and remains stable even if broker host names, IP addresses, or ports change.
+        examples: ['MkU3OEVBNTcwNTJENDM2Qk']
   - id: registry.messaging.rabbitmq
     type: attribute_group
     display_name: RabbitMQ Attributes
