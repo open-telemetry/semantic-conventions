@@ -89,11 +89,11 @@ specify what these attributes mean in their context.
 
 #### `server.address`
 
-For IP-based communication, the name should be a DNS hostname of the service. On client-side it matches remote service name, on server-side, it represents local service name as seen externally on clients.
+For IP-based communication, the name should be a DNS hostname of the service. On client side it matches remote service name, on server side, it represents local service name as seen externally on clients.
 
-When connecting to a URL `https://example.com/foo`, `server.address` matches `"example.com"` on both client and server-side.
+When connecting to a URL `https://example.com/foo`, `server.address` matches `"example.com"` on both client and server side.
 
-On client-side, it's usually passed in form of URL, connection string, hostname, etc. Sometimes hostname is only available to instrumentation as a string which may contain DNS name or IP address. `server.address` SHOULD be set to the available known hostname (e.g., `"127.0.0.1"` if connecting to a URL `https://127.0.0.1/foo`).
+On client side, it's usually passed in form of URL, connection string, hostname, etc. Sometimes hostname is only available to instrumentation as a string which may contain DNS name or IP address. `server.address` SHOULD be set to the available known hostname (e.g., `"127.0.0.1"` if connecting to a URL `https://127.0.0.1/foo`).
 
 If only IP address is available, it should be populated on `server.address`. Reverse DNS lookup SHOULD NOT be used to obtain DNS name.
 
