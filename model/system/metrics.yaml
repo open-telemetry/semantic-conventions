@@ -510,6 +510,12 @@ groups:
       A full-duplex link carries this capacity in each direction, so the limit
       is reported per direction. Together with the bytes transferred from
       `system.network.io` it allows computing interface utilization.
+
+
+      The value is the link speed reported by the operating system, for
+      example `/sys/class/net/<interface>/speed` on Linux or the adapter link
+      speed on Windows. Software throttling (such as Linux traffic control)
+      does not change the reported value.
     instrument: updowncounter
     unit: "By/s"
     attributes:
