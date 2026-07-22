@@ -35,14 +35,16 @@ To report host metrics, the `system.*` namespace SHOULD be used.
 
 **[1] `host.id`:** SHOULD be determined using the first available source from the following priority tiers:
 
-1. Known cloud providers - cloud instance ID
+1. Known cloud vendors - cloud instance ID
 2. Known VM vendors - provider VM ID
 3. OS-dependent machine ID
 4. User-provided value
 
-When `host.id` is derived from a cloud or VM-vendor instance, the resource SHOULD also carry the corresponding `cloud.provider` and `cloud.platform` attributes identifying that vendor, so that the source of the `host.id` value can be unambiguously determined.
+When `host.id` is derived from a cloud vendor instance ID, the resource SHOULD also carry
+the corresponding `cloud.provider` and `cloud.platform` attributes so that the source of
+the `host.id` value can be unambiguously determined.
 
-The following environments are currently recognized:
+The following cloud environments are currently recognized:
 
 | Environment | `host.id` source | `cloud.provider` | `cloud.platform` |
 | --- | --- | --- | --- |
@@ -78,7 +80,10 @@ privileged lookup of `host.id` is required, the value SHOULD be injected via the
 
 **Collecting `host.id` From User Configuration**
 
-If none of the above sources yields a non-empty value, the implementation MAY fail to determine `host.id`. In that case, the `host.id` can only be provided through user configuration or other available manual options. The value should conform to the following properties:
+If none of the above sources yields a non-empty value, the implementation MAY
+be unable to determine `host.id` automatically and SHOULD omit the attribute.
+In that case, the `host.id` can only be provided through user configuration
+or other available manual options. The value SHOULD conform to the following properties:
 
 * Unique within a given context;
 * [Repeatable](https://opentelemetry.io/docs/specs/otel/entities/data-model/#repeatable-identity) - multiple observers on the same host come up with the same value;
