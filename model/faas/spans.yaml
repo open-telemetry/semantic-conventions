@@ -10,9 +10,6 @@ attribute_groups:
     attributes:
       - ref: faas.trigger
         requirement_level: required
-        note: |
-          For the server/consumer span on the incoming side,
-          `faas.trigger` MUST be set.
       - ref: faas.coldstart
       - ref: faas.invocation_id
       - ref: cloud.resource_id
