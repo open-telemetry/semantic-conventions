@@ -603,3 +603,54 @@ groups:
       - k8s.container
     instrument: updowncounter
     unit: "By"
+
+  - id: metric.k8s.pod.memory.paging.faults
+    type: metric
+    metric_name: k8s.pod.memory.paging.faults
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    deprecated:
+      reason: renamed
+      renamed_to: k8s.pod.paging.faults
+    brief: "Deprecated, use `k8s.pod.paging.faults` instead."
+    entity_associations:
+      - k8s.pod
+    attributes:
+      - ref: system.paging.fault.type
+    note: >
+      Cumulative number of major/minor page faults.
+
+      This metric is derived from the
+      [MemoryStats.PageFaults](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#MemoryStats) and
+      [MemoryStats.MajorPageFaults](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#MemoryStats)
+      field of the [PodStats.Memory](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#PodStats)
+      of the Kubelet's stats API.
+    instrument: counter
+    unit: "{fault}"
+  - id: metric.k8s.node.memory.paging.faults
+    type: metric
+    metric_name: k8s.node.memory.paging.faults
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    deprecated:
+      reason: renamed
+      renamed_to: k8s.node.paging.faults
+    brief: "Deprecated, use `k8s.node.paging.faults` instead."
+    entity_associations:
+      - k8s.node
+    attributes:
+      - ref: system.paging.fault.type
+    note: >
+      Cumulative number of major/minor page faults.
+
+      This metric is derived from the
+      [MemoryStats.PageFaults](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#MemoryStats) and
+      [MemoryStats.MajorPageFaults](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#MemoryStats)
+      fields of the [NodeStats.Memory](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#NodeStats)
+      of the Kubelet's stats API.
+    instrument: counter
+    unit: "{fault}"

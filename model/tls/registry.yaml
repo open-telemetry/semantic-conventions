@@ -110,9 +110,11 @@ groups:
           members:
             - id: ssl
               value: ssl
+              brief: SSL
               stability: development
             - id: tls
               value: tls
+              brief: TLS
               stability: development
         stability: development
       - id: tls.protocol.version

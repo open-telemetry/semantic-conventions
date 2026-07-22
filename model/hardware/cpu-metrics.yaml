@@ -18,6 +18,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      naming_conventions:
+        # TODO hw.cpu.speed is used as a namespace by hw.cpu.speed.limit
+        policy_exceptions:
+          - metric_namespace_collision
     stability: development
     brief: "CPU current frequency."
     instrument: gauge

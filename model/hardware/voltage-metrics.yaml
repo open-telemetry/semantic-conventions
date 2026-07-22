@@ -15,6 +15,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      naming_conventions:
+        # TODO hw.voltage is used as a namespace by hw.voltage.limit
+        policy_exceptions:
+          - metric_namespace_collision
     stability: development
     brief: "Voltage measured by the sensor."
     instrument: gauge

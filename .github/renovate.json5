@@ -10,8 +10,8 @@
       matchStrings: [
         "https://raw\\.githubusercontent\\.com/open-telemetry/weaver/(?<currentValue>v\\d+\\.\\d+\\.\\d+)/schemas/semconv\\.schema\\.json",
       ],
-      depNameTemplate: "otel/weaver",
-      datasourceTemplate: "docker",
+      depNameTemplate: "open-telemetry/weaver",
+      datasourceTemplate: "github-releases",
       versioningTemplate: "semver",
     },
   ],
@@ -26,7 +26,7 @@
       schedule: ["* 0-7 * * 2"], // weekly, before 8am on Tuesday
     },
     {
-      matchPackageNames: ["otel/**"],
+      matchPackageNames: ["otel/**", "open-telemetry/weaver"],
       schedule: ["at any time"],
     },
   ],
