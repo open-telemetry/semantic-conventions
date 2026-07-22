@@ -51,7 +51,7 @@ groups:
         brief: Low cardinality representation of the messaging destination name
         note: >
           Destination names could be constructed from templates.
-          An example would be a destination name involving a user name or product id.
+          An example would be a destination name involving a username or product ID.
           Although the destination name in this case is of high cardinality,
           the underlying template is of low cardinality and can be effectively
           used for grouping and aggregation.
@@ -244,12 +244,12 @@ groups:
         type: string
         stability: development
         brief: >
-          The Kafka cluster id, obtained from the broker metadata exposed through the
+          The Kafka cluster ID, obtained from the broker metadata exposed through the
           Kafka client (or AdminClient) API.
         note: >
-          The cluster id is a unique identifier reported by the Kafka broker. It identifies
+          The cluster ID is a unique identifier reported by the Kafka broker. It identifies
           the cluster independently of the individual brokers the client is configured to
-          connect to, and remains stable even if broker host names, IP addresses, or ports change.
+          connect to, and remains stable even if broker hostnames, IP addresses, or ports change.
         examples: ['MkU3OEVBNTcwNTJENDM2Qk']
   - id: registry.messaging.rabbitmq
     type: attribute_group
@@ -311,7 +311,7 @@ groups:
         type: string[]
         stability: development
         brief: >
-          Key(s) of message, another way to mark message besides message id.
+          Key(s) of message, another way to mark message besides message ID.
         examples:
           - [keyA, keyB]
       - id: messaging.rocketmq.message.tag
@@ -364,7 +364,7 @@ groups:
         type: string
         stability: development
         brief: >
-         The ack id for a given message.
+         The ack ID for a given message.
         examples: 'ack_id'
       - id: messaging.gcp_pubsub.message.ack_deadline
         type: int
