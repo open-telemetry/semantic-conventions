@@ -62,7 +62,7 @@ The span attribute `faas.invocation_id` differs from the [resource attribute][Fa
 - `faas.instance` refers to the execution environment ID of the function.
 
 [AWS lambda]: https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html
-[Azure functions]: https://learn.microsoft.com/en-us/azure/azure-functions/manage-connections#reuse-client-instances
+[Azure functions]: https://learn.microsoft.com/azure/azure-functions/manage-connections#reuse-client-instances
 [Google functions]: https://cloud.google.com/functions/docs/concepts/execution-environment
 
 ## Incoming invocations
