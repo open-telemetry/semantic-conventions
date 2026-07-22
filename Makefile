@@ -84,13 +84,22 @@ endif
 
 # TODO: add `yamllint` step to `all` after making sure it works on Mac.
 .PHONY: all
-all: install-tools markdownlint misspell table-check schema-check check-file-and-folder-names-in-docs markdown-link-check
+all: install-tools markdownlint misspell table-check schema-check check-file-and-folder-names-in-docs check-yaml-extension markdown-link-check
 
 .PHONY: check-file-and-folder-names-in-docs
 check-file-and-folder-names-in-docs:
 	@found=`find docs -name '*_*'`; \
 	if [ -n "$$found" ]; then \
 		echo "Error: Underscores found in doc file or folder names, use hyphens instead:"; \
+		echo $$found; \
+		exit 1; \
+	fi
+
+.PHONY: check-yaml-extension
+check-yaml-extension:
+	@found=`find model -name '*.yml'`; \
+	if [ -n "$$found" ]; then \
+		echo "Error: Use the .yaml extension for model files, not .yml:"; \
 		echo $$found; \
 		exit 1; \
 	fi
@@ -211,7 +220,7 @@ schema-check:
 # Run all checks in order of speed / likely failure.
 # As a last thing, run attribute registry generation and git-diff for differences.
 .PHONY: check
-check: misspell markdownlint markdown-toc-check markdown-link-check check-policies registry-generation
+check: misspell markdownlint markdown-toc-check markdown-link-check check-policies registry-generation check-yaml-extension
 	@echo "All checks complete"
 
 # Attempt to fix issues / regenerate tables.

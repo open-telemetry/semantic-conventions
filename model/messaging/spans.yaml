@@ -52,7 +52,7 @@ attribute_groups:
     attributes:
       - ref: server.address
         note: >
-          Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name.
+          Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name.
       - ref: server.port
       - ref: network.peer.address
         brief: Peer address of the messaging intermediary node where the operation was performed.
@@ -120,7 +120,7 @@ spans:
       - ref: server.address
         sampling_relevant: true
         note: >
-          Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name.
+          Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name.
       - ref: server.port
         sampling_relevant: true
       - ref_group: messaging.attributes.message_size
@@ -292,7 +292,7 @@ spans:
       - ref: server.address
         sampling_relevant: true
         note: >
-          Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name.
+          Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name.
       - ref: server.port
         sampling_relevant: true
 

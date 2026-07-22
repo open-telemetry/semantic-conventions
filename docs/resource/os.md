@@ -32,7 +32,7 @@ In case of virtualized environments, this is the operating system as it is obser
 | OS | Primary | Fallback |
 | ------- | ------- | ------- |
 | Windows | `CurrentBuildNumber` from registry `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion` | - |
-| MacOS | `ProductBuildVersion` from `/System/Library/CoreServices/SystemVersion.plist` | `ProductBuildVersion` from `/System/Library/CoreServices/ServerVersion.plist` |
+| macOS | `ProductBuildVersion` from `/System/Library/CoreServices/SystemVersion.plist` | `ProductBuildVersion` from `/System/Library/CoreServices/ServerVersion.plist` |
 | Linux | `BUILD_ID` from `/etc/os-release` | `BUILD_ID` from `/usr/lib/os-release`; <br> contents of `/proc/sys/kernel/osrelease` |
 
 ---
@@ -45,7 +45,7 @@ In case of virtualized environments, this is the operating system as it is obser
 | `darwin` | Apple Darwin | ![Development](https://img.shields.io/badge/-development-blue) |
 | `dragonflybsd` | DragonFly BSD | ![Development](https://img.shields.io/badge/-development-blue) |
 | `freebsd` | FreeBSD | ![Development](https://img.shields.io/badge/-development-blue) |
-| `hpux` | HP-UX (Hewlett Packard Unix) | ![Development](https://img.shields.io/badge/-development-blue) |
+| `hpux` | HP-UX (Hewlett Packard UNIX) | ![Development](https://img.shields.io/badge/-development-blue) |
 | `linux` | Linux | ![Development](https://img.shields.io/badge/-development-blue) |
 | `netbsd` | NetBSD | ![Development](https://img.shields.io/badge/-development-blue) |
 | `openbsd` | OpenBSD | ![Development](https://img.shields.io/badge/-development-blue) |

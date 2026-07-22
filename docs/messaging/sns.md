@@ -58,7 +58,7 @@ Describes a producer publishing one or more messages to Amazon SNS.
 | [`messaging.message.id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` If span describes operation on a single message. | string | A value used by the messaging system as an identifier for the message, represented as a string. | `452a7c7c7c7048c2f887f61572b18fc2` |
 | [`network.peer.address`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` If applicable for this messaging system. | string | Peer address of the messaging intermediary node where the operation was performed. [10] | `10.1.2.80`; `/tmp/my.sock` |
 | [`network.peer.port`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` if and only if `network.peer.address` is set. | int | Peer port of the messaging intermediary node where the operation was performed. | `65123` |
-| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [11] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
+| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name. [11] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | Server port number. [12] | `80`; `8080`; `443` |
 | [`messaging.message.body.size`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The size of the message body in bytes. Only applicable for spans describing single message operations. [13] | `1439` |
 | [`messaging.message.envelope.size`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The size of the message body and metadata in bytes. [14] | `2738` |
@@ -102,7 +102,7 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 
 **[7] `messaging.destination.template`:** If available. Instrumentations MUST NOT use `messaging.destination.name` as template unless low-cardinality of destination name is guaranteed.
 
-**[8] `messaging.destination.template`:** Destination names could be constructed from templates. An example would be a destination name involving a user name or product id. Although the destination name in this case is of high cardinality, the underlying template is of low cardinality and can be effectively used for grouping and aggregation.
+**[8] `messaging.destination.template`:** Destination names could be constructed from templates. An example would be a destination name involving a username or product ID. Although the destination name in this case is of high cardinality, the underlying template is of low cardinality and can be effectively used for grouping and aggregation.
 
 **[9] `messaging.operation.type`:** If a custom value is used, it MUST be of low cardinality.
 
@@ -110,7 +110,7 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 Network peer address and port are important when the application interacts with individual intermediary nodes directly,
 If a messaging operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
 
-**[11] `server.address`:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name.
+**[11] `server.address`:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name.
 
 **[12] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 

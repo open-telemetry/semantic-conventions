@@ -15,7 +15,7 @@ span_refinements:
         examples: ['MessageLockLost', 'MessagingEntityNotFound', 'ServiceBusy']
       - ref: messaging.message.conversation_id
         brief: &servicebus_conversation_id_brief >
-          Message [correlation Id](https://learn.microsoft.com/azure/service-bus-messaging/service-bus-messages-payloads#message-routing-and-correlation) property.
+          Message [correlation ID](https://learn.microsoft.com/azure/service-bus-messaging/service-bus-messages-payloads#message-routing-and-correlation) property.
       - ref: messaging.operation.name
         brief: Azure Service Bus operation name.
         note: |
@@ -295,7 +295,7 @@ span_refinements:
         sampling_relevant: true
       - ref: messaging.destination.partition.id
         brief: >
-          String representation of the partition id messages are checkpointed for, unique within the Event Hub.
+          String representation of the partition ID messages are checkpointed for, unique within the Event Hub.
         requirement_level:
           conditionally_required: If available.
       - ref: messaging.operation.name
@@ -397,7 +397,7 @@ spans:
         sampling_relevant: true
       - ref: messaging.destination.partition.id
         brief: >
-          String representation of the partition id, unique within the Event Hub.
+          String representation of the partition ID, unique within the Event Hub.
         requirement_level:
           conditionally_required: If available.
         sampling_relevant: true

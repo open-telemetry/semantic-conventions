@@ -24,7 +24,7 @@ This article defines semantic conventions for HTTP metrics emitted by .NET compo
 
 ## HTTP client
 
-All Http client metrics are reported by the `System.Net.Http` meter.
+All HTTP client metrics are reported by the `System.Net.Http` meter.
 
 ### Metric: `http.client.request.duration`
 
@@ -87,7 +87,7 @@ This metric SHOULD be specified with [`ExplicitBucketBoundaries` advisory parame
 
 | Attribute | Type | Description | Examples | Requirement Level |
 | --- | --- | --- | --- | --- |
-| [`network.peer.address`](../registry/attributes/network.md) | string | Peer address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` | Recommended |
+| [`network.peer.address`](../registry/attributes/network.md) | string | Peer address of the network connection - IP address or UNIX domain socket name. | `10.1.2.80`; `/tmp/my.sock` | Recommended |
 | [`network.protocol.version`](../registry/attributes/network.md) | string | The negotiated version of the protocol associated with connection in the connection pool. [1] | `1.1`; `2`; `3` | Recommended |
 | [`server.address`](../registry/attributes/server.md) | string | Host identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [2] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Required |
 | [`server.port`](../registry/attributes/server.md) | int | Port identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [3] | `80`; `8080`; `443` | Conditionally Required: [4] |

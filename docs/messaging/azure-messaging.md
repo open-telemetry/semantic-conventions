@@ -87,9 +87,9 @@ Describes a message being created for sending to Azure Service Bus.
 | [`messaging.destination.template`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [6] | string | Low cardinality representation of the messaging destination name [7] | `/customers/{customerId}` |
 | [`messaging.operation.type`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If applicable. | string | A string identifying the type of the messaging operation. [8] | `create` |
 | [`messaging.destination.partition.id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` When applicable. | string | The identifier of the partition messages are sent to or received from, unique within the `messaging.destination.name`. | `1` |
-| [`messaging.message.conversation_id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Message [correlation Id](https://learn.microsoft.com/azure/service-bus-messaging/service-bus-messages-payloads#message-routing-and-correlation) property. | `MyConversationId` |
+| [`messaging.message.conversation_id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Message [correlation ID](https://learn.microsoft.com/azure/service-bus-messaging/service-bus-messages-payloads#message-routing-and-correlation) property. | `MyConversationId` |
 | [`messaging.message.id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` If span describes operation on a single message. | string | A value used by the messaging system as an identifier for the message, represented as a string. | `452a7c7c7c7048c2f887f61572b18fc2` |
-| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [9] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
+| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name. [9] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | Server port number. [10] | `80`; `8080`; `443` |
 | [`messaging.message.body.size`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The size of the message body in bytes. Only applicable for spans describing single message operations. [11] | `1439` |
 | [`messaging.message.envelope.size`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The size of the message body and metadata in bytes. [12] | `2738` |
@@ -131,11 +131,11 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 
 **[6] `messaging.destination.template`:** If available. Instrumentations MUST NOT use `messaging.destination.name` as template unless low-cardinality of destination name is guaranteed.
 
-**[7] `messaging.destination.template`:** Destination names could be constructed from templates. An example would be a destination name involving a user name or product id. Although the destination name in this case is of high cardinality, the underlying template is of low cardinality and can be effectively used for grouping and aggregation.
+**[7] `messaging.destination.template`:** Destination names could be constructed from templates. An example would be a destination name involving a username or product ID. Although the destination name in this case is of high cardinality, the underlying template is of low cardinality and can be effectively used for grouping and aggregation.
 
 **[8] `messaging.operation.type`:** If a custom value is used, it MUST be of low cardinality.
 
-**[9] `server.address`:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name.
+**[9] `server.address`:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name.
 
 **[10] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
@@ -230,11 +230,11 @@ Describes a producer sending one or more messages to Azure Service Bus.
 | [`messaging.operation.type`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If applicable. | string | A string identifying the type of the messaging operation. [10] | `send` |
 | [`messaging.client.id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A unique identifier for the client that consumes or produces a message. | `client-5`; `myhost@8742@s8083jm` |
 | [`messaging.destination.partition.id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` When applicable. | string | The identifier of the partition messages are sent to or received from, unique within the `messaging.destination.name`. | `1` |
-| [`messaging.message.conversation_id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Message [correlation Id](https://learn.microsoft.com/azure/service-bus-messaging/service-bus-messages-payloads#message-routing-and-correlation) property. | `MyConversationId` |
+| [`messaging.message.conversation_id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Message [correlation ID](https://learn.microsoft.com/azure/service-bus-messaging/service-bus-messages-payloads#message-routing-and-correlation) property. | `MyConversationId` |
 | [`messaging.message.id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` If span describes operation on a single message. | string | A value used by the messaging system as an identifier for the message, represented as a string. | `452a7c7c7c7048c2f887f61572b18fc2` |
 | [`network.peer.address`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` If applicable for this messaging system. | string | Peer address of the messaging intermediary node where the operation was performed. [11] | `10.1.2.80`; `/tmp/my.sock` |
 | [`network.peer.port`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` if and only if `network.peer.address` is set. | int | Peer port of the messaging intermediary node where the operation was performed. | `65123` |
-| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [12] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
+| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name. [12] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | Server port number. [13] | `80`; `8080`; `443` |
 | [`messaging.message.body.size`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The size of the message body in bytes. Only applicable for spans describing single message operations. [14] | `1439` |
 | [`messaging.message.envelope.size`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The size of the message body and metadata in bytes. [15] | `2738` |
@@ -283,7 +283,7 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 
 **[8] `messaging.destination.template`:** If available. Instrumentations MUST NOT use `messaging.destination.name` as template unless low-cardinality of destination name is guaranteed.
 
-**[9] `messaging.destination.template`:** Destination names could be constructed from templates. An example would be a destination name involving a user name or product id. Although the destination name in this case is of high cardinality, the underlying template is of low cardinality and can be effectively used for grouping and aggregation.
+**[9] `messaging.destination.template`:** Destination names could be constructed from templates. An example would be a destination name involving a username or product ID. Although the destination name in this case is of high cardinality, the underlying template is of low cardinality and can be effectively used for grouping and aggregation.
 
 **[10] `messaging.operation.type`:** If a custom value is used, it MUST be of low cardinality.
 
@@ -291,7 +291,7 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 Network peer address and port are important when the application interacts with individual intermediary nodes directly,
 If a messaging operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
 
-**[12] `server.address`:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name.
+**[12] `server.address`:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name.
 
 **[13] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
@@ -386,11 +386,11 @@ Describes a producer sending one or more messages to Azure Service Bus.
 | [`messaging.operation.type`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If applicable. | string | A string identifying the type of the messaging operation. [10] | `send` |
 | [`messaging.client.id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A unique identifier for the client that consumes or produces a message. | `client-5`; `myhost@8742@s8083jm` |
 | [`messaging.destination.partition.id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` When applicable. | string | The identifier of the partition messages are sent to or received from, unique within the `messaging.destination.name`. | `1` |
-| [`messaging.message.conversation_id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Message [correlation Id](https://learn.microsoft.com/azure/service-bus-messaging/service-bus-messages-payloads#message-routing-and-correlation) property. | `MyConversationId` |
+| [`messaging.message.conversation_id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Message [correlation ID](https://learn.microsoft.com/azure/service-bus-messaging/service-bus-messages-payloads#message-routing-and-correlation) property. | `MyConversationId` |
 | [`messaging.message.id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` If span describes operation on a single message. | string | A value used by the messaging system as an identifier for the message, represented as a string. | `452a7c7c7c7048c2f887f61572b18fc2` |
 | [`network.peer.address`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` If applicable for this messaging system. | string | Peer address of the messaging intermediary node where the operation was performed. [11] | `10.1.2.80`; `/tmp/my.sock` |
 | [`network.peer.port`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` if and only if `network.peer.address` is set. | int | Peer port of the messaging intermediary node where the operation was performed. | `65123` |
-| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [12] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
+| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name. [12] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | Server port number. [13] | `80`; `8080`; `443` |
 | [`messaging.message.body.size`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The size of the message body in bytes. Only applicable for spans describing single message operations. [14] | `1439` |
 | [`messaging.message.envelope.size`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The size of the message body and metadata in bytes. [15] | `2738` |
@@ -439,7 +439,7 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 
 **[8] `messaging.destination.template`:** If available. Instrumentations MUST NOT use `messaging.destination.name` as template unless low-cardinality of destination name is guaranteed.
 
-**[9] `messaging.destination.template`:** Destination names could be constructed from templates. An example would be a destination name involving a user name or product id. Although the destination name in this case is of high cardinality, the underlying template is of low cardinality and can be effectively used for grouping and aggregation.
+**[9] `messaging.destination.template`:** Destination names could be constructed from templates. An example would be a destination name involving a username or product ID. Although the destination name in this case is of high cardinality, the underlying template is of low cardinality and can be effectively used for grouping and aggregation.
 
 **[10] `messaging.operation.type`:** If a custom value is used, it MUST be of low cardinality.
 
@@ -447,7 +447,7 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 Network peer address and port are important when the application interacts with individual intermediary nodes directly,
 If a messaging operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
 
-**[12] `server.address`:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name.
+**[12] `server.address`:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name.
 
 **[13] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
@@ -543,12 +543,12 @@ Describes a consumer receiving one or more messages from Azure Service Bus.
 | [`messaging.servicebus.message.delivery_count`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [11] | int | Number of deliveries that have been attempted for this message. | `2` |
 | [`messaging.client.id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A unique identifier for the client that consumes or produces a message. | `client-5`; `myhost@8742@s8083jm` |
 | [`messaging.destination.partition.id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` When applicable. | string | The identifier of the partition messages are sent to or received from, unique within the `messaging.destination.name`. | `1` |
-| [`messaging.message.conversation_id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Message [correlation Id](https://learn.microsoft.com/azure/service-bus-messaging/service-bus-messages-payloads#message-routing-and-correlation) property. | `MyConversationId` |
+| [`messaging.message.conversation_id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Message [correlation ID](https://learn.microsoft.com/azure/service-bus-messaging/service-bus-messages-payloads#message-routing-and-correlation) property. | `MyConversationId` |
 | [`messaging.message.id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` If span describes operation on a single message. | string | A value used by the messaging system as an identifier for the message, represented as a string. | `452a7c7c7c7048c2f887f61572b18fc2` |
 | [`messaging.servicebus.message.enqueued_time`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | int | The UTC epoch seconds at which the message has been accepted and stored in the entity. | `1701393730` |
 | [`network.peer.address`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` If applicable for this messaging system. | string | Peer address of the messaging intermediary node where the operation was performed. [12] | `10.1.2.80`; `/tmp/my.sock` |
 | [`network.peer.port`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` if and only if `network.peer.address` is set. | int | Peer port of the messaging intermediary node where the operation was performed. | `65123` |
-| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [13] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
+| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name. [13] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | Server port number. [14] | `80`; `8080`; `443` |
 | [`messaging.message.body.size`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The size of the message body in bytes. Only applicable for spans describing single message operations. [15] | `1439` |
 | [`messaging.message.envelope.size`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The size of the message body and metadata in bytes. [16] | `2738` |
@@ -597,7 +597,7 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 
 **[8] `messaging.destination.template`:** If available. Instrumentations MUST NOT use `messaging.destination.name` as template unless low-cardinality of destination name is guaranteed.
 
-**[9] `messaging.destination.template`:** Destination names could be constructed from templates. An example would be a destination name involving a user name or product id. Although the destination name in this case is of high cardinality, the underlying template is of low cardinality and can be effectively used for grouping and aggregation.
+**[9] `messaging.destination.template`:** Destination names could be constructed from templates. An example would be a destination name involving a username or product ID. Although the destination name in this case is of high cardinality, the underlying template is of low cardinality and can be effectively used for grouping and aggregation.
 
 **[10] `messaging.operation.type`:** If a custom value is used, it MUST be of low cardinality.
 
@@ -607,7 +607,7 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 Network peer address and port are important when the application interacts with individual intermediary nodes directly,
 If a messaging operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
 
-**[13] `server.address`:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name.
+**[13] `server.address`:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name.
 
 **[14] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
@@ -704,10 +704,10 @@ Describes a consumer processing one or more messages from Azure Service Bus (pus
 | [`messaging.servicebus.message.delivery_count`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [11] | int | Number of deliveries that have been attempted for this message. | `2` |
 | [`messaging.client.id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A unique identifier for the client that consumes or produces a message. | `client-5`; `myhost@8742@s8083jm` |
 | [`messaging.destination.partition.id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` When applicable. | string | The identifier of the partition messages are sent to or received from, unique within the `messaging.destination.name`. | `1` |
-| [`messaging.message.conversation_id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Message [correlation Id](https://learn.microsoft.com/azure/service-bus-messaging/service-bus-messages-payloads#message-routing-and-correlation) property. | `MyConversationId` |
+| [`messaging.message.conversation_id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Message [correlation ID](https://learn.microsoft.com/azure/service-bus-messaging/service-bus-messages-payloads#message-routing-and-correlation) property. | `MyConversationId` |
 | [`messaging.message.id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` If span describes operation on a single message. | string | A value used by the messaging system as an identifier for the message, represented as a string. | `452a7c7c7c7048c2f887f61572b18fc2` |
 | [`messaging.servicebus.message.enqueued_time`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | int | The UTC epoch seconds at which the message has been accepted and stored in the entity. | `1701393730` |
-| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [12] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
+| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name. [12] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | Server port number. [13] | `80`; `8080`; `443` |
 | [`messaging.message.body.size`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The size of the message body in bytes. Only applicable for spans describing single message operations. [14] | `1439` |
 | [`messaging.message.envelope.size`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The size of the message body and metadata in bytes. [15] | `2738` |
@@ -754,13 +754,13 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 
 **[8] `messaging.destination.template`:** If available. Instrumentations MUST NOT use `messaging.destination.name` as template unless low-cardinality of destination name is guaranteed.
 
-**[9] `messaging.destination.template`:** Destination names could be constructed from templates. An example would be a destination name involving a user name or product id. Although the destination name in this case is of high cardinality, the underlying template is of low cardinality and can be effectively used for grouping and aggregation.
+**[9] `messaging.destination.template`:** Destination names could be constructed from templates. An example would be a destination name involving a username or product ID. Although the destination name in this case is of high cardinality, the underlying template is of low cardinality and can be effectively used for grouping and aggregation.
 
 **[10] `messaging.operation.type`:** If a custom value is used, it MUST be of low cardinality.
 
 **[11] `messaging.servicebus.message.delivery_count`:** If delivery count is available and is bigger than 0.
 
-**[12] `server.address`:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name.
+**[12] `server.address`:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name.
 
 **[13] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
@@ -858,11 +858,11 @@ Describes settling (complete/abandon/defer/dead-letter) one or more Azure Servic
 | [`messaging.servicebus.disposition_status`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [11] | string | Describes the [settlement type](https://learn.microsoft.com/azure/service-bus-messaging/message-transfers-locks-settlement#peeklock). | `complete`; `abandon`; `dead_letter` |
 | [`messaging.client.id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A unique identifier for the client that consumes or produces a message. | `client-5`; `myhost@8742@s8083jm` |
 | [`messaging.destination.partition.id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` When applicable. | string | The identifier of the partition messages are sent to or received from, unique within the `messaging.destination.name`. | `1` |
-| [`messaging.message.conversation_id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Message [correlation Id](https://learn.microsoft.com/azure/service-bus-messaging/service-bus-messages-payloads#message-routing-and-correlation) property. | `MyConversationId` |
+| [`messaging.message.conversation_id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Message [correlation ID](https://learn.microsoft.com/azure/service-bus-messaging/service-bus-messages-payloads#message-routing-and-correlation) property. | `MyConversationId` |
 | [`messaging.message.id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` If span describes operation on a single message. | string | A value used by the messaging system as an identifier for the message, represented as a string. | `452a7c7c7c7048c2f887f61572b18fc2` |
 | [`network.peer.address`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` If applicable for this messaging system. | string | Peer address of the messaging intermediary node where the operation was performed. [12] | `10.1.2.80`; `/tmp/my.sock` |
 | [`network.peer.port`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` if and only if `network.peer.address` is set. | int | Peer port of the messaging intermediary node where the operation was performed. | `65123` |
-| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [13] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
+| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name. [13] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | Server port number. [14] | `80`; `8080`; `443` |
 
 **[1] `messaging.operation.name`:** For settlement spans, the operation name SHOULD match one of the following values;
@@ -909,7 +909,7 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 
 **[8] `messaging.destination.template`:** If available. Instrumentations MUST NOT use `messaging.destination.name` as template unless low-cardinality of destination name is guaranteed.
 
-**[9] `messaging.destination.template`:** Destination names could be constructed from templates. An example would be a destination name involving a user name or product id. Although the destination name in this case is of high cardinality, the underlying template is of low cardinality and can be effectively used for grouping and aggregation.
+**[9] `messaging.destination.template`:** Destination names could be constructed from templates. An example would be a destination name involving a username or product ID. Although the destination name in this case is of high cardinality, the underlying template is of low cardinality and can be effectively used for grouping and aggregation.
 
 **[10] `messaging.operation.type`:** If a custom value is used, it MUST be of low cardinality.
 
@@ -919,7 +919,7 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 Network peer address and port are important when the application interacts with individual intermediary nodes directly,
 If a messaging operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
 
-**[13] `server.address`:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name.
+**[13] `server.address`:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name.
 
 **[14] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
@@ -1024,11 +1024,11 @@ lock renewal - that do not map to a create, send, receive, process, or settle sp
 | [`messaging.operation.type`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If applicable. | string | A string identifying the type of the messaging operation. [10] | `create`; `send`; `receive` |
 | [`messaging.client.id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A unique identifier for the client that consumes or produces a message. | `client-5`; `myhost@8742@s8083jm` |
 | [`messaging.destination.partition.id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` When applicable. | string | The identifier of the partition messages are sent to or received from, unique within the `messaging.destination.name`. | `1` |
-| [`messaging.message.conversation_id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Message [correlation Id](https://learn.microsoft.com/azure/service-bus-messaging/service-bus-messages-payloads#message-routing-and-correlation) property. | `MyConversationId` |
+| [`messaging.message.conversation_id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Message [correlation ID](https://learn.microsoft.com/azure/service-bus-messaging/service-bus-messages-payloads#message-routing-and-correlation) property. | `MyConversationId` |
 | [`messaging.message.id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` If span describes operation on a single message. | string | A value used by the messaging system as an identifier for the message, represented as a string. | `452a7c7c7c7048c2f887f61572b18fc2` |
 | [`network.peer.address`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` If applicable for this messaging system. | string | Peer address of the messaging intermediary node where the operation was performed. [11] | `10.1.2.80`; `/tmp/my.sock` |
 | [`network.peer.port`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` if and only if `network.peer.address` is set. | int | Peer port of the messaging intermediary node where the operation was performed. | `65123` |
-| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [12] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
+| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name. [12] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | Server port number. [13] | `80`; `8080`; `443` |
 
 **[1] `messaging.operation.name`:** `messaging.operation.name` SHOULD be set to the name of the client method in snake_case, for example:
@@ -1077,7 +1077,7 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 
 **[8] `messaging.destination.template`:** If available. Instrumentations MUST NOT use `messaging.destination.name` as template unless low-cardinality of destination name is guaranteed.
 
-**[9] `messaging.destination.template`:** Destination names could be constructed from templates. An example would be a destination name involving a user name or product id. Although the destination name in this case is of high cardinality, the underlying template is of low cardinality and can be effectively used for grouping and aggregation.
+**[9] `messaging.destination.template`:** Destination names could be constructed from templates. An example would be a destination name involving a username or product ID. Although the destination name in this case is of high cardinality, the underlying template is of low cardinality and can be effectively used for grouping and aggregation.
 
 **[10] `messaging.operation.type`:** If a custom value is used, it MUST be of low cardinality.
 
@@ -1085,7 +1085,7 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 Network peer address and port are important when the application interacts with individual intermediary nodes directly,
 If a messaging operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
 
-**[12] `server.address`:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name.
+**[12] `server.address`:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name.
 
 **[13] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
@@ -1174,7 +1174,7 @@ Describes a message being created for sending to Azure Event Hubs.
 | [`messaging.operation.type`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If applicable. | string | A string identifying the type of the messaging operation. [8] | `create` |
 | [`messaging.message.conversation_id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The conversation ID identifying the conversation to which the message belongs, represented as a string. Sometimes called "Correlation ID". | `MyConversationId` |
 | [`messaging.message.id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` If span describes operation on a single message. | string | A value used by the messaging system as an identifier for the message, represented as a string. | `452a7c7c7c7048c2f887f61572b18fc2` |
-| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [9] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
+| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name. [9] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | Server port number. [10] | `80`; `8080`; `443` |
 | [`messaging.message.body.size`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The size of the message body in bytes. Only applicable for spans describing single message operations. [11] | `1439` |
 | [`messaging.message.envelope.size`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The size of the message body and metadata in bytes. [12] | `2738` |
@@ -1216,11 +1216,11 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 
 **[6] `messaging.destination.template`:** If available. Instrumentations MUST NOT use `messaging.destination.name` as template unless low-cardinality of destination name is guaranteed.
 
-**[7] `messaging.destination.template`:** Destination names could be constructed from templates. An example would be a destination name involving a user name or product id. Although the destination name in this case is of high cardinality, the underlying template is of low cardinality and can be effectively used for grouping and aggregation.
+**[7] `messaging.destination.template`:** Destination names could be constructed from templates. An example would be a destination name involving a username or product ID. Although the destination name in this case is of high cardinality, the underlying template is of low cardinality and can be effectively used for grouping and aggregation.
 
 **[8] `messaging.operation.type`:** If a custom value is used, it MUST be of low cardinality.
 
-**[9] `server.address`:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name.
+**[9] `server.address`:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name.
 
 **[10] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
@@ -1319,7 +1319,7 @@ Describes a producer sending one or more messages to Azure Event Hubs.
 | [`messaging.message.id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` If span describes operation on a single message. | string | A value used by the messaging system as an identifier for the message, represented as a string. | `452a7c7c7c7048c2f887f61572b18fc2` |
 | [`network.peer.address`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` If applicable for this messaging system. | string | Peer address of the messaging intermediary node where the operation was performed. [11] | `10.1.2.80`; `/tmp/my.sock` |
 | [`network.peer.port`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` if and only if `network.peer.address` is set. | int | Peer port of the messaging intermediary node where the operation was performed. | `65123` |
-| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [12] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
+| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name. [12] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | Server port number. [13] | `80`; `8080`; `443` |
 | [`messaging.message.body.size`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The size of the message body in bytes. Only applicable for spans describing single message operations. [14] | `1439` |
 | [`messaging.message.envelope.size`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The size of the message body and metadata in bytes. [15] | `2738` |
@@ -1366,7 +1366,7 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 
 **[8] `messaging.destination.template`:** If available. Instrumentations MUST NOT use `messaging.destination.name` as template unless low-cardinality of destination name is guaranteed.
 
-**[9] `messaging.destination.template`:** Destination names could be constructed from templates. An example would be a destination name involving a user name or product id. Although the destination name in this case is of high cardinality, the underlying template is of low cardinality and can be effectively used for grouping and aggregation.
+**[9] `messaging.destination.template`:** Destination names could be constructed from templates. An example would be a destination name involving a username or product ID. Although the destination name in this case is of high cardinality, the underlying template is of low cardinality and can be effectively used for grouping and aggregation.
 
 **[10] `messaging.operation.type`:** If a custom value is used, it MUST be of low cardinality.
 
@@ -1374,7 +1374,7 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 Network peer address and port are important when the application interacts with individual intermediary nodes directly,
 If a messaging operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
 
-**[12] `server.address`:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name.
+**[12] `server.address`:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name.
 
 **[13] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
@@ -1473,7 +1473,7 @@ Describes a producer sending one or more messages to Azure Event Hubs.
 | [`messaging.message.id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` If span describes operation on a single message. | string | A value used by the messaging system as an identifier for the message, represented as a string. | `452a7c7c7c7048c2f887f61572b18fc2` |
 | [`network.peer.address`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` If applicable for this messaging system. | string | Peer address of the messaging intermediary node where the operation was performed. [11] | `10.1.2.80`; `/tmp/my.sock` |
 | [`network.peer.port`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` if and only if `network.peer.address` is set. | int | Peer port of the messaging intermediary node where the operation was performed. | `65123` |
-| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [12] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
+| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name. [12] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | Server port number. [13] | `80`; `8080`; `443` |
 | [`messaging.message.body.size`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The size of the message body in bytes. Only applicable for spans describing single message operations. [14] | `1439` |
 | [`messaging.message.envelope.size`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The size of the message body and metadata in bytes. [15] | `2738` |
@@ -1520,7 +1520,7 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 
 **[8] `messaging.destination.template`:** If available. Instrumentations MUST NOT use `messaging.destination.name` as template unless low-cardinality of destination name is guaranteed.
 
-**[9] `messaging.destination.template`:** Destination names could be constructed from templates. An example would be a destination name involving a user name or product id. Although the destination name in this case is of high cardinality, the underlying template is of low cardinality and can be effectively used for grouping and aggregation.
+**[9] `messaging.destination.template`:** Destination names could be constructed from templates. An example would be a destination name involving a username or product ID. Although the destination name in this case is of high cardinality, the underlying template is of low cardinality and can be effectively used for grouping and aggregation.
 
 **[10] `messaging.operation.type`:** If a custom value is used, it MUST be of low cardinality.
 
@@ -1528,7 +1528,7 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 Network peer address and port are important when the application interacts with individual intermediary nodes directly,
 If a messaging operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
 
-**[12] `server.address`:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name.
+**[12] `server.address`:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name.
 
 **[13] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
@@ -1628,7 +1628,7 @@ Describes a consumer receiving one or more messages from Azure Event Hubs (pull-
 | [`messaging.message.id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` If span describes operation on a single message. | string | A value used by the messaging system as an identifier for the message, represented as a string. | `452a7c7c7c7048c2f887f61572b18fc2` |
 | [`network.peer.address`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` If applicable for this messaging system. | string | Peer address of the messaging intermediary node where the operation was performed. [11] | `10.1.2.80`; `/tmp/my.sock` |
 | [`network.peer.port`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` if and only if `network.peer.address` is set. | int | Peer port of the messaging intermediary node where the operation was performed. | `65123` |
-| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [12] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
+| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name. [12] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | Server port number. [13] | `80`; `8080`; `443` |
 | [`messaging.message.body.size`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The size of the message body in bytes. Only applicable for spans describing single message operations. [14] | `1439` |
 | [`messaging.message.envelope.size`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The size of the message body and metadata in bytes. [15] | `2738` |
@@ -1675,7 +1675,7 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 
 **[8] `messaging.destination.template`:** If available. Instrumentations MUST NOT use `messaging.destination.name` as template unless low-cardinality of destination name is guaranteed.
 
-**[9] `messaging.destination.template`:** Destination names could be constructed from templates. An example would be a destination name involving a user name or product id. Although the destination name in this case is of high cardinality, the underlying template is of low cardinality and can be effectively used for grouping and aggregation.
+**[9] `messaging.destination.template`:** Destination names could be constructed from templates. An example would be a destination name involving a username or product ID. Although the destination name in this case is of high cardinality, the underlying template is of low cardinality and can be effectively used for grouping and aggregation.
 
 **[10] `messaging.operation.type`:** If a custom value is used, it MUST be of low cardinality.
 
@@ -1683,7 +1683,7 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 Network peer address and port are important when the application interacts with individual intermediary nodes directly,
 If a messaging operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
 
-**[12] `server.address`:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name.
+**[12] `server.address`:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name.
 
 **[13] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
@@ -1782,7 +1782,7 @@ Describes a consumer processing one or more messages from Azure Event Hubs (push
 | [`messaging.eventhubs.message.enqueued_time`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | int | The UTC epoch seconds at which the message has been accepted and stored in the entity. | `1701393730` |
 | [`messaging.message.conversation_id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The conversation ID identifying the conversation to which the message belongs, represented as a string. Sometimes called "Correlation ID". | `MyConversationId` |
 | [`messaging.message.id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` If span describes operation on a single message. | string | A value used by the messaging system as an identifier for the message, represented as a string. | `452a7c7c7c7048c2f887f61572b18fc2` |
-| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [11] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
+| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name. [11] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | Server port number. [12] | `80`; `8080`; `443` |
 | [`messaging.message.body.size`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The size of the message body in bytes. Only applicable for spans describing single message operations. [13] | `1439` |
 | [`messaging.message.envelope.size`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The size of the message body and metadata in bytes. [14] | `2738` |
@@ -1829,11 +1829,11 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 
 **[8] `messaging.destination.template`:** If available. Instrumentations MUST NOT use `messaging.destination.name` as template unless low-cardinality of destination name is guaranteed.
 
-**[9] `messaging.destination.template`:** Destination names could be constructed from templates. An example would be a destination name involving a user name or product id. Although the destination name in this case is of high cardinality, the underlying template is of low cardinality and can be effectively used for grouping and aggregation.
+**[9] `messaging.destination.template`:** Destination names could be constructed from templates. An example would be a destination name involving a username or product ID. Although the destination name in this case is of high cardinality, the underlying template is of low cardinality and can be effectively used for grouping and aggregation.
 
 **[10] `messaging.operation.type`:** If a custom value is used, it MUST be of low cardinality.
 
-**[11] `server.address`:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name.
+**[11] `server.address`:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name.
 
 **[12] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
@@ -1925,7 +1925,7 @@ Describes checkpointing (settling) processed messages in Azure Event Hubs.
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the messaging operation has failed. | string | Describes a class of error the operation ended with. [3] | `ConsumerDisconnected`; `ResourceNotFound`; `ServiceBusy` |
 | [`messaging.batch.message_count`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [4] | int | The number of messages sent, received, or processed in the scope of the batching operation. [5] | `0`; `1`; `2` |
 | [`messaging.destination.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [6] | string | The message destination name [7] | `MyTopic` |
-| [`messaging.destination.partition.id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If available. | string | String representation of the partition id messages are checkpointed for, unique within the Event Hub. | `1` |
+| [`messaging.destination.partition.id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If available. | string | String representation of the partition ID messages are checkpointed for, unique within the Event Hub. | `1` |
 | [`messaging.destination.template`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [8] | string | Low cardinality representation of the messaging destination name [9] | `/customers/{customerId}` |
 | [`messaging.operation.type`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If applicable. | string | A string identifying the type of the messaging operation. [10] | `settle` |
 | [`messaging.client.id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A unique identifier for the client that consumes or produces a message. | `client-5`; `myhost@8742@s8083jm` |
@@ -1934,7 +1934,7 @@ Describes checkpointing (settling) processed messages in Azure Event Hubs.
 | [`messaging.message.id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` If span describes operation on a single message. | string | A value used by the messaging system as an identifier for the message, represented as a string. | `452a7c7c7c7048c2f887f61572b18fc2` |
 | [`network.peer.address`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` If applicable for this messaging system. | string | Peer address of the messaging intermediary node where the operation was performed. [11] | `10.1.2.80`; `/tmp/my.sock` |
 | [`network.peer.port`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` if and only if `network.peer.address` is set. | int | Peer port of the messaging intermediary node where the operation was performed. | `65123` |
-| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [12] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
+| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name. [12] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | Server port number. [13] | `80`; `8080`; `443` |
 
 **[1] `messaging.operation.name`:** `messaging.operation.name` SHOULD be set to `checkpoint`.
@@ -1978,7 +1978,7 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 
 **[8] `messaging.destination.template`:** If available. Instrumentations MUST NOT use `messaging.destination.name` as template unless low-cardinality of destination name is guaranteed.
 
-**[9] `messaging.destination.template`:** Destination names could be constructed from templates. An example would be a destination name involving a user name or product id. Although the destination name in this case is of high cardinality, the underlying template is of low cardinality and can be effectively used for grouping and aggregation.
+**[9] `messaging.destination.template`:** Destination names could be constructed from templates. An example would be a destination name involving a username or product ID. Although the destination name in this case is of high cardinality, the underlying template is of low cardinality and can be effectively used for grouping and aggregation.
 
 **[10] `messaging.operation.type`:** If a custom value is used, it MUST be of low cardinality.
 
@@ -1986,7 +1986,7 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 Network peer address and port are important when the application interacts with individual intermediary nodes directly,
 If a messaging operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
 
-**[12] `server.address`:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name.
+**[12] `server.address`:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name.
 
 **[13] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 
@@ -2075,7 +2075,7 @@ do not map to a create, send, receive, process, or settle span.
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the messaging operation has failed. | string | Describes a class of error the operation ended with. [3] | `ConsumerDisconnected`; `ResourceNotFound`; `ServiceBusy` |
 | [`messaging.batch.message_count`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [4] | int | The number of messages sent, received, or processed in the scope of the batching operation. [5] | `0`; `1`; `2` |
 | [`messaging.destination.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [6] | string | The message destination name [7] | `MyTopic` |
-| [`messaging.destination.partition.id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If available. | string | String representation of the partition id, unique within the Event Hub. | `1` |
+| [`messaging.destination.partition.id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If available. | string | String representation of the partition ID, unique within the Event Hub. | `1` |
 | [`messaging.destination.template`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` [8] | string | Low cardinality representation of the messaging destination name [9] | `/customers/{customerId}` |
 | [`messaging.operation.type`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` If applicable. | string | A string identifying the type of the messaging operation. [10] | `create`; `send`; `receive` |
 | [`messaging.client.id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A unique identifier for the client that consumes or produces a message. | `client-5`; `myhost@8742@s8083jm` |
@@ -2083,7 +2083,7 @@ do not map to a create, send, receive, process, or settle span.
 | [`messaging.message.id`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` If span describes operation on a single message. | string | A value used by the messaging system as an identifier for the message, represented as a string. | `452a7c7c7c7048c2f887f61572b18fc2` |
 | [`network.peer.address`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` If applicable for this messaging system. | string | Peer address of the messaging intermediary node where the operation was performed. [11] | `10.1.2.80`; `/tmp/my.sock` |
 | [`network.peer.port`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` if and only if `network.peer.address` is set. | int | Peer port of the messaging intermediary node where the operation was performed. | `65123` |
-| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name. [12] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
+| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name. [12] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | Server port number. [13] | `80`; `8080`; `443` |
 
 **[1] `messaging.operation.name`:** `messaging.operation.name` SHOULD be set to the name of the client method in snake_case, for example:
@@ -2130,7 +2130,7 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 
 **[8] `messaging.destination.template`:** If available. Instrumentations MUST NOT use `messaging.destination.name` as template unless low-cardinality of destination name is guaranteed.
 
-**[9] `messaging.destination.template`:** Destination names could be constructed from templates. An example would be a destination name involving a user name or product id. Although the destination name in this case is of high cardinality, the underlying template is of low cardinality and can be effectively used for grouping and aggregation.
+**[9] `messaging.destination.template`:** Destination names could be constructed from templates. An example would be a destination name involving a username or product ID. Although the destination name in this case is of high cardinality, the underlying template is of low cardinality and can be effectively used for grouping and aggregation.
 
 **[10] `messaging.operation.type`:** If a custom value is used, it MUST be of low cardinality.
 
@@ -2138,7 +2138,7 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 Network peer address and port are important when the application interacts with individual intermediary nodes directly,
 If a messaging operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
 
-**[12] `server.address`:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name.
+**[12] `server.address`:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name.
 
 **[13] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
 

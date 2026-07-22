@@ -31,7 +31,7 @@ span_refinements:
       - ref_group: messaging.rabbitmq.attributes.destination
       - ref: messaging.message.conversation_id
         brief: &rabbitmq_conversation_id_brief >
-          Message [correlation Id](https://www.rabbitmq.com/tutorials/tutorial-six-java#correlation-id) property.
+          Message [correlation ID](https://www.rabbitmq.com/tutorials/tutorial-six-java#correlation-id) property.
       - ref: messaging.destination.name
         note: &rabbitmq_destination_name_note |
           In RabbitMQ, the destination is defined by an *exchange*, a *routing key* and for consumers, a *queue*.

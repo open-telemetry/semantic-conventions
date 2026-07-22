@@ -82,7 +82,7 @@ span_refinements:
       - ref: messaging.destination.name
         examples: ['MyTopic']
       - ref: messaging.consumer.group.name
-        brief: "Kafka [consumer group id](https://docs.confluent.io/platform/current/clients/consumer.html)."
+        brief: "Kafka [consumer group ID](https://docs.confluent.io/platform/current/clients/consumer.html)."
         note: ""
         requirement_level:
           conditionally_required: If applicable.
@@ -112,7 +112,7 @@ span_refinements:
       - ref: messaging.destination.name
         examples: ['MyTopic']
       - ref: messaging.consumer.group.name
-        brief: "Kafka [consumer group id](https://docs.confluent.io/platform/current/clients/consumer.html)."
+        brief: "Kafka [consumer group ID](https://docs.confluent.io/platform/current/clients/consumer.html)."
         note: ""
         requirement_level:
           conditionally_required: If applicable.
@@ -136,14 +136,14 @@ span_refinements:
       - ref: messaging.destination.name
         examples: ['MyTopic']
       - ref: messaging.consumer.group.name
-        brief: "Kafka [consumer group id](https://docs.confluent.io/platform/current/clients/consumer.html)."
+        brief: "Kafka [consumer group ID](https://docs.confluent.io/platform/current/clients/consumer.html)."
         note: ""
         requirement_level:
           conditionally_required: If applicable.
         sampling_relevant: true
       - ref: messaging.kafka.cluster.id
       - ref: messaging.destination.partition.id
-        brief: String representation of the partition id the message (or batch) is received from.
+        brief: String representation of the partition ID the message (or batch) is received from.
         requirement_level: recommended
       - ref: messaging.kafka.message.key
         requirement_level:
