@@ -42,7 +42,7 @@ This metric is [recommended][MetricRecommended].
 | --- | --- | --- | --- | --- | --- |
 | [`hw.id`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` |
 | [`hw.type`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Type of the component [1] | `gpu` |
-| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if and only if an error has occurred | string | The type of error encountered by the component. [2] | `uncorrected`; `zero_buffer_credit`; `crc`; `bad_sector` |
+| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if and only if an error has occurred | string | The type of error encountered by the component. [2] | `corrected`; `uncorrected` |
 | [`hw.driver_version`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Driver version for the hardware component | `10.2.1-3` |
 | [`hw.firmware_version`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Firmware version of the hardware component | `2.0.1` |
 | [`hw.model`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Descriptive model name of the hardware component | `PERC H740P`; `Intel(R) Core(TM) i7-10700K`; `Dell XPS 15 Battery` |
@@ -53,7 +53,10 @@ This metric is [recommended][MetricRecommended].
 
 **[1] `hw.type`:** MUST be set to `gpu`.
 
-**[2] `error.type`:** The `error.type` SHOULD match the error code reported by the component, the canonical name of the error, or another low-cardinality error identifier. Instrumentations SHOULD document the list of errors they report.
+**[2] `error.type`:** `error.type` SHOULD be set to one of the following values to indicate the type of error:
+
+* `corrected`: Errors that were detected and corrected by the GPU.
+* `uncorrected`: Errors that were detected but could not be corrected by the GPU.
 
 ---
 

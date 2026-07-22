@@ -92,6 +92,13 @@ metric_refinements:
       - ref: hw.type
         note: "MUST be set to `gpu`."
         examples: ["gpu"]
+      - ref: error.type
+        note: |
+          `error.type` SHOULD be set to one of the following values to indicate the type of error:
+
+          * `corrected`: Errors that were detected and corrected by the GPU.
+          * `uncorrected`: Errors that were detected but could not be corrected by the GPU.
+        examples: ["corrected", "uncorrected"]
   - id: metric.hw.gpu.status
     ref: hw.status
     attributes:
