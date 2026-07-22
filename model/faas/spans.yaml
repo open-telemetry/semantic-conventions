@@ -30,7 +30,7 @@ spans:
     requirement_level: recommended
     stability: development
     brief: >
-      This span represents server (incoming) side of the FaaS invocation.
+      This span represents the server (incoming) side of a FaaS invocation.
     name:
       note: &faas_span_name >
         Span name SHOULD be set to the function name being executed, see
@@ -43,7 +43,7 @@ spans:
     requirement_level: recommended
     stability: development
     brief: >
-      This span represents server side if the FaaS invocations triggered in response
+      This span represents the server side of a FaaS invocation triggered in response
       to some data source operation such as a database or filesystem read/write.
     name:
       note: *faas_span_name
@@ -65,7 +65,7 @@ spans:
     requirement_level: recommended
     stability: development
     brief: >
-      This span represents server side if the FaaS invocations triggered by a timer.
+      This span represents the server side of a FaaS invocation triggered by a timer.
     name:
       note: *faas_span_name
     attributes:

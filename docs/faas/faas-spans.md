@@ -78,7 +78,7 @@ This section describes incoming FaaS invocations as they are reported by the Faa
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-This span represents server (incoming) side of the FaaS invocation.
+This span represents the server (incoming) side of a FaaS invocation.
 
 **Span kind** SHOULD be `SERVER`.
 
@@ -218,7 +218,7 @@ This section describes how to handle the span creation and additional attributes
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-This span represents server side if the FaaS invocations triggered in response to some data source operation such as a database or filesystem read/write.
+This span represents the server side of a FaaS invocation triggered in response to some data source operation such as a database or filesystem read/write.
 
 **Span kind** SHOULD be `SERVER`.
 
@@ -306,7 +306,7 @@ A function is scheduled to be executed regularly. The following additional attri
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-This span represents server side if the FaaS invocations triggered by a timer.
+This span represents the server side of a FaaS invocation triggered by a timer.
 
 **Span kind** SHOULD be `SERVER`.
 
