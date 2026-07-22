@@ -17,14 +17,13 @@ attribute_groups:
 
 span_refinements:
   # RabbitMQ
-  - id: span.messaging.rabbitmq.send.producer
+  - id: messaging.rabbitmq.send.producer
     ref: messaging.send.producer
     stability: development
     brief: Describes a producer publishing one or more messages to RabbitMQ.
-    note: &rabbitmq_system_note |
-      `messaging.system` MUST be set to `"rabbitmq"`.
     attributes:
       - ref: messaging.system
+        note: MUST be set to `"rabbitmq"`.
         examples: ['rabbitmq']
       - ref: error.type
         examples: ['amqp:decode-error', 'amqp:resource-limit-exceeded', 'connection-forced']
@@ -51,15 +50,16 @@ span_refinements:
       - ref: network.peer.address
         requirement_level: recommended
       - ref: network.peer.port
-        requirement_level: recommended
+        requirement_level:
+          recommended: if and only if `network.peer.address` is set.
 
-  - id: span.messaging.rabbitmq.receive.client
+  - id: messaging.rabbitmq.receive.client
     ref: messaging.receive.client
     stability: development
     brief: Describes a consumer receiving one or more messages from RabbitMQ (pull-based).
-    note: *rabbitmq_system_note
     attributes:
       - ref: messaging.system
+        note: MUST be set to `"rabbitmq"`.
         examples: ['rabbitmq']
       - ref: error.type
         examples: ['amqp:decode-error', 'amqp:resource-limit-exceeded', 'connection-forced']
@@ -76,15 +76,16 @@ span_refinements:
       - ref: network.peer.address
         requirement_level: recommended
       - ref: network.peer.port
-        requirement_level: recommended
+        requirement_level:
+          recommended: if and only if `network.peer.address` is set.
 
-  - id: span.messaging.rabbitmq.process.consumer
+  - id: messaging.rabbitmq.process.consumer
     ref: messaging.process.consumer
     stability: development
     brief: Describes a consumer processing one or more messages from RabbitMQ (push-based).
-    note: *rabbitmq_system_note
     attributes:
       - ref: messaging.system
+        note: MUST be set to `"rabbitmq"`.
         examples: ['rabbitmq']
       - ref: error.type
         examples: ['amqp:decode-error', 'amqp:resource-limit-exceeded', 'connection-forced']
@@ -99,13 +100,13 @@ span_refinements:
         examples: ['direct_logs:warning', 'logs']
         requirement_level: required
 
-  - id: span.messaging.rabbitmq.settle.client
+  - id: messaging.rabbitmq.settle.client
     ref: messaging.settle.client
     stability: development
     brief: Describes a consumer settling (ack/nack/reject) one or more messages on RabbitMQ.
-    note: *rabbitmq_system_note
     attributes:
       - ref: messaging.system
+        note: MUST be set to `"rabbitmq"`.
         examples: ['rabbitmq']
       - ref: error.type
         examples: ['amqp:decode-error', 'amqp:resource-limit-exceeded', 'connection-forced']
@@ -121,4 +122,5 @@ span_refinements:
       - ref: network.peer.address
         requirement_level: recommended
       - ref: network.peer.port
-        requirement_level: recommended
+        requirement_level:
+          recommended: if and only if `network.peer.address` is set.

@@ -2,14 +2,13 @@ file_format: definition/2
 
 span_refinements:
   # Azure Service Bus
-  - id: span.messaging.servicebus.create.producer
+  - id: messaging.servicebus.create.producer
     ref: messaging.create.producer
     stability: development
     brief: Describes a message being created for sending to Azure Service Bus.
-    note: &servicebus_system_note |
-      `messaging.system` MUST be set to `"servicebus"`.
     attributes:
       - ref: messaging.system
+        note: MUST be set to `"servicebus"`.
         examples: ['servicebus']
       - ref: error.type
         examples: ['MessageLockLost', 'MessagingEntityNotFound', 'ServiceBusy']
@@ -18,17 +17,16 @@ span_refinements:
           Message [correlation ID](https://learn.microsoft.com/azure/service-bus-messaging/service-bus-messages-payloads#message-routing-and-correlation) property.
       - ref: messaging.operation.name
         brief: Azure Service Bus operation name.
-        note: |
-          For the "Create" span, `messaging.operation.name` SHOULD be set to `create`.
+        note: SHOULD be set to `create`.
         examples: ['create']
 
-  - id: span.messaging.servicebus.send.producer
+  - id: messaging.servicebus.send.producer
     ref: messaging.send.producer
     stability: development
     brief: Describes a producer sending one or more messages to Azure Service Bus.
-    note: *servicebus_system_note
     attributes:
       - ref: messaging.system
+        note: MUST be set to `"servicebus"`.
         examples: ['servicebus']
       - ref: error.type
         examples: ['MessageLockLost', 'MessagingEntityNotFound', 'ServiceBusy']
@@ -37,19 +35,19 @@ span_refinements:
       - ref: messaging.operation.name
         brief: Azure Service Bus operation name.
         note: |
-          For producer spans, the operation name SHOULD match one of the following values;
-          otherwise it SHOULD be set to the name of the client method in snake_case.
+          SHOULD match one of the following values:
 
-          - send operations: `send`, `schedule`
+          - `send`
+          - `schedule`
         examples: ['send', 'schedule']
 
-  - id: span.messaging.servicebus.send.client
+  - id: messaging.servicebus.send.client
     ref: messaging.send.client
     stability: development
     brief: Describes a producer sending one or more messages to Azure Service Bus.
-    note: *servicebus_system_note
     attributes:
       - ref: messaging.system
+        note: MUST be set to `"servicebus"`.
         examples: ['servicebus']
       - ref: error.type
         examples: ['MessageLockLost', 'MessagingEntityNotFound', 'ServiceBusy']
@@ -58,19 +56,19 @@ span_refinements:
       - ref: messaging.operation.name
         brief: Azure Service Bus operation name.
         note: |
-          For producer spans, the operation name SHOULD match one of the following values;
-          otherwise it SHOULD be set to the name of the client method in snake_case.
+          SHOULD match one of the following values:
 
-          - send operations: `send`, `schedule`
+          - `send`
+          - `schedule`
         examples: ['send', 'schedule']
 
-  - id: span.messaging.servicebus.receive.client
+  - id: messaging.servicebus.receive.client
     ref: messaging.receive.client
     stability: development
     brief: Describes a consumer receiving one or more messages from Azure Service Bus.
-    note: *servicebus_system_note
     attributes:
       - ref: messaging.system
+        note: MUST be set to `"servicebus"`.
         examples: ['servicebus']
       - ref: error.type
         examples: ['MessageLockLost', 'MessagingEntityNotFound', 'ServiceBusy']
@@ -89,19 +87,20 @@ span_refinements:
       - ref: messaging.operation.name
         brief: Azure Service Bus operation name.
         note: |
-          For receiver spans, the operation name SHOULD match one of the following values;
-          otherwise it SHOULD be set to the name of the client method in snake_case.
+          SHOULD match one of the following values:
 
-          - receive operations: `receive`, `peek`, `receive_deferred`
+          - `receive`
+          - `peek`
+          - `receive_deferred`
         examples: ['receive', 'peek', 'receive_deferred']
 
-  - id: span.messaging.servicebus.process.consumer
+  - id: messaging.servicebus.process.consumer
     ref: messaging.process.consumer
     stability: development
     brief: Describes a consumer processing one or more messages from Azure Service Bus (push-based).
-    note: *servicebus_system_note
     attributes:
       - ref: messaging.system
+        note: MUST be set to `"servicebus"`.
         examples: ['servicebus']
       - ref: error.type
         examples: ['MessageLockLost', 'MessagingEntityNotFound', 'ServiceBusy']
@@ -119,18 +118,16 @@ span_refinements:
         brief: *servicebus_conversation_id_brief
       - ref: messaging.operation.name
         brief: Azure Service Bus operation name.
-        note: |
-          For processing spans, `messaging.operation.name` SHOULD be set to `process`;
-          otherwise it SHOULD be set to the name of the client method in snake_case.
+        note: SHOULD be set to `process`.
         examples: ['process']
 
-  - id: span.messaging.servicebus.settle.client
+  - id: messaging.servicebus.settle.client
     ref: messaging.settle.client
     stability: development
     brief: Describes settling (complete/abandon/defer/dead-letter) one or more Azure Service Bus messages.
-    note: *servicebus_system_note
     attributes:
       - ref: messaging.system
+        note: MUST be set to `"servicebus"`.
         examples: ['servicebus']
       - ref: error.type
         examples: ['MessageLockLost', 'MessagingEntityNotFound', 'ServiceBusy']
@@ -148,20 +145,22 @@ span_refinements:
       - ref: messaging.operation.name
         brief: Azure Service Bus operation name.
         note: |
-          For settlement spans, the operation name SHOULD match one of the following values;
-          otherwise it SHOULD be set to the name of the client method in snake_case.
+          SHOULD match one of the following values:
 
-          - settlement operations: `abandon`, `complete`, `defer`, `dead_letter`, `delete`
+          - `abandon`
+          - `complete`
+          - `defer`
+          - `dead_letter`
+          - `delete`
         examples: ['complete', 'abandon', 'dead_letter']
 
-  - id: span.messaging.eventhubs.create.producer
+  - id: messaging.eventhubs.create.producer
     ref: messaging.create.producer
     stability: development
     brief: Describes a message being created for sending to Azure Event Hubs.
-    note: &eventhubs_system_note |
-      `messaging.system` MUST be set to `"eventhubs"`.
     attributes:
       - ref: messaging.system
+        note: MUST be set to `"eventhubs"`.
         examples: ['eventhubs']
       - ref: error.type
         examples: ['ConsumerDisconnected', 'ResourceNotFound', 'ServiceBusy']
@@ -173,16 +172,15 @@ span_refinements:
       - ref: messaging.operation.name
         brief: Azure Event Hubs operation name.
         examples: ['create']
-        note: |
-          For the "Create" span, `messaging.operation.name` SHOULD be set to `create`.
+        note: SHOULD be set to `create`.
 
-  - id: span.messaging.eventhubs.send.producer
+  - id: messaging.eventhubs.send.producer
     ref: messaging.send.producer
     stability: development
     brief: Describes a producer sending one or more messages to Azure Event Hubs.
-    note: *eventhubs_system_note
     attributes:
       - ref: messaging.system
+        note: MUST be set to `"eventhubs"`.
         examples: ['eventhubs']
       - ref: error.type
         examples: ['ConsumerDisconnected', 'ResourceNotFound', 'ServiceBusy']
@@ -194,17 +192,15 @@ span_refinements:
       - ref: messaging.operation.name
         brief: Azure Event Hubs operation name.
         examples: ['send']
-        note: |
-          For producer spans, `messaging.operation.name` SHOULD be set to `send`;
-          otherwise it SHOULD be set to the name of the client method in snake_case.
+        note: SHOULD be set to `send`.
 
-  - id: span.messaging.eventhubs.send.client
+  - id: messaging.eventhubs.send.client
     ref: messaging.send.client
     stability: development
     brief: Describes a producer sending one or more messages to Azure Event Hubs.
-    note: *eventhubs_system_note
     attributes:
       - ref: messaging.system
+        note: MUST be set to `"eventhubs"`.
         examples: ['eventhubs']
       - ref: error.type
         examples: ['ConsumerDisconnected', 'ResourceNotFound', 'ServiceBusy']
@@ -216,17 +212,15 @@ span_refinements:
       - ref: messaging.operation.name
         brief: Azure Event Hubs operation name.
         examples: ['send']
-        note: |
-          For producer spans, `messaging.operation.name` SHOULD be set to `send`;
-          otherwise it SHOULD be set to the name of the client method in snake_case.
+        note: SHOULD be set to `send`.
 
-  - id: span.messaging.eventhubs.receive.client
+  - id: messaging.eventhubs.receive.client
     ref: messaging.receive.client
     stability: development
     brief: Describes a consumer receiving one or more messages from Azure Event Hubs (pull-based).
-    note: *eventhubs_system_note
     attributes:
       - ref: messaging.system
+        note: MUST be set to `"eventhubs"`.
         examples: ['eventhubs']
       - ref: error.type
         examples: ['ConsumerDisconnected', 'ResourceNotFound', 'ServiceBusy']
@@ -244,17 +238,15 @@ span_refinements:
       - ref: messaging.operation.name
         brief: Azure Event Hubs operation name.
         examples: ['receive']
-        note: |
-          For receiver spans, `messaging.operation.name` SHOULD be set to `receive`;
-          otherwise it SHOULD be set to the name of the client method in snake_case.
+        note: SHOULD be set to `receive`.
 
-  - id: span.messaging.eventhubs.process.consumer
+  - id: messaging.eventhubs.process.consumer
     ref: messaging.process.consumer
     stability: development
     brief: Describes a consumer processing one or more messages from Azure Event Hubs (push-based).
-    note: *eventhubs_system_note
     attributes:
       - ref: messaging.system
+        note: MUST be set to `"eventhubs"`.
         examples: ['eventhubs']
       - ref: error.type
         examples: ['ConsumerDisconnected', 'ResourceNotFound', 'ServiceBusy']
@@ -272,17 +264,15 @@ span_refinements:
       - ref: messaging.operation.name
         brief: Azure Event Hubs operation name.
         examples: ['process']
-        note: |
-          For processing spans, `messaging.operation.name` SHOULD be set to `process`;
-          otherwise it SHOULD be set to the name of the client method in snake_case.
+        note: SHOULD be set to `process`.
 
-  - id: span.messaging.eventhubs.settle.client
+  - id: messaging.eventhubs.settle.client
     ref: messaging.settle.client
     stability: development
     brief: Describes checkpointing (settling) processed messages in Azure Event Hubs.
-    note: *eventhubs_system_note
     attributes:
       - ref: messaging.system
+        note: MUST be set to `"eventhubs"`.
         examples: ['eventhubs']
       - ref: error.type
         examples: ['ConsumerDisconnected', 'ResourceNotFound', 'ServiceBusy']
@@ -300,7 +290,7 @@ span_refinements:
           conditionally_required: If available.
       - ref: messaging.operation.name
         brief: Azure Event Hubs operation name.
-        note: "`messaging.operation.name` SHOULD be set to `checkpoint`."
+        note: SHOULD be set to `checkpoint`.
         examples: ['checkpoint']
 
 # Azure operations that do not map to a generic messaging operation type.
@@ -320,13 +310,12 @@ spans:
       Catch-all span for Azure Service Bus client operations - such as session management or
       lock renewal - that do not map to a create, send, receive, process, or settle span.
 
-      `messaging.system` MUST be set to `"servicebus"`.
-
       **Span kind** SHOULD be `CLIENT`.
     attributes:
       - ref_group: messaging.attributes.consumer
       - ref_group: messaging.attributes.network
       - ref: messaging.system
+        note: MUST be set to `"servicebus"`.
         examples: ['servicebus']
         sampling_relevant: true
       - ref: error.type
@@ -334,7 +323,7 @@ spans:
       - ref: messaging.operation.name
         brief: Azure Service Bus operation name.
         note: |
-          `messaging.operation.name` SHOULD be set to the name of the client method in snake_case, for example:
+          SHOULD be set to the name of the client method in snake_case, for example:
 
           - session operations: `accept_session`, `get_session_state`, `set_session_state`, `renew_session_lock`
           - lock renewal: `renew_message_lock`
@@ -372,13 +361,12 @@ spans:
       Catch-all span for Azure Event Hubs client operations - such as metadata retrieval - that
       do not map to a create, send, receive, process, or settle span.
 
-      `messaging.system` MUST be set to `"eventhubs"`.
-
       **Span kind** SHOULD be `CLIENT`.
     attributes:
       - ref_group: messaging.attributes.consumer
       - ref_group: messaging.attributes.network
       - ref: messaging.system
+        note: MUST be set to `"eventhubs"`.
         examples: ['eventhubs']
         sampling_relevant: true
       - ref: error.type
@@ -386,7 +374,7 @@ spans:
       - ref: messaging.operation.name
         brief: Azure Event Hubs operation name.
         note: |
-          `messaging.operation.name` SHOULD be set to the name of the client method in snake_case, for example:
+          SHOULD be set to the name of the client method in snake_case, for example:
 
           - `get_partition_properties`
           - `get_event_hub_properties`

@@ -396,8 +396,6 @@ span (`messaging.send.producer`) instead and omit the "Create" span. See
 
 **Span kind** SHOULD be `PRODUCER`.
 
-`messaging.operation.type` SHOULD be set to `create`.
-
 **Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
 
 **Attributes:**
@@ -455,7 +453,7 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 
 **[6] `messaging.destination.template`:** Destination names could be constructed from templates. An example would be a destination name involving a username or product ID. Although the destination name in this case is of high cardinality, the underlying template is of low cardinality and can be effectively used for grouping and aggregation.
 
-**[7] `messaging.operation.type`:** If a custom value is used, it MUST be of low cardinality.
+**[7] `messaging.operation.type`:** SHOULD be set to `create`.
 
 **[8] `server.address`:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name.
 
@@ -537,8 +535,6 @@ Use this span when no separate "Create" span exists and the "Send" span's contex
 injected into the message(s) as the creation context. See
 [Producer spans](/docs/messaging/messaging-spans.md#producer-spans) for details.
 
-`messaging.operation.type` SHOULD be set to `send`.
-
 **Span kind** SHOULD be `PRODUCER`.
 
 **Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
@@ -606,7 +602,7 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 
 **[8] `messaging.destination.template`:** Destination names could be constructed from templates. An example would be a destination name involving a username or product ID. Although the destination name in this case is of high cardinality, the underlying template is of low cardinality and can be effectively used for grouping and aggregation.
 
-**[9] `messaging.operation.type`:** If a custom value is used, it MUST be of low cardinality.
+**[9] `messaging.operation.type`:** SHOULD be set to `send`.
 
 **[10] `network.peer.address`:** Semantic conventions for individual messaging systems SHOULD document whether `network.peer.*` attributes are applicable.
 Network peer address and port are important when the application interacts with individual intermediary nodes directly,
@@ -693,8 +689,6 @@ message(s): the "Send" span describes only the transport operation and links to 
 creation context that was injected into the message. See
 [Producer spans](/docs/messaging/messaging-spans.md#producer-spans) for details.
 
-`messaging.operation.type` SHOULD be set to `send`.
-
 **Span kind** SHOULD be `CLIENT`.
 
 **Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
@@ -762,7 +756,7 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 
 **[8] `messaging.destination.template`:** Destination names could be constructed from templates. An example would be a destination name involving a username or product ID. Although the destination name in this case is of high cardinality, the underlying template is of low cardinality and can be effectively used for grouping and aggregation.
 
-**[9] `messaging.operation.type`:** If a custom value is used, it MUST be of low cardinality.
+**[9] `messaging.operation.type`:** SHOULD be set to `send`.
 
 **[10] `network.peer.address`:** Semantic conventions for individual messaging systems SHOULD document whether `network.peer.*` attributes are applicable.
 Network peer address and port are important when the application interacts with individual intermediary nodes directly,
@@ -848,8 +842,6 @@ Describes one or more messages being requested by a consumer (pull-based).
 call methods of messaging SDKs to receive messages. See
 [Consumer spans](/docs/messaging/messaging-spans.md#consumer-spans) for details.
 
-`messaging.operation.type` SHOULD be set to `receive`.
-
 **Span kind** SHOULD be `CLIENT`.
 
 **Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
@@ -917,7 +909,7 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 
 **[8] `messaging.destination.template`:** Destination names could be constructed from templates. An example would be a destination name involving a username or product ID. Although the destination name in this case is of high cardinality, the underlying template is of low cardinality and can be effectively used for grouping and aggregation.
 
-**[9] `messaging.operation.type`:** If a custom value is used, it MUST be of low cardinality.
+**[9] `messaging.operation.type`:** SHOULD be set to `receive`.
 
 **[10] `network.peer.address`:** Semantic conventions for individual messaging systems SHOULD document whether `network.peer.*` attributes are applicable.
 Network peer address and port are important when the application interacts with individual intermediary nodes directly,
@@ -1007,8 +999,6 @@ Exclusively for single-message scenarios, when the
 message creation context is used as the parent, see
 [Message creation context as parent of "Process" span](/docs/messaging/messaging-spans.md#message-creation-context-as-parent-of-process-span).
 
-`messaging.operation.type` SHOULD be set to `process`.
-
 **Span kind** SHOULD be `CONSUMER`.
 
 **Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
@@ -1074,7 +1064,7 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 
 **[8] `messaging.destination.template`:** Destination names could be constructed from templates. An example would be a destination name involving a username or product ID. Although the destination name in this case is of high cardinality, the underlying template is of low cardinality and can be effectively used for grouping and aggregation.
 
-**[9] `messaging.operation.type`:** If a custom value is used, it MUST be of low cardinality.
+**[9] `messaging.operation.type`:** SHOULD be set to `process`.
 
 **[10] `server.address`:** Server domain name of the broker if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name.
 
@@ -1155,8 +1145,6 @@ Describes one or more messages being settled.
 "Settle" spans are created for every manually or automatically triggered settlement
 operation. See [Consumer spans](/docs/messaging/messaging-spans.md#consumer-spans) for details.
 
-`messaging.operation.type` SHOULD be set to `settle`.
-
 **Span kind** SHOULD be `CLIENT`.
 
 **Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
@@ -1222,7 +1210,7 @@ the broker doesn't have such notion, the destination name SHOULD uniquely identi
 
 **[8] `messaging.destination.template`:** Destination names could be constructed from templates. An example would be a destination name involving a username or product ID. Although the destination name in this case is of high cardinality, the underlying template is of low cardinality and can be effectively used for grouping and aggregation.
 
-**[9] `messaging.operation.type`:** If a custom value is used, it MUST be of low cardinality.
+**[9] `messaging.operation.type`:** SHOULD be set to `settle`.
 
 **[10] `network.peer.address`:** Semantic conventions for individual messaging systems SHOULD document whether `network.peer.*` attributes are applicable.
 Network peer address and port are important when the application interacts with individual intermediary nodes directly,

@@ -99,8 +99,6 @@ spans:
       [Producer spans](/docs/messaging/messaging-spans.md#producer-spans) for details.
 
       **Span kind** SHOULD be `PRODUCER`.
-
-      `messaging.operation.type` SHOULD be set to `create`.
     attributes:
       - ref_group: messaging.attributes.common
       - ref: messaging.system
@@ -110,6 +108,7 @@ spans:
         examples: ['create']
       - ref: messaging.operation.type
         sampling_relevant: true
+        note: SHOULD be set to `create`.
         examples: ['create']
       - ref: messaging.destination.name
         sampling_relevant: true
@@ -140,8 +139,6 @@ spans:
       Use this span when no separate "Create" span exists and the "Send" span's context is
       injected into the message(s) as the creation context. See
       [Producer spans](/docs/messaging/messaging-spans.md#producer-spans) for details.
-
-      `messaging.operation.type` SHOULD be set to `send`.
     attributes:
       - ref_group: messaging.attributes.common
       - ref_group: messaging.attributes.network
@@ -152,6 +149,7 @@ spans:
         examples: ['send', 'publish']
       - ref: messaging.operation.type
         sampling_relevant: true
+        note: SHOULD be set to `send`.
         examples: ['send']
       - ref: messaging.destination.name
         sampling_relevant: true
@@ -185,8 +183,6 @@ spans:
       message(s): the "Send" span describes only the transport operation and links to the
       creation context that was injected into the message. See
       [Producer spans](/docs/messaging/messaging-spans.md#producer-spans) for details.
-
-      `messaging.operation.type` SHOULD be set to `send`.
     attributes:
       - ref_group: messaging.attributes.common
       - ref_group: messaging.attributes.network
@@ -197,6 +193,7 @@ spans:
         examples: ['send', 'publish']
       - ref: messaging.operation.type
         sampling_relevant: true
+        note: SHOULD be set to `send`.
         examples: ['send']
       - ref: messaging.destination.name
         sampling_relevant: true
@@ -227,8 +224,6 @@ spans:
       "Receive" spans are created for pull-based scenarios, where consumers explicitly
       call methods of messaging SDKs to receive messages. See
       [Consumer spans](/docs/messaging/messaging-spans.md#consumer-spans) for details.
-
-      `messaging.operation.type` SHOULD be set to `receive`.
     attributes:
       - ref_group: messaging.attributes.consumer
       - ref_group: messaging.attributes.network
@@ -239,6 +234,7 @@ spans:
         examples: ['receive', 'poll']
       - ref: messaging.operation.type
         sampling_relevant: true
+        note: SHOULD be set to `receive`.
         examples: ['receive']
       - ref_group: messaging.attributes.message_size
       - ref: messaging.destination.name
@@ -270,8 +266,6 @@ spans:
       Exclusively for single-message scenarios, when the
       message creation context is used as the parent, see
       [Message creation context as parent of "Process" span](/docs/messaging/messaging-spans.md#message-creation-context-as-parent-of-process-span).
-
-      `messaging.operation.type` SHOULD be set to `process`.
     attributes:
       - ref_group: messaging.attributes.consumer
       - ref: messaging.system
@@ -281,6 +275,7 @@ spans:
         examples: ['process', 'consume']
       - ref: messaging.operation.type
         sampling_relevant: true
+        note: SHOULD be set to `process`.
         examples: ['process']
       - ref_group: messaging.attributes.message_size
       - ref: messaging.destination.name
@@ -308,8 +303,6 @@ spans:
     note: |
       "Settle" spans are created for every manually or automatically triggered settlement
       operation. See [Consumer spans](/docs/messaging/messaging-spans.md#consumer-spans) for details.
-
-      `messaging.operation.type` SHOULD be set to `settle`.
     attributes:
       - ref_group: messaging.attributes.consumer
       - ref_group: messaging.attributes.network
@@ -320,6 +313,7 @@ spans:
         examples: ['ack', 'nack', 'settle']
       - ref: messaging.operation.type
         sampling_relevant: true
+        note: SHOULD be set to `settle`.
         examples: ['settle']
       - ref: messaging.destination.name
         sampling_relevant: true

@@ -1,14 +1,13 @@
 file_format: definition/2
 
 span_refinements:
-  - id: span.messaging.kafka.create.producer
+  - id: messaging.kafka.create.producer
     ref: messaging.create.producer
     stability: development
     brief: Describes a message being created for sending to Apache Kafka.
-    note: &kafka_system_note |
-      `messaging.system` MUST be set to `"kafka"`.
     attributes:
       - ref: messaging.system
+        note: MUST be set to `"kafka"`.
         examples: ['kafka']
       - ref: error.type
         examples: ['UNKNOWN_TOPIC_OR_PARTITION', 'KAFKA_STORAGE_ERROR', 'NOT_ENOUGH_REPLICAS']
@@ -21,13 +20,13 @@ span_refinements:
         requirement_level:
           conditionally_required: If value is `true`. When missing, the value is assumed to be `false`.
 
-  - id: span.messaging.kafka.send.producer
+  - id: messaging.kafka.send.producer
     ref: messaging.send.producer
     stability: development
     brief: Describes a producer sending one or more messages to Apache Kafka.
-    note: *kafka_system_note
     attributes:
       - ref: messaging.system
+        note: MUST be set to `"kafka"`.
         examples: ['kafka']
       - ref: error.type
         examples: ['UNKNOWN_TOPIC_OR_PARTITION', 'KAFKA_STORAGE_ERROR', 'NOT_ENOUGH_REPLICAS']
@@ -45,13 +44,13 @@ span_refinements:
         requirement_level:
           conditionally_required: If value is `true`. When missing, the value is assumed to be `false`.
 
-  - id: span.messaging.kafka.send.client
+  - id: messaging.kafka.send.client
     ref: messaging.send.client
     stability: development
     brief: Describes a producer sending one or more messages to Apache Kafka.
-    note: *kafka_system_note
     attributes:
       - ref: messaging.system
+        note: MUST be set to `"kafka"`.
         examples: ['kafka']
       - ref: error.type
         examples: ['UNKNOWN_TOPIC_OR_PARTITION', 'KAFKA_STORAGE_ERROR', 'NOT_ENOUGH_REPLICAS']
@@ -69,13 +68,13 @@ span_refinements:
         requirement_level:
           conditionally_required: If value is `true`. When missing, the value is assumed to be `false`.
 
-  - id: span.messaging.kafka.receive.client
+  - id: messaging.kafka.receive.client
     ref: messaging.receive.client
     stability: development
     brief: Describes a consumer receiving one or more messages from Apache Kafka (pull-based).
-    note: *kafka_system_note
     attributes:
       - ref: messaging.system
+        note: MUST be set to `"kafka"`.
         examples: ['kafka']
       - ref: error.type
         examples: ['UNKNOWN_TOPIC_OR_PARTITION', 'KAFKA_STORAGE_ERROR', 'NOT_ENOUGH_REPLICAS']
@@ -99,13 +98,13 @@ span_refinements:
         requirement_level:
           conditionally_required: If value is `true`. When missing, the value is assumed to be `false`.
 
-  - id: span.messaging.kafka.settle.client
+  - id: messaging.kafka.settle.client
     ref: messaging.settle.client
     stability: development
     brief: Describes a consumer committing offsets (settling) one or more messages from Apache Kafka.
-    note: *kafka_system_note
     attributes:
       - ref: messaging.system
+        note: MUST be set to `"kafka"`.
         examples: ['kafka']
       - ref: error.type
         examples: ['UNKNOWN_TOPIC_OR_PARTITION', 'KAFKA_STORAGE_ERROR', 'NOT_ENOUGH_REPLICAS']
@@ -123,13 +122,13 @@ span_refinements:
         requirement_level:
           recommended: If span describes operation on a single message.
 
-  - id: span.messaging.kafka.process.consumer
+  - id: messaging.kafka.process.consumer
     ref: messaging.process.consumer
     stability: development
     brief: Describes a consumer processing one or more messages from Apache Kafka (push-based).
-    note: *kafka_system_note
     attributes:
       - ref: messaging.system
+        note: MUST be set to `"kafka"`.
         examples: ['kafka']
       - ref: error.type
         examples: ['UNKNOWN_TOPIC_OR_PARTITION', 'KAFKA_STORAGE_ERROR', 'NOT_ENOUGH_REPLICAS']
