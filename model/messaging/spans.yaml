@@ -97,8 +97,6 @@ spans:
       when the "Send" span itself serves as the creation context, use the producer "Send"
       span (`messaging.send.producer`) instead and omit the "Create" span. See
       [Producer spans](/docs/messaging/messaging-spans.md#producer-spans) for details.
-
-      **Span kind** SHOULD be `PRODUCER`.
     attributes:
       - ref_group: messaging.attributes.common
       - ref: messaging.system

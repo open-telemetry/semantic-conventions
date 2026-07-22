@@ -71,7 +71,7 @@ injected into the message(s) as the creation context. See
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`messaging.destination.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The message destination name [1] | `direct_logs:warning`; `logs` |
+| [`messaging.destination.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The message destination name [1] | `direct_logs:warning`; `logs`; `amq.default` |
 | [`messaging.operation.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The system-specific name of the messaging operation. | `send`; `publish` |
 | [`messaging.system`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The messaging system as identified by the client instrumentation. [2] | `rabbitmq` |
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the messaging operation has failed. | string | Describes a class of error the operation ended with. [3] | `amqp:decode-error`; `amqp:resource-limit-exceeded`; `connection-forced` |
@@ -92,18 +92,11 @@ injected into the message(s) as the creation context. See
 | [`messaging.message.body.size`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The size of the message body in bytes. Only applicable for spans describing single message operations. [14] | `1439` |
 | [`messaging.message.envelope.size`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The size of the message body and metadata in bytes. [15] | `2738` |
 
-**[1] `messaging.destination.name`:** In RabbitMQ, the destination is defined by an *exchange*, a *routing key* and for consumers, a *queue*.
+**[1] `messaging.destination.name`:** The RabbitMQ destination is defined by an *exchange* and a *routing key*.
 
-`messaging.destination.name` SHOULD be set to:
-
-- **On the producer side**: `{exchange}:{routing key}` when both values are present and non-empty.
-When only one is available, only that value SHOULD be used. E.g., `{exchange}` or `{routing key}`.
-Otherwise: `amq.default` when the default exchange is used and no routing key is provided
-
-- **On the consumer side**: `{exchange}:{routing key}:{queue}` when all values are present and non-empty.
-If any has an empty value (e.g., the default exchange is used) it SHOULD be omitted.
-For cases when `{routing key}` and `{queue}` are equal, only one of them SHOULD
-be used, e.g., `{exchange}:{routing key}`.
+SHOULD be set to `{exchange}:{routing key}` when both values are present and non-empty.
+When only one is available, only that value SHOULD be used, e.g. `{exchange}` or `{routing key}`.
+Otherwise, it SHOULD be set to `amq.default` when the default exchange is used and no routing key is provided.
 
 **[2] `messaging.system`:** MUST be set to `"rabbitmq"`.
 
@@ -239,7 +232,7 @@ call methods of messaging SDKs to receive messages. See
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`messaging.destination.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The message destination name [1] | `direct_logs:warning`; `logs` |
+| [`messaging.destination.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The message destination name [1] | `direct_logs:warning:my_queue`; `direct_logs:warning`; `logs` |
 | [`messaging.operation.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The system-specific name of the messaging operation. | `receive`; `poll` |
 | [`messaging.system`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The messaging system as identified by the client instrumentation. [2] | `rabbitmq` |
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the messaging operation has failed. | string | Describes a class of error the operation ended with. [3] | `amqp:decode-error`; `amqp:resource-limit-exceeded`; `connection-forced` |
@@ -261,18 +254,12 @@ call methods of messaging SDKs to receive messages. See
 | [`messaging.message.body.size`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The size of the message body in bytes. Only applicable for spans describing single message operations. [14] | `1439` |
 | [`messaging.message.envelope.size`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The size of the message body and metadata in bytes. [15] | `2738` |
 
-**[1] `messaging.destination.name`:** In RabbitMQ, the destination is defined by an *exchange*, a *routing key* and for consumers, a *queue*.
+**[1] `messaging.destination.name`:** The RabbitMQ destination is defined by an *exchange*, a *routing key*, and a *queue*.
 
-`messaging.destination.name` SHOULD be set to:
-
-- **On the producer side**: `{exchange}:{routing key}` when both values are present and non-empty.
-When only one is available, only that value SHOULD be used. E.g., `{exchange}` or `{routing key}`.
-Otherwise: `amq.default` when the default exchange is used and no routing key is provided
-
-- **On the consumer side**: `{exchange}:{routing key}:{queue}` when all values are present and non-empty.
-If any has an empty value (e.g., the default exchange is used) it SHOULD be omitted.
-For cases when `{routing key}` and `{queue}` are equal, only one of them SHOULD
-be used, e.g., `{exchange}:{routing key}`.
+SHOULD be set to `{exchange}:{routing key}:{queue}` when all values are present and non-empty.
+If any has an empty value (e.g. the default exchange is used) it SHOULD be omitted.
+When `{routing key}` and `{queue}` are equal, only one of them SHOULD be used,
+e.g. `{exchange}:{routing key}`.
 
 **[2] `messaging.system`:** MUST be set to `"rabbitmq"`.
 
@@ -412,7 +399,7 @@ message creation context is used as the parent, see
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`messaging.destination.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The message destination name [1] | `direct_logs:warning`; `logs` |
+| [`messaging.destination.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The message destination name [1] | `direct_logs:warning:my_queue`; `direct_logs:warning`; `logs` |
 | [`messaging.operation.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The system-specific name of the messaging operation. | `process`; `consume` |
 | [`messaging.system`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The messaging system as identified by the client instrumentation. [2] | `rabbitmq` |
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the messaging operation has failed. | string | Describes a class of error the operation ended with. [3] | `amqp:decode-error`; `amqp:resource-limit-exceeded`; `connection-forced` |
@@ -432,18 +419,12 @@ message creation context is used as the parent, see
 | [`messaging.message.body.size`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The size of the message body in bytes. Only applicable for spans describing single message operations. [13] | `1439` |
 | [`messaging.message.envelope.size`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The size of the message body and metadata in bytes. [14] | `2738` |
 
-**[1] `messaging.destination.name`:** In RabbitMQ, the destination is defined by an *exchange*, a *routing key* and for consumers, a *queue*.
+**[1] `messaging.destination.name`:** The RabbitMQ destination is defined by an *exchange*, a *routing key*, and a *queue*.
 
-`messaging.destination.name` SHOULD be set to:
-
-- **On the producer side**: `{exchange}:{routing key}` when both values are present and non-empty.
-When only one is available, only that value SHOULD be used. E.g., `{exchange}` or `{routing key}`.
-Otherwise: `amq.default` when the default exchange is used and no routing key is provided
-
-- **On the consumer side**: `{exchange}:{routing key}:{queue}` when all values are present and non-empty.
-If any has an empty value (e.g., the default exchange is used) it SHOULD be omitted.
-For cases when `{routing key}` and `{queue}` are equal, only one of them SHOULD
-be used, e.g., `{exchange}:{routing key}`.
+SHOULD be set to `{exchange}:{routing key}:{queue}` when all values are present and non-empty.
+If any has an empty value (e.g. the default exchange is used) it SHOULD be omitted.
+When `{routing key}` and `{queue}` are equal, only one of them SHOULD be used,
+e.g. `{exchange}:{routing key}`.
 
 **[2] `messaging.system`:** MUST be set to `"rabbitmq"`.
 
@@ -574,7 +555,7 @@ operation. See [Consumer spans](/docs/messaging/messaging-spans.md#consumer-span
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`messaging.destination.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The message destination name [1] | `direct_logs:warning`; `logs` |
+| [`messaging.destination.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The message destination name [1] | `direct_logs:warning:my_queue`; `direct_logs:warning`; `logs` |
 | [`messaging.operation.name`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The system-specific name of the messaging operation. | `ack`; `nack`; `settle` |
 | [`messaging.system`](/docs/registry/attributes/messaging.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The messaging system as identified by the client instrumentation. [2] | `rabbitmq` |
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the messaging operation has failed. | string | Describes a class of error the operation ended with. [3] | `amqp:decode-error`; `amqp:resource-limit-exceeded`; `connection-forced` |
@@ -591,18 +572,12 @@ operation. See [Consumer spans](/docs/messaging/messaging-spans.md#consumer-span
 | [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Server domain name if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name. [10] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 | [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | Server port number. [11] | `80`; `8080`; `443` |
 
-**[1] `messaging.destination.name`:** In RabbitMQ, the destination is defined by an *exchange*, a *routing key* and for consumers, a *queue*.
+**[1] `messaging.destination.name`:** The RabbitMQ destination is defined by an *exchange*, a *routing key*, and a *queue*.
 
-`messaging.destination.name` SHOULD be set to:
-
-- **On the producer side**: `{exchange}:{routing key}` when both values are present and non-empty.
-When only one is available, only that value SHOULD be used. E.g., `{exchange}` or `{routing key}`.
-Otherwise: `amq.default` when the default exchange is used and no routing key is provided
-
-- **On the consumer side**: `{exchange}:{routing key}:{queue}` when all values are present and non-empty.
-If any has an empty value (e.g., the default exchange is used) it SHOULD be omitted.
-For cases when `{routing key}` and `{queue}` are equal, only one of them SHOULD
-be used, e.g., `{exchange}:{routing key}`.
+SHOULD be set to `{exchange}:{routing key}:{queue}` when all values are present and non-empty.
+If any has an empty value (e.g. the default exchange is used) it SHOULD be omitted.
+When `{routing key}` and `{queue}` are equal, only one of them SHOULD be used,
+e.g. `{exchange}:{routing key}`.
 
 **[2] `messaging.system`:** MUST be set to `"rabbitmq"`.
 

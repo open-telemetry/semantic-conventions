@@ -32,20 +32,13 @@ span_refinements:
         brief: &rabbitmq_conversation_id_brief >
           Message [correlation ID](https://www.rabbitmq.com/tutorials/tutorial-six-java#correlation-id) property.
       - ref: messaging.destination.name
-        note: &rabbitmq_destination_name_note |
-          In RabbitMQ, the destination is defined by an *exchange*, a *routing key* and for consumers, a *queue*.
+        note: |
+          The RabbitMQ destination is defined by an *exchange* and a *routing key*.
 
-          `messaging.destination.name` SHOULD be set to:
-
-          - **On the producer side**: `{exchange}:{routing key}` when both values are present and non-empty.
-          When only one is available, only that value SHOULD be used. E.g., `{exchange}` or `{routing key}`.
-          Otherwise: `amq.default` when the default exchange is used and no routing key is provided
-
-          - **On the consumer side**: `{exchange}:{routing key}:{queue}` when all values are present and non-empty.
-          If any has an empty value (e.g., the default exchange is used) it SHOULD be omitted.
-          For cases when `{routing key}` and `{queue}` are equal, only one of them SHOULD
-          be used, e.g., `{exchange}:{routing key}`.
-        examples: ['direct_logs:warning', 'logs']
+          SHOULD be set to `{exchange}:{routing key}` when both values are present and non-empty.
+          When only one is available, only that value SHOULD be used, e.g. `{exchange}` or `{routing key}`.
+          Otherwise, it SHOULD be set to `amq.default` when the default exchange is used and no routing key is provided.
+        examples: ['direct_logs:warning', 'logs', 'amq.default']
         requirement_level: required
       - ref: network.peer.address
         requirement_level: recommended
@@ -70,8 +63,14 @@ span_refinements:
       - ref: messaging.message.conversation_id
         brief: *rabbitmq_conversation_id_brief
       - ref: messaging.destination.name
-        note: *rabbitmq_destination_name_note
-        examples: ['direct_logs:warning', 'logs']
+        note: &rabbitmq_consumer_destination_name_note |
+          The RabbitMQ destination is defined by an *exchange*, a *routing key*, and a *queue*.
+
+          SHOULD be set to `{exchange}:{routing key}:{queue}` when all values are present and non-empty.
+          If any has an empty value (e.g. the default exchange is used) it SHOULD be omitted.
+          When `{routing key}` and `{queue}` are equal, only one of them SHOULD be used,
+          e.g. `{exchange}:{routing key}`.
+        examples: ['direct_logs:warning:my_queue', 'direct_logs:warning', 'logs']
         requirement_level: required
       - ref: network.peer.address
         requirement_level: recommended
@@ -96,8 +95,8 @@ span_refinements:
       - ref: messaging.message.conversation_id
         brief: *rabbitmq_conversation_id_brief
       - ref: messaging.destination.name
-        note: *rabbitmq_destination_name_note
-        examples: ['direct_logs:warning', 'logs']
+        note: *rabbitmq_consumer_destination_name_note
+        examples: ['direct_logs:warning:my_queue', 'direct_logs:warning', 'logs']
         requirement_level: required
 
   - id: messaging.rabbitmq.settle.client
@@ -116,8 +115,8 @@ span_refinements:
       - ref: messaging.message.conversation_id
         brief: *rabbitmq_conversation_id_brief
       - ref: messaging.destination.name
-        note: *rabbitmq_destination_name_note
-        examples: ['direct_logs:warning', 'logs']
+        note: *rabbitmq_consumer_destination_name_note
+        examples: ['direct_logs:warning:my_queue', 'direct_logs:warning', 'logs']
         requirement_level: required
       - ref: network.peer.address
         requirement_level: recommended

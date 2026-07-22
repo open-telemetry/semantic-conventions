@@ -22,7 +22,7 @@ described on this page.
 
 ## AWS SQS spans
 
-AWS SQS refines the [generic messaging spans](messaging-spans.md#messaging-spans).
+AWS SQS refines the [generic messaging spans](/docs/messaging/messaging-spans.md#messaging-spans).
 
 ### Send span (producer)
 

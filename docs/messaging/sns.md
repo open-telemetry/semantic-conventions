@@ -20,7 +20,7 @@ described on this page.
 
 ## AWS SNS spans
 
-AWS SNS refines the [generic messaging spans](messaging-spans.md#messaging-spans).
+AWS SNS refines the [generic messaging spans](/docs/messaging/messaging-spans.md#messaging-spans).
 
 ### Send span (producer)
 
