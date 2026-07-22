@@ -65,7 +65,7 @@ jobs:
           body="Prepare release \`v${version}\`."
           branch="otelbot/prepare-release-v${version}"
 
-          git checkout -b $branch
+          git checkout -b "$branch"
           git commit -a -m "$message"
           git push --set-upstream origin "$branch"
           gh pr create --title "$message" \

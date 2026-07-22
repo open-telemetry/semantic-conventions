@@ -81,7 +81,7 @@ jobs:
           body="Update spec repo links to \`$VERSION\`."
           branch="otelbot/update-spec-repo-links-to-$VERSION"
 
-          git checkout -b $branch
+          git checkout -b "$branch"
           git commit -a -m "$message"
           git push --set-upstream origin "$branch"
           gh pr create --title "[chore] $message" \
