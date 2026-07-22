@@ -1,5 +1,20 @@
 file_format: definition/2
 
+attribute_groups:
+  # Attributes of an individual Kafka message.
+  - id: messaging.kafka.attributes.common
+    visibility: internal
+    attributes:
+      - ref: messaging.kafka.message.key
+        requirement_level:
+          recommended: If span describes operation on a single message.
+      - ref: messaging.kafka.offset
+        requirement_level:
+          recommended: If span describes operation on a single message.
+      - ref: messaging.kafka.message.tombstone
+        requirement_level:
+          conditionally_required: If value is `true`. When missing, the value is assumed to be `false`.
+
 span_refinements:
   - id: span.messaging.kafka.create.producer
     ref: messaging.create.producer
@@ -34,15 +49,7 @@ span_refinements:
         examples: ['MyTopic']
       - ref: messaging.kafka.cluster.id
       - ref: messaging.destination.partition.id
-      - ref: messaging.kafka.message.key
-        requirement_level:
-          recommended: If span describes operation on a single message.
-      - ref: messaging.kafka.offset
-        requirement_level:
-          recommended: If span describes operation on a single message.
-      - ref: messaging.kafka.message.tombstone
-        requirement_level:
-          conditionally_required: If value is `true`. When missing, the value is assumed to be `false`.
+      - ref_group: messaging.kafka.attributes.common
 
   - id: span.messaging.kafka.send.client
     ref: messaging.send.client
@@ -58,15 +65,7 @@ span_refinements:
         examples: ['MyTopic']
       - ref: messaging.kafka.cluster.id
       - ref: messaging.destination.partition.id
-      - ref: messaging.kafka.message.key
-        requirement_level:
-          recommended: If span describes operation on a single message.
-      - ref: messaging.kafka.offset
-        requirement_level:
-          recommended: If span describes operation on a single message.
-      - ref: messaging.kafka.message.tombstone
-        requirement_level:
-          conditionally_required: If value is `true`. When missing, the value is assumed to be `false`.
+      - ref_group: messaging.kafka.attributes.common
 
   - id: span.messaging.kafka.receive.client
     ref: messaging.receive.client
@@ -88,15 +87,7 @@ span_refinements:
         sampling_relevant: true
       - ref: messaging.kafka.cluster.id
       - ref: messaging.destination.partition.id
-      - ref: messaging.kafka.message.key
-        requirement_level:
-          recommended: If span describes operation on a single message.
-      - ref: messaging.kafka.offset
-        requirement_level:
-          recommended: If span describes operation on a single message.
-      - ref: messaging.kafka.message.tombstone
-        requirement_level:
-          conditionally_required: If value is `true`. When missing, the value is assumed to be `false`.
+      - ref_group: messaging.kafka.attributes.common
 
   - id: span.messaging.kafka.settle.client
     ref: messaging.settle.client
@@ -144,12 +135,4 @@ span_refinements:
       - ref: messaging.destination.partition.id
         brief: String representation of the partition ID the message (or batch) is received from.
         requirement_level: recommended
-      - ref: messaging.kafka.message.key
-        requirement_level:
-          recommended: If span describes operation on a single message.
-      - ref: messaging.kafka.offset
-        requirement_level:
-          recommended: If span describes operation on a single message.
-      - ref: messaging.kafka.message.tombstone
-        requirement_level:
-          conditionally_required: If value is `true`. When missing, the value is assumed to be `false`.
+      - ref_group: messaging.kafka.attributes.common
