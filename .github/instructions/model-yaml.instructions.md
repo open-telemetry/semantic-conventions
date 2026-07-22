@@ -15,7 +15,7 @@ Flag violations of the guidance below with a short rationale and a doc link.
 
 ## File formats
 
-Two definition formats are in use and both are valid: files starting with
+Two definition formats are supported and both are valid: files starting with
 `file_format: definition/2` follow
 [schema v2](https://github.com/open-telemetry/weaver/blob/main/schemas/semconv.schema.v2.json),
 all others follow
