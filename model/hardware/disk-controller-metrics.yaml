@@ -17,3 +17,14 @@ metric_refinements:
         requirement_level: recommended
       - ref: hw.vendor
         requirement_level: recommended
+      - ref: hw.type
+        note: "MUST be set to `disk_controller`."
+        examples: ["disk_controller"]
+      - ref: hw.state
+        note: |
+          MUST be set to one of the following values:
+
+          * `ok`: The disk controller is operating normally.
+          * `degraded`: The disk controller is operating with reduced functionality or performance.
+          * `failed`: The disk controller has failed and is not operational.
+        examples: ["ok", "degraded", "failed"]

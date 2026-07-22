@@ -62,10 +62,25 @@ metrics:
 metric_refinements:
   - id: metric.hw.physical_disk.errors
     ref: hw.errors
+    brief: "Number of errors encountered on this disk."
     attributes:
       - ref_group: metric_attributes.hw.physical_disk
-
+      - ref: hw.type
+        note: "MUST be set to `physical_disk`."
+        examples: ["physical_disk"]
   - id: metric.hw.physical_disk.status
     ref: hw.status
     attributes:
       - ref_group: metric_attributes.hw.physical_disk
+      - ref: hw.type
+        note: "MUST be set to `physical_disk`."
+        examples: ["physical_disk"]
+      - ref: hw.state
+        note: |
+          MUST be set to one of the following values:
+
+          * `ok`: The physical disk is operating normally.
+          * `degraded`: The physical disk is operating with reduced functionality or performance.
+          * `failed`: The physical disk has failed and is not operational.
+          * `predicted_failure`: The physical disk is currently operational but is predicted to fail soon.
+        examples: ["ok", "degraded", "failed", "predicted_failure"]

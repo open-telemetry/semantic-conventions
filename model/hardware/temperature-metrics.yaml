@@ -43,3 +43,14 @@ metric_refinements:
       - ref_group: hardware.attributes.common
       - ref: hw.sensor_location
         requirement_level: recommended
+      - ref: hw.type
+        note: "MUST be set to `temperature`."
+        examples: ["temperature"]
+      - ref: hw.state
+        note: |
+          MUST be set to one of the following values:
+
+          * `ok`: The temperature is within normal range.
+          * `degraded`: The temperature is outside the normal range but not critical.
+          * `failed`: The temperature is at a critical level.
+        examples: ["ok", "degraded", "failed"]

@@ -31,10 +31,25 @@ metrics:
 metric_refinements:
   - id: metric.hw.tape_drive.errors
     ref: hw.errors
+    brief: "Number of errors encountered by the tape drive."
     attributes:
       - ref_group: metric_attributes.hw.tape_drive
-
+      - ref: hw.type
+        note: "MUST be set to `tape_drive`."
+        examples: ["tape_drive"]
   - id: metric.hw.tape_drive.status
     ref: hw.status
     attributes:
       - ref_group: metric_attributes.hw.tape_drive
+      - ref: hw.type
+        note: "MUST be set to `tape_drive`."
+        examples: ["tape_drive"]
+      - ref: hw.state
+        note: |
+          MUST be set to one of the following values:
+
+          * `ok`: The tape drive is operating normally.
+          * `degraded`: The tape drive is operating with reduced functionality or performance.
+          * `failed`: The tape drive has failed and is not operational.
+          * `needs_cleaning`: The tape drive requires cleaning.
+        examples: ["ok", "degraded", "failed", "needs_cleaning"]

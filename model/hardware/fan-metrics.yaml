@@ -57,3 +57,14 @@ metric_refinements:
       - ref_group: hardware.attributes.common
       - ref: hw.sensor_location
         requirement_level: recommended
+      - ref: hw.type
+        note: "MUST be set to `fan`."
+        examples: ["fan"]
+      - ref: hw.state
+        note: |
+          MUST be set to one of the following values:
+
+          * `ok`: The fan is operating normally.
+          * `degraded`: The fan is operating with reduced functionality or performance.
+          * `failed`: The fan has failed and is not operational.
+        examples: ["ok", "degraded", "failed"]

@@ -52,14 +52,28 @@ metrics:
 metric_refinements:
   - id: metric.hw.logical_disk.errors
     ref: hw.errors
+    brief: "Number of errors encountered on this logical disk."
     attributes:
       - ref_group: hardware.attributes.common
       - ref: hw.logical_disk.raid_level
         requirement_level: recommended
-
+      - ref: hw.type
+        note: "MUST be set to `logical_disk`."
+        examples: ["logical_disk"]
   - id: metric.hw.logical_disk.status
     ref: hw.status
     attributes:
       - ref_group: hardware.attributes.common
       - ref: hw.logical_disk.raid_level
         requirement_level: recommended
+      - ref: hw.type
+        note: "MUST be set to `logical_disk`."
+        examples: ["logical_disk"]
+      - ref: hw.state
+        note: |
+          MUST be set to one of the following values:
+
+          * `ok`: The logical disk is operating normally.
+          * `degraded`: The logical disk is operating with reduced functionality or performance.
+          * `failed`: The logical disk has failed and is not operational.
+        examples: ["ok", "degraded", "failed"]

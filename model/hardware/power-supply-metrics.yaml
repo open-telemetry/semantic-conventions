@@ -57,3 +57,14 @@ metric_refinements:
     ref: hw.status
     attributes:
       - ref_group: metric_attributes.hw.power_supply
+      - ref: hw.type
+        note: "MUST be set to `power_supply`."
+        examples: ["power_supply"]
+      - ref: hw.state
+        note: |
+          MUST be set to one of the following values:
+
+          * `ok`: The power supply is operating normally.
+          * `degraded`: The power supply is operating with reduced functionality or performance.
+          * `failed`: The power supply has failed and is not operational.
+        examples: ["ok", "degraded", "failed"]

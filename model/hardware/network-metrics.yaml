@@ -86,10 +86,27 @@ metrics:
 metric_refinements:
   - id: metric.hw.network.errors
     ref: hw.errors
+    brief: "Number of errors encountered by the network adapter."
     attributes:
+      - ref: network.io.direction
+        examples: ["receive", "transmit"]
+        requirement_level: recommended
       - ref_group: metric_attributes.hw.network
-
+      - ref: hw.type
+        note: "MUST be set to `network`."
+        examples: ["network"]
   - id: metric.hw.network.status
     ref: hw.status
     attributes:
       - ref_group: metric_attributes.hw.network
+      - ref: hw.type
+        note: "MUST be set to `network`."
+        examples: ["network"]
+      - ref: hw.state
+        note: |
+          MUST be set to one of the following values:
+
+          * `ok`: The network adapter is operating normally.
+          * `degraded`: The network adapter is operating with reduced functionality or performance.
+          * `failed`: The network adapter has failed and is not operational.
+        examples: ["ok", "degraded", "failed"]

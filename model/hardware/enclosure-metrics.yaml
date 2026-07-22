@@ -15,3 +15,15 @@ metric_refinements:
         requirement_level: recommended
       - ref: hw.vendor
         requirement_level: recommended
+      - ref: hw.type
+        note: "MUST be set to `enclosure`."
+        examples: ["enclosure"]
+      - ref: hw.state
+        note: |
+          MUST be set to one of the following values:
+
+          * `ok`: The enclosure is operating normally.
+          * `degraded`: The enclosure is operating with reduced functionality or performance.
+          * `failed`: The enclosure has failed and is not operational.
+          * `open`: The enclosure is open.
+        examples: ["ok", "degraded", "failed", "open"]

@@ -46,10 +46,25 @@ metrics:
 metric_refinements:
   - id: metric.hw.cpu.errors
     ref: hw.errors
+    brief: "Total number of errors encountered and corrected by the CPU."
     attributes:
       - ref_group: metric_attributes.hw.cpu
-
+      - ref: hw.type
+        note: "MUST be set to `cpu`."
+        examples: ["cpu"]
   - id: metric.hw.cpu.status
     ref: hw.status
     attributes:
       - ref_group: metric_attributes.hw.cpu
+      - ref: hw.type
+        note: "MUST be set to `cpu`."
+        examples: ["cpu"]
+      - ref: hw.state
+        note: |
+          MUST be set to one of the following values:
+
+          * `ok`: The CPU is operating normally.
+          * `degraded`: The CPU is operating with reduced functionality or performance.
+          * `failed`: The CPU has failed and is not operational.
+          * `predicted_failure`: The CPU is currently operational but is predicted to fail soon.
+        examples: ["ok", "degraded", "failed", "predicted_failure"]

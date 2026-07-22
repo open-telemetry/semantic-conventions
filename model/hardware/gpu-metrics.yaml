@@ -86,10 +86,25 @@ metrics:
 metric_refinements:
   - id: metric.hw.gpu.errors
     ref: hw.errors
+    brief: "Number of errors encountered by the GPU."
     attributes:
       - ref_group: metric_attributes.hw.gpu
-
+      - ref: hw.type
+        note: "MUST be set to `gpu`."
+        examples: ["gpu"]
   - id: metric.hw.gpu.status
     ref: hw.status
     attributes:
       - ref_group: metric_attributes.hw.gpu
+      - ref: hw.type
+        note: "MUST be set to `gpu`."
+        examples: ["gpu"]
+      - ref: hw.state
+        note: |
+          MUST be set to one of the following values:
+
+          * `ok`: The GPU is operating normally.
+          * `degraded`: The GPU is operating with reduced functionality or performance.
+          * `failed`: The GPU has failed and is not operational.
+          * `predicted_failure`: The GPU is currently operational but is predicted to fail soon.
+        examples: ["ok", "degraded", "failed", "predicted_failure"]

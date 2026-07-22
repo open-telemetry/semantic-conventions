@@ -78,3 +78,16 @@ metric_refinements:
     ref: hw.status
     attributes:
       - ref_group: metric_attributes.hw.battery
+      - ref: hw.type
+        note: "MUST be set to `battery`."
+        examples: ["battery"]
+      - ref: hw.state
+        note: |
+          MUST be set to one of the following values:
+
+          * `ok`: The battery is operating normally.
+          * `degraded`: The battery is operating with reduced functionality or performance.
+          * `failed`: The battery has failed and is not operational.
+          * `charging`: The battery is currently charging.
+          * `discharging`: The battery is currently discharging.
+        examples: ["ok", "degraded", "failed", "charging", "discharging"]

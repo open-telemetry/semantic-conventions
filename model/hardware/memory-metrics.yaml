@@ -30,10 +30,25 @@ metrics:
 metric_refinements:
   - id: metric.hw.memory.errors
     ref: hw.errors
+    brief: "Number of errors encountered on this memory module."
     attributes:
       - ref_group: metric_attributes.hw.memory
-
+      - ref: hw.type
+        note: "MUST be set to `memory`."
+        examples: ["memory"]
   - id: metric.hw.memory.status
     ref: hw.status
     attributes:
       - ref_group: metric_attributes.hw.memory
+      - ref: hw.type
+        note: "MUST be set to `memory`."
+        examples: ["memory"]
+      - ref: hw.state
+        note: |
+          MUST be set to one of the following values:
+
+          * `ok`: The memory module is operating normally.
+          * `degraded`: The memory module is operating with reduced functionality or performance.
+          * `failed`: The memory module has failed and is not operational.
+          * `predicted_failure`: The memory module is currently operational but is predicted to fail soon.
+        examples: ["ok", "degraded", "failed", "predicted_failure"]
