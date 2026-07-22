@@ -17,7 +17,7 @@ attribute_groups:
 
 span_refinements:
   # RabbitMQ
-  - id: messaging.rabbitmq.send.producer
+  - id: span.messaging.rabbitmq.send.producer
     ref: messaging.send.producer
     stability: development
     brief: Describes a producer publishing one or more messages to RabbitMQ.
@@ -46,7 +46,7 @@ span_refinements:
         requirement_level:
           recommended: if and only if `network.peer.address` is set.
 
-  - id: messaging.rabbitmq.receive.client
+  - id: span.messaging.rabbitmq.receive.client
     ref: messaging.receive.client
     stability: development
     brief: Describes a consumer receiving one or more messages from RabbitMQ (pull-based).
@@ -78,7 +78,7 @@ span_refinements:
         requirement_level:
           recommended: if and only if `network.peer.address` is set.
 
-  - id: messaging.rabbitmq.process.consumer
+  - id: span.messaging.rabbitmq.process.consumer
     ref: messaging.process.consumer
     stability: development
     brief: Describes a consumer processing one or more messages from RabbitMQ (push-based).
@@ -99,7 +99,7 @@ span_refinements:
         examples: ['direct_logs:warning:my_queue', 'direct_logs:warning', 'logs']
         requirement_level: required
 
-  - id: messaging.rabbitmq.settle.client
+  - id: span.messaging.rabbitmq.settle.client
     ref: messaging.settle.client
     stability: development
     brief: Describes a consumer settling (ack/nack/reject) one or more messages on RabbitMQ.
