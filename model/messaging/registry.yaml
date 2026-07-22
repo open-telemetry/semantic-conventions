@@ -34,8 +34,8 @@ groups:
         stability: development
         brief: 'The message destination name'
         note: |
-          Destination name SHOULD uniquely identify a specific queue, topic or other entity within the broker. If
-          the broker doesn't have such notion, the destination name SHOULD uniquely identify the broker.
+          SHOULD uniquely identify a specific queue, topic or other entity within the broker. If
+          the broker doesn't have such notion, it SHOULD uniquely identify the broker.
         examples: ['MyQueue', 'MyTopic']
       - id: messaging.destination.subscription.name
         type: string

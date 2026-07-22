@@ -304,13 +304,11 @@ spans:
       (create, send, receive, process, or settle) span.
     name:
       note: >
-        Span name SHOULD be `{messaging.operation.name} {destination}`, see
+        SHOULD be `{messaging.operation.name} {destination}`, see
         [Span name](/docs/messaging/messaging-spans.md#span-name).
     note: |
       Catch-all span for Azure Service Bus client operations - such as session management or
       lock renewal - that do not map to a create, send, receive, process, or settle span.
-
-      **Span kind** SHOULD be `CLIENT`.
     attributes:
       - ref_group: messaging.attributes.consumer
       - ref_group: messaging.attributes.network
@@ -355,13 +353,11 @@ spans:
       (create, send, receive, process, or settle) span.
     name:
       note: >
-        Span name SHOULD be `{messaging.operation.name} {destination}`, see
+        SHOULD be `{messaging.operation.name} {destination}`, see
         [Span name](/docs/messaging/messaging-spans.md#span-name).
     note: |
       Catch-all span for Azure Event Hubs client operations - such as metadata retrieval - that
       do not map to a create, send, receive, process, or settle span.
-
-      **Span kind** SHOULD be `CLIENT`.
     attributes:
       - ref_group: messaging.attributes.consumer
       - ref_group: messaging.attributes.network

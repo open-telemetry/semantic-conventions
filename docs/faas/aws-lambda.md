@@ -195,7 +195,7 @@ See [compatibility](../non-normative/compatibility/aws.md#context-propagation) f
 - [`messaging.operation.type`](/docs/messaging/messaging-spans.md#messaging-spans) MUST be set to `process`.
 - [`messaging.system`](/docs/messaging/messaging-spans.md#messaging-spans) MUST be set to `aws_sqs`.
 
-Other [Messaging spans](/docs/messaging/messaging-spans.md#messaging-spans) attributes SHOULD be set based on the available information in the SQS message
+Other attributes defined for [messaging spans](/docs/messaging/messaging-spans.md#messaging-spans) SHOULD be set based on the available information in the SQS message
 event.
 
 Note that `AWSTraceHeader` is the only supported mechanism for propagating `Context` in instrumentation for SQS

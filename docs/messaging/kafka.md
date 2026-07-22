@@ -124,8 +124,8 @@ it's RECOMMENDED to:
 
 **[3] `messaging.destination.name`:** If span describes operation on a single message or if the value applies to all messages in the batch.
 
-**[4] `messaging.destination.name`:** Destination name SHOULD uniquely identify a specific queue, topic or other entity within the broker. If
-the broker doesn't have such notion, the destination name SHOULD uniquely identify the broker.
+**[4] `messaging.destination.name`:** SHOULD uniquely identify a specific queue, topic or other entity within the broker. If
+the broker doesn't have such notion, it SHOULD uniquely identify the broker.
 
 **[5] `messaging.destination.template`:** If available. Instrumentations MUST NOT use `messaging.destination.name` as template unless low-cardinality of destination name is guaranteed.
 
@@ -281,8 +281,8 @@ it's RECOMMENDED to:
 
 **[5] `messaging.destination.name`:** If span describes operation on a single message or if the value applies to all messages in the batch.
 
-**[6] `messaging.destination.name`:** Destination name SHOULD uniquely identify a specific queue, topic or other entity within the broker. If
-the broker doesn't have such notion, the destination name SHOULD uniquely identify the broker.
+**[6] `messaging.destination.name`:** SHOULD uniquely identify a specific queue, topic or other entity within the broker. If
+the broker doesn't have such notion, it SHOULD uniquely identify the broker.
 
 **[7] `messaging.destination.template`:** If available. Instrumentations MUST NOT use `messaging.destination.name` as template unless low-cardinality of destination name is guaranteed.
 
@@ -445,8 +445,8 @@ it's RECOMMENDED to:
 
 **[5] `messaging.destination.name`:** If span describes operation on a single message or if the value applies to all messages in the batch.
 
-**[6] `messaging.destination.name`:** Destination name SHOULD uniquely identify a specific queue, topic or other entity within the broker. If
-the broker doesn't have such notion, the destination name SHOULD uniquely identify the broker.
+**[6] `messaging.destination.name`:** SHOULD uniquely identify a specific queue, topic or other entity within the broker. If
+the broker doesn't have such notion, it SHOULD uniquely identify the broker.
 
 **[7] `messaging.destination.template`:** If available. Instrumentations MUST NOT use `messaging.destination.name` as template unless low-cardinality of destination name is guaranteed.
 
@@ -609,8 +609,8 @@ it's RECOMMENDED to:
 
 **[5] `messaging.destination.name`:** If span describes operation on a single message or if the value applies to all messages in the batch.
 
-**[6] `messaging.destination.name`:** Destination name SHOULD uniquely identify a specific queue, topic or other entity within the broker. If
-the broker doesn't have such notion, the destination name SHOULD uniquely identify the broker.
+**[6] `messaging.destination.name`:** SHOULD uniquely identify a specific queue, topic or other entity within the broker. If
+the broker doesn't have such notion, it SHOULD uniquely identify the broker.
 
 **[7] `messaging.destination.template`:** If available. Instrumentations MUST NOT use `messaging.destination.name` as template unless low-cardinality of destination name is guaranteed.
 
@@ -776,8 +776,8 @@ it's RECOMMENDED to:
 
 **[5] `messaging.destination.name`:** If span describes operation on a single message or if the value applies to all messages in the batch.
 
-**[6] `messaging.destination.name`:** Destination name SHOULD uniquely identify a specific queue, topic or other entity within the broker. If
-the broker doesn't have such notion, the destination name SHOULD uniquely identify the broker.
+**[6] `messaging.destination.name`:** SHOULD uniquely identify a specific queue, topic or other entity within the broker. If
+the broker doesn't have such notion, it SHOULD uniquely identify the broker.
 
 **[7] `messaging.destination.template`:** If available. Instrumentations MUST NOT use `messaging.destination.name` as template unless low-cardinality of destination name is guaranteed.
 
@@ -932,8 +932,8 @@ it's RECOMMENDED to:
 
 **[5] `messaging.destination.name`:** If span describes operation on a single message or if the value applies to all messages in the batch.
 
-**[6] `messaging.destination.name`:** Destination name SHOULD uniquely identify a specific queue, topic or other entity within the broker. If
-the broker doesn't have such notion, the destination name SHOULD uniquely identify the broker.
+**[6] `messaging.destination.name`:** SHOULD uniquely identify a specific queue, topic or other entity within the broker. If
+the broker doesn't have such notion, it SHOULD uniquely identify the broker.
 
 **[7] `messaging.destination.template`:** If available. Instrumentations MUST NOT use `messaging.destination.name` as template unless low-cardinality of destination name is guaranteed.
 

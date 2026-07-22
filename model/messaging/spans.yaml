@@ -88,7 +88,7 @@ spans:
     brief: Describes a message being created or passed to a client library for sending.
     name:
       note: >
-        Span name SHOULD be `{messaging.operation.name} {destination}`, see
+        SHOULD be `{messaging.operation.name} {destination}`, see
         [Span name](/docs/messaging/messaging-spans.md#span-name).
     note: |
       "Create" spans always refer to a single message and are used to provide a unique
@@ -131,7 +131,7 @@ spans:
       context is used as the message creation context.
     name:
       note: >
-        Span name SHOULD be `{messaging.operation.name} {destination}`, see
+        SHOULD be `{messaging.operation.name} {destination}`, see
         [Span name](/docs/messaging/messaging-spans.md#span-name).
     note: |
       Use this span when no separate "Create" span exists and the "Send" span's context is
@@ -174,7 +174,7 @@ spans:
       creation context ("Create" span or custom context) already exists.
     name:
       note: >
-        Span name SHOULD be `{messaging.operation.name} {destination}`, see
+        SHOULD be `{messaging.operation.name} {destination}`, see
         [Span name](/docs/messaging/messaging-spans.md#span-name).
     note: |
       Use this span when a "Create" span (or a custom creation context) already exists for the
@@ -216,7 +216,7 @@ spans:
     brief: Describes one or more messages being requested by a consumer (pull-based).
     name:
       note: >
-        Span name SHOULD be `{messaging.operation.name} {destination}`, see
+        SHOULD be `{messaging.operation.name} {destination}`, see
         [Span name](/docs/messaging/messaging-spans.md#span-name).
     note: |
       "Receive" spans are created for pull-based scenarios, where consumers explicitly
@@ -254,7 +254,7 @@ spans:
     brief: Describes one or more messages being processed by a consumer (push-based).
     name:
       note: >
-        Span name SHOULD be `{messaging.operation.name} {destination}`, see
+        SHOULD be `{messaging.operation.name} {destination}`, see
         [Span name](/docs/messaging/messaging-spans.md#span-name).
     note: |
       "Process" spans are created for push-based scenarios, where messages are passed to
@@ -296,7 +296,7 @@ spans:
     brief: Describes one or more messages being settled.
     name:
       note: >
-        Span name SHOULD be `{messaging.operation.name} {destination}`, see
+        SHOULD be `{messaging.operation.name} {destination}`, see
         [Span name](/docs/messaging/messaging-spans.md#span-name).
     note: |
       "Settle" spans are created for every manually or automatically triggered settlement
