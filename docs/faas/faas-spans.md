@@ -34,8 +34,6 @@ See also the [additional instructions for instrumenting AWS Lambda](aws-lambda.m
 
 Span `name` should be set to the function name being executed. Depending on the value of the `faas.trigger` attribute, additional attributes MUST be set. For example, an `http` trigger SHOULD follow the [HTTP Server semantic conventions](/docs/http/http-spans.md#http-server-span). For more information, refer to the [Function Trigger Type](#function-trigger-type) section.
 
-Refer to the [Recording Errors](/docs/general/recording-errors.md) document for details on how to record span status.
-
 If Spans following this convention are produced, a Resource of type `faas` MUST exist following the [Resource semantic convention](../resource/faas.md).
 
 ### Function name
@@ -95,13 +93,6 @@ This span represents the server (incoming) side of a FaaS invocation.
 
 **[1] `faas.trigger`:** For the server/consumer span on the incoming side,
 `faas.trigger` MUST be set.
-
-Clients invoking FaaS instances usually cannot set `faas.trigger`,
-since they would typically need to look in the payload to determine
-the event type. If clients set it, it should be the same as the
-trigger that corresponding incoming would have (i.e., this has
-nothing to do with the underlying transport used to make the API
-call to invoke the lambda, which is often HTTP).
 
 **[2] `cloud.resource_id`:** On some cloud providers, it may not be possible to determine the full ID at startup,
 so it may be necessary to set `cloud.resource_id` as a span attribute instead.
@@ -237,7 +228,7 @@ This span represents the server side of a FaaS invocation triggered in response 
 | [`faas.document.time`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A string containing the time when the data was accessed in the [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format expressed in [UTC](https://www.w3.org/TR/NOTE-datetime). | `2020-01-23T13:47:06Z` |
 | [`faas.invocation_id`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The invocation ID of the current function invocation. | `af9d5aa4-a685-4c5f-a22b-444f80b3cc28` |
 
-**[1] `faas.trigger`:** `faas.trigger` MUST be set to `datasource`.
+**[1] `faas.trigger`:** MUST be set to `datasource`.
 
 **[2] `cloud.resource_id`:** On some cloud providers, it may not be possible to determine the full ID at startup,
 so it may be necessary to set `cloud.resource_id` as a span attribute instead.
@@ -323,7 +314,7 @@ This span represents the server side of a FaaS invocation triggered by a timer.
 | [`faas.invocation_id`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The invocation ID of the current function invocation. | `af9d5aa4-a685-4c5f-a22b-444f80b3cc28` |
 | [`faas.time`](/docs/registry/attributes/faas.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | A string containing the function invocation time in the [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format expressed in [UTC](https://www.w3.org/TR/NOTE-datetime). | `2020-01-23T13:47:06Z` |
 
-**[1] `faas.trigger`:** `faas.trigger` MUST be set to `timer`.
+**[1] `faas.trigger`:** MUST be set to `timer`.
 
 **[2] `cloud.resource_id`:** On some cloud providers, it may not be possible to determine the full ID at startup,
 so it may be necessary to set `cloud.resource_id` as a span attribute instead.
