@@ -130,7 +130,7 @@ Examples:
 `error.type` SHOULD be set to the exception type (its fully-qualified class name, if applicable)
 or a component-specific, low cardinality error identifier.
 
-If a response status code is returned and status indicates an error,
+If a status code is returned and it indicates an error,
 `error.type` SHOULD be set to that status code. Check system-specific conventions
 for the details on which values of `rpc.status_code` are considered errors.
 
@@ -226,7 +226,7 @@ for the details on which values classify as errors.
 `error.type` SHOULD be set to the exception type (its fully-qualified class name, if applicable)
 or a component-specific, low cardinality error identifier.
 
-If a response status code is returned and status indicates an error,
+If a status code is returned and it indicates an error,
 `error.type` SHOULD be set to that status code. Check system-specific conventions
 for the details on which values of `rpc.status_code` are considered errors.
 
