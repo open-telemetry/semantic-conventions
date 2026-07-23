@@ -119,7 +119,7 @@ The span attribute `faas.invocation_id` differs from the [resource attribute][Fa
 - `faas.instance` refers to the execution environment ID of the function.
 
 [AWS lambda]: https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html
-[Azure functions]: https://docs.microsoft.com/azure/azure-functions/manage-connections#static-clients
+[Azure functions]: https://learn.microsoft.com/azure/azure-functions/manage-connections#reuse-client-instances
 [Google functions]: https://cloud.google.com/functions/docs/concepts/execution-environment
 
 ## Incoming invocations
@@ -255,7 +255,7 @@ This section describes how to handle the span creation and additional attributes
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-This span represents server side if the FaaS invocations triggered in response response to some data source operation such as a database or filesystem read/write.
+This span represents server side if the FaaS invocations triggered in response to some data source operation such as a database or filesystem read/write.
 
 **Span kind** SHOULD be `SERVER`.
 

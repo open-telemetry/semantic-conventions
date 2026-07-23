@@ -11,7 +11,7 @@ Useful resources to understand CloudFoundry metadata:
 
 CloudFoundry organizes application deployments (apps) by spaces contained in
 organizations (orgs). Names are unique only in their respective enclosing
-entity. Ids are unique in the entire CloudFoundry installation. Different
+entity. IDs are unique in the entire CloudFoundry installation. Different
 instances of the same application are separated by an integer index. Apps can
 consist of a main job and multiple tasks and side-cars, which can be
 distinguished by different process attributes.
@@ -197,7 +197,7 @@ should be used. The `system.id` should be set to
 
 **[2] `cloudfoundry.system.instance.id`:** CloudFoundry defines the `instance_id` in the [Loggregator v2 envelope](https://github.com/cloudfoundry/loggregator-api#v2-envelope).
 It is used for logs and metrics emitted by CloudFoundry. It is
-supposed to contain the vm id for CloudFoundry components.
+supposed to contain the vm ID for CloudFoundry components.
 
 When system components are instrumented, values from the
 [Bosh spec](https://bosh.io/docs/jobs/#properties-spec)

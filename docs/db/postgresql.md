@@ -62,7 +62,7 @@ then it is RECOMMENDED to fallback and use the schema provided when the connecti
 
 Instrumentation SHOULD document if `db.namespace` reflects the schema provided when the connection was established.
 
-Instrumentation MAY use the user name when the connection was established as a stand-in for the schema name.
+Instrumentation MAY use the username when the connection was established as a stand-in for the schema name.
 
 Instrumentation SHOULD document if `db.namespace` reflects the user provided when the connection was established.
 

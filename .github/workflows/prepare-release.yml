@@ -17,7 +17,8 @@ jobs:
     steps:
       - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
         with:
-          persist-credentials: false
+          # zizmor: ignore[artipacked] Credentials are required by the branch push below.
+          persist-credentials: true
 
       - name: Validate version
         env:
@@ -57,7 +58,6 @@ jobs:
         env:
           # Use the App token for PR creation so the pull request runs workflows.
           GH_TOKEN: ${{ steps.otelbot-token.outputs.token }}
-          GITHUB_TOKEN: ${{ github.token }}
           INPUTS_VERSION: ${{ inputs.version }}
         run: |
           version=${INPUTS_VERSION}
@@ -65,9 +65,9 @@ jobs:
           body="Prepare release \`v${version}\`."
           branch="otelbot/prepare-release-v${version}"
 
-          git checkout -b $branch
+          git checkout -b "$branch"
           git commit -a -m "$message"
-          git push "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" $branch
+          git push --set-upstream origin "$branch"
           gh pr create --title "$message" \
                        --body "$body" \
                        --head "$branch" \
