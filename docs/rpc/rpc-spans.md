@@ -265,7 +265,7 @@ Semantic conventions for individual RPC frameworks SHOULD document what `rpc.res
 
 **[6] `network.peer.address`:** If a RPC involved multiple network calls (for example retries), the last contacted address SHOULD be used.
 
-**[7] `server.address`:** `server.address` and `server.port` describe the address the client used to reach this server (for example, the value the client resolved from the RPC target passed over `:authority` HTTP/2 pseudo-header).
+**[7] `server.address`:** `server.address` and `server.port` describe the address the client used to reach this server, as reported by the transport or RPC framework (for example, the value the client resolved from the RPC target and sent on the wire).
 
 The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):

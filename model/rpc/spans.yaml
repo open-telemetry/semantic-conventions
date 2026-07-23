@@ -82,8 +82,9 @@ groups:
           recommended: when available.
         note: >
           `server.address` and `server.port` describe the address the client
-          used to reach this server (for example, the value the client resolved
-          from the RPC target passed over `:authority` HTTP/2 pseudo-header).
+          used to reach this server, as reported by the transport or RPC
+          framework (for example, the value the client resolved from the RPC
+          target and sent on the wire).
 
   - id: span.rpc.connect_rpc.call.client
     type: span
@@ -271,15 +272,22 @@ groups:
         requirement_level:
           recommended: when available.
         note: |
-          Instrumentations SHOULD populate `server.address` (along with `server.port`)
-          from the HTTP/2 `:authority` pseudo-header the client used to reach this
-          server and SHOULD NOT use actual network-level connection information for
-          this purpose.
+           Instrumentations SHOULD populate `server.address` from the host 
+           component of the HTTP/2 `:authority` pseudo-header the client used to
+           reach this server.
+
+           Instrumentations SHOULD NOT use actual network-level connection 
+           information for this purpose.
       - ref: server.port
         requirement_level:
-          recommended: If `server.address` is set.
-        note: >
-          See the `server.address` for details.
+          conditionally_required: If `server.address` is set and the port is present in `:authority`.
+        note: |
+           Instrumentations SHOULD populate `server.port` from the port 
+           component of the HTTP/2 `:authority` pseudo-header the client used to
+           reach this server.
+
+           Instrumentations SHOULD NOT use actual network-level connection 
+           information for this purpose.
         examples: [50051]
 
   - id: span.rpc.jsonrpc.call.client
