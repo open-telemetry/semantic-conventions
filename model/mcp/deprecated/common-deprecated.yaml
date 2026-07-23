@@ -48,7 +48,7 @@ groups:
       - ref: mcp.method.name
         requirement_level: required
       - ref: mcp.protocol.version
-      - ref: rpc.response.status_code
+      - ref: rpc.status_code
         brief: The error code from the JSON-RPC response.
         requirement_level:
           conditionally_required: If response contains an error code.
