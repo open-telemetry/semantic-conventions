@@ -262,20 +262,20 @@ RPC client stub method on the client side.
 
 **[4] `server.port`:** If `server.address` is set and the port is present in `:authority`.
 
-**[5] `server.port`:** Instrumentations SHOULD populate `server.port` from the port 
+**[5] `server.port`:** Instrumentations SHOULD populate `server.port` from the port
 component of the HTTP/2 `:authority` pseudo-header the client used to
 reach this server.
 
-Instrumentations SHOULD NOT use actual network-level connection 
+Instrumentations SHOULD NOT use actual network-level connection
 information for this purpose.
 
 **[6] `network.peer.address`:** If a RPC involved multiple network calls (for example retries), the last contacted address SHOULD be used.
 
-**[7] `server.address`:** Instrumentations SHOULD populate `server.address` from the host 
+**[7] `server.address`:** Instrumentations SHOULD populate `server.address` from the host
 component of the HTTP/2 `:authority` pseudo-header the client used to
 reach this server.
 
-Instrumentations SHOULD NOT use actual network-level connection 
+Instrumentations SHOULD NOT use actual network-level connection
 information for this purpose.
 
 **[8] `rpc.request.metadata.<key>`:** Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
