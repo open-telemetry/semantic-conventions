@@ -93,7 +93,7 @@ jobs:
       run: npm ci --ignore-scripts
 
     - name: run textlint
-      run: make textlint format=github
+      run: make textlint
 
   semantic-conventions:
     runs-on: ubuntu-latest
