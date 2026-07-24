@@ -80,7 +80,8 @@ groups:
     stability: development
     brief: "Pod's CPU usage, measured in CPUs. Range from 0 to the number of allocatable CPUs."
     note: >
-      CPU usage of the specific Pod on all available CPU cores, averaged over the sample window
+      CPU usage of the specific Pod on all available CPU cores. It is calculated as the change in
+      cumulative CPU time (k8s.pod.cpu.time) over a measurement interval, divided by the elapsed time.
     instrument: gauge
     unit: "{cpu}"
 
@@ -559,7 +560,8 @@ groups:
     stability: development
     brief: "Node's CPU usage, measured in CPUs. Range from 0 to the number of allocatable CPUs."
     note: >
-      CPU usage of the specific Node on all available CPU cores, averaged over the sample window
+      CPU usage of the specific Node on all available CPU cores. It is calculated as the change in
+      cumulative CPU time (k8s.node.cpu.time) over a measurement interval, divided by the elapsed time.
     instrument: gauge
     entity_associations:
       - k8s.node
@@ -575,11 +577,8 @@ groups:
     stability: development
     brief: "Node's system container CPU usage, measured in CPUs."
     note: >
-      This metric is derived from the
-      [CPUStats.UsageNanoCores](https://github.com/kubernetes/kubelet/blob/v0.35.2/pkg/apis/stats/v1alpha1/types.go#L233)
-      field of the [ContainerStats](https://github.com/kubernetes/kubelet/blob/v0.35.2/pkg/apis/stats/v1alpha1/types.go#L157C6-L157C20)
-      of [Node.SystemContainers](https://github.com/kubernetes/kubelet/blob/v0.35.2/pkg/apis/stats/v1alpha1/types.go#L40)
-      of the Kubelet's stats API.
+      CPU usage of the specific System Container on all available CPU cores. It is calculated as the change in
+      cumulative CPU time (k8s.node.system_container.cpu.time) over a measurement interval, divided by the elapsed time.
     instrument: gauge
     entity_associations:
       - k8s.node.system_container

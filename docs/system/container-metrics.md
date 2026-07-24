@@ -109,7 +109,7 @@ This metric is [opt-in][MetricOptIn].
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `container.cpu.usage` | Gauge | `{cpu}` | Container's CPU usage, measured in CPUs. Range from 0 to the number of allocatable CPUs. [1] | ![Development](https://img.shields.io/badge/-development-blue) | [`container`](/docs/registry/entities/container.md#container) |
 
-**[1]:** CPU usage of the specific container on all available CPU cores, averaged over the sample window
+**[1]:** CPU usage of the specific container on all available CPU cores. It is calculated as the change in cumulative CPU time (container.cpu.time) over a measurement interval, divided by the elapsed time.
 
 **Attributes:**
 
