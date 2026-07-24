@@ -41,8 +41,8 @@ Attributes describing telemetry around messaging systems and messaging activitie
 
 **[2] `messaging.consumer.group.name`:** Semantic conventions for individual messaging systems SHOULD document whether `messaging.consumer.group.name` is applicable and what it means in the context of that system.
 
-**[3] `messaging.destination.name`:** Destination name SHOULD uniquely identify a specific queue, topic or other entity within the broker. If
-the broker doesn't have such notion, the destination name SHOULD uniquely identify the broker.
+**[3] `messaging.destination.name`:** SHOULD uniquely identify a specific queue, topic or other entity within the broker. If
+the broker doesn't have such notion, it SHOULD uniquely identify the broker.
 
 **[4] `messaging.destination.subscription.name`:** Semantic conventions for individual messaging systems SHOULD document whether `messaging.destination.subscription.name` is applicable and what it means in the context of that system.
 

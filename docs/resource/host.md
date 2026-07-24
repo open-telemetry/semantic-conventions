@@ -44,8 +44,8 @@ sources listed below to obtain the machine ID.
 | OS | Primary | Fallback |
 | --- | --- | --- |
 | Linux | contents of `/etc/machine-id` | contents of `/var/lib/dbus/machine-id` |
-| BSD | contents of `/etc/hostid` | output of `kenv -q smbios.system.uuid` |
-| macOS | `IOPlatformUUID` line from the output of `ioreg -rd1 -c "IOPlatformExpertDevice"` | - |
+| BSD | contents of `/etc/hostid` | output of `/bin/kenv -q smbios.system.uuid` |
+| macOS | `IOPlatformUUID` line from the output of `/usr/sbin/ioreg -rd1 -c "IOPlatformExpertDevice"` | - |
 | Windows | `MachineGuid` from registry `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Cryptography` | - |
 
 **Privileged Machine ID Lookup**
