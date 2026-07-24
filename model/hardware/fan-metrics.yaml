@@ -1,17 +1,8 @@
-groups:
-  # FAN METRICS
-  - id: metric_attributes.hw.fan
-    type: attribute_group
-    brief: >
-      Common attributes for fan metrics
-    extends: hardware.attributes.common
-    attributes:
-      - ref: hw.sensor_location
-        requirement_level: recommended
-
-  - id: metric.hw.fan.speed
-    type: metric
-    metric_name: hw.fan.speed
+# yaml-language-server: $schema=https://raw.githubusercontent.com/open-telemetry/weaver/v0.24.2/schemas/semconv.schema.v2.json
+file_format: definition/2
+metrics:
+  - name: hw.fan.speed
+    requirement_level: recommended
     annotations:
       code_generation:
         metric_value_type: int
@@ -23,11 +14,13 @@ groups:
     brief: "Fan speed in revolutions per minute."
     instrument: gauge
     unit: "rpm"
-    extends: metric_attributes.hw.fan
+    attributes:
+      - ref_group: hardware.attributes.common
+      - ref: hw.sensor_location
+        requirement_level: recommended
 
-  - id: metric.hw.fan.speed.limit
-    type: metric
-    metric_name: hw.fan.speed.limit
+  - name: hw.fan.speed.limit
+    requirement_level: recommended
     annotations:
       code_generation:
         metric_value_type: int
@@ -35,15 +28,16 @@ groups:
     brief: "Speed limit in rpm."
     instrument: gauge
     unit: "rpm"
-    extends: metric_attributes.hw.fan
     attributes:
+      - ref_group: hardware.attributes.common
+      - ref: hw.sensor_location
+        requirement_level: recommended
       - ref: hw.limit_type
         examples: ["low.critical", "low.degraded", "max"]
         requirement_level: recommended
 
-  - id: metric.hw.fan.speed_ratio
-    type: metric
-    metric_name: hw.fan.speed_ratio
+  - name: hw.fan.speed_ratio
+    requirement_level: recommended
     annotations:
       code_generation:
         metric_value_type: double
@@ -51,4 +45,26 @@ groups:
     brief: "Fan speed expressed as a fraction of its maximum speed."
     instrument: gauge
     unit: "1"
-    extends: metric_attributes.hw.fan
+    attributes:
+      - ref_group: hardware.attributes.common
+      - ref: hw.sensor_location
+        requirement_level: recommended
+
+metric_refinements:
+  - id: metric.hw.fan.status
+    ref: hw.status
+    attributes:
+      - ref_group: hardware.attributes.common
+      - ref: hw.sensor_location
+        requirement_level: recommended
+      - ref: hw.type
+        note: "MUST be set to `fan`."
+        examples: ["fan"]
+      - ref: hw.state
+        note: |
+          MUST be set to one of the following values:
+
+          * `ok`: The fan is operating normally.
+          * `degraded`: The fan is operating with reduced functionality or performance.
+          * `failed`: The fan has failed and is not operational.
+        examples: ["ok", "degraded", "failed"]
