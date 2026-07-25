@@ -5,8 +5,6 @@ attribute_groups:
   - id: messaging.rocketmq.attributes.common
     visibility: internal
     attributes:
-      - ref: messaging.destination.name
-        examples: ['MyTopic']
       - ref: messaging.rocketmq.namespace
         requirement_level: required
       - ref: messaging.rocketmq.message.group
@@ -27,6 +25,8 @@ span_refinements:
         examples: ['rocketmq']
       - ref: error.type
         examples: ['TOPIC_NOT_EXIST', 'SERVICE_NOT_AVAILABLE', 'SYSTEM_BUSY']
+      - ref: messaging.destination.name
+        examples: ['MyTopic']
       - ref_group: messaging.rocketmq.attributes.common
       - ref: messaging.rocketmq.message.delivery_timestamp
         requirement_level:
@@ -45,6 +45,8 @@ span_refinements:
         examples: ['rocketmq']
       - ref: error.type
         examples: ['TOPIC_NOT_EXIST', 'SERVICE_NOT_AVAILABLE', 'SYSTEM_BUSY']
+      - ref: messaging.destination.name
+        examples: ['MyTopic']
       - ref_group: messaging.rocketmq.attributes.common
       - ref: messaging.consumer.group.name
         brief: &rocketmq_consumer_group_brief "RocketMQ [consumer group name](https://rocketmq.apache.org/docs/domainModel/08consumergroup/)."
@@ -63,6 +65,8 @@ span_refinements:
         examples: ['rocketmq']
       - ref: error.type
         examples: ['TOPIC_NOT_EXIST', 'SERVICE_NOT_AVAILABLE', 'SYSTEM_BUSY']
+      - ref: messaging.destination.name
+        examples: ['MyTopic']
       - ref_group: messaging.rocketmq.attributes.common
       - ref: messaging.consumer.group.name
         brief: *rocketmq_consumer_group_brief
