@@ -50,7 +50,7 @@ jobs:
     permissions:
       contents: read
       pull-requests: write
-    if: ${{ needs.get-changed-files.outputs.any_changed == 'true' && github.repository_owner == 'open-telemetry' && !contains(github.event.pull_request.labels.*.name, 'dependencies') }}
+    if: ${{ needs.get-changed-files.outputs.any_changed == 'true' && github.repository_owner == 'open-telemetry' }}
     steps:
       # Checkout the base branch (main, secure context)
       - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
