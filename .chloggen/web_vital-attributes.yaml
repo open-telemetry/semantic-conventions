@@ -10,7 +10,7 @@ change_type: 'breaking'
 component: browser
 
 # A brief description of the change. Surround your text with quotes ("") if it needs to start with a backtick (`).
-note: Reworked the browser.web_vital event - moved name/value/delta/id from the event body to browser.web_vital.* attributes, and added new attributes per current instrumentation.
+note: Reworked the `browser.web_vital` event - moved `name`/`value`/`delta`/`id` from the event body to `browser.web_vital.*` attributes, and added new attributes per current instrumentation.
 
 # Mandatory: One or more tracking issues related to the change. You can use the PR number here if no issue exists.
 # The values here must be integers.
