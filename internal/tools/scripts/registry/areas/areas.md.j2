@@ -1,0 +1,5 @@
+{{- template.set_file_name("areas.txt") -}}
+
+{% for root_namespace in ctx | map('map_text', 'areas') | unique | sort  %}
+area:{{ root_namespace | kebab_case }}
+{% endfor %}

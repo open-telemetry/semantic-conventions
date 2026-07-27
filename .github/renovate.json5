@@ -1,42 +1,38 @@
 {
-  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    "config:best-practices",
-    "helpers:pinGitHubActionDigestsToSemver"
-  ],
-  "postUpdateOptions" : [
-    "gomodTidy"
-  ],
-  "packageRules": [
+  $schema: "https://docs.renovatebot.com/renovate-schema.json",
+  extends: ["config:best-practices", "helpers:pinGitHubActionDigestsToSemver"],
+  postUpdateOptions: ["gomodTidy"],
+  customManagers: [
     {
-      groupName: 'github actions',
-      matchManagers: [
-        'github-actions',
+      customType: "regex",
+      description: "Keep semconv schema URLs (VS Code settings + v2 model file modelines) in sync with otel/weaver",
+      managerFilePatterns: ["/^\\.vscode/settings\\.json$/", "/^model/.*\\.yaml$/"],
+      matchStrings: [
+        "https://raw\\.githubusercontent\\.com/open-telemetry/weaver/(?<currentValue>v\\d+\\.\\d+\\.\\d+)/schemas/semconv\\.schema(?:\\.v2)?\\.json",
       ],
-      schedule: [
-        '* 0-7 2 * *', // monthly, before 8am on the 2nd
-      ],
-    },
-    {
-      matchManagers: [
-        '!github-actions',
-      ],
-      schedule: [
-        '* 0-7 * * 2', // weekly, before 8am on Tuesday
-      ],
-    },
-    {
-      matchPackageNames: [
-        'otel/**',
-      ],
-      schedule: ['at any time'],
+      depNameTemplate: "open-telemetry/weaver",
+      datasourceTemplate: "github-releases",
+      versioningTemplate: "semver",
     },
   ],
-  "lockFileMaintenance": {
-    "enabled": true,
-    "schedule": ["* 0-7 * * 2"] // weekly, before 8am on Tuesday
+  packageRules: [
+    {
+      groupName: "github actions",
+      matchManagers: ["github-actions"],
+      schedule: ["* 0-7 2 * *"], // monthly, before 8am on the 2nd
+    },
+    {
+      matchManagers: ["!github-actions"],
+      schedule: ["* 0-7 * * 2"], // weekly, before 8am on Tuesday
+    },
+    {
+      matchPackageNames: ["otel/**", "open-telemetry/weaver"],
+      schedule: ["at any time"],
+    },
+  ],
+  lockFileMaintenance: {
+    enabled: true,
+    schedule: ["* 0-7 * * 2"], // weekly, before 8am on Tuesday
   },
-  "labels": [
-    "dependencies"
-  ]
+  labels: ["dependencies"],
 }

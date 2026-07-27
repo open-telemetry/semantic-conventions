@@ -52,10 +52,10 @@ metrics can be filtered for finer grain analysis.
 
 ### Metric: `rpc.server.call.duration`
 
-This metric is [required][MetricRequired].
+This metric is [recommended][MetricRecommended].
 
 This metric SHOULD be specified with
-[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.57.0/specification/metrics/api.md#instrument-advisory-parameters)
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.59.0/specification/metrics/api.md#instrument-advisory-parameters)
 of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 ]`.
 
 <!-- semconv metric.rpc.server.call.duration -->
@@ -107,9 +107,7 @@ when the method is recognized by the framework or library.
 When the method is not recognized, for example, when the server receives
 a request for a method that is not predefined on the server, or when
 instrumentation is not able to reliably detect if the method is predefined,
-the attribute MUST be set to `_OTHER`. In such cases, tracing
-instrumentations MUST also set `rpc.method_original` attribute to
-the original method value.
+the attribute MUST be set to `_OTHER`.
 
 If the RPC instrumentation could end up converting valid RPC methods to
 `_OTHER`, then it SHOULD provide a way to configure the list of recognized
@@ -151,10 +149,10 @@ Semantic conventions for individual RPC frameworks SHOULD document what `rpc.res
 
 ### Metric: `rpc.client.call.duration`
 
-This metric is [required][MetricRequired].
+This metric is [recommended][MetricRecommended].
 
 This metric SHOULD be specified with
-[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.57.0/specification/metrics/api.md#instrument-advisory-parameters)
+[`ExplicitBucketBoundaries`](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.59.0/specification/metrics/api.md#instrument-advisory-parameters)
 of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 ]`.
 
 <!-- semconv metric.rpc.client.call.duration -->
@@ -206,9 +204,7 @@ when the method is recognized by the framework or library.
 When the method is not recognized, for example, when the server receives
 a request for a method that is not predefined on the server, or when
 instrumentation is not able to reliably detect if the method is predefined,
-the attribute MUST be set to `_OTHER`. In such cases, tracing
-instrumentations MUST also set `rpc.method_original` attribute to
-the original method value.
+the attribute MUST be set to `_OTHER`.
 
 If the RPC instrumentation could end up converting valid RPC methods to
 `_OTHER`, then it SHOULD provide a way to configure the list of recognized
@@ -253,4 +249,4 @@ When address is an IP address, instrumentations SHOULD NOT do a reverse DNS look
 <!-- endsemconv -->
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
-[MetricRequired]: /docs/general/metric-requirement-level.md#required
+[MetricRecommended]: /docs/general/signal-requirement-level.md#recommended

@@ -8,6 +8,9 @@ groups:
       - ref: gen_ai.system
 
   - id: event.gen_ai.system.message
+    annotations:
+      dependency_resolution:
+        exclude: true
     name: gen_ai.system.message
     type: event
     stability: development
@@ -42,6 +45,9 @@ groups:
             conditionally_required: if available and not equal to `system`.
 
   - id: event.gen_ai.user.message
+    annotations:
+      dependency_resolution:
+        exclude: true
     name: gen_ai.user.message
     type: event
     stability: development
@@ -76,6 +82,9 @@ groups:
             conditionally_required: if available and not equal to `user`.
 
   - id: event.gen_ai.assistant.message
+    annotations:
+      dependency_resolution:
+        exclude: true
     name: gen_ai.assistant.message
     type: event
     stability: development
@@ -120,7 +129,7 @@ groups:
               type: string
               stability: development
               brief: >
-                The id of the tool call.
+                The ID of the tool call.
               examples: ["call_mszuSIzqtI65i1wAUOE8w5H4"]
               requirement_level: required
             - id: type
@@ -164,6 +173,9 @@ groups:
                   requirement_level: opt_in
 
   - id: event.gen_ai.tool.message
+    annotations:
+      dependency_resolution:
+        exclude: true
     name: gen_ai.tool.message
     type: event
     stability: development
@@ -200,11 +212,14 @@ groups:
           type: string
           stability: development
           brief: >
-            Tool call id that this message is responding to.
+            Tool call ID that this message is responding to.
           examples: ["call_mszuSIzqtI65i1wAUOE8w5H4"]
           requirement_level: required
 
   - id: event.gen_ai.choice
+    annotations:
+      dependency_resolution:
+        exclude: true
     name: gen_ai.choice
     type: event
     stability: development
@@ -297,7 +312,7 @@ groups:
               type: string
               stability: development
               brief: >
-                The id of the tool call.
+                The ID of the tool call.
               examples: ["call_mszuSIzqtI65i1wAUOE8w5H4"]
               requirement_level: required
             - id: type
@@ -340,6 +355,9 @@ groups:
                   requirement_level: opt_in
 
   - id: event.gen_ai.client.inference.operation.details
+    annotations:
+      dependency_resolution:
+        exclude: true
     name: gen_ai.client.inference.operation.details
     type: event
     stability: development
@@ -356,6 +374,9 @@ groups:
     extends: attributes.gen_ai.inference.client
 
   - id: event.gen_ai.evaluation.result
+    annotations:
+      dependency_resolution:
+        exclude: true
     name: gen_ai.evaluation.result
     type: event
     stability: development
@@ -366,7 +387,7 @@ groups:
     brief: >
       This event captures the result of evaluating GenAI output for quality, accuracy, or other characteristics.
       This event SHOULD be parented to GenAI operation span being evaluated when possible
-      or set `gen_ai.response.id` when span id is not available.
+      or set `gen_ai.response.id` when span ID is not available.
     attributes:
       - ref: gen_ai.evaluation.name
         requirement_level: required
@@ -384,7 +405,7 @@ groups:
         note: |
           The unique identifier assigned to the specific
           completion being evaluated. This attribute helps correlate the evaluation
-          event with the corresponding operation when span id is not available.
+          event with the corresponding operation when span ID is not available.
       - ref: error.type
         requirement_level:
           conditionally_required: "if the operation ended in an error"
@@ -394,6 +415,9 @@ groups:
           Instrumentations SHOULD document the list of errors they report.
 
   - id: event.gen_ai.client.operation.exception
+    annotations:
+      dependency_resolution:
+        exclude: true
     name: gen_ai.client.operation.exception
     stability: development
     deprecated:

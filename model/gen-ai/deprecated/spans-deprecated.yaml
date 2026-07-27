@@ -110,7 +110,7 @@ groups:
         requirement_level:
           conditionally_required: when available
         note: |
-          Instrumentations SHOULD populate conversation id when they have it readily available
+          Instrumentations SHOULD populate conversation ID when they have it readily available
           for a given operation, for example:
 
           - when client framework being instrumented manages conversation history
@@ -119,7 +119,7 @@ groups:
           (see [AWS Bedrock agent sessions](https://docs.aws.amazon.com/bedrock/latest/userguide/agents-session-state.html),
           [OpenAI Assistant threads](https://platform.openai.com/docs/api-reference/threads))
 
-          Application developers that manage conversation history MAY add conversation id to GenAI and other
+          Application developers that manage conversation history MAY add conversation ID to GenAI and other
           spans or logs using custom span or log record processors or hooks provided by instrumentation
           libraries.
 
@@ -133,6 +133,9 @@ groups:
         requirement_level: opt_in
 
   - id: span.gen_ai.inference.client
+    annotations:
+      dependency_resolution:
+        exclude: true
     type: span
     stability: development
     deprecated:
@@ -146,7 +149,7 @@ groups:
     note: |
       **Span name** SHOULD be `{gen_ai.operation.name} {gen_ai.request.model}`.
       Semantic conventions for individual GenAI systems and frameworks MAY specify different span name format
-      and MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.57.0/specification/trace/api.md#span).
+      and MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.59.0/specification/trace/api.md#span).
 
       **Span kind** SHOULD be `CLIENT` and MAY be set to `INTERNAL` on spans representing
       call to models running in the same process. It's RECOMMENDED to use `CLIENT` kind
@@ -170,6 +173,9 @@ groups:
         requirement_level: recommended
 
   - id: attributes.gen_ai.inference.openai_based
+    annotations:
+      dependency_resolution:
+        exclude: true
     extends: attributes.gen_ai.inference.client
     type: attribute_group
     stability: development
@@ -205,6 +211,9 @@ groups:
         sampling_relevant: true
 
   - id: span.openai.inference.client
+    annotations:
+      dependency_resolution:
+        exclude: true
     extends: attributes.gen_ai.inference.openai_based
     stability: development
     deprecated:
@@ -244,6 +253,9 @@ groups:
         requirement_level: recommended
 
   - id: span.azure.ai.inference.client
+    annotations:
+      dependency_resolution:
+        exclude: true
     extends: attributes.gen_ai.inference.openai_based
     stability: development
     deprecated:
@@ -277,6 +289,9 @@ groups:
           conditionally_required: If not default (443).
 
   - id: span.gen_ai.embeddings.client
+    annotations:
+      dependency_resolution:
+        exclude: true
     type: span
     span_kind: client
     stability: development
@@ -314,6 +329,9 @@ groups:
         requirement_level: recommended
 
   - id: span.gen_ai.retrieval.client
+    annotations:
+      dependency_resolution:
+        exclude: true
     type: span
     span_kind: client
     stability: development
@@ -350,6 +368,9 @@ groups:
           conditionally_required: "if the operation ended in an error"
 
   - id: span.gen_ai.create_agent.client
+    annotations:
+      dependency_resolution:
+        exclude: true
     type: span
     stability: development
     deprecated:
@@ -441,7 +462,7 @@ groups:
         requirement_level:
           conditionally_required: when available
         note: |
-          Instrumentations SHOULD populate conversation id when they have it readily available
+          Instrumentations SHOULD populate conversation ID when they have it readily available
           for a given operation, for example:
 
           - when client framework being instrumented manages conversation history
@@ -450,7 +471,7 @@ groups:
           (see [AWS Bedrock agent sessions](https://docs.aws.amazon.com/bedrock/latest/userguide/agents-session-state.html),
           [OpenAI Assistant threads](https://platform.openai.com/docs/api-reference/threads))
 
-          Application developers that manage conversation history MAY add conversation id to GenAI and other
+          Application developers that manage conversation history MAY add conversation ID to GenAI and other
           spans or logs using custom span or log record processors or hooks provided by instrumentation
           libraries.
       - ref: gen_ai.system_instructions
@@ -508,6 +529,9 @@ groups:
     extends: attributes.gen_ai.invoke_agent.common
 
   - id: span.gen_ai.invoke_agent.client
+    annotations:
+      dependency_resolution:
+        exclude: true
     type: span
     stability: development
     deprecated:
@@ -540,6 +564,9 @@ groups:
         sampling_relevant: true
 
   - id: span.gen_ai.invoke_agent.internal
+    annotations:
+      dependency_resolution:
+        exclude: true
     type: span
     stability: development
     deprecated:
@@ -568,6 +595,9 @@ groups:
         sampling_relevant: true
 
   - id: span.gen_ai.execute_tool.internal
+    annotations:
+      dependency_resolution:
+        exclude: true
     type: span
     stability: development
     deprecated:
@@ -618,6 +648,9 @@ groups:
           Instrumentations SHOULD document the list of errors they report.
 
   - id: span.aws.bedrock.client
+    annotations:
+      dependency_resolution:
+        exclude: true
     extends: span.gen_ai.inference.client
     stability: development
     deprecated:
@@ -635,6 +668,9 @@ groups:
         requirement_level: recommended
 
   - id: span.anthropic.inference.client
+    annotations:
+      dependency_resolution:
+        exclude: true
     extends: attributes.gen_ai.inference.client
     stability: development
     deprecated:
@@ -665,6 +701,9 @@ groups:
           This value MUST be added to the Anthropic `input_tokens` to compute `gen_ai.usage.input_tokens`.
 
   - id: span.gen_ai.invoke_workflow.internal
+    annotations:
+      dependency_resolution:
+        exclude: true
     type: span
     span_kind: internal
     stability: development

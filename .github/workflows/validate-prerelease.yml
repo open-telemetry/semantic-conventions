@@ -14,13 +14,16 @@ jobs:
       issues: write # required to open an issue on failure
     steps:
       - name: Check out release tag
-        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
         with:
           ref: ${{ github.event.release.tag_name }}
+          persist-credentials: false
 
       - name: Verify schema file exists for release tag
+        env:
+          GITHUB_EVENT_RELEASE_TAG_NAME: ${{ github.event.release.tag_name }}
         run: |
-          tag="${{ github.event.release.tag_name }}"
+          tag="${GITHUB_EVENT_RELEASE_TAG_NAME}"
           version="${tag#v}"
           file="schemas/$version"
           echo "Verifying schema file '$file' exists for tag '$tag'..."

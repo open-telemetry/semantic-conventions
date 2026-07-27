@@ -174,7 +174,7 @@ be `<event source> process`. If there are multiple sources in the batch, the nam
 
 For every message in the event, the [message system attributes][] (not message attributes, which are provided by
 the user) SHOULD be checked for the key `AWSTraceHeader`. If it is present, an OpenTelemetry `Context` SHOULD be
-parsed from the value of the attribute using the [AWS X-Ray Propagator](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.57.0/specification/context/api-propagators.md) and
+parsed from the value of the attribute using the [AWS X-Ray Propagator](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.59.0/specification/context/api-propagators.md) and
 added as a link to the span. This means the span may have as many links as messages in the batch.
 See [compatibility](../non-normative/compatibility/aws.md#context-propagation) for more info.
 
@@ -187,15 +187,15 @@ See [compatibility](../non-normative/compatibility/aws.md#context-propagation) f
 For the SQS message span, the name MUST be `<event source> process`. The parent MUST be the `CONSUMER` span
 corresponding to the SQS event. The [message system attributes][] (not message attributes, which are provided by
 the user) SHOULD be checked for the key `AWSTraceHeader`. If it is present, an OpenTelemetry `Context` SHOULD be
-parsed from the value of the attribute using the [AWS X-Ray Propagator](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.57.0/specification/context/api-propagators.md) and
+parsed from the value of the attribute using the [AWS X-Ray Propagator](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.59.0/specification/context/api-propagators.md) and
 added as a link to the span.
 See [compatibility](../non-normative/compatibility/aws.md#context-propagation) for more info.
 
 - [`faas.trigger`][faas] MUST be set to `pubsub`.
-- [`messaging.operation.type`](/docs/messaging/messaging-spans.md#messaging-attributes) MUST be set to `process`.
-- [`messaging.system`](/docs/messaging/messaging-spans.md#messaging-attributes) MUST be set to `aws_sqs`.
+- [`messaging.operation.type`](/docs/messaging/messaging-spans.md#messaging-spans) MUST be set to `process`.
+- [`messaging.system`](/docs/messaging/messaging-spans.md#messaging-spans) MUST be set to `aws_sqs`.
 
-Other [Messaging attributes](/docs/messaging/messaging-spans.md#messaging-attributes) SHOULD be set based on the available information in the SQS message
+Other attributes defined for [messaging spans](/docs/messaging/messaging-spans.md#messaging-spans) SHOULD be set based on the available information in the SQS message
 event.
 
 Note that `AWSTraceHeader` is the only supported mechanism for propagating `Context` in instrumentation for SQS

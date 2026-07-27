@@ -3,10 +3,45 @@
      See CONTRIBUTING.md for instructions to add an entry.
      ##################################################### -->
 
+<!-- cspell:ignore CICD, cicd -->
+
 # Changelog
 
 <!-- next version -->
 
+## v1.43.0
+
+### 🚩 Deprecations 🚩
+
+- `docs`: Add a generic signal requirement level document and deprecate the metric-specific one.
+ ([#3810](https://github.com/open-telemetry/semantic-conventions/issues/3810), [#3278](https://github.com/open-telemetry/semantic-conventions/issues/3278))
+
+### 💡 Enhancements 💡
+
+- `azure`: Add `azure.resource_group.name` attribute for the name of the Azure resource group the resource belongs to and document that `cloud.account.id` maps to the Azure subscription ID. ([#3697](https://github.com/open-telemetry/semantic-conventions/issues/3697), [#3708](https://github.com/open-telemetry/semantic-conventions/issues/3708))
+- `cicd`: Promote CI/CD span, metric, log, attribute, and entity conventions to `release_candidate` ([#3674](https://github.com/open-telemetry/semantic-conventions/issues/3674), [#3675](https://github.com/open-telemetry/semantic-conventions/issues/3675), [#3677](https://github.com/open-telemetry/semantic-conventions/issues/3677))
+- `db`: Clarify `db.operation.batch.size` semantics for database batch operations, including multi-operand operations, parameterized operation batch APIs, and empty batches.
+ ([#3811](https://github.com/open-telemetry/semantic-conventions/issues/3811))
+- `db`: Promote Oracle Database connection attributes to release candidate so the RC `db.oracledb.client` span does not reference lower-stability attributes. ([#3753](https://github.com/open-telemetry/semantic-conventions/issues/3753))
+- `disk, network, system`: Promote disk.io.direction, network.io.direction, and system.paging.fault.type attributes to RC ([#3796](https://github.com/open-telemetry/semantic-conventions/issues/3796))
+  The `network.io.direction` brief was updated based on review feedback to clarify that
+  it describes traffic at the observing interface boundary and is not intended to represent
+  logical connection or network flow direction.
+  
+- `otel`: Clarify that the `otel.span.sampling_result` attribute of `otel.sdk.span.live` can only take values `RECORD_ONLY` and `RECORD_AND_SAMPLE`, not `DROP`, since the metric does not count non-recording spans.
+ ([#3782](https://github.com/open-telemetry/semantic-conventions/issues/3782))
+- `process`: Promote process metrics and entity to release_candidate ([#3041](https://github.com/open-telemetry/semantic-conventions/issues/3041))
+- `rpc`: Clarify how to populate `server.address` and `server.port` for Dubbo consumers using service discovery. ([#3408](https://github.com/open-telemetry/semantic-conventions/issues/3408))
+- `schema`: Add registry manifest. ([#3824](https://github.com/open-telemetry/semantic-conventions/issues/3824))
+- `telemetry`: Add `kotlin` as a value for the `telemetry.sdk.language` attribute. ([#3552](https://github.com/open-telemetry/semantic-conventions/issues/3552))
+- `vcs`: Promote VCS attribute, entity, and metric conventions to `release_candidate` ([#3676](https://github.com/open-telemetry/semantic-conventions/issues/3676))
+
+### 🧰 Bug fixes 🧰
+
+- `db`: Align Oracle Database `db.query.text` guidance with other SQL database conventions. ([#3790](https://github.com/open-telemetry/semantic-conventions/issues/3790))
+  Parameterized query text is now recommended to be collected by default, while
+  query parameter values remain opt-in.
+  
 ## v1.42.0
 
 ### 🛑 Breaking changes 🛑

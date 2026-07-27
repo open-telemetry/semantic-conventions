@@ -24,7 +24,7 @@ This article defines semantic conventions for HTTP metrics emitted by .NET compo
 
 ## HTTP client
 
-All Http client metrics are reported by the `System.Net.Http` meter.
+All HTTP client metrics are reported by the `System.Net.Http` meter.
 
 ### Metric: `http.client.request.duration`
 
@@ -76,7 +76,7 @@ Notes:
 
 ### Metric: `http.client.connection.duration`
 
-This metric SHOULD be specified with [`ExplicitBucketBoundaries` advisory parameter](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.57.0/specification/metrics/api.md#instrument-advisory-parameters) of `[ 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10, 30, 60, 120, 300 ]`.
+This metric SHOULD be specified with [`ExplicitBucketBoundaries` advisory parameter](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.59.0/specification/metrics/api.md#instrument-advisory-parameters) of `[ 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10, 30, 60, 120, 300 ]`.
 
 <!-- Tables in this document are not auto-generated and are intentionally frozen in time. From the .NET perspective this metric and its attributes are stable till the next major version. They are still experimental in the OpenTelemetry. -->
 | Name | Instrument Type | Unit (UCUM) | Description |
@@ -87,7 +87,7 @@ This metric SHOULD be specified with [`ExplicitBucketBoundaries` advisory parame
 
 | Attribute | Type | Description | Examples | Requirement Level |
 | --- | --- | --- | --- | --- |
-| [`network.peer.address`](../registry/attributes/network.md) | string | Peer address of the network connection - IP address or Unix domain socket name. | `10.1.2.80`; `/tmp/my.sock` | Recommended |
+| [`network.peer.address`](../registry/attributes/network.md) | string | Peer address of the network connection - IP address or UNIX domain socket name. | `10.1.2.80`; `/tmp/my.sock` | Recommended |
 | [`network.protocol.version`](../registry/attributes/network.md) | string | The negotiated version of the protocol associated with connection in the connection pool. [1] | `1.1`; `2`; `3` | Recommended |
 | [`server.address`](../registry/attributes/server.md) | string | Host identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [2] | `example.com`; `10.1.2.80`; `/tmp/my.sock` | Required |
 | [`server.port`](../registry/attributes/server.md) | int | Port identifier of the ["URI origin"](https://www.rfc-editor.org/rfc/rfc9110.html#name-uri-origin) HTTP request is sent to. [3] | `80`; `8080`; `443` | Conditionally Required: [4] |
@@ -103,7 +103,7 @@ This metric SHOULD be specified with [`ExplicitBucketBoundaries` advisory parame
 
 ### Metric: `http.client.request.time_in_queue`
 
-this metric SHOULD be specified with [`ExplicitBucketBoundaries` advisory parameter](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.57.0/specification/metrics/api.md#instrument-advisory-parameters) of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 ]`.
+this metric SHOULD be specified with [`ExplicitBucketBoundaries` advisory parameter](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.59.0/specification/metrics/api.md#instrument-advisory-parameters) of `[ 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 ]`.
 
 <!-- Tables in this document are not auto-generated and are intentionally frozen in time. From the .NET perspective this metric and its attributes are stable till the next major version. They are still experimental in the OpenTelemetry. -->
 | Name | Instrument Type | Unit (UCUM) | Description |

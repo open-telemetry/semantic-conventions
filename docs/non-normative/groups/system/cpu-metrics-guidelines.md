@@ -3,8 +3,8 @@
 The [**Instrument Naming**](/docs/general/naming.md#instrument-naming) section
 defines the `*.usage`, `*.limit`, `*.utilization`, and `*.time` metrics, but it
 does **not** specify their
-[**requirement levels**](/docs/general/metric-requirement-level.md)
-(`required`,`recommended`, `opt-in`). Because these metrics convey overlapping
+[**requirement levels**](/docs/general/signal-requirement-level.md)
+(`recommended`, `opt-in`). Because these metrics convey overlapping
 information in different forms, implementations may become inconsistent without
 explicit guidance.
 
@@ -40,7 +40,7 @@ uniquely implemented in other systems like the
 
 ## Implementation Guidance
 
-- SHOULD emit `*.cpu.time` by default for system, process container, and k8s
+- SHOULD emit `*.cpu.time` by default for system, process container, and K8s
   resources.
 - SHOULD gate `*.cpu.*utilization` and `*.cpu.usage` metrics behind explicit
   configuration.
@@ -50,7 +50,7 @@ uniquely implemented in other systems like the
 - SHOULD provide transforms or views to derive utilization/usage from
   `*.cpu.time` when helpful.
 - SHOULD treat `*.cpu.time` as the canonical source of truth across system,
-  container, and k8s resources.
+  container, and K8s resources.
 
 ## Using CPU Time
 

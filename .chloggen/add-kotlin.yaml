@@ -1,9 +1,0 @@
-change_type: enhancement
-
-component: telemetry
-
-note: Add `kotlin` as a value for the `telemetry.sdk.language` attribute.
-
-issues: [3552]
-
-subtext:
