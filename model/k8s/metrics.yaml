@@ -81,7 +81,8 @@ groups:
     brief: "Pod's CPU usage, measured in CPUs. Range from 0 to the number of allocatable CPUs."
     note: >
       CPU usage of the specific Pod on all available CPU cores. It is calculated as the change in
-      cumulative CPU time (k8s.pod.cpu.time) over a measurement interval, divided by the elapsed time.
+      cumulative CPU time (k8s.pod.cpu.time) over a measurement interval, divided by the elapsed time:
+      usageCores = (cpuTimeEnd - cpuTimeStart) / elapsedSeconds
     instrument: gauge
     unit: "{cpu}"
 
@@ -561,7 +562,8 @@ groups:
     brief: "Node's CPU usage, measured in CPUs. Range from 0 to the number of allocatable CPUs."
     note: >
       CPU usage of the specific Node on all available CPU cores. It is calculated as the change in
-      cumulative CPU time (k8s.node.cpu.time) over a measurement interval, divided by the elapsed time.
+      cumulative CPU time (k8s.node.cpu.time) over a measurement interval, divided by the elapsed time:
+      usageCores = (cpuTimeEnd - cpuTimeStart) / elapsedSeconds
     instrument: gauge
     entity_associations:
       - k8s.node
@@ -578,7 +580,8 @@ groups:
     brief: "Node's system container CPU usage, measured in CPUs."
     note: >
       CPU usage of the specific System Container on all available CPU cores. It is calculated as the change in
-      cumulative CPU time (k8s.node.system_container.cpu.time) over a measurement interval, divided by the elapsed time.
+      cumulative CPU time (k8s.node.system_container.cpu.time) over a measurement interval, divided by the elapsed time:
+      usageCores = (cpuTimeEnd - cpuTimeStart) / elapsedSeconds
     instrument: gauge
     entity_associations:
       - k8s.node.system_container

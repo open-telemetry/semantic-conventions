@@ -68,7 +68,8 @@ groups:
     brief: "Container's CPU usage, measured in CPUs. Range from 0 to the number of allocatable CPUs."
     note: >
       CPU usage of the specific container on all available CPU cores. It is calculated as the change in
-      cumulative CPU time (container.cpu.time) over a measurement interval, divided by the elapsed time.
+      cumulative CPU time (container.cpu.time) over a measurement interval, divided by the elapsed time:
+      usageCores = (cpuTimeEnd - cpuTimeStart) / elapsedSeconds
     instrument: gauge
     unit: "{cpu}"
     entity_associations:
