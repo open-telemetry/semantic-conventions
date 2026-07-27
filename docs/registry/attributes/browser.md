@@ -16,6 +16,12 @@ The web browser attributes
 | <a id="browser-language" href="#browser-language">`browser.language`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Preferred language of the user using the browser [2] | `en`; `en-US`; `fr`; `fr-FR` |
 | <a id="browser-mobile" href="#browser-mobile">`browser.mobile`</a> | ![Development](https://img.shields.io/badge/-development-blue) | boolean | A boolean that is true if the browser is running on a mobile device [3] | |
 | <a id="browser-platform" href="#browser-platform">`browser.platform`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The platform on which the browser is running [4] | `Windows`; `macOS`; `Android` |
+| <a id="browser-web-vital-delta" href="#browser-web-vital-delta">`browser.web_vital.delta`</a> | ![Development](https://img.shields.io/badge/-development-blue) | double | The delta between the current value and the last-reported value. See [delta](https://github.com/GoogleChrome/web-vitals?tab=readme-ov-file#report-only-the-delta-of-changes). | `0.2` |
+| <a id="browser-web-vital-id" href="#browser-web-vital-id">`browser.web_vital.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | A unique ID representing this particular metric instance. | `v3-1677874579383-6381583661209` |
+| <a id="browser-web-vital-name" href="#browser-web-vital-name">`browser.web_vital.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Name of the web vital. | `cls` |
+| <a id="browser-web-vital-navigation-type" href="#browser-web-vital-navigation-type">`browser.web_vital.navigation_type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The type of navigation, as reported by the [Navigation Timing API](https://developer.mozilla.org/docs/Web/API/PerformanceNavigationTiming/type), with additional values reported by the web-vitals library. | `navigate` |
+| <a id="browser-web-vital-rating" href="#browser-web-vital-rating">`browser.web_vital.rating`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The rating of the web vital value against the "good", "needs improvement", and "poor" thresholds defined for the metric. | `good` |
+| <a id="browser-web-vital-value" href="#browser-web-vital-value">`browser.web_vital.value`</a> | ![Development](https://img.shields.io/badge/-development-blue) | double | Value of the web vital. | `1.0` |
 
 **[1] `browser.brands`:** This value is intended to be taken from the [UA client hints API](https://wicg.github.io/ua-client-hints/#interface) (`navigator.userAgentData.brands`).
 
@@ -25,3 +31,38 @@ The web browser attributes
 
 **[4] `browser.platform`:** This value is intended to be taken from the [UA client hints API](https://wicg.github.io/ua-client-hints/#interface) (`navigator.userAgentData.platform`). If unavailable, the legacy `navigator.platform` API SHOULD NOT be used instead and this attribute SHOULD be left unset in order for the values to be consistent.
 The list of possible values is defined in the [W3C User-Agent Client Hints specification](https://wicg.github.io/ua-client-hints/#sec-ch-ua-platform). Note that some (but not all) of these values can overlap with values in the [`os.type` and `os.name` attributes](./os.md). However, for consistency, the values in the `browser.platform` attribute should capture the exact value that the user agent provides.
+
+---
+
+`browser.web_vital.name` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value | Description | Stability |
+| --- | --- | --- |
+| `cls` | Cumulative Layout Shift. See [cls](https://web.dev/articles/cls). | ![Development](https://img.shields.io/badge/-development-blue) |
+| `fcp` | First Contentful Paint. See [fcp](https://web.dev/articles/fcp). | ![Development](https://img.shields.io/badge/-development-blue) |
+| `inp` | Interaction to Next Paint. See [inp](https://web.dev/articles/inp). | ![Development](https://img.shields.io/badge/-development-blue) |
+| `lcp` | Largest Contentful Paint. See [lcp](https://web.dev/articles/lcp). | ![Development](https://img.shields.io/badge/-development-blue) |
+| `ttfb` | Time to First Byte. See [ttfb](https://web.dev/articles/ttfb). | ![Development](https://img.shields.io/badge/-development-blue) |
+
+---
+
+`browser.web_vital.navigation_type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value | Description | Stability |
+| --- | --- | --- |
+| `back-forward` | Navigation through the browser's history traversal (e.g. back/forward buttons). | ![Development](https://img.shields.io/badge/-development-blue) |
+| `back-forward-cache` | Navigation restoring a page from the back/forward cache (bfcache). | ![Development](https://img.shields.io/badge/-development-blue) |
+| `navigate` | Navigation started by clicking a link, entering a URL, form submission, or a script operation. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `prerender` | Navigation to a page that was prerendered. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `reload` | Navigation through a reload operation or a `Location.reload()` call. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `restore` | Navigation restoring a page that was previously discarded by the browser. | ![Development](https://img.shields.io/badge/-development-blue) |
+
+---
+
+`browser.web_vital.rating` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value | Description | Stability |
+| --- | --- | --- |
+| `good` | The metric value is within the "good" threshold. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `needs-improvement` | The metric value is within the "needs improvement" threshold. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `poor` | The metric value is within the "poor" threshold. | ![Development](https://img.shields.io/badge/-development-blue) |

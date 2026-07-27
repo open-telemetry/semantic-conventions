@@ -1,5 +1,6 @@
 name: 'Prepare new PR'
 on:
+  # zizmor: ignore[dangerous-triggers] PR data is read via the API; only the trusted base-branch script is executed.
   pull_request_target:
     types: [opened, synchronize]
     branches: [ 'main*' ]
@@ -21,6 +22,8 @@ jobs:
       # "pull_request_target" context, so the changelog file is read via the
       # GitHub API inside the script instead.
       - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          persist-credentials: false
 
       # we're going to run prepare-new-pr script from the main branch
       # to parse changelog record from the PR branch.
