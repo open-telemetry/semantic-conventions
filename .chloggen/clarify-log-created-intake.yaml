@@ -5,6 +5,6 @@ component: otel
 note: >
   Clarify that `otel.sdk.log.created` counts log records at intake on an enabled `Logger`, before per-record filtering.
 
-issues: [3939]
+issues: [3506]
 
 subtext:
