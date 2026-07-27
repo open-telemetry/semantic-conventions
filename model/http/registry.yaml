@@ -213,8 +213,8 @@ groups:
 
           Instrumentations MUST NOT capture this attribute by default and MAY provide an option to enable it.
 
-         > [!WARNING]
-         > This attribute may contain sensitive information.
+          > [!WARNING]
+          > This attribute may contain sensitive information.
 
           When instrumentations record body, they SHOULD capture the body as string whenever possible as it makes it easier to use in human-readable form, also it allows to implement sanitization if needed.
 
@@ -236,8 +236,8 @@ groups:
 
           Instrumentations MUST NOT capture this attribute by default and MAY provide an option to enable it.
 
-         > [!WARNING]
-         > This attribute may contain sensitive information.
+          > [!WARNING]
+          > This attribute may contain sensitive information.
 
           When instrumentations record body, they SHOULD capture the body as string whenever possible as it makes it easier to use in human-readable form, also it allows to implement sanitization if needed.
 

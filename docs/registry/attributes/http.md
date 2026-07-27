@@ -31,9 +31,12 @@ This document defines semantic convention attributes in the HTTP namespace.
 
 **[1] `http.request.body.content`:** Captured value MAY be limited in size and thus value is expected to be truncated in many cases.
 
-Instrumentations MUST disable capture by default and provide an opt-in configuration option to enable it as it can capture sensitive information and cause performance overhead.
+Instrumentations MUST NOT capture this attribute by default and MAY provide an option to enable it.
 
-Instrumentations SHOULD capture the body as string whenever possible as it makes it easier to use in human-readable form, also it allows to implement sanitization if needed.
+> [!WARNING]
+> This attribute may contain sensitive information.
+
+When instrumentations record body, they SHOULD capture the body as string whenever possible as it makes it easier to use in human-readable form, also it allows to implement sanitization if needed.
 
 Textual content is typically detected based on the [Content-Type](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-type) header using heuristics
 such as checking if the media type starts with `text/` or ends with `/json`, `+json`, `/xml`, `+xml`, `/yaml` or `+yaml` or if the media type contains an explicit charset with `;charset=`.
@@ -41,7 +44,7 @@ such as checking if the media type starts with `text/` or ends with `/json`, `+j
 Instrumentations that implement request body recording MUST NOT intentionally introduce side effects such as changing stream position or closing body stream independently from the
 application.
 
-When body is recorded on HTTP client or server spans, the instrumentation SHOULD record part of the body that was sent or received at the time HTTP span has ended.
+When body is recorded, the instrumentation SHOULD record part of the body that was sent or received at the time HTTP call has ended.
 
 **[2] `http.request.header.<key>`:** Instrumentations SHOULD require an explicit configuration of which headers are to be captured.
 Including all request headers can be a security risk - explicit configuration helps avoid leaking sensitive information.
@@ -87,9 +90,12 @@ Tracing instrumentations that do so, MUST also set `http.request.method_original
 
 **[5] `http.response.body.content`:** Captured value MAY be limited in size and thus value is expected to be truncated in many cases.
 
-Instrumentations MUST disable capture by default and provide an opt-in configuration option to enable it as it can capture sensitive information and cause performance overhead.
+Instrumentations MUST NOT capture this attribute by default and MAY provide an option to enable it.
 
-Instrumentations SHOULD capture the body as string whenever possible as it makes it easier to use in human-readable form, also it allows to implement sanitization if needed.
+> [!WARNING]
+> This attribute may contain sensitive information.
+
+When instrumentations record body, they SHOULD capture the body as string whenever possible as it makes it easier to use in human-readable form, also it allows to implement sanitization if needed.
 
 Textual content is typically detected based on the [Content-Type](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-type) header using heuristics
 such as checking if the media type starts with `text/` or ends with `/json`, `+json`, `/xml`, `+xml`, `/yaml` or `+yaml` or if the media type contains an explicit charset with `;charset=`.
@@ -97,7 +103,7 @@ such as checking if the media type starts with `text/` or ends with `/json`, `+j
 Instrumentations that implement response body recording MUST NOT intentionally introduce side effects such as changing stream position or closing body stream independently from the
 application.
 
-When body is recorded on HTTP client or server spans, the instrumentation SHOULD record part of the body that was sent or received at the time HTTP span has ended.
+When body is recorded, the instrumentation SHOULD record part of the body that was sent or received at the time HTTP call has ended.
 
 **[6] `http.response.header.<key>`:** Instrumentations SHOULD require an explicit configuration of which headers are to be captured.
 Including all response headers can be a security risk - explicit configuration helps avoid leaking sensitive information.
