@@ -226,7 +226,7 @@ groups:
           application.
 
           When body is recorded, the instrumentation SHOULD record part of the body that was sent or received at the time HTTP call has ended.
-        examples: ['Hello world!', '{"foo: "bar"}', 'aGVsbG8=']
+        examples: ['Hello world!', '{"foo": "bar"}', 'aGVsbG8=']
         stability: development
       - id: http.response.body.content
         type: any
@@ -250,5 +250,5 @@ groups:
           application.
 
           When body is recorded, the instrumentation SHOULD record part of the body that was sent or received at the time HTTP call has ended.
-        examples: ['Hello world!', '{"foo: "bar"}', 'aGVsbG8=']
+        examples: ['Hello world!', '{"foo": "bar"}', 'aGVsbG8=']
         stability: development
