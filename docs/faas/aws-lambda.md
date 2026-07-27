@@ -192,10 +192,10 @@ added as a link to the span.
 See [compatibility](../non-normative/compatibility/aws.md#context-propagation) for more info.
 
 - [`faas.trigger`][faas] MUST be set to `pubsub`.
-- [`messaging.operation.type`](/docs/messaging/messaging-spans.md#messaging-attributes) MUST be set to `process`.
-- [`messaging.system`](/docs/messaging/messaging-spans.md#messaging-attributes) MUST be set to `aws_sqs`.
+- [`messaging.operation.type`](/docs/messaging/messaging-spans.md#messaging-spans) MUST be set to `process`.
+- [`messaging.system`](/docs/messaging/messaging-spans.md#messaging-spans) MUST be set to `aws_sqs`.
 
-Other [Messaging attributes](/docs/messaging/messaging-spans.md#messaging-attributes) SHOULD be set based on the available information in the SQS message
+Other attributes defined for [messaging spans](/docs/messaging/messaging-spans.md#messaging-spans) SHOULD be set based on the available information in the SQS message
 event.
 
 Note that `AWSTraceHeader` is the only supported mechanism for propagating `Context` in instrumentation for SQS

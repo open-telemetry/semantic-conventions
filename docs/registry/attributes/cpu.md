@@ -5,7 +5,7 @@
 
 ## CPU Attributes
 
-Attributes specific to a cpu instance.
+Attributes specific to a CPU instance.
 
 **Attributes:**
 
