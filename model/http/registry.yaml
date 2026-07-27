@@ -207,7 +207,7 @@ groups:
       - id: http.request.body.content
         type: any
         brief: >
-          The content of the uncompressed HTTP request body, captured as a string when the request content is textual or as binary otherwise.
+          The content of the uncompressed HTTP request body, captured as a string when the request content is textual or as byte array otherwise.
         note: |
           Captured value MAY be limited in size and thus value is expected to be truncated in many cases.
 
