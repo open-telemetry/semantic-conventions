@@ -143,9 +143,15 @@ groups:
       code_generation:
         metric_value_type: int
     stability: development
-    brief: "The number of logs submitted to enabled SDK Loggers."
+    brief: "The number of log records submitted to enabled `Logger`s."
     instrument: counter
     unit: "{log_record}"
+    note: |
+      `Logger`s in the OpenTelemetry SDK are enabled by default, and can be disabled via `LoggerConfig.enabled` = `false` where supported;
+      a disabled `Logger` is a No-op, so records submitted to it are not counted.
+      Every log record submitted to an enabled `Logger` is counted, even if it is later filtered or dropped within the SDK
+      (e.g. by minimum severity or trace-based rules, or by a processor or the export pipeline), making this metric the top of the log delivery funnel.
+      Records not submitted to the SDK are not counted (e.g. a caller that skips calling `Emit()` based on an `Enabled()` check, or an upstream logging library that filters first).
 
   - id: metric.otel.sdk.processor.log.queue.size
     type: metric
