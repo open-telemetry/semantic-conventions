@@ -110,7 +110,7 @@ groups:
         requirement_level:
           conditionally_required: when available
         note: |
-          Instrumentations SHOULD populate conversation id when they have it readily available
+          Instrumentations SHOULD populate conversation ID when they have it readily available
           for a given operation, for example:
 
           - when client framework being instrumented manages conversation history
@@ -119,7 +119,7 @@ groups:
           (see [AWS Bedrock agent sessions](https://docs.aws.amazon.com/bedrock/latest/userguide/agents-session-state.html),
           [OpenAI Assistant threads](https://platform.openai.com/docs/api-reference/threads))
 
-          Application developers that manage conversation history MAY add conversation id to GenAI and other
+          Application developers that manage conversation history MAY add conversation ID to GenAI and other
           spans or logs using custom span or log record processors or hooks provided by instrumentation
           libraries.
 
@@ -149,7 +149,7 @@ groups:
     note: |
       **Span name** SHOULD be `{gen_ai.operation.name} {gen_ai.request.model}`.
       Semantic conventions for individual GenAI systems and frameworks MAY specify different span name format
-      and MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.58.0/specification/trace/api.md#span).
+      and MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.59.0/specification/trace/api.md#span).
 
       **Span kind** SHOULD be `CLIENT` and MAY be set to `INTERNAL` on spans representing
       call to models running in the same process. It's RECOMMENDED to use `CLIENT` kind
@@ -462,7 +462,7 @@ groups:
         requirement_level:
           conditionally_required: when available
         note: |
-          Instrumentations SHOULD populate conversation id when they have it readily available
+          Instrumentations SHOULD populate conversation ID when they have it readily available
           for a given operation, for example:
 
           - when client framework being instrumented manages conversation history
@@ -471,7 +471,7 @@ groups:
           (see [AWS Bedrock agent sessions](https://docs.aws.amazon.com/bedrock/latest/userguide/agents-session-state.html),
           [OpenAI Assistant threads](https://platform.openai.com/docs/api-reference/threads))
 
-          Application developers that manage conversation history MAY add conversation id to GenAI and other
+          Application developers that manage conversation history MAY add conversation ID to GenAI and other
           spans or logs using custom span or log record processors or hooks provided by instrumentation
           libraries.
       - ref: gen_ai.system_instructions
