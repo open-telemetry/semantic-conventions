@@ -216,7 +216,8 @@ groups:
           > [!WARNING]
           > This attribute may contain sensitive information.
 
-          When instrumentations record body, they SHOULD capture the body as string whenever possible as it makes it easier to use in human-readable form, also it allows to implement sanitization if needed.
+          When instrumentations record body, they SHOULD capture the body as string whenever possible as it makes it easier to use in human-readable form,
+          also it allows to implement sanitization if needed.
 
           Textual content is typically detected based on the [Content-Type](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-type) header using heuristics
           such as checking if the media type starts with `text/` or ends with `/json`, `+json`, `/xml`, `+xml`, `/yaml` or `+yaml` or if the media type contains an explicit charset with `;charset=`.
@@ -239,7 +240,8 @@ groups:
           > [!WARNING]
           > This attribute may contain sensitive information.
 
-          When instrumentations record body, they SHOULD capture the body as string whenever possible as it makes it easier to use in human-readable form, also it allows to implement sanitization if needed.
+          When instrumentations record body, they SHOULD capture the body as string whenever possible as it makes it easier to use in human-readable form,
+          also it allows to implement sanitization if needed.
 
           Textual content is typically detected based on the [Content-Type](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-type) header using heuristics
           such as checking if the media type starts with `text/` or ends with `/json`, `+json`, `/xml`, `+xml`, `/yaml` or `+yaml` or if the media type contains an explicit charset with `;charset=`.
