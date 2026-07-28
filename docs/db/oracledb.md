@@ -13,7 +13,7 @@ linkTitle: Oracle Database
   - [Application context piggyback](#application-context-piggyback)
   - [V$SESSION.ACTION](#vsessionaction)
   - [Choice of Propagation Mechanism](#choice-of-propagation-mechanism)
-    - [Recommendation Guidance](#recommendation-guidance)
+    - [Co-existence & Recommendation Guidance](#co-existence--recommendation-guidance)
 - [Metrics](#metrics)
 
 <!-- END doctoc -->
@@ -244,9 +244,11 @@ traceparent: 00-0af7651916cd43dd8448eb211c80319c-b7ad6b7169203331-01\r\n
 
 > **Note:** While this specification defines the wire format for both `tracestate` and `baggage` to ensure cross-language instrumentation consistency and forward compatibility, current versions of the Oracle Database server may only parse and evaluate the `traceparent` field. The `tracestate` and `baggage` data are safely passed along to the server via the driver but are intended for evaluation in a future database server release.
 
-Although application context piggyback is not constrained by the 64 byte limit of `V$SESSION.ACTION`, it can still be subject to application context size limits. Oracle application context values are limited to 4000 bytes, and drivers such as `node-oracledb` may enforce the same limit in their APIs. Furthermore, this mechanism requires support from both the database client driver and the database server version in use. To successfully capture and process these values for end-to-end tracing, the database server must also be explicitly configured to enable tracing.
+Although application context piggyback is not constrained by the 64 byte limit of `V$SESSION.ACTION`, it can still be subject to application context size limits. Oracle application context values are limited to 4000 bytes. Furthermore, this mechanism requires support from both the database client driver and the database server version in use. To successfully capture and process these values for end-to-end tracing, the database server must also be explicitly configured to enable tracing.
 
 Compared with `V$SESSION.ACTION`, application context piggyback avoids overloading a field that applications may already use and is not constrained by the 64 byte limit of `ACTION`.
+
+Both `Application Context Piggyback` and `V$SESSION.ACTION` MAY be enabled concurrently in the same application. See **Choice of Propagation Mechanism** for recommendations on selecting and combining these mechanisms.
 
 Example:
 
@@ -261,7 +263,7 @@ using Oracle.ManagedDataAccess.Client;
 // 1. Setup the OpenTelemetry Tracer Provider targeting the Oracle driver source
 var tracerProvider = Sdk.CreateTracerProviderBuilder()
     .AddSource("Oracle.ManagedDataAccess.Core")
-    .AddOtlpExporter() //Exporters must be OpenTelemetry Protocol (OTLP) compliant for Oracle Database OpenTelemetry
+    .AddOtlpExporter() // Exporters must be OpenTelemetry Protocol (OTLP) compliant for Oracle Database OpenTelemetry
     .Build();
 
 string connectString = "<your_connection_string>";
@@ -302,7 +304,7 @@ Variable context parts (`tracestate`, `baggage`) SHOULD NOT be injected since `V
 
 Instrumentations that propagate context MUST update `V$SESSION.ACTION` on the same physical connection as the SQL statement.
 
-Applications may already use `ACTION` for their own session metadata, so instrumentations SHOULD prefer application context piggyback when the driver supports it.
+Applications may already use `ACTION` for their own session metadata, so instrumentations SHOULD ensure `ACTION` updates do not overwrite user metadata unless explicitly configured. Instrumentations MAY support updating `V$SESSION.ACTION` alongside `Application Context Piggyback` to allow out-of-band telemetry collectors to sample session state using the active `traceparent`.
 
 Example:
 
@@ -326,17 +328,22 @@ SELECT * FROM songs;
 
 ### Choice of Propagation Mechanism
 
-When selecting a context propagation strategy for Oracle Database, telemetry implementations MUST prioritize the **Application Context Piggyback** mechanism over the legacy `V$SESSION.ACTION` method.
+When selecting a context propagation strategy for Oracle Database, telemetry implementations SHOULD use `Application Context Piggyback` for native distributed tracing, and MAY combine it with  `V$SESSION.ACTION` for out-of-band query sampling.
 
-| Mechanism | Implementation Type | Minimum Stack Requirements | Tracing Behavior |
+| Mechanism | Implementation Type | Minimum Stack Requirements | Behavior |
 | :--- | :--- | :--- | :--- |
-| **Application Context Piggyback (Recommended)** | **Native** | • **Client:** Oracle JDBC Driver 23.26.2+ or ODP.NET (managed or core) 23.26.2+<br><br>• **Server:** Oracle AI Database 26ai 23.26.2+ | Built-in server-side parsing of W3C telemetry context via the network protocol. |
-| **`V$SESSION.ACTION`** | **Passive Workaround** | Older Oracle versions | Diagnostic text label only. Requires external collectors or triggers to track changes. |
+| **Application Context Piggyback** | **Native Distributed Tracing** | • **Client:** Oracle JDBC Driver 23.26.2+ or ODP.NET (managed or core) 23.26.2+<br><br>• **Server:** Oracle AI Database 26ai (23.26.2+) | Engine-native parsing of W3C trace context via round-trip protocol. Creates server-side spans and propagates context without additional round-trips. |
+| **V$SESSION.ACTION** | **Out-of-Band Query Sampling** | Works on all Oracle Database versions | Exposes `traceparent` in `V$SESSION` for external polling components (e.g., `oracledbreceiver`) to correlate server-side execution plans, wait events, and lock graphs to client spans. |
 
-#### Recommendation Guidance
+#### Co-existence & Recommendation Guidance
 
-* **Use Application Context Piggyback by default:** For modern environments meeting the minimum stack requirements, the legacy `V$SESSION.ACTION` approach is **deprecated** for OpenTelemetry propagation. The application context piggyback mechanism allows the database engine to natively recognize and process trace boundaries without field collisions.
-* **Fallback Limitation:** `V$SESSION.ACTION` SHOULD only be used as a legacy fallback. Implementations must note that the database server does not natively evaluate or generate child spans from the `ACTION` attribute; any tracing dependencies relying on `ACTION` require external collector orchestration to monitor session state changes.
+- **Native Distributed Tracing:** Application Context Piggyback is the preferred method for building application-to-database trace waterfalls when driver and database support are present.
+
+- **Out-of-Band Diagnostic Sampling:** `V$SESSION.ACTION` remains essential because it exposes the active `traceparent` to external collectors (such as `oracledbreceiver`), enabling them to correlate query samples, execution plans, wait events, and lock information collected from Oracle dynamic performance views with the originating client span.
+
+- **Concurrent Usage:** Instrumentations MAY enable **both** mechanisms simultaneously. Enabling `Application Context Piggyback` alongside `V$SESSION.ACTION` creates native distributed spans while enabling out-of-band query samplers to correlate rich database diagnostics, such as [`db.server.query_sample`](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/oracledbreceiver/documentation.md#dbserverquery_sample), with the originating `traceparent`.
+
+- **Legacy Fallback:** In environments where driver or database versions do not support `Application Context Piggyback`, `V$SESSION.ACTION` MAY be used independently as a passive correlation mechanism.
 
 ## Metrics
 
