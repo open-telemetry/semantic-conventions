@@ -17,7 +17,8 @@ jobs:
       - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
         with:
           ref: main
-          persist-credentials: false
+          # zizmor: ignore[artipacked] Credentials are required by the branch push below.
+          persist-credentials: true
 
       # only bump the development schema_url for minor/major releases,
       # patch releases are cut from a release branch and don't move main forward.
@@ -69,7 +70,6 @@ jobs:
         env:
           # Use the App token for PR creation so the pull request runs workflows.
           GH_TOKEN: ${{ steps.otelbot-token.outputs.token }}
-          GITHUB_TOKEN: ${{ github.token }}
           VERSION: ${{ github.event.release.tag_name }}
           NEXT_VERSION: ${{ steps.version.outputs.next_version }}
         run: |
@@ -83,7 +83,7 @@ jobs:
             exit 0
           fi
           git commit -a -m "$message"
-          git push "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" "$branch"
+          git push --set-upstream origin "$branch"
           gh pr create --title "$message" \
                        --body "$body" \
                        --head "$branch" \

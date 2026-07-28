@@ -1,17 +1,8 @@
-groups:
-  # TEMPERATURE METRICS
-  - id: metric_attributes.hw.temperature.common
-    type: attribute_group
-    brief: >
-      Common attributes for temperature metrics
-    extends: hardware.attributes.common
-    attributes:
-      - ref: hw.sensor_location
-        requirement_level: recommended
-
-  - id: metric.hw.temperature
-    type: metric
-    metric_name: hw.temperature
+# yaml-language-server: $schema=https://raw.githubusercontent.com/open-telemetry/weaver/v0.25.0/schemas/semconv.schema.v2.json
+file_format: definition/2
+metrics:
+  - name: hw.temperature
+    requirement_level: recommended
     annotations:
       code_generation:
         metric_value_type: double
@@ -23,11 +14,13 @@ groups:
     brief: "Temperature in degrees Celsius."
     instrument: gauge
     unit: "Cel"
-    extends: metric_attributes.hw.temperature.common
+    attributes:
+      - ref_group: hardware.attributes.common
+      - ref: hw.sensor_location
+        requirement_level: recommended
 
-  - id: metric.hw.temperature.limit
-    type: metric
-    metric_name: hw.temperature.limit
+  - name: hw.temperature.limit
+    requirement_level: recommended
     annotations:
       code_generation:
         metric_value_type: double
@@ -35,8 +28,29 @@ groups:
     brief: "Temperature limit in degrees Celsius."
     instrument: gauge
     unit: "Cel"
-    extends: metric_attributes.hw.temperature.common
     attributes:
+      - ref_group: hardware.attributes.common
+      - ref: hw.sensor_location
+        requirement_level: recommended
       - ref: hw.limit_type
         examples: ["low.critical", "low.degraded", "high.degraded", "high.critical"]
         requirement_level: recommended
+
+metric_refinements:
+  - id: metric.hw.temperature.status
+    ref: hw.status
+    attributes:
+      - ref_group: hardware.attributes.common
+      - ref: hw.sensor_location
+        requirement_level: recommended
+      - ref: hw.type
+        note: "MUST be set to `temperature`."
+        examples: ["temperature"]
+      - ref: hw.state
+        note: |
+          MUST be set to one of the following values:
+
+          * `ok`: The temperature is within normal range.
+          * `degraded`: The temperature is outside the normal range but not critical.
+          * `failed`: The temperature is at a critical level.
+        examples: ["ok", "degraded", "failed"]

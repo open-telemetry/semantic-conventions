@@ -24,7 +24,7 @@ Only checks that are **not** available upstream are kept here:
 
 Per-signal exceptions to the shared checks are declared in the model via
 `annotations.<package>.policy_exceptions`, where the exception key is the
-finding id with the package prefix dropped. For example:
+finding ID with the package prefix dropped. For example:
 
 ```yaml
 annotations:

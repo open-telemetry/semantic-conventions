@@ -13,6 +13,15 @@ namespace/constant collisions, backward compatibility, stability ordering,
 
 Flag violations of the guidance below with a short rationale and a doc link.
 
+## File formats
+
+Two definition formats are supported and both are valid: files starting with
+`file_format: definition/2` follow
+[schema v2](https://github.com/open-telemetry/weaver/blob/main/schemas/semconv.schema.v2.json),
+all others follow
+[v1](https://github.com/open-telemetry/weaver/blob/main/schemas/semconv-syntax.md).
+Schema is validated by the CI job. Review only the design and semantics described below.
+
 ## New attributes
 
 Follow [defining attributes](/docs/how-to-write-conventions/README.md#defining-attributes).
@@ -44,7 +53,6 @@ Follow [defining spans](/docs/how-to-write-conventions/README.md#defining-spans)
   calls); flag point-in-time occurrences (use events) or short in-process work.
 - Flag a span duplicating an existing definition; distinct spans should differ in
   kind or attribute set.
-- Every span must set exactly one `span_kind`.
 - Names must be low-cardinality, follow `{action} {target}` using values also
   available as attributes; flag static prefixes or raw high-cardinality values.
 - Attributes should capture only the operation's own important details.
