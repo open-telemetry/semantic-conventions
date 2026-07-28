@@ -164,8 +164,8 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 | --- | --- | --- |
 | `batching_log_processor` | The built-in SDK batching log record processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `batching_span_processor` | The built-in SDK batching span processor | ![Development](https://img.shields.io/badge/-development-blue) |
-| `logger_provider` | The builtin SDK LoggerProvider | ![Development](https://img.shields.io/badge/-development-blue) |
-| `meter_provider` | The builtin SDK MeterProvider | ![Development](https://img.shields.io/badge/-development-blue) |
+| `logger_provider` | The built-in SDK LoggerProvider | ![Development](https://img.shields.io/badge/-development-blue) |
+| `meter_provider` | The built-in SDK MeterProvider | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_grpc_log_exporter` | OTLP log record exporter over gRPC with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_grpc_metric_exporter` | OTLP metric exporter over gRPC with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_grpc_span_exporter` | OTLP span exporter over gRPC with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -179,7 +179,7 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 | `prometheus_http_text_metric_exporter` | Prometheus metric exporter over HTTP with the default text-based format | ![Development](https://img.shields.io/badge/-development-blue) |
 | `simple_log_processor` | The built-in SDK simple log record processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `simple_span_processor` | The built-in SDK simple span processor | ![Development](https://img.shields.io/badge/-development-blue) |
-| `tracer_provider` | The builtin SDK TracerProvider | ![Development](https://img.shields.io/badge/-development-blue) |
+| `tracer_provider` | The built-in SDK TracerProvider | ![Development](https://img.shields.io/badge/-development-blue) |
 | `zipkin_http_span_exporter` | Zipkin span exporter over HTTP | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- prettier-ignore-end -->
@@ -233,8 +233,8 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 | --- | --- | --- |
 | `batching_log_processor` | The built-in SDK batching log record processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `batching_span_processor` | The built-in SDK batching span processor | ![Development](https://img.shields.io/badge/-development-blue) |
-| `logger_provider` | The builtin SDK LoggerProvider | ![Development](https://img.shields.io/badge/-development-blue) |
-| `meter_provider` | The builtin SDK MeterProvider | ![Development](https://img.shields.io/badge/-development-blue) |
+| `logger_provider` | The built-in SDK LoggerProvider | ![Development](https://img.shields.io/badge/-development-blue) |
+| `meter_provider` | The built-in SDK MeterProvider | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_grpc_log_exporter` | OTLP log record exporter over gRPC with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_grpc_metric_exporter` | OTLP metric exporter over gRPC with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_grpc_span_exporter` | OTLP span exporter over gRPC with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -248,7 +248,7 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 | `prometheus_http_text_metric_exporter` | Prometheus metric exporter over HTTP with the default text-based format | ![Development](https://img.shields.io/badge/-development-blue) |
 | `simple_log_processor` | The built-in SDK simple log record processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `simple_span_processor` | The built-in SDK simple span processor | ![Development](https://img.shields.io/badge/-development-blue) |
-| `tracer_provider` | The builtin SDK TracerProvider | ![Development](https://img.shields.io/badge/-development-blue) |
+| `tracer_provider` | The built-in SDK TracerProvider | ![Development](https://img.shields.io/badge/-development-blue) |
 | `zipkin_http_span_exporter` | Zipkin span exporter over HTTP | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- prettier-ignore-end -->
@@ -340,8 +340,8 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 | --- | --- | --- |
 | `batching_log_processor` | The built-in SDK batching log record processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `batching_span_processor` | The built-in SDK batching span processor | ![Development](https://img.shields.io/badge/-development-blue) |
-| `logger_provider` | The builtin SDK LoggerProvider | ![Development](https://img.shields.io/badge/-development-blue) |
-| `meter_provider` | The builtin SDK MeterProvider | ![Development](https://img.shields.io/badge/-development-blue) |
+| `logger_provider` | The built-in SDK LoggerProvider | ![Development](https://img.shields.io/badge/-development-blue) |
+| `meter_provider` | The built-in SDK MeterProvider | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_grpc_log_exporter` | OTLP log record exporter over gRPC with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_grpc_metric_exporter` | OTLP metric exporter over gRPC with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_grpc_span_exporter` | OTLP span exporter over gRPC with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -355,7 +355,7 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 | `prometheus_http_text_metric_exporter` | Prometheus metric exporter over HTTP with the default text-based format | ![Development](https://img.shields.io/badge/-development-blue) |
 | `simple_log_processor` | The built-in SDK simple log record processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `simple_span_processor` | The built-in SDK simple span processor | ![Development](https://img.shields.io/badge/-development-blue) |
-| `tracer_provider` | The builtin SDK TracerProvider | ![Development](https://img.shields.io/badge/-development-blue) |
+| `tracer_provider` | The built-in SDK TracerProvider | ![Development](https://img.shields.io/badge/-development-blue) |
 | `zipkin_http_span_exporter` | Zipkin span exporter over HTTP | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- prettier-ignore-end -->
@@ -416,8 +416,8 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 | --- | --- | --- |
 | `batching_log_processor` | The built-in SDK batching log record processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `batching_span_processor` | The built-in SDK batching span processor | ![Development](https://img.shields.io/badge/-development-blue) |
-| `logger_provider` | The builtin SDK LoggerProvider | ![Development](https://img.shields.io/badge/-development-blue) |
-| `meter_provider` | The builtin SDK MeterProvider | ![Development](https://img.shields.io/badge/-development-blue) |
+| `logger_provider` | The built-in SDK LoggerProvider | ![Development](https://img.shields.io/badge/-development-blue) |
+| `meter_provider` | The built-in SDK MeterProvider | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_grpc_log_exporter` | OTLP log record exporter over gRPC with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_grpc_metric_exporter` | OTLP metric exporter over gRPC with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_grpc_span_exporter` | OTLP span exporter over gRPC with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -431,7 +431,7 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 | `prometheus_http_text_metric_exporter` | Prometheus metric exporter over HTTP with the default text-based format | ![Development](https://img.shields.io/badge/-development-blue) |
 | `simple_log_processor` | The built-in SDK simple log record processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `simple_span_processor` | The built-in SDK simple span processor | ![Development](https://img.shields.io/badge/-development-blue) |
-| `tracer_provider` | The builtin SDK TracerProvider | ![Development](https://img.shields.io/badge/-development-blue) |
+| `tracer_provider` | The built-in SDK TracerProvider | ![Development](https://img.shields.io/badge/-development-blue) |
 | `zipkin_http_span_exporter` | Zipkin span exporter over HTTP | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- prettier-ignore-end -->
@@ -531,8 +531,8 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 | --- | --- | --- |
 | `batching_log_processor` | The built-in SDK batching log record processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `batching_span_processor` | The built-in SDK batching span processor | ![Development](https://img.shields.io/badge/-development-blue) |
-| `logger_provider` | The builtin SDK LoggerProvider | ![Development](https://img.shields.io/badge/-development-blue) |
-| `meter_provider` | The builtin SDK MeterProvider | ![Development](https://img.shields.io/badge/-development-blue) |
+| `logger_provider` | The built-in SDK LoggerProvider | ![Development](https://img.shields.io/badge/-development-blue) |
+| `meter_provider` | The built-in SDK MeterProvider | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_grpc_log_exporter` | OTLP log record exporter over gRPC with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_grpc_metric_exporter` | OTLP metric exporter over gRPC with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_grpc_span_exporter` | OTLP span exporter over gRPC with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -546,7 +546,7 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 | `prometheus_http_text_metric_exporter` | Prometheus metric exporter over HTTP with the default text-based format | ![Development](https://img.shields.io/badge/-development-blue) |
 | `simple_log_processor` | The built-in SDK simple log record processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `simple_span_processor` | The built-in SDK simple span processor | ![Development](https://img.shields.io/badge/-development-blue) |
-| `tracer_provider` | The builtin SDK TracerProvider | ![Development](https://img.shields.io/badge/-development-blue) |
+| `tracer_provider` | The built-in SDK TracerProvider | ![Development](https://img.shields.io/badge/-development-blue) |
 | `zipkin_http_span_exporter` | Zipkin span exporter over HTTP | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- prettier-ignore-end -->
@@ -619,8 +619,8 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 | --- | --- | --- |
 | `batching_log_processor` | The built-in SDK batching log record processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `batching_span_processor` | The built-in SDK batching span processor | ![Development](https://img.shields.io/badge/-development-blue) |
-| `logger_provider` | The builtin SDK LoggerProvider | ![Development](https://img.shields.io/badge/-development-blue) |
-| `meter_provider` | The builtin SDK MeterProvider | ![Development](https://img.shields.io/badge/-development-blue) |
+| `logger_provider` | The built-in SDK LoggerProvider | ![Development](https://img.shields.io/badge/-development-blue) |
+| `meter_provider` | The built-in SDK MeterProvider | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_grpc_log_exporter` | OTLP log record exporter over gRPC with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_grpc_metric_exporter` | OTLP metric exporter over gRPC with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_grpc_span_exporter` | OTLP span exporter over gRPC with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -634,7 +634,7 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 | `prometheus_http_text_metric_exporter` | Prometheus metric exporter over HTTP with the default text-based format | ![Development](https://img.shields.io/badge/-development-blue) |
 | `simple_log_processor` | The built-in SDK simple log record processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `simple_span_processor` | The built-in SDK simple span processor | ![Development](https://img.shields.io/badge/-development-blue) |
-| `tracer_provider` | The builtin SDK TracerProvider | ![Development](https://img.shields.io/badge/-development-blue) |
+| `tracer_provider` | The built-in SDK TracerProvider | ![Development](https://img.shields.io/badge/-development-blue) |
 | `zipkin_http_span_exporter` | Zipkin span exporter over HTTP | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- prettier-ignore-end -->
@@ -688,8 +688,8 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 | --- | --- | --- |
 | `batching_log_processor` | The built-in SDK batching log record processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `batching_span_processor` | The built-in SDK batching span processor | ![Development](https://img.shields.io/badge/-development-blue) |
-| `logger_provider` | The builtin SDK LoggerProvider | ![Development](https://img.shields.io/badge/-development-blue) |
-| `meter_provider` | The builtin SDK MeterProvider | ![Development](https://img.shields.io/badge/-development-blue) |
+| `logger_provider` | The built-in SDK LoggerProvider | ![Development](https://img.shields.io/badge/-development-blue) |
+| `meter_provider` | The built-in SDK MeterProvider | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_grpc_log_exporter` | OTLP log record exporter over gRPC with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_grpc_metric_exporter` | OTLP metric exporter over gRPC with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_grpc_span_exporter` | OTLP span exporter over gRPC with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -703,7 +703,7 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 | `prometheus_http_text_metric_exporter` | Prometheus metric exporter over HTTP with the default text-based format | ![Development](https://img.shields.io/badge/-development-blue) |
 | `simple_log_processor` | The built-in SDK simple log record processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `simple_span_processor` | The built-in SDK simple span processor | ![Development](https://img.shields.io/badge/-development-blue) |
-| `tracer_provider` | The builtin SDK TracerProvider | ![Development](https://img.shields.io/badge/-development-blue) |
+| `tracer_provider` | The built-in SDK TracerProvider | ![Development](https://img.shields.io/badge/-development-blue) |
 | `zipkin_http_span_exporter` | Zipkin span exporter over HTTP | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- prettier-ignore-end -->
@@ -796,8 +796,8 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 | --- | --- | --- |
 | `batching_log_processor` | The built-in SDK batching log record processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `batching_span_processor` | The built-in SDK batching span processor | ![Development](https://img.shields.io/badge/-development-blue) |
-| `logger_provider` | The builtin SDK LoggerProvider | ![Development](https://img.shields.io/badge/-development-blue) |
-| `meter_provider` | The builtin SDK MeterProvider | ![Development](https://img.shields.io/badge/-development-blue) |
+| `logger_provider` | The built-in SDK LoggerProvider | ![Development](https://img.shields.io/badge/-development-blue) |
+| `meter_provider` | The built-in SDK MeterProvider | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_grpc_log_exporter` | OTLP log record exporter over gRPC with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_grpc_metric_exporter` | OTLP metric exporter over gRPC with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_grpc_span_exporter` | OTLP span exporter over gRPC with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -811,7 +811,7 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 | `prometheus_http_text_metric_exporter` | Prometheus metric exporter over HTTP with the default text-based format | ![Development](https://img.shields.io/badge/-development-blue) |
 | `simple_log_processor` | The built-in SDK simple log record processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `simple_span_processor` | The built-in SDK simple span processor | ![Development](https://img.shields.io/badge/-development-blue) |
-| `tracer_provider` | The builtin SDK TracerProvider | ![Development](https://img.shields.io/badge/-development-blue) |
+| `tracer_provider` | The built-in SDK TracerProvider | ![Development](https://img.shields.io/badge/-development-blue) |
 | `zipkin_http_span_exporter` | Zipkin span exporter over HTTP | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- prettier-ignore-end -->
@@ -872,8 +872,8 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 | --- | --- | --- |
 | `batching_log_processor` | The built-in SDK batching log record processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `batching_span_processor` | The built-in SDK batching span processor | ![Development](https://img.shields.io/badge/-development-blue) |
-| `logger_provider` | The builtin SDK LoggerProvider | ![Development](https://img.shields.io/badge/-development-blue) |
-| `meter_provider` | The builtin SDK MeterProvider | ![Development](https://img.shields.io/badge/-development-blue) |
+| `logger_provider` | The built-in SDK LoggerProvider | ![Development](https://img.shields.io/badge/-development-blue) |
+| `meter_provider` | The built-in SDK MeterProvider | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_grpc_log_exporter` | OTLP log record exporter over gRPC with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_grpc_metric_exporter` | OTLP metric exporter over gRPC with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_grpc_span_exporter` | OTLP span exporter over gRPC with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -887,7 +887,7 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 | `prometheus_http_text_metric_exporter` | Prometheus metric exporter over HTTP with the default text-based format | ![Development](https://img.shields.io/badge/-development-blue) |
 | `simple_log_processor` | The built-in SDK simple log record processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `simple_span_processor` | The built-in SDK simple span processor | ![Development](https://img.shields.io/badge/-development-blue) |
-| `tracer_provider` | The builtin SDK TracerProvider | ![Development](https://img.shields.io/badge/-development-blue) |
+| `tracer_provider` | The built-in SDK TracerProvider | ![Development](https://img.shields.io/badge/-development-blue) |
 | `zipkin_http_span_exporter` | Zipkin span exporter over HTTP | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- prettier-ignore-end -->
@@ -987,8 +987,8 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 | --- | --- | --- |
 | `batching_log_processor` | The built-in SDK batching log record processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `batching_span_processor` | The built-in SDK batching span processor | ![Development](https://img.shields.io/badge/-development-blue) |
-| `logger_provider` | The builtin SDK LoggerProvider | ![Development](https://img.shields.io/badge/-development-blue) |
-| `meter_provider` | The builtin SDK MeterProvider | ![Development](https://img.shields.io/badge/-development-blue) |
+| `logger_provider` | The built-in SDK LoggerProvider | ![Development](https://img.shields.io/badge/-development-blue) |
+| `meter_provider` | The built-in SDK MeterProvider | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_grpc_log_exporter` | OTLP log record exporter over gRPC with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_grpc_metric_exporter` | OTLP metric exporter over gRPC with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_grpc_span_exporter` | OTLP span exporter over gRPC with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -1002,7 +1002,7 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 | `prometheus_http_text_metric_exporter` | Prometheus metric exporter over HTTP with the default text-based format | ![Development](https://img.shields.io/badge/-development-blue) |
 | `simple_log_processor` | The built-in SDK simple log record processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `simple_span_processor` | The built-in SDK simple span processor | ![Development](https://img.shields.io/badge/-development-blue) |
-| `tracer_provider` | The builtin SDK TracerProvider | ![Development](https://img.shields.io/badge/-development-blue) |
+| `tracer_provider` | The built-in SDK TracerProvider | ![Development](https://img.shields.io/badge/-development-blue) |
 | `zipkin_http_span_exporter` | Zipkin span exporter over HTTP | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- prettier-ignore-end -->
@@ -1065,8 +1065,8 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 | --- | --- | --- |
 | `batching_log_processor` | The built-in SDK batching log record processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `batching_span_processor` | The built-in SDK batching span processor | ![Development](https://img.shields.io/badge/-development-blue) |
-| `logger_provider` | The builtin SDK LoggerProvider | ![Development](https://img.shields.io/badge/-development-blue) |
-| `meter_provider` | The builtin SDK MeterProvider | ![Development](https://img.shields.io/badge/-development-blue) |
+| `logger_provider` | The built-in SDK LoggerProvider | ![Development](https://img.shields.io/badge/-development-blue) |
+| `meter_provider` | The built-in SDK MeterProvider | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_grpc_log_exporter` | OTLP log record exporter over gRPC with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_grpc_metric_exporter` | OTLP metric exporter over gRPC with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_grpc_span_exporter` | OTLP span exporter over gRPC with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -1080,7 +1080,7 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 | `prometheus_http_text_metric_exporter` | Prometheus metric exporter over HTTP with the default text-based format | ![Development](https://img.shields.io/badge/-development-blue) |
 | `simple_log_processor` | The built-in SDK simple log record processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `simple_span_processor` | The built-in SDK simple span processor | ![Development](https://img.shields.io/badge/-development-blue) |
-| `tracer_provider` | The builtin SDK TracerProvider | ![Development](https://img.shields.io/badge/-development-blue) |
+| `tracer_provider` | The built-in SDK TracerProvider | ![Development](https://img.shields.io/badge/-development-blue) |
 | `zipkin_http_span_exporter` | Zipkin span exporter over HTTP | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- prettier-ignore-end -->
@@ -1180,8 +1180,8 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 | --- | --- | --- |
 | `batching_log_processor` | The built-in SDK batching log record processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `batching_span_processor` | The built-in SDK batching span processor | ![Development](https://img.shields.io/badge/-development-blue) |
-| `logger_provider` | The builtin SDK LoggerProvider | ![Development](https://img.shields.io/badge/-development-blue) |
-| `meter_provider` | The builtin SDK MeterProvider | ![Development](https://img.shields.io/badge/-development-blue) |
+| `logger_provider` | The built-in SDK LoggerProvider | ![Development](https://img.shields.io/badge/-development-blue) |
+| `meter_provider` | The built-in SDK MeterProvider | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_grpc_log_exporter` | OTLP log record exporter over gRPC with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_grpc_metric_exporter` | OTLP metric exporter over gRPC with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_grpc_span_exporter` | OTLP span exporter over gRPC with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -1195,7 +1195,7 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 | `prometheus_http_text_metric_exporter` | Prometheus metric exporter over HTTP with the default text-based format | ![Development](https://img.shields.io/badge/-development-blue) |
 | `simple_log_processor` | The built-in SDK simple log record processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `simple_span_processor` | The built-in SDK simple span processor | ![Development](https://img.shields.io/badge/-development-blue) |
-| `tracer_provider` | The builtin SDK TracerProvider | ![Development](https://img.shields.io/badge/-development-blue) |
+| `tracer_provider` | The built-in SDK TracerProvider | ![Development](https://img.shields.io/badge/-development-blue) |
 | `zipkin_http_span_exporter` | Zipkin span exporter over HTTP | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- prettier-ignore-end -->
@@ -1289,8 +1289,8 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 | --- | --- | --- |
 | `batching_log_processor` | The built-in SDK batching log record processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `batching_span_processor` | The built-in SDK batching span processor | ![Development](https://img.shields.io/badge/-development-blue) |
-| `logger_provider` | The builtin SDK LoggerProvider | ![Development](https://img.shields.io/badge/-development-blue) |
-| `meter_provider` | The builtin SDK MeterProvider | ![Development](https://img.shields.io/badge/-development-blue) |
+| `logger_provider` | The built-in SDK LoggerProvider | ![Development](https://img.shields.io/badge/-development-blue) |
+| `meter_provider` | The built-in SDK MeterProvider | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_grpc_log_exporter` | OTLP log record exporter over gRPC with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_grpc_metric_exporter` | OTLP metric exporter over gRPC with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_grpc_span_exporter` | OTLP span exporter over gRPC with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -1304,7 +1304,7 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 | `prometheus_http_text_metric_exporter` | Prometheus metric exporter over HTTP with the default text-based format | ![Development](https://img.shields.io/badge/-development-blue) |
 | `simple_log_processor` | The built-in SDK simple log record processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `simple_span_processor` | The built-in SDK simple span processor | ![Development](https://img.shields.io/badge/-development-blue) |
-| `tracer_provider` | The builtin SDK TracerProvider | ![Development](https://img.shields.io/badge/-development-blue) |
+| `tracer_provider` | The built-in SDK TracerProvider | ![Development](https://img.shields.io/badge/-development-blue) |
 | `zipkin_http_span_exporter` | Zipkin span exporter over HTTP | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- prettier-ignore-end -->
@@ -1411,8 +1411,8 @@ Semantic conventions for individual RPC frameworks SHOULD document what `rpc.res
 | --- | --- | --- |
 | `batching_log_processor` | The built-in SDK batching log record processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `batching_span_processor` | The built-in SDK batching span processor | ![Development](https://img.shields.io/badge/-development-blue) |
-| `logger_provider` | The builtin SDK LoggerProvider | ![Development](https://img.shields.io/badge/-development-blue) |
-| `meter_provider` | The builtin SDK MeterProvider | ![Development](https://img.shields.io/badge/-development-blue) |
+| `logger_provider` | The built-in SDK LoggerProvider | ![Development](https://img.shields.io/badge/-development-blue) |
+| `meter_provider` | The built-in SDK MeterProvider | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_grpc_log_exporter` | OTLP log record exporter over gRPC with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_grpc_metric_exporter` | OTLP metric exporter over gRPC with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
 | `otlp_grpc_span_exporter` | OTLP span exporter over gRPC with protobuf serialization | ![Development](https://img.shields.io/badge/-development-blue) |
@@ -1426,7 +1426,7 @@ Semantic conventions for individual RPC frameworks SHOULD document what `rpc.res
 | `prometheus_http_text_metric_exporter` | Prometheus metric exporter over HTTP with the default text-based format | ![Development](https://img.shields.io/badge/-development-blue) |
 | `simple_log_processor` | The built-in SDK simple log record processor | ![Development](https://img.shields.io/badge/-development-blue) |
 | `simple_span_processor` | The built-in SDK simple span processor | ![Development](https://img.shields.io/badge/-development-blue) |
-| `tracer_provider` | The builtin SDK TracerProvider | ![Development](https://img.shields.io/badge/-development-blue) |
+| `tracer_provider` | The built-in SDK TracerProvider | ![Development](https://img.shields.io/badge/-development-blue) |
 | `zipkin_http_span_exporter` | Zipkin span exporter over HTTP | ![Development](https://img.shields.io/badge/-development-blue) |
 
 <!-- prettier-ignore-end -->

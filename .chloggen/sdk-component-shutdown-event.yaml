@@ -2,7 +2,7 @@ change_type: enhancement
 
 component: otel
 
-note: Add `otel.sdk.component.shutdown` self-observability event and supporting attributes (`otel.component.shutdown.result`, `otel.component.shutdown.duration`).
+note: Add `otel.sdk.component.shutdown` self-observability event and supporting `otel.component.shutdown.duration` attribute.
 
 issues: [3718]
 

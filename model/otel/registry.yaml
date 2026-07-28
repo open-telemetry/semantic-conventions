@@ -184,17 +184,17 @@ groups:
             - id: logger_provider
               value: "logger_provider"
               brief: >
-                The builtin SDK LoggerProvider
+                The built-in SDK LoggerProvider
               stability: development
             - id: tracer_provider
               value: "tracer_provider"
               brief: >
-                The builtin SDK TracerProvider
+                The built-in SDK TracerProvider
               stability: development
             - id: meter_provider
               value: "meter_provider"
               brief: >
-                The builtin SDK MeterProvider
+                The built-in SDK MeterProvider
               stability: development
         stability: development
         brief: >
