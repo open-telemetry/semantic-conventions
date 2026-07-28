@@ -33,7 +33,7 @@ Describes the end user.
 
 ## Deprecated End User Attributes
 
-Describes deprecated enduser attributes.
+Describes deprecated end user attributes.
 
 **Attributes:**
 

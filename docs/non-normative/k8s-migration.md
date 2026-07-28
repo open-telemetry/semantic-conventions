@@ -69,6 +69,8 @@ and one for disabling the old schema called `semconv.k8s.disableLegacy`. Then:
   - [K8s Node memory metrics](#k8s-node-memory-metrics)
   - [Container Runtime](#container-runtime)
   - [K8s Pod Status Phase and Reason](#k8s-pod-status-phase-and-reason)
+  - [K8s labels and annotations](#k8s-labels-and-annotations)
+  - [K8s Pod/Node and Container Memory Usage](#k8s-podnode-and-container-memory-usage)
 
 <!-- END doctoc -->
 
@@ -240,12 +242,14 @@ The changes in their metric types are the following:
 
 <!-- prettier-ignore-start -->
 
-| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New |
-| ------------------------------------------------------ | --- |
-| `k8s.job.active_pods`                  (type: `gauge`) | `k8s.job.pod.active` (type: `updowncounter`) |
-| `k8s.job.failed_pods`                  (type: `gauge`) | `k8s.job.pod.failed` (type: `updowncounter`) |
-| `k8s.job.desired_successful_pods`      (type: `gauge`) | `k8s.job.pod.desired_successful`  (type: `updowncounter`) |
-| `k8s.job.max_parallel_pods`            (type: `gauge`) | `k8s.job.pod.max_parallel`   (type: `updowncounter`) |
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                      |
+| ---------------------------------------------------------------------------------- | -------------------------------------------------------- |
+| `k8s.job.active_pods`             (type: `gauge`)                                  | `k8s.job.pod.active` (type: `updowncounter`)             |
+| `k8s.job.failed_pods`             (type: `gauge`)                                  | `k8s.job.pod.failed` (type: `updowncounter`)             |
+| `k8s.job.desired_successful_pods` (type: `gauge`)                                  | `k8s.job.pod.desired_successful` (type: `updowncounter`) |
+| `k8s.job.max_parallel_pods`       (type: `gauge`)                                  | `k8s.job.pod.max_parallel` (type: `updowncounter`)       |
+
+<!-- prettier-ignore-end -->
 
 ### K8s Cronjob metrics
 
@@ -258,9 +262,9 @@ The changes in their metric types are the following:
 
 <!-- prettier-ignore-start -->
 
-| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New |
-| ------------------------------------------------ | ---- |
-| `k8s.cronjob.active_jobs`                  (type: `gauge`) | `k8s.cronjob.job.active` (type: `updowncounter`) |
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                              |
+| ---------------------------------------------------------------------------------- | ------------------------------------------------ |
+| `k8s.cronjob.active_jobs` (type: `gauge`)                                          | `k8s.cronjob.job.active` (type: `updowncounter`) |
 
 <!-- prettier-ignore-end -->
 
@@ -312,6 +316,8 @@ The changes are the following:
 | Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                    |
 | ---------------------------------------------------------------------------------- | -------------------------------------- |
 | `k8s.replication_controller.{name,uid}`                                            | `k8s.replicationcontroller.{name,uid}` |
+
+<!-- prettier-ignore-end -->
 
 ### K8s Container metrics
 
@@ -462,10 +468,10 @@ The changes in these metrics are the following:
 
 <!-- prettier-ignore-start -->
 
-| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                                                     |
-| ---------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
-| `k8s.pod.memory.page_faults`                                                       | `k8s.pod.memory.paging.faults` with attribute `system.paging.fault.type` set to `minor` |
-| `k8s.pod.memory.major_page_faults`                                                 | `k8s.pod.memory.paging.faults` with attribute `system.paging.fault.type` set to `major` |
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                                              |
+| ---------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `k8s.pod.memory.page_faults`                                                       | `k8s.pod.paging.faults` with attribute `system.paging.fault.type` set to `minor` |
+| `k8s.pod.memory.major_page_faults`                                                 | `k8s.pod.paging.faults` with attribute `system.paging.fault.type` set to `major` |
 
 <!-- prettier-ignore-end -->
 
@@ -480,10 +486,10 @@ The changes in these metrics are the following:
 
 <!-- prettier-ignore-start -->
 
-| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                                                       |
-| ---------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
-| `container.memory.page_faults`                                                     | `container.memory.paging.faults` with attribute `system.paging.fault.type` set to `minor` |
-| `container.memory.major_page_faults`                                               | `container.memory.paging.faults` with attribute `system.paging.fault.type` set to `major` |
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                                                |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `container.memory.page_faults`                                                     | `container.paging.faults` with attribute `system.paging.fault.type` set to `minor` |
+| `container.memory.major_page_faults`                                               | `container.paging.faults` with attribute `system.paging.fault.type` set to `major` |
 
 <!-- prettier-ignore-end -->
 
@@ -498,10 +504,10 @@ The changes in these metrics are the following:
 
 <!-- prettier-ignore-start -->
 
-| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                                                          |
-| ---------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| `k8s.node.memory.page_faults`                                                      | `k8s.node.memory.paging.faults` with attribute `system.paging.type` set to `minor`           |
-| `k8s.node.memory.major_page_faults`                                                | `k8s.node.memory.paging.faults` with attribute `system.paging.type` set to `major`           |
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                                         |
+| ---------------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| `k8s.node.memory.page_faults`                                                      | `k8s.node.paging.faults` with attribute `system.paging.type` set to `minor` |
+| `k8s.node.memory.major_page_faults`                                                | `k8s.node.paging.faults` with attribute `system.paging.type` set to `major` |
 
 <!-- prettier-ignore-end -->
 
@@ -535,5 +541,56 @@ The changes in their metrics are the following:
 | ---------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
 | `k8s.pod.status_reason`    metric [1,6]                                            | `k8s.pod.status.reason` metric [0,1] with attribute `k8s.pod.status.reason` for the different reasons |
 | `k8s.pod.phase`       metric [1, 5]                                                | `k8s.pod.status.phase` metric [0,1] with attribute `k8s.pod.phase` for the different phases           |
+
+<!-- prettier-ignore-end -->
+
+### K8s labels and annotations
+
+The K8s label and annotation attributes implemented by the Collector and specifically the
+[k8sattributes](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/k8sattributesprocessor/README.md)
+processor were introduced as semantic conventions in
+[#625](https://github.com/open-telemetry/semantic-conventions/pull/625) (Pod),
+[#2130](https://github.com/open-telemetry/semantic-conventions/pull/2130) (Node) and
+[#2166](https://github.com/open-telemetry/semantic-conventions/pull/2166) (Namespace).
+
+Unlike the receivers described above, the k8sattributes processor gates this transition behind
+its own feature gates, `processor.k8sattributes.EmitV1K8sConventions` and
+`processor.k8sattributes.DontEmitV0K8sConventions`, rather than the
+`OTEL_SEMCONV_STABILITY_OPT_IN` environment variable. See the processor's
+[Semantic Conventions Compatibility](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/k8sattributesprocessor/README.md#semantic-conventions-compatibility)
+documentation for details.
+
+The changes in these attributes are the following:
+
+<!-- prettier-ignore-start -->
+
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                              |
+| ---------------------------------------------------------------------------------- | -------------------------------- |
+| `k8s.pod.labels.<key>`                                                             | `k8s.pod.label.<key>`            |
+| `k8s.pod.annotations.<key>`                                                        | `k8s.pod.annotation.<key>`       |
+| `k8s.node.labels.<key>`                                                            | `k8s.node.label.<key>`           |
+| `k8s.node.annotations.<key>`                                                       | `k8s.node.annotation.<key>`      |
+| `k8s.namespace.labels.<key>`                                                       | `k8s.namespace.label.<key>`      |
+| `k8s.namespace.annotations.<key>`                                                  | `k8s.namespace.annotation.<key>` |
+
+<!-- prettier-ignore-end -->
+
+### K8s Pod/Node and Container Memory Usage
+
+The memory usage metrics implemented by the Collector and specifically the
+[kubeletstats](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/v0.150.0/receiver/kubeletstatsreceiver/documentation.md)
+receiver changed their instrument types in
+[#3889](https://github.com/open-telemetry/semantic-conventions/pull/3889) in alignment with the rest
+of the project.
+
+The changes are the following:
+
+<!-- prettier-ignore-start -->
+
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                      |
+| ---------------------------------------------------------------------------------- | ---------------------------------------- |
+| `k8s.pod.memory.usage`   gauge                                                     | `k8s.pod.memory.usage`   updowncounter   |
+| `k8s.node.memory.usage`  gauge                                                     | `k8s.node.memory.usage`  updowncounter   |
+| `container.memory.usage` counter                                                   | `container.memory.usage` updowncounter   |
 
 <!-- prettier-ignore-end -->

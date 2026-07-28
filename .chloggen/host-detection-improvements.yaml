@@ -1,0 +1,11 @@
+change_type: enhancement
+
+component: host
+
+note: >
+  Update the recommendations to use full path to commands
+  when collecting `host.id` attribute value.
+
+issues: [3896]
+
+subtext:

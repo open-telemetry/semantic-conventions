@@ -1,0 +1,29 @@
+groups:
+  - id: metric.container.memory.paging.faults
+    type: metric
+    metric_name: container.memory.paging.faults
+    stability: development
+    annotations:
+      code_generation:
+        metric_value_type: int
+    entity_associations:
+      - container
+    deprecated:
+      reason: renamed
+      renamed_to: container.paging.faults
+    brief: "Deprecated, use `container.paging.faults` instead."
+    attributes:
+      - ref: system.paging.fault.type
+    note: >
+      In general, this metric can be derived from
+      [cadvisor](https://github.com/google/cadvisor/blob/v0.53.0/docs/storage/prometheus.md#prometheus-container-metrics)
+      and specifically the `container_memory_failures_total{failure_type=pgfault, scope=container}`
+      and `container_memory_failures_total{failure_type=pgmajfault, scope=container}`metric.
+
+      In K8s, this metric is derived from the
+      [MemoryStats.PageFaults](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#MemoryStats) and
+      [MemoryStats.MajorPageFaults](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#MemoryStats)
+      field of the [PodStats.Memory](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#PodStats)
+      of the Kubelet's stats API.
+    instrument: counter
+    unit: "{fault}"

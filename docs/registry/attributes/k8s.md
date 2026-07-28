@@ -570,7 +570,7 @@ When not set, Kubernetes distributes traffic evenly across all endpoints cluster
 
 ## Deprecated Kubernetes Attributes
 
-Describes deprecated k8s attributes.
+Describes deprecated K8s attributes.
 
 **Attributes:**
 
