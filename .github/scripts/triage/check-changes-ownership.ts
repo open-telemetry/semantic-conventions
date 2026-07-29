@@ -1,45 +1,30 @@
 import * as utils from './utils.ts';
 import { Octokit } from "@octokit/action";
-import { fileURLToPath } from 'node:url';
 
 const octokit = new Octokit();
 
-/**
- * Minimal pull request fields needed to decide whether the ownership check applies.
- */
-interface PullRequestInput {
-    labels?: Array<{ name?: string }>
-    title: string
-}
-
-export function shouldSkipCheckForPullRequest(pr: PullRequestInput) {
-    const hasAcceptedLabel = pr.labels?.some(l =>
-        l.name === "triage:accepted:ready" ||
-        l.name === "triage:accepted:ready-with-sig"
-    ) ?? false;
-    const isChore = pr.title.toLowerCase().startsWith('[chore]');
-
-    return hasAcceptedLabel || isChore;
-}
+const [owner, repo] = process.env.GITHUB_REPOSITORY!.split("/");
+const prNumber: number = +process.env.PR_NUMBER!;
+const changes: string[] = process.env.CHANGED_FILES!.split(',');
 
 /**
  * Checks if the PR already has the 'triage:accepted:ready' or 'triage:accepted:ready-with-sig' label, meaning the triage checks should be skipped.
- * Also checks if its title starts with '[chore]', which indicates a PR that should skip checks.
- * @returns true if the PR should skip the ownership check, false otherwise.
+ * Also checks if the PR title starts with '[chore]' which indicates a maintenance PR that should skip checks.
+ * @returns true if the PR has the 'triage:accepted:ready' or 'triage:accepted:ready-with-sig' label or title starts with '[chore]', false otherwise.
  */
 async function shouldSkipCheck() {
-    const [owner, repo] = process.env.GITHUB_REPOSITORY!.split("/");
-    const prNumber: number = +process.env.PR_NUMBER!;
     const result = await octokit.request("GET /repos/{owner}/{repo}/issues/{issue_number}", {
         owner: owner,
         repo: repo,
         issue_number: prNumber
     });
 
-    return shouldSkipCheckForPullRequest({
-        labels: result.data.labels,
-        title: result.data.title,
-    });
+    const hasAcceptedLabel = result.data.labels?.some(l =>
+        l.name === "triage:accepted:ready" || l.name === "triage:accepted:ready-with-sig"
+    ) ?? false;
+    const isChore = result.data.title.toLowerCase().startsWith('[chore]');
+
+    return hasAcceptedLabel || isChore;
 }
 
 function getCommentText(changesWithoutOwners: string[]): string {
@@ -64,12 +49,8 @@ Thanks again for taking the time to contribute! 🙏`;
 }
 
 async function changesInInactiveAreas(): Promise<boolean> {
-    const [owner, repo] = process.env.GITHUB_REPOSITORY!.split("/");
-    const prNumber: number = +process.env.PR_NUMBER!;
-    const changes: string[] = process.env.CHANGED_FILES!.split(',');
-
-    // skips enforcing the triage process if the PR has an accepted label
-    // or if it is a maintenance chore PR.
+    // skips enforcing the triage process if the PR has the 'triage:accepted:ready' label on it
+    // this means maintainers/approvers decided to bypass it for good reasons.
     if (await shouldSkipCheck()) {
         return false;
     }
@@ -114,12 +95,9 @@ async function changesInInactiveAreas(): Promise<boolean> {
     return false;
 }
 
-// Keep the script directly executable in GitHub Actions while allowing tests to import helpers.
-if (process.argv[1] === fileURLToPath(import.meta.url)) {
-    (async () => {
-        const result = await changesInInactiveAreas();
-        if (result) {
-            process.exit(1);
-        }
-    })();
-}
+(async () => {
+    const result = await changesInInactiveAreas();
+    if (result) {
+        process.exit(1);
+    }
+})();
