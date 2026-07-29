@@ -17,15 +17,14 @@ export function shouldSkipCheckForPullRequest(pr: PullRequestInput) {
         l.name === "triage:accepted:ready" ||
         l.name === "triage:accepted:ready-with-sig"
     ) ?? false;
-    const hasDependenciesLabel = pr.labels?.some(l => l.name === "dependencies") ?? false;
     const isChore = pr.title.toLowerCase().startsWith('[chore]');
 
-    return hasAcceptedLabel || hasDependenciesLabel || isChore;
+    return hasAcceptedLabel || isChore;
 }
 
 /**
  * Checks if the PR already has the 'triage:accepted:ready' or 'triage:accepted:ready-with-sig' label, meaning the triage checks should be skipped.
- * Also checks if the PR has the 'dependencies' label or its title starts with '[chore]', which indicate PRs that should skip checks.
+ * Also checks if its title starts with '[chore]', which indicates a PR that should skip checks.
  * @returns true if the PR should skip the ownership check, false otherwise.
  */
 async function shouldSkipCheck() {
@@ -69,7 +68,7 @@ async function changesInInactiveAreas(): Promise<boolean> {
     const prNumber: number = +process.env.PR_NUMBER!;
     const changes: string[] = process.env.CHANGED_FILES!.split(',');
 
-    // skips enforcing the triage process if the PR has an accepted/dependencies label
+    // skips enforcing the triage process if the PR has an accepted label
     // or if it is a maintenance chore PR.
     if (await shouldSkipCheck()) {
         return false;
