@@ -4,6 +4,9 @@ import { fileURLToPath } from 'node:url';
 
 const octokit = new Octokit();
 
+/**
+ * Minimal pull request fields needed to decide whether the ownership check applies.
+ */
 interface PullRequestInput {
     labels?: Array<{ name?: string }>
     title: string
@@ -112,6 +115,7 @@ async function changesInInactiveAreas(): Promise<boolean> {
     return false;
 }
 
+// Keep the script directly executable in GitHub Actions while allowing tests to import helpers.
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
     (async () => {
         const result = await changesInInactiveAreas();

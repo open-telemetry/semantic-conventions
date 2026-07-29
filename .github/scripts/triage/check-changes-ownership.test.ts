@@ -10,11 +10,21 @@ test('skips ownership check for dependency PRs', () => {
     }), true);
 });
 
-test('skips ownership check for accepted PRs and chore PRs', () => {
+test('skips ownership check for triage:accepted:ready PRs', () => {
     assert.equal(shouldSkipCheckForPullRequest({
         labels: [{ name: 'triage:accepted:ready' }],
         title: 'feat: update span names',
     }), true);
+});
+
+test('skips ownership check for triage:accepted:ready-with-sig PRs', () => {
+    assert.equal(shouldSkipCheckForPullRequest({
+        labels: [{ name: 'triage:accepted:ready-with-sig' }],
+        title: 'feat: update span names',
+    }), true);
+});
+
+test('skips ownership check for chore PRs', () => {
     assert.equal(shouldSkipCheckForPullRequest({
         labels: [],
         title: '[chore] refresh generated files',
