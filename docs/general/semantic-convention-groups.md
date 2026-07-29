@@ -65,7 +65,7 @@ don't describe telemetry items.
 
 ### Groups with mixed stability
 
-Stability guarantees on a group apply to the group properties (such as type, id and
+Stability guarantees on a group apply to the group properties (such as `type`, `id` and
 signal-specific properties) as well as overridden properties of stable attributes
 referenced by this group.
 
