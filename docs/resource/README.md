@@ -7,7 +7,7 @@ linkTitle: Resource
 
 **Status**: [Mixed][DocumentStatus]
 
-This document defines standard attributes for resources. These attributes are typically used in the [Resource](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.58.0/specification/resource/sdk.md) and are also recommended to be used anywhere else where there is a need to describe a resource in a consistent manner. The majority of these attributes are inherited from
+This document defines standard attributes for resources. These attributes are typically used in the [Resource](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.59.0/specification/resource/sdk.md) and are also recommended to be used anywhere else where there is a need to describe a resource in a consistent manner. The majority of these attributes are inherited from
 [OpenCensus Resource standard](https://github.com/census-instrumentation/opencensus-specs/blob/master/resource/StandardResources.md).
 
 <!-- START doctoc -->
@@ -34,13 +34,13 @@ This document defines standard attributes for resources. These attributes are ty
 * Add Web Browser.
 * Decide if lower case strings only.
 * Consider to add optional/required for each attribute and combination of attributes
-  (e.g when supplying a k8s resource all k8s may be required).
+  (e.g when supplying a K8s resource all K8s may be required).
 
 ## Document conventions
 
 **Status**: [Stable][DocumentStatus]
 
-Attributes are grouped logically by the type of the concept that they described. Attributes in the same group have a common prefix that ends with a dot. For example all attributes that describe Kubernetes properties start with "k8s."
+Attributes are grouped logically by the type of the concept that they described. Attributes in the same group have a common prefix that ends with a dot. For example all attributes that describe Kubernetes properties start with `k8s.`.
 
 See [Attribute Requirement Levels](../general/attribute-requirement-level.md) for details on when attributes
 should be included.
@@ -54,14 +54,14 @@ Given their significance some resource attributes are treated specifically as de
 ### Semantic attributes with dedicated environment variable
 
 These are the attributes which MAY be configurable via a dedicated environment variable
-as specified in [OpenTelemetry Environment Variable Specification](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.58.0/specification/configuration/sdk-environment-variables.md):
+as specified in [OpenTelemetry Environment Variable Specification](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.59.0/specification/configuration/sdk-environment-variables.md):
 
 - [`service.name`](#service)
 
 ### Semantic attributes with SDK-provided default value
 
 These are the attributes which MUST be provided by the SDK
-as specified in the [Resource SDK specification](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.58.0/specification/resource/sdk.md#sdk-provided-resource-attributes):
+as specified in the [Resource SDK specification](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.59.0/specification/resource/sdk.md#sdk-provided-resource-attributes):
 
 - [`service.name`](#service)
 - [`telemetry.sdk` group](#telemetry-sdk)
@@ -106,19 +106,19 @@ All custom identifiers SHOULD be stable across different versions of an implemen
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `cpp` | cpp | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `dotnet` | dotnet | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `erlang` | erlang | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `go` | go | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `java` | java | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `kotlin` | kotlin | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `nodejs` | nodejs | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `php` | php | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `python` | python | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `ruby` | ruby | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `rust` | rust | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `swift` | swift | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| `webjs` | webjs | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `cpp` | [C++](https://opentelemetry.io/docs/languages/cpp/) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `dotnet` | [.NET](https://opentelemetry.io/docs/languages/dotnet/) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `erlang` | [Erlang/Elixir](https://opentelemetry.io/docs/languages/erlang/) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `go` | [Go](https://opentelemetry.io/docs/languages/go/) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `java` | [Java](https://opentelemetry.io/docs/languages/java/) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `kotlin` | [Kotlin](https://opentelemetry.io/docs/languages/kotlin/) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `nodejs` | [Node.js](https://opentelemetry.io/docs/languages/js/) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `php` | [PHP](https://opentelemetry.io/docs/languages/php/) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `python` | [Python](https://opentelemetry.io/docs/languages/python/) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `ruby` | [Ruby](https://opentelemetry.io/docs/languages/ruby/) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `rust` | [Rust](https://opentelemetry.io/docs/languages/rust/) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `swift` | [Swift](https://opentelemetry.io/docs/languages/swift/) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
+| `webjs` | [Browser](https://opentelemetry.io/docs/languages/js/) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
 <!-- endsemconv -->
@@ -190,7 +190,7 @@ Attributes defining a running environment (e.g. Operating System, Cloud, Data Ce
 **Status**: [Stable][DocumentStatus]
 
 Version attributes, such as `service.version`, are values of type `string`. They are
-the exact version used to identify an artifact. This may be a semantic version, e.g., `1.2.3`, git hash, e.g.,
+the exact version used to identify an artifact. This may be a semantic version, e.g., `1.2.3`, Git hash, e.g.,
 `8ae73a`, or an arbitrary version string, e.g., `0.1.2.20210101`, whatever was used when building the artifact.
 
 ## Cloud-Provider-specific attributes

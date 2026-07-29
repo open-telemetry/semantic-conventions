@@ -78,7 +78,7 @@ groups:
       code_generation:
         metric_value_type: double
     stability: development
-    brief: "Pod's CPU usage, measured in cpus. Range from 0 to the number of allocatable CPUs."
+    brief: "Pod's CPU usage, measured in CPUs. Range from 0 to the number of allocatable CPUs."
     note: >
       CPU usage of the specific Pod on all available CPU cores, averaged over the sample window
     instrument: gauge
@@ -91,18 +91,23 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
-    stability: development
+    stability: release_candidate
     brief: "Memory usage of the Pod."
     entity_associations:
       - k8s.pod
-    note: >
-      Total memory usage of the Pod
-    instrument: gauge
+    instrument: updowncounter
     unit: "By"
+    note: >
+      Total memory in use. This includes all memory regardless of when it was accessed.
+
+      This metric is derived from the
+      [MemoryStats.UsageBytes](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#MemoryStats)
+      field of the [PodStats.Memory](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#PodStats)
+      of the Kubelet's stats API.
   - id: metric.k8s.pod.memory.available
     type: metric
     metric_name: k8s.pod.memory.available
-    stability: development
+    stability: release_candidate
     annotations:
       code_generation:
         metric_value_type: int
@@ -122,7 +127,7 @@ groups:
   - id: metric.k8s.pod.memory.rss
     type: metric
     metric_name: k8s.pod.memory.rss
-    stability: development
+    stability: release_candidate
     brief: "Pod memory RSS."
     annotations:
       code_generation:
@@ -141,7 +146,7 @@ groups:
   - id: metric.k8s.pod.memory.working_set
     type: metric
     metric_name: k8s.pod.memory.working_set
-    stability: development
+    stability: release_candidate
     entity_associations:
       - k8s.pod
     brief: "Pod memory working set."
@@ -158,9 +163,9 @@ groups:
       of the Kubelet's stats API.
     instrument: updowncounter
     unit: "By"
-  - id: metric.k8s.pod.memory.paging.faults
+  - id: metric.k8s.pod.paging.faults
     type: metric
-    metric_name: k8s.pod.memory.paging.faults
+    metric_name: k8s.pod.paging.faults
     stability: development
     brief: "Pod memory paging faults."
     annotations:
@@ -468,7 +473,7 @@ groups:
       code_generation:
         metric_value_type: double
     stability: development
-    brief: "Amount of cpu allocatable on the node."
+    brief: "Amount of CPU allocatable on the node."
     entity_associations:
       - k8s.node
     instrument: updowncounter
@@ -552,7 +557,7 @@ groups:
       code_generation:
         metric_value_type: double
     stability: development
-    brief: "Node's CPU usage, measured in cpus. Range from 0 to the number of allocatable CPUs."
+    brief: "Node's CPU usage, measured in CPUs. Range from 0 to the number of allocatable CPUs."
     note: >
       CPU usage of the specific Node on all available CPU cores, averaged over the sample window
     instrument: gauge
@@ -568,7 +573,7 @@ groups:
       code_generation:
         metric_value_type: double
     stability: development
-    brief: "Node's system container CPU usage, measured in cpus."
+    brief: "Node's system container CPU usage, measured in CPUs."
     note: >
       This metric is derived from the
       [CPUStats.UsageNanoCores](https://github.com/kubernetes/kubelet/blob/v0.35.2/pkg/apis/stats/v1alpha1/types.go#L233)
@@ -689,6 +694,41 @@ groups:
       of the [NodeStats.Fs](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#NodeStats)
       of the Kubelet's stats API.
 
+  - id: metric.k8s.node.filesystem.inode.count
+    type: metric
+    metric_name: k8s.node.filesystem.inode.count
+    stability: development
+    brief: "The total inodes in the node's root filesystem."
+    instrument: updowncounter
+    annotations:
+      code_generation:
+        metric_value_type: int
+    unit: "{inode}"
+    entity_associations:
+      - k8s.node
+    note: |
+      This metric is derived from the
+      [FsStats.Inodes](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#FsStats) field
+      of the [NodeStats.Fs](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#NodeStats)
+      of the Kubelet's stats API.
+  - id: metric.k8s.node.filesystem.inode.free
+    type: metric
+    metric_name: k8s.node.filesystem.inode.free
+    stability: development
+    brief: "The free inodes in the node's root filesystem."
+    instrument: updowncounter
+    annotations:
+      code_generation:
+        metric_value_type: int
+    unit: "{inode}"
+    entity_associations:
+      - k8s.node
+    note: |
+      This metric is derived from the
+      [FsStats.InodesFree](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#FsStats) field
+      of the [NodeStats.Fs](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#NodeStats)
+      of the Kubelet's stats API.
+
   # k8s.node.memory.* metrics
   - id: metric.k8s.node.memory.usage
     type: metric
@@ -696,18 +736,23 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
-    stability: development
+    stability: release_candidate
     brief: "Memory usage of the Node."
     note: >
-      Total memory usage of the Node
-    instrument: gauge
+      Total memory in use. This includes all memory regardless of when it was accessed.
+
+      This metric is derived from the
+      [MemoryStats.UsageBytes](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#MemoryStats)
+      field of the [NodeStats.Memory](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#NodeStats)
+      of the Kubelet's stats API.
+    instrument: updowncounter
     entity_associations:
       - k8s.node
     unit: "By"
   - id: metric.k8s.node.memory.available
     type: metric
     metric_name: k8s.node.memory.available
-    stability: development
+    stability: release_candidate
     brief: "Node memory available."
     annotations:
       code_generation:
@@ -727,7 +772,7 @@ groups:
   - id: metric.k8s.node.memory.rss
     type: metric
     metric_name: k8s.node.memory.rss
-    stability: development
+    stability: release_candidate
     brief: "Node memory RSS."
     annotations:
       code_generation:
@@ -746,7 +791,7 @@ groups:
   - id: metric.k8s.node.memory.working_set
     type: metric
     metric_name: k8s.node.memory.working_set
-    stability: development
+    stability: release_candidate
     brief: "Node memory working set."
     annotations:
       code_generation:
@@ -763,9 +808,9 @@ groups:
       of the Kubelet's stats API.
     instrument: updowncounter
     unit: "By"
-  - id: metric.k8s.node.memory.paging.faults
+  - id: metric.k8s.node.paging.faults
     type: metric
-    metric_name: k8s.node.memory.paging.faults
+    metric_name: k8s.node.paging.faults
     stability: development
     brief: "Node memory paging faults."
     annotations:

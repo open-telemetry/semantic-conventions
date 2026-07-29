@@ -23,7 +23,7 @@ groups:
       code_generation:
         metric_value_type: double
     stability: release_candidate
-    brief: "CPU time consumed."
+    brief: "Total CPU time consumed."
     note: >
       CPU time consumed by the specific container on all available CPU cores
     instrument: counter
@@ -65,7 +65,7 @@ groups:
       code_generation:
         metric_value_type: double
     stability: development
-    brief: "Container's CPU usage, measured in cpus. Range from 0 to the number of allocatable CPUs."
+    brief: "Container's CPU usage, measured in CPUs. Range from 0 to the number of allocatable CPUs."
     note: >
       CPU usage of the specific container on all available CPU cores, averaged over the sample window
     instrument: gauge
@@ -88,18 +88,27 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
-    stability: development
+    stability: release_candidate
     brief: "Memory usage of the container."
-    note: >
-      Memory usage of the container.
-    instrument: counter
+    instrument: updowncounter
     entity_associations:
       - container
     unit: "By"
+    note: >
+      Current memory usage, including all memory regardless of when it was accessed.
+
+      In general, this metric can be derived from
+      [cadvisor](https://github.com/google/cadvisor/blob/v0.53.0/docs/storage/prometheus.md#prometheus-container-metrics)
+      and specifically the `container_memory_usage_bytes` metric.
+
+      In K8s, this metric is derived from the
+      [MemoryStats.UsageBytes](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#MemoryStats)
+      field of the [ContainerStats.Memory](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#ContainerStats)
+      of the Kubelet's stats API.
   - id: metric.container.memory.available
     type: metric
     metric_name: container.memory.available
-    stability: development
+    stability: release_candidate
     annotations:
       code_generation:
         metric_value_type: int
@@ -117,14 +126,14 @@ groups:
 
       In K8s, this metric is derived from the
       [MemoryStats.AvailableBytes](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#MemoryStats)
-      field of the [PodStats.Memory](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#PodStats)
+      field of the [ContainerStats.Memory](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#ContainerStats)
       of the Kubelet's stats API.
     instrument: updowncounter
     unit: "By"
   - id: metric.container.memory.rss
     type: metric
     metric_name: container.memory.rss
-    stability: development
+    stability: release_candidate
     entity_associations:
       - container
     brief: "Container memory RSS."
@@ -138,14 +147,14 @@ groups:
 
       In K8s, this metric is derived from the
       [MemoryStats.RSSBytes](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#MemoryStats)
-      field of the [PodStats.Memory](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#PodStats)
+      field of the [ContainerStats.Memory](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#ContainerStats)
       of the Kubelet's stats API.
     instrument: updowncounter
     unit: "By"
   - id: metric.container.memory.working_set
     type: metric
     metric_name: container.memory.working_set
-    stability: development
+    stability: release_candidate
     annotations:
       code_generation:
         metric_value_type: int
@@ -159,13 +168,13 @@ groups:
 
       In K8s, this metric is derived from the
       [MemoryStats.WorkingSetBytes](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#MemoryStats)
-      field of the [PodStats.Memory](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#PodStats)
+      field of the [ContainerStats.Memory](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#ContainerStats)
       of the Kubelet's stats API.
     instrument: updowncounter
     unit: "By"
-  - id: metric.container.memory.paging.faults
+  - id: metric.container.paging.faults
     type: metric
-    metric_name: container.memory.paging.faults
+    metric_name: container.paging.faults
     stability: development
     annotations:
       code_generation:
@@ -184,7 +193,7 @@ groups:
       In K8s, this metric is derived from the
       [MemoryStats.PageFaults](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#MemoryStats) and
       [MemoryStats.MajorPageFaults](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#MemoryStats)
-      field of the [PodStats.Memory](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#PodStats)
+      field of the [ContainerStats.Memory](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#ContainerStats)
       of the Kubelet's stats API.
     instrument: counter
     unit: "{fault}"

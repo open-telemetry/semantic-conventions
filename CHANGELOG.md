@@ -3,6 +3,8 @@
      See CONTRIBUTING.md for instructions to add an entry.
      ##################################################### -->
 
+<!-- cspell:ignore CICD, cicd -->
+
 # Changelog
 
 <!-- next version -->
