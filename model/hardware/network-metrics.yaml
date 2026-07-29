@@ -1,4 +1,4 @@
-# yaml-language-server: $schema=https://raw.githubusercontent.com/open-telemetry/weaver/v0.25.0/schemas/semconv.schema.v2.json
+# yaml-language-server: $schema=https://raw.githubusercontent.com/open-telemetry/weaver/v0.25.1/schemas/semconv.schema.v2.json
 file_format: definition/2
 attribute_groups:
   - id: metric_attributes.hw.network
