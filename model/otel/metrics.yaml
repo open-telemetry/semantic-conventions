@@ -143,7 +143,7 @@ groups:
       code_generation:
         metric_value_type: int
     stability: development
-    brief: "The number of log records submitted to enabled `Logger`s."
+    brief: "The number of log records submitted to an enabled `Logger`."
     instrument: counter
     unit: "{log_record}"
     note: |
