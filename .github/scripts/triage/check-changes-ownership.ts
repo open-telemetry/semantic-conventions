@@ -1,9 +1,15 @@
 import * as utils from './utils.ts';
 import { Octokit } from "@octokit/action";
+import { fileURLToPath } from 'node:url';
 
 const octokit = new Octokit();
 
-export function shouldSkipCheckForPullRequest(pr: { labels?: Array<{ name?: string }>, title: string }) {
+interface PullRequestInput {
+    labels?: Array<{ name?: string }>
+    title: string
+}
+
+export function shouldSkipCheckForPullRequest(pr: PullRequestInput) {
     const hasAcceptedLabel = pr.labels?.some(l =>
         l.name === "triage:accepted:ready" ||
         l.name === "triage:accepted:ready-with-sig"
@@ -106,7 +112,7 @@ async function changesInInactiveAreas(): Promise<boolean> {
     return false;
 }
 
-if (process.argv[1]?.endsWith('check-changes-ownership.ts')) {
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
     (async () => {
         const result = await changesInInactiveAreas();
         if (result) {
