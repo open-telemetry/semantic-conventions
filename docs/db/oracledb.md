@@ -242,7 +242,7 @@ Example payload when `tracestate` is absent:
 traceparent: 00-0af7651916cd43dd8448eb211c80319c-b7ad6b7169203331-01\r\n
 ```
 
-> **Note:** While this specification defines the wire format for both `tracestate` and `baggage` to ensure cross-language instrumentation consistency and forward compatibility, current versions of the Oracle Database server may only parse and evaluate the `traceparent` field. The `tracestate` and `baggage` data are safely passed along to the server via the driver but are intended for evaluation in a future database server release.
+> **Note:** While this specification defines the wire format for `traceparent` and `tracestate` to ensure cross-language instrumentation consistency and forward compatibility, current versions of the Oracle Database server may only parse and evaluate the `traceparent` field. The `tracestate` data is safely passed along to the server via the driver but is intended for evaluation in a future database server release.
 
 Although `Application Context` is not constrained by the 64 byte limit of `V$SESSION.ACTION`, it can still be subject to application context size limits. Oracle application context values are limited to 4000 bytes (see the [`SYS_CONTEXT`](https://docs.oracle.com/en/database/oracle/oracle-database/26/sqlrf/SYS_CONTEXT.html) documentation). Furthermore, this mechanism requires support from both the database client driver and the database server version in use. To successfully capture and process these values for end-to-end tracing, the database server must also be explicitly configured to enable tracing.
 
