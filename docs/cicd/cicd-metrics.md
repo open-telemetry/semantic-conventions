@@ -1,5 +1,5 @@
 ---
-title: Semantic conventions for CICD metrics
+title: Semantic conventions for CI/CD metrics
 linkTitle: Metrics
 ---
 

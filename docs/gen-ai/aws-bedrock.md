@@ -1,5 +1,5 @@
 ---
-title: Semantic conventions for AWS Bedrock operations
+title: "Moved: Generative AI semantic conventions"
 linkTitle: AWS Bedrock
 ---
 

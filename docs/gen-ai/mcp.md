@@ -1,5 +1,5 @@
 ---
-title: Semantic conventions for Model Context Protocol (MCP)
+title: "Moved: Generative AI semantic conventions"
 linkTitle: Model Context Protocol
 ---
 

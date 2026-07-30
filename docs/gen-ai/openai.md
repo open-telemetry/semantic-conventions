@@ -1,5 +1,5 @@
 ---
-title: Semantic conventions for OpenAI client operations
+title: "Moved: Generative AI semantic conventions"
 linkTitle: OpenAI
 ---
 

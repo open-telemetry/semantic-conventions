@@ -1,5 +1,5 @@
 ---
-title: Semantic conventions for CICD logs
+title: Semantic conventions for CI/CD logs
 linkTitle: Logs
 ---
 

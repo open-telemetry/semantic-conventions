@@ -1,5 +1,5 @@
 ---
-title: Semantic conventions for Azure AI Inference client operations
+title: "Moved: Generative AI semantic conventions"
 linkTitle: Azure AI Inference
 ---
 

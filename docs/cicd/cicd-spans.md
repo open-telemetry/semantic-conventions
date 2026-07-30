@@ -1,5 +1,5 @@
 ---
-title: Semantic conventions for CICD spans
+title: Semantic conventions for CI/CD spans
 linkTitle: Spans
 ---
 

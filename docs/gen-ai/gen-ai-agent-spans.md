@@ -1,5 +1,5 @@
 ---
-title: Semantic Conventions for GenAI agent and framework spans
+title: "Moved: Generative AI semantic conventions"
 linkTitle: Agent spans
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: Semantic conventions for generative AI metrics
+title: "Moved: Generative AI semantic conventions"
 linkTitle: Metrics
 ---
 

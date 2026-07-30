@@ -1,5 +1,5 @@
 ---
-title: Semantic conventions for generative AI systems
+title: "Moved: Generative AI semantic conventions"
 linkTitle: Generative AI
 ---
 

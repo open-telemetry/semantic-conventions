@@ -1,5 +1,5 @@
 ---
-title: LLM call examples
+title: "Moved: Generative AI semantic conventions"
 ---
 
 # Moved: Generative AI semantic conventions
