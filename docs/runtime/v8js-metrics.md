@@ -6,7 +6,7 @@ linkTitle: V8 JS engine
 
 **Status**: [Development][DocumentStatus]
 
-This document describes semantic conventions for V8 JS Engine Runtime metrics in OpenTelemetry. This engine is used in some javascript runtime such as Node.js and Deno.
+This document describes semantic conventions for V8 JS Engine Runtime metrics in OpenTelemetry. This engine is used in some JavaScript runtime such as Node.js and Deno.
 
 <!-- START doctoc -->
 
