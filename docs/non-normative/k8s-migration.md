@@ -18,19 +18,19 @@ updated to the stable K8s semantic conventions, they:
 
 - SHOULD introduce an environment variable `OTEL_SEMCONV_STABILITY_OPT_IN` in
   their existing major version, which accepts:
-  - `k8s` - emit the stable k8s conventions, and stop emitting
-    the old k8s conventions that the instrumentation emitted previously.
-  - `k8s/dup` - emit both the old and the stable k8s conventions,
+  - `k8s` - emit the stable K8s conventions, and stop emitting
+    the old K8s conventions that the instrumentation emitted previously.
+  - `k8s/dup` - emit both the old and the stable K8s conventions,
     allowing for a phased rollout of the stable semantic conventions.
   - The default behavior (in the absence of one of these values) is to continue
-    emitting whatever version of the old k8s conventions the
+    emitting whatever version of the old K8s conventions the
     instrumentation was emitting previously.
 - Need to maintain (security patching at a minimum) their existing major version
   for at least six months after it starts emitting both sets of conventions.
 - May drop the environment variable in their next major version and emit only
-  the stable k8s conventions.
+  the stable K8s conventions.
 
-Specifically for the Opentelemetry Collector:
+Specifically for the OpenTelemetry Collector:
 
 The transition will happen through two different feature gates.
 One for enabling the new schema called `semconv.k8s.enableStable`,

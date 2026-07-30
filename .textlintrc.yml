@@ -27,7 +27,13 @@ filters:
       - /\n\s*(-\s)?(\S+):/ # YAML keys, with optional list marker
       - /\n\s*(-\s)?(id|value|examples|metric_name|ref|component):\s(\[.+\]|.+)/ # Values for YAML keys in allowed list are not checked
       - /examples:\n?.+\[(.|\n)([^\]])*]/ # Examples YAML key with list of values, allowing for multi-line lists
-  comments: true
+  comments:
+    # enable comment directive
+    # if comment has the value, then enable textlint rule
+    enablingComment: "textlint-enable"
+    # disable comment directive
+    # if comment has the value, then disable textlint rule
+    disablingComment: "textlint-disable"
 rules:
   common-misspellings:
     # Misspellings to be ignored (case-insensitive)
