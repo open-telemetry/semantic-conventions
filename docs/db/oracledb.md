@@ -244,7 +244,7 @@ traceparent: 00-0af7651916cd43dd8448eb211c80319c-b7ad6b7169203331-01\r\n
 
 > **Note:** While this specification defines the wire format for both `tracestate` and `baggage` to ensure cross-language instrumentation consistency and forward compatibility, current versions of the Oracle Database server may only parse and evaluate the `traceparent` field. The `tracestate` and `baggage` data are safely passed along to the server via the driver but are intended for evaluation in a future database server release.
 
-Although `Application Context` is not constrained by the 64 byte limit of `V$SESSION.ACTION`, it can still be subject to application context size limits. Oracle application context values are limited to 4000 bytes. Furthermore, this mechanism requires support from both the database client driver and the database server version in use. To successfully capture and process these values for end-to-end tracing, the database server must also be explicitly configured to enable tracing.
+Although `Application Context` is not constrained by the 64 byte limit of `V$SESSION.ACTION`, it can still be subject to application context size limits. Oracle application context values are limited to 4000 bytes (see the [`SYS_CONTEXT`](https://docs.oracle.com/en/database/oracle/oracle-database/26/sqlrf/SYS_CONTEXT.html) documentation). Furthermore, this mechanism requires support from both the database client driver and the database server version in use. To successfully capture and process these values for end-to-end tracing, the database server must also be explicitly configured to enable tracing.
 
 Compared with `V$SESSION.ACTION`, `Application Context` avoids overloading a field that applications may already use and is not constrained by the 64 byte limit of `ACTION`.
 
@@ -329,7 +329,7 @@ When selecting a context propagation strategy for Oracle Database, telemetry imp
 
 | Mechanism | Implementation Type | Minimum Stack Requirements | Behavior |
 | :--- | :--- | :--- | :--- |
-| **Application Context** | **Native Distributed Tracing** | • **Client:** Oracle JDBC Driver 23.26.2+ or ODP.NET (managed or core) 23.26.2+<br><br>• **Server:** Oracle AI Database 26ai (23.26.2+) | Engine-native parsing of W3C trace context via round-trip protocol. Creates server-side spans and propagates context without additional round-trips. |
+| **Application Context** | **Native Distributed Tracing** | • **Client:** Oracle JDBC Driver 23.26.2+ or ODP.NET (managed or core) 23.26.2+<br><br>• **Server:** Oracle AI Database 26ai (server version 23.26.2 or later) | Engine-native parsing of W3C trace context via round-trip protocol. Creates server-side spans and propagates context without additional round-trips. |
 | **V$SESSION.ACTION** | **Out-of-Band Query Sampling** | Works on all Oracle Database versions | Exposes `traceparent` in `V$SESSION` for external polling components (e.g., `oracledbreceiver`) to correlate server-side execution plans, wait events, and lock graphs to client spans. |
 
 #### Co-existence & Recommendation Guidance
