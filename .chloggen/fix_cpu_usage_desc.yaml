@@ -20,7 +20,7 @@ issues: [2418]
 # These lines will be padded with 2 spaces and then inserted directly into the document.
 # Use pipe (|) for multiline entries.
 subtext: |
-  CPU usage is meaasured in cores/CPUs and is calculated based on the formula:
+  CPU usage is measured in cores/CPUs and is calculated based on the formula:
   `usageCores = (cpuTimeEnd - cpuTimeStart) / elapsedSeconds`
   This PR improves the description making it aligned with the corresponding
   system and prosses metrics.
