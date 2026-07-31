@@ -23,4 +23,4 @@ subtext: |
   CPU usage is measured in cores/CPUs and is calculated based on the formula:
   `usageCores = (cpuTimeEnd - cpuTimeStart) / elapsedSeconds`
   This PR improves the description making it aligned with the corresponding
-  system and prosses metrics.
+  system and process metrics.
