@@ -12,7 +12,7 @@ These events complement SDK self-observability metrics by providing per-instance
 confirmation of lifecycle transitions, such as whether shutdown completed cleanly.
 
 > [!NOTE]
-> Events are in-development and not yet available in some languages. Check the [spec-compliance matrix](https://github.com/open-telemetry/opentelemetry-specification/blob/main/spec-compliance-matrix.md#logs) to see the implementation status in the corresponding language.
+> Events are in-development and not yet available in some languages. Check the [spec-compliance matrix](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.59.0/spec-compliance-matrix.md#logs) to see the implementation status in the corresponding language.
 
 <!-- START doctoc -->
 
@@ -44,18 +44,19 @@ operation completes.
 
 **Emission rules.**
 
-At most one `otel.sdk.component.shutdown` event is emitted per provider
-instance per process lifetime.
+Implementations MUST NOT emit more than one
+`otel.sdk.component.shutdown` event per provider instance.
 
 If the process terminates without invoking the provider's shutdown
 (e.g. a crash, `SIGKILL`, container eviction, or immediate process
 termination), no event is expected. Consumers MUST NOT interpret the
 absence of this event as evidence of a clean shutdown.
 
-The event timestamp SHOULD reflect the time at which the provider fully
-completed the shutdown process, including shutting down all child
-components. Combined with the `otel.component.shutdown.duration`
-attribute, the start of the shutdown attempt can be reconstructed as
+The event timestamp MUST be set to the time at which the provider's
+shutdown attempt ended, whether it completed successfully, failed, or
+timed out. This includes the time spent shutting down all child
+components. When `otel.component.shutdown.duration` is present, the
+start of the shutdown attempt can be reconstructed as
 `timestamp - duration`.
 
 **Severity.**
@@ -90,9 +91,9 @@ These values will therefore be reused in the case of an application restart.
 **[2] `otel.component.type`:** If none of the standardized values apply, implementations SHOULD use the language-defined name of the type.
 E.g. for Java the fully qualified classname SHOULD be used in this case.
 
-**[3] `error.type`:** `timeout` takes precedence over `failed` when both conditions are
-observed (e.g. the shutdown budget expired while a child component
-was still flushing).
+**[3] `error.type`:** Implementations MUST set `error.type` to `timeout` when both
+conditions are observed (e.g. the shutdown budget expired while a
+child component was still flushing).
 
 Documented values for this event:
 

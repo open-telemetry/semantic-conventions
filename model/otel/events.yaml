@@ -15,18 +15,19 @@ groups:
 
       **Emission rules.**
 
-      At most one `otel.sdk.component.shutdown` event is emitted per provider
-      instance per process lifetime.
+      Implementations MUST NOT emit more than one
+      `otel.sdk.component.shutdown` event per provider instance.
 
       If the process terminates without invoking the provider's shutdown
       (e.g. a crash, `SIGKILL`, container eviction, or immediate process
       termination), no event is expected. Consumers MUST NOT interpret the
       absence of this event as evidence of a clean shutdown.
 
-      The event timestamp SHOULD reflect the time at which the provider fully
-      completed the shutdown process, including shutting down all child
-      components. Combined with the `otel.component.shutdown.duration`
-      attribute, the start of the shutdown attempt can be reconstructed as
+      The event timestamp MUST be set to the time at which the provider's
+      shutdown attempt ended, whether it completed successfully, failed, or
+      timed out. This includes the time spent shutting down all child
+      components. When `otel.component.shutdown.duration` is present, the
+      start of the shutdown attempt can be reconstructed as
       `timestamp - duration`.
 
       **Severity.**
@@ -48,9 +49,9 @@ groups:
         brief: >
           Describes the class of error that caused the shutdown to fail.
         note: |
-          `timeout` takes precedence over `failed` when both conditions are
-          observed (e.g. the shutdown budget expired while a child component
-          was still flushing).
+          Implementations MUST set `error.type` to `timeout` when both
+          conditions are observed (e.g. the shutdown budget expired while a
+          child component was still flushing).
 
           Documented values for this event:
 
