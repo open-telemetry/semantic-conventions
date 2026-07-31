@@ -221,13 +221,22 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 Instrumentations MAY propagate context by using an Oracle driver mechanism that piggybacks application context to the server in the same round trip as the SQL statement. Context injection SHOULD NOT be enabled by default, but instrumentations MAY allow users to opt into it.
 
-When using W3C Trace Context, instrumentations SHOULD inject [`traceparent`](https://www.w3.org/TR/trace-context/#traceparent-header). If [`tracestate`](https://www.w3.org/TR/trace-context/#tracestate-header) is present, instrumentations MAY inject it together with `traceparent` as part of the propagated trace context value.
+When using W3C Trace Context, instrumentations SHOULD inject a valid [`traceparent`](https://www.w3.org/TR/trace-context/#traceparent-header). If a valid [`tracestate`](https://www.w3.org/TR/trace-context/#tracestate-header) is present, instrumentations MAY inject it together with `traceparent` as part of the propagated trace context value.
 
 If supported by the driver and server-side conventions, instrumentations MAY also propagate [`baggage`](https://www.w3.org/TR/baggage/) separately from trace context.
 
-Instrumentations that propagate context MUST use the Oracle driver API on the same connection object that is used to execute the SQL statement. Instrumentations SHOULD use driver APIs that associate the context with the statement execution without requiring an additional database call.
+Instrumentations that propagate context MUST use the Oracle driver API on the same connection that executes the SQL statement. Instrumentations SHOULD use driver APIs that associate the context with statement execution without requiring an additional database call.
 
-When the Oracle driver exposes an application context API, instrumentations SHOULD use that API to associate the trace context in the `CLIENTCONTEXT` namespace using the key `ora$opentelem$tracectx`. When supported, instrumentations MAY use the same API to send baggage in the same namespace using a separate key such as `ora$opentelem$baggage`. For example, in Java (`oracle.jdbc`), this is supported via [JDBC Connection Tracing APIs](https://docs.oracle.com/en/database/oracle/oracle-database/26/jajdb/oracle/jdbc/OracleConnection.html#Tracing) by enabling server-side telemetry and setting `clientcontext.ora$opentelem$tracectx` using `setClientInfo`. The value of `ora$opentelem$tracectx` MUST be formatted as one or more fields, each terminated by CRLF (`\r\n`), with the syntax `field-name ":" SP field-value CRLF`. If `tracestate` is absent, its field line MUST be entirely omitted, and the string MUST consist solely of the `traceparent` line terminated by a single `CRLF`.
+When the Oracle driver exposes an application context API, instrumentations SHOULD use that API to associate the trace context in the `CLIENTCONTEXT` namespace using the key `ora$opentelem$tracectx`. When supported, instrumentations MAY use the same API to send baggage in the same namespace using a separate key such as `ora$opentelem$baggage`. For example, in Java (`oracle.jdbc`), this is supported via [JDBC Connection Tracing APIs](https://docs.oracle.com/en/database/oracle/oracle-database/26/jajdb/oracle/jdbc/OracleConnection.html#Tracing) by enabling server-side telemetry and setting `clientcontext.ora$opentelem$tracectx` using `setClientInfo`.
+
+The value of `ora$opentelem$tracectx` MUST use this exact field order and syntax:
+
+```text
+traceparent: SP traceparent-value CRLF
+[tracestate: SP tracestate-value CRLF]
+```
+
+`SP` is one ASCII space byte (`0x20`). `CRLF` is the two-byte sequence carriage return (`0x0D`) followed by line feed (`0x0A`), represented as `\r\n`. `traceparent-value` and `tracestate-value` are values valid under their respective W3C Trace Context definitions. The bracketed `tracestate` line is optional as a whole. Instrumentations MUST NOT include any other fields in this value, MUST NOT emit an empty `tracestate` line, and MUST NOT add extra whitespace or line terminators.
 
 Example payload with both fields present (note the trailing `\r\n` on each line):
 
@@ -244,7 +253,7 @@ traceparent: 00-0af7651916cd43dd8448eb211c80319c-b7ad6b7169203331-01\r\n
 
 > **Note:** While this specification defines the wire format for `traceparent` and `tracestate` to ensure cross-language instrumentation consistency and forward compatibility, current versions of the Oracle Database server may only parse and evaluate the `traceparent` field. The `tracestate` data is safely passed along to the server via the driver but is intended for evaluation in a future database server release.
 
-Although `Application Context` is not constrained by the 64 byte limit of `V$SESSION.ACTION`, it can still be subject to application context size limits. Oracle application context values are limited to 4000 bytes (see the [`SYS_CONTEXT`](https://docs.oracle.com/en/database/oracle/oracle-database/26/sqlrf/SYS_CONTEXT.html) documentation). Furthermore, this mechanism requires support from both the database client driver and the database server version in use. To successfully capture and process these values for end-to-end tracing, the database server must also be explicitly configured to enable tracing.
+Although `Application Context` is not constrained by the 64-byte limit of `V$SESSION.ACTION`, it is subject to a 4000-byte application-context limit (see the [`SYS_CONTEXT`](https://docs.oracle.com/en/database/oracle/oracle-database/26/sqlrf/SYS_CONTEXT.html) documentation). Furthermore, this mechanism requires support from both the database client driver and the database server version in use. To successfully capture and process these values for end-to-end tracing, the database server must also be explicitly configured to enable tracing.
 
 Compared with `V$SESSION.ACTION`, `Application Context` avoids overloading a field that applications may already use and is not constrained by the 64 byte limit of `ACTION`.
 
@@ -252,18 +261,17 @@ Compared with `V$SESSION.ACTION`, `Application Context` avoids overloading a fie
 
 Both `Application Context` and `V$SESSION.ACTION` MAY be enabled concurrently in the same application. See **Choice of Propagation Mechanism** for recommendations on selecting and combining these mechanisms.
 
-Note that Oracle database drivers in different languages expose different APIs for enabling `Application Context`. In .NET, using the [ODP.NET Core or managed ODP.NET driver](https://docs.oracle.com/en/database/oracle/oracle-database/26/odpnt/featOpenTelemetry.html#GUID-498BB919-43C4-494F-A73B-74980C40CFF3), the instrumentation hooks into the built-in provider source, and users enable server-side propagation via the DatabaseOpenTelemetryTracing property on the connection.
+Note that Oracle database drivers in different languages expose different APIs for enabling `Application Context`. In .NET, users enable server-side propagation with the `DatabaseOpenTelemetryTracing` property on an ODP.NET connection. The following example targets [ODP.NET Core](https://docs.oracle.com/en/database/oracle/oracle-database/26/odpnt/featOpenTelemetry.html#GUID-498BB919-43C4-494F-A73B-74980C40CFF3), version 23.26.2 or later.
 
 Example:
 
 ```csharp
 using OpenTelemetry;
-using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
 using Oracle.ManagedDataAccess.Client;
 
 // 1. Setup the OpenTelemetry Tracer Provider targeting the Oracle driver source
-var tracerProvider = Sdk.CreateTracerProviderBuilder()
+using var tracerProvider = Sdk.CreateTracerProviderBuilder()
     .AddSource("Oracle.ManagedDataAccess.Core")
     .AddOtlpExporter() // Exports this application's spans to an OTLP collector.
     .Build();
@@ -314,18 +322,29 @@ Instrumentations SHOULD use the driver-provided API when available rather than i
 For example, in [node-oracledb](https://node-oracledb.readthedocs.io/en/latest/api_manual/connection.html#connection.action), instrumentation can set the `action` property on the connection before executing statements:
 
 ```javascript
+import oracledb from "oracledb";
+
 // The instrumentation sets the current W3C traceparent.
 const traceparent =
     "00-0af7651916cd43dd8448eb211c80319c-b7ad6b7169203331-01";
 
-connection.action = traceparent;
+const connection = await oracledb.getConnection({
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  connectString: process.env.DB_CONNECT_STRING,
+});
 
-await connection.execute("SELECT * FROM songs");
+try {
+  connection.action = traceparent;
+  await connection.execute("SELECT * FROM songs");
+} finally {
+  await connection.close();
+}
 ```
 
 ### Choice of Propagation Mechanism
 
-When selecting a context propagation strategy for Oracle Database, telemetry implementations SHOULD use `Application Context` for native distributed tracing, and MAY combine it with  `V$SESSION.ACTION` for out-of-band query sampling.
+When selecting a context propagation strategy for Oracle Database, telemetry implementations SHOULD use `Application Context` for native distributed tracing, and MAY combine it with `V$SESSION.ACTION` for out-of-band query sampling.
 
 | Mechanism | Implementation Type | Minimum Stack Requirements | Behavior |
 | :--- | :--- | :--- | :--- |
