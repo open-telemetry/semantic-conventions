@@ -2,6 +2,6 @@ change_type: enhancement
 component: server, client, source, destination
 note: >
   The descriptions of the `server`, `client`, `source`, and `destination` attribute groups
-  are now documented in [General attributes](docs/general/attributes.md)
+  are now documented in [General attributes](https://github.com/open-telemetry/semantic-conventions/blob/main/docs/general/attributes.md)
   instead of the attribute registry pages.
 issues: [3935]
