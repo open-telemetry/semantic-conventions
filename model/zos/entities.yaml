@@ -1,8 +1,5 @@
 groups:
   - id: entity.zos.software
-    annotations:
-      dependency_resolution:
-        exclude: true
     type: entity
     stability: development
     name: zos.software

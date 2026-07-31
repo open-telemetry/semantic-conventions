@@ -1,10 +1,6 @@
 # Metric requirement levels
 
-**Status**: [Deprecated][DocumentStatus]
-
-> [!WARNING]
->
-> This document has been replaced by the generic [Signal Requirement Level](./signal-requirement-level.md).
+**Status**: [Stable][DocumentStatus]
 
 <details>
 <summary>Table of Contents</summary>

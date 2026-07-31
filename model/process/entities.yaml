@@ -1,7 +1,7 @@
 groups:
   - id: entity.process
     type: entity
-    stability: release_candidate
+    stability: development
     name: process
     brief: >
         An operating system process.

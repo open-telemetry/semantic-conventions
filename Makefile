@@ -260,13 +260,14 @@ generate-gh-issue-templates:
 	mkdir -p $(TOOLS_DIR)/bin
 	$(DOCKER_RUN) --rm \
 	$(DOCKER_USER_IS_HOST_USER_ARG) \
-	--mount 'type=bind,source=$(PWD)/internal/tools/scripts/registry,target=/home/weaver/templates,readonly' \
+	--mount 'type=bind,source=$(PWD)/internal/tools/scripts,target=/home/weaver/templates,readonly' \
 	--mount 'type=bind,source=$(PWD)/model,target=/home/weaver/source,readonly' \
 	--mount 'type=bind,source=$(TOOLS_DIR)/bin,target=/home/weaver/target' \
 	$(WEAVER_CONTAINER) registry generate \
 		--registry=/home/weaver/source \
 		--templates=/home/weaver/templates \
-		areas \
+		--config=/home/weaver/templates/registry/areas-weaver.yaml \
+		. \
 		/home/weaver/target
 	$(TOOLS_DIR)/scripts/update-issue-template-areas.sh $(PWD)/internal/tools/bin/areas.txt
 
@@ -313,13 +314,14 @@ check-dead-yaml:
 	mkdir -p $(TOOLS_DIR)/bin
 	$(DOCKER_RUN) --rm \
 	$(DOCKER_USER_IS_HOST_USER_ARG) \
-	--mount 'type=bind,source=$(PWD)/internal/tools/scripts/registry,target=/home/weaver/templates,readonly' \
+	--mount 'type=bind,source=$(PWD)/internal/tools/scripts,target=/home/weaver/templates,readonly' \
 	--mount 'type=bind,source=$(PWD)/model,target=/home/weaver/source,readonly' \
 	--mount 'type=bind,source=$(TOOLS_DIR)/bin,target=/home/weaver/target' \
 	$(WEAVER_CONTAINER) registry generate \
 		--registry=/home/weaver/source \
 		--templates=/home/weaver/templates \
-		signal-groups \
+		--config=/home/weaver/templates/registry/signal-groups-weaver.yaml \
+		. \
 		/home/weaver/target
 	$(TOOLS_DIR)/scripts/find-dead-yaml.sh $(PWD)/internal/tools/bin/signal-groups.txt $(PWD)/docs
 
@@ -343,13 +345,6 @@ generate-schema-next:
 		--output /home/weaver/target
 		# --param next_version=$(NEXT_SEMCONV_VERSION)
 	$(TOOLS_DIR)/scripts/generate-schema-next.sh $(NEXT_SEMCONV_VERSION) $(LATEST_RELEASED_SEMCONV_VERSION) $(TOOLS_DIR)/bin/schema-diff.yaml
-	@tmp_file=$$(mktemp); \
-	$(SED) 's|^schema_url: https://opentelemetry.io/schemas/.*$$|schema_url: https://opentelemetry.io/schemas/$(NEXT_SEMCONV_VERSION)|' model/manifest.yaml > "$$tmp_file" && \
-	mv "$$tmp_file" model/manifest.yaml || { \
-		rm -f "$$tmp_file"; \
-		echo "Failed to update schema_url in model/manifest.yaml"; \
-		exit 1; \
-	};
 
 .PHONY: areas-table-generation
 areas-table-generation:

@@ -94,11 +94,11 @@ groups:
           members:
             - id: major
               value: 'major'
-              stability: release_candidate
+              stability: development
             - id: minor
               value: 'minor'
-              stability: release_candidate
-        stability: release_candidate
+              stability: development
+        stability: development
         brief: "The paging fault type"
         examples: ["minor"]
       - id: system.paging.direction

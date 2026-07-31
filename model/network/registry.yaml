@@ -225,14 +225,12 @@ groups:
           members:
             - id: transmit
               value: 'transmit'
-              stability: release_candidate
+              stability: development
             - id: receive
               value: 'receive'
-              stability: release_candidate
-        stability: release_candidate
-        brief: >
-          The direction of traffic from the perspective of the observing host's physical or virtual network interface.
-          It should not be used to represent the logical direction of a stateful connection or network flow.
+              stability: development
+        stability: development
+        brief: "The network IO operation direction."
         examples: ["transmit"]
       - id: network.interface.name
         type: string

@@ -18,9 +18,6 @@ groups:
     attributes:
       - id: gen_ai.usage.prompt_tokens
         type: int
-        annotations:
-          dependency_resolution:
-            exclude: true
         stability: development
         deprecated:
           reason: uncategorized
@@ -30,9 +27,6 @@ groups:
         examples: [42]
       - id: gen_ai.usage.completion_tokens
         type: int
-        annotations:
-          dependency_resolution:
-            exclude: true
         stability: development
         deprecated:
           reason: uncategorized
@@ -42,9 +36,6 @@ groups:
         examples: [42]
       - id: gen_ai.prompt
         type: string
-        annotations:
-          dependency_resolution:
-            exclude: true
         stability: development
         deprecated:
           reason: obsoleted
@@ -53,9 +44,6 @@ groups:
         examples: ["[{'role': 'user', 'content': 'What is the capital of France?'}]"]
       - id: gen_ai.completion
         type: string
-        annotations:
-          dependency_resolution:
-            exclude: true
         stability: development
         deprecated:
           reason: obsoleted
@@ -64,9 +52,6 @@ groups:
         examples: ["[{'role': 'assistant', 'content': 'The capital of France is Paris.'}]"]
       - id: gen_ai.system
         stability: development
-        annotations:
-          dependency_resolution:
-            exclude: true
         type:
           members:
             - id: openai
@@ -179,9 +164,6 @@ groups:
     attributes:
       - id: gen_ai.openai.request.seed
         stability: development
-        annotations:
-          dependency_resolution:
-            exclude: true
         type: int
         deprecated:
           reason: uncategorized
@@ -191,9 +173,6 @@ groups:
         examples: [100]
       - id: gen_ai.openai.request.response_format
         stability: development
-        annotations:
-          dependency_resolution:
-            exclude: true
         type:
           members:
             - id: text
@@ -216,9 +195,6 @@ groups:
             Replaced by `gen_ai.output.type`, which has moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
       - id: gen_ai.openai.request.service_tier
         stability: development
-        annotations:
-          dependency_resolution:
-            exclude: true
         type:
           members:
             - id: auto
@@ -236,9 +212,6 @@ groups:
             Replaced by `openai.request.service_tier`, which has moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
       - id: gen_ai.openai.response.service_tier
         stability: development
-        annotations:
-          dependency_resolution:
-            exclude: true
         type: string
         brief: "Deprecated, use `openai.response.service_tier`."
         examples: ['scale', 'default']
@@ -248,9 +221,6 @@ groups:
             Replaced by `openai.response.service_tier`, which has moved to the [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai).
       - id: gen_ai.openai.response.system_fingerprint
         stability: development
-        annotations:
-          dependency_resolution:
-            exclude: true
         type: string
         brief: "Deprecated, use `openai.response.system_fingerprint`."
         examples: ["fp_44709d6fcb"]
@@ -273,9 +243,6 @@ groups:
     attributes:
       - id: gen_ai.provider.name
         stability: development
-        annotations:
-          dependency_resolution:
-            exclude: true
         deprecated:
           reason: uncategorized
           note: >
@@ -373,9 +340,6 @@ groups:
           `openai.*` attributes.
       - id: gen_ai.request.model
         stability: development
-        annotations:
-          dependency_resolution:
-            exclude: true
         deprecated:
           reason: uncategorized
           note: >
@@ -386,9 +350,6 @@ groups:
 
       - id: gen_ai.request.max_tokens
         stability: development
-        annotations:
-          dependency_resolution:
-            exclude: true
         deprecated:
           reason: uncategorized
           note: >
@@ -398,9 +359,6 @@ groups:
         examples: [100]
       - id: gen_ai.request.choice.count
         stability: development
-        annotations:
-          dependency_resolution:
-            exclude: true
         deprecated:
           reason: uncategorized
           note: >
@@ -410,9 +368,6 @@ groups:
         examples: [3]
       - id: gen_ai.request.temperature
         stability: development
-        annotations:
-          dependency_resolution:
-            exclude: true
         deprecated:
           reason: uncategorized
           note: >
@@ -422,9 +377,6 @@ groups:
         examples: [0.0]
       - id: gen_ai.request.top_p
         stability: development
-        annotations:
-          dependency_resolution:
-            exclude: true
         deprecated:
           reason: uncategorized
           note: >
@@ -434,9 +386,6 @@ groups:
         examples: [1.0]
       - id: gen_ai.request.top_k
         stability: development
-        annotations:
-          dependency_resolution:
-            exclude: true
         deprecated:
           reason: uncategorized
           note: >
@@ -446,9 +395,6 @@ groups:
         examples: [1.0]
       - id: gen_ai.request.stop_sequences
         stability: development
-        annotations:
-          dependency_resolution:
-            exclude: true
         deprecated:
           reason: uncategorized
           note: >
@@ -459,9 +405,6 @@ groups:
           - [forest, lived]
       - id: gen_ai.request.frequency_penalty
         stability: development
-        annotations:
-          dependency_resolution:
-            exclude: true
         deprecated:
           reason: uncategorized
           note: >
@@ -471,9 +414,6 @@ groups:
         examples: [0.1]
       - id: gen_ai.request.presence_penalty
         stability: development
-        annotations:
-          dependency_resolution:
-            exclude: true
         deprecated:
           reason: uncategorized
           note: >
@@ -483,9 +423,6 @@ groups:
         examples: [0.1]
       - id: gen_ai.request.encoding_formats
         stability: development
-        annotations:
-          dependency_resolution:
-            exclude: true
         deprecated:
           reason: uncategorized
           note: >
@@ -500,9 +437,6 @@ groups:
           Also, some GenAI systems only accept a single format per request.
       - id: gen_ai.request.seed
         stability: development
-        annotations:
-          dependency_resolution:
-            exclude: true
         deprecated:
           reason: uncategorized
           note: >
@@ -512,9 +446,6 @@ groups:
         examples: [100]
       - id: gen_ai.request.stream
         stability: development
-        annotations:
-          dependency_resolution:
-            exclude: true
         deprecated:
           reason: uncategorized
           note: >
@@ -523,9 +454,6 @@ groups:
         brief: Indicates whether the GenAI request was made in streaming mode.
       - id: gen_ai.response.id
         stability: development
-        annotations:
-          dependency_resolution:
-            exclude: true
         deprecated:
           reason: uncategorized
           note: >
@@ -535,9 +463,6 @@ groups:
         examples: ['chatcmpl-123']
       - id: gen_ai.response.model
         stability: development
-        annotations:
-          dependency_resolution:
-            exclude: true
         deprecated:
           reason: uncategorized
           note: >
@@ -547,9 +472,6 @@ groups:
         examples: ['gpt-4-0613']
       - id: gen_ai.response.finish_reasons
         stability: development
-        annotations:
-          dependency_resolution:
-            exclude: true
         deprecated:
           reason: uncategorized
           note: >
@@ -561,9 +483,6 @@ groups:
           - [stop, length]
       - id: gen_ai.response.time_to_first_chunk
         stability: development
-        annotations:
-          dependency_resolution:
-            exclude: true
         deprecated:
           reason: uncategorized
           note: >
@@ -576,9 +495,6 @@ groups:
         examples: [0.5, 1.2]
       - id: gen_ai.usage.input_tokens
         stability: development
-        annotations:
-          dependency_resolution:
-            exclude: true
         deprecated:
           reason: uncategorized
           note: >
@@ -593,9 +509,6 @@ groups:
         examples: [100]
       - id: gen_ai.usage.cache_read.input_tokens
         stability: development
-        annotations:
-          dependency_resolution:
-            exclude: true
         deprecated:
           reason: uncategorized
           note: >
@@ -607,9 +520,6 @@ groups:
         examples: [50]
       - id: gen_ai.usage.cache_creation.input_tokens
         stability: development
-        annotations:
-          dependency_resolution:
-            exclude: true
         deprecated:
           reason: uncategorized
           note: >
@@ -621,9 +531,6 @@ groups:
         examples: [25]
       - id: gen_ai.usage.output_tokens
         stability: development
-        annotations:
-          dependency_resolution:
-            exclude: true
         deprecated:
           reason: uncategorized
           note: >
@@ -633,9 +540,6 @@ groups:
         examples: [180]
       - id: gen_ai.usage.reasoning.output_tokens
         stability: development
-        annotations:
-          dependency_resolution:
-            exclude: true
         deprecated:
           reason: uncategorized
           note: >
@@ -647,9 +551,6 @@ groups:
         examples: [50]
       - id: gen_ai.token.type
         stability: development
-        annotations:
-          dependency_resolution:
-            exclude: true
         deprecated:
           reason: uncategorized
           note: >
@@ -675,9 +576,6 @@ groups:
         examples: ['input', 'output']
       - id: gen_ai.conversation.id
         stability: development
-        annotations:
-          dependency_resolution:
-            exclude: true
         deprecated:
           reason: uncategorized
           note: >
@@ -687,9 +585,6 @@ groups:
         examples: ["conv_5j66UpCpwteGg4YSxUnt7lPY"]
       - id: gen_ai.agent.id
         stability: development
-        annotations:
-          dependency_resolution:
-            exclude: true
         deprecated:
           reason: uncategorized
           note: >
@@ -699,9 +594,6 @@ groups:
         examples: ['asst_5j66UpCpwteGg4YSxUnt7lPY']
       - id: gen_ai.agent.name
         stability: development
-        annotations:
-          dependency_resolution:
-            exclude: true
         deprecated:
           reason: uncategorized
           note: >
@@ -711,9 +603,6 @@ groups:
         examples: ["Math Tutor", "Fiction Writer"]
       - id: gen_ai.agent.description
         stability: development
-        annotations:
-          dependency_resolution:
-            exclude: true
         deprecated:
           reason: uncategorized
           note: >
@@ -723,9 +612,6 @@ groups:
         examples: ["Helps with math problems", "Generates fiction stories"]
       - id: gen_ai.agent.version
         stability: development
-        annotations:
-          dependency_resolution:
-            exclude: true
         deprecated:
           reason: uncategorized
           note: >
@@ -735,9 +621,6 @@ groups:
         examples: ["1.0.0", "2025-05-01"]
       - id: gen_ai.tool.name
         stability: development
-        annotations:
-          dependency_resolution:
-            exclude: true
         deprecated:
           reason: uncategorized
           note: >
@@ -748,9 +631,6 @@ groups:
 
       - id: gen_ai.tool.call.id
         stability: development
-        annotations:
-          dependency_resolution:
-            exclude: true
         deprecated:
           reason: uncategorized
           note: >
@@ -760,9 +640,6 @@ groups:
         examples: ['call_mszuSIzqtI65i1wAUOE8w5H4']
       - id: gen_ai.tool.description
         stability: development
-        annotations:
-          dependency_resolution:
-            exclude: true
         deprecated:
           reason: uncategorized
           note: >
@@ -772,9 +649,6 @@ groups:
         examples: ["Multiply two numbers"]
       - id: gen_ai.tool.type
         stability: development
-        annotations:
-          dependency_resolution:
-            exclude: true
         deprecated:
           reason: uncategorized
           note: >
@@ -791,9 +665,6 @@ groups:
 
       - id: gen_ai.tool.call.arguments
         stability: development
-        annotations:
-          dependency_resolution:
-            exclude: true
         deprecated:
           reason: uncategorized
           note: >
@@ -816,9 +687,6 @@ groups:
 
       - id: gen_ai.tool.call.result
         stability: development
-        annotations:
-          dependency_resolution:
-            exclude: true
         deprecated:
           reason: uncategorized
           note: >
@@ -845,9 +713,6 @@ groups:
 
       - id: gen_ai.tool.definitions
         stability: development
-        annotations:
-          dependency_resolution:
-            exclude: true
         deprecated:
           reason: uncategorized
           note: >
@@ -896,9 +761,6 @@ groups:
 
       - id: gen_ai.data_source.id
         stability: development
-        annotations:
-          dependency_resolution:
-            exclude: true
         deprecated:
           reason: uncategorized
           note: >
@@ -913,9 +775,6 @@ groups:
         examples: ['H7STPQYOND']
       - id: gen_ai.operation.name
         stability: development
-        annotations:
-          dependency_resolution:
-            exclude: true
         deprecated:
           reason: uncategorized
           note: >
@@ -965,9 +824,6 @@ groups:
           If a different name is not documented, instrumentation libraries SHOULD use applicable predefined value.
       - id: gen_ai.output.type
         stability: development
-        annotations:
-          dependency_resolution:
-            exclude: true
         deprecated:
           reason: uncategorized
           note: >
@@ -1006,9 +862,6 @@ groups:
           `gen_ai.output.{type}.*` attributes.
       - id: gen_ai.embeddings.dimension.count
         stability: development
-        annotations:
-          dependency_resolution:
-            exclude: true
         deprecated:
           reason: uncategorized
           note: >
@@ -1018,9 +871,6 @@ groups:
         examples: [512, 1024]
       - id: gen_ai.retrieval.documents
         stability: development
-        annotations:
-          dependency_resolution:
-            exclude: true
         deprecated:
           reason: uncategorized
           note: >
@@ -1053,9 +903,6 @@ groups:
               ]
       - id: gen_ai.retrieval.query.text
         stability: development
-        annotations:
-          dependency_resolution:
-            exclude: true
         deprecated:
           reason: uncategorized
           note: >
@@ -1068,9 +915,6 @@ groups:
         examples: ["What is the capital of France?", "weather in Paris"]
       - id: gen_ai.system_instructions
         stability: development
-        annotations:
-          dependency_resolution:
-            exclude: true
         deprecated:
           reason: uncategorized
           note: >
@@ -1120,9 +964,6 @@ groups:
               ]
       - id: gen_ai.input.messages
         stability: development
-        annotations:
-          dependency_resolution:
-            exclude: true
         deprecated:
           reason: uncategorized
           note: >
@@ -1183,9 +1024,6 @@ groups:
               ]
       - id: gen_ai.output.messages
         stability: development
-        annotations:
-          dependency_resolution:
-            exclude: true
         deprecated:
           reason: uncategorized
           note: >
@@ -1229,9 +1067,6 @@ groups:
               ]
       - id: gen_ai.evaluation.name
         stability: development
-        annotations:
-          dependency_resolution:
-            exclude: true
         deprecated:
           reason: uncategorized
           note: >
@@ -1241,9 +1076,6 @@ groups:
         examples: ["Relevance", "IntentResolution"]
       - id: gen_ai.evaluation.score.value
         stability: development
-        annotations:
-          dependency_resolution:
-            exclude: true
         deprecated:
           reason: uncategorized
           note: >
@@ -1253,9 +1085,6 @@ groups:
         examples: [4.0]
       - id: gen_ai.evaluation.score.label
         stability: development
-        annotations:
-          dependency_resolution:
-            exclude: true
         deprecated:
           reason: uncategorized
           note: >
@@ -1270,9 +1099,6 @@ groups:
           Possible values depend on the evaluation metric and evaluator used; implementations SHOULD document the possible values.
       - id: gen_ai.evaluation.explanation
         stability: development
-        annotations:
-          dependency_resolution:
-            exclude: true
         deprecated:
           reason: uncategorized
           note: >
@@ -1282,9 +1108,6 @@ groups:
         examples: ["The response is factually accurate but lacks sufficient detail to fully address the question."]
       - id: gen_ai.prompt.name
         type: string
-        annotations:
-          dependency_resolution:
-            exclude: true
         brief: The name of the prompt that uniquely identifies it.
         stability: development
         deprecated:
@@ -1294,9 +1117,6 @@ groups:
         examples: ["analyze-code"]
       - id: gen_ai.workflow.name
         stability: development
-        annotations:
-          dependency_resolution:
-            exclude: true
         deprecated:
           reason: uncategorized
           note: >
