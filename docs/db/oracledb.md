@@ -265,7 +265,7 @@ using Oracle.ManagedDataAccess.Client;
 // 1. Setup the OpenTelemetry Tracer Provider targeting the Oracle driver source
 var tracerProvider = Sdk.CreateTracerProviderBuilder()
     .AddSource("Oracle.ManagedDataAccess.Core")
-    .AddOtlpExporter() // Exporters must be OpenTelemetry Protocol (OTLP) compliant for Oracle Database OpenTelemetry
+    .AddOtlpExporter() // Exports this application's spans to an OTLP collector.
     .Build();
 
 string connectString = "<your_connection_string>";
