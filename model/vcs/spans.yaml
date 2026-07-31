@@ -4,10 +4,9 @@ groups:
     span_kind: client
     stability: development
     brief: >
-      This span describes a Version Control System (VCS) operation client, such as a Git CLI command or a CI/CD pipeline step cloning a repository.
+      This span describes a Version Control System (VCS) operation that interacts with a remote, such as cloning a repository or pushing a commit.
     note: |
-      VCS client spans are typically emitted by CI/CD pipeline steps executing VCS operations (e.g. checkout or clone tasks),
-      or by wrapper tools and CLI utilities performing Git, SVN, or Mercurial operations.
+      VCS client spans are typically emitted by wrapper tools and CLI utilities performing Git, SVN, or Mercurial operations that interact with a remote repository.
 
       **Span name** MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/trace/api.md#span).
 
@@ -22,7 +21,15 @@ groups:
       - ref: vcs.repository.name
         requirement_level: required
       - ref: vcs.repository.url.full
-        requirement_level: recommended
+        requirement_level: opt_in
+      - ref: vcs.owner.name
+        requirement_level: opt_in
+      - ref: process.command_args
+        requirement_level: opt_in
+      - ref: process.command_line
+        requirement_level: opt_in
+      - ref: process.working_directory
+        requirement_level: opt_in
       - ref: vcs.ref.head.name
         requirement_level: recommended
       - ref: vcs.ref.head.revision

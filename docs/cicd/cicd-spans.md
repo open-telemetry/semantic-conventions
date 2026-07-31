@@ -212,10 +212,9 @@ and SHOULD be provided **at span creation time** (if provided at all):
 
 **Status:** ![Development](https://img.shields.io/badge/-development-blue)
 
-This span describes a Version Control System (VCS) operation client, such as a Git CLI command or a CI/CD pipeline step cloning a repository.
+This span describes a Version Control System (VCS) operation that interacts with a remote, such as cloning a repository or pushing a commit.
 
-VCS client spans are typically emitted by CI/CD pipeline steps executing VCS operations (e.g. checkout or clone tasks),
-or by wrapper tools and CLI utilities performing Git, SVN, or Mercurial operations.
+VCS client spans are typically emitted by wrapper tools and CLI utilities performing Git, SVN, or Mercurial operations that interact with a remote repository.
 
 **Span name** MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/trace/api.md#span).
 
@@ -240,7 +239,11 @@ or `{vcs.operation.name} {vcs.repository.name} {vcs.ref.head.name}`.
 | [`vcs.ref.head.name`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. [6] | `my-feature-branch`; `tag-1-test` |
 | [`vcs.ref.head.revision`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The revision, literally [revised version](https://www.merriam-webster.com/dictionary/revision), The revision most often refers to a commit object in Git, or a revision number in SVN. [7] | `9d59409acf479dfa0df1aa568182e43e43df8bbe28d60fcf2bc52e30068802cc`; `main`; `123`; `HEAD` |
 | [`vcs.ref.type`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository. | `branch`; `tag` |
-| [`vcs.repository.url.full`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The [canonical URL](https://support.google.com/webmasters/answer/10347851) of the repository providing the complete HTTP(S) address in order to locate and identify the repository through a browser. [8] | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` |
+| [`process.command_args`](/docs/registry/attributes/process.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Opt-In` | string[] | All the command arguments (including the command/executable itself) as received by the process. On Linux-based systems (and some other Unixoid systems supporting procfs), can be set according to the list of null-delimited strings extracted from `proc/[pid]/cmdline`. For libc-based executables, this would be the full argv vector passed to `main`. SHOULD NOT be collected by default unless there is sanitization that excludes sensitive data. | `["cmd/otecol", "--config=config.yaml"]` |
+| [`process.command_line`](/docs/registry/attributes/process.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Opt-In` | string | The full command used to launch the process as a single string representing the full command. On Windows, can be set to the result of `GetCommandLineW`. Do not set this if you have to assemble it just for monitoring; use `process.command_args` instead. SHOULD NOT be collected by default unless there is sanitization that excludes sensitive data. | `C:\cmd\otecol --config="my directory\config.yaml"` |
+| [`process.working_directory`](/docs/registry/attributes/process.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Opt-In` | string | The working directory of the process. | `/root` |
+| [`vcs.owner.name`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Opt-In` | string | The group owner within the version control system. | `my-org`; `myteam`; `business-unit` |
+| [`vcs.repository.url.full`](/docs/registry/attributes/vcs.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Opt-In` | string | The [canonical URL](https://support.google.com/webmasters/answer/10347851) of the repository providing the complete HTTP(S) address in order to locate and identify the repository through a browser. [8] | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` |
 
 **[1] `vcs.operation.name`:** For example, in Git, operations include `clone`, `fetch`, `pull`, `push`, `checkout`, etc. In other VCS systems like Perforce or SVN, the operation names may be different (e.g. `sync`, `update`). It SHOULD be the exact operation name as executed by the tool.
 
