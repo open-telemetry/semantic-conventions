@@ -141,9 +141,9 @@ The collection name SHOULD NOT be extracted from `db.query.text`,
 when the database system supports query text with multiple collections
 in non-batch operations.
 
-For batch operations, if the individual operations are known to have the same
-collection name (subject to the restriction above on extracting it from
-`db.query.text`), then that collection name SHOULD be used.
+For batch operations, if the individual operations would all have the same
+`db.collection.name` when executed as non-batch operations,
+then that collection name SHOULD be used.
 
 **[4] `db.namespace`:** If a database system has multiple namespace components, they SHOULD be concatenated from the most general to the most specific namespace component, using `|` as a separator between the components. Any missing components (and their associated separators) SHOULD be omitted.
 Semantic conventions for individual database systems SHOULD document what `db.namespace` means in the context of that system.
@@ -161,9 +161,9 @@ in non-batch operations.
 If spaces can occur in the operation name, multiple consecutive spaces
 SHOULD be normalized to a single space.
 
-For batch operations, if the individual operations are known to have the same
-operation name (subject to the restriction above on extracting it from
-`db.query.text`), then that operation name SHOULD be used prepended by `BATCH `,
+For batch operations, if the individual operations would all have the same
+`db.operation.name` when executed as non-batch operations,
+then that operation name SHOULD be used prepended by `BATCH `,
 otherwise `db.operation.name` SHOULD be `BATCH` or some other database
 system specific term if more applicable.
 

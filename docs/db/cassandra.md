@@ -83,9 +83,9 @@ in non-batch operations.
 If spaces can occur in the operation name, multiple consecutive spaces
 SHOULD be normalized to a single space.
 
-For batch operations, if the individual operations are known to have the same
-operation name (subject to the restriction above on extracting it from
-`db.query.text`), then that operation name SHOULD be used prepended by `BATCH `,
+For batch operations, if the individual operations would all have the same
+`db.operation.name` when executed as non-batch operations,
+then that operation name SHOULD be used prepended by `BATCH `,
 otherwise `db.operation.name` SHOULD be `BATCH` or some other database
 system specific term if more applicable.
 
