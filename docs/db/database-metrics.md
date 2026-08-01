@@ -126,8 +126,8 @@ SHOULD be normalized to a single space.
 
 For batch operations, if the individual operations would all have the same
 `db.operation.name` when executed as non-batch operations,
-then that operation name SHOULD be used prepended by `BATCH `,
-otherwise `db.operation.name` SHOULD be `BATCH` or some other database
+then that operation name SHOULD be used prepended by `BATCH `.
+Otherwise, `db.operation.name` SHOULD be `BATCH` or some other database
 system specific term if more applicable.
 
 **[7] `db.response.status_code`:** If the operation failed and status code is available.
@@ -317,8 +317,8 @@ SHOULD be normalized to a single space.
 
 For batch operations, if the individual operations would all have the same
 `db.operation.name` when executed as non-batch operations,
-then that operation name SHOULD be used prepended by `BATCH `,
-otherwise `db.operation.name` SHOULD be `BATCH` or some other database
+then that operation name SHOULD be used prepended by `BATCH `.
+Otherwise, `db.operation.name` SHOULD be `BATCH` or some other database
 system specific term if more applicable.
 
 **[7] `db.response.status_code`:** If the operation failed and status code is available.
