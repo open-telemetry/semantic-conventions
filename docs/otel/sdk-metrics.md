@@ -553,8 +553,8 @@ This metric is [recommended][MetricRecommended].
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
 | `otel.sdk.log.created` | Counter | `{log_record}` | The number of log records submitted to an enabled `Logger`. [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
 
-**[1]:** In OpenTelemetry SDK's a `Logger` is enabled by default, and can be disabled via configuration ie `LoggerConfig.enabled` = `false` when supported;
-a disabled `Logger` is a No-op, so records submitted to it are not counted.
+**[1]:** In OpenTelemetry SDKs a `Logger` is enabled by default, and can be disabled via configuration i.e. `LoggerConfig.enabled` = `false` when supported;
+a disabled `Logger` is a No-op, so it doesn't create a log record when emit is called.
 Every log record submitted to an enabled `Logger` is counted, even if it is later filtered or dropped within the SDK
 (e.g. by minimum severity or trace-based rules, or by a processor or the export pipeline), making this metric the top of the log delivery funnel.
 Records not submitted to the SDK are not counted (e.g. a caller that skips calling `Emit()` based on an `Enabled()` check, or an upstream logging library that filters first).
