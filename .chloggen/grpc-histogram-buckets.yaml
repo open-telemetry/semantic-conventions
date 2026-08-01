@@ -3,8 +3,9 @@ change_type: enhancement
 component: rpc
 
 note: >
-  Document the default duration histogram bucket boundaries defined by the gRPC
-  project and how they compare to the boundaries advised by OpenTelemetry.
+  Advise gRPC-specific `ExplicitBucketBoundaries` for `rpc.client.call.duration`
+  and `rpc.server.call.duration`, matching the default histogram buckets defined
+  by the gRPC project.
 
 issues: [3869]
 
