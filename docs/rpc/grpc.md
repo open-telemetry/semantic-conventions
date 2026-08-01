@@ -302,4 +302,11 @@ gRPC instrumentations SHOULD collect metrics according to the general
 
 `rpc.system.name` MUST be set to `"grpc"`.
 
+> [!NOTE]
+> The explicit bucket boundaries advised for `rpc.client.call.duration` and
+> `rpc.server.call.duration` differ from the default histogram buckets defined
+> by the gRPC project. See
+> [histogram bucket boundaries](/docs/non-normative/compatibility/grpc.md#histogram-bucket-boundaries)
+> in the gRPC compatibility document for a comparison.
+
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status

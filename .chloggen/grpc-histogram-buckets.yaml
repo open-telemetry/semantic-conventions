@@ -1,0 +1,11 @@
+change_type: enhancement
+
+component: rpc
+
+note: >
+  Document the default duration histogram bucket boundaries defined by the gRPC
+  project and how they compare to the boundaries advised by OpenTelemetry.
+
+issues: [3869]
+
+subtext:
