@@ -1,11 +1,10 @@
-groups:
-  # GPU METRICS
+# yaml-language-server: $schema=https://raw.githubusercontent.com/open-telemetry/weaver/v0.25.1/schemas/semconv.schema.v2.json
+file_format: definition/2
+attribute_groups:
   - id: metric_attributes.hw.gpu
-    type: attribute_group
-    brief: >
-      Common attributes for GPU metrics
-    extends: hardware.attributes.common
+    visibility: internal
     attributes:
+      - ref_group: hardware.attributes.common
       - ref: hw.driver_version
         requirement_level: recommended
       - ref: hw.firmware_version
@@ -17,9 +16,9 @@ groups:
       - ref: hw.vendor
         requirement_level: recommended
 
-  - id: metric.hw.gpu.io
-    type: metric
-    metric_name: hw.gpu.io
+metrics:
+  - name: hw.gpu.io
+    requirement_level: recommended
     annotations:
       code_generation:
         metric_value_type: int
@@ -27,15 +26,14 @@ groups:
     brief: "Received and transmitted bytes by the GPU."
     instrument: counter
     unit: "By"
-    extends: metric_attributes.hw.gpu
     attributes:
+      - ref_group: metric_attributes.hw.gpu
       - ref: network.io.direction
         examples: ["receive", "transmit"]
         requirement_level: required
 
-  - id: metric.hw.gpu.memory.limit
-    type: metric
-    metric_name: hw.gpu.memory.limit
+  - name: hw.gpu.memory.limit
+    requirement_level: recommended
     annotations:
       code_generation:
         metric_value_type: int
@@ -43,11 +41,11 @@ groups:
     brief: "Size of the GPU memory."
     instrument: updowncounter
     unit: "By"
-    extends: metric_attributes.hw.gpu
+    attributes:
+      - ref_group: metric_attributes.hw.gpu
 
-  - id: metric.hw.gpu.memory.utilization
-    type: metric
-    metric_name: hw.gpu.memory.utilization
+  - name: hw.gpu.memory.utilization
+    requirement_level: recommended
     annotations:
       code_generation:
         metric_value_type: double
@@ -55,11 +53,11 @@ groups:
     brief: "Fraction of GPU memory used."
     instrument: gauge
     unit: "1"
-    extends: metric_attributes.hw.gpu
+    attributes:
+      - ref_group: metric_attributes.hw.gpu
 
-  - id: metric.hw.gpu.memory.usage
-    type: metric
-    metric_name: hw.gpu.memory.usage
+  - name: hw.gpu.memory.usage
+    requirement_level: recommended
     annotations:
       code_generation:
         metric_value_type: int
@@ -67,11 +65,11 @@ groups:
     brief: "GPU memory used."
     instrument: updowncounter
     unit: "By"
-    extends: metric_attributes.hw.gpu
+    attributes:
+      - ref_group: metric_attributes.hw.gpu
 
-  - id: metric.hw.gpu.utilization
-    type: metric
-    metric_name: hw.gpu.utilization
+  - name: hw.gpu.utilization
+    requirement_level: recommended
     annotations:
       code_generation:
         metric_value_type: double
@@ -79,8 +77,41 @@ groups:
     brief: "Fraction of time spent in a specific task."
     instrument: gauge
     unit: "1"
-    extends: metric_attributes.hw.gpu
     attributes:
+      - ref_group: metric_attributes.hw.gpu
       - ref: hw.gpu.task
         examples: ["decoder", "encoder", "general"]
         requirement_level: recommended
+
+metric_refinements:
+  - id: metric.hw.gpu.errors
+    ref: hw.errors
+    brief: "Number of errors encountered by the GPU."
+    attributes:
+      - ref_group: metric_attributes.hw.gpu
+      - ref: hw.type
+        note: "MUST be set to `gpu`."
+        examples: ["gpu"]
+      - ref: error.type
+        note: |
+          `error.type` SHOULD be set to one of the following values to indicate the type of error:
+
+          * `corrected`: Errors that were detected and corrected by the GPU.
+          * `uncorrected`: Errors that were detected but could not be corrected by the GPU.
+        examples: ["corrected", "uncorrected"]
+  - id: metric.hw.gpu.status
+    ref: hw.status
+    attributes:
+      - ref_group: metric_attributes.hw.gpu
+      - ref: hw.type
+        note: "MUST be set to `gpu`."
+        examples: ["gpu"]
+      - ref: hw.state
+        note: |
+          MUST be set to one of the following values:
+
+          * `ok`: The GPU is operating normally.
+          * `degraded`: The GPU is operating with reduced functionality or performance.
+          * `failed`: The GPU has failed and is not operational.
+          * `predicted_failure`: The GPU is currently operational but is predicted to fail soon.
+        examples: ["ok", "degraded", "failed", "predicted_failure"]

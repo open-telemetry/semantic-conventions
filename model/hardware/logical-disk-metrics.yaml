@@ -1,17 +1,8 @@
-groups:
-  # LOGICAL DISK METRICS
-  - id: metric_attributes.hw.logical_disk
-    type: attribute_group
-    brief: >
-      Common attributes for logical disk metrics
-    extends: hardware.attributes.common
-    attributes:
-      - ref: hw.logical_disk.raid_level
-        requirement_level: recommended
-
-  - id: metric.hw.logical_disk.limit
-    type: metric
-    metric_name: hw.logical_disk.limit
+# yaml-language-server: $schema=https://raw.githubusercontent.com/open-telemetry/weaver/v0.25.1/schemas/semconv.schema.v2.json
+file_format: definition/2
+metrics:
+  - name: hw.logical_disk.limit
+    requirement_level: recommended
     annotations:
       code_generation:
         metric_value_type: int
@@ -19,11 +10,13 @@ groups:
     brief: "Size of the logical disk."
     instrument: updowncounter
     unit: "By"
-    extends: metric_attributes.hw.logical_disk
+    attributes:
+      - ref_group: hardware.attributes.common
+      - ref: hw.logical_disk.raid_level
+        requirement_level: recommended
 
-  - id: metric.hw.logical_disk.usage
-    type: metric
-    metric_name: hw.logical_disk.usage
+  - name: hw.logical_disk.usage
+    requirement_level: recommended
     annotations:
       code_generation:
         metric_value_type: int
@@ -31,15 +24,16 @@ groups:
     brief: "Logical disk space usage."
     instrument: updowncounter
     unit: "By"
-    extends: metric_attributes.hw.logical_disk
     attributes:
+      - ref_group: hardware.attributes.common
+      - ref: hw.logical_disk.raid_level
+        requirement_level: recommended
       - ref: hw.logical_disk.state
         examples: ["used", "free"]
         requirement_level: required
 
-  - id: metric.hw.logical_disk.utilization
-    type: metric
-    metric_name: hw.logical_disk.utilization
+  - name: hw.logical_disk.utilization
+    requirement_level: recommended
     annotations:
       code_generation:
         metric_value_type: double
@@ -47,8 +41,39 @@ groups:
     brief: "Logical disk space utilization as a fraction."
     instrument: gauge
     unit: "1"
-    extends: metric_attributes.hw.logical_disk
     attributes:
+      - ref_group: hardware.attributes.common
+      - ref: hw.logical_disk.raid_level
+        requirement_level: recommended
       - ref: hw.logical_disk.state
         examples: ["used", "free"]
         requirement_level: required
+
+metric_refinements:
+  - id: metric.hw.logical_disk.errors
+    ref: hw.errors
+    brief: "Number of errors encountered on this logical disk."
+    attributes:
+      - ref_group: hardware.attributes.common
+      - ref: hw.logical_disk.raid_level
+        requirement_level: recommended
+      - ref: hw.type
+        note: "MUST be set to `logical_disk`."
+        examples: ["logical_disk"]
+  - id: metric.hw.logical_disk.status
+    ref: hw.status
+    attributes:
+      - ref_group: hardware.attributes.common
+      - ref: hw.logical_disk.raid_level
+        requirement_level: recommended
+      - ref: hw.type
+        note: "MUST be set to `logical_disk`."
+        examples: ["logical_disk"]
+      - ref: hw.state
+        note: |
+          MUST be set to one of the following values:
+
+          * `ok`: The logical disk is operating normally.
+          * `degraded`: The logical disk is operating with reduced functionality or performance.
+          * `failed`: The logical disk has failed and is not operational.
+        examples: ["ok", "degraded", "failed"]

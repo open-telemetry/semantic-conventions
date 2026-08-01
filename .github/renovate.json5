@@ -5,10 +5,10 @@
   customManagers: [
     {
       customType: "regex",
-      description: "Keep VS Code semconv schema URL in sync with otel/weaver",
-      managerFilePatterns: ["/^\\.vscode/settings\\.json$/"],
+      description: "Keep semconv schema URLs (VS Code settings + v2 model file modelines) in sync with otel/weaver",
+      managerFilePatterns: ["/^\\.vscode/settings\\.json$/", "/^model/.*\\.yaml$/"],
       matchStrings: [
-        "https://raw\\.githubusercontent\\.com/open-telemetry/weaver/(?<currentValue>v\\d+\\.\\d+\\.\\d+)/schemas/semconv\\.schema\\.json",
+        "https://raw\\.githubusercontent\\.com/open-telemetry/weaver/(?<currentValue>v\\d+\\.\\d+\\.\\d+)/schemas/semconv\\.schema(?:\\.v2)?\\.json",
       ],
       depNameTemplate: "open-telemetry/weaver",
       datasourceTemplate: "github-releases",

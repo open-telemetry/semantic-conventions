@@ -1,0 +1,11 @@
+change_type: bug_fix
+
+component: rpc
+
+note: >
+  Remove tracing-only `rpc.method_original` guidance from the shared
+  `rpc.method` definition.
+
+issues: [3872]
+
+subtext:
