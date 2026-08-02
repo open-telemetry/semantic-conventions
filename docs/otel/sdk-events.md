@@ -36,38 +36,25 @@ The event name MUST be `otel.sdk.component.shutdown`.
 
 Indicates that an OpenTelemetry SDK component's shutdown attempt has ended, whether by completing successfully, failing, or timing out.
 
-**Applicability.**
+The component that shut down is identified by `otel.component.type` and
+`otel.component.name`. This event is emitted by an SDK provider instance
+(`TracerProvider`, `LoggerProvider`, `MeterProvider`) when its shutdown
+operation completes, with at most one such event per provider instance.
 
-This event describes the end of an SDK component's shutdown attempt.
-The component is identified by `otel.component.type` and
-`otel.component.name`.
+When a process terminates without the provider's shutdown being invoked
+(for example a crash, `SIGKILL`, container eviction, or immediate
+process termination), no event is produced; the absence of this event
+therefore does not indicate a clean shutdown.
 
-Each SDK provider instance (`TracerProvider`, `LoggerProvider`,
-`MeterProvider`) SHOULD emit this event when its shutdown operation
-completes.
+The event's timestamp corresponds to the time at which the shutdown
+attempt ended, whether it completed successfully, failed, or timed out;
+for a provider this covers the time spent shutting down its child
+components. When `otel.component.shutdown.duration` is present, the start
+of the shutdown attempt can be reconstructed as `timestamp - duration`.
 
-**Emission rules.**
-
-Implementations MUST NOT emit more than one
-`otel.sdk.component.shutdown` event per component instance.
-
-If the process terminates without invoking the component's shutdown
-(e.g. a crash, `SIGKILL`, container eviction, or immediate process
-termination), no event is expected. Consumers MUST NOT interpret the
-absence of this event as evidence of a clean shutdown.
-
-The event timestamp MUST be set to the time at which the component's
-shutdown attempt ended, whether it completed successfully, failed, or
-timed out. For components that own child components (such as
-providers), this includes the time spent shutting those children down.
-When `otel.component.shutdown.duration` is present, the start of the
-shutdown attempt can be reconstructed as `timestamp - duration`.
-
-**Severity.**
-
-Implementations MUST set the log record severity to `WARN`
-(`SeverityNumber` = `13`) when `error.type` is present, and to `INFO`
-(`SeverityNumber` = `9`) otherwise.
+A failed shutdown (`error.type` present) is represented with log record
+severity `WARN` (`SeverityNumber` = `13`); a successful shutdown uses
+`INFO` (`SeverityNumber` = `9`).
 
 **Attributes:**
 
@@ -95,11 +82,7 @@ These values will therefore be reused in the case of an application restart.
 **[2] `otel.component.type`:** If none of the standardized values apply, implementations SHOULD use the language-defined name of the type.
 E.g. for Java the fully qualified classname SHOULD be used in this case.
 
-**[3] `error.type`:** Implementations MUST set `error.type` to `timeout` when both
-conditions are observed (e.g. the shutdown budget expired while a
-child component was still flushing).
-
-Documented values for this event:
+**[3] `error.type`:** Documented values for this event:
 
 | Value | Description |
 | --- | --- |
