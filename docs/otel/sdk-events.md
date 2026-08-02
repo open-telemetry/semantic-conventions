@@ -42,11 +42,10 @@ This event describes the end of an SDK component's shutdown attempt.
 The component is identified by `otel.component.type` and
 `otel.component.name`.
 
-Currently, each SDK provider instance (`TracerProvider`,
-`LoggerProvider`, `MeterProvider`) SHOULD emit this event when its
-shutdown operation completes. Other component types (e.g. processors,
-exporters, metric readers) MAY adopt this event and schema in the
-future; it is intentionally not specific to providers.
+Each SDK provider instance (`TracerProvider`, `LoggerProvider`,
+`MeterProvider`) SHOULD emit this event when its shutdown operation
+completes. Other SDK component types (e.g. processors, exporters,
+metric readers) MAY emit this event when they shut down.
 
 **Emission rules.**
 
