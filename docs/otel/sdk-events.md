@@ -38,26 +38,32 @@ Indicates that an OpenTelemetry SDK component's shutdown attempt has ended, whet
 
 **Applicability.**
 
-This event SHOULD be emitted by each SDK provider instance
-(`TracerProvider`, `LoggerProvider`, `MeterProvider`) when its shutdown
-operation completes.
+This event describes the end of an SDK component's shutdown attempt.
+The component is identified by `otel.component.type` and
+`otel.component.name`.
+
+Currently, each SDK provider instance (`TracerProvider`,
+`LoggerProvider`, `MeterProvider`) SHOULD emit this event when its
+shutdown operation completes. Other component types (e.g. processors,
+exporters, metric readers) MAY adopt this event and schema in the
+future; it is intentionally not specific to providers.
 
 **Emission rules.**
 
 Implementations MUST NOT emit more than one
-`otel.sdk.component.shutdown` event per provider instance.
+`otel.sdk.component.shutdown` event per component instance.
 
-If the process terminates without invoking the provider's shutdown
+If the process terminates without invoking the component's shutdown
 (e.g. a crash, `SIGKILL`, container eviction, or immediate process
 termination), no event is expected. Consumers MUST NOT interpret the
 absence of this event as evidence of a clean shutdown.
 
-The event timestamp MUST be set to the time at which the provider's
+The event timestamp MUST be set to the time at which the component's
 shutdown attempt ended, whether it completed successfully, failed, or
-timed out. This includes the time spent shutting down all child
-components. When `otel.component.shutdown.duration` is present, the
-start of the shutdown attempt can be reconstructed as
-`timestamp - duration`.
+timed out. For components that own child components (such as
+providers), this includes the time spent shutting those children down.
+When `otel.component.shutdown.duration` is present, the start of the
+shutdown attempt can be reconstructed as `timestamp - duration`.
 
 **Severity.**
 
@@ -70,7 +76,7 @@ Implementations MUST set the log record severity to `WARN`
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`otel.component.name`](/docs/registry/attributes/otel.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | A name uniquely identifying the instance of the OpenTelemetry component within its containing SDK instance. [1] | `otlp_grpc_span_exporter/0`; `custom-name` |
-| [`otel.component.type`](/docs/registry/attributes/otel.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The provider type. [2] | `logger_provider`; `tracer_provider`; `meter_provider` |
+| [`otel.component.type`](/docs/registry/attributes/otel.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The type of SDK component that shut down. [2] | `logger_provider`; `tracer_provider`; `meter_provider` |
 | [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if the shutdown was not successful. | string | Describes the class of error that caused the shutdown to fail. [3] | `timeout`; `failed` |
 | [`otel.component.shutdown.duration`](/docs/registry/attributes/otel.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | double | The wall-clock elapsed time of the shutdown attempt, in seconds. Combined with the event timestamp, this lets consumers compute when the shutdown attempt started. [4] | `0.015`; `30.0` |
 

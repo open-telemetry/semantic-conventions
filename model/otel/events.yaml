@@ -9,26 +9,32 @@ groups:
     note: |
       **Applicability.**
 
-      This event SHOULD be emitted by each SDK provider instance
-      (`TracerProvider`, `LoggerProvider`, `MeterProvider`) when its shutdown
-      operation completes.
+      This event describes the end of an SDK component's shutdown attempt.
+      The component is identified by `otel.component.type` and
+      `otel.component.name`.
+
+      Currently, each SDK provider instance (`TracerProvider`,
+      `LoggerProvider`, `MeterProvider`) SHOULD emit this event when its
+      shutdown operation completes. Other component types (e.g. processors,
+      exporters, metric readers) MAY adopt this event and schema in the
+      future; it is intentionally not specific to providers.
 
       **Emission rules.**
 
       Implementations MUST NOT emit more than one
-      `otel.sdk.component.shutdown` event per provider instance.
+      `otel.sdk.component.shutdown` event per component instance.
 
-      If the process terminates without invoking the provider's shutdown
+      If the process terminates without invoking the component's shutdown
       (e.g. a crash, `SIGKILL`, container eviction, or immediate process
       termination), no event is expected. Consumers MUST NOT interpret the
       absence of this event as evidence of a clean shutdown.
 
-      The event timestamp MUST be set to the time at which the provider's
+      The event timestamp MUST be set to the time at which the component's
       shutdown attempt ended, whether it completed successfully, failed, or
-      timed out. This includes the time spent shutting down all child
-      components. When `otel.component.shutdown.duration` is present, the
-      start of the shutdown attempt can be reconstructed as
-      `timestamp - duration`.
+      timed out. For components that own child components (such as
+      providers), this includes the time spent shutting those children down.
+      When `otel.component.shutdown.duration` is present, the start of the
+      shutdown attempt can be reconstructed as `timestamp - duration`.
 
       **Severity.**
 
@@ -39,7 +45,7 @@ groups:
       - ref: otel.component.type
         requirement_level: required
         brief: >
-          The provider type.
+          The type of SDK component that shut down.
         examples: ["logger_provider", "tracer_provider", "meter_provider"]
       - ref: otel.component.name
         requirement_level: required
