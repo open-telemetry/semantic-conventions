@@ -155,9 +155,10 @@ that support query parsing SHOULD generate a summary following
 [Generating query summary](/docs/db/database-spans.md#generating-a-summary-of-the-query)
 section.
 
-For batch operations, if the individual operations are known to have the same query summary
-then that query summary SHOULD be used prepended by `BATCH `,
-otherwise `db.query.summary` SHOULD be `BATCH` or some other database
+For batch operations, if the individual operations would all have the same
+`db.query.summary` when executed as non-batch operations,
+then that query summary SHOULD be used prepended by `BATCH `.
+Otherwise, `db.query.summary` SHOULD be `BATCH` or some other database
 system specific term if more applicable.
 
 **[14] `db.stored_procedure.name`:** If operation applies to a specific stored procedure.
@@ -165,8 +166,9 @@ system specific term if more applicable.
 **[15] `db.stored_procedure.name`:** It is RECOMMENDED to capture the value as provided by the application
 without attempting to do any case normalization.
 
-For batch operations, if the individual operations are known to have the same
-stored procedure name then that stored procedure name SHOULD be used.
+For batch operations, if the individual operations would all have the same
+`db.stored_procedure.name` when executed as non-batch operations,
+then that stored procedure name SHOULD be used.
 
 **[16] `network.peer.address`:** Semantic conventions for individual database systems SHOULD document whether `network.peer.*` attributes are applicable. Network peer address and port are useful when the application interacts with individual database nodes directly.
 If a database operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
@@ -174,7 +176,7 @@ If a database operation involved multiple network calls (for example retries), t
 **[17] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
 **[18] `db.query.text`:** For sanitization see [Sanitization of `db.query.text`](/docs/db/database-spans.md#sanitization-of-dbquerytext).
-For batch operations, if the individual operations are known to have the same query text then that query text SHOULD be used, otherwise all of the individual query texts SHOULD be concatenated with separator `; ` or some other database system specific separator if more applicable.
+For batch operations, if the individual operations would all have the same `db.query.text` when executed as non-batch operations, then that query text SHOULD be used. Otherwise, all of the individual query texts SHOULD be concatenated with separator `; ` or some other database system specific separator if more applicable.
 Parameterized query text SHOULD NOT be sanitized. Even though parameterized query text can potentially have sensitive data, by using a parameterized query the user is giving a strong signal that any sensitive data will be passed as parameter values, and the benefit to observability of capturing the static part of the query text by default outweighs the risk.
 
 ---
@@ -346,9 +348,10 @@ that support query parsing SHOULD generate a summary following
 [Generating query summary](/docs/db/database-spans.md#generating-a-summary-of-the-query)
 section.
 
-For batch operations, if the individual operations are known to have the same query summary
-then that query summary SHOULD be used prepended by `BATCH `,
-otherwise `db.query.summary` SHOULD be `BATCH` or some other database
+For batch operations, if the individual operations would all have the same
+`db.query.summary` when executed as non-batch operations,
+then that query summary SHOULD be used prepended by `BATCH `.
+Otherwise, `db.query.summary` SHOULD be `BATCH` or some other database
 system specific term if more applicable.
 
 **[14] `network.peer.address`:** Semantic conventions for individual database systems SHOULD document whether `network.peer.*` attributes are applicable. Network peer address and port are useful when the application interacts with individual database nodes directly.
@@ -357,7 +360,7 @@ If a database operation involved multiple network calls (for example retries), t
 **[15] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
 **[16] `db.query.text`:** For sanitization see [Sanitization of `db.query.text`](/docs/db/database-spans.md#sanitization-of-dbquerytext).
-For batch operations, if the individual operations are known to have the same query text then that query text SHOULD be used, otherwise all of the individual query texts SHOULD be concatenated with separator `; ` or some other database system specific separator if more applicable.
+For batch operations, if the individual operations would all have the same `db.query.text` when executed as non-batch operations, then that query text SHOULD be used. Otherwise, all of the individual query texts SHOULD be concatenated with separator `; ` or some other database system specific separator if more applicable.
 Parameterized query text SHOULD NOT be sanitized. Even though parameterized query text can potentially have sensitive data, by using a parameterized query the user is giving a strong signal that any sensitive data will be passed as parameter values, and the benefit to observability of capturing the static part of the query text by default outweighs the risk.
 
 ---
