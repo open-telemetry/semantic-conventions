@@ -86,8 +86,8 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 
 | Value | Description |
 | --- | --- |
-| `timeout` | The configured shutdown budget expired before all child components completed. |
-| `failed` | One or more child components reported failure within the time budget. |
+| `timeout` | The configured shutdown budget expired before the component, including its child components if applicable, completed shutting down. |
+| `failed` | The component, or one of its child components if applicable, reported failure within the time budget. |
 
 **[4] `otel.component.shutdown.duration`:** Measured from the moment the shutdown operation started to the moment
 it ended (whether by completing, failing, or timing out). MUST be a

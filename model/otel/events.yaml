@@ -44,8 +44,8 @@ groups:
 
           | Value | Description |
           | --- | --- |
-          | `timeout` | The configured shutdown budget expired before all child components completed. |
-          | `failed` | One or more child components reported failure within the time budget. |
+          | `timeout` | The configured shutdown budget expired before the component, including its child components if applicable, completed shutting down. |
+          | `failed` | The component, or one of its child components if applicable, reported failure within the time budget. |
         examples: ["timeout", "failed"]
       - ref: otel.component.shutdown.duration
         requirement_level: recommended
