@@ -44,8 +44,7 @@ The component is identified by `otel.component.type` and
 
 Each SDK provider instance (`TracerProvider`, `LoggerProvider`,
 `MeterProvider`) SHOULD emit this event when its shutdown operation
-completes. Other SDK component types (e.g. processors, exporters,
-metric readers) MAY emit this event when they shut down.
+completes.
 
 **Emission rules.**
 
