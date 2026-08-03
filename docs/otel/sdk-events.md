@@ -36,33 +36,36 @@ The event name MUST be `otel.sdk.component.shutdown`.
 
 Indicates that an OpenTelemetry SDK component's shutdown attempt has ended, whether by completing successfully, failing, or timing out.
 
-The component that shut down is identified by `otel.component.type` and
-`otel.component.name`. This event is emitted by an SDK provider instance
+This event SHOULD be emitted by each SDK provider instance
 (`TracerProvider`, `LoggerProvider`, `MeterProvider`) when its shutdown
-operation completes, with at most one such event per provider instance.
+operation completes. The component that shut down is identified by
+`otel.component.type` and `otel.component.name`.
+
+Implementations MUST NOT emit more than one `otel.sdk.component.shutdown`
+event per provider instance.
 
 When a process terminates without the provider's shutdown being invoked
 (for example a crash, `SIGKILL`, container eviction, or immediate
 process termination), no event is produced; the absence of this event
 therefore does not indicate a clean shutdown.
 
-The event's timestamp corresponds to the time at which the shutdown
-attempt ended, whether it completed successfully, failed, or timed out;
-for a provider this covers the time spent shutting down its child
-components. When `otel.component.shutdown.duration` is present, the start
-of the shutdown attempt can be reconstructed as `timestamp - duration`.
+The event timestamp MUST be set to the time at which the shutdown attempt
+ended, whether it completed successfully, failed, or timed out; for a
+provider this includes the time spent shutting down its child components.
+When `otel.component.shutdown.duration` is present, the start of the
+shutdown attempt can be reconstructed as `timestamp - duration`.
 
-A failed shutdown (`error.type` present) is represented with log record
-severity `WARN` (`SeverityNumber` = `13`); a successful shutdown uses
-`INFO` (`SeverityNumber` = `9`).
+Implementations MUST set the log record severity to `WARN`
+(`SeverityNumber` = `13`) when `error.type` is present, and to `INFO`
+(`SeverityNumber` = `9`) otherwise.
 
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`otel.component.name`](/docs/registry/attributes/otel.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | A name uniquely identifying the instance of the OpenTelemetry component within its containing SDK instance. [1] | `otlp_grpc_span_exporter/0`; `custom-name` |
+| [`otel.component.name`](/docs/registry/attributes/otel.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | A name uniquely identifying the instance of the OpenTelemetry component within its containing SDK instance. [1] | `tracer_provider/0`; `logger_provider/0` |
 | [`otel.component.type`](/docs/registry/attributes/otel.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The type of SDK component that shut down. [2] | `logger_provider`; `tracer_provider`; `meter_provider` |
-| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if the shutdown was not successful. | string | Describes the class of error that caused the shutdown to fail. [3] | `timeout`; `failed` |
+| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if the shutdown was not successful. | string | Describes the class of error that caused the shutdown to fail. [3] | `timeout` |
 | [`otel.component.shutdown.duration`](/docs/registry/attributes/otel.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | double | The wall-clock elapsed time of the shutdown attempt, in seconds. Combined with the event timestamp, this lets consumers compute when the shutdown attempt started. [4] | `0.015`; `30.0` |
 
 **[1] `otel.component.name`:** Implementations SHOULD ensure a low cardinality for this attribute, even across application or SDK restarts.
@@ -87,7 +90,11 @@ E.g. for Java the fully qualified classname SHOULD be used in this case.
 | Value | Description |
 | --- | --- |
 | `timeout` | The configured shutdown budget expired before the component, including its child components if applicable, completed shutting down. |
-| `failed` | The component, or one of its child components if applicable, reported failure within the time budget. |
+
+When shutdown fails without timing out, `error.type` SHOULD contain
+the failure cause; if multiple child components fail, it SHOULD be
+set to any of the failure causes. If no cause is available, `_OTHER`
+SHOULD be used.
 
 **[4] `otel.component.shutdown.duration`:** Measured from the moment the shutdown operation started to the moment
 it ended (whether by completing, failing, or timing out). MUST be a

@@ -7,25 +7,28 @@ groups:
       Indicates that an OpenTelemetry SDK component's shutdown attempt has ended,
       whether by completing successfully, failing, or timing out.
     note: |
-      The component that shut down is identified by `otel.component.type` and
-      `otel.component.name`. This event is emitted by an SDK provider instance
+      This event SHOULD be emitted by each SDK provider instance
       (`TracerProvider`, `LoggerProvider`, `MeterProvider`) when its shutdown
-      operation completes, with at most one such event per provider instance.
+      operation completes. The component that shut down is identified by
+      `otel.component.type` and `otel.component.name`.
+
+      Implementations MUST NOT emit more than one `otel.sdk.component.shutdown`
+      event per provider instance.
 
       When a process terminates without the provider's shutdown being invoked
       (for example a crash, `SIGKILL`, container eviction, or immediate
       process termination), no event is produced; the absence of this event
       therefore does not indicate a clean shutdown.
 
-      The event's timestamp corresponds to the time at which the shutdown
-      attempt ended, whether it completed successfully, failed, or timed out;
-      for a provider this covers the time spent shutting down its child
-      components. When `otel.component.shutdown.duration` is present, the start
-      of the shutdown attempt can be reconstructed as `timestamp - duration`.
+      The event timestamp MUST be set to the time at which the shutdown attempt
+      ended, whether it completed successfully, failed, or timed out; for a
+      provider this includes the time spent shutting down its child components.
+      When `otel.component.shutdown.duration` is present, the start of the
+      shutdown attempt can be reconstructed as `timestamp - duration`.
 
-      A failed shutdown (`error.type` present) is represented with log record
-      severity `WARN` (`SeverityNumber` = `13`); a successful shutdown uses
-      `INFO` (`SeverityNumber` = `9`).
+      Implementations MUST set the log record severity to `WARN`
+      (`SeverityNumber` = `13`) when `error.type` is present, and to `INFO`
+      (`SeverityNumber` = `9`) otherwise.
     attributes:
       - ref: otel.component.type
         requirement_level: required
@@ -34,6 +37,7 @@ groups:
         examples: ["logger_provider", "tracer_provider", "meter_provider"]
       - ref: otel.component.name
         requirement_level: required
+        examples: ["tracer_provider/0", "logger_provider/0"]
       - ref: error.type
         requirement_level:
           conditionally_required: if the shutdown was not successful.
@@ -45,8 +49,12 @@ groups:
           | Value | Description |
           | --- | --- |
           | `timeout` | The configured shutdown budget expired before the component, including its child components if applicable, completed shutting down. |
-          | `failed` | The component, or one of its child components if applicable, reported failure within the time budget. |
-        examples: ["timeout", "failed"]
+
+          When shutdown fails without timing out, `error.type` SHOULD contain
+          the failure cause; if multiple child components fail, it SHOULD be
+          set to any of the failure causes. If no cause is available, `_OTHER`
+          SHOULD be used.
+        examples: ["timeout"]
       - ref: otel.component.shutdown.duration
         requirement_level: recommended
         brief: >
