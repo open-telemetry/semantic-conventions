@@ -1,0 +1,20 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/open-telemetry/weaver/v0.25.1/schemas/semconv.schema.v2.json
+file_format: definition/2
+attributes:
+  - key: zos.smf.id
+    annotations:
+      dependency_resolution:
+        exclude: true
+    type: string
+    stability: development
+    brief: "The System Management Facility (SMF) identifier that uniquely identifies a z/OS system within a sysplex or mainframe environment and is used for system and performance analysis."
+    examples: ["SYS1"]
+
+  - key: zos.sysplex.name
+    annotations:
+      dependency_resolution:
+        exclude: true
+    type: string
+    stability: development
+    brief: "The name of the sysplex to which the z/OS system belongs."
+    examples: ["SYSPLEX1"]
