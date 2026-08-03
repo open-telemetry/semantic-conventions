@@ -264,7 +264,8 @@ This metric is [recommended][MetricRecommended].
 
 **[1]:** For successful processing, `error.type` MUST NOT be set. For failed processing, `error.type` MUST contain the failure cause.
 SDK Batching Span Processors MUST use `queue_full` as the value of `error.type` for spans dropped due to a full queue.
-SDK Span Processors MUST use `already_shutdown` as the value of `error.type` for spans dropped because the processor has already been shut down.
+If a processor reports a span dropped because it has already been shut down, `error.type` MUST be `already_shutdown`.
+Whether and when a processor drops such spans is governed by the SDK specification, not by this metric.
 For the SDK Simple and Batching Span Processor a span is considered to be processed already when it has been submitted to the exporter, not when the corresponding export call has finished.
 
 **Attributes:**
@@ -704,7 +705,8 @@ This metric is [recommended][MetricRecommended].
 
 **[1]:** For successful processing, `error.type` MUST NOT be set. For failed processing, `error.type` MUST contain the failure cause.
 SDK Batching Log Record Processors MUST use `queue_full` as the value of `error.type` for log records dropped due to a full queue.
-SDK Log Record Processors MUST use `already_shutdown` as the value of `error.type` for log records dropped because the processor has already been shut down.
+If a processor reports a log record dropped because it has already been shut down, `error.type` MUST be `already_shutdown`.
+Whether and when a processor drops such log records is governed by the SDK specification, not by this metric.
 For the SDK Simple and Batching Log Record Processor a log record is considered to be processed already when it has been submitted to the exporter,
 not when the corresponding export call has finished.
 
