@@ -18,7 +18,7 @@ entity_refinements:
   # host.arch, and host.id.
   # All three are descriptive on the base entity (host has no role: identifying
   # attrs in this upstream definition), so all go under description:.
-  - id: refinement.zos.host
+  - id: zos.host
     ref: host
     stability: development
     brief: >
@@ -42,7 +42,7 @@ entity_refinements:
   # Refines the generic 'os' entity with z/OS-specific notes for os.type,
   # os.description, os.name, and os.version.
   # All four are descriptive on the base entity.
-  - id: refinement.zos.os
+  - id: zos.os
     ref: os
     stability: development
     brief: >
@@ -67,7 +67,7 @@ entity_refinements:
   # Refines the generic 'process' entity with z/OS-specific notes.
   # process.pid is role: identifying on the base entity → goes under identity:.
   # process.command and process.owner are role: descriptive → go under description:.
-  - id: refinement.zos.process
+  - id: zos.process
     ref: process
     stability: development
     brief: >
@@ -97,7 +97,7 @@ entity_refinements:
   # process.runtime.name and process.runtime.version are role: identifying
   # on the base entity → go under identity:.
   # process.runtime.description is role: descriptive → goes under description:.
-  - id: refinement.zos.process.runtime
+  - id: zos.process.runtime
     ref: process.runtime
     stability: development
     brief: >
@@ -116,7 +116,7 @@ entity_refinements:
   # Refines the generic 'service' entity with z/OS-specific notes.
   # service.name is role: identifying on the base entity → goes under identity:.
   # service.version is role: descriptive → goes under description:.
-  - id: refinement.zos.service
+  - id: zos.service
     ref: service
     stability: development
     brief: >
@@ -134,7 +134,7 @@ entity_refinements:
 
   # Refines the generic 'service.instance' entity with z/OS-specific notes.
   # service.instance.id is role: identifying on the base entity → goes under identity:.
-  - id: refinement.zos.service.instance
+  - id: zos.service.instance
     ref: service.instance
     stability: development
     brief: >
@@ -149,7 +149,7 @@ entity_refinements:
 
   # Refines the generic 'service.namespace' entity with z/OS-specific notes.
   # service.namespace is role: identifying on the base entity → goes under identity:.
-  - id: refinement.zos.service.namespace
+  - id: zos.service.namespace
     ref: service.namespace
     stability: development
     brief: >
