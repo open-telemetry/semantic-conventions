@@ -1,5 +1,4 @@
 groups:
-  # HOST METRICS
   - id: metric.hw.host.ambient_temperature
     type: metric
     metric_name: hw.host.ambient_temperature
@@ -17,7 +16,7 @@ groups:
     metric_name: hw.host.energy
     annotations:
       code_generation:
-        metric_value_type: double
+        metric_value_type: int
     stability: development
     brief: "Total energy consumed by the entire physical host, in joules."
     instrument: counter

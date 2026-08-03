@@ -1,0 +1,79 @@
+name: 'Check changes ownership'
+on:
+  # zizmor: ignore[dangerous-triggers] PR files are read via the API; only trusted base-branch code is executed.
+  pull_request_target:
+    types: [opened, synchronize, edited, labeled, unlabeled]
+    branches: [ 'main' ]
+    paths:
+      - 'model/**'
+
+permissions:
+  contents: read
+
+jobs:
+  get-changed-files:
+    runs-on: ubuntu-latest
+    if: ${{ !contains(github.event.pull_request.labels.*.name, 'dependencies') }}
+    permissions:
+      contents: read
+      pull-requests: read
+    outputs:
+      changed_files: ${{ steps.changed-files.outputs.changed_files }}
+      any_changed: ${{ steps.changed-files.outputs.any_changed }}
+    steps:
+      # Determine the changed directories under model/ from the GitHub API.
+      # This intentionally does NOT check out the (untrusted) fork PR code:
+      # this workflow runs in the trusted "pull_request_target" context, so
+      # fetching and executing fork code here would be a "pwn request" risk.
+      - name: Get changed model directories
+        id: changed-files
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          REPO: ${{ github.repository }}
+        run: |
+          changed_files=$(gh api --paginate \
+            "repos/${REPO}/pulls/${PR_NUMBER}/files" \
+            --jq '.[].filename' \
+            | sed -n 's|^\(model/[^/][^/]*\)/.*|\1|p' \
+            | sort -u \
+            | paste -sd, -)
+          echo "changed_files=${changed_files}" >> "$GITHUB_OUTPUT"
+          if [ -n "${changed_files}" ]; then
+            echo "any_changed=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "any_changed=false" >> "$GITHUB_OUTPUT"
+          fi
+
+  validate-area-ownership:
+    runs-on: ubuntu-latest
+    needs: get-changed-files
+    permissions:
+      contents: read
+      pull-requests: write
+    if: ${{ needs.get-changed-files.outputs.any_changed == 'true' && github.repository_owner == 'open-telemetry' }}
+    steps:
+      # Checkout the base branch (main, secure context)
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.event.pull_request.base.ref }}
+          persist-credentials: false
+
+      # uses node 22 to be able to use Typescript
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          cache: 'npm'
+          cache-dependency-path: |
+            .github/scripts/triage/package-lock.json
+          node-version: '24'
+
+      - name: Install script dependencies
+        working-directory: .github/scripts/triage
+        run: npm ci --ignore-scripts
+
+      - name: Validate if PR has active owners
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          CHANGED_FILES: ${{ needs.get-changed-files.outputs.changed_files }}
+        run: node .github/scripts/triage/check-changes-ownership.ts

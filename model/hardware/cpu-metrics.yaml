@@ -1,0 +1,70 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/open-telemetry/weaver/v0.25.1/schemas/semconv.schema.v2.json
+file_format: definition/2
+attribute_groups:
+  - id: metric_attributes.hw.cpu
+    visibility: internal
+    attributes:
+      - ref_group: hardware.attributes.common
+      - ref: hw.model
+        requirement_level: recommended
+      - ref: hw.vendor
+        requirement_level: recommended
+
+metrics:
+  - name: hw.cpu.speed
+    requirement_level: recommended
+    annotations:
+      code_generation:
+        metric_value_type: int
+      naming_conventions:
+        # TODO hw.cpu.speed is used as a namespace by hw.cpu.speed.limit
+        policy_exceptions:
+          - metric_namespace_collision
+    stability: development
+    brief: "CPU current frequency."
+    instrument: gauge
+    unit: "Hz"
+    attributes:
+      - ref_group: metric_attributes.hw.cpu
+
+  # TODO: decide on metric name speed.limit is original
+  - name: hw.cpu.speed.limit
+    requirement_level: recommended
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "CPU maximum frequency."
+    instrument: gauge
+    unit: "Hz"
+    attributes:
+      - ref_group: metric_attributes.hw.cpu
+      - ref: hw.limit_type
+        examples: ["throttled", "max", "turbo"]
+        requirement_level: recommended
+
+metric_refinements:
+  - id: metric.hw.cpu.errors
+    ref: hw.errors
+    brief: "Total number of errors encountered and corrected by the CPU."
+    attributes:
+      - ref_group: metric_attributes.hw.cpu
+      - ref: hw.type
+        note: "MUST be set to `cpu`."
+        examples: ["cpu"]
+  - id: metric.hw.cpu.status
+    ref: hw.status
+    attributes:
+      - ref_group: metric_attributes.hw.cpu
+      - ref: hw.type
+        note: "MUST be set to `cpu`."
+        examples: ["cpu"]
+      - ref: hw.state
+        note: |
+          MUST be set to one of the following values:
+
+          * `ok`: The CPU is operating normally.
+          * `degraded`: The CPU is operating with reduced functionality or performance.
+          * `failed`: The CPU has failed and is not operational.
+          * `predicted_failure`: The CPU is currently operational but is predicted to fail soon.
+        examples: ["ok", "degraded", "failed", "predicted_failure"]

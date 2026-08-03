@@ -1,0 +1,14 @@
+change_type: enhancement
+
+component: otel
+
+note: >
+  Clarify that `otel.sdk.processor.span.processed` and
+  `otel.sdk.processor.log.processed` are recorded when the processor passes
+  items to the exporter, not when an item is accepted into a queue or when the
+  export operation completes, and that the export outcome does not affect
+  these metrics.
+
+issues: [3902]
+
+subtext:

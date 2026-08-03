@@ -4,11 +4,19 @@ Fixes #
 
 Please provide a brief description of the changes here.
 
-Note: if the PR is touching an area that is not listed in the [existing areas](https://github.com/open-telemetry/semantic-conventions/blob/main/docs/README.md), or the area does not have sufficient [domain experts coverage](https://github.com/open-telemetry/semantic-conventions/blob/main/.github/CODEOWNERS), the PR might be tagged as [experts needed](https://github.com/open-telemetry/semantic-conventions/labels/experts%20needed) and move slowly until experts are identified.
+> [!IMPORTANT]
+> Pull request acceptance is subject to the triage process as described in [Issue and PR Triage Management](https://github.com/open-telemetry/semantic-conventions/blob/main/issue-management.md).
+> PRs that do not follow the guidance above may be automatically rejected and closed.
 
 ## Merge requirement checklist
 
 * [ ] [CONTRIBUTING.md](https://github.com/open-telemetry/semantic-conventions/blob/main/CONTRIBUTING.md) guidelines followed.
-* [ ] Change log entry added, according to the guidelines in [When to add a changelog entry](https://github.com/open-telemetry/semantic-conventions/blob/main/CONTRIBUTING.md#when-to-add-a-changelog-entry).
-  * If your PR does not need a change log, start the PR title with `[chore]`
-* [ ] Links to the prototypes or existing instrumentations (when adding or changing conventions)
+* [ ] Links to prototypes or existing instrumentations (when adding or changing conventions)
+* [ ] Disclose AI usage, see [OTel GenAI policy](https://github.com/open-telemetry/community/blob/main/policies/genai.md):
+  * [ ] no AI used
+  * [ ] AI-assisted
+  * [ ] bulk AI-generated
+* [ ] I have the experience and knowledge necessary to understand, review, and validate all content in this PR.[^I-know-my-stuff]
+
+[^I-know-my-stuff]:
+    Yes, I can answer maintainer questions about the content of this PR without using AI.

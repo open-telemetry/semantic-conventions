@@ -5,24 +5,25 @@
 
 ## CPU Attributes
 
-Attributes specific to a cpu instance.
+Attributes specific to a CPU instance.
 
-| Attribute | Type | Description | Examples | Stability |
-|---|---|---|---|---|
-| <a id="cpu-logical-number" href="#cpu-logical-number">`cpu.logical_number`</a> | int | The logical CPU number [0..n-1] | `1` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="cpu-mode" href="#cpu-mode">`cpu.mode`</a> | string | The mode of the CPU | `user`; `system` | ![Development](https://img.shields.io/badge/-development-blue) |
+**Attributes:**
+
+| Key | Stability | Value Type | Description | Example Values |
+| --- | --- | --- | --- | --- |
+| <a id="cpu-logical-number" href="#cpu-logical-number">`cpu.logical_number`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The logical CPU number [0..n-1] | `1` |
+| <a id="cpu-mode" href="#cpu-mode">`cpu.mode`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The mode of the CPU | `user`; `system` |
 
 ---
 
 `cpu.mode` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
-| Value  | Description | Stability |
-|---|---|---|
-| `idle` | Idle | ![Development](https://img.shields.io/badge/-development-blue) |
-| `interrupt` | Interrupt | ![Development](https://img.shields.io/badge/-development-blue) |
-| `iowait` | IO Wait | ![Development](https://img.shields.io/badge/-development-blue) |
-| `kernel` | Kernel | ![Development](https://img.shields.io/badge/-development-blue) |
-| `nice` | Nice | ![Development](https://img.shields.io/badge/-development-blue) |
-| `steal` | Steal | ![Development](https://img.shields.io/badge/-development-blue) |
-| `system` | System | ![Development](https://img.shields.io/badge/-development-blue) |
-| `user` | User | ![Development](https://img.shields.io/badge/-development-blue) |
+| Value | Description | Stability |
+| --- | --- | --- |
+| `idle` | Idle | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `interrupt` | Interrupt | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `iowait` | IO Wait | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `nice` | Nice | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `steal` | Steal | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `system` | System | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
+| `user` | User | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |

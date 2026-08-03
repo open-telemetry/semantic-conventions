@@ -61,6 +61,7 @@ groups:
       - ref: cpu.mode
         note: "Following states SHOULD be used: `user`, `system`, `nice`, `idle`, `iowait`, `interrupt`, `steal`"
       - ref: cpu.logical_number
+        requirement_level: opt_in
     entity_associations:
       - host
 
@@ -78,6 +79,7 @@ groups:
       - ref: cpu.mode
         note: "Following modes SHOULD be used: `user`, `system`, `nice`, `idle`, `iowait`, `interrupt`, `steal`"
       - ref: cpu.logical_number
+        requirement_level: opt_in
     entity_associations:
       - host
 
@@ -126,22 +128,6 @@ groups:
     entity_associations:
       - host
 
-  - id: metric.system.memory.shared
-    type: metric
-    metric_name: system.memory.shared
-    annotations:
-      code_generation:
-        metric_value_type: int
-    stability: development
-    brief: "Shared memory used (mostly by tmpfs)."
-    note: |
-      Equivalent of `shared` from [`free` command](https://man7.org/linux/man-pages/man1/free.1.html) or
-      `Shmem` from [`/proc/meminfo`](https://man7.org/linux/man-pages/man5/proc.5.html)"
-    instrument: updowncounter
-    unit: "By"
-    entity_associations:
-      - host
-
   - id: metric.system.memory.utilization
     type: metric
     metric_name: system.memory.utilization
@@ -149,7 +135,7 @@ groups:
       code_generation:
         metric_value_type: double
     stability: development
-    brief: TODO.
+    brief: Percentage of memory bytes in use.
     instrument: gauge
     unit: "1"
     attributes:
@@ -165,7 +151,7 @@ groups:
       code_generation:
         metric_value_type: int
     stability: development
-    brief: "Unix swap or windows pagefile usage."
+    brief: "UNIX swap or windows pagefile usage."
     instrument: updowncounter
     unit: "By"
     attributes:
@@ -183,7 +169,7 @@ groups:
       code_generation:
         metric_value_type: double
     stability: development
-    brief: TODO.
+    brief: Swap (UNIX) or pagefile (windows) utilization.
     instrument: gauge
     unit: "1"
     attributes:
@@ -201,11 +187,11 @@ groups:
       code_generation:
         metric_value_type: int
     stability: development
-    brief: TODO.
+    brief: The number of page faults.
     instrument: counter
     unit: "{fault}"
     attributes:
-      - ref: system.paging.type
+      - ref: system.paging.fault.type
     entity_associations:
       - host
 
@@ -216,11 +202,11 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
-    brief: TODO.
+    brief: The number of paging operations.
     instrument: counter
     unit: "{operation}"
     attributes:
-      - ref: system.paging.type
+      - ref: system.paging.fault.type
       - ref: system.paging.direction
     entity_associations:
       - host
@@ -233,7 +219,7 @@ groups:
       code_generation:
         metric_value_type: int
     stability: development
-    brief: TODO.
+    brief: Disk bytes transferred.
     instrument: counter
     unit: "By"
     attributes:
@@ -249,7 +235,7 @@ groups:
       code_generation:
         metric_value_type: int
     stability: development
-    brief: TODO.
+    brief: Disk operations count.
     instrument: counter
     unit: "{operation}"
     attributes:
@@ -308,7 +294,7 @@ groups:
       code_generation:
         metric_value_type: int
     stability: development
-    brief: TODO.
+    brief: The number of disk reads/writes merged into single physical disk access operations.
     instrument: counter
     unit: "{operation}"
     attributes:
@@ -364,7 +350,7 @@ groups:
       code_generation:
         metric_value_type: double
     stability: development
-    brief: TODO.
+    brief: Fraction of filesystem bytes used.
     instrument: gauge
     unit: "1"
     attributes:
@@ -398,10 +384,30 @@ groups:
     entity_associations:
       - host
 
-  # system.network.* metrics
-  - id: metric.system.network.dropped
+  - id: metric.system.filesystem.lock.count
     type: metric
-    metric_name: system.network.dropped
+    metric_name: system.filesystem.lock.count
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "Filesystem lock counts."
+    instrument: updowncounter
+    unit: "{lock}"
+    attributes:
+      - ref: system.device
+        brief: OS-specific identifier for the device where the file resides.
+        examples: ["08:01"]
+      - ref: file.lock.type
+      - ref: file.lock.mechanism
+      - ref: file.lock.mode
+    entity_associations:
+      - host
+
+  # system.network.* metrics
+  - id: metric.system.network.packet.dropped
+    type: metric
+    metric_name: system.network.packet.dropped
     annotations:
       code_generation:
         metric_value_type: int
@@ -412,7 +418,7 @@ groups:
     note: |
       Measured as:
 
-      - Linux: the `drop` column in `/proc/dev/net` ([source](https://web.archive.org/web/20180321091318/http://www.onlamp.com/pub/a/linux/2000/11/16/LinuxAdmin.html))
+      - Linux: the `drop` column in `/proc/net/dev` ([source](https://web.archive.org/web/20180321091318/http://www.onlamp.com/pub/a/linux/2000/11/16/LinuxAdmin.html))
       - Windows: [`InDiscards`/`OutDiscards`](https://docs.microsoft.com/windows/win32/api/netioapi/ns-netioapi-mib_if_row2)
         from [`GetIfEntry2`](https://docs.microsoft.com/windows/win32/api/netioapi/nf-netioapi-getifentry2)
     attributes:
@@ -421,14 +427,14 @@ groups:
     entity_associations:
       - host
 
-  - id: metric.system.network.packets
+  - id: metric.system.network.packet.count
     type: metric
-    metric_name: system.network.packets
+    metric_name: system.network.packet.count
     annotations:
       code_generation:
         metric_value_type: int
     stability: development
-    brief: TODO.
+    brief: The number of packets transferred.
     instrument: counter
     unit: "{packet}"
     attributes:
@@ -450,7 +456,7 @@ groups:
     note: |
       Measured as:
 
-      - Linux: the `errs` column in `/proc/dev/net` ([source](https://web.archive.org/web/20180321091318/http://www.onlamp.com/pub/a/linux/2000/11/16/LinuxAdmin.html)).
+      - Linux: the `errs` column in `/proc/net/dev` ([source](https://web.archive.org/web/20180321091318/http://www.onlamp.com/pub/a/linux/2000/11/16/LinuxAdmin.html)).
       - Windows: [`InErrors`/`OutErrors`](https://docs.microsoft.com/windows/win32/api/netioapi/ns-netioapi-mib_if_row2)
         from [`GetIfEntry2`](https://docs.microsoft.com/windows/win32/api/netioapi/nf-netioapi-getifentry2).
     attributes:
@@ -466,7 +472,7 @@ groups:
       code_generation:
         metric_value_type: int
     stability: development
-    brief: TODO.
+    brief: The number of bytes transmitted and received.
     instrument: counter
     unit: "By"
     attributes:
@@ -482,7 +488,7 @@ groups:
       code_generation:
         metric_value_type: int
     stability: development
-    brief: TODO.
+    brief: The number of connections.
     instrument: updowncounter
     unit: "{connection}"
     attributes:
@@ -504,7 +510,7 @@ groups:
     instrument: updowncounter
     unit: "{process}"
     attributes:
-      - ref: system.process.status
+      - ref: process.state
     entity_associations:
       - host
 
@@ -522,10 +528,28 @@ groups:
     entity_associations:
       - host
 
-  # system.linux.* metrics
-  - id: metric.system.linux.memory.available
+  - id: metric.system.process.limit
     type: metric
-    metric_name: system.linux.memory.available
+    metric_name: system.process.limit
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "The maximum number of concurrent processes/tasks allowed by the operating system."
+    instrument: updowncounter
+    unit: "{thread}"
+    attributes: []
+    entity_associations:
+      - host
+    note: |
+      On Linux, this corresponds to `/proc/sys/kernel/pid_max` or `/proc/sys/kernel/threads-max`.
+      A per-user process limit may also be retrieved via `getrlimit(RLIMIT_NPROC)`.
+      On BSD-like systems, this corresponds to `sysctl kern.maxproc`. This metric is unsupported on Windows systems.
+
+  # system.memory.linux.* metrics
+  - id: metric.system.memory.linux.available
+    type: metric
+    metric_name: system.memory.linux.available
     annotations:
       code_generation:
         metric_value_type: int
@@ -543,21 +567,131 @@ groups:
     entity_associations:
       - host
 
-  - id: metric.system.linux.memory.slab.usage
+  - id: metric.system.memory.linux.shared
     type: metric
-    metric_name: system.linux.memory.slab.usage
+    metric_name: system.memory.linux.shared
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "Shared memory used (mostly by tmpfs)."
+    note: |
+      Equivalent of `shared` from [`free` command](https://man7.org/linux/man-pages/man1/free.1.html) or
+      `Shmem` from [`/proc/meminfo`](https://man7.org/linux/man-pages/man5/proc.5.html)"
+    instrument: updowncounter
+    unit: "By"
+    entity_associations:
+      - host
+
+  - id: metric.system.memory.linux.hugepages.limit
+    type: metric
+    metric_name: system.memory.linux.hugepages.limit
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "Total number of hugepages available."
+    instrument: updowncounter
+    unit: "{page}"
+    attributes: []
+    entity_associations:
+      - host
+
+  - id: metric.system.memory.linux.hugepages.page_size
+    type: metric
+    metric_name: system.memory.linux.hugepages.page_size
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "System hugepage size in bytes."
+    instrument: updowncounter
+    unit: "By"
+    attributes: []
+    entity_associations:
+      - host
+
+  - id: metric.system.memory.linux.hugepages.reserved
+    type: metric
+    metric_name: system.memory.linux.hugepages.reserved
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "Number of reserved hugepages."
+    note: |
+      Hugepages for which a commitment to allocate has been made, but no allocation has yet been made.
+      This is reported as a separate metric rather than a `usage` state because reserved pages are already counted in `free` pages.
+      They represent a subset of free pages that cannot be used for non-reserved allocations.
+    instrument: updowncounter
+    unit: "{page}"
+    attributes: []
+    entity_associations:
+      - host
+
+  - id: metric.system.memory.linux.hugepages.surplus
+    type: metric
+    metric_name: system.memory.linux.hugepages.surplus
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "Number of surplus hugepages."
+    note: |
+      Overcommitted hugepages beyond the persistent pool.
+      This is reported as a separate metric rather than a `usage` state because surplus pages can be in either `used` or `free` state.
+      Including them in `usage` would break the convention that `usage` states sum to the `limit`.
+    instrument: updowncounter
+    unit: "{page}"
+    attributes: []
+    entity_associations:
+      - host
+
+  - id: metric.system.memory.linux.hugepages.usage
+    type: metric
+    metric_name: system.memory.linux.hugepages.usage
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "Number of hugepages in use by state."
+    instrument: updowncounter
+    unit: "{page}"
+    attributes:
+      - ref: system.memory.linux.hugepages.state
+    entity_associations:
+      - host
+
+  - id: metric.system.memory.linux.hugepages.utilization
+    type: metric
+    metric_name: system.memory.linux.hugepages.utilization
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: "Percentage of hugepages in use by state."
+    instrument: gauge
+    unit: "1"
+    attributes:
+      - ref: system.memory.linux.hugepages.state
+    entity_associations:
+      - host
+
+  - id: metric.system.memory.linux.slab.usage
+    type: metric
+    metric_name: system.memory.linux.slab.usage
     annotations:
       code_generation:
         metric_value_type: int
     stability: development
     brief: "Reports the memory used by the Linux kernel for managing caches of frequently used objects."
     note: |
-      The sum over the `reclaimable` and `unreclaimable` state values in `linux.memory.slab.usage` SHOULD be equal to the total slab memory available on the system.
+      The sum over the `reclaimable` and `unreclaimable` state values in `memory.linux.slab.usage` SHOULD be equal to the total slab memory available on the system.
       Note that the total slab memory is not constant and may vary over time.
       See also the [Slab allocator](https://blogs.oracle.com/linux/post/understanding-linux-kernel-memory-statistics) and `Slab` in [/proc/meminfo](https://man7.org/linux/man-pages/man5/proc.5.html).
     instrument: updowncounter
     unit: "By"
     attributes:
-      - ref: linux.memory.slab.state
+      - ref: system.memory.linux.slab.state
     entity_associations:
       - host

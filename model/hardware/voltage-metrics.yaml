@@ -1,0 +1,70 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/open-telemetry/weaver/v0.25.1/schemas/semconv.schema.v2.json
+file_format: definition/2
+metrics:
+  - name: hw.voltage
+    requirement_level: recommended
+    annotations:
+      code_generation:
+        metric_value_type: double
+      naming_conventions:
+        # TODO hw.voltage is used as a namespace by hw.voltage.limit
+        policy_exceptions:
+          - metric_namespace_collision
+    stability: development
+    brief: "Voltage measured by the sensor."
+    instrument: gauge
+    unit: "V"
+    attributes:
+      - ref_group: hardware.attributes.common
+      - ref: hw.sensor_location
+        requirement_level: recommended
+
+  - name: hw.voltage.limit
+    requirement_level: recommended
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: "Voltage limit in Volts."
+    instrument: gauge
+    unit: "V"
+    attributes:
+      - ref_group: hardware.attributes.common
+      - ref: hw.sensor_location
+        requirement_level: recommended
+      - ref: hw.limit_type
+        examples: ["low.critical", "low.degraded", "high.degraded", "high.critical"]
+        requirement_level: recommended
+
+  - name: hw.voltage.nominal
+    requirement_level: recommended
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: "Nominal (expected) voltage."
+    instrument: gauge
+    unit: "V"
+    attributes:
+      - ref_group: hardware.attributes.common
+      - ref: hw.sensor_location
+        requirement_level: recommended
+
+metric_refinements:
+  - id: metric.hw.voltage.status
+    ref: hw.status
+    attributes:
+      - ref_group: hardware.attributes.common
+      - ref: hw.sensor_location
+        requirement_level: recommended
+      - ref: hw.type
+        note: "MUST be set to `voltage`."
+        examples: ["voltage"]
+      - ref: hw.state
+        note: |
+          MUST be set to one of the following values:
+
+          * `ok`: The voltage is within normal range.
+          * `degraded`: The voltage is outside the normal range but not critical.
+          * `failed`: The voltage is at a critical level.
+        examples: ["ok", "degraded", "failed"]

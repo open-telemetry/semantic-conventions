@@ -9,7 +9,7 @@ aliases: [attribute-naming]
 <details>
 <summary>Table of Contents</summary>
 
-<!-- toc -->
+<!-- START doctoc -->
 
 - [General naming considerations](#general-naming-considerations)
 - [Name abbreviation guidelines](#name-abbreviation-guidelines)
@@ -20,7 +20,6 @@ aliases: [attribute-naming]
   - [otel.\* namespace](#otel-namespace)
   - [Attribute name pluralization guidelines](#attribute-name-pluralization-guidelines)
   - [Signal-specific attributes](#signal-specific-attributes)
-  - [System-specific attributes](#system-specific-attributes)
 - [Metrics](#metrics)
   - [Naming rules for counters and UpDownCounters](#naming-rules-for-counters-and-updowncounters)
     - [Pluralization](#pluralization)
@@ -31,11 +30,11 @@ aliases: [attribute-naming]
 - [System-specific naming](#system-specific-naming)
   - [System (project/product/provider) name attribute](#system-projectproductprovider-name-attribute)
   - [Choosing a system name](#choosing-a-system-name)
-  - [System-specific attributes](#system-specific-attributes-1)
+  - [System-specific attributes](#system-specific-attributes)
   - [System-specific metrics](#system-specific-metrics)
   - [Known exceptions](#known-exceptions)
 
-<!-- tocstop -->
+<!-- END doctoc -->
 
 </details>
 
@@ -48,11 +47,12 @@ implied to mean all of these._
 
 Every name MUST be a valid Unicode sequence.
 
-_Note: we merely require that the names are represented as Unicode sequences.
-This specification does not define how exactly the Unicode sequences are
-encoded. The encoding can vary from one programming language to another and from
-one wire format to another. Use the idiomatic way to represent Unicode in the
-particular programming language or wire format._
+> [!NOTE]
+> We merely require that the names are represented as Unicode sequences.
+> This specification does not define how exactly the Unicode sequences are
+> encoded. The encoding can vary from one programming language to another and from
+> one wire format to another. Use the idiomatic way to represent Unicode in the
+> particular programming language or wire format.
 
 Names SHOULD follow these rules:
 
@@ -73,7 +73,7 @@ Names SHOULD follow these rules:
 
 - For each multi-word dot-delimited component of the name separate the
   words by underscores (i.e. use snake_case). For example
-  `http.response.status_code` denotes the status code in the http namespace.
+  `http.response.status_code` denotes the status code in the HTTP namespace.
 
   Known exceptions include
   [K8s API names](../non-normative/naming-known-exceptions.md) where a single
@@ -85,7 +85,6 @@ Names SHOULD follow these rules:
 
 - Be precise. Attribute, event, metric, and other names should be descriptive and
   unambiguous.
-
   - When introducing a name describing a certain property of the object,
     include the property name. For example, use `file.owner.name` instead of `file.owner`
     and `system.network.packet.dropped` instead of `system.network.dropped`
@@ -95,7 +94,7 @@ Names SHOULD follow these rules:
 
 - Use shorter names when it does not compromise clarity. Drop namespace
   components or words in multi-word components when they are not necessary. For example,
-  `vcs.change.id` describes pull request id as precisely as `vcs.repository.change.id` does.
+  `vcs.change.id` describes pull request ID as precisely as `vcs.repository.change.id` does.
 
 ## Name abbreviation guidelines
 
@@ -141,7 +140,7 @@ no longer recommended, it SHOULD be deprecated.
   the following Unicode code points: Latin alphabet, Numeric, Underscore, Dot
   (as namespace delimiter).
 
-> Note:
+> [!Note]
 > Semantic Conventions tooling limits names to lowercase
 > Latin alphabet, Numeric, Underscore, Dot (as namespace delimiter).
 > Names must start with a letter, end with an alphanumeric character, and must not
@@ -239,32 +238,6 @@ Examples:
 Metric `http.server.request.duration` uses attributes from the registry such as
 `server.port`, `error.type`.
 
-### System-specific attributes
-
-**Status**: [Development][DocumentStatus]
-
-When an attribute is specific to a particular system (e.g., project, provider, product),
-the system name should be used in the attribute name, following the pattern:
-`{optional domain}.{system}.*.{property}` pattern.
-
-Examples:
-
-- `db.cassandra.consistency_level` - Describes the consistency level property
-  specific to the Cassandra database.
-- `aws.s3.key` - Refers to the `key` property of the AWS S3 product.
-- `signalr.connection.status` – Indicates the connection status of the SignalR
-  network protocol. In this case, no domain is included.
-
-Semantic conventions for a specific domain are generally applicable to multiple systems.
-These conventions should define an attribute to represent the name of the system.
-For example, database conventions include the `db.system.name` attribute.
-
-The name of the system used in the corresponding attribute should match the name
-used inside system-specific attributes.
-
-For example, if the database name specified in `db.system.name` is `foo.bar`, system-specific
-attributes for this database should follow the `db.foo.bar.*` pattern.
-
 ## Metrics
 
 **Status**: [Development][DocumentStatus]
@@ -343,6 +316,12 @@ be confusing in delta backends.
   defined as the difference in `system.cpu.time` measurements divided by the
   elapsed time and number of CPUs.
 
+- **duration** - a histogram that measures operation duration
+  should be called `{operation name}.duration`.
+  For example, `http.server.request.duration` for the time taken to process each HTTP request.
+  The difference with `time` is that `time` is used to measure monotonically increasing total time,
+  whereas `duration` captures the elapsed time of discrete operations.
+
 - **io** - an instrument that measures bidirectional data flow should be
   called `entity.io` and have attributes for direction. For example,
   `system.network.io`.
@@ -403,7 +382,6 @@ When adding new a system to the semantic conventions, follow these principles in
    multiple Oracle products.
 
 3. The system name SHOULD match the corresponding project or product name in the following cases:
-
    - Independent projects that do not belong to a specific company, such as Apache Foundation projects like
      `kafka` or `cassandra`.
    - Products with names similar to the owning company, such as `mongodb` or `elasticsearch`
@@ -455,11 +433,11 @@ attribute use the same system name (`azure.cosmosdb`).
 ### Known exceptions
 
 - Operational system and process-related attributes and metrics [follow a
-  pattern](/docs/system/system-metrics.md#systemos---os-specific-system-metrics)
+  pattern](/docs/system/system-metrics.md#systemmemoryos---os-specific-system-memory-metrics)
   of `system.{os}` and `process.{os}`. <!-- TODO: document why-->
 
-- [RPC](/docs/rpc/README.md), [messaging](/docs/messaging/README.md), and
-  [GenAI](/docs/gen-ai/README.md) semantic conventions don't follow the
-  system-specific naming guidance yet, and will be updated one-by-one.
+- [RPC](/docs/rpc/README.md) and [messaging](/docs/messaging/README.md) semantic
+  conventions don't follow the system-specific naming guidance yet, and will be
+  updated one-by-one.
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status

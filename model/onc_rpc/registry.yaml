@@ -1,0 +1,24 @@
+groups:
+  - id: registry.onc_rpc
+    type: attribute_group
+    brief: 'This document defines attributes for [ONC RPC (Sun RPC)](https://datatracker.ietf.org/doc/html/rfc5531)'
+    display_name: ONC RPC (Sun RPC) attributes
+    attributes:
+      - id: onc_rpc.version
+        type: int
+        brief: "ONC/Sun RPC program version."
+        stability: development
+      - id: onc_rpc.procedure.number
+        type: int
+        stability: development
+        brief: "ONC/Sun RPC procedure number."
+      - id: onc_rpc.procedure.name
+        type: string
+        stability: development
+        brief: "ONC/Sun RPC procedure name."
+        examples: ['OPEN', 'READ', 'GETATTR']
+      - id: onc_rpc.program.name
+        type: string
+        stability: development
+        brief: "ONC/Sun RPC program name."
+        examples: ['portmapper', 'nfs']

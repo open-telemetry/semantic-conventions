@@ -1,0 +1,86 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/open-telemetry/weaver/v0.25.1/schemas/semconv.schema.v2.json
+file_format: definition/2
+attribute_groups:
+  - id: metric_attributes.hw.physical_disk
+    visibility: internal
+    attributes:
+      - ref_group: hardware.attributes.common
+      - ref: hw.firmware_version
+        requirement_level: recommended
+      - ref: hw.model
+        requirement_level: recommended
+      - ref: hw.serial_number
+        requirement_level: recommended
+      - ref: hw.physical_disk.type
+        requirement_level: recommended
+      - ref: hw.vendor
+        requirement_level: recommended
+
+metrics:
+  - name: hw.physical_disk.endurance_utilization
+    requirement_level: recommended
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: "Endurance remaining for this SSD disk."
+    instrument: gauge
+    unit: "1"
+    attributes:
+      - ref_group: metric_attributes.hw.physical_disk
+      - ref: hw.physical_disk.state
+        examples: ["remaining"]
+        requirement_level: required
+
+  - name: hw.physical_disk.size
+    requirement_level: recommended
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "Size of the disk."
+    instrument: updowncounter
+    unit: "By"
+    attributes:
+      - ref_group: metric_attributes.hw.physical_disk
+
+  - name: hw.physical_disk.smart
+    requirement_level: recommended
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "Value of the corresponding [S.M.A.R.T.](https://wikipedia.org/wiki/S.M.A.R.T.) (Self-Monitoring, Analysis, and Reporting Technology) attribute."
+    instrument: gauge
+    unit: "1"
+    attributes:
+      - ref_group: metric_attributes.hw.physical_disk
+      - ref: hw.physical_disk.smart_attribute
+        examples: ['Spin Retry Count', 'Seek Error Rate']
+        requirement_level: recommended
+
+metric_refinements:
+  - id: metric.hw.physical_disk.errors
+    ref: hw.errors
+    brief: "Number of errors encountered on this disk."
+    attributes:
+      - ref_group: metric_attributes.hw.physical_disk
+      - ref: hw.type
+        note: "MUST be set to `physical_disk`."
+        examples: ["physical_disk"]
+  - id: metric.hw.physical_disk.status
+    ref: hw.status
+    attributes:
+      - ref_group: metric_attributes.hw.physical_disk
+      - ref: hw.type
+        note: "MUST be set to `physical_disk`."
+        examples: ["physical_disk"]
+      - ref: hw.state
+        note: |
+          MUST be set to one of the following values:
+
+          * `ok`: The physical disk is operating normally.
+          * `degraded`: The physical disk is operating with reduced functionality or performance.
+          * `failed`: The physical disk has failed and is not operational.
+          * `predicted_failure`: The physical disk is currently operational but is predicted to fail soon.
+        examples: ["ok", "degraded", "failed", "predicted_failure"]

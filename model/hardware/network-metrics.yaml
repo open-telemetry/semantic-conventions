@@ -1,0 +1,112 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/open-telemetry/weaver/v0.25.1/schemas/semconv.schema.v2.json
+file_format: definition/2
+attribute_groups:
+  - id: metric_attributes.hw.network
+    visibility: internal
+    attributes:
+      - ref_group: hardware.attributes.common
+      - ref: hw.model
+        requirement_level: recommended
+      - ref: hw.network.logical_addresses
+        requirement_level: recommended
+      - ref: hw.network.physical_address
+        requirement_level: recommended
+      - ref: hw.serial_number
+        requirement_level: recommended
+      - ref: hw.vendor
+        requirement_level: recommended
+
+metrics:
+  - name: hw.network.bandwidth.limit
+    requirement_level: recommended
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "Link speed."
+    instrument: updowncounter
+    unit: "By/s"
+    attributes:
+      - ref_group: metric_attributes.hw.network
+
+  - name: hw.network.bandwidth.utilization
+    requirement_level: recommended
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: "Utilization of the network bandwidth as a fraction."
+    instrument: gauge
+    unit: "1"
+    attributes:
+      - ref_group: metric_attributes.hw.network
+
+  - name: hw.network.io
+    requirement_level: recommended
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "Received and transmitted network traffic in bytes."
+    instrument: counter
+    unit: "By"
+    attributes:
+      - ref_group: metric_attributes.hw.network
+      - ref: network.io.direction
+        examples: ["receive", "transmit"]
+        requirement_level: required
+
+  - name: hw.network.packets
+    requirement_level: recommended
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "Received and transmitted network traffic in packets (or frames)."
+    instrument: counter
+    unit: "{packet}"
+    attributes:
+      - ref_group: metric_attributes.hw.network
+      - ref: network.io.direction
+        examples: ["receive", "transmit"]
+        requirement_level: required
+
+  - name: hw.network.up
+    requirement_level: recommended
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "Link status: `1` (up) or `0` (down)."
+    instrument: updowncounter
+    unit: "1"
+    attributes:
+      - ref_group: metric_attributes.hw.network
+
+metric_refinements:
+  - id: metric.hw.network.errors
+    ref: hw.errors
+    brief: "Number of errors encountered by the network adapter."
+    attributes:
+      - ref: network.io.direction
+        examples: ["receive", "transmit"]
+        requirement_level: recommended
+      - ref_group: metric_attributes.hw.network
+      - ref: hw.type
+        note: "MUST be set to `network`."
+        examples: ["network"]
+  - id: metric.hw.network.status
+    ref: hw.status
+    attributes:
+      - ref_group: metric_attributes.hw.network
+      - ref: hw.type
+        note: "MUST be set to `network`."
+        examples: ["network"]
+      - ref: hw.state
+        note: |
+          MUST be set to one of the following values:
+
+          * `ok`: The network adapter is operating normally.
+          * `degraded`: The network adapter is operating with reduced functionality or performance.
+          * `failed`: The network adapter has failed and is not operational.
+        examples: ["ok", "degraded", "failed"]

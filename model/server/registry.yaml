@@ -13,7 +13,7 @@ groups:
       - id: server.address
         stability: stable
         type: string
-        brief: "Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name."
+        brief: "Server domain name if available without reverse DNS lookup; otherwise, IP address or UNIX domain socket name."
         note: >
           When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent
           the server address behind any intermediaries, for example proxies, if it's available.

@@ -12,7 +12,7 @@ groups:
       **Span name** MUST be set to the function name from the Lambda `Context`
       unless stated otherwise.
 
-      **Span kind** MUST be set to `SERVER` unless stated otherwise.
+      **Span kind** MUST be `SERVER` unless stated otherwise.
     attributes:
       - ref: aws.lambda.invoked_arn
         requirement_level: recommended

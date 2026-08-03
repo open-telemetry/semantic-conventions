@@ -8,7 +8,7 @@ linkTitle: Messaging
 
 This document defines semantic conventions for messaging systems spans, metrics and logs.
 
-> [!Warning]
+> [!IMPORTANT]
 >
 > Existing messaging instrumentations that are using
 > [v1.24.0 of this document](https://github.com/open-telemetry/semantic-conventions/blob/v1.24.0/docs/messaging/messaging-spans.md)
@@ -40,6 +40,7 @@ Semantic conventions for messaging systems are defined for the following signals
 
 * [Messaging Spans](messaging-spans.md): Semantic Conventions for messaging *spans*.
 * [Messaging Metrics](messaging-metrics.md): Semantic Conventions for messaging *metrics*.
+* [Messaging Exceptions](messaging-exceptions.md): Semantic Conventions for messaging *exceptions*.
 
 Technology specific semantic conventions are defined for the following messaging systems:
 

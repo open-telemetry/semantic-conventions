@@ -1,0 +1,15 @@
+groups:
+  - id: registry.oracle_cloud
+    type: attribute_group
+    display_name: General Oracle Cloud Attributes
+    brief: >
+      This section defines generic attributes for Oracle Cloud Infrastructure (OCI).
+    attributes:
+      - id: oracle_cloud.realm
+        type: string
+        stability: development
+        brief: >
+          The OCI realm identifier that indicates the isolated partition in which the tenancy and its resources reside.
+        note: >
+          See [OCI documentation on realms](https://docs.oracle.com/iaas/Content/General/Concepts/regions.htm)
+        examples: ['oc1', 'oc2']

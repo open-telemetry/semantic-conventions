@@ -1,0 +1,24 @@
+groups:
+  - id: event.db.client.operation.exception
+    name: db.client.operation.exception
+    stability: development
+    type: event
+    brief: >
+      This event represents an exception that occurred during a database client operation,
+      such as connection failures, query errors, timeouts, or other errors that prevent
+      the operation from completing successfully.
+    note: >
+      This event SHOULD be recorded when an exception occurs during database client operations.
+
+      Instrumentations SHOULD set the severity to WARN (severity number 13) when recording this event.
+
+      Instrumentations MAY provide a configuration option to populate exception events
+      with the attributes captured on the corresponding database client span.
+    attributes:
+      - ref: exception.type
+        requirement_level:
+          conditionally_required: Required if `exception.message` is not set, recommended otherwise.
+      - ref: exception.message
+        requirement_level:
+          conditionally_required: Required if `exception.type` is not set, recommended otherwise.
+      - ref: exception.stacktrace

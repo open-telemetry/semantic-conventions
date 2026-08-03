@@ -54,7 +54,6 @@ body:
         - area:feature-flag
         - area:file
         - area:gcp
-        - area:gen-ai
         - area:geo
         - area:go
         - area:graphql
@@ -63,20 +62,24 @@ body:
         - area:host
         - area:http
         - area:ios
+        - area:jsonrpc
         - area:jvm
         - area:k8s
-        - area:linux
         - area:log
         - area:mainframe
         - area:messaging
         - area:network
+        - area:nfs
         - area:nodejs
         - area:oci
-        - area:openai
+        - area:onc-rpc
+        - area:openshift
         - area:opentracing
+        - area:oracle-cloud
+        - area:oracledb
         - area:os
         - area:otel
-        - area:peer
+        - area:pprof
         - area:process
         - area:profile
         - area:rpc

@@ -31,6 +31,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      stability:
+        # TODO https://github.com/open-telemetry/semantic-conventions/issues/1514
+        policy_exceptions:
+          - metric_lower_stability_attribute
     stability: stable
     brief: The duration of connections on the server.
     instrument: histogram
@@ -50,13 +54,13 @@ groups:
         requirement_level:
           conditionally_required: if and only if an error has occurred.
         examples: ['connection_reset', 'invalid_handshake']
-        # TODO: move note to yaml once https://github.com/open-telemetry/weaver/issues/479 is supported
+        # TODO: move note to YAML once https://github.com/open-telemetry/weaver/issues/479 is supported
         note: |
           Starting from .NET 9, Kestrel `kestrel.connection.duration` metric reports
           the following errors types when a corresponding error occurs:
 
-          | Value  | Description | Stability |
-          |---|---|---|
+          | Value | Description |
+          | --- | --- |
           | `aborted_by_app` | The HTTP/1.1 connection was aborted when app code aborted an HTTP request with `HttpContext.Abort()`. |
           | `app_shutdown_timeout` | The connection was aborted during app shutdown. During shutdown, the server stops accepting new connections and HTTP requests, and it is given time for active requests to complete. If the app shutdown timeout is exceeded, all remaining connections are aborted. |
           | `closed_critical_stream` | A critical control stream for an HTTP/3 connection was closed. |
@@ -174,6 +178,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      stability:
+        # TODO https://github.com/open-telemetry/semantic-conventions/issues/1514
+        policy_exceptions:
+          - metric_lower_stability_attribute
     stability: stable
     brief: The duration of TLS handshakes on the server.
     instrument: histogram

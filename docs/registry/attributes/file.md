@@ -3,30 +3,35 @@
 
 # File
 
+- [File Attributes](#file-attributes)
+- [File Lock Attributes](#file-lock-attributes)
+
 ## File Attributes
 
 Describes file attributes.
 
-| Attribute | Type | Description | Examples | Stability |
-|---|---|---|---|---|
-| <a id="file-accessed" href="#file-accessed">`file.accessed`</a> | string | Time when the file was last accessed, in ISO 8601 format. [1] | `2021-01-01T12:00:00Z` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="file-attributes" href="#file-attributes">`file.attributes`</a> | string[] | Array of file attributes. [2] | `["readonly", "hidden"]` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="file-changed" href="#file-changed">`file.changed`</a> | string | Time when the file attributes or metadata was last changed, in ISO 8601 format. [3] | `2021-01-01T12:00:00Z` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="file-created" href="#file-created">`file.created`</a> | string | Time when the file was created, in ISO 8601 format. [4] | `2021-01-01T12:00:00Z` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="file-directory" href="#file-directory">`file.directory`</a> | string | Directory where the file is located. It should include the drive letter, when appropriate. | `/home/user`; `C:\Program Files\MyApp` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="file-extension" href="#file-extension">`file.extension`</a> | string | File extension, excluding the leading dot. [5] | `png`; `gz` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="file-fork-name" href="#file-fork-name">`file.fork_name`</a> | string | Name of the fork. A fork is additional data associated with a filesystem object. [6] | `Zone.Identifier` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="file-group-id" href="#file-group-id">`file.group.id`</a> | string | Primary Group ID (GID) of the file. | `1000` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="file-group-name" href="#file-group-name">`file.group.name`</a> | string | Primary group name of the file. | `users` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="file-inode" href="#file-inode">`file.inode`</a> | string | Inode representing the file in the filesystem. | `256383` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="file-mode" href="#file-mode">`file.mode`</a> | string | Mode of the file in octal representation. | `0640` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="file-modified" href="#file-modified">`file.modified`</a> | string | Time when the file content was last modified, in ISO 8601 format. | `2021-01-01T12:00:00Z` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="file-name" href="#file-name">`file.name`</a> | string | Name of the file including the extension, without the directory. | `example.png` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="file-owner-id" href="#file-owner-id">`file.owner.id`</a> | string | The user ID (UID) or security identifier (SID) of the file owner. | `1000` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="file-owner-name" href="#file-owner-name">`file.owner.name`</a> | string | Username of the file owner. | `root` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="file-path" href="#file-path">`file.path`</a> | string | Full path to the file, including the file name. It should include the drive letter, when appropriate. | `/home/alice/example.png`; `C:\Program Files\MyApp\myapp.exe` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="file-size" href="#file-size">`file.size`</a> | int | File size in bytes. |  | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="file-symbolic-link-target-path" href="#file-symbolic-link-target-path">`file.symbolic_link.target_path`</a> | string | Path to the target of a symbolic link. [7] | `/usr/bin/python3` | ![Development](https://img.shields.io/badge/-development-blue) |
+**Attributes:**
+
+| Key | Stability | Value Type | Description | Example Values |
+| --- | --- | --- | --- | --- |
+| <a id="file-accessed" href="#file-accessed">`file.accessed`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Time when the file was last accessed, in ISO 8601 format. [1] | `2021-01-01T12:00:00Z` |
+| <a id="file-attributes" href="#file-attributes">`file.attributes`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string[] | Array of file attributes. [2] | `["readonly", "hidden"]` |
+| <a id="file-changed" href="#file-changed">`file.changed`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Time when the file attributes or metadata was last changed, in ISO 8601 format. [3] | `2021-01-01T12:00:00Z` |
+| <a id="file-created" href="#file-created">`file.created`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Time when the file was created, in ISO 8601 format. [4] | `2021-01-01T12:00:00Z` |
+| <a id="file-directory" href="#file-directory">`file.directory`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Directory where the file is located. It should include the drive letter, when appropriate. | `/home/user`; `C:\Program Files\MyApp` |
+| <a id="file-extension" href="#file-extension">`file.extension`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | File extension, excluding the leading dot. [5] | `png`; `gz` |
+| <a id="file-fork-name" href="#file-fork-name">`file.fork_name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Name of the fork. A fork is additional data associated with a filesystem object. [6] | `Zone.Identifier` |
+| <a id="file-group-id" href="#file-group-id">`file.group.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Primary Group ID (GID) of the file. | `1000` |
+| <a id="file-group-name" href="#file-group-name">`file.group.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Primary group name of the file. | `users` |
+| <a id="file-inode" href="#file-inode">`file.inode`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Inode representing the file in the filesystem. | `256383` |
+| <a id="file-mode" href="#file-mode">`file.mode`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Mode of the file in octal representation. | `0640` |
+| <a id="file-modified" href="#file-modified">`file.modified`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Time when the file content was last modified, in ISO 8601 format. | `2021-01-01T12:00:00Z` |
+| <a id="file-name" href="#file-name">`file.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Name of the file including the extension, without the directory. | `example.png` |
+| <a id="file-owner-id" href="#file-owner-id">`file.owner.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The user ID (UID) or security identifier (SID) of the file owner. | `1000` |
+| <a id="file-owner-name" href="#file-owner-name">`file.owner.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Username of the file owner. | `root` |
+| <a id="file-path" href="#file-path">`file.path`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Full path to the file, including the filename. It should include the drive letter, when appropriate. | `/home/alice/example.png`; `C:\Program Files\MyApp\myapp.exe` |
+| <a id="file-size" href="#file-size">`file.size`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | File size in bytes. | |
+| <a id="file-symbolic-link-target-path" href="#file-symbolic-link-target-path">`file.symbolic_link.target_path`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Path to the target of a symbolic link. [7] | `/usr/bin/python3` |
 
 **[1] `file.accessed`:** This attribute might not be supported by some file systems — NFS, FAT32, in embedded OS, etc.
 
@@ -36,9 +41,30 @@ Describes file attributes.
 
 **[4] `file.created`:** This attribute might not be supported by some file systems — NFS, FAT32, in embedded OS, etc.
 
-**[5] `file.extension`:** When the file name has multiple extensions (example.tar.gz), only the last one should be captured ("gz", not "tar.gz").
+**[5] `file.extension`:** When the filename has multiple extensions (example.tar.gz), only the last one should be captured ("gz", not "tar.gz").
 
 **[6] `file.fork_name`:** On Linux, a resource fork is used to store additional data with a filesystem object. A file always has at least one fork for the data portion, and additional forks may exist.
-On NTFS, this is analogous to an Alternate Data Stream (ADS), and the default data stream for a file is just called $DATA. Zone.Identifier is commonly used by Windows to track contents downloaded from the Internet. An ADS is typically of the form: C:\path\to\filename.extension:some_fork_name, and some_fork_name is the value that should populate `fork_name`. `filename.extension` should populate `file.name`, and `extension` should populate `file.extension`. The full path, `file.path`, will include the fork name.
+On NTFS, this is analogous to an Alternate Data Stream (ADS), and the default data stream for a file is just called $DATA. Zone.Identifier is commonly used by Windows to track contents downloaded from the internet. An ADS is typically of the form: C:\path\to\filename.extension:some_fork_name, and some_fork_name is the value that should populate `fork_name`. `filename.extension` should populate `file.name`, and `extension` should populate `file.extension`. The full path, `file.path`, will include the fork name.
 
 **[7] `file.symbolic_link.target_path`:** This attribute is only applicable to symbolic links.
+
+## File Lock Attributes
+
+These attributes may be used for any filesystem lock or related operation
+
+**Attributes:**
+
+| Key | Stability | Value Type | Description | Example Values |
+| --- | --- | --- | --- | --- |
+| <a id="file-lock-mechanism" href="#file-lock-mechanism">`file.lock.mechanism`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The lock mechanism such as noted by [POSIX](https://pubs.opengroup.org/onlinepubs/9699919799/functions/fcntl.html) | `POSIX`; `FLOCK`; `DELEG`; `LEASE` |
+| <a id="file-lock-mode" href="#file-lock-mode">`file.lock.mode`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Mode of lock or operation such as documented by [POSIX](https://pubs.opengroup.org/onlinepubs/9699919799/functions/fcntl.html) | `ADVISORY`; `MANDATORY`; `BREAKING`; `ACTIVE`; `BREAKER` |
+| <a id="file-lock-type" href="#file-lock-type">`file.lock.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The lock type as represented by i.e. [POSIX](https://pubs.opengroup.org/onlinepubs/9699919799/functions/fcntl.html)'s l_type. | `read` |
+
+---
+
+`file.lock.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value | Description | Stability |
+| --- | --- | --- |
+| `read` | read | ![Development](https://img.shields.io/badge/-development-blue) |
+| `write` | write | ![Development](https://img.shields.io/badge/-development-blue) |

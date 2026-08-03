@@ -17,19 +17,19 @@ updated to the stable K8s semantic conventions, they:
 
 - SHOULD introduce an environment variable `OTEL_SEMCONV_STABILITY_OPT_IN` in
   their existing major version, which accepts:
-  - `k8s` - emit the stable k8s conventions, and stop emitting
-    the old k8s conventions that the instrumentation emitted previously.
-  - `k8s/dup` - emit both the old and the stable k8s conventions,
+  - `k8s` - emit the stable K8s conventions, and stop emitting
+    the old K8s conventions that the instrumentation emitted previously.
+  - `k8s/dup` - emit both the old and the stable K8s conventions,
     allowing for a phased rollout of the stable semantic conventions.
   - The default behavior (in the absence of one of these values) is to continue
-    emitting whatever version of the old k8s conventions the
+    emitting whatever version of the old K8s conventions the
     instrumentation was emitting previously.
 - Need to maintain (security patching at a minimum) their existing major version
   for at least six months after it starts emitting both sets of conventions.
 - May drop the environment variable in their next major version and emit only
-  the stable k8s conventions.
+  the stable K8s conventions.
 
-Specifically for the Opentelemetry Collector:
+Specifically for the OpenTelemetry Collector:
 
 The transition will happen through two different feature gates.
 One for enabling the new schema called `semconv.k8s.enableStable`,
@@ -42,7 +42,7 @@ and one for disabling the old schema called `semconv.k8s.disableLegacy`. Then:
 - It is an error to disable both schemas
 - Both schemas can be enabled with `--feature-gates=-semconv.k8s.disableLegacy,+semconv.k8s.enableStable`.
 
-<!-- toc -->
+<!-- START doctoc -->
 
 - [Summary of changes](#summary-of-changes)
   - [K8s network metrics](#k8s-network-metrics)
@@ -50,7 +50,7 @@ and one for disabling the old schema called `semconv.k8s.disableLegacy`. Then:
   - [K8s Deployment metrics](#k8s-deployment-metrics)
   - [K8s ReplicaSet metrics](#k8s-replicaset-metrics)
   - [K8s ReplicationController metrics](#k8s-replicationcontroller-metrics)
-  - [K8s StatefulsSet metrics](#k8s-statefulsset-metrics)
+  - [K8s StatefulSet metrics](#k8s-statefulset-metrics)
   - [K8s HorizontalPodAutoscaler metrics](#k8s-horizontalpodautoscaler-metrics)
   - [K8s DaemonSet metrics](#k8s-daemonset-metrics)
   - [K8s Job metrics](#k8s-job-metrics)
@@ -60,12 +60,19 @@ and one for disabling the old schema called `semconv.k8s.disableLegacy`. Then:
   - [K8s ReplicationController resource](#k8s-replicationcontroller-resource)
   - [K8s Container metrics](#k8s-container-metrics)
   - [K8s ResourceQuota metrics](#k8s-resourcequota-metrics)
+  - [OpenShift ClusterResourceQuota metrics](#openshift-clusterresourcequota-metrics)
   - [K8s Node condition metrics](#k8s-node-condition-metrics)
   - [K8s Filesystem metrics](#k8s-filesystem-metrics)
   - [K8s Pod Volume metrics](#k8s-pod-volume-metrics)
+  - [K8s Pod Memory metrics](#k8s-pod-memory-metrics)
+  - [Container memory metrics](#container-memory-metrics)
+  - [K8s Node memory metrics](#k8s-node-memory-metrics)
   - [Container Runtime](#container-runtime)
+  - [K8s Pod Status Phase and Reason](#k8s-pod-status-phase-and-reason)
+  - [K8s labels and annotations](#k8s-labels-and-annotations)
+  - [K8s Pod/Node and Container Memory Usage](#k8s-podnode-and-container-memory-usage)
 
-<!-- tocstop -->
+<!-- END doctoc -->
 
 ## Summary of changes
 
@@ -85,7 +92,7 @@ The changes in their attributes are the following:
 <!-- prettier-ignore-start -->
 
 | Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                      |
-|------------------------------------------------------------------------------------|--------------------------|
+| ---------------------------------------------------------------------------------- | ------------------------ |
 | `interface`                                                                        | `network.interface.name` |
 | `direction`                                                                        | `network.io.direction`   |
 
@@ -102,11 +109,11 @@ The changes between collector implementation and semantic conventions:
 <!-- prettier-ignore-start -->
 
 | Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                              |
-|------------------------------------------------------------------------------------|------------------------------------------------------------------|
-| `k8s.node.allocatable_cpu`                 (type: `gauge`)                         | `k8s.node.allocatable.cpu`               (type: `updowncounter`) |
-| `k8s.node.allocatable_memory`              (type: `gauge`)                         | `k8s.node.allocatable.memory`            (type: `updowncounter`) |
-| `k8s.node.allocatable_ephemeral_storage`   (type: `gauge`)                         | `k8s.node.allocatable.ephemeral_storage` (type: `updowncounter`) |
-| `k8s.node.allocatable_pods`                (type: `gauge`)                         | `k8s.node.allocatable.pods`              (type: `updowncounter`) |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| `k8s.node.allocatable_cpu`                 (type: `gauge`)                         | `k8s.node.cpu.allocatable`               (type: `updowncounter`) |
+| `k8s.node.allocatable_memory`              (type: `gauge`)                         | `k8s.node.memory.allocatable`            (type: `updowncounter`) |
+| `k8s.node.allocatable_ephemeral_storage`   (type: `gauge`)                         | `k8s.node.ephemeral_storage.allocatable` (type: `updowncounter`) |
+| `k8s.node.allocatable_pods`                (type: `gauge`)                         | `k8s.node.pod.allocatable`              (type: `updowncounter`)  |
 
 <!-- prettier-ignore-end -->
 
@@ -121,10 +128,10 @@ The changes in their metric names and types are the following:
 
 <!-- prettier-ignore-start -->
 
-| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                          |
-|------------------------------------------------------------------------------------|--------------------------------------------------------------|
-| `k8s.deployment.desired`       (type: `gauge`)                                     | `k8s.deployment.desired_pods` (type: `updowncounter`)        |
-| `k8s.deployment.available`     (type: `gauge`)                                     | `k8s.deployment.available_pods`      (type: `updowncounter`) |
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                         |
+| ---------------------------------------------------------------------------------- | ----------------------------------------------------------- |
+| `k8s.deployment.desired`       (type: `gauge`)                                     | `k8s.deployment.pod.desired` (type: `updowncounter`)        |
+| `k8s.deployment.available`     (type: `gauge`)                                     | `k8s.deployment.pod.available`      (type: `updowncounter`) |
 
 <!-- prettier-ignore-end -->
 
@@ -139,10 +146,10 @@ The changes in their metric names and types are the following:
 
 <!-- prettier-ignore-start -->
 
-| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                     |
-|------------------------------------------------------------------------------------|---------------------------------------------------------|
-| `k8s.replicaset.desired`           (type: `gauge`)                                 | `k8s.replicaset.desired_pods` (type: `updowncounter`)   |
-| `k8s.replicaset.available`         (type: `gauge`)                                 | `k8s.replicaset.available_pods` (type: `updowncounter`) |
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                    |
+| ---------------------------------------------------------------------------------- | ------------------------------------------------------ |
+| `k8s.replicaset.desired`           (type: `gauge`)                                 | `k8s.replicaset.pod.desired` (type: `updowncounter`)   |
+| `k8s.replicaset.available`         (type: `gauge`)                                 | `k8s.replicaset.pod.available` (type: `updowncounter`) |
 
 <!-- prettier-ignore-end -->
 
@@ -157,14 +164,14 @@ The changes in their metric names and types are the following:
 
 <!-- prettier-ignore-start -->
 
-| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                                |
-|------------------------------------------------------------------------------------|--------------------------------------------------------------------|
-| `k8s.replication_controller.desired`           (type: `gauge`)                     | `k8s.replicationcontroller.desired_pods` (type: `updowncounter`)   |
-| `k8s.replication_controller.available`         (type: `gauge`)                     | `k8s.replicationcontroller.available_pods` (type: `updowncounter`) |
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                               |
+| ---------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
+| `k8s.replication_controller.desired`           (type: `gauge`)                     | `k8s.replicationcontroller.pod.desired` (type: `updowncounter`)   |
+| `k8s.replication_controller.available`         (type: `gauge`)                     | `k8s.replicationcontroller.pod.available` (type: `updowncounter`) |
 
 <!-- prettier-ignore-end -->
 
-### K8s StatefulsSet metrics
+### K8s StatefulSet metrics
 
 The K8s StatefulSet metrics implemented by the Collector and specifically the
 [k8scluster](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/v0.115.0/receiver/k8sclusterreceiver/documentation.md)
@@ -175,12 +182,12 @@ The changes in their metric types are the following:
 
 <!-- prettier-ignore-start -->
 
-| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                      |
-|------------------------------------------------------------------------------------|----------------------------------------------------------|
-| `k8s.statefulset.desired_pods`                  (type: `gauge`)                    | `k8s.statefulset.desired_pods` (type: `updowncounter`)   |
-| `k8s.statefulset.ready_pods`                  (type: `gauge`)                      | `k8s.statefulset.ready_pods` (type: `updowncounter`)     |
-| `k8s.statefulset.current_pods`                       (type: `gauge`)               | `k8s.statefulset.current_pods`  (type: `updowncounter`)  |
-| `k8s.statefulset.updated_pods`                      (type: `gauge`)                | `k8s.statefulset.updated_pods`   (type: `updowncounter`) |
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                     |
+| ---------------------------------------------------------------------------------- | ------------------------------------------------------- |
+| `k8s.statefulset.desired_pods`                  (type: `gauge`)                    | `k8s.statefulset.pod.desired` (type: `updowncounter`)   |
+| `k8s.statefulset.ready_pods`                  (type: `gauge`)                      | `k8s.statefulset.pod.ready` (type: `updowncounter`)     |
+| `k8s.statefulset.current_pods`                       (type: `gauge`)               | `k8s.statefulset.pod.current`  (type: `updowncounter`)  |
+| `k8s.statefulset.updated_pods`                      (type: `gauge`)                | `k8s.statefulset.pod.updated`   (type: `updowncounter`) |
 
 <!-- prettier-ignore-end -->
 
@@ -195,12 +202,12 @@ The changes in their metric names and types are the following:
 
 <!-- prettier-ignore-start -->
 
-| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                            |
-|------------------------------------------------------------------------------------|------------------------------------------------|
-| `k8s.hpa.desired_replicas`                  (type: `gauge`)                        | `k8s.hpa.desired_pods` (type: `updowncounter`) |
-| `k8s.hpa.current_replicas`                  (type: `gauge`)                        | `k8s.hpa.current_pods` (type: `updowncounter`) |
-| `k8s.hpa.max_replicas`                       (type: `gauge`)                       | `k8s.hpa.max_pods`  (type: `updowncounter`)    |
-| `k8s.hpa.min_replicas`                      (type: `gauge`)                        | `k8s.hpa.min_pods`   (type: `updowncounter`)   |
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                           |
+| ---------------------------------------------------------------------------------- | --------------------------------------------- |
+| `k8s.hpa.desired_replicas`                  (type: `gauge`)                        | `k8s.hpa.pod.desired` (type: `updowncounter`) |
+| `k8s.hpa.current_replicas`                  (type: `gauge`)                        | `k8s.hpa.pod.current` (type: `updowncounter`) |
+| `k8s.hpa.max_replicas`                       (type: `gauge`)                       | `k8s.hpa.pod.max`  (type: `updowncounter`)    |
+| `k8s.hpa.min_replicas`                      (type: `gauge`)                        | `k8s.hpa.pod.min`   (type: `updowncounter`)   |
 
 <!-- prettier-ignore-end -->
 
@@ -215,12 +222,12 @@ The changes in their metric types are the following:
 
 <!-- prettier-ignore-start -->
 
-| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                             |
-|------------------------------------------------------------------------------------|-----------------------------------------------------------------|
-| `k8s.daemonset.current_scheduled_nodes`                  (type: `gauge`)           | `k8s.daemonset.current_scheduled_nodes` (type: `updowncounter`) |
-| `k8s.daemonset.desired_scheduled_nodes`                  (type: `gauge`)           | `k8s.daemonset.desired_scheduled_nodes` (type: `updowncounter`) |
-| `k8s.daemonset.misscheduled_nodes`                       (type: `gauge`)           | `k8s.daemonset.misscheduled_nodes`  (type: `updowncounter`)     |
-| `k8s.daemonset.ready_nodes`                      (type: `gauge`)                   | `k8s.daemonset.ready_nodes`   (type: `updowncounter`)           |
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                            |
+| ---------------------------------------------------------------------------------- | -------------------------------------------------------------- |
+| `k8s.daemonset.current_scheduled_nodes`                  (type: `gauge`)           | `k8s.daemonset.node.current_scheduled` (type: `updowncounter`) |
+| `k8s.daemonset.desired_scheduled_nodes`                  (type: `gauge`)           | `k8s.daemonset.node.desired_scheduled` (type: `updowncounter`) |
+| `k8s.daemonset.misscheduled_nodes`                       (type: `gauge`)           | `k8s.daemonset.node.misscheduled`  (type: `updowncounter`)     |
+| `k8s.daemonset.ready_nodes`                      (type: `gauge`)                   | `k8s.daemonset.node.ready`   (type: `updowncounter`)           |
 
 <!-- prettier-ignore-end -->
 
@@ -235,12 +242,14 @@ The changes in their metric types are the following:
 
 <!-- prettier-ignore-start -->
 
-| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                    |
-|----------------------------------------------------------|----------------------------------------|
-| `k8s.job.active_pods`                  (type: `gauge`) | `k8s.job.active_pods` (type: `updowncounter`) |
-| `k8s.job.failed_pods`                  (type: `gauge`) | `k8s.job.failed_pods` (type: `updowncounter`) |
-| `k8s.job.desired_successful_pods`                       (type: `gauge`) | `k8s.job.desired_successful_pods`  (type: `updowncounter`) |
-| `k8s.job.max_parallel_pods`                      (type: `gauge`) | `k8s.job.max_parallel_pods`   (type: `updowncounter`) |
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                      |
+| ---------------------------------------------------------------------------------- | -------------------------------------------------------- |
+| `k8s.job.active_pods`             (type: `gauge`)                                  | `k8s.job.pod.active` (type: `updowncounter`)             |
+| `k8s.job.failed_pods`             (type: `gauge`)                                  | `k8s.job.pod.failed` (type: `updowncounter`)             |
+| `k8s.job.desired_successful_pods` (type: `gauge`)                                  | `k8s.job.pod.desired_successful` (type: `updowncounter`) |
+| `k8s.job.max_parallel_pods`       (type: `gauge`)                                  | `k8s.job.pod.max_parallel` (type: `updowncounter`)       |
+
+<!-- prettier-ignore-end -->
 
 ### K8s Cronjob metrics
 
@@ -253,9 +262,9 @@ The changes in their metric types are the following:
 
 <!-- prettier-ignore-start -->
 
-| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                            |
-|--------------------------------------------------|--------------------------------|
-| `k8s.cronjob.active_jobs`                  (type: `gauge`) | `k8s.cronjob.active_jobs` (type: `updowncounter`) |
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                              |
+| ---------------------------------------------------------------------------------- | ------------------------------------------------ |
+| `k8s.cronjob.active_jobs` (type: `gauge`)                                          | `k8s.cronjob.job.active` (type: `updowncounter`) |
 
 <!-- prettier-ignore-end -->
 
@@ -270,9 +279,9 @@ The changes in their metrics are the following:
 
 <!-- prettier-ignore-start -->
 
-| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                                                            |
-|------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------|
-| `k8s.namespace.phase`                  (type: `gauge`), 1 for active and 0 for terminating                      | `k8s.namespace.phase` (type: `updowncounter`), with the attribute `k8s.namespace.phase` indicating the phase |
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New |
+| ---------------------------------------------------------------------------------- | --- |
+| `k8s.namespace.phase`                  (type: `gauge`), 1 for active and 0 for terminating | `k8s.namespace.phase` (type: `updowncounter`), with the attribute `k8s.namespace.phase` indicating the phase |
 
 <!-- prettier-ignore-end -->
 
@@ -287,9 +296,9 @@ The changes are the following:
 
 <!-- prettier-ignore-start -->
 
-| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                                                       |
-|---------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------|
-| `k8s.resource_quota.{name,uid}`                                     | `k8s.resourcequota.{name,uid}`  |
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New |
+| ---------------------------------------------------------------------------------- | --- |
+| `k8s.resource_quota.{name,uid}` | `k8s.resourcequota.{name,uid}` |
 
 <!-- prettier-ignore-end -->
 
@@ -304,9 +313,11 @@ The changes are the following:
 
 <!-- prettier-ignore-start -->
 
-| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                                                       |
-|---------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------|
-| `k8s.replication_controller.{name,uid}`                                     | `k8s.replicationcontroller.{name,uid}`  |
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                    |
+| ---------------------------------------------------------------------------------- | -------------------------------------- |
+| `k8s.replication_controller.{name,uid}`                                            | `k8s.replicationcontroller.{name,uid}` |
+
+<!-- prettier-ignore-end -->
 
 ### K8s Container metrics
 
@@ -318,25 +329,32 @@ receiver were introduced as semantic conventions in:
 available)
 - [#2074](https://github.com/open-telemetry/semantic-conventions/issues/2074)
 - [#2197](https://github.com/open-telemetry/semantic-conventions/issues/2197)
+- [#3558](https://github.com/open-telemetry/semantic-conventions/issues/3558) (CPU and memory resize: desired/current split)
+- [#3559](https://github.com/open-telemetry/semantic-conventions/pull/3559) (CPU metrics)
+- [#3646](https://github.com/open-telemetry/semantic-conventions/pull/3646) (Memory metrics)
 
 The changes in their metrics are the following:
 
 <!-- prettier-ignore-start -->
 
-| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                              |
-|------------------------------------------------------------------------------------|------------------------------------------------------------------|
-| `k8s.container.cpu_limit`              (type: `gauge`)                                             | `k8s.container.cpu.limit`       (type: `updowncounter`)          |
-| `k8s.container.cpu_request`             (type: `gauge`)                                            | `k8s.container.cpu.request`     (type: `updowncounter`)          |
-| `k8s.container.memory_limit`            (type: `gauge`)                                            | `k8s.container.memory.limit`     (type: `updowncounter`)         |
-| `k8s.container.memory_request`           (type: `gauge`)                                           | `k8s.container.memory.request`    (type: `updowncounter`)        |
-| `k8s.container.storage_limit`             (type: `gauge`)                                          | `k8s.container.storage.limit`     (type: `updowncounter`)        |
-| `k8s.container.storage_request`           (type: `gauge`)                                          | `k8s.container.storage.request`    (type: `updowncounter`)       |
-| `k8s.container.ephemeralstorage_limit`      (type: `gauge`)                                        | `k8s.container.ephemeral_storage.limit`  (type: `updowncounter`) |
-| `k8s.container.ephemeralstorage_request`     (type: `gauge`)                                       | `k8s.container.ephemeral_storage.request` (type: `updowncounter`) |
-| `k8s.container.restarts`                  (type: `gauge`)                          | `k8s.container.restart.count` (type: `updowncounter`)            |
-| `k8s.container.ready`                  (type: `gauge`)                             | `k8s.container.ready` (type: `updowncounter`)                    |
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New (SemConv) |
+| ---------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
+| `k8s.container.cpu_limit` (type: `gauge`) | `k8s.container.cpu.limit.desired`, `k8s.container.cpu.limit.current` (type: `updowncounter`) |
+| `k8s.container.cpu_request` (type: `gauge`) | `k8s.container.cpu.request.desired`, `k8s.container.cpu.request.current` (type: `updowncounter`) |
+| `k8s.container.memory_limit` (type: `gauge`) | `k8s.container.memory.limit.desired`, `k8s.container.memory.limit.current` (type: `updowncounter`) |
+| `k8s.container.memory_request` (type: `gauge`) | `k8s.container.memory.request.desired`, `k8s.container.memory.request.current` (type: `updowncounter`) |
+| `k8s.container.storage_limit` (type: `gauge`) | `k8s.container.storage.limit` (type: `updowncounter`) |
+| `k8s.container.storage_request` (type: `gauge`) | `k8s.container.storage.request` (type: `updowncounter`) |
+| `k8s.container.ephemeralstorage_limit` (type: `gauge`) | `k8s.container.ephemeral_storage.limit` (type: `updowncounter`) |
+| `k8s.container.ephemeralstorage_request` (type: `gauge`) | `k8s.container.ephemeral_storage.request` (type: `updowncounter`) |
+| `k8s.container.restarts` (type: `gauge`) | `k8s.container.restart.count` (type: `updowncounter`) |
+| `k8s.container.ready` (type: `gauge`) | `k8s.container.ready` (type: `updowncounter`) |
+| `k8s.container.cpu_limit_utilization` (type: `gauge`) | `k8s.container.cpu.limit.utilization` (type: `gauge`) |
+| `k8s.container.cpu_request_utilization` (type: `gauge`) | `k8s.container.cpu.request.utilization` (type: `gauge`) |
 
 <!-- prettier-ignore-end -->
+
+**Note:** For CPU and memory limit and request, SemConv splits each into `desired` (from spec) and `current` (from container status) to support [K8s container resource resize](https://kubernetes.io/docs/tasks/configure-pod-container/resize-container-resources/).
 
 ### K8s ResourceQuota metrics
 
@@ -350,10 +368,29 @@ These metrics were completely re-designed. The changes are the following:
 <!-- prettier-ignore-start -->
 
 | Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                 |
-|------------------------------------------------------------------------------------|-------------------------------------|
+| ---------------------------------------------------------------------------------- | ----------------------------------- |
 | `k8s.resource_quota.hard_limit`                                                    | `k8s.resourcequota.{resource}.hard` |
 | `k8s.resource_quota.used`                                                          | `k8s.resourcequota.{resource}.used` |
 | `{resource}` attribute                                                             | Split in different metrics per type |
+
+<!-- prettier-ignore-end -->
+
+### OpenShift ClusterResourceQuota metrics
+
+The OpenShift ClusterResourceQuota metrics implemented by the Collector and specifically the
+[k8scluster](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/v0.115.0/receiver/k8sclusterreceiver/documentation.md)
+receiver were introduced as semantic conventions in
+[github.com/open-telemetry/semantic-conventions/pull/2779](https://github.com/open-telemetry/semantic-conventions/pull/2779).
+
+These metrics were completely re-designed. The changes are the following:
+
+<!-- prettier-ignore-start -->
+
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                      |
+| ---------------------------------------------------------------------------------- | ---------------------------------------- |
+| `openshift.clusterquota.hard_limit`                                                | `openshift.clusterquota.{resource}.hard` |
+| `openshift.clusterquota.used`                                                      | `openshift.clusterquota.{resource}.used` |
+| `{resource}` attribute                                                             | Split in different metrics per type      |
 
 <!-- prettier-ignore-end -->
 
@@ -368,8 +405,8 @@ The changes in their metrics are the following:
 
 <!-- prettier-ignore-start -->
 
-| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                                                                                                                  |
-|------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                                                                                                                                   |
+| ---------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `k8s.node.condition_*`                                                             | `k8s.node.condition.status` metric [0,1] with attribute `k8s.node.condition.type` for the different conditions and `k8s.node.condition.status` for true/false/unknown |
 
 <!-- prettier-ignore-end -->
@@ -385,17 +422,17 @@ The changes in their metrics are the following:
 
 <!-- prettier-ignore-start -->
 
-| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                                                                                                                  |
-|------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `k8s.node.filesystem.available` gauge                                              | `k8s.node.filesystem.available` updowncounter |
-| `k8s.node.filesystem.capacity`   gauge                                             | `k8s.node.filesystem.capacity`  updowncounter |
-| `k8s.node.filesystem.usage`      gauge                                             | `k8s.node.filesystem.usage`     updowncounter |
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                              |
+| ---------------------------------------------------------------------------------- | ------------------------------------------------ |
+| `k8s.node.filesystem.available` gauge                                              | `k8s.node.filesystem.available`    updowncounter |
+| `k8s.node.filesystem.capacity`   gauge                                             | `k8s.node.filesystem.capacity`     updowncounter |
+| `k8s.node.filesystem.usage`      gauge                                             | `k8s.node.filesystem.usage`        updowncounter |
 | `k8s.pod.filesystem.available`   gauge                                             | `k8s.pod.filesystem.available`     updowncounter |
-| `k8s.pod.filesystem.capacity`    gauge                                                  | `k8s.pod.filesystem.capacity`   updowncounter |
-| `k8s.pod.filesystem.usage`      gauge                                                   | `k8s.pod.filesystem.usage`      updowncounter |
-| `container.filesystem.available`    gauge                                               | `container.filesystem.available`   updowncounter |
-| `container.filesystem.capacity`      gauge                                              | `container.filesystem.capacity`    updowncounter |
-| `container.filesystem.usage`        gauge                                               | `container.filesystem.usage`       updowncounter |
+| `k8s.pod.filesystem.capacity`    gauge                                             | `k8s.pod.filesystem.capacity`      updowncounter |
+| `k8s.pod.filesystem.usage`      gauge                                              | `k8s.pod.filesystem.usage`         updowncounter |
+| `container.filesystem.available`    gauge                                          | `container.filesystem.available`   updowncounter |
+| `container.filesystem.capacity`      gauge                                         | `container.filesystem.capacity`    updowncounter |
+| `container.filesystem.usage`        gauge                                          | `container.filesystem.usage`       updowncounter |
 
 <!-- prettier-ignore-end -->
 
@@ -410,13 +447,67 @@ The changes in these metrics are the following:
 
 <!-- prettier-ignore-start -->
 
-| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                          |
-|------------------------------------------------------------------------------------|------------------------------|
-| `k8s.volume.available` | `k8s.pod.volume.available`   |
-| `k8s.volume.capacity` | `k8s.pod.volume.capacity`    |
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New |
+| ---------------------------------------------------------------------------------- | --- |
+| `k8s.volume.available` | `k8s.pod.volume.available` |
+| `k8s.volume.capacity` | `k8s.pod.volume.capacity` |
 | `k8s.volume.inodes` | `k8s.pod.volume.inode.count` |
-| `k8s.volume.inodes.free` | `k8s.pod.volume.inode.free`  |
-| `k8s.volume.inodes.used` | `k8s.pod.volume.inode.used`  |
+| `k8s.volume.inodes.free` | `k8s.pod.volume.inode.free` |
+| `k8s.volume.inodes.used` | `k8s.pod.volume.inode.used` |
+
+<!-- prettier-ignore-end -->
+
+### K8s Pod Memory metrics
+
+The K8s Pod memory metrics implemented by the Collector and specifically the
+[k8scluster](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/v0.119.0/receiver/k8sclusterreceiver/documentation.md)
+receiver were introduced as semantic conventions in
+[#1490](https://github.com/open-telemetry/semantic-conventions/issues/1490).
+
+The changes in these metrics are the following:
+
+<!-- prettier-ignore-start -->
+
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                                              |
+| ---------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `k8s.pod.memory.page_faults`                                                       | `k8s.pod.paging.faults` with attribute `system.paging.fault.type` set to `minor` |
+| `k8s.pod.memory.major_page_faults`                                                 | `k8s.pod.paging.faults` with attribute `system.paging.fault.type` set to `major` |
+
+<!-- prettier-ignore-end -->
+
+### Container memory metrics
+
+The Container memory metrics implemented by the Collector and specifically the
+[k8scluster](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/v0.119.0/receiver/k8sclusterreceiver/documentation.md)
+receiver were introduced as semantic conventions in
+[#1490](https://github.com/open-telemetry/semantic-conventions/issues/1490).
+
+The changes in these metrics are the following:
+
+<!-- prettier-ignore-start -->
+
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                                                |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `container.memory.page_faults`                                                     | `container.paging.faults` with attribute `system.paging.fault.type` set to `minor` |
+| `container.memory.major_page_faults`                                               | `container.paging.faults` with attribute `system.paging.fault.type` set to `major` |
+
+<!-- prettier-ignore-end -->
+
+### K8s Node memory metrics
+
+The K8s Node memory metrics implemented by the Collector and specifically the
+[k8scluster](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/v0.119.0/receiver/k8sclusterreceiver/documentation.md)
+receiver were introduced as semantic conventions in
+[#1490](https://github.com/open-telemetry/semantic-conventions/issues/1490).
+
+The changes in these metrics are the following:
+
+<!-- prettier-ignore-start -->
+
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                                         |
+| ---------------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| `k8s.node.memory.page_faults`                                                      | `k8s.node.paging.faults` with attribute `system.paging.type` set to `minor` |
+| `k8s.node.memory.major_page_faults`                                                | `k8s.node.paging.faults` with attribute `system.paging.type` set to `major` |
 
 <!-- prettier-ignore-end -->
 
@@ -430,7 +521,76 @@ The changes in their attributes are the following:
 <!-- prettier-ignore-start -->
 
 | Old Attribute ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New Attribute |
-|------------------------------------------------------------------------------------|--------------------------|
+| -------------------------------------------------------------------------------- | ------------- |
 | `container.runtime` | `container.runtime.name` |
+
+<!-- prettier-ignore-end -->
+
+### K8s Pod Status Phase and Reason
+
+The K8s Pod Status Phase and Reason metrics implemented by the Collector and specifically the
+[k8scluster](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/v0.115.0/receiver/k8sclusterreceiver/documentation.md)
+receiver were introduced as semantic conventions in
+[#2075](https://github.com/open-telemetry/semantic-conventions/issues/2075)
+
+The changes in their metrics are the following:
+
+<!-- prettier-ignore-start -->
+
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                                                                                   |
+| ---------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| `k8s.pod.status_reason`    metric [1,6]                                            | `k8s.pod.status.reason` metric [0,1] with attribute `k8s.pod.status.reason` for the different reasons |
+| `k8s.pod.phase`       metric [1, 5]                                                | `k8s.pod.status.phase` metric [0,1] with attribute `k8s.pod.phase` for the different phases           |
+
+<!-- prettier-ignore-end -->
+
+### K8s labels and annotations
+
+The K8s label and annotation attributes implemented by the Collector and specifically the
+[k8sattributes](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/k8sattributesprocessor/README.md)
+processor were introduced as semantic conventions in
+[#625](https://github.com/open-telemetry/semantic-conventions/pull/625) (Pod),
+[#2130](https://github.com/open-telemetry/semantic-conventions/pull/2130) (Node) and
+[#2166](https://github.com/open-telemetry/semantic-conventions/pull/2166) (Namespace).
+
+Unlike the receivers described above, the k8sattributes processor gates this transition behind
+its own feature gates, `processor.k8sattributes.EmitV1K8sConventions` and
+`processor.k8sattributes.DontEmitV0K8sConventions`, rather than the
+`OTEL_SEMCONV_STABILITY_OPT_IN` environment variable. See the processor's
+[Semantic Conventions Compatibility](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/k8sattributesprocessor/README.md#semantic-conventions-compatibility)
+documentation for details.
+
+The changes in these attributes are the following:
+
+<!-- prettier-ignore-start -->
+
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                              |
+| ---------------------------------------------------------------------------------- | -------------------------------- |
+| `k8s.pod.labels.<key>`                                                             | `k8s.pod.label.<key>`            |
+| `k8s.pod.annotations.<key>`                                                        | `k8s.pod.annotation.<key>`       |
+| `k8s.node.labels.<key>`                                                            | `k8s.node.label.<key>`           |
+| `k8s.node.annotations.<key>`                                                       | `k8s.node.annotation.<key>`      |
+| `k8s.namespace.labels.<key>`                                                       | `k8s.namespace.label.<key>`      |
+| `k8s.namespace.annotations.<key>`                                                  | `k8s.namespace.annotation.<key>` |
+
+<!-- prettier-ignore-end -->
+
+### K8s Pod/Node and Container Memory Usage
+
+The memory usage metrics implemented by the Collector and specifically the
+[kubeletstats](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/v0.150.0/receiver/kubeletstatsreceiver/documentation.md)
+receiver changed their instrument types in
+[#3889](https://github.com/open-telemetry/semantic-conventions/pull/3889) in alignment with the rest
+of the project.
+
+The changes are the following:
+
+<!-- prettier-ignore-start -->
+
+| Old (Collector) ![changed](https://img.shields.io/badge/changed-orange?style=flat) | New                                      |
+| ---------------------------------------------------------------------------------- | ---------------------------------------- |
+| `k8s.pod.memory.usage`   gauge                                                     | `k8s.pod.memory.usage`   updowncounter   |
+| `k8s.node.memory.usage`  gauge                                                     | `k8s.node.memory.usage`  updowncounter   |
+| `container.memory.usage` counter                                                   | `container.memory.usage` updowncounter   |
 
 <!-- prettier-ignore-end -->

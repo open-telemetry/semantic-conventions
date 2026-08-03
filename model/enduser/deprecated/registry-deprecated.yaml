@@ -2,13 +2,13 @@ groups:
   - id: registry.enduser.deprecated
     type: attribute_group
     display_name: Deprecated End User Attributes
-    brief: "Describes deprecated enduser attributes."
+    brief: "Describes deprecated end user attributes."
     attributes:
       - id: enduser.role
         type: string
         deprecated:
           reason: uncategorized
-          note: "Use `user.roles` attribute instead."
+          note: Use `user.roles` instead.
         stability: development
         brief: "Deprecated, use `user.roles` instead."
         examples: 'admin'

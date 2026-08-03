@@ -1,0 +1,19 @@
+groups:
+  - id: registry.openshift
+    type: attribute_group
+    display_name: Openshift Attributes
+    brief: >
+      OpenShift resource attributes.
+    attributes:
+      - id: openshift.clusterquota.uid
+        type: string
+        stability: development
+        brief: >
+          The UID of the cluster quota.
+        examples: [ '275ecb36-5aa8-4c2a-9c47-d8bb681b9aff' ]
+      - id: openshift.clusterquota.name
+        type: string
+        stability: development
+        brief: >
+          The name of the cluster quota.
+        examples: [ 'opentelemetry' ]

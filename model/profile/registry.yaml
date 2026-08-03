@@ -78,3 +78,8 @@ groups:
                 [Rust](https://wikipedia.org/wiki/Rust_(programming_language))
               value: "rust"
               stability: development
+            - id: luajit
+              brief: >
+                [LuaJIT](https://en.wikipedia.org/wiki/LuaJIT)
+              value: "luajit"
+              stability: development

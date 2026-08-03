@@ -7,25 +7,27 @@
 
 Attributes describing URL.
 
-| Attribute | Type | Description | Examples | Stability |
-|---|---|---|---|---|
-| <a id="url-domain" href="#url-domain">`url.domain`</a> | string | Domain extracted from the `url.full`, such as "opentelemetry.io". [1] | `www.foo.bar`; `opentelemetry.io`; `3.12.167.2`; `[1080:0:0:0:8:800:200C:417A]` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="url-extension" href="#url-extension">`url.extension`</a> | string | The file extension extracted from the `url.full`, excluding the leading dot. [2] | `png`; `gz` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="url-fragment" href="#url-fragment">`url.fragment`</a> | string | The [URI fragment](https://www.rfc-editor.org/rfc/rfc3986#section-3.5) component | `SemConv` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| <a id="url-full" href="#url-full">`url.full`</a> | string | Absolute URL describing a network resource according to [RFC3986](https://www.rfc-editor.org/rfc/rfc3986) [3] | `https://www.foo.bar/search?q=OpenTelemetry#SemConv`; `//localhost` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| <a id="url-original" href="#url-original">`url.original`</a> | string | Unmodified original URL as seen in the event source. [4] | `https://www.foo.bar/search?q=OpenTelemetry#SemConv`; `search?q=OpenTelemetry` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="url-path" href="#url-path">`url.path`</a> | string | The [URI path](https://www.rfc-editor.org/rfc/rfc3986#section-3.3) component [5] | `/search` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| <a id="url-port" href="#url-port">`url.port`</a> | int | Port extracted from the `url.full` | `443` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="url-query" href="#url-query">`url.query`</a> | string | The [URI query](https://www.rfc-editor.org/rfc/rfc3986#section-3.4) component [6] | `q=OpenTelemetry` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| <a id="url-registered-domain" href="#url-registered-domain">`url.registered_domain`</a> | string | The highest registered url domain, stripped of the subdomain. [7] | `example.com`; `foo.co.uk` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="url-scheme" href="#url-scheme">`url.scheme`</a> | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. | `https`; `ftp`; `telnet` | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
-| <a id="url-subdomain" href="#url-subdomain">`url.subdomain`</a> | string | The subdomain portion of a fully qualified domain name includes all of the names except the host name under the registered_domain. In a partially qualified domain, or if the qualification level of the full name cannot be determined, subdomain contains all of the names below the registered domain. [8] | `east`; `sub2.sub1` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="url-template" href="#url-template">`url.template`</a> | string | The low-cardinality template of an [absolute path reference](https://www.rfc-editor.org/rfc/rfc3986#section-4.2). | `/users/{id}`; `/users/:id`; `/users?id={id}` | ![Development](https://img.shields.io/badge/-development-blue) |
-| <a id="url-top-level-domain" href="#url-top-level-domain">`url.top_level_domain`</a> | string | The effective top level domain (eTLD), also known as the domain suffix, is the last part of the domain name. For example, the top level domain for example.com is `com`. [9] | `com`; `co.uk` | ![Development](https://img.shields.io/badge/-development-blue) |
+**Attributes:**
+
+| Key | Stability | Value Type | Description | Example Values |
+| --- | --- | --- | --- | --- |
+| <a id="url-domain" href="#url-domain">`url.domain`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Domain extracted from the `url.full`, such as "opentelemetry.io". [1] | `www.foo.bar`; `opentelemetry.io`; `3.12.167.2`; `[1080:0:0:0:8:800:200C:417A]` |
+| <a id="url-extension" href="#url-extension">`url.extension`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The file extension extracted from the `url.full`, excluding the leading dot. [2] | `png`; `gz` |
+| <a id="url-fragment" href="#url-fragment">`url.fragment`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The [URI fragment](https://www.rfc-editor.org/rfc/rfc3986#section-3.5) component | `SemConv` |
+| <a id="url-full" href="#url-full">`url.full`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | Absolute URL describing a network resource according to [RFC3986](https://www.rfc-editor.org/rfc/rfc3986) [3] | `https://www.foo.bar/search?q=OpenTelemetry#SemConv`; `//localhost` |
+| <a id="url-original" href="#url-original">`url.original`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Unmodified original URL as seen in the event source. [4] | `https://www.foo.bar/search?q=OpenTelemetry#SemConv`; `search?q=OpenTelemetry` |
+| <a id="url-path" href="#url-path">`url.path`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The [URI path](https://www.rfc-editor.org/rfc/rfc3986#section-3.3) component [5] | `/search` |
+| <a id="url-port" href="#url-port">`url.port`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | Port extracted from the `url.full` | `443` |
+| <a id="url-query" href="#url-query">`url.query`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The [URI query](https://www.rfc-editor.org/rfc/rfc3986#section-3.4) component [6] | `q=OpenTelemetry` |
+| <a id="url-registered-domain" href="#url-registered-domain">`url.registered_domain`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The highest registered URL domain, stripped of the subdomain. [7] | `example.com`; `foo.co.uk` |
+| <a id="url-scheme" href="#url-scheme">`url.scheme`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. | `https`; `ftp`; `telnet` |
+| <a id="url-subdomain" href="#url-subdomain">`url.subdomain`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The subdomain portion of a fully qualified domain name includes all of the names except the hostname under the registered_domain. In a partially qualified domain, or if the qualification level of the full name cannot be determined, subdomain contains all of the names below the registered domain. [8] | `east`; `sub2.sub1` |
+| <a id="url-template" href="#url-template">`url.template`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The low-cardinality template of an [absolute path reference](https://www.rfc-editor.org/rfc/rfc3986#section-4.2). | `/users/{id}`; `/users/:id`; `/users?id={id}` |
+| <a id="url-top-level-domain" href="#url-top-level-domain">`url.top_level_domain`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The effective top level domain (eTLD), also known as the domain suffix, is the last part of the domain name. For example, the top level domain for example.com is `com`. [9] | `com`; `co.uk` |
 
 **[1] `url.domain`:** In some cases a URL may refer to an IP and/or port directly, without a domain name. In this case, the IP address would go to the domain field. If the URL contains a [literal IPv6 address](https://www.rfc-editor.org/rfc/rfc2732#section-2) enclosed by `[` and `]`, the `[` and `]` characters should also be captured in the domain field.
 
-**[2] `url.extension`:** The file extension is only set if it exists, as not every url has a file extension. When the file name has multiple extensions `example.tar.gz`, only the last one should be captured `gz`, not `tar.gz`.
+**[2] `url.extension`:** The file extension is only set if it exists, as not every URL has a file extension. When the filename has multiple extensions `example.tar.gz`, only the last one should be captured `gz`, not `tar.gz`.
 
 **[3] `url.full`:** For network calls, URL usually has `scheme://host[:port][path][?query][#fragment]` format, where the fragment
 is not transmitted over HTTP, but if it is known, it SHOULD be included nevertheless.
@@ -41,12 +43,23 @@ Sensitive content provided in `url.full` SHOULD be scrubbed when instrumentation
 Query string values for the following keys SHOULD be redacted by default and replaced by the
 value `REDACTED`:
 
-* [`AWSAccessKeyId`](https://docs.aws.amazon.com/AmazonS3/latest/userguide/RESTAuthentication.html#RESTAuthenticationQueryStringAuth)
-* [`Signature`](https://docs.aws.amazon.com/AmazonS3/latest/userguide/RESTAuthentication.html#RESTAuthenticationQueryStringAuth)
+* [`X-Amz-Signature`](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_sigv-authentication-methods.html)
+* [`X-Amz-Credential`](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_sigv-authentication-methods.html)
+* [`X-Amz-Security-Token`](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_sigv-authentication-methods.html)
 * [`sig`](https://learn.microsoft.com/azure/storage/common/storage-sas-overview#sas-token)
 * [`X-Goog-Signature`](https://cloud.google.com/storage/docs/access-control/signed-urls)
 
 This list is subject to change over time.
+
+Matching of query parameter keys against the sensitive list SHOULD be case-sensitive.
+
+![Development](https://img.shields.io/badge/-development-blue)
+Instrumentation MAY provide a way to override this list via declarative configuration.
+If so, it SHOULD use the `sensitive_query_parameters` property
+(an array of case-sensitive strings with minimum items 0) under
+`.instrumentation/development.general.sanitization.url`.
+This list is a full override of the default sensitive query parameter keys,
+it is not a list of keys in addition to the defaults.
 
 When a query string value is redacted, the query string key SHOULD still be preserved, e.g.
 `https://www.example.com/path?color=blue&sig=REDACTED`.
@@ -61,12 +74,22 @@ When a query string value is redacted, the query string key SHOULD still be pres
 ![Development](https://img.shields.io/badge/-development-blue)
 Query string values for the following keys SHOULD be redacted by default and replaced by the value `REDACTED`:
 
-* [`AWSAccessKeyId`](https://docs.aws.amazon.com/AmazonS3/latest/userguide/RESTAuthentication.html#RESTAuthenticationQueryStringAuth)
-* [`Signature`](https://docs.aws.amazon.com/AmazonS3/latest/userguide/RESTAuthentication.html#RESTAuthenticationQueryStringAuth)
+* [`X-Amz-Signature`](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_sigv-authentication-methods.html)
+* [`X-Amz-Credential`](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_sigv-authentication-methods.html)
+* [`X-Amz-Security-Token`](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_sigv-authentication-methods.html)
 * [`sig`](https://learn.microsoft.com/azure/storage/common/storage-sas-overview#sas-token)
 * [`X-Goog-Signature`](https://cloud.google.com/storage/docs/access-control/signed-urls)
 
 This list is subject to change over time.
+
+Matching of query parameter keys against the sensitive list SHOULD be case-sensitive.
+
+Instrumentation MAY provide a way to override this list via declarative configuration.
+If so, it SHOULD use the `sensitive_query_parameters` property
+(an array of case-sensitive strings with minimum items 0) under
+`.instrumentation/development.general.sanitization.url`.
+This list is a full override of the default sensitive query parameter keys,
+it is not a list of keys in addition to the defaults.
 
 When a query string value is redacted, the query string key SHOULD still be preserved, e.g.
 `q=OpenTelemetry&sig=REDACTED`.

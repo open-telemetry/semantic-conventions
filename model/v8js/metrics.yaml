@@ -15,13 +15,45 @@ groups:
     note: >
       The values can be retrieved from [`perf_hooks.PerformanceObserver(...).observe({ entryTypes: ['gc'] })`](https://nodejs.org/api/perf_hooks.html#performanceobserverobserveoptions)
 
-  - id: metric.v8js.memory.heap.limit
+  - id: metric.v8js.memory.heap.space.available_size
     type: metric
-    metric_name: v8js.memory.heap.limit
+    metric_name: v8js.memory.heap.space.available_size
     annotations:
       code_generation:
         metric_value_type: int
-    brief: "Total heap memory size pre-allocated."
+    brief: "Heap space available size."
+    instrument: updowncounter
+    unit: "By"
+    stability: development
+    attributes:
+      - ref: v8js.heap.space.name
+        requirement_level: required
+    note: >
+      Value can be retrieved from value `space_available_size` of [`v8.getHeapSpaceStatistics()`](https://nodejs.org/api/v8.html#v8getheapspacestatistics)
+
+  - id: metric.v8js.memory.heap.space.physical_size
+    type: metric
+    metric_name: v8js.memory.heap.space.physical_size
+    annotations:
+      code_generation:
+        metric_value_type: int
+    brief: "Committed size of a heap space."
+    instrument: updowncounter
+    unit: "By"
+    stability: development
+    attributes:
+      - ref: v8js.heap.space.name
+        requirement_level: required
+    note: >
+      Value can be retrieved from value `physical_space_size` of [`v8.getHeapSpaceStatistics()`](https://nodejs.org/api/v8.html#v8getheapspacestatistics)
+
+  - id: metric.v8js.memory.heap.space.size
+    type: metric
+    metric_name: v8js.memory.heap.space.size
+    annotations:
+      code_generation:
+        metric_value_type: int
+    brief: "Total heap memory size pre-allocated for a heap space."
     instrument: updowncounter
     unit: "By"
     stability: development
@@ -49,34 +81,18 @@ groups:
       The value can be retrieved from value `space_used_size` of
       [`v8.getHeapSpaceStatistics()`](https://nodejs.org/api/v8.html#v8getheapspacestatistics)
 
-  - id: metric.v8js.heap.space.available_size
+  - id: metric.v8js.resource.active
     type: metric
-    metric_name: v8js.heap.space.available_size
+    metric_name: v8js.resource.active
     annotations:
       code_generation:
         metric_value_type: int
-    brief: "Heap space available size."
-    instrument: updowncounter
-    unit: "By"
+    brief: "Gauge of the active resources that are currently keeping the event loop alive."
+    instrument: gauge
+    unit: "{resource}"
     stability: development
     attributes:
-      - ref: v8js.heap.space.name
+      - ref: v8js.resource.type
         requirement_level: required
     note: >
-      Value can be retrieved from value `space_available_size` of [`v8.getHeapSpaceStatistics()`](https://nodejs.org/api/v8.html#v8getheapspacestatistics)
-
-  - id: metric.v8js.heap.space.physical_size
-    type: metric
-    metric_name: v8js.heap.space.physical_size
-    annotations:
-      code_generation:
-        metric_value_type: int
-    brief: "Committed size of a heap space."
-    instrument: updowncounter
-    unit: "By"
-    stability: development
-    attributes:
-      - ref: v8js.heap.space.name
-        requirement_level: required
-    note: >
-      Value can be retrieved from value `physical_space_size` of [`v8.getHeapSpaceStatistics()`](https://nodejs.org/api/v8.html#v8getheapspacestatistics)
+      The values can be retrieved from [`process.getActiveResourcesInfo()`](https://nodejs.org/api/process.html#processgetactiveresourcesinfo)

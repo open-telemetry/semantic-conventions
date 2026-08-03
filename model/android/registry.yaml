@@ -10,15 +10,15 @@ groups:
         stability: development
         brief: >
           Uniquely identifies the framework API revision offered by a version
-          (`os.version`) of the android operating system. More information can be found
-          [here](https://developer.android.com/guide/topics/manifest/uses-sdk-element#ApiLevels).
+          (`os.version`) of the Android operating system. More information can be found
+          in the [Android API levels documentation](https://developer.android.com/guide/topics/manifest/uses-sdk-element#ApiLevels).
         examples: ['33', '32']
       - id: android.app.state
         stability: development
         brief: >
           This attribute represents the state of the application.
         note: >
-          The Android lifecycle states are defined in [Activity lifecycle callbacks](https://developer.android.com/guide/components/activities/activity-lifecycle#lc),
+          The Android lifecycle states are defined in [Activity lifecycle callbacks](https://developer.android.com/guide/components/activities/activity-lifecycle#lifecycle-callbacks),
           and from which the `OS identifiers` are derived.
         examples: [ "created" ]
         type:

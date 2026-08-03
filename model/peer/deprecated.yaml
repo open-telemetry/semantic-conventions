@@ -1,0 +1,28 @@
+groups:
+  - id: registry.peer
+    type: attribute_group
+    display_name: Peer Attributes
+    brief: >
+      These attribute may be used for any operation that accesses some remote service.
+    note: >
+      Users can define what the name of a service is based on their particular semantics in their distributed system.
+      Instrumentations SHOULD provide a way for users to configure this name.
+    attributes:
+      - id: peer.service
+        type: string
+        stability: development
+        deprecated:
+          reason: renamed
+          renamed_to: service.peer.name
+        brief: >
+          The [`service.name`](/docs/resource/README.md#service)
+          of the remote service. SHOULD be equal to the actual `service.name`
+          resource attribute of the remote service if any.
+        note: >
+          Examples of `peer.service` that users may specify:
+
+
+          - A Redis cache of auth tokens as `peer.service="AuthTokenCache"`.
+
+          - A gRPC service `rpc.service="io.opentelemetry.AuthService"` may be hosted in both a gateway, `peer.service="ExternalApiService"` and a backend, `peer.service="AuthService"`.
+        examples: "AuthTokenCache"

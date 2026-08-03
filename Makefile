@@ -1,5 +1,3 @@
-# All documents to be used in spell check.
-ALL_DOCS := $(shell find . -type f -name '*.md' -not -path './.github/*' -not -path './node_modules/*' | sort)
 PWD := $(shell pwd)
 
 # Determine OS & Arch for specific OS only tools on Unix based systems
@@ -11,9 +9,6 @@ else
 endif
 
 TOOLS_DIR := $(PWD)/internal/tools
-
-MISSPELL_BINARY=bin/misspell
-MISSPELL = $(TOOLS_DIR)/$(MISSPELL_BINARY)
 
 CHLOGGEN_BINARY=bin/chloggen
 CHLOGGEN = $(TOOLS_DIR)/$(CHLOGGEN_BINARY)
@@ -35,7 +30,7 @@ VERSIONED_OPA_CONTAINER_NO_REPO=$(shell cat dependencies.Dockerfile | awk '$$4==
 # Fully qualified references to containers used in this Makefile. These
 # include the container repository, so that the build will work with tools
 # like "podman" with a default "/etc/containers/registries.conf", where
-# a default respository of "docker.io" is not assumed. This is intended to
+# a default repository of "docker.io" is not assumed. This is intended to
 # eliminate errors from podman such as:
 #
 #    Error: short-name "otel/weaver:v1.2.3" did not resolve to an alias
@@ -45,18 +40,33 @@ OPA_CONTAINER=$(OPA_CONTAINER_REPOSITORY)/$(VERSIONED_OPA_CONTAINER_NO_REPO)
 
 # Determine if "docker" is actually podman
 DOCKER_VERSION_OUTPUT := $(shell docker --version 2>&1)
-DOCKER_IS_PODMAN := $(shell echo $(DOCKER_VERSION_OUTPUT) | grep -c podman)
+PODMAN_REFERENCES := $(shell echo $(DOCKER_VERSION_OUTPUT) | grep -ic podman)
 
-ifeq ($(DOCKER_IS_PODMAN),0)
+ifneq ($(strip $(DOCKER_VERSION_OUTPUT)),)
+ifeq ($(PODMAN_REFERENCES),0)
     DOCKER_COMMAND := docker
-else
-    DOCKER_COMMAND := podman
+endif
+endif
+
+ifndef DOCKER_COMMAND
+    ifneq ($(strip $(shell podman --version 2>&1)),)
+        DOCKER_COMMAND := podman
+    endif
+endif
+
+# Only warn once both autodetect paths have failed. The previous
+# condition printed the warning whenever DOCKER_COMMAND *was* set
+# (i.e. docker or podman had been found), so every container target
+# on a working machine emitted a spurious "Neither docker nor podman
+# can be executed" line (#3626).
+ifndef DOCKER_COMMAND
+    $(info Neither docker nor podman can be executed. Did you install and configure one of them to be used?)
 endif
 
 # Debug printing
 ifdef DEBUG
 $(info Docker version output: $(DOCKER_VERSION_OUTPUT))
-$(info Is Docker actually Podman? $(DOCKER_IS_PODMAN))
+$(info Podman references in docker version output: $(PODMAN_REFERENCES))
 $(info Using command: $(DOCKER_COMMAND))
 endif
 
@@ -74,7 +84,7 @@ endif
 
 # TODO: add `yamllint` step to `all` after making sure it works on Mac.
 .PHONY: all
-all: install-tools markdownlint misspell table-check schema-check check-file-and-folder-names-in-docs markdown-link-check
+all: install-tools markdownlint misspell table-check schema-check check-file-and-folder-names-in-docs check-yaml-extension markdown-link-check
 
 .PHONY: check-file-and-folder-names-in-docs
 check-file-and-folder-names-in-docs:
@@ -85,16 +95,34 @@ check-file-and-folder-names-in-docs:
 		exit 1; \
 	fi
 
-$(MISSPELL):
-	cd $(TOOLS_DIR) && go build -o $(MISSPELL_BINARY) github.com/client9/misspell/cmd/misspell
+.PHONY: check-yaml-extension
+check-yaml-extension:
+	@found=`find model -name '*.yml'`; \
+	if [ -n "$$found" ]; then \
+		echo "Error: Use the .yaml extension for model files, not .yml:"; \
+		echo $$found; \
+		exit 1; \
+	fi
 
 .PHONY: misspell
-misspell:	$(MISSPELL)
-	$(MISSPELL) -error $(ALL_DOCS)
+misspell:
+	@if ! npm ls cspell; then npm ci --ignore-scripts; fi
+	npx --no -- cspell . --no-progress
 
-.PHONY: misspell-correction
-misspell-correction:	$(MISSPELL)
-	$(MISSPELL) -w $(ALL_DOCS)
+.PHONY: textlint
+textlint:
+	@if ! npm ls textlint; then npm ci --ignore-scripts; fi
+
+	@if [ "$(format)" = "github" ]; then \
+		npx --no -- textlint --format github .; \
+	else \
+		npx --no -- textlint .; \
+	fi
+
+.PHONY: textlint-correction
+textlint-correction:
+	@if ! npm ls textlint; then npm ci --ignore-scripts; fi
+	npx --no -- textlint --fix .
 
 .PHONY: normalized-link-check
 # NOTE: Search "model/*/**" rather than "model" to skip `model/README.md`, which
@@ -116,32 +144,28 @@ markdown-link-check: normalized-link-check
 markdown-link-check-local-only: normalized-link-check
 	.github/scripts/link-check.sh --local-links-only $(FILES)
 
-# This target runs markdown-toc on all files that contain
-# a comment <!-- tocstop -->.
+# This target runs doctoc on all files that contain
+# a comment <!-- START doctoc -->.
 #
-# The recommended way to prepare a .md file for markdown-toc is
+# The recommended way to prepare a .md file for doctoc is
 # to add these comments:
 #
-#   <!-- toc -->
-#   <!-- tocstop -->
+#   <!-- START doctoc -->
+#   <!-- END doctoc -->
 .PHONY: markdown-toc
 markdown-toc:
-	@if ! npm ls markdown-toc; then npm install; fi
-	@for f in $(ALL_DOCS); do \
-		if grep -q '<!-- tocstop -->' $$f; then \
-			echo markdown-toc: processing $$f; \
-			npx --no -- markdown-toc --bullets "-" --no-first-h1 --no-stripHeadingTags -i $$f || exit 1; \
-		elif grep -q '<!-- toc -->' $$f; then \
-			echo markdown-toc: ERROR: '<!-- tocstop -->' missing from $$f; exit 1; \
-		else \
-			echo markdown-toc: no TOC markers, skipping $$f; \
-		fi; \
-	done
+	@if ! npm ls doctoc; then npm ci --ignore-scripts; fi
+	npx --no -- doctoc . --update-only --mintocitems 1 --toc-pragma-style compact --notitle || exit 1;
+
+.PHONY: markdown-toc-check
+markdown-toc-check:
+	@if ! npm ls doctoc; then npm ci --ignore-scripts; fi
+	npx --no -- doctoc . --update-only --mintocitems 1 --toc-pragma-style compact --notitle --dryrun || exit 1;
 
 .PHONY: markdownlint
 markdownlint:
-	@if ! npm ls markdownlint-cli; then npm install; fi
-	npx --no -- markdownlint-cli -c .markdownlint.yaml $(ALL_DOCS)
+	@if ! npm ls markdownlint-cli2; then npm ci --ignore-scripts; fi
+	npx --no -- markdownlint-cli2 '**/*.md'
 
 .PHONY: install-yamllint
 install-yamllint:
@@ -153,6 +177,7 @@ yamllint:
 	yamllint .
 
 # Generate markdown tables from YAML definitions
+# TODO(#3808): re-add `--future` once the markdown templates are switched to v2.
 .PHONY: table-generation
 table-generation:
 	$(DOCKER_RUN) --rm \
@@ -162,10 +187,9 @@ table-generation:
 		--mount 'type=bind,source=$(PWD)/docs,target=/home/weaver/target' \
 		$(WEAVER_CONTAINER) registry update-markdown \
 		--registry=/home/weaver/source \
-		-Dregistry_base_url=/docs/registry/ \
+		--param registry_base_url=/docs/registry/ \
 		--templates=/home/weaver/templates \
 		--target=markdown \
-		--future \
 		/home/weaver/target
 
 # DEPRECATED: Generate attribute registry markdown.
@@ -188,6 +212,7 @@ registry-generation:
 		  /home/weaver/target/registry/
 
 # Check if current markdown tables differ from the ones that would be generated from YAML definitions (weaver).
+# TODO(#3808): re-add `--future` once the markdown templates are switched to v2.
 .PHONY: table-check
 table-check:
 	$(DOCKER_RUN) --rm \
@@ -197,11 +222,10 @@ table-check:
 		--mount 'type=bind,source=$(PWD)/docs,target=/home/weaver/target,readonly' \
 		$(WEAVER_CONTAINER) registry update-markdown \
 		--registry=/home/weaver/source \
-		-Dregistry_base_url=/docs/registry/ \
+		--param registry_base_url=/docs/registry/ \
 		--templates=/home/weaver/templates \
 		--target=markdown \
-		--dry-run \
-		--future \
+		--dry-run=true \
 		/home/weaver/target
 
 .PHONY: schema-check
@@ -211,18 +235,17 @@ schema-check:
 # Run all checks in order of speed / likely failure.
 # As a last thing, run attribute registry generation and git-diff for differences.
 .PHONY: check
-check: misspell markdownlint markdown-toc markdown-link-check check-policies registry-generation
-	git diff --exit-code ':*.md' || (echo 'Generated markdown Table of Contents is out of date, please run "make markdown-toc" and commit the changes in this PR.' && exit 1)
+check: misspell markdownlint markdown-toc-check markdown-link-check check-policies registry-generation check-yaml-extension
 	@echo "All checks complete"
 
 # Attempt to fix issues / regenerate tables.
 .PHONY: fix
-fix: table-generation registry-generation misspell-correction markdown-toc
+fix: table-generation registry-generation textlint-correction markdown-toc
 	@echo "All autofixes complete"
 
 .PHONY: install-tools
-install-tools: $(MISSPELL)
-	npm install
+install-tools:
+	npm ci --ignore-scripts
 	@echo "All tools installed"
 
 $(CHLOGGEN):
@@ -252,14 +275,14 @@ generate-gh-issue-templates:
 	mkdir -p $(TOOLS_DIR)/bin
 	$(DOCKER_RUN) --rm \
 	$(DOCKER_USER_IS_HOST_USER_ARG) \
-	--mount 'type=bind,source=$(PWD)/internal/tools/scripts,target=/home/weaver/templates,readonly' \
+	--mount 'type=bind,source=$(PWD)/internal/tools/scripts/registry,target=/home/weaver/templates,readonly' \
 	--mount 'type=bind,source=$(PWD)/model,target=/home/weaver/source,readonly' \
 	--mount 'type=bind,source=$(TOOLS_DIR)/bin,target=/home/weaver/target' \
 	$(WEAVER_CONTAINER) registry generate \
 		--registry=/home/weaver/source \
 		--templates=/home/weaver/templates \
-		--config=/home/weaver/templates/registry/areas-weaver.yaml \
-		. \
+		--v2 \
+		areas \
 		/home/weaver/target
 	$(TOOLS_DIR)/scripts/update-issue-template-areas.sh $(PWD)/internal/tools/bin/areas.txt
 
@@ -277,6 +300,13 @@ generate-gh-issue-templates:
 # .. which is why some additional processing is required to extract the
 # latest version number and strip off the "v" prefix.
 LATEST_RELEASED_SEMCONV_VERSION := $(shell git ls-remote --tags https://github.com/open-telemetry/semantic-conventions.git | cut -f 2 | sort --reverse | head -n 1 | tr '/' ' ' | cut -d ' ' -f 3 | $(SED) 's/v//g')
+# Most semantic-convention check policies live in the opentelemetry-weaver-packages
+# repository (see https://github.com/open-telemetry/opentelemetry-weaver-packages/tree/main/policies/check).
+# Only checks that are NOT provided upstream are kept locally under ./policies (see policies/README.md).
+#
+# TODO: pin commit or tag of opentelemetry-weaver-packages and add it to renovate
+# once weaver-packages is released.
+WEAVER_PACKAGES_REPO=https://github.com/open-telemetry/opentelemetry-weaver-packages.git
 .PHONY: check-policies
 check-policies:
 	$(DOCKER_RUN) --rm \
@@ -287,9 +317,14 @@ check-policies:
 		--mount 'type=bind,source=$(PWD)/policies,target=/home/weaver/policies,readonly' \
 		--mount 'type=bind,source=$(PWD)/model,target=/home/weaver/source,readonly' \
 		${WEAVER_CONTAINER} registry check \
+		--v2 \
 		--registry=/home/weaver/source \
 		--baseline-registry=https://github.com/open-telemetry/semantic-conventions/archive/refs/tags/v$(LATEST_RELEASED_SEMCONV_VERSION).zip[model] \
-		--policy=/home/weaver/policies
+		--policy=/home/weaver/policies \
+		--policy="$(WEAVER_PACKAGES_REPO)[policies/check/naming_conventions]" \
+		--policy="$(WEAVER_PACKAGES_REPO)[policies/check/stability]" \
+		--policy="$(WEAVER_PACKAGES_REPO)[policies/check/entity_associations]" \
+		--policy="$(WEAVER_PACKAGES_REPO)[policies/check/backwards-compatibility]"
 
 # Test rego policies
 .PHONY: test-policies
@@ -306,14 +341,14 @@ check-dead-yaml:
 	mkdir -p $(TOOLS_DIR)/bin
 	$(DOCKER_RUN) --rm \
 	$(DOCKER_USER_IS_HOST_USER_ARG) \
-	--mount 'type=bind,source=$(PWD)/internal/tools/scripts,target=/home/weaver/templates,readonly' \
+	--mount 'type=bind,source=$(PWD)/internal/tools/scripts/registry,target=/home/weaver/templates,readonly' \
 	--mount 'type=bind,source=$(PWD)/model,target=/home/weaver/source,readonly' \
 	--mount 'type=bind,source=$(TOOLS_DIR)/bin,target=/home/weaver/target' \
 	$(WEAVER_CONTAINER) registry generate \
 		--registry=/home/weaver/source \
 		--templates=/home/weaver/templates \
-		--config=/home/weaver/templates/registry/signal-groups-weaver.yaml \
-		. \
+		--v2 \
+		signal-groups \
 		/home/weaver/target
 	$(TOOLS_DIR)/scripts/find-dead-yaml.sh $(PWD)/internal/tools/bin/signal-groups.txt $(PWD)/docs
 
@@ -323,6 +358,9 @@ generate-schema-next:
 	mkdir -p $(TOOLS_DIR)/bin
 	$(DOCKER_RUN) --rm \
 	$(DOCKER_USER_IS_HOST_USER_ARG) \
+	--env USER=weaver \
+	--env HOME=/home/weaver \
+	-v $(shell mktemp -d):/home/weaver/.weaver \
 	--mount 'type=bind,source=$(PWD)/internal/tools/scripts,target=/home/weaver/templates,readonly' \
 	--mount 'type=bind,source=$(PWD)/model,target=/home/weaver/source,readonly' \
 	--mount 'type=bind,source=$(TOOLS_DIR)/bin,target=/home/weaver/target' \
@@ -334,3 +372,22 @@ generate-schema-next:
 		--output /home/weaver/target
 		# --param next_version=$(NEXT_SEMCONV_VERSION)
 	$(TOOLS_DIR)/scripts/generate-schema-next.sh $(NEXT_SEMCONV_VERSION) $(LATEST_RELEASED_SEMCONV_VERSION) $(TOOLS_DIR)/bin/schema-diff.yaml
+	@tmp_file=$$(mktemp); \
+	$(SED) 's|^schema_url: https://opentelemetry.io/schemas/.*$$|schema_url: https://opentelemetry.io/schemas/$(NEXT_SEMCONV_VERSION)|' model/manifest.yaml > "$$tmp_file" && \
+	mv "$$tmp_file" model/manifest.yaml || { \
+		rm -f "$$tmp_file"; \
+		echo "Failed to update schema_url in model/manifest.yaml"; \
+		exit 1; \
+	};
+
+.PHONY: areas-table-generation
+areas-table-generation:
+	docker run --rm -v ${PWD}:/repo -w /repo python:3-alpine python internal/tools/scripts/update-areas-table.py --install;
+
+.PHONY: areas-table-check
+areas-table-check:
+	docker run --rm -v ${PWD}:/repo -w /repo python:3-alpine python internal/tools/scripts/update-areas-table.py --install --check;
+
+.PHONY: generate-all
+generate-all: table-generation registry-generation areas-table-generation generate-gh-issue-templates
+

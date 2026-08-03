@@ -1,0 +1,93 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/open-telemetry/weaver/v0.25.1/schemas/semconv.schema.v2.json
+file_format: definition/2
+attribute_groups:
+  - id: metric_attributes.hw.battery
+    visibility: internal
+    attributes:
+      - ref_group: hardware.attributes.common
+      - ref: hw.battery.chemistry
+        requirement_level: recommended
+      - ref: hw.battery.capacity
+        requirement_level: recommended
+      - ref: hw.model
+        requirement_level: recommended
+      - ref: hw.vendor
+        requirement_level: recommended
+
+metrics:
+  - name: hw.battery.charge
+    requirement_level: recommended
+    annotations:
+      code_generation:
+        metric_value_type: double
+      naming_conventions:
+        # TODO hw.battery.charge is used as a namespace by hw.battery.charge.limit
+        policy_exceptions:
+          - metric_namespace_collision
+    stability: development
+    brief: "Remaining fraction of battery charge."
+    instrument: gauge
+    unit: "1"
+    attributes:
+      - ref_group: metric_attributes.hw.battery
+
+    # TODO: decide on metric name - charge.limit is original
+  - name: hw.battery.charge.limit
+    requirement_level: recommended
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: "Lower limit of battery charge fraction to ensure proper operation."
+    instrument: gauge
+    unit: "1"
+    attributes:
+      - ref_group: metric_attributes.hw.battery
+      - ref: hw.limit_type
+        examples: ["critical", "throttled", "degraded"]
+        requirement_level: recommended
+        brief: >
+          Represents battery charge level thresholds relevant to device operation and health.
+          Each `limit_type` denotes a specific charge limit such as the minimum or maximum
+          optimal charge, the shutdown threshold, or energy-saving thresholds. These values
+          are typically provided by the hardware or firmware to guide safe and efficient battery
+          usage.
+
+  - name: hw.battery.time_left
+    requirement_level: recommended
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: "Time left before battery is completely charged or discharged."
+    instrument: gauge
+    unit: "s"
+    attributes:
+      - ref_group: metric_attributes.hw.battery
+      - ref: hw.state
+        requirement_level: required
+      - ref: hw.battery.state
+        requirement_level:
+          conditionally_required: If the battery is charging or discharging
+        note: >
+          The `hw.state` attribute should indicate the current state of the battery.
+          It should be one of the predefined states such as "charging" or "discharging".
+
+metric_refinements:
+  - id: metric.hw.battery.status
+    ref: hw.status
+    attributes:
+      - ref_group: metric_attributes.hw.battery
+      - ref: hw.type
+        note: "MUST be set to `battery`."
+        examples: ["battery"]
+      - ref: hw.state
+        note: |
+          MUST be set to one of the following values:
+
+          * `ok`: The battery is operating normally.
+          * `degraded`: The battery is operating with reduced functionality or performance.
+          * `failed`: The battery has failed and is not operational.
+          * `charging`: The battery is currently charging.
+          * `discharging`: The battery is currently discharging.
+        examples: ["ok", "degraded", "failed", "charging", "discharging"]

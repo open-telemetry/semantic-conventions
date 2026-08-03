@@ -8,7 +8,7 @@ groups:
     brief: 'Duration of a pipeline run grouped by pipeline, state and result.'
     instrument: histogram
     unit: "s"
-    stability: development
+    stability: release_candidate
     attributes:
       - ref: cicd.pipeline.name
         requirement_level: required
@@ -31,7 +31,7 @@ groups:
     brief: 'The number of pipeline runs currently active in the system by state.'
     instrument: updowncounter
     unit: "{run}"
-    stability: development
+    stability: release_candidate
     attributes:
       - ref: cicd.pipeline.name
         requirement_level: required
@@ -45,10 +45,10 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
-    brief: 'The number of workers on the CICD system by state.'
+    brief: 'The number of workers on the CI/CD system by state.'
     instrument: updowncounter
-    unit: "{count}"
-    stability: development
+    unit: "{worker}"
+    stability: release_candidate
     attributes:
       - ref: cicd.worker.state
         requirement_level: required
@@ -64,7 +64,7 @@ groups:
       This means that this error count might not be the same as the count of metric `cicd.pipeline.run.duration` with run result `failure`.
     instrument: counter
     unit: "{error}"
-    stability: development
+    stability: release_candidate
     attributes:
       - ref: cicd.pipeline.name
         requirement_level: required
@@ -78,11 +78,11 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
-    brief: 'The number of errors in a component of the CICD system (eg. controller, scheduler, agent).'
+    brief: 'The number of errors in a component of the CI/CD system (eg. controller, scheduler, agent).'
     note: 'Errors in pipeline run execution are explicitly excluded. Ie a test failure is not counted in this metric.'
     instrument: counter
     unit: "{error}"
-    stability: development
+    stability: release_candidate
     attributes:
       - ref: cicd.system.component
         requirement_level: required
