@@ -93,14 +93,6 @@ Currently, the following namespaces exist:
 | | [process](process.md#process) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) |
 | | [process.executable](process.md#process-executable) | ![Development](https://img.shields.io/badge/-development-blue) |
 | | [process.runtime](process.md#process-runtime) | ![Development](https://img.shields.io/badge/-development-blue) |
-| zOS | | |
-| | [refinement.zos.host](zos.md#refinement-zos-host) | ![Development](https://img.shields.io/badge/-development-blue) |
-| | [refinement.zos.os](zos.md#refinement-zos-os) | ![Development](https://img.shields.io/badge/-development-blue) |
-| | [refinement.zos.process](zos.md#refinement-zos-process) | ![Development](https://img.shields.io/badge/-development-blue) |
-| | [refinement.zos.process.runtime](zos.md#refinement-zos-process-runtime) | ![Development](https://img.shields.io/badge/-development-blue) |
-| | [refinement.zos.service](zos.md#refinement-zos-service) | ![Development](https://img.shields.io/badge/-development-blue) |
-| | [refinement.zos.service.instance](zos.md#refinement-zos-service-instance) | ![Development](https://img.shields.io/badge/-development-blue) |
-| | [refinement.zos.service.namespace](zos.md#refinement-zos-service-namespace) | ![Development](https://img.shields.io/badge/-development-blue) |
 | Service | | |
 | | [service](service.md#service) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
 | | [service.instance](service.md#service-instance) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) |
@@ -114,4 +106,11 @@ Currently, the following namespaces exist:
 | Webengine | | |
 | | [webengine](webengine.md#webengine) | ![Development](https://img.shields.io/badge/-development-blue) |
 | zOS | | |
+| | [zos.host](zos.md#zos-host) | ![Development](https://img.shields.io/badge/-development-blue) |
+| | [zos.os](zos.md#zos-os) | ![Development](https://img.shields.io/badge/-development-blue) |
+| | [zos.process](zos.md#zos-process) | ![Development](https://img.shields.io/badge/-development-blue) |
+| | [zos.process.runtime](zos.md#zos-process-runtime) | ![Development](https://img.shields.io/badge/-development-blue) |
+| | [zos.service](zos.md#zos-service) | ![Development](https://img.shields.io/badge/-development-blue) |
+| | [zos.service.instance](zos.md#zos-service-instance) | ![Development](https://img.shields.io/badge/-development-blue) |
+| | [zos.service.namespace](zos.md#zos-service-namespace) | ![Development](https://img.shields.io/badge/-development-blue) |
 | | [zos.software](zos.md#zos-software) | ![Development](https://img.shields.io/badge/-development-blue) |
