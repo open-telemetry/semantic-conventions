@@ -106,4 +106,11 @@ Currently, the following namespaces exist:
 | Webengine | | |
 | | [webengine](webengine.md#webengine) | ![Development](https://img.shields.io/badge/-development-blue) |
 | zOS | | |
+| | [zos.host](zos.md#zos-host) | ![Development](https://img.shields.io/badge/-development-blue) |
+| | [zos.os](zos.md#zos-os) | ![Development](https://img.shields.io/badge/-development-blue) |
+| | [zos.process](zos.md#zos-process) | ![Development](https://img.shields.io/badge/-development-blue) |
+| | [zos.process.runtime](zos.md#zos-process-runtime) | ![Development](https://img.shields.io/badge/-development-blue) |
+| | [zos.service](zos.md#zos-service) | ![Development](https://img.shields.io/badge/-development-blue) |
+| | [zos.service.instance](zos.md#zos-service-instance) | ![Development](https://img.shields.io/badge/-development-blue) |
+| | [zos.service.namespace](zos.md#zos-service-namespace) | ![Development](https://img.shields.io/badge/-development-blue) |
 | | [zos.software](zos.md#zos-software) | ![Development](https://img.shields.io/badge/-development-blue) |
