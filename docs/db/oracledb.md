@@ -332,6 +332,8 @@ To prevent stale trace context from propagating across statement executions or p
 
 If explicit post-execution cleanup is not supported by the underlying driver API, instrumentations SHOULD clear or overwrite `V$SESSION.ACTION` before executing any subsequent statement where active context propagation is disabled or absent.
 
+Enabling `ACTION` propagation gives the instrumentation ownership of the `V$SESSION.ACTION` value for the duration of the propagation window. Because database driver interfaces are generally write-only, instrumentations cannot inspect or preserve a pre-existing application-set `ACTION` value. Instrumentations SHOULD document that enabling this feature overwrites any existing `ACTION` metadata for the duration of propagation and that the previous value is not restored automatically.
+
 Instrumentations MAY update `V$SESSION.ACTION` independently or alongside `Application Context`. See **Choice of Propagation Mechanism** for details on combining these mechanisms.
 
 Oracle database drivers in different languages expose different APIs for updating `V$SESSION.ACTION`.
