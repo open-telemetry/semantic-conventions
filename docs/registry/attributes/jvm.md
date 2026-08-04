@@ -12,23 +12,37 @@ This document defines Java Virtual machine related attributes.
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
 | <a id="jvm-buffer-pool-name" href="#jvm-buffer-pool-name">`jvm.buffer.pool.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Name of the buffer pool. [1] | `mapped`; `direct` |
-| <a id="jvm-gc-action" href="#jvm-gc-action">`jvm.gc.action`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | Name of the garbage collector action. [2] | `end of minor GC`; `end of major GC` |
-| <a id="jvm-gc-cause" href="#jvm-gc-cause">`jvm.gc.cause`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Name of the garbage collector cause. [3] | `System.gc()`; `Allocation Failure` |
-| <a id="jvm-gc-name" href="#jvm-gc-name">`jvm.gc.name`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | Name of the garbage collector. [4] | `G1 Young Generation`; `G1 Old Generation` |
-| <a id="jvm-memory-pool-name" href="#jvm-memory-pool-name">`jvm.memory.pool.name`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | Name of the memory pool. [5] | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` |
+| <a id="jvm-executor-name" href="#jvm-executor-name">`jvm.executor.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Name of the executor. [2] | `pool-1-thread-*`; `ForkJoinPool.commonPool-worker-*` |
+| <a id="jvm-executor-state" href="#jvm-executor-state">`jvm.executor.state`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | State of an executor thread. | `active`; `idle` |
+| <a id="jvm-executor-type" href="#jvm-executor-type">`jvm.executor.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The fully qualified class name of the executor implementation. | `java.util.concurrent.ThreadPoolExecutor`; `java.util.concurrent.ForkJoinPool` |
+| <a id="jvm-gc-action" href="#jvm-gc-action">`jvm.gc.action`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | Name of the garbage collector action. [3] | `end of minor GC`; `end of major GC` |
+| <a id="jvm-gc-cause" href="#jvm-gc-cause">`jvm.gc.cause`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Name of the garbage collector cause. [4] | `System.gc()`; `Allocation Failure` |
+| <a id="jvm-gc-name" href="#jvm-gc-name">`jvm.gc.name`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | Name of the garbage collector. [5] | `G1 Young Generation`; `G1 Old Generation` |
+| <a id="jvm-memory-pool-name" href="#jvm-memory-pool-name">`jvm.memory.pool.name`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | Name of the memory pool. [6] | `G1 Old Gen`; `G1 Eden space`; `G1 Survivor Space` |
 | <a id="jvm-memory-type" href="#jvm-memory-type">`jvm.memory.type`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The type of memory. | `heap`; `non_heap` |
 | <a id="jvm-thread-daemon" href="#jvm-thread-daemon">`jvm.thread.daemon`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | boolean | Whether the thread is daemon or not. | |
 | <a id="jvm-thread-state" href="#jvm-thread-state">`jvm.thread.state`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | State of the thread. | `runnable`; `blocked` |
 
 **[1] `jvm.buffer.pool.name`:** Pool names are generally obtained via [BufferPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/BufferPoolMXBean.html#getName()).
 
-**[2] `jvm.gc.action`:** Garbage collector action is generally obtained via [GarbageCollectionNotificationInfo#getGcAction()](https://docs.oracle.com/en/java/javase/11/docs/api/jdk.management/com/sun/management/GarbageCollectionNotificationInfo.html#getGcAction()).
+**[2] `jvm.executor.name`:** The executor name SHOULD be unique within the instrumented application and low-cardinality. If the executor implementation does not provide an explicit name, instrumentation SHOULD derive a name from available implementation-specific metadata, such as a normalized worker thread name. Instrumentations SHOULD document how the name is derived.
 
-**[3] `jvm.gc.cause`:** Garbage collector cause is generally obtained via [GarbageCollectionNotificationInfo#getGcCause()](https://docs.oracle.com/en/java/javase/11/docs/api/jdk.management/com/sun/management/GarbageCollectionNotificationInfo.html#getGcCause()).
+**[3] `jvm.gc.action`:** Garbage collector action is generally obtained via [GarbageCollectionNotificationInfo#getGcAction()](https://docs.oracle.com/en/java/javase/11/docs/api/jdk.management/com/sun/management/GarbageCollectionNotificationInfo.html#getGcAction()).
 
-**[4] `jvm.gc.name`:** Garbage collector name is generally obtained via [GarbageCollectionNotificationInfo#getGcName()](https://docs.oracle.com/en/java/javase/11/docs/api/jdk.management/com/sun/management/GarbageCollectionNotificationInfo.html#getGcName()).
+**[4] `jvm.gc.cause`:** Garbage collector cause is generally obtained via [GarbageCollectionNotificationInfo#getGcCause()](https://docs.oracle.com/en/java/javase/11/docs/api/jdk.management/com/sun/management/GarbageCollectionNotificationInfo.html#getGcCause()).
 
-**[5] `jvm.memory.pool.name`:** Pool names are generally obtained via [MemoryPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
+**[5] `jvm.gc.name`:** Garbage collector name is generally obtained via [GarbageCollectionNotificationInfo#getGcName()](https://docs.oracle.com/en/java/javase/11/docs/api/jdk.management/com/sun/management/GarbageCollectionNotificationInfo.html#getGcName()).
+
+**[6] `jvm.memory.pool.name`:** Pool names are generally obtained via [MemoryPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
+
+---
+
+`jvm.executor.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+
+| Value | Description | Stability |
+| --- | --- | --- |
+| `active` | The thread is currently executing a task. | ![Development](https://img.shields.io/badge/-development-blue) |
+| `idle` | The thread currently exists but is not executing a task. | ![Development](https://img.shields.io/badge/-development-blue) |
 
 ---
 
