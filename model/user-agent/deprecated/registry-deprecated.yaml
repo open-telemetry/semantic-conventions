@@ -1,0 +1,22 @@
+groups:
+  - id: registry.user_agent.deprecated
+    type: attribute_group
+    display_name: Deprecated User-agent Attributes
+    brief: "Describes deprecated user-agent attributes."
+    attributes:
+      - id: user_agent.synthetic.type
+        stability: development
+        deprecated:
+          reason: renamed
+          renamed_to: synthetic.type
+        brief: "Deprecated, use `synthetic.type` instead."
+        type:
+          members:
+            - id: bot
+              value: "bot"
+              brief: 'Bot source.'
+              stability: development
+            - id: test
+              value: "test"
+              brief: 'Synthetic test source.'
+              stability: development

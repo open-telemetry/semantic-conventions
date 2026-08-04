@@ -81,6 +81,7 @@ body:
         - area:session
         - area:signalr
         - area:source
+        - area:synthetic
         - area:system
         - area:telemetry
         - area:test

@@ -104,6 +104,7 @@ Currently, the following namespaces exist:
 - [Session](session.md)
 - [SignalR](signalr.md)
 - [Source](source.md)
+- [Synthetic](synthetic.md)
 - [System](system.md)
 - [Telemetry](telemetry.md)
 - [Test](test.md)
