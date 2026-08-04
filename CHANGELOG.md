@@ -9,6 +9,76 @@
 
 <!-- next version -->
 
+## v1.44.0
+
+### 🛑 Breaking changes 🛑
+
+- `browser`: Reworked the `browser.web_vital` event - moved `name`/`value`/`delta`/`id` from the event body to `browser.web_vital.*` attributes, and added new attributes per current instrumentation. ([#3401](https://github.com/open-telemetry/semantic-conventions/issues/3401))
+- `k8s`: Rename `k8s.node.memory.paging.faults`, `k8s.pod.memory.paging.faults` and `container.memory.paging.faults` metrics by dropping the `memory` namespace segment.
+ ([#3805](https://github.com/open-telemetry/semantic-conventions/issues/3805))
+  Renamed metrics:
+  - k8s.pod.memory.paging.faults -> k8s.pod.paging.faults
+  - k8s.node.memory.paging.faults -> k8s.node.paging.faults
+  - container.memory.paging.faults -> container.paging.faults
+  
+- `k8s`: Change {container, k8s.pod, k8s.node}.memory.usage to updowncounter ([#3889](https://github.com/open-telemetry/semantic-conventions/issues/3889))
+
+### 💡 Enhancements 💡
+
+- `cloud`: Add Scaleway Cloud to cloud.provider and scaleway_cloud_compute to cloud.platform ([#2773](https://github.com/open-telemetry/semantic-conventions/issues/2773))
+- `db`: Clarify `db.query.parameter.<key>` semantics around sensitive data handling.
+ ([#3831](https://github.com/open-telemetry/semantic-conventions/issues/3831))
+- `faas`: The general FaaS attributes are now defined on the FaaS spans that use them, so each span documents its full attribute set. ([#3905](https://github.com/open-telemetry/semantic-conventions/issues/3905))
+- `host`: Update the recommendations to use full path to commands when collecting `host.id` attribute value.
+ ([#3896](https://github.com/open-telemetry/semantic-conventions/issues/3896))
+- `hw`: Per-component `hw.errors` and `hw.status` metrics now document the full set of component-specific attributes (e.g. `hw.model`, `hw.vendor`) alongside the generic ones.
+ ([#3808](https://github.com/open-telemetry/semantic-conventions/issues/3808))
+- `k8s`: Add `k8s.node.filesystem.inode.count` and `k8s.node.filesystem.inode.free` metrics to track Kubernetes node root filesystem inode capacity and usage. ([#3858](https://github.com/open-telemetry/semantic-conventions/issues/3858))
+- `k8s`: Promote a selection of container and K8s memory metrics to release_candidate ([#3882](https://github.com/open-telemetry/semantic-conventions/issues/3882))
+  The following metrics are being promoted to release_candidate:
+    - container.memory.usage
+    - container.memory.available
+    - container.memory.rss
+    - container.memory.working_set
+    - k8s.pod.memory.usage
+    - k8s.pod.memory.available
+    - k8s.pod.memory.rss
+    - k8s.pod.memory.working_set
+    - k8s.node.memory.usage
+    - k8s.node.memory.available
+    - k8s.node.memory.rss
+    - k8s.node.memory.working_set
+  
+- `k8s`: Clarify how `cpu.usage` is calculated for K8s and container entities. ([#2418](https://github.com/open-telemetry/semantic-conventions/issues/2418))
+  CPU usage is measured in cores/CPUs and is calculated based on the formula:
+  `usageCores = (cpuTimeEnd - cpuTimeStart) / elapsedSeconds`
+  This PR improves the description making it aligned with the corresponding
+  system and process metrics.
+  
+- `messaging`: Add `messaging.kafka.cluster.id` attribute identifying the Kafka cluster a client is connected to, and reference it from Kafka spans. ([#32](https://github.com/open-telemetry/semantic-conventions/issues/32))
+- `messaging`: Define a span per messaging operation type (create, send, receive, process, settle) and refine them for each messaging system. ([#3904](https://github.com/open-telemetry/semantic-conventions/issues/3904))
+- `network`: Promote `network.interface.name` attribute to `release_candidate` ([#3953](https://github.com/open-telemetry/semantic-conventions/issues/3953))
+- `otel`: Clarify that `otel.sdk.processor.span.processed` and `otel.sdk.processor.log.processed` are recorded when the processor passes items to the exporter, not when an item is accepted into a queue or when the export operation completes, and that the export outcome does not affect these metrics.
+ ([#3902](https://github.com/open-telemetry/semantic-conventions/issues/3902))
+- `process`: Add process.disk.operations, process.memory.utilization, and process.signals_pending metrics ([#3937](https://github.com/open-telemetry/semantic-conventions/issues/3937))
+  Process namespace has been made release candidate. During migration of process metrics to release
+  candidate in hostmetrics receiver, it was discovered that the following process metrics were not
+  present in process semantic conventions: process.disk.operations, process.memory.utilization,
+  and process.signals_pending.
+  
+- `server, client, source, destination`: The descriptions of the `server`, `client`, `source`, and `destination` attribute groups are now documented in [General attributes](https://github.com/open-telemetry/semantic-conventions/blob/main/docs/general/attributes.md) instead of the attribute registry pages.
+ ([#3935](https://github.com/open-telemetry/semantic-conventions/issues/3935))
+- `system`: Add `system.process.limit` metric representing the maximum number of concurrent tasks/threads allowed by the operating system. ([#3859](https://github.com/open-telemetry/semantic-conventions/issues/3859))
+
+### 🧰 Bug fixes 🧰
+
+- `otel`: Clarify that `already_shutdown` on `otel.sdk.processor.span.processed` and `otel.sdk.processor.log.processed` is a value-only requirement for the `error.type` attribute: whether and when a processor drops records because it has already been shut down is governed by the SDK specification, not by this metric.
+ ([#3957](https://github.com/open-telemetry/semantic-conventions/issues/3957))
+- `rpc`: Fix wording in `server.address` note to say "reverse DNS lookup" instead of "reverse proxy lookup".
+ ([#3871](https://github.com/open-telemetry/semantic-conventions/issues/3871))
+- `rpc`: Remove tracing-only `rpc.method_original` guidance from the shared `rpc.method` definition.
+ ([#3872](https://github.com/open-telemetry/semantic-conventions/issues/3872))
+
 ## v1.43.0
 
 ### 🚩 Deprecations 🚩
