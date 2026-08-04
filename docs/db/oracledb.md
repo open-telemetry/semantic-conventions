@@ -254,7 +254,15 @@ Compared with `V$SESSION.ACTION`, `Application Context` avoids overloading a fie
 
 `Application Context` stores trace context in the Oracle `CLIENTCONTEXT` namespace and does not expose the propagated values through `V$SESSION.ACTION`.
 
-Both `Application Context` and `V$SESSION.ACTION` MAY be enabled concurrently in the same application. See **Choice of Propagation Mechanism** for recommendations on selecting and combining these mechanisms.
+The values stored in `CLIENTCONTEXT` are session state and can persist across statement executions unless the underlying driver automatically scopes or clears their lifetime.
+
+When the underlying driver automatically manages the lifetime of `CLIENTCONTEXT`, instrumentations do not need to perform additional cleanup. Otherwise, instrumentations SHOULD manage the lifecycle of `ora$opentelem$tracectx` to prevent stale trace context from propagating across statement executions or pooled connections—including [Database Resident Connection Pooling (DRCP)](https://docs.oracle.com/en/database/oracle/oracle-database/26/adfns/performance-and-scalability.html#GUID-015CA8C1-2386-4626-855D-CC546DDC1086).
+
+- **Post-Execution Cleanup:** Instrumentations SHOULD clear or reset the `ora$opentelem$tracectx` entry immediately following statement execution (for example, in a `finally` block).
+
+If explicit post-execution teardown is not supported by the underlying driver API, instrumentations SHOULD clear or overwrite `ora$opentelem$tracectx` prior to executing any subsequent statement where active context propagation is disabled or absent.
+
+For guidance on selecting between mechanisms, legacy fallbacks, or running both concurrently, see **Choice of Propagation Mechanism**.
 
 Note that Oracle database drivers in different languages expose different APIs for enabling `Application Context`. In .NET, users enable server-side propagation with the `DatabaseOpenTelemetryTracing` property on an ODP.NET connection. The following example targets [ODP.NET Core](https://docs.oracle.com/en/database/oracle/oracle-database/26/odpnt/featOpenTelemetry.html#GUID-498BB919-43C4-494F-A73B-74980C40CFF3), version 23.26.2 or later.
 
@@ -278,20 +286,27 @@ using (OracleConnection connection = new OracleConnection(connectString))
     using (OracleCommand command = connection.CreateCommand())
     {
         connection.Open();
-
-        // 2. Opt-in to client context piggybacking.
-        // The driver automatically serializes the active W3C trace context
-        // into CLIENTCONTEXT (ora$opentelem$tracectx) during subsequent executions.
-        connection.DatabaseOpenTelemetryTracing = true;
-
-        // 3. Execute queries. Trace context piggybacks silently on these roundtrips.
-        command.CommandText = "INSERT INTO MYTABLE VALUES ('val1', 100)";
-        command.ExecuteNonQuery();
-
-        command.CommandText = "SELECT COL2 FROM MYTABLE WHERE COL2 = 100";
-        using (OracleDataReader reader = command.ExecuteReader())
+        try
         {
-            // Consume the results
+            // 2. Opt in to client context piggybacking.
+            // The driver automatically serializes the active W3C trace context
+            // into CLIENTCONTEXT (ora$opentelem$tracectx) during subsequent executions.
+            connection.DatabaseOpenTelemetryTracing = true;
+
+            // 3. Execute traced queries.
+            command.CommandText = "INSERT INTO MYTABLE VALUES ('val1', 100)";
+            command.ExecuteNonQuery();
+
+            command.CommandText = "SELECT COL2 FROM MYTABLE WHERE COL2 = 100";
+            using (OracleDataReader reader = command.ExecuteReader())
+            {
+                // Consume the results
+            }
+        }
+        finally
+        {
+            // 4. Disable Application Context propagation for subsequent operations.
+            connection.DatabaseOpenTelemetryTracing = false;
         }
 
         connection.Close();
@@ -309,11 +324,15 @@ Variable context parts (`tracestate`, `baggage`) SHOULD NOT be injected since `V
 
 Instrumentations that propagate context MUST update `V$SESSION.ACTION` on the same connection that executes the SQL statement.
 
-`V$SESSION.ACTION` is session state and can persist across operations. A connection pool, including [Database Resident Connection Pooling (DRCP)](https://docs.oracle.com/en/database/oracle/oracle-database/26/adfns/performance-and-scalability.html#GUID-015CA8C1-2386-4626-855D-CC546DDC1086), can reuse a database session after it is released. Instrumentations MUST ensure that a subsequent execution is not associated with an `ACTION` value set for an earlier execution on the same session. They MUST overwrite or clear `V$SESSION.ACTION` before an execution when the current context differs from, or is absent from, the context previously set by the instrumentation. Instrumentations MAY also clear `V$SESSION.ACTION` when releasing a connection to a pool.
+`V$SESSION.ACTION` is persistent session state and can persist across statement executions. When connection pools—including [Database Resident Connection Pooling (DRCP)](https://docs.oracle.com/en/database/oracle/oracle-database/26/adfns/performance-and-scalability.html#GUID-015CA8C1-2386-4626-855D-CC546DDC1086)—reuse a database session, any leftover `ACTION` value may be inherited by subsequent statements.
 
-Enabling `ACTION` propagation grants the instrumentation ownership of the `V$SESSION.ACTION` attribute for the duration of the database operation. Because database driver interfaces generally treat session attributes as write-only and do not support reading back previously set values, instrumentations cannot inspect or preserve application-set `ACTION` values. Instrumentations SHOULD explicitly document this side effect so application developers are aware that enabling the feature will overwrite existing `ACTION` metadata.
+To prevent stale trace context from propagating across statement executions or pooled connections, instrumentations SHOULD scope `V$SESSION.ACTION` to the execution frame of the instrumented database operation.
 
-Instrumentations MAY support updating `V$SESSION.ACTION` alongside `Application Context` to allow out-of-band telemetry collectors to sample session state using the active `traceparent`.
+- **Post-Execution Cleanup:** Instrumentations SHOULD restore or clear `V$SESSION.ACTION` immediately following statement execution (for example, in a `finally` block).
+
+If explicit post-execution cleanup is not supported by the underlying driver API, instrumentations SHOULD clear or overwrite `V$SESSION.ACTION` before executing any subsequent statement where active context propagation is disabled or absent.
+
+Instrumentations MAY update `V$SESSION.ACTION` independently or alongside `Application Context`. See **Choice of Propagation Mechanism** for details on combining these mechanisms.
 
 Oracle database drivers in different languages expose different APIs for updating `V$SESSION.ACTION`.
 Instrumentations SHOULD use the driver-provided API when available rather than issuing SQL or PL/SQL (for example, `DBMS_APPLICATION_INFO.SET_ACTION`) directly, since driver APIs can piggyback the updated `ACTION` value with the subsequent statement execution without requiring an additional database call.
@@ -334,8 +353,23 @@ const connection = await oracledb.getConnection({
 });
 
 try {
-  connection.action = traceparent;
-  await connection.execute("SELECT * FROM songs");
+  // 1. Traceable SQL Execution (SQL 1)
+  try {
+    // Inject traceparent prior to executing the traced statement
+    connection.action = traceparent;
+    await connection.execute("SELECT * FROM songs WHERE genre = :1", ["rock"]);
+  } finally {
+    // Clear ACTION so subsequent statements on this connection
+    // do not inherit the previous trace context.
+    connection.action = null;
+  }
+
+  // 2. Untraced SQL Execution on the same connection (SQL 2)
+  // E.g., internal maintenance, pool validation, or non-instrumented statement
+  await connection.execute(
+    "UPDATE user_sessions SET last_active = SYSDATE WHERE id = :1",
+    [101]
+  );
 } finally {
   await connection.close();
 }
@@ -352,7 +386,7 @@ When selecting a context propagation strategy for Oracle Database, telemetry imp
 
 #### Co-existence & Recommendation Guidance
 
-- **Native Distributed Tracing:** `Application Context` is the preferred method for building application-to-database trace waterfalls when driver and database support are present.
+- **Native Distributed Tracing:** `Application Context` is the preferred method of correlation when driver and database support are present.
 
 - **Out-of-Band Diagnostic Sampling:** `V$SESSION.ACTION` remains essential because it exposes the active `traceparent` to external collectors (such as [`oracledbreceiver`](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/oracledbreceiver)), enabling them to correlate query samples, execution plans, wait events, and lock information collected from Oracle dynamic performance views with the originating client span.
 
