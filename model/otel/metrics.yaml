@@ -75,7 +75,12 @@ groups:
       SDK Batching Span Processors MUST use `queue_full` as the value of `error.type` for spans dropped due to a full queue.
       If a processor reports a span dropped because it has already been shut down, `error.type` MUST be `already_shutdown`.
       Whether and when a processor drops such spans is governed by the SDK specification, not by this metric.
-      For the SDK Simple and Batching Span Processor a span is considered to be processed already when it has been submitted to the exporter, not when the corresponding export call has finished.
+      For the SDK Simple and Batching Span Processors, a span MUST be counted as successfully processed at the point the processor
+      invokes the export operation. For batching processors, all spans in the batch passed to the exporter are counted at that point;
+      spans accepted into the processor's queue but not yet passed to the exporter have not been processed.
+      Implementations MUST NOT delay this count until the export operation concludes, and the outcome of the export operation,
+      including an immediate failure of the invocation itself, MUST NOT affect this metric.
+      Export outcomes are reported by `otel.sdk.exporter.span.exported`.
     instrument: counter
     unit: "{span}"
     attributes:
@@ -193,8 +198,12 @@ groups:
       SDK Batching Log Record Processors MUST use `queue_full` as the value of `error.type` for log records dropped due to a full queue.
       If a processor reports a log record dropped because it has already been shut down, `error.type` MUST be `already_shutdown`.
       Whether and when a processor drops such log records is governed by the SDK specification, not by this metric.
-      For the SDK Simple and Batching Log Record Processor a log record is considered to be processed already when it has been submitted to the exporter,
-      not when the corresponding export call has finished.
+      For the SDK Simple and Batching Log Record Processors, a log record MUST be counted as successfully processed at the point the
+      processor invokes the export operation. For batching processors, all log records in the batch passed to the exporter are counted
+      at that point; log records accepted into the processor's queue but not yet passed to the exporter have not been processed.
+      Implementations MUST NOT delay this count until the export operation concludes, and the outcome of the export operation,
+      including an immediate failure of the invocation itself, MUST NOT affect this metric.
+      Export outcomes are reported by `otel.sdk.exporter.log.exported`.
     instrument: counter
     unit: "{log_record}"
     attributes:
