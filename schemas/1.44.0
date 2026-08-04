@@ -372,7 +372,7 @@ versions:
               - db.client.connections.use_time
     all:
       changes:
-        # https://github:com/open-telemetry/semantic-conventions/pull/731/
+        # https://github.com/open-telemetry/semantic-conventions/pull/731
         - rename_attributes:
             attribute_map:
               enduser.id: user.id
