@@ -25,13 +25,14 @@
 
 {%- if attr_groups | length > 1 %}
 {% for group in attr_groups %}
-- [{{ attrs.display_name(group) }}](#{{ attrs.heading_link_fragments(attrs.display_name(group)) }})
+- [{{ attrs.display_name(group, ctx.id) }}](#{{ attrs.heading_link_fragments(attrs.display_name(group, ctx.id)) }})
 {%- endfor -%}
 {%- endif %}
 {% for group in attr_groups %}
-## {{ attrs.display_name(group) }}
+## {{ attrs.display_name(group, ctx.id) }}
 
-{% if group.brief.endswith("\n") -%}
+{% if group.brief == "<synthetic v2>" -%}
+{% elif group.brief.endswith("\n") -%}
 {{ group.brief }}
 {% else -%}
 {{ group.brief }}
