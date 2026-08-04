@@ -25,7 +25,7 @@ This document defines Java Virtual machine related attributes.
 
 **[1] `jvm.buffer.pool.name`:** Pool names are generally obtained via [BufferPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/BufferPoolMXBean.html#getName()).
 
-**[2] `jvm.executor.name`:** The executor name SHOULD be unique within the instrumented application and low-cardinality. If the executor implementation does not provide an explicit name, instrumentation SHOULD derive a name from available implementation-specific metadata, such as a normalized worker thread name. Instrumentations SHOULD document how the name is derived.
+**[2] `jvm.executor.name`:** The executor name SHOULD be unique within the instrumented application and low-cardinality. If the executor implementation does not provide an explicit name, instrumentation SHOULD derive a name from available implementation-specific metadata, such as a normalized worker thread name. If an instrumentation normalizes variable portions of a name, it SHOULD use the literal `*` character as the replacement token; `*` is part of the emitted attribute value and does not represent a wildcard. Instrumentations SHOULD document how the name is derived.
 
 **[3] `jvm.gc.action`:** Garbage collector action is generally obtained via [GarbageCollectionNotificationInfo#getGcAction()](https://docs.oracle.com/en/java/javase/11/docs/api/jdk.management/com/sun/management/GarbageCollectionNotificationInfo.html#getGcAction()).
 

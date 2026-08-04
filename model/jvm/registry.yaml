@@ -102,8 +102,10 @@ groups:
           The executor name SHOULD be unique within the instrumented application and
           low-cardinality. If the executor implementation does not provide an explicit name,
           instrumentation SHOULD derive a name from available implementation-specific metadata,
-          such as a normalized worker thread name. Instrumentations SHOULD document how the name
-          is derived.
+          such as a normalized worker thread name. If an instrumentation normalizes variable
+          portions of a name, it SHOULD use the literal `*` character as the replacement token;
+          `*` is part of the emitted attribute value and does not represent a wildcard.
+          Instrumentations SHOULD document how the name is derived.
       - id: jvm.executor.type
         type: string
         stability: development
