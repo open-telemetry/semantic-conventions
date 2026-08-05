@@ -371,6 +371,10 @@ a thread that started a span.
 <!-- see templates/registry/markdown/snippet.md.j2 -->
 <!-- prettier-ignore-start -->
 
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
+
+These attributes may be used for any operation to store information about a thread that started a span.
+
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
