@@ -13,7 +13,7 @@ This document defines Java Virtual machine related attributes.
 | --- | --- | --- | --- | --- |
 | <a id="jvm-buffer-pool-name" href="#jvm-buffer-pool-name">`jvm.buffer.pool.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Name of the buffer pool. [1] | `mapped`; `direct` |
 | <a id="jvm-executor-name" href="#jvm-executor-name">`jvm.executor.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Name of the executor. [2] | `pool-1-thread-*`; `ForkJoinPool.commonPool-worker-*` |
-| <a id="jvm-executor-state" href="#jvm-executor-state">`jvm.executor.state`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | State of an executor thread. | `active`; `idle` |
+| <a id="jvm-executor-thread-state" href="#jvm-executor-thread-state">`jvm.executor.thread.state`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | State of an executor thread. | `active`; `idle` |
 | <a id="jvm-executor-type" href="#jvm-executor-type">`jvm.executor.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The fully qualified class name of the executor implementation. | `java.util.concurrent.ThreadPoolExecutor`; `java.util.concurrent.ForkJoinPool` |
 | <a id="jvm-gc-action" href="#jvm-gc-action">`jvm.gc.action`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | Name of the garbage collector action. [3] | `end of minor GC`; `end of major GC` |
 | <a id="jvm-gc-cause" href="#jvm-gc-cause">`jvm.gc.cause`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Name of the garbage collector cause. [4] | `System.gc()`; `Allocation Failure` |
@@ -37,7 +37,7 @@ This document defines Java Virtual machine related attributes.
 
 ---
 
-`jvm.executor.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
+`jvm.executor.thread.state` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
 
 | Value | Description | Stability |
 | --- | --- | --- |

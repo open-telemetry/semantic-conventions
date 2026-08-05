@@ -115,7 +115,7 @@ groups:
             "java.util.concurrent.ThreadPoolExecutor",
             "java.util.concurrent.ForkJoinPool",
           ]
-      - id: jvm.executor.state
+      - id: jvm.executor.thread.state
         stability: development
         brief: State of an executor thread.
         examples: [ "active", "idle" ]

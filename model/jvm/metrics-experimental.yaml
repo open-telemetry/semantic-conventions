@@ -127,11 +127,11 @@ groups:
     extends: attributes.jvm.executor
     brief: >
       The number of executor threads that are currently in the state described by the
-      `jvm.executor.state` attribute.
+      `jvm.executor.thread.state` attribute.
     instrument: updowncounter
     unit: "{thread}"
     attributes:
-      - ref: jvm.executor.state
+      - ref: jvm.executor.thread.state
         requirement_level: required
 
   - id: metric.jvm.executor.thread.core
@@ -170,15 +170,15 @@ groups:
     instrument: updowncounter
     unit: "{task}"
 
-  - id: metric.jvm.executor.queue.remaining
+  - id: metric.jvm.executor.queue.capacity
     type: metric
-    metric_name: jvm.executor.queue.remaining
+    metric_name: jvm.executor.queue.capacity
     annotations:
       code_generation:
         metric_value_type: int
     stability: development
     extends: attributes.jvm.executor
-    brief: "The remaining task capacity of the executor queue."
+    brief: "The maximum number of tasks the executor queue can hold."
     note: >
       Instrumentations SHOULD emit this metric only when the queue has a finite capacity that
       represents a meaningful operational limit. This metric SHOULD NOT be emitted for unbounded
