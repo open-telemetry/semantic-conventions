@@ -87,6 +87,8 @@ groups:
       - ref: otel.component.type
       - ref: otel.component.name
       - ref: error.type
+        requirement_level:
+          conditionally_required: if and only if an error has occurred.
         brief: A low-cardinality description of the failure reason.
         examples: ["queue_full", "already_shutdown"]
 
@@ -140,6 +142,8 @@ groups:
         requirement_level:
           recommended: when applicable
       - ref: error.type
+        requirement_level:
+          conditionally_required: if and only if an error has occurred.
         examples: ["rejected", "timeout", "500", "java.net.UnknownHostException"]
 
   - id: metric.otel.sdk.log.created
@@ -216,6 +220,8 @@ groups:
       - ref: otel.component.type
       - ref: otel.component.name
       - ref: error.type
+        requirement_level:
+          conditionally_required: if and only if an error has occurred.
         brief: A low-cardinality description of the failure reason.
         examples: ["queue_full", "already_shutdown"]
 
@@ -269,6 +275,8 @@ groups:
         requirement_level:
           recommended: when applicable
       - ref: error.type
+        requirement_level:
+          conditionally_required: if and only if an error has occurred.
         examples: ["rejected", "timeout", "500", "java.net.UnknownHostException"]
 
   - id: metric.otel.sdk.exporter.metric_data_point.inflight
@@ -321,6 +329,8 @@ groups:
         requirement_level:
           recommended: when applicable
       - ref: error.type
+        requirement_level:
+          conditionally_required: if and only if an error has occurred.
         examples: ["rejected", "timeout", "500", "java.net.UnknownHostException"]
 
   - id: metric.otel.sdk.metric_reader.collection.duration
