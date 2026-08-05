@@ -89,6 +89,48 @@ groups:
     entity_associations:
       - process
 
+  - id: metric.process.disk.operations
+    type: metric
+    metric_name: process.disk.operations
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "Number of disk operations performed by the process."
+    instrument: counter
+    unit: "{operation}"
+    attributes:
+      - ref: disk.io.direction
+        requirement_level: required
+    entity_associations:
+      - process
+
+  - id: metric.process.memory.utilization
+    type: metric
+    metric_name: process.memory.utilization
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: "Percentage of total physical memory that is used by the process."
+    instrument: gauge
+    unit: "1"
+    entity_associations:
+      - process
+
+  - id: metric.process.signals_pending
+    type: metric
+    metric_name: process.signals_pending
+    annotations:
+      code_generation:
+        metric_value_type: int
+    stability: development
+    brief: "Number of pending signals for the process."
+    instrument: updowncounter
+    unit: "{signal}"
+    entity_associations:
+      - process
+
   - id: metric.process.network.io
     type: metric
     metric_name: process.network.io

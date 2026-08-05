@@ -239,7 +239,7 @@ groups:
         type: string
         brief: 'The network interface name.'
         examples: [ 'lo', 'eth0' ]
-        stability: development
+        stability: release_candidate
       - id: network.connection.state
         type:
           members:
