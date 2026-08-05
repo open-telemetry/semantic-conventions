@@ -114,6 +114,8 @@ groups:
     attributes:
       - ref: jvm.executor.name
         requirement_level: required
+      - ref: jvm.executor.owner.name
+        requirement_level: recommended
       - ref: jvm.executor.type
         requirement_level: required
 

@@ -445,8 +445,11 @@ This metric is [recommended][MetricRecommended].
 | [`jvm.executor.name`](/docs/registry/attributes/jvm.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Name of the executor. [1] | `pool-1-thread-*`; `ForkJoinPool.commonPool-worker-*` |
 | [`jvm.executor.thread.state`](/docs/registry/attributes/jvm.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | State of an executor thread. | `active`; `idle` |
 | [`jvm.executor.type`](/docs/registry/attributes/jvm.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The fully qualified class name of the executor implementation. | `java.util.concurrent.ThreadPoolExecutor`; `java.util.concurrent.ForkJoinPool` |
+| [`jvm.executor.owner.name`](/docs/registry/attributes/jvm.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Name of the logical component that owns the executor. [2] | `tomcat`; `jetty`; `netty` |
 
-**[1] `jvm.executor.name`:** The executor name SHOULD be unique within the instrumented application and low-cardinality. If the executor implementation does not provide an explicit name, instrumentation SHOULD derive a name from available implementation-specific metadata, such as a normalized worker thread name. If an instrumentation normalizes variable portions of a name, it SHOULD use the literal `*` character as the replacement token; `*` is part of the emitted attribute value and does not represent a wildcard. Instrumentations SHOULD document how the name is derived.
+**[1] `jvm.executor.name`:** The executor name SHOULD be low-cardinality. If `jvm.executor.owner.name` is present, the combination of `jvm.executor.owner.name` and `jvm.executor.name` SHOULD be unique within the instrumented application; otherwise, `jvm.executor.name` SHOULD be unique within the instrumented application. If the executor implementation does not provide an explicit name, instrumentation SHOULD derive a name from available implementation-specific metadata, such as a normalized worker thread name. If an instrumentation normalizes variable portions of a name, it SHOULD use the literal `*` character as the replacement token; `*` is part of the emitted attribute value and does not represent a wildcard. Instrumentations SHOULD document how the name is derived.
+
+**[2] `jvm.executor.owner.name`:** The executor owner name SHOULD be a low-cardinality identifier for the component that creates and configures the executor. It is neither the executor implementation type nor an OpenTelemetry instrumentation scope.
 
 ---
 
@@ -480,8 +483,11 @@ This metric is [recommended][MetricRecommended].
 | --- | --- | --- | --- | --- | --- |
 | [`jvm.executor.name`](/docs/registry/attributes/jvm.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Name of the executor. [1] | `pool-1-thread-*`; `ForkJoinPool.commonPool-worker-*` |
 | [`jvm.executor.type`](/docs/registry/attributes/jvm.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The fully qualified class name of the executor implementation. | `java.util.concurrent.ThreadPoolExecutor`; `java.util.concurrent.ForkJoinPool` |
+| [`jvm.executor.owner.name`](/docs/registry/attributes/jvm.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Name of the logical component that owns the executor. [2] | `tomcat`; `jetty`; `netty` |
 
-**[1] `jvm.executor.name`:** The executor name SHOULD be unique within the instrumented application and low-cardinality. If the executor implementation does not provide an explicit name, instrumentation SHOULD derive a name from available implementation-specific metadata, such as a normalized worker thread name. If an instrumentation normalizes variable portions of a name, it SHOULD use the literal `*` character as the replacement token; `*` is part of the emitted attribute value and does not represent a wildcard. Instrumentations SHOULD document how the name is derived.
+**[1] `jvm.executor.name`:** The executor name SHOULD be low-cardinality. If `jvm.executor.owner.name` is present, the combination of `jvm.executor.owner.name` and `jvm.executor.name` SHOULD be unique within the instrumented application; otherwise, `jvm.executor.name` SHOULD be unique within the instrumented application. If the executor implementation does not provide an explicit name, instrumentation SHOULD derive a name from available implementation-specific metadata, such as a normalized worker thread name. If an instrumentation normalizes variable portions of a name, it SHOULD use the literal `*` character as the replacement token; `*` is part of the emitted attribute value and does not represent a wildcard. Instrumentations SHOULD document how the name is derived.
+
+**[2] `jvm.executor.owner.name`:** The executor owner name SHOULD be a low-cardinality identifier for the component that creates and configures the executor. It is neither the executor implementation type nor an OpenTelemetry instrumentation scope.
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
@@ -506,8 +512,11 @@ This metric is [recommended][MetricRecommended].
 | --- | --- | --- | --- | --- | --- |
 | [`jvm.executor.name`](/docs/registry/attributes/jvm.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Name of the executor. [1] | `pool-1-thread-*`; `ForkJoinPool.commonPool-worker-*` |
 | [`jvm.executor.type`](/docs/registry/attributes/jvm.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The fully qualified class name of the executor implementation. | `java.util.concurrent.ThreadPoolExecutor`; `java.util.concurrent.ForkJoinPool` |
+| [`jvm.executor.owner.name`](/docs/registry/attributes/jvm.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Name of the logical component that owns the executor. [2] | `tomcat`; `jetty`; `netty` |
 
-**[1] `jvm.executor.name`:** The executor name SHOULD be unique within the instrumented application and low-cardinality. If the executor implementation does not provide an explicit name, instrumentation SHOULD derive a name from available implementation-specific metadata, such as a normalized worker thread name. If an instrumentation normalizes variable portions of a name, it SHOULD use the literal `*` character as the replacement token; `*` is part of the emitted attribute value and does not represent a wildcard. Instrumentations SHOULD document how the name is derived.
+**[1] `jvm.executor.name`:** The executor name SHOULD be low-cardinality. If `jvm.executor.owner.name` is present, the combination of `jvm.executor.owner.name` and `jvm.executor.name` SHOULD be unique within the instrumented application; otherwise, `jvm.executor.name` SHOULD be unique within the instrumented application. If the executor implementation does not provide an explicit name, instrumentation SHOULD derive a name from available implementation-specific metadata, such as a normalized worker thread name. If an instrumentation normalizes variable portions of a name, it SHOULD use the literal `*` character as the replacement token; `*` is part of the emitted attribute value and does not represent a wildcard. Instrumentations SHOULD document how the name is derived.
+
+**[2] `jvm.executor.owner.name`:** The executor owner name SHOULD be a low-cardinality identifier for the component that creates and configures the executor. It is neither the executor implementation type nor an OpenTelemetry instrumentation scope.
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
@@ -532,8 +541,11 @@ This metric is [recommended][MetricRecommended].
 | --- | --- | --- | --- | --- | --- |
 | [`jvm.executor.name`](/docs/registry/attributes/jvm.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Name of the executor. [1] | `pool-1-thread-*`; `ForkJoinPool.commonPool-worker-*` |
 | [`jvm.executor.type`](/docs/registry/attributes/jvm.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The fully qualified class name of the executor implementation. | `java.util.concurrent.ThreadPoolExecutor`; `java.util.concurrent.ForkJoinPool` |
+| [`jvm.executor.owner.name`](/docs/registry/attributes/jvm.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Name of the logical component that owns the executor. [2] | `tomcat`; `jetty`; `netty` |
 
-**[1] `jvm.executor.name`:** The executor name SHOULD be unique within the instrumented application and low-cardinality. If the executor implementation does not provide an explicit name, instrumentation SHOULD derive a name from available implementation-specific metadata, such as a normalized worker thread name. If an instrumentation normalizes variable portions of a name, it SHOULD use the literal `*` character as the replacement token; `*` is part of the emitted attribute value and does not represent a wildcard. Instrumentations SHOULD document how the name is derived.
+**[1] `jvm.executor.name`:** The executor name SHOULD be low-cardinality. If `jvm.executor.owner.name` is present, the combination of `jvm.executor.owner.name` and `jvm.executor.name` SHOULD be unique within the instrumented application; otherwise, `jvm.executor.name` SHOULD be unique within the instrumented application. If the executor implementation does not provide an explicit name, instrumentation SHOULD derive a name from available implementation-specific metadata, such as a normalized worker thread name. If an instrumentation normalizes variable portions of a name, it SHOULD use the literal `*` character as the replacement token; `*` is part of the emitted attribute value and does not represent a wildcard. Instrumentations SHOULD document how the name is derived.
+
+**[2] `jvm.executor.owner.name`:** The executor owner name SHOULD be a low-cardinality identifier for the component that creates and configures the executor. It is neither the executor implementation type nor an OpenTelemetry instrumentation scope.
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
@@ -560,8 +572,11 @@ This metric is [recommended][MetricRecommended].
 | --- | --- | --- | --- | --- | --- |
 | [`jvm.executor.name`](/docs/registry/attributes/jvm.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Name of the executor. [1] | `pool-1-thread-*`; `ForkJoinPool.commonPool-worker-*` |
 | [`jvm.executor.type`](/docs/registry/attributes/jvm.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The fully qualified class name of the executor implementation. | `java.util.concurrent.ThreadPoolExecutor`; `java.util.concurrent.ForkJoinPool` |
+| [`jvm.executor.owner.name`](/docs/registry/attributes/jvm.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Name of the logical component that owns the executor. [2] | `tomcat`; `jetty`; `netty` |
 
-**[1] `jvm.executor.name`:** The executor name SHOULD be unique within the instrumented application and low-cardinality. If the executor implementation does not provide an explicit name, instrumentation SHOULD derive a name from available implementation-specific metadata, such as a normalized worker thread name. If an instrumentation normalizes variable portions of a name, it SHOULD use the literal `*` character as the replacement token; `*` is part of the emitted attribute value and does not represent a wildcard. Instrumentations SHOULD document how the name is derived.
+**[1] `jvm.executor.name`:** The executor name SHOULD be low-cardinality. If `jvm.executor.owner.name` is present, the combination of `jvm.executor.owner.name` and `jvm.executor.name` SHOULD be unique within the instrumented application; otherwise, `jvm.executor.name` SHOULD be unique within the instrumented application. If the executor implementation does not provide an explicit name, instrumentation SHOULD derive a name from available implementation-specific metadata, such as a normalized worker thread name. If an instrumentation normalizes variable portions of a name, it SHOULD use the literal `*` character as the replacement token; `*` is part of the emitted attribute value and does not represent a wildcard. Instrumentations SHOULD document how the name is derived.
+
+**[2] `jvm.executor.owner.name`:** The executor owner name SHOULD be a low-cardinality identifier for the component that creates and configures the executor. It is neither the executor implementation type nor an OpenTelemetry instrumentation scope.
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
@@ -586,8 +601,11 @@ This metric is [recommended][MetricRecommended].
 | --- | --- | --- | --- | --- | --- |
 | [`jvm.executor.name`](/docs/registry/attributes/jvm.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Name of the executor. [1] | `pool-1-thread-*`; `ForkJoinPool.commonPool-worker-*` |
 | [`jvm.executor.type`](/docs/registry/attributes/jvm.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The fully qualified class name of the executor implementation. | `java.util.concurrent.ThreadPoolExecutor`; `java.util.concurrent.ForkJoinPool` |
+| [`jvm.executor.owner.name`](/docs/registry/attributes/jvm.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Name of the logical component that owns the executor. [2] | `tomcat`; `jetty`; `netty` |
 
-**[1] `jvm.executor.name`:** The executor name SHOULD be unique within the instrumented application and low-cardinality. If the executor implementation does not provide an explicit name, instrumentation SHOULD derive a name from available implementation-specific metadata, such as a normalized worker thread name. If an instrumentation normalizes variable portions of a name, it SHOULD use the literal `*` character as the replacement token; `*` is part of the emitted attribute value and does not represent a wildcard. Instrumentations SHOULD document how the name is derived.
+**[1] `jvm.executor.name`:** The executor name SHOULD be low-cardinality. If `jvm.executor.owner.name` is present, the combination of `jvm.executor.owner.name` and `jvm.executor.name` SHOULD be unique within the instrumented application; otherwise, `jvm.executor.name` SHOULD be unique within the instrumented application. If the executor implementation does not provide an explicit name, instrumentation SHOULD derive a name from available implementation-specific metadata, such as a normalized worker thread name. If an instrumentation normalizes variable portions of a name, it SHOULD use the literal `*` character as the replacement token; `*` is part of the emitted attribute value and does not represent a wildcard. Instrumentations SHOULD document how the name is derived.
+
+**[2] `jvm.executor.owner.name`:** The executor owner name SHOULD be a low-cardinality identifier for the component that creates and configures the executor. It is neither the executor implementation type nor an OpenTelemetry instrumentation scope.
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
@@ -612,8 +630,11 @@ This metric is [recommended][MetricRecommended].
 | --- | --- | --- | --- | --- | --- |
 | [`jvm.executor.name`](/docs/registry/attributes/jvm.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Name of the executor. [1] | `pool-1-thread-*`; `ForkJoinPool.commonPool-worker-*` |
 | [`jvm.executor.type`](/docs/registry/attributes/jvm.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The fully qualified class name of the executor implementation. | `java.util.concurrent.ThreadPoolExecutor`; `java.util.concurrent.ForkJoinPool` |
+| [`jvm.executor.owner.name`](/docs/registry/attributes/jvm.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Name of the logical component that owns the executor. [2] | `tomcat`; `jetty`; `netty` |
 
-**[1] `jvm.executor.name`:** The executor name SHOULD be unique within the instrumented application and low-cardinality. If the executor implementation does not provide an explicit name, instrumentation SHOULD derive a name from available implementation-specific metadata, such as a normalized worker thread name. If an instrumentation normalizes variable portions of a name, it SHOULD use the literal `*` character as the replacement token; `*` is part of the emitted attribute value and does not represent a wildcard. Instrumentations SHOULD document how the name is derived.
+**[1] `jvm.executor.name`:** The executor name SHOULD be low-cardinality. If `jvm.executor.owner.name` is present, the combination of `jvm.executor.owner.name` and `jvm.executor.name` SHOULD be unique within the instrumented application; otherwise, `jvm.executor.name` SHOULD be unique within the instrumented application. If the executor implementation does not provide an explicit name, instrumentation SHOULD derive a name from available implementation-specific metadata, such as a normalized worker thread name. If an instrumentation normalizes variable portions of a name, it SHOULD use the literal `*` character as the replacement token; `*` is part of the emitted attribute value and does not represent a wildcard. Instrumentations SHOULD document how the name is derived.
+
+**[2] `jvm.executor.owner.name`:** The executor owner name SHOULD be a low-cardinality identifier for the component that creates and configures the executor. It is neither the executor implementation type nor an OpenTelemetry instrumentation scope.
 
 <!-- prettier-ignore-end -->
 <!-- END AUTOGENERATED TEXT -->
