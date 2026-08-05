@@ -262,7 +262,7 @@ When the underlying driver automatically manages the lifetime of `CLIENTCONTEXT`
 
 If explicit post-execution teardown is not supported by the underlying driver API, instrumentations SHOULD clear or overwrite `ora$opentelem$tracectx` prior to executing any subsequent statement where active context propagation is disabled or absent.
 
-For guidance on selecting between mechanisms, legacy fallbacks, or running both concurrently, see **Choice of Propagation Mechanism**.
+For guidance on selecting between mechanisms, legacy fallbacks, or running both concurrently, see [Choice of Propagation Mechanism](#choice-of-propagation-mechanism).
 
 Note that Oracle database drivers in different languages expose different APIs for enabling `Application Context`. In .NET, users enable server-side propagation with the `DatabaseOpenTelemetryTracing` property on an ODP.NET connection. The following example targets [ODP.NET Core](https://docs.oracle.com/en/database/oracle/oracle-database/26/odpnt/featOpenTelemetry.html#GUID-498BB919-43C4-494F-A73B-74980C40CFF3), version 23.26.2 or later.
 
@@ -334,7 +334,7 @@ If explicit post-execution cleanup is not supported by the underlying driver API
 
 Enabling `ACTION` propagation gives the instrumentation ownership of the `V$SESSION.ACTION` value for the duration of the propagation window. Because database driver interfaces are generally write-only, instrumentations cannot inspect or preserve a pre-existing application-set `ACTION` value. Instrumentations SHOULD document that enabling this feature overwrites any existing `ACTION` metadata for the duration of propagation and that the previous value is not restored automatically.
 
-Instrumentations MAY update `V$SESSION.ACTION` independently or alongside `Application Context`. See **Choice of Propagation Mechanism** for details on combining these mechanisms.
+Instrumentations MAY update `V$SESSION.ACTION` independently or alongside `Application Context`. See [Choice of Propagation Mechanism](#choice-of-propagation-mechanism) for details on combining these mechanisms.
 
 Oracle database drivers in different languages expose different APIs for updating `V$SESSION.ACTION`.
 Instrumentations SHOULD use the driver-provided API when available rather than issuing SQL or PL/SQL (for example, `DBMS_APPLICATION_INFO.SET_ACTION`) directly, since driver APIs can piggyback the updated `ACTION` value with the subsequent statement execution without requiring an additional database call.
