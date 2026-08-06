@@ -26,6 +26,10 @@ backends can link the two sessions (see [Session Start Event](#event-sessionstar
 <!-- see templates/registry/markdown/snippet.md.j2 -->
 <!-- prettier-ignore-start -->
 
+**Status:** ![Development](https://img.shields.io/badge/-development-blue)
+
+These attributes may be used to identify a user session.
+
 **Attributes:**
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
