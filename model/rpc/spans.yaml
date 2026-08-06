@@ -25,6 +25,26 @@ groups:
         requirement_level:
           conditionally_required: If and only if it's different than `rpc.method`.
 
+  - id: attributes.rpc.server.server
+    type: attribute_group
+    extends: rpc
+    brief: >
+      `server.address` and `server.port` for RPC server spans.
+    attributes:
+      - ref: server.address
+        requirement_level:
+          recommended: when available.
+        note: >
+          `server.address` and `server.port` describe the address the client
+          used to reach this server, as reported by the transport or RPC
+          framework. Instrumentations SHOULD NOT use actual network-level
+          connection information to populate these attributes. If the address
+          used by the client is unavailable, instrumentations SHOULD NOT set
+          these attributes.
+      - ref: server.port
+        requirement_level:
+          conditionally_required: if applicable and if `server.address` is set.
+
   - id: span.rpc.call.client
     type: span
     stability: release_candidate
@@ -56,7 +76,7 @@ groups:
   - id: span.rpc.call.server
     type: span
     stability: release_candidate
-    extends: rpc
+    extends: attributes.rpc.server.server
     span_kind: server
     brief: This span represents an incoming Remote Procedure Call (RPC).
     note: |
@@ -118,7 +138,7 @@ groups:
   - id: span.rpc.connect_rpc.call.server
     type: span
     stability: development
-    extends: rpc
+    extends: attributes.rpc.server.server
     span_kind: server
     brief: This span represents an incoming Remote Procedure Call (RPC).
     note: |
@@ -227,7 +247,7 @@ groups:
   - id: span.rpc.grpc.call.server
     type: span
     stability: release_candidate
-    extends: rpc
+    extends: attributes.rpc.server.server
     span_kind: server
     brief: This span represents an incoming Remote Procedure Call (RPC).
     note: |
@@ -260,6 +280,25 @@ groups:
         requirement_level: opt_in
       - ref: rpc.response.metadata
         requirement_level: opt_in
+      - ref: server.address
+        note: |
+           Instrumentations SHOULD populate `server.address` from the host
+           component of the HTTP/2 `:authority` pseudo-header the client used to
+           reach this server.
+
+           Instrumentations SHOULD NOT use actual network-level connection
+           information for this purpose.
+      - ref: server.port
+        requirement_level:
+          conditionally_required: If `server.address` is set and the port is present in `:authority`.
+        note: |
+           Instrumentations SHOULD populate `server.port` from the port
+           component of the HTTP/2 `:authority` pseudo-header the client used to
+           reach this server.
+
+           Instrumentations SHOULD NOT use actual network-level connection
+           information for this purpose.
+        examples: [50051]
 
   - id: span.rpc.jsonrpc.call.client
     type: span
@@ -316,7 +355,7 @@ groups:
   - id: span.rpc.jsonrpc.call.server
     type: span
     stability: development
-    extends: rpc
+    extends: attributes.rpc.server.server
     span_kind: server
     brief: This span represents an incoming Remote Procedure Call (RPC).
     note: |
@@ -469,7 +508,7 @@ groups:
   - id: span.rpc.dubbo.call.server
     type: span
     stability: release_candidate
-    extends: rpc
+    extends: attributes.rpc.server.server
     span_kind: server
     brief: This span represents an incoming Remote Procedure Call (RPC).
     note: |

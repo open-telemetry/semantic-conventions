@@ -17,17 +17,17 @@ groups:
     brief: "RPC server metric attributes."
     extends: attributes.metrics.rpc.client
     attributes:
-      - ref: rpc.system.name
-        requirement_level: required
       - ref: server.address
-        note: ""
         requirement_level: opt_in
+        note: >
+          `server.address` and `server.port` describe the address the client
+          used to reach this server, as reported by the transport or RPC
+          framework. Instrumentations SHOULD NOT use actual network-level
+          connection information to populate these attributes. If the address
+          used by the client is unavailable, instrumentations SHOULD NOT set
+          these attributes.
       - ref: server.port
-        note: ""
         requirement_level: opt_in
-      - ref: rpc.method
-        requirement_level:
-          conditionally_required: if available.
 
   # RPC Server metrics
   - id: metric.rpc.server.call.duration
