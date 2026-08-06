@@ -481,6 +481,26 @@ groups:
     entity_associations:
       - host
 
+  - id: metric.system.network.bandwidth.utilization
+    type: metric
+    metric_name: system.network.bandwidth.utilization
+    annotations:
+      code_generation:
+        metric_value_type: double
+    stability: development
+    brief: "Network bandwidth utilization as a fraction."
+    note: |
+      This metric SHOULD be calculated as the rate of transmitted and received bytes over the measurement interval, converted to bits per second, divided by the available network interface capacity in bits per second.
+      For full-duplex interfaces, the available capacity SHOULD be the combined receive and transmit capacity.
+      For half-duplex interfaces, the available capacity SHOULD be the single shared interface capacity.
+      Instrumentations SHOULD NOT emit this metric when the available capacity is unknown.
+    instrument: gauge
+    unit: "1"
+    attributes:
+      - ref: network.interface.name
+    entity_associations:
+      - host
+
   - id: metric.system.network.connection.count
     type: metric
     metric_name: system.network.connection.count
