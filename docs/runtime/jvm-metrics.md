@@ -422,8 +422,8 @@ Note that the JVM does not provide a definition of what "recent" means.
 
 **Description:** JVM metrics describing individual executors under the `jvm.executor.*` namespace.
 
-Instrumentations SHOULD emit each metric when the corresponding value is readily available.
-Instrumentations MUST NOT synthesize unsupported executor configuration or queue values.
+Instrumentations SHOULD emit each metric only when the executor implementation exposes the
+corresponding value, and SHOULD NOT emit an estimated or substituted value in its place.
 
 ### Metric: `jvm.executor.thread.count`
 
