@@ -201,7 +201,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
-    stability: development
+    stability: release_candidate
     brief: "Network bytes for the Pod."
     instrument: counter
     unit: "By"
@@ -216,7 +216,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
-    stability: development
+    stability: release_candidate
     brief: "Pod network errors."
     instrument: counter
     entity_associations:
@@ -852,7 +852,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
-    stability: development
+    stability: release_candidate
     brief: "Network bytes for the Node."
     instrument: counter
     unit: "By"
@@ -867,7 +867,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
-    stability: development
+    stability: release_candidate
     brief: "Node network errors."
     instrument: counter
     unit: "{error}"
