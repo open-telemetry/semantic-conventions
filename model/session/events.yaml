@@ -1,8 +1,8 @@
-groups:
-  - id: event.session.start
+# yaml-language-server: $schema=https://raw.githubusercontent.com/open-telemetry/weaver/v0.25.1/schemas/semconv.schema.v2.json
+file_format: definition/2
+events:
+  - name: session.start
     stability: development
-    type: event
-    name: session.start
     brief: >
       Indicates that a new session has been started, optionally linking to the prior session.
     note: >
@@ -26,10 +26,9 @@ groups:
             the `session.previous_id` SHOULD be included in the event. The `session.id` and `session.previous_id`
             attributes MUST have different values.
         brief: The previous `session.id` for this user, when known.
-  - id: event.session.end
+
+  - name: session.end
     stability: development
-    type: event
-    name: session.end
     brief: >
       Indicates that a session has ended.
     note: >
