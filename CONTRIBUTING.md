@@ -61,8 +61,12 @@ key, but non-obvious, aspects:
 - All changes to existing attributes, metrics, etc. MUST be allowed as
   per our [stability guarantees][stability guarantees] and
   defined in a schema file.
-- Links to the specification repository MUST point to a tag and **not** to the `main` branch.
-  The tag version MUST match with the one defined in [README](README.md).
+- Links to current specification content SHOULD point to the
+  [rendered OpenTelemetry specification](https://opentelemetry.io/docs/specs/otel/).
+- Links to historical or repository-only content in the specification
+  repository MUST point to a tag and **not** to the `main` branch. Tags for
+  repository-only content that tracks the current specification MUST match the
+  version defined in [README](README.md).
 
 Please make sure all Pull Requests are compliant with these rules!
 
@@ -515,6 +519,6 @@ exists in some form in ECS, consider the following guidelines:
   entirely. See the [ECS field reference] for existing namespaces.
 
 [nvm]: https://github.com/nvm-sh/nvm/blob/master/README.md#installing-and-updating
-[stability guarantees]: https://github.com/open-telemetry/opentelemetry-specification/blob/v1.60.0/specification/versioning-and-stability.md#semantic-conventions-stability
+[stability guarantees]: https://opentelemetry.io/docs/specs/otel/versioning-and-stability/#semantic-conventions-stability
 [otep222]: https://github.com/open-telemetry/oteps/pull/222
 [ECS field reference]: https://www.elastic.co/guide/en/ecs/current/ecs-field-reference.html
