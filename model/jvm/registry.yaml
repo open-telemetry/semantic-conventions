@@ -93,3 +93,50 @@ groups:
         note: >
           Pool names are generally obtained via
           [BufferPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/BufferPoolMXBean.html#getName()).
+      - id: jvm.executor.name
+        type: string
+        stability: development
+        brief: Name of the executor.
+        examples: [ "pool-1-thread-*", "ForkJoinPool.commonPool-worker-*" ]
+        note: >
+          The executor name SHOULD be low-cardinality. If `jvm.executor.owner.name` is present,
+          the combination of `jvm.executor.owner.name` and `jvm.executor.name` SHOULD be unique
+          within the instrumented application; otherwise, `jvm.executor.name` SHOULD be unique
+          within the instrumented application. If the executor implementation does not provide
+          an explicit name, instrumentation SHOULD derive a name from available
+          implementation-specific metadata, such as a normalized worker thread name. If an
+          instrumentation normalizes variable portions of a name, it SHOULD use the literal `*`
+          character as the replacement token; `*` is part of the emitted attribute value and
+          does not represent a wildcard. Instrumentations SHOULD document how the name is derived.
+      - id: jvm.executor.owner.name
+        type: string
+        stability: development
+        brief: Name of the logical component that owns the executor.
+        examples: [ "tomcat", "jetty", "netty" ]
+        note: >
+          The executor owner name SHOULD be a low-cardinality identifier for the component
+          that creates and configures the executor. It is neither the executor implementation
+          type nor an OpenTelemetry instrumentation scope.
+      - id: jvm.executor.type
+        type: string
+        stability: development
+        brief: The fully qualified class name of the executor implementation.
+        examples:
+          [
+            "java.util.concurrent.ThreadPoolExecutor",
+            "java.util.concurrent.ForkJoinPool",
+          ]
+      - id: jvm.executor.thread.state
+        stability: development
+        brief: State of an executor thread.
+        examples: [ "active", "idle" ]
+        type:
+          members:
+            - id: active
+              value: 'active'
+              brief: 'The thread is currently executing a task.'
+              stability: development
+            - id: idle
+              value: 'idle'
+              brief: 'The thread currently exists but is not executing a task.'
+              stability: development
