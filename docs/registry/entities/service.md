@@ -56,6 +56,7 @@ The process executable name is the name of the process executable, the same valu
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- | --- |
 | Identity | [`service.instance.id`](/docs/registry/attributes/service.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | The string ID of the service instance. [7] | `627cc493-f310-47de-96bd-71410b7dec09` |
+| Description | [`service.instance.cost_center.id`](/docs/registry/attributes/service.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Identifier of the cost center associated with the service instance. [8] | `94002`; `engineering-platform`; `marketing-campaigns-2026` |
 
 **[7] `service.instance.id`:** MUST be unique for each instance of the same `service.namespace,service.name` pair (in other words
 `service.namespace,service.name,service.instance.id` triplet MUST be globally unique). The ID helps to
@@ -84,6 +85,8 @@ However, Collectors can set the `service.instance.id` if they can unambiguously 
 for that telemetry. This is typically the case for scraping receivers, as they know the target address and
 port.
 
+**[8] `service.instance.cost_center.id`:** The cost center identifier enables tracking and attribution of service resource costs to organizational units or teams. This standardization ensures consistent cost allocation across cloud providers, Kubernetes clusters, and observability platforms.
+
 ## Service Namespace
 
 **Status:** ![Stable](https://img.shields.io/badge/-stable-lightgreen)
@@ -96,6 +99,6 @@ port.
 
 | Role | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- | --- |
-| Identity | [`service.namespace`](/docs/registry/attributes/service.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | A namespace for `service.name`. [8] | `Shop` |
+| Identity | [`service.namespace`](/docs/registry/attributes/service.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | A namespace for `service.name`. [9] | `Shop` |
 
-**[8] `service.namespace`:** A string value having a meaning that helps to distinguish a group of services, for example the team name that owns a group of services. `service.name` is expected to be unique within the same namespace. If `service.namespace` is not specified in the Resource then `service.name` is expected to be unique for all services that have no explicit namespace defined (so the empty/unspecified namespace is simply one more valid namespace). Zero-length namespace string is assumed equal to unspecified namespace.
+**[9] `service.namespace`:** A string value having a meaning that helps to distinguish a group of services, for example the team name that owns a group of services. `service.name` is expected to be unique within the same namespace. If `service.namespace` is not specified in the Resource then `service.name` is expected to be unique for all services that have no explicit namespace defined (so the empty/unspecified namespace is simply one more valid namespace). Zero-length namespace string is assumed equal to unspecified namespace.

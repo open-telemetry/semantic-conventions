@@ -1,0 +1,5 @@
+# Use this changelog template to create an entry for release notes.
+change_type: enhancement
+component: service
+note: "Add `service.instance.cost_center.id` attribute to the service registry."
+issues: [3754]
