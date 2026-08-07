@@ -84,7 +84,7 @@ endif
 
 # TODO: add `yamllint` step to `all` after making sure it works on Mac.
 .PHONY: all
-all: install-tools markdownlint misspell table-check schema-check check-file-and-folder-names-in-docs check-yaml-extension markdown-link-check
+all: install-tools markdownlint misspell table-check schema-check check-file-and-folder-names-in-docs check-yaml-extension spec-link-redirect-check markdown-link-check
 
 .PHONY: check-file-and-folder-names-in-docs
 check-file-and-folder-names-in-docs:
@@ -143,6 +143,10 @@ markdown-link-check: normalized-link-check
 .PHONY: markdown-link-check-local-only
 markdown-link-check-local-only: normalized-link-check
 	.github/scripts/link-check.sh --local-links-only $(FILES)
+
+.PHONY: spec-link-redirect-check
+spec-link-redirect-check:
+	.github/scripts/check-spec-links-no-redirect.sh
 
 # This target runs doctoc on all files that contain
 # a comment <!-- START doctoc -->.
@@ -235,7 +239,7 @@ schema-check:
 # Run all checks in order of speed / likely failure.
 # As a last thing, run attribute registry generation and git-diff for differences.
 .PHONY: check
-check: misspell markdownlint markdown-toc-check markdown-link-check check-policies registry-generation check-yaml-extension
+check: misspell markdownlint markdown-toc-check spec-link-redirect-check markdown-link-check check-policies registry-generation check-yaml-extension
 	@echo "All checks complete"
 
 # Attempt to fix issues / regenerate tables.
@@ -390,4 +394,3 @@ areas-table-check:
 
 .PHONY: generate-all
 generate-all: table-generation registry-generation areas-table-generation generate-gh-issue-templates
-

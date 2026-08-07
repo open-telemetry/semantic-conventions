@@ -52,4 +52,4 @@ for more details.
 | --- | --- |
 | `_OTHER` | A fallback error value to be used when the instrumentation doesn't define a custom value. |
 
-[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
+[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status/

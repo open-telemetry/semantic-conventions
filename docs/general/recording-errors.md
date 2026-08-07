@@ -140,5 +140,5 @@ public boolean createIfNotExists(String resourceId) throws IOException {
 }
 ```
 
-[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
+[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status/
 [SpanStatus]: https://opentelemetry.io/docs/specs/otel/trace/api/#set-status

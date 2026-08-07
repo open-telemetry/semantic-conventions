@@ -454,4 +454,4 @@ If HTTP request fails before connection is established:
 <- HTTP wait_for_connection (trace=t2, span=s3) - ERROR ->
 ```
 
-[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
+[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status/

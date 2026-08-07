@@ -219,4 +219,4 @@ classify the failure.
 Same as [Trace Semantic Conventions for Exceptions - Stacktrace
 Representation](exceptions-spans.md#stacktrace-representation).
 
-[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
+[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status/

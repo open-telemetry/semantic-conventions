@@ -226,4 +226,4 @@ Cassandra client instrumentations SHOULD collect metrics according to the genera
 
 `db.system.name` MUST be set to `"cassandra"`.
 
-[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
+[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status/

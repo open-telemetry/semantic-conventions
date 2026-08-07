@@ -1481,4 +1481,4 @@ flowchart LR;
 | `messaging.message.id` | | `"a1"` | `"a2"` |
 | `messaging.batch.message_count` | 2 | | |
 
-[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
+[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status/

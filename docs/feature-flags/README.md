@@ -13,4 +13,4 @@ Semantic conventions for feature flags are defined for the following signals:
 
 * [Feature Flags in Events](feature-flags-events.md): Semantic Conventions for recording feature flags in *events*.
 
-[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
+[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status/
