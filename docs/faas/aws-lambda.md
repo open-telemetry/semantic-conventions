@@ -311,4 +311,4 @@ Note that [`cloud.resource_id`][cloud] currently cannot be populated as a resour
 because it is not available until function invocation.
 
 [environment variables]: https://docs.aws.amazon.com/lambda/latest/dg/configuration-envvars.html#configuration-envvars-runtime
-[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
+[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status/

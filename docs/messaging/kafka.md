@@ -1064,4 +1064,4 @@ flowchart LR;
 | `messaging.kafka.message.key` | `"myKey"` | `"myKey"` | `"myKey"` | |
 | `messaging.kafka.offset` | | `"12"` | `"12"` | `"12"` |
 
-[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
+[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status/

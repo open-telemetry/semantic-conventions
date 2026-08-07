@@ -142,4 +142,4 @@ Semantic conventions MUST NOT define a value for
 [body](https://opentelemetry.io/docs/specs/otel/logs/data-model/#field-body)
 except to represent a string display message of the event.
 
-[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
+[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status/
