@@ -215,9 +215,10 @@ At the top of all Markdown files under the `docs/` directory, you will see
 headers like the following:
 
 ```md
-<!--- Hugo front matter used to generate the website version of this page:
+---
+title: Semantic conventions for HTTP
 linkTitle: HTTP
---->
+---
 ```
 
 `linkTitle` is a short version of the page's title, shown in the website's

@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
+title: System semantic conventions
 linkTitle: System
---->
+---
 
 # System semantic conventions
 

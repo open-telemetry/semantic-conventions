@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
+title: Process and process runtime resources
 linkTitle: Process
---->
+---
 
 # Process and process runtime resources
 

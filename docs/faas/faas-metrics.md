@@ -1,6 +1,7 @@
-<!--- Hugo front matter used to generate the website version of this page:
+---
+title: Semantic conventions for FaaS metrics
 linkTitle: Metrics
---->
+---
 
 # Semantic conventions for FaaS metrics
 
