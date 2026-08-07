@@ -10,12 +10,26 @@ DEPENDENCIES_DOCKERFILE="$ROOT_DIR/dependencies.Dockerfile"
 
 # Parse command line arguments
 LOCAL_LINKS_ONLY=false
+CONFIG_FILE=".github/scripts/lychee-config.toml"
+VERBOSE=true
 TARGET=""
 
 while [[ $# -gt 0 ]]; do
     case $1 in
         --local-links-only)
             LOCAL_LINKS_ONLY=true
+            shift
+            ;;
+        --config)
+            if [[ $# -lt 2 ]]; then
+                echo "Missing value for --config" >&2
+                exit 1
+            fi
+            CONFIG_FILE=$2
+            shift 2
+            ;;
+        --no-verbose)
+            VERBOSE=false
             shift
             ;;
         *)
@@ -34,7 +48,11 @@ if [[ -z "$TARGET" ]]; then
 fi
 
 # Build the lychee command with optional GitHub token
-CMD="lycheeverse/lychee:$LYCHEE_VERSION --verbose --root-dir /data"
+CMD="lycheeverse/lychee:$LYCHEE_VERSION --root-dir /data"
+
+if [[ "$VERBOSE" == "true" ]]; then
+    CMD="$CMD --verbose"
+fi
 
 # Add GitHub token if available
 if [[ -n "$GITHUB_TOKEN" ]]; then
@@ -44,7 +62,7 @@ fi
 if [[ "$LOCAL_LINKS_ONLY" == "true" ]]; then
     CMD="$CMD --scheme file --include-fragments"
 else
-    CMD="$CMD --config .github/scripts/lychee-config.toml"
+    CMD="$CMD --config $CONFIG_FILE"
 fi
 
 CMD="$CMD $TARGET"

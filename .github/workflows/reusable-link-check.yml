@@ -15,6 +15,9 @@ jobs:
           fetch-depth: 0 # needed for merge-base below
           persist-credentials: false
 
+      - name: Check OpenTelemetry specification links for redirects
+        run: make spec-link-redirect-check
+
       - name: Link check - local links only (all files)
         if: github.event_name == 'pull_request'
         env:

@@ -136,4 +136,4 @@ In this example, Redis is connected using a UNIX domain socket and therefore the
 | `db.query.text`        | `"HMSET myhash field1 'Hello' field2 'World"` |
 | `db.operation.name`    | `"HMSET"`                                     |
 
-[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
+[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status/

@@ -252,4 +252,4 @@ This is an example of attributes for a MySQL database span:
 | `server.port`    | `3306`                                            |
 | `db.query.text`  | `"SELECT * FROM orders WHERE order_id = 'o4711'"` |
 
-[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
+[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status/
