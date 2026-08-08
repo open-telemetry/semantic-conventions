@@ -1,0 +1,14 @@
+change_type: breaking
+
+component: dns
+
+note: >
+  Change `dns.question.name` attribute requirement level from Required to Opt-In
+  on the `dns.lookup.duration` metric.
+
+issues: [3899]
+
+subtext: >
+  `dns.question.name` is high-cardinality (unbounded set of queried hostnames) and
+  can carry sensitive information, so it is better suited as an Opt-In metric
+  attribute per the attribute requirement level guidance.
