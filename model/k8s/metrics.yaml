@@ -6,13 +6,19 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
-    stability: development
+    stability: release_candidate
     brief: "The time the Pod has been running."
     entity_associations:
       - k8s.pod
-    note: |
+    note: >
       Instrumentations SHOULD use a gauge with type `double` and measure uptime in seconds as a floating point number with the highest precision available.
       The actual accuracy would depend on the instrumentation and operating system.
+
+      This metric is derived from the
+      [PodStats.StartTime](https://github.com/kubernetes/kubelet/blob/v0.35.2/pkg/apis/stats/v1alpha1/types.go#L122)
+      field of Kubelet's stats API, where `StartTime` represents the pod sandbox creation time as
+      [noted in the Kubelet source](https://github.com/kubernetes/kubernetes/blob/v1.36.3/pkg/kubelet/stats/cri_stats_provider.go#L299).
+      This value resets when the node restarts, as the pod sandbox is recreated.
     instrument: gauge
     unit: "s"
 
@@ -78,9 +84,11 @@ groups:
       code_generation:
         metric_value_type: double
     stability: development
-    brief: "Pod's CPU usage, measured in cpus. Range from 0 to the number of allocatable CPUs."
+    brief: "Pod's CPU usage, measured in CPUs. Range from 0 to the number of allocatable CPUs."
     note: >
-      CPU usage of the specific Pod on all available CPU cores, averaged over the sample window
+      CPU usage of the specific Pod on all available CPU cores. It is calculated as the change in
+      cumulative CPU time (k8s.pod.cpu.time) over a measurement interval, divided by the elapsed time:
+      usageCores = (cpuTimeEnd - cpuTimeStart) / elapsedSeconds
     instrument: gauge
     unit: "{cpu}"
 
@@ -91,18 +99,23 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
-    stability: development
+    stability: release_candidate
     brief: "Memory usage of the Pod."
     entity_associations:
       - k8s.pod
-    note: >
-      Total memory usage of the Pod
-    instrument: gauge
+    instrument: updowncounter
     unit: "By"
+    note: >
+      Total memory in use. This includes all memory regardless of when it was accessed.
+
+      This metric is derived from the
+      [MemoryStats.UsageBytes](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#MemoryStats)
+      field of the [PodStats.Memory](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#PodStats)
+      of the Kubelet's stats API.
   - id: metric.k8s.pod.memory.available
     type: metric
     metric_name: k8s.pod.memory.available
-    stability: development
+    stability: release_candidate
     annotations:
       code_generation:
         metric_value_type: int
@@ -122,7 +135,7 @@ groups:
   - id: metric.k8s.pod.memory.rss
     type: metric
     metric_name: k8s.pod.memory.rss
-    stability: development
+    stability: release_candidate
     brief: "Pod memory RSS."
     annotations:
       code_generation:
@@ -141,7 +154,7 @@ groups:
   - id: metric.k8s.pod.memory.working_set
     type: metric
     metric_name: k8s.pod.memory.working_set
-    stability: development
+    stability: release_candidate
     entity_associations:
       - k8s.pod
     brief: "Pod memory working set."
@@ -451,11 +464,17 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
-    stability: development
+    stability: release_candidate
     brief: "The time the Node has been running."
-    note: |
+    note: >
       Instrumentations SHOULD use a gauge with type `double` and measure uptime in seconds as a floating point number with the highest precision available.
       The actual accuracy would depend on the instrumentation and operating system.
+
+      This metric is derived from the
+      [NodeStats.StartTime](https://github.com/kubernetes/kubelet/blob/v0.35.2/pkg/apis/stats/v1alpha1/types.go#L42)
+      field of Kubelet's stats API, which is set to the
+      [system boot time](https://github.com/kubernetes/kubernetes/blob/v1.36.3/pkg/kubelet/server/stats/summary.go#L113).
+      This value resets when the node reboots.
     instrument: gauge
     unit: "s"
     entity_associations:
@@ -468,7 +487,7 @@ groups:
       code_generation:
         metric_value_type: double
     stability: development
-    brief: "Amount of cpu allocatable on the node."
+    brief: "Amount of CPU allocatable on the node."
     entity_associations:
       - k8s.node
     instrument: updowncounter
@@ -552,9 +571,11 @@ groups:
       code_generation:
         metric_value_type: double
     stability: development
-    brief: "Node's CPU usage, measured in cpus. Range from 0 to the number of allocatable CPUs."
+    brief: "Node's CPU usage, measured in CPUs. Range from 0 to the number of allocatable CPUs."
     note: >
-      CPU usage of the specific Node on all available CPU cores, averaged over the sample window
+      CPU usage of the specific Node on all available CPU cores. It is calculated as the change in
+      cumulative CPU time (k8s.node.cpu.time) over a measurement interval, divided by the elapsed time:
+      usageCores = (cpuTimeEnd - cpuTimeStart) / elapsedSeconds
     instrument: gauge
     entity_associations:
       - k8s.node
@@ -568,13 +589,11 @@ groups:
       code_generation:
         metric_value_type: double
     stability: development
-    brief: "Node's system container CPU usage, measured in cpus."
+    brief: "Node's system container CPU usage, measured in CPUs."
     note: >
-      This metric is derived from the
-      [CPUStats.UsageNanoCores](https://github.com/kubernetes/kubelet/blob/v0.35.2/pkg/apis/stats/v1alpha1/types.go#L233)
-      field of the [ContainerStats](https://github.com/kubernetes/kubelet/blob/v0.35.2/pkg/apis/stats/v1alpha1/types.go#L157C6-L157C20)
-      of [Node.SystemContainers](https://github.com/kubernetes/kubelet/blob/v0.35.2/pkg/apis/stats/v1alpha1/types.go#L40)
-      of the Kubelet's stats API.
+      CPU usage of the specific System Container on all available CPU cores. It is calculated as the change in
+      cumulative CPU time (k8s.node.system_container.cpu.time) over a measurement interval, divided by the elapsed time:
+      usageCores = (cpuTimeEnd - cpuTimeStart) / elapsedSeconds
     instrument: gauge
     entity_associations:
       - k8s.node.system_container
@@ -689,6 +708,41 @@ groups:
       of the [NodeStats.Fs](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#NodeStats)
       of the Kubelet's stats API.
 
+  - id: metric.k8s.node.filesystem.inode.count
+    type: metric
+    metric_name: k8s.node.filesystem.inode.count
+    stability: development
+    brief: "The total inodes in the node's root filesystem."
+    instrument: updowncounter
+    annotations:
+      code_generation:
+        metric_value_type: int
+    unit: "{inode}"
+    entity_associations:
+      - k8s.node
+    note: |
+      This metric is derived from the
+      [FsStats.Inodes](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#FsStats) field
+      of the [NodeStats.Fs](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#NodeStats)
+      of the Kubelet's stats API.
+  - id: metric.k8s.node.filesystem.inode.free
+    type: metric
+    metric_name: k8s.node.filesystem.inode.free
+    stability: development
+    brief: "The free inodes in the node's root filesystem."
+    instrument: updowncounter
+    annotations:
+      code_generation:
+        metric_value_type: int
+    unit: "{inode}"
+    entity_associations:
+      - k8s.node
+    note: |
+      This metric is derived from the
+      [FsStats.InodesFree](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#FsStats) field
+      of the [NodeStats.Fs](https://pkg.go.dev/k8s.io/kubelet@v0.33.0/pkg/apis/stats/v1alpha1#NodeStats)
+      of the Kubelet's stats API.
+
   # k8s.node.memory.* metrics
   - id: metric.k8s.node.memory.usage
     type: metric
@@ -696,18 +750,23 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
-    stability: development
+    stability: release_candidate
     brief: "Memory usage of the Node."
     note: >
-      Total memory usage of the Node
-    instrument: gauge
+      Total memory in use. This includes all memory regardless of when it was accessed.
+
+      This metric is derived from the
+      [MemoryStats.UsageBytes](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#MemoryStats)
+      field of the [NodeStats.Memory](https://pkg.go.dev/k8s.io/kubelet@v0.34.0/pkg/apis/stats/v1alpha1#NodeStats)
+      of the Kubelet's stats API.
+    instrument: updowncounter
     entity_associations:
       - k8s.node
     unit: "By"
   - id: metric.k8s.node.memory.available
     type: metric
     metric_name: k8s.node.memory.available
-    stability: development
+    stability: release_candidate
     brief: "Node memory available."
     annotations:
       code_generation:
@@ -727,7 +786,7 @@ groups:
   - id: metric.k8s.node.memory.rss
     type: metric
     metric_name: k8s.node.memory.rss
-    stability: development
+    stability: release_candidate
     brief: "Node memory RSS."
     annotations:
       code_generation:
@@ -746,7 +805,7 @@ groups:
   - id: metric.k8s.node.memory.working_set
     type: metric
     metric_name: k8s.node.memory.working_set
-    stability: development
+    stability: release_candidate
     brief: "Node memory working set."
     annotations:
       code_generation:

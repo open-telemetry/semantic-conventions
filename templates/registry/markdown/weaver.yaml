@@ -1,12 +1,26 @@
 templates:
   - pattern: attributes_readme.md.j2
-    filter: '.groups | map(select(.type == "attribute_group")) | map(select(.id | startswith("registry"))) | group_by(.id | split(".") | .[1]) | map({id: .[0].id | split(".") | .[1], groups: .})'
+    # v1 files declare a `registry.<namespace>` group; v2 files don't, so weaver
+    # synthesizes one with a file-path-based id - key those off the attribute namespace.
+    filter: '.groups | map(select(.type == "attribute_group")) |
+      map(select(.id | startswith("registry"))) |
+      map(. + {ns: (if .brief == "<synthetic v2>"
+        then (.attributes[0].name | split(".") | .[0])
+        else (.id | split(".") | .[1]) end)}) |
+      group_by(.ns) | map({id: .[0].ns, groups: .})'
     application_mode: single
     file_name: attributes/README.md
   - pattern: attribute_namespace.md.j2
-    filter: '.groups | map(select(.type == "attribute_group")) | map(select(.id | startswith("registry"))) | group_by(.id | split(".") | .[1]) | map({id: .[0].id | split(".") | .[1], groups: .})'
+    # v1 files declare a `registry.<namespace>` group; v2 files don't, so weaver
+    # synthesizes one with a file-path-based id - key those off the attribute namespace.
+    filter: '.groups | map(select(.type == "attribute_group")) |
+      map(select(.id | startswith("registry"))) |
+      map(. + {ns: (if .brief == "<synthetic v2>"
+        then (.attributes[0].name | split(".") | .[0])
+        else (.id | split(".") | .[1]) end)}) |
+      group_by(.ns) | map({id: .[0].ns, groups: .})'
     application_mode: each
-    file_name: attributes/{{ ctx.id | lower | kebab_case }}.md
+    file_name: attributes/{{ ctx.id | lower | kebab_case | map_text("root_namespace_aliases") }}.md
   - pattern: registry_readme.md.j2
     filter: "."
     application_mode: single
@@ -61,6 +75,12 @@ acronyms:
   - zOS
   - JSONRPC
 text_maps:
+  root_namespace_aliases:
+    az: azure
+    hw: hardware
+    message: rpc
+    net: network
+    oracle: oracledb
   namespace_mapping:
     CICD: CI/CD
     CICD Pipeline: CI/CD Pipeline

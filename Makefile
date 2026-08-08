@@ -84,7 +84,7 @@ endif
 
 # TODO: add `yamllint` step to `all` after making sure it works on Mac.
 .PHONY: all
-all: install-tools markdownlint misspell table-check schema-check check-file-and-folder-names-in-docs markdown-link-check
+all: install-tools markdownlint misspell table-check schema-check check-file-and-folder-names-in-docs check-yaml-extension markdown-link-check
 
 .PHONY: check-file-and-folder-names-in-docs
 check-file-and-folder-names-in-docs:
@@ -95,10 +95,34 @@ check-file-and-folder-names-in-docs:
 		exit 1; \
 	fi
 
+.PHONY: check-yaml-extension
+check-yaml-extension:
+	@found=`find model -name '*.yml'`; \
+	if [ -n "$$found" ]; then \
+		echo "Error: Use the .yaml extension for model files, not .yml:"; \
+		echo $$found; \
+		exit 1; \
+	fi
+
 .PHONY: misspell
 misspell:
 	@if ! npm ls cspell; then npm ci --ignore-scripts; fi
 	npx --no -- cspell . --no-progress
+
+.PHONY: textlint
+textlint:
+	@if ! npm ls textlint; then npm ci --ignore-scripts; fi
+
+	@if [ "$(format)" = "github" ]; then \
+		npx --no -- textlint --format github .; \
+	else \
+		npx --no -- textlint .; \
+	fi
+
+.PHONY: textlint-correction
+textlint-correction:
+	@if ! npm ls textlint; then npm ci --ignore-scripts; fi
+	npx --no -- textlint --fix .
 
 .PHONY: normalized-link-check
 # NOTE: Search "model/*/**" rather than "model" to skip `model/README.md`, which
@@ -153,6 +177,7 @@ yamllint:
 	yamllint .
 
 # Generate markdown tables from YAML definitions
+# TODO(#3808): re-add `--future` once the markdown templates are switched to v2.
 .PHONY: table-generation
 table-generation:
 	$(DOCKER_RUN) --rm \
@@ -165,7 +190,6 @@ table-generation:
 		--param registry_base_url=/docs/registry/ \
 		--templates=/home/weaver/templates \
 		--target=markdown \
-		--future \
 		/home/weaver/target
 
 # DEPRECATED: Generate attribute registry markdown.
@@ -188,6 +212,7 @@ registry-generation:
 		  /home/weaver/target/registry/
 
 # Check if current markdown tables differ from the ones that would be generated from YAML definitions (weaver).
+# TODO(#3808): re-add `--future` once the markdown templates are switched to v2.
 .PHONY: table-check
 table-check:
 	$(DOCKER_RUN) --rm \
@@ -200,8 +225,7 @@ table-check:
 		--param registry_base_url=/docs/registry/ \
 		--templates=/home/weaver/templates \
 		--target=markdown \
-		--dry-run \
-		--future \
+		--dry-run=true \
 		/home/weaver/target
 
 .PHONY: schema-check
@@ -211,12 +235,12 @@ schema-check:
 # Run all checks in order of speed / likely failure.
 # As a last thing, run attribute registry generation and git-diff for differences.
 .PHONY: check
-check: misspell markdownlint markdown-toc-check markdown-link-check check-policies registry-generation
+check: misspell markdownlint markdown-toc-check markdown-link-check check-policies registry-generation check-yaml-extension
 	@echo "All checks complete"
 
 # Attempt to fix issues / regenerate tables.
 .PHONY: fix
-fix: table-generation registry-generation markdown-toc
+fix: table-generation registry-generation textlint-correction markdown-toc
 	@echo "All autofixes complete"
 
 .PHONY: install-tools
@@ -323,6 +347,7 @@ check-dead-yaml:
 	$(WEAVER_CONTAINER) registry generate \
 		--registry=/home/weaver/source \
 		--templates=/home/weaver/templates \
+		--v2 \
 		signal-groups \
 		/home/weaver/target
 	$(TOOLS_DIR)/scripts/find-dead-yaml.sh $(PWD)/internal/tools/bin/signal-groups.txt $(PWD)/docs

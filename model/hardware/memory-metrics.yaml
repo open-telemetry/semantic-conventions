@@ -1,11 +1,10 @@
-groups:
-  # MEMORY METRICS
+# yaml-language-server: $schema=https://raw.githubusercontent.com/open-telemetry/weaver/v0.25.1/schemas/semconv.schema.v2.json
+file_format: definition/2
+attribute_groups:
   - id: metric_attributes.hw.memory
-    type: attribute_group
-    brief: >
-      Common attributes for memory module metrics
-    extends: hardware.attributes.common
+    visibility: internal
     attributes:
+      - ref_group: hardware.attributes.common
       - ref: hw.model
         requirement_level: recommended
       - ref: hw.serial_number
@@ -15,9 +14,9 @@ groups:
       - ref: hw.vendor
         requirement_level: recommended
 
-  - id: metric.hw.memory.size
-    type: metric
-    metric_name: hw.memory.size
+metrics:
+  - name: hw.memory.size
+    requirement_level: recommended
     annotations:
       code_generation:
         metric_value_type: int
@@ -25,4 +24,31 @@ groups:
     brief: "Size of the memory module."
     instrument: updowncounter
     unit: "By"
-    extends: metric_attributes.hw.memory
+    attributes:
+      - ref_group: metric_attributes.hw.memory
+
+metric_refinements:
+  - id: metric.hw.memory.errors
+    ref: hw.errors
+    brief: "Number of errors encountered on this memory module."
+    attributes:
+      - ref_group: metric_attributes.hw.memory
+      - ref: hw.type
+        note: "MUST be set to `memory`."
+        examples: ["memory"]
+  - id: metric.hw.memory.status
+    ref: hw.status
+    attributes:
+      - ref_group: metric_attributes.hw.memory
+      - ref: hw.type
+        note: "MUST be set to `memory`."
+        examples: ["memory"]
+      - ref: hw.state
+        note: |
+          MUST be set to one of the following values:
+
+          * `ok`: The memory module is operating normally.
+          * `degraded`: The memory module is operating with reduced functionality or performance.
+          * `failed`: The memory module has failed and is not operational.
+          * `predicted_failure`: The memory module is currently operational but is predicted to fail soon.
+        examples: ["ok", "degraded", "failed", "predicted_failure"]

@@ -1,8 +1,8 @@
-groups:
+# yaml-language-server: $schema=https://raw.githubusercontent.com/open-telemetry/weaver/v0.25.1/schemas/semconv.schema.v2.json
+file_format: definition/2
+attribute_groups:
   - id: hardware.attributes.common
-    type: attribute_group
-    stability: development
-    brief: 'Common hardware attributes'
+    visibility: internal
     attributes:
       - ref: hw.id
         requirement_level: required

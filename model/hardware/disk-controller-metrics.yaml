@@ -1,11 +1,10 @@
-groups:
-  # DISK CONTROLLER METRICS
-  - id: metric_attributes.hw.disk_controller
-    type: attribute_group
-    brief: >
-      Common attributes for disk controller metrics
-    extends: hardware.attributes.common
+# yaml-language-server: $schema=https://raw.githubusercontent.com/open-telemetry/weaver/v0.25.1/schemas/semconv.schema.v2.json
+file_format: definition/2
+metric_refinements:
+  - id: metric.hw.disk_controller.status
+    ref: hw.status
     attributes:
+      - ref_group: hardware.attributes.common
       - ref: hw.bios_version
         requirement_level: recommended
       - ref: hw.driver_version
@@ -18,3 +17,14 @@ groups:
         requirement_level: recommended
       - ref: hw.vendor
         requirement_level: recommended
+      - ref: hw.type
+        note: "MUST be set to `disk_controller`."
+        examples: ["disk_controller"]
+      - ref: hw.state
+        note: |
+          MUST be set to one of the following values:
+
+          * `ok`: The disk controller is operating normally.
+          * `degraded`: The disk controller is operating with reduced functionality or performance.
+          * `failed`: The disk controller has failed and is not operational.
+        examples: ["ok", "degraded", "failed"]

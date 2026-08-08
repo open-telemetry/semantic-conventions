@@ -36,8 +36,8 @@ Possible solutions include:
 > For example, if user application depends on the `semconv v1.0.0-preview` and some library brings transitive dependency on `semconv v1.1.0` that does not contain
 > experimental conventions, the latter would be resolved leading to compilation or runtime issues in the application.
 
-Instrumentation libraries should depend on the stable (part of) semantic convention artifact or copy relevant definitions into their own code base.
-Unstable semantic conventions artifact is intended for end-user applications.
+Instrumentation libraries should depend on the stable (part of) semantic convention artifact or copy relevant definitions into their own codebase.
+Unstable semantic conventions artifact is intended for end user applications.
 
 ### Deprecated conventions
 
@@ -170,7 +170,7 @@ Notable changes on data structure:
 - `attribute.fqn` -> `attribute.name`
 - `attribute.type | instantiated_type` (gets underlying type of enum values)
 - `attribute.attr_type.members` -> `attribute.type.members` (gets members of enum type)
-- `member.member_id` -> `member.id` (gets id of the enum member)
+- `member.member_id` -> `member.id` (gets ID of the enum member)
 
 Notable changes on helper methods:
 

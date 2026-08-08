@@ -1,6 +1,9 @@
-groups:
+# yaml-language-server: $schema=https://raw.githubusercontent.com/open-telemetry/weaver/v0.25.1/schemas/semconv.schema.v2.json
+file_format: definition/2
+attribute_groups:
   - id: thread
-    type: attribute_group
+    visibility: public
+    stability: development
     brief: >
       These attributes may be used for any operation to store information about a thread that started a span.
     attributes:

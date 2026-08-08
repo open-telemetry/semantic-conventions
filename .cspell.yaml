@@ -174,6 +174,7 @@ words:
   - Contentful
   - Depluralize
   - Undeprecate
+  - bfcache
 ignoreWords:
   - gitea
   - rego
@@ -182,4 +183,3 @@ ignoreWords:
   - yamlize
   - Yamlify
   - crun
-  - kotlin # added as a temporary workaround to enable ci to pass

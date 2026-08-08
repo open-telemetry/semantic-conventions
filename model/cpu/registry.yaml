@@ -1,7 +1,7 @@
 groups:
   - id: registry.cpu
     type: attribute_group
-    brief: Attributes specific to a cpu instance.
+    brief: Attributes specific to a CPU instance.
     display_name: CPU Attributes
     attributes:
       - id: cpu.mode

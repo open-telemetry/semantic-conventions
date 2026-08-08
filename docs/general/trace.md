@@ -15,7 +15,7 @@ Depending on the protocol and the type of operation, additional information
 is needed to represent and analyze a span correctly in monitoring systems. It is
 also important to unify how this attribution is made in different languages.
 This way, the operator will not need to learn specifics of a language and
-telemetry collected from polyglot (multi-language) micro-service environments
+telemetry collected from polyglot (multi-language) microservice environments
 can still be easily correlated and cross-analyzed.
 
 The following semantic conventions for spans are defined:
@@ -33,7 +33,7 @@ The following semantic conventions for spans are defined:
 * [RPC/RMI](/docs/rpc/rpc-spans.md): For remote procedure call (e.g., gRPC) spans.
 
 Apart from semantic conventions for traces, [metrics](metrics.md), [logs](logs.md), and [events](events.md),
-OpenTelemetry also defines the concept of overarching [Resources](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.59.0/specification/resource/sdk.md) with their own
+OpenTelemetry also defines the concept of overarching [Resources](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.60.0/specification/resource/sdk.md) with their own
 [Resource Semantic Conventions](/docs/resource/README.md).
 
 [DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status

@@ -1,11 +1,10 @@
-groups:
-  # POWER SUPPLY METRICS
+# yaml-language-server: $schema=https://raw.githubusercontent.com/open-telemetry/weaver/v0.25.1/schemas/semconv.schema.v2.json
+file_format: definition/2
+attribute_groups:
   - id: metric_attributes.hw.power_supply
-    type: attribute_group
-    brief: >
-      Common attributes for power supply metrics
-    extends: hardware.attributes.common
+    visibility: internal
     attributes:
+      - ref_group: hardware.attributes.common
       - ref: hw.model
         requirement_level: recommended
       - ref: hw.serial_number
@@ -13,9 +12,9 @@ groups:
       - ref: hw.vendor
         requirement_level: recommended
 
-  - id: metric.hw.power_supply.limit
-    type: metric
-    metric_name: hw.power_supply.limit
+metrics:
+  - name: hw.power_supply.limit
+    requirement_level: recommended
     annotations:
       code_generation:
         metric_value_type: int
@@ -23,15 +22,14 @@ groups:
     brief: "Maximum power output of the power supply."
     instrument: updowncounter
     unit: "W"
-    extends: metric_attributes.hw.power_supply
     attributes:
+      - ref_group: metric_attributes.hw.power_supply
       - ref: hw.limit_type
         examples: ["max", "critical", "throttled"]
         requirement_level: recommended
 
-  - id: metric.hw.power_supply.utilization
-    type: metric
-    metric_name: hw.power_supply.utilization
+  - name: hw.power_supply.utilization
+    requirement_level: recommended
     annotations:
       code_generation:
         metric_value_type: double
@@ -39,11 +37,11 @@ groups:
     brief: "Utilization of the power supply as a fraction of its maximum output."
     instrument: gauge
     unit: "1"
-    extends: metric_attributes.hw.power_supply
+    attributes:
+      - ref_group: metric_attributes.hw.power_supply
 
-  - id: metric.hw.power_supply.usage
-    type: metric
-    metric_name: hw.power_supply.usage
+  - name: hw.power_supply.usage
+    requirement_level: recommended
     annotations:
       code_generation:
         metric_value_type: double
@@ -51,4 +49,22 @@ groups:
     brief: "Current power output of the power supply."
     instrument: updowncounter
     unit: "W"
-    extends: metric_attributes.hw.power_supply
+    attributes:
+      - ref_group: metric_attributes.hw.power_supply
+
+metric_refinements:
+  - id: metric.hw.power_supply.status
+    ref: hw.status
+    attributes:
+      - ref_group: metric_attributes.hw.power_supply
+      - ref: hw.type
+        note: "MUST be set to `power_supply`."
+        examples: ["power_supply"]
+      - ref: hw.state
+        note: |
+          MUST be set to one of the following values:
+
+          * `ok`: The power supply is operating normally.
+          * `degraded`: The power supply is operating with reduced functionality or performance.
+          * `failed`: The power supply has failed and is not operational.
+        examples: ["ok", "degraded", "failed"]
