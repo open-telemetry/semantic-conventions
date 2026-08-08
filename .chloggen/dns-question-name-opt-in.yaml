@@ -3,12 +3,14 @@ change_type: breaking
 component: dns
 
 note: >
-  Change `dns.question.name` attribute requirement level from Required to Opt-In
-  on the `dns.lookup.duration` metric.
+  Change `dns.question.name` attribute requirement level from Required to conditionally
+  Recommended on the `dns.lookup.duration` metric.
 
 issues: [3899]
 
-subtext: >
-  `dns.question.name` is high-cardinality (unbounded set of queried hostnames) and
-  can carry sensitive information, so it is better suited as an Opt-In metric
-  attribute per the attribute requirement level guidance.
+subtext: |
+  `dns.question.name` is high-cardinality (one time series per queried hostname) and can
+  carry sensitive information. It is now recommended only when the instrumentation expects
+  a low cardinality for it (e.g., in-process instrumentation). Otherwise (e.g., for
+  system-wide, out-of-process instrumentations), `dns.question.name` MUST be opt-in and
+  enabled independently of the `dns.lookup.duration` metric.

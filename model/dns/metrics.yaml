@@ -11,13 +11,11 @@ groups:
     unit: "s"
     attributes:
       - ref: dns.question.name
-        requirement_level: 
-          # the metric is opt-in, which is currently only documented in markdown, but will
-          # be added to yaml soon
-          recommended: > 
-            if and only if the instrumentation expects a low cardinality for `dns.question.name` 
+        requirement_level:
+          recommended: >
+            if and only if the instrumentation expects a low cardinality for `dns.question.name`
             (e.g., in-process instrumentation). Otherwise (e.g., for system-wide, out-of-process
-            instrumentations), `dns.question.name` MUST be opt-in and enabled independently 
+            instrumentations), `dns.question.name` MUST be opt-in and enabled independently
             of the `dns.lookup.duration` metric.
         examples: ["www.example.com", "dot.net"]
       - ref: error.type
