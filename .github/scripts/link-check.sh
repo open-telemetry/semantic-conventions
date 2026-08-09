@@ -43,7 +43,7 @@ if [[ -z "$TARGET" ]]; then
 fi
 
 # Build the lychee command with optional GitHub token
-CMD="lycheeverse/lychee:$LYCHEE_VERSION --root-dir /data"
+CMD="lycheeverse/lychee:$LYCHEE_VERSION --verbose --root-dir /data"
 
 # Add GitHub token if available
 if [[ -n "$GITHUB_TOKEN" ]]; then
