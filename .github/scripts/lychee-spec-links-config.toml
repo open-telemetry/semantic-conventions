@@ -1,6 +1,7 @@
 include = ["^https://opentelemetry\\.io/docs/specs/otel/"]
 exclude = [".*"]
 
+# Fail when a rendered spec page moves so links can be updated to its canonical URL.
 max_redirects = 0
 include_fragments = true
 
