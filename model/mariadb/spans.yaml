@@ -1,0 +1,41 @@
+file_format: definition/2
+
+span_refinements:
+  - id: span.db.mariadb.client
+    ref: db.sql.client
+    stability: stable
+    brief: >
+      Spans representing calls to MariaDB adhere to the general [Semantic Conventions for Database Client Spans](/docs/db/README.md).
+    note: >
+      `db.system.name` MUST be set to `"mariadb"` and SHOULD be provided **at span creation time**.
+    attributes:
+      - ref: db.namespace
+        sampling_relevant: true
+        brief: The database associated with the connection.
+        note: |
+          A connection's currently associated database may change during its lifetime, e.g. from executing `USE <database>`.
+
+          If instrumentation is unable to capture the connection's currently associated database on each query
+          without triggering an additional query to be executed (e.g. `SELECT DATABASE()`),
+          then it is RECOMMENDED to fallback and use the database provided when the connection was established.
+
+          Instrumentation SHOULD document if `db.namespace` reflects the database provided when the connection was established.
+
+          It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
+        examples: ["products", "customers"]
+      - ref: db.response.status_code
+        brief: >
+          [Maria DB error code](https://mariadb.com/docs/server/reference/error-codes)
+          represented as a string.
+        note: >
+          MariaDB uses vendor-specific error codes on all errors and reports
+          [SQLSTATE](https://mariadb.com/kb/en/sqlstate/) in some cases.
+
+          MariaDB error codes are more granular than SQLSTATE, so MariaDB instrumentations
+          SHOULD set the `db.response.status_code` to this known error code.
+
+          When SQLSTATE is available, SQLSTATE of "Class 02" or higher SHOULD be
+          considered errors. When SQLSTATE is not available, all MariaDB error
+          codes SHOULD be considered errors.
+
+        examples: ["1008", "3058"]

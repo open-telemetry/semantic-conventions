@@ -1,0 +1,41 @@
+file_format: definition/2
+
+span_refinements:
+  - id: span.db.postgresql.client
+    ref: db.sql.client
+    stability: stable
+    brief: >
+      Spans representing calls to a PostgreSQL database adhere to the general [Semantic Conventions for Database Client Spans](database-spans.md).
+    note: |
+      `db.system.name` MUST be set to `"postgresql"` and SHOULD be provided **at span creation time**.
+    attributes:
+      - ref: db.namespace
+        sampling_relevant: true
+        brief: >
+          The schema associated with the connection, qualified by the database name.
+        note: |
+          `db.namespace` SHOULD be set to the combination of database and schema name following the `{database}|{schema}` pattern.
+          If either `{database}` or `{schema}` is unavailable, `db.namespace` SHOULD be set to the other (without any `|` separator).
+
+          A connection's currently associated database may change during its lifetime, e.g. from executing `SET search_path TO <schema>`.
+          If the search path has multiple schemas, the first schema in the search path SHOULD be used.
+
+          If instrumentation is unable to capture the connection's currently associated schema on each query
+          without triggering an additional query to be executed (e.g. `SELECT current_schema()`),
+          then it is RECOMMENDED to fallback and use the schema provided when the connection was established.
+
+          Instrumentation SHOULD document if `db.namespace` reflects the schema provided when the connection was established.
+
+          Instrumentation MAY use the username when the connection was established as a stand-in for the schema name.
+
+          Instrumentation SHOULD document if `db.namespace` reflects the user provided when the connection was established.
+
+          It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
+        examples: ["mydatabase.products", "mydatabase.customers"]
+      - ref: db.response.status_code
+        brief: >
+          [PostgreSQL error code](https://www.postgresql.org/docs/current/errcodes-appendix.html).
+        note: >
+          PostgreSQL follows SQL standard conventions for [SQLSTATE](https://wikipedia.org/wiki/SQLSTATE).
+          Response codes of "Class 02" or higher SHOULD be considered errors.
+        examples: ["08000", "08P01"]

@@ -1,0 +1,40 @@
+file_format: definition/2
+
+span_refinements:
+  - id: span.db.sql_server.client
+    ref: db.sql.client
+    stability: stable
+    brief: >
+      Spans representing calls to Microsoft SQL Server adhere to the general [Semantic Conventions for Database Client Spans](database-spans.md).
+    note: |
+      `db.system.name` MUST be set to `"microsoft.sql_server"` and SHOULD be provided **at span creation time**.
+    attributes:
+      - ref: db.namespace
+        sampling_relevant: true
+        brief: >
+          The database associated with the connection, qualified by the instance name.
+        note: |
+          When connected to a default instance, `db.namespace` SHOULD be set to the name of
+          the database. When connected to a [named instance](https://learn.microsoft.com/sql/connect/jdbc/building-the-connection-url#named-and-multiple-sql-server-instances),
+          `db.namespace` SHOULD be set to the combination of instance and database name following the `{instance_name}|{database_name}` pattern.
+
+          A connection's currently associated database may change during its lifetime, e.g. from executing `USE <database>`.
+
+          If instrumentation is unable to capture the connection's currently associated database on each query
+          without triggering an additional query to be executed (e.g. `SELECT DB_NAME()`),
+          then it is RECOMMENDED to fallback and use the database provided when the connection was established.
+
+          Instrumentation SHOULD document if `db.namespace` reflects the database provided when the connection was established.
+
+          It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
+        examples: ['instance1\|products', 'customers']
+      - ref: db.response.status_code
+        brief: >
+          [Microsoft SQL Server error](https://learn.microsoft.com/sql/relational-databases/errors-events/database-engine-events-and-errors) number
+          represented as a string.
+        note: >
+          Microsoft SQL Server does not report SQLSTATE.
+
+          Instrumentations SHOULD use [error severity](https://learn.microsoft.com/sql/relational-databases/errors-events/database-engine-error-severities)
+          returned along with the status code to determine the status of the span. Response codes with severity 11 or higher SHOULD be considered errors.
+        examples: ["102", "40020"]
