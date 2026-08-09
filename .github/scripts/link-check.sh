@@ -11,7 +11,6 @@ DEPENDENCIES_DOCKERFILE="$ROOT_DIR/dependencies.Dockerfile"
 # Parse command line arguments
 LOCAL_LINKS_ONLY=false
 CONFIG_FILE=".github/scripts/lychee-config.toml"
-VERBOSE=true
 TARGET=""
 
 while [[ $# -gt 0 ]]; do
@@ -27,10 +26,6 @@ while [[ $# -gt 0 ]]; do
             fi
             CONFIG_FILE=$2
             shift 2
-            ;;
-        --no-verbose)
-            VERBOSE=false
-            shift
             ;;
         *)
             # Treat any other arguments as file paths
@@ -49,10 +44,6 @@ fi
 
 # Build the lychee command with optional GitHub token
 CMD="lycheeverse/lychee:$LYCHEE_VERSION --root-dir /data"
-
-if [[ "$VERBOSE" == "true" ]]; then
-    CMD="$CMD --verbose"
-fi
 
 # Add GitHub token if available
 if [[ -n "$GITHUB_TOKEN" ]]; then
