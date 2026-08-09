@@ -1,0 +1,44 @@
+file_format: definition/2
+
+span_refinements:
+  - id: span.db.hbase.client
+    ref: db.column.client
+    stability: development
+    brief: >
+      Spans representing calls to an HBase database adhere to the general [Semantic Conventions for Database Client Spans](/docs/db/database-spans.md).
+    note: |
+      `db.system.name` MUST be set to `"hbase"` and SHOULD be provided **at span creation time**.
+
+      **Span name** SHOULD follow the general [database span name convention](/docs/db/database-spans.md#name)
+    attributes:
+      - ref: db.namespace
+        sampling_relevant: true
+        brief: The HBase namespace.
+        requirement_level:
+          conditionally_required: If applicable.
+        examples: ['mynamespace']
+      - ref: db.collection.name
+        sampling_relevant: true
+        brief: The HBase table name.
+        requirement_level:
+          conditionally_required: If applicable.
+        note: >
+          It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
+          If table name includes the namespace, the `db.collection.name` SHOULD be set to the full table name.
+        examples: ['mytable', 'ns:table']
+      - ref: db.operation.name
+        note: |
+          It is RECOMMENDED to capture the value as provided by the application
+          without attempting to do any case normalization.
+
+          For batch operations, if the individual operations would all have the same
+          `db.operation.name` when executed as non-batch operations,
+          then that operation name SHOULD be used prepended by `BATCH `.
+          Otherwise, `db.operation.name` SHOULD be `BATCH`.
+        requirement_level: required
+      - ref: db.response.status_code
+        brief: >
+          Protocol-specific response code recorded as a string.
+        examples: ["200", "409", "14"]
+        requirement_level:
+          conditionally_required: If response was received.
