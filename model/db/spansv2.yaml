@@ -56,20 +56,85 @@ attribute_groups:
           recommended: if available through instrumentation hooks or if the instrumentation supports generating a query summary.
       - ref: db.query.parameter
         requirement_level: opt_in
-      - ref: error.type
-        requirement_level:
-          conditionally_required: If and only if the operation failed.
-        note: >
-          The `error.type` SHOULD match the `db.response.status_code` returned by the database or the client library,
-          or the canonical name of exception that occurred.
-
-          When using canonical exception type name, instrumentation SHOULD do the best effort to
-          report the most relevant type. For example, if the original exception is wrapped into a
-          generic one, the original exception SHOULD be preferred.
-
-          Instrumentations SHOULD document how `error.type` is populated.
 
 spans:
+  - type: db.document.client
+    kind: client
+    stability: development
+    brief: This span describes database client call.
+    note: |
+      Instrumentations SHOULD, when possible, record database spans that represent the logical database
+      operation as observed by the caller (such as client application).
+
+      When a database client provides higher-level convenience APIs for specific operations
+      (e.g., calling a stored procedure), which internally generate and execute a generic query,
+      it is RECOMMENDED to instrument the higher-level convenience APIs.
+      These often allow setting `db.operation.*` attributes, which usually are not
+      readily available at the generic query level.
+
+      **Span duration** is covered in the [Database client span duration](/docs/db/database-spans.md#database-client-span-duration) section.
+
+      **Span kind** SHOULD be `CLIENT`. It MAY be set to `INTERNAL` on spans representing
+      in-memory database calls.
+      It's RECOMMENDED to use `CLIENT` kind when database system being instrumented usually
+      runs in a different process than its client or when database calls happen over
+      instrumented protocol such as HTTP.
+
+      **Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
+      Semantic conventions for individual systems SHOULD specify which values of `db.response.status_code`
+      classify as errors.
+    name:
+      note: SHOULD follow the general [database span name convention](/docs/db/database-spans.md#name)
+    attributes:
+      - ref_group: db.server
+      - ref_group: db.operation
+      - ref: server.address
+        sampling_relevant: true
+      - ref: server.port
+        sampling_relevant: true
+      - ref: db.operation.name
+        sampling_relevant: true
+      - ref: db.response.status_code
+        requirement_level:
+          conditionally_required: If the operation failed and status code is available.
+  - type: db.keyvalue.client
+    kind: client
+    stability: development
+    brief: This span describes database client call.
+    note: |
+      Instrumentations SHOULD, when possible, record database spans that represent the logical database
+      operation as observed by the caller (such as client application).
+
+      When a database client provides higher-level convenience APIs for specific operations
+      (e.g., calling a stored procedure), which internally generate and execute a generic query,
+      it is RECOMMENDED to instrument the higher-level convenience APIs.
+      These often allow setting `db.operation.*` attributes, which usually are not
+      readily available at the generic query level.
+
+      **Span duration** is covered in the [Database client span duration](/docs/db/database-spans.md#database-client-span-duration) section.
+
+      **Span kind** SHOULD be `CLIENT`. It MAY be set to `INTERNAL` on spans representing
+      in-memory database calls.
+      It's RECOMMENDED to use `CLIENT` kind when database system being instrumented usually
+      runs in a different process than its client or when database calls happen over
+      instrumented protocol such as HTTP.
+
+      **Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
+      Semantic conventions for individual systems SHOULD specify which values of `db.response.status_code`
+      classify as errors.
+    name:
+      note: SHOULD follow the general [database span name convention](/docs/db/database-spans.md#name)
+    attributes:
+      - ref_group: db.server
+      - ref_group: db.operation
+      - ref: db.query.text
+      - ref: server.address
+        sampling_relevant: true
+      - ref: server.port
+        sampling_relevant: true
+      - ref: db.response.status_code
+        requirement_level:
+          conditionally_required: If the operation failed and status code is available.
   - type: db.sql.client
     kind: client
     stability: stable
