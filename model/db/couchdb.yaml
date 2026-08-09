@@ -25,7 +25,6 @@ span_refinements:
         requirement_level:
           conditionally_required: If readily available.
       - ref: db.namespace
-        sampling_relevant: true
         requirement_level:
           conditionally_required: If available.
         note: ""  # overriding the base note

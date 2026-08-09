@@ -14,7 +14,6 @@ span_refinements:
       looking confusing.
     attributes:
       - ref: db.namespace
-        sampling_relevant: true
         brief: >
           The [database index] associated with the connection, represented as a string.
         requirement_level:
@@ -41,9 +40,7 @@ span_refinements:
           command SHOULD be used prepended by `MULTI ` or `PIPELINE `.
           Otherwise `db.operation.name` SHOULD be `MULTI` or `PIPELINE`.
         requirement_level: required
-        sampling_relevant: true
       - ref: db.query.text
-        sampling_relevant: true
         brief: >
           The full syntax of the Redis CLI command.
         examples: ["HMSET myhash field1 ? field2 ?"]
@@ -79,8 +76,3 @@ span_refinements:
         examples: ["ERR", "WRONGTYPE", "CLUSTERDOWN"]
         note: >
           All Redis error prefixes SHOULD be considered errors.
-      - ref: db.operation.batch.size
-      - ref: server.address
-        sampling_relevant: true
-      - ref: server.port
-        sampling_relevant: true

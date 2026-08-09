@@ -12,19 +12,14 @@ span_refinements:
       **Span name** SHOULD follow the general [database span name convention](/docs/db/database-spans.md#name)
     attributes:
       - ref: db.namespace
-        sampling_relevant: true
         brief: The HBase namespace.
         requirement_level:
           conditionally_required: If applicable.
         examples: ['mynamespace']
       - ref: db.collection.name
-        sampling_relevant: true
         brief: The HBase table name.
         requirement_level:
           conditionally_required: If applicable.
-        note: >
-          It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
-          If table name includes the namespace, the `db.collection.name` SHOULD be set to the full table name.
         examples: ['mytable', 'ns:table']
       - ref: db.operation.name
         note: |
@@ -37,8 +32,6 @@ span_refinements:
           Otherwise, `db.operation.name` SHOULD be `BATCH`.
         requirement_level: required
       - ref: db.response.status_code
-        brief: >
-          Protocol-specific response code recorded as a string.
         examples: ["200", "409", "14"]
         requirement_level:
           conditionally_required: If response was received.

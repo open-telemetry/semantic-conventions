@@ -224,6 +224,7 @@ by the instrumentation at the time the span ends.
 The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):
 
+* [`db.namespace`](/docs/registry/attributes/db.md)
 * [`db.query.summary`](/docs/registry/attributes/db.md)
 * [`db.query.text`](/docs/registry/attributes/db.md)
 * [`server.address`](/docs/registry/attributes/server.md)

@@ -10,7 +10,6 @@ span_refinements:
       `db.system.name` MUST be set to `"postgresql"` and SHOULD be provided **at span creation time**.
     attributes:
       - ref: db.namespace
-        sampling_relevant: true
         brief: >
           The schema associated with the connection, qualified by the database name.
         note: |

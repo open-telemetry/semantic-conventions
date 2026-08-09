@@ -12,7 +12,6 @@ span_refinements:
       **Span name** SHOULD follow the general [database span name convention](/docs/db/database-spans.md#name)
     attributes:
       - ref: db.operation.name
-        sampling_relevant: true
         brief: >
           The name of the [MongoDB command](https://www.mongodb.com/docs/manual/reference/command/) being executed.
         note: ""
@@ -30,7 +29,6 @@ span_refinements:
           then that collection name SHOULD be used.
         requirement_level: required
       - ref: db.namespace
-        sampling_relevant: true
         brief: The MongoDB database name.
         requirement_level:
           conditionally_required: If available.
