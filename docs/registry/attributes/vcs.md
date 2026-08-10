@@ -18,24 +18,27 @@ This group defines the attributes for [Version Control Systems (VCS)](https://wi
 | <a id="vcs-change-state" href="#vcs-change-state">`vcs.change.state`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The state of the change (pull request/merge request/changelist). | `open`; `closed`; `merged` |
 | <a id="vcs-change-title" href="#vcs-change-title">`vcs.change.title`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The human readable title of the change (pull request/merge request/changelist). This title is often a brief summary of the change and may get merged in to a ref as the commit summary. | `Fixes broken thing`; `feat: add my new feature`; `[chore] update dependency` |
 | <a id="vcs-line-change-type" href="#vcs-line-change-type">`vcs.line_change.type`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The type of line change being measured on a branch or change. | `added`; `removed` |
+| <a id="vcs-operation-name" href="#vcs-operation-name">`vcs.operation.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The type of action or operation performed by a VCS. [1] | `clone`; `fetch`; `pull`; `push`; `checkout`; `sync` |
 | <a id="vcs-owner-name" href="#vcs-owner-name">`vcs.owner.name`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The group owner within the version control system. | `my-org`; `myteam`; `business-unit` |
 | <a id="vcs-provider-name" href="#vcs-provider-name">`vcs.provider.name`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The name of the version control system provider. | `github`; `gitlab`; `gitea`; `bitbucket` |
-| <a id="vcs-ref-base-name" href="#vcs-ref-base-name">`vcs.ref.base.name`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. [1] | `my-feature-branch`; `tag-1-test` |
-| <a id="vcs-ref-base-revision" href="#vcs-ref-base-revision">`vcs.ref.base.revision`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The revision, literally [revised version](https://www.merriam-webster.com/dictionary/revision), The revision most often refers to a commit object in Git, or a revision number in SVN. [2] | `9d59409acf479dfa0df1aa568182e43e43df8bbe28d60fcf2bc52e30068802cc`; `main`; `123`; `HEAD` |
-| <a id="vcs-ref-base-type" href="#vcs-ref-base-type">`vcs.ref.base.type`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository. [3] | `branch`; `tag` |
-| <a id="vcs-ref-head-name" href="#vcs-ref-head-name">`vcs.ref.head.name`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. [4] | `my-feature-branch`; `tag-1-test` |
-| <a id="vcs-ref-head-revision" href="#vcs-ref-head-revision">`vcs.ref.head.revision`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The revision, literally [revised version](https://www.merriam-webster.com/dictionary/revision), The revision most often refers to a commit object in Git, or a revision number in SVN. [5] | `9d59409acf479dfa0df1aa568182e43e43df8bbe28d60fcf2bc52e30068802cc`; `main`; `123`; `HEAD` |
-| <a id="vcs-ref-head-type" href="#vcs-ref-head-type">`vcs.ref.head.type`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository. [6] | `branch`; `tag` |
+| <a id="vcs-ref-base-name" href="#vcs-ref-base-name">`vcs.ref.base.name`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. [2] | `my-feature-branch`; `tag-1-test` |
+| <a id="vcs-ref-base-revision" href="#vcs-ref-base-revision">`vcs.ref.base.revision`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The revision, literally [revised version](https://www.merriam-webster.com/dictionary/revision), The revision most often refers to a commit object in Git, or a revision number in SVN. [3] | `9d59409acf479dfa0df1aa568182e43e43df8bbe28d60fcf2bc52e30068802cc`; `main`; `123`; `HEAD` |
+| <a id="vcs-ref-base-type" href="#vcs-ref-base-type">`vcs.ref.base.type`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository. [4] | `branch`; `tag` |
+| <a id="vcs-ref-head-name" href="#vcs-ref-head-name">`vcs.ref.head.name`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository. [5] | `my-feature-branch`; `tag-1-test` |
+| <a id="vcs-ref-head-revision" href="#vcs-ref-head-revision">`vcs.ref.head.revision`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The revision, literally [revised version](https://www.merriam-webster.com/dictionary/revision), The revision most often refers to a commit object in Git, or a revision number in SVN. [6] | `9d59409acf479dfa0df1aa568182e43e43df8bbe28d60fcf2bc52e30068802cc`; `main`; `123`; `HEAD` |
+| <a id="vcs-ref-head-type" href="#vcs-ref-head-type">`vcs.ref.head.type`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository. [7] | `branch`; `tag` |
 | <a id="vcs-ref-type" href="#vcs-ref-type">`vcs.ref.type`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository. | `branch`; `tag` |
-| <a id="vcs-repository-name" href="#vcs-repository-name">`vcs.repository.name`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The human readable name of the repository. It SHOULD NOT include any additional identifier like Group/SubGroup in GitLab or organization in GitHub. [7] | `semantic-conventions`; `my-cool-repo` |
-| <a id="vcs-repository-url-full" href="#vcs-repository-url-full">`vcs.repository.url.full`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The [canonical URL](https://support.google.com/webmasters/answer/10347851) of the repository providing the complete HTTP(S) address in order to locate and identify the repository through a browser. [8] | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` |
+| <a id="vcs-repository-name" href="#vcs-repository-name">`vcs.repository.name`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The human readable name of the repository. It SHOULD NOT include any additional identifier like Group/SubGroup in GitLab or organization in GitHub. [8] | `semantic-conventions`; `my-cool-repo` |
+| <a id="vcs-repository-url-full" href="#vcs-repository-url-full">`vcs.repository.url.full`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The [canonical URL](https://support.google.com/webmasters/answer/10347851) of the repository providing the complete HTTP(S) address in order to locate and identify the repository through a browser. [9] | `https://github.com/opentelemetry/open-telemetry-collector-contrib`; `https://gitlab.com/my-org/my-project/my-projects-project/repo` |
 | <a id="vcs-revision-delta-direction" href="#vcs-revision-delta-direction">`vcs.revision_delta.direction`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The type of revision comparison. | `ahead`; `behind` |
 
-**[1] `vcs.ref.base.name`:** `base` refers to the starting point of a change. For example, `main`
+**[1] `vcs.operation.name`:** For example, in Git, operations include `clone`, `fetch`, `pull`, `push`, `checkout`, etc. In other VCS systems like Perforce or SVN, the operation names may be different (e.g. `sync`, `update`). It SHOULD be the exact operation name as executed by the tool.
+
+**[2] `vcs.ref.base.name`:** `base` refers to the starting point of a change. For example, `main`
 would be the base reference of type branch if you've created a new
 reference of type branch from it and created new commits.
 
-**[2] `vcs.ref.base.revision`:** `base` refers to the starting point of a change. For example, `main`
+**[3] `vcs.ref.base.revision`:** `base` refers to the starting point of a change. For example, `main`
 would be the base reference of type branch if you've created a new
 reference of type branch from it and created new commits. The
 revision can be a full [hash value (see
@@ -49,15 +52,15 @@ it is identical to the `ref.base.name`, it SHOULD still be included.
 It is up to the implementer to decide which value to set as the
 revision based on the VCS system and situational context.
 
-**[3] `vcs.ref.base.type`:** `base` refers to the starting point of a change. For example, `main`
+**[4] `vcs.ref.base.type`:** `base` refers to the starting point of a change. For example, `main`
 would be the base reference of type branch if you've created a new
 reference of type branch from it and created new commits.
 
-**[4] `vcs.ref.head.name`:** `head` refers to where you are right now; the current reference at a
+**[5] `vcs.ref.head.name`:** `head` refers to where you are right now; the current reference at a
 given time.
 
-**[5] `vcs.ref.head.revision`:** `head` refers to where you are right now; the current reference at a
-given time.The revision can be a full [hash value (see
+**[6] `vcs.ref.head.revision`:** `head` refers to where you are right now; the current reference at a
+given time. The revision can be a full [hash value (see
 glossary)](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.186-5.pdf),
 of the recorded change to a ref within a repository pointing to a
 commit [commit](https://git-scm.com/docs/git-commit) object. It does
@@ -68,14 +71,14 @@ it is identical to the `ref.head.name`, it SHOULD still be included.
 It is up to the implementer to decide which value to set as the
 revision based on the VCS system and situational context.
 
-**[6] `vcs.ref.head.type`:** `head` refers to where you are right now; the current reference at a
+**[7] `vcs.ref.head.type`:** `head` refers to where you are right now; the current reference at a
 given time.
 
-**[7] `vcs.repository.name`:** Due to it only being the name, it can clash with forks of the same
+**[8] `vcs.repository.name`:** Due to it only being the name, it can clash with forks of the same
 repository if collecting telemetry across multiple orgs or groups in
 the same backends.
 
-**[8] `vcs.repository.url.full`:** In Git Version Control Systems, the canonical URL SHOULD NOT include
+**[9] `vcs.repository.url.full`:** In Git Version Control Systems, the canonical URL SHOULD NOT include
 the `.git` extension.
 
 ---
