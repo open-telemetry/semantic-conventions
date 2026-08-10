@@ -219,8 +219,6 @@ VCS client spans are typically emitted by wrapper tools and CLI utilities perfor
 **Span name** MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.60.0/specification/trace/api.md#span).
 
 The span name SHOULD follow the `{vcs.operation.name} {vcs.repository.name}` pattern.
-If the operation target is more specific (e.g. a branch or ref), the span name MAY be `{vcs.operation.name} {vcs.ref.head.name}`
-or `{vcs.operation.name} {vcs.repository.name} {vcs.ref.head.name}`.
 
 **Span kind** SHOULD be `CLIENT`.
 
