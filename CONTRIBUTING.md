@@ -63,10 +63,12 @@ key, but non-obvious, aspects:
   defined in a schema file.
 - Links to current specification content SHOULD point to the
   [rendered OpenTelemetry specification](https://opentelemetry.io/docs/specs/otel/).
-- Links to historical or repository-only content in the specification
-  repository MUST point to a tag and **not** to the `main` branch. Tags for
-  repository-only content that tracks the current specification MUST match the
-  version defined in [README](README.md).
+- Links into the specification repository MUST point to a tag and **not** to the
+  `main` branch:
+  - Use the version defined in [README](README.md) when the content is not
+    published on the website (e.g. the spec compliance matrix or an OTEP).
+  - Use the tag of the referenced version when linking to a historical version
+    on purpose (e.g. migration guidance). These links are not bumped.
 
 Please make sure all Pull Requests are compliant with these rules!
 
