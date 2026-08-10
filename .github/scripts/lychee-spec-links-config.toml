@@ -5,9 +5,8 @@ exclude = [".*"]
 max_redirects = 0
 include_fragments = true
 
-accept = ["200..=299", "403"]
+accept = ["200..=299"]
 max_retries = 6
 retry_wait_time = 5
 timeout = 60
-insecure = true
 max_concurrency = 4
