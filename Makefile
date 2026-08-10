@@ -141,12 +141,12 @@ markdown-link-check: normalized-link-check spec-link-redirect-check
 	.github/scripts/link-check.sh $(FILES)
 
 .PHONY: markdown-link-check-local-only
-markdown-link-check-local-only: normalized-link-check spec-link-redirect-check
+markdown-link-check-local-only: normalized-link-check
 	.github/scripts/link-check.sh --local-links-only $(FILES)
 
 .PHONY: spec-link-redirect-check
 spec-link-redirect-check:
-	.github/scripts/link-check.sh --config .github/scripts/lychee-spec-links-config.toml
+	.github/scripts/link-check.sh --config .github/scripts/lychee-spec-links-config.toml $(FILES)
 
 # This target runs doctoc on all files that contain
 # a comment <!-- START doctoc -->.
