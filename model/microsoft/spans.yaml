@@ -6,9 +6,10 @@ span_refinements:
     stability: stable
     brief: >
       Spans representing calls to Microsoft SQL Server adhere to the general [Semantic Conventions for Database Client Spans](database-spans.md).
-    note: |
-      `db.system.name` MUST be set to `"microsoft.sql_server"` and SHOULD be provided **at span creation time**.
     attributes:
+      - ref: db.system.name
+        note: MUST be set to `"microsoft.sql_server"`.
+        examples: ["microsoft.sql_server"]
       - ref: db.namespace
         brief: >
           The database associated with the connection, qualified by the instance name.

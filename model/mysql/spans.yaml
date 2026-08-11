@@ -6,9 +6,10 @@ span_refinements:
     stability: stable
     brief: >
       Spans representing calls to a MySQL Server adhere to the general [Semantic Conventions for Database Client Spans](database-spans.md).
-    note: |
-      `db.system.name` MUST be set to `"mysql"` and SHOULD be provided **at span creation time**.
     attributes:
+      - ref: db.system.name
+        note: MUST be set to `"mysql"`.
+        examples: ["mysql"]
       - ref: db.namespace
         brief: The database associated with the connection.
         note: |

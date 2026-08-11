@@ -6,9 +6,10 @@ span_refinements:
     stability: stable
     brief: >
       Spans representing calls to a PostgreSQL database adhere to the general [Semantic Conventions for Database Client Spans](database-spans.md).
-    note: |
-      `db.system.name` MUST be set to `"postgresql"` and SHOULD be provided **at span creation time**.
     attributes:
+      - ref: db.system.name
+        note: MUST be set to `"postgresql"`.
+        examples: ["postgresql"]
       - ref: db.namespace
         brief: >
           The schema associated with the connection, qualified by the database name.

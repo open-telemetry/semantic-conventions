@@ -6,11 +6,10 @@ span_refinements:
     stability: development
     brief: >
       Spans representing calls to CouchDB adhere to the general [Semantic Conventions for Database Client Spans](/docs/db/database-spans.md).
-    note: |
-      `db.system.name` MUST be set to `"couchdb"` and SHOULD be provided **at span creation time**.
-
-      **Span name** SHOULD follow the general [database span name convention](/docs/db/database-spans.md#name)
     attributes:
+      - ref: db.system.name
+        note: MUST be set to `"couchdb"`.
+        examples: ["couchdb"]
       - ref: db.operation.name
         brief: >
           The HTTP method + the target REST route.

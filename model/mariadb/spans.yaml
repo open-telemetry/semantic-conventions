@@ -6,9 +6,10 @@ span_refinements:
     stability: stable
     brief: >
       Spans representing calls to MariaDB adhere to the general [Semantic Conventions for Database Client Spans](/docs/db/README.md).
-    note: >
-      `db.system.name` MUST be set to `"mariadb"` and SHOULD be provided **at span creation time**.
     attributes:
+      - ref: db.system.name
+        note: MUST be set to `"mariadb"`.
+        examples: ["mariadb"]
       - ref: db.namespace
         brief: The database associated with the connection.
         note: |

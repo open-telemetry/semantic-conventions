@@ -6,13 +6,15 @@ span_refinements:
     stability: development
     brief: >
       Spans representing calls to Redis adhere to the general [Semantic Conventions for Database Client Spans](/docs/db/database-spans.md).
-    note: |
-      `db.system.name` MUST be set to `"redis"` and SHOULD be provided **at span creation time**.
-
-      **Span name** SHOULD follow the general [database span name convention](/docs/db/database-spans.md#name)
-      except that `db.namespace` SHOULD NOT be used in the span name since it is a numeric value that ends up
-      looking confusing.
+    name:
+      note: >
+        SHOULD follow the general [database span name convention](/docs/db/database-spans.md#name)
+        except that `db.namespace` SHOULD NOT be used in the span name since it is a numeric value that ends up
+        looking confusing.
     attributes:
+      - ref: db.system.name
+        note: MUST be set to `"redis"`.
+        examples: ["redis"]
       - ref: db.namespace
         brief: >
           The [database index] associated with the connection, represented as a string.

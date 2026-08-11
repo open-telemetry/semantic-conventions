@@ -6,11 +6,10 @@ span_refinements:
     stability: development
     brief: >
       Spans representing calls to MongoDB adhere to the general [Semantic Conventions for Database Client Spans](/docs/db/database-spans.md).
-    note: >
-      `db.system.name` MUST be set to `"mongodb"` and SHOULD be provided **at span creation time**.
-
-      **Span name** SHOULD follow the general [database span name convention](/docs/db/database-spans.md#name)
     attributes:
+      - ref: db.system.name
+        note: MUST be set to `"mongodb"`.
+        examples: ["mongodb"]
       - ref: db.operation.name
         brief: >
           The name of the [MongoDB command](https://www.mongodb.com/docs/manual/reference/command/) being executed.

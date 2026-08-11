@@ -72,12 +72,6 @@ spans:
 
       **Span duration** is covered in the [Database client span duration](/docs/db/database-spans.md#database-client-span-duration) section.
 
-      **Span kind** SHOULD be `CLIENT`. It MAY be set to `INTERNAL` on spans representing
-      in-memory database calls.
-      It's RECOMMENDED to use `CLIENT` kind when database system being instrumented usually
-      runs in a different process than its client or when database calls happen over
-      instrumented protocol such as HTTP.
-
       **Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
       Semantic conventions for individual systems SHOULD specify which values of `db.response.status_code`
       classify as errors.
@@ -86,6 +80,9 @@ spans:
     attributes:
       - ref_group: db.server
       - ref_group: db.operation
+      - ref: db.system.name
+        requirement_level: required
+        sampling_relevant: true
       - ref: server.address
         sampling_relevant: true
       - ref: server.port
@@ -110,6 +107,7 @@ spans:
 
           For batch operations, if the individual operations are known to have the same collection name
           then that collection name SHOULD be used.
+
   - type: db.document.client
     kind: client
     stability: development
@@ -126,12 +124,6 @@ spans:
 
       **Span duration** is covered in the [Database client span duration](/docs/db/database-spans.md#database-client-span-duration) section.
 
-      **Span kind** SHOULD be `CLIENT`. It MAY be set to `INTERNAL` on spans representing
-      in-memory database calls.
-      It's RECOMMENDED to use `CLIENT` kind when database system being instrumented usually
-      runs in a different process than its client or when database calls happen over
-      instrumented protocol such as HTTP.
-
       **Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
       Semantic conventions for individual systems SHOULD specify which values of `db.response.status_code`
       classify as errors.
@@ -140,6 +132,9 @@ spans:
     attributes:
       - ref_group: db.server
       - ref_group: db.operation
+      - ref: db.system.name
+        requirement_level: required
+        sampling_relevant: true
       - ref: server.address
         sampling_relevant: true
       - ref: server.port
@@ -154,6 +149,7 @@ spans:
       - ref: db.operation.name
         note: |
           The operation name SHOULD NOT be extracted from `db.query.text`.
+
   - type: db.keyvalue.client
     kind: client
     stability: development
@@ -170,12 +166,6 @@ spans:
 
       **Span duration** is covered in the [Database client span duration](/docs/db/database-spans.md#database-client-span-duration) section.
 
-      **Span kind** SHOULD be `CLIENT`. It MAY be set to `INTERNAL` on spans representing
-      in-memory database calls.
-      It's RECOMMENDED to use `CLIENT` kind when database system being instrumented usually
-      runs in a different process than its client or when database calls happen over
-      instrumented protocol such as HTTP.
-
       **Span status** SHOULD follow the [Recording Errors](/docs/general/recording-errors.md) document.
       Semantic conventions for individual systems SHOULD specify which values of `db.response.status_code`
       classify as errors.
@@ -184,6 +174,9 @@ spans:
     attributes:
       - ref_group: db.server
       - ref_group: db.operation
+      - ref: db.system.name
+        requirement_level: required
+        sampling_relevant: true
       - ref: db.query.text
         sampling_relevant: true
       - ref: server.address
@@ -200,40 +193,42 @@ spans:
       - ref: db.operation.name
         note: |
           The operation name SHOULD NOT be extracted from `db.query.text`.
+
   - type: db.sql.client
     kind: client
     stability: stable
     brief: >
       The SQL databases Semantic Conventions describes how common [Database Semantic Conventions](/docs/db/database-spans.md) apply to SQL databases.
-    note: |
-      The following database systems (defined in the
-      [`db.system.name`](/docs/db/database-spans.md#notes-and-well-known-identifiers-for-dbsystemname) set)
-      are known to use SQL as their primary query language:
-
-      - `actian.ingres`
-      - `cockroachdb`
-      - `derby`
-      - `firebirdsql`
-      - `h2database`
-      - `hsqldb`
-      - `ibm.db2`
-      - `mariadb`
-      - `microsoft.sql_server`
-      - `mysql`
-      - `oracle.db`
-      - `other_sql`
-      - `postgresql`
-      - `sap.maxdb`
-      - `sqlite`
-      - `trino`
-
-      Many other database systems support SQL and can be accessed via generic database driver such as JDBC or ODBC.
-      Instrumentations applied to generic SQL drivers SHOULD adhere to SQL semantic conventions.
-
-      **Span name** SHOULD follow the general [database span name convention](/docs/db/database-spans.md#name)
     name:
       note: SHOULD follow the general [database span name convention](/docs/db/database-spans.md#name)
     attributes:
+      - ref: db.system.name
+        requirement_level: required
+        sampling_relevant: true
+        note: |
+          The following database systems (defined in the
+          [`db.system.name`](/docs/db/database-spans.md#notes-and-well-known-identifiers-for-dbsystemname) set)
+          are known to use SQL as their primary query language:
+
+          - `actian.ingres`
+          - `cockroachdb`
+          - `derby`
+          - `firebirdsql`
+          - `h2database`
+          - `hsqldb`
+          - `ibm.db2`
+          - `mariadb`
+          - `microsoft.sql_server`
+          - `mysql`
+          - `oracle.db`
+          - `other_sql`
+          - `postgresql`
+          - `sap.maxdb`
+          - `sqlite`
+          - `trino`
+
+          Many other database systems support SQL and can be accessed via generic database driver such as JDBC or ODBC.
+          Instrumentations applied to generic SQL drivers SHOULD adhere to SQL semantic conventions.
       - ref_group: db.server
       - ref_group: db.operation
       - ref_group: db.query

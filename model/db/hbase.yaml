@@ -6,11 +6,10 @@ span_refinements:
     stability: development
     brief: >
       Spans representing calls to an HBase database adhere to the general [Semantic Conventions for Database Client Spans](/docs/db/database-spans.md).
-    note: |
-      `db.system.name` MUST be set to `"hbase"` and SHOULD be provided **at span creation time**.
-
-      **Span name** SHOULD follow the general [database span name convention](/docs/db/database-spans.md#name)
     attributes:
+      - ref: db.system.name
+        note: MUST be set to `"hbase"`.
+        examples: ["hbase"]
       - ref: db.namespace
         brief: The HBase namespace.
         requirement_level:
