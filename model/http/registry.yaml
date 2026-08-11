@@ -211,6 +211,8 @@ groups:
           captured as a string when the request content is textual or as byte array otherwise.
         note: |
           Captured value MAY be limited in size and thus value is expected to be truncated in many cases.
+          When an instrumentation applies a byte-based limit while capturing the body as a string, it SHOULD truncate on a character
+          boundary so that the recorded value remains valid text.
 
           Instrumentations MUST NOT capture this attribute by default and MAY provide an option to enable it.
 
@@ -236,6 +238,8 @@ groups:
           captured as a string when the request content is textual or as byte array otherwise.
         note: |
           Captured value MAY be limited in size and thus value is expected to be truncated in many cases.
+          When an instrumentation applies a byte-based limit while capturing the body as a string, it SHOULD truncate on a character
+          boundary so that the recorded value remains valid text.
 
           Instrumentations MUST NOT capture this attribute by default and MAY provide an option to enable it.
 
