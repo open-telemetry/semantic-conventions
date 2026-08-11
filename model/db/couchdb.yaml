@@ -12,7 +12,6 @@ span_refinements:
       **Span name** SHOULD follow the general [database span name convention](/docs/db/database-spans.md#name)
     attributes:
       - ref: db.operation.name
-        sampling_relevant: true
         brief: >
           The HTTP method + the target REST route.
         examples: ['GET /{db}/{docid}']

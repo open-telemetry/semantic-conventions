@@ -13,7 +13,6 @@ span_refinements:
     attributes:
       - ref_group: db.query
       - ref: db.namespace
-        sampling_relevant: true
         brief: The keyspace associated with the session.
         examples: ["mykeyspace"]
         requirement_level:
@@ -39,8 +38,7 @@ span_refinements:
       - ref: cassandra.coordinator.dc
       - ref: network.peer.address
         brief: Peer address of the database node where the operation was performed.
-        requirement_level:
-          recommended
+        requirement_level: recommended
         note: >
           If a database operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
       - ref: network.peer.port
@@ -53,11 +51,10 @@ span_refinements:
           All Cassandra protocol error codes SHOULD be considered errors.
         examples: ["102", "40020"]
       - ref: db.collection.name
-        sampling_relevant: true
         requirement_level:
           conditionally_required: If readily available and if a database call is performed on a single collection.
       - ref: db.operation.name
-        requirement_level: 
+        requirement_level:
           conditionally_required: If readily available and if there is a single operation name that describes the database call.
       - ref: db.response.returned_rows
         note: |

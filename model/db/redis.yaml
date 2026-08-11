@@ -63,8 +63,7 @@ span_refinements:
           recommended: If operation applies to a specific Lua script.
       - ref: network.peer.address
         brief: Peer address of the database node where the operation was performed.
-        requirement_level:
-          recommended
+        requirement_level: recommended
         note: >
           If a database operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
       - ref: network.peer.port

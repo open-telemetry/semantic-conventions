@@ -18,6 +18,9 @@ span_refinements:
         examples: ['mynamespace']
       - ref: db.collection.name
         brief: The HBase table name.
+        note: >
+          It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
+          If table name includes the namespace, the `db.collection.name` SHOULD be set to the full table name.
         requirement_level:
           conditionally_required: If applicable.
         examples: ['mytable', 'ns:table']
@@ -32,6 +35,7 @@ span_refinements:
           Otherwise, `db.operation.name` SHOULD be `BATCH`.
         requirement_level: required
       - ref: db.response.status_code
+        brief: Protocol-specific response code recorded as a string.
         examples: ["200", "409", "14"]
         requirement_level:
           conditionally_required: If response was received.
