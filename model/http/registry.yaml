@@ -207,7 +207,8 @@ groups:
       - id: http.request.body.content
         type: any
         brief: >
-          The content of the uncompressed HTTP request body, captured as a string when the request content is textual or as byte array otherwise.
+          The content of the HTTP request body, with any content coding indicated by [Content-Encoding](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-encoding) removed,
+          captured as a string when the request content is textual or as byte array otherwise.
         note: |
           Captured value MAY be limited in size and thus value is expected to be truncated in many cases.
 
@@ -231,7 +232,8 @@ groups:
       - id: http.response.body.content
         type: any
         brief: >
-          The content of the uncompressed HTTP response body, captured as a string when the response content is textual or as byte array otherwise.
+          The content of the HTTP response body, with any content coding indicated by [Content-Encoding](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-encoding) removed,
+          captured as a string when the request content is textual or as byte array otherwise.
         note: |
           Captured value MAY be limited in size and thus value is expected to be truncated in many cases.
 
