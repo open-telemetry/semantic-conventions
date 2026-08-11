@@ -7,7 +7,7 @@ linkTitle: HTTP
 **Status**: [Mixed][DocumentStatus]
 
 This document defines semantic conventions for HTTP spans, metrics and logs.
-They can be used for http and https schemes
+They can be used for HTTP and HTTPS schemes
 and various HTTP versions like 1.1, 2 and SPDY.
 
 > [!IMPORTANT]

@@ -7,16 +7,22 @@
 change_type: enhancement
 
 # The name of the area of concern in the attributes-registry, (e.g. http, cloud, db)
-component: messaging
+component: k8s
 
 # A brief description of the change. Surround your text with quotes ("") if it needs to start with a backtick (`).
-note: Add `messaging.kafka.cluster.id` attribute identifying the Kafka cluster a client is connected to, and reference it from Kafka spans.
+note: Promote `container.uptime`, `k8s.pod.uptime` and `k8s.node.uptime` metrics to `release_candidate`
 
 # Mandatory: One or more tracking issues related to the change. You can use the PR number here if no issue exists.
 # The values here must be integers.
-issues: [32]
+issues: [3945]
 
 # (Optional) One or more lines of additional information to render under the primary note.
 # These lines will be padded with 2 spaces and then inserted directly into the document.
 # Use pipe (|) for multiline entries.
-subtext:
+subtext: |
+  The following metrics are being promoted to release_candidate:
+    - container.uptime
+    - k8s.pod.uptime
+    - k8s.node.uptime
+  Notes referencing the Kubelet stats summary API fields (`ContainerStats.StartTime`,
+  `PodStats.StartTime`, `NodeStats.StartTime`) have been added to each metric.

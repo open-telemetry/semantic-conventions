@@ -50,9 +50,10 @@ Spans representing calls to an HBase database adhere to the general [Semantic Co
 **[1] `db.operation.name`:** It is RECOMMENDED to capture the value as provided by the application
 without attempting to do any case normalization.
 
-For batch operations, if the individual operations are known to have the same operation name
-then that operation name SHOULD be used prepended by `BATCH `,
-otherwise `db.operation.name` SHOULD be `BATCH`.
+For batch operations, if the individual operations would all have the same
+`db.operation.name` when executed as non-batch operations,
+then that operation name SHOULD be used prepended by `BATCH `.
+Otherwise, `db.operation.name` SHOULD be `BATCH`.
 
 **[2] `db.collection.name`:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization. If table name includes the namespace, the `db.collection.name` SHOULD be set to the full table name.
 

@@ -56,7 +56,7 @@ memory, CPU, etc.).
 ## Notes
 
 The alerts in particular should be capable of being uniformly applied to a
-heterogenous fleet of hosts. We will value the nature of cross-platform
+heterogeneous fleet of hosts. We will value the nature of cross-platform
 instrumentation to allow for effective alerting across a fleet regardless of the
 potential mixture of operating system platforms within it.
 

@@ -73,14 +73,22 @@ groups:
     note: |
       For successful processing, `error.type` MUST NOT be set. For failed processing, `error.type` MUST contain the failure cause.
       SDK Batching Span Processors MUST use `queue_full` as the value of `error.type` for spans dropped due to a full queue.
-      SDK Span Processors MUST use `already_shutdown` as the value of `error.type` for spans dropped because the processor has already been shut down.
-      For the SDK Simple and Batching Span Processor a span is considered to be processed already when it has been submitted to the exporter, not when the corresponding export call has finished.
+      If a processor reports a span dropped because it has already been shut down, `error.type` MUST be `already_shutdown`.
+      Whether and when a processor drops such spans is governed by the SDK specification, not by this metric.
+      For the SDK Simple and Batching Span Processors, a span MUST be counted as successfully processed at the point the processor
+      invokes the export operation. For batching processors, all spans in the batch passed to the exporter are counted at that point;
+      spans accepted into the processor's queue but not yet passed to the exporter have not been processed.
+      Implementations MUST NOT delay this count until the export operation concludes, and the outcome of the export operation,
+      including an immediate failure of the invocation itself, MUST NOT affect this metric.
+      Export outcomes are reported by `otel.sdk.exporter.span.exported`.
     instrument: counter
     unit: "{span}"
     attributes:
       - ref: otel.component.type
       - ref: otel.component.name
       - ref: error.type
+        requirement_level:
+          conditionally_required: if and only if an error has occurred.
         brief: A low-cardinality description of the failure reason.
         examples: ["queue_full", "already_shutdown"]
 
@@ -134,6 +142,8 @@ groups:
         requirement_level:
           recommended: when applicable
       - ref: error.type
+        requirement_level:
+          conditionally_required: if and only if an error has occurred.
         examples: ["rejected", "timeout", "500", "java.net.UnknownHostException"]
 
   - id: metric.otel.sdk.log.created
@@ -143,9 +153,15 @@ groups:
       code_generation:
         metric_value_type: int
     stability: development
-    brief: "The number of logs submitted to enabled SDK Loggers."
+    brief: "The number of log records submitted to an enabled `Logger`."
     instrument: counter
     unit: "{log_record}"
+    note: |
+      In OpenTelemetry SDKs a `Logger` is enabled by default, and can be disabled via configuration i.e. `LoggerConfig.enabled` = `false` when supported;
+      a disabled `Logger` is a No-op: emitting to it has no effect, so its records are not counted.
+      Every log record submitted to an enabled `Logger` is counted, even if it is later filtered or dropped within the SDK
+      (e.g. by minimum severity or trace-based rules, or by a processor or the export pipeline), making this metric the top of the log delivery funnel.
+      Records not submitted to the SDK are not counted (e.g. a caller that skips calling `Emit()` based on an `Enabled()` check, or an upstream logging library that filters first).
 
   - id: metric.otel.sdk.processor.log.queue.size
     type: metric
@@ -190,15 +206,22 @@ groups:
     note: |
       For successful processing, `error.type` MUST NOT be set. For failed processing, `error.type` MUST contain the failure cause.
       SDK Batching Log Record Processors MUST use `queue_full` as the value of `error.type` for log records dropped due to a full queue.
-      SDK Log Record Processors MUST use `already_shutdown` as the value of `error.type` for log records dropped because the processor has already been shut down.
-      For the SDK Simple and Batching Log Record Processor a log record is considered to be processed already when it has been submitted to the exporter,
-      not when the corresponding export call has finished.
+      If a processor reports a log record dropped because it has already been shut down, `error.type` MUST be `already_shutdown`.
+      Whether and when a processor drops such log records is governed by the SDK specification, not by this metric.
+      For the SDK Simple and Batching Log Record Processors, a log record MUST be counted as successfully processed at the point the
+      processor invokes the export operation. For batching processors, all log records in the batch passed to the exporter are counted
+      at that point; log records accepted into the processor's queue but not yet passed to the exporter have not been processed.
+      Implementations MUST NOT delay this count until the export operation concludes, and the outcome of the export operation,
+      including an immediate failure of the invocation itself, MUST NOT affect this metric.
+      Export outcomes are reported by `otel.sdk.exporter.log.exported`.
     instrument: counter
     unit: "{log_record}"
     attributes:
       - ref: otel.component.type
       - ref: otel.component.name
       - ref: error.type
+        requirement_level:
+          conditionally_required: if and only if an error has occurred.
         brief: A low-cardinality description of the failure reason.
         examples: ["queue_full", "already_shutdown"]
 
@@ -252,6 +275,8 @@ groups:
         requirement_level:
           recommended: when applicable
       - ref: error.type
+        requirement_level:
+          conditionally_required: if and only if an error has occurred.
         examples: ["rejected", "timeout", "500", "java.net.UnknownHostException"]
 
   - id: metric.otel.sdk.exporter.metric_data_point.inflight
@@ -304,6 +329,8 @@ groups:
         requirement_level:
           recommended: when applicable
       - ref: error.type
+        requirement_level:
+          conditionally_required: if and only if an error has occurred.
         examples: ["rejected", "timeout", "500", "java.net.UnknownHostException"]
 
   - id: metric.otel.sdk.metric_reader.collection.duration
@@ -359,7 +386,7 @@ groups:
         brief: The HTTP status code of the last HTTP request performed in scope of this export call.
         requirement_level:
           recommended: when applicable
-      - ref: rpc.response.status_code
+      - ref: rpc.status_code
         brief: The gRPC status code of the last gRPC request performed in scope of this export call.
         requirement_level:
           recommended: when applicable

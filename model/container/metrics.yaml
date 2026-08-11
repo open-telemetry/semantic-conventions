@@ -6,13 +6,21 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
-    stability: development
+    stability: release_candidate
     entity_associations:
       - container
     brief: "The time the container has been running."
-    note: |
+    note: >
       Instrumentations SHOULD use a gauge with type `double` and measure uptime in seconds as a floating point number with the highest precision available.
       The actual accuracy would depend on the instrumentation and operating system.
+
+      In K8s environments, this metric can be derived from Kubelet's stats API and specifically from the
+      [ContainerStats.StartTime](https://github.com/kubernetes/kubelet/blob/v0.35.2/pkg/apis/stats/v1alpha1/types.go#L161)
+      field, where `StartTime` represents the container creation time as
+      [noted in the Kubelet source](https://github.com/kubernetes/kubernetes/blob/v1.36.3/pkg/kubelet/stats/cri_stats_provider.go#L776).
+      This value resets on every container restart and aligns with
+      [ContainerStateRunning.startedAt](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#ContainerStateRunning)
+      from the K8s API.
     instrument: gauge
     unit: "s"
   # container.cpu.* metrics and attribute group
@@ -67,7 +75,9 @@ groups:
     stability: development
     brief: "Container's CPU usage, measured in CPUs. Range from 0 to the number of allocatable CPUs."
     note: >
-      CPU usage of the specific container on all available CPU cores, averaged over the sample window
+      CPU usage of the specific container on all available CPU cores. It is calculated as the change in
+      cumulative CPU time (container.cpu.time) over a measurement interval, divided by the elapsed time:
+      usageCores = (cpuTimeEnd - cpuTimeStart) / elapsedSeconds
     instrument: gauge
     unit: "{cpu}"
     entity_associations:

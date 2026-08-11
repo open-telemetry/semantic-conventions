@@ -48,7 +48,7 @@ Spans representing calls to MongoDB adhere to the general [Semantic Conventions 
 | [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Name of the database host. [8] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 
 **[1] `db.collection.name`:** It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
-For batch operations, if the individual operations are known to have the same collection name then that collection name SHOULD be used.
+For batch operations, if the individual operations would all have the same `db.collection.name` when executed as non-batch operations, then that collection name SHOULD be used.
 
 **[2] `db.response.status_code`:** If the operation failed and error code is available.
 

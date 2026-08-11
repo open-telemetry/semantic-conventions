@@ -48,7 +48,7 @@ linkTitle: Spans
 
 ## Name
 
-Database spans MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.59.0/specification/trace/api.md#span).
+Database spans MUST follow the overall [guidelines for span names](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.60.0/specification/trace/api.md#span).
 
 The **span name** SHOULD be `{db.query.summary}` if a summary is available.
 
@@ -141,8 +141,9 @@ The collection name SHOULD NOT be extracted from `db.query.text`,
 when the database system supports query text with multiple collections
 in non-batch operations.
 
-For batch operations, if the individual operations are known to have the same
-collection name then that collection name SHOULD be used.
+For batch operations, if the individual operations would all have the same
+`db.collection.name` when executed as non-batch operations,
+then that collection name SHOULD be used.
 
 **[4] `db.namespace`:** If a database system has multiple namespace components, they SHOULD be concatenated from the most general to the most specific namespace component, using `|` as a separator between the components. Any missing components (and their associated separators) SHOULD be omitted.
 Semantic conventions for individual database systems SHOULD document what `db.namespace` means in the context of that system.
@@ -160,9 +161,10 @@ in non-batch operations.
 If spaces can occur in the operation name, multiple consecutive spaces
 SHOULD be normalized to a single space.
 
-For batch operations, if the individual operations are known to have the same operation name
-then that operation name SHOULD be used prepended by `BATCH `,
-otherwise `db.operation.name` SHOULD be `BATCH` or some other database
+For batch operations, if the individual operations would all have the same
+`db.operation.name` when executed as non-batch operations,
+then that operation name SHOULD be used prepended by `BATCH `.
+Otherwise, `db.operation.name` SHOULD be `BATCH` or some other database
 system specific term if more applicable.
 
 **[7] `db.response.status_code`:** If the operation failed and status code is available.
@@ -213,16 +215,17 @@ that support query parsing SHOULD generate a summary following
 [Generating query summary](/docs/db/database-spans.md#generating-a-summary-of-the-query)
 section.
 
-For batch operations, if the individual operations are known to have the same query summary
-then that query summary SHOULD be used prepended by `BATCH `,
-otherwise `db.query.summary` SHOULD be `BATCH` or some other database
+For batch operations, if the individual operations would all have the same
+`db.query.summary` when executed as non-batch operations,
+then that query summary SHOULD be used prepended by `BATCH `.
+Otherwise, `db.query.summary` SHOULD be `BATCH` or some other database
 system specific term if more applicable.
 
 **[15] `db.query.text`:** Non-parameterized query text SHOULD NOT be collected by default unless there is sanitization that excludes sensitive data, e.g. by redacting all literal values present in the query text. See [Sanitization of `db.query.text`](/docs/db/database-spans.md#sanitization-of-dbquerytext).
 Parameterized query text SHOULD be collected by default (the query parameter values themselves are opt-in, see [`db.query.parameter.<key>`](/docs/registry/attributes/db.md)).
 
 **[16] `db.query.text`:** For sanitization see [Sanitization of `db.query.text`](/docs/db/database-spans.md#sanitization-of-dbquerytext).
-For batch operations, if the individual operations are known to have the same query text then that query text SHOULD be used, otherwise all of the individual query texts SHOULD be concatenated with separator `; ` or some other database system specific separator if more applicable.
+For batch operations, if the individual operations would all have the same `db.query.text` when executed as non-batch operations, then that query text SHOULD be used. Otherwise, all of the individual query texts SHOULD be concatenated with separator `; ` or some other database system specific separator if more applicable.
 Parameterized query text SHOULD NOT be sanitized. Even though parameterized query text can potentially have sensitive data, by using a parameterized query the user is giving a strong signal that any sensitive data will be passed as parameter values, and the benefit to observability of capturing the static part of the query text by default outweighs the risk.
 
 **[17] `db.stored_procedure.name`:** If operation applies to a specific stored procedure.
@@ -230,8 +233,9 @@ Parameterized query text SHOULD NOT be sanitized. Even though parameterized quer
 **[18] `db.stored_procedure.name`:** It is RECOMMENDED to capture the value as provided by the application
 without attempting to do any case normalization.
 
-For batch operations, if the individual operations are known to have the same
-stored procedure name then that stored procedure name SHOULD be used.
+For batch operations, if the individual operations would all have the same
+`db.stored_procedure.name` when executed as non-batch operations,
+then that stored procedure name SHOULD be used.
 
 **[19] `network.peer.address`:** Semantic conventions for individual database systems SHOULD document whether `network.peer.*` attributes are applicable. Network peer address and port are useful when the application interacts with individual database nodes directly.
 If a database operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.

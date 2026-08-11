@@ -5,8 +5,6 @@
 
 ## Thread Attributes
 
-These attributes may be used for any operation to store information about a thread that started a span.
-
 **Attributes:**
 
 | Key | Stability | Value Type | Description | Example Values |

@@ -6,7 +6,7 @@ linkTitle: URL
 
 **Status**: [Development][DocumentStatus]
 
-This document defines semantic conventions for url.
+This document defines semantic conventions for URL.
 
 * [Attributes](../registry/attributes/url.md)
 
