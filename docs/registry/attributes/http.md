@@ -42,7 +42,8 @@ When instrumentations record body, they SHOULD capture the body as string whenev
 also it allows to implement sanitization if needed.
 
 Textual content is typically detected based on the [Content-Type](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-type) header using heuristics
-such as checking if the media type starts with `text/` or ends with `/json`, `+json`, `/xml`, `+xml`, `/yaml` or `+yaml` or if the media type contains an explicit charset with `;charset=`.
+such as checking if the type/subtype (compared case-insensitively, ignoring any parameters) starts with `text/`, ends with `/json`, `+json`, `/xml`, `+xml`, `/yaml` or `+yaml`,
+is `application/x-www-form-urlencoded`, or if the header declares a `charset` parameter.
 
 Instrumentations that implement request body recording MUST NOT intentionally introduce side effects such as changing stream position or closing body stream independently from the
 application.
@@ -104,7 +105,8 @@ When instrumentations record body, they SHOULD capture the body as string whenev
 also it allows to implement sanitization if needed.
 
 Textual content is typically detected based on the [Content-Type](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-type) header using heuristics
-such as checking if the media type starts with `text/` or ends with `/json`, `+json`, `/xml`, `+xml`, `/yaml` or `+yaml` or if the media type contains an explicit charset with `;charset=`.
+such as checking if the type/subtype (compared case-insensitively, ignoring any parameters) starts with `text/`, ends with `/json`, `+json`, `/xml`, `+xml`, `/yaml` or `+yaml`,
+is `application/x-www-form-urlencoded`, or if the header declares a `charset` parameter.
 
 Instrumentations that implement response body recording MUST NOT intentionally introduce side effects such as changing stream position or closing body stream independently from the
 application.
