@@ -342,6 +342,9 @@ Instrumentations that implement response body recording MUST NOT intentionally i
 application.
 
 When body is recorded, the instrumentation SHOULD record part of the body that was sent or received at the time HTTP call has ended.
+Note that HTTP client spans [SHOULD end sometime after the response headers are fully read](/docs/http/http-spans.md#http-client-span-duration),
+which may or may not include reading the response body, so on client spans this attribute is often absent or holds only part of the body.
+
 The value MUST be either a string or a byte array. Instrumentations MUST NOT record a parsed or otherwise structured representation of the body,
 and MUST NOT base64-encode binary content into a string value.
 
@@ -714,6 +717,9 @@ Instrumentations that implement response body recording MUST NOT intentionally i
 application.
 
 When body is recorded, the instrumentation SHOULD record part of the body that was sent or received at the time HTTP call has ended.
+Note that HTTP client spans [SHOULD end sometime after the response headers are fully read](/docs/http/http-spans.md#http-client-span-duration),
+which may or may not include reading the response body, so on client spans this attribute is often absent or holds only part of the body.
+
 The value MUST be either a string or a byte array. Instrumentations MUST NOT record a parsed or otherwise structured representation of the body,
 and MUST NOT base64-encode binary content into a string value.
 
