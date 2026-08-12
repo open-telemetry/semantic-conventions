@@ -25,7 +25,7 @@ events:
             If the new session is being created as a continuation of a previous session,
             the `session.previous_id` MUST be included in the event. The `session.id` and `session.previous_id`
             attributes MUST have different values.
-        brief: The previous `session.id` for this user, when known.
+        brief: The previous `session.id` for this user.
 
   - name: session.end
     stability: development
