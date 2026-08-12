@@ -269,6 +269,27 @@ groups:
         brief: >
           RabbitMQ message delivery tag
         examples: 123
+      - id: messaging.rabbitmq.cluster.name
+        type: string
+        stability: development
+        brief: >
+          The RabbitMQ cluster name, obtained from the broker metadata exposed through
+          the RabbitMQ client API.
+        note: >
+          The cluster name is a user-configured identifier reported by the RabbitMQ
+          broker (see `rabbitmqctl set_cluster_name`). It identifies the cluster
+          independently of the individual nodes the client is configured to connect to,
+          and remains stable even if node hostnames, IP addresses, or ports change.
+        examples: ['rabbit@node1.example.com']
+      - id: messaging.rabbitmq.vhost.name
+        type: string
+        stability: development
+        brief: >
+          The name of the RabbitMQ virtual host that the messaging operation is scoped to.
+        note: >
+          RabbitMQ virtual hosts (vhosts) provide logical grouping and separation of
+          resources (exchanges, queues, bindings) within a single broker or cluster.
+        examples: ['/', 'my-vhost']
   - id: registry.messaging.rocketmq
     type: attribute_group
     display_name: RocketMQ Attributes
