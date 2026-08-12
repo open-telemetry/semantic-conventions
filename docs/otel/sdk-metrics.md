@@ -260,18 +260,22 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `otel.sdk.processor.span.processed` | Counter | `{span}` | The number of spans for which the processing has finished, either successful or failed. [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
+| `otel.sdk.processor.span.processed` | Counter | `{span}` | The number of spans that a processor passed on, or failed to pass on. [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
 
-**[1]:** For successful processing, `error.type` MUST NOT be set. For failed processing, `error.type` MUST contain the failure cause.
-SDK Batching Span Processors MUST use `queue_full` as the value of `error.type` for spans dropped due to a full queue.
-If a processor reports a span dropped because it has already been shut down, `error.type` MUST be `already_shutdown`.
-Whether and when a processor drops such spans is governed by the SDK specification, not by this metric.
-For the SDK Simple and Batching Span Processors, a span MUST be counted as successfully processed at the point the processor
-invokes the export operation. For batching processors, all spans in the batch passed to the exporter are counted at that point;
-spans accepted into the processor's queue but not yet passed to the exporter have not been processed.
-Implementations MUST NOT delay this count until the export operation concludes, and the outcome of the export operation,
-including an immediate failure of the invocation itself, MUST NOT affect this metric.
-Export outcomes are reported by `otel.sdk.exporter.span.exported`.
+**[1]:** This metric counts each span a processor intends to pass on, and reports whether it succeeded or failed:
+
+- Success: the processor passed the span on as intended. `error.type` MUST NOT be set.
+- Failure: the processor intended to pass the span on but could not, and dropped it. `error.type` MUST be set to the reason.
+
+Spans a processor does not intend to pass on, i.e. those it drops by design, are not counted by this metric at all. For the
+SDK's built-in Simple and Batching Span Processors, this includes spans whose `otel.span.sampling_result` is `RECORD_ONLY`
+(recording but not sampled), which are not passed on and so are neither a success nor a failure here.
+
+For those processors, `error.type` MUST be `queue_full` when a span is dropped because a Batching processor's queue is full,
+or `already_shutdown` when a span is dropped because the processor has been shut down. They count a span when they submit it
+to the exporter, not when the export completes: for a Batching processor, all spans in a batch are counted when that batch is
+submitted, and spans still waiting in the queue are not yet counted. The count MUST NOT be delayed until the export concludes,
+and the export outcome MUST NOT change this metric. Export outcomes are reported separately by `otel.sdk.exporter.span.exported`.
 
 **Attributes:**
 
@@ -712,18 +716,22 @@ This metric is [recommended][MetricRecommended].
 
 | Name | Instrument Type | Unit (UCUM) | Description | Stability | Entity Associations |
 | -------- | --------------- | ----------- | -------------- | --------- | ------ |
-| `otel.sdk.processor.log.processed` | Counter | `{log_record}` | The number of log records for which the processing has finished, either successful or failed. [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
+| `otel.sdk.processor.log.processed` | Counter | `{log_record}` | The number of log records that a processor passed on, or failed to pass on. [1] | ![Development](https://img.shields.io/badge/-development-blue) | |
 
-**[1]:** For successful processing, `error.type` MUST NOT be set. For failed processing, `error.type` MUST contain the failure cause.
-SDK Batching Log Record Processors MUST use `queue_full` as the value of `error.type` for log records dropped due to a full queue.
-If a processor reports a log record dropped because it has already been shut down, `error.type` MUST be `already_shutdown`.
-Whether and when a processor drops such log records is governed by the SDK specification, not by this metric.
-For the SDK Simple and Batching Log Record Processors, a log record MUST be counted as successfully processed at the point the
-processor invokes the export operation. For batching processors, all log records in the batch passed to the exporter are counted
-at that point; log records accepted into the processor's queue but not yet passed to the exporter have not been processed.
-Implementations MUST NOT delay this count until the export operation concludes, and the outcome of the export operation,
-including an immediate failure of the invocation itself, MUST NOT affect this metric.
-Export outcomes are reported by `otel.sdk.exporter.log.exported`.
+**[1]:** This metric counts each log record a processor intends to pass on, and reports whether it succeeded or failed:
+
+- Success: the processor passed the record on as intended. `error.type` MUST NOT be set.
+- Failure: the processor intended to pass the record on but could not, and dropped it. `error.type` MUST be set to the reason.
+
+Records a processor does not intend to pass on, i.e. those it drops by design, are not counted by this metric at all. For
+example, a filtering processor drops records according to its policy, and those records are neither a success nor a failure here.
+
+For the SDK's built-in Simple and Batching Log Record Processors, `error.type` MUST be `queue_full` when a record is dropped
+because a Batching processor's queue is full, or `already_shutdown` when a record is dropped because the processor has been
+shut down. These processors count a record when they submit it to the exporter, not when the export completes: for a Batching
+processor, every record in a batch is counted when that batch is submitted, and records still waiting in the queue are not yet
+counted. The count MUST NOT be delayed until the export concludes, and the export outcome MUST NOT change this metric. Export
+outcomes are reported separately by `otel.sdk.exporter.log.exported`.
 
 **Attributes:**
 
