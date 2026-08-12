@@ -3,7 +3,9 @@ change_type: enhancement
 component: otel
 
 note: >
-  Clarify that `otel.sdk.log.created` counts log records at intake on an enabled `Logger`, before per-record filtering.
+  Clarify that `otel.sdk.log.created` counts every log record at intake via `Emit`, before any
+  SDK-internal processing, independent of the `Logger`'s enabled state or configuration (records
+  submitted to a disabled `Logger` are counted).
 
 issues: [3506]
 
