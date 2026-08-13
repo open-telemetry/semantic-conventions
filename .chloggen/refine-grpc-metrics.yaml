@@ -1,0 +1,6 @@
+change_type: enhancement
+component: rpc
+note: >
+  Add gRPC-specific metric refinements for `rpc.server.call.duration` and
+  `rpc.client.call.duration`, rendered on the gRPC page.
+issues: [3868]
