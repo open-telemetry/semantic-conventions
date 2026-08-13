@@ -275,7 +275,9 @@ For those processors, `error.type` MUST be `queue_full` when a span is dropped b
 or `already_shutdown` when a span is dropped because the processor has been shut down. They count a span when they submit it
 to the exporter, not when the export completes: for a Batching processor, all spans in a batch are counted when that batch is
 submitted, and spans still waiting in the queue are not yet counted. The count MUST NOT be delayed until the export concludes,
-and the export outcome MUST NOT change this metric. Export outcomes are reported separately by `otel.sdk.exporter.span.exported`.
+and MUST NOT be affected by the export outcome, including an immediate failure of the export invocation itself: a span the
+processor submits to the exporter is counted as a success here even if that export call fails. Export outcomes are reported
+separately by `otel.sdk.exporter.span.exported`.
 
 **Attributes:**
 
@@ -730,8 +732,9 @@ For the SDK's built-in Simple and Batching Log Record Processors, `error.type` M
 because a Batching processor's queue is full, or `already_shutdown` when a record is dropped because the processor has been
 shut down. These processors count a record when they submit it to the exporter, not when the export completes: for a Batching
 processor, every record in a batch is counted when that batch is submitted, and records still waiting in the queue are not yet
-counted. The count MUST NOT be delayed until the export concludes, and the export outcome MUST NOT change this metric. Export
-outcomes are reported separately by `otel.sdk.exporter.log.exported`.
+counted. The count MUST NOT be delayed until the export concludes, and MUST NOT be affected by the export outcome, including an
+immediate failure of the export invocation itself: a record the processor submits to the exporter is counted as a success here
+even if that export call fails. Export outcomes are reported separately by `otel.sdk.exporter.log.exported`.
 
 **Attributes:**
 
