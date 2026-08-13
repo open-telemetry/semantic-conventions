@@ -23,7 +23,7 @@
 {%- macro generate_span(group) -%}
 {{ span.header(group) }}{{ generate_attributes(group) }}{% endmacro -%}
 {%- macro generate_attributes(group) -%}
-{{ at.generate(group.attributes, tag_filter, attribute_registry_base_url, group.lineage.attributes) }}{% endmacro -%}
+{{ at.generate(group.attributes, tag_filter, attribute_registry_base_url, group.lineage.attributes, none, (group.annotations or {}).get('config_scopes')) }}{% endmacro -%}
 {#- Public attribute groups carry stability and brief, same as signals -#}
 {%- macro generate_attribute_group(group) -%}
 {%- if group.stability %}**Status:** {{ stability.badge(group.stability, group.deprecated) }}

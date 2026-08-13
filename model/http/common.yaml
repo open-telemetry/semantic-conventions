@@ -37,6 +37,8 @@ groups:
         examples: ['1.0', '1.1', '2', '3']
 
   - id: attributes.http.client
+    annotations:
+      config_scopes: [http.client]
     type: attribute_group
     brief: 'HTTP Client attributes'
     extends: attributes.http.common
@@ -68,6 +70,8 @@ groups:
           The `url.template` MUST have low cardinality. It is not usually available on HTTP clients, but may be known by the application or specialized HTTP instrumentation.
 
   - id: attributes.http.server
+    annotations:
+      config_scopes: [http.server]
     type: attribute_group
     brief: 'HTTP Server attributes'
     extends: attributes.http.common

@@ -96,21 +96,24 @@ and the QUERY method defined in [httpbis-safe-method-w-body](https://datatracker
 
 If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `_OTHER`.
 
-If the HTTP instrumentation could end up converting valid HTTP request methods to `_OTHER`, then it MUST provide a way to override
-the list of known HTTP methods. If this override is done via environment variable, then the environment variable MUST be named
-OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS and support a comma-separated list of case-sensitive known HTTP methods.
-
-![Development](https://img.shields.io/badge/-development-blue)
-If this override is done via declarative configuration, then the list MUST be configurable via the `known_methods` property
-(an array of case-sensitive strings with minimum items 0) under `.instrumentation/development.general.http.client` and/or
-`.instrumentation/development.general.http.server`.
-
-In either case, this list MUST be a full override of the default known methods,
-it is not a list of known methods in addition to the defaults.
-
 HTTP method names are case-sensitive and `http.request.method` attribute value MUST match a known HTTP method name exactly.
 Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, SHOULD populate a canonical equivalent.
 Tracing instrumentations that do so, MUST also set `http.request.method_original` to the original value.
+
+If the HTTP instrumentation could end up converting valid HTTP request methods to `_OTHER`, then it MUST provide a way to override
+the list of known HTTP methods. This list MUST be a full override of the default known methods, not a list of known methods in
+addition to the defaults.
+
+Environment variables:
+
+- `OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS`: Comma-separated list of case-sensitive known HTTP methods.
+
+![Development](https://img.shields.io/badge/-development-blue) Declarative configuration:
+
+- `.instrumentation/development.general.http.server.known_methods`: Override the default list of known HTTP methods.
+  Known methods are case-sensitive.
+  This is a full override of the default known methods, not a list of known methods in addition to the defaults.
+  If omitted, HTTP methods GET, HEAD, POST, PUT, DELETE, CONNECT, OPTIONS, TRACE, PATCH are known.
 
 **[2] `url.scheme`:** The scheme of the original client request, if known (e.g. from [Forwarded#proto](https://developer.mozilla.org/docs/Web/HTTP/Headers/Forwarded#proto), [X-Forwarded-Proto](https://developer.mozilla.org/docs/Web/HTTP/Headers/X-Forwarded-Proto), or a similar header). Otherwise, the scheme of the immediate peer request.
 
@@ -230,21 +233,24 @@ and the QUERY method defined in [httpbis-safe-method-w-body](https://datatracker
 
 If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `_OTHER`.
 
-If the HTTP instrumentation could end up converting valid HTTP request methods to `_OTHER`, then it MUST provide a way to override
-the list of known HTTP methods. If this override is done via environment variable, then the environment variable MUST be named
-OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS and support a comma-separated list of case-sensitive known HTTP methods.
-
-![Development](https://img.shields.io/badge/-development-blue)
-If this override is done via declarative configuration, then the list MUST be configurable via the `known_methods` property
-(an array of case-sensitive strings with minimum items 0) under `.instrumentation/development.general.http.client` and/or
-`.instrumentation/development.general.http.server`.
-
-In either case, this list MUST be a full override of the default known methods,
-it is not a list of known methods in addition to the defaults.
-
 HTTP method names are case-sensitive and `http.request.method` attribute value MUST match a known HTTP method name exactly.
 Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, SHOULD populate a canonical equivalent.
 Tracing instrumentations that do so, MUST also set `http.request.method_original` to the original value.
+
+If the HTTP instrumentation could end up converting valid HTTP request methods to `_OTHER`, then it MUST provide a way to override
+the list of known HTTP methods. This list MUST be a full override of the default known methods, not a list of known methods in
+addition to the defaults.
+
+Environment variables:
+
+- `OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS`: Comma-separated list of case-sensitive known HTTP methods.
+
+![Development](https://img.shields.io/badge/-development-blue) Declarative configuration:
+
+- `.instrumentation/development.general.http.server.known_methods`: Override the default list of known HTTP methods.
+  Known methods are case-sensitive.
+  This is a full override of the default known methods, not a list of known methods in addition to the defaults.
+  If omitted, HTTP methods GET, HEAD, POST, PUT, DELETE, CONNECT, OPTIONS, TRACE, PATCH are known.
 
 **[2] `server.address`:** See [Setting `server.address` and `server.port` attributes](/docs/http/http-spans.md#setting-serveraddress-and-serverport-attributes).
 
@@ -317,21 +323,24 @@ and the QUERY method defined in [httpbis-safe-method-w-body](https://datatracker
 
 If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `_OTHER`.
 
-If the HTTP instrumentation could end up converting valid HTTP request methods to `_OTHER`, then it MUST provide a way to override
-the list of known HTTP methods. If this override is done via environment variable, then the environment variable MUST be named
-OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS and support a comma-separated list of case-sensitive known HTTP methods.
-
-![Development](https://img.shields.io/badge/-development-blue)
-If this override is done via declarative configuration, then the list MUST be configurable via the `known_methods` property
-(an array of case-sensitive strings with minimum items 0) under `.instrumentation/development.general.http.client` and/or
-`.instrumentation/development.general.http.server`.
-
-In either case, this list MUST be a full override of the default known methods,
-it is not a list of known methods in addition to the defaults.
-
 HTTP method names are case-sensitive and `http.request.method` attribute value MUST match a known HTTP method name exactly.
 Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, SHOULD populate a canonical equivalent.
 Tracing instrumentations that do so, MUST also set `http.request.method_original` to the original value.
+
+If the HTTP instrumentation could end up converting valid HTTP request methods to `_OTHER`, then it MUST provide a way to override
+the list of known HTTP methods. This list MUST be a full override of the default known methods, not a list of known methods in
+addition to the defaults.
+
+Environment variables:
+
+- `OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS`: Comma-separated list of case-sensitive known HTTP methods.
+
+![Development](https://img.shields.io/badge/-development-blue) Declarative configuration:
+
+- `.instrumentation/development.general.http.server.known_methods`: Override the default list of known HTTP methods.
+  Known methods are case-sensitive.
+  This is a full override of the default known methods, not a list of known methods in addition to the defaults.
+  If omitted, HTTP methods GET, HEAD, POST, PUT, DELETE, CONNECT, OPTIONS, TRACE, PATCH are known.
 
 **[2] `url.scheme`:** The scheme of the original client request, if known (e.g. from [Forwarded#proto](https://developer.mozilla.org/docs/Web/HTTP/Headers/Forwarded#proto), [X-Forwarded-Proto](https://developer.mozilla.org/docs/Web/HTTP/Headers/X-Forwarded-Proto), or a similar header). Otherwise, the scheme of the immediate peer request.
 
@@ -459,21 +468,24 @@ and the QUERY method defined in [httpbis-safe-method-w-body](https://datatracker
 
 If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `_OTHER`.
 
-If the HTTP instrumentation could end up converting valid HTTP request methods to `_OTHER`, then it MUST provide a way to override
-the list of known HTTP methods. If this override is done via environment variable, then the environment variable MUST be named
-OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS and support a comma-separated list of case-sensitive known HTTP methods.
-
-![Development](https://img.shields.io/badge/-development-blue)
-If this override is done via declarative configuration, then the list MUST be configurable via the `known_methods` property
-(an array of case-sensitive strings with minimum items 0) under `.instrumentation/development.general.http.client` and/or
-`.instrumentation/development.general.http.server`.
-
-In either case, this list MUST be a full override of the default known methods,
-it is not a list of known methods in addition to the defaults.
-
 HTTP method names are case-sensitive and `http.request.method` attribute value MUST match a known HTTP method name exactly.
 Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, SHOULD populate a canonical equivalent.
 Tracing instrumentations that do so, MUST also set `http.request.method_original` to the original value.
+
+If the HTTP instrumentation could end up converting valid HTTP request methods to `_OTHER`, then it MUST provide a way to override
+the list of known HTTP methods. This list MUST be a full override of the default known methods, not a list of known methods in
+addition to the defaults.
+
+Environment variables:
+
+- `OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS`: Comma-separated list of case-sensitive known HTTP methods.
+
+![Development](https://img.shields.io/badge/-development-blue) Declarative configuration:
+
+- `.instrumentation/development.general.http.server.known_methods`: Override the default list of known HTTP methods.
+  Known methods are case-sensitive.
+  This is a full override of the default known methods, not a list of known methods in addition to the defaults.
+  If omitted, HTTP methods GET, HEAD, POST, PUT, DELETE, CONNECT, OPTIONS, TRACE, PATCH are known.
 
 **[2] `url.scheme`:** The scheme of the original client request, if known (e.g. from [Forwarded#proto](https://developer.mozilla.org/docs/Web/HTTP/Headers/Forwarded#proto), [X-Forwarded-Proto](https://developer.mozilla.org/docs/Web/HTTP/Headers/X-Forwarded-Proto), or a similar header). Otherwise, the scheme of the immediate peer request.
 
@@ -604,21 +616,24 @@ and the QUERY method defined in [httpbis-safe-method-w-body](https://datatracker
 
 If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `_OTHER`.
 
-If the HTTP instrumentation could end up converting valid HTTP request methods to `_OTHER`, then it MUST provide a way to override
-the list of known HTTP methods. If this override is done via environment variable, then the environment variable MUST be named
-OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS and support a comma-separated list of case-sensitive known HTTP methods.
-
-![Development](https://img.shields.io/badge/-development-blue)
-If this override is done via declarative configuration, then the list MUST be configurable via the `known_methods` property
-(an array of case-sensitive strings with minimum items 0) under `.instrumentation/development.general.http.client` and/or
-`.instrumentation/development.general.http.server`.
-
-In either case, this list MUST be a full override of the default known methods,
-it is not a list of known methods in addition to the defaults.
-
 HTTP method names are case-sensitive and `http.request.method` attribute value MUST match a known HTTP method name exactly.
 Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, SHOULD populate a canonical equivalent.
 Tracing instrumentations that do so, MUST also set `http.request.method_original` to the original value.
+
+If the HTTP instrumentation could end up converting valid HTTP request methods to `_OTHER`, then it MUST provide a way to override
+the list of known HTTP methods. This list MUST be a full override of the default known methods, not a list of known methods in
+addition to the defaults.
+
+Environment variables:
+
+- `OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS`: Comma-separated list of case-sensitive known HTTP methods.
+
+![Development](https://img.shields.io/badge/-development-blue) Declarative configuration:
+
+- `.instrumentation/development.general.http.client.known_methods`: Override the default list of known HTTP methods.
+  Known methods are case-sensitive.
+  This is a full override of the default known methods, not a list of known methods in addition to the defaults.
+  If omitted, HTTP methods GET, HEAD, POST, PUT, DELETE, CONNECT, OPTIONS, TRACE, PATCH are known.
 
 **[2] `server.address`:** In HTTP/1.1, when the [request target](https://www.rfc-editor.org/rfc/rfc9112.html#name-request-target)
 is passed in its [absolute-form](https://www.rfc-editor.org/rfc/rfc9112.html#section-3.2.2),
@@ -725,21 +740,24 @@ and the QUERY method defined in [httpbis-safe-method-w-body](https://datatracker
 
 If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `_OTHER`.
 
-If the HTTP instrumentation could end up converting valid HTTP request methods to `_OTHER`, then it MUST provide a way to override
-the list of known HTTP methods. If this override is done via environment variable, then the environment variable MUST be named
-OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS and support a comma-separated list of case-sensitive known HTTP methods.
-
-![Development](https://img.shields.io/badge/-development-blue)
-If this override is done via declarative configuration, then the list MUST be configurable via the `known_methods` property
-(an array of case-sensitive strings with minimum items 0) under `.instrumentation/development.general.http.client` and/or
-`.instrumentation/development.general.http.server`.
-
-In either case, this list MUST be a full override of the default known methods,
-it is not a list of known methods in addition to the defaults.
-
 HTTP method names are case-sensitive and `http.request.method` attribute value MUST match a known HTTP method name exactly.
 Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, SHOULD populate a canonical equivalent.
 Tracing instrumentations that do so, MUST also set `http.request.method_original` to the original value.
+
+If the HTTP instrumentation could end up converting valid HTTP request methods to `_OTHER`, then it MUST provide a way to override
+the list of known HTTP methods. This list MUST be a full override of the default known methods, not a list of known methods in
+addition to the defaults.
+
+Environment variables:
+
+- `OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS`: Comma-separated list of case-sensitive known HTTP methods.
+
+![Development](https://img.shields.io/badge/-development-blue) Declarative configuration:
+
+- `.instrumentation/development.general.http.client.known_methods`: Override the default list of known HTTP methods.
+  Known methods are case-sensitive.
+  This is a full override of the default known methods, not a list of known methods in addition to the defaults.
+  If omitted, HTTP methods GET, HEAD, POST, PUT, DELETE, CONNECT, OPTIONS, TRACE, PATCH are known.
 
 **[2] `server.address`:** In HTTP/1.1, when the [request target](https://www.rfc-editor.org/rfc/rfc9112.html#name-request-target)
 is passed in its [absolute-form](https://www.rfc-editor.org/rfc/rfc9112.html#section-3.2.2),
@@ -846,21 +864,24 @@ and the QUERY method defined in [httpbis-safe-method-w-body](https://datatracker
 
 If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `_OTHER`.
 
-If the HTTP instrumentation could end up converting valid HTTP request methods to `_OTHER`, then it MUST provide a way to override
-the list of known HTTP methods. If this override is done via environment variable, then the environment variable MUST be named
-OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS and support a comma-separated list of case-sensitive known HTTP methods.
-
-![Development](https://img.shields.io/badge/-development-blue)
-If this override is done via declarative configuration, then the list MUST be configurable via the `known_methods` property
-(an array of case-sensitive strings with minimum items 0) under `.instrumentation/development.general.http.client` and/or
-`.instrumentation/development.general.http.server`.
-
-In either case, this list MUST be a full override of the default known methods,
-it is not a list of known methods in addition to the defaults.
-
 HTTP method names are case-sensitive and `http.request.method` attribute value MUST match a known HTTP method name exactly.
 Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, SHOULD populate a canonical equivalent.
 Tracing instrumentations that do so, MUST also set `http.request.method_original` to the original value.
+
+If the HTTP instrumentation could end up converting valid HTTP request methods to `_OTHER`, then it MUST provide a way to override
+the list of known HTTP methods. This list MUST be a full override of the default known methods, not a list of known methods in
+addition to the defaults.
+
+Environment variables:
+
+- `OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS`: Comma-separated list of case-sensitive known HTTP methods.
+
+![Development](https://img.shields.io/badge/-development-blue) Declarative configuration:
+
+- `.instrumentation/development.general.http.client.known_methods`: Override the default list of known HTTP methods.
+  Known methods are case-sensitive.
+  This is a full override of the default known methods, not a list of known methods in addition to the defaults.
+  If omitted, HTTP methods GET, HEAD, POST, PUT, DELETE, CONNECT, OPTIONS, TRACE, PATCH are known.
 
 **[2] `server.address`:** In HTTP/1.1, when the [request target](https://www.rfc-editor.org/rfc/rfc9112.html#name-request-target)
 is passed in its [absolute-form](https://www.rfc-editor.org/rfc/rfc9112.html#section-3.2.2),
@@ -1057,21 +1078,24 @@ and the QUERY method defined in [httpbis-safe-method-w-body](https://datatracker
 
 If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `_OTHER`.
 
-If the HTTP instrumentation could end up converting valid HTTP request methods to `_OTHER`, then it MUST provide a way to override
-the list of known HTTP methods. If this override is done via environment variable, then the environment variable MUST be named
-OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS and support a comma-separated list of case-sensitive known HTTP methods.
-
-![Development](https://img.shields.io/badge/-development-blue)
-If this override is done via declarative configuration, then the list MUST be configurable via the `known_methods` property
-(an array of case-sensitive strings with minimum items 0) under `.instrumentation/development.general.http.client` and/or
-`.instrumentation/development.general.http.server`.
-
-In either case, this list MUST be a full override of the default known methods,
-it is not a list of known methods in addition to the defaults.
-
 HTTP method names are case-sensitive and `http.request.method` attribute value MUST match a known HTTP method name exactly.
 Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, SHOULD populate a canonical equivalent.
 Tracing instrumentations that do so, MUST also set `http.request.method_original` to the original value.
+
+If the HTTP instrumentation could end up converting valid HTTP request methods to `_OTHER`, then it MUST provide a way to override
+the list of known HTTP methods. This list MUST be a full override of the default known methods, not a list of known methods in
+addition to the defaults.
+
+Environment variables:
+
+- `OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS`: Comma-separated list of case-sensitive known HTTP methods.
+
+![Development](https://img.shields.io/badge/-development-blue) Declarative configuration:
+
+- `.instrumentation/development.general.http.client.known_methods`: Override the default list of known HTTP methods.
+  Known methods are case-sensitive.
+  This is a full override of the default known methods, not a list of known methods in addition to the defaults.
+  If omitted, HTTP methods GET, HEAD, POST, PUT, DELETE, CONNECT, OPTIONS, TRACE, PATCH are known.
 
 ---
 

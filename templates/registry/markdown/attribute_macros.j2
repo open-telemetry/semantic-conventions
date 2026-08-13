@@ -36,3 +36,59 @@
 {% macro sentence_case(text) %}
   {{- text[:1].upper() + text[1:].lower() -}}
 {% endmacro %}
+
+{# Emits generated markdown prose describing config sourced from
+   `annotations.config` on an attribute. Consumed by note-rendering sites
+   (attribute_table.j2, entity_macros.j2, attribute_namespace.md.j2)
+   which concatenate the result onto the attribute's hand-authored note.
+
+   `group_scopes` semantics:
+   - The string `'*'` means "render all scopes unfiltered" (used by
+     attribute registry pages that show every attribute's full config).
+   - A list means "render only entries whose `config_scopes` intersect
+     this list, and only those matching scopes as JSON paths."
+   - Anything falsy (none, empty list) means "no scopes declared for
+     this group": render nothing. Intentional under-production so an
+     untagged group referencing a config-annotated attribute doesn't
+     silently bleed unapplicable config into its section. Tag the group
+     with `annotations.config_scopes` to opt in.
+
+   See scratch/declarative-config-integration/plan.md. #}
+{% macro config_prose(attribute, group_scopes) -%}
+{%- set config = (attribute.annotations or {}).get('config') -%}
+{%- if config -%}
+{%- set unfiltered = (group_scopes == '*') -%}
+{%- set gs = group_scopes if (group_scopes and not unfiltered) else [] -%}
+{%- set ns = namespace(decl_entries=[]) -%}
+{%- if unfiltered or gs -%}
+{%- for entry in (config.declarative or []) -%}
+{%- set entry_scopes = entry.config_scopes or [] -%}
+{%- if unfiltered -%}
+{%- set ns.decl_entries = ns.decl_entries + [{'entry': entry, 'scopes': entry_scopes}] -%}
+{%- else -%}
+{%- set matched = entry_scopes | select('in', gs) | list -%}
+{%- if matched -%}
+{%- set ns.decl_entries = ns.decl_entries + [{'entry': entry, 'scopes': matched}] -%}
+{%- endif -%}
+{%- endif -%}
+{%- endfor -%}
+{%- endif -%}
+{%- if (unfiltered or gs) and (config.general or config.env_var or ns.decl_entries) -%}
+{%- set ns2 = namespace(first=true) -%}
+{%- if config.general -%}{{ "\n" if ns2.first else "\n\n" }}{{ config.general | trim }}{%- set ns2.first = false -%}{%- endif -%}
+{%- if config.env_var -%}{{ "\n" if ns2.first else "\n\n" }}Environment variables:
+{%- for ev in config.env_var -%}{{ "\n\n" if loop.first else "\n" }}- `{{ ev.name }}`: {{ ev.description | trim | replace("\n", " ") }}{%- endfor -%}
+{%- set ns2.first = false -%}
+{%- endif -%}
+{%- if ns.decl_entries -%}{{ "\n" if ns2.first else "\n\n" }}![Development](https://img.shields.io/badge/-development-blue) Declarative configuration:
+{%- set ns2.item_first = true -%}
+{%- for item in ns.decl_entries -%}
+{%- for prop_name, prop in item.entry.properties | dictsort -%}
+{%- for scope in item.scopes -%}{{ "\n\n" if ns2.item_first else "\n" }}- `.instrumentation/development.general.{{ scope }}.{{ prop_name }}`: {{ prop.description | trim | replace("\n", "\n  ") }}
+  If omitted, {{ prop.defaultBehavior }}.{%- set ns2.item_first = false -%}{%- endfor -%}
+{%- endfor -%}
+{%- endfor -%}
+{%- endif -%}
+{%- endif -%}
+{%- endif -%}
+{%- endmacro %}

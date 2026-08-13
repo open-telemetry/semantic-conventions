@@ -1,5 +1,7 @@
 groups:
   - id: metric_attributes.http.server
+    annotations:
+      config_scopes: [http.server]
     type: attribute_group
     brief: 'HTTP server attributes'
     extends: attributes.http.server
@@ -23,11 +25,15 @@ groups:
       - ref: user_agent.synthetic.type
         requirement_level: opt_in
   - id: metric_attributes.http.client
+    annotations:
+      config_scopes: [http.client]
     type: attribute_group
     brief: 'HTTP client attributes'
     extends: attributes.http.client
 
   - id: metric_attributes.http.client.experimental
+    annotations:
+      config_scopes: [http.client]
     type: attribute_group
     brief: 'HTTP client experimental attributes'
     extends: metric_attributes.http.client
@@ -44,6 +50,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      config_scopes: [http.server]
     brief: "Duration of HTTP server requests."
     instrument: histogram
     unit: "s"
@@ -56,6 +63,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      config_scopes: [http.server]
     stability: development
     brief: "Number of active HTTP server requests."
     instrument: updowncounter
@@ -93,6 +101,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      config_scopes: [http.server]
     stability: development
     brief: "Size of HTTP server request bodies."
     instrument: histogram
@@ -109,6 +118,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      config_scopes: [http.server]
     stability: development
     brief: "Size of HTTP server response bodies."
     instrument: histogram
@@ -125,6 +135,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      config_scopes: [http.client]
     brief: "Duration of HTTP client requests."
     instrument: histogram
     unit: "s"
@@ -137,6 +148,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      config_scopes: [http.client]
     stability: development
     brief: "Size of HTTP client request bodies."
     instrument: histogram
@@ -153,6 +165,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      config_scopes: [http.client]
     stability: development
     brief: "Size of HTTP client response bodies."
     instrument: histogram
@@ -169,6 +182,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      config_scopes: [http.client]
     stability: development
     brief: "Number of outbound HTTP connections that are currently active or idle on the client."
     instrument: updowncounter
@@ -194,6 +208,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: double
+      config_scopes: [http.client]
     stability: development
     brief: "The duration of the successfully established outbound HTTP connections."
     instrument: histogram
@@ -217,6 +232,7 @@ groups:
     annotations:
       code_generation:
         metric_value_type: int
+      config_scopes: [http.client]
     stability: development
     brief: "Number of active HTTP requests."
     instrument: updowncounter
