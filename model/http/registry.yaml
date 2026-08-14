@@ -238,7 +238,7 @@ groups:
         type: any
         brief: >
           The content of the HTTP response body, with any content coding indicated by [Content-Encoding](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-encoding) removed,
-          captured as a string when the request content is textual or as byte array otherwise.
+          captured as a string when the response content is textual or as byte array otherwise.
         note: |
           Captured value MAY be limited in size and thus value is expected to be truncated in many cases.
           When an instrumentation applies a byte-based limit while capturing the body as a string, it SHOULD truncate on a character
