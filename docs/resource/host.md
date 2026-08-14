@@ -40,6 +40,14 @@ To report host metrics, the `system.*` namespace SHOULD be used.
 3. OS-dependent machine ID
 4. User-provided value
 
+The value SHOULD conform to the following properties:
+
+* **Unique** within a given context;
+* **[Repeatable](https://opentelemetry.io/docs/specs/otel/entities/data-model/#repeatable-identity)** - multiple observers on the same host come up with the same value;
+* **Persistent** - survives host restarts and software updates.
+
+**Collecting `host.id` From Known Environments**
+
 When `host.id` is derived from a cloud vendor instance ID, the resource SHOULD also carry
 the corresponding `cloud.provider` and `cloud.platform` attributes so that the source of
 the `host.id` value can be unambiguously determined.
@@ -83,11 +91,8 @@ privileged lookup of `host.id` is required, the value SHOULD be injected via the
 If none of the above sources yields a non-empty value, the implementation MAY
 be unable to determine `host.id` automatically and SHOULD omit the attribute.
 In that case, the `host.id` can only be provided through user configuration
-or other available manual options. The value SHOULD conform to the following properties:
-
-* Unique within a given context;
-* [Repeatable](https://opentelemetry.io/docs/specs/otel/entities/data-model/#repeatable-identity) - multiple observers on the same host come up with the same value;
-* Persistent - survives host restarts and software updates.
+or other available manual options. Users SHOULD ensure that the `host.id` value
+conforms to the properties stated above.
 
 **[2] `host.ip`:** IPv4 Addresses MUST be specified in dotted-quad notation. IPv6 addresses MUST be specified in the [RFC 5952](https://www.rfc-editor.org/rfc/rfc5952.html) format.
 
