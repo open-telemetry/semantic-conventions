@@ -18,3 +18,36 @@ groups:
         requirement_level: recommended
       - ref: browser.web_vital.navigation_type
         requirement_level: recommended
+  - id: event.browser.element_timing
+    stability: development
+    type: event
+    name: browser.element_timing
+    brief: >
+      This event describes the timing metrics as provided by the
+      PerformanceElementTiming Performance API.
+    note: >
+      This event captures data from the
+      [Element Timing API](https://wicg.github.io/element-timing/), which
+      reports render and load timing for elements annotated with the
+      `elementtiming` HTML attribute. This API is currently only supported
+      by Chromium-based browsers.
+    attributes:
+      - ref: browser.element_timing.identifier
+        requirement_level: required
+      - ref: browser.element_timing.element
+        requirement_level: recommended
+      - ref: browser.element_timing.render_time
+        requirement_level: required
+      - ref: browser.element_timing.load_time
+        requirement_level: required
+      - ref: browser.element_timing.start_time
+        requirement_level: required
+      - ref: browser.element_timing.natural_width
+        requirement_level: required
+      - ref: browser.element_timing.natural_height
+        requirement_level: required
+      - ref: url.full
+        requirement_level: required
+        note: >
+          The URL of the image resource. Empty for text elements.
+        examples: ["https://example.com/hero.jpg"]
