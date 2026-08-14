@@ -1,0 +1,8 @@
+change_type: enhancement
+component: messaging
+note: >
+  Add `messaging.ibmmq.queue_manager.id` (QMID) and reference it as `opt_in` on IBM MQ producer,
+  receive and process spans. Queue manager names are not globally unique in federated
+  architectures, so the QMID is needed to identify a queue manager unambiguously.
+# TODO replace with the real tracking issue or PR number before opening the upstream PR.
+issues: [0]
