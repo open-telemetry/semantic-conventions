@@ -73,11 +73,13 @@ All routing metrics are reported by the `Microsoft.AspNetCore.Routing` meter.
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`aspnetcore.routing.match_status`](/docs/registry/attributes/aspnetcore.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | Match result - success or failure | `success`; `failure` |
+| [`aspnetcore.routing.match_status`](/docs/registry/attributes/aspnetcore.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | Match result - success or failure | `success`; `failure` [1] |
 | [`aspnetcore.routing.is_fallback`](/docs/registry/attributes/aspnetcore.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if and only if a route was successfully matched. | boolean | A value that indicates whether the matched route is a fallback route. | `true` |
-| [`http.route`](/docs/registry/attributes/http.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if and only if a route was successfully matched. | string | The matched route template for the request. This MUST be low-cardinality and include all static path segments, with dynamic path segments represented with placeholders. [1] | `/users/:userID?`; `my-controller/my-action/{id?}` |
+| [`http.route`](/docs/registry/attributes/http.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if and only if a route was successfully matched. | string | The matched route template for the request. This MUST be low-cardinality and include all static path segments, with dynamic path segments represented with placeholders. [2] | `/users/:userID?`; `my-controller/my-action/{id?}` |
 
-**[1] `http.route`:** MUST NOT be populated when this is not supported by the HTTP server framework as the route attribute should have low-cardinality and the URI path can NOT substitute it.
+**[1]:** See the full list of well-known values below.
+
+**[2] `http.route`:** MUST NOT be populated when this is not supported by the HTTP server framework as the route attribute should have low-cardinality and the URI path can NOT substitute it.
 SHOULD include the [application root](/docs/http/http-spans.md#http-server-definitions) if there is one.
 
 A static path segment is a part of the route template with a fixed, low-cardinality value. This includes literal strings like `/users/` and placeholders that
@@ -122,11 +124,15 @@ Exceptions Metric is reported by the `Microsoft.AspNetCore.Diagnostics` meter.
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`aspnetcore.diagnostics.exception.result`](/docs/registry/attributes/aspnetcore.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | ASP.NET Core exception middleware handling result. | `handled`; `unhandled` |
-| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | The full name of exception type. | `System.OperationCanceledException`; `Contoso.MyException` |
-| [`aspnetcore.diagnostics.handler.type`](/docs/registry/attributes/aspnetcore.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [1] | string | Full type name of the [`IExceptionHandler`](https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.diagnostics.iexceptionhandler) implementation that handled the exception. | `Contoso.MyHandler` |
+| [`aspnetcore.diagnostics.exception.result`](/docs/registry/attributes/aspnetcore.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | ASP.NET Core exception middleware handling result. | `handled`; `unhandled` [1] |
+| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | The full name of exception type. | `System.OperationCanceledException`; `Contoso.MyException` [2] |
+| [`aspnetcore.diagnostics.handler.type`](/docs/registry/attributes/aspnetcore.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [3] | string | Full type name of the [`IExceptionHandler`](https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.diagnostics.iexceptionhandler) implementation that handled the exception. | `Contoso.MyHandler` |
 
-**[1] `aspnetcore.diagnostics.handler.type`:** if and only if the exception was handled by this handler.
+**[1]:** See the full list of well-known values below.
+
+**[2]:** See the full list of well-known values below.
+
+**[3] `aspnetcore.diagnostics.handler.type`:** if and only if the exception was handled by this handler.
 
 ---
 
@@ -251,10 +257,12 @@ this metric SHOULD be specified with [`ExplicitBucketBoundaries` advisory parame
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`aspnetcore.rate_limiting.result`](/docs/registry/attributes/aspnetcore.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | Rate-limiting result, shows whether the lease was acquired or contains a rejection reason | `acquired`; `request_canceled` |
-| [`aspnetcore.rate_limiting.policy`](/docs/registry/attributes/aspnetcore.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [1] | string | Rate limiting policy name. | `fixed`; `sliding`; `token` |
+| [`aspnetcore.rate_limiting.result`](/docs/registry/attributes/aspnetcore.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | Rate-limiting result, shows whether the lease was acquired or contains a rejection reason | `acquired`; `request_canceled` [1] |
+| [`aspnetcore.rate_limiting.policy`](/docs/registry/attributes/aspnetcore.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [2] | string | Rate limiting policy name. | `fixed`; `sliding`; `token` |
 
-**[1] `aspnetcore.rate_limiting.policy`:** if the matched endpoint for the request had a rate-limiting policy.
+**[1]:** See the full list of well-known values below.
+
+**[2] `aspnetcore.rate_limiting.policy`:** if the matched endpoint for the request had a rate-limiting policy.
 
 ---
 
@@ -294,10 +302,12 @@ Meter name: `Microsoft.AspNetCore.RateLimiting`; Added in: ASP.NET Core 8.0
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`aspnetcore.rate_limiting.result`](/docs/registry/attributes/aspnetcore.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | Rate-limiting result, shows whether the lease was acquired or contains a rejection reason | `acquired`; `request_canceled` |
-| [`aspnetcore.rate_limiting.policy`](/docs/registry/attributes/aspnetcore.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [1] | string | Rate limiting policy name. | `fixed`; `sliding`; `token` |
+| [`aspnetcore.rate_limiting.result`](/docs/registry/attributes/aspnetcore.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | string | Rate-limiting result, shows whether the lease was acquired or contains a rejection reason | `acquired`; `request_canceled` [1] |
+| [`aspnetcore.rate_limiting.policy`](/docs/registry/attributes/aspnetcore.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [2] | string | Rate limiting policy name. | `fixed`; `sliding`; `token` |
 
-**[1] `aspnetcore.rate_limiting.policy`:** if the matched endpoint for the request had a rate-limiting policy.
+**[1]:** See the full list of well-known values below.
+
+**[2] `aspnetcore.rate_limiting.policy`:** if the matched endpoint for the request had a rate-limiting policy.
 
 ---
 
@@ -440,9 +450,13 @@ All authentication metrics are reported by the `Microsoft.AspNetCore.Authenticat
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`aspnetcore.authentication.result`](/docs/registry/attributes/aspnetcore.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The result of the authentication operation. | `success`; `failure` |
+| [`aspnetcore.authentication.result`](/docs/registry/attributes/aspnetcore.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The result of the authentication operation. | `success`; `failure` [1] |
 | [`aspnetcore.authentication.scheme`](/docs/registry/attributes/aspnetcore.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` if a scheme is specified during authentication. | string | The identifier that names a particular authentication handler. | `Cookies`; `Bearer`; `Identity.Application` |
-| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if and only if an error has occurred. | string | The full name of exception type. | `System.OperationCanceledException` |
+| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if and only if an error has occurred. | string | The full name of exception type. | `System.OperationCanceledException` [2] |
+
+**[1]:** See the full list of well-known values below.
+
+**[2]:** See the full list of well-known values below.
 
 ---
 
@@ -484,7 +498,9 @@ All authentication metrics are reported by the `Microsoft.AspNetCore.Authenticat
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`aspnetcore.authentication.scheme`](/docs/registry/attributes/aspnetcore.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` if a scheme is specified during authentication. | string | The identifier that names a particular authentication handler. | `Cookies`; `Bearer`; `Identity.Application` |
-| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if and only if an error has occurred. | string | The full name of exception type. | `System.OperationCanceledException` |
+| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if and only if an error has occurred. | string | The full name of exception type. | `System.OperationCanceledException` [1] |
+
+**[1]:** See the full list of well-known values below.
 
 ---
 
@@ -516,7 +532,9 @@ All authentication metrics are reported by the `Microsoft.AspNetCore.Authenticat
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`aspnetcore.authentication.scheme`](/docs/registry/attributes/aspnetcore.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` if a scheme is specified during authentication. | string | The identifier that names a particular authentication handler. | `Cookies`; `Bearer`; `Identity.Application` |
-| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if and only if an error has occurred. | string | The full name of exception type. | `System.OperationCanceledException` |
+| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if and only if an error has occurred. | string | The full name of exception type. | `System.OperationCanceledException` [1] |
+
+**[1]:** See the full list of well-known values below.
 
 ---
 
@@ -548,7 +566,9 @@ All authentication metrics are reported by the `Microsoft.AspNetCore.Authenticat
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`aspnetcore.authentication.scheme`](/docs/registry/attributes/aspnetcore.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` if a scheme is specified during authentication. | string | The identifier that names a particular authentication handler. | `Cookies`; `Bearer`; `Identity.Application` |
-| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if and only if an error has occurred. | string | The full name of exception type. | `System.OperationCanceledException` |
+| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if and only if an error has occurred. | string | The full name of exception type. | `System.OperationCanceledException` [1] |
+
+**[1]:** See the full list of well-known values below.
 
 ---
 
@@ -580,7 +600,9 @@ All authentication metrics are reported by the `Microsoft.AspNetCore.Authenticat
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`aspnetcore.authentication.scheme`](/docs/registry/attributes/aspnetcore.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` if a scheme is specified during authentication. | string | The identifier that names a particular authentication handler. | `Cookies`; `Bearer`; `Identity.Application` |
-| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if and only if an error has occurred. | string | The full name of exception type. | `System.OperationCanceledException` |
+| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if and only if an error has occurred. | string | The full name of exception type. | `System.OperationCanceledException` [1] |
+
+**[1]:** See the full list of well-known values below.
 
 ---
 
@@ -617,8 +639,12 @@ All authorization metrics are reported by the `Microsoft.AspNetCore.Authorizatio
 | --- | --- | --- | --- | --- | --- |
 | [`aspnetcore.user.is_authenticated`](/docs/registry/attributes/aspnetcore.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Required` | boolean | A value that indicates whether the user is authenticated. | `true` |
 | [`aspnetcore.authorization.policy`](/docs/registry/attributes/aspnetcore.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` if a policy is specified. | string | The name of the authorization policy. | `RequireAdminRole` |
-| [`aspnetcore.authorization.result`](/docs/registry/attributes/aspnetcore.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` if no exception was thrown. | string | The result of calling the authorization service. | `success`; `failure` |
-| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if and only if an error has occurred. | string | The full name of exception type. | `System.OperationCanceledException` |
+| [`aspnetcore.authorization.result`](/docs/registry/attributes/aspnetcore.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` if no exception was thrown. | string | The result of calling the authorization service. | `success`; `failure` [1] |
+| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if and only if an error has occurred. | string | The full name of exception type. | `System.OperationCanceledException` [2] |
+
+**[1]:** See the full list of well-known values below.
+
+**[2]:** See the full list of well-known values below.
 
 ---
 
@@ -664,8 +690,12 @@ All ASP.NET Core Identity metrics are reported by the `Microsoft.AspNetCore.Iden
 | --- | --- | --- | --- | --- | --- |
 | [`aspnetcore.identity.user_type`](/docs/registry/attributes/aspnetcore.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The full name of the identity user type. | `Contoso.ContosoUser` |
 | [`aspnetcore.identity.error_code`](/docs/registry/attributes/aspnetcore.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` if an error was set on a failed identity result. | string | The error code for a failed identity operation. | `DefaultError`; `PasswordMismatch` |
-| [`aspnetcore.identity.result`](/docs/registry/attributes/aspnetcore.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` if no exception was thrown. | string | The result of the identity operation. | `success`; `failure` |
-| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if and only if an error has occurred. | string | The full name of exception type or the identity error code. | `System.OperationCanceledException`; `PasswordMismatch` |
+| [`aspnetcore.identity.result`](/docs/registry/attributes/aspnetcore.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` if no exception was thrown. | string | The result of the identity operation. | `success`; `failure` [1] |
+| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if and only if an error has occurred. | string | The full name of exception type or the identity error code. | `System.OperationCanceledException`; `PasswordMismatch` [2] |
+
+**[1]:** See the full list of well-known values below.
+
+**[2]:** See the full list of well-known values below.
 
 ---
 
@@ -705,11 +735,17 @@ All ASP.NET Core Identity metrics are reported by the `Microsoft.AspNetCore.Iden
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`aspnetcore.identity.user.update_type`](/docs/registry/attributes/aspnetcore.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The user update type. | `update`; `user_name`; `reset_password` |
+| [`aspnetcore.identity.user.update_type`](/docs/registry/attributes/aspnetcore.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The user update type. | `update`; `user_name`; `reset_password` [1] |
 | [`aspnetcore.identity.user_type`](/docs/registry/attributes/aspnetcore.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The full name of the identity user type. | `Contoso.ContosoUser` |
 | [`aspnetcore.identity.error_code`](/docs/registry/attributes/aspnetcore.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` if an error was set on a failed identity result. | string | The error code for a failed identity operation. | `DefaultError`; `PasswordMismatch` |
-| [`aspnetcore.identity.result`](/docs/registry/attributes/aspnetcore.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` if no exception was thrown. | string | The result of the identity operation. | `success`; `failure` |
-| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if and only if an error has occurred. | string | The full name of exception type or the identity error code. | `System.OperationCanceledException`; `PasswordMismatch` |
+| [`aspnetcore.identity.result`](/docs/registry/attributes/aspnetcore.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` if no exception was thrown. | string | The result of the identity operation. | `success`; `failure` [2] |
+| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if and only if an error has occurred. | string | The full name of exception type or the identity error code. | `System.OperationCanceledException`; `PasswordMismatch` [3] |
+
+**[1]:** See the full list of well-known values below.
+
+**[2]:** See the full list of well-known values below.
+
+**[3]:** See the full list of well-known values below.
 
 ---
 
@@ -791,8 +827,12 @@ All ASP.NET Core Identity metrics are reported by the `Microsoft.AspNetCore.Iden
 | --- | --- | --- | --- | --- | --- |
 | [`aspnetcore.identity.user_type`](/docs/registry/attributes/aspnetcore.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The full name of the identity user type. | `Contoso.ContosoUser` |
 | [`aspnetcore.identity.error_code`](/docs/registry/attributes/aspnetcore.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` if an error was set on a failed identity result. | string | The error code for a failed identity operation. | `DefaultError`; `PasswordMismatch` |
-| [`aspnetcore.identity.result`](/docs/registry/attributes/aspnetcore.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` if no exception was thrown. | string | The result of the identity operation. | `success`; `failure` |
-| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if and only if an error has occurred. | string | The full name of exception type or the identity error code. | `System.OperationCanceledException`; `PasswordMismatch` |
+| [`aspnetcore.identity.result`](/docs/registry/attributes/aspnetcore.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` if no exception was thrown. | string | The result of the identity operation. | `success`; `failure` [1] |
+| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if and only if an error has occurred. | string | The full name of exception type or the identity error code. | `System.OperationCanceledException`; `PasswordMismatch` [2] |
+
+**[1]:** See the full list of well-known values below.
+
+**[2]:** See the full list of well-known values below.
 
 ---
 
@@ -833,8 +873,12 @@ All ASP.NET Core Identity metrics are reported by the `Microsoft.AspNetCore.Iden
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`aspnetcore.identity.user_type`](/docs/registry/attributes/aspnetcore.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The full name of the identity user type. | `Contoso.ContosoUser` |
-| [`aspnetcore.identity.password_check_result`](/docs/registry/attributes/aspnetcore.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` if no exception was thrown. | string | The result from checking the password. | `success`; `failure` |
-| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if and only if an error has occurred. | string | The full name of exception type. | `System.OperationCanceledException` |
+| [`aspnetcore.identity.password_check_result`](/docs/registry/attributes/aspnetcore.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` if no exception was thrown. | string | The result from checking the password. | `success`; `failure` [1] |
+| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if and only if an error has occurred. | string | The full name of exception type. | `System.OperationCanceledException` [2] |
+
+**[1]:** See the full list of well-known values below.
+
+**[2]:** See the full list of well-known values below.
 
 ---
 
@@ -877,9 +921,13 @@ All ASP.NET Core Identity metrics are reported by the `Microsoft.AspNetCore.Iden
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`aspnetcore.identity.token_purpose`](/docs/registry/attributes/aspnetcore.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | What the token will be used for. | `success`; `failure` |
+| [`aspnetcore.identity.token_purpose`](/docs/registry/attributes/aspnetcore.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | What the token will be used for. | `success`; `failure` [1] |
 | [`aspnetcore.identity.user_type`](/docs/registry/attributes/aspnetcore.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The full name of the identity user type. | `Contoso.ContosoUser` |
-| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if and only if an error has occurred. | string | The full name of exception type. | `System.OperationCanceledException` |
+| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if and only if an error has occurred. | string | The full name of exception type. | `System.OperationCanceledException` [2] |
+
+**[1]:** See the full list of well-known values below.
+
+**[2]:** See the full list of well-known values below.
 
 ---
 
@@ -923,10 +971,16 @@ All ASP.NET Core Identity metrics are reported by the `Microsoft.AspNetCore.Iden
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`aspnetcore.identity.token_purpose`](/docs/registry/attributes/aspnetcore.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | What the token will be used for. | `success`; `failure` |
+| [`aspnetcore.identity.token_purpose`](/docs/registry/attributes/aspnetcore.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | What the token will be used for. | `success`; `failure` [1] |
 | [`aspnetcore.identity.user_type`](/docs/registry/attributes/aspnetcore.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The full name of the identity user type. | `Contoso.ContosoUser` |
-| [`aspnetcore.identity.token_verified`](/docs/registry/attributes/aspnetcore.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` if no exception was thrown. | string | The result of token verification. | `success`; `failure` |
-| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if and only if an error has occurred. | string | The full name of exception type. | `System.OperationCanceledException` |
+| [`aspnetcore.identity.token_verified`](/docs/registry/attributes/aspnetcore.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` if no exception was thrown. | string | The result of token verification. | `success`; `failure` [2] |
+| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if and only if an error has occurred. | string | The full name of exception type. | `System.OperationCanceledException` [3] |
+
+**[1]:** See the full list of well-known values below.
+
+**[2]:** See the full list of well-known values below.
+
+**[3]:** See the full list of well-known values below.
 
 ---
 
@@ -980,11 +1034,17 @@ All ASP.NET Core Identity metrics are reported by the `Microsoft.AspNetCore.Iden
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`aspnetcore.authentication.scheme`](/docs/registry/attributes/aspnetcore.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The identifier that names a particular authentication handler. | `Cookies`; `Bearer`; `Identity.Application` |
-| [`aspnetcore.identity.sign_in.type`](/docs/registry/attributes/aspnetcore.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The authentication type. | `password`; `two_factor` |
+| [`aspnetcore.identity.sign_in.type`](/docs/registry/attributes/aspnetcore.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The authentication type. | `password`; `two_factor` [1] |
 | [`aspnetcore.identity.user_type`](/docs/registry/attributes/aspnetcore.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The full name of the identity user type. | `Contoso.ContosoUser` |
-| [`aspnetcore.identity.sign_in.result`](/docs/registry/attributes/aspnetcore.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` if no exception was thrown. | string | Whether the sign in result was success or failure. | `password`; `two_factor` |
+| [`aspnetcore.identity.sign_in.result`](/docs/registry/attributes/aspnetcore.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` if no exception was thrown. | string | Whether the sign in result was success or failure. | `password`; `two_factor` [2] |
 | [`aspnetcore.sign_in.is_persistent`](/docs/registry/attributes/aspnetcore.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` if no exception was thrown. | boolean | A flag indicating whether the sign in is persistent. | |
-| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if and only if an error has occurred. | string | The full name of exception type. | `System.OperationCanceledException` |
+| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if and only if an error has occurred. | string | The full name of exception type. | `System.OperationCanceledException` [3] |
+
+**[1]:** See the full list of well-known values below.
+
+**[2]:** See the full list of well-known values below.
+
+**[3]:** See the full list of well-known values below.
 
 ---
 
@@ -1041,8 +1101,12 @@ All ASP.NET Core Identity metrics are reported by the `Microsoft.AspNetCore.Iden
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`aspnetcore.identity.user_type`](/docs/registry/attributes/aspnetcore.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The full name of the identity user type. | `Contoso.ContosoUser` |
-| [`aspnetcore.identity.sign_in.result`](/docs/registry/attributes/aspnetcore.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` if no exception was thrown. | string | Whether the sign in result was success or failure. | `password`; `two_factor` |
-| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if and only if an error has occurred. | string | The full name of exception type. | `System.OperationCanceledException` |
+| [`aspnetcore.identity.sign_in.result`](/docs/registry/attributes/aspnetcore.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` if no exception was thrown. | string | Whether the sign in result was success or failure. | `password`; `two_factor` [1] |
+| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if and only if an error has occurred. | string | The full name of exception type. | `System.OperationCanceledException` [2] |
+
+**[1]:** See the full list of well-known values below.
+
+**[2]:** See the full list of well-known values below.
 
 ---
 
@@ -1088,7 +1152,9 @@ All ASP.NET Core Identity metrics are reported by the `Microsoft.AspNetCore.Iden
 | [`aspnetcore.authentication.scheme`](/docs/registry/attributes/aspnetcore.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The identifier that names a particular authentication handler. | `Cookies`; `Bearer`; `Identity.Application` |
 | [`aspnetcore.identity.user_type`](/docs/registry/attributes/aspnetcore.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The full name of the identity user type. | `Contoso.ContosoUser` |
 | [`aspnetcore.sign_in.is_persistent`](/docs/registry/attributes/aspnetcore.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` if no exception was thrown. | boolean | A flag indicating whether the sign in is persistent. | |
-| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if and only if an error has occurred. | string | The full name of exception type. | `System.OperationCanceledException` |
+| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if and only if an error has occurred. | string | The full name of exception type. | `System.OperationCanceledException` [1] |
+
+**[1]:** See the full list of well-known values below.
 
 ---
 
@@ -1121,7 +1187,9 @@ All ASP.NET Core Identity metrics are reported by the `Microsoft.AspNetCore.Iden
 | --- | --- | --- | --- | --- | --- |
 | [`aspnetcore.authentication.scheme`](/docs/registry/attributes/aspnetcore.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The identifier that names a particular authentication handler. | `Cookies`; `Bearer`; `Identity.Application` |
 | [`aspnetcore.identity.user_type`](/docs/registry/attributes/aspnetcore.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The full name of the identity user type. | `Contoso.ContosoUser` |
-| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if and only if an error has occurred. | string | The full name of exception type. | `System.OperationCanceledException` |
+| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if and only if an error has occurred. | string | The full name of exception type. | `System.OperationCanceledException` [1] |
+
+**[1]:** See the full list of well-known values below.
 
 ---
 
@@ -1154,7 +1222,9 @@ All ASP.NET Core Identity metrics are reported by the `Microsoft.AspNetCore.Iden
 | --- | --- | --- | --- | --- | --- |
 | [`aspnetcore.authentication.scheme`](/docs/registry/attributes/aspnetcore.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The identifier that names a particular authentication handler. | `Cookies`; `Bearer`; `Identity.Application` |
 | [`aspnetcore.identity.user_type`](/docs/registry/attributes/aspnetcore.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The full name of the identity user type. | `Contoso.ContosoUser` |
-| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if and only if an error has occurred. | string | The full name of exception type. | `System.OperationCanceledException` |
+| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if and only if an error has occurred. | string | The full name of exception type. | `System.OperationCanceledException` [1] |
+
+**[1]:** See the full list of well-known values below.
 
 ---
 
@@ -1187,7 +1257,9 @@ All ASP.NET Core Identity metrics are reported by the `Microsoft.AspNetCore.Iden
 | --- | --- | --- | --- | --- | --- |
 | [`aspnetcore.authentication.scheme`](/docs/registry/attributes/aspnetcore.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The identifier that names a particular authentication handler. | `Cookies`; `Bearer`; `Identity.Application` |
 | [`aspnetcore.identity.user_type`](/docs/registry/attributes/aspnetcore.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The full name of the identity user type. | `Contoso.ContosoUser` |
-| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if and only if an error has occurred. | string | The full name of exception type. | `System.OperationCanceledException` |
+| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` if and only if an error has occurred. | string | The full name of exception type. | `System.OperationCanceledException` [1] |
+
+**[1]:** See the full list of well-known values below.
 
 ---
 

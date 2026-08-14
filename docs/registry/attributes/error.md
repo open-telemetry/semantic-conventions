@@ -14,7 +14,7 @@ This document defines the shared attributes used to report an error.
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="error-type" href="#error-type">`error.type`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` |
+| <a id="error-type" href="#error-type">`error.type`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | Describes a class of error the operation ended with. [1] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` [2] |
 
 **[1] `error.type`:** The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
@@ -42,6 +42,8 @@ it's RECOMMENDED to:
 - Use a domain-specific attribute
 - Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
 
+**[2]:** See the full list of well-known values below.
+
 ---
 
 `error.type` has the following list of well-known values. If one of them applies, then the respective value MUST be used; otherwise, a custom value MAY be used.
@@ -58,9 +60,9 @@ This document defines deprecated attributes used to report an error.
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="error-message" href="#error-message">`error.message`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Use domain-specific error message attribute. For example, use `feature_flag.error.message` for feature flag errors. | string | A message providing more detail about an error in human-readable form. [2] | `Unexpected input type: string`; `The user has exceeded their storage quota` |
+| <a id="error-message" href="#error-message">`error.message`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Use domain-specific error message attribute. For example, use `feature_flag.error.message` for feature flag errors. | string | A message providing more detail about an error in human-readable form. [3] | `Unexpected input type: string`; `The user has exceeded their storage quota` |
 
-**[2] `error.message`:** `error.message` should provide additional context and detail about an error.
+**[3] `error.message`:** `error.message` should provide additional context and detail about an error.
 It is NOT RECOMMENDED to duplicate the value of `error.type` in `error.message`.
 It is also NOT RECOMMENDED to duplicate the value of `exception.message` in `error.message`.
 

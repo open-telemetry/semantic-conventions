@@ -69,7 +69,7 @@ This metric is [recommended][MetricRecommended].
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`cpu.mode`](/docs/registry/attributes/cpu.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Conditionally Required` [1] | string | The CPU mode for this data point. A container's CPU metric SHOULD be characterized _either_ by data points with no `mode` labels, _or only_ data points with `mode` labels. [2] | `user`; `system` |
+| [`cpu.mode`](/docs/registry/attributes/cpu.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Conditionally Required` [1] | string | The CPU mode for this data point. A container's CPU metric SHOULD be characterized _either_ by data points with no `mode` labels, _or only_ data points with `mode` labels. [2] | `user`; `system` [3] |
 
 **[1] `cpu.mode`:** Required if mode is available, i.e. metrics coming from the Docker Stats API, containerd stats or cAdvisor.
 
@@ -77,6 +77,8 @@ This metric is [recommended][MetricRecommended].
 In implementations like [`opencontainers/cgroup`](https://pkg.go.dev/github.com/opencontainers/cgroups@v0.0.6#CpuUsage), [Moby/Docker](https://pkg.go.dev/github.com/Moby/Moby@v28.5.2+incompatible/api/types/container#CPUUsage) or [cAdvisor](https://pkg.go.dev/github.com/google/cadvisor@v0.56.2/info/v1#CpuUsage), the respective states are retrieved from the cgroup stats directly. In cgroup v1 the user/system modes come from the [cpuacct.stat](https://www.kernel.org/doc/html/latest/admin-guide/cgroup-v1/cpuacct.html#cpu-accounting-controller) file and the `user`/`system` stats respectively. In cgroup v2 the user/system modes come from the [cpu.stat](https://docs.kernel.org/admin-guide/cgroup-v2.html#cpu-interface-files) file and the `user_usec`/`system_usec` stats respectively.
 Kubernetes only exposes the total CPU time ([cpu.stat.usage_usec](https://docs.kernel.org/admin-guide/cgroup-v2.html#cpu-interface-files)) through Kubelet's stats API, hence the metric should be reported without the mode attribute implying it is the total of all modes.
 In pure container environments the CPU's mode is usually available and cpu.mode should be reported. In that case summarising the CPU time over the different modes gives the total CPU time.
+
+**[3]:** See the full list of well-known values below.
 
 ---
 
@@ -115,11 +117,13 @@ This metric is [opt-in][MetricOptIn].
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`cpu.mode`](/docs/registry/attributes/cpu.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Conditionally Required` [1] | string | The CPU mode for this data point. A container's CPU metric SHOULD be characterized _either_ by data points with no `mode` labels, _or only_ data points with `mode` labels. [2] | `user`; `system` |
+| [`cpu.mode`](/docs/registry/attributes/cpu.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Conditionally Required` [1] | string | The CPU mode for this data point. A container's CPU metric SHOULD be characterized _either_ by data points with no `mode` labels, _or only_ data points with `mode` labels. [2] | `user`; `system` [3] |
 
 **[1] `cpu.mode`:** Required if mode is available, i.e. metrics coming from the Docker Stats API, containerd stats or cAdvisor.
 
 **[2] `cpu.mode`:** Following modes SHOULD be used for containers if available: `user`, `system`.
+
+**[3]:** See the full list of well-known values below.
 
 ---
 
@@ -241,7 +245,9 @@ In K8s, this metric is derived from the [MemoryStats.PageFaults](https://pkg.go.
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`system.paging.fault.type`](/docs/registry/attributes/system.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The paging fault type | `minor` |
+| [`system.paging.fault.type`](/docs/registry/attributes/system.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The paging fault type | `minor` [1] |
+
+**[1]:** See the full list of well-known values below.
 
 ---
 
@@ -275,8 +281,10 @@ This metric is [opt-in][MetricOptIn].
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`disk.io.direction`](/docs/registry/attributes/disk.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The disk IO operation direction. | `read` |
+| [`disk.io.direction`](/docs/registry/attributes/disk.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The disk IO operation direction. | `read` [1] |
 | [`system.device`](/docs/registry/attributes/system.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The device identifier | `(identifier)` |
+
+**[1]:** See the full list of well-known values below.
 
 ---
 
@@ -311,7 +319,9 @@ This metric is [opt-in][MetricOptIn].
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`network.interface.name`](/docs/registry/attributes/network.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The network interface name. | `lo`; `eth0` |
-| [`network.io.direction`](/docs/registry/attributes/network.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The direction of traffic from the perspective of the observing host's physical or virtual network interface. It should not be used to represent the logical direction of a stateful connection or network flow. | `transmit` |
+| [`network.io.direction`](/docs/registry/attributes/network.md) | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | `Recommended` | string | The direction of traffic from the perspective of the observing host's physical or virtual network interface. It should not be used to represent the logical direction of a stateful connection or network flow. | `transmit` [1] |
+
+**[1]:** See the full list of well-known values below.
 
 ---
 

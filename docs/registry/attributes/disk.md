@@ -11,7 +11,9 @@ These attributes may be used for any disk related operation.
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="disk-io-direction" href="#disk-io-direction">`disk.io.direction`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The disk IO operation direction. | `read` |
+| <a id="disk-io-direction" href="#disk-io-direction">`disk.io.direction`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The disk IO operation direction. | `read` [1] |
+
+**[1]:** See the full list of well-known values below.
 
 ---
 

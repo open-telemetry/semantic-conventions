@@ -42,7 +42,9 @@ This metric SHOULD be specified with [`ExplicitBucketBoundaries` advisory parame
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`v8js.gc.type`](/docs/registry/attributes/v8js.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The type of garbage collection. | `major`; `minor`; `incremental` |
+| [`v8js.gc.type`](/docs/registry/attributes/v8js.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The type of garbage collection. | `major`; `minor`; `incremental` [1] |
+
+**[1]:** See the full list of well-known values below.
 
 ---
 
@@ -78,9 +80,11 @@ This metric is [recommended][MetricRecommended].
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`v8js.heap.space.name`](/docs/registry/attributes/v8js.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the space type of heap memory. [1] | `new_space`; `old_space`; `code_space` |
+| [`v8js.heap.space.name`](/docs/registry/attributes/v8js.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the space type of heap memory. [1] | `new_space`; `old_space`; `code_space` [2] |
 
 **[1] `v8js.heap.space.name`:** Value can be retrieved from value `space_name` of [`v8.getHeapSpaceStatistics()`](https://nodejs.org/api/v8.html#v8getheapspacestatistics)
+
+**[2]:** See the full list of well-known values below.
 
 ---
 
@@ -117,9 +121,11 @@ This metric is [recommended][MetricRecommended].
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`v8js.heap.space.name`](/docs/registry/attributes/v8js.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the space type of heap memory. [1] | `new_space`; `old_space`; `code_space` |
+| [`v8js.heap.space.name`](/docs/registry/attributes/v8js.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the space type of heap memory. [1] | `new_space`; `old_space`; `code_space` [2] |
 
 **[1] `v8js.heap.space.name`:** Value can be retrieved from value `space_name` of [`v8.getHeapSpaceStatistics()`](https://nodejs.org/api/v8.html#v8getheapspacestatistics)
+
+**[2]:** See the full list of well-known values below.
 
 ---
 
@@ -156,9 +162,11 @@ This metric is [recommended][MetricRecommended].
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`v8js.heap.space.name`](/docs/registry/attributes/v8js.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the space type of heap memory. [1] | `new_space`; `old_space`; `code_space` |
+| [`v8js.heap.space.name`](/docs/registry/attributes/v8js.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the space type of heap memory. [1] | `new_space`; `old_space`; `code_space` [2] |
 
 **[1] `v8js.heap.space.name`:** Value can be retrieved from value `space_name` of [`v8.getHeapSpaceStatistics()`](https://nodejs.org/api/v8.html#v8getheapspacestatistics)
+
+**[2]:** See the full list of well-known values below.
 
 ---
 
@@ -195,9 +203,11 @@ This metric is [recommended][MetricRecommended].
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`v8js.heap.space.name`](/docs/registry/attributes/v8js.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the space type of heap memory. [1] | `new_space`; `old_space`; `code_space` |
+| [`v8js.heap.space.name`](/docs/registry/attributes/v8js.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The name of the space type of heap memory. [1] | `new_space`; `old_space`; `code_space` [2] |
 
 **[1] `v8js.heap.space.name`:** Value can be retrieved from value `space_name` of [`v8.getHeapSpaceStatistics()`](https://nodejs.org/api/v8.html#v8getheapspacestatistics)
+
+**[2]:** See the full list of well-known values below.
 
 ---
 
@@ -234,7 +244,9 @@ This metric is [recommended][MetricRecommended].
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`v8js.resource.type`](/docs/registry/attributes/v8js.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The type of resource keeping the event loop active. | `Immediate`; `TCPServerWrap`; `TCPWrap` |
+| [`v8js.resource.type`](/docs/registry/attributes/v8js.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The type of resource keeping the event loop active. | `Immediate`; `TCPServerWrap`; `TCPWrap` [1] |
+
+**[1]:** See the full list of well-known values below.
 
 ---
 

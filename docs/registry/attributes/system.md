@@ -29,8 +29,12 @@ Describes Filesystem attributes
 | --- | --- | --- | --- | --- |
 | <a id="system-filesystem-mode" href="#system-filesystem-mode">`system.filesystem.mode`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The filesystem mode | `rw, ro` |
 | <a id="system-filesystem-mountpoint" href="#system-filesystem-mountpoint">`system.filesystem.mountpoint`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The filesystem mount path | `/mnt/data` |
-| <a id="system-filesystem-state" href="#system-filesystem-state">`system.filesystem.state`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The filesystem state | `used` |
-| <a id="system-filesystem-type" href="#system-filesystem-type">`system.filesystem.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The filesystem type | `ext4` |
+| <a id="system-filesystem-state" href="#system-filesystem-state">`system.filesystem.state`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The filesystem state | `used` [1] |
+| <a id="system-filesystem-type" href="#system-filesystem-type">`system.filesystem.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The filesystem type | `ext4` [2] |
+
+**[1]:** See the full list of well-known values below.
+
+**[2]:** See the full list of well-known values below.
 
 ---
 
@@ -63,9 +67,15 @@ Describes System Memory attributes
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="system-memory-linux-hugepages-state" href="#system-memory-linux-hugepages-state">`system.memory.linux.hugepages.state`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The Linux HugePages memory state | `free`; `used` |
-| <a id="system-memory-linux-slab-state" href="#system-memory-linux-slab-state">`system.memory.linux.slab.state`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The Linux Slab memory state | `reclaimable`; `unreclaimable` |
-| <a id="system-memory-state" href="#system-memory-state">`system.memory.state`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The memory state | `free`; `cached` |
+| <a id="system-memory-linux-hugepages-state" href="#system-memory-linux-hugepages-state">`system.memory.linux.hugepages.state`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The Linux HugePages memory state | `free`; `used` [3] |
+| <a id="system-memory-linux-slab-state" href="#system-memory-linux-slab-state">`system.memory.linux.slab.state`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The Linux Slab memory state | `reclaimable`; `unreclaimable` [4] |
+| <a id="system-memory-state" href="#system-memory-state">`system.memory.state`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The memory state | `free`; `cached` [5] |
+
+**[3]:** See the full list of well-known values below.
+
+**[4]:** See the full list of well-known values below.
+
+**[5]:** See the full list of well-known values below.
 
 ---
 
@@ -94,9 +104,9 @@ Describes System Memory attributes
 | `buffers` | buffers | ![Development](https://img.shields.io/badge/-development-blue) |
 | `cached` | cached | ![Development](https://img.shields.io/badge/-development-blue) |
 | `free` | free | ![Development](https://img.shields.io/badge/-development-blue) |
-| `used` | Actual used virtual memory in bytes. [1] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `used` | Actual used virtual memory in bytes. [6] | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[1]:** Calculation based on the operating system metrics. On Linux, this corresponds to "MemTotal - MemAvailable" from /proc/meminfo, which more accurately reflects memory in active use by applications compared to older formulas based on free, cached, and buffers. If MemAvailable is not available, a fallback to those older formulas may be used.
+**[6]:** Calculation based on the operating system metrics. On Linux, this corresponds to "MemTotal - MemAvailable" from /proc/meminfo, which more accurately reflects memory in active use by applications compared to older formulas based on free, cached, and buffers. If MemAvailable is not available, a fallback to those older formulas may be used.
 
 ## System Paging Attributes
 
@@ -106,9 +116,15 @@ Describes System Memory Paging attributes
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="system-paging-direction" href="#system-paging-direction">`system.paging.direction`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The paging access direction | `in` |
-| <a id="system-paging-fault-type" href="#system-paging-fault-type">`system.paging.fault.type`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The paging fault type | `minor` |
-| <a id="system-paging-state" href="#system-paging-state">`system.paging.state`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The memory paging state | `free` |
+| <a id="system-paging-direction" href="#system-paging-direction">`system.paging.direction`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The paging access direction | `in` [7] |
+| <a id="system-paging-fault-type" href="#system-paging-fault-type">`system.paging.fault.type`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The paging fault type | `minor` [8] |
+| <a id="system-paging-state" href="#system-paging-state">`system.paging.state`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The memory paging state | `free` [9] |
+
+**[7]:** See the full list of well-known values below.
+
+**[8]:** See the full list of well-known values below.
+
+**[9]:** See the full list of well-known values below.
 
 ---
 
@@ -146,11 +162,21 @@ Deprecated system attributes.
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
 | <a id="system-cpu-logical-number" href="#system-cpu-logical-number">`system.cpu.logical_number`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `cpu.logical_number`. | int | Deprecated, use `cpu.logical_number` instead. | `1` |
-| <a id="system-cpu-state" href="#system-cpu-state">`system.cpu.state`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `cpu.mode`. | string | Deprecated, use `cpu.mode` instead. | `idle`; `interrupt` |
-| <a id="system-network-state" href="#system-network-state">`system.network.state`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `network.connection.state`. | string | Deprecated, use `network.connection.state` instead. | `close_wait` |
-| <a id="system-paging-type" href="#system-paging-type">`system.paging.type`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `system.paging.fault.type`. | string | Deprecated, use `system.paging.fault.type` instead. | `minor` |
-| <a id="system-process-status" href="#system-process-status">`system.process.status`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `process.state`. | string | Deprecated, use `process.state` instead. | `running` |
-| <a id="system-processes-status" href="#system-processes-status">`system.processes.status`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `process.state`. | string | Deprecated, use `process.state` instead. | `running` |
+| <a id="system-cpu-state" href="#system-cpu-state">`system.cpu.state`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `cpu.mode`. | string | Deprecated, use `cpu.mode` instead. | `idle`; `interrupt` [10] |
+| <a id="system-network-state" href="#system-network-state">`system.network.state`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `network.connection.state`. | string | Deprecated, use `network.connection.state` instead. | `close_wait` [11] |
+| <a id="system-paging-type" href="#system-paging-type">`system.paging.type`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `system.paging.fault.type`. | string | Deprecated, use `system.paging.fault.type` instead. | `minor` [12] |
+| <a id="system-process-status" href="#system-process-status">`system.process.status`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `process.state`. | string | Deprecated, use `process.state` instead. | `running` [13] |
+| <a id="system-processes-status" href="#system-processes-status">`system.processes.status`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `process.state`. | string | Deprecated, use `process.state` instead. | `running` [14] |
+
+**[10]:** See the full list of well-known values below.
+
+**[11]:** See the full list of well-known values below.
+
+**[12]:** See the full list of well-known values below.
+
+**[13]:** See the full list of well-known values below.
+
+**[14]:** See the full list of well-known values below.
 
 ---
 

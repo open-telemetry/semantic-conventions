@@ -37,8 +37,8 @@ This metric is [recommended][MetricRecommended].
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`hw.id`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` |
-| [`hw.state`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The current state of the component [1] | `ok`; `degraded`; `failed`; `open` |
-| [`hw.type`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Type of the component [2] | `enclosure` |
+| [`hw.state`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The current state of the component [1] | `ok`; `degraded`; `failed`; `open` [2] |
+| [`hw.type`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Type of the component [3] | `enclosure` [4] |
 | [`hw.bios_version`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | BIOS version of the hardware component | `1.2.3` |
 | [`hw.enclosure.type`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Type of the enclosure (useful for modular systems) | `Computer`; `Storage`; `Switch` |
 | [`hw.model`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Descriptive model name of the hardware component | `PERC H740P`; `Intel(R) Core(TM) i7-10700K`; `Dell XPS 15 Battery` |
@@ -54,7 +54,11 @@ This metric is [recommended][MetricRecommended].
 * `failed`: The enclosure has failed and is not operational.
 * `open`: The enclosure is open.
 
-**[2] `hw.type`:** MUST be set to `enclosure`.
+**[2]:** See the full list of well-known values below.
+
+**[3] `hw.type`:** MUST be set to `enclosure`.
+
+**[4]:** See the full list of well-known values below.
 
 ---
 

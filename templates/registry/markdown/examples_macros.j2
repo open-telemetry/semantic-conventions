@@ -19,7 +19,10 @@
 {%- endmacro -%}
 {% macro print_examples(examples) %}{%- for e in examples %}{%if loop.first == false %}; {% endif %}{{ escape_multiline_markdown_cell(e | trim) }}{%- endfor %}{% endmacro %}
 
-{% macro format(item) %}{% if item.examples or item.type == "enum" or item.type is mapping %}{{formatText(item) | trim }} {% endif %}{% endmacro %}
+{% macro format(item, notes) %}{% if item.examples or item.type == "enum" or item.type is mapping %}{{formatText(item) | trim }}{{ enum_values_note(item, notes) }} {% endif %}{% endmacro %}
+
+{#- Points readers from the (possibly truncated) example values shown here to the full list of well-known values rendered separately below. -#}
+{% macro enum_values_note(item, notes) %}{% if item.type == "enum" or item.type is mapping %}{{ notes.add({"note": "See the full list of well-known values below."}) }}{% endif %}{% endmacro %}
 
 {% macro formatText(item) %}{%- if item.examples %}
 {%- if "[]" in item.type and "template" not in item.type %}

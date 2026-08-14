@@ -13,14 +13,16 @@ This document defines attributes for telemetry SDK.
 | --- | --- | --- | --- | --- |
 | <a id="telemetry-distro-name" href="#telemetry-distro-name">`telemetry.distro.name`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The name of the auto instrumentation agent or distribution, if used. [1] | `parts-unlimited-java` |
 | <a id="telemetry-distro-version" href="#telemetry-distro-version">`telemetry.distro.version`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The version string of the auto instrumentation agent or distribution, if used. | `1.2.3` |
-| <a id="telemetry-sdk-language" href="#telemetry-sdk-language">`telemetry.sdk.language`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The language of the telemetry SDK. | `cpp`; `dotnet`; `erlang` |
-| <a id="telemetry-sdk-name" href="#telemetry-sdk-name">`telemetry.sdk.name`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The name of the telemetry SDK as defined above. [2] | `opentelemetry` |
+| <a id="telemetry-sdk-language" href="#telemetry-sdk-language">`telemetry.sdk.language`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The language of the telemetry SDK. | `cpp`; `dotnet`; `erlang` [2] |
+| <a id="telemetry-sdk-name" href="#telemetry-sdk-name">`telemetry.sdk.name`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The name of the telemetry SDK as defined above. [3] | `opentelemetry` |
 | <a id="telemetry-sdk-version" href="#telemetry-sdk-version">`telemetry.sdk.version`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The version string of the telemetry SDK. | `1.2.3` |
 
 **[1] `telemetry.distro.name`:** Official auto instrumentation agents and distributions SHOULD set the `telemetry.distro.name` attribute to
 a string starting with `opentelemetry-`, e.g. `opentelemetry-java-instrumentation`.
 
-**[2] `telemetry.sdk.name`:** The OpenTelemetry SDK MUST set the `telemetry.sdk.name` attribute to `opentelemetry`.
+**[2]:** See the full list of well-known values below.
+
+**[3] `telemetry.sdk.name`:** The OpenTelemetry SDK MUST set the `telemetry.sdk.name` attribute to `opentelemetry`.
 If another SDK, like a fork or a vendor-provided implementation, is used, this SDK MUST set the
 `telemetry.sdk.name` attribute to the fully-qualified class or module name of this SDK's main entry point
 or another suitable identifier depending on the language.

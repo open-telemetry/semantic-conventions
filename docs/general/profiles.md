@@ -32,7 +32,9 @@ They may be used in any Profiles record they apply to.
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`profile.frame.type`](/docs/registry/attributes/profile.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Describes the interpreter or compiler of a single frame. | `cpython` |
+| [`profile.frame.type`](/docs/registry/attributes/profile.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Describes the interpreter or compiler of a single frame. | `cpython` [1] |
+
+**[1]:** See the full list of well-known values below.
 
 ---
 

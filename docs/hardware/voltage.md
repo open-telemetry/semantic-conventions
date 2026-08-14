@@ -64,10 +64,12 @@ This metric is [recommended][MetricRecommended].
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`hw.id`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` |
-| [`hw.limit_type`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Type of limit for hardware components | `low.critical`; `low.degraded`; `high.degraded`; `high.critical` |
+| [`hw.limit_type`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Type of limit for hardware components | `low.critical`; `low.degraded`; `high.degraded`; `high.critical` [1] |
 | [`hw.name`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | An easily-recognizable name for the hardware component | `eth0` |
 | [`hw.parent`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` |
 | [`hw.sensor_location`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Location of the sensor | `cpu0`; `ps1`; `INLET`; `CPU0_DIE`; `AMBIENT`; `MOTHERBOARD`; `PS0 V3_3`; `MAIN_12V`; `CPU_VCORE` |
+
+**[1]:** See the full list of well-known values below.
 
 ---
 
@@ -135,8 +137,8 @@ This metric is [recommended][MetricRecommended].
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
 | [`hw.id`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | An identifier for the hardware component, unique within the monitored host | `win32battery_battery_testsysa33_1` |
-| [`hw.state`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The current state of the component [1] | `ok`; `degraded`; `failed` |
-| [`hw.type`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Type of the component [2] | `voltage` |
+| [`hw.state`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | The current state of the component [1] | `ok`; `degraded`; `failed` [2] |
+| [`hw.type`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Required` | string | Type of the component [3] | `voltage` [4] |
 | [`hw.name`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | An easily-recognizable name for the hardware component | `eth0` |
 | [`hw.parent`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller) | `dellStorage_perc_0` |
 | [`hw.sensor_location`](/docs/registry/attributes/hardware.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | Location of the sensor | `cpu0`; `ps1`; `INLET`; `CPU0_DIE`; `AMBIENT`; `MOTHERBOARD`; `PS0 V3_3`; `MAIN_12V`; `CPU_VCORE` |
@@ -147,7 +149,11 @@ This metric is [recommended][MetricRecommended].
 * `degraded`: The voltage is outside the normal range but not critical.
 * `failed`: The voltage is at a critical level.
 
-**[2] `hw.type`:** MUST be set to `voltage`.
+**[2]:** See the full list of well-known values below.
+
+**[3] `hw.type`:** MUST be set to `voltage`.
+
+**[4]:** See the full list of well-known values below.
 
 ---
 

@@ -42,22 +42,22 @@ Spans representing calls to a Cassandra database adhere to the general [Semantic
 | [`db.namespace`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If available. | string | The keyspace associated with the session. [3] | `mykeyspace` |
 | [`db.operation.name`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [4] | string | The name of the operation or command being executed. [5] | `findAndModify`; `HMSET`; `SELECT` |
 | [`db.response.status_code`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [6] | string | [Cassandra protocol error code](https://github.com/apache/cassandra/blob/cassandra-5.0/doc/native_protocol_v5.spec) represented as a string. [7] | `102`; `40020` |
-| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the operation failed. | string | Describes a class of error the operation ended with. [8] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` |
-| [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [9] | int | Server port number. [10] | `80`; `8080`; `443` |
-| [`cassandra.consistency.level`](/docs/registry/attributes/cassandra.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The consistency level of the query. Based on consistency values from [CQL](https://docs.datastax.com/en/cassandra-oss/3.0/cassandra/dml/dmlConfigConsistency.html). | `all`; `each_quorum`; `quorum` |
+| [`error.type`](/docs/registry/attributes/error.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` If and only if the operation failed. | string | Describes a class of error the operation ended with. [8] | `timeout`; `java.net.UnknownHostException`; `server_certificate_invalid`; `500` [9] |
+| [`server.port`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Conditionally Required` [10] | int | Server port number. [11] | `80`; `8080`; `443` |
+| [`cassandra.consistency.level`](/docs/registry/attributes/cassandra.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The consistency level of the query. Based on consistency values from [CQL](https://docs.datastax.com/en/cassandra-oss/3.0/cassandra/dml/dmlConfigConsistency.html). | `all`; `each_quorum`; `quorum` [12] |
 | [`cassandra.coordinator.dc`](/docs/registry/attributes/cassandra.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The data center of the coordinating node for a query. | `us-west-2` |
 | [`cassandra.coordinator.id`](/docs/registry/attributes/cassandra.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | string | The ID of the coordinating node for a query. | `be13faa2-8574-4d71-926d-27f16cf8a7af` |
 | [`cassandra.page.size`](/docs/registry/attributes/cassandra.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | int | The fetch size used for paging, i.e. how many rows will be returned at once. | `5000` |
 | [`cassandra.query.idempotent`](/docs/registry/attributes/cassandra.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | boolean | Whether or not the query is idempotent. | |
 | [`cassandra.speculative_execution.count`](/docs/registry/attributes/cassandra.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | int | The number of times a query was speculatively executed. Not set or `0` if the query was not executed speculatively. | `0`; `2` |
-| [`db.operation.batch.size`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | The number of database operations included in a batch operation. [11] | `2`; `3`; `4` |
-| [`db.query.summary`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` [12] | string | Low cardinality summary of a database query. [13] | `SELECT wuser_table`; `INSERT shipping_details SELECT orders`; `get user by id` |
-| [`db.query.text`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` [14] | string | The database query being executed. [15] | `SELECT * FROM wuser_table where username = ?`; `SET mykey ?` |
-| [`db.response.returned_rows`](/docs/registry/attributes/db.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | int | Number of rows returned by the operation. [16] | `10`; `30`; `1000` |
-| [`network.peer.address`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Peer address of the database node where the operation was performed. [17] | `10.1.2.80`; `/tmp/my.sock` |
+| [`db.operation.batch.size`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | int | The number of database operations included in a batch operation. [13] | `2`; `3`; `4` |
+| [`db.query.summary`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` [14] | string | Low cardinality summary of a database query. [15] | `SELECT wuser_table`; `INSERT shipping_details SELECT orders`; `get user by id` |
+| [`db.query.text`](/docs/registry/attributes/db.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` [16] | string | The database query being executed. [17] | `SELECT * FROM wuser_table where username = ?`; `SET mykey ?` |
+| [`db.response.returned_rows`](/docs/registry/attributes/db.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Recommended` | int | Number of rows returned by the operation. [18] | `10`; `30`; `1000` |
+| [`network.peer.address`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Peer address of the database node where the operation was performed. [19] | `10.1.2.80`; `/tmp/my.sock` |
 | [`network.peer.port`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` if and only if `network.peer.address` is set. | int | Peer port number of the network connection. | `65123` |
-| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Name of the database host. [18] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
-| [`db.query.parameter.<key>`](/docs/registry/attributes/db.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | A database query parameter, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value. [19] | `someval`; `55` |
+| [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Name of the database host. [20] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
+| [`db.query.parameter.<key>`](/docs/registry/attributes/db.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | A database query parameter, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value. [21] | `someval`; `55` |
 
 **[1] `db.collection.name`:** If readily available and if a database call is performed on a single collection.
 
@@ -98,11 +98,15 @@ system specific term if more applicable.
 When using canonical exception type name, instrumentation SHOULD do the best effort to report the most relevant type. For example, if the original exception is wrapped into a generic one, the original exception SHOULD be preferred.
 Instrumentations SHOULD document how `error.type` is populated.
 
-**[9] `server.port`:** If using a port other than the default port for this DBMS and if `server.address` is set.
+**[9]:** See the full list of well-known values below.
 
-**[10] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+**[10] `server.port`:** If using a port other than the default port for this DBMS and if `server.address` is set.
 
-**[11] `db.operation.batch.size`:** Except for empty batch requests described below, a batch operation contains two
+**[11] `server.port`:** When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+
+**[12]:** See the full list of well-known values below.
+
+**[13] `db.operation.batch.size`:** Except for empty batch requests described below, a batch operation contains two
 or more database operations explicitly submitted as separate operations in a single
 client call, protocol message, or database command.
 
@@ -125,9 +129,9 @@ It SHOULD NOT be set for non-batch operations.
 A request to execute a batch operation with no operations SHOULD also be treated
 as a batch operation, and `db.operation.batch.size` SHOULD be set to `0`.
 
-**[12] `db.query.summary`:** if available through instrumentation hooks or if the instrumentation supports generating a query summary.
+**[14] `db.query.summary`:** if available through instrumentation hooks or if the instrumentation supports generating a query summary.
 
-**[13] `db.query.summary`:** The query summary describes a class of database queries and is useful
+**[15] `db.query.summary`:** The query summary describes a class of database queries and is useful
 as a grouping key, especially when analyzing telemetry for database
 calls involving complex queries.
 
@@ -143,21 +147,21 @@ then that query summary SHOULD be used prepended by `BATCH `.
 Otherwise, `db.query.summary` SHOULD be `BATCH` or some other database
 system specific term if more applicable.
 
-**[14] `db.query.text`:** Non-parameterized query text SHOULD NOT be collected by default unless there is sanitization that excludes sensitive data, e.g. by redacting all literal values present in the query text. See [Sanitization of `db.query.text`](/docs/db/database-spans.md#sanitization-of-dbquerytext).
+**[16] `db.query.text`:** Non-parameterized query text SHOULD NOT be collected by default unless there is sanitization that excludes sensitive data, e.g. by redacting all literal values present in the query text. See [Sanitization of `db.query.text`](/docs/db/database-spans.md#sanitization-of-dbquerytext).
 Parameterized query text SHOULD be collected by default (the query parameter values themselves are opt-in, see [`db.query.parameter.<key>`](/docs/registry/attributes/db.md)).
 
-**[15] `db.query.text`:** For sanitization see [Sanitization of `db.query.text`](/docs/db/database-spans.md#sanitization-of-dbquerytext).
+**[17] `db.query.text`:** For sanitization see [Sanitization of `db.query.text`](/docs/db/database-spans.md#sanitization-of-dbquerytext).
 For batch operations, if the individual operations would all have the same `db.query.text` when executed as non-batch operations, then that query text SHOULD be used. Otherwise, all of the individual query texts SHOULD be concatenated with separator `; ` or some other database system specific separator if more applicable.
 Parameterized query text SHOULD NOT be sanitized. Even though parameterized query text can potentially have sensitive data, by using a parameterized query the user is giving a strong signal that any sensitive data will be passed as parameter values, and the benefit to observability of capturing the static part of the query text by default outweighs the risk.
 
-**[16] `db.response.returned_rows`:** The number of rows returned by the database operation as observed
+**[18] `db.response.returned_rows`:** The number of rows returned by the database operation as observed
 by the instrumentation at the time the span ends.
 
-**[17] `network.peer.address`:** If a database operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
+**[19] `network.peer.address`:** If a database operation involved multiple network calls (for example retries), the address of the last contacted node SHOULD be used.
 
-**[18] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
+**[20] `server.address`:** When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
 
-**[19] `db.query.parameter.<key>`:** If a query parameter has no name and instead is referenced only by index,
+**[21] `db.query.parameter.<key>`:** If a query parameter has no name and instead is referenced only by index,
 then `<key>` SHOULD be the 0-based index.
 
 `db.query.parameter.<key>` SHOULD match

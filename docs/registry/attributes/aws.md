@@ -80,11 +80,13 @@ This document defines attributes for AWS Elastic Container Service (ECS).
 | --- | --- | --- | --- | --- |
 | <a id="aws-ecs-cluster-arn" href="#aws-ecs-cluster-arn">`aws.ecs.cluster.arn`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The ARN of an [ECS cluster](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/clusters.html). | `arn:aws:ecs:us-west-2:123456789123:cluster/my-cluster` |
 | <a id="aws-ecs-container-arn" href="#aws-ecs-container-arn">`aws.ecs.container.arn`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The Amazon Resource Name (ARN) of an [ECS container instance](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_instances.html). | `arn:aws:ecs:us-west-1:123456789123:container/32624152-9086-4f0e-acae-1a75b14fe4d9` |
-| <a id="aws-ecs-launchtype" href="#aws-ecs-launchtype">`aws.ecs.launchtype`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The [launch type](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/launch_types.html) for an ECS task. | `ec2`; `fargate` |
+| <a id="aws-ecs-launchtype" href="#aws-ecs-launchtype">`aws.ecs.launchtype`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The [launch type](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/launch_types.html) for an ECS task. | `ec2`; `fargate` [1] |
 | <a id="aws-ecs-task-arn" href="#aws-ecs-task-arn">`aws.ecs.task.arn`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The ARN of a running [ECS task](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-account-settings.html#ecs-resource-ids). | `arn:aws:ecs:us-west-1:123456789123:task/10838bed-421f-43ef-870a-f43feacbbb5b`; `arn:aws:ecs:us-west-1:123456789123:task/my-cluster/task-id/23ebb8ac-c18f-46c6-8bbe-d55d0e37cfbd` |
 | <a id="aws-ecs-task-family" href="#aws-ecs-task-family">`aws.ecs.task.family`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The family name of the [ECS task definition](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definitions.html) used to create the ECS task. | `opentelemetry-family` |
 | <a id="aws-ecs-task-id" href="#aws-ecs-task-id">`aws.ecs.task.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The ID of a running ECS task. The ID MUST be extracted from `task.arn`. | `10838bed-421f-43ef-870a-f43feacbbb5b`; `23ebb8ac-c18f-46c6-8bbe-d55d0e37cfbd` |
 | <a id="aws-ecs-task-revision" href="#aws-ecs-task-revision">`aws.ecs.task.revision`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The revision for the task definition used to create the ECS task. | `8`; `26` |
+
+**[1]:** See the full list of well-known values below.
 
 ---
 
@@ -123,10 +125,10 @@ This document defines attributes for AWS Lambda.
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="aws-lambda-invoked-arn" href="#aws-lambda-invoked-arn">`aws.lambda.invoked_arn`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The full invoked ARN as provided on the `Context` passed to the function (`Lambda-Runtime-Invoked-Function-Arn` header on the `/runtime/invocation/next` applicable). [1] | `arn:aws:lambda:us-east-1:123456:function:myfunction:myalias` |
+| <a id="aws-lambda-invoked-arn" href="#aws-lambda-invoked-arn">`aws.lambda.invoked_arn`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The full invoked ARN as provided on the `Context` passed to the function (`Lambda-Runtime-Invoked-Function-Arn` header on the `/runtime/invocation/next` applicable). [2] | `arn:aws:lambda:us-east-1:123456:function:myfunction:myalias` |
 | <a id="aws-lambda-resource-mapping-id" href="#aws-lambda-resource-mapping-id">`aws.lambda.resource_mapping.id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The UUID of the [AWS Lambda EvenSource Mapping](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-eventsourcemapping.html). An event source is mapped to a lambda function. It's contents are read by Lambda and used to trigger a function. This isn't available in the lambda execution context or the lambda runtime environment. This is going to be populated by the AWS SDK for each language when that UUID is present. Some of these operations are Create/Delete/Get/List/Update EventSourceMapping. | `587ad24b-03b9-4413-8202-bbd56b36e5b7` |
 
-**[1] `aws.lambda.invoked_arn`:** This may be different from `cloud.resource_id` if an alias is involved.
+**[2] `aws.lambda.invoked_arn`:** This may be different from `cloud.resource_id` if an alias is involved.
 
 ## Amazon Logs Attributes
 
@@ -136,16 +138,16 @@ This document defines attributes for AWS Logs.
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="aws-log-group-arns" href="#aws-log-group-arns">`aws.log.group.arns`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string[] | The Amazon Resource Name(s) (ARN) of the AWS log group(s). [2] | `["arn:aws:logs:us-west-1:123456789012:log-group:/aws/my/group:*"]` |
-| <a id="aws-log-group-names" href="#aws-log-group-names">`aws.log.group.names`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string[] | The name(s) of the AWS log group(s) an application is writing to. [3] | `["/aws/lambda/my-function", "opentelemetry-service"]` |
-| <a id="aws-log-stream-arns" href="#aws-log-stream-arns">`aws.log.stream.arns`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string[] | The ARN(s) of the AWS log stream(s). [4] | `["arn:aws:logs:us-west-1:123456789012:log-group:/aws/my/group:log-stream:logs/main/10838bed-421f-43ef-870a-f43feacbbb5b"]` |
+| <a id="aws-log-group-arns" href="#aws-log-group-arns">`aws.log.group.arns`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string[] | The Amazon Resource Name(s) (ARN) of the AWS log group(s). [3] | `["arn:aws:logs:us-west-1:123456789012:log-group:/aws/my/group:*"]` |
+| <a id="aws-log-group-names" href="#aws-log-group-names">`aws.log.group.names`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string[] | The name(s) of the AWS log group(s) an application is writing to. [4] | `["/aws/lambda/my-function", "opentelemetry-service"]` |
+| <a id="aws-log-stream-arns" href="#aws-log-stream-arns">`aws.log.stream.arns`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string[] | The ARN(s) of the AWS log stream(s). [5] | `["arn:aws:logs:us-west-1:123456789012:log-group:/aws/my/group:log-stream:logs/main/10838bed-421f-43ef-870a-f43feacbbb5b"]` |
 | <a id="aws-log-stream-names" href="#aws-log-stream-names">`aws.log.stream.names`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string[] | The name(s) of the AWS log stream(s) an application is writing to. | `["logs/main/10838bed-421f-43ef-870a-f43feacbbb5b"]` |
 
-**[2] `aws.log.group.arns`:** See the [log group ARN format documentation](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/iam-access-control-overview-cwl.html#CWL_ARN_Format).
+**[3] `aws.log.group.arns`:** See the [log group ARN format documentation](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/iam-access-control-overview-cwl.html#CWL_ARN_Format).
 
-**[3] `aws.log.group.names`:** Multiple log groups must be supported for cases like multi-container applications, where a single application has sidecar containers, and each write to their own log group.
+**[4] `aws.log.group.names`:** Multiple log groups must be supported for cases like multi-container applications, where a single application has sidecar containers, and each write to their own log group.
 
-**[4] `aws.log.stream.arns`:** See the [log stream ARN format documentation](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/iam-access-control-overview-cwl.html#CWL_ARN_Format). One log group can contain several log streams, so these ARNs necessarily identify both a log group and a log stream.
+**[5] `aws.log.stream.arns`:** See the [log stream ARN format documentation](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/iam-access-control-overview-cwl.html#CWL_ARN_Format). One log group can contain several log streams, so these ARNs necessarily identify both a log group and a log stream.
 
 ## Amazon S3 Attributes
 
@@ -155,28 +157,28 @@ This document defines attributes for AWS S3.
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="aws-s3-bucket" href="#aws-s3-bucket">`aws.s3.bucket`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The S3 bucket name the request refers to. Corresponds to the `--bucket` parameter of the [S3 API](https://docs.aws.amazon.com/cli/latest/reference/s3api/index.html) operations. [5] | `some-bucket-name` |
-| <a id="aws-s3-copy-source" href="#aws-s3-copy-source">`aws.s3.copy_source`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The source object (in the form `bucket`/`key`) for the copy operation. [6] | `someFile.yml` |
-| <a id="aws-s3-delete" href="#aws-s3-delete">`aws.s3.delete`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The delete request container that specifies the objects to be deleted. [7] | `Objects=[{Key=string,VersionId=string},{Key=string,VersionId=string}],Quiet=boolean` |
-| <a id="aws-s3-key" href="#aws-s3-key">`aws.s3.key`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The S3 object key the request refers to. Corresponds to the `--key` parameter of the [S3 API](https://docs.aws.amazon.com/cli/latest/reference/s3api/index.html) operations. [8] | `someFile.yml` |
-| <a id="aws-s3-part-number" href="#aws-s3-part-number">`aws.s3.part_number`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The part number of the part being uploaded in a multipart-upload operation. This is a positive integer between 1 and 10,000. [9] | `3456` |
-| <a id="aws-s3-upload-id" href="#aws-s3-upload-id">`aws.s3.upload_id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Upload ID that identifies the multipart upload. [10] | `dfRtDYWFbkRONycy.Yxwh66Yjlx.cph0gtNBtJ` |
+| <a id="aws-s3-bucket" href="#aws-s3-bucket">`aws.s3.bucket`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The S3 bucket name the request refers to. Corresponds to the `--bucket` parameter of the [S3 API](https://docs.aws.amazon.com/cli/latest/reference/s3api/index.html) operations. [6] | `some-bucket-name` |
+| <a id="aws-s3-copy-source" href="#aws-s3-copy-source">`aws.s3.copy_source`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The source object (in the form `bucket`/`key`) for the copy operation. [7] | `someFile.yml` |
+| <a id="aws-s3-delete" href="#aws-s3-delete">`aws.s3.delete`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The delete request container that specifies the objects to be deleted. [8] | `Objects=[{Key=string,VersionId=string},{Key=string,VersionId=string}],Quiet=boolean` |
+| <a id="aws-s3-key" href="#aws-s3-key">`aws.s3.key`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The S3 object key the request refers to. Corresponds to the `--key` parameter of the [S3 API](https://docs.aws.amazon.com/cli/latest/reference/s3api/index.html) operations. [9] | `someFile.yml` |
+| <a id="aws-s3-part-number" href="#aws-s3-part-number">`aws.s3.part_number`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The part number of the part being uploaded in a multipart-upload operation. This is a positive integer between 1 and 10,000. [10] | `3456` |
+| <a id="aws-s3-upload-id" href="#aws-s3-upload-id">`aws.s3.upload_id`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Upload ID that identifies the multipart upload. [11] | `dfRtDYWFbkRONycy.Yxwh66Yjlx.cph0gtNBtJ` |
 
-**[5] `aws.s3.bucket`:** The `bucket` attribute is applicable to all S3 operations that reference a bucket, i.e. that require the bucket name as a mandatory parameter.
+**[6] `aws.s3.bucket`:** The `bucket` attribute is applicable to all S3 operations that reference a bucket, i.e. that require the bucket name as a mandatory parameter.
 This applies to almost all S3 operations except `list-buckets`.
 
-**[6] `aws.s3.copy_source`:** The `copy_source` attribute applies to S3 copy operations and corresponds to the `--copy-source` parameter
+**[7] `aws.s3.copy_source`:** The `copy_source` attribute applies to S3 copy operations and corresponds to the `--copy-source` parameter
 of the [copy-object operation within the S3 API](https://docs.aws.amazon.com/cli/latest/reference/s3api/copy-object.html).
 This applies in particular to the following operations:
 
 - [copy-object](https://docs.aws.amazon.com/cli/latest/reference/s3api/copy-object.html)
 - [upload-part-copy](https://docs.aws.amazon.com/cli/latest/reference/s3api/upload-part-copy.html)
 
-**[7] `aws.s3.delete`:** The `delete` attribute is only applicable to the [delete-object](https://docs.aws.amazon.com/cli/latest/reference/s3api/delete-object.html) operation.
+**[8] `aws.s3.delete`:** The `delete` attribute is only applicable to the [delete-object](https://docs.aws.amazon.com/cli/latest/reference/s3api/delete-object.html) operation.
 The `delete` attribute corresponds to the `--delete` parameter of the
 [delete-objects operation within the S3 API](https://docs.aws.amazon.com/cli/latest/reference/s3api/delete-objects.html).
 
-**[8] `aws.s3.key`:** The `key` attribute is applicable to all object-related S3 operations, i.e. that require the object key as a mandatory parameter.
+**[9] `aws.s3.key`:** The `key` attribute is applicable to all object-related S3 operations, i.e. that require the object key as a mandatory parameter.
 This applies in particular to the following operations:
 
 - [copy-object](https://docs.aws.amazon.com/cli/latest/reference/s3api/copy-object.html)
@@ -193,12 +195,12 @@ This applies in particular to the following operations:
 - [upload-part](https://docs.aws.amazon.com/cli/latest/reference/s3api/upload-part.html)
 - [upload-part-copy](https://docs.aws.amazon.com/cli/latest/reference/s3api/upload-part-copy.html)
 
-**[9] `aws.s3.part_number`:** The `part_number` attribute is only applicable to the [upload-part](https://docs.aws.amazon.com/cli/latest/reference/s3api/upload-part.html)
+**[10] `aws.s3.part_number`:** The `part_number` attribute is only applicable to the [upload-part](https://docs.aws.amazon.com/cli/latest/reference/s3api/upload-part.html)
 and [upload-part-copy](https://docs.aws.amazon.com/cli/latest/reference/s3api/upload-part-copy.html) operations.
 The `part_number` attribute corresponds to the `--part-number` parameter of the
 [upload-part operation within the S3 API](https://docs.aws.amazon.com/cli/latest/reference/s3api/upload-part.html).
 
-**[10] `aws.s3.upload_id`:** The `upload_id` attribute applies to S3 multipart-upload operations and corresponds to the `--upload-id` parameter
+**[11] `aws.s3.upload_id`:** The `upload_id` attribute applies to S3 multipart-upload operations and corresponds to the `--upload-id` parameter
 of the [S3 API](https://docs.aws.amazon.com/cli/latest/reference/s3api/index.html) multipart operations.
 This applies in particular to the following operations:
 

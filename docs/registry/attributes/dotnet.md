@@ -11,7 +11,9 @@ This document defines .NET related attributes.
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="dotnet-gc-heap-generation" href="#dotnet-gc-heap-generation">`dotnet.gc.heap.generation`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | Name of the garbage collector managed heap generation. | `gen0`; `gen1`; `gen2` |
+| <a id="dotnet-gc-heap-generation" href="#dotnet-gc-heap-generation">`dotnet.gc.heap.generation`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | Name of the garbage collector managed heap generation. | `gen0`; `gen1`; `gen2` [1] |
+
+**[1]:** See the full list of well-known values below.
 
 ---
 

@@ -12,13 +12,15 @@ Note: Geo attributes are typically used under another namespace, such as client.
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="geo-continent-code" href="#geo-continent-code">`geo.continent.code`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Two-letter code representing continent’s name. | `AF`; `AN`; `AS` |
+| <a id="geo-continent-code" href="#geo-continent-code">`geo.continent.code`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Two-letter code representing continent’s name. | `AF`; `AN`; `AS` [1] |
 | <a id="geo-country-iso-code" href="#geo-country-iso-code">`geo.country.iso_code`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Two-letter ISO Country Code ([ISO 3166-1 alpha2](https://wikipedia.org/wiki/ISO_3166-1#Codes)). | `CA` |
 | <a id="geo-locality-name" href="#geo-locality-name">`geo.locality.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Locality name. Represents the name of a city, town, village, or similar populated place. | `Montreal`; `Berlin` |
 | <a id="geo-location-lat" href="#geo-location-lat">`geo.location.lat`</a> | ![Development](https://img.shields.io/badge/-development-blue) | double | Latitude of the geo location in [WGS84](https://wikipedia.org/wiki/World_Geodetic_System#WGS84). | `45.505918` |
 | <a id="geo-location-lon" href="#geo-location-lon">`geo.location.lon`</a> | ![Development](https://img.shields.io/badge/-development-blue) | double | Longitude of the geo location in [WGS84](https://wikipedia.org/wiki/World_Geodetic_System#WGS84). | `-73.61483` |
 | <a id="geo-postal-code" href="#geo-postal-code">`geo.postal_code`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Postal code associated with the location. Values appropriate for this field may also be known as a postcode or ZIP code and will vary widely from country to country. | `94040` |
 | <a id="geo-region-iso-code" href="#geo-region-iso-code">`geo.region.iso_code`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | Region ISO code ([ISO 3166-2](https://wikipedia.org/wiki/ISO_3166-2)). | `CA-QC` |
+
+**[1]:** See the full list of well-known values below.
 
 ---
 

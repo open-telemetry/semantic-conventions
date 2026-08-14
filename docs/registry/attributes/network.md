@@ -18,33 +18,45 @@ These attributes may be used for any network related operation.
 | <a id="network-carrier-mcc" href="#network-carrier-mcc">`network.carrier.mcc`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The mobile carrier country code. | `310` |
 | <a id="network-carrier-mnc" href="#network-carrier-mnc">`network.carrier.mnc`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The mobile carrier network code. | `001` |
 | <a id="network-carrier-name" href="#network-carrier-name">`network.carrier.name`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The name of the mobile carrier. | `sprint` |
-| <a id="network-connection-state" href="#network-connection-state">`network.connection.state`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The state of network connection [1] | `close_wait` |
-| <a id="network-connection-subtype" href="#network-connection-subtype">`network.connection.subtype`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | This describes more details regarding the connection.type. It may be the type of cell technology connection, but it could be used for describing details about a Wi-Fi connection. | `LTE` |
-| <a id="network-connection-type" href="#network-connection-type">`network.connection.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The internet connection type. | `wifi` |
+| <a id="network-connection-state" href="#network-connection-state">`network.connection.state`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The state of network connection [1] | `close_wait` [2] |
+| <a id="network-connection-subtype" href="#network-connection-subtype">`network.connection.subtype`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | This describes more details regarding the connection.type. It may be the type of cell technology connection, but it could be used for describing details about a Wi-Fi connection. | `LTE` [3] |
+| <a id="network-connection-type" href="#network-connection-type">`network.connection.type`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The internet connection type. | `wifi` [4] |
 | <a id="network-interface-name" href="#network-interface-name">`network.interface.name`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The network interface name. | `lo`; `eth0` |
-| <a id="network-io-direction" href="#network-io-direction">`network.io.direction`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The direction of traffic from the perspective of the observing host's physical or virtual network interface. It should not be used to represent the logical direction of a stateful connection or network flow. | `transmit` |
+| <a id="network-io-direction" href="#network-io-direction">`network.io.direction`</a> | ![Release Candidate](https://img.shields.io/badge/-rc-mediumorchid) | string | The direction of traffic from the perspective of the observing host's physical or virtual network interface. It should not be used to represent the logical direction of a stateful connection or network flow. | `transmit` [5] |
 | <a id="network-local-address" href="#network-local-address">`network.local.address`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | Local address of the network connection - IP address or UNIX domain socket name. | `10.1.2.80`; `/tmp/my.sock` |
 | <a id="network-local-port" href="#network-local-port">`network.local.port`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | int | Local port number of the network connection. | `65123` |
 | <a id="network-peer-address" href="#network-peer-address">`network.peer.address`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | Peer address of the network connection - IP address or UNIX domain socket name. | `10.1.2.80`; `/tmp/my.sock` |
 | <a id="network-peer-port" href="#network-peer-port">`network.peer.port`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | int | Peer port number of the network connection. | `65123` |
-| <a id="network-protocol-name" href="#network-protocol-name">`network.protocol.name`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | [OSI application layer](https://wikipedia.org/wiki/Application_layer) or non-OSI equivalent. [2] | `amqp`; `http`; `mqtt` |
-| <a id="network-protocol-version" href="#network-protocol-version">`network.protocol.version`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The actual version of the protocol used for network communication. [3] | `1.1`; `2` |
-| <a id="network-transport" href="#network-transport">`network.transport`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [4] | `tcp`; `udp` |
-| <a id="network-type" href="#network-type">`network.type`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | [OSI network layer](https://wikipedia.org/wiki/Network_layer) or non-OSI equivalent. [5] | `ipv4`; `ipv6` |
+| <a id="network-protocol-name" href="#network-protocol-name">`network.protocol.name`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | [OSI application layer](https://wikipedia.org/wiki/Application_layer) or non-OSI equivalent. [6] | `amqp`; `http`; `mqtt` |
+| <a id="network-protocol-version" href="#network-protocol-version">`network.protocol.version`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The actual version of the protocol used for network communication. [7] | `1.1`; `2` |
+| <a id="network-transport" href="#network-transport">`network.transport`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [8] | `tcp`; `udp` [9] |
+| <a id="network-type" href="#network-type">`network.type`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | [OSI network layer](https://wikipedia.org/wiki/Network_layer) or non-OSI equivalent. [10] | `ipv4`; `ipv6` [11] |
 
 **[1] `network.connection.state`:** Connection states are defined as part of the [rfc9293](https://datatracker.ietf.org/doc/html/rfc9293#section-3.3.2)
 
-**[2] `network.protocol.name`:** The value SHOULD be normalized to lowercase.
+**[2]:** See the full list of well-known values below.
 
-**[3] `network.protocol.version`:** If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set.
+**[3]:** See the full list of well-known values below.
 
-**[4] `network.transport`:** The value SHOULD be normalized to lowercase.
+**[4]:** See the full list of well-known values below.
+
+**[5]:** See the full list of well-known values below.
+
+**[6] `network.protocol.name`:** The value SHOULD be normalized to lowercase.
+
+**[7] `network.protocol.version`:** If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set.
+
+**[8] `network.transport`:** The value SHOULD be normalized to lowercase.
 
 Consider always setting the transport when setting a port number, since
 a port number is ambiguous without knowing the transport. For example
 different processes could be listening on TCP port 12345 and UDP port 12345.
 
-**[5] `network.type`:** The value SHOULD be normalized to lowercase.
+**[9]:** See the full list of well-known values below.
+
+**[10] `network.type`:** The value SHOULD be normalized to lowercase.
+
+**[11]:** See the full list of well-known values below.
 
 ---
 
@@ -150,13 +162,17 @@ These attributes may be used for any network related operation.
 | <a id="net-peer-port" href="#net-peer-port">`net.peer.port`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `server.port` on client spans and `client.port` on server spans. | int | Deprecated, use `server.port` on client spans and `client.port` on server spans. | `8080` |
 | <a id="net-protocol-name" href="#net-protocol-name">`net.protocol.name`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `network.protocol.name`. | string | Deprecated, use `network.protocol.name`. | `amqp`; `http`; `mqtt` |
 | <a id="net-protocol-version" href="#net-protocol-version">`net.protocol.version`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `network.protocol.version`. | string | Deprecated, use `network.protocol.version`. | `3.1.1` |
-| <a id="net-sock-family" href="#net-sock-family">`net.sock.family`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Split to `network.transport` and `network.type`. | string | Deprecated, use `network.transport` and `network.type`. | `inet`; `inet6`; `unix` |
+| <a id="net-sock-family" href="#net-sock-family">`net.sock.family`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Split to `network.transport` and `network.type`. | string | Deprecated, use `network.transport` and `network.type`. | `inet`; `inet6`; `unix` [12] |
 | <a id="net-sock-host-addr" href="#net-sock-host-addr">`net.sock.host.addr`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `network.local.address`. | string | Deprecated, use `network.local.address`. | `/var/my.sock` |
 | <a id="net-sock-host-port" href="#net-sock-host-port">`net.sock.host.port`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `network.local.port`. | int | Deprecated, use `network.local.port`. | `8080` |
 | <a id="net-sock-peer-addr" href="#net-sock-peer-addr">`net.sock.peer.addr`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `network.peer.address`. | string | Deprecated, use `network.peer.address`. | `192.168.0.1` |
 | <a id="net-sock-peer-name" href="#net-sock-peer-name">`net.sock.peer.name`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Removed. No replacement at this time. | string | Deprecated, no replacement at this time. | `/var/my.sock` |
 | <a id="net-sock-peer-port" href="#net-sock-peer-port">`net.sock.peer.port`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `network.peer.port`. | int | Deprecated, use `network.peer.port`. | `65531` |
-| <a id="net-transport" href="#net-transport">`net.transport`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `network.transport`. | string | Deprecated, use `network.transport`. | `ip_tcp`; `ip_udp`; `pipe` |
+| <a id="net-transport" href="#net-transport">`net.transport`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `network.transport`. | string | Deprecated, use `network.transport`. | `ip_tcp`; `ip_udp`; `pipe` [13] |
+
+**[12]:** See the full list of well-known values below.
+
+**[13]:** See the full list of well-known values below.
 
 ---
 
@@ -174,10 +190,10 @@ These attributes may be used for any network related operation.
 
 | Value | Description | Stability |
 | --- | --- | --- |
-| `inproc` | In-process communication. [6] | ![Development](https://img.shields.io/badge/-development-blue) |
+| `inproc` | In-process communication. [14] | ![Development](https://img.shields.io/badge/-development-blue) |
 | `ip_tcp` | ip_tcp | ![Development](https://img.shields.io/badge/-development-blue) |
 | `ip_udp` | ip_udp | ![Development](https://img.shields.io/badge/-development-blue) |
 | `other` | Something else (non IP-based). | ![Development](https://img.shields.io/badge/-development-blue) |
 | `pipe` | Named or anonymous pipe. | ![Development](https://img.shields.io/badge/-development-blue) |
 
-**[6]:** Signals that there is only in-process communication not using a "real" network protocol in cases where network attributes would normally be expected. Usually all other network attributes can be left out in that case.
+**[14]:** Signals that there is only in-process communication not using a "real" network protocol in cases where network attributes would normally be expected. Usually all other network attributes can be left out in that case.

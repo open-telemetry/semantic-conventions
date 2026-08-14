@@ -43,12 +43,16 @@ The `android.app.state` and `ios.app.state` fields are mutually exclusive and MU
 
 | Key | Stability | [Requirement Level](https://opentelemetry.io/docs/specs/semconv/general/attribute-requirement-level/) | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- | --- |
-| [`android.app.state`](/docs/registry/attributes/android.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` if and only if `os.name` is `android` | string | This attribute represents the state of the application. [1] | `created` |
-| [`ios.app.state`](/docs/registry/attributes/ios.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` if and only if `os.name` is `ios` | string | This attribute represents the state of the application. [2] | `active`; `inactive`; `background` |
+| [`android.app.state`](/docs/registry/attributes/android.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` if and only if `os.name` is `android` | string | This attribute represents the state of the application. [1] | `created` [2] |
+| [`ios.app.state`](/docs/registry/attributes/ios.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Conditionally Required` if and only if `os.name` is `ios` | string | This attribute represents the state of the application. [3] | `active`; `inactive`; `background` [4] |
 
 **[1] `android.app.state`:** The Android lifecycle states are defined in [Activity lifecycle callbacks](https://developer.android.com/guide/components/activities/activity-lifecycle#lifecycle-callbacks), and from which the `OS identifiers` are derived.
 
-**[2] `ios.app.state`:** The iOS lifecycle states are defined in the [UIApplicationDelegate documentation](https://developer.apple.com/documentation/uikit/uiapplicationdelegate), and from which the `OS terminology` column values are derived.
+**[2]:** See the full list of well-known values below.
+
+**[3] `ios.app.state`:** The iOS lifecycle states are defined in the [UIApplicationDelegate documentation](https://developer.apple.com/documentation/uikit/uiapplicationdelegate), and from which the `OS terminology` column values are derived.
+
+**[4]:** See the full list of well-known values below.
 
 ---
 

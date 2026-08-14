@@ -15,7 +15,9 @@ This document defines log attributes
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="log-iostream" href="#log-iostream">`log.iostream`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The stream associated with the log. See below for a list of well-known values. | `stdout`; `stderr` |
+| <a id="log-iostream" href="#log-iostream">`log.iostream`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The stream associated with the log. See below for a list of well-known values. | `stdout`; `stderr` [1] |
+
+**[1]:** See the full list of well-known values below.
 
 ---
 
@@ -47,10 +49,10 @@ This document defines the generic attributes that may be used in any Log Record.
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="log-record-original" href="#log-record-original">`log.record.original`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The complete original Log Record. [1] | `77 <86>1 2015-08-06T21:58:59.694Z 192.168.2.133 inactive - - - Something happened`; `[INFO] 8/3/24 12:34:56 Something happened` |
-| <a id="log-record-uid" href="#log-record-uid">`log.record.uid`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | A unique identifier for the Log Record. [2] | `01ARZ3NDEKTSV4RRFFQ69G5FAV` |
+| <a id="log-record-original" href="#log-record-original">`log.record.original`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | The complete original Log Record. [2] | `77 <86>1 2015-08-06T21:58:59.694Z 192.168.2.133 inactive - - - Something happened`; `[INFO] 8/3/24 12:34:56 Something happened` |
+| <a id="log-record-uid" href="#log-record-uid">`log.record.uid`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | A unique identifier for the Log Record. [3] | `01ARZ3NDEKTSV4RRFFQ69G5FAV` |
 
-**[1] `log.record.original`:** This value MAY be added when processing a Log Record which was originally transmitted as a string or equivalent data type AND the Body field of the Log Record does not contain the same value. (e.g. a syslog or a log record read from a file.)
+**[2] `log.record.original`:** This value MAY be added when processing a Log Record which was originally transmitted as a string or equivalent data type AND the Body field of the Log Record does not contain the same value. (e.g. a syslog or a log record read from a file.)
 
-**[2] `log.record.uid`:** If an ID is provided, other log records with the same ID will be considered duplicates and can be removed safely. This means, that two distinguishable log records MUST have different values.
+**[3] `log.record.uid`:** If an ID is provided, other log records with the same ID will be considered duplicates and can be removed safely. This means, that two distinguishable log records MUST have different values.
 The ID MAY be an [Universally Unique Lexicographically Sortable Identifier (ULID)](https://github.com/ulid/spec), but other identifiers (e.g. UUID) may be used as needed.

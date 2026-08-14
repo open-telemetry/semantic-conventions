@@ -14,20 +14,22 @@ This document defines semantic convention attributes in the HTTP namespace.
 
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
-| <a id="http-connection-state" href="#http-connection-state">`http.connection.state`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | State of the HTTP connection in the HTTP connection pool. | `active`; `idle` |
+| <a id="http-connection-state" href="#http-connection-state">`http.connection.state`</a> | ![Development](https://img.shields.io/badge/-development-blue) | string | State of the HTTP connection in the HTTP connection pool. | `active`; `idle` [1] |
 | <a id="http-request-body-size" href="#http-request-body-size">`http.request.body.size`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The size of the request payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size. | `3495` |
-| <a id="http-request-header" href="#http-request-header">`http.request.header.<key>`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string[] | HTTP request headers, `<key>` being the normalized HTTP Header name (lowercase), the value being the header values. [1] | `["application/json"]`; `["1.2.3.4", "1.2.3.5"]` |
-| <a id="http-request-method" href="#http-request-method">`http.request.method`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | HTTP request method. [2] | `GET`; `POST`; `HEAD` |
+| <a id="http-request-header" href="#http-request-header">`http.request.header.<key>`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string[] | HTTP request headers, `<key>` being the normalized HTTP Header name (lowercase), the value being the header values. [2] | `["application/json"]`; `["1.2.3.4", "1.2.3.5"]` |
+| <a id="http-request-method" href="#http-request-method">`http.request.method`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | HTTP request method. [3] | `GET`; `POST`; `HEAD` [4] |
 | <a id="http-request-method-original" href="#http-request-method-original">`http.request.method_original`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | Original HTTP method sent by the client in the request line. | `GeT`; `ACL`; `foo` |
-| <a id="http-request-resend-count" href="#http-request-resend-count">`http.request.resend_count`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | int | The ordinal number of request resending attempt (for any reason, including redirects). [3] | `3` |
+| <a id="http-request-resend-count" href="#http-request-resend-count">`http.request.resend_count`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | int | The ordinal number of request resending attempt (for any reason, including redirects). [5] | `3` |
 | <a id="http-request-size" href="#http-request-size">`http.request.size`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The total size of the request in bytes. This should be the total number of bytes sent over the wire, including the request line (HTTP/1.1), framing (HTTP/2 and HTTP/3), headers, and request body if any. | `1437` |
 | <a id="http-response-body-size" href="#http-response-body-size">`http.response.body.size`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The size of the response payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size. | `3495` |
-| <a id="http-response-header" href="#http-response-header">`http.response.header.<key>`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string[] | HTTP response headers, `<key>` being the normalized HTTP Header name (lowercase), the value being the header values. [4] | `["application/json"]`; `["abc", "def"]` |
+| <a id="http-response-header" href="#http-response-header">`http.response.header.<key>`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string[] | HTTP response headers, `<key>` being the normalized HTTP Header name (lowercase), the value being the header values. [6] | `["application/json"]`; `["abc", "def"]` |
 | <a id="http-response-size" href="#http-response-size">`http.response.size`</a> | ![Development](https://img.shields.io/badge/-development-blue) | int | The total size of the response in bytes. This should be the total number of bytes sent over the wire, including the status line (HTTP/1.1), framing (HTTP/2 and HTTP/3), headers, and response body and trailers if any. | `1437` |
 | <a id="http-response-status-code" href="#http-response-status-code">`http.response.status_code`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | int | [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6). | `200` |
-| <a id="http-route" href="#http-route">`http.route`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The matched route template for the request. This MUST be low-cardinality and include all static path segments, with dynamic path segments represented with placeholders. [5] | `/users/:userID?`; `my-controller/my-action/{id?}` |
+| <a id="http-route" href="#http-route">`http.route`</a> | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | string | The matched route template for the request. This MUST be low-cardinality and include all static path segments, with dynamic path segments represented with placeholders. [7] | `/users/:userID?`; `my-controller/my-action/{id?}` |
 
-**[1] `http.request.header.<key>`:** Instrumentations SHOULD require an explicit configuration of which headers are to be captured.
+**[1]:** See the full list of well-known values below.
+
+**[2] `http.request.header.<key>`:** Instrumentations SHOULD require an explicit configuration of which headers are to be captured.
 Including all request headers can be a security risk - explicit configuration helps avoid leaking sensitive information.
 
 The `User-Agent` header is already captured in the `user_agent.original` attribute.
@@ -44,7 +46,7 @@ Examples:
 - A header `X-Forwarded-For: 1.2.3.4, 1.2.3.5` SHOULD be recorded as the `http.request.header.x-forwarded-for`
   attribute with value `["1.2.3.4", "1.2.3.5"]` or `["1.2.3.4, 1.2.3.5"]` depending on the HTTP library.
 
-**[2] `http.request.method`:** HTTP request method value SHOULD be "known" to the instrumentation.
+**[3] `http.request.method`:** HTTP request method value SHOULD be "known" to the instrumentation.
 By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods),
 the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html)
 and the QUERY method defined in [httpbis-safe-method-w-body](https://datatracker.ietf.org/doc/draft-ietf-httpbis-safe-method-w-body/?include_text=1).
@@ -67,9 +69,11 @@ HTTP method names are case-sensitive and `http.request.method` attribute value M
 Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, SHOULD populate a canonical equivalent.
 Tracing instrumentations that do so, MUST also set `http.request.method_original` to the original value.
 
-**[3] `http.request.resend_count`:** The resend count SHOULD be updated each time an HTTP request gets resent by the client, regardless of what was the cause of the resending (e.g. redirection, authorization failure, 503 Server Unavailable, network issues, or any other).
+**[4]:** See the full list of well-known values below.
 
-**[4] `http.response.header.<key>`:** Instrumentations SHOULD require an explicit configuration of which headers are to be captured.
+**[5] `http.request.resend_count`:** The resend count SHOULD be updated each time an HTTP request gets resent by the client, regardless of what was the cause of the resending (e.g. redirection, authorization failure, 503 Server Unavailable, network issues, or any other).
+
+**[6] `http.response.header.<key>`:** Instrumentations SHOULD require an explicit configuration of which headers are to be captured.
 Including all response headers can be a security risk - explicit configuration helps avoid leaking sensitive information.
 
 Users MAY explicitly configure instrumentations to capture them even though it is not recommended.
@@ -85,7 +89,7 @@ Examples:
 - A header `My-custom-header: abc, def` header SHOULD be recorded as the `http.response.header.my-custom-header`
   attribute with value `["abc", "def"]` or `["abc, def"]` depending on the HTTP library.
 
-**[5] `http.route`:** MUST NOT be populated when this is not supported by the HTTP server framework as the route attribute should have low-cardinality and the URI path can NOT substitute it.
+**[7] `http.route`:** MUST NOT be populated when this is not supported by the HTTP server framework as the route attribute should have low-cardinality and the URI path can NOT substitute it.
 SHOULD include the [application root](/docs/http/http-spans.md#http-server-definitions) if there is one.
 
 A static path segment is a part of the route template with a fixed, low-cardinality value. This includes literal strings like `/users/` and placeholders that
@@ -132,7 +136,7 @@ Describes deprecated HTTP attributes.
 | Key | Stability | Value Type | Description | Example Values |
 | --- | --- | --- | --- | --- |
 | <a id="http-client-ip" href="#http-client-ip">`http.client_ip`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `client.address`. | string | Deprecated, use `client.address` instead. | `83.164.160.102` |
-| <a id="http-flavor" href="#http-flavor">`http.flavor`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Split into `network.protocol.name` and `network.protocol.version` | string | Deprecated, use `network.protocol.name` and `network.protocol.version` instead. | `1.0`; `1.1`; `2.0` |
+| <a id="http-flavor" href="#http-flavor">`http.flavor`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Split into `network.protocol.name` and `network.protocol.version` | string | Deprecated, use `network.protocol.name` and `network.protocol.version` instead. | `1.0`; `1.1`; `2.0` [8] |
 | <a id="http-host" href="#http-host">`http.host`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by one of `server.address`, `client.address` or `http.request.header.host`, depending on the usage. | string | Deprecated, use one of `server.address`, `client.address` or `http.request.header.host` instead, depending on the usage. | `www.example.org` |
 | <a id="http-method" href="#http-method">`http.method`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `http.request.method`. | string | Deprecated, use `http.request.method` instead. | `GET`; `POST`; `HEAD` |
 | <a id="http-request-content-length" href="#http-request-content-length">`http.request_content_length`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `http.request.header.content-length`. | int | Deprecated, use `http.request.header.content-length` instead. | `3495` |
@@ -145,6 +149,8 @@ Describes deprecated HTTP attributes.
 | <a id="http-target" href="#http-target">`http.target`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Split to `url.path` and `url.query`. | string | Deprecated, use `url.path` and `url.query` instead. | `/search?q=OpenTelemetry#SemConv` |
 | <a id="http-url" href="#http-url">`http.url`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `url.full`. | string | Deprecated, use `url.full` instead. | `https://www.foo.bar/search?q=OpenTelemetry#SemConv` |
 | <a id="http-user-agent" href="#http-user-agent">`http.user_agent`</a> | ![Deprecated](https://img.shields.io/badge/-deprecated-red)<br>Replaced by `user_agent.original`. | string | Deprecated, use `user_agent.original` instead. | `CERN-LineMode/2.15 libwww/2.17b3`; `Mozilla/5.0 (iPhone; CPU iPhone OS 14_7_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.2 Mobile/15E148 Safari/604.1` |
+
+**[8]:** See the full list of well-known values below.
 
 ---
 
