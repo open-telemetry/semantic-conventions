@@ -568,6 +568,8 @@ groups:
     stability: development
     span_kind: client
     extends: trace.db.common.minimal
+    annotations:
+      config_scopes: [http.client]
     brief: >
       Spans representing calls to Elasticsearch adhere to the general [Semantic Conventions for Database Client Spans](/docs/db/database-spans.md).
     note: |

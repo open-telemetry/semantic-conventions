@@ -182,21 +182,24 @@ and the QUERY method defined in [httpbis-safe-method-w-body](https://datatracker
 
 If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `_OTHER`.
 
-If the HTTP instrumentation could end up converting valid HTTP request methods to `_OTHER`, then it MUST provide a way to override
-the list of known HTTP methods. If this override is done via environment variable, then the environment variable MUST be named
-OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS and support a comma-separated list of case-sensitive known HTTP methods.
-
-![Development](https://img.shields.io/badge/-development-blue)
-If this override is done via declarative configuration, then the list MUST be configurable via the `known_methods` property
-(an array of case-sensitive strings with minimum items 0) under `.instrumentation/development.general.http.client` and/or
-`.instrumentation/development.general.http.server`.
-
-In either case, this list MUST be a full override of the default known methods,
-it is not a list of known methods in addition to the defaults.
-
 HTTP method names are case-sensitive and `http.request.method` attribute value MUST match a known HTTP method name exactly.
 Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, SHOULD populate a canonical equivalent.
 Tracing instrumentations that do so, MUST also set `http.request.method_original` to the original value.
+
+If the HTTP instrumentation could end up converting valid HTTP request methods to `_OTHER`, then it MUST provide a way to override
+the list of known HTTP methods. This list MUST be a full override of the default known methods, not a list of known methods in
+addition to the defaults.
+
+Environment variables:
+
+- `OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS`: Comma-separated list of case-sensitive known HTTP methods.
+
+![Development](https://img.shields.io/badge/-development-blue) Declarative configuration:
+
+- `.instrumentation/development.general.http.client.known_methods`: Override the default list of known HTTP methods.
+  Known methods are case-sensitive.
+  This is a full override of the default known methods, not a list of known methods in addition to the defaults.
+  If omitted, HTTP methods GET, HEAD, POST, PUT, DELETE, CONNECT, OPTIONS, TRACE, PATCH are known.
 
 **[2] `server.address`:** In HTTP/1.1, when the [request target](https://www.rfc-editor.org/rfc/rfc9112.html#name-request-target)
 is passed in its [absolute-form](https://www.rfc-editor.org/rfc/rfc9112.html#section-3.2.2),
@@ -280,10 +283,7 @@ If the request has completed successfully, instrumentations SHOULD NOT set `erro
 
 **[10] `network.protocol.version`:** If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set.
 
-**[11] `http.request.header.<key>`:** Instrumentations SHOULD require an explicit configuration of which headers are to be captured.
-Including all request headers can be a security risk - explicit configuration helps avoid leaking sensitive information.
-
-The `User-Agent` header is already captured in the `user_agent.original` attribute.
+**[11] `http.request.header.<key>`:** The `User-Agent` header is already captured in the `user_agent.original` attribute.
 Users MAY explicitly configure instrumentations to capture them even though it is not recommended.
 
 The attribute value MUST consist of either multiple header values as an array of strings
@@ -297,10 +297,15 @@ Examples:
 - A header `X-Forwarded-For: 1.2.3.4, 1.2.3.5` SHOULD be recorded as the `http.request.header.x-forwarded-for`
   attribute with value `["1.2.3.4", "1.2.3.5"]` or `["1.2.3.4, 1.2.3.5"]` depending on the HTTP library.
 
-**[12] `http.response.header.<key>`:** Instrumentations SHOULD require an explicit configuration of which headers are to be captured.
-Including all response headers can be a security risk - explicit configuration helps avoid leaking sensitive information.
+Instrumentations SHOULD require an explicit configuration of which headers are to be captured.
+Including all request headers can be a security risk - explicit configuration helps avoid leaking sensitive information.
 
-Users MAY explicitly configure instrumentations to capture them even though it is not recommended.
+![Development](https://img.shields.io/badge/-development-blue) Declarative configuration:
+
+- `.instrumentation/development.general.http.client.request_captured_headers`: Configure headers to capture for outbound http requests.
+  If omitted, no outbound request headers are captured.
+
+**[12] `http.response.header.<key>`:** Users MAY explicitly configure instrumentations to capture them even though it is not recommended.
 
 The attribute value MUST consist of either multiple header values as an array of strings
 or a single-item array containing a possibly comma-concatenated string, depending on the way
@@ -312,6 +317,14 @@ Examples:
   attribute with value `["application/json"]`.
 - A header `My-custom-header: abc, def` header SHOULD be recorded as the `http.response.header.my-custom-header`
   attribute with value `["abc", "def"]` or `["abc, def"]` depending on the HTTP library.
+
+Instrumentations SHOULD require an explicit configuration of which headers are to be captured.
+Including all response headers can be a security risk - explicit configuration helps avoid leaking sensitive information.
+
+![Development](https://img.shields.io/badge/-development-blue) Declarative configuration:
+
+- `.instrumentation/development.general.http.client.response_captured_headers`: Configure headers to capture for inbound http responses.
+  If omitted, no inbound response headers are captured.
 
 **[13] `network.transport`:** Generally `tcp` for `HTTP/1.0`, `HTTP/1.1`, and `HTTP/2`. Generally `udp` for `HTTP/3`. Other obscure implementations are possible.
 
@@ -509,21 +522,24 @@ and the QUERY method defined in [httpbis-safe-method-w-body](https://datatracker
 
 If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `_OTHER`.
 
-If the HTTP instrumentation could end up converting valid HTTP request methods to `_OTHER`, then it MUST provide a way to override
-the list of known HTTP methods. If this override is done via environment variable, then the environment variable MUST be named
-OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS and support a comma-separated list of case-sensitive known HTTP methods.
-
-![Development](https://img.shields.io/badge/-development-blue)
-If this override is done via declarative configuration, then the list MUST be configurable via the `known_methods` property
-(an array of case-sensitive strings with minimum items 0) under `.instrumentation/development.general.http.client` and/or
-`.instrumentation/development.general.http.server`.
-
-In either case, this list MUST be a full override of the default known methods,
-it is not a list of known methods in addition to the defaults.
-
 HTTP method names are case-sensitive and `http.request.method` attribute value MUST match a known HTTP method name exactly.
 Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, SHOULD populate a canonical equivalent.
 Tracing instrumentations that do so, MUST also set `http.request.method_original` to the original value.
+
+If the HTTP instrumentation could end up converting valid HTTP request methods to `_OTHER`, then it MUST provide a way to override
+the list of known HTTP methods. This list MUST be a full override of the default known methods, not a list of known methods in
+addition to the defaults.
+
+Environment variables:
+
+- `OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS`: Comma-separated list of case-sensitive known HTTP methods.
+
+![Development](https://img.shields.io/badge/-development-blue) Declarative configuration:
+
+- `.instrumentation/development.general.http.server.known_methods`: Override the default list of known HTTP methods.
+  Known methods are case-sensitive.
+  This is a full override of the default known methods, not a list of known methods in addition to the defaults.
+  If omitted, HTTP methods GET, HEAD, POST, PUT, DELETE, CONNECT, OPTIONS, TRACE, PATCH are known.
 
 **[2] `url.path`:** Sensitive content provided in `url.path` SHOULD be scrubbed when instrumentations can identify it.
 
@@ -604,10 +620,7 @@ When a query string value is redacted, the query string key SHOULD still be pres
 
 **[14] `client.port`:** When observed from the server side, and when communicating through an intermediary, `client.port` SHOULD represent the client port behind any intermediaries,  for example proxies, if it's available.
 
-**[15] `http.request.header.<key>`:** Instrumentations SHOULD require an explicit configuration of which headers are to be captured.
-Including all request headers can be a security risk - explicit configuration helps avoid leaking sensitive information.
-
-The `User-Agent` header is already captured in the `user_agent.original` attribute.
+**[15] `http.request.header.<key>`:** The `User-Agent` header is already captured in the `user_agent.original` attribute.
 Users MAY explicitly configure instrumentations to capture them even though it is not recommended.
 
 The attribute value MUST consist of either multiple header values as an array of strings
@@ -621,10 +634,15 @@ Examples:
 - A header `X-Forwarded-For: 1.2.3.4, 1.2.3.5` SHOULD be recorded as the `http.request.header.x-forwarded-for`
   attribute with value `["1.2.3.4", "1.2.3.5"]` or `["1.2.3.4, 1.2.3.5"]` depending on the HTTP library.
 
-**[16] `http.response.header.<key>`:** Instrumentations SHOULD require an explicit configuration of which headers are to be captured.
-Including all response headers can be a security risk - explicit configuration helps avoid leaking sensitive information.
+Instrumentations SHOULD require an explicit configuration of which headers are to be captured.
+Including all request headers can be a security risk - explicit configuration helps avoid leaking sensitive information.
 
-Users MAY explicitly configure instrumentations to capture them even though it is not recommended.
+![Development](https://img.shields.io/badge/-development-blue) Declarative configuration:
+
+- `.instrumentation/development.general.http.server.request_captured_headers`: Configure headers to capture for inbound http requests.
+  If omitted, no request headers are captured.
+
+**[16] `http.response.header.<key>`:** Users MAY explicitly configure instrumentations to capture them even though it is not recommended.
 
 The attribute value MUST consist of either multiple header values as an array of strings
 or a single-item array containing a possibly comma-concatenated string, depending on the way
@@ -636,6 +654,14 @@ Examples:
   attribute with value `["application/json"]`.
 - A header `My-custom-header: abc, def` header SHOULD be recorded as the `http.response.header.my-custom-header`
   attribute with value `["abc", "def"]` or `["abc, def"]` depending on the HTTP library.
+
+Instrumentations SHOULD require an explicit configuration of which headers are to be captured.
+Including all response headers can be a security risk - explicit configuration helps avoid leaking sensitive information.
+
+![Development](https://img.shields.io/badge/-development-blue) Declarative configuration:
+
+- `.instrumentation/development.general.http.server.response_captured_headers`: Configure headers to capture for outbound http responses.
+  If omitted, no response headers are captured.
 
 **[17] `network.transport`:** Generally `tcp` for `HTTP/1.0`, `HTTP/1.1`, and `HTTP/2`. Generally `udp` for `HTTP/3`. Other obscure implementations are possible.
 

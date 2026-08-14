@@ -1,5 +1,7 @@
 groups:
   - id: event.http.client.request.exception
+    annotations:
+      config_scopes: [http.client]
     name: http.client.request.exception
     stability: development
     type: event
@@ -28,6 +30,8 @@ groups:
       - ref: exception.stacktrace
 
   - id: event.http.server.request.exception
+    annotations:
+      config_scopes: [http.server]
     name: http.server.request.exception
     stability: development
     type: event
