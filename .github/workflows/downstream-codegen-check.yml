@@ -28,9 +28,6 @@ jobs:
       github.repository_owner == 'open-telemetry' &&
       (github.event_name != 'pull_request' || startsWith(github.head_ref, 'otelbot/prepare-release-'))
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      issues: write # required to report scheduled failures
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -145,26 +142,15 @@ jobs:
           make "$PWD/.tools/golangci-lint"
           ./.tools/golangci-lint run --allow-serial-runners "./semconv/$TAG/..."
 
-      # Same as reusable-workflow-notification.yml, inlined so that pull requests get a
-      # single check. On release preparation PRs the failing job is signal enough.
-      - name: Open issue or add comment if issue already open
-        if: always() && github.event_name != 'pull_request'
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GH_REPO: ${{ github.repository }}
-          SUCCESS: ${{ job.status == 'success' }}
-        run: |
-          # TODO (trask) search doesn't support exact phrases, so it's possible that this could grab the wrong issue
-          number=$(gh issue list --search "in:title Workflow failed: $GITHUB_WORKFLOW" --limit 1 --json number -q .[].number)
-
-          if [[ $number ]]; then
-            if [[ "$SUCCESS" == "true" ]]; then
-              gh issue close $number
-            else
-              gh issue comment $number \
-                               --body "See [$GITHUB_WORKFLOW #$GITHUB_RUN_NUMBER](https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID)."
-            fi
-          elif [[ "$SUCCESS" == "false" ]]; then
-            gh issue create --title "Workflow failed: $GITHUB_WORKFLOW (#$GITHUB_RUN_NUMBER)" \
-                            --body "See [$GITHUB_WORKFLOW #$GITHUB_RUN_NUMBER](https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID)."
-          fi
+  # Scheduled runs open (or comment on) a tracking issue; on release preparation PRs
+  # the failing job is signal enough.
+  workflow-notification:
+    permissions: # required by the reusable workflow
+      contents: read
+      issues: write
+    needs:
+      - downstream-codegen
+    if: always() && github.event_name != 'pull_request' && github.repository_owner == 'open-telemetry'
+    uses: ./.github/workflows/reusable-workflow-notification.yml
+    with:
+      success: ${{ needs.downstream-codegen.result == 'success' }}
