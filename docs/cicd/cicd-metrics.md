@@ -507,7 +507,7 @@ It is up to the implementer to decide which value to set as the
 revision based on the VCS system and situational context.
 
 **[6] `vcs.ref.head.revision`:** `head` refers to where you are right now; the current reference at a
-given time.The revision can be a full [hash value (see
+given time. The revision can be a full [hash value (see
 glossary)](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.186-5.pdf),
 of the recorded change to a ref within a repository pointing to a
 commit [commit](https://git-scm.com/docs/git-commit) object. It does
@@ -588,7 +588,7 @@ It is up to the implementer to decide which value to set as the
 revision based on the VCS system and situational context.
 
 **[6] `vcs.ref.head.revision`:** `head` refers to where you are right now; the current reference at a
-given time.The revision can be a full [hash value (see
+given time. The revision can be a full [hash value (see
 glossary)](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.186-5.pdf),
 of the recorded change to a ref within a repository pointing to a
 commit [commit](https://git-scm.com/docs/git-commit) object. It does
