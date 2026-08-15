@@ -232,4 +232,4 @@ Microsoft SQL Server client instrumentations SHOULD collect metrics according to
 
 `db.system.name` MUST be set to `"microsoft.sql_server"`.
 
-[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
+[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status/

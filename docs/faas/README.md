@@ -18,4 +18,4 @@ Technology specific semantic conventions are defined for the following FaaS serv
 
 * [AWS Lambda](aws-lambda.md): Semantic Conventions for *AWS Lambda*.
 
-[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
+[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status/

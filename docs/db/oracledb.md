@@ -405,4 +405,4 @@ Oracle Database driver instrumentation SHOULD collect metrics according to the g
 
 `db.system.name` MUST be set to `"oracle.db"`.
 
-[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
+[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status/

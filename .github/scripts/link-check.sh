@@ -10,6 +10,7 @@ DEPENDENCIES_DOCKERFILE="$ROOT_DIR/dependencies.Dockerfile"
 
 # Parse command line arguments
 LOCAL_LINKS_ONLY=false
+CONFIG_FILE=".github/scripts/lychee-config.toml"
 TARGET=""
 
 while [[ $# -gt 0 ]]; do
@@ -17,6 +18,14 @@ while [[ $# -gt 0 ]]; do
         --local-links-only)
             LOCAL_LINKS_ONLY=true
             shift
+            ;;
+        --config)
+            if [[ $# -lt 2 ]]; then
+                echo "Missing value for --config" >&2
+                exit 1
+            fi
+            CONFIG_FILE=$2
+            shift 2
             ;;
         *)
             # Treat any other arguments as file paths
@@ -44,7 +53,7 @@ fi
 if [[ "$LOCAL_LINKS_ONLY" == "true" ]]; then
     CMD="$CMD --scheme file --include-fragments"
 else
-    CMD="$CMD --config .github/scripts/lychee-config.toml"
+    CMD="$CMD --config $CONFIG_FILE"
 fi
 
 CMD="$CMD $TARGET"

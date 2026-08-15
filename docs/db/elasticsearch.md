@@ -236,4 +236,4 @@ Elasticsearch client instrumentations SHOULD collect metrics according to the ge
 
 `db.system.name` MUST be set to `"elasticsearch"`.
 
-[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status
+[DocumentStatus]: https://opentelemetry.io/docs/specs/otel/document-status/
