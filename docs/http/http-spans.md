@@ -163,17 +163,19 @@ There are two ways HTTP client spans can be implemented in an instrumentation:
 | [`network.peer.address`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Peer address of the network connection - IP address or UNIX domain socket name. | `10.1.2.80`; `/tmp/my.sock` |
 | [`network.peer.port`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` If `network.peer.address` is set. | int | Peer port number of the network connection. | `65123` |
 | [`network.protocol.version`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | The actual version of the protocol used for network communication. [12] | `1.0`; `1.1`; `2`; `3` |
+| [`http.request.body.content`](/docs/registry/attributes/http.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | any | The content of the HTTP request body, with any content coding indicated by [Content-Encoding](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-encoding) removed, captured as a string when the request content is textual or as byte array otherwise. [13] | `Hello world!`; `{"foo": "bar"}` |
 | [`http.request.body.size`](/docs/registry/attributes/http.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The size of the request payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size. | `3495` |
-| [`http.request.header.<key>`](/docs/registry/attributes/http.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | string[] | HTTP request headers, `<key>` being the normalized HTTP Header name (lowercase), the value being the header values. [13] | `["application/json"]`; `["1.2.3.4", "1.2.3.5"]` |
+| [`http.request.header.<key>`](/docs/registry/attributes/http.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | string[] | HTTP request headers, `<key>` being the normalized HTTP Header name (lowercase), the value being the header values. [14] | `["application/json"]`; `["1.2.3.4", "1.2.3.5"]` |
 | [`http.request.size`](/docs/registry/attributes/http.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The total size of the request in bytes. This should be the total number of bytes sent over the wire, including the request line (HTTP/1.1), framing (HTTP/2 and HTTP/3), headers, and request body if any. | `1437` |
+| [`http.response.body.content`](/docs/registry/attributes/http.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | any | The content of the HTTP response body, with any content coding indicated by [Content-Encoding](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-encoding) removed, captured as a string when the response content is textual or as byte array otherwise. [15] | `Hello world!`; `{"foo": "bar"}` |
 | [`http.response.body.size`](/docs/registry/attributes/http.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The size of the response payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size. | `3495` |
-| [`http.response.header.<key>`](/docs/registry/attributes/http.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | string[] | HTTP response headers, `<key>` being the normalized HTTP Header name (lowercase), the value being the header values. [14] | `["application/json"]`; `["abc", "def"]` |
+| [`http.response.header.<key>`](/docs/registry/attributes/http.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | string[] | HTTP response headers, `<key>` being the normalized HTTP Header name (lowercase), the value being the header values. [16] | `["application/json"]`; `["abc", "def"]` |
 | [`http.response.size`](/docs/registry/attributes/http.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The total size of the response in bytes. This should be the total number of bytes sent over the wire, including the status line (HTTP/1.1), framing (HTTP/2 and HTTP/3), headers, and response body and trailers if any. | `1437` |
-| [`network.transport`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [15] | `tcp`; `udp` [16] |
+| [`network.transport`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [17] | `tcp`; `udp` [18] |
 | [`url.scheme`](/docs/registry/attributes/url.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | string | The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol. | `http`; `https` |
-| [`url.template`](/docs/registry/attributes/url.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The low-cardinality template of an [absolute path reference](https://www.rfc-editor.org/rfc/rfc3986#section-4.2). [17] | `/users/{id}`; `/users/:id`; `/users?id={id}` |
+| [`url.template`](/docs/registry/attributes/url.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | The low-cardinality template of an [absolute path reference](https://www.rfc-editor.org/rfc/rfc3986#section-4.2). [19] | `/users/{id}`; `/users/:id`; `/users?id={id}` |
 | [`user_agent.original`](/docs/registry/attributes/user-agent.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | string | Value of the [HTTP User-Agent](https://www.rfc-editor.org/rfc/rfc9110.html#field.user-agent) header sent by the client. | `CERN-LineMode/2.15 libwww/2.17b3`; `Mozilla/5.0 (iPhone; CPU iPhone OS 14_7_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.2 Mobile/15E148 Safari/604.1`; `YourApp/1.0.0 grpc-java-okhttp/1.27.2` |
-| [`user_agent.synthetic.type`](/docs/registry/attributes/user-agent.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Specifies the category of synthetic traffic, such as tests or bots. [18] | `bot`; `test` [19] |
+| [`user_agent.synthetic.type`](/docs/registry/attributes/user-agent.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Specifies the category of synthetic traffic, such as tests or bots. [20] | `bot`; `test` [21] |
 
 **[1] `http.request.method`:** HTTP request method value SHOULD be "known" to the instrumentation.
 By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods),
@@ -284,7 +286,30 @@ If the request has completed successfully, instrumentations SHOULD NOT set `erro
 
 **[12] `network.protocol.version`:** If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set.
 
-**[13] `http.request.header.<key>`:** Instrumentations SHOULD require an explicit configuration of which headers are to be captured.
+**[13] `http.request.body.content`:** Captured value MAY be limited in size and thus value is expected to be truncated in many cases.
+When an instrumentation applies a byte-based limit while capturing the body as a string, it SHOULD truncate on a character
+boundary so that the recorded value remains valid text.
+
+Instrumentations MUST NOT capture this attribute by default and MAY provide an option to enable it.
+
+> [!WARNING]
+> This attribute may contain sensitive information.
+
+When instrumentations record body, they SHOULD capture the body as string whenever possible as it makes it easier to use in human-readable form,
+also it allows to implement sanitization if needed.
+
+Textual content is typically detected based on the [Content-Type](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-type) header using heuristics
+such as checking if the type/subtype (compared case-insensitively, ignoring any parameters) starts with `text/`, ends with `/json`, `+json`, `/xml`, `+xml`, `/yaml` or `+yaml`,
+is `application/x-www-form-urlencoded`, or if the header declares a `charset` parameter.
+
+Instrumentations that implement request body recording MUST NOT intentionally introduce side effects such as changing stream position or closing body stream independently from the
+application.
+
+When body is recorded, the instrumentation SHOULD record part of the body that was sent or received at the time HTTP call has ended.
+The value MUST be either a string or a byte array. Instrumentations MUST NOT record a parsed or otherwise structured representation of the body,
+and MUST NOT base64-encode binary content into a string value.
+
+**[14] `http.request.header.<key>`:** Instrumentations SHOULD require an explicit configuration of which headers are to be captured.
 Including all request headers can be a security risk - explicit configuration helps avoid leaking sensitive information.
 
 The `User-Agent` header is already captured in the `user_agent.original` attribute.
@@ -301,7 +326,33 @@ Examples:
 - A header `X-Forwarded-For: 1.2.3.4, 1.2.3.5` SHOULD be recorded as the `http.request.header.x-forwarded-for`
   attribute with value `["1.2.3.4", "1.2.3.5"]` or `["1.2.3.4, 1.2.3.5"]` depending on the HTTP library.
 
-**[14] `http.response.header.<key>`:** Instrumentations SHOULD require an explicit configuration of which headers are to be captured.
+**[15] `http.response.body.content`:** Captured value MAY be limited in size and thus value is expected to be truncated in many cases.
+When an instrumentation applies a byte-based limit while capturing the body as a string, it SHOULD truncate on a character
+boundary so that the recorded value remains valid text.
+
+Instrumentations MUST NOT capture this attribute by default and MAY provide an option to enable it.
+
+> [!WARNING]
+> This attribute may contain sensitive information.
+
+When instrumentations record body, they SHOULD capture the body as string whenever possible as it makes it easier to use in human-readable form,
+also it allows to implement sanitization if needed.
+
+Textual content is typically detected based on the [Content-Type](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-type) header using heuristics
+such as checking if the type/subtype (compared case-insensitively, ignoring any parameters) starts with `text/`, ends with `/json`, `+json`, `/xml`, `+xml`, `/yaml` or `+yaml`,
+is `application/x-www-form-urlencoded`, or if the header declares a `charset` parameter.
+
+Instrumentations that implement response body recording MUST NOT intentionally introduce side effects such as changing stream position or closing body stream independently from the
+application.
+
+When body is recorded, the instrumentation SHOULD record part of the body that was sent or received at the time HTTP call has ended.
+Note that HTTP client spans [SHOULD end sometime after the response headers are fully read](/docs/http/http-spans.md#http-client-span-duration),
+which may or may not include reading the response body, so on client spans this attribute is often absent or holds only part of the body.
+
+The value MUST be either a string or a byte array. Instrumentations MUST NOT record a parsed or otherwise structured representation of the body,
+and MUST NOT base64-encode binary content into a string value.
+
+**[16] `http.response.header.<key>`:** Instrumentations SHOULD require an explicit configuration of which headers are to be captured.
 Including all response headers can be a security risk - explicit configuration helps avoid leaking sensitive information.
 
 Users MAY explicitly configure instrumentations to capture them even though it is not recommended.
@@ -317,15 +368,15 @@ Examples:
 - A header `My-custom-header: abc, def` header SHOULD be recorded as the `http.response.header.my-custom-header`
   attribute with value `["abc", "def"]` or `["abc, def"]` depending on the HTTP library.
 
-**[15] `network.transport`:** Generally `tcp` for `HTTP/1.0`, `HTTP/1.1`, and `HTTP/2`. Generally `udp` for `HTTP/3`. Other obscure implementations are possible.
+**[17] `network.transport`:** Generally `tcp` for `HTTP/1.0`, `HTTP/1.1`, and `HTTP/2`. Generally `udp` for `HTTP/3`. Other obscure implementations are possible.
 
-**[16] `network.transport`:** See the full list of well-known values below.
+**[18] `network.transport`:** See the full list of well-known values below.
 
-**[17] `url.template`:** The `url.template` MUST have low cardinality. It is not usually available on HTTP clients, but may be known by the application or specialized HTTP instrumentation.
+**[19] `url.template`:** The `url.template` MUST have low cardinality. It is not usually available on HTTP clients, but may be known by the application or specialized HTTP instrumentation.
 
-**[18] `user_agent.synthetic.type`:** This attribute MAY be derived from the contents of the `user_agent.original` attribute. Components that populate the attribute are responsible for determining what they consider to be synthetic bot or test traffic. This attribute can either be set for self-identification purposes, or on telemetry detected to be generated as a result of a synthetic request. This attribute is useful for distinguishing between genuine client traffic and synthetic traffic generated by bots or tests.
+**[20] `user_agent.synthetic.type`:** This attribute MAY be derived from the contents of the `user_agent.original` attribute. Components that populate the attribute are responsible for determining what they consider to be synthetic bot or test traffic. This attribute can either be set for self-identification purposes, or on telemetry detected to be generated as a result of a synthetic request. This attribute is useful for distinguishing between genuine client traffic and synthetic traffic generated by bots or tests.
 
-**[19] `user_agent.synthetic.type`:** See the full list of well-known values below.
+**[21] `user_agent.synthetic.type`:** See the full list of well-known values below.
 
 The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):
@@ -499,16 +550,18 @@ This span represents an inbound HTTP request.
 | [`server.address`](/docs/registry/attributes/server.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Name of the local HTTP server that received the request. [15] | `example.com`; `10.1.2.80`; `/tmp/my.sock` |
 | [`user_agent.original`](/docs/registry/attributes/user-agent.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Recommended` | string | Value of the [HTTP User-Agent](https://www.rfc-editor.org/rfc/rfc9110.html#field.user-agent) header sent by the client. | `CERN-LineMode/2.15 libwww/2.17b3`; `Mozilla/5.0 (iPhone; CPU iPhone OS 14_7_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.2 Mobile/15E148 Safari/604.1`; `YourApp/1.0.0 grpc-java-okhttp/1.27.2` |
 | [`client.port`](/docs/registry/attributes/client.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | int | The port of whichever client was captured in `client.address`. [16] | `65123` |
+| [`http.request.body.content`](/docs/registry/attributes/http.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | any | The content of the HTTP request body, with any content coding indicated by [Content-Encoding](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-encoding) removed, captured as a string when the request content is textual or as byte array otherwise. [17] | `Hello world!`; `{"foo": "bar"}` |
 | [`http.request.body.size`](/docs/registry/attributes/http.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The size of the request payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size. | `3495` |
-| [`http.request.header.<key>`](/docs/registry/attributes/http.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | string[] | HTTP request headers, `<key>` being the normalized HTTP Header name (lowercase), the value being the header values. [17] | `["application/json"]`; `["1.2.3.4", "1.2.3.5"]` |
+| [`http.request.header.<key>`](/docs/registry/attributes/http.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | string[] | HTTP request headers, `<key>` being the normalized HTTP Header name (lowercase), the value being the header values. [18] | `["application/json"]`; `["1.2.3.4", "1.2.3.5"]` |
 | [`http.request.size`](/docs/registry/attributes/http.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The total size of the request in bytes. This should be the total number of bytes sent over the wire, including the request line (HTTP/1.1), framing (HTTP/2 and HTTP/3), headers, and request body if any. | `1437` |
+| [`http.response.body.content`](/docs/registry/attributes/http.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | any | The content of the HTTP response body, with any content coding indicated by [Content-Encoding](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-encoding) removed, captured as a string when the response content is textual or as byte array otherwise. [19] | `Hello world!`; `{"foo": "bar"}` |
 | [`http.response.body.size`](/docs/registry/attributes/http.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The size of the response payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size. | `3495` |
-| [`http.response.header.<key>`](/docs/registry/attributes/http.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | string[] | HTTP response headers, `<key>` being the normalized HTTP Header name (lowercase), the value being the header values. [18] | `["application/json"]`; `["abc", "def"]` |
+| [`http.response.header.<key>`](/docs/registry/attributes/http.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | string[] | HTTP response headers, `<key>` being the normalized HTTP Header name (lowercase), the value being the header values. [20] | `["application/json"]`; `["abc", "def"]` |
 | [`http.response.size`](/docs/registry/attributes/http.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | int | The total size of the response in bytes. This should be the total number of bytes sent over the wire, including the status line (HTTP/1.1), framing (HTTP/2 and HTTP/3), headers, and response body and trailers if any. | `1437` |
 | [`network.local.address`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | string | Local socket address. Useful in case of a multi-IP host. | `10.1.2.80`; `/tmp/my.sock` |
 | [`network.local.port`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | int | Local socket port. Useful in case of a multi-port host. | `65123` |
-| [`network.transport`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [19] | `tcp`; `udp` [20] |
-| [`user_agent.synthetic.type`](/docs/registry/attributes/user-agent.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Specifies the category of synthetic traffic, such as tests or bots. [21] | `bot`; `test` [22] |
+| [`network.transport`](/docs/registry/attributes/network.md) | ![Stable](https://img.shields.io/badge/-stable-lightgreen) | `Opt-In` | string | [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication). [21] | `tcp`; `udp` [22] |
+| [`user_agent.synthetic.type`](/docs/registry/attributes/user-agent.md) | ![Development](https://img.shields.io/badge/-development-blue) | `Opt-In` | string | Specifies the category of synthetic traffic, such as tests or bots. [23] | `bot`; `test` [24] |
 
 **[1] `http.request.method`:** HTTP request method value SHOULD be "known" to the instrumentation.
 By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods),
@@ -616,7 +669,30 @@ When a query string value is redacted, the query string key SHOULD still be pres
 
 **[16] `client.port`:** When observed from the server side, and when communicating through an intermediary, `client.port` SHOULD represent the client port behind any intermediaries,  for example proxies, if it's available.
 
-**[17] `http.request.header.<key>`:** Instrumentations SHOULD require an explicit configuration of which headers are to be captured.
+**[17] `http.request.body.content`:** Captured value MAY be limited in size and thus value is expected to be truncated in many cases.
+When an instrumentation applies a byte-based limit while capturing the body as a string, it SHOULD truncate on a character
+boundary so that the recorded value remains valid text.
+
+Instrumentations MUST NOT capture this attribute by default and MAY provide an option to enable it.
+
+> [!WARNING]
+> This attribute may contain sensitive information.
+
+When instrumentations record body, they SHOULD capture the body as string whenever possible as it makes it easier to use in human-readable form,
+also it allows to implement sanitization if needed.
+
+Textual content is typically detected based on the [Content-Type](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-type) header using heuristics
+such as checking if the type/subtype (compared case-insensitively, ignoring any parameters) starts with `text/`, ends with `/json`, `+json`, `/xml`, `+xml`, `/yaml` or `+yaml`,
+is `application/x-www-form-urlencoded`, or if the header declares a `charset` parameter.
+
+Instrumentations that implement request body recording MUST NOT intentionally introduce side effects such as changing stream position or closing body stream independently from the
+application.
+
+When body is recorded, the instrumentation SHOULD record part of the body that was sent or received at the time HTTP call has ended.
+The value MUST be either a string or a byte array. Instrumentations MUST NOT record a parsed or otherwise structured representation of the body,
+and MUST NOT base64-encode binary content into a string value.
+
+**[18] `http.request.header.<key>`:** Instrumentations SHOULD require an explicit configuration of which headers are to be captured.
 Including all request headers can be a security risk - explicit configuration helps avoid leaking sensitive information.
 
 The `User-Agent` header is already captured in the `user_agent.original` attribute.
@@ -633,7 +709,33 @@ Examples:
 - A header `X-Forwarded-For: 1.2.3.4, 1.2.3.5` SHOULD be recorded as the `http.request.header.x-forwarded-for`
   attribute with value `["1.2.3.4", "1.2.3.5"]` or `["1.2.3.4, 1.2.3.5"]` depending on the HTTP library.
 
-**[18] `http.response.header.<key>`:** Instrumentations SHOULD require an explicit configuration of which headers are to be captured.
+**[19] `http.response.body.content`:** Captured value MAY be limited in size and thus value is expected to be truncated in many cases.
+When an instrumentation applies a byte-based limit while capturing the body as a string, it SHOULD truncate on a character
+boundary so that the recorded value remains valid text.
+
+Instrumentations MUST NOT capture this attribute by default and MAY provide an option to enable it.
+
+> [!WARNING]
+> This attribute may contain sensitive information.
+
+When instrumentations record body, they SHOULD capture the body as string whenever possible as it makes it easier to use in human-readable form,
+also it allows to implement sanitization if needed.
+
+Textual content is typically detected based on the [Content-Type](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-type) header using heuristics
+such as checking if the type/subtype (compared case-insensitively, ignoring any parameters) starts with `text/`, ends with `/json`, `+json`, `/xml`, `+xml`, `/yaml` or `+yaml`,
+is `application/x-www-form-urlencoded`, or if the header declares a `charset` parameter.
+
+Instrumentations that implement response body recording MUST NOT intentionally introduce side effects such as changing stream position or closing body stream independently from the
+application.
+
+When body is recorded, the instrumentation SHOULD record part of the body that was sent or received at the time HTTP call has ended.
+Note that HTTP client spans [SHOULD end sometime after the response headers are fully read](/docs/http/http-spans.md#http-client-span-duration),
+which may or may not include reading the response body, so on client spans this attribute is often absent or holds only part of the body.
+
+The value MUST be either a string or a byte array. Instrumentations MUST NOT record a parsed or otherwise structured representation of the body,
+and MUST NOT base64-encode binary content into a string value.
+
+**[20] `http.response.header.<key>`:** Instrumentations SHOULD require an explicit configuration of which headers are to be captured.
 Including all response headers can be a security risk - explicit configuration helps avoid leaking sensitive information.
 
 Users MAY explicitly configure instrumentations to capture them even though it is not recommended.
@@ -649,13 +751,13 @@ Examples:
 - A header `My-custom-header: abc, def` header SHOULD be recorded as the `http.response.header.my-custom-header`
   attribute with value `["abc", "def"]` or `["abc, def"]` depending on the HTTP library.
 
-**[19] `network.transport`:** Generally `tcp` for `HTTP/1.0`, `HTTP/1.1`, and `HTTP/2`. Generally `udp` for `HTTP/3`. Other obscure implementations are possible.
+**[21] `network.transport`:** Generally `tcp` for `HTTP/1.0`, `HTTP/1.1`, and `HTTP/2`. Generally `udp` for `HTTP/3`. Other obscure implementations are possible.
 
-**[20] `network.transport`:** See the full list of well-known values below.
+**[22] `network.transport`:** See the full list of well-known values below.
 
-**[21] `user_agent.synthetic.type`:** This attribute MAY be derived from the contents of the `user_agent.original` attribute. Components that populate the attribute are responsible for determining what they consider to be synthetic bot or test traffic. This attribute can either be set for self-identification purposes, or on telemetry detected to be generated as a result of a synthetic request. This attribute is useful for distinguishing between genuine client traffic and synthetic traffic generated by bots or tests.
+**[23] `user_agent.synthetic.type`:** This attribute MAY be derived from the contents of the `user_agent.original` attribute. Components that populate the attribute are responsible for determining what they consider to be synthetic bot or test traffic. This attribute can either be set for self-identification purposes, or on telemetry detected to be generated as a result of a synthetic request. This attribute is useful for distinguishing between genuine client traffic and synthetic traffic generated by bots or tests.
 
-**[22] `user_agent.synthetic.type`:** See the full list of well-known values below.
+**[24] `user_agent.synthetic.type`:** See the full list of well-known values below.
 
 The following attributes can be important for making sampling decisions
 and SHOULD be provided **at span creation time** (if provided at all):
